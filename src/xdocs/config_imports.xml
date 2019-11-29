@@ -45,44 +45,46 @@
       </subsection>
 
       <subsection name="Properties" id="AvoidStarImport_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>excludes</td>
-            <td>
-              Specify packages where star imports are allowed.
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>allowClassImports</td>
-            <td>
-              Control whether to allow starred class imports like
-              <code>import java.util.*;</code>.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.3</td>
-          </tr>
-          <tr>
-            <td>allowStaticMemberImports</td>
-            <td>
-              Control whether to allow starred static member imports like
-              <code>import static org.junit.Assert.*;</code>.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.3</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>excludes</td>
+              <td>
+                Specify packages where star imports are allowed.
+              </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>allowClassImports</td>
+              <td>
+                Control whether to allow starred class imports like
+                <code>import java.util.*;</code>.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>allowStaticMemberImports</td>
+              <td>
+                Control whether to allow starred static member imports like
+                <code>import static org.junit.Assert.*;</code>.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.3</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="AvoidStarImport_Examples">
@@ -171,27 +173,29 @@
       </subsection>
 
       <subsection name="Properties" id="AvoidStaticImport_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>excludes</td>
-            <td>
-              Control whether to allow for certain classes via a star notation to be
-              excluded such as <code>java.lang.Math.*</code> or specific static
-              members to be excluded like <code>java.lang.System.out</code> for a variable or
-              <code>java.lang.Math.random</code> for a method. See notes section for details.
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>excludes</td>
+              <td>
+                Control whether to allow for certain classes via a star notation to be
+                excluded such as <code>java.lang.Math.*</code> or specific static
+                members to be excluded like <code>java.lang.System.out</code> for a variable or
+                <code>java.lang.Math.random</code> for a method. See notes section for details.
+              </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="AvoidStaticImport_Examples">
@@ -352,59 +356,61 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
       </subsection>
 
       <subsection name="Properties" id="CustomImportOrder_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>customImportOrderRules</td>
-            <td>Specify list of order declaration customizing by user.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>{}</code></td>
-            <td>5.8</td>
-          </tr>
-          <tr>
-            <td>standardPackageRegExp</td>
-            <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^(java|javax)\."</code></td>
-            <td>5.8</td>
-          </tr>
-          <tr>
-            <td>thirdPartyPackageRegExp</td>
-            <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>".*"</code></td>
-            <td>5.8</td>
-          </tr>
-          <tr>
-            <td>specialImportsRegExp</td>
-            <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$" (empty)</code></td>
-            <td>5.8</td>
-          </tr>
-          <tr>
-            <td>separateLineBetweenGroups</td>
-            <td>Force empty line separator between import groups.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>5.8</td>
-          </tr>
-          <tr>
-            <td>sortImportsInGroupAlphabetically</td>
-            <td>Force grouping alphabetically, in
-                <a href="https://en.wikipedia.org/wiki/ASCII#Order">
-                   ASCII sort order</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.8</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>customImportOrderRules</td>
+              <td>Specify list of order declaration customizing by user.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>{}</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>standardPackageRegExp</td>
+              <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^(java|javax)\."</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>thirdPartyPackageRegExp</td>
+              <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>".*"</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>specialImportsRegExp</td>
+              <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^$" (empty)</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>separateLineBetweenGroups</td>
+              <td>Force empty line separator between import groups.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+            <tr>
+              <td>sortImportsInGroupAlphabetically</td>
+              <td>Force grouping alphabetically, in
+                  <a href="https://en.wikipedia.org/wiki/ASCII#Order">
+                     ASCII sort order</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="CustomImportOrder_Examples">
@@ -639,45 +645,47 @@ import android.*;
       </subsection>
 
       <subsection name="Properties" id="IllegalImport_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>illegalPkgs</td>
-            <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import
-              is the part of package. If <b>regexp</b> property is set, then list of packages will
-              be interpreted as regular expressions. Note, all properties for match will be used.
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>sun</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>illegalClasses</td>
-            <td>Specify class names to reject, if <b>regexp</b> property is not set, checks if
-              import equals class name. If <b>regexp</b> property is set, then list of class names
-              will be interpreted as regular expressions. Note, all properties for match will be
-              used.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>7.8</td>
-          </tr>
-          <tr>
-            <td>regexp</td>
-            <td>
-              Control whether the <code>illegalPkgs</code> and <code>illegalClasses</code>
-              should be interpreted as regular expressions.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>7.8</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>illegalPkgs</td>
+              <td>Specify packages to reject, if <b>regexp</b> property is not set, checks if import
+                is the part of package. If <b>regexp</b> property is set, then list of packages will
+                be interpreted as regular expressions. Note, all properties for match will be used.
+              </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>sun</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>illegalClasses</td>
+              <td>Specify class names to reject, if <b>regexp</b> property is not set, checks if
+                import equals class name. If <b>regexp</b> property is set, then list of class names
+                will be interpreted as regular expressions. Note, all properties for match will be
+                used.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>7.8</td>
+            </tr>
+            <tr>
+              <td>regexp</td>
+              <td>
+                Control whether the <code>illegalPkgs</code> and <code>illegalClasses</code>
+                should be interpreted as regular expressions.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.8</td>
+            </tr>
+          </table>
+        </div>
 
       </subsection>
 
@@ -964,45 +972,49 @@ public class InputIllegalImport { }
           document type declaration in your XML document:
         </p>
 
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;!DOCTYPE import-control PUBLIC
     &quot;-//Checkstyle//DTD ImportControl Configuration 1.4//EN&quot;
     &quot;https://checkstyle.org/dtds/import_control_1_4.dtd&quot;&gt;
-        </pre>
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="ImportControl_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>file</td>
-            <td>
-              Specify the location of the file containing the import control configuration.
-              It can be a regular file, URL or resource path. It will try loading
-              the path as a URL first, then as a file, and finally as a resource.
-            </td>
-            <td><a href="property_types.html#uri">URI</a></td>
-            <td><code>null</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>path</td>
-            <td>
-              Specify the regular expression of file paths to which this check should apply. Files
-              that don't match the pattern will not be checked. The pattern will be matched against
-              the full absolute file path.
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>".*"</code></td>
-            <td>7.5</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>file</td>
+              <td>
+                Specify the location of the file containing the import control configuration.
+                It can be a regular file, URL or resource path. It will try loading
+                the path as a URL first, then as a file, and finally as a resource.
+              </td>
+              <td><a href="property_types.html#uri">URI</a></td>
+              <td><code>null</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>path</td>
+              <td>
+                Specify the regular expression of file paths to which this check should apply. Files
+                that don't match the pattern will not be checked. The pattern will be matched
+                against the full absolute file path.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>".*"</code></td>
+              <td>7.5</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ImportControl_Examples">
@@ -1400,129 +1412,132 @@ import java.util.stream.IntStream;
       </subsection>
 
       <subsection name="Properties" id="ImportOrder_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>option</td>
-            <td>specify policy on the relative order between type imports and static imports.</td>
-            <td><a href="property_types.html#importOrder">Import Order Policy</a></td>
-            <td><code>under</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>groups</td>
-            <td>
-              specify list of <b>type import</b> groups (every group identified either by a
-              common prefix string, or by a regular expression enclosed
-              in forward slashes (e.g. <code>/regexp/</code>). All type imports,
-              which does not match any group, falls into an additional group, located at the end.
-              Thus, the empty list of type groups (the default value) means
-              one group for all type imports.
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
-            <td><code>{}</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>ordered</td>
-            <td>control whether type imports within each group should be sorted.
-              It doesn't affect sorting for static imports.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>separated</td>
-            <td>
-              control whether type import groups should be separated by, at least, one
-              blank line or comment and aren't separated internally.
-              It doesn't affect separations for static imports.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-          <td>separatedStaticGroups</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>specify policy on the relative order between type imports and static imports.</td>
+              <td><a href="property_types.html#importOrder">Import Order Policy</a></td>
+              <td><code>under</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>groups</td>
               <td>
-              control whether static import groups should be separated by, at least, one
-              blank line or comment and aren't separated internally.
-              This property has effect only when the property <code>option</code>
-              is is set to <code>top</code> or <code>bottom</code>.
-              </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>caseSensitive</td>
-            <td>control whether string comparison should be case sensitive or not.
-              Case sensitive sorting is in
-              <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
-              It affects both type imports and static imports.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>true</td>
-            <td>3.3</td>
-          </tr>
-          <tr>
-            <td>staticGroups</td>
-            <td>
-                specify list of <b>static</b> import groups (every group identified either by a
+                specify list of <b>type import</b> groups (every group identified either by a
                 common prefix string, or by a regular expression enclosed
-                in forward slashes (e.g. <code>/regexp/</code>). All static imports,
+                in forward slashes (e.g. <code>/regexp/</code>). All type imports,
                 which does not match any group, falls into an additional group, located at the end.
-                Thus, the empty list of static groups (the default value) means
-                one group for all static imports. This property has effect only when
-                the property <code>option</code> is set to <code>top</code> or <code>bottom</code>.
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
-            <td><code>{}</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>sortStaticImportsAlphabetically</td>
-            <td>
-                control whether <b>static imports</b> located at <b>top</b> or
-                <b>bottom</b> are sorted within the group.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-            <td>6.5</td>
-          </tr>
-          <tr>
-            <td>useContainerOrderingForStatic</td>
-            <td>
-                control whether to use container ordering (Eclipse IDE term) for static
-                imports or not.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td>false</td>
-            <td>7.1</td>
-          </tr>
+                Thus, the empty list of type groups (the default value) means
+                one group for all type imports.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+              <td><code>{}</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>ordered</td>
+              <td>control whether type imports within each group should be sorted.
+                It doesn't affect sorting for static imports.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>true</td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>separated</td>
+              <td>
+                control whether type import groups should be separated by, at least, one
+                blank line or comment and aren't separated internally.
+                It doesn't affect separations for static imports.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>false</td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+            <td>separatedStaticGroups</td>
+                <td>
+                control whether static import groups should be separated by, at least, one
+                blank line or comment and aren't separated internally.
+                This property has effect only when the property <code>option</code>
+                is is set to <code>top</code> or <code>bottom</code>.
+                </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>false</td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>caseSensitive</td>
+              <td>control whether string comparison should be case sensitive or not.
+                Case sensitive sorting is in
+                <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+                It affects both type imports and static imports.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>true</td>
+              <td>3.3</td>
+            </tr>
+            <tr>
+              <td>staticGroups</td>
+              <td>
+                  specify list of <b>static</b> import groups (every group identified either by a
+                  common prefix string, or by a regular expression enclosed
+                  in forward slashes (e.g. <code>/regexp/</code>). All static imports,
+                  which does not match any group, falls into an additional group, located at the
+                  end. Thus, the empty list of static groups (the default value) means
+                  one group for all static imports. This property has effect only when
+                  the property <code>option</code> is set to <code>top</code> or
+                  <code>bottom</code>.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+              <td><code>{}</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>sortStaticImportsAlphabetically</td>
+              <td>
+                  control whether <b>static imports</b> located at <b>top</b> or
+                  <b>bottom</b> are sorted within the group.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>false</td>
+              <td>6.5</td>
+            </tr>
+            <tr>
+              <td>useContainerOrderingForStatic</td>
+              <td>
+                  control whether to use container ordering (Eclipse IDE term) for static
+                  imports or not.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td>false</td>
+              <td>7.1</td>
+            </tr>
 
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                  STATIC_IMPORT</a>.
-            </td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                    STATIC_IMPORT</a>.
+              </td>
 
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                  STATIC_IMPORT</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                    STATIC_IMPORT</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ImportOrder_Examples">
@@ -1926,22 +1941,24 @@ class FooBar {
       </subsection>
 
       <subsection name="Properties" id="UnusedImports_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>processJavadoc</td>
-            <td>Control whether to process Javadoc comments.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>5.4</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>processJavadoc</td>
+              <td>Control whether to process Javadoc comments.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.4</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="UnusedImports_Examples">

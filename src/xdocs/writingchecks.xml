@@ -130,6 +130,7 @@ public class MyClass {
 
 }
       ]]></source>
+        <div class="wrapper">
           <table style="table-layout: fixed;">
               <tr>
                   <td>
@@ -174,6 +175,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
                   </td>
               </tr>
           </table>
+        </div>
           <p>
             As you can see very small java file transforms to a huge Abstract Syntax Tree, because
             that is the most detailed tree including all components of the java file: object block,
@@ -201,7 +203,9 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </p>
 
       <p>
-        <img alt="screenshot" src="images/gui_screenshot.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot.png"/>
+        </span>
       </p>
 
       <p> In the leftmost column you can open and close branches

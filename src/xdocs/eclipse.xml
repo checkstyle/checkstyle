@@ -32,7 +32,9 @@
     <section name="Import Checkstyle Project">
       <p>
         Select File > Import > Maven > Existing Maven Projects<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_importing_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_importing_eclipse.png"/>
+        </span>
       </p>
     </section>
 
@@ -40,8 +42,10 @@
       <p>When you import Checkstyle Project, "Setup maven plugin connectors" window will appear.</p>
       <p>
         Left click on "Finish".<br/><br/>
-        <img alt="screenshot"
-          src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot"
+            src="images/gui_screenshot_setup_maven_plugin_connectors_eclipse.png"/>
+        </span>
         <br/><br/>
       </p>
       <p>
@@ -49,26 +53,36 @@
         <br/><br/>
         Left click on Next > Next.
         <br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_install_connector_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_install_connector_eclipse.png"/>
+        </span>
         <br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_install_connector_details_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_install_connector_details_eclipse.png"/>
+        </span>
         <br/><br/>
         Set "I accept the terms of the license agreement" > Finish.
         <br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_install_connector_license_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_install_connector_license_eclipse.png"/>
+        </span>
       </p>
       <p>
         <br/><br/>
         Then "Security Warning" window will appear.
         <br/><br/>
         Left click on "OK", and then restart Eclipse.<br/><br/>
-        <img alt="screenshot"
-          src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot"
+            src="images/gui_screenshot_install_connector_security_warning_eclipse.png"/>
+        </span>
       </p>
       <p>
         <br/><br/>
         Then target/generated-sources/antlr folder will appear in Package Explorer.<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_package_explorer_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_package_explorer_eclipse.png"/>
+        </span>
       </p>
     </section>
 
@@ -88,7 +102,9 @@
       <p>
         2) Ignore optional compile problems on resource files:<br/><br/>
         Right click on Checkstyle project > Build Path > Configure Build Path...<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_eclipse_build_path.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_eclipse_build_path.png"/>
+        </span>
       </p>
       <p>
         Set "Ignore optional compile problems" to "Yes" for following folders:
@@ -100,7 +116,9 @@
         <li>target/generated-sources/antlr</li>
       </ul>
       <p>
-        <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_warnings.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_eclipse_ignore_warnings.png"/>
+        </span>
       </p>
     </section>
 
@@ -115,8 +133,10 @@
         picture).<br/>
         Default configuration should look as following (you can also try Restore Defaults
         button):<br/><br/>
-        <img alt="Organize Imports settings in Eclipse"
-          src="images/gui_screenshot_organize_imports_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="Organize Imports settings in Eclipse"
+            src="images/gui_screenshot_organize_imports_eclipse.png"/>
+        </span>
         <br/>
       </p>
     </section>
@@ -124,15 +144,21 @@
     <section name="Debug">
       <p>
         Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_select_check_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_select_check_eclipse.png"/>
+        </span>
         <br/><br/>
         Debug the Check by putting the breakpoint at controversial place (double-click)
         on the left part of line number as it is shown:<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_debug_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_debug_eclipse.png"/>
+        </span>
         <br/><br/>
         Then right-click the corresponding Unit-test file or class definition > Debug As >
         JUnit Test<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_ut_select_eclipse.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_ut_select_eclipse.png"/>
+        </span>
         <br/><br/>
         Then manage you debug operations by F6 (Step Over), F5 (Step Into), F7 (Step Return)
         and F8 (Resume)

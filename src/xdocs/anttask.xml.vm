@@ -91,140 +91,142 @@
 
     <section name="Parameters">
 
-      <table summary="parameters">
+      <div class="wrapper">
+        <table summary="parameters">
 
-        <tr>
-          <td><b>Attribute</b></td>
-          <td><b>Description</b></td>
-          <td><b>Required</b></td>
-        </tr>
+          <tr>
+            <td><b>Attribute</b></td>
+            <td><b>Description</b></td>
+            <td><b>Required</b></td>
+          </tr>
 
-        <tr>
-          <td>file</td>
-          <td>File to run checkstyle on.</td>
-          <td>
-            One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
-            element
-          </td>
-        </tr>
+          <tr>
+            <td>file</td>
+            <td>File to run checkstyle on.</td>
+            <td>
+              One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+              element
+            </td>
+          </tr>
 
-        <tr>
-          <td>fileset</td>
-          <td>
-            A set of files to run checkstyle on. Nested attribute.
-            See <a href="http://ant.apache.org/manual/Types/fileset.html">fileset</a>
-            ant documentation for details
-          </td>
-          <td>
-            One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
-            element
-          </td>
-        </tr>
+          <tr>
+            <td>fileset</td>
+            <td>
+              A set of files to run checkstyle on. Nested attribute.
+              See <a href="http://ant.apache.org/manual/Types/fileset.html">fileset</a>
+              ant documentation for details
+            </td>
+            <td>
+              One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+              element
+            </td>
+          </tr>
 
-        <tr>
-          <td>path</td>
-          <td>
-            A set of path to run checkstyle on. Nested attribute.
-            See <a href="http://ant.apache.org/manual/using.html#path">path</a>
-            ant documentation for details
-          </td>
-          <td>
-            One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
-            element
-          </td>
-        </tr>
+          <tr>
+            <td>path</td>
+            <td>
+              A set of path to run checkstyle on. Nested attribute.
+              See <a href="http://ant.apache.org/manual/using.html#path">path</a>
+              ant documentation for details
+            </td>
+            <td>
+              One of either <i>file</i> or at least one nested <i>fileset</i> or <i>path</i>
+              element
+            </td>
+          </tr>
 
-        <tr>
-          <td>config</td>
-          <td>
-            Specifies the location of the file, URL, or Java resource that defines the configuration
-            modules.
-            <br/>
-            <a href="config.html">See here</a> for a description of how to
-            define a configuration.
-          </td>
-          <td>Exactly one config location</td>
-        </tr>
+          <tr>
+            <td>config</td>
+            <td>
+              Specifies the location of the file, URL, or Java resource that defines the
+              configuration modules.
+              <br/>
+              <a href="config.html">See here</a> for a description of how to
+              define a configuration.
+            </td>
+            <td>Exactly one config location</td>
+          </tr>
 
-        <tr>
-          <td>properties</td>
-          <td>
-            Specifies a file that contains properties for <a
-            href="config.html#Properties"> expanded property values</a> of the
-            configuration.  Ant properties (like ${basedir}) and nested
-            property elements override the properties in this file.
-          </td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>properties</td>
+            <td>
+              Specifies a file that contains properties for <a
+              href="config.html#Properties"> expanded property values</a> of the
+              configuration.  Ant properties (like ${basedir}) and nested
+              property elements override the properties in this file.
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>failOnViolation</td>
-          <td>
-            Specifies whether the build will continue even if there are
-            violations. Defaults to <code>&quot;true&quot;</code>.
-          </td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>failOnViolation</td>
+            <td>
+              Specifies whether the build will continue even if there are
+              violations. Defaults to <code>&quot;true&quot;</code>.
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>failureProperty</td>
-          <td>The name of a property to set in the event of a violation.</td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>failureProperty</td>
+            <td>The name of a property to set in the event of a violation.</td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>maxErrors</td>
-          <td>
-            The maximum number of errors that are tolerated before
-            breaking the build or setting the failure property. Defaults
-            to <code>&quot;0&quot;</code>.
-          </td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>maxErrors</td>
+            <td>
+              The maximum number of errors that are tolerated before
+              breaking the build or setting the failure property. Defaults
+              to <code>&quot;0&quot;</code>.
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>maxWarnings</td>
-          <td>
-            The maximum number of warnings that are tolerated before
-            breaking the build or setting the failure property. Defaults
-            to <code>&quot;2147483647&quot;</code>, i.e.
+          <tr>
+            <td>maxWarnings</td>
+            <td>
+              The maximum number of warnings that are tolerated before
+              breaking the build or setting the failure property. Defaults
+              to <code>&quot;2147483647&quot;</code>, i.e.
 
-            <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#MAX_VALUE">
-                Integer.MAX_VALUE</a>.
-          </td>
-          <td>No</td>
-        </tr>
+              <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/Integer.html#MAX_VALUE">
+                  Integer.MAX_VALUE</a>.
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>classpath</td>
-          <td>
-            The classpath to use when looking up classes. Defaults to the
-            current classpath.
-          </td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>classpath</td>
+            <td>
+              The classpath to use when looking up classes. Defaults to the
+              current classpath.
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>classpathref</td>
-          <td>
-            The classpath to use when looking up classes, given as a reference
-            to a path defined elsewhere.
-          </td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>classpathref</td>
+            <td>
+              The classpath to use when looking up classes, given as a reference
+              to a path defined elsewhere.
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>executeIgnoredModules</td>
-          <td>
-            For efficiency, Checkstyle does not invoke modules with a configured severity of
-            "ignore" (since their output would be ignored anyway). A small number of modules
-            may choose to log above their configured severity level and so always need to be
-            invoked. This settings specifies that behaviour.
-            Defaults to <code>&quot;false&quot;</code>.
-          </td>
-          <td>No</td>
-        </tr>
-      </table>
+          <tr>
+            <td>executeIgnoredModules</td>
+            <td>
+              For efficiency, Checkstyle does not invoke modules with a configured severity of
+              "ignore" (since their output would be ignored anyway). A small number of modules
+              may choose to log above their configured severity level and so always need to be
+              invoked. This settings specifies that behaviour.
+              Defaults to <code>&quot;false&quot;</code>.
+            </td>
+            <td>No</td>
+          </tr>
+        </table>
+      </div>
 
       <p>
         Note that the <code>packageNamesFile</code>
@@ -256,47 +258,50 @@
         element are:
       </p>
 
-      <table summary="nested elements">
-        <tr>
-          <td><b>Attribute</b></td>
-          <td><b>Description</b></td>
-          <td><b>Required</b></td>
-        </tr>
+      <div class="wrapper">
+        <table summary="nested elements">
+          <tr>
+            <td><b>Attribute</b></td>
+            <td><b>Description</b></td>
+            <td><b>Required</b></td>
+          </tr>
 
-        <tr>
-          <td>type</td>
-          <td>
-            <p>The type of output to generate. The valid values are:</p>
-            <ul>
-              <li>
-                <code>plain</code> - specifies the <a
-                href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
-              </li>
-              <li>
-                <code>xml</code> - specifies the <a
-                href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
-              </li>
-            </ul>
-            <p>Defaults to <code>"plain"</code>.</p>
-          </td>
-          <td>No</td>
-        </tr>
+          <tr>
+            <td>type</td>
+            <td>
+              <p>The type of output to generate. The valid values are:</p>
+              <ul>
+                <li>
+                  <code>plain</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">
+                    DefaultLogger</a>
+                </li>
+                <li>
+                  <code>xml</code> - specifies the <a
+                  href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
+                </li>
+              </ul>
+              <p>Defaults to <code>"plain"</code>.</p>
+            </td>
+            <td>No</td>
+          </tr>
 
-        <tr>
-          <td>toFile</td>
-          <td>
-            The file to write output to. Defaults to standard output. Note,
-            there is no way to explicitly specify standard output.
-          </td>
-          <td>No</td>
-        </tr>
-        <tr>
-          <td>useFile</td>
-          <td>Boolean that determines whether output should be sent to
-          a file.  Default is <code>true</code>.</td>
-          <td>No</td>
-        </tr>
-      </table>
+          <tr>
+            <td>toFile</td>
+            <td>
+              The file to write output to. Defaults to standard output. Note,
+              there is no way to explicitly specify standard output.
+            </td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td>useFile</td>
+            <td>Boolean that determines whether output should be sent to
+            a file.  Default is <code>true</code>.</td>
+            <td>No</td>
+          </tr>
+        </table>
+      </div>
 
       <p>
         A <code>&lt;property&gt;</code> element provides a property for
@@ -305,33 +310,35 @@
         <code>&lt;property&gt;</code> element are:
       </p>
 
-      <table summary="nested elements">
-        <tr>
-          <td><b>Attribute</b></td>
-          <td><b>Description</b></td>
-          <td><b>Required</b></td>
-        </tr>
-        <tr>
-          <td>key</td>
-          <td><p>The key for the property.</p></td>
-          <td>Yes</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="nested elements">
+          <tr>
+            <td><b>Attribute</b></td>
+            <td><b>Description</b></td>
+            <td><b>Required</b></td>
+          </tr>
+          <tr>
+            <td>key</td>
+            <td><p>The key for the property.</p></td>
+            <td>Yes</td>
+          </tr>
 
-        <tr>
-          <td>value</td>
-          <td>The value of the property specified as a string.</td>
-          <td>Either <i>value</i> or <i>file</i></td>
-        </tr>
+          <tr>
+            <td>value</td>
+            <td>The value of the property specified as a string.</td>
+            <td>Either <i>value</i> or <i>file</i></td>
+          </tr>
 
-        <tr>
-          <td>file</td>
-          <td>
-            The value of the property specified as a file. This is great for
-            specifying file names relative to the ANT build file.
-          </td>
-          <td>Either <i>value</i> or <i>file</i></td>
-        </tr>
-      </table>
+          <tr>
+            <td>file</td>
+            <td>
+              The value of the property specified as a file. This is great for
+              specifying file names relative to the ANT build file.
+            </td>
+            <td>Either <i>value</i> or <i>file</i></td>
+          </tr>
+        </table>
+      </div>
 
     </section>
 

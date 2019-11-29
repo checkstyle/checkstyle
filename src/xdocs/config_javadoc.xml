@@ -36,56 +36,58 @@
       </subsection>
 
       <subsection name="Properties" id="AtclauseOrder_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              If turned on, will print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>target</td>
-            <td>Specify the list of targets to check at-clauses.</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>
-            </td>
-            <td>6.0</td>
-          </tr>
-          <tr>
-            <td>tagOrder</td>
-            <td>Specify the order by tags.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>&#64;author, &#64;deprecated, &#64;exception, &#64;param,
-              &#64;return, &#64;see, &#64;serial, &#64;serialData, &#64;serialField,
-              &#64;since, &#64;throws, &#64;version</code></td>
-            <td>6.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                If turned on, will print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td>target</td>
+              <td>Specify the list of targets to check at-clauses.</td>
+              <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>
+              </td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>tagOrder</td>
+              <td>Specify the order by tags.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>&#64;author, &#64;deprecated, &#64;exception, &#64;param,
+                &#64;return, &#64;see, &#64;serial, &#64;serialData, &#64;serialField,
+                &#64;since, &#64;throws, &#64;version</code></td>
+              <td>6.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="AtclauseOrder_Examples">
@@ -269,33 +271,35 @@ public class TestClass {
         </source>
       </subsection>
       <subsection name="Properties" id="JavadocBlockTagLocation_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>tags</td>
-            <td>Specify the javadoc tags to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>author, deprecated, exception, hidden, param, provides, return,
-              see, serial, serialData, serialField, since, throws, uses, version</code></td>
-            <td>8.24</td>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              Control when to print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.24</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tags</td>
+              <td>Specify the javadoc tags to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>author, deprecated, exception, hidden, param, provides, return,
+                see, serial, serialData, serialField, since, throws, uses, version</code></td>
+              <td>8.24</td>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.24</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocBlockTagLocation_Examples">
@@ -461,24 +465,26 @@ public void method();
       </subsection>
 
       <subsection name="Properties" id="JavadocContentLocation_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>location</td>
-            <td>Specify the policy on placement of the Javadoc content.</td>
-            <td>
-              <a href="property_types.html#javadocContentLocation">Javadoc Content Location</a>
-            </td>
-            <td><code>second_line</code></td>
-            <td>8.27</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>location</td>
+              <td>Specify the policy on placement of the Javadoc content.</td>
+              <td>
+                <a href="property_types.html#javadocContentLocation">Javadoc Content Location</a>
+              </td>
+              <td><code>second_line</code></td>
+              <td>8.27</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocContentLocation_Examples">
@@ -629,137 +635,139 @@ public int checkReturnTag(final int aTagIndex,
       </subsection>
 
       <subsection name="Properties" id="JavadocMethod_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>allowedAnnotations</td>
-            <td>Specify the list of annotations that allow missed documentation.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>Override</code></td>
-            <td>6.0</td>
-          </tr>
-          <tr>
-            <td>validateThrows</td>
-            <td>Control whether to validate <code>throws</code> tags.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>6.0</td>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>Specify the visibility scope where Javadoc comments are checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>private</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>null</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>allowUndeclaredRTE</td>
-            <td>Control whether to allow documented exceptions that are not declared
-            if they are a subclass of <code>java.lang.RuntimeException</code>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>allowThrowsTagsForSubclasses</td>
-            <td>Control whether to allow documented exceptions that
-            are subclass of one of declared exception.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.1</td>
-          </tr>
-          <tr>
-            <td>allowMissingParamTags</td>
-            <td>Control whether to ignore violations when a method has parameters
-            but does not have matching <code>param</code> tags in the javadoc.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.1</td>
-          </tr>
-          <tr>
-            <td>allowMissingThrowsTags</td>
-            <td>Control whether to ignore violations when a method declares
-            that it throws exceptions but does not have matching <code>throws</code> tags
-            in the javadoc.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.1</td>
-          </tr>
-          <tr>
-            <td>allowMissingReturnTag</td>
-            <td>Control whether to ignore violations when a method returns
-            non-void type and does not have a <code>return</code> tag in the javadoc.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.1</td>
-          </tr>
-          <tr>
-            <td>logLoadErrors</td>
-            <td>Control checkstyle's error handling when a class loading fails.
-            This check may need to load exception classes mentioned in
-            the <code>@throws</code> tag to check whether they are RuntimeExceptions.
-            If set to <code>false</code> a
-            classpath configuration problem is assumed and the TreeWalker
-            stops operating on the class completely.
-            If set to <code>true</code> (the default), checkstyle assumes a
-            typo or refactoring problem in the
-            javadoc and logs the problem in the normal checkstyle report
-            (potentially masking a configuration error).</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>4.2</td>
-          </tr>
-          <tr>
-            <td>suppressLoadErrors</td>
-            <td>Control whether to suppress violations when a class loading fails.
-            When logLoadErrors is set to true, the TreeWalker completely
-            processes a class and displays any problems with loading exceptions
-            as checkstyle violations.
-            When this property is set to true, the violations generated when
-            logLoadErrors is set true are suppressed from being reported as
-            violations in the checkstyle report.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>4.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowedAnnotations</td>
+              <td>Specify the list of annotations that allow missed documentation.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>Override</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>validateThrows</td>
+              <td>Control whether to validate <code>throws</code> tags.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>allowUndeclaredRTE</td>
+              <td>Control whether to allow documented exceptions that are not declared
+              if they are a subclass of <code>java.lang.RuntimeException</code>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>allowThrowsTagsForSubclasses</td>
+              <td>Control whether to allow documented exceptions that
+              are subclass of one of declared exception.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>allowMissingParamTags</td>
+              <td>Control whether to ignore violations when a method has parameters
+              but does not have matching <code>param</code> tags in the javadoc.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>allowMissingThrowsTags</td>
+              <td>Control whether to ignore violations when a method declares
+              that it throws exceptions but does not have matching <code>throws</code> tags
+              in the javadoc.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>allowMissingReturnTag</td>
+              <td>Control whether to ignore violations when a method returns
+              non-void type and does not have a <code>return</code> tag in the javadoc.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>logLoadErrors</td>
+              <td>Control checkstyle's error handling when a class loading fails.
+              This check may need to load exception classes mentioned in
+              the <code>@throws</code> tag to check whether they are RuntimeExceptions.
+              If set to <code>false</code> a
+              classpath configuration problem is assumed and the TreeWalker
+              stops operating on the class completely.
+              If set to <code>true</code> (the default), checkstyle assumes a
+              typo or refactoring problem in the
+              javadoc and logs the problem in the normal checkstyle report
+              (potentially masking a configuration error).</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>4.2</td>
+            </tr>
+            <tr>
+              <td>suppressLoadErrors</td>
+              <td>Control whether to suppress violations when a class loading fails.
+              When logLoadErrors is set to true, the TreeWalker completely
+              processes a class and displays any problems with loading exceptions
+              as checkstyle violations.
+              When this property is set to true, the violations generated when
+              logLoadErrors is set true are suppressed from being reported as
+              violations in the checkstyle report.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocMethod_Examples">
@@ -891,31 +899,33 @@ public int checkReturnTag(final int aTagIndex,
       </subsection>
 
       <subsection name="Properties" id="JavadocPackage_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>allowLegacy</td>
-            <td>
-              Allow legacy <code>package.html</code> file to be used.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>.java</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowLegacy</td>
+              <td>
+                Allow legacy <code>package.html</code> file to be used.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>.java</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocPackage_Examples">
@@ -1001,34 +1011,37 @@ public int checkReturnTag(final int aTagIndex,
       </subsection>
 
       <subsection name="Properties" id="JavadocParagraph_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              Control when to print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>allowNewlineParagraph</td>
-            <td>
-              Control whether the &lt;p&gt; tag should be placed immediately before the first word.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>6.9</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td>allowNewlineParagraph</td>
+              <td>
+                Control whether the &lt;p&gt; tag should be placed immediately before the first
+                word.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.9</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocParagraph_Examples">
@@ -1206,112 +1219,114 @@ public class TestClass {
       </subsection>
 
       <subsection name="Properties" id="JavadocStyle_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>Specify the visibility scope where Javadoc comments are checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>private</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>null</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>checkFirstSentence</td>
-            <td>
-              Control whether to check the first sentence for proper end of sentence.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>endOfSentenceFormat</td>
-            <td>
-              Specify the format for matching the end of a sentence.
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>checkEmptyJavadoc</td>
-            <td>
-              Control whether to check if the Javadoc is missing a describing text.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>checkHtml</td>
-            <td>Control whether to check for incomplete HTML tags.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                ENUM_CONSTANT_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
-                PACKAGE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                ENUM_CONSTANT_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
-                PACKAGE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>checkFirstSentence</td>
+              <td>
+                Control whether to check the first sentence for proper end of sentence.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>endOfSentenceFormat</td>
+              <td>
+                Specify the format for matching the end of a sentence.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>checkEmptyJavadoc</td>
+              <td>
+                Control whether to check if the Javadoc is missing a describing text.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>checkHtml</td>
+              <td>Control whether to check for incomplete HTML tags.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                  PACKAGE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                  PACKAGE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocStyle_Examples">
@@ -1425,32 +1440,34 @@ public class TestClass {
       </subsection>
 
       <subsection name="Properties" id="JavadocTagContinuationIndentation_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              Control when to print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>offset</td>
-            <td>Specify how many spaces to use for new indentation level.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>4</code></td>
-            <td>6.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td>offset</td>
+              <td>Specify how many spaces to use for new indentation level.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>4</code></td>
+              <td>6.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocTagContinuationIndentation_Examples">
@@ -1549,94 +1566,96 @@ public class TestClass {
       </subsection>
 
       <subsection name="Properties" id="JavadocType_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>Specify the visibility scope where Javadoc comments are checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>private</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>null</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>authorFormat</td>
-            <td>Specify the pattern for <code>@author</code> tag.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>versionFormat</td>
-            <td>Specify the pattern for <code>@version</code> tag.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>allowMissingParamTags</td>
-            <td>Control whether to ignore violations when a class has type parameters
-                but does not have matching param tags in the Javadoc.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>allowUnknownTags</td>
-            <td>Control whether to ignore violations when a Javadoc tag is not recognised.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.1</td>
-          </tr>
-          <tr>
-            <td>allowedAnnotations</td>
-            <td>
-              Specify the list of annotations that allow missed documentation.
-              Only short names are allowed, e.g. <code>Generated</code>.
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>Generated</code></td>
-            <td>8.15</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>authorFormat</td>
+              <td>Specify the pattern for <code>@author</code> tag.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>versionFormat</td>
+              <td>Specify the pattern for <code>@version</code> tag.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>allowMissingParamTags</td>
+              <td>Control whether to ignore violations when a class has type parameters
+                  but does not have matching param tags in the Javadoc.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>allowUnknownTags</td>
+              <td>Control whether to ignore violations when a Javadoc tag is not recognised.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.1</td>
+            </tr>
+            <tr>
+              <td>allowedAnnotations</td>
+              <td>
+                Specify the list of annotations that allow missed documentation.
+                Only short names are allowed, e.g. <code>Generated</code>.
+              </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>Generated</code></td>
+              <td>8.15</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocType_Examples">
@@ -1768,47 +1787,49 @@ class DatabaseConfiguration {}
       </subsection>
 
       <subsection name="Properties" id="JavadocVariable_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>Specify the visibility scope where Javadoc comments are checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>private</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>null</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-              <td>ignoreNamePattern</td>
-              <td>Specify the regexp to define variable names to ignore.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>private</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
               <td><code>null</code></td>
-              <td>5.8</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+              <td>3.4</td>
+            </tr>
+            <tr>
+                <td>ignoreNamePattern</td>
+                <td>Specify the regexp to define variable names to ignore.</td>
+                <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                <td><code>null</code></td>
+                <td>5.8</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">ENUM_CONSTANT_DEF</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavadocVariable_Examples">
@@ -1918,7 +1939,8 @@ class DatabaseConfiguration {}
           For getters and setters for the property <code>allowMissingPropertyJavadoc</code>,
           the methods must match exactly the structures below.
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public void setNumber(final int number)
 {
     mNumber = number;
@@ -1933,87 +1955,90 @@ public boolean isSomething()
 {
     return false;
 }
-        </pre>
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="MissingJavadocMethod_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>minLineCount</td>
-            <td>Control the minimal amount of lines in method to allow no documentation.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>-1</code></td>
-            <td>8.21</td>
-          </tr>
-          <tr>
-            <td>allowedAnnotations</td>
-            <td>Configure the list of annotations that allow missed documentation.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>Override</code></td>
-            <td>8.21</td>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>Specify the visibility scope where Javadoc comments are checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>public</code></td>
-            <td>8.21</td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>null</code></td>
-            <td>8.21</td>
-          </tr>
-          <tr>
-            <td>allowMissingPropertyJavadoc</td>
-            <td>
-              Control whether to allow missing Javadoc on accessor methods for
-              properties (setters and getters).
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.21</td>
-          </tr>
-          <tr>
-            <td>ignoreMethodNamesRegex</td>
-            <td>ignore method whose names are matching specified regex.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.21</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>minLineCount</td>
+              <td>Control the minimal amount of lines in method to allow no documentation.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>-1</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>allowedAnnotations</td>
+              <td>Configure the list of annotations that allow missed documentation.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>Override</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>Specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>public</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>allowMissingPropertyJavadoc</td>
+              <td>
+                Control whether to allow missing Javadoc on accessor methods for
+                properties (setters and getters).
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>ignoreMethodNamesRegex</td>
+              <td>ignore method whose names are matching specified regex.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.21</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>.
-            </td>
-            <td>8.21</td>
-          </tr>
-        </table>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>.
+              </td>
+              <td>8.21</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="MissingJavadocMethod_Examples">
@@ -2181,65 +2206,67 @@ package com.checkstyle.api; // violation
       </subsection>
 
       <subsection name="Properties" id="MissingJavadocType_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>scope</td>
-            <td>specify the visibility scope where Javadoc comments are checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>public</code></td>
-            <td>8.20</td>
-          </tr>
-          <tr>
-            <td>excludeScope</td>
-            <td>specify the visibility scope where Javadoc comments are not checked.</td>
-            <td><a href="property_types.html#scope">Scope</a></td>
-            <td><code>null</code></td>
-            <td>8.20</td>
-          </tr>
-          <tr>
-            <td>skipAnnotations</td>
-            <td>
-              specify the list of annotations that allow missed documentation.
-              Only short names are allowed, e.g. <code>Generated</code>.
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>Generated</code></td>
-            <td>8.20</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
-            <td>8.20</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>scope</td>
+              <td>specify the visibility scope where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>public</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>excludeScope</td>
+              <td>specify the visibility scope where Javadoc comments are not checked.</td>
+              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><code>null</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>skipAnnotations</td>
+              <td>
+                specify the list of annotations that allow missed documentation.
+                Only short names are allowed, e.g. <code>Generated</code>.
+              </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>Generated</code></td>
+              <td>8.20</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
+              <td>8.20</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="MissingJavadocType_Examples">
@@ -2252,12 +2279,14 @@ package com.checkstyle.api; // violation
         </source>
 
         <p>Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class PublicClass {} // violation
 private class PublicClass {}
 protected class PublicClass {}
 class PackagePrivateClass {}
-        </pre>
+          </pre>
+        </div>
 
         <p>
           To configure the check for <code>private</code> scope:
@@ -2269,12 +2298,14 @@ class PackagePrivateClass {}
         </source>
 
         <p>Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class PublicClass {} // violation
 private class PublicClass {} // violation
 protected class PublicClass {} // violation
 class PackagePrivateClass {} // violation
-        </pre>
+          </pre>
+        </div>
 
         <p>
           To configure the check for <code>private</code> classes only:
@@ -2287,12 +2318,14 @@ class PackagePrivateClass {} // violation
         </source>
 
         <p>Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class PublicClass {}
 private class PublicClass {} // violation
 protected class PublicClass {}
 class PackagePrivateClass {}
-        </pre>
+          </pre>
+        </div>
 
         <p>
           Example that allows missing comments for classes annotated with
@@ -2357,54 +2390,56 @@ class DatabaseConfiguration {}
       </subsection>
 
       <subsection name="Properties" id="NonEmptyAtclauseDescription_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              Control when to print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>javadocTokens</td>
-            <td>javadoc tokens to check</td>
-            <td>subset of javadoc tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
-                PARAM_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
-                RETURN_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
-                THROWS_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">
-                EXCEPTION_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
-                DEPRECATED_LITERAL</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
-                PARAM_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
-                RETURN_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
-                THROWS_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">
-                EXCEPTION_LITERAL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
-                DEPRECATED_LITERAL</a>.
-            </td>
-            <td>7.3</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td>javadocTokens</td>
+              <td>javadoc tokens to check</td>
+              <td>subset of javadoc tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
+                  PARAM_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
+                  RETURN_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
+                  THROWS_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">
+                  EXCEPTION_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
+                  DEPRECATED_LITERAL</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#PARAM_LITERAL">
+                  PARAM_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#RETURN_LITERAL">
+                  RETURN_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
+                  THROWS_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">
+                  EXCEPTION_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
+                  DEPRECATED_LITERAL</a>.
+              </td>
+              <td>7.3</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
@@ -2488,39 +2523,41 @@ class DatabaseConfiguration {}
       </subsection>
 
       <subsection name="Properties" id="SingleLineJavadoc_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              Control when to print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>ignoredTags</td>
-            <td>Specify at-clauses which are ignored by the check.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>6.8</td>
-          </tr>
-          <tr>
-            <td>ignoreInlineTags</td>
-            <td>Control whether inline tags must be ignored.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>6.8</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td>ignoredTags</td>
+              <td>Specify at-clauses which are ignored by the check.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>6.8</td>
+            </tr>
+            <tr>
+              <td>ignoreInlineTags</td>
+              <td>Control whether inline tags must be ignored.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.8</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="SingleLineJavadoc_Examples">
@@ -2606,39 +2643,41 @@ class DatabaseConfiguration {}
       </subsection>
 
       <subsection name="Properties" id="SummaryJavadoc_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateExecutionOnNonTightHtml</td>
-            <td>
-              Control when to print violations if the Javadoc being examined by this check
-              violates the tight html rules defined at
-              <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.3</td>
-          </tr>
-          <tr>
-            <td>forbiddenSummaryFragments</td>
-            <td>Specify the regexp for forbidden summary fragments.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$" (empty)</code></td>
-            <td>6.0</td>
-          </tr>
-          <tr>
-            <td>period</td>
-            <td>Specify the period symbol at the end of first javadoc sentence.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>"."</code></td>
-            <td>6.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+            <tr>
+              <td>forbiddenSummaryFragments</td>
+              <td>Specify the regexp for forbidden summary fragments.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^$" (empty)</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>period</td>
+              <td>Specify the period symbol at the end of first javadoc sentence.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>"."</code></td>
+              <td>6.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="SummaryJavadoc_Examples">
@@ -2777,69 +2816,71 @@ public class TestClass {
       </subsection>
 
       <subsection name="Properties" id="WriteTag_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>tag</td>
-            <td>Specify the name of tag.</td>
-            <td><a href="property_types.html#string">String</a></td>
-           <td><code>null</code></td>
-           <td>4.2</td>
-          </tr>
-          <tr>
-            <td>tagFormat</td>
-            <td>Specify the regexp to match tag content.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>4.2</td>
-          </tr>
-          <tr>
-            <td>tagSeverity</td>
-            <td>Specify the severity level when tag is found and printed.</td>
-            <td><a href="property_types.html#severity">Severity</a></td>
-            <td><code>info</code></td>
-            <td>4.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                ENUM_CONSTANT_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
-            <td>4.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tag</td>
+              <td>Specify the name of tag.</td>
+              <td><a href="property_types.html#string">String</a></td>
+             <td><code>null</code></td>
+             <td>4.2</td>
+            </tr>
+            <tr>
+              <td>tagFormat</td>
+              <td>Specify the regexp to match tag content.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>4.2</td>
+            </tr>
+            <tr>
+              <td>tagSeverity</td>
+              <td>Specify the severity level when tag is found and printed.</td>
+              <td><a href="property_types.html#severity">Severity</a></td>
+              <td><code>info</code></td>
+              <td>4.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
+              <td>4.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="WriteTag_Examples">

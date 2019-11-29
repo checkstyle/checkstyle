@@ -32,36 +32,38 @@
         </p>
       </subsection>
       <subsection name="Properties" id="SeverityMatchFilter_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>severity</td>
-            <td>Specify the severity level of this filter.</td>
-            <td><a href="property_types.html#severity">Severity</a></td>
-            <td><code>error</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>acceptOnMatch</td>
-            <td>
-               Control whether the filter accepts an audit event if and only if there is
-               a match between the event's severity level and property
-               severity. If acceptOnMatch
-               is <code>false</code>, then the filter
-               accepts an audit event if and only if there is not a match
-               between the event's severity level and property severity.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>severity</td>
+              <td>Specify the severity level of this filter.</td>
+              <td><a href="property_types.html#severity">Severity</a></td>
+              <td><code>error</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>acceptOnMatch</td>
+              <td>
+                 Control whether the filter accepts an audit event if and only if there is
+                 a match between the event's severity level and property
+                 severity. If acceptOnMatch
+                 is <code>false</code>, then the filter
+                 accepts an audit event if and only if there is not a match
+                 between the event's severity level and property severity.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="SeverityMatchFilter_Examples">
           <p>
@@ -130,6 +132,7 @@
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionCommentFilter_Properties">
+        <div class="wrapper">
           <table>
               <tr>
                   <th>name</th>
@@ -188,6 +191,7 @@
                   <td>3.5</td>
               </tr>
           </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="SuppressionCommentFilter_Examples">
           <p>
@@ -440,37 +444,39 @@ public class UserService {
           </p>
       </subsection>
       <subsection name="Properties" id="SuppressionFilter_Properties">
+        <div class="wrapper">
           <table>
-             <tr>
-               <th>name</th>
-               <th>description</th>
-               <th>type</th>
-               <th>default value</th>
-               <th>since</th>
-             </tr>
-             <tr>
-               <td>file</td>
-               <td>
-                  Specify the location of the <em>suppressions XML document</em> file.
-               </td>
-               <td><a href="property_types.html#string">String</a></td>
-               <td><code>null</code></td>
-               <td>3.2</td>
-             </tr>
-             <tr>
-               <td>optional</td>
-               <td>
-                   Control what to do when the file is not existing. If
-                   <code>optional</code> is set to <code>false</code> the file must exist, or else
-                   it ends with error. On the other hand if optional is
-                   <code>true</code> and file is not found, the filter accept all
-                   audit events.
-               </td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
-               <td><code>false</code></td>
-               <td>6.15</td>
-             </tr>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>file</td>
+              <td>
+                Specify the location of the <em>suppressions XML document</em> file.
+              </td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>optional</td>
+              <td>
+                Control what to do when the file is not existing. If
+                <code>optional</code> is set to <code>false</code> the file must exist, or else
+                it ends with error. On the other hand if optional is
+                <code>true</code> and file is not found, the filter accept all
+                audit events.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.15</td>
+            </tr>
           </table>
+        </div>
       </subsection>
       <subsection name="Notes" id="SuppressionFilter_Notes">
         <p>
@@ -687,63 +693,65 @@ public class UserService {
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionSingleFilter_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>files</td>
-            <td>Define the RegExp for matching against the file name associated
-                with an audit event.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.23</td>
-          </tr>
-          <tr>
-            <td>checks</td>
-            <td>Define the RegExp for matching against the name of the check
-                associated with an audit event.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.23</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Define the RegExp for matching against the message of the check associated
-                with an audit event.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.23</td>
-          </tr>
-          <tr>
-            <td>id</td>
-            <td>Specify a string matched against the ID of the check associated with an audit
-                event.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>8.23</td>
-          </tr>
-          <tr>
-            <td>lines</td>
-            <td>Specify a comma-separated list of values, where each value is an integer or a range
-                of integers denoted by integer-integer.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>8.23</td>
-          </tr>
-          <tr>
-            <td>columns</td>
-            <td>Specify a comma-separated list of values, where each value is an integer or a range
-                of integers denoted by integer-integer.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>8.23</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>files</td>
+              <td>Define the RegExp for matching against the file name associated
+                  with an audit event.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>checks</td>
+              <td>Define the RegExp for matching against the name of the check
+                  associated with an audit event.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Define the RegExp for matching against the message of the check associated
+                  with an audit event.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>Specify a string matched against the ID of the check associated with an audit
+                  event.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>lines</td>
+              <td>Specify a comma-separated list of values, where each value is an integer or a
+                range of integers denoted by integer-integer.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+              <td>columns</td>
+              <td>Specify a comma-separated list of values, where each value is an integer or a
+                range of integers denoted by integer-integer.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>8.23</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="SuppressionSingleFilter_Examples">
           <p>
@@ -1032,37 +1040,39 @@ public class UserService {
         </ol>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathFilter_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>file</td>
-            <td>
-              Specify the location of the <em>suppressions XML document</em> file.
-            </td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>8.6</td>
-          </tr>
-          <tr>
-            <td>optional</td>
-            <td>
-              Control what to do when the file is not existing. If
-              optional is set to false the file must exist, or else
-              it ends with error. On the other hand if optional is
-              true and file is not found, the filter accepts all
-              audit events.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.6</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>file</td>
+              <td>
+                Specify the location of the <em>suppressions XML document</em> file.
+              </td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>8.6</td>
+            </tr>
+            <tr>
+              <td>optional</td>
+              <td>
+                Control what to do when the file is not existing. If
+                optional is set to false the file must exist, or else
+                it ends with error. On the other hand if optional is
+                true and file is not found, the filter accepts all
+                audit events.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.6</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="SuppressionXpathFilter_Examples">
         <p>
@@ -1421,54 +1431,56 @@ CLASS_DEF -> CLASS_DEF [1:0]
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathSingleFilter_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>files</td>
-            <td>Define a Regular Expression matched against the file name associated
-                with an audit event.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.18</td>
-          </tr>
-          <tr>
-            <td>checks</td>
-            <td>Define a Regular Expression matched against the name of the check
-                associated with an audit event.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.18</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Define a Regular Expression matched against the message of the check associated
-                with an audit event.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>8.18</td>
-          </tr>
-          <tr>
-            <td>id</td>
-            <td>Define a string matched against the ID of the check associated with an audit
-                event.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>8.18</td>
-          </tr>
-          <tr>
-            <td>query</td>
-            <td>Define a string xpath query.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>8.18</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>files</td>
+              <td>Define a Regular Expression matched against the file name associated
+                  with an audit event.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.18</td>
+            </tr>
+            <tr>
+              <td>checks</td>
+              <td>Define a Regular Expression matched against the name of the check
+                  associated with an audit event.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.18</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Define a Regular Expression matched against the message of the check associated
+                  with an audit event.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>8.18</td>
+            </tr>
+            <tr>
+              <td>id</td>
+              <td>Define a string matched against the ID of the check associated with an audit
+                  event.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>8.18</td>
+            </tr>
+            <tr>
+              <td>query</td>
+              <td>Define a string xpath query.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>8.18</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="SuppressionXpathSingleFilter_Examples">
         <p>
@@ -1476,7 +1488,8 @@ CLASS_DEF -> CLASS_DEF [1:0]
           for all methods with name MyMethod
           inside FileOne and FileTwo files:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="files" value="File(One|Two)\.java"/&gt;
   &lt;property name="checks" value="MethodName"/&gt;
@@ -1484,9 +1497,11 @@ CLASS_DEF -> CLASS_DEF [1:0]
             METHOD_DEF[@text='MyMethod']/IDENT)|
             (/CLASS_DEF[@text='FileTwo']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class FileOne {
   public void MyMethod() {} // OK
 }
@@ -1499,29 +1514,35 @@ public class FileThree {
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           To suppress MethodName check for method names matched pattern 'MyMethod[0-9]':
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="MethodName"/&gt;
   &lt;property name="message" value="MyMethod[0-9]"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethodA() {} // violation, name 'MyMethodA' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           To suppress checks being specified by id property:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="MethodName"&gt;
   &lt;property name="id" value="MethodName1"/&gt;
   &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
@@ -1530,9 +1551,11 @@ public class FileOne {
   &lt;property name="files" value="FileOne.java"/&gt;
   &lt;property name="id" value="MethodName1"/&gt;
 &lt;module/&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class FileOne {
   public void MyMethod() {} // OK
 }
@@ -1540,48 +1563,60 @@ public class FileTwo {
   public void MyMethod() {} // violation,  name 'MyMethod' must
                             //match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           To suppress checks for all package definitions:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter&gt;
   &lt;property name="checks" value="PackageName"/&gt;
   &lt;property name="query" query="/PACKAGE_DEF[@text='File']/IDENT"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 package File; // OK
 
 public class FileOne {}
-        </pre>
+          </pre>
+        </div>
         <p>
           To suppress RedundantModifier check for interface definitions:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="RedundantModifier"/&gt;
   &lt;property name="query" value="/INTERFACE_DEF//*"/&gt;
 &lt;module/&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public interface TestClass {
   public static final int CONSTANT1 = 1;  // OK
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           To suppress checks in the FileOne file by non-query:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="files" value="FileOne.java"/&gt;
   &lt;property name="checks" value="MyMethod"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class FileOne {
   public void MyMethod() {} // OK
 }
@@ -1590,21 +1625,25 @@ public class FileTwo {
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           Suppress checks for elements which are either class definitions,
           either method definitions:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value=".*"/&gt;
   &lt;property name="query"
             value="(/CLASS_DEF[@text='FileOne'])|
             (/CLASS_DEF[@text='FileOne']/OBJBLOCK/METHOD_DEF[@text='MyMethod']/IDENT)"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 abstract class FileOne { // OK
   public void MyMethod() {} // OK
 }
@@ -1614,40 +1653,48 @@ abstract class FileTwo { // violation of the AbstractClassName check,
   public void MyMethod() {} // violation, name 'MyMethod'
                             // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           Suppress checks for MyMethod1 or MyMethod2 methods:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="MethodName"/&gt;
   &lt;property name="query" value="/CLASS_DEF[@text='FileOne']/OBJBLOCK/
             METHOD_DEF[@text='MyMethod1' or @text='MyMethod2']/IDENT"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class FileOne {
   public void MyMethod1() {} // OK
   public void MyMethod2() {} // OK
   public void MyMethod3() {} // violation, name 'MyMethod3' must
                              // match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           Suppress checks for variable testVariable inside
           testMethod method inside TestClass class:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="LocalFinalVariableName"/&gt;
   &lt;property name="query" value="/CLASS_DEF[@text='TestClass']/OBJBLOCK
         /METHOD_DEF[@text='testMethod']/SLIST
         /VARIABLE_DEF[@text='testVariable1']/IDENT"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class TestClass {
   public void testMethod() {
     final int testVariable1 = 10; // OK
@@ -1655,21 +1702,25 @@ public class TestClass {
                                   // name 'testVariable2' must match pattern '^[A-Z][A-Z0-9]*$'
   }
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           In the following sample, violations for LeftCurly check
           will be suppressed for classes with name Main or for methods
           with name calculate.
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="LeftCurly"/&gt;
   &lt;property name="query" value="/CLASS_DEF[@text='TestClass']/OBJBLOCK
         /METHOD_DEF[@text='testMethod1']/SLIST*"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class TestClass {
   public void testMethod1()
   { // OK
@@ -1679,20 +1730,24 @@ public class TestClass {
   { // violation, '{' should be on the previous line
   }
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           The following example demonstrates how to suppress
           RequireThis violations for variable age inside changeAge method.
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="RequireThis"/&gt;
   &lt;property name="query" value="/CLASS_DEF[@text='InputTest']
         //METHOD_DEF[@text='changeAge']//ASSIGN[@text='age']/IDENT"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class InputTest {
   private int age = 23;
 
@@ -1700,7 +1755,8 @@ public class InputTest {
     age = 24; // violation will be suppressed
   }
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           Suppress <code>IllegalThrows</code> violations only for methods with name
           <i>throwsMethod</i> and only for <code>RuntimeException</code> exceptions.
@@ -1709,15 +1765,18 @@ public class InputTest {
           <code>METHOD_DEF</code> and name <i>throwsMethod</i>. Please read more about xpath axes at
           <a href="https://www.w3schools.com/xml/xpath_axes.asp">W3Schools Xpath Axes</a>.
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="IllegalThrows"/&gt;
   &lt;property name="query" value="//LITERAL_THROWS/IDENT[
       ..[@text='RuntimeException'] and ./ancestor::METHOD_DEF[@text='throwsMethod']]"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class InputTest {
   public void throwsMethod() throws RuntimeException { // violation will be suppressed
   }
@@ -1725,7 +1784,8 @@ public class InputTest {
   public void sampleMethod() throws RuntimeException { // will throw violation here
   }
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           The following sample demonstrates how to suppress all violations for method itself and
           all descendants. <code>descendant-or-self</code> axis iterates through current node and
@@ -1733,15 +1793,18 @@ public class InputTest {
           Please read more about xpath syntax at
           <a href="https://www.w3schools.com/xml/xpath_syntax.asp">W3Schools Xpath Syntax</a>.
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value=".*"/&gt;
   &lt;property name="query" value="//METHOD_DEF[@text='TestMethod1']
         /descendant-or-self::node()"/&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
         <p>Code Example:</p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 public class TestClass {
   public void TestMethod1() { // OK
     final int num = 10; // OK
@@ -1753,14 +1816,16 @@ public class TestClass {
                         // name 'num' must match pattern '^[A-Z][A-Z0-9]*$'
   }
 }
-        </pre>
+          </pre>
+        </div>
         <p>
           The following example is an example of what checks would be suppressed
           while building Spring projects with checkstyle plugin.
           Please find more information at:
           <a href="https://github.com/spring-io/spring-javaformat">spring-javaformat</a>
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 &lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="files" value="[\\/]src[\\/]test[\\/]java[\\/]"/&gt;
   &lt;property name="checks" value="Javadoc*"/&gt;
@@ -1773,7 +1838,8 @@ public class TestClass {
   &lt;property name="files" value="generated-sources"&gt;
   &lt;property name="checks" value="[a-zA-Z0-9]*"&gt;
 &lt;/module&gt;
-        </pre>
+          </pre>
+        </div>
       </subsection>
       <subsection name="Example of Usage" id="SuppressionXpathSingleFilter_Example_of_Usage">
         <ul>
@@ -1925,6 +1991,7 @@ public static void foo() {
             </p>
         </subsection>
         <subsection name="Properties" id="SuppressWithNearbyCommentFilter_Properties">
+          <div class="wrapper">
             <table>
                 <tr>
                     <th>name</th>
@@ -1984,6 +2051,7 @@ public static void foo() {
                     <td>5.0</td>
                 </tr>
             </table>
+          </div>
         </subsection>
         <subsection name="Examples" id="SuppressWithNearbyCommentFilter_Examples">
             <p>
@@ -2198,6 +2266,7 @@ public class UserService {
               </p>
           </subsection>
           <subsection name="Properties" id="SuppressWithPlainTextCommentFilter_Properties">
+            <div class="wrapper">
               <table>
                   <tr>
                       <th>name</th>
@@ -2242,6 +2311,7 @@ public class UserService {
                       <td>8.24</td>
                   </tr>
               </table>
+            </div>
           </subsection>
           <subsection name="Notes" id="SuppressWithPlainTextCommentFilter_Notes">
               <p>

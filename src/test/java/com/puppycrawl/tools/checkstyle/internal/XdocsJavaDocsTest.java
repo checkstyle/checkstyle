@@ -179,12 +179,20 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     private static void populateProperties(Node subSection) {
         boolean skip = true;
 
-        for (Node row : XmlUtil.getChildrenElements(XmlUtil.getFirstChildElement(subSection))) {
+        // if the first child is a wrapper element instead of the first table row containing
+        // the table head
+        //   set element to populate properties for to the current elements first child
+        Node child = XmlUtil.getFirstChildElement(subSection);
+        if (child.hasAttributes() && child.getAttributes().getNamedItem("class") != null
+                && "wrapper".equals(child.getAttributes().getNamedItem("class")
+                .getTextContent())) {
+            child = XmlUtil.getFirstChildElement(child);
+        }
+        for (Node row : XmlUtil.getChildrenElements(child)) {
             if (skip) {
                 skip = false;
                 continue;
             }
-
             CHECK_PROPERTIES.add(new ArrayList<>(XmlUtil.getChildrenElements(row)));
         }
     }
@@ -245,7 +253,14 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 }
             }
             else {
-                appendNodeText(result, child);
+                if (child.hasAttributes() && child.getAttributes().getNamedItem("class") != null
+                        && "wrapper".equals(child.getAttributes().getNamedItem("class")
+                        .getNodeValue())) {
+                    appendNodeText(result, XmlUtil.getFirstChildElement(child));
+                }
+                else {
+                    appendNodeText(result, child);
+                }
             }
         }
 

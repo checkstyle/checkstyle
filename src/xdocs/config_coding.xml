@@ -409,29 +409,31 @@ public class A {
       </subsection>
 
       <subsection name="Properties" id="DeclarationOrder_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>ignoreConstructors</td>
-            <td>control whether to ignore constructors.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.2</td>
-          </tr>
-          <tr>
-            <td>ignoreModifiers</td>
-            <td>control whether to ignore modifiers (fields, ...).</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreConstructors</td>
+              <td>control whether to ignore constructors.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.2</td>
+            </tr>
+            <tr>
+              <td>ignoreModifiers</td>
+              <td>control whether to ignore modifiers (fields, ...).</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="DeclarationOrder_Examples">
@@ -538,25 +540,27 @@ class K {
         </p>
       </subsection>
       <subsection name="Properties" id="DefaultComesLast_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>skipIfLastAndSharedWithCase</td>
-            <td>
-              Control whether to allow <code>default</code> along with
-              <code>case</code> if they are not last.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>7.7</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>skipIfLastAndSharedWithCase</td>
+              <td>
+                Control whether to allow <code>default</code> along with
+                <code>case</code> if they are not last.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.7</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="DefaultComesLast_Examples">
         <p>
@@ -732,24 +736,26 @@ String nullString = null;
       </subsection>
 
       <subsection name="Properties" id="EqualsAvoidNull_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>ignoreEqualsIgnoreCase</td>
-            <td>
-              Control whether to ignore <code>String.equalsIgnoreCase(String)</code> invocations.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.4</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreEqualsIgnoreCase</td>
+              <td>
+                Control whether to ignore <code>String.equalsIgnoreCase(String)</code> invocations.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.4</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="EqualsAvoidNull_Examples">
@@ -892,23 +898,25 @@ String nullString = null;
       </subsection>
 
       <subsection name="Properties" id="ExplicitInitialization_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>onlyObjectReferences</td>
-            <td>control whether only explicit initializations made to
-                null for objects should be checked.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>7.8</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>onlyObjectReferences</td>
+              <td>control whether only explicit initializations made to
+                  null for objects should be checked.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>7.8</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ExplicitInitialization_Examples">
@@ -1043,7 +1051,8 @@ case 5:
           because of the comment "fallthru" and absence of any Java code
           in case 5.
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 case 3:
     x = 2;
     // fallthru
@@ -1051,38 +1060,41 @@ case 4:
 case 5:
 case 6:
     break;
-        </pre>
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Properties" id="FallThrough_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>checkLastCaseGroup</td>
-            <td>
-              Control whether the last case group must be checked.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>reliefPattern</td>
-            <td>
-              Define the RegExp to match the relief comment that suppresses
-              the warning about a fall through.
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"fallthru|falls? ?through"</code></td>
-            <td>4.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkLastCaseGroup</td>
+              <td>
+                Control whether the last case group must be checked.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>reliefPattern</td>
+              <td>
+                Define the RegExp to match the relief comment that suppresses
+                the warning about a fall through.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"fallthru|falls? ?through"</code></td>
+              <td>4.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="FallThrough_Examples">
@@ -1163,50 +1175,52 @@ case 6:
       </subsection>
 
       <subsection name="Properties" id="FinalLocalVariable_Properties">
-        <table>
-          <tr class="header">
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>validateEnhancedForLoopVariable</td>
-            <td>
-              Control whether to check
-              <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
-              enhanced for-loop</a> variable.</td>
-            <td>
-              <a
-              href="property_types.html#boolean">Boolean</a>
-            </td>
-            <td>
-             <code>
-              false
-             </code>
-            </td>
-            <td>6.5</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                PARAMETER_DEF</a>.
-            </td>
-            <td>
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr class="header">
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>validateEnhancedForLoopVariable</td>
+              <td>
+                Control whether to check
+                <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+                enhanced for-loop</a> variable.</td>
+              <td>
+                <a
+                href="property_types.html#boolean">Boolean</a>
+              </td>
+              <td>
+               <code>
+                false
+               </code>
+              </td>
+              <td>6.5</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>.
+              </td>
+              <td>
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="FinalLocalVariable_Examples">
@@ -1358,88 +1372,90 @@ class PageBuilder {
       </subsection>
 
       <subsection name="Properties" id="HiddenField_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>ignoreFormat</td>
-            <td>Define the RegExp for names of variables and parameters to ignore.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>3.2</td>
-          </tr>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreFormat</td>
+              <td>Define the RegExp for names of variables and parameters to ignore.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
 
-          <tr>
-            <td>ignoreConstructorParameter</td>
-            <td>Control whether to ignore constructor parameters.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.2</td>
-          </tr>
+            <tr>
+              <td>ignoreConstructorParameter</td>
+              <td>Control whether to ignore constructor parameters.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
 
-          <tr>
-            <td>ignoreSetter</td>
-            <td>
-              Allow to ignore the parameter of a property setter method.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.2</td>
-          </tr>
+            <tr>
+              <td>ignoreSetter</td>
+              <td>
+                Allow to ignore the parameter of a property setter method.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
 
-          <tr>
-            <td>setterCanReturnItsClass</td>
-            <td>
-              Allow to expand the definition of a setter method
-              to include methods that return the class' instance.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>6.3</td>
-          </tr>
+            <tr>
+              <td>setterCanReturnItsClass</td>
+              <td>
+                Allow to expand the definition of a setter method
+                to include methods that return the class' instance.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.3</td>
+            </tr>
 
-          <tr>
-            <td>ignoreAbstractMethods</td>
-            <td>Control whether to ignore parameters of abstract methods.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>4.0</td>
-          </tr>
+            <tr>
+              <td>ignoreAbstractMethods</td>
+              <td>Control whether to ignore parameters of abstract methods.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
 
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                PARAMETER_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.
-            </td>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>.
+              </td>
 
-            <td>
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                PARAMETER_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+              <td>
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="HiddenField_Examples">
@@ -1578,23 +1594,25 @@ class SomeClass
       </subsection>
 
       <subsection name="Properties" id="IllegalCatch_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>illegalClassNames</td>
-            <td>Specify exception class names to reject.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error,
-              java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>illegalClassNames</td>
+              <td>Specify exception class names to reject.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error,
+                java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="IllegalCatch_Examples">
@@ -1678,39 +1696,41 @@ class SomeClass
       </subsection>
 
       <subsection name="Properties" id="IllegalInstantiation_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>classes</td>
-            <td>Specify fully qualified class names that should not be instantiated.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>3.0</td>
-          </tr>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>classes</td>
+              <td>Specify fully qualified class names that should not be instantiated.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>3.0</td>
+            </tr>
 
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-              CLASS_DEF</a>.
-            </td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                CLASS_DEF</a>.
+              </td>
 
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-              CLASS_DEF</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                CLASS_DEF</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="IllegalInstantiation_Examples">
@@ -1774,41 +1794,43 @@ class SomeClass
       </subsection>
 
       <subsection name="Properties" id="IllegalThrows_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>illegalClassNames</td>
-            <td>Specify throw class names to reject.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>Error, RuntimeException, Throwable, java.lang.Error,
-              java.lang.RuntimeException, java.lang.Throwable</code>
-            </td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>ignoredMethodNames</td>
-            <td>Specify names of methods to ignore.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>finalize</code></td>
-            <td>5.4</td>
-          </tr>
-          <tr>
-            <td>ignoreOverriddenMethods</td>
-            <td>
-              allow to ignore checking overridden methods (marked with <code>Override</code>
-              or <code>java.lang.Override</code> annotation).
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>6.4</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>illegalClassNames</td>
+              <td>Specify throw class names to reject.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>Error, RuntimeException, Throwable, java.lang.Error,
+                java.lang.RuntimeException, java.lang.Throwable</code>
+              </td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>ignoredMethodNames</td>
+              <td>Specify names of methods to ignore.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>finalize</code></td>
+              <td>5.4</td>
+            </tr>
+            <tr>
+              <td>ignoreOverriddenMethods</td>
+              <td>
+                allow to ignore checking overridden methods (marked with <code>Override</code>
+                or <code>java.lang.Override</code> annotation).
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.4</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="IllegalThrows_Examples">
@@ -1895,27 +1917,29 @@ class SomeClass
       </subsection>
 
       <subsection name="Properties" id="IllegalToken_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">LABELED_STAT</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">LABELED_STAT</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="IllegalToken_Examples">
@@ -1980,61 +2004,63 @@ class SomeClass
       </subsection>
 
       <subsection name="Properties" id="IllegalTokenText_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Define the RegExp for illegal pattern.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>&quot;^$&quot; (empty)</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>ignoreCase</td>
-            <td>Control whether to ignore case when matching.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Define the message which is used to notify about violations;
-            if empty then the default message is used.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>&quot;&quot;</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                IDENT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
-                COMMENT_CONTENT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                STRING_LITERAL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
-                CHAR_LITERAL</a>.
-            </td>
-            <td>empty</td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Define the RegExp for illegal pattern.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>&quot;^$&quot; (empty)</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when matching.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Define the message which is used to notify about violations;
+              if empty then the default message is used.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>&quot;&quot;</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>subset of tokens
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                  IDENT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                  COMMENT_CONTENT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                  STRING_LITERAL</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
+                  CHAR_LITERAL</a>.
+              </td>
+              <td>empty</td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="IllegalTokenText_Examples">
@@ -2119,107 +2145,109 @@ class SomeClass
       </subsection>
 
       <subsection name="Properties" id="IllegalType_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>validateAbstractClassNames</td>
-            <td>Control whether to validate abstract class names.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>6.10</td>
-          </tr>
-          <tr>
-            <td>illegalClassNames</td>
-            <td>Specify classes that should not be used as types in variable
-            declarations, return values or parameters.</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>validateAbstractClassNames</td>
+              <td>Control whether to validate abstract class names.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.10</td>
+            </tr>
+            <tr>
+              <td>illegalClassNames</td>
+              <td>Specify classes that should not be used as types in variable
+              declarations, return values or parameters.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet,
+                java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
+                java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+            <td>legalAbstractClassNames</td>
+            <td>Define abstract classes that may be used as types. </td>
             <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet,
-              java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
-              java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet</code></td>
-            <td>3.2</td>
+            <td><code>{}</code></td>
+            <td>4.2</td>
           </tr>
           <tr>
-          <td>legalAbstractClassNames</td>
-          <td>Define abstract classes that may be used as types. </td>
-          <td><a href="property_types.html#stringSet">String Set</a></td>
-          <td><code>{}</code></td>
-          <td>4.2</td>
-        </tr>
-        <tr>
-            <td>ignoredMethodNames</td>
-            <td>Specify methods that should not be checked.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>getEnvironment, getInitialContext</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>illegalAbstractClassNameFormat</td>
-            <td>Specify RegExp for illegal abstract class names.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^(.*[.])?Abstract.*$"</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>memberModifiers</td>
-            <td>
-              Control whether to check only methods and fields with any of the specified modifiers.
-              This property does not affect method calls nor method references.
-            </td>
-            <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-            </td>
-            <td>no tokens</td>
-            <td>6.3</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                METHOD_CALL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                METHOD_REF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                METHOD_CALL</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                METHOD_REF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                PARAMETER_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+              <td>ignoredMethodNames</td>
+              <td>Specify methods that should not be checked.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>getEnvironment, getInitialContext</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>illegalAbstractClassNameFormat</td>
+              <td>Specify RegExp for illegal abstract class names.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^(.*[.])?Abstract.*$"</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>memberModifiers</td>
+              <td>
+                Control whether to check only methods and fields with any of the specified
+                modifiers. This property does not affect method calls nor method references.
+              </td>
+              <td>subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+              </td>
+              <td>no tokens</td>
+              <td>6.3</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                  METHOD_CALL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                  METHOD_REF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                  METHOD_CALL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                  METHOD_REF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Notes" id="IllegalType_Notes">
@@ -2232,11 +2260,13 @@ class SomeClass
           (of variables, methods or parameters). This helps to avoid ambiguous cases, e.g.:
           <code>java.awt.List</code> was set as illegal class name, then, code like:
         </p>
-        <pre>
+        <div class="wrapper">
+          <pre>
 import java.util.List;
 ...
 List list; //No violation here
-        </pre>
+          </pre>
+        </div>
         <p>
           will be ok.
         </p>
@@ -2448,112 +2478,114 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
       </subsection>
 
       <subsection name="Properties" id="MagicNumber_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>ignoreNumbers</td>
-            <td>Specify non-magic numbers.</td>
-            <td><a href="property_types.html#intSet">Number Set</a></td>
-            <td><code>-1, 0, 1, 2</code></td>
-            <td>3.1</td>
-          </tr>
-          <tr>
-            <td>ignoreHashCodeMethod</td>
-            <td>Ignore magic numbers in hashCode methods.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.3</td>
-          </tr>
-          <tr>
-            <td>ignoreAnnotation</td>
-            <td>Ignore magic numbers in annotation declarations.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-              <td><code>false</code></td>
-            <td>5.4</td>
-          </tr>
-          <tr>
-              <td>ignoreFieldDeclaration</td>
-              <td>Ignore magic numbers in field declarations.</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>ignoreNumbers</td>
+              <td>Specify non-magic numbers.</td>
+              <td><a href="property_types.html#intSet">Number Set</a></td>
+              <td><code>-1, 0, 1, 2</code></td>
+              <td>3.1</td>
+            </tr>
+            <tr>
+              <td>ignoreHashCodeMethod</td>
+              <td>Ignore magic numbers in hashCode methods.</td>
               <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><code>false</code></td>
-              <td>6.6</td>
-          </tr>
-          <tr>
-            <td>ignoreAnnotationElementDefaults</td>
-            <td>Ignore magic numbers in annotation elements defaults.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.23</td>
-          </tr>
-          <tr>
-              <td>constantWaiverParentToken</td>
-              <td>Specify tokens that are allowed in the AST path from the number literal to the
-                  enclosing constant definition.</td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>ignoreAnnotation</td>
+              <td>Ignore magic numbers in annotation declarations.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+                <td><code>false</code></td>
+              <td>5.4</td>
+            </tr>
+            <tr>
+                <td>ignoreFieldDeclaration</td>
+                <td>Ignore magic numbers in field declarations.</td>
+                <td><a href="property_types.html#boolean">Boolean</a></td>
+                <td><code>false</code></td>
+                <td>6.6</td>
+            </tr>
+            <tr>
+              <td>ignoreAnnotationElementDefaults</td>
+              <td>Ignore magic numbers in annotation elements defaults.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.23</td>
+            </tr>
+            <tr>
+                <td>constantWaiverParentToken</td>
+                <td>Specify tokens that are allowed in the AST path from the number literal to the
+                    enclosing constant definition.</td>
+                <td>subset of tokens
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+                </td>
+                <td>
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
+                  TYPECAST</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                  METHOD_CALL</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+                  EXPR</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
+                  ARRAY_INIT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
+                  UNARY_MINUS</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
+                  UNARY_PLUS</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
+                  ELIST</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
+                  STAR</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                  ASSIGN</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
+                  PLUS</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
+                  MINUS</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
+                  DIV</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                  LITERAL_NEW</a>
+                </td>
+                <td>6.11</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
               <td>subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>.
               </td>
               <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
-                TYPECAST</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                METHOD_CALL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
-                EXPR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
-                ARRAY_INIT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
-                UNARY_MINUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
-                UNARY_PLUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELIST">
-                ELIST</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR">
-                STAR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS">
-                PLUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS">
-                MINUS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
-                DIV</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
-                LITERAL_NEW</a>
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>,
+                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>.
               </td>
-              <td>6.11</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>.
-            </td>
-            <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>.
-            </td>
-            <td>3.1</td>
-          </tr>
-        </table>
+              <td>3.1</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="MagicNumber_Examples">
@@ -2844,32 +2876,34 @@ for (int i = 0; i &lt; 10;) {
       </subsection>
 
        <subsection name="Properties" id="ModifiedControlVariable_Properties">
-        <table>
-          <tr class="header">
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
+         <div class="wrapper">
+           <table>
+             <tr class="header">
+               <th>name</th>
+               <th>description</th>
+               <th>type</th>
+               <th>default value</th>
+               <th>since</th>
+            </tr>
 
-          <tr>
-            <td>skipEnhancedForLoopVariable</td>
-            <td>Control whether to check
-              <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
-              enhanced for-loop</a> variable.</td>
-            <td>
-              <a
-              href="property_types.html#boolean">Boolean</a>
-            </td>
-            <td>
-             <code>
-              false
-             </code>
-            </td>
-            <td>6.8</td>
-          </tr>
-        </table>
+           <tr>
+             <td>skipEnhancedForLoopVariable</td>
+             <td>Control whether to check
+               <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
+                 enhanced for-loop</a> variable.</td>
+             <td>
+               <a
+                   href="property_types.html#boolean">Boolean</a>
+             </td>
+             <td>
+               <code>
+                 false
+               </code>
+             </td>
+             <td>6.8</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ModifiedControlVariable_Examples">
@@ -2955,50 +2989,52 @@ for (String line: lines) {
       </subsection>
 
       <subsection name="Properties" id="MultipleStringLiterals_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>allowedDuplicates</td>
-            <td>
-              Specify the maximum number of occurrences to allow without generating a
-              warning.
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1</code></td>
-            <td>3.5</td>
-          </tr>
-          <tr>
-            <td>ignoreStringsRegexp</td>
-            <td>
-              Specify RegExp for ignored strings (with quotation marks).
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^""$"</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>ignoreOccurrenceContext</td>
-            <td>
-              Specify token type names where duplicate strings are ignored even if they don't match
-              ignoredStringsRegexp. This allows you to exclude syntactical contexts like
-              annotations or static initializers from the check.
-            </td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
-            </td>
-            <td>
-              <code>ANNOTATION</code>
-            </td>
-            <td>4.4</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>allowedDuplicates</td>
+              <td>
+                Specify the maximum number of occurrences to allow without generating a
+                warning.
+              </td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>ignoreStringsRegexp</td>
+              <td>
+                Specify RegExp for ignored strings (with quotation marks).
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^""$"</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>ignoreOccurrenceContext</td>
+              <td>
+                Specify token type names where duplicate strings are ignored even if they don't
+                match ignoredStringsRegexp. This allows you to exclude syntactical contexts like
+                annotations or static initializers from the check.
+              </td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+              </td>
+              <td>
+                <code>ANNOTATION</code>
+              </td>
+              <td>4.4</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="MultipleStringLiterals_Examples">
@@ -3158,22 +3194,24 @@ for (String line: lines) {
       </subsection>
 
       <subsection name="Properties" id="NestedForDepth_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify maximum allowed nesting depth.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1</code></td>
-            <td>5.3</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify maximum allowed nesting depth.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1</code></td>
+              <td>5.3</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="NestedForDepth_Examples">
@@ -3238,22 +3276,24 @@ for (String line: lines) {
       </subsection>
 
       <subsection name="Properties" id="NestedIfDepth_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify maximum allowed nesting depth.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1</code></td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify maximum allowed nesting depth.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="NestedIfDepth_Examples">
@@ -3318,22 +3358,24 @@ for (String line: lines) {
       </subsection>
 
       <subsection name="Properties" id="NestedTryDepth_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify maximum allowed nesting depth.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1</code></td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify maximum allowed nesting depth.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="NestedTryDepth_Examples">
@@ -3629,22 +3671,24 @@ System.out.println(s2 instanceof Square); //true
       </subsection>
 
       <subsection name="Properties" id="OneStatementPerLine_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>treatTryResourcesAsStatement</td>
-            <td>Enable resources processing.</td>
-            <td><a href="property_types.html#Boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.23</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>treatTryResourcesAsStatement</td>
+              <td>Enable resources processing.</td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.23</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="OneStatementPerLine_Examples">
@@ -3828,22 +3872,24 @@ public void foo(int i, String s) {}
       </subsection>
 
       <subsection name="Properties" id="PackageDeclaration_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>matchDirectoryStructure</td>
-            <td>Control whether to check for directory and package name match.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>7.6.1</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>matchDirectoryStructure</td>
+              <td>Control whether to check for directory and package name match.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>7.6.1</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="PackageDeclaration_Examples">
@@ -4018,36 +4064,38 @@ public class AnnotationLocationCheck extends AbstractCheck {
       </subsection>
 
       <subsection name="Properties" id="RequireThis_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>checkFields</td>
-            <td>Control whether to check references to fields.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>checkMethods</td>
-            <td>Control whether to check references to methods.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>validateOnlyOverlapping</td>
-            <td>Control whether to check only overlapping by variables or arguments.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>6.17</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>checkFields</td>
+              <td>Control whether to check references to fields.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>checkMethods</td>
+              <td>Control whether to check references to methods.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>validateOnlyOverlapping</td>
+              <td>Control whether to check only overlapping by variables or arguments.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.17</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RequireThis_Examples">
@@ -4250,61 +4298,63 @@ class C {
       </subsection>
 
       <subsection name="Properties" id="ReturnCount_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>
-              Specify maximum allowed number of return statements in non-void methods/lambdas.
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>2</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>maxForVoid</td>
-            <td>Specify maximum allowed number of return statements in void
-                methods/constructors/lambdas.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1</code></td>
-            <td>6.19</td>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Specify method names to ignore.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^equals$"</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>
+                Specify maximum allowed number of return statements in non-void methods/lambdas.
+              </td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>2</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>maxForVoid</td>
+              <td>Specify maximum allowed number of return statements in void
+                  methods/constructors/lambdas.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1</code></td>
+              <td>6.19</td>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify method names to ignore.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^equals$"</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ReturnCount_Examples">
@@ -4769,117 +4819,119 @@ if (&quot;something&quot;.equals(x))
       </subsection>
 
       <subsection name="Properties" id="UnnecessaryParentheses_Properties">
+        <div class="wrapper">
           <table>
-              <tr>
-                  <th>name</th>
-                  <th>description</th>
-                  <th>type</th>
-                  <th>default value</th>
-                  <th>since</th>
-              </tr>
-              <tr>
-                  <td>tokens</td>
-                  <td>tokens to check</td>
-                  <td>
-                    subset of tokens
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
-                EXPR</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                IDENT</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                STRING_LITERAL</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
-                LITERAL_NULL</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
-                LITERAL_FALSE</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
-                LITERAL_TRUE</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
-                BAND_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
-                BOR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
-                BSR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
-                BXOR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
-                DIV_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
-                MINUS_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
-                MOD_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
-                PLUS_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
-                SL_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
-                SR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
-                STAR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.
-                  </td>
-                  <td>
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
-                EXPR</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                IDENT</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                NUM_DOUBLE</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                NUM_FLOAT</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                NUM_INT</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                NUM_LONG</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                STRING_LITERAL</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
-                LITERAL_NULL</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
-                LITERAL_FALSE</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
-                LITERAL_TRUE</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
-                BAND_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
-                BOR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
-                BSR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
-                BXOR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
-                DIV_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
-                MINUS_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
-                MOD_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
-                PLUS_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
-                SL_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
-                SR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
-                STAR_ASSIGN</a>,
-                    <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                LAMBDA</a>.
-                  </td>
-                  <td>3.4</td>
-              </tr>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+                  EXPR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                  IDENT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                  STRING_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
+                  LITERAL_NULL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
+                  LITERAL_FALSE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
+                  LITERAL_TRUE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                  ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
+                  BAND_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
+                  BOR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
+                  BSR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
+                  BXOR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
+                  DIV_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
+                  MINUS_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
+                  MOD_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
+                  PLUS_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
+                  SL_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
+                  SR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
+                  STAR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
+                  EXPR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                  IDENT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                  STRING_LITERAL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
+                  LITERAL_NULL</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
+                  LITERAL_FALSE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
+                  LITERAL_TRUE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                  ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
+                  BAND_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
+                  BOR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
+                  BSR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
+                  BXOR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
+                  DIV_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
+                  MINUS_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
+                  MOD_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
+                  PLUS_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
+                  SL_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
+                  SR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
+                  STAR_ASSIGN</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>.
+              </td>
+              <td>3.4</td>
+            </tr>
           </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="UnnecessaryParentheses_Examples">
@@ -4986,42 +5038,44 @@ myList.stream()
         </p>
       </subsection>
       <subsection name="Properties" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-                subset of tokens <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                  CLASS_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                 INTERFACE_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                 ENUM_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                 ANNOTATION_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                 VARIABLE_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                 ANNOTATION_FIELD_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                 STATIC_INIT</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                 INSTANCE_INIT</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                 CTOR_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                 METHOD_DEF</a>,
-                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                 ENUM_CONSTANT_DEF</a>.
-            </td>
-            <td>
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                INTERFACE_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                ENUM_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                VARIABLE_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                ANNOTATION_FIELD_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                STATIC_INIT</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                INSTANCE_INIT</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                CTOR_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                METHOD_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                ENUM_CONSTANT_DEF</a>.
+              </td>
+              <td>
                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                     CLASS_DEF</a>,
                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -5044,10 +5098,11 @@ myList.stream()
                     METHOD_DEF</a>,
                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
                     ENUM_CONSTANT_DEF</a>.
-            </td>
-            <td>8.24</td>
-          </tr>
-        </table>
+              </td>
+              <td>8.24</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="UnnecessarySemicolonAfterTypeMemberDeclaration_Examples">
@@ -5223,23 +5278,25 @@ enum NoSemicolon {
       </subsection>
 
       <subsection name="Properties" id="UnnecessarySemicolonInTryWithResources_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
 
-          <tr>
-            <td>allowWhenNoBraceAfterSemicolon</td>
-            <td>Allow unnecessary semicolon if closing paren is not on the same line.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.22</td>
-          </tr>
-        </table>
+            <tr>
+              <td>allowWhenNoBraceAfterSemicolon</td>
+              <td>Allow unnecessary semicolon if closing paren is not on the same line.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.22</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="UnnecessarySemicolonInTryWithResources_Examples">
@@ -5335,51 +5392,53 @@ class A {
       </subsection>
 
       <subsection name="Properties" id="VariableDeclarationUsageDistance_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
 
-          <tr>
-            <td>allowedDistance</td>
-            <td>Specify distance between declaration of variable and its first usage.
-                Values should be greater than 0.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>3</code></td>
-            <td>5.8</td>
-          </tr>
+            <tr>
+              <td>allowedDistance</td>
+              <td>Specify distance between declaration of variable and its first usage.
+                  Values should be greater than 0.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>3</code></td>
+              <td>5.8</td>
+            </tr>
 
-          <tr>
-            <td>ignoreVariablePattern</td>
-            <td>
-              Define RegExp to ignore distance calculation for variables listed in this pattern.
-            </td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>""</code></td>
-            <td>5.8</td>
-          </tr>
+            <tr>
+              <td>ignoreVariablePattern</td>
+              <td>
+                Define RegExp to ignore distance calculation for variables listed in this pattern.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>""</code></td>
+              <td>5.8</td>
+            </tr>
 
-          <tr>
-            <td>validateBetweenScopes</td>
-            <td>Allow to calculate the distance between declaration of variable and its
-                first usage in the different scopes.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.8</td>
-          </tr>
+            <tr>
+              <td>validateBetweenScopes</td>
+              <td>Allow to calculate the distance between declaration of variable and its
+                  first usage in the different scopes.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.8</td>
+            </tr>
 
-          <tr>
-            <td>ignoreFinal</td>
-            <td>Allow to ignore variables with a 'final' modifier.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>5.8</td>
-          </tr>
-        </table>
+            <tr>
+              <td>ignoreFinal</td>
+              <td>Allow to ignore variables with a 'final' modifier.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>5.8</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="VariableDeclarationUsageDistance_Examples">

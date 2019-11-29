@@ -39,22 +39,24 @@
       </subsection>
 
       <subsection name="Properties" id="AnonInnerLength_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum number of lines allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>20</code></td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of lines allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>20</code></td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="AnonInnerLength_Examples">
@@ -118,48 +120,50 @@
       </subsection>
 
       <subsection name="Properties" id="ExecutableStatementCount_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum threshold allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>30</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                INSTANCE_INIT</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                STATIC_INIT</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                INSTANCE_INIT</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                STATIC_INIT</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum threshold allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>30</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                  INSTANCE_INIT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                  INSTANCE_INIT</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                  STATIC_INIT</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ExecutableStatementCount_Examples">
@@ -232,29 +236,31 @@
       </subsection>
 
       <subsection name="Properties" id="FileLength_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum number of lines allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>2000</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of lines allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>2000</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="FileLength_Examples">
@@ -329,36 +335,38 @@
       </subsection>
 
       <subsection name="Properties" id="LineLength_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify file extensions that are accepted.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>8.24</td>
-          </tr>
-          <tr>
-            <td>ignorePattern</td>
-            <td>Specify pattern for lines to ignore.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$" (empty)</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum line length allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>80</code></td>
-            <td>3.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify file extensions that are accepted.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>8.24</td>
+            </tr>
+            <tr>
+              <td>ignorePattern</td>
+              <td>Specify pattern for lines to ignore.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^$" (empty)</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum line length allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>80</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="LineLength_Examples">
@@ -517,83 +525,85 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Properties" id="MethodCount_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>maxTotal</td>
-            <td>Specify the maximum number of methods allowed at all scope levels.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>100</code></td>
-            <td>5.3</td>
-          </tr>
-          <tr>
-            <td>maxPrivate</td>
-            <td>Specify the maximum number of <code>private</code> methods allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>100</code></td>
-            <td>5.3</td>
-          </tr>
-          <tr>
-            <td>maxPackage</td>
-            <td>Specify the maximum number of <code>package</code> methods allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>100</code></td>
-            <td>5.3</td>
-          </tr>
-          <tr>
-            <td>maxProtected</td>
-            <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td>100</td>
-            <td>5.3</td>
-          </tr>
-          <tr>
-            <td>maxPublic</td>
-            <td>Specify the maximum number of <code>public</code> methods allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>100</code></td>
-            <td>5.3</td>
-          </tr>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>maxTotal</td>
+              <td>Specify the maximum number of methods allowed at all scope levels.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxPrivate</td>
+              <td>Specify the maximum number of <code>private</code> methods allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxPackage</td>
+              <td>Specify the maximum number of <code>package</code> methods allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxProtected</td>
+              <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td>100</td>
+              <td>5.3</td>
+            </tr>
+            <tr>
+              <td>maxPublic</td>
+              <td>Specify the maximum number of <code>public</code> methods allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>100</code></td>
+              <td>5.3</td>
+            </tr>
 
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                ENUM_CONSTANT_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
 
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                ENUM_CONSTANT_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                ANNOTATION_DEF</a>.
-            </td>
-            <td>5.3</td>
-          </tr>
-        </table>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                  ENUM_CONSTANT_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  ANNOTATION_DEF</a>.
+              </td>
+              <td>5.3</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="MethodCount_Examples">
@@ -692,55 +702,57 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Properties" id="MethodLength_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum number of lines allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>150</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>countEmpty</td>
-            <td>
-              Control whether to count empty lines and single line comments of the
-              form <code>//</code>.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of lines allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>150</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>countEmpty</td>
+              <td>
+                Control whether to count empty lines and single line comments of the
+                form <code>//</code>.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>.
-            </td>
+              <td>
+                subset of tokens <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>.
+              </td>
 
-            <td>
-              <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-               <a
-               href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+              <td>
+                <a
+                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                 <a
+                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="MethodLength_Examples">
@@ -829,22 +841,24 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Properties" id="OuterTypeNumber_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum number of outer types allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of outer types allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="OuterTypeNumber_Examples">
@@ -910,54 +924,56 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Properties" id="ParameterNumber_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum number of parameters allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>7</code></td>
-            <td>3.0</td>
-          </tr>
-          <tr>
-            <td>ignoreOverriddenMethods</td>
-            <td>
-              Ignore number of parameters for methods with <code>@Override</code> annotation.
-            </td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>6.2</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum number of parameters allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>7</code></td>
+              <td>3.0</td>
+            </tr>
+            <tr>
+              <td>ignoreOverriddenMethods</td>
+              <td>
+                Ignore number of parameters for methods with <code>@Override</code> annotation.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.2</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>.
-            </td>
+              <td>
+                subset of tokens <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>.
+              </td>
 
-            <td>
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a
-              href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+              <td>
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a
+                href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ParameterNumber_Examples">

@@ -667,10 +667,11 @@ JAVADOC -> JAVADOC [0:0]
         Output with <tt>violateExecutionOnNonTightHtml</tt> set to false:
     </p>
 
-    <table>
-      <tr>
-        <td>
-          <source><![CDATA[
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <source><![CDATA[
 <!DOCTYPE module PUBLIC
           "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
           "https://checkstyle.org/dtds/configuration_1_3.dtd">
@@ -681,28 +682,30 @@ JAVADOC -> JAVADOC [0:0]
     </module>
   </module>
 </module>
-          ]]></source>
-        </td>
+              ]]></source>
+            </td>
 
-        <td>
-          <source><![CDATA[
+            <td>
+              <source><![CDATA[
 Starting audit...
 [ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
 Audit done.
 Checkstyle ends with 1 errors.
-          ]]></source>
-        </td>
-      </tr>
-    </table>
+              ]]></source>
+            </td>
+          </tr>
+        </table>
+      </div>
 
     <p>
         Output with <tt>violateExecutionOnNonTightHtml</tt> set to true:
     </p>
 
-    <table>
-      <tr>
-        <td>
-          <source><![CDATA[
+      <div class="wrapper">
+        <table>
+          <tr>
+            <td>
+              <source><![CDATA[
 <!DOCTYPE module PUBLIC
           "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
           "https://checkstyle.org/dtds/configuration_1_3.dtd">
@@ -713,11 +716,11 @@ Checkstyle ends with 1 errors.
     </module>
   </module>
 </module>
-          ]]></source>
-        </td>
+              ]]></source>
+            </td>
 
-        <td>
-          <source><![CDATA[
+            <td>
+              <source><![CDATA[
 Starting audit...
 [ERROR] Test.java:4: Unclosed HTML tag found: p [JavadocParagraph]
 [ERROR] Test.java:11: Redundant <p> tag. [JavadocParagraph]
@@ -726,10 +729,11 @@ Starting audit...
 [ERROR] Test.java:23: Unclosed HTML tag found: p [JavadocParagraph]
 Audit done.
 Checkstyle ends with 5 errors.
-          ]]></source>
-        </td>
-      </tr>
-    </table>
+              ]]></source>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="Checkstyle SDK GUI">
@@ -748,7 +752,9 @@ Checkstyle ends with 5 errors.
        Now you can see parsed javadoc tree as child of comment block.
       </p>
       <p>
-        <img alt="screenshot" src="images/gui_javadoc_screenshot.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_javadoc_screenshot.png"/>
+        </span>
       </p>
       <p>
        Notice that only files with ".java" extension can be opened.
@@ -851,140 +857,144 @@ Checkstyle ends with 5 errors.
       SpecialToken - mean that after parsing there will be special AstToken - PARAGRAPH, .... .
       </p>
       <p><b>Tags with optional (omittable) end tag:</b></p>
-      <table style="table-layout: fixed;">
-        <tr>
-          <th>Input</th>
-          <th>Current standard (HTML4)</th>
-          <th>Current standard with hasUnclosedTag flag</th>
-          <th>After parser update for new standard (HTML5)</th>
-          <th>After parser update for new standard with hasUnclosedTag flag</th>
-        </tr>
-        <tr>
-          <td><![CDATA[<p>text</p>]]></td>
-          <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
-          <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
-          <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
-          <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
-        </tr>
-        <tr>
-          <td><![CDATA[<p>text]]></td>
-          <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
-          <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
-          <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
-          <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<rb>text</rb>]]>
-            <br/><i>New HTML5 tag with optional (omittable) end tag</i>
-          </td>
-          <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
-          <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
-          <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
-          <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<rb>text]]>
-            <br/><i>New HTML5 tag with optional (omittable) end tag</i>
-          </td>
-          <td><![CDATA[Parse error]]></td>
-          <td><![CDATA[Parse error]]></td>
-          <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
-          <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<qwerty>text</qwerty>]]>
-            <br/><i>Unknown HTML tag</i>
-          </td>
-          <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
-          <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
-          <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
-          <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<qwerty>text]]>
-            <br/><i>Unknown HTML tag</i>
-          </td>
-          <td><![CDATA[Parse error]]></td>
-          <td><![CDATA[Parse error]]></td>
-          <td><![CDATA[Parse error]]></td>
-          <td><![CDATA[Parse error]]></td>
-        </tr>
-      </table>
+      <div class="wrapper">
+        <table style="table-layout: fixed;">
+          <tr>
+            <th>Input</th>
+            <th>Current standard (HTML4)</th>
+            <th>Current standard with hasUnclosedTag flag</th>
+            <th>After parser update for new standard (HTML5)</th>
+            <th>After parser update for new standard with hasUnclosedTag flag</th>
+          </tr>
+          <tr>
+            <td><![CDATA[<p>text</p>]]></td>
+            <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
+            <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
+            <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
+            <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
+          </tr>
+          <tr>
+            <td><![CDATA[<p>text]]></td>
+            <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
+            <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
+            <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
+            <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<rb>text</rb>]]>
+              <br/><i>New HTML5 tag with optional (omittable) end tag</i>
+            </td>
+            <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
+            <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
+            <td><![CDATA[No errors, Nested tree, SpecialToken]]></td>
+            <td><![CDATA[No errors, Nested tree, SpecialToken, hasUnclosedTag=false]]></td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<rb>text]]>
+              <br/><i>New HTML5 tag with optional (omittable) end tag</i>
+            </td>
+            <td><![CDATA[Parse error]]></td>
+            <td><![CDATA[Parse error]]></td>
+            <td><![CDATA[No errors, Non-nested tree, SpecialToken]]></td>
+            <td><![CDATA[No errors, Non-nested tree, SpecialToken, hasUnclosedTag=true]]></td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<qwerty>text</qwerty>]]>
+              <br/><i>Unknown HTML tag</i>
+            </td>
+            <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
+            <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
+            <td><![CDATA[No errors, Nested tree, GeneralToken]]></td>
+            <td><![CDATA[No errors, Nested tree, GeneralToken, hasUnclosedTag=false]]></td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<qwerty>text]]>
+              <br/><i>Unknown HTML tag</i>
+            </td>
+            <td><![CDATA[Parse error]]></td>
+            <td><![CDATA[Parse error]]></td>
+            <td><![CDATA[Parse error]]></td>
+            <td><![CDATA[Parse error]]></td>
+          </tr>
+        </table>
+      </div>
       <br/>
       <p><b>Void tags:</b></p>
       <p>
       Note: "Nested"/"Non-Nested" is not applicable for this type of tags - all of them are looks
       like Non-Nested. Flas "hasUnclosedTag" is "false" for all cases.
       </p>
-      <table style="table-layout: fixed;">
-        <tr>
-          <th>Input</th>
-          <th>Current standard (HTML4)</th>
-          <th>After parser update for new standard (HTML5)</th>
-        </tr>
-        <tr>
-          <td><![CDATA[<br/>]]></td>
-          <td>No errors, SpecialToken</td>
-          <td>No errors, SpecialToken</td>
-        </tr>
-        <tr>
-          <td><![CDATA[<br>]]></td>
-          <td>No errors, SpecialToken</td>
-          <td>No errors, SpecialToken</td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<embed/>]]>
-            <br/><i>New HTML5 tag</i>
-          </td>
-          <td>No errors, GeneralToken</td>
-          <td>No errors, SpecialToken</td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<embed>]]>
-            <br/><i>New HTML5 tag</i>
-          </td>
-          <td>Parse Error</td>
-          <td>No errors, SpecialToken</td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<basefont/>]]>
-            <br/><i>Supported in HTML4. Not supported tag in HTML5</i>
-          </td>
-          <td>No errors, SpecialToken</td>
-          <td>No errors, SpecialToken</td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<basefont>]]>
-            <br/><i>Supported in HTML4. Not supported tag in HTML5</i>
-          </td>
-          <td>No errors, SpecialToken</td>
-          <td>No errors, SpecialToken</td>
-        </tr>
-        <tr>
-          <td>
-            <![CDATA[<qwerty/>]]>
-            <br/><i>Unknown HTML tag</i>
-          </td>
-          <td>No errors, GeneralToken</td>
-          <td>No errors, GeneralToken</td>
+      <div class="wrapper">
+        <table style="table-layout: fixed;">
+          <tr>
+            <th>Input</th>
+            <th>Current standard (HTML4)</th>
+            <th>After parser update for new standard (HTML5)</th>
           </tr>
-        <tr>
-          <td>
-            <![CDATA[<qwerty>]]>
-            <br/><i>Unknown HTML tag</i>
-          </td>
-          <td>Parse Error</td>
-          <td>Parse Error</td>
-        </tr>
-      </table>
+          <tr>
+            <td><![CDATA[<br/>]]></td>
+            <td>No errors, SpecialToken</td>
+            <td>No errors, SpecialToken</td>
+          </tr>
+          <tr>
+            <td><![CDATA[<br>]]></td>
+            <td>No errors, SpecialToken</td>
+            <td>No errors, SpecialToken</td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<embed/>]]>
+              <br/><i>New HTML5 tag</i>
+            </td>
+            <td>No errors, GeneralToken</td>
+            <td>No errors, SpecialToken</td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<embed>]]>
+              <br/><i>New HTML5 tag</i>
+            </td>
+            <td>Parse Error</td>
+            <td>No errors, SpecialToken</td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<basefont/>]]>
+              <br/><i>Supported in HTML4. Not supported tag in HTML5</i>
+            </td>
+            <td>No errors, SpecialToken</td>
+            <td>No errors, SpecialToken</td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<basefont>]]>
+              <br/><i>Supported in HTML4. Not supported tag in HTML5</i>
+            </td>
+            <td>No errors, SpecialToken</td>
+            <td>No errors, SpecialToken</td>
+          </tr>
+          <tr>
+            <td>
+              <![CDATA[<qwerty/>]]>
+              <br/><i>Unknown HTML tag</i>
+            </td>
+            <td>No errors, GeneralToken</td>
+            <td>No errors, GeneralToken</td>
+            </tr>
+          <tr>
+            <td>
+              <![CDATA[<qwerty>]]>
+              <br/><i>Unknown HTML tag</i>
+            </td>
+            <td>Parse Error</td>
+            <td>Parse Error</td>
+          </tr>
+        </table>
+      </div>
     </section>
 
   </body>
