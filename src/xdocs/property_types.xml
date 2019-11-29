@@ -125,32 +125,34 @@
         following table describes the valid options:
       </p>
 
-      <table summary="line separator options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
-        <tr>
-          <td><code>crlf</code></td>
-          <td>Windows-style</td>
-        </tr>
-        <tr>
-          <td><code>cr</code></td>
-          <td>Mac-style</td>
-        </tr>
-        <tr>
-          <td><code>lf</code></td>
-          <td>Unix-style</td>
-        </tr>
-        <tr>
-          <td><code>lf_cr_crlf</code></td>
-          <td>lf, cr or crlf</td>
-        </tr>
-        <tr>
-          <td><code>system</code></td>
-          <td>system default</td>
-        </tr>
-      </table>
+      <div class="wrapper">
+        <table summary="line separator options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>crlf</code></td>
+            <td>Windows-style</td>
+          </tr>
+          <tr>
+            <td><code>cr</code></td>
+            <td>Mac-style</td>
+          </tr>
+          <tr>
+            <td><code>lf</code></td>
+            <td>Unix-style</td>
+          </tr>
+          <tr>
+            <td><code>lf_cr_crlf</code></td>
+            <td>lf, cr or crlf</td>
+          </tr>
+          <tr>
+            <td><code>system</code></td>
+            <td>system default</td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="parenPad">
@@ -159,25 +161,27 @@
         following table describes the valid options:
       </p>
 
-      <table summary="padding options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
-        <tr>
-          <td><code>nospace</code></td>
-          <td>
-            Do not pad. For example, <code>method(a, b);</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>space</code></td>
-          <td>
-            Ensure padding. For example,
-            <code>method( a, b );</code>
-          </td>
-        </tr>
-      </table>
+      <div class="wrapper">
+        <table summary="padding options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>nospace</code></td>
+            <td>
+              Do not pad. For example, <code>method(a, b);</code>
+            </td>
+          </tr>
+          <tr>
+            <td><code>space</code></td>
+            <td>
+              Ensure padding. For example,
+              <code>method( a, b );</code>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="wrapOp">
@@ -186,32 +190,38 @@
         The following table describes the valid options:
       </p>
 
-      <table summary="wrap options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
-        <tr>
-          <td><code>nl</code></td>
-          <td>
-            The token must be on a new line. For example:
-            <pre>
+      <div class="wrapper">
+        <table summary="wrap options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>nl</code></td>
+            <td>
+              The token must be on a new line. For example:
+              <div class="wrapper">
+                <pre>
     someVariable = aBigVariableNameToMakeThings + "this may work"
                    + lookVeryInteresting;
-            </pre>
-          </td>
-        </tr>
-        <tr>
-          <td><code>eol</code></td>
-          <td>
-            The token must be at the end of the line. For example:
-            <pre>
+                </pre>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>eol</code></td>
+            <td>
+              The token must be at the end of the line. For example:
+              <div class="wrapper">
+                <pre>
     someVariable = aBigVariableNameToMakeThings + "this may work" +
                    lookVeryInteresting;
-            </pre>
-          </td>
-        </tr>
-      </table>
+                </pre>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="block">
@@ -220,34 +230,40 @@
         following table describes the valid options:
       </p>
 
-      <table summary="block options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
-        <tr>
-          <td><code>text</code></td>
-          <td>
-            Require that there is some text in the block. For example:
-            <pre>
+      <div class="wrapper">
+        <table summary="block options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>text</code></td>
+            <td>
+              Require that there is some text in the block. For example:
+              <div class="wrapper">
+                <pre>
     catch (Exception ex) {
         // This is a bad coding practice
     }
-            </pre>
-          </td>
-        </tr>
-        <tr>
-          <td><code>statement</code></td>
-          <td>
-            Require that there is a statement in the block. For example:
-            <pre>
+                </pre>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>statement</code></td>
+            <td>
+              Require that there is a statement in the block. For example:
+              <div class="wrapper">
+                <pre>
     finally {
         lock.release();
     }
-            </pre>
-          </td>
-        </tr>
-      </table>
+                </pre>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="lcurly">
@@ -257,57 +273,67 @@
         describes the valid options:
       </p>
 
-      <table summary="left curly options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="left curly options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>eol</code></td>
-          <td>
-            The brace must always be on the end of the line. For example:
-            <pre>
+          <tr>
+            <td><code>eol</code></td>
+            <td>
+              The brace must always be on the end of the line. For example:#
+              <div class="wrapper">
+                <pre>
     if (condition) {
         ...
-            </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>nl</code></td>
-          <td>
-            The brace must always be on a new line. For example:
-            <pre>
+          <tr>
+            <td><code>nl</code></td>
+            <td>
+              The brace must always be on a new line. For example:
+              <div class="wrapper">
+                <pre>
     if (condition)
     {
         ...
-            </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>nlow</code></td>
-          <td>
-            If the statement/expression/declaration connected to the brace spans multiple lines,
-            then apply <code>nl</code> rule. Otherwise apply the <code>eol</code> rule.
-            <code>nlow</code> is a mnemonic for "new line on wrap".
-            For the example above Checkstyle will enforce:
-            <pre>
+          <tr>
+            <td><code>nlow</code></td>
+            <td>
+              If the statement/expression/declaration connected to the brace spans multiple lines,
+              then apply <code>nl</code> rule. Otherwise apply the <code>eol</code> rule.
+              <code>nlow</code> is a mnemonic for "new line on wrap".
+              For the example above Checkstyle will enforce:
+              <div class="wrapper">
+                <pre>
     if (condition) {
         ...
-            </pre>
-            But for a statement spanning multiple lines, Checkstyle will
-            enforce:
-            <pre>
+                </pre>
+             </div>
+              But for a statement spanning multiple lines, Checkstyle will
+              enforce:
+              <div class="wrapper">
+                <pre>
     if (condition1 &amp;&amp; condition2 &amp;&amp;
         condition3 &amp;&amp; condition4)
     {
         ...
-            </pre>
-          </td>
-        </tr>
-      </table>
+                </pre>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="rcurly">
@@ -319,34 +345,38 @@
         table describes the valid options:
       </p>
 
-      <table summary="right curly options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="right curly options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>alone</code></td>
-          <td>
-            The brace must be alone on the line. For example:
-            <pre>
+          <tr>
+            <td><code>alone</code></td>
+            <td>
+              The brace must be alone on the line. For example:
+              <div class="wrapper">
+                <pre>
     try {
         ...
     <b>}</b>
     finally {
         ...
     <b>}</b>
-            </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>alone_or_singleline</code></td>
-          <td>
-                  The brace must be alone on the line, yet
-                  single-line format of block is allowed.
-                  For example:
-            <pre>
+          <tr>
+            <td><code>alone_or_singleline</code></td>
+            <td>
+                    The brace must be alone on the line, yet
+                    single-line format of block is allowed.
+                    For example:
+              <div class="wrapper">
+                <pre>
     // Brace is alone on the line
     try {
         ...
@@ -357,22 +387,24 @@
 
     // Single-line format of block
     public long getId() { return id; <b>}</b>
-            </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>same</code></td>
-          <td>
-            Works like <code>alone_or_singleline</code> but the brace should be on the same line
-            as the next part of a multi-block statement
-            (one that directly contains multiple blocks: if/else-if/else or try/catch/finally).
-            If no next part of a multi-block statement present, brace must be alone on line.
-            It also allows single-line format of multi-block statements.
+          <tr>
+            <td><code>same</code></td>
+            <td>
+              Works like <code>alone_or_singleline</code> but the brace should be on the same line
+              as the next part of a multi-block statement
+              (one that directly contains multiple blocks: if/else-if/else or try/catch/finally).
+              If no next part of a multi-block statement present, brace must be alone on line.
+              It also allows single-line format of multi-block statements.
 
-            <p>Examples:</p>
+              <p>Examples:</p>
 
-              <pre>
+              <div class="wrapper">
+                <pre>
     public long getId() {return id;<b>}</b> // this is OK, it is single line
 
     // try-catch-finally blocks
@@ -424,11 +456,13 @@
     if (a &#62; 0) {
         ...
     } else { ... <b>}</b> // OK, single-line multi-block statement
-              </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-      </table>
+        </table>
+      </div>
     </section>
 
     <section name="scope">
@@ -485,79 +519,91 @@
         The following table describes the valid options:
       </p>
 
-      <table summary="import order options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="import order options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>top</code></td>
-          <td>All static imports are at the top.
-              Groups for static import are defined by the property 'staticGroups'.
-              The blank line between groups is driven by the property 'separatedStaticGroups'.
-              For example:
-              <pre>
+          <tr>
+            <td><code>top</code></td>
+            <td>All static imports are at the top.
+                Groups for static import are defined by the property 'staticGroups'.
+                The blank line between groups is driven by the property 'separatedStaticGroups'.
+                For example:
+              <div class="wrapper">
+                <pre>
     import static a.b.C.*;
     import static x.y.Z.*;
 
     import a.b.D;
     import x.y.Z;</pre>
-          </td>
-        </tr>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>above</code></td>
-          <td>All static imports are above the local group. For example:
-            <pre>
+          <tr>
+            <td><code>above</code></td>
+            <td>All static imports are above the local group. For example:
+              <div class="wrapper">
+                <pre>
     import static a.b.C.*;
     import a.b.D;
 
     import static x.y.Z.*;
     import x.y.Z;</pre>
-          </td>
-        </tr>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>inflow</code></td>
-          <td>All static imports are processed like non static
-              imports. For example:
-              <pre>
+          <tr>
+            <td><code>inflow</code></td>
+            <td>All static imports are processed like non static
+                imports. For example:
+              <div class="wrapper">
+                <pre>
     import static a.b.C.*;
     import a.b.D;
 
     import x.y.Z;
     import static x.y.Z.*;</pre>
-          </td>
-        </tr>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>under</code></td>
-          <td>All static imports are under the local group. For example:
-              <pre>
+          <tr>
+            <td><code>under</code></td>
+            <td>All static imports are under the local group. For example:
+              <div class="wrapper">
+                <pre>
     import a.b.D;
     import static a.b.C.*;
 
     import x.y.Z;
     import static x.y.Z.*;</pre>
-          </td>
-        </tr>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>bottom</code></td>
-          <td>All static imports are at the bottom.
-              Groups for static import are defined by the property 'staticGroups'.
-              The blank line between groups is driven by the property 'separatedStaticGroups'.
-              For example:
-              <pre>
+          <tr>
+            <td><code>bottom</code></td>
+            <td>All static imports are at the bottom.
+                Groups for static import are defined by the property 'staticGroups'.
+                The blank line between groups is driven by the property 'separatedStaticGroups'.
+                For example:
+              <div class="wrapper">
+                <pre>
     import a.b.D;
     import x.y.Z;
 
     import static a.b.C.*;
     import static x.y.Z.*;</pre>
-          </td>
-        </tr>
-      </table>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="elementStyle">
@@ -567,69 +613,83 @@
         describes the valid options:
       </p>
 
-      <table summary="elementStyle options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="elementStyle options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>expanded</code></td>
-          <td>
-            The expanded version is sometimes referred to as "named parameters"
-            in other languages.
-            Example:
-            <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
-            Example of violation:
-            <pre>@SuppressWarnings({"unchecked","unused",})</pre>
-          </td>
-        </tr>
+          <tr>
+            <td><code>expanded</code></td>
+            <td>
+              The expanded version is sometimes referred to as "named parameters"
+              in other languages.
+              Example:
+              <div class="wrapper">
+                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+              </div>
+              Example of violation:
+              <div class="wrapper">
+                <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>compact</code></td>
-          <td>
-            This style can only be used when there is an element called 'value'
-            which is either the sole element or all other elements have default
-            values.
-            Example:
-            <pre>
+          <tr>
+            <td><code>compact</code></td>
+            <td>
+              This style can only be used when there is an element called 'value'
+              which is either the sole element or all other elements have default
+              values.
+              Example:
+              <div class="wrapper">
+                <pre>
                 @SuppressWarnings({"unchecked","unused",})
                 @SuppressWarnings("unchecked")
-            </pre>
-            Example of violation:
-            <pre>
+                </pre>
+              </div>
+              Example of violation:
+              <div class="wrapper">
+                <pre>
                 @SuppressWarnings(value = {"unchecked","unused",})
                 @SuppressWarnings(value = "unchecked")
-            </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>compact_no_array</code></td>
-          <td>
-            It is similar to the <code>compact</code> style but
-            single value arrays are flagged. With annotations a single value
-            array does not need to be placed in an array initializer.
-            Example:
-            <pre>
+          <tr>
+            <td><code>compact_no_array</code></td>
+            <td>
+              It is similar to the <code>compact</code> style but
+              single value arrays are flagged. With annotations a single value
+              array does not need to be placed in an array initializer.
+              Example:
+              <div class="wrapper">
+                <pre>
               @SuppressWarnings("unchecked")
               @MyAnnotation(someArray = "some value")
-            </pre>
-            Example of violation:
-            <pre>
+                </pre>
+              </div>
+              Example of violation:
+              <div class="wrapper">
+                <pre>
               @SuppressWarnings({"unchecked"})
               @MyAnnotation(someArray = {"some value"})
-            </pre>
-          </td>
-        </tr>
+                </pre>
+              </div>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>ignore</code></td>
-          <td>
-            Anything goes.
-          </td>
-        </tr>
-      </table>
+          <tr>
+            <td><code>ignore</code></td>
+            <td>
+              Anything goes.
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="closingParens">
@@ -638,35 +698,37 @@
         parenthesis. The following table describes the valid options:
       </p>
 
-      <table summary="closingParens options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="closingParens options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>always</code></td>
-          <td>
-            Example:
-            <pre>@Deprecated()</pre>
-          </td>
-        </tr>
+          <tr>
+            <td><code>always</code></td>
+            <td>
+              Example:
+              <pre>@Deprecated()</pre>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>never</code></td>
-          <td>
-            Example:
-            <pre>@Deprecated</pre>
-          </td>
-        </tr>
+          <tr>
+            <td><code>never</code></td>
+            <td>
+              Example:
+              <pre>@Deprecated</pre>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>ignore</code></td>
-          <td>
-            Anything goes.
-          </td>
-        </tr>
-      </table>
+          <tr>
+            <td><code>ignore</code></td>
+            <td>
+              Anything goes.
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="trailingArrayComma">
@@ -675,35 +737,37 @@
         array comma. The following table describes the valid options:
       </p>
 
-      <table summary="trailingArrayComma options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+        <div class="wrapper">
+        <table summary="trailingArrayComma options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>always</code></td>
-          <td>
-            Example:
-            <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
-          </td>
-        </tr>
+          <tr>
+            <td><code>always</code></td>
+            <td>
+              Example:
+              <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>never</code></td>
-          <td>
-            Example:
-            <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
-          </td>
-        </tr>
+          <tr>
+            <td><code>never</code></td>
+            <td>
+              Example:
+              <pre>@SuppressWarnings(value={"unchecked","unused"})</pre>
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>ignore</code></td>
-          <td>
-            Anything goes.
-          </td>
-        </tr>
-      </table>
+          <tr>
+            <td><code>ignore</code></td>
+            <td>
+              Anything goes.
+            </td>
+          </tr>
+        </table>
+      </div>
     </section>
 
     <section name="javadocContentLocation">
@@ -712,46 +776,52 @@
         The following table describes the valid options:
       </p>
 
-      <table summary="javadocContentLocation options">
-        <tr>
-          <td>Option</td>
-          <td>Definition</td>
-        </tr>
+      <div class="wrapper">
+        <table summary="javadocContentLocation options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
 
-        <tr>
-          <td><code>FIRST_LINE</code></td>
-          <td>
-            Represents the policy for Javadoc content starts from the same line
-            as <code>/**</code>.
-            Example:
-            <pre>
+          <tr>
+            <td><code>FIRST_LINE</code></td>
+            <td>
+              Represents the policy for Javadoc content starts from the same line
+              as <code>/**</code>.
+              Example:
+              <div class="wrapper">
+                <pre>
             &#47;** Summary text.
               * More details.
               *&#47;
             public void method();
-            </pre>
-            This style is also known as "scala" style.
-          </td>
-        </tr>
+                </pre>
+              </div>
+              This style is also known as "scala" style.
+            </td>
+          </tr>
 
-        <tr>
-          <td><code>SECOND_LINE</code></td>
-          <td>
-            Represents the policy for Javadoc content starts from the next line
-            after <code>/**</code>.
-            Example:
-            <pre>
+          <tr>
+            <td><code>SECOND_LINE</code></td>
+            <td>
+              Represents the policy for Javadoc content starts from the next line
+              after <code>/**</code>.
+              Example:
+              <div class="wrapper">
+                <pre>
               &#47;**
               * Summary text.
               * More details.
               *&#47;
               public void method();
-            </pre>
-            This style is common to java projects.
-          </td>
-        </tr>
+                </pre>
+              </div>
+              This style is common to java projects.
+            </td>
+          </tr>
 
-      </table>
+        </table>
+      </div>
     </section>
   </body>
 </document>

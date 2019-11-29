@@ -47,7 +47,9 @@
         and class <code>FilterSet</code>.
       </p>
 
-      <img src="images/Filter.gif" alt="Filter UML diagram" />
+      <div class="wrapper">
+        <img src="images/Filter.gif" alt="Filter UML diagram" />
+      </div>
     </section>
 
     <section name="Writing Filters">

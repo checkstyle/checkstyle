@@ -24,40 +24,54 @@
       </p>
 
       <p>
-        <a href="https://www.bountysource.com/teams/checkstyle/issues">
-          <img src="https://api.bountysource.com/badge/team?team_id=3568&amp;style=bounties_posted"
-               alt="bountysource" title="bountysource" border="0"/>
-        </a>
+        <span class="wrapper">
+          <a href="https://www.bountysource.com/teams/checkstyle/issues">
+            <img src="https://api.bountysource.com/badge/team?team_id=3568&amp;style=bounties_posted"
+                 alt="bountysource" title="bountysource" border="0"/>
+          </a>
+        </span>
         <br/>
-        <a href="https://salt.bountysource.com/teams/checkstyle">
-          <img src="https://img.shields.io/bountysource/team/checkstyle/activity.svg?label=salt.bountysource"
-               alt="salt.bountysource" title="salt.bountysource" border="0"/>
-        </a>
+        <span class="wrapper">
+          <a href="https://salt.bountysource.com/teams/checkstyle">
+            <img src="https://img.shields.io/bountysource/team/checkstyle/activity.svg?label=salt.bountysource"
+                 alt="salt.bountysource" title="salt.bountysource" border="0"/>
+          </a>
+        </span>
         <br/>
-        <a href="https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org"
-           target="_blank">
-          <img src="https://button.flattr.com/flattr-badge-large.png"
-               alt="Flattr this" title="Flattr this" border="0"/>
-        </a>
+        <span class="wrapper">
+          <a href="https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org"
+             target="_blank">
+            <img src="https://button.flattr.com/flattr-badge-large.png"
+                 alt="Flattr this" title="Flattr this" border="0"/>
+          </a>
+        </span>
         <br/>
-        <a href="https://liberapay.com/checkstyle/">
-          <img src="https://liberapay.com/assets/widgets/donate.svg"
-               alt="liberapay" title="liberapay" border="0"/>
-        </a>
+        <span class="wrapper">
+          <a href="https://liberapay.com/checkstyle/">
+            <img src="https://liberapay.com/assets/widgets/donate.svg"
+                 alt="liberapay" title="liberapay" border="0"/>
+          </a>
+        </span>
         <br/>
-        <a href="https://opencollective.com/checkstyle/">
-          <img src="https://opencollective.com/checkstyle/backers/badge.svg"
-               alt="backers.opencollective" title="backers.opencollective" border="0"/>
-        </a>
+        <span class="wrapper">
+          <a href="https://opencollective.com/checkstyle/">
+            <img src="https://opencollective.com/checkstyle/backers/badge.svg"
+                 alt="backers.opencollective" title="backers.opencollective" border="0"/>
+          </a>
+        </span>
         <br/>
-        <a href="https://opencollective.com/checkstyle/">
-          <img src="https://opencollective.com/checkstyle/sponsors/badge.svg"
-               alt="sponsors.opencollective" title="backers.opencollective" border="0"/>
-        </a>
+        <span class="wrapper">
+          <a href="https://opencollective.com/checkstyle/">
+            <img src="https://opencollective.com/checkstyle/sponsors/badge.svg"
+                 alt="sponsors.opencollective" title="backers.opencollective" border="0"/>
+          </a>
+        </span>
         <br/>
-        <object type="image/svg+xml"
-        data="https://opencollective.com/checkstyle/tiers/backer.svg?avatarHeight=76&amp;width=600">
-        </object>
+        <span class="wrapper">
+          <object type="image/svg+xml"
+          data="https://opencollective.com/checkstyle/tiers/backer.svg?avatarHeight=76&amp;width=600">
+          </object>
+        </span>
         <br/>
         <a href="https://freedomsponsors.org/search/?project_name=checkstyle">
           freedomsponsors - checkstyle</a>

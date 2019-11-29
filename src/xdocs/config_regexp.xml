@@ -73,61 +73,63 @@
       </subsection>
 
       <subsection name="Properties" id="Regexp_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Specify the pattern to match against.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>"^$"</code> (empty)</td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Specify message which is used to notify about violations,
-              if empty then the default (hard-coded) message is used.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>illegalPattern</td>
-            <td>Control whether the pattern is required or illegal.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>duplicateLimit</td>
-            <td>Control whether to check for duplicates of a required pattern,
-              any negative value means no checking for duplicates, any positive
-              value is used as the maximum number of allowed duplicates, if the
-              limit is exceeded violations will be logged.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>errorLimit</td>
-            <td>Specify the maximum number of violations before the check will abort.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>100</code></td>
-            <td>4.0</td>
-          </tr>
-          <tr>
-            <td>ignoreComments</td>
-            <td>Control whether to ignore matches found within comments.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>4.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the pattern to match against.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^$"</code> (empty)</td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify message which is used to notify about violations,
+                if empty then the default (hard-coded) message is used.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>illegalPattern</td>
+              <td>Control whether the pattern is required or illegal.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>duplicateLimit</td>
+              <td>Control whether to check for duplicates of a required pattern,
+                any negative value means no checking for duplicates, any positive
+                value is used as the maximum number of allowed duplicates, if the
+                limit is exceeded violations will be logged.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>errorLimit</td>
+              <td>Specify the maximum number of violations before the check will abort.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>100</code></td>
+              <td>4.0</td>
+            </tr>
+            <tr>
+              <td>ignoreComments</td>
+              <td>Control whether to ignore matches found within comments.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>4.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Regexp_Examples">
@@ -506,65 +508,67 @@ public static final int A_SETPOINT = 1;
       </subsection>
 
       <subsection name="Properties" id="RegexpMultiline_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Specify the format of the regular expression to match.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>&quot;$.&quot;</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Specify the message which is used to notify about violations,
-            if empty then default (hard-coded) message is used.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>ignoreCase</td>
-            <td>Control whether to ignore case when searching.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>minimum</td>
-            <td>Specify the minimum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>maximum</td>
-            <td>Specify the maximum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>matchAcrossLines</td>
-            <td>Control whether to match expressions across multiple lines.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>8.25</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the format of the regular expression to match.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>&quot;$.&quot;</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify the message which is used to notify about violations,
+              if empty then default (hard-coded) message is used.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when searching.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>minimum</td>
+              <td>Specify the minimum number of matches required in each file.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>maximum</td>
+              <td>Specify the maximum number of matches required in each file.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>matchAcrossLines</td>
+              <td>Control whether to match expressions across multiple lines.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.25</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RegexpMultiline_Examples">
@@ -700,52 +704,54 @@ void method() {
       </subsection>
 
       <subsection name="Properties" id="RegexpOnFilename_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>folderPattern</td>
-            <td>Specify the regular expression to match the folder path against.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>6.15</td>
-          </tr>
-          <tr>
-            <td>fileNamePattern</td>
-            <td>Specify the regular expression to match the file name against.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>6.15</td>
-          </tr>
-          <tr>
-            <td>match</td>
-            <td>Control whether to look for a match or mis-match on the file name, if the
-            fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>6.15</td>
-          </tr>
-          <tr>
-            <td>ignoreFileNameExtensions</td>
-            <td>Control whether to ignore the file extension for the file name match.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>6.15</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process. If this is specified, then
-            only files that match these types are examined with the other patterns.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>6.15</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>folderPattern</td>
+              <td>Specify the regular expression to match the folder path against.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>fileNamePattern</td>
+              <td>Specify the regular expression to match the file name against.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>match</td>
+              <td>Control whether to look for a match or mis-match on the file name, if the
+              fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>ignoreFileNameExtensions</td>
+              <td>Control whether to ignore the file extension for the file name match.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.15</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process. If this is specified, then
+              only files that match these types are examined with the other patterns.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>6.15</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RegexpOnFilename_Examples">
@@ -875,58 +881,60 @@ void method() {
       </subsection>
 
       <subsection name="Properties" id="RegexpSingleline_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Specify the format of the regular expression to match.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>&quot;$.&quot;</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Specify the message which is used to notify about violations,
-            if empty then default (hard-coded) message is used.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>ignoreCase</td>
-            <td>Control whether to ignore case when searching.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>minimum</td>
-            <td>Specify the minimum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>maximum</td>
-            <td>Specify the maximum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the format of the regular expression to match.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>&quot;$.&quot;</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify the message which is used to notify about violations,
+              if empty then default (hard-coded) message is used.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when searching.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>minimum</td>
+              <td>Specify the minimum number of matches required in each file.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>maximum</td>
+              <td>Specify the maximum number of matches required in each file.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RegexpSingleline_Examples">
@@ -1030,58 +1038,60 @@ void method() {
       </subsection>
 
       <subsection name="Properties" id="RegexpSinglelineJava_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>format</td>
-            <td>Specify the format of the regular expression to match.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>&quot;$.&quot;</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>message</td>
-            <td>Specify the message which is used to notify about violations,
-            if empty then default (hard-coded) message is used.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>6.0</td>
-          </tr>
-          <tr>
-            <td>ignoreCase</td>
-            <td>Control whether to ignore case when searching.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>minimum</td>
-            <td>Specify the minimum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>maximum</td>
-            <td>Specify the maximum number of matches required in each file.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>0</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>ignoreComments</td>
-            <td>Control whether to ignore text in comments when searching.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>5.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>format</td>
+              <td>Specify the format of the regular expression to match.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>&quot;$.&quot;</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>message</td>
+              <td>Specify the message which is used to notify about violations,
+              if empty then default (hard-coded) message is used.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>6.0</td>
+            </tr>
+            <tr>
+              <td>ignoreCase</td>
+              <td>Control whether to ignore case when searching.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>minimum</td>
+              <td>Specify the minimum number of matches required in each file.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>maximum</td>
+              <td>Specify the maximum number of matches required in each file.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>0</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreComments</td>
+              <td>Control whether to ignore text in comments when searching.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>5.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RegexpSinglelineJava_Examples">

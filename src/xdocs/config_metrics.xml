@@ -52,45 +52,47 @@
       </subsection>
 
       <subsection name="Properties" id="BooleanExpressionComplexity_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>
-              Specify the maximum number of boolean operations allowed in one
-              expression.
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>3</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>.
-            </td>
-            <td>3.4</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>
+                Specify the maximum number of boolean operations allowed in one
+                expression.
+              </td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>3</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">LAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">BAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">LOR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR">BOR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">BXOR</a>.
+              </td>
+              <td>3.4</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="BooleanExpressionComplexity_Examples">
@@ -218,53 +220,55 @@
       </subsection>
 
       <subsection name="Properties" id="ClassDataAbstractionCoupling_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum threshold allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>7</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>excludedClasses</td>
-            <td>Specify user-configured class names to ignore.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>
-              ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
-              Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
-              HashMap, HashSet, IllegalArgumentException, IllegalStateException,
-              IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map,
-              NullPointerException, Object, Override, Queue, RuntimeException,
-              SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
-              String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
-              TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
-              byte, char, double, float, int, long, short, void</code>
-            </td>
-            <td>5.7</td>
-          </tr>
-          <tr>
-            <td>excludeClassesRegexps</td>
-            <td>Specify user-configured regular expressions to ignore classes.</td>
-            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
-            <td><code>^$</code></td>
-            <td>7.7</td>
-          </tr>
-          <tr>
-            <td>excludedPackages</td>
-            <td>Specify user-configured packages to ignore.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>7.7</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum threshold allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>7</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>excludedClasses</td>
+              <td>Specify user-configured class names to ignore.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>
+                ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
+                Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
+                HashMap, HashSet, IllegalArgumentException, IllegalStateException,
+                IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map,
+                NullPointerException, Object, Override, Queue, RuntimeException,
+                SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
+                String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
+                TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
+                byte, char, double, float, int, long, short, void</code>
+              </td>
+              <td>5.7</td>
+            </tr>
+            <tr>
+              <td>excludeClassesRegexps</td>
+              <td>Specify user-configured regular expressions to ignore classes.</td>
+              <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+              <td><code>^$</code></td>
+              <td>7.7</td>
+            </tr>
+            <tr>
+              <td>excludedPackages</td>
+              <td>Specify user-configured packages to ignore.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>7.7</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ClassDataAbstractionCoupling_Examples">
@@ -508,56 +512,58 @@ public class Foo {
       </subsection>
 
       <subsection name="Properties" id="ClassFanOutComplexity_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum threshold allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>20</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>excludedClasses</td>
-            <td>Specify user-configured class names to ignore.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>
-              ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
-              Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
-              HashMap, HashSet, IllegalArgumentException, IllegalStateException,
-              IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map,
-              NullPointerException, Object, Override, Queue, RuntimeException,
-              SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
-              String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
-              TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
-              byte, char, double, float, int, long, short, void</code>
-            </td>
-            <td>5.7</td>
-          </tr>
-          <tr>
-            <td>excludeClassesRegexps</td>
-            <td>Specify user-configured regular expressions to ignore classes.</td>
-            <td><a href="property_types.html#regexp">Regular Expressions</a></td>
-            <td><code>^$</code></td>
-            <td>7.7</td>
-          </tr>
-          <tr>
-            <td>excludedPackages</td>
-            <td>
-              Specify user-configured packages to ignore. All excluded packages
-              should end with a period, so it also appends a dot to a package name.
-            </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>{}</code></td>
-            <td>7.7</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum threshold allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>20</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>excludedClasses</td>
+              <td>Specify user-configured class names to ignore.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>
+                ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
+                Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
+                HashMap, HashSet, IllegalArgumentException, IllegalStateException,
+                IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map,
+                NullPointerException, Object, Override, Queue, RuntimeException,
+                SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
+                String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
+                TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
+                byte, char, double, float, int, long, short, void</code>
+              </td>
+              <td>5.7</td>
+            </tr>
+            <tr>
+              <td>excludeClassesRegexps</td>
+              <td>Specify user-configured regular expressions to ignore classes.</td>
+              <td><a href="property_types.html#regexp">Regular Expressions</a></td>
+              <td><code>^$</code></td>
+              <td>7.7</td>
+            </tr>
+            <tr>
+              <td>excludedPackages</td>
+              <td>
+                Specify user-configured packages to ignore. All excluded packages
+                should end with a period, so it also appends a dot to a package name.
+              </td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>{}</code></td>
+              <td>7.7</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ClassFanOutComplexity_Examples">
@@ -722,82 +728,84 @@ public class Foo {
       </subsection>
 
       <subsection name="Properties" id="CyclomaticComplexity_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum threshold allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>10</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>switchBlockAsSingleDecisionPoint</td>
-            <td>Control whether to treat the whole switch block as a single decision point.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>false</code></td>
-            <td>6.11</td>
-          </tr>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum threshold allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>10</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>switchBlockAsSingleDecisionPoint</td>
+              <td>Control whether to treat the whole switch block as a single decision point.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>6.11</td>
+            </tr>
 
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
 
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                LITERAL_WHILE</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                LITERAL_DO</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                LITERAL_FOR</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                LITERAL_IF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
-                LITERAL_SWITCH</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                LITERAL_CASE</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                LITERAL_CATCH</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
-                QUESTION</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
-                LAND</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
-                LOR</a>.
-            </td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+                  QUESTION</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+                  LAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+                  LOR</a>.
+              </td>
 
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
-                LITERAL_WHILE</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
-                LITERAL_DO</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
-                LITERAL_FOR</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
-                LITERAL_IF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
-                LITERAL_SWITCH</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
-                LITERAL_CASE</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
-                LITERAL_CATCH</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
-                QUESTION</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
-                LAND</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
-                LOR</a>.
-            </td>
-            <td>3.2</td>
-          </tr>
-        </table>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
+                  LITERAL_WHILE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
+                  LITERAL_DO</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FOR">
+                  LITERAL_FOR</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">
+                  LITERAL_IF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_SWITCH">
+                  LITERAL_SWITCH</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CASE">
+                  LITERAL_CASE</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_CATCH">
+                  LITERAL_CATCH</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
+                  QUESTION</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+                  LAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
+                  LOR</a>.
+              </td>
+              <td>3.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="CyclomaticComplexity_Examples">
@@ -958,45 +966,47 @@ class SwitchExample {
       </subsection>
 
       <subsection name="Properties" id="JavaNCSS_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>methodMaximum</td>
-            <td>
-              Specify the maximum allowed number of non commenting lines in a
-              method.
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>50</code></td>
-            <td>3.5</td>
-          </tr>
-          <tr>
-            <td>classMaximum</td>
-            <td>
-              Specify the maximum allowed number of non commenting lines in a
-              class.
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>1500</code></td>
-            <td>3.5</td>
-          </tr>
-          <tr>
-            <td>fileMaximum</td>
-            <td>
-              Specify the maximum allowed number of non commenting lines in a
-              file including all top level and nested classes.
-            </td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>2000</code></td>
-            <td>3.5</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>methodMaximum</td>
+              <td>
+                Specify the maximum allowed number of non commenting lines in a
+                method.
+              </td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>50</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>classMaximum</td>
+              <td>
+                Specify the maximum allowed number of non commenting lines in a
+                class.
+              </td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>1500</code></td>
+              <td>3.5</td>
+            </tr>
+            <tr>
+              <td>fileMaximum</td>
+              <td>
+                Specify the maximum allowed number of non commenting lines in a
+                file including all top level and nested classes.
+              </td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>2000</code></td>
+              <td>3.5</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="JavaNCSS_Examples">
@@ -1114,30 +1124,33 @@ class SwitchExample {
         logical clarity of the system structure.
         </blockquote>
 
-        <table>
-        <caption>Examples</caption>
-        <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
-        <tr><td>if ([expr]) { [if-range] }</td><td>NP(if-range) + 1 + NP(expr)</td></tr>
-        <tr><td>if ([expr]) { [if-range] } else { [else-range] }</td><td>NP(if-range)
-                + NP(else-range) + NP(expr)</td></tr>
-        <tr><td>while ([expr]) { [while-range] } </td><td>NP(while-range) + NP(expr) + 1</td></tr>
-        <tr><td>do { [do-range] } while ([expr])</td><td>NP(do-range) + NP(expr) + 1</td></tr>
-        <tr><td>for([expr1]; [expr2]; [expr3]) { [for-range] }</td><td>NP(for-range) + NP(expr1)
-                + NP(expr2) + NP(expr3) + 1</td></tr>
-        <tr><td>switch ([expr]) { case : [case-range] default: [default-range] }</td>
-            <td>S(i=1:i=n)NP(case-range[i]) + NP(default-range) + NP(expr)</td></tr>
-        <tr><td>[expr1] ? [expr2] : [expr3]</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2</td></tr>
-        <tr><td>goto label</td><td>1</td></tr>
-        <tr><td>break</td><td>1</td></tr>
-        <tr><td>Expressions</td><td>Number of &amp;&amp; and || operators in expression. No
-                operators - 0</td></tr>
-        <tr><td>continue</td><td>1</td></tr>
-        <tr><td>return</td><td>1</td></tr>
-        <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
-        <tr><td>Empty block {}</td><td>1</td></tr>
-        <tr><td>Function call</td><td>1</td></tr>
-        <tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement[i])</td></tr>
-        </table>
+        <div class="wrapper">
+          <table>
+          <caption>Examples</caption>
+          <thead><tr><th>Structure</th><th> Complexity expression </th></tr></thead>
+          <tr><td>if ([expr]) { [if-range] }</td><td>NP(if-range) + 1 + NP(expr)</td></tr>
+          <tr><td>if ([expr]) { [if-range] } else { [else-range] }</td><td>NP(if-range)
+                  + NP(else-range) + NP(expr)</td></tr>
+          <tr><td>while ([expr]) { [while-range] } </td><td>NP(while-range) + NP(expr) + 1</td></tr>
+          <tr><td>do { [do-range] } while ([expr])</td><td>NP(do-range) + NP(expr) + 1</td></tr>
+          <tr><td>for([expr1]; [expr2]; [expr3]) { [for-range] }</td><td>NP(for-range) + NP(expr1)
+                  + NP(expr2) + NP(expr3) + 1</td></tr>
+          <tr><td>switch ([expr]) { case : [case-range] default: [default-range] }</td>
+              <td>S(i=1:i=n)NP(case-range[i]) + NP(default-range) + NP(expr)</td></tr>
+          <tr><td>[expr1] ? [expr2] : [expr3]</td><td>NP(expr1) + NP(expr2) + NP(expr3) + 2
+          </td></tr>
+          <tr><td>goto label</td><td>1</td></tr>
+          <tr><td>break</td><td>1</td></tr>
+          <tr><td>Expressions</td><td>Number of &amp;&amp; and || operators in expression. No
+                  operators - 0</td></tr>
+          <tr><td>continue</td><td>1</td></tr>
+          <tr><td>return</td><td>1</td></tr>
+          <tr><td>Statement (even sequential statements)</td><td>1</td></tr>
+          <tr><td>Empty block {}</td><td>1</td></tr>
+          <tr><td>Function call</td><td>1</td></tr>
+          <tr><td>Function(Method) declaration or Block</td><td>P(i=1:i=N)NP(Statement[i])</td></tr>
+          </table>
+        </div>
 
         <p>
           <b>Rationale:</b> Nejmeh says that his group had an informal NPATH
@@ -1152,22 +1165,24 @@ class SwitchExample {
       </subsection>
 
       <subsection name="Properties" id="NPathComplexity_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>max</td>
-            <td>Specify the maximum threshold allowed.</td>
-            <td><a href="property_types.html#integer">Integer</a></td>
-            <td><code>200</code></td>
-            <td>3.4</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>Specify the maximum threshold allowed.</td>
+              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><code>200</code></td>
+              <td>3.4</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="NPathComplexity_Examples">

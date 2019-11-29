@@ -25,24 +25,34 @@
     <section name="Import Checkstyle Project">
       <p>
         Select File > New Project > Maven > Project with existing POM<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_importing_netbeans.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_importing_netbeans.png"/>
+        </span>
         <br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_importing_netbeans1.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_importing_netbeans1.png"/>
+        </span>
       </p>
     </section>
 
     <section name="Debug">
       <p>
         Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_select_check_netbeans.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_select_check_netbeans.png"/>
+        </span>
         <br/><br/>
         Debug the Check by putting the breakpoint at controversial place (double-click)
         on the left part of line number as it is shown:<br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_debug_netbeans.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_debug_netbeans.png"/>
+        </span>
         <br/><br/>
         Then right-click the corresponding Unit-test file or class definition > Debug Test File
         <br/><br/>
-        <img alt="screenshot" src="images/gui_screenshot_ut_select_netbeans.png"/>
+        <span class="wrapper">
+          <img alt="screenshot" src="images/gui_screenshot_ut_select_netbeans.png"/>
+        </span>
         <br/><br/>
         Then manage you debug operations by Ctrl+F7 (Step Out), F7 (Step Into),
         Shift+F8 (Step Over Expression), Step Over (F8)
@@ -57,8 +67,10 @@
         To change formatter settings please go to Tools->Options in menu.<br/>
         On Options page go to Editor->Formatting->Java->Imports (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
-        <img alt="Organize Imports settings in NetBeans"
-          src="images/gui_screenshot_organize_imports_netbeans.jpg"/>
+        <span class="wrapper">
+          <img alt="Organize Imports settings in NetBeans"
+            src="images/gui_screenshot_organize_imports_netbeans.jpg"/>
+        </span>
         <br/>
       </p>
     </section>

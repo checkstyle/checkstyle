@@ -64,55 +64,57 @@ line 5: ////////////////////////////////////////////////////////////////////
       </subsection>
 
       <subsection name="Properties" id="Header_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>headerFile</td>
-            <td>Specify the name of the file containing the required header.</td>
-            <td><a href="property_types.html#uri">URI</a></td>
-            <td><code>null</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>charset</td>
-            <td>Specify the character encoding to use when reading the headerFile.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td>the charset property of the parent
-            <a href="config.html#Checker">Checker</a> module</td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>header</td>
-            <td>
-              Specify the required header specified inline. Individual header lines
-              must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
-              different line separator), see examples below.
-            </td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>ignoreLines</td>
-            <td>Specify the line numbers to ignore.</td>
-            <td><a href="property_types.html#intSet">Integer Set</a></td>
-            <td><code>{}</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>6.9</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>headerFile</td>
+              <td>Specify the name of the file containing the required header.</td>
+              <td><a href="property_types.html#uri">URI</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>charset</td>
+              <td>Specify the character encoding to use when reading the headerFile.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td>the charset property of the parent
+              <a href="config.html#Checker">Checker</a> module</td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>header</td>
+              <td>
+                Specify the required header specified inline. Individual header lines
+                must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with
+                a different line separator), see examples below.
+              </td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>ignoreLines</td>
+              <td>Specify the line numbers to ignore.</td>
+              <td><a href="property_types.html#intSet">Integer Set</a></td>
+              <td><code>{}</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>6.9</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="Header_Examples">
@@ -277,57 +279,59 @@ line 6: ^\W*$
       </subsection>
 
       <subsection name="Properties" id="RegexpHeader_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>headerFile</td>
-            <td>Specify the name of the file containing the required header.</td>
-            <td><a href="property_types.html#uri">URI</a></td>
-            <td><code>null</code></td>
-            <td>3.2</td>
-          </tr>
-          <tr>
-            <td>charset</td>
-            <td>Specify the character encoding to use when reading the headerFile.</td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td>the charset property of the parent
-            <a href="config.html#Checker">Checker</a> module</td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>header</td>
-            <td>
-              Define the required header specified inline. Individual header lines
-              must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with a
-              different line separator). For header lines containing <code>&quot;\n\n&quot;</code>
-              checkstyle will forcefully expect an empty line to exist. See examples
-              below. Regular expressions must not span multiple lines.
-            </td>
-            <td><a href="property_types.html#string">String</a></td>
-            <td><code>null</code></td>
-            <td>5.0</td>
-          </tr>
-          <tr>
-            <td>multiLines</td>
-            <td>Specify the line numbers to repeat (zero or more times).</td>
-            <td><a href="property_types.html#intSet">Integer Set</a></td>
-            <td><code>{}</code></td>
-            <td>3.4</td>
-          </tr>
-          <tr>
-            <td>fileExtensions</td>
-            <td>Specify the file type extension of files to process.</td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
-            <td><code>all files</code></td>
-            <td>6.9</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>headerFile</td>
+              <td>Specify the name of the file containing the required header.</td>
+              <td><a href="property_types.html#uri">URI</a></td>
+              <td><code>null</code></td>
+              <td>3.2</td>
+            </tr>
+            <tr>
+              <td>charset</td>
+              <td>Specify the character encoding to use when reading the headerFile.</td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td>the charset property of the parent
+              <a href="config.html#Checker">Checker</a> module</td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>header</td>
+              <td>
+                Define the required header specified inline. Individual header lines
+                must be separated by the string <code>&quot;\n&quot;</code> (even on platforms with
+                a different line separator). For header lines containing
+                <code>&quot;\n\n&quot;</code> checkstyle will forcefully expect an empty line to
+                exist. See examples below. Regular expressions must not span multiple lines.
+              </td>
+              <td><a href="property_types.html#string">String</a></td>
+              <td><code>null</code></td>
+              <td>5.0</td>
+            </tr>
+            <tr>
+              <td>multiLines</td>
+              <td>Specify the line numbers to repeat (zero or more times).</td>
+              <td><a href="property_types.html#intSet">Integer Set</a></td>
+              <td><code>{}</code></td>
+              <td>3.4</td>
+            </tr>
+            <tr>
+              <td>fileExtensions</td>
+              <td>Specify the file type extension of files to process.</td>
+              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><code>all files</code></td>
+              <td>6.9</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RegexpHeader_Examples">

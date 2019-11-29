@@ -56,33 +56,35 @@ public final class Person {
       </subsection>
 
       <subsection name="Properties" id="ClassMemberImpliedModifier_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateImpliedStaticOnNestedEnum</td>
-            <td>
-              Control whether to enforce that <code>static</code> is explicitly coded
-              on nested enums in classes.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.16</td>
-          </tr>
-          <tr>
-            <td>violateImpliedStaticOnNestedInterface</td>
-            <td>
-              Control whether to enforce that <code>static</code> is explicitly coded
-              on nested interfaces in classes.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.16</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticOnNestedEnum</td>
+              <td>
+                Control whether to enforce that <code>static</code> is explicitly coded
+                on nested enums in classes.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.16</td>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticOnNestedInterface</td>
+              <td>
+                Control whether to enforce that <code>static</code> is explicitly coded
+                on nested interfaces in classes.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.16</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="ClassMemberImpliedModifier_Examples">
@@ -227,78 +229,80 @@ public interface AddressFactory {
       </subsection>
 
       <subsection name="Properties" id="InterfaceMemberImpliedModifier_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>violateImpliedPublicField</td>
-            <td>
-              Control whether to enforce that <code>public</code> is explicitly coded
-              on interface fields.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>violateImpliedStaticField</td>
-            <td>
-              Control whether to enforce that <code>static</code> is explicitly coded
-              on interface fields.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>violateImpliedFinalField</td>
-            <td>
-              Control whether to enforce that <code>final</code> is explicitly coded
-              on interface fields.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>violateImpliedPublicMethod</td>
-            <td>
-              Control whether to enforce that <code>public</code> is explicitly coded
-              on interface methods.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>violateImpliedAbstractMethod</td>
-            <td>
-              Control whether to enforce that <code>abstract</code> is explicitly coded
-              on interface methods.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>violateImpliedPublicNested</td>
-            <td>
-              Control whether to enforce that <code>public</code> is explicitly coded
-              on interface nested types.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-          <tr>
-            <td>violateImpliedStaticNested</td>
-            <td>
-              Control whether to enforce that <code>static</code> is explicitly coded
-              on interface nested types.</td>
-            <td><a href="property_types.html#boolean">Boolean</a></td>
-            <td><code>true</code></td>
-            <td>8.12</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicField</td>
+              <td>
+                Control whether to enforce that <code>public</code> is explicitly coded
+                on interface fields.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticField</td>
+              <td>
+                Control whether to enforce that <code>static</code> is explicitly coded
+                on interface fields.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedFinalField</td>
+              <td>
+                Control whether to enforce that <code>final</code> is explicitly coded
+                on interface fields.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicMethod</td>
+              <td>
+                Control whether to enforce that <code>public</code> is explicitly coded
+                on interface methods.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedAbstractMethod</td>
+              <td>
+                Control whether to enforce that <code>abstract</code> is explicitly coded
+                on interface methods.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedPublicNested</td>
+              <td>
+                Control whether to enforce that <code>public</code> is explicitly coded
+                on interface nested types.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticNested</td>
+              <td>
+                Control whether to enforce that <code>static</code> is explicitly coded
+                on interface nested types.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.12</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="InterfaceMemberImpliedModifier_Examples">
@@ -638,57 +642,59 @@ public class ClassExtending extends ClassExample {
       </subsection>
 
       <subsection name="Properties" id="RedundantModifier_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>tokens</td>
-            <td>tokens to check</td>
-            <td>
-              subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
-                RESOURCE</a>.
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
-                RESOURCE</a>.
-            </td>
-            <td>3.0</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
+                  RESOURCE</a>.
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                  CTOR_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                  ENUM_DEF</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
+                  RESOURCE</a>.
+              </td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
 
       <subsection name="Examples" id="RedundantModifier_Examples">

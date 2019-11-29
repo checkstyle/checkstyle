@@ -46,22 +46,24 @@
         </p>
       </subsection>
       <subsection name="Properties" id="BeforeExecutionExclusionFileFilter_Properties">
-        <table>
-          <tr>
-            <th>name</th>
-            <th>description</th>
-            <th>type</th>
-            <th>default value</th>
-            <th>since</th>
-          </tr>
-          <tr>
-            <td>fileNamePattern</td>
-            <td>Define regular expression to match the file name against.</td>
-            <td><a href="property_types.html#regexp">Regular Expression</a></td>
-            <td><code>null</code></td>
-            <td>7.2</td>
-          </tr>
-        </table>
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>fileNamePattern</td>
+              <td>Define regular expression to match the file name against.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>null</code></td>
+              <td>7.2</td>
+            </tr>
+          </table>
+        </div>
       </subsection>
       <subsection name="Examples" id="BeforeExecutionExclusionFileFilter_Examples">
           <p>

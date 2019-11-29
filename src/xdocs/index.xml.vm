@@ -150,270 +150,275 @@
       </p>
 
       <subsection name="Active Tools" >
-          <table>
-              <tr>
-                  <th>IDE / Build tool</th>
-                  <th>Main/Initial Author</th>
-                  <th>Available from</th>
-                  <th>Remarks</th>
-              </tr>
-              <tr>
-                  <td>
-                      <a href="https://www.atlassian.com/software/bitbucket">
-                          Bitbucket Server</a>
-                  </td>
-                  <td>Stephan Bechter</td>
-                  <td>
-                      <a href="https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server">
-                          Checkstyle for Bitbucket Server
-                      </a>
-                  </td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td>
-                      <a href="https://www.codacy.com/">Codacy</a>
-                  </td>
-                  <td>João Machado</td>
-                  <td>
-                      <a href="https://github.com/codacy/codacy-checkstyle/">
-                          codacy-checkstyle
-                      </a>
-                  </td>
-                  <td>
-                      Provides analysis per commit and per pull request. Supports CheckStyle
-                      config files.
-                  </td>
-              </tr>
-              <tr>
-                  <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
-                  <td>Christian Wulf</td>
-                  <td>
-                     <a href="https://github.com/ChristianWulf/qa-eclipse-plugin">
-                        Lightweight Eclipse Plugin for Quality Assurance Tools
-                     </a>
-                  </td>
-                  <td>Alternative to the Eclipse-CS plugin.
-                     Allows to use custom checks directly without providing
-                     an Eclipse Fragment plugin for that purpose.
-                  </td>
-              </tr>
-              <tr>
-                  <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
-                  <td>David Schneider</td>
-                  <td>
-                      <a href="http://checkstyle.org/eclipse-cs/">Eclipse-CS Home Page</a>
-                  </td>
-                  <td>
-                      In 2007 was awarded
-                      <a href="https://eclipse.org/org/press-release/20070306eclipsecommunityawards.php">
-                          Best Open Source Eclipse-based Developer tool
-                      </a>.
-                  </td>
-              </tr>
-              <tr>
-                  <td><a href="https://gradle.org">Gradle</a></td>
-                  <td>Hans Dockter (initial author)</td>
-                  <td>Checkstyle supported out of the box</td>
-                  <td><a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">
-                      Gradle Checkstyle docs</a></td>
-              </tr>
-              <tr>
-                  <td><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
-                  <td>James Shiell</td>
-                  <td>
-                      <a href="https://github.com/jshiell/checkstyle-idea">
-                          Checkstyle-idea Project Page</a>
-                  </td>
-                  <td>Provides real-time and on-demand scanning.</td>
-              </tr>
-              <tr>
-                  <td><a href="https://www.jgrasp.org/">jGRASP</a></td>
-                  <td>Larry Barowski</td>
-                  <td><a href="https://www.jgrasp.org/">jGRASP Home Page</a></td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
-                  <td>Roman Ivanov</td>
-                  <td>
-                      <a href="https://github.com/sevntu-checkstyle">Project Page</a>
-                  </td>
-                  <td>
-                      Extension for Eclipse-CS plugin and also an incubator for
-                      Checkstyle checks that are not present in main stream of
-                      Checkstyle. See the
-                      <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki">Wiki</a>
-                      and
-                      <a href="http://sevntu-checkstyle.github.io/sevntu.checkstyle/">Blog</a>
-                      .
-                  </td>
-              </tr>
-              <tr>
-                  <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
-                  <td>Jan Burkhardt</td>
-                  <td>
-                      <a href="https://github.com/bjrke/JSR305CheckstylePlugin">Project Page</a>
-                  </td>
-                  <td>
-                      Extension for Eclipse-CS plugin which ensures nullness annotations on methods
-                      and constructors (JSR305).
-                  </td>
-              </tr>
-              <tr>
-                  <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
-                      Bamboo Checkstyle plug-in</a></td>
-                  <td>Atlassian (formerly by Ross Rowe and Stephan Paulicke)</td>
-                  <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
-                      Bamboo Checkstyle plug-in Home Page</a></td>
-                  <td>An add-on that will parse and record CheckStyle reports and report your style
-                      violations over time.</td>
-              </tr>
-              <tr>
-                  <td>
-                      <a href="https://codeclimate.com/">Code Climate</a>
-                  </td>
-                  <td>Sivakumar Kailasam</td>
-                  <td>
-                      <a href="https://github.com/sivakumar-kailasam/codeclimate-checkstyle">
-                          codeclimate-checkstyle
-                      </a>
-                  </td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
-                  Checkstyle plug-in</a></td>
-                  <td/>
-                  <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
-                  Checkstyle plug-in Home Page</a></td>
-                  <td>This plug-in is supported by the Static Analysis Collector plug-in that
-                  collects different analysis results and shows the results in aggregated trend
-                  graphs.</td>
-              </tr>
-              <tr>
-                  <td><a href="http://maven.apache.org/">Maven</a></td>
-                  <td>Vincent Massol</td>
-                  <td>Checkstyle supported out of the box</td>
-                  <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
-                      example report</a></td>
-              </tr>
-              <tr>
-                  <td><a href="http://tide.olympe.in/">tIDE</a></td>
-                  <td/>
-                  <td>Built in</td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="https://netbeans.org/">NetBeans</a></td>
-                  <td>Petr Hejl</td>
-                  <td>
-                      <a href="https://www.sickboy.cz/checkstyle/">Checkstyle Beans</a>
-                  </td>
-                  <td>
-                      Problems with source code are displayed as annotations of
-                      the source
-                  </td>
-              </tr>
-              <tr>
-                  <td><a href="https://netbeans.org/">NetBeans</a></td>
-                  <td/>
-                  <td>
-                      <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>
-                  </td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="https://www.sonarqube.org/">SonarQube</a></td>
-                  <td>Freddy Mallet (initial author)</td>
-                  <td><a href="https://github.com/checkstyle/sonar-checkstyle">
-                      Checkstyle SonarQube repository</a></td>
-                  <td><a href="https://sonarcloud.io/projects">Demo site of SonarQube</a></td>
-              </tr>
-              <tr>
-                  <td><a href="http://www.jedit.org/">jEdit</a></td>
-                  <td>Todd Papaioannou</td>
-                  <td><a href="http://plugins.jedit.org/plugins/?CheckStylePlugin">
-                      JEdit CheckStylePlugin</a></td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="https://www.scm-manager.org/">SCM-Manager</a></td>
-                  <td/>
-                  <td><a href="http://plugins.scm-manager.org/scm-plugin-backend/page/index.html">
-                      SCM-Manager Plugin Page</a></td>
-                  <td/>
-              </tr>
-              <tr>
-                  <td><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
-                  <td>Jakub Slawinski</td>
-                  <td>
-                      <a href="https://plugins.jetbrains.com/plugin/4594-qaplug">QAPlug</a>
-                  </td>
-                  <td>Provides quality assurance features.</td>
-              </tr>
-              <tr>
-                  <td><a href="https://www.jarchitect.com">JArchitect</a></td>
-                  <td/>
-                  <td><a href="https://www.jarchitect.com">JArchitect Home Page</a></td>
-                  <td>Imports XML result files from CheckStyle.</td>
-              </tr>
-              <tr>
-                  <td><a href="https://www.scala-sbt.org/">SBT</a></td>
-                  <td>Andrew Johnson</td>
-                  <td><a href="https://github.com/etsy/sbt-checkstyle-plugin">
-                      sbt-checkstyle-plugin Project Page</a></td>
-                  <td>SBT plugin for running Checkstyle on Java source files in an SBT project</td>
-              </tr>
-              <tr>
-                  <td><a href="https://github.com/nidi3/code-assert">code-assert</a></td>
-                  <td>Stefan Niederhauser</td>
-                  <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">
-                      code-assert</a></td>
-                  <td>Assert that the java code of a project satisfies certain checks. Launch
-                      checkstyle validation from UTs</td>
-              </tr>
-              <tr>
-                  <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
-                  <td>Markus Mohnen</td>
-                  <td>Part of the standard JDEE distribution -
-                      <a href="https://github.com/jdee-emacs/jdee"/>
-                  </td>
-                  <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">
-                      configuration could be seen at jdee-checkstyle.el</a></td>
-              </tr>
-              <tr>
-                  <td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
-                  <td>Sheng Chen</td>
-                  <td><a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">
-                      vscode-checkstyle</a></td>
-                  <td>Checkstyle for Microsoft Visual Studio Code</td>
-              </tr>
-          </table>
+          <div class="wrapper">
+              <table>
+                  <tr>
+                      <th>IDE / Build tool</th>
+                      <th>Main/Initial Author</th>
+                      <th>Available from</th>
+                      <th>Remarks</th>
+                  </tr>
+                  <tr>
+                      <td>
+                          <a href="https://www.atlassian.com/software/bitbucket">
+                              Bitbucket Server</a>
+                      </td>
+                      <td>Stephan Bechter</td>
+                      <td>
+                          <a href="https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server">
+                              Checkstyle for Bitbucket Server
+                          </a>
+                      </td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td>
+                          <a href="https://www.codacy.com/">Codacy</a>
+                      </td>
+                      <td>João Machado</td>
+                      <td>
+                          <a href="https://github.com/codacy/codacy-checkstyle/">
+                              codacy-checkstyle
+                          </a>
+                      </td>
+                      <td>
+                          Provides analysis per commit and per pull request. Supports CheckStyle
+                          config files.
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
+                      <td>Christian Wulf</td>
+                      <td>
+                         <a href="https://github.com/ChristianWulf/qa-eclipse-plugin">
+                            Lightweight Eclipse Plugin for Quality Assurance Tools
+                         </a>
+                      </td>
+                      <td>Alternative to the Eclipse-CS plugin.
+                         Allows to use custom checks directly without providing
+                         an Eclipse Fragment plugin for that purpose.
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
+                      <td>David Schneider</td>
+                      <td>
+                          <a href="http://checkstyle.org/eclipse-cs/">Eclipse-CS Home Page</a>
+                      </td>
+                      <td>
+                          In 2007 was awarded
+                          <a href="https://eclipse.org/org/press-release/20070306eclipsecommunityawards.php">
+                              Best Open Source Eclipse-based Developer tool
+                          </a>.
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://gradle.org">Gradle</a></td>
+                      <td>Hans Dockter (initial author)</td>
+                      <td>Checkstyle supported out of the box</td>
+                      <td><a href="https://docs.gradle.org/current/userguide/checkstyle_plugin.html">
+                          Gradle Checkstyle docs</a></td>
+                  </tr>
+                  <tr>
+                      <td><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
+                      <td>James Shiell</td>
+                      <td>
+                          <a href="https://github.com/jshiell/checkstyle-idea">
+                              Checkstyle-idea Project Page</a>
+                      </td>
+                      <td>Provides real-time and on-demand scanning.</td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://www.jgrasp.org/">jGRASP</a></td>
+                      <td>Larry Barowski</td>
+                      <td><a href="https://www.jgrasp.org/">jGRASP Home Page</a></td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
+                      <td>Roman Ivanov</td>
+                      <td>
+                          <a href="https://github.com/sevntu-checkstyle">Project Page</a>
+                      </td>
+                      <td>
+                          Extension for Eclipse-CS plugin and also an incubator for
+                          Checkstyle checks that are not present in main stream of
+                          Checkstyle. See the
+                          <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki">Wiki</a>
+                          and
+                          <a href="http://sevntu-checkstyle.github.io/sevntu.checkstyle/">Blog</a>
+                          .
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://eclipse.org">Eclipse/RAD/RDz</a></td>
+                      <td>Jan Burkhardt</td>
+                      <td>
+                          <a href="https://github.com/bjrke/JSR305CheckstylePlugin">Project Page</a>
+                      </td>
+                      <td>
+                          Extension for Eclipse-CS plugin which ensures nullness annotations on
+                          methods and constructors (JSR305).
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
+                          Bamboo Checkstyle plug-in</a></td>
+                      <td>Atlassian (formerly by Ross Rowe and Stephan Paulicke)</td>
+                      <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
+                          Bamboo Checkstyle plug-in Home Page</a></td>
+                      <td>An add-on that will parse and record CheckStyle reports and report your
+                          style violations over time.</td>
+                  </tr>
+                  <tr>
+                      <td>
+                          <a href="https://codeclimate.com/">Code Climate</a>
+                      </td>
+                      <td>Sivakumar Kailasam</td>
+                      <td>
+                          <a href="https://github.com/sivakumar-kailasam/codeclimate-checkstyle">
+                              codeclimate-checkstyle
+                          </a>
+                      </td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
+                      Checkstyle plug-in</a></td>
+                      <td/>
+                      <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
+                      Checkstyle plug-in Home Page</a></td>
+                      <td>This plug-in is supported by the Static Analysis Collector plug-in that
+                      collects different analysis results and shows the results in aggregated trend
+                      graphs.</td>
+                  </tr>
+                  <tr>
+                      <td><a href="http://maven.apache.org/">Maven</a></td>
+                      <td>Vincent Massol</td>
+                      <td>Checkstyle supported out of the box</td>
+                      <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
+                          example report</a></td>
+                  </tr>
+                  <tr>
+                      <td><a href="http://tide.olympe.in/">tIDE</a></td>
+                      <td/>
+                      <td>Built in</td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td><a href="https://netbeans.org/">NetBeans</a></td>
+                      <td>Petr Hejl</td>
+                      <td>
+                          <a href="https://www.sickboy.cz/checkstyle/">Checkstyle Beans</a>
+                      </td>
+                      <td>
+                          Problems with source code are displayed as annotations of
+                          the source
+                      </td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://netbeans.org/">NetBeans</a></td>
+                      <td/>
+                      <td>
+                          <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>
+                      </td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td><a href="https://www.sonarqube.org/">SonarQube</a></td>
+                      <td>Freddy Mallet (initial author)</td>
+                      <td><a href="https://github.com/checkstyle/sonar-checkstyle">
+                          Checkstyle SonarQube repository</a></td>
+                      <td><a href="https://sonarcloud.io/projects">Demo site of SonarQube</a></td>
+                  </tr>
+                  <tr>
+                      <td><a href="http://www.jedit.org/">jEdit</a></td>
+                      <td>Todd Papaioannou</td>
+                      <td><a href="http://plugins.jedit.org/plugins/?CheckStylePlugin">
+                          JEdit CheckStylePlugin</a></td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td><a href="https://www.scm-manager.org/">SCM-Manager</a></td>
+                      <td/>
+                      <td><a href="http://plugins.scm-manager.org/scm-plugin-backend/page/index.html">
+                          SCM-Manager Plugin Page</a></td>
+                      <td/>
+                  </tr>
+                  <tr>
+                      <td><a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
+                      <td>Jakub Slawinski</td>
+                      <td>
+                          <a href="https://plugins.jetbrains.com/plugin/4594-qaplug">QAPlug</a>
+                      </td>
+                      <td>Provides quality assurance features.</td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://www.jarchitect.com">JArchitect</a></td>
+                      <td/>
+                      <td><a href="https://www.jarchitect.com">JArchitect Home Page</a></td>
+                      <td>Imports XML result files from CheckStyle.</td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://www.scala-sbt.org/">SBT</a></td>
+                      <td>Andrew Johnson</td>
+                      <td><a href="https://github.com/etsy/sbt-checkstyle-plugin">
+                          sbt-checkstyle-plugin Project Page</a></td>
+                      <td>SBT plugin for running Checkstyle on Java source files in an SBT
+                        project</td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://github.com/nidi3/code-assert">code-assert</a></td>
+                      <td>Stefan Niederhauser</td>
+                      <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">
+                          code-assert</a></td>
+                      <td>Assert that the java code of a project satisfies certain checks. Launch
+                          checkstyle validation from UTs</td>
+                  </tr>
+                  <tr>
+                      <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
+                      <td>Markus Mohnen</td>
+                      <td>Part of the standard JDEE distribution -
+                          <a href="https://github.com/jdee-emacs/jdee"/>
+                      </td>
+                      <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">
+                          configuration could be seen at jdee-checkstyle.el</a></td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
+                      <td>Sheng Chen</td>
+                      <td><a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">
+                          vscode-checkstyle</a></td>
+                      <td>Checkstyle for Microsoft Visual Studio Code</td>
+                  </tr>
+              </table>
+          </div>
       </subsection>
 
       <subsection name="Inactive / Old Tools" >
-          <table>
-              <tr>
-                  <th>IDE / Build tool</th>
-                  <th>Main/Initial Author</th>
-                  <th>Available from</th>
-                  <th>Remarks</th>
-              </tr>
-              <tr>
-                  <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
-                  <td>Benoit Xhenseval</td>
-                  <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
-                  <td>Supports tracking Checkstyle statistics over time.</td>
-              </tr>
-              <tr>
-                  <td><a href="https://vim.sourceforge.io/">Vim editor</a></td>
-                  <td>Xandy Johnson</td>
-                  <td><a href="https://vim.sourceforge.io/scripts/script.php?script_id=448">
-                      Plugin Homepage</a></td>
-                  <td>Vim file-type plug-in</td>
-              </tr>
-          </table>
+          <div class="wrapper">
+              <table>
+                  <tr>
+                      <th>IDE / Build tool</th>
+                      <th>Main/Initial Author</th>
+                      <th>Available from</th>
+                      <th>Remarks</th>
+                  </tr>
+                  <tr>
+                      <td><a href="http://qalab.sourceforge.net/">QALab</a></td>
+                      <td>Benoit Xhenseval</td>
+                      <td><a href="http://qalab.sourceforge.net/">QALab Home Page</a></td>
+                      <td>Supports tracking Checkstyle statistics over time.</td>
+                  </tr>
+                  <tr>
+                      <td><a href="https://vim.sourceforge.io/">Vim editor</a></td>
+                      <td>Xandy Johnson</td>
+                      <td><a href="https://vim.sourceforge.io/scripts/script.php?script_id=448">
+                          Plugin Homepage</a></td>
+                      <td>Vim file-type plug-in</td>
+                  </tr>
+              </table>
+          </div>
       </subsection>
 
       <p>

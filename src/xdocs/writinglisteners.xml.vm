@@ -69,8 +69,10 @@
         classes <code>AuditListener</code> and <code>AuditEvent</code>.
       </p>
 
-      <img src="images/AuditListener.gif" width="381" height="488"
-             alt="AuditListener UML diagram"/>
+      <span class="wrapper">
+        <img src="images/AuditListener.gif" width="381" height="488"
+               alt="AuditListener UML diagram"/>
+      </span>
 
     </section>
 

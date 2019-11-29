@@ -608,10 +608,23 @@ public class XdocsPagesTest {
                     + "' subsection 'Properties' should have one child node",
                 1, nodes.size());
 
-            final Node table = nodes.iterator().next();
+            final Node div = nodes.iterator().next();
             Assert.assertEquals(fileName + " section '" + sectionName
                     + "' subsection 'Properties' has unexpected child node",
-                "table", table.getNodeName());
+                "div", div.getNodeName());
+            final String wrapperMessage = fileName + " section '" + sectionName
+                    + "' subsection 'Properties' wrapping div for table needs the"
+                    + " class 'wrapper'";
+            Assert.assertTrue(wrapperMessage, div.hasAttributes());
+            Assert.assertNotNull(wrapperMessage,
+                    div.getAttributes().getNamedItem("class").getNodeValue());
+            Assert.assertTrue(wrapperMessage,
+                    div.getAttributes().getNamedItem("class").getNodeValue().contains("wrapper"));
+
+            final Node table = XmlUtil.getFirstChildElement(div);
+            Assert.assertEquals(fileName + " section '" + sectionName
+                            + "' subsection 'Properties' has unexpected child node",
+                    "table", table.getNodeName());
 
             validatePropertySectionProperties(fileName, sectionName, table, instance,
                     properties);
