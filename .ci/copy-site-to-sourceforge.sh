@@ -53,10 +53,7 @@ cat <<HTACCESS >> htdocs/.htaccess
 Redirect 301 "/dtds" "https://checkstyle.org/dtds"
 RedirectMatch 301 "/version/.*/dtds/(.*)" "https://checkstyle.org/dtds/\$1"
 HTACCESS
-echo "change access to .htaccess to be visible by apache"
-ls -la htdocs/.htaccess
 chmod o+r htdocs/.htaccess
-ls -la htdocs/.htaccess
 
 ln -s /home/project-web/checkstyle/reports htdocs/reports
 echo "remove dtds folder from unsecure web site"
@@ -70,7 +67,7 @@ mv htdocs-$PREV_RELEASE.tar.gz htdocs-archive/
 rm -rf htdocs-$PREV_RELEASE/
 
 echo "Extracting archive to previous releases documentation"
-tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ \
+tar -xzvf htdocs-archive/htdocs-$PREV_RELEASE.tar.gz -C htdocs-version/ --same-owner \
 --exclude="*/apidocs" \
 --exclude="*/xref" --exclude="*/xref-test" --exclude="*/cobertura" --exclude="*/dsm" \
 --exclude="*/api" --exclude="reports" --exclude="jacoco" --exclude="dtds" \
