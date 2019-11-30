@@ -53,7 +53,10 @@ cat <<HTACCESS >> htdocs/.htaccess
 Redirect 301 "/dtds" "https://checkstyle.org/dtds"
 RedirectMatch 301 "/version/.*/dtds/(.*)" "https://checkstyle.org/dtds/\$1"
 HTACCESS
+echo "change access to .htaccess to be visible by apache"
+ls -la htdocs/.htaccess
 chmod o+r htdocs/.htaccess
+ls -la htdocs/.htaccess
 
 ln -s /home/project-web/checkstyle/reports htdocs/reports
 echo "remove dtds folder from unsecure web site"
