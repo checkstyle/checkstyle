@@ -15,6 +15,69 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.27">
+      <div class="releaseDate">30.11.2019</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            new check: JavadocContentLocationCheck.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6724">#6724</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            RequireThisCheck: no violation produced when field is concatenated with String.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7066">#7066</a>
+          </li>
+          <li>
+            Unused param not reported when missing description.
+            Author: Puzeyev Alexandr
+            <a href="https://github.com/checkstyle/checkstyle/issues/6743">#6743</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Checkstyle website does not resize to mobile browser screens..
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7083">#7083</a>
+          </li>
+          <li>
+            fix website header rendering issue.
+            Author: Johannes Teklote
+            <a href="https://github.com/checkstyle/checkstyle/issues/7270">#7270</a>
+          </li>
+          <li>
+            Align XDocs and Javadocs for javadoc package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7208">#7208</a>
+          </li>
+          <li>
+            Dates of release if not properly rendering in Firefox.
+            Author: Johannes Teklote
+            <a href="https://github.com/checkstyle/checkstyle/issues/7036">#7036</a>
+          </li>
+          <li>
+            javadoc build problem on openjdk11.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7267">#7267</a>
+          </li>
+          <li>
+            Resolve PMD deprecation warnings on InvalidSlf4jMessageFormat.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7248">#7248</a>
+          </li>
+          <li>
+            Tests fail on OpenJDK 12 due to &#39;Failed to find the
+            &quot;modifiers&quot; field in method setInternalState.&#39;.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7033">#7033</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.26">
       <div class="releaseDate">27.10.2019</div>
       <p>Breaking backward compatibility:</p>
