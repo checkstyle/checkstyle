@@ -458,19 +458,52 @@ check-missing-pitests)
   ;;
 
 verify-no-exception-configs)
+  mkdir -p .ci-temp
   wget -q \
+    --directory-prefix .ci-temp \
+    --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
   wget -q \
+    --directory-prefix .ci-temp \
+    --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet sel --net --template -m .//module -v "@name" \
-    -n checks-nonjavadoc-error.xml -n checks-only-javadoc-error.xml \
+    -n .ci-temp/checks-nonjavadoc-error.xml -n .ci-temp/checks-only-javadoc-error.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
-    | sort | uniq | sed "s/Check$//" > web.txt
+    | sort | uniq | sed "s/Check$//" > .ci-temp/web.txt
   xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
-    | sort | uniq | sed "s/Check$//" > file.txt
-  diff -u web.txt file.txt
+    | sort | uniq | sed "s/Check$//" > .ci-temp/file.txt
+  DIFF_TEXT=$(diff -u .ci-temp/web.txt .ci-temp/file.txt | cat)
+  if [[ $DIFF_TEXT != "" ]]; then
+    if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]+)$ ]]; then
+      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST
+      REGEXP="https://github.com/checkstyle/contribution/pull/"
+      PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_PR \
+                  | jq '.body' | grep $REGEXP | cat )
+      echo 'PR Description grepped:'${PR_DESC:0:180}
+      if [[ -z $PR_DESC ]]; then
+        echo 'You introduce new Check'
+        diff -u .ci-temp/web.txt .ci-temp/file.txt | cat
+        echo 'Please create PR to repository https://github.com/checkstyle/contribution'
+        echo 'and add your new Check '
+        echo '   to file checkstyle-tester/checks-nonjavadoc-error.xml'
+        echo 'or to file checkstyle-tester/checks-only-javadoc-error.xml'
+        echo 'PR for contribution repository will be merged right after this PR.'
+        sleep 5s
+        false;
+      fi
+    else
+      diff -u .ci-temp/web.txt .ci-temp/file.txt
+      echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
+      echo 'https://github.com/checkstyle/contribution/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'https://github.com/checkstyle/contribution/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'Please add new Check to one of such files to let Check participate in auto testing'
+      sleep 5s
+      false;
+    fi
+  fi
   ;;
 
 git-status)
