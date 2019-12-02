@@ -543,9 +543,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /** Examine the order of all the imports and log any violations. */
     private void finishImportList() {
-        final ImportDetails firstImport = importToGroupList.get(0);
-        String currentGroup = getImportGroup(firstImport.isStaticImport(),
-                firstImport.getImportFullPath());
+        String currentGroup = getFirstGroup();
         int currentGroupNumber = customImportOrderRules.indexOf(currentGroup);
         ImportDetails previousImportObjectFromCurrentGroup = null;
         String previousImportFromCurrentGroup = null;
@@ -555,16 +553,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
             final String fullImportIdent = importObject.getImportFullPath();
 
             if (importGroup.equals(currentGroup)) {
-                if (previousImportObjectFromCurrentGroup != null
-                        && getCountOfEmptyLinesBetween(
-                            previousImportObjectFromCurrentGroup.getLineNumber(),
-                            // https://github.com/checkstyle/checkstyle/issues/7119
-                            importObject.getLineNumber()) > 1) {
+                if (isSeparatedByExtraEmptyLine(previousImportObjectFromCurrentGroup,
+                                                importObject)) {
                     log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
                 }
-                if (sortImportsInGroupAlphabetically
-                        && previousImportFromCurrentGroup != null
-                        && compareImports(fullImportIdent, previousImportFromCurrentGroup) < 0) {
+                if (isAlphabeticalOrderBroken(previousImportFromCurrentGroup, fullImportIdent)) {
                     log(importObject.getLineNumber(), MSG_LEX,
                             fullImportIdent, previousImportFromCurrentGroup);
                 }
@@ -578,10 +571,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 if (customImportOrderRules.size() > currentGroupNumber + 1) {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
-                        if (separateLineBetweenGroups
-                                && getCountOfEmptyLinesBetween(
-                                    previousImportObjectFromCurrentGroup.getLineNumber(),
-                                    importObject.getLineNumber()) != 1) {
+                        if (isEmptyLineMissed(previousImportObjectFromCurrentGroup, importObject)) {
                             log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
                         }
                         currentGroup = nextGroup;
@@ -600,6 +590,71 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Get first import group.
+     *
+     * @return
+     *        first import group of file.
+     */
+    private String getFirstGroup() {
+        final ImportDetails firstImport = importToGroupList.get(0);
+        return getImportGroup(firstImport.isStaticImport(),
+                firstImport.getImportFullPath());
+    }
+
+    /**
+     * Examine alphabetical order of imports.
+     *
+     * @param previousImport
+     *        previous import of current group.
+     * @param currentImport
+     *        current import.
+     * @return
+     *        true, if previous and current import are not in alphabetical order.
+     */
+    private boolean isAlphabeticalOrderBroken(String previousImport,
+                                              String currentImport) {
+        return sortImportsInGroupAlphabetically
+                && previousImport != null
+                && compareImports(currentImport, previousImport) < 0;
+    }
+
+    /**
+     * Examine empty lines between groups.
+     *
+     * @param previousImportObject
+     *        previous import in current group.
+     * @param currentImportObject
+     *        current import.
+     * @return
+     *        true, if current import NOT separated from previous import by empty line.
+     */
+    private boolean isEmptyLineMissed(ImportDetails previousImportObject,
+                                      ImportDetails currentImportObject) {
+        return separateLineBetweenGroups
+                && getCountOfEmptyLinesBetween(
+                     previousImportObject.getLineNumber(),
+                     currentImportObject.getLineNumber()) != 1;
+    }
+
+    /**
+     * Examine that imports separated by more than one empty line.
+     *
+     * @param previousImportObject
+     *        previous import in current group.
+     * @param currentImportObject
+     *        current import.
+     * @return
+     *        true, if current import separated from previous by more that one empty line.
+     */
+    private boolean isSeparatedByExtraEmptyLine(ImportDetails previousImportObject,
+                                                ImportDetails currentImportObject) {
+        return previousImportObject != null
+                && getCountOfEmptyLinesBetween(
+                     previousImportObject.getLineNumber(),
+                     currentImportObject.getLineNumber()) > 1;
     }
 
     /**
