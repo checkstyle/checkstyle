@@ -106,7 +106,7 @@ javac9)
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac -d target "${file}"
+        javac --release 9 -d target "${file}"
       done
   fi
   ;;

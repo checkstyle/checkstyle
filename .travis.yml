@@ -273,8 +273,8 @@ matrix:
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh jdk13-verify-limited"
 
-    # OpenJDK9 compile input files with jdk9 specific syntax
-    - jdk: openjdk9
+    # OpenJDK11 compile input files with jdk9 specific syntax
+    - jdk: openjdk11
       env:
         - DESC="compile input files with jdk9 specific syntax"
         - CMD="./.ci/travis/travis.sh javac9"
