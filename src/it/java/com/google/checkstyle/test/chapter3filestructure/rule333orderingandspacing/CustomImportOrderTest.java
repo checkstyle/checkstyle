@@ -136,11 +136,38 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
     }
 
     @Test
+    public void testCustomImport5() throws Exception {
+        final String[] expected = {
+            "9: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+                "javax.swing.WindowConstants.*"),
+            "13: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR,
+                "com.google.checkstyle.test.chapter2filebasic.rule21filename.*"),
+        };
+
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrder5.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
     public void testValid() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrderValid.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testValid2() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrderValid2.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
