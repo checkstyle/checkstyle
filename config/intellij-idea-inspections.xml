@@ -4599,8 +4599,11 @@
                      enabled_by_default="true"/>
     <inspection_tool class="TestMethodWithoutAssertion" enabled="true" level="ERROR"
                      enabled_by_default="true">
+        <!-- after https://github.com/checkstyle/checkstyle/issues/6916
+             all junit4 methods should be removed -->
         <option name="assertionMethods"
                 value="org.junit.Assert,assert.*|fail.*, ,
+    ,org.junit.jupiter.api.Assertions,assert.*|fail.*, ,
     ,junit.framework.Assert,assert.*|fail.*, ,
     ,org.mockito.Mockito,verify.*, ,
     ,org.mockito.InOrder,verify, ,

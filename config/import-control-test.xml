@@ -1,10 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE import-control PUBLIC
-    "-//Checkstyle//DTD ImportControl Configuration 1.3//EN"
-    "https://checkstyle.org/dtds/import_control_1_3.dtd">
+    "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/import_control_1_4.dtd">
 
 <import-control pkg="com.puppycrawl.tools.checkstyle">
 
+  <!-- Disallow obsolete Junit API -->
+  <disallow pkg="org.junit" exact-match="true"/>
   <disallow pkg="junit.framework" />
 
   <!-- Conflicts with normal tests and pitest.
@@ -15,5 +17,22 @@
   <disallow pkg="org\.mockito.*" regex="true" />
 
   <allow pkg=".*" regex="true" />
+
+  <!-- Till https://github.com/checkstyle/checkstyle/issues/6916 -->
+  <subpackage name="checks">
+    <allow pkg="org.junit" local-only="true"/>
+    <subpackage name="(blocks|coding|design|header|imports|indentation|javadoc)" regex="true">
+      <allow pkg="org.junit"/>
+    </subpackage>
+    <subpackage name="(metrics|modifier|naming|regexp|sizes|whitespace)" regex="true">
+      <allow pkg="org.junit"/>
+    </subpackage>
+  </subpackage>
+  <subpackage name="(ant|api|filefilters|filters|grammar|gui|internal|utils|xpath)" regex="true">
+    <allow pkg="org.junit"/>
+  </subpackage>
+  <file name=".*Test(Support)?" regex="true">
+    <allow pkg="org.junit"/>
+  </file>
 
 </import-control>
