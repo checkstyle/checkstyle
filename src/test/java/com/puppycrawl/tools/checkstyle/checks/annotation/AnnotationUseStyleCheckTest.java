@@ -24,11 +24,12 @@ import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseSty
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_PARENS_PRESENT;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING;
 import static com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -50,8 +51,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testElementStyleValueOf() {
         final AnnotationUseStyleCheck.ElementStyle option =
             AnnotationUseStyleCheck.ElementStyle.valueOf("COMPACT");
-        assertEquals("Invalid valueOf result",
-            AnnotationUseStyleCheck.ElementStyle.COMPACT, option);
+        assertEquals(AnnotationUseStyleCheck.ElementStyle.COMPACT, option,
+                "Invalid valueOf result");
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -62,8 +63,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testTrailingArrayCommaValueOf() {
         final AnnotationUseStyleCheck.TrailingArrayComma option =
             AnnotationUseStyleCheck.TrailingArrayComma.valueOf("ALWAYS");
-        assertEquals("Invalid valueOf result",
-            AnnotationUseStyleCheck.TrailingArrayComma.ALWAYS, option);
+        assertEquals(AnnotationUseStyleCheck.TrailingArrayComma.ALWAYS, option,
+                "Invalid valueOf result");
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -74,8 +75,8 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testClosingParensValueOf() {
         final AnnotationUseStyleCheck.ClosingParens option =
             AnnotationUseStyleCheck.ClosingParens.valueOf("ALWAYS");
-        assertEquals("Invalid valueOf result",
-            AnnotationUseStyleCheck.ClosingParens.ALWAYS, option);
+        assertEquals(AnnotationUseStyleCheck.ClosingParens.ALWAYS, option,
+                "Invalid valueOf result");
     }
 
     @Test
@@ -337,7 +338,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final AnnotationUseStyleCheck constantNameCheckObj = new AnnotationUseStyleCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
         final int[] expected = {TokenTypes.ANNOTATION };
-        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
     @Test
@@ -345,13 +346,13 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
         try {
             check.setElementStyle("SHOULD_PRODUCE_ERROR");
-            Assert.fail("ConversionException is expected");
+            fail("ConversionException is expected");
         }
         catch (IllegalArgumentException ex) {
             final String messageStart = "unable to parse";
 
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
+            assertTrue(ex.getMessage().startsWith(messageStart),
+                    "Invalid exception message, should start with: " + messageStart);
         }
     }
 
