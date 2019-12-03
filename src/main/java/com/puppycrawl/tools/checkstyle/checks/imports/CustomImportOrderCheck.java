@@ -533,9 +533,10 @@ public class CustomImportOrderCheck extends AbstractCheck {
         else {
             final String importFullPath = getFullImportIdent(ast);
             final int lineNo = ast.getLineNo();
+            final int endLineNo = ast.getLastChild().getLineNo();
             final boolean isStatic = ast.getType() == TokenTypes.STATIC_IMPORT;
             importToGroupList.add(new ImportDetails(importFullPath,
-                    lineNo, getImportGroup(isStatic, importFullPath),
+                    lineNo, endLineNo, getImportGroup(isStatic, importFullPath),
                     isStatic));
         }
     }
@@ -561,10 +562,11 @@ public class CustomImportOrderCheck extends AbstractCheck {
             if (importGroup.equals(currentGroup)) {
                 if (isSeparatedByExtraEmptyLine(previousImportObjectFromCurrentGroup,
                                                 importObject)) {
-                    log(importObject.getLineNumber(), MSG_SEPARATED_IN_GROUP, fullImportIdent);
+                    log(importObject.getStartLineNumber(), MSG_SEPARATED_IN_GROUP,
+                            fullImportIdent);
                 }
                 if (isAlphabeticalOrderBroken(previousImportFromCurrentGroup, fullImportIdent)) {
-                    log(importObject.getLineNumber(), MSG_LEX,
+                    log(importObject.getStartLineNumber(), MSG_LEX,
                             fullImportIdent, previousImportFromCurrentGroup);
                 }
                 else {
@@ -578,20 +580,21 @@ public class CustomImportOrderCheck extends AbstractCheck {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         if (isEmptyLineMissed(previousImportObjectFromCurrentGroup, importObject)) {
-                            log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
+                            log(importObject.getStartLineNumber(), MSG_LINE_SEPARATOR,
+                                    fullImportIdent);
                         }
                         currentGroup = nextGroup;
                         currentGroupNumber = customImportOrderRules.indexOf(nextGroup);
                         previousImportFromCurrentGroup = fullImportIdent;
                     }
                     else {
-                        logWrongImportGroupOrder(importObject.getLineNumber(),
+                        logWrongImportGroupOrder(importObject.getStartLineNumber(),
                                 importGroup, nextGroup, fullImportIdent);
                     }
                     previousImportObjectFromCurrentGroup = importObject;
                 }
                 else {
-                    logWrongImportGroupOrder(importObject.getLineNumber(),
+                    logWrongImportGroupOrder(importObject.getStartLineNumber(),
                             importGroup, currentGroup, fullImportIdent);
                 }
             }
@@ -641,8 +644,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
                                       ImportDetails currentImportObject) {
         return separateLineBetweenGroups
                 && getCountOfEmptyLinesBetween(
-                     previousImportObject.getLineNumber(),
-                     currentImportObject.getLineNumber()) != 1;
+                     previousImportObject.getEndLineNumber(),
+                     currentImportObject.getStartLineNumber()) != 1;
     }
 
     /**
@@ -659,8 +662,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
                                                 ImportDetails currentImportObject) {
         return previousImportObject != null
                 && getCountOfEmptyLinesBetween(
-                     previousImportObject.getLineNumber(),
-                     currentImportObject.getLineNumber()) > 1;
+                     previousImportObject.getEndLineNumber(),
+                     currentImportObject.getStartLineNumber()) > 1;
     }
 
     /**
@@ -831,20 +834,17 @@ public class CustomImportOrderCheck extends AbstractCheck {
      *        One-based line number of previous import.
      * @param toLineNo
      *        One-based line number of current import.
-     * @return count of empty lines between given parameters.
+     * @return count of empty lines between given parameters, exclusive,
+     *        eg., (fromLineNo, toLineNo).
      */
     private int getCountOfEmptyLinesBetween(int fromLineNo, int toLineNo) {
         int result = 0;
         final String[] lines = getLines();
 
-        //  "- 2" because the numbering starts from zero
-        for (int i = toLineNo - 2; i > fromLineNo - 2; i--) {
-            if (CommonUtil.isBlank(lines[i])) {
+        for (int i = fromLineNo + 1; i <= toLineNo - 1; i++) {
+            // "- 1" because the numbering is one-based
+            if (CommonUtil.isBlank(lines[i - 1])) {
                 result++;
-            }
-            else {
-                // stop on non-empty line
-                break;
             }
         }
         return result;
@@ -938,8 +938,15 @@ public class CustomImportOrderCheck extends AbstractCheck {
         /** Import full path. */
         private final String importFullPath;
 
-        /** Import line number. */
-        private final int lineNumber;
+        /** Import start line number. */
+        private final int startLineNumber;
+
+        /**
+         * Import end line number.
+         * Note: It can be different from <b>startLineNumber</b> when import statement span
+         * multiple lines.
+         */
+        private final int endLineNumber;
 
         /** Import group. */
         private final String importGroup;
@@ -948,20 +955,23 @@ public class CustomImportOrderCheck extends AbstractCheck {
         private final boolean staticImport;
 
         /**
-         * Initialise importFullPath, lineNumber, importGroup, staticImport.
+         * Initialise importFullPath, startLineNumber, endLineNumber, importGroup, staticImport.
          * @param importFullPath
          *        import full path.
-         * @param lineNumber
-         *        import line number.
+         * @param startLineNumber
+         *        import start line number.
+         * @param endLineNumber
+         *        import end line number.
          * @param importGroup
          *        import group.
          * @param staticImport
          *        if import is static.
          */
-        /* package */ ImportDetails(String importFullPath,
-                int lineNumber, String importGroup, boolean staticImport) {
+        /* package */ ImportDetails(String importFullPath, int startLineNumber, int endLineNumber,
+                                    String importGroup, boolean staticImport) {
             this.importFullPath = importFullPath;
-            this.lineNumber = lineNumber;
+            this.startLineNumber = startLineNumber;
+            this.endLineNumber = endLineNumber;
             this.importGroup = importGroup;
             this.staticImport = staticImport;
         }
@@ -975,11 +985,19 @@ public class CustomImportOrderCheck extends AbstractCheck {
         }
 
         /**
-         * Get import line number.
-         * @return import line.
+         * Get import start line number.
+         * @return import start line.
          */
-        public int getLineNumber() {
-            return lineNumber;
+        public int getStartLineNumber() {
+            return startLineNumber;
+        }
+
+        /**
+         * Get import end line number.
+         * @return import end line.
+         */
+        public int getEndLineNumber() {
+            return endLineNumber;
         }
 
         /**

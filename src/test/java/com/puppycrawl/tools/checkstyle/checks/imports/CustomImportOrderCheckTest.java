@@ -650,6 +650,10 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "9: " + getCheckMessage(MSG_ORDER, THIRD, STD,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocNodeImpl"),
+            "13: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck"),
+            "19: " + getCheckMessage(MSG_LINE_SEPARATOR,
+                "com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag"),
             "21: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck"),
             "25: " + getCheckMessage(MSG_NONGROUP_EXPECTED, SPECIAL,
@@ -867,5 +871,26 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getNonCompilablePath("InputCustomImportOrderViolationsSameLine.java"),
             expected);
+    }
+
+    @Test
+    public void testInputCustomImportOrderSpanMultipleLines() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###SAME_PACKAGE(3)");
+
+        checkConfig.addAttribute("specialImportsRegExp", "^org\\..+");
+        checkConfig.addAttribute("separateLineBetweenGroups", "true");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.BitSet"),
+            "33: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.HashSet"),
+            "37: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.apache.tools.ant.*"),
+            "42: " + getCheckMessage(MSG_LINE_SEPARATOR, "com.puppycrawl.tools.checkstyle.*"),
+            "46: " + getCheckMessage(MSG_LINE_SEPARATOR, "antlr.*"),
+        };
+        verify(checkConfig, getPath("InputCustomImportOrderSpanMultipleLines.java"), expected);
     }
 }
