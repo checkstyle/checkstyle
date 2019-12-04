@@ -23,10 +23,10 @@ import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationChec
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_CHILD_ERROR_MULTI;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR;
 import static com.puppycrawl.tools.checkstyle.checks.indentation.IndentationCheck.MSG_ERROR_MULTI;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,7 +40,7 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
@@ -154,9 +154,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final IndentComment[] linesWithWarn =
                         getLinesWithWarnAndCheckComments(filePath, tabWidth);
         verify(config, filePath, expected, linesWithWarn);
-        assertEquals("Expected warning count in UT does not match warn"
-                        + " comment count in input file", linesWithWarn.length,
-                        expected.length);
+        assertEquals(linesWithWarn.length, expected.length,
+            "Expected warning count in UT does not match warn comment count in input file");
     }
 
     private void verify(Configuration config, String filePath, String[] expected,
@@ -179,7 +178,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(requiredTokens);
-        assertArrayEquals("Default required tokens are invalid", expected, requiredTokens);
+        assertArrayEquals(expected, requiredTokens, "Default required tokens are invalid");
     }
 
     @Test
@@ -190,7 +189,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final int[] expected = handlerFactory.getHandledTypes();
         Arrays.sort(expected);
         Arrays.sort(acceptableTokens);
-        assertArrayEquals("Default acceptable tokens are invalid", expected, acceptableTokens);
+        assertArrayEquals(expected, acceptableTokens, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -199,7 +198,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         indentationCheck.setThrowsIndent(1);
 
-        assertEquals("Invalid throws indent", 1, indentationCheck.getThrowsIndent());
+        assertEquals(1, indentationCheck.getThrowsIndent(), "Invalid throws indent");
     }
 
     @Test
@@ -1990,11 +1989,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     .mapToInt(msg::indexOf)
                     .allMatch(index -> index >= indexOfArgumentZero);
         });
-        assertTrue(
+        assertTrue(isInOrder,
                 "the argument 0 of error messages (indentation.error, indentation.child.error,"
                         + " indentation.error.multi, indentation.child.error.multi)"
-                        + " is required to be the first argument of them",
-                isInOrder);
+                        + " is required to be the first argument of them");
     }
 
     @Test
@@ -2067,8 +2065,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                     "input expected warning #%d at line %d to report one of the following: %s"
                             + "but got instead: %d: %s",
                     position, comment.getLineNumber(), possibleExceptedMessages, line, message);
-            assertTrue(assertMessage, line == comment.getLineNumber()
-                    && Arrays.stream(comment.getExpectedMessages()).anyMatch(message::endsWith));
+            assertTrue(line == comment.getLineNumber()
+                    && Arrays.stream(comment.getExpectedMessages()).anyMatch(message::endsWith),
+                    assertMessage);
         }
 
         @Override
