@@ -3,6 +3,7 @@ box: maven:3.5.2-jdk-8
 build:
   steps:
   - script:
+    # test
       name: setup maven local repo
       code: |
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
