@@ -21,10 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_ANNOTATION_ORDER;
 import static com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck.MSG_MODIFIER_ORDER;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -43,8 +44,8 @@ public class ModifierOrderCheckTest
     public void testGetRequiredTokens() {
         final ModifierOrderCheck checkObj = new ModifierOrderCheck();
         final int[] expected = {TokenTypes.MODIFIERS};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -81,12 +82,11 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals("Default tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default tokens are invalid");
         final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
-        Assert.assertNotSame("Default tokens should not be empty array",
-                unexpectedEmptyArray, actual);
-        Assert.assertNotSame("Invalid default tokens", unexpectedArray, actual);
-        Assert.assertNotNull("Default tokens should not be null", actual);
+        assertNotSame(unexpectedEmptyArray, actual, "Default tokens should not be empty array");
+        assertNotSame(unexpectedArray, actual, "Invalid default tokens");
+        assertNotNull(actual, "Default tokens should not be null");
     }
 
     @Test
@@ -98,12 +98,12 @@ public class ModifierOrderCheckTest
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
         final int[] unexpectedEmptyArray = CommonUtil.EMPTY_INT_ARRAY;
-        Assert.assertNotSame("Default tokens should not be empty array",
-                unexpectedEmptyArray, actual);
-        Assert.assertNotSame("Invalid acceptable tokens", unexpectedArray, actual);
-        Assert.assertNotNull("Acceptable tokens should not be null", actual);
+        assertNotSame(
+                unexpectedEmptyArray, actual, "Default tokens should not be empty array");
+        assertNotSame(unexpectedArray, actual, "Invalid acceptable tokens");
+        assertNotNull(actual, "Acceptable tokens should not be null");
     }
 
     @Test

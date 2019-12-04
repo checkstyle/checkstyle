@@ -20,11 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -67,7 +67,7 @@ public class InterfaceMemberImpliedModifierCheckTest
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
         };
-        assertArrayEquals("Required tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Required tokens are invalid");
     }
 
     @Test
@@ -418,10 +418,10 @@ public class InterfaceMemberImpliedModifierCheckTest
             new InterfaceMemberImpliedModifierCheck();
         try {
             check.visitToken(init);
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Error message is unexpected", init.toString(), ex.getMessage());
+            assertEquals(init.toString(), ex.getMessage(), "Error message is unexpected");
         }
     }
 
