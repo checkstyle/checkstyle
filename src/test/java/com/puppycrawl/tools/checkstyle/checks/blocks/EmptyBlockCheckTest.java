@@ -21,10 +21,10 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_EMPTY;
 import static com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck.MSG_KEY_BLOCK_NO_STATEMENT;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -46,7 +46,7 @@ public class EmptyBlockCheckTest
     @Test
     public void testBlockOptionValueOf() {
         final BlockOption option = BlockOption.valueOf("TEXT");
-        assertEquals("Invalid valueOf result", BlockOption.TEXT, option);
+        assertEquals(BlockOption.TEXT, option, "Invalid valueOf result");
     }
 
     @Test
@@ -148,12 +148,11 @@ public class EmptyBlockCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                         + "blocks.EmptyBlockCheck - "
                         + "Cannot set property 'option' to 'invalid_option'",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
