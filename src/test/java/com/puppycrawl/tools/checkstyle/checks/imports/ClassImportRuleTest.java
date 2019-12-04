@@ -19,48 +19,48 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ClassImportRuleTest {
 
     @Test
     public void testClassImportRule() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", false);
-        assertNotNull("Class import rule should not be null", rule);
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("asda"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("p"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkga"));
-        assertEquals("Invalid access result", AccessResult.ALLOWED, rule.verifyImport("pkg.a"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkg"));
+        assertNotNull(rule, "Class import rule should not be null");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("asda"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("p"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkga"), "Invalid access result");
+        assertEquals(AccessResult.ALLOWED, rule.verifyImport("pkg.a"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg"), "Invalid access result");
     }
 
     @Test
     public void testClassImportRuleRegexpSimple() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pkg.a", true);
-        assertNotNull("Class import rule should not be null", rule);
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("asda"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("p"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkga"));
-        assertEquals("Invalid access result", AccessResult.ALLOWED, rule.verifyImport("pkg.a"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkg"));
+        assertNotNull(rule, "Class import rule should not be null");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("asda"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("p"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkga"), "Invalid access result");
+        assertEquals(AccessResult.ALLOWED, rule.verifyImport("pkg.a"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg"), "Invalid access result");
     }
 
     @Test
     public void testClassImportRuleRegexp() {
         final ClassImportRule rule = new ClassImportRule(true, false, "pk[gx]\\.a", true);
-        assertNotNull("Class import rule should not be null", rule);
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("asda"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("p"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkga"));
-        assertEquals("Invalid access result", AccessResult.ALLOWED, rule.verifyImport("pkg.a"));
-        assertEquals("Invalid access result", AccessResult.ALLOWED, rule.verifyImport("pkx.a"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"));
-        assertEquals("Invalid access result", AccessResult.UNKNOWN, rule.verifyImport("pkg"));
+        assertNotNull(rule, "Class import rule should not be null");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("asda"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("p"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkga"), "Invalid access result");
+        assertEquals(AccessResult.ALLOWED, rule.verifyImport("pkg.a"), "Invalid access result");
+        assertEquals(AccessResult.ALLOWED, rule.verifyImport("pkx.a"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg"), "Invalid access result");
     }
 
 }

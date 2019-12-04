@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AccessResultTest {
 
@@ -33,7 +33,7 @@ public class AccessResultTest {
     @Test
     public void testAccessResultValueOf() {
         final AccessResult result = AccessResult.valueOf("ALLOWED");
-        assertEquals("Invalid access result", AccessResult.ALLOWED, result);
+        assertEquals(AccessResult.ALLOWED, result, "Invalid access result");
     }
 
     /* Additional test for jacoco, since values()
@@ -48,7 +48,7 @@ public class AccessResultTest {
             AccessResult.DISALLOWED,
             AccessResult.UNKNOWN,
         };
-        assertArrayEquals("Invalid access result values", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid access result values");
     }
 
 }

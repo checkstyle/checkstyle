@@ -20,7 +20,7 @@
 
   <!-- Till https://github.com/checkstyle/checkstyle/issues/6916 -->
   <subpackage name="checks">
-    <subpackage name="(imports|indentation|javadoc)" regex="true">
+    <subpackage name="(indentation|javadoc)" regex="true">
       <allow pkg="org.junit"/>
     </subpackage>
   </subpackage>

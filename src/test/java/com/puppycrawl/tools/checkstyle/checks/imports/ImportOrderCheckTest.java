@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_ORDERING;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATED_IN_GROUP;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck.MSG_SEPARATION;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -52,7 +52,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testImportOrderOptionValueOf() {
         final ImportOrderOption option = ImportOrderOption.valueOf("TOP");
-        assertEquals("Invalid valueOf result", ImportOrderOption.TOP, option);
+        assertEquals(ImportOrderOption.TOP, option, "Invalid valueOf result");
     }
 
     @Test
@@ -219,12 +219,12 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
+            assertEquals(
                     "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.ImportOrderCheck - "
                         + "Cannot set property 'option' to 'invalid_option'",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -616,14 +616,14 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                    "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                         + "cannot initialize module com.puppycrawl.tools.checkstyle.checks"
                         + ".imports.ImportOrderCheck - "
                         + "Cannot set property 'groups' to '/^javax'",
-                    ex.getMessage());
-            assertEquals("Invalid exception message", "Invalid group: /^javax",
-                    ex.getCause().getCause().getCause().getCause().getMessage());
+                    ex.getMessage(), "Invalid exception message");
+            assertEquals("Invalid group: /^javax",
+                    ex.getCause().getCause().getCause().getCause().getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -676,7 +676,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
             fail("An exception is expected");
         }
         catch (IllegalStateException ex) {
-            assertTrue("invalid exception message", ex.getMessage().endsWith(": null"));
+            assertTrue(ex.getMessage().endsWith(": null"), "invalid exception message");
         }
     }
 
