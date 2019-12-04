@@ -21,17 +21,16 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISMATCH;
 import static com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck.MSG_MISSING;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.net.URI;
 import java.util.Set;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -41,8 +40,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class HeaderCheckTest extends AbstractModuleTestSupport {
 
-    @Rule
-    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -93,10 +92,11 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
                 + " - illegal value ";
             final String causeMessageStart = "Unable to find: ";
 
-            assertTrue("Invalid exception message, should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
-            assertTrue("Invalid exception message, should start with: " + causeMessageStart,
-                ex.getCause().getCause().getCause().getMessage().startsWith(causeMessageStart));
+            assertTrue(ex.getMessage().startsWith(messageStart),
+                    "Invalid exception message, should start with: " + messageStart);
+            assertTrue(
+                    ex.getCause().getCause().getCause().getMessage().startsWith(causeMessageStart),
+                    "Invalid exception message, should start with: " + causeMessageStart);
         }
     }
 
@@ -110,12 +110,12 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "cannot initialize module"
+            assertEquals("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'charset' to 'XSO-8859-1'",
-                    ex.getMessage());
-            assertEquals("Invalid exception message", "unsupported charset: 'XSO-8859-1'",
-                    ex.getCause().getCause().getCause().getMessage());
+                    ex.getMessage(), "Invalid exception message");
+            assertEquals("unsupported charset: 'XSO-8859-1'",
+                    ex.getCause().getCause().getCause().getMessage(), "Invalid exception message");
         }
     }
 
@@ -128,14 +128,13 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             fail("Checker creation should not succeed with invalid headerFile");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "cannot initialize module"
+            assertEquals("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'headerFile' to ''",
-                    ex.getMessage());
-            assertEquals("Invalid exception message",
-                    "property 'headerFile' is missing or invalid in module"
-                            + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
-                    ex.getCause().getCause().getCause().getMessage());
+                    ex.getMessage(), "Invalid exception message");
+            assertEquals("property 'headerFile' is missing or invalid in module"
+                    + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck",
+                    ex.getCause().getCause().getCause().getMessage(), "Invalid exception message");
         }
     }
 
@@ -148,10 +147,10 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             fail("Checker creation should not succeed with null headerFile");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "cannot initialize module"
+            assertEquals("cannot initialize module"
                     + " com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck"
                     + " - Cannot set property 'headerFile' to 'null'",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -185,8 +184,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             fail("ConversionException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message", "header has already been set - "
-                    + "set either header or headerFile, not both", ex.getMessage());
+            assertEquals("header has already been set - "
+                    + "set either header or headerFile, not both", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -200,8 +200,8 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             fail("Exception expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue("Invalid exception cause message",
-                ex.getMessage().startsWith("unable to load header file "));
+            assertTrue(ex.getMessage().startsWith("unable to load header file "),
+                    "Invalid exception cause message");
         }
     }
 
@@ -211,7 +211,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.header"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        final File cacheFile = temporaryFolder.newFile();
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final String[] expected = {
@@ -229,7 +229,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("header", "Test");
 
         final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        final File cacheFile = temporaryFolder.newFile();
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
         final String[] expected = {
@@ -257,8 +257,9 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
             fail("ConversionException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message", "header has already been set - "
-                    + "set either header or headerFile, not both", ex.getMessage());
+            assertEquals("header has already been set - "
+                    + "set either header or headerFile, not both", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -282,7 +283,7 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
         final URI uri = CommonUtil.getUriByFilename(getPath("InputHeaderjava.header"));
         check.setHeaderFile(uri);
         final Set<String> results = check.getExternalResourceLocations();
-        assertEquals("Invalid result size", 1, results.size());
-        assertEquals("Invalid resource location", uri.toString(), results.iterator().next());
+        assertEquals(1, results.size(), "Invalid result size");
+        assertEquals(uri.toString(), results.iterator().next(), "Invalid resource location");
     }
 }
