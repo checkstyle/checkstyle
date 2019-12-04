@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -101,7 +101,7 @@ public class AvoidStarImportCheckTest
                 new AvoidStarImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -111,7 +111,7 @@ public class AvoidStarImportCheckTest
         final int[] actual = testCheckObject.getRequiredTokens();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
-        assertArrayEquals("Default required tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default required tokens are invalid");
     }
 
 }

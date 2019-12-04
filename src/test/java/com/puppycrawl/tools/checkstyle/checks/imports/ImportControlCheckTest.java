@@ -22,17 +22,16 @@ package com.puppycrawl.tools.checkstyle.checks.imports;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_DISALLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_MISSING_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck.MSG_UNKNOWN_PKG;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -43,8 +42,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class ImportControlCheckTest extends AbstractModuleTestSupport {
 
-    @Rule
-    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -59,8 +58,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             TokenTypes.IMPORT,
             TokenTypes.STATIC_IMPORT,
         };
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -129,8 +128,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertTrue("Invalid message, should start with: " + messageStart,
-                message.startsWith(message));
+            assertTrue(message.startsWith(message),
+                    "Invalid message, should start with: " + messageStart);
         }
     }
 
@@ -147,8 +146,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertTrue("Invalid message, should start with: " + messageStart,
-                message.startsWith(message));
+            assertTrue(message.startsWith(message),
+                    "Invalid message, should start with: " + messageStart);
         }
     }
 
@@ -279,7 +278,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             TokenTypes.STATIC_IMPORT,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -305,8 +304,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to find: ";
 
-            assertTrue("Invalid message, should start with: " + messageStart,
-                message.startsWith(message));
+            assertTrue(message.startsWith(message),
+                    "Invalid message, should start with: " + messageStart);
         }
     }
 
@@ -333,8 +332,8 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
             final String message = getCheckstyleExceptionMessage(ex);
             final String messageStart = "Unable to load ";
 
-            assertTrue("Invalid message, should start with: " + messageStart,
-                message.startsWith(message));
+            assertTrue(message.startsWith(message),
+                    "Invalid message, should start with: " + messageStart);
         }
     }
 
@@ -347,19 +346,20 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        final File cacheFile = temporaryFolder.newFile();
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
         checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
 
-        final String filePath = temporaryFolder.newFile("EmptyFile.java").getPath();
+        final String filePath = File.createTempFile("empty", ".java", temporaryFolder).getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkerConfig, filePath, expected);
         // One more time to use cache.
         verify(checkerConfig, filePath, expected);
 
-        assertTrue("External resource is not present in cache",
-                new String(Files.readAllBytes(cacheFile.toPath()),
-                        StandardCharsets.UTF_8).contains("InputImportControlOneRegExp.xml"));
+        final String contents = new String(Files.readAllBytes(cacheFile.toPath()),
+                StandardCharsets.UTF_8);
+        assertTrue(contents.contains("InputImportControlOneRegExp.xml"),
+                "External resource is not present in cache");
     }
 
     @Test

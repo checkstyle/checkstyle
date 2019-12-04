@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.lang.reflect.InvocationTargetException;
@@ -31,7 +31,7 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URI;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -51,7 +51,7 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                 new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
-        assertNotNull("Import root should not be null", root);
+        assertNotNull(root, "Import root should not be null");
     }
 
     @Test
@@ -62,10 +62,10 @@ public class ImportControlLoaderTest {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertSame("Invalid exception class",
-                    MalformedURLException.class, ex.getCause().getClass());
-            assertEquals("Invalid exception message",
-                    "unknown protocol: aaa", ex.getCause().getMessage());
+            assertSame(MalformedURLException.class, ex.getCause().getClass(),
+                    "Invalid exception class");
+            assertEquals("unknown protocol: aaa", ex.getCause().getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -74,7 +74,7 @@ public class ImportControlLoaderTest {
         final AbstractImportControl root =
                 ImportControlLoader.load(
                     new File(getPath("InputImportControlLoaderWithNewElement.xml")).toURI());
-        assertNotNull("Import root should not be null", root);
+        assertNotNull(root, "Import root should not be null");
     }
 
     @Test
@@ -95,9 +95,9 @@ public class ImportControlLoaderTest {
             fail("exception expected");
         }
         catch (InvocationTargetException ex) {
-            assertSame("Invalid exception class", SAXException.class, ex.getCause().getClass());
-            assertEquals("Invalid exception message",
-                    "missing attribute you_cannot_find_me", ex.getCause().getMessage());
+            assertSame(SAXException.class, ex.getCause().getClass(), "Invalid exception class");
+            assertEquals("missing attribute you_cannot_find_me", ex.getCause().getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -117,10 +117,10 @@ public class ImportControlLoaderTest {
             fail("exception expected");
         }
         catch (InvocationTargetException ex) {
-            assertSame("Invalid exception class",
-                    CheckstyleException.class, ex.getCause().getClass());
-            assertTrue("Invalid exception message: " + ex.getCause().getMessage(),
-                    ex.getCause().getMessage().startsWith("unable to read"));
+            assertSame(CheckstyleException.class, ex.getCause().getClass(),
+                    "Invalid exception class");
+            assertTrue(ex.getCause().getMessage().startsWith("unable to read"),
+                    "Invalid exception message: " + ex.getCause().getMessage());
         }
     }
 

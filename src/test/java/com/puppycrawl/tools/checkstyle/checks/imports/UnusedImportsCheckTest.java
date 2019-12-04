@@ -20,13 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -182,7 +182,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.VARIABLE_DEF,
         };
 
-        assertArrayEquals("Default required tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default required tokens are invalid");
     }
 
     @Test
@@ -207,7 +207,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.VARIABLE_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test

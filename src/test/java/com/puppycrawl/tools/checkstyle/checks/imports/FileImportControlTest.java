@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class FileImportControlTest {
 
@@ -34,7 +34,7 @@ public class FileImportControlTest {
     private final FileImportControl fileRegexpNode = new FileImportControl(root, ".*Other.*",
             true);
 
-    @Before
+    @BeforeEach
     public void setUp() {
         root.addChild(fileNode);
         root.addChild(fileRegexpNode);
@@ -49,13 +49,14 @@ public class FileImportControlTest {
 
     @Test
     public void testLocateFinest() {
-        assertEquals("Unexpected response", root, root
-                .locateFinest("com.kazgroup.courtlink.domain", "Random"));
-        assertEquals("Unexpected response", fileNode, root
-                .locateFinest("com.kazgroup.courtlink.common.api", "MyClass"));
-        assertEquals("Unexpected response", fileRegexpNode, root
-                .locateFinest("com.kazgroup.courtlink.common.api", "SomeOtherName"));
-        assertEquals("Unexpected response", root, root
-                .locateFinest("com.kazgroup.courtlink", null));
+        assertEquals(root, root.locateFinest("com.kazgroup.courtlink.domain", "Random"),
+                "Unexpected response");
+        assertEquals(fileNode, root.locateFinest("com.kazgroup.courtlink.common.api", "MyClass"),
+                "Unexpected response");
+        assertEquals(fileRegexpNode, root.locateFinest("com.kazgroup.courtlink.common.api",
+                "SomeOtherName"), "Unexpected response");
+        assertEquals(root, root.locateFinest("com.kazgroup.courtlink", null),
+                "Unexpected response");
     }
+
 }

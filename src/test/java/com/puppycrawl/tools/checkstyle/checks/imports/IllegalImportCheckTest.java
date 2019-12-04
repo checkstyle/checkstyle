@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import static com.puppycrawl.tools.checkstyle.checks.imports.IllegalImportCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -39,8 +39,8 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final IllegalImportCheck checkObj = new IllegalImportCheck();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -76,7 +76,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final int[] actual = testCheckObject.getAcceptableTokens();
         final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
