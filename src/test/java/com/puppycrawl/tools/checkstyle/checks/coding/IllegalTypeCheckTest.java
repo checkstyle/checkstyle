@@ -20,11 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.IllegalTypeCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -131,8 +132,8 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSameFileNameFalsePositive() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
-        checkConfig.addAttribute("illegalClassNames", "java.util.GregorianCalendar, SubCalendar, "
-                + "java.util.List");
+        checkConfig.addAttribute("illegalClassNames",
+                "java.util.GregorianCalendar, SubCalendar, java.util.List");
 
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_KEY, "SubCalendar"),
@@ -315,9 +316,9 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
-        Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
-        Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
-        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
+        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
+        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
+        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
     }
 
     @Test
@@ -329,7 +330,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
         try {
             check.visitToken(classDefAst);
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK

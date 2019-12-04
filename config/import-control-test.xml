@@ -20,7 +20,7 @@
 
   <!-- Till https://github.com/checkstyle/checkstyle/issues/6916 -->
   <subpackage name="checks">
-    <subpackage name="(coding|design|header|imports|indentation|javadoc)" regex="true">
+    <subpackage name="(design|header|imports|indentation|javadoc)" regex="true">
       <allow pkg="org.junit"/>
     </subpackage>
     <subpackage name="(naming|regexp|sizes|whitespace)" regex="true">

@@ -20,14 +20,14 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck.MSG_KEY;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -165,8 +165,8 @@ public class HiddenFieldCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(HiddenFieldCheck.class);
         checkConfig.addAttribute("ignoreFormat", "^i.*$");
-        Assert.assertNotNull("Ignore format should not be null",
-                checkConfig.getAttribute("ignoreFormat"));
+        assertNotNull(checkConfig.getAttribute("ignoreFormat"),
+                "Ignore format should not be null");
         final String[] expected = {
             "18:13: " + getCheckMessage(MSG_KEY, "hidden"),
             "21:33: " + getCheckMessage(MSG_KEY, "hidden"),
@@ -427,10 +427,10 @@ public class HiddenFieldCheckTest
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
-        assertTrue("Ast should contain CLASS_DEF", classDef.isPresent());
-        assertTrue("State is not cleared on beginTree",
+        assertTrue(classDef.isPresent(), "Ast should contain CLASS_DEF");
+        assertTrue(
                 TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(), "frame",
-                        new CheckIfStatefulFieldCleared()));
+                        new CheckIfStatefulFieldCleared()), "State is not cleared on beginTree");
     }
 
     private static class CheckIfStatefulFieldCleared implements Predicate<Object> {

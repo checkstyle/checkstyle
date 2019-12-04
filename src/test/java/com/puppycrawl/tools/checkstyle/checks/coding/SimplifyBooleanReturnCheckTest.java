@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -49,9 +49,9 @@ public class SimplifyBooleanReturnCheckTest
     @Test
     public void testTokensNotNull() {
         final SimplifyBooleanReturnCheck check = new SimplifyBooleanReturnCheck();
-        Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
-        Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
-        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
+        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
+        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
+        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
     }
 
 }

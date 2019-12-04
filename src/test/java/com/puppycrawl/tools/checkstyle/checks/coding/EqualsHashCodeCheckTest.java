@@ -21,14 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY_EQUALS;
 import static com.puppycrawl.tools.checkstyle.checks.coding.EqualsHashCodeCheck.MSG_KEY_HASHCODE;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -123,9 +123,9 @@ public class EqualsHashCodeCheckTest
     @Test
     public void testTokensNotNull() {
         final EqualsHashCodeCheck check = new EqualsHashCodeCheck();
-        Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
-        Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
-        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
+        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
+        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
+        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
     }
 
 }

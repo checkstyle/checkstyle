@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -47,8 +47,8 @@ public class NoFinalizerCheckTest
                 new NoFinalizerCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
 
-        assertArrayEquals("Default acceptable tokens are invalid",
-                expected, noFinalizerCheck.getAcceptableTokens());
+        assertArrayEquals(expected, noFinalizerCheck.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
