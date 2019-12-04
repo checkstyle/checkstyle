@@ -68,7 +68,7 @@ function should_run_job {
          if [[ $DEBUG == "true" ]]; then
               OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT`
               echo "Files between top commit and previous: $OUT"
-              OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT | grep -vE "$SKIP_FILES"`
+              OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT | grep -vE "$SKIP_FILES" | cat`
               echo "Files should not skip: $OUT"
          fi
 
