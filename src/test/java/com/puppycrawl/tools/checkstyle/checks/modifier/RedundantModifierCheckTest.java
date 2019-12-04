@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import static com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -160,7 +160,7 @@ public class RedundantModifierCheckTest
             TokenTypes.ENUM_DEF,
             TokenTypes.RESOURCE,
         };
-        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
     @Test
@@ -168,7 +168,7 @@ public class RedundantModifierCheckTest
         final RedundantModifierCheck redundantModifierCheckObj = new RedundantModifierCheck();
         final int[] actual = redundantModifierCheckObj.getRequiredTokens();
         final int[] expected = CommonUtil.EMPTY_INT_ARRAY;
-        Assert.assertArrayEquals("Invalid required tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid required tokens");
     }
 
     @Test
