@@ -20,11 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.ThrowsCountCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -69,16 +69,15 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final int[] expected = {TokenTypes.LITERAL_THROWS};
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, obj.getAcceptableTokens());
+        assertArrayEquals(expected, obj.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
     public void testGetRequiredTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
         final int[] expected = {TokenTypes.LITERAL_THROWS};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, obj.getRequiredTokens());
+        assertArrayEquals(expected, obj.getRequiredTokens(), "Default required tokens are invalid");
     }
 
     @Test
@@ -91,7 +90,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
             fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Invalid exception message", ast.toString(), ex.getMessage());
+            assertEquals(ast.toString(), ex.getMessage(), "Invalid exception message");
         }
     }
 

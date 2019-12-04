@@ -20,12 +20,13 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Method;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -45,8 +46,8 @@ public class FinalClassCheckTest
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -96,7 +97,7 @@ public class FinalClassCheckTest
         badAst.setType(unsupportedTokenByCheck);
         try {
             finalClassCheck.visitToken(badAst);
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -107,16 +108,16 @@ public class FinalClassCheckTest
     public void testGetAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, obj.getAcceptableTokens());
+        assertArrayEquals(expected, obj.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
     public void testQualifiedClassName() throws Exception {
         final Method method = Whitebox.getMethod(FinalClassCheck.class, "getQualifiedClassName",
                 String.class, String.class, String.class);
-        Assert.assertEquals("unexpected result", "ClassName",
-                method.invoke(null, "", null, "ClassName"));
+        assertEquals("ClassName", method.invoke(null, "", null, "ClassName"),
+                "unexpected result");
     }
 
 }

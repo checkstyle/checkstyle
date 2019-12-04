@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.DesignForExtensionCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -41,8 +41,8 @@ public class DesignForExtensionCheckTest
     public void testGetRequiredTokens() {
         final DesignForExtensionCheck checkObj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -60,8 +60,8 @@ public class DesignForExtensionCheckTest
     public void testGetAcceptableTokens() {
         final DesignForExtensionCheck obj = new DesignForExtensionCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, obj.getAcceptableTokens());
+        assertArrayEquals(expected, obj.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
