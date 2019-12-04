@@ -25,18 +25,18 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_RETURN_EXPECTED;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck.MSG_UNUSED_TAG_GENERAL;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -67,7 +67,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ANNOTATION_FIELD_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -501,8 +501,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final Method method = check.getClass()
                 .getDeclaredMethod("isSubclass", Class.class, Class.class);
         method.setAccessible(true);
-        assertFalse("Should return false if at least one of the params is null",
-            (boolean) method.invoke(check, null, null));
+        assertFalse((boolean) method.invoke(check, null, null),
+                "Should return false if at least one of the params is null");
     }
 
     @Test
@@ -516,7 +516,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         final JavadocMethodCheck check = new JavadocMethodCheck();
         final int[] actual = check.getRequiredTokens();
-        assertArrayEquals("Required tokens differ from expected", expected, actual);
+        assertArrayEquals(expected, actual, "Required tokens differ from expected");
     }
 
     @Test
@@ -528,7 +528,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
         final Method toString = token.getClass().getDeclaredMethod("toString");
         final String result = (String) toString.invoke(token);
-        assertEquals("Invalid toString result", "Token[blablabla(1x1)]", result);
+        assertEquals("Token[blablabla(1x1)]", result, "Invalid toString result");
     }
 
     @Test
@@ -548,10 +548,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             fail("Exception is expected");
         }
         catch (InvocationTargetException ex) {
-            assertTrue("Invalid exception class, expected: IllegalArgumentException.class",
-                ex.getCause() instanceof IllegalArgumentException);
-            assertEquals("Invalid exception message",
-                "ClassInfo's name should be non-null", ex.getCause().getMessage());
+            assertTrue(ex.getCause() instanceof IllegalArgumentException,
+                    "Invalid exception class, expected: IllegalArgumentException.class");
+            assertEquals("ClassInfo's name should be non-null", ex.getCause().getMessage(),
+                    "Invalid exception message");
         }
 
         final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
@@ -568,7 +568,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final String expected = "RegularClass[name=Token[blablabla(1x1)], in class='sur', check="
                 + methodCheck.hashCode() + "," + " loadable=true, class=null]";
 
-        assertEquals("Invalid toString result", expected, result);
+        assertEquals(expected, result, "Invalid toString result");
 
         final Method setClazz = regularClass.getClass().getDeclaredMethod("setClazz", Class.class);
         setClazz.setAccessible(true);
@@ -577,7 +577,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
         final Method getClazz = regularClass.getClass().getDeclaredMethod("getClazz");
         getClazz.setAccessible(true);
-        assertNull("Expected null", getClazz.invoke(regularClass));
+        assertNull(getClazz.invoke(regularClass), "Expected null");
     }
 
     @Test
@@ -613,8 +613,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final Method toString = classAlias.getClass().getDeclaredMethod("toString");
         toString.setAccessible(true);
         final String result = (String) toString.invoke(classAlias);
-        assertEquals("Invalid toString result",
-            "ClassAlias[alias Token[blablabla(1x1)] for Token[blablabla(1x1)]]", result);
+        assertEquals("ClassAlias[alias Token[blablabla(1x1)] for Token[blablabla(1x1)]]", result,
+                "Invalid toString result");
     }
 
     @Test

@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -38,7 +38,7 @@ public class JavadocTagTest {
     public void testJavadocTagTypeValueOf() {
         final JavadocUtil.JavadocTagType enumConst =
             JavadocUtil.JavadocTagType.valueOf("ALL");
-        assertEquals("Invalid enum valueOf result", JavadocUtil.JavadocTagType.ALL, enumConst);
+        assertEquals(JavadocUtil.JavadocTagType.ALL, enumConst, "Invalid enum valueOf result");
     }
 
     /* Additional test for jacoco, since values()
@@ -54,7 +54,7 @@ public class JavadocTagTest {
             JavadocUtil.JavadocTagType.INLINE,
             JavadocUtil.JavadocTagType.ALL,
         };
-        assertArrayEquals("Invalid enum constants", expected, enumConstants);
+        assertArrayEquals(expected, enumConstants, "Invalid enum constants");
     }
 
     @Test
@@ -63,23 +63,24 @@ public class JavadocTagTest {
 
         final String result = javadocTag.toString();
 
-        assertEquals("Invalid toString result",
-                "JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']", result);
+        assertEquals(
+                "JavadocTag[tag='author' lineNo=0, columnNo=1, firstArg='firstArg']", result,
+                "Invalid toString result");
     }
 
     @Test
     public void testJavadocTagReferenceImports() {
-        assertTrue("", new JavadocTag(0, 0, "see", null).canReferenceImports());
-        assertTrue("", new JavadocTag(0, 0, "link", null).canReferenceImports());
-        assertTrue("", new JavadocTag(0, 0, "value", null).canReferenceImports());
-        assertTrue("", new JavadocTag(0, 0, "linkplain", null).canReferenceImports());
-        assertTrue("", new JavadocTag(0, 0, "throws", null).canReferenceImports());
-        assertTrue("", new JavadocTag(0, 0, "exception", null).canReferenceImports());
+        assertTrue(new JavadocTag(0, 0, "see", null).canReferenceImports(), "");
+        assertTrue(new JavadocTag(0, 0, "link", null).canReferenceImports(), "");
+        assertTrue(new JavadocTag(0, 0, "value", null).canReferenceImports(), "");
+        assertTrue(new JavadocTag(0, 0, "linkplain", null).canReferenceImports(), "");
+        assertTrue(new JavadocTag(0, 0, "throws", null).canReferenceImports(), "");
+        assertTrue(new JavadocTag(0, 0, "exception", null).canReferenceImports(), "");
     }
 
     @Test
     public void testJavadocTagReferenceImportsInvalid() {
-        assertFalse("", new JavadocTag(0, 0, "author", null).canReferenceImports());
+        assertFalse(new JavadocTag(0, 0, "author", null).canReferenceImports(), "");
     }
 
 }

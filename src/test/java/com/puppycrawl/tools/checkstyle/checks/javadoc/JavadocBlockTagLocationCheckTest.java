@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocBlockTagLocationCheck.MSG_BLOCK_TAG_LOCATION;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -42,8 +42,8 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
         final int[] expected = {
             JavadocTokenTypes.TEXT,
         };
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, checkObj.getAcceptableJavadocTokens());
+        assertArrayEquals(expected, checkObj.getAcceptableJavadocTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test

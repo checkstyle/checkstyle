@@ -19,12 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -32,8 +32,8 @@ public class BlockTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
-        assertTrue("Constructor is not private",
-                TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class, true));
+        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(BlockTagUtil.class, true),
+                "Constructor is not private");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class BlockTagUtilTest {
         };
 
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
-        assertEquals("Invalid tags size", 4, tags.size());
+        assertEquals(4, tags.size(), "Invalid tags size");
 
         final TagInfo tag1 = tags.get(0);
         assertTagEquals(tag1, "foo", "abc", 1, 4);
@@ -70,9 +70,9 @@ public class BlockTagUtilTest {
             " */",
         };
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
-        assertEquals("Invalid tags size", 1, tags.size());
-        assertEquals("Invalid tag name", "version", tags.get(0).getName());
-        assertEquals("Invalid tag value", "1.0", tags.get(0).getValue());
+        assertEquals(1, tags.size(), "Invalid tags size");
+        assertEquals("version", tags.get(0).getName(), "Invalid tag name");
+        assertEquals("1.0", tags.get(0).getValue(), "Invalid tag value");
     }
 
     @Test
@@ -83,17 +83,17 @@ public class BlockTagUtilTest {
             " * @version 1.0 */"};
 
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
-        assertEquals("Invalid tags size", 1, tags.size());
-        assertEquals("Invalid tag name", "version", tags.get(0).getName());
-        assertEquals("Invalid tag value", "1.0", tags.get(0).getValue());
+        assertEquals(1, tags.size(), "Invalid tags size");
+        assertEquals("version", tags.get(0).getName(), "Invalid tag name");
+        assertEquals("1.0", tags.get(0).getValue(), "Invalid tag value");
     }
 
     private static void assertTagEquals(TagInfo tag, String name, String value,
             int line, int column) {
-        assertEquals("Invalid tag name", name, tag.getName());
-        assertEquals("Invalid tag value", value, tag.getValue());
-        assertEquals("Invalid tag line", line, tag.getPosition().getLine());
-        assertEquals("Invalid tag column", column, tag.getPosition().getColumn());
+        assertEquals(name, tag.getName(), "Invalid tag name");
+        assertEquals(value, tag.getValue(), "Invalid tag value");
+        assertEquals(line, tag.getPosition().getLine(), "Invalid tag line");
+        assertEquals(column, tag.getPosition().getColumn(), "Invalid tag column");
     }
 
 }

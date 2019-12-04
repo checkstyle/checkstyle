@@ -278,6 +278,12 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.itsallcode</groupId>
+      <artifactId>junit5-system-extensions</artifactId>
+      <version>1.0.3</version>
+      <scope>test</scope>
+    </dependency>
     <!-- Junit4 legacy support till https://github.com/checkstyle/checkstyle/issues/6916 -->
     <dependency>
       <groupId>org.junit.vintage</groupId>

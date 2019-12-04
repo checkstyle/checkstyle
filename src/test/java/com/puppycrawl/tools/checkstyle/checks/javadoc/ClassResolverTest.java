@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ClassResolverTest {
 
@@ -35,14 +35,14 @@ public class ClassResolverTest {
         final Set<String> imports = new HashSet<>();
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(), "java.util", imports);
-        assertNotNull("Class should be resolved", classResolver.resolve("List", ""));
+        assertNotNull(classResolver.resolve("List", ""), "Class should be resolved");
         try {
             classResolver.resolve("NoSuchClass", "");
             fail("ClassNotFoundException is expected");
         }
         catch (ClassNotFoundException ex) {
             // exception is expected
-            assertEquals("Invalid exception message", "NoSuchClass", ex.getMessage());
+            assertEquals("NoSuchClass", ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -53,7 +53,7 @@ public class ClassResolverTest {
         imports.add("no.such.package.ChoiceFormat");
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(), null, imports);
-        assertNotNull("Class should be resolved", classResolver.resolve("ChoiceFormat", ""));
+        assertNotNull(classResolver.resolve("ChoiceFormat", ""), "Class should be resolved");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class ClassResolverTest {
         imports.add("no.such.package.*");
         final ClassResolver classResolver = new ClassResolver(
                 Thread.currentThread().getContextClassLoader(), null, imports);
-        assertNotNull("Class should be resolved", classResolver.resolve("StringBuffer", ""));
+        assertNotNull(classResolver.resolve("StringBuffer", ""), "Class should be resolved");
     }
 
     @Test
@@ -79,7 +79,7 @@ public class ClassResolverTest {
         }
         catch (ClassNotFoundException ex) {
             // exception is expected
-            assertEquals("Invalid exception message", "someClass", ex.getMessage());
+            assertEquals("someClass", ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -91,7 +91,7 @@ public class ClassResolverTest {
                 "java.util", imports);
 
         final Class<?> entry = classResolver.resolve("Entry", "Map");
-        assertEquals("Invalid resolve result", "java.util.Map$Entry", entry.getName());
+        assertEquals("java.util.Map$Entry", entry.getName(), "Invalid resolve result");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class ClassResolverTest {
         }
         catch (ClassNotFoundException ex) {
             // exception is expected
-            assertEquals("Invalid exception message", "Entry", ex.getMessage());
+            assertEquals("Entry", ex.getMessage(), "Invalid exception message");
         }
     }
 

@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_FIRST_LINE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck.MSG_JAVADOC_CONTENT_SECOND_LINE;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -41,16 +41,15 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final JavadocContentLocationCheck checkObj = new JavadocContentLocationCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals("Acceptable tokens are invalid",
-            expected, checkObj.getAcceptableTokens());
+        assertArrayEquals(expected, checkObj.getAcceptableTokens(),
+                "Acceptable tokens are invalid");
     }
 
     @Test
     public void testGetDefaultTokens() {
         final JavadocContentLocationCheck checkObj = new JavadocContentLocationCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
-        assertArrayEquals("Default tokens are invalid",
-            expected, checkObj.getDefaultTokens());
+        assertArrayEquals(expected, checkObj.getDefaultTokens(), "Default tokens are invalid");
     }
 
     @Test
