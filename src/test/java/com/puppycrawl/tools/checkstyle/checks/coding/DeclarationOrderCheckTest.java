@@ -23,12 +23,12 @@ import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderChec
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_CONSTRUCTOR;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_INSTANCE;
 import static com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck.MSG_STATIC;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.SortedSet;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -128,9 +128,9 @@ public class DeclarationOrderCheckTest
     @Test
     public void testTokensNotNull() {
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
-        Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
-        Assert.assertNotNull("Default tokens should not be null", check.getDefaultTokens());
-        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
+        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
+        assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
+        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
     }
 
     @Test
@@ -149,12 +149,12 @@ public class DeclarationOrderCheckTest
         check.visitToken(method);
         final SortedSet<LocalizedMessage> messages1 = check.getMessages();
 
-        assertEquals("No exception messages expected", 0, messages1.size());
+        assertEquals(0, messages1.size(), "No exception messages expected");
 
         check.visitToken(ctor);
         final SortedSet<LocalizedMessage> messages2 = check.getMessages();
 
-        assertEquals("No exception messages expected", 0, messages2.size());
+        assertEquals(0, messages2.size(), "No exception messages expected");
     }
 
     @Test
@@ -170,7 +170,7 @@ public class DeclarationOrderCheckTest
         check.visitToken(array);
         final SortedSet<LocalizedMessage> messages = check.getMessages();
 
-        assertEquals("No exception messages expected", 0, messages.size());
+        assertEquals(0, messages.size(), "No exception messages expected");
     }
 
     @Test

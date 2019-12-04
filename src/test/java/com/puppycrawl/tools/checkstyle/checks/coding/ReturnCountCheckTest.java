@@ -21,15 +21,15 @@ package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck.MSG_KEY_VOID;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -129,7 +129,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
         try {
             check.visitToken(classDefAst);
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -137,7 +137,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
 
         try {
             check.leaveToken(classDefAst);
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
             // it is OK
@@ -175,11 +175,11 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.METHOD_DEF);
 
-        assertTrue("Ast should contain METHOD_DEF", methodDef.isPresent());
-        assertTrue("State is not cleared on beginTree",
-            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(),
-                "contextStack",
-                contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()));
+        assertTrue(methodDef.isPresent(), "Ast should contain METHOD_DEF");
+        assertTrue(
+            TestUtil.isStatefulFieldClearedDuringBeginTree(check, methodDef.get(), "contextStack",
+                contextStack -> ((Collection<Set<String>>) contextStack).isEmpty()),
+                "State is not cleared on beginTree");
     }
 
 }

@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.InnerAssignmentCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -75,9 +75,9 @@ public class InnerAssignmentCheckTest
     @Test
     public void testTokensNotNull() {
         final InnerAssignmentCheck check = new InnerAssignmentCheck();
-        Assert.assertNotNull("Unexpected acceptable tokenks", check.getAcceptableTokens());
-        Assert.assertNotNull("Unexpected default tokens", check.getDefaultTokens());
-        Assert.assertNotNull("Unexpected required tokens", check.getRequiredTokens());
+        assertNotNull(check.getAcceptableTokens(), "Unexpected acceptable tokenks");
+        assertNotNull(check.getDefaultTokens(), "Unexpected default tokens");
+        assertNotNull(check.getRequiredTokens(), "Unexpected required tokens");
     }
 
 }
