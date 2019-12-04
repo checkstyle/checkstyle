@@ -20,15 +20,15 @@
 package com.puppycrawl.tools.checkstyle.checks.design;
 
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.google.common.collect.ImmutableMap;
@@ -104,16 +104,15 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals("Default acceptable tokens are invalid",
-            expected, obj.getAcceptableTokens());
+        assertArrayEquals(expected, obj.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
     public void testGetRequiredTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, obj.getRequiredTokens());
+        assertArrayEquals(expected, obj.getRequiredTokens(), "Default required tokens are invalid");
     }
 
     @Test
@@ -127,7 +126,8 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         }
         catch (IllegalStateException ex) {
             // exception is expected
-            assertEquals("Invalid exception message", "interface[0x-1]", ex.getMessage());
+            assertEquals("interface[0x-1]", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 
