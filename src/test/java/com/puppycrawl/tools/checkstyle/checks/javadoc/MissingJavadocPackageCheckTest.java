@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck.MSG_PKG_JAVADOC_MISSING;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -149,11 +149,11 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.PACKAGE_DEF,
         };
-        Assert.assertArrayEquals("Acceptable required tokens are invalid",
-            expected, check.getAcceptableTokens());
-        Assert.assertArrayEquals("Default required tokens are invalid",
-            expected, check.getDefaultTokens());
-        Assert.assertArrayEquals("Required required tokens are invalid",
-            expected, check.getRequiredTokens());
+        assertArrayEquals(expected, check.getAcceptableTokens(),
+                "Acceptable required tokens are invalid");
+        assertArrayEquals(expected, check.getDefaultTokens(),
+                "Default required tokens are invalid");
+        assertArrayEquals(expected, check.getRequiredTokens(),
+                "Required required tokens are invalid");
     }
 }

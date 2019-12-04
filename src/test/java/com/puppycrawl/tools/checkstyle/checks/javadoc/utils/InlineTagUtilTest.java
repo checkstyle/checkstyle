@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.utils;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -33,8 +33,8 @@ public class InlineTagUtilTest {
 
     @Test
     public void testHasPrivateConstructor() throws Exception {
-        assertTrue("Constructor is not private",
-                TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class, true));
+        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(InlineTagUtil.class, true),
+                "Constructor is not private");
     }
 
     @Test
@@ -47,7 +47,7 @@ public class InlineTagUtilTest {
             " */"};
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
-        assertEquals("Unexpected tags size", 4, tags.size());
+        assertEquals(4, tags.size(), "Unexpected tags size");
 
         assertTag(tags.get(0), "link", "List", 2, 4);
         assertTag(tags.get(1), "link", "List link text", 2, 19);
@@ -65,7 +65,7 @@ public class InlineTagUtilTest {
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
-        assertEquals("Unexpected tags size", 1, tags.size());
+        assertEquals(1, tags.size(), "Unexpected tags size");
         assertTag(tags.get(0), "link", "foo bar baz", 2, 4);
     }
 
@@ -78,7 +78,7 @@ public class InlineTagUtilTest {
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(text);
 
-        assertEquals("Unexpected tags size", 1, tags.size());
+        assertEquals(1, tags.size(), "Unexpected tags size");
         assertTag(tags.get(0), "code", "foo bar baz", 2, 4);
     }
 
@@ -90,7 +90,7 @@ public class InlineTagUtilTest {
 
         final List<TagInfo> tags = InlineTagUtil.extractInlineTags(source);
 
-        assertEquals("Unexpected tags size", 1, tags.size());
+        assertEquals(1, tags.size(), "Unexpected tags size");
 
         final TagInfo tag = tags.get(0);
         assertTag(tag, "link", "foo", 1, 3);
@@ -103,7 +103,7 @@ public class InlineTagUtilTest {
             fail("IllegalArgumentException expected");
         }
         catch (IllegalArgumentException ex) {
-            assertTrue("Unexpected error message", ex.getMessage().contains("newline"));
+            assertTrue(ex.getMessage().contains("newline"), "Unexpected error message");
         }
     }
 
@@ -114,15 +114,15 @@ public class InlineTagUtilTest {
             fail("IllegalArgumentException expected");
         }
         catch (IllegalArgumentException ex) {
-            assertTrue("Invalid error message", ex.getMessage().contains("newline"));
+            assertTrue(ex.getMessage().contains("newline"), "Invalid error message");
         }
     }
 
     private static void assertTag(TagInfo tag, String name, String value, int line, int col) {
-        assertEquals("Unexpected tags name", name, tag.getName());
-        assertEquals("Unexpected tags value", value, tag.getValue());
-        assertEquals("Unexpected tags position", line, tag.getPosition().getLine());
-        assertEquals("Unexpected tags position", col, tag.getPosition().getColumn());
+        assertEquals(name, tag.getName(), "Unexpected tags name");
+        assertEquals(value, tag.getValue(), "Unexpected tags value");
+        assertEquals(line, tag.getPosition().getLine(), "Unexpected tags position");
+        assertEquals(col, tag.getPosition().getColumn(), "Unexpected tags position");
     }
 
 }

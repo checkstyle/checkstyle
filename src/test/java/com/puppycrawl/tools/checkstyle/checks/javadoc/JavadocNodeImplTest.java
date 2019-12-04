@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 
@@ -36,9 +36,8 @@ public class JavadocNodeImplTest {
 
         final String result = javadocNode.toString();
 
-        assertEquals("Invalid toString result",
-                "JavadocNodeImpl[index=0, type=CODE_LITERAL, text='null', lineNumber=1,"
-                + " columnNumber=2, children=0, parent=null]", result);
+        assertEquals("JavadocNodeImpl[index=0, type=CODE_LITERAL, text='null', lineNumber=1,"
+                + " columnNumber=2, children=0, parent=null]", result, "Invalid toString result");
     }
 
     @Test
@@ -48,7 +47,7 @@ public class JavadocNodeImplTest {
 
         final int result = javadocNode.getColumnNumber();
 
-        assertEquals("Invalid column number", 1, result);
+        assertEquals(1, result, "Invalid column number");
     }
 
 }
