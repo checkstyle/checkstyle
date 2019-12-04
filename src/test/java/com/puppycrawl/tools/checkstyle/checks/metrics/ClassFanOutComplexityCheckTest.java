@@ -20,16 +20,18 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.ClassFanOutComplexityCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -112,17 +114,16 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "metrics.ClassFanOutComplexityCheck - "
                     + "Cannot set property 'excludedPackages' to "
                     + "'com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.'",
-                ex.getMessage());
-            assertEquals("Invalid exception message,",
-                    "the following values are not valid identifiers: ["
-                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]", ex
-                            .getCause().getCause().getCause().getCause().getMessage());
+                ex.getMessage(), "Invalid exception message");
+            assertEquals("the following values are not valid identifiers: ["
+                            + "com.puppycrawl.tools.checkstyle.checks.metrics.inputs.a.]",
+                    ex.getCause().getCause().getCause().getCause().getMessage(),
+                    "Invalid exception message,");
         }
     }
 
@@ -187,8 +188,8 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_THROWS,
             TokenTypes.ANNOTATION_DEF,
         };
-        Assert.assertNotNull("Acceptable tokens should not be null", actual);
-        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
+        assertNotNull(actual, "Acceptable tokens should not be null");
+        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
     @Test
@@ -304,11 +305,12 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> importAst = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.IMPORT);
 
-        Assert.assertTrue("Ast should contain IMPORT", importAst.isPresent());
-        Assert.assertTrue("State is not cleared on beginTree",
+        assertTrue(importAst.isPresent(), "Ast should contain IMPORT");
+        assertTrue(
                 TestUtil.isStatefulFieldClearedDuringBeginTree(check, importAst.get(),
                     "importedClassPackages",
-                    importedClssPackage -> ((Map<String, String>) importedClssPackage).isEmpty()));
+                    importedClssPackage -> ((Map<String, String>) importedClssPackage).isEmpty()),
+                    "State is not cleared on beginTree");
     }
 
     /**
@@ -327,11 +329,12 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> classDef = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.CLASS_DEF);
 
-        Assert.assertTrue("Ast should contain CLASS_DEF", classDef.isPresent());
-        Assert.assertTrue("State is not cleared on beginTree",
+        assertTrue(classDef.isPresent(), "Ast should contain CLASS_DEF");
+        assertTrue(
                 TestUtil.isStatefulFieldClearedDuringBeginTree(check, classDef.get(),
                     "classesContexts",
-                    classContexts -> ((Collection<?>) classContexts).size() == 1));
+                    classContexts -> ((Collection<?>) classContexts).size() == 1),
+                    "State is not cleared on beginTree");
     }
 
 }

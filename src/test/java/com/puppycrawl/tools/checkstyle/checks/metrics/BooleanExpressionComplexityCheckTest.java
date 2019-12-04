@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionComplexityCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -88,8 +88,8 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                "Unknown type: interface[0x-1]", ex.getMessage());
+            assertEquals("Unknown type: interface[0x-1]", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 

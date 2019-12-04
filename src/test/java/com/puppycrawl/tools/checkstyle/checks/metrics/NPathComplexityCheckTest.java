@@ -20,14 +20,17 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -137,12 +140,14 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         ast.setType(TokenTypes.LITERAL_ELSE);
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
-        Assert.assertTrue("Stateful field is not cleared after beginTree",
+        assertTrue(
             TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "rangeValues",
-                rangeValues -> ((Collection<Context>) rangeValues).isEmpty()));
-        Assert.assertTrue("Stateful field is not cleared after beginTree",
+                rangeValues -> ((Collection<Context>) rangeValues).isEmpty()),
+                "Stateful field is not cleared after beginTree");
+        assertTrue(
             TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "expressionValues",
-                expressionValues -> ((Collection<Context>) expressionValues).isEmpty()));
+                expressionValues -> ((Collection<Context>) expressionValues).isEmpty()),
+                "Stateful field is not cleared after beginTree");
     }
 
     @Test
@@ -156,9 +161,10 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         ast.addChild(child);
 
         final NPathComplexityCheck check = new NPathComplexityCheck();
-        Assert.assertTrue("Stateful field is not cleared after beginTree",
+        assertTrue(
             TestUtil.isStatefulFieldClearedDuringBeginTree(check, ast, "afterValues",
-                isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()));
+                isAfterValues -> ((Collection<Context>) isAfterValues).isEmpty()),
+                "Stateful field is not cleared after beginTree");
     }
 
     @Test
@@ -169,9 +175,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITHOUT_COMMENTS),
             ast -> ast.getType() == TokenTypes.QUESTION);
 
-        Assert.assertTrue("Ast should contain QUESTION", question.isPresent());
+        assertTrue(question.isPresent(), "Ast should contain QUESTION");
 
-        Assert.assertTrue("State is not cleared on beginTree",
+        assertTrue(
             TestUtil.isStatefulFieldClearedDuringBeginTree(
                 check,
                 question.get(),
@@ -188,7 +194,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                     catch (IllegalAccessException | NoSuchFieldException ex) {
                         throw new IllegalStateException(ex);
                     }
-                }));
+                }), "State is not cleared on beginTree");
     }
 
     @Test
@@ -223,8 +229,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_RETURN,
             TokenTypes.LITERAL_DEFAULT,
         };
-        Assert.assertNotNull("Acceptable tokens should not be null", actual);
-        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
+        assertNotNull(actual, "Acceptable tokens should not be null");
+        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
     @Test
@@ -249,8 +255,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_RETURN,
             TokenTypes.LITERAL_DEFAULT,
         };
-        Assert.assertNotNull("Required tokens should not be null", actual);
-        Assert.assertArrayEquals("Invalid required tokens", expected, actual);
+        assertNotNull(actual, "Required tokens should not be null");
+        assertArrayEquals(expected, actual, "Invalid required tokens");
     }
 
     @Test
@@ -262,12 +268,12 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         npathComplexityCheckObj.visitToken(ast);
         final SortedSet<LocalizedMessage> messages1 = npathComplexityCheckObj.getMessages();
 
-        Assert.assertEquals("No exception messages expected", 0, messages1.size());
+        assertEquals(0, messages1.size(), "No exception messages expected");
 
         npathComplexityCheckObj.leaveToken(ast);
         final SortedSet<LocalizedMessage> messages2 = npathComplexityCheckObj.getMessages();
 
-        Assert.assertEquals("No exception messages expected", 0, messages2.size());
+        assertEquals(0, messages2.size(), "No exception messages expected");
     }
 
     /**
@@ -290,9 +296,9 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         token.setLineNo(0);
         token.setColumnNo(0);
 
-        Assert.assertTrue("isAfter must be true for same line/column",
-                (Boolean) TestUtil.getClassDeclaredMethod(tokenEnd.getClass(), "isAfter")
-                    .invoke(tokenEnd, token));
+        assertTrue(
+            (Boolean) TestUtil.getClassDeclaredMethod(tokenEnd.getClass(), "isAfter")
+                .invoke(tokenEnd, token), "isAfter must be true for same line/column");
     }
 
     @Test
@@ -318,13 +324,13 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         npathComplexityCheckObj.visitToken(astIf);
         final SortedSet<LocalizedMessage> messages1 = npathComplexityCheckObj.getMessages();
 
-        Assert.assertEquals("No exception messages expected", 0, messages1.size());
+        assertEquals(0, messages1.size(), "No exception messages expected");
 
         //visiting ternary, it lies before expressionSpatialRange
         npathComplexityCheckObj.visitToken(astTernary);
         final SortedSet<LocalizedMessage> messages2 = npathComplexityCheckObj.getMessages();
 
-        Assert.assertEquals("No exception messages expected", 0, messages2.size());
+        assertEquals(0, messages2.size(), "No exception messages expected");
     }
 
     /**

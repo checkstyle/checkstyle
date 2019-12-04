@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.metrics;
 
 import static com.puppycrawl.tools.checkstyle.checks.metrics.CyclomaticComplexityCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -120,7 +120,7 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.LAND,
             TokenTypes.LOR,
         };
-        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
     @Test
@@ -134,7 +134,7 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
         };
-        Assert.assertArrayEquals("Invalid required tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid required tokens");
     }
 
     @Test
