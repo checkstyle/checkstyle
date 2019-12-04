@@ -1331,42 +1331,43 @@
           </catalogs>
         </configuration>
       </plugin>
+
       <plugin>
-      <groupId>de.thetaphi</groupId>
-      <artifactId>forbiddenapis</artifactId>
-      <version>2.7</version>
-      <configuration>
-        <targetVersion>${java.version}</targetVersion>
-        <failOnUnsupportedJava>false</failOnUnsupportedJava>
-        <bundledSignatures>
-          <bundledSignature>jdk-unsafe</bundledSignature>
-          <bundledSignature>jdk-deprecated</bundledSignature>
-          <bundledSignature>jdk-system-out</bundledSignature>
-          <bundledSignature>jdk-non-portable</bundledSignature>
-        </bundledSignatures>
-        <excludes>
-          <!-- system-out is ok there, that is CLI -->
-          <exclude>**/Main.class</exclude>
-          <exclude>**/MainTest.class</exclude>
-          <exclude>**/Main$CliOptions.class</exclude>
-          <exclude>**/JavadocPropertiesGenerator.class</exclude>
-          <!-- generated classes, unfortunately use problematic api -->
-          <exclude>**/GeneratedJavaLexer.class</exclude>
-          <exclude>**/JavadocParser.class</exclude>
-          <exclude>**/Input*</exclude>
-          <!-- tests need forbidden apis to test the main code fully -->
-          <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
-        </excludes>
-      </configuration>
-      <executions>
-        <execution>
-          <goals>
-            <goal>check</goal>
-            <goal>testCheck</goal>
-          </goals>
-        </execution>
-      </executions>
-    </plugin>
+        <groupId>de.thetaphi</groupId>
+        <artifactId>forbiddenapis</artifactId>
+        <version>2.7</version>
+        <configuration>
+          <targetVersion>${java.version}</targetVersion>
+          <failOnUnsupportedJava>false</failOnUnsupportedJava>
+          <bundledSignatures>
+            <bundledSignature>jdk-unsafe</bundledSignature>
+            <bundledSignature>jdk-deprecated</bundledSignature>
+            <bundledSignature>jdk-system-out</bundledSignature>
+            <bundledSignature>jdk-non-portable</bundledSignature>
+          </bundledSignatures>
+          <excludes>
+            <!-- system-out is ok there, that is CLI -->
+            <exclude>**/Main.class</exclude>
+            <exclude>**/MainTest.class</exclude>
+            <exclude>**/Main$CliOptions.class</exclude>
+            <exclude>**/JavadocPropertiesGenerator.class</exclude>
+            <!-- generated classes, unfortunately use problematic api -->
+            <exclude>**/GeneratedJavaLexer.class</exclude>
+            <exclude>**/JavadocParser.class</exclude>
+            <exclude>**/Input*</exclude>
+            <!-- tests need forbidden apis to test the main code fully -->
+            <exclude>**/XpathFileGeneratorAuditListenerTest.class</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+              <goal>testCheck</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>edu.illinois</groupId>
         <artifactId>nondex-maven-plugin</artifactId>
