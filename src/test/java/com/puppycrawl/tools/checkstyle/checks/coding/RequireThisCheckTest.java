@@ -262,6 +262,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
             "374:25: " + getCheckMessage(MSG_METHOD, "getAction", ""),
             "376:20: " + getCheckMessage(MSG_METHOD, "processAction", ""),
             "384:16: " + getCheckMessage(MSG_METHOD, "processAction", ""),
+            "490:22: " + getCheckMessage(MSG_VARIABLE, "add", ""),
         };
         verify(checkConfig, getPath("InputRequireThisValidateOnlyOverlappingFalse.java"), expected);
     }
