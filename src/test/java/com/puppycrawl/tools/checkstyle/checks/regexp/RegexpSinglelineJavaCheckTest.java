@@ -21,9 +21,9 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_EXCEEDED;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector.MSG_REGEXP_MINIMUM;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -40,15 +40,16 @@ public class RegexpSinglelineJavaCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final RegexpSinglelineJavaCheck regexpSinglelineJavaCheck =
             new RegexpSinglelineJavaCheck();
-        assertArrayEquals("Default acceptable tokens are invalid",
-            CommonUtil.EMPTY_INT_ARRAY, regexpSinglelineJavaCheck.getAcceptableTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY,
+                regexpSinglelineJavaCheck.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
     public void testGetRequiredTokens() {
         final RegexpSinglelineJavaCheck checkObj = new RegexpSinglelineJavaCheck();
-        assertArrayEquals("Default required tokens are invalid",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
