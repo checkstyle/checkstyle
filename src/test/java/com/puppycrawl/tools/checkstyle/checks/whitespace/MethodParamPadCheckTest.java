@@ -22,11 +22,11 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_LINE_PREVIOUS;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck.MSG_WS_PRECEDED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -45,9 +45,8 @@ public class MethodParamPadCheckTest
     @Test
     public void testGetRequiredTokens() {
         final MethodParamPadCheck checkObj = new MethodParamPadCheck();
-        assertArrayEquals(
-            "MethodParamPadCheck#getRequiredTokens should return empty array by default",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+                "MethodParamPadCheck#getRequiredTokens should return empty array by default");
     }
 
     @Test
@@ -146,7 +145,7 @@ public class MethodParamPadCheckTest
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -161,12 +160,11 @@ public class MethodParamPadCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "whitespace.MethodParamPadCheck - "
                     + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage());
+                ex.getMessage(), "Invalid exception message");
         }
     }
 

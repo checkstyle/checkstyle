@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck.MSG_WS_NOT_FOLLOWED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -45,8 +45,8 @@ public class EmptyForIteratorPadCheckTest
     public void testGetRequiredTokens() {
         final EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
         final int[] expected = {TokenTypes.FOR_ITERATOR};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -77,7 +77,7 @@ public class EmptyForIteratorPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_ITERATOR,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -92,12 +92,11 @@ public class EmptyForIteratorPadCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "whitespace.EmptyForIteratorPadCheck - "
                     + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage());
+                ex.getMessage(), "Invalid exception message");
         }
     }
 
