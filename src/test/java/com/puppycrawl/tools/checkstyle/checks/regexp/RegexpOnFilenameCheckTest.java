@@ -21,14 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MATCH;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck.MSG_MISMATCH;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -249,9 +249,8 @@ public class RegexpOnFilenameCheckTest extends AbstractModuleTestSupport {
             fail("CheckstyleException expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "unable to create canonical path names for " + file.getAbsolutePath(),
-                ex.getMessage());
+            assertEquals("unable to create canonical path names for " + file.getAbsolutePath(),
+                ex.getMessage(), "Invalid exception message");
         }
     }
 

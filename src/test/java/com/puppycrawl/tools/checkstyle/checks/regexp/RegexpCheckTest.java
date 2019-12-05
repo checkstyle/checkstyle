@@ -22,9 +22,9 @@ package com.puppycrawl.tools.checkstyle.checks.regexp;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_DUPLICATE_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_ILLEGAL_REGEXP;
 import static com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck.MSG_REQUIRED_REGEXP;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -40,17 +40,15 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAcceptableTokens() {
         final RegexpCheck regexpCheck = new RegexpCheck();
-        assertArrayEquals(
-                "RegexpCheck#getAcceptableTokens should return empty array by default",
-                CommonUtil.EMPTY_INT_ARRAY, regexpCheck.getAcceptableTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, regexpCheck.getAcceptableTokens(),
+                "RegexpCheck#getAcceptableTokens should return empty array by default");
     }
 
     @Test
     public void testGetRequiredTokens() {
         final RegexpCheck checkObj = new RegexpCheck();
-        assertArrayEquals(
-            "RegexpCheck#getRequiredTokens should return empty array by default",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+                "RegexpCheck#getRequiredTokens should return empty array by default");
     }
 
     @Test
