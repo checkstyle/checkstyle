@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -80,11 +80,10 @@ public class FileLengthCheckTest
             fail("Should indicate illegal args");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "sizes.FileLengthCheck - "
                     + "illegal value 'abc' for property 'max'",
-                ex.getMessage());
+                ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -103,16 +102,16 @@ public class FileLengthCheckTest
     public void testExtensions() {
         final FileLengthCheck check = new FileLengthCheck();
         check.setFileExtensions("java");
-        assertEquals("extension should be the same", ".java", check.getFileExtensions()[0]);
+        assertEquals(".java", check.getFileExtensions()[0], "extension should be the same");
         check.setFileExtensions(".java");
-        assertEquals("extension should be the same", ".java", check.getFileExtensions()[0]);
+        assertEquals(".java", check.getFileExtensions()[0], "extension should be the same");
         try {
             check.setFileExtensions((String[]) null);
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                "Extensions array can not be null", ex.getMessage());
+            assertEquals("Extensions array can not be null", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 

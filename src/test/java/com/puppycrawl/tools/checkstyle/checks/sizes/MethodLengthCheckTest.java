@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -39,9 +39,8 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final MethodLengthCheck checkObj = new MethodLengthCheck();
-        assertArrayEquals(
-            "MethodLengthCheck#getRequiredTokens should return empty array by default",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+                "MethodLengthCheck#getRequiredTokens should return empty array by default");
     }
 
     @Test
@@ -54,7 +53,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CTOR_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
