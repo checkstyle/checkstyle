@@ -125,9 +125,9 @@ public class TokenUtilTest {
             TokenUtil.getTokenName(nextAfterMaxId);
             fail("IllegalArgumentException is expected");
         }
-        catch (IllegalArgumentException expected) {
+        catch (IllegalArgumentException expectedException) {
             assertEquals("Invalid exception message",
-                    "given id " + nextAfterMaxId, expected.getMessage());
+                    "given id " + nextAfterMaxId, expectedException.getMessage());
         }
     }
 

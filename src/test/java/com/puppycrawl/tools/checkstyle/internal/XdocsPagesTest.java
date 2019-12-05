@@ -979,7 +979,7 @@ public class XdocsPagesTest {
      * @param fieldClass The bean property's type.
      * @param instance The class instance to work with.
      * @return String form of property's default value.
-     * @noinspection ReuseOfLocalVariable, OverlyNestedMethod
+     * @noinspection OverlyNestedMethod
      */
     private static String getModulePropertyExpectedValue(String sectionName, String propertyName,
             Field field, Class<?> fieldClass, Object instance) throws Exception {

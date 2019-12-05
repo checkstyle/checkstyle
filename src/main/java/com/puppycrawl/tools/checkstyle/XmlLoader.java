@@ -88,7 +88,7 @@ public class XmlLoader
     public InputSource resolveEntity(String publicId, String systemId)
             throws SAXException, IOException {
         final InputSource inputSource;
-        if (publicIdToResourceNameMap.keySet().contains(publicId)) {
+        if (publicIdToResourceNameMap.containsKey(publicId)) {
             final String dtdResourceName =
                     publicIdToResourceNameMap.get(publicId);
             final ClassLoader loader =

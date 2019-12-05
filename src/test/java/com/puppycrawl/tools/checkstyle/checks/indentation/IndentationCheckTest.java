@@ -1976,16 +1976,18 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testArgumentOrderOfErrorMessages() {
-        final String[] arguments = {"##0##", "##1##", "##2##"};
+        final Object[] arguments = {"##0##", "##1##", "##2##"};
         final String[] messages = {
-            getCheckMessage(MSG_ERROR, (Object[]) arguments),
-            getCheckMessage(MSG_CHILD_ERROR, (Object[]) arguments),
-            getCheckMessage(MSG_ERROR_MULTI, (Object[]) arguments),
-            getCheckMessage(MSG_CHILD_ERROR_MULTI, (Object[]) arguments),
+            getCheckMessage(MSG_ERROR, arguments),
+            getCheckMessage(MSG_CHILD_ERROR, arguments),
+            getCheckMessage(MSG_ERROR_MULTI, arguments),
+            getCheckMessage(MSG_CHILD_ERROR_MULTI, arguments),
         };
         final boolean isInOrder = Arrays.stream(messages).allMatch(msg -> {
-            final int indexOfArgumentZero = msg.indexOf(arguments[0]);
-            return Arrays.stream(arguments).mapToInt(msg::indexOf)
+            final int indexOfArgumentZero = msg.indexOf((String) arguments[0]);
+            return Arrays.stream(arguments)
+                    .map(String.class::cast)
+                    .mapToInt(msg::indexOf)
                     .allMatch(index -> index >= indexOfArgumentZero);
         });
         assertTrue(
