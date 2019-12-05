@@ -44,21 +44,21 @@
           <br />
           "↓" - This paragraph is the high-level point of some group.
           <br />
-          <span class="wrapper">
+          <span class="wrapper inline">
             <img
                 src="images/ok_green.png"
                 alt="" />
           </span>
           - Existing Check covers all requirements from Sun.
           <br />
-          <span class="wrapper">
+          <span class="wrapper inline">
             <img
                 src="images/ok_blue.png"
                 alt="" />
           </span>
           - Existing Check covers some part of requirements from Sun.
           <br />
-          <span class="wrapper">
+          <span class="wrapper inline">
             <img
                 src="images/ban_red.png"
                 alt="" />
@@ -83,7 +83,7 @@
                 <td>
                   <a name="1"/>
                   <a href="#1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -100,7 +100,7 @@
                 <td>
                   <a name="1.1"/>
                   <a href="#1.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -117,7 +117,7 @@
                 <td>
                   <a name="1.2"/>
                   <a href="#1.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -134,7 +134,7 @@
                 <td>
                   <a name="2"/>
                   <a href="#2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -151,7 +151,7 @@
                 <td>
                   <a name="2.1"/>
                   <a href="#2.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -168,7 +168,7 @@
                 <td>
                   <a name="2.2"/>
                   <a href="#2.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -185,7 +185,7 @@
                 <td>
                   <a name="3"/>
                   <a href="#3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -202,7 +202,7 @@
                 <td>
                   <a name="3.1"/>
                   <a href="#3.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -219,7 +219,7 @@
                 <td>
                   <a name="3.1.1"/>
                   <a href="#3.1.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -236,7 +236,7 @@
                 <td>
                   <a name="3.1.2"/>
                   <a href="#3.1.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -253,7 +253,7 @@
                 <td>
                   <a name="3.1.3"/>
                   <a href="#3.1.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -270,7 +270,7 @@
                 <td>
                   <a name="4"/>
                   <a href="#4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -287,7 +287,7 @@
                 <td>
                   <a name="4.1"/>
                   <a href="#4.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -304,7 +304,7 @@
                 <td>
                   <a name="4.2"/>
                   <a href="#4.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -321,7 +321,7 @@
                 <td>
                   <a name="5"/>
                   <a href="#5">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -338,7 +338,7 @@
                 <td>
                   <a name="5.1"/>
                   <a href="#5.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -355,7 +355,7 @@
                 <td>
                   <a name="5.1.1"/>
                   <a href="#5.1.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -372,7 +372,7 @@
                 <td>
                   <a name="5.1.2"/>
                   <a href="#5.1.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -389,7 +389,7 @@
                 <td>
                   <a name="5.1.3"/>
                   <a href="#5.1.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -406,7 +406,7 @@
                 <td>
                   <a name="5.1.4"/>
                   <a href="#5.1.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -423,7 +423,7 @@
                 <td>
                   <a name="5.2"/>
                   <a href="#5.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -434,7 +434,7 @@
                   </a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_blue.png" alt=""/>
                   </span>
                   <a href="config_javadoc.html#InvalidJavadocPosition">
@@ -455,7 +455,7 @@
                 <td>
                   <a name="6"/>
                   <a href="#6">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -472,7 +472,7 @@
                 <td>
                   <a name="6.1"/>
                   <a href="#6.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -483,7 +483,7 @@
                   </a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt=""/>
                   </span>
                   <a href="config_coding.html#MultipleVariableDeclarations">
@@ -504,7 +504,7 @@
                 <td>
                   <a name="6.2"/>
                   <a href="#6.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -521,7 +521,7 @@
                 <td>
                   <a name="6.3"/>
                   <a href="#6.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -538,7 +538,7 @@
                 <td>
                   <a name="6.4"/>
                   <a href="#6.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -555,7 +555,7 @@
                 <td>
                   <a name="7"/>
                   <a href="#7">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -572,7 +572,7 @@
                 <td>
                   <a name="7.1"/>
                   <a href="#7.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -589,7 +589,7 @@
                 <td>
                   <a name="7.2"/>
                   <a href="#7.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -606,7 +606,7 @@
                 <td>
                   <a name="7.3"/>
                   <a href="#7.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -623,7 +623,7 @@
                 <td>
                   <a name="7.4"/>
                   <a href="#7.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -640,7 +640,7 @@
                 <td>
                   <a name="7.5"/>
                   <a href="#7.5">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -657,7 +657,7 @@
                 <td>
                   <a name="7.6"/>
                   <a href="#7.6">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -674,7 +674,7 @@
                 <td>
                   <a name="7.7"/>
                   <a href="#7.7">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -691,7 +691,7 @@
                 <td>
                   <a name="7.8"/>
                   <a href="#7.8">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -708,7 +708,7 @@
                 <td>
                   <a name="7.9"/>
                   <a href="#7.9">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -725,7 +725,7 @@
                 <td>
                   <a name="8"/>
                   <a href="#8">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -742,7 +742,7 @@
                 <td>
                   <a name="8.1"/>
                   <a href="#8.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -759,7 +759,7 @@
                 <td>
                   <a name="8.2"/>
                   <a href="#8.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -776,7 +776,7 @@
                 <td>
                   <a name="9"/>
                   <a href="#9">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -793,7 +793,7 @@
                 <td>
                   <a name="10"/>
                   <a href="#10">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -810,7 +810,7 @@
                 <td>
                   <a name="10.1"/>
                   <a href="#10.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -827,7 +827,7 @@
                 <td>
                   <a name="10.2"/>
                   <a href="#10.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -844,7 +844,7 @@
                 <td>
                   <a name="10.3"/>
                   <a href="#10.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -861,7 +861,7 @@
                 <td>
                   <a name="10.4"/>
                   <a href="#10.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -878,7 +878,7 @@
                 <td>
                   <a name="10.5"/>
                   <a href="#10.5">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -895,7 +895,7 @@
                 <td>
                   <a name="10.5.1"/>
                   <a href="#10.5.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -912,7 +912,7 @@
                 <td>
                   <a name="10.5.2"/>
                   <a href="#10.5.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -929,7 +929,7 @@
                 <td>
                   <a name="10.5.3"/>
                   <a href="#10.5.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -946,7 +946,7 @@
                 <td>
                   <a name="10.5.4"/>
                   <a href="#10.5.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -963,7 +963,7 @@
                 <td>
                   <a name="11"/>
                   <a href="#11">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -980,7 +980,7 @@
                 <td>
                   <a name="11.1"/>
                   <a href="#11.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>

@@ -203,7 +203,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
       </p>
 
       <p>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot.png"/>
         </span>
       </p>

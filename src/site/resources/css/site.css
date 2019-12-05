@@ -52,9 +52,14 @@ h2:hover .anchor, h3:hover .anchor {
 }
 
 .source {
-  width: 90%;
-  overflow-x: auto;
   white-space: nowrap;
+  padding: 0;
+}
+
+.source > pre {
+  margin: 0;
+  padding: 12px;
+  overflow-x: auto;
 }
 
 .wrap-content pre {
@@ -76,8 +81,12 @@ section {
   overflow-y: auto;
 }
 
-span.wrapper {
+span.wrapper.block {
   display: block;
+}
+
+span.wrapper.inline {
+  display: inline;
 }
 
 @media screen and (max-width: 600px) {
