@@ -201,8 +201,7 @@ public class JavadocDetailNodeParser {
         while (currentJavadocParent != null) {
             // remove unnecessary children tokens
             if (currentJavadocParent.getType() == JavadocTokenTypes.TEXT) {
-                currentJavadocParent
-                        .setChildren((DetailNode[]) JavadocNodeImpl.EMPTY_DETAIL_NODE_ARRAY);
+                currentJavadocParent.setChildren(JavadocNodeImpl.EMPTY_DETAIL_NODE_ARRAY);
             }
 
             final JavadocNodeImpl[] children =
@@ -254,7 +253,7 @@ public class JavadocDetailNodeParser {
             final ParseTree currentParseTreeNodeChild = parseTreeParent.getChild(i);
             final JavadocNodeImpl[] subChildren =
                     createChildrenNodes(currentJavadocNode, currentParseTreeNodeChild);
-            currentJavadocNode.setChildren((DetailNode[]) subChildren);
+            currentJavadocNode.setChildren(subChildren);
         }
     }
 
@@ -320,7 +319,7 @@ public class JavadocDetailNodeParser {
         node.setIndex(index);
         node.setType(getTokenType(parseTree));
         node.setParent(parent);
-        node.setChildren((DetailNode[]) new JavadocNodeImpl[parseTree.getChildCount()]);
+        node.setChildren(new JavadocNodeImpl[parseTree.getChildCount()]);
         return node;
     }
 

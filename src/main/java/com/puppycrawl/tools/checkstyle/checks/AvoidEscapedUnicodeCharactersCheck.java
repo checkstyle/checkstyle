@@ -163,7 +163,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     /** Regular expression for all escaped chars. */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
             + "|\""
-            + "|\'"
+            + "|'"
             + "|\\\\"
             + "|\\\\b"
             + "|\\\\f"

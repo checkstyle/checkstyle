@@ -69,7 +69,6 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
      * Till https://youtrack.jetbrains.com/issue/IDEA-187209
      * @return method class
      * @throws Exception if smth wrong
-     * @noinspection JavaReflectionMemberAccess
      */
     private static Method getReplacePropertiesMethod() throws Exception {
         final Class<?>[] params = new Class<?>[3];
