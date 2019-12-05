@@ -24,9 +24,9 @@ import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_PRIVATE_METHODS;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_PROTECTED_METHODS;
 import static com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck.MSG_PUBLIC_METHODS;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -44,8 +44,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     public void testGetRequiredTokens() {
         final MethodCountCheck checkObj = new MethodCountCheck();
         final int[] expected = {TokenTypes.METHOD_DEF};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -62,7 +62,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             TokenTypes.METHOD_DEF,
         };
 
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
