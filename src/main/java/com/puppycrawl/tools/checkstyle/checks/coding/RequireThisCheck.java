@@ -615,7 +615,7 @@ public class RequireThisCheck extends AbstractCheck {
         final DetailAST prevSibling = ast.getPreviousSibling();
         if (variableDeclarationFrameType == FrameType.CLASS_FRAME
                 && !validateOnlyOverlapping
-                && (prevSibling == null || ast.getParent().getType() != TokenTypes.DOT)
+                && (prevSibling == null || !isInExpression(ast))
                 && canBeReferencedFromStaticContext(ast)) {
             frameWhereViolationIsFound = variableDeclarationFrame;
         }
@@ -651,6 +651,17 @@ public class RequireThisCheck extends AbstractCheck {
             frameWhereViolationIsFound = findFrame(ast, true);
         }
         return frameWhereViolationIsFound;
+    }
+
+    /**
+     * Checks ast parent is in expression.
+     *
+     * @param ast token to check
+     * @return true if token is part of expression, false otherwise
+     */
+    private static boolean isInExpression(DetailAST ast) {
+        return TokenTypes.DOT == ast.getParent().getType()
+                || TokenTypes.METHOD_REF == ast.getParent().getType();
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.requirethis;
 
-import java.util.BitSet;
+import java.util.*;
 
 public class InputRequireThisValidateOnlyOverlappingFalse {
 
@@ -476,5 +476,17 @@ class Issue6264 {
 
     private void hashCodeMethod(String param) {
         hashCode();
+    }
+}
+class Issue7306 {
+    List<String> add = new ArrayList<>();
+    List<String> singletonList = new ArrayList<>();
+
+    void someMethod() {
+        List<String> test = new ArrayList<>();
+        test.forEach(this.add::add); // OK
+        test.forEach(test::add); // OK
+        test.forEach(Collections::singletonList); // OK
+        test.forEach(add::add); // violation
     }
 }
