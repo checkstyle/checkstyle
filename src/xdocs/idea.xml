@@ -26,11 +26,11 @@
       <p>
         If no project is currently open in IntelliJ IDEA, click Import Project on the
         Welcome screen. Otherwise, select File > New > Project from Existing Sources<br/><br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_importing_idea.png"/>
         </span>
         <br/><br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_importing_idea1.png"/>
         </span>
         <br/><br/>
@@ -40,7 +40,7 @@
         Generate sources that a required by checkstyle
         by right click over pom.xml file and click on menu "Maven / Generate Sources and Update
         Folders"
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_idea_generate_sources.png"/>
         </span>
         <br/><br/>
@@ -50,19 +50,19 @@
     <section name="Debug">
       <p>
         Open the Check's source file by double click on it in a source tree as is shown:<br/><br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_select_check_idea.png"/>
         </span>
         <br/><br/>
         Debug the Check by putting the breakpoint at controversial place (double-click)
         on the left part of line number as it is shown:<br/><br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_debug_idea.png"/>
         </span>
         <br/><br/>
         Then right-click the corresponding Unit-test file or class definition > Debug
         &quot;testName&quot;<br/><br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_screenshot_ut_select_idea.png"/>
         </span>
         <br/><br/>
@@ -79,7 +79,7 @@
         To change formatter settings please go to File->Settings in menu.<br/>
         Then in the tree go to: Editor->Code Style->Java, open Import tab (follow numbers on a
         picture) and apply settings highlighted:<br/><br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="Organize Imports settings in IDEA"
             src="images/gui_screenshot_organize_imports_idea.jpg"/>
         </span>
@@ -94,7 +94,7 @@
         <code>config/intellij-idea-inspections.xml</code>.
         <br/>
         <br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="Inspections in IntelliJ IDEA" src="images/gui_screenshot_inspections_idea.png"/>
         </span>
         <br/>
@@ -114,7 +114,7 @@
         Now it should be ready to be used in Inspect Code window (Analyse -> Inspect Code):
         <br/>
         <br/>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="Scope for inspections" src="images/gui_screenshot_scope_idea.png"/>
         </span>
       </p>
@@ -127,7 +127,7 @@
         checkstyle files. A simple solution to this problem is by using the key combinations
         <code>Ctrl + Shift + Alt + V</code> or <code>Edit | Paste Simple</code>. However it is
         recommended that this settings be changed by default as shown below
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="Disable Auto Indent on Paste"
             src="images/gui_screenshot_disable_indent_paste_idea.png"/>
         </span>

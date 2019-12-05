@@ -51,7 +51,7 @@ public class XdocsMobileWrapperTest {
 
     @Test
     public void testAllCheckSectionMobileWrapper() throws Exception {
-        for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
+        for (Path path : XdocUtil.getXdocsFilePaths()) {
             final File file = path.toFile();
             final String fileName = file.getName();
 
@@ -88,8 +88,17 @@ public class XdocsMobileWrapperTest {
                 Assert.assertTrue(wrapperMessage,
                         node.getAttributes().getNamedItem("class").getNodeValue()
                                 .contains("wrapper"));
+
                 if ("table".equals(child.getNodeName())) {
                     iterateNode(child, fileName, sectionName);
+                }
+                if ("img".equals(child.getNodeName())) {
+                    final String dataImageInlineMessage = fileName + "/" + sectionName + ": img "
+                            + "needs the additional class inline if it should be displayed inline "
+                            + "or block if scrolling in mobile view should be enabled.";
+                    Assert.assertTrue(dataImageInlineMessage,
+                            node.getAttributes().getNamedItem("class").getNodeValue()
+                                    .matches(".*(block|inline).*"));
                 }
             }
             else {

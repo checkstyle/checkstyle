@@ -42,21 +42,21 @@
           <br />
           "↓" - This paragraph is the high-level point of some group.
           <br />
-          <span class="wrapper">
+          <span class="wrapper inline">
             <img
                 src="images/ok_green.png"
                 alt="" />
           </span>
           - Existing Check covers all requirements from Google.
           <br />
-          <span class="wrapper">
+          <span class="wrapper inline">
             <img
                 src="images/ok_blue.png"
                 alt="" />
           </span>
           - Existing Check covers some part of requirements from Google.
           <br />
-          <span class="wrapper">
+          <span class="wrapper inline">
             <img
                 src="images/ban_red.png"
                 alt="" />
@@ -81,7 +81,7 @@
                 <td>
                   <a name="1"/>
                   <a href="#1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -98,7 +98,7 @@
                 <td>
                   <a name="1.1"/>
                   <a href="#1.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -114,7 +114,7 @@
                 <td>
                   <a name="1.2"/>
                   <a href="#1.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -131,7 +131,7 @@
                 <td>
                   <a name="2"/>
                   <a href="#2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -148,7 +148,7 @@
                 <td>
                   <a name="2.1"/>
                   <a href="#2.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -158,7 +158,7 @@
                     2.1 File name</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_misc.html#OuterTypeFilename">OuterTypeFilename</a>
@@ -174,7 +174,7 @@
               <tr>
                 <td><a name="2.2"/>
                   <a href="#2.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -185,7 +185,7 @@
                   </a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img
                         src="images/ban_red.png"
                         alt="" />
@@ -198,7 +198,7 @@
               <tr>
                 <td><a name="2.3.1"/>
                   <a href="#2.3.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -208,7 +208,7 @@
                     2.3.1 Whitespace characters</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_whitespace.html#FileTabCharacter">
@@ -225,7 +225,7 @@
               <tr>
                 <td><a name="2.3.2"/>
                   <a href="#2.3.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -235,7 +235,7 @@
                     2.3.2 Special escape sequences</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_coding.html#IllegalTokenText">IllegalTokenText</a>
@@ -250,7 +250,7 @@
               <tr>
                 <td><a name="2.3.3"/>
                   <a href="#2.3.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -260,7 +260,7 @@
                     2.3.3 Non-ASCII characters</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_misc.html#AvoidEscapedUnicodeCharacters">
@@ -277,7 +277,7 @@
               <tr>
                 <td><a name="3"/>
                   <a href="#3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -288,7 +288,7 @@
                   </a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_whitespace.html#EmptyLineSeparator">
@@ -305,7 +305,7 @@
               <tr>
                 <td><a name="3.1"/>
                   <a href="#3.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -320,7 +320,7 @@
               <tr>
                 <td><a name="3.2"/>
                   <a href="#3.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -330,13 +330,13 @@
                     3.2 Package statement</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_sizes.html#LineLength">LineLength</a>
                   <br />
                   <br />
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_whitespace.html#NoLineWrap">NoLineWrap</a>
@@ -358,7 +358,7 @@
               <tr>
                 <td><a name="3.3"/>
                   <a href="#3.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -374,7 +374,7 @@
               <tr>
                 <td><a name="3.3.1"/>
                   <a href="#3.3.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -384,7 +384,7 @@
                     3.3.1 No wildcard imports</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_imports.html#AvoidStarImport">AvoidStarImport</a>
@@ -400,7 +400,7 @@
               <tr>
                 <td><a name="3.3.2"/>
                   <a href="#3.3.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -410,13 +410,13 @@
                     3.3.2 No line-wrapping</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_sizes.html#LineLength">LineLength</a>
                   <br />
                   <br />
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_whitespace.html#NoLineWrap">NoLineWrap</a>
@@ -439,7 +439,7 @@
               <tr>
                 <td><a name="3.3.3"/>
                   <a href="#3.3.3">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -449,7 +449,7 @@
                     3.3.3 Ordering and spacing</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_imports.html#CustomImportOrder">
@@ -466,7 +466,7 @@
               <tr>
                 <td><a name="3.3.4"/>
                   <a href="#3.3.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -476,7 +476,7 @@
                     3.3.4 No static import for classes</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img
                         src="images/ban_red.png"
                         alt="" />
@@ -490,7 +490,7 @@
               <tr>
                 <td><a name="3.4"/>
                   <a href="#3.4">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -506,7 +506,7 @@
               <tr>
                 <td><a name="3.4.1"/>
                   <a href="#3.4.1">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -516,7 +516,7 @@
                     3.4.1 Exactly one top-level class declaration</a>
                 </td>
                 <td>
-                  <span class="wrapper">
+                  <span class="wrapper inline">
                     <img src="images/ok_green.png" alt="" />
                   </span>
                   <a href="config_design.html#OneTopLevelClass">OneTopLevelClass</a>
@@ -532,7 +532,7 @@
               <tr>
                 <td><a name="3.4.2"/>
                   <a href="#3.4.2">
-                    <span class="wrapper">
+                    <span class="wrapper inline">
                       <img src="images/anchor.png" alt=""/>
                     </span>
                   </a>
@@ -547,7 +547,9 @@
               <tr>
                 <td><a name="3.4.2.1"/>
                   <a href="#3.4.2.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -555,7 +557,9 @@
                     3.4.2.1 Overloads: never split</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_coding.html#OverloadMethodsDeclarationOrder">
                     OverloadMethodsDeclarationOrder</a>
                 </td>
@@ -570,7 +574,9 @@
               <tr>
                 <td><a name="4"/>
                   <a href="#4">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -584,7 +590,9 @@
               <tr>
                 <td><a name="4.1"/>
                   <a href="#4.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -598,7 +606,9 @@
               <tr>
                 <td><a name="4.1.1"/>
                   <a href="#4.1.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -606,7 +616,9 @@
                     4.1.1 Braces are used where optional</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_blocks.html#NeedBraces">NeedBraces</a>
                 </td>
                 <td>
@@ -620,7 +632,9 @@
               <tr>
                 <td><a name="4.1.2"/>
                   <a href="#4.1.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -628,10 +642,14 @@
                     4.1.2 Nonempty blocks: K &amp; R style</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_blocks.html#LeftCurly">LeftCurly</a>
                   <br/>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_blocks.html#RightCurly">RightCurly</a>
                 </td>
                 <td>
@@ -651,7 +669,9 @@
               <tr>
                 <td><a name="4.1.3"/>
                   <a href="#4.1.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -659,11 +679,15 @@
                     4.1.3 Empty blocks: may be concise</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_blocks.html#EmptyBlock">EmptyBlock</a>
                   <br />
                   <br />
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a>
                 </td>
                 <td>
@@ -680,7 +704,9 @@
               <tr>
                 <td><a name="4.2"/>
                   <a href="#4.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -688,9 +714,11 @@
                     4.2 Block indentation: +2 spaces</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_misc.html#Indentation">Indentation</a>
                   <br />
                   The rule "A line is never broken adjacent to the arrow in a
@@ -710,7 +738,9 @@
               <tr>
                 <td><a name="4.3"/>
                   <a href="#4.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -718,7 +748,9 @@
                     4.3 One statement per line</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_coding.html#OneStatementPerLine">
                     OneStatementPerLine</a>
                 </td>
@@ -733,7 +765,9 @@
               <tr>
                 <td><a name="4.4"/>
                   <a href="#4.4">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -741,9 +775,11 @@
                     4.4 Column limit: 100</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_sizes.html#LineLength">LineLength</a>
                   <br />
                   We can detect URL with protocol type as http://, https:// etc.
@@ -769,7 +805,9 @@
               <tr>
                 <td><a name="4.5"/>
                   <a href="#4.5">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -783,7 +821,9 @@
               <tr>
                 <td><a name="4.5.1"/>
                   <a href="#4.5.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -791,15 +831,21 @@
                     4.5.1 Where to break</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#OperatorWrap">OperatorWrap</a>
                   <br />
                   <br />
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#SeparatorWrap">SeparatorWrap</a>
                   <br />
                   <br />
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#MethodParamPad">MethodParamPad</a>
                 </td>
                 <td>
@@ -825,7 +871,9 @@
               <tr>
                 <td><a name="4.5.2"/>
                   <a href="#4.5.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -833,7 +881,9 @@
                     4.5.2 Indent continuation lines at least +4 spaces</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_misc.html#Indentation">Indentation</a>
                 </td>
                 <td>
@@ -846,7 +896,9 @@
               <tr>
                 <td><a name="4.6"/>
                   <a href="#4.6">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -860,7 +912,9 @@
               <tr>
                 <td><a name="4.6.1"/>
                   <a href="#4.6.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -868,9 +922,11 @@
                     4.6.1 Vertical Whitespace</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_whitespace.html#EmptyLineSeparator">
                     EmptyLineSeparator</a>
                   <br />Blank lines between two consecutive fields are optional.
@@ -887,7 +943,9 @@
               <tr>
                 <td><a name="4.6.2"/>
                   <a href="#4.6.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -895,26 +953,36 @@
                     4.6.2 Horizontal whitespace</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#WhitespaceAround">
                     WhitespaceAround</a>
                   <br />
                   <br />
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#GenericWhitespace">
                     GenericWhitespace</a>
                   <br />
                   <br />
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#MethodParamPad">MethodParamPad</a>
                   <br />
                   <br />
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#ParenPad">ParenPad</a>
 
                   <br />
                   <br />
-                  <img src="images/ok_blue.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt="" />
+                  </span>
                   <a href="config_whitespace.html#NoWhitespaceBefore">
                     NoWhitespaceBefore</a>
                   <br />
@@ -961,7 +1029,9 @@
               <tr>
                 <td><a name="4.6.3"/>
                   <a href="#4.6.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -974,7 +1044,9 @@
               <tr>
                 <td><a name="4.7"/>
                   <a href="#4.7">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -987,7 +1059,9 @@
               <tr>
                 <td><a name="4.8"/>
                   <a href="#4.8">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1001,7 +1075,9 @@
               <tr>
                 <td><a name="4.8.1"/>
                   <a href="#4.8.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1014,7 +1090,9 @@
               <tr>
                 <td><a name="4.8.2"/>
                   <a href="#4.8.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1027,7 +1105,9 @@
               <tr>
                 <td><a name="4.8.2.1"/>
                   <a href="#4.8.2.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1035,7 +1115,9 @@
                     4.8.2.1 One variable per declaration</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_coding.html#MultipleVariableDeclarations">
                     MultipleVariableDeclarations</a>
                 </td>
@@ -1050,7 +1132,9 @@
               <tr>
                 <td><a name="4.8.2.2"/>
                   <a href="#4.8.2.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1059,7 +1143,9 @@
                   </a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_coding.html#VariableDeclarationUsageDistance">
                     VariableDeclarationUsageDistance</a>
                   <br />
@@ -1074,7 +1160,9 @@
               <tr>
                 <td><a name="4.8.3"/>
                   <a href="#4.8.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1087,7 +1175,9 @@
               <tr>
                 <td><a name="4.8.3.1"/>
                   <a href="#4.8.3.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1100,7 +1190,9 @@
               <tr>
                 <td><a name="4.8.3.2"/>
                   <a href="#4.8.3.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1108,7 +1200,9 @@
                     4.8.3.2 No C-style array declarations</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a>
                 </td>
                 <td>
@@ -1122,7 +1216,9 @@
               <tr>
                 <td><a name="4.8.4"/>
                   <a href="#4.8.4">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1135,7 +1231,9 @@
               <tr>
                 <td><a name="4.8.4.1"/>
                   <a href="#4.8.4.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1143,7 +1241,9 @@
                     4.8.4.1 Indentation</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_misc.html#Indentation">Indentation</a>
                 </td>
                 <td>
@@ -1156,7 +1256,9 @@
               <tr>
                 <td><a name="4.8.4.2"/>
                   <a href="#4.8.4.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1164,7 +1266,9 @@
                     4.8.4.2 Fall-through: commented</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_coding.html#FallThrough">FallThrough</a>
                 </td>
                 <td>
@@ -1178,7 +1282,9 @@
               <tr>
                 <td><a name="4.8.4.3"/>
                   <a href="#4.8.4.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1186,9 +1292,11 @@
                     4.8.4.3 The default case is present</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_coding.html#MissingSwitchDefault">
                     MissingSwitchDefault</a>
                   <br />
@@ -1207,7 +1315,9 @@
               <tr>
                 <td><a name="4.8.5"/>
                   <a href="#4.8.5">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1215,7 +1325,9 @@
                     4.8.5 Annotations</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_annotation.html#AnnotationLocation">
                     AnnotationLocation</a>
                 </td>
@@ -1230,7 +1342,9 @@
               <tr>
                 <td><a name="4.8.6"/>
                   <a href="#4.8.6">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1243,7 +1357,9 @@
               <tr>
                 <td><a name="4.8.6.1"/>
                   <a href="#4.8.6.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1251,7 +1367,9 @@
                     4.8.6.1 Block comment style</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_misc.html#CommentsIndentation">
                     CommentsIndentation</a>
                 </td>
@@ -1267,7 +1385,9 @@
               <tr>
                 <td><a name="4.8.7"/>
                   <a href="#4.8.7">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1275,7 +1395,9 @@
                     4.8.7 Modifiers</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_modifier.html#ModifierOrder">ModifierOrder</a>
                 </td>
                 <td>
@@ -1289,7 +1411,9 @@
               <tr>
                 <td><a name="4.8.8"/>
                   <a href="#4.8.8">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1297,7 +1421,9 @@
                     4.8.8 Numeric Literals</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_misc.html#UpperEll">UpperEll</a>
                 </td>
                 <td>
@@ -1311,7 +1437,9 @@
               <tr>
                 <td><a name="5"/>
                   <a href="#5">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1325,7 +1453,9 @@
               <tr>
                 <td><a name="5.1"/>
                   <a href="#5.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1339,7 +1469,9 @@
               <tr>
                 <td><a name="5.2"/>
                   <a href="#5.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1353,7 +1485,9 @@
               <tr>
                 <td><a name="5.2.1"/>
                   <a href="#5.2.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1361,7 +1495,9 @@
                     5.2.1 Package names</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_naming.html#PackageName">PackageName</a>
                 </td>
                 <td>
@@ -1375,7 +1511,9 @@
               <tr>
                 <td><a name="5.2.2"/>
                   <a href="#5.2.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1383,9 +1521,11 @@
                     5.2.2 Class names</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_naming.html#TypeName">TypeName</a>
                 </td>
                 <td>
@@ -1399,7 +1539,9 @@
               <tr>
                 <td><a name="5.2.3"/>
                   <a href="#5.2.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1407,9 +1549,11 @@
                     5.2.3 Method names</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_naming.html#MethodName">MethodName</a>
                   <br/> No ability to distinguish verb at the beginning of name,
                   no way distinguish Test method from others so "_" is allowed in
@@ -1426,7 +1570,9 @@
               <tr>
                 <td><a name="5.2.4"/>
                   <a href="#5.2.4">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1434,9 +1580,11 @@
                     5.2.4 Constant names</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ban_red.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
                   Every constant is a static final field, but not all static final
                   fields are constants - impossible to check such rule.
                 </td>
@@ -1445,7 +1593,9 @@
               <tr>
                 <td><a name="5.2.5"/>
                   <a href="#5.2.5">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1453,7 +1603,9 @@
                     5.2.5 Non-constant field names</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_naming.html#MemberName">MemberName</a>
                 </td>
                 <td>
@@ -1467,7 +1619,9 @@
               <tr>
                 <td><a name="5.2.6"/>
                   <a href="#5.2.6">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1475,16 +1629,22 @@
                     5.2.6 Parameter names</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_naming.html#ParameterName">ParameterName</a>
                   <br/>
                   <br/>
-                  <img src="images/ok_green.png" alt=""/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="config_naming.html#CatchParameterName">
                     CatchParameterName</a>
                   <br/>
                   <br/>
-                  <img src="images/ok_green.png" alt=""/>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt=""/>
+                  </span>
                   <a href="config_naming.html#LambdaParameterName">
                     LambdaParameterName</a>
                 </td>
@@ -1513,7 +1673,9 @@
               <tr>
                 <td><a name="5.2.7"/>
                   <a href="#5.2.7">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1521,7 +1683,9 @@
                     5.2.7 Local variable names</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_naming.html#LocalVariableName">LocalVariableName</a>
                 </td>
                 <td>
@@ -1535,7 +1699,9 @@
               <tr>
                 <td><a name="5.2.8"/>
                   <a href="#5.2.8">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1543,17 +1709,23 @@
                     5.2.8 Type variable names</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_naming.html#MethodTypeParameterName">
                     MethodTypeParameterName</a>
                   <br/>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_naming.html#ClassTypeParameterName">
                     ClassTypeParameterName</a>
                   <br/>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_naming.html#InterfaceTypeParameterName">
                     InterfaceTypeParameterName</a>
                 </td>
@@ -1580,7 +1752,9 @@
               <tr>
                 <td><a name="5.3"/>
                   <a href="#5.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1588,9 +1762,11 @@
                     5.3 Camel case: defined</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_naming.html#AbbreviationAsWordInName">
                     AbbreviationAsWordInName</a>
                   <br />
@@ -1609,7 +1785,9 @@
               <tr>
                 <td><a name="6"/>
                   <a href="#6">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1623,7 +1801,9 @@
               <tr>
                 <td><a name="6.1"/>
                   <a href="#6.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1631,9 +1811,11 @@
                     6.1 @Override: always used</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ban_red.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
                   That validation could not be checked by Checkstyle. It's
                   need to
                   take a look as parent class. But Checkstyle have no way to
@@ -1645,7 +1827,9 @@
               <tr>
                 <td><a name="6.2"/>
                   <a href="#6.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1653,9 +1837,11 @@
                     6.2 Caught exceptions: not ignored</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_blocks.html#EmptyBlock">EmptyBlock</a>
                   with option=text.
                 </td>
@@ -1669,7 +1855,9 @@
               <tr>
                 <td><a name="6.3"/>
                   <a href="#6.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1677,9 +1865,11 @@
                     6.3 Static members: qualified using class</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ban_red.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ban_red.png"
+                        alt="" />
+                  </span>
                   Proper validation require parsing other files, sources
                   are not always available.
                 </td>
@@ -1688,7 +1878,9 @@
               <tr>
                 <td><a name="6.4"/>
                   <a href="#6.4">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1696,7 +1888,9 @@
                     6.4 Finalizers: not used</a>
                 </td>
                 <td>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_coding.html#NoFinalizer">NoFinalizer</a>
                 </td>
                 <td>
@@ -1710,7 +1904,9 @@
               <tr>
                 <td><a name="7"/>
                   <a href="#7">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1724,7 +1920,9 @@
               <tr>
                 <td><a name="7.1"/>
                   <a href="#7.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1738,7 +1936,9 @@
               <tr>
                 <td><a name="7.1.1"/>
                   <a href="#7.1.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1746,9 +1946,11 @@
                     7.1.1 General form</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <br />
                   <a href="config_javadoc.html#SingleLineJavadoc">
                     SingleLineJavadoc</a>
@@ -1774,7 +1976,9 @@
               <tr>
                 <td><a name="7.1.2"/>
                   <a href="#7.1.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1782,9 +1986,11 @@
                     7.1.2 Paragraphs</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a>
                 </td>
                 <td>
@@ -1797,7 +2003,9 @@
               <tr>
                 <td><a name="7.1.3"/>
                   <a href="#7.1.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1805,18 +2013,24 @@
                     7.1.3 Block tags</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#AtclauseOrder">AtclauseOrder</a>
                   <br/>
                   <br/>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_javadoc.html#JavadocTagContinuationIndentation">
                     JavadocTagContinuationIndentation</a>
                   <br/>
                   <br/>
-                  <img src="images/ok_green.png" alt="" />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
                   <a href="config_javadoc.html#NonEmptyAtclauseDescription">
                     NonEmptyAtclauseDescription</a>
                 </td>
@@ -1838,7 +2052,9 @@
               <tr>
                 <td><a name="7.2"/>
                   <a href="#7.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1846,9 +2062,11 @@
                     7.2 The summary fragment</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a>
                 </td>
                 <td>
@@ -1861,7 +2079,9 @@
               <tr>
                 <td><a name="7.3"/>
                   <a href="#7.3">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1870,13 +2090,17 @@
                   </a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                 </td>
                 <td>
@@ -1893,7 +2117,9 @@
               <tr>
                 <td><a name="7.3.1"/>
                   <a href="#7.3.1">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1901,13 +2127,17 @@
                     7.3.1 Exception: self-explanatory methods</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a>
                 </td>
                 <td>
@@ -1924,7 +2154,9 @@
               <tr>
                 <td><a name="7.3.2"/>
                   <a href="#7.3.2">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1932,13 +2164,17 @@
                     7.3.2 Exception: overrides</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_green.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#MissingJavadocMethod">MissingJavadocMethod</a>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#JavadocMethod">JavadocMethod</a><br/>
                   Overrides are checked by presence of "@Override" annotation on
                   method.
@@ -1957,7 +2193,9 @@
               <tr>
                 <td><a name="7.3.4"/>
                   <a href="#7.3.4">
-                    <img src="images/anchor.png" alt=""/>
+                    <span class="wrapper inline">
+                      <img src="images/anchor.png" alt=""/>
+                    </span>
                   </a>
                 </td>
                 <td>
@@ -1965,9 +2203,11 @@
                     7.3.4 Non-required Javadoc</a>
                 </td>
                 <td>
-                  <img
-                      src="images/ok_blue.png"
-                      alt="" />
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_blue.png"
+                        alt="" />
+                  </span>
                   <a href="config_javadoc.html#InvalidJavadocPosition">
                     InvalidJavadocPosition</a>
                 </td>
