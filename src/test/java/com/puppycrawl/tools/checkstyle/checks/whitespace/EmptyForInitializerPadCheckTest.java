@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForInitializerPadCheck.MSG_PRECEDED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -45,8 +45,8 @@ public class EmptyForInitializerPadCheckTest
     public void testGetRequiredTokens() {
         final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
         final int[] expected = {TokenTypes.FOR_INIT};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -78,7 +78,7 @@ public class EmptyForInitializerPadCheckTest
         final int[] expected = {
             TokenTypes.FOR_INIT,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -88,7 +88,7 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testPadOptionValueOf() {
         final PadOption option = PadOption.valueOf("NOSPACE");
-        assertEquals("Result of valueOf is invalid", PadOption.NOSPACE, option);
+        assertEquals(PadOption.NOSPACE, option, "Result of valueOf is invalid");
     }
 
     /* Additional test for jacoco, since valueOf()
@@ -98,7 +98,7 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testWrapOptionValueOf() {
         final WrapOption option = WrapOption.valueOf("EOL");
-        assertEquals("Result of valueOf is invalid", WrapOption.EOL, option);
+        assertEquals(WrapOption.EOL, option, "Result of valueOf is invalid");
     }
 
     @Test
@@ -114,12 +114,11 @@ public class EmptyForInitializerPadCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "whitespace.EmptyForInitializerPadCheck - "
                     + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage());
+                ex.getMessage(), "Invalid exception message");
         }
     }
 

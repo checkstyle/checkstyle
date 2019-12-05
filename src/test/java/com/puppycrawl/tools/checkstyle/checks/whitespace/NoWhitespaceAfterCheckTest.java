@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -243,8 +243,8 @@ public class NoWhitespaceAfterCheckTest
             fail("no intended exception thrown");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Invalid exception message",
-                "unexpected ast syntax import[0x-1]", ex.getMessage());
+            assertEquals("unexpected ast syntax import[0x-1]", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 

@@ -23,9 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -89,7 +89,7 @@ public class TypecastParenPadCheckTest
             TokenTypes.RPAREN,
             TokenTypes.TYPECAST,
         };
-        Assert.assertArrayEquals("Invalid acceptable tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
 }

@@ -23,13 +23,13 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPad
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_FOLLOWED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck.MSG_WS_PRECEDED;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Method;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -339,12 +339,11 @@ public class ParenPadCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "whitespace.ParenPadCheck - "
                     + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage());
+                ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -487,8 +486,8 @@ public class ParenPadCheckTest
 
         for (int token : check.getAcceptableTokens()) {
             ast.setType(token);
-            assertTrue(message + TokenUtil.getTokenName(token),
-                    (boolean) method.invoke(check, ast));
+            assertTrue((boolean) method.invoke(check, ast),
+                    message + TokenUtil.getTokenName(token));
         }
     }
 

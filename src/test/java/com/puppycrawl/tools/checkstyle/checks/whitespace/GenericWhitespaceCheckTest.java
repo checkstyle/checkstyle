@@ -23,11 +23,11 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespac
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_ILLEGAL_FOLLOW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_NOT_PRECEDED;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck.MSG_WS_PRECEDED;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -51,8 +51,8 @@ public class GenericWhitespaceCheckTest
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -153,7 +153,7 @@ public class GenericWhitespaceCheckTest
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
@@ -166,8 +166,8 @@ public class GenericWhitespaceCheckTest
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                "Unknown type interface[0x-1]", ex.getMessage());
+            assertEquals("Unknown type interface[0x-1]", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 

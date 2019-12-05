@@ -21,11 +21,11 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_NEW;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck.MSG_LINE_PREVIOUS;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -83,7 +83,7 @@ public class SeparatorWrapCheckTest
             TokenTypes.DOT,
             TokenTypes.COMMA,
         };
-        Assert.assertArrayEquals("Invalid default tokens", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid default tokens");
     }
 
     @Test
@@ -98,12 +98,11 @@ public class SeparatorWrapCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
-                "cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle.TreeWalker - "
                     + "cannot initialize module com.puppycrawl.tools.checkstyle.checks."
                     + "whitespace.SeparatorWrapCheck - "
                     + "Cannot set property 'option' to 'invalid_option'",
-                ex.getMessage());
+                ex.getMessage(), "Invalid exception message");
         }
     }
 

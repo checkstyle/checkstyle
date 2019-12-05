@@ -23,9 +23,6 @@
     <subpackage name="(header|imports|indentation|javadoc)" regex="true">
       <allow pkg="org.junit"/>
     </subpackage>
-    <subpackage name="whitespace">
-      <allow pkg="org.junit"/>
-    </subpackage>
   </subpackage>
   <subpackage name="(gui|internal|utils|xpath)" regex="true">
     <allow pkg="org.junit"/>

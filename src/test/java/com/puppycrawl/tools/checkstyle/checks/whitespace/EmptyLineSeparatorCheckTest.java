@@ -23,9 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparat
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_INSIDE;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck.MSG_SHOULD_BE_SEPARATED;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -43,9 +43,8 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testGetRequiredTokens() {
         final EmptyLineSeparatorCheck checkObj = new EmptyLineSeparatorCheck();
-        assertArrayEquals(
-            "EmptyLineSeparatorCheck#getRequiredTokens should return empty array by default",
-            CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+                "EmptyLineSeparatorCheck#getRequiredTokens should return empty array by default");
     }
 
     @Test
@@ -164,7 +163,7 @@ public class EmptyLineSeparatorCheckTest
             TokenTypes.CTOR_DEF,
             TokenTypes.VARIABLE_DEF,
         };
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
     @Test
