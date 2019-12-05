@@ -69,6 +69,8 @@ function should_run_job {
               OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT`
               echo "Files between top commit and previous: $OUT"
               git diff --name-only $HEAD $PREVIOUS_COMMIT
+              set +e
+              git diff --name-only $HEAD $PREVIOUS_COMMIT | grep -vE "$SKIP_FILES"
               git diff --name-only $HEAD $PREVIOUS_COMMIT | grep -vE "$SKIP_FILES" | cat
               OUT=`git diff --name-only $HEAD $PREVIOUS_COMMIT | grep -vE "$SKIP_FILES" | cat`
               echo "Files should not skip: $OUT"
