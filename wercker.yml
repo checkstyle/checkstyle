@@ -8,6 +8,10 @@ build:
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
         mvn -version
         echo "------"
+        echo "Link ${WERCKER_CACHE_DIR} to /root/.m2/repository for Gradle builds"
+        mkdir -p /root/.m2
+        ln -s ${WERCKER_CACHE_DIR} /root/.m2/repository
+        echo "------"
         du -hs ${WERCKER_CACHE_DIR}
         echo "------"
         du -hs ${WERCKER_CACHE_DIR}/* | sort -h
@@ -101,6 +105,16 @@ build:
         if [[ $RUN_JOB == 1 ]]; then
           echo "Command: ./.ci/wercker.sh no-error-equalsverifier"
           ./.ci/wercker.sh no-error-equalsverifier
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
+      name: NoErrorTest - Spring Integration
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-spring-integration"
+          ./.ci/wercker.sh no-error-spring-integration
         else
           echo "build is skipped ..."
         fi
