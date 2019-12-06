@@ -1,3 +1,5 @@
+Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
+
 ```
 /var/tmp $ javac YOUR_FILE.java
 #[[MAKE SURE THERE IS NO OUTPUT]]
