@@ -1,6 +1,6 @@
 ```
 /var/tmp $ javac YOUR_FILE.java
-#[[PLACE YOUR OUTPUT HERE]]
+#[[MAKE SURE THERE IS NO OUTPUT]]
 
 /var/tmp $ cat config.xml
 #[[PLACE YOUR OUTPUT HERE]]
