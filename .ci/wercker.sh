@@ -152,6 +152,20 @@ no-error-strata)
   rm -rf Strata
   ;;
 
+no-error-spring-integration)
+  set -e
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/spring-projects/spring-integration.git
+  cd .ci-temp/spring-integration
+  PROP_MAVEN_LOCAL="mavenLocal"
+  PROP_CS_VERSION="checkstyleVersion"
+  ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION}
+  cd ../
+  rm -rf spring-integration
+  ;;
+
 no-exception-struts)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
