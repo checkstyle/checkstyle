@@ -141,16 +141,15 @@ build:
          echo "build is skipped ..."
        fi
 
-# disabled till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/776
-#  - script:
-#      name: NoErrorTest - sevntu-checks
-#      code: |
-#        if [[ $RUN_JOB == 1 ]]; then
-#          echo "Command: ./.ci/wercker.sh no-error-sevntu-checks"
-#          ./.ci/wercker.sh no-error-sevntu-checks
-#        else
-#          echo "build is skipped ..."
-#        fi
+  - script:
+     name: NoErrorTest - sevntu-checks
+     code: |
+       if [[ $RUN_JOB == 1 ]]; then
+         echo "Command: ./.ci/wercker.sh no-error-sevntu-checks"
+         ./.ci/wercker.sh no-error-sevntu-checks
+       else
+         echo "build is skipped ..."
+       fi
 
   - script:
       name: NoExceptiontest - Apache Struts
