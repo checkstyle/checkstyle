@@ -72,6 +72,8 @@
         -Duser.country=US</code> if your default locale is English):
 
         <source><![CDATA[
+Check documentation: https://checkstyle.org/config_whitespace.html#WhitespaceAround
+
 /var/tmp $ javac Test.java
 
 /var/tmp $ cat Test.java
