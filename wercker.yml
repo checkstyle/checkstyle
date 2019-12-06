@@ -131,16 +131,15 @@ build:
   #         echo "build is skipped ..."
   #       fi
 
-# disabled till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/745
-#  - script:
-#      name: NoErrorTest - checkstyle's sevntu
-#      code: |
-#        if [[ $RUN_JOB == 1 ]]; then
-#          echo "Command: ./.ci/wercker.sh no-error-checkstyles-sevntu"
-#          ./.ci/wercker.sh no-error-checkstyles-sevntu
-#        else
-#          echo "build is skipped ..."
-#        fi
+  - script:
+     name: NoErrorTest - checkstyle's sevntu
+     code: |
+       if [[ $RUN_JOB == 1 ]]; then
+         echo "Command: ./.ci/wercker.sh no-error-checkstyles-sevntu"
+         ./.ci/wercker.sh no-error-checkstyles-sevntu
+       else
+         echo "build is skipped ..."
+       fi
 
 # disabled till https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/776
 #  - script:
