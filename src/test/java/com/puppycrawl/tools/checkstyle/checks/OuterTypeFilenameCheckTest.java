@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -45,8 +45,8 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
-        assertArrayEquals("Required tokens array differs from expected",
-                expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Required tokens array differs from expected");
     }
 
     @Test
@@ -75,8 +75,7 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
-        assertArrayEquals("Acceptable tokens array differs from expected",
-                expected, actual);
+        assertArrayEquals(expected, actual, "Acceptable tokens array differs from expected");
     }
 
     @Test

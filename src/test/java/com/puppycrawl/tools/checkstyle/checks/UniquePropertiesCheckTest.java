@@ -21,7 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_IO_EXCEPTION_KEY;
 import static com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,8 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.SortedSet;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -60,7 +60,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLineSeparatorOptionValueOf() {
         final LineSeparatorOption option = LineSeparatorOption.valueOf("CR");
-        assertEquals("Invalid valueOf result", LineSeparatorOption.CR, option);
+        assertEquals(LineSeparatorOption.CR, option, "Invalid valueOf result");
     }
 
     /**
@@ -90,7 +90,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final List<String> testStrings = new ArrayList<>(3);
         final Method getLineNumber = UniquePropertiesCheck.class.getDeclaredMethod(
             "getLineNumber", FileText.class, String.class);
-        Assert.assertNotNull("Get line number method should be present", getLineNumber);
+        assertNotNull(getLineNumber, "Get line number method should be present");
         getLineNumber.setAccessible(true);
         testStrings.add("");
         testStrings.add("0 = 0");
@@ -98,8 +98,8 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(new File("some.properties"), testStrings);
         final Object lineNumber = getLineNumber.invoke(UniquePropertiesCheck.class,
                 fileText, "some key");
-        Assert.assertNotNull("Line number should not be null", lineNumber);
-        assertEquals("Invalid line number", 1, lineNumber);
+        assertNotNull(lineNumber, "Line number should not be null");
+        assertEquals(1, lineNumber, "Invalid line number");
     }
 
     @Test
@@ -132,16 +132,14 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, Collections.emptyList());
         final SortedSet<LocalizedMessage> messages =
                 check.process(file, fileText);
-        assertEquals("Wrong messages count: " + messages.size(),
-                1, messages.size());
+        assertEquals(1, messages.size(), "Wrong messages count: " + messages.size());
         final LocalizedMessage message = messages.iterator().next();
         final String retrievedMessage = messages.iterator().next().getKey();
-        assertEquals("Message key '" + retrievedMessage
-                        + "' is not valid", "unable.open.cause",
-                retrievedMessage);
-        assertEquals("Message '" + message.getMessage()
-                        + "' is not valid", message.getMessage(),
-                getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
+        assertEquals("unable.open.cause", retrievedMessage,
+                "Message key '" + retrievedMessage + "' is not valid");
+        assertEquals(message.getMessage(),
+                getCheckMessage(MSG_IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)),
+                "Message '" + message.getMessage() + "' is not valid");
     }
 
     @Test
@@ -157,11 +155,11 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
         final Object result = method.invoke(uniqueProperties, 1, "value");
         final Map<Object, Object> table = new HashMap<>();
         final Object expected = table.put(1, "value");
-        assertEquals("Invalid result of put method", expected, result);
+        assertEquals(expected, result, "Invalid result of put method");
 
         final Object result2 = method.invoke(uniqueProperties, 1, "value");
         final Object expected2 = table.put(1, "value");
-        assertEquals("Value should be substituted", expected2, result2);
+        assertEquals(expected2, result2, "Value should be substituted");
     }
 
     /**
