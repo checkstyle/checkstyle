@@ -133,6 +133,7 @@ no-error-sevntu-checks)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
+  git checkout 785-checkstyle-latest-verify
   mvn -e -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../../
