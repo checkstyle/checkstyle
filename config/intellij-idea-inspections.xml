@@ -3647,6 +3647,7 @@
             <value>
                 <item value="org.junit.Rule"/>
                 <item value="org.junit.ClassRule"/>
+                <item value="org.junit.jupiter.api.io.TempDir"/>
             </value>
         </option>
     </inspection_tool>

@@ -265,6 +265,8 @@
     <module name="DesignForExtension">
       <property name="ignoredAnnotations"
                 value="Override, Test, Before, After, BeforeClass, AfterClass"/>
+      <property name="ignoredAnnotations"
+                value="BeforeAll, AfterAll, BeforeEach, AfterEach"/>
     </module>
     <module name="FinalClass"/>
     <module name="HideUtilityClassConstructor"/>
@@ -275,7 +277,10 @@
     <module name="ThrowsCount">
       <property name="max" value="2"/>
     </module>
-    <module name="VisibilityModifier"/>
+    <module name="VisibilityModifier">
+      <property name="ignoreAnnotationCanonicalNames"
+                value="org.junit.Rule, org.junit.jupiter.api.io.TempDir"/>
+    </module>
 
     <!-- Coding -->
     <module name="ArrayTrailingComma"/>

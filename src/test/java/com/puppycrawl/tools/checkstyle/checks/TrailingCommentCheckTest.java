@@ -20,11 +20,11 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -41,15 +41,15 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
-        assertArrayEquals("Required tokens array is not empty",
-                CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+                "Required tokens array is not empty");
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
-        assertArrayEquals("Acceptable tokens array is not empty",
-                CommonUtil.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens());
+        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens(),
+                "Acceptable tokens array is not empty");
     }
 
     @Test
@@ -111,11 +111,11 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         final TrailingCommentCheck check = new TrailingCommentCheck();
         try {
             check.visitToken(new DetailAstImpl());
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Error message is unexpected",
-                    "visitToken() shouldn't be called.", ex.getMessage());
+            assertEquals("visitToken() shouldn't be called.", ex.getMessage(),
+                    "Error message is unexpected");
         }
     }
 

@@ -20,7 +20,6 @@
 
   <!-- Till https://github.com/checkstyle/checkstyle/issues/6916 -->
   <subpackage name="checks">
-    <allow pkg="org.junit" local-only="true"/>
     <subpackage name="(blocks|coding|design|header|imports|indentation|javadoc)" regex="true">
       <allow pkg="org.junit"/>
     </subpackage>

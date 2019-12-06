@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck.MSG_KEY;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -71,12 +73,12 @@ public class UncommentedMainCheckTest
     @Test
     public void testTokens() {
         final UncommentedMainCheck check = new UncommentedMainCheck();
-        Assert.assertNotNull("Required tokens should not be null", check.getRequiredTokens());
-        Assert.assertNotNull("Acceptable tokens should not be null", check.getAcceptableTokens());
-        Assert.assertArrayEquals("Invalid default tokens", check.getDefaultTokens(),
-                check.getAcceptableTokens());
-        Assert.assertArrayEquals("Invalid acceptable tokens", check.getDefaultTokens(),
-                check.getRequiredTokens());
+        assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
+        assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
+        assertArrayEquals(check.getDefaultTokens(),
+                check.getAcceptableTokens(), "Invalid default tokens");
+        assertArrayEquals(check.getDefaultTokens(),
+                check.getRequiredTokens(), "Invalid acceptable tokens");
     }
 
     @Test
@@ -117,11 +119,10 @@ public class UncommentedMainCheckTest
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.CTOR_DEF, "ctor"));
         try {
             check.visitToken(ast);
-            Assert.fail("IllegalStateException is expected");
+            fail("IllegalStateException is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Error message is unexpected",
-                    ast.toString(), ex.getMessage());
+            assertEquals(ast.toString(), ex.getMessage(), "Error message is unexpected");
         }
     }
 

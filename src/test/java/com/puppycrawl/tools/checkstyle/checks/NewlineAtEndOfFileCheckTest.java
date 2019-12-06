@@ -21,8 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -33,7 +33,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -146,11 +146,10 @@ public class NewlineAtEndOfFileCheckTest
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Error message is unexpected",
-                    "cannot initialize module com.puppycrawl.tools.checkstyle."
+            assertEquals("cannot initialize module com.puppycrawl.tools.checkstyle."
                             + "checks.NewlineAtEndOfFileCheck - "
                             + "Cannot set property 'lineSeparator' to 'ct'",
-                    ex.getMessage());
+                    ex.getMessage(), "Error message is unexpected");
         }
     }
 
@@ -202,11 +201,10 @@ public class NewlineAtEndOfFileCheckTest
         final File impossibleFile = new File("");
         final FileText fileText = new FileText(impossibleFile, lines);
         final Set<LocalizedMessage> messages = check.process(impossibleFile, fileText);
-        assertEquals("Amount of messages is unexpected",
-                1, messages.size());
+        assertEquals(1, messages.size(), "Amount of messages is unexpected");
         final Iterator<LocalizedMessage> iterator = messages.iterator();
-        assertEquals("Violation message differs from expected",
-                getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getMessage());
+        assertEquals(getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getMessage(),
+                "Violation message differs from expected");
     }
 
     @Test
@@ -217,8 +215,8 @@ public class NewlineAtEndOfFileCheckTest
             fail("Exception is expected");
         }
         catch (IOException ex) {
-            assertEquals("Error message is unexpected",
-                    "Unable to read 1 bytes, got 0", ex.getMessage());
+            assertEquals("Unable to read 1 bytes, got 0", ex.getMessage(),
+                    "Error message is unexpected");
         }
     }
 

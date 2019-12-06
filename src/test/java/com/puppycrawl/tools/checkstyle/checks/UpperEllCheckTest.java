@@ -20,10 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.UpperEllCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -41,8 +41,8 @@ public class UpperEllCheckTest
     public void testGetRequiredTokens() {
         final UpperEllCheck checkObj = new UpperEllCheck();
         final int[] expected = {TokenTypes.NUM_LONG};
-        assertArrayEquals("Default required tokens are invalid",
-            expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
@@ -61,8 +61,8 @@ public class UpperEllCheckTest
         final int[] expected = {TokenTypes.NUM_LONG };
         final UpperEllCheck check = new UpperEllCheck();
         final int[] actual = check.getAcceptableTokens();
-        assertEquals("Invalid size of tokens", 1, actual.length);
-        assertArrayEquals("Default acceptable tokens are invalid", expected, actual);
+        assertEquals(1, actual.length, "Invalid size of tokens");
+        assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
 }

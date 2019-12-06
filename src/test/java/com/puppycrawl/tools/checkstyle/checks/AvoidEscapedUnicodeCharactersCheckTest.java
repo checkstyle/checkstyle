@@ -20,9 +20,9 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck.MSG_KEY;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -31,7 +31,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -162,8 +162,8 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
         };
-        assertArrayEquals("Required tokens differ from expected",
-                expected, checkObj.getRequiredTokens());
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Required tokens differ from expected");
     }
 
     @Test
@@ -340,8 +340,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
         final int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
-        assertArrayEquals("Acceptable tokens differ from expected",
-                expected, actual);
+        assertArrayEquals(expected, actual, "Acceptable tokens differ from expected");
     }
 
     @Test
@@ -379,7 +378,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int actual = (int) countMatches.invoke(check,
                 Pattern.compile("\\\\u[a-fA-F0-9]{4}"), "\\u1234");
-        assertEquals("Unexpected matches count", 1, actual);
+        assertEquals(1, actual, "Unexpected matches count");
     }
 
     /**
@@ -423,12 +422,12 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             if (!matcher.matches()) {
                 final String message = "Character '" + currentChar + "' (at position " + i
                         + ") doesn't match the pattern";
-                assertTrue(message, matcher.matches());
+                assertTrue(matcher.matches(), message);
             }
             if (lastChar != null) {
                 final String message = "Character '" + lastChar + "' should be after '"
                         + currentChar + "', position: " + i;
-                assertTrue(message, lastChar.compareTo(currentChar) < 0);
+                assertTrue(lastChar.compareTo(currentChar) < 0, message);
             }
             lastChar = currentChar;
         }
