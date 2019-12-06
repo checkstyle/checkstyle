@@ -86,6 +86,16 @@ build:
         fi
 
   - script:
+      name: NoErrorTest - Strata
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-strata"
+          ./.ci/wercker.sh no-error-strata
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
       name: NoErrorTest - Hibernate Search
       code: |
         if [[ $RUN_JOB == 1 ]]; then

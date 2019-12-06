@@ -146,8 +146,11 @@ no-error-strata)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
+  STRATA_CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${checkstyle.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   mvn install -e -B -Dstrict -DskipTests \
-     -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION}
+     -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION} \
+     -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
   rm -rf Strata
   ;;
