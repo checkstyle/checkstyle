@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
@@ -56,8 +56,8 @@ public class FileTextTest extends AbstractPathTestSupport {
             fail("UnsupportedEncodingException is expected but got " + test);
         }
         catch (IllegalStateException ex) {
-            assertEquals("Invalid exception message",
-                    "Unsupported charset: " + charsetName, ex.getMessage());
+            assertEquals("Unsupported charset: " + charsetName, ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -69,8 +69,8 @@ public class FileTextTest extends AbstractPathTestSupport {
             fail("FileNotFoundException is expected but got " + test);
         }
         catch (FileNotFoundException ex) {
-            assertEquals("Invalid exception message",
-                    "any name (No such file or directory)", ex.getMessage());
+            assertEquals("any name (No such file or directory)", ex.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -79,7 +79,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 charsetName);
-        assertEquals("Invalid charset name", charsetName, fileText.getCharset().name());
+        assertEquals(charsetName, fileText.getCharset().name(), "Invalid charset name");
     }
 
     @Test
@@ -89,8 +89,9 @@ public class FileTextTest extends AbstractPathTestSupport {
                 charsetName);
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
-        assertNotNull("LineBreaks not copied", Whitebox.getInternalState(copy, "lineBreaks"));
-        assertEquals("Invalid linecolumn", lineColumn, copy.lineColumn(100));
+        assertNotNull(Whitebox.getInternalState(copy, "lineBreaks"), "LineBreaks not copied");
+        final LineColumn actual = copy.lineColumn(100);
+        assertEquals(lineColumn, actual, "Invalid linecolumn");
     }
 
     @Test
@@ -99,14 +100,14 @@ public class FileTextTest extends AbstractPathTestSupport {
         final String filepath = getPath("InputFileTextImportControl.xml");
         final FileText fileText = new FileText(new File(filepath), charset.name());
         final FileText copy = new FileText(fileText);
-        assertNull("LineBreaks not null", Whitebox.getInternalState(copy, "lineBreaks"));
+        assertNull(Whitebox.getInternalState(copy, "lineBreaks"), "LineBreaks not null");
         final LineColumn lineColumn = copy.lineColumn(100);
-        assertEquals("Invalid line", 3, lineColumn.getLine());
+        assertEquals(3, lineColumn.getLine(), "Invalid line");
         if (CheckUtil.CRLF.equals(CheckUtil.getLineSeparatorForFile(filepath, charset))) {
-            assertEquals("Invalid column", 44, lineColumn.getColumn());
+            assertEquals(44, lineColumn.getColumn(), "Invalid column");
         }
         else {
-            assertEquals("Invalid column", 46, lineColumn.getColumn());
+            assertEquals(46, lineColumn.getColumn(), "Invalid column");
         }
     }
 
@@ -117,8 +118,8 @@ public class FileTextTest extends AbstractPathTestSupport {
                 charsetName);
         final FileText copy = new FileText(fileText);
         final LineColumn lineColumn = copy.lineColumn(0);
-        assertEquals("Invalid line", 1, lineColumn.getLine());
-        assertEquals("Invalid column", 0, lineColumn.getColumn());
+        assertEquals(1, lineColumn.getLine(), "Invalid line");
+        assertEquals(0, lineColumn.getColumn(), "Invalid column");
     }
 
     @Test
@@ -126,21 +127,21 @@ public class FileTextTest extends AbstractPathTestSupport {
         final List<String> lines = Collections.singletonList("abc");
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 lines);
-        assertArrayEquals("Invalid line", new String[] {"abc"}, fileText.toLinesArray());
+        assertArrayEquals(new String[] {"abc"}, fileText.toLinesArray(), "Invalid line");
     }
 
     @Test
     public void testFindLineBreaks() throws Exception {
         final FileText fileText = new FileText(new File("fileName"), Arrays.asList("1", "2"));
 
-        assertArrayEquals("Invalid line breaks", new int[] {0, 2, 4},
-                Whitebox.invokeMethod(fileText, "findLineBreaks"));
+        assertArrayEquals(new int[] {0, 2, 4},
+                Whitebox.invokeMethod(fileText, "findLineBreaks"), "Invalid line breaks");
 
         final FileText fileText2 = new FileText(new File("fileName"), Arrays.asList("1", "2"));
         Whitebox.setInternalState(fileText2, "fullText", "1\n2");
 
-        assertArrayEquals("Invalid line breaks", new int[] {0, 2, 3},
-                Whitebox.invokeMethod(fileText2, "findLineBreaks"));
+        assertArrayEquals(new int[] {0, 2, 3},
+                Whitebox.invokeMethod(fileText2, "findLineBreaks"), "Invalid line breaks");
     }
 
     /**
@@ -157,8 +158,8 @@ public class FileTextTest extends AbstractPathTestSupport {
         // produces NPE if used
         Whitebox.setInternalState(fileText, "fullText", (Object) null);
 
-        assertArrayEquals("Invalid line breaks", lineBreaks,
-                Whitebox.invokeMethod(fileText, "findLineBreaks"));
+        assertArrayEquals(lineBreaks,
+                Whitebox.invokeMethod(fileText, "findLineBreaks"), "Invalid line breaks");
     }
 
 }
