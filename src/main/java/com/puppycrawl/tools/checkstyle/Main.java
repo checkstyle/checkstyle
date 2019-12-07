@@ -218,20 +218,18 @@ public final class Main {
         // if only we add commons-io library
         final List<File> result = new LinkedList<>();
 
-        if (node.canRead()) {
-            if (!isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {
-                if (node.isDirectory()) {
-                    final File[] files = node.listFiles();
-                    // listFiles() can return null, so we need to check it
-                    if (files != null) {
-                        for (File element : files) {
-                            result.addAll(listFiles(element, patternsToExclude));
-                        }
+        if (node.canRead() && !isPathExcluded(node.getAbsolutePath(), patternsToExclude)) {
+            if (node.isDirectory()) {
+                final File[] files = node.listFiles();
+                // listFiles() can return null, so we need to check it
+                if (files != null) {
+                    for (File element : files) {
+                        result.addAll(listFiles(element, patternsToExclude));
                     }
                 }
-                else if (node.isFile()) {
-                    result.add(node);
-                }
+            }
+            else if (node.isFile()) {
+                result.add(node);
             }
         }
         return result;
