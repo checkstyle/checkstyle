@@ -823,10 +823,6 @@
                 </exclude>
                 <!-- Swing related classes -->
                 <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
-                <!-- Suppressed till https://github.com/jacoco/jacoco/issues/660 -->
-                <exclude>
-                  com/puppycrawl/tools/checkstyle/checks/annotation/AnnotationUseStyleCheck$1.class
-                </exclude>
               </excludes>
             </configuration>
           </execution>
