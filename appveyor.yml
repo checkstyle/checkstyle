@@ -67,8 +67,19 @@ environment:
       CMD: "./.ci/appveyor.bat site_without_verify"
 
 build_script:
-  - ps: >
-          Invoke-Expression (get-content env:CMD)
+  - ps: |
+      $RUN_JOB=1
+      if ($RUN_JOB -eq 1) {
+        $Expr = (get-content env:CMD)
+        Write-Host "CMD: $Expr"
+        Invoke-Expression $Expr
+        Write-Host "CMD exited with exit code $LastExitCode"
+        if ($LastExitCode -ne 0) {
+          exit $LastExitCode
+        }
+      } else {
+        Write-Host "build is skipped ..."
+      }
   - ps: echo "Size of caches (bytes):"
   - ps: Get-ChildItem -Recurse 'C:\maven\apache-maven-3.2.5' | Measure-Object -Property Length -Sum
   - ps: Get-ChildItem -Recurse 'C:\Users\appveyor\.m2' | Measure-Object -Property Length -Sum
