@@ -396,6 +396,7 @@ equalsavoidnull
 equalshashcode
 equalsverifier
 erial
+ERRORLEVEL
 errorprone
 esac
 Eslint
