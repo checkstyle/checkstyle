@@ -11,14 +11,7 @@
     <exclude-pattern>.*/src/test/.*</exclude-pattern>
     <rule ref="config/pmd.xml"/>
 
-    <rule ref="category/java/design.xml/CollapsibleIfStatements">
-        <properties>
-            <!-- Till https://github.com/hcoles/pitest/issues/377 -->
-            <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='Main']
-                                 //MethodDeclaration[@Name='main']"/>
-        </properties>
-    </rule>
+    <rule ref="category/java/design.xml/CollapsibleIfStatements"/>
     <rule ref="category/java/design.xml/ImmutableField">
         <properties>
             <!-- Fields with these annotations will have their value injected by picocli.
