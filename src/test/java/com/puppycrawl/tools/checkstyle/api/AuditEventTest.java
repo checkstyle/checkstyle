@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class AuditEventTest {
 
@@ -30,10 +30,10 @@ public class AuditEventTest {
     public void test() {
         final AuditEvent event = new AuditEvent(getClass());
 
-        assertNull("invalid file name", event.getFileName());
-        assertNull("invalid localized message", event.getLocalizedMessage());
-        assertEquals("invalid source", getClass(), event.getSource());
-        assertEquals("invalid severity", SeverityLevel.INFO, event.getSeverityLevel());
+        assertNull(event.getFileName(), "invalid file name");
+        assertNull(event.getLocalizedMessage(), "invalid localized message");
+        assertEquals(getClass(), event.getSource(), "invalid source");
+        assertEquals(SeverityLevel.INFO, event.getSeverityLevel(), "invalid severity");
     }
 
     @Test
@@ -42,15 +42,15 @@ public class AuditEventTest {
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
         final AuditEvent event = new AuditEvent(getClass(), "fileName", message);
 
-        assertEquals("invalid file name", "fileName", event.getFileName());
-        assertEquals("invalid localized message", message, event.getLocalizedMessage());
-        assertEquals("invalid message", "customMessage", event.getMessage());
-        assertEquals("invalid source", getClass(), event.getSource());
-        assertEquals("invalid line", 1, event.getLine());
-        assertEquals("invalid column", 2, event.getColumn());
-        assertEquals("invalid severity", SeverityLevel.ERROR, event.getSeverityLevel());
-        assertEquals("invalid module id", "moduleId", event.getModuleId());
-        assertEquals("invalid source name", "com.puppycrawl.tools.checkstyle.api.AuditEventTest",
-                event.getSourceName());
+        assertEquals("fileName", event.getFileName(), "invalid file name");
+        assertEquals(message, event.getLocalizedMessage(), "invalid localized message");
+        assertEquals("customMessage", event.getMessage(), "invalid message");
+        assertEquals(getClass(), event.getSource(), "invalid source");
+        assertEquals(1, event.getLine(), "invalid line");
+        assertEquals(2, event.getColumn(), "invalid column");
+        assertEquals(SeverityLevel.ERROR, event.getSeverityLevel(), "invalid severity");
+        assertEquals("moduleId", event.getModuleId(), "invalid module id");
+        assertEquals("com.puppycrawl.tools.checkstyle.api.AuditEventTest",
+                event.getSourceName(), "invalid source name");
     }
 }

@@ -19,15 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Locale;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test cases for {@link Scope} enumeration.
@@ -41,35 +41,35 @@ public class ScopeTest {
     @Test
     public void testScopeValueOf() {
         final Scope scope = Scope.valueOf("PRIVATE");
-        assertEquals("Invalid scope", Scope.PRIVATE, scope);
+        assertEquals(Scope.PRIVATE, scope, "Invalid scope");
     }
 
     @Test
     public void testMisc() {
         final Scope scope = Scope.getInstance("public");
-        assertNotNull("Scope must not be null", scope);
-        assertEquals("Invalid scope toString", "public", scope.toString());
-        assertEquals("Invalid scope name", "public", scope.getName());
+        assertNotNull(scope, "Scope must not be null");
+        assertEquals("public", scope.toString(), "Invalid scope toString");
+        assertEquals("public", scope.getName(), "Invalid scope name");
 
         try {
             Scope.getInstance("unknown");
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid error message",
+            assertEquals(
                     "No enum constant com.puppycrawl.tools.checkstyle.api.Scope.UNKNOWN",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid error message");
         }
     }
 
     @Test
     public void testMixedCaseSpaces() {
-        assertEquals("Invalid scope", Scope.NOTHING, Scope.getInstance("NothinG "));
-        assertEquals("Invalid scope", Scope.PUBLIC, Scope.getInstance(" PuBlic"));
-        assertEquals("Invalid scope", Scope.PROTECTED, Scope.getInstance(" ProteCted"));
-        assertEquals("Invalid scope", Scope.PACKAGE, Scope.getInstance("    PackAge "));
-        assertEquals("Invalid scope", Scope.PRIVATE, Scope.getInstance("privaTe   "));
-        assertEquals("Invalid scope", Scope.ANONINNER, Scope.getInstance("AnonInner"));
+        assertEquals(Scope.NOTHING, Scope.getInstance("NothinG "), "Invalid scope");
+        assertEquals(Scope.PUBLIC, Scope.getInstance(" PuBlic"), "Invalid scope");
+        assertEquals(Scope.PROTECTED, Scope.getInstance(" ProteCted"), "Invalid scope");
+        assertEquals(Scope.PACKAGE, Scope.getInstance("    PackAge "), "Invalid scope");
+        assertEquals(Scope.PRIVATE, Scope.getInstance("privaTe   "), "Invalid scope");
+        assertEquals(Scope.ANONINNER, Scope.getInstance("AnonInner"), "Invalid scope");
     }
 
     @Test
@@ -79,12 +79,12 @@ public class ScopeTest {
         try {
             for (Locale differentLocale : differentLocales) {
                 Locale.setDefault(differentLocale);
-                assertEquals("Invalid scope", Scope.NOTHING, Scope.getInstance("NothinG "));
-                assertEquals("Invalid scope", Scope.PUBLIC, Scope.getInstance(" PuBlic"));
-                assertEquals("Invalid scope", Scope.PROTECTED, Scope.getInstance(" ProteCted"));
-                assertEquals("Invalid scope", Scope.PACKAGE, Scope.getInstance("    PackAge "));
-                assertEquals("Invalid scope", Scope.PRIVATE, Scope.getInstance("privaTe   "));
-                assertEquals("Invalid scope", Scope.ANONINNER, Scope.getInstance("AnonInner"));
+                assertEquals(Scope.NOTHING, Scope.getInstance("NothinG "), "Invalid scope");
+                assertEquals(Scope.PUBLIC, Scope.getInstance(" PuBlic"), "Invalid scope");
+                assertEquals(Scope.PROTECTED, Scope.getInstance(" ProteCted"), "Invalid scope");
+                assertEquals(Scope.PACKAGE, Scope.getInstance("    PackAge "), "Invalid scope");
+                assertEquals(Scope.PRIVATE, Scope.getInstance("privaTe   "), "Invalid scope");
+                assertEquals(Scope.ANONINNER, Scope.getInstance("AnonInner"), "Invalid scope");
             }
         }
         finally {
@@ -94,62 +94,62 @@ public class ScopeTest {
 
     @Test
     public void testIsInAnonInner() {
-        assertTrue("Invalid subscope", Scope.NOTHING.isIn(Scope.ANONINNER));
-        assertTrue("Invalid subscope", Scope.PUBLIC.isIn(Scope.ANONINNER));
-        assertTrue("Invalid subscope", Scope.PROTECTED.isIn(Scope.ANONINNER));
-        assertTrue("Invalid subscope", Scope.PACKAGE.isIn(Scope.ANONINNER));
-        assertTrue("Invalid subscope", Scope.PRIVATE.isIn(Scope.ANONINNER));
-        assertTrue("Invalid subscope", Scope.ANONINNER.isIn(Scope.ANONINNER));
+        assertTrue(Scope.NOTHING.isIn(Scope.ANONINNER), "Invalid subscope");
+        assertTrue(Scope.PUBLIC.isIn(Scope.ANONINNER), "Invalid subscope");
+        assertTrue(Scope.PROTECTED.isIn(Scope.ANONINNER), "Invalid subscope");
+        assertTrue(Scope.PACKAGE.isIn(Scope.ANONINNER), "Invalid subscope");
+        assertTrue(Scope.PRIVATE.isIn(Scope.ANONINNER), "Invalid subscope");
+        assertTrue(Scope.ANONINNER.isIn(Scope.ANONINNER), "Invalid subscope");
     }
 
     @Test
     public void testIsInPrivate() {
-        assertTrue("Invalid subscope", Scope.NOTHING.isIn(Scope.PRIVATE));
-        assertTrue("Invalid subscope", Scope.PUBLIC.isIn(Scope.PRIVATE));
-        assertTrue("Invalid subscope", Scope.PROTECTED.isIn(Scope.PRIVATE));
-        assertTrue("Invalid subscope", Scope.PACKAGE.isIn(Scope.PRIVATE));
-        assertTrue("Invalid subscope", Scope.PRIVATE.isIn(Scope.PRIVATE));
-        assertFalse("Invalid subscope", Scope.ANONINNER.isIn(Scope.PRIVATE));
+        assertTrue(Scope.NOTHING.isIn(Scope.PRIVATE), "Invalid subscope");
+        assertTrue(Scope.PUBLIC.isIn(Scope.PRIVATE), "Invalid subscope");
+        assertTrue(Scope.PROTECTED.isIn(Scope.PRIVATE), "Invalid subscope");
+        assertTrue(Scope.PACKAGE.isIn(Scope.PRIVATE), "Invalid subscope");
+        assertTrue(Scope.PRIVATE.isIn(Scope.PRIVATE), "Invalid subscope");
+        assertFalse(Scope.ANONINNER.isIn(Scope.PRIVATE), "Invalid subscope");
     }
 
     @Test
     public void testIsInPackage() {
-        assertTrue("Invalid subscope", Scope.NOTHING.isIn(Scope.PACKAGE));
-        assertTrue("Invalid subscope", Scope.PUBLIC.isIn(Scope.PACKAGE));
-        assertTrue("Invalid subscope", Scope.PROTECTED.isIn(Scope.PACKAGE));
-        assertTrue("Invalid subscope", Scope.PACKAGE.isIn(Scope.PACKAGE));
-        assertFalse("Invalid subscope", Scope.PRIVATE.isIn(Scope.PACKAGE));
-        assertFalse("Invalid subscope", Scope.ANONINNER.isIn(Scope.PACKAGE));
+        assertTrue(Scope.NOTHING.isIn(Scope.PACKAGE), "Invalid subscope");
+        assertTrue(Scope.PUBLIC.isIn(Scope.PACKAGE), "Invalid subscope");
+        assertTrue(Scope.PROTECTED.isIn(Scope.PACKAGE), "Invalid subscope");
+        assertTrue(Scope.PACKAGE.isIn(Scope.PACKAGE), "Invalid subscope");
+        assertFalse(Scope.PRIVATE.isIn(Scope.PACKAGE), "Invalid subscope");
+        assertFalse(Scope.ANONINNER.isIn(Scope.PACKAGE), "Invalid subscope");
     }
 
     @Test
     public void testIsInProtected() {
-        assertTrue("Invalid subscope", Scope.NOTHING.isIn(Scope.PROTECTED));
-        assertTrue("Invalid subscope", Scope.PUBLIC.isIn(Scope.PROTECTED));
-        assertTrue("Invalid subscope", Scope.PROTECTED.isIn(Scope.PROTECTED));
-        assertFalse("Invalid subscope", Scope.PACKAGE.isIn(Scope.PROTECTED));
-        assertFalse("Invalid subscope", Scope.PRIVATE.isIn(Scope.PROTECTED));
-        assertFalse("Invalid subscope", Scope.ANONINNER.isIn(Scope.PROTECTED));
+        assertTrue(Scope.NOTHING.isIn(Scope.PROTECTED), "Invalid subscope");
+        assertTrue(Scope.PUBLIC.isIn(Scope.PROTECTED), "Invalid subscope");
+        assertTrue(Scope.PROTECTED.isIn(Scope.PROTECTED), "Invalid subscope");
+        assertFalse(Scope.PACKAGE.isIn(Scope.PROTECTED), "Invalid subscope");
+        assertFalse(Scope.PRIVATE.isIn(Scope.PROTECTED), "Invalid subscope");
+        assertFalse(Scope.ANONINNER.isIn(Scope.PROTECTED), "Invalid subscope");
     }
 
     @Test
     public void testIsInPublic() {
-        assertTrue("Invalid subscope", Scope.NOTHING.isIn(Scope.PUBLIC));
-        assertTrue("Invalid subscope", Scope.PUBLIC.isIn(Scope.PUBLIC));
-        assertFalse("Invalid subscope", Scope.PROTECTED.isIn(Scope.PUBLIC));
-        assertFalse("Invalid subscope", Scope.PACKAGE.isIn(Scope.PUBLIC));
-        assertFalse("Invalid subscope", Scope.PRIVATE.isIn(Scope.PUBLIC));
-        assertFalse("Invalid subscope", Scope.ANONINNER.isIn(Scope.PUBLIC));
+        assertTrue(Scope.NOTHING.isIn(Scope.PUBLIC), "Invalid subscope");
+        assertTrue(Scope.PUBLIC.isIn(Scope.PUBLIC), "Invalid subscope");
+        assertFalse(Scope.PROTECTED.isIn(Scope.PUBLIC), "Invalid subscope");
+        assertFalse(Scope.PACKAGE.isIn(Scope.PUBLIC), "Invalid subscope");
+        assertFalse(Scope.PRIVATE.isIn(Scope.PUBLIC), "Invalid subscope");
+        assertFalse(Scope.ANONINNER.isIn(Scope.PUBLIC), "Invalid subscope");
     }
 
     @Test
     public void testIsInNothing() {
-        assertTrue("Invalid subscope", Scope.NOTHING.isIn(Scope.NOTHING));
-        assertFalse("Invalid subscope", Scope.PUBLIC.isIn(Scope.NOTHING));
-        assertFalse("Invalid subscope", Scope.PROTECTED.isIn(Scope.NOTHING));
-        assertFalse("Invalid subscope", Scope.PACKAGE.isIn(Scope.NOTHING));
-        assertFalse("Invalid subscope", Scope.PRIVATE.isIn(Scope.NOTHING));
-        assertFalse("Invalid subscope", Scope.ANONINNER.isIn(Scope.NOTHING));
+        assertTrue(Scope.NOTHING.isIn(Scope.NOTHING), "Invalid subscope");
+        assertFalse(Scope.PUBLIC.isIn(Scope.NOTHING), "Invalid subscope");
+        assertFalse(Scope.PROTECTED.isIn(Scope.NOTHING), "Invalid subscope");
+        assertFalse(Scope.PACKAGE.isIn(Scope.NOTHING), "Invalid subscope");
+        assertFalse(Scope.PRIVATE.isIn(Scope.NOTHING), "Invalid subscope");
+        assertFalse(Scope.ANONINNER.isIn(Scope.NOTHING), "Invalid subscope");
     }
 
 }

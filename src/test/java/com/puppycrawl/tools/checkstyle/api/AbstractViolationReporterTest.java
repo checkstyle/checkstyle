@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.Method;
 import java.util.SortedSet;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -53,22 +53,21 @@ public class AbstractViolationReporterTest {
 
     @Test
     public void testGetMessageBundleWithPackage() throws Exception {
-        assertEquals("Message bundle differs from expected",
-                "com.mycompany.checks.messages",
-            getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"));
+        assertEquals("com.mycompany.checks.messages",
+            getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"),
+            "Message bundle differs from expected");
     }
 
     @Test
     public void testGetMessageBundleWithoutPackage() throws Exception {
-        assertEquals("Message bundle differs from expected",
-                "messages",
-            getGetMessageBundleMethod().invoke(null, "MyCoolCheck"));
+        assertEquals("messages", getGetMessageBundleMethod().invoke(null, "MyCoolCheck"),
+                "Message bundle differs from expected");
     }
 
     @Test
     public void testCustomId() {
         emptyCheck.setId("MyId");
-        assertEquals("Id differs from expected", "MyId", emptyCheck.getId());
+        assertEquals("MyId", emptyCheck.getId(), "Id differs from expected");
     }
 
     @Test
@@ -77,8 +76,8 @@ public class AbstractViolationReporterTest {
         config.addMessage("severity", "error");
         emptyCheck.configure(config);
 
-        assertEquals("Invalid severity level", SeverityLevel.ERROR, emptyCheck.getSeverityLevel());
-        assertEquals("Invalid severity", "error", emptyCheck.getSeverity());
+        assertEquals(SeverityLevel.ERROR, emptyCheck.getSeverityLevel(), "Invalid severity level");
+        assertEquals("error", emptyCheck.getSeverity(), "Invalid severity");
     }
 
     @Test
@@ -91,11 +90,9 @@ public class AbstractViolationReporterTest {
 
         final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
 
-        assertEquals("Amount of messages differs from expected",
-                1, messages.size());
-        assertEquals("Message differs from expected",
-                "This is a custom message.", messages.first()
-                .getMessage());
+        assertEquals(1, messages.size(), "Amount of messages differs from expected");
+        assertEquals("This is a custom message.", messages.first().getMessage(),
+                "Message differs from expected");
     }
 
     @Test
@@ -107,12 +104,10 @@ public class AbstractViolationReporterTest {
         emptyCheck.log(1, "msgKey", "TestParam");
         final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
 
-        assertEquals("Amount of messages differs from expected",
-                1, messages.size());
+        assertEquals(1, messages.size(), "Amount of messages differs from expected");
 
-        assertEquals("Message differs from expected",
-                "This is a custom message with TestParam.",
-                messages.first().getMessage());
+        assertEquals("This is a custom message with TestParam.",
+                messages.first().getMessage(), "Message differs from expected");
     }
 
     @Test
@@ -126,8 +121,8 @@ public class AbstractViolationReporterTest {
             fail("exception expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Error message is unexpected",
-                    "Unmatched braces in the pattern.", ex.getMessage());
+            assertEquals("Unmatched braces in the pattern.", ex.getMessage(),
+                    "Error message is unexpected");
         }
     }
 

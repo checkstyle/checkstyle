@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -30,45 +30,43 @@ public class LineColumnTest {
 
     @Test
     public void testCompareToBothEqual() {
-        assertEquals("Invalid LineColumn comparing result",
-                0, new LineColumn(0, 0).compareTo(new LineColumn(0, 0)));
+        final int actual = new LineColumn(0, 0).compareTo(new LineColumn(0, 0));
+        assertEquals(0, actual, "Invalid LineColumn comparing result");
     }
 
     @Test
     public void testCompareToFirstLarger() {
         final LineColumn lineColumn = new LineColumn(0, 0);
 
-        assertEquals("Invalid LineColumn comparison result",
-                1, new LineColumn(1, 0).compareTo(lineColumn));
-        assertEquals("Invalid LineColumn comparison result",
-                1, new LineColumn(0, 1).compareTo(lineColumn));
+        final int line1column0 = new LineColumn(1, 0).compareTo(lineColumn);
+        assertEquals(1, line1column0, "Invalid LineColumn comparison result");
+        final int line2Column1 = new LineColumn(0, 1).compareTo(lineColumn);
+        assertEquals(1, line2Column1, "Invalid LineColumn comparison result");
     }
 
     @Test
     public void testCompareToFirstSmaller() {
         final Comparable<LineColumn> lineColumn = new LineColumn(0, 0);
 
-        assertEquals("Invalid LineColumn comparison result", -1,
-                lineColumn.compareTo(new LineColumn(1, 0)));
-        assertEquals("Invalid LineColumn comparison result", -1,
-                lineColumn.compareTo(new LineColumn(0, 1)));
+        final int line1Column0 = lineColumn.compareTo(new LineColumn(1, 0));
+        assertEquals(-1, line1Column0, "Invalid LineColumn comparison result");
+        final int line0Column1 = lineColumn.compareTo(new LineColumn(0, 1));
+        assertEquals(-1, line0Column1, "Invalid LineColumn comparison result");
     }
 
     @Test
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(LineColumn.class).usingGetClass()
                 .report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
+        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
     }
 
     @Test
     public void testGetters() {
         final LineColumn lineColumn = new LineColumn(2, 3);
 
-        assertEquals("Invalid LineColumn comparison result",
-                2, lineColumn.getLine());
-        assertEquals("Invalid LineColumn comparison result",
-                3, lineColumn.getColumn());
+        assertEquals(2, lineColumn.getLine(), "Invalid LineColumn comparison result");
+        assertEquals(3, lineColumn.getColumn(), "Invalid LineColumn comparison result");
     }
 
 }
