@@ -33,6 +33,12 @@ matrix:
         - CMD="./.ci/travis/travis.sh pr-description"
         - SKIP_JOB_BY_FILES="false"
 
+    # new questionably spelled words
+    - env:
+        - DESC="spell checker"
+        - CMD="./.ci/test-spelling-unknown-words.sh"
+        - SKIP_JOB_BY_FILES="false"
+
     # unit tests (openjdk8)
     - jdk: openjdk8
       env:
@@ -290,12 +296,6 @@ matrix:
       env:
         - DESC="compile input files with jdk13 specific syntax"
         - CMD="./.ci/travis/travis.sh javac13"
-
-    # new questionably spelled words
-    - env:
-        - DESC="spell checker"
-        - CMD="./.ci/test-spelling-unknown-words.sh"
-        - SKIP_JOB_BY_FILES="false"
 
     # find missing pitests
     - env:
