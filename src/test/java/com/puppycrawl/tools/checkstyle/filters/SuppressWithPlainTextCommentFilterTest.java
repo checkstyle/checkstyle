@@ -21,9 +21,10 @@ package com.puppycrawl.tools.checkstyle.filters;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,8 +32,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -251,8 +251,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertEquals("Invalid exception message",
-                "unable to parse expanded comment e[l", cause.getMessage());
+            assertEquals("unable to parse expanded comment e[l", cause.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -276,8 +276,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertEquals("Invalid exception message",
-                "unable to parse expanded comment e[l", cause.getMessage());
+            assertEquals("unable to parse expanded comment e[l", cause.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -310,8 +310,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertEquals("Invalid exception message",
-                "unable to parse expanded comment e[l", cause.getMessage());
+            assertEquals("unable to parse expanded comment e[l", cause.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -342,8 +342,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         }
         catch (CheckstyleException ex) {
             final IllegalArgumentException cause = (IllegalArgumentException) ex.getCause();
-            assertEquals("Invalid exception message",
-                "unable to parse expanded comment e[l", cause.getMessage());
+            assertEquals("unable to parse expanded comment e[l", cause.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -351,8 +351,8 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     public void testAcceptNullLocalizedMessage() {
         final SuppressWithPlainTextCommentFilter filter = new SuppressWithPlainTextCommentFilter();
         final AuditEvent auditEvent = new AuditEvent(this);
-        assertTrue("Filter should accept audit event", filter.accept(auditEvent));
-        Assert.assertNull("File name should not be null", auditEvent.getFileName());
+        assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
+        assertNull(auditEvent.getFileName(), "File name should not be null");
     }
 
     /**
@@ -367,7 +367,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final EqualsVerifierReport ev = EqualsVerifier
                 .forClass(suppressionClass).usingGetClass()
                 .report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
+        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
     }
 
     @Test
@@ -594,14 +594,13 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             fail(IllegalStateException.class.getSimpleName() + " is expected");
         }
         catch (IllegalStateException ex) {
-            assertEquals("Invalid exception message",
-                "Cannot read source file: " + fileName, ex.getMessage());
+            assertEquals("Cannot read source file: " + fileName, ex.getMessage(),
+                    "Invalid exception message");
 
             final Throwable cause = ex.getCause();
-            assertTrue("Exception cause has invalid type",
-                cause instanceof FileNotFoundException);
-            assertEquals("Invalid exception message",
-                fileName + " (No such file or directory)", cause.getMessage());
+            assertTrue(cause instanceof FileNotFoundException, "Exception cause has invalid type");
+            assertEquals(fileName + " (No such file or directory)", cause.getMessage(),
+                    "Invalid exception message");
         }
     }
 
@@ -720,7 +719,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
                 "bundle", "key", null, SeverityLevel.ERROR, "moduleId", getClass(),
                 "customMessage"));
 
-        assertTrue("filter should accept directory", filter.accept(event));
+        assertTrue(filter.accept(event), "filter should accept directory");
     }
 
     private void verifySuppressed(String fileNameWithExtension, String[] violationMessages,

@@ -19,17 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.Set;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
@@ -42,9 +41,6 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
 import nl.jqno.equalsverifier.Warning;
 
 public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
-
-    @Rule
-    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
     @Override
     protected String getPackageLocation() {
@@ -60,8 +56,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "ATest.java", null, null);
 
-        assertTrue("TreeWalker audit event should be accepted when there are no suppressions",
-                filter.accept(ev));
+        assertTrue(filter.accept(ev),
+                "TreeWalker audit event should be accepted when there are no suppressions");
     }
 
     @Test
@@ -71,8 +67,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                 getPath("InputSuppressionXpathFilterIdAndQuery.xml"), optional);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java", null, null);
 
-        assertTrue("TreeWalker audit event should be accepted",
-                filter.accept(ev));
+        assertTrue(filter.accept(ev), "TreeWalker audit event should be accepted");
     }
 
     @Test
@@ -82,8 +77,8 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyJava.java", null, null);
-        assertTrue("TreeWalker audit event on null file should be accepted, but was not",
-                filter.accept(ev));
+        assertTrue(filter.accept(ev),
+                "TreeWalker audit event on null file should be accepted, but was not");
     }
 
     @Test
@@ -95,8 +90,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
-                    "Unable to find: " + fileName, ex.getMessage());
+            assertEquals("Unable to find: " + fileName, ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -109,9 +103,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message", "Unable to parse " + fileName
+            assertEquals("Unable to parse " + fileName
                     + " - invalid files or checks or message format for suppress-xpath",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -124,8 +118,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyJava.java", null, null);
 
-        assertTrue("Suppression file with true optional was not accepted",
-                filter.accept(ev));
+        assertTrue(filter.accept(ev), "Suppression file with true optional was not accepted");
     }
 
     @Test
@@ -137,8 +130,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
 
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "AnyFile.java", null, null);
 
-        assertTrue("Should except event when suppression file does not exist",
-                filter.accept(ev));
+        assertTrue(filter.accept(ev), "Should except event when suppression file does not exist");
     }
 
     @Test
@@ -152,8 +144,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(null, "file1.java",
                 message, JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
 
-        assertFalse("TreeWalker audit event should be rejected",
-                filter.accept(ev));
+        assertFalse(filter.accept(ev), "TreeWalker audit event should be rejected");
     }
 
     @Test
@@ -162,7 +153,7 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
                 .usingGetClass()
                 .withIgnoredFields("file", "optional", "configuration")
                 .suppress(Warning.NONFINAL_FIELDS).report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
+        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
     }
 
     @Test
@@ -170,9 +161,9 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         final boolean optional = false;
         final String fileName = getPath("InputSuppressionXpathFilterIdAndQuery.xml");
         final SuppressionXpathFilter filter = createSuppressionXpathFilter(fileName, optional);
-        assertEquals("Invalid external resource",
-                Collections.singleton(fileName),
-                filter.getExternalResourceLocations());
+        final Set<String> expected = Collections.singleton(fileName);
+        final Set<String> actual = filter.getExternalResourceLocations();
+        assertEquals(expected, actual, "Invalid external resource");
     }
 
     private static SuppressionXpathFilter createSuppressionXpathFilter(String fileName,

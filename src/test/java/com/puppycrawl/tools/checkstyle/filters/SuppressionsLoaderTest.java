@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -29,7 +29,7 @@ import java.net.URL;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 import org.xml.sax.InputSource;
 
@@ -53,8 +53,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals("No suppressions should be loaded, but found: " + fc.getFilters().size(),
-            fc2.getFilters(), fc.getFilters());
+        assertEquals(fc2.getFilters(), fc.getFilters(),
+                "No suppressions should be loaded, but found: " + fc.getFilters().size());
     }
 
     @Test
@@ -77,8 +77,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         // when https://github.com/jayway/powermock/issues/428 will be fixed
         if (actualFilterSet != null) {
             final FilterSet expectedFilterSet = new FilterSet();
-            assertEquals("Failed to load from url", expectedFilterSet.getFilters(),
-                    actualFilterSet.getFilters());
+            assertEquals(expectedFilterSet.getFilters(),
+                    actualFilterSet.getFilters(), "Failed to load from url");
         }
     }
 
@@ -89,7 +89,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message", "Unable to find: http", ex.getMessage());
+            assertEquals("Unable to find: http", ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -100,8 +100,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
-                "Unable to find: http://^%$^* %&% %^&", ex.getMessage());
+            assertEquals("Unable to find: http://^%$^* %&% %^&", ex.getMessage(),
+                    "Invalid error message");
         }
     }
 
@@ -126,8 +126,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final SuppressFilterElement se4 =
                 new SuppressFilterElement(null, null, "message0", null, null, null);
         fc2.addFilter(se4);
-        assertEquals("Multiple suppressions were loaded incorrectly", fc2.getFilters(),
-                fc.getFilters());
+        assertEquals(fc2.getFilters(), fc.getFilters(),
+                "Multiple suppressions were loaded incorrectly");
     }
 
     @Test
@@ -139,12 +139,12 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
-            assertTrue("Exception message should start with: " + messageStart,
-                ex.getMessage().startsWith("Unable to parse " + fn));
-            assertTrue("Exception message should contain \"files\"",
-                ex.getMessage().contains("\"files\""));
-            assertTrue("Exception message should contain \"suppress\"",
-                ex.getMessage().contains("\"suppress\""));
+            assertTrue(ex.getMessage().startsWith("Unable to parse " + fn),
+                    "Exception message should start with: " + messageStart);
+            assertTrue(ex.getMessage().contains("\"files\""),
+                    "Exception message should contain \"files\"");
+            assertTrue(ex.getMessage().contains("\"suppress\""),
+                    "Exception message should contain \"suppress\"");
         }
     }
 
@@ -157,12 +157,12 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         }
         catch (CheckstyleException ex) {
             final String messageStart = "Unable to parse " + fn;
-            assertTrue("Exception message should start with: " + messageStart,
-                ex.getMessage().startsWith(messageStart));
-            assertTrue("Exception message should contain \"checks\"",
-                ex.getMessage().contains("\"checks\""));
-            assertTrue("Exception message should contain \"suppress\"",
-                ex.getMessage().contains("\"suppress\""));
+            assertTrue(ex.getMessage().startsWith(messageStart),
+                    "Exception message should start with: " + messageStart);
+            assertTrue(ex.getMessage().contains("\"checks\""),
+                    "Exception message should contain \"checks\"");
+            assertTrue(ex.getMessage().contains("\"suppress\""),
+                    "Exception message should contain \"suppress\"");
         }
     }
 
@@ -174,9 +174,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertTrue(
-                ex.getMessage(),
-                ex.getMessage().startsWith("Number format exception " + fn + " - "));
+            assertTrue(ex.getMessage().startsWith("Number format exception " + fn + " - "),
+                    ex.getMessage());
         }
     }
 
@@ -231,8 +230,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "Unable to find: " + sourceName,
-                    ex.getMessage());
+            assertEquals("Unable to find: " + sourceName,
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -246,8 +245,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("CheckstyleException is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message", "Unable to read " + sourceName,
-                    ex.getMessage());
+            assertEquals("Unable to read " + sourceName,
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -259,9 +258,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
-                "Unable to parse " + fn + " - missing checks or id or message attribute",
-                ex.getMessage());
+            assertEquals(
+                    "Unable to parse " + fn + " - missing checks or id or message attribute",
+                ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -270,7 +269,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderId.xml");
         final FilterSet set = SuppressionsLoader.loadSuppressions(fn);
 
-        assertEquals("Invalid number of filters", 1, set.getFilters().size());
+        assertEquals(1, set.getFilters().size(), "Invalid number of filters");
     }
 
     @Test
@@ -281,9 +280,9 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
-                "Unable to parse " + fn + " - invalid files or checks or message format",
-                ex.getMessage());
+            assertEquals(
+                    "Unable to parse " + fn + " - invalid files or checks or message format",
+                ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -292,7 +291,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final FilterSet fc =
             SuppressionsLoader.loadSuppressions(getPath("InputSuppressionsLoaderNone.xml"));
         final FilterSet fc2 = new FilterSet();
-        assertEquals("Suppressions were not loaded", fc2.getFilters(), fc.getFilters());
+        assertEquals(fc2.getFilters(), fc.getFilters(), "Suppressions were not loaded");
     }
 
     @Test
@@ -303,7 +302,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
                 .toArray()[0];
 
         final String id = Whitebox.getInternalState(suppressElement, "moduleId");
-        assertEquals("Id has to be defined", "someId", id);
+        assertEquals("someId", id, "Id has to be defined");
     }
 
     @Test
@@ -318,8 +317,8 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final XpathFilterElement xf1 =
                 new XpathFilterElement(null, null, "message1", null, "/CLASS_DEF");
         expectedFilterSet.add(xf1);
-        assertEquals("Multiple xpath suppressions were loaded incorrectly", expectedFilterSet,
-                filterSet);
+        assertEquals(expectedFilterSet,
+                filterSet, "Multiple xpath suppressions were loaded incorrectly");
     }
 
     @Test
@@ -330,10 +329,10 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("Exception should be thrown");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
+            assertEquals(
                     "Unable to parse " + fn + " - invalid files or checks or message format for "
                             + "suppress-xpath",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -346,10 +345,10 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
             fail("Exception should be thrown");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid error message",
+            assertEquals(
                     "Unable to parse " + fn + " - missing checks or id or message attribute for "
                             + "suppress-xpath",
-                    ex.getMessage());
+                    ex.getMessage(), "Invalid error message");
         }
     }
 
@@ -358,7 +357,7 @@ public class SuppressionsLoaderTest extends AbstractPathTestSupport {
         final String fn = getPath("InputSuppressionsLoaderXpathId.xml");
         final Set<TreeWalkerFilter> filterSet = SuppressionsLoader.loadXpathSuppressions(fn);
 
-        assertEquals("Invalid number of filters", 1, filterSet.size());
+        assertEquals(1, filterSet.size(), "Invalid number of filters");
     }
 
 }

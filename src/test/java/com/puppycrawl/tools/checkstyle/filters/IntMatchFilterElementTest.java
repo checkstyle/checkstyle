@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -33,22 +33,22 @@ public class IntMatchFilterElementTest {
     @Test
     public void testDecide() {
         final IntFilterElement filter = new IntMatchFilterElement(0);
-        assertFalse("less than", filter.accept(-1));
-        assertTrue("equal", filter.accept(0));
-        assertFalse("greater than", filter.accept(1));
+        assertFalse(filter.accept(-1), "less than");
+        assertTrue(filter.accept(0), "equal");
+        assertFalse(filter.accept(1), "greater than");
     }
 
     @Test
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilterElement.class)
                 .report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
+        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
     }
 
     @Test
     public void testToString() {
         final IntFilterElement filter = new IntMatchFilterElement(6);
-        assertEquals("Invalid toString result", "IntMatchFilterElement[6]", filter.toString());
+        assertEquals("IntMatchFilterElement[6]", filter.toString(), "Invalid toString result");
     }
 
 }
