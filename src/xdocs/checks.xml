@@ -371,7 +371,7 @@
             by the format property.</td>
           </tr>
           <tr>
-            <td><a href="config_naming.html#InvalidJavadocPosition">
+            <td><a href="config_javadoc.html#InvalidJavadocPosition">
               InvalidJavadocPosition</a></td>
             <td>
               Checks that Javadocs are located at the correct position.</td>

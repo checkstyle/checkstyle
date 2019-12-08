@@ -637,7 +637,7 @@ import android.*;
         <p>
           Note: By default, the check rejects all <code>sun.*</code> packages since
           programs that contain direct calls to the <code>sun.*</code> packages are
-          <a href="https://www.oracle.com/technetwork/java/faq-sun-packages-142232.html">
+          <a href="https://www.oracle.com/java/technologies/faq-sun-packages.html">
           "not guaranteed to work on all Java-compatible platforms"</a>.
           To reject other packages, set property <code>illegalPkgs</code> to
           a list of the illegal packages.

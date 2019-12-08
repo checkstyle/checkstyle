@@ -245,7 +245,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
         can see the Java grammar &#39;in action&#39;.
       </p>
 
-      <p> If you use <a href="https://eclipse.org">Eclipse</a> you can install
+      <p> If you use <a href="https://www.eclipse.org/">Eclipse</a> you can install
         <a href="https://github.com/sevntu-checkstyle/checkstyle-ast-eclipse-viewer">
           Checkstyle AST Eclipse Viewer</a>
         plugin to launch that application from context menu on any file in Eclipse.
@@ -787,7 +787,7 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
       <p>
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on
-        the user <a href="mail-lists.html">
+        the user <a href="mailing-lists.html">
         mailing lists</a>, this will help us to improve this
         document.  Please ask your questions as precisely as possible.
         We will not be able to answer questions like &quot;I want to

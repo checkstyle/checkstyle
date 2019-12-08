@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * RETURN_LITERAL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#THROWS_LITERAL">
  * THROWS_LITERAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#TEXCEPTION_LITERAL">
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#EXCEPTION_LITERAL">
  * EXCEPTION_LITERAL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DEPRECATED_LITERAL">
  * DEPRECATED_LITERAL</a>.
