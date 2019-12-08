@@ -22,7 +22,7 @@ package com.puppycrawl.tools.checkstyle.grammar.javadoc;
 import java.io.File;
 import java.io.IOException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
