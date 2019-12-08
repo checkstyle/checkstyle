@@ -19,13 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerTest;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -38,7 +38,7 @@ public class SuppressFilterElementTest {
 
     private SuppressFilterElement filter;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         filter = new SuppressFilterElement("Test", "Test", null, null, null, null);
     }
@@ -46,7 +46,7 @@ public class SuppressFilterElementTest {
     @Test
     public void testDecideDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
-        assertTrue(ev.getFileName(), filter.accept(ev));
+        assertTrue(filter.accept(ev), ev.getFileName());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class SuppressFilterElementTest {
             new LocalizedMessage(1, 0, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         //deny because there are matches on file and check names
-        assertFalse("Names match", filter.accept(ev));
+        assertFalse(filter.accept(ev), "Names match");
     }
 
     @Test
@@ -67,8 +67,8 @@ public class SuppressFilterElementTest {
                 new SuppressFilterElement(null, null, "Test", null, null, null);
         final SuppressFilterElement filter2 =
                 new SuppressFilterElement(null, null, "Bad", null, null, null);
-        assertFalse("Message match", filter1.accept(ev));
-        assertTrue("Message not match", filter2.accept(ev));
+        assertFalse(filter1.accept(ev), "Message match");
+        assertTrue(filter2.accept(ev), "Message not match");
     }
 
     @Test
@@ -83,9 +83,9 @@ public class SuppressFilterElementTest {
         final SuppressFilterElement filter3 =
                 new SuppressFilterElement("Test", "Test", null, null, null, null);
         //deny because there are matches on file name, check name, and line
-        assertFalse("In range 1-10", filter1.accept(ev));
-        assertTrue("Not in 1-9, 11", filter2.accept(ev));
-        assertFalse("none", filter3.accept(ev));
+        assertFalse(filter1.accept(ev), "In range 1-10");
+        assertTrue(filter2.accept(ev), "Not in 1-9, 11");
+        assertFalse(filter3.accept(ev), "none");
     }
 
     @Test
@@ -99,8 +99,8 @@ public class SuppressFilterElementTest {
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-9, 11");
 
         //deny because there are matches on file name, check name, and column
-        assertFalse("In range 1-10", filter1.accept(ev));
-        assertTrue("Not in 1-9, 1)", filter2.accept(ev));
+        assertFalse(filter1.accept(ev), "In range 1-10");
+        assertTrue(filter2.accept(ev), "Not in 1-9, 1)");
     }
 
     @Test
@@ -108,13 +108,13 @@ public class SuppressFilterElementTest {
         final LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
-        assertTrue("Filter should accept valid event", filter.accept(ev));
+        assertTrue(filter.accept(ev), "Filter should accept valid event");
     }
 
     @Test
     public void testDecideByFileNameAndModuleMatchingMessageNull() {
         final AuditEvent ev = new AuditEvent(this, "ATest.java", null);
-        assertTrue("Filter should accept valid event", filter.accept(ev));
+        assertTrue(filter.accept(ev), "Filter should accept valid event");
     }
 
     @Test
@@ -122,7 +122,7 @@ public class SuppressFilterElementTest {
         final LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, "MyModule", getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
-        assertFalse("Filter should not accept invalid event", filter.accept(ev));
+        assertFalse(filter.accept(ev), "Filter should not accept invalid event");
     }
 
     @Test
@@ -133,7 +133,7 @@ public class SuppressFilterElementTest {
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", "Test", null, "MyModule", null, null);
 
-        assertFalse("Filter should not accept invalid event", myFilter.accept(ev));
+        assertFalse(myFilter.accept(ev), "Filter should not accept invalid event");
     }
 
     @Test
@@ -144,7 +144,7 @@ public class SuppressFilterElementTest {
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", "Test", null, "MyModule", null, null);
 
-        assertTrue("Filter should accept valid event", myFilter.accept(ev));
+        assertTrue(myFilter.accept(ev), "Filter should accept valid event");
     }
 
     @Test
@@ -152,7 +152,7 @@ public class SuppressFilterElementTest {
         final LocalizedMessage message =
                 new LocalizedMessage(10, 10, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "T1est", message);
-        assertTrue("Filter should accept valid event", filter.accept(ev));
+        assertTrue(filter.accept(ev), "Filter should accept valid event");
     }
 
     @Test
@@ -162,7 +162,7 @@ public class SuppressFilterElementTest {
         final AuditEvent ev = new AuditEvent(this, "TestSUFFIX", message);
         final SuppressFilterElement myFilter =
                 new SuppressFilterElement("Test", null, null, null, null, null);
-        assertFalse("Filter should not accept invalid event", myFilter.accept(ev));
+        assertFalse(myFilter.accept(ev), "Filter should not accept invalid event");
     }
 
     @Test
@@ -172,7 +172,7 @@ public class SuppressFilterElementTest {
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
         final SuppressFilterElement myFilter = new SuppressFilterElement("Test",
                 "NON_EXISTENT_CHECK", null, "MyModule", null, null);
-        assertTrue("Filter should accept valid event", myFilter.accept(ev));
+        assertTrue(myFilter.accept(ev), "Filter should accept valid event");
     }
 
     @Test
@@ -183,7 +183,7 @@ public class SuppressFilterElementTest {
         final SuppressFilterElement myFilter = new SuppressFilterElement("Test",
                 getClass().getCanonicalName(), null, null, null, null);
 
-        assertFalse("Filter should not accept invalid event", myFilter.accept(ev));
+        assertFalse(myFilter.accept(ev), "Filter should not accept invalid event");
     }
 
     @Test
@@ -195,7 +195,7 @@ public class SuppressFilterElementTest {
                 new SuppressFilterElement("Test", TreeWalkerTest.class.getCanonicalName(),
                         null, null, null, null);
 
-        assertTrue("Filter should not accept invalid event", myFilter.accept(ev));
+        assertTrue(myFilter.accept(ev), "Filter should not accept invalid event");
     }
 
     @Test
@@ -207,26 +207,26 @@ public class SuppressFilterElementTest {
 
         final SuppressFilterElement filter2 =
                 new SuppressFilterElement("Test", "Test", null, null, null, null);
-        assertEquals("filter, filter2", filterBased, filter2);
+        assertEquals(filterBased, filter2, "filter, filter2");
         final SuppressFilterElement filter3 =
                 new SuppressFilterElement("Test", "Test3", null, null, null, null);
-        assertNotEquals("filter, filter3", filterBased, filter3);
+        assertNotEquals(filterBased, filter3, "filter, filter3");
         final SuppressFilterElement filterBased1 =
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-10");
 
-        assertNotEquals("filter, filter2", filterBased1, filter2);
+        assertNotEquals(filterBased1, filter2, "filter, filter2");
         final SuppressFilterElement filter22 =
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-10");
-        assertEquals("filter, filter2", filterBased1, filter22);
-        assertNotEquals("filter, filter2", filterBased1, filter2);
+        assertEquals(filterBased1, filter22, "filter, filter2");
+        assertNotEquals(filterBased1, filter2, "filter, filter2");
         final SuppressFilterElement filterBased2 =
                 new SuppressFilterElement("Test", "Test", null, null, "3,4", null);
-        assertNotEquals("filter, filter2", filterBased2, filter2);
+        assertNotEquals(filterBased2, filter2, "filter, filter2");
         final SuppressFilterElement filter23 =
                 new SuppressFilterElement("Test", "Test", null, null, "3,4", null);
-        assertEquals("filter, filter2", filterBased2, filter23);
-        assertNotEquals("filter, filter2", filterBased2, filter2);
-        assertEquals("filter, filter2", filterBased2, filter23);
+        assertEquals(filterBased2, filter23, "filter, filter2");
+        assertNotEquals(filterBased2, filter2, "filter, filter2");
+        assertEquals(filterBased2, filter23, "filter, filter2");
     }
 
     @Test
@@ -237,7 +237,7 @@ public class SuppressFilterElementTest {
                         "lineFilter")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
+        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
     }
 
 }

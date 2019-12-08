@@ -27,7 +27,7 @@
       <allow pkg="org.junit"/>
     </subpackage>
   </subpackage>
-  <subpackage name="(filefilters|filters|grammar|gui|internal|utils|xpath)" regex="true">
+  <subpackage name="(grammar|gui|internal|utils|xpath)" regex="true">
     <allow pkg="org.junit"/>
   </subpackage>
   <file name=".*Test(Support)?" regex="true">

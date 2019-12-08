@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -38,18 +38,18 @@ public class SeverityMatchFilterTest {
     @Test
     public void testDefault() {
         final AuditEvent ev = new AuditEvent(this, "Test.java");
-        assertFalse("no message", filter.accept(ev));
+        assertFalse(filter.accept(ev), "no message");
         final SeverityLevel errorLevel = SeverityLevel.ERROR;
         final LocalizedMessage errorMessage =
             new LocalizedMessage(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertTrue("level:" + errorLevel, filter.accept(ev2));
+        assertTrue(filter.accept(ev2), "level:" + errorLevel);
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final LocalizedMessage infoMessage =
                 new LocalizedMessage(1, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
-        assertFalse("level:" + infoLevel, filter.accept(ev3));
+        assertFalse(filter.accept(ev3), "level:" + infoLevel);
     }
 
     @Test
@@ -57,18 +57,18 @@ public class SeverityMatchFilterTest {
         filter.setSeverity(SeverityLevel.INFO);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
-        assertTrue("no message", filter.accept(ev));
+        assertTrue(filter.accept(ev), "no message");
         final SeverityLevel errorLevel = SeverityLevel.ERROR;
         final LocalizedMessage errorMessage =
             new LocalizedMessage(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertFalse("level:" + errorLevel, filter.accept(ev2));
+        assertFalse(filter.accept(ev2), "level:" + errorLevel);
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final LocalizedMessage infoMessage =
                 new LocalizedMessage(1, 0, "", "", null, infoLevel, null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
-        assertTrue("level:" + infoLevel, filter.accept(ev3));
+        assertTrue(filter.accept(ev3), "level:" + infoLevel);
     }
 
     @Test
@@ -77,24 +77,24 @@ public class SeverityMatchFilterTest {
         filter.setAcceptOnMatch(false);
         final AuditEvent ev = new AuditEvent(this, "Test.java");
         // event with no message has severity level INFO
-        assertFalse("no message", filter.accept(ev));
+        assertFalse(filter.accept(ev), "no message");
         final SeverityLevel errorLevel = SeverityLevel.ERROR;
         final LocalizedMessage errorMessage =
             new LocalizedMessage(1, 0, "", "", null,
                 errorLevel, null, getClass(), null);
         final AuditEvent ev2 = new AuditEvent(this, "ATest.java", errorMessage);
-        assertTrue("level:" + errorLevel, filter.accept(ev2));
+        assertTrue(filter.accept(ev2), "level:" + errorLevel);
         final SeverityLevel infoLevel = SeverityLevel.INFO;
         final LocalizedMessage infoMessage = new LocalizedMessage(1, 0, "", "", null, infoLevel,
             null, getClass(), null);
         final AuditEvent ev3 = new AuditEvent(this, "ATest.java", infoMessage);
-        assertFalse("level:" + infoLevel, filter.accept(ev3));
+        assertFalse(filter.accept(ev3), "level:" + infoLevel);
     }
 
     @Test
     public void testConfigure() throws CheckstyleException {
         filter.configure(new DefaultConfiguration("test"));
-        assertNotNull("object exists", filter);
+        assertNotNull(filter, "object exists");
     }
 
 }

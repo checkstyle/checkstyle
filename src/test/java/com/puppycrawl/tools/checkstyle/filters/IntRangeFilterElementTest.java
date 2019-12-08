@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -33,36 +33,36 @@ public class IntRangeFilterElementTest {
     @Test
     public void testDecide() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 10);
-        assertFalse("less than", filter.accept(-1));
-        assertTrue("in range", filter.accept(0));
-        assertTrue("in range", filter.accept(5));
-        assertTrue("in range", filter.accept(10));
-        assertFalse("greater than", filter.accept(11));
+        assertFalse(filter.accept(-1), "less than");
+        assertTrue(filter.accept(0), "in range");
+        assertTrue(filter.accept(5), "in range");
+        assertTrue(filter.accept(10), "in range");
+        assertFalse(filter.accept(11), "greater than");
     }
 
     @Test
     public void testDecideSingle() {
         final IntFilterElement filter = new IntRangeFilterElement(0, 0);
-        assertFalse("less than", filter.accept(-1));
-        assertTrue("in range", filter.accept(0));
-        assertFalse("greater than", filter.accept(1));
+        assertFalse(filter.accept(-1), "less than");
+        assertTrue(filter.accept(0), "in range");
+        assertFalse(filter.accept(1), "greater than");
     }
 
     @Test
     public void testDecideEmpty() {
         final IntFilterElement filter = new IntRangeFilterElement(10, 0);
-        assertFalse("out", filter.accept(-1));
-        assertFalse("out", filter.accept(0));
-        assertFalse("out", filter.accept(5));
-        assertFalse("out", filter.accept(10));
-        assertFalse("out", filter.accept(11));
+        assertFalse(filter.accept(-1), "out");
+        assertFalse(filter.accept(0), "out");
+        assertFalse(filter.accept(5), "out");
+        assertFalse(filter.accept(10), "out");
+        assertFalse(filter.accept(11), "out");
     }
 
     @Test
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntRangeFilterElement.class)
                 .usingGetClass().report();
-        assertEquals("Error: " + ev.getMessage(), EqualsVerifierReport.SUCCESS, ev);
+        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
     }
 
 }
