@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.grammar.java8;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;

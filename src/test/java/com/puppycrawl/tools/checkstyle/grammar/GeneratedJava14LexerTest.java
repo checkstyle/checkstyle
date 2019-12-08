@@ -24,8 +24,8 @@ import static com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck.MS
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.Assume;
-import org.junit.Test;
+import org.junit.jupiter.api.Assumptions;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -52,7 +52,7 @@ public class GeneratedJava14LexerTest
     @Test
     public void testUnexpectedChar() throws Exception {
         // Encoding problems will occur if default encoding is not UTF-8
-        Assume.assumeTrue("Problems with encoding may occur", IS_UTF8);
+        Assumptions.assumeTrue(IS_UTF8, "Problems with encoding may occur");
 
         final DefaultConfiguration checkConfig =
             createModuleConfig(MemberNameCheck.class);

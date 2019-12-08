@@ -19,10 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.grammar;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.InputStream;
@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.NoViableAltForCharException;
 import antlr.ParserSharedInputState;
@@ -121,8 +121,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);
 
-        assertNotNull("InputStream should not be null",
-                constructor.newInstance(new Object[] {null}));
+        assertNotNull(constructor.newInstance(new Object[] {null}),
+                "InputStream should not be null");
     }
 
     @Test
@@ -131,8 +131,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final Constructor<?> constructor = clss
                 .getDeclaredConstructor(ParserSharedInputState.class);
 
-        assertNotNull("ParserSharedInputState should not be null",
-                constructor.newInstance(new Object[] {null}));
+        assertNotNull(constructor.newInstance(new Object[] {null}),
+                "ParserSharedInputState should not be null");
     }
 
     @Test
@@ -140,8 +140,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final Class<?> clss = GeneratedJavaRecognizer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(TokenBuffer.class);
 
-        assertNotNull("TokenBuffer should not be null",
-                constructor.newInstance(new Object[] {null}));
+        assertNotNull(constructor.newInstance(new Object[] {null}),
+                "TokenBuffer should not be null");
     }
 
     @Test
@@ -239,8 +239,8 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         final String actualContents = AstTreeStringPrinter.printAst(actualFileContents,
                 withComments);
 
-        assertEquals("Generated AST from Java code should match pre-defined AST", expectedContents,
-                actualContents);
+        assertEquals(expectedContents, actualContents,
+                "Generated AST from Java code should match pre-defined AST");
     }
 
     private static final class AssertGeneratedJavaLexer extends GeneratedJavaLexer {
@@ -294,12 +294,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
             }
 
             if (expectPass) {
-                assertFalse("Call to GeneratedJavaLexer." + methodName
-                        + " resulted in an exception", exception);
+                assertFalse(exception, "Call to GeneratedJavaLexer." + methodName
+                        + " resulted in an exception");
             }
             else {
-                assertTrue("Call to GeneratedJavaLexer." + methodName
-                        + " did not result in an exception", exception);
+                assertTrue(exception, "Call to GeneratedJavaLexer." + methodName
+                        + " did not result in an exception");
             }
         }
 

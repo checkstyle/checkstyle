@@ -153,8 +153,10 @@
             <property name="violationSuppressXPath"
                       value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']
                                  //MethodDeclaration[@Name='testTokenValues']
-            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
-                  //MethodDeclaration[@Name='testTokenNumbers' or @Name='testRuleNumbers']"/>
+                        | //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']
+                              //MethodDeclaration[@Name='testTokenNumbering']
+                        | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
+                              //MethodDeclaration[@Name='testTokenNumbers']"/>
         </properties>
     </rule>
 
