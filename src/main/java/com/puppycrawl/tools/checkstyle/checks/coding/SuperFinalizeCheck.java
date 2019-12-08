@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * </p>
  * <p>
  * References:
- * <a href="https://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
+ * <a href="https://www.oracle.com/technical-resources/articles/javase/finalization.html">
  * How to Handle Java Finalization's Memory-Retention Issues</a>;
  * <a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
  * 10 points on finalize method in Java</a>.

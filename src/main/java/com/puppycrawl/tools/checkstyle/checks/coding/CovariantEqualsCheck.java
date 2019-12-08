@@ -46,8 +46,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * that are equal using covariant enum method, and not equal when compared normally.
  * </p>
  * <p>
- * Inspired by <a href="https://cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">
- * Finding Bugs is Easy, chapter '2.3.1 Bad Covariant Definition of Equals (Eq)'</a>:
+ * Inspired by <a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf">
+ * Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'</a>:
  * </p>
  * <p>
  * Java classes may override the {@code equals(Object)} method to define

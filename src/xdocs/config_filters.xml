@@ -2317,7 +2317,7 @@ public class UserService {
               <p>
                   Properties <code>offCommentFormat</code> and <code>onCommentFormat</code>
                   must have equal
-                  <a href="https://docs.oracle.com/javase/11/docs/api/java/util/regex/Matcher.html#groupCount()">
+                  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
                   paren counts</a>.
               </p>
           </subsection>

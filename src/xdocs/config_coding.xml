@@ -254,8 +254,8 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </p>
 
         <p>
-          Inspired by <a href="https://cs.nyu.edu/~lharris/papers/findbugsPaper.pdf">
-          Finding Bugs is Easy, chapter '2.3.1 Bad Covariant Definition of Equals (Eq)'</a>:
+          Inspired by <a href="https://www.cs.jhu.edu/~daveho/pubs/oopsla2004.pdf">
+          Finding Bugs is Easy, chapter '4.5 Bad Covariant Definition of Equals (Eq)'</a>:
         </p>
 
         <p>
@@ -3683,7 +3683,7 @@ System.out.println(s2 instanceof Square); //true
             <tr>
               <td>treatTryResourcesAsStatement</td>
               <td>Enable resources processing.</td>
-              <td><a href="property_types.html#Boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>8.23</td>
             </tr>
@@ -4548,7 +4548,7 @@ return !valid();
 
         <p>
           The idea for this Check has been shamelessly stolen from the
-          equivalent <a href="http://pmd.sourceforge.net">PMD</a> rule.
+          equivalent <a href="https://pmd.github.io/">PMD</a> rule.
         </p>
       </subsection>
 
@@ -4736,7 +4736,7 @@ if (&quot;something&quot;.equals(x))
 
         <p>
           References:
-          <a href="https://www.oracle.com/technetwork/java/javamail/finalization-137655.html">
+          <a href="https://www.oracle.com/technical-resources/articles/javase/finalization.html">
           How to Handle Java Finalization's Memory-Retention Issues</a>;
           <a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html">
           10 points on finalize method in Java</a>.

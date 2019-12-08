@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * ATTENTION: We skip
- * <a href="https://www.oracle.com/technetwork/articles/java/ma14-architect-annotations-2177655.html">
+ * <a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html">
  * type annotations</a> from validation.
  * </p>
  * <p>

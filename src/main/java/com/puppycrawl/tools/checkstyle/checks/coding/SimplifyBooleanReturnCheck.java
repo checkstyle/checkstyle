@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>
  * The idea for this Check has been shamelessly stolen from the equivalent
- * <a href="http://pmd.sourceforge.net">PMD</a> rule.
+ * <a href="https://pmd.github.io/">PMD</a> rule.
  * </p>
  * <p>
  * To configure the check:
