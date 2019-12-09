@@ -168,8 +168,8 @@
          <a href="https://github.com/checkstyle/checkstyle/commit/9303fd9d971eb55cdfd62686ba2f5698edb2c83e">
          an example</a>).
          Small changes of configuration files, documentation fixes, etc. can be contributed by
-         starting the commit message with one of "minor:", "config:", "infra:", "doc:" or
-         "spelling:", followed by a space and a brief single-line message.
+         starting the commit message with one of "minor:", "config:", "infra:", "doc:",
+         "dependency:" or "spelling:", followed by a space and a brief single-line message.
       </p>
 
       <p>
