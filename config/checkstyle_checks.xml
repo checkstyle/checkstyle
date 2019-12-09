@@ -114,6 +114,17 @@
     <property name="fileExtensions" value="xml, vm"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
+  <!--
+   Links to .dtd files should start with "/", "http://" or "https://",
+   otherwise they will be broken after archiving the documentation.
+   See https://github.com/checkstyle/checkstyle/issues/7340 for details.
+  -->
+  <module name="RegexpSingleline">
+    <property name="format" value="href=&quot;(?!\/|https?:\/\/).*?\.dtd&quot;"/>
+    <property name="fileExtensions" value="xml, vm"/>
+    <property name="message"
+      value="Relative links to DTD files are prohibited. Please use absolute path or uri instead."/>
+  </module>
   <module name="RegexpSingleline">
     <property name="id" value="noSourceforgeNetLinks"/>
     <property name="format" value="checkstyle\.sourceforge\.net"/>

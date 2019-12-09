@@ -931,8 +931,8 @@
       </p>
 
       <p>
-        Checkstyle also validates the package names XML document structure when it
-        loads the document. DTD is available at <a href="dtds/packages_1_0.dtd">packages_1_0.dtd</a>
+        Checkstyle also validates the package names XML document structure when it loads
+        the document. DTD is available at <a href="/dtds/packages_1_0.dtd">packages_1_0.dtd</a>
       </p>
 
       <p>
@@ -986,7 +986,7 @@
       <p>
         Checkstyle validates the configuration XML document structure when it loads
         the document. To validate against the
-        <a href="dtds/configuration_1_3.dtd">latest DTD</a>,
+        <a href="/dtds/configuration_1_3.dtd">latest DTD</a>,
         include the following document type declaration in your
         configuration XML document:
       </p>
