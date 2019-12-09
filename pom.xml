@@ -1482,6 +1482,21 @@
       </plugin>
 
       <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>${maven.versions.plugin.version}</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependency-updates-report</report>
+              <report>plugin-updates-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <!-- this report should be created last -->
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-linkcheck-plugin</artifactId>
         <version>1.2</version>
@@ -1489,7 +1504,7 @@
           <httpMethod>GET</httpMethod>
           <timeout>6000</timeout>
           <httpFollowRedirect>false</httpFollowRedirect>
-          <forceSite>true</forceSite>
+          <forceSite>false</forceSite>
           <!-- To resolve redirection violation, to find new target url, use:
               URL=https://www.cs.....
               curl -s -I $URL -L | awk '/Location: (.*)/ {print $2}' | tail -n 1
@@ -1516,6 +1531,10 @@
             <excludedLink>reports/javadoc/openjdk8</excludedLink>
             <!-- posting to the mailing list "checkstyle-announce" is private -->
             <excludedLink>privilege of admins</excludedLink>
+            <!-- this page is not yet created when linkcheck executed -->
+            <excludedLink>project-info.html</excludedLink>
+            <!-- this page is not yet created when linkcheck executed -->
+            <excludedLink>project-reports.html</excludedLink>
             <!-- redirects to US page, it is better to stay international -->
             <excludedLink>https://paypal.com/</excludedLink>
             <!-- temporal suppress till plugin update link in his source -->
@@ -1593,20 +1612,6 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
           </excludedLinks>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>versions-maven-plugin</artifactId>
-        <version>${maven.versions.plugin.version}</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>dependency-updates-report</report>
-              <report>plugin-updates-report</report>
-            </reports>
-          </reportSet>
-        </reportSets>
       </plugin>
 
     </plugins>

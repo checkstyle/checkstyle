@@ -437,7 +437,7 @@ public class UserService {
           <p>
             Filter <code>SuppressionFilter</code> rejects
             audit events for Check violations according to
-            a <a href="dtds/suppressions_1_2.dtd">suppressions XML
+            a <a href="/dtds/suppressions_1_2.dtd">suppressions XML
             document</a> in a file. If there is no configured
             suppressions file or the optional is set to true and
             suppressions file was not found the Filter accepts all audit events.
@@ -480,7 +480,7 @@ public class UserService {
       </subsection>
       <subsection name="Notes" id="SuppressionFilter_Notes">
         <p>
-          A <a href="dtds/suppressions_1_2.dtd">suppressions XML
+          A <a href="/dtds/suppressions_1_2.dtd">suppressions XML
           document</a> contains a set of <code>suppress</code> elements, where
           each <code>suppress</code> element can have the following attributes:
         </p>
