@@ -8,7 +8,7 @@ Rules:
    a) MUST match one of the following patterns:
       ^Issue #\\d+: .*$
       ^Pull #\\d+: .*$
-      ^(minor|config|infra|doc|spelling): .*$
+      ^(minor|config|infra|doc|spelling|dependency): .*$
    b) MUST contain only one line of text
    c) MUST NOT end with a period, space, or tab
    d) MUST be less than or equal to 200 characters
