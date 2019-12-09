@@ -19,19 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.gui;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -51,7 +51,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         return "com/puppycrawl/tools/checkstyle/gui/mainframemodel";
     }
 
-    @Before
+    @BeforeEach
     public void prepareTestData() throws IOException {
         model = new MainFrameModel();
         testData = new File(getPath(FILE_NAME_TEST_DATA));
@@ -62,16 +62,16 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         for (final ParseMode parseMode : ParseMode.values()) {
             switch (parseMode) {
                 case PLAIN_JAVA:
-                    assertEquals("Invalid toString result", "Plain Java",
-                            parseMode.toString());
+                    assertEquals("Plain Java",
+                            parseMode.toString(), "Invalid toString result");
                     break;
                 case JAVA_WITH_COMMENTS:
-                    assertEquals("Invalid toString result", "Java with comments",
-                            parseMode.toString());
+                    assertEquals("Java with comments",
+                            parseMode.toString(), "Invalid toString result");
                     break;
                 case JAVA_WITH_JAVADOC_AND_COMMENTS:
-                    assertEquals("Invalid toString result", "Java with comments and Javadocs",
-                            parseMode.toString());
+                    assertEquals("Java with comments and Javadocs",
+                            parseMode.toString(), "Invalid toString result");
                     break;
                 default:
                     fail("Unexpected enum value");
@@ -119,10 +119,10 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
     public void testOpenFileNullParameter2() throws Exception {
         model.openFile(null);
 
-        assertNull("Test is null", model.getText());
-        assertEquals("Title is expected value", "Checkstyle GUI", model.getTitle());
-        assertFalse("Reload action should be disabled", model.isReloadActionEnabled());
-        assertNull("Current file is null", model.getCurrentFile());
+        assertNull(model.getText(), "Test is null");
+        assertEquals("Checkstyle GUI", model.getTitle(), "Title is expected value");
+        assertFalse(model.isReloadActionEnabled(), "Reload action should be disabled");
+        assertNull(model.getCurrentFile(), "Current file is null");
     }
 
     @Test
@@ -139,7 +139,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                     "FileNotFoundException occurred while opening file %s.",
                     nonExistentFile.getPath());
 
-            assertEquals("Invalid exception message", expectedMsg, ex.getMessage());
+            assertEquals(expectedMsg, ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -157,30 +157,30 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
                     "NoViableAltException occurred while parsing file %s.",
                     nonCompilableFile.getPath());
 
-            assertEquals("Invalid exception message", expectedMsg, ex.getMessage());
+            assertEquals(expectedMsg, ex.getMessage(), "Invalid exception message");
         }
     }
 
     private void verifyCorrectTestDataInFrameModel() throws IOException {
-        assertEquals("Invalid current file", testData, model.getCurrentFile());
+        assertEquals(testData, model.getCurrentFile(), "Invalid current file");
 
         final String expectedTitle = "Checkstyle GUI : " + FILE_NAME_TEST_DATA;
-        assertEquals("Invalid model title", expectedTitle, model.getTitle());
+        assertEquals(expectedTitle, model.getTitle(), "Invalid model title");
 
-        assertTrue("Reload action should be enabled", model.isReloadActionEnabled());
+        assertTrue(model.isReloadActionEnabled(), "Reload action should be enabled");
 
         final int expectedLines = 19;
-        assertEquals("Invalid lines to position", expectedLines, model.getLinesToPosition().size());
+        assertEquals(expectedLines, model.getLinesToPosition().size(), "Invalid lines to position");
 
         final String testDataFileNameWithoutPostfix = FILE_NAME_TEST_DATA.replace(".java", "");
-        assertTrue("Invalid model text: " + model.getText(),
-                model.getText().contains(testDataFileNameWithoutPostfix));
+        assertTrue(model.getText().contains(testDataFileNameWithoutPostfix),
+                "Invalid model text: " + model.getText());
 
         final File expectedLastDirectory = new File(getPath(""));
-        assertEquals("Invalid model last directory",
-                expectedLastDirectory, model.getLastDirectory());
+        assertEquals(expectedLastDirectory, model.getLastDirectory(),
+                "Invalid model last directory");
 
-        assertNotNull("ParseTree table model should not be null", model.getParseTreeTableModel());
+        assertNotNull(model.getParseTreeTableModel(), "ParseTree table model should not be null");
     }
 
 }
