@@ -687,7 +687,7 @@ public class MethodLimitCheck extends AbstractCheck
       <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
               AbstractFileSetCheck</a>
       and override the abstract
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-java.util.List-">
+      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-com.puppycrawl.tools.checkstyle.api.FileText-">
               <code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
       done. A very simple example could fire a violation if the number of files
       exceeds a certain limit. Here is a FileSetCheck that does just that:</p>

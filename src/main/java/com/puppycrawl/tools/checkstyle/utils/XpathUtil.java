@@ -137,7 +137,7 @@ public final class XpathUtil {
      *
      * @param xpath query to evaluate
      * @param file file to run on
-     * @return all results as string separated by {@link XpathUtil#DELIMITER}
+     * @return all results as string separated by delimiter
      * @throws CheckstyleException if some parsing error happens
      * @throws IOException if an error occurs
      */

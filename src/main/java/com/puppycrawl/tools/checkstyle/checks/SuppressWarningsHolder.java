@@ -158,7 +158,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the alias for the source name of a check. If an alias has been
-     * explicitly registered via {@link #registerAlias(String, String)}, that
+     * explicitly registered via {@link #setAliasList(String...)}, that
      * alias is returned; otherwise, the default alias is used.
      * @param sourceName the source name of the check (generally the class
      *        name)

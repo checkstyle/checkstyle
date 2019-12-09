@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * </pre>
  * <ul>
  * <li>
- * Property {@code violateExecutionOnNonTightHtml} - If turned on, will
+ * Property {@code violateExecutionOnNonTightHtml} - Control when to
  * print violations if the Javadoc being examined by this check violates the
  * tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">

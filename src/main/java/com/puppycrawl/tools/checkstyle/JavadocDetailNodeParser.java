@@ -684,10 +684,12 @@ public class JavadocDetailNodeParser {
         }
 
         /**
-         * Getter for {@link #firstNonTightHtmlTag}.
+         * Getter for the first non-tight HTML tag encountered while parsing javadoc.
          *
          * @return the first non-tight HTML tag that is encountered while parsing Javadoc,
          *     if one exists
+         * @see <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
+         *     Tight HTML rules</a>
          */
         public Token getFirstNonTightHtmlTag() {
             return firstNonTightHtmlTag;
