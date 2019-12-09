@@ -23,21 +23,20 @@ import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLi
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -46,51 +45,54 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class XpathUtilTest {
 
-    @Rule
-    public final TemporaryFolder tempFolder = new TemporaryFolder();
+    @TempDir
+    public File tempFolder;
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue("Constructor is not private",
-                isUtilsClassHasPrivateConstructor(XpathUtil.class, true));
+        assertTrue(isUtilsClassHasPrivateConstructor(XpathUtil.class, true),
+                "Constructor is not private");
     }
 
     @Test
     public void testSupportsTextAttribute() {
-        assertTrue("Should return true for supported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)));
-        assertTrue("Should return true for supported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_INT)));
-        assertTrue("Should return true for supported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.STRING_LITERAL)));
-        assertTrue("Should return true for supported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.CHAR_LITERAL)));
-        assertTrue("Should return true for supported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)));
-        assertFalse("Should return false for unsupported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)));
-        assertFalse("Should return false for unsupported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)));
-        assertFalse("Should return true for supported token types",
-                XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)));
+        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.IDENT)),
+                "Should return true for supported token types");
+        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_INT)),
+                "Should return true for supported token types");
+        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.STRING_LITERAL)),
+                "Should return true for supported token types");
+        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.CHAR_LITERAL)),
+                "Should return true for supported token types");
+        assertTrue(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.NUM_DOUBLE)),
+                "Should return true for supported token types");
+        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.VARIABLE_DEF)),
+                "Should return false for unsupported token types");
+        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.OBJBLOCK)),
+                "Should return false for unsupported token types");
+        assertFalse(XpathUtil.supportsTextAttribute(createDetailAST(TokenTypes.LITERAL_CHAR)),
+                "Should return true for supported token types");
     }
 
     @Test
     public void testGetValue() {
-        assertEquals("Returned value differs from expected", "HELLO WORLD", getTextAttributeValue(
-                createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")));
-        assertEquals("Returned value differs from expected", "123",
-                getTextAttributeValue(createDetailAST(TokenTypes.NUM_INT, "123")));
-        assertEquals("Returned value differs from expected", "HELLO WORLD",
-                getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")));
-        assertNotEquals("Returned value differs from expected", "HELLO WORLD",
-                getTextAttributeValue(createDetailAST(TokenTypes.STRING_LITERAL, "HELLO WORLD")));
+        assertEquals("HELLO WORLD", getTextAttributeValue(
+                createDetailAST(TokenTypes.STRING_LITERAL, "\"HELLO WORLD\"")),
+                "Returned value differs from expected");
+        assertEquals("123", getTextAttributeValue(createDetailAST(TokenTypes.NUM_INT, "123")),
+                "Returned value differs from expected");
+        assertEquals("HELLO WORLD",
+                getTextAttributeValue(createDetailAST(TokenTypes.IDENT, "HELLO WORLD")),
+                "Returned value differs from expected");
+        assertNotEquals("HELLO WORLD",
+                getTextAttributeValue(createDetailAST(TokenTypes.STRING_LITERAL, "HELLO WORLD")),
+                "Returned value differs from expected");
     }
 
     @Test
     public void testPrintXpathNotComment() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5;}}";
-        final File file = tempFolder.newFile();
+        final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "CLASS_DEF -> CLASS_DEF [1:0]",
@@ -107,7 +109,7 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathComment() throws Exception {
         final String fileContent = "class Test { /* comment */ }";
-        final File file = tempFolder.newFile();
+        final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "CLASS_DEF -> CLASS_DEF [1:0]",
@@ -121,7 +123,7 @@ public class XpathUtilTest {
     @Test
     public void testPrintXpathTwo() throws Exception {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
-        final File file = tempFolder.newFile();
+        final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "CLASS_DEF -> CLASS_DEF [1:0]",
@@ -145,7 +147,7 @@ public class XpathUtilTest {
     @Test
     public void testInvalidXpath() throws IOException {
         final String fileContent = "class Test { public void method() {int a = 5; int b = 5;}}";
-        final File file = tempFolder.newFile();
+        final File file = File.createTempFile("junit", null, tempFolder);
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String invalidXpath = "\\//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT";
         try {
