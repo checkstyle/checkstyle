@@ -19,11 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,8 +33,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -49,13 +50,13 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue("Constructor is not private", TestUtil.isUtilsClassHasPrivateConstructor(
-            JavaParser.class, false));
+        assertTrue(TestUtil.isUtilsClassHasPrivateConstructor(
+            JavaParser.class, false), "Constructor is not private");
     }
 
     @Test
     public void testNullRootWithComments() {
-        assertNull("Invalid return root", JavaParser.appendHiddenCommentNodes(null));
+        assertNull(JavaParser.appendHiddenCommentNodes(null), "Invalid return root");
     }
 
     @Test
@@ -67,21 +68,21 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final Optional<DetailAST> blockComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN);
 
-        assertTrue("Block comment should be present", blockComment.isPresent());
+        assertTrue(blockComment.isPresent(), "Block comment should be present");
 
         final DetailAST comment = blockComment.get();
 
-        assertEquals("Unexpected line number", 3, comment.getLineNo());
-        assertEquals("Unexpected column number", 0, comment.getColumnNo());
-        assertEquals("Unexpected comment content", "/*", comment.getText());
+        assertEquals(3, comment.getLineNo(), "Unexpected line number");
+        assertEquals(0, comment.getColumnNo(), "Unexpected column number");
+        assertEquals("/*", comment.getText(), "Unexpected comment content");
 
         final DetailAST commentContent = comment.getFirstChild();
         final DetailAST commentEnd = comment.getLastChild();
 
-        assertEquals("Unexpected line number", 3, commentContent.getLineNo());
-        assertEquals("Unexpected column number", 2, commentContent.getColumnNo());
-        assertEquals("Unexpected line number", 9, commentEnd.getLineNo());
-        assertEquals("Unexpected column number", 1, commentEnd.getColumnNo());
+        assertEquals(3, commentContent.getLineNo(), "Unexpected line number");
+        assertEquals(2, commentContent.getColumnNo(), "Unexpected column number");
+        assertEquals(9, commentEnd.getLineNo(), "Unexpected line number");
+        assertEquals(1, commentEnd.getColumnNo(), "Unexpected column number");
     }
 
     @Test
@@ -92,21 +93,21 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertTrue("Single line comment should be present", singleLineComment.isPresent());
+        assertTrue(singleLineComment.isPresent(), "Single line comment should be present");
 
         final DetailAST comment = singleLineComment.get();
 
-        assertEquals("Unexpected line number", 13, comment.getLineNo());
-        assertEquals("Unexpected column number", 0, comment.getColumnNo());
-        assertEquals("Unexpected comment content", "//", comment.getText());
+        assertEquals(13, comment.getLineNo(), "Unexpected line number");
+        assertEquals(0, comment.getColumnNo(), "Unexpected column number");
+        assertEquals("//", comment.getText(), "Unexpected comment content");
 
         final DetailAST commentContent = comment.getFirstChild();
 
-        assertEquals("Unexpected token type", TokenTypes.COMMENT_CONTENT, commentContent.getType());
-        assertEquals("Unexpected line number", 13, commentContent.getLineNo());
-        assertEquals("Unexpected column number", 2, commentContent.getColumnNo());
-        assertTrue("Unexpected comment content",
-            commentContent.getText().startsWith(" inline comment"));
+        assertEquals(TokenTypes.COMMENT_CONTENT, commentContent.getType(), "Unexpected token type");
+        assertEquals(13, commentContent.getLineNo(), "Unexpected line number");
+        assertEquals(2, commentContent.getColumnNo(), "Unexpected column number");
+        assertTrue(commentContent.getText().startsWith(" inline comment"),
+                "Unexpected comment content");
     }
 
     @Test
@@ -117,21 +118,21 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertTrue("Single line comment should be present", singleLineComment.isPresent());
+        assertTrue(singleLineComment.isPresent(), "Single line comment should be present");
 
         final DetailAST comment = singleLineComment.get();
 
-        assertEquals("Unexpected line number", 1, comment.getLineNo());
-        assertEquals("Unexpected column number", 4, comment.getColumnNo());
-        assertEquals("Unexpected comment content", "//", comment.getText());
+        assertEquals(1, comment.getLineNo(), "Unexpected line number");
+        assertEquals(4, comment.getColumnNo(), "Unexpected column number");
+        assertEquals("//", comment.getText(), "Unexpected comment content");
 
         final DetailAST commentContent = comment.getFirstChild();
 
-        assertEquals("Unexpected token type", TokenTypes.COMMENT_CONTENT, commentContent.getType());
-        assertEquals("Unexpected line number", 1, commentContent.getLineNo());
-        assertEquals("Unexpected column number", 6, commentContent.getColumnNo());
-        assertTrue("Unexpected comment content",
-            commentContent.getText().startsWith(" indented comment"));
+        assertEquals(TokenTypes.COMMENT_CONTENT, commentContent.getType(), "Unexpected token type");
+        assertEquals(1, commentContent.getLineNo(), "Unexpected line number");
+        assertEquals(6, commentContent.getColumnNo(), "Unexpected column number");
+        assertTrue(commentContent.getText().startsWith(" indented comment"),
+                "Unexpected comment content");
     }
 
     @Test
@@ -142,7 +143,7 @@ public class JavaParserTest extends AbstractModuleTestSupport {
 
         final Optional<DetailAST> singleLineComment = TestUtil.findTokenInAstByPredicate(root,
             ast -> ast.getType() == TokenTypes.SINGLE_LINE_COMMENT);
-        assertFalse("Single line comment should be present", singleLineComment.isPresent());
+        assertFalse(singleLineComment.isPresent(), "Single line comment should be present");
     }
 
     @Test
@@ -150,19 +151,17 @@ public class JavaParserTest extends AbstractModuleTestSupport {
         final File input = new File(getNonCompilablePath("InputJavaParser.java"));
         try {
             JavaParser.parseFile(input, JavaParser.Options.WITH_COMMENTS);
-            Assert.fail("exception expected");
+            fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("Invalid exception message",
+            assertEquals(
                     CheckstyleException.class.getName()
                             + ": NoViableAltException occurred while parsing file "
                             + input.getAbsolutePath() + ".",
-                    ex.toString());
-            Assert.assertSame("Invalid class",
-                    NoViableAltException.class, ex.getCause().getClass());
-            assertEquals("Invalid exception message",
-                    input.getAbsolutePath() + ":2:1: unexpected token: classD",
-                    ex.getCause().toString());
+                    ex.toString(), "Invalid exception message");
+            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
+                    ex.getCause().toString(), "Invalid exception message");
         }
     }
 
@@ -173,12 +172,12 @@ public class JavaParserTest extends AbstractModuleTestSupport {
                 JavaParser.Options.WITH_COMMENTS);
         final CountComments counter = new CountComments(root);
 
-        assertArrayEquals("Invalid line comments",
+        assertArrayEquals(
                 Arrays.asList("1,4", "6,4", "9,0").toArray(),
-                counter.lineComments.toArray());
-        assertArrayEquals("Invalid block comments",
+                counter.lineComments.toArray(), "Invalid line comments");
+        assertArrayEquals(
                 Arrays.asList("5,4", "8,0").toArray(),
-                counter.blockComments.toArray());
+                counter.blockComments.toArray(), "Invalid block comments");
     }
 
     private static final class CountComments {

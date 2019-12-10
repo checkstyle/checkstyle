@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.lang.reflect.Method;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -42,7 +42,7 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. "
                 + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertEquals("Invalid format", expected, formatter.format(event));
+        assertEquals(expected, formatter.format(event), "Invalid format");
     }
 
     @Test
@@ -55,7 +55,7 @@ public class AuditEventDefaultFormatterTest {
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. "
                 + "[AuditEventDefaultFormatterTest$TestModule]";
 
-        assertEquals("Invalid format", expected, formatter.format(event));
+        assertEquals(expected, formatter.format(event), "Invalid format");
     }
 
     @Test
@@ -67,7 +67,7 @@ public class AuditEventDefaultFormatterTest {
 
         final String expected = "[WARN] InputMockFile.java:1:1: Mocked message. [ModuleId]";
 
-        assertEquals("Invalid format", expected, formatter.format(event));
+        assertEquals(expected, formatter.format(event), "Invalid format");
     }
 
     @Test
@@ -82,7 +82,7 @@ public class AuditEventDefaultFormatterTest {
         final int result = (int) calculateBufferLengthMethod.invoke(null,
                 auditEvent, SeverityLevel.ERROR.ordinal());
 
-        assertEquals("Buffer length is not expected", 54, result);
+        assertEquals(54, result, "Buffer length is not expected");
     }
 
     private static class TestModuleCheck {

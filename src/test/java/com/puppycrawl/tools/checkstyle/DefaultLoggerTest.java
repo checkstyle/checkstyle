@@ -19,17 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -60,9 +60,9 @@ public class DefaultLoggerTest {
                 new String[] {"myfile"}, null,
                 getClass(), null);
 
-        assertTrue("Invalid exception", output.contains(addExceptionMessage.getMessage()));
-        assertTrue("Invalid exception class",
-            output.contains("java.lang.IllegalStateException: upsss"));
+        assertTrue(output.contains(addExceptionMessage.getMessage()), "Invalid exception");
+        assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
+                "Invalid exception class");
     }
 
     @Test
@@ -72,8 +72,8 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = infoStream.toString();
-        assertTrue("Message should contain exception info, but was " + output,
-                output.contains("java.lang.IllegalStateException: upsss"));
+        assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
+                "Message should contain exception info, but was " + output);
     }
 
     @Test
@@ -83,8 +83,8 @@ public class DefaultLoggerTest {
                 AutomaticBean.OutputStreamOptions.NONE);
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
-        assertTrue("Message should contain exception info, but was " + infoStream,
-                infoStream.toString().contains("java.lang.IllegalStateException: upsss"));
+        assertTrue(infoStream.toString().contains("java.lang.IllegalStateException: upsss"),
+                "Message should contain exception info, but was " + infoStream);
     }
 
     @Test
@@ -92,12 +92,12 @@ public class DefaultLoggerTest {
         try {
             final DefaultLogger logger = new DefaultLogger(new ByteArrayOutputStream(), null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull("Null instance", logger);
+            assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
         catch (IllegalArgumentException exception) {
-            assertEquals("Invalid error message", "Parameter infoStreamOptions can not be null",
-                    exception.getMessage());
+            assertEquals("Parameter infoStreamOptions can not be null",
+                    exception.getMessage(), "Invalid error message");
         }
     }
 
@@ -107,12 +107,12 @@ public class DefaultLoggerTest {
             final DefaultLogger logger = new DefaultLogger(new ByteArrayOutputStream(),
                 AutomaticBean.OutputStreamOptions.CLOSE, new ByteArrayOutputStream(), null);
             // assert required to calm down eclipse's 'The allocated object is never used' violation
-            assertNotNull("Null instance", logger);
+            assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
         catch (IllegalArgumentException exception) {
-            assertEquals("Invalid error message", "Parameter errorStreamOptions can not be null",
-                    exception.getMessage());
+            assertEquals("Parameter errorStreamOptions can not be null",
+                    exception.getMessage(), "Invalid error message");
         }
     }
 
@@ -128,10 +128,11 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",
                 null, null, getClass(), "customMessage")));
         dl.auditFinished(null);
-        assertEquals("expected output", auditStartMessage.getMessage() + System.lineSeparator()
-                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString());
-        assertEquals("expected output", "[ERROR] fileName:1:2: customMessage [DefaultLoggerTest]"
-                + System.lineSeparator(), errorStream.toString());
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
+                "expected output");
+        assertEquals("[ERROR] fileName:1:2: customMessage [DefaultLoggerTest]"
+                + System.lineSeparator(), errorStream.toString(), "expected output");
     }
 
     @Test
@@ -145,10 +146,11 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customMessage")));
         dl.auditFinished(null);
-        assertEquals("expected output", auditStartMessage.getMessage() + System.lineSeparator()
-                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString());
-        assertEquals("expected output", "[ERROR] fileName:1:2: customMessage [moduleId]"
-                + System.lineSeparator(), errorStream.toString());
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
+                "expected output");
+        assertEquals("[ERROR] fileName:1:2: customMessage [moduleId]"
+                + System.lineSeparator(), errorStream.toString(), "expected output");
     }
 
     @Test
@@ -159,7 +161,7 @@ public class DefaultLoggerTest {
         dl.finishLocalSetup();
         dl.auditStarted(null);
         dl.auditFinished(null);
-        assertNotNull("instance should not be null", dl);
+        assertNotNull(dl, "instance should not be null");
     }
 
 }
