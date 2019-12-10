@@ -24,7 +24,7 @@
       <allow pkg="org.junit" local-only="true"/>
     </subpackage>
   </subpackage>
-  <file name=".*Test(Support)?" regex="true">
+  <file name="(JavadocPropertiesGenerator|Main)Test" regex="true">
     <allow pkg="org.junit"/>
   </file>
 

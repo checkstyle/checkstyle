@@ -20,12 +20,14 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -41,8 +43,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue("Constructor is not private",
-                isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class, true));
+        assertTrue(
+                isUtilsClassHasPrivateConstructor(SuppressionsStringPrinter.class, true),
+                "Constructor is not private");
     }
 
     @Test
@@ -58,8 +61,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
 
-        Assert.assertEquals("Invalid xpath queries",
-                expected, result);
+        assertEquals(expected, result, "Invalid xpath queries");
     }
 
     @Test
@@ -77,8 +79,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
 
-        Assert.assertEquals("Invalid xpath queries",
-                expected, result);
+        assertEquals(expected, result, "Invalid xpath queries");
     }
 
     @Test
@@ -88,8 +89,7 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         final int tabWidth = 6;
         final String result = SuppressionsStringPrinter.printSuppressions(input,
                 lineAndColumnNumber, tabWidth);
-        Assert.assertEquals("Invalid xpath queries",
-                EOL, result);
+        assertEquals(EOL, result, "Invalid xpath queries");
     }
 
     @Test
@@ -100,12 +100,11 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         try {
             SuppressionsStringPrinter.printSuppressions(input,
                     invalidLineAndColumnNumber, tabWidth);
-            Assert.fail("exception expected");
+            fail("exception expected");
         }
         catch (IllegalStateException ex) {
-            Assert.assertEquals("Invalid exception message",
-                    "abc-432 does not match valid format 'line:column'.",
-                    ex.getMessage());
+            assertEquals("abc-432 does not match valid format 'line:column'.",
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -117,14 +116,13 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
         try {
             SuppressionsStringPrinter.printSuppressions(input,
                     lineAndColumnNumber, tabWidth);
-            Assert.fail("exception expected");
+            fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            Assert.assertSame("Invalid class",
-                    NoViableAltException.class, ex.getCause().getClass());
-            Assert.assertEquals("Invalid exception message",
-                    input.getAbsolutePath() + ":2:1: unexpected token: classD",
-                    ex.getCause().toString());
+            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
+                    ex.getCause().toString(), "Invalid exception message");
         }
     }
+
 }

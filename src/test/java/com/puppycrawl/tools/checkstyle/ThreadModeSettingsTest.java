@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Set;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
@@ -35,8 +35,8 @@ public class ThreadModeSettingsTest {
     @Test
     public void testProperties() {
         final ThreadModeSettings config = new ThreadModeSettings(1, 2);
-        assertEquals("Invalid checker threads number", 1, config.getCheckerThreadsNumber());
-        assertEquals("Invalid treewalker threads number", 2, config.getTreeWalkerThreadsNumber());
+        assertEquals(1, config.getCheckerThreadsNumber(), "Invalid checker threads number");
+        assertEquals(2, config.getTreeWalkerThreadsNumber(), "Invalid treewalker threads number");
     }
 
     @Test
@@ -48,9 +48,8 @@ public class ThreadModeSettingsTest {
             fail("An exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "Multi thread mode for Checker module is not implemented",
-                    ex.getMessage());
+            assertEquals("Multi thread mode for Checker module is not implemented",
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -58,8 +57,8 @@ public class ThreadModeSettingsTest {
     public void testResolveCheckerInSingleThreadMode() {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
 
-        assertEquals("Invalid name resolved", ThreadModeSettings.CHECKER_MODULE_NAME,
-                singleThreadMode.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME));
+        final String name = singleThreadMode.resolveName(ThreadModeSettings.CHECKER_MODULE_NAME);
+        assertEquals(ThreadModeSettings.CHECKER_MODULE_NAME, name, "Invalid name resolved");
     }
 
     @Test
@@ -71,9 +70,8 @@ public class ThreadModeSettingsTest {
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "Multi thread mode for TreeWalker module is not implemented",
-                    ex.getMessage());
+            assertEquals("Multi thread mode for TreeWalker module is not implemented",
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -82,8 +80,8 @@ public class ThreadModeSettingsTest {
         final ThreadModeSettings singleThreadMode = ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
         final String actual =
                 singleThreadMode.resolveName(ThreadModeSettings.TREE_WALKER_MODULE_NAME);
-        assertThat("Invalid name resolved: " + actual,
-                actual, is(ThreadModeSettings.TREE_WALKER_MODULE_NAME));
+        assertThat("Invalid name resolved: " + actual, actual,
+                is(ThreadModeSettings.TREE_WALKER_MODULE_NAME));
     }
 
     @Test
@@ -101,10 +99,10 @@ public class ThreadModeSettingsTest {
             }
 
             final String moduleName = module.getSimpleName();
-            assertThat("Invalid name resolved",
-                    singleThreadModeSettings.resolveName(moduleName), is(moduleName));
-            assertThat("Invalid name resolved",
-                    multiThreadModeSettings.resolveName(moduleName), is(moduleName));
+            assertThat("Invalid name resolved", singleThreadModeSettings.resolveName(moduleName),
+                    is(moduleName));
+            assertThat("Invalid name resolved", multiThreadModeSettings.resolveName(moduleName),
+                    is(moduleName));
         }
     }
 

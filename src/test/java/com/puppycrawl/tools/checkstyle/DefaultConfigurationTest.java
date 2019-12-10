@@ -19,14 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
@@ -38,33 +38,33 @@ public class DefaultConfigurationTest {
         config.addAttribute("attribute", "value");
         final String[] actual = config.getAttributeNames();
         final String[] expected = {"attribute"};
-        assertArrayEquals("Invalid attribute names", expected, actual);
+        assertArrayEquals(expected, actual, "Invalid attribute names");
     }
 
     @Test
     public void testAddAttributeAndGetAttribute() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addAttribute("attribute", "first");
-        assertEquals("Invalid attribute value", "first", config.getAttribute("attribute"));
+        assertEquals("first", config.getAttribute("attribute"), "Invalid attribute value");
         config.addAttribute("attribute", "second");
-        assertEquals("Invalid attribute value", "first,second", config.getAttribute("attribute"));
+        assertEquals("first,second", config.getAttribute("attribute"), "Invalid attribute value");
     }
 
     @Test
     public void testGetName() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        assertEquals("Invalid configuration name", "MyConfig", config.getName());
+        assertEquals("MyConfig", config.getName(), "Invalid configuration name");
     }
 
     @Test
     public void testRemoveChild() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         final DefaultConfiguration configChild = new DefaultConfiguration("childConfig");
-        assertEquals("Invalid children count", 0, config.getChildren().length);
+        assertEquals(0, config.getChildren().length, "Invalid children count");
         config.addChild(configChild);
-        assertEquals("Invalid children count", 1, config.getChildren().length);
+        assertEquals(1, config.getChildren().length, "Invalid children count");
         config.removeChild(configChild);
-        assertEquals("Invalid children count", 0, config.getChildren().length);
+        assertEquals(0, config.getChildren().length, "Invalid children count");
     }
 
     @Test
@@ -73,7 +73,7 @@ public class DefaultConfigurationTest {
         config.addMessage("key", "value");
         final Map<String, String> expected = new TreeMap<>();
         expected.put("key", "value");
-        assertEquals("Invalid message map", expected, config.getMessages());
+        assertEquals(expected, config.getMessages(), "Invalid message map");
     }
 
     @Test
@@ -86,9 +86,9 @@ public class DefaultConfigurationTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
-            assertEquals("Invalid exception message",
+            assertEquals(
                     "missing key '" + attributeName + "' in " + name,
-                    expected.getMessage());
+                    expected.getMessage(), "Invalid exception message");
         }
     }
 
@@ -98,7 +98,7 @@ public class DefaultConfigurationTest {
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final ThreadModeSettings singleThreadMode =
                 ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE;
-        assertEquals("Invalid thread mode", singleThreadMode, config.getThreadModeSettings());
+        assertEquals(singleThreadMode, config.getThreadModeSettings(), "Invalid thread mode");
     }
 
     @Test
@@ -107,7 +107,7 @@ public class DefaultConfigurationTest {
         final ThreadModeSettings multiThreadMode =
                 new ThreadModeSettings(4, 2);
         final DefaultConfiguration config = new DefaultConfiguration(name, multiThreadMode);
-        assertEquals("Invalid thread mode", multiThreadMode, config.getThreadModeSettings());
+        assertEquals(multiThreadMode, config.getThreadModeSettings(), "Invalid thread mode");
     }
 
 }

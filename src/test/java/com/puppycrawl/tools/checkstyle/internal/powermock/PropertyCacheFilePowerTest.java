@@ -30,6 +30,7 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import static org.powermock.api.mockito.PowerMockito.when;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
@@ -172,7 +173,9 @@ public class PropertyCacheFilePowerTest extends AbstractPathTestSupport {
             cache.persist();
 
             final Properties cacheDetails = new Properties();
-            cacheDetails.load(Files.newBufferedReader(cacheFile.toPath()));
+            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+                cacheDetails.load(reader);
+            }
 
             final int expectedNumberOfObjectsInCacheFile = 2;
             assertEquals("Unexpected number of objects in cache",
@@ -226,7 +229,9 @@ public class PropertyCacheFilePowerTest extends AbstractPathTestSupport {
             cache.persist();
 
             final Properties cacheDetails = new Properties();
-            cacheDetails.load(Files.newBufferedReader(cacheFile.toPath()));
+            try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+                cacheDetails.load(reader);
+            }
 
             final int expectedNumberOfObjectsInCacheFile = 2;
             assertEquals("Unexpected number of objects in cache",

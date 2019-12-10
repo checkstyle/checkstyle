@@ -19,10 +19,12 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.util.Properties;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class PropertiesExpanderTest {
 
@@ -30,10 +32,10 @@ public class PropertiesExpanderTest {
     public void testCtorException() {
         try {
             final Object test = new PropertiesExpander(null);
-            Assert.fail("exception expected but got " + test);
+            fail("exception expected but got " + test);
         }
         catch (IllegalArgumentException ex) {
-            Assert.assertEquals("Invalid exception message", "cannot pass null", ex.getMessage());
+            assertEquals("cannot pass null", ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -41,16 +43,18 @@ public class PropertiesExpanderTest {
     public void testDefaultProperties() {
         final Properties properties = new Properties(System.getProperties());
         properties.setProperty("test", "checkstyle");
-        Assert.assertEquals("Invalid user.home property",
-                System.getProperty("user.home"), properties.getProperty("user.home"));
-        Assert.assertEquals("Invalid checkstyle property",
-                "checkstyle", properties.getProperty("test"));
+        final String propertiesUserHome = properties.getProperty("user.home");
+        assertEquals(System.getProperty("user.home"), propertiesUserHome,
+                "Invalid user.home property");
+        assertEquals("checkstyle", properties.getProperty("test"),
+                "Invalid checkstyle property");
 
         final PropertiesExpander expander = new PropertiesExpander(properties);
-        Assert.assertEquals("Invalid user.home property",
-                System.getProperty("user.home"), expander.resolve("user.home"));
-        Assert.assertEquals("Invalid checkstyle property",
-                "checkstyle", expander.resolve("test"));
+        final String expanderUserHome = expander.resolve("user.home");
+        assertEquals(System.getProperty("user.home"), expanderUserHome,
+                "Invalid user.home property");
+        assertEquals("checkstyle", expander.resolve("test"),
+                "Invalid checkstyle property");
     }
 
 }

@@ -19,14 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -40,9 +41,8 @@ import java.util.Locale;
 import java.util.Properties;
 import java.util.Set;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.google.common.io.BaseEncoding;
 import com.google.common.io.ByteStreams;
@@ -51,8 +51,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
-    @Rule
-    public final TemporaryFolder temporaryFolder = new TemporaryFolder();
+    @TempDir
+    public File temporaryFolder;
 
     @Override
     protected String getPackageLocation() {
@@ -66,8 +66,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             fail("exception expected but got " + test);
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "config can not be null", ex.getMessage());
+            assertEquals("config can not be null", ex.getMessage(), "Invalid exception message");
         }
         try {
             final Configuration config = new DefaultConfiguration("myName");
@@ -75,23 +74,19 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
             fail("exception expected but got " + test);
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Invalid exception message",
-                    "fileName can not be null", ex.getMessage());
+            assertEquals("fileName can not be null", ex.getMessage(), "Invalid exception message");
         }
     }
 
     @Test
     public void testInCache() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = temporaryFolder.newFile().getPath();
+        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
         cache.put("myFile", 1);
-        assertTrue("Should return true when file is in cache",
-                cache.isInCache("myFile", 1));
-        assertFalse("Should return false when file is not in cache",
-                cache.isInCache("myFile", 2));
-        assertFalse("Should return false when file is not in cache",
-                cache.isInCache("myFile1", 1));
+        assertTrue(cache.isInCache("myFile", 1), "Should return true when file is in cache");
+        assertFalse(cache.isInCache("myFile", 2), "Should return false when file is not in cache");
+        assertFalse(cache.isInCache("myFile1", 1), "Should return false when file is not in cache");
     }
 
     @Test
@@ -101,8 +96,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         cache.load();
 
-        assertNotNull("Config hash key should not be null",
-                cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
+                "Config hash key should not be null");
     }
 
     @Test
@@ -113,38 +108,38 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull("Config hash key should not be null", hash);
-        assertNull("Should return null if key is not in cache", cache.get("key"));
+        assertNotNull(hash, "Config hash key should not be null");
+        assertNull(cache.get("key"), "Should return null if key is not in cache");
 
         cache.load();
 
-        assertEquals("Invalid config hash key", hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
-        assertEquals("Invalid cache value", "value", cache.get("key"));
-        assertNotNull("Config hash key should not be null",
-                cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY), "Invalid config hash key");
+        assertEquals("value", cache.get("key"), "Invalid cache value");
+        assertNotNull(cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
+                "Config hash key should not be null");
     }
 
     @Test
     public void testConfigHashOnReset() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = temporaryFolder.newFile().getPath();
+        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
         cache.load();
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull("Config hash key should not be null", hash);
+        assertNotNull(hash, "Config hash key should not be null");
 
         cache.reset();
 
-        assertEquals("Invalid config hash key",
-                hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
+        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
+                "Invalid config hash key");
     }
 
     @Test
     public void testConfigHashRemainsOnResetExternalResources() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = temporaryFolder.newFile().getPath();
+        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
         // create cache with one file
@@ -152,24 +147,25 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.put("myFile", 1);
 
         final String hash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertNotNull("Config hash key should not be null", hash);
+        assertNotNull(hash, "Config hash key should not be null");
 
         // apply new external resource to clear cache
         final Set<String> resources = new HashSet<>();
         resources.add("dummy");
         cache.putExternalResources(resources);
 
-        assertEquals("Invalid config hash key",
-                hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY));
-        assertFalse("Should return false in file is not in cache",
-                cache.isInCache("myFile", 1));
+        assertEquals(hash, cache.get(PropertyCacheFile.CONFIG_HASH_KEY),
+                "Invalid config hash key");
+        assertFalse(cache.isInCache("myFile", 1),
+                "Should return false in file is not in cache");
     }
 
     @Test
     public void testCacheRemainsWhenExternalResourceTheSame() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
-        final String externalResourcePath = temporaryFolder.newFile().getPath();
-        final String filePath = temporaryFolder.newFile().getPath();
+        final String externalResourcePath =
+                File.createTempFile("junit", null, temporaryFolder).getPath();
+        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
         // pre-populate with cache with resources
@@ -188,14 +184,14 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         cache.put("myFile", 1);
         cache.putExternalResources(resources);
 
-        assertTrue("Should return true in file is in cache",
-                cache.isInCache("myFile", 1));
+        assertTrue(cache.isInCache("myFile", 1),
+                "Should return true in file is in cache");
     }
 
     @Test
     public void testExternalResourceIsSavedInCache() throws Exception {
         final Configuration config = new DefaultConfiguration("myName");
-        final String filePath = temporaryFolder.newFile().getPath();
+        final String filePath = File.createTempFile("junit", null, temporaryFolder).getPath();
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
         cache.load();
@@ -216,21 +212,21 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         digest.update(out.toByteArray());
         final String expected = BaseEncoding.base16().upperCase().encode(digest.digest());
 
-        assertEquals("Hashes are not equal", expected,
-                cache.get("module-resource*?:" + pathToResource));
+        assertEquals(expected, cache.get("module-resource*?:" + pathToResource),
+                "Hashes are not equal");
     }
 
     @Test
     public void testCacheDirectoryDoesNotExistAndShouldBeCreated() throws IOException {
         final Configuration config = new DefaultConfiguration("myName");
         final String filePath = String.format(Locale.getDefault(), "%s%2$stemp%2$scache.temp",
-            temporaryFolder.getRoot(), File.separator);
+            temporaryFolder, File.separator);
         final PropertyCacheFile cache = new PropertyCacheFile(config, filePath);
 
         // no exception expected, cache directory should be created
         cache.persist();
 
-        assertTrue("cache exists in directory", new File(filePath).exists());
+        assertTrue(new File(filePath).exists(), "cache exists in directory");
     }
 
     @Test
@@ -241,7 +237,7 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
 
         // no exception expected
         cache.persist();
-        assertTrue("Cache file does not exist", Files.exists(Paths.get(filePath)));
+        assertTrue(Files.exists(Paths.get(filePath)), "Cache file does not exist");
         Files.delete(Paths.get(filePath));
     }
 
@@ -250,19 +246,21 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final DefaultConfiguration config = new DefaultConfiguration("myConfig");
         config.addAttribute("attr", "value");
 
-        final File cacheFile = temporaryFolder.newFile();
+        final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
         final PropertyCacheFile cache = new PropertyCacheFile(config, cacheFile.getPath());
         cache.load();
 
         final String expectedInitialConfigHash = "91753B970AFDF9F5F3DFA0D258064841949D3C6B";
         final String actualInitialConfigHash = cache.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertEquals("Invalid config hash", expectedInitialConfigHash, actualInitialConfigHash);
+        assertEquals(expectedInitialConfigHash, actualInitialConfigHash, "Invalid config hash");
 
         cache.persist();
 
         final Properties details = new Properties();
-        details.load(Files.newBufferedReader(cacheFile.toPath()));
-        assertEquals("Invalid details size", 1, details.size());
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            details.load(reader);
+        }
+        assertEquals(1, details.size(), "Invalid details size");
 
         // change in config
         config.addAttribute("newAttr", "newValue");
@@ -274,14 +272,16 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         final String expectedConfigHashAfterChange = "4CF5EC78955B81D76153ACC2CA6D60CB77FDCB2A";
         final String actualConfigHashAfterChange =
             cacheAfterChangeInConfig.get(PropertyCacheFile.CONFIG_HASH_KEY);
-        assertEquals("Invalid config hash",
-                expectedConfigHashAfterChange, actualConfigHashAfterChange);
+        assertEquals(expectedConfigHashAfterChange, actualConfigHashAfterChange,
+                "Invalid config hash");
 
         cacheAfterChangeInConfig.persist();
 
         final Properties detailsAfterChangeInConfig = new Properties();
-        detailsAfterChangeInConfig.load(Files.newBufferedReader(cacheFile.toPath()));
-        assertEquals("Invalid cache size", 1, detailsAfterChangeInConfig.size());
+        try (BufferedReader reader = Files.newBufferedReader(cacheFile.toPath())) {
+            detailsAfterChangeInConfig.load(reader);
+        }
+        assertEquals(1, detailsAfterChangeInConfig.size(), "Invalid cache size");
     }
 
 }

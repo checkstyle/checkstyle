@@ -20,17 +20,17 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
@@ -41,13 +41,14 @@ public class XmlLoaderTest {
     public void testParserConfiguredSuccessfully() throws Exception {
         final DummyLoader dummyLoader = new DummyLoader(new HashMap<>(1));
         final XMLReader parser = Whitebox.getInternalState(dummyLoader, "parser");
-        assertEquals("Invalid entity resolver", dummyLoader, parser.getEntityResolver());
+        assertEquals(dummyLoader, parser.getEntityResolver(), "Invalid entity resolver");
     }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue("Constructor is not private", isUtilsClassHasPrivateConstructor(
-                XmlLoader.LoadExternalDtdFeatureProvider.class, true));
+        assertTrue(isUtilsClassHasPrivateConstructor(
+                XmlLoader.LoadExternalDtdFeatureProvider.class, true),
+                "Constructor is not private");
     }
 
     @Test
@@ -55,7 +56,7 @@ public class XmlLoaderTest {
         final Map<String, String> map = new HashMap<>();
         map.put("predefined", "/google.xml");
         final DummyLoader dummyLoader = new DummyLoader(map);
-        assertNull("Invalid entity", dummyLoader.resolveEntity("notPredefined", "BAD"));
+        assertNull(dummyLoader.resolveEntity("notPredefined", "BAD"), "Invalid entity");
     }
 
     @Test
@@ -63,7 +64,7 @@ public class XmlLoaderTest {
         final Map<String, String> map = new HashMap<>();
         map.put("predefined", "/google.xml");
         final DummyLoader dummyLoader = new DummyLoader(map);
-        assertNotNull("Invalid entity", dummyLoader.resolveEntity("predefined", "BAD"));
+        assertNotNull(dummyLoader.resolveEntity("predefined", "BAD"), "Invalid entity");
     }
 
     private static final class DummyLoader extends XmlLoader {
