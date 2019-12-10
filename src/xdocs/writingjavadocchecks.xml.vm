@@ -752,7 +752,7 @@ Checkstyle ends with 5 errors.
        Now you can see parsed javadoc tree as child of comment block.
       </p>
       <p>
-        <span class="wrapper">
+        <span class="wrapper block">
           <img alt="screenshot" src="images/gui_javadoc_screenshot.png"/>
         </span>
       </p>
