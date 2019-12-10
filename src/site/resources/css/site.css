@@ -54,12 +54,13 @@ h2:hover .anchor, h3:hover .anchor {
 .source {
   white-space: nowrap;
   padding: 0;
+  overflow-x: auto;
 }
 
 .source > pre {
   margin: 0;
   padding: 12px;
-  overflow-x: auto;
+  width: max-content;
 }
 
 .wrap-content pre {
