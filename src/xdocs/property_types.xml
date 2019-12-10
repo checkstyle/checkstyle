@@ -118,6 +118,14 @@
       </p>
     </section>
 
+    <section name="file">
+      <p>
+        This type represents a local file. Unlike the <a href="#uri">uri</a> type,
+        which implies read only and not modifiable access to the resource,
+        a property of this type indicates files whose contents can be modified by Checkstyle.
+      </p>
+    </section>
+
     <section name="lineSeparator">
       <p>
         This type represents the policy for line returns. The
