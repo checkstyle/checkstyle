@@ -20,17 +20,19 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -46,8 +48,8 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
-        assertTrue("Constructor is not private",
-                isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true));
+        assertTrue(isUtilsClassHasPrivateConstructor(AstTreeStringPrinter.class, true),
+                "Constructor is not private");
     }
 
     @Test
@@ -55,14 +57,12 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final File input = new File(getNonCompilablePath("InputAstTreeStringPrinter.java"));
         try {
             AstTreeStringPrinter.printFileAst(input, JavaParser.Options.WITHOUT_COMMENTS);
-            Assert.fail("exception expected");
+            fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            Assert.assertSame("Invalid class",
-                    NoViableAltException.class, ex.getCause().getClass());
-            Assert.assertEquals("Invalid exception message",
-                    input.getAbsolutePath() + ":2:1: unexpected token: classD",
-                    ex.getCause().toString());
+            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
+                    ex.getCause().toString(), "Invalid exception message");
         }
     }
 
@@ -97,7 +97,7 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String expected = toLfLineEnding(new String(Files.readAllBytes(Paths.get(
                 getPath("ExpectedAstTreeStringPrinter.txt"))), StandardCharsets.UTF_8));
 
-        Assert.assertEquals("Print AST output is invalid", expected, actual);
+        assertEquals(expected, actual, "Print AST output is invalid");
     }
 
     @Test

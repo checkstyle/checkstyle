@@ -20,17 +20,17 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static com.google.common.truth.Truth.assertWithMessage;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -67,7 +67,7 @@ public class XpathFileGeneratorAuditListenerTest {
     private final CloseAndFlushTestByteArrayOutputStream outStream =
             new CloseAndFlushTestByteArrayOutputStream();
 
-    @BeforeClass
+    @BeforeAll
     public static void constructEvents() throws Exception {
         final TreeWalkerAuditEvent event1 = createTreeWalkerAuditEvent(
                 "InputXpathFileGeneratorAuditListener.java", FIRST_MESSAGE);
@@ -98,7 +98,7 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditStarted(null);
         listener.auditFinished(null);
         final String actual = out.toString();
-        assertTrue("Output should be empty", actual.isEmpty());
+        assertTrue(actual.isEmpty(), "Output should be empty");
     }
 
     @Test
@@ -110,7 +110,7 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.fileStarted(ev);
         listener.auditFinished(null);
         final String actual = out.toString();
-        assertTrue("Output should be empty", actual.isEmpty());
+        assertTrue(actual.isEmpty(), "Output should be empty");
     }
 
     @Test
@@ -122,7 +122,7 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.fileFinished(ev);
         listener.auditFinished(null);
         final String actual = out.toString();
-        assertTrue("Output should be empty", actual.isEmpty());
+        assertTrue(actual.isEmpty(), "Output should be empty");
     }
 
     @Test
@@ -141,9 +141,8 @@ public class XpathFileGeneratorAuditListenerTest {
             fail("Exception is excepted");
         }
         catch (UnsupportedOperationException ex) {
-            assertEquals("Invalid exception message",
-                    "Operation is not supported",
-                    ex.getMessage());
+            assertEquals("Operation is not supported",
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
@@ -238,7 +237,7 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditStarted(null);
         listener.auditFinished(null);
 
-        assertEquals("Invalid close count", 1, outStream.getCloseCount());
+        assertEquals(1, outStream.getCloseCount(), "Invalid close count");
     }
 
     @Test
@@ -250,7 +249,7 @@ public class XpathFileGeneratorAuditListenerTest {
         listener.auditStarted(null);
         listener.auditFinished(null);
 
-        assertEquals("Invalid close count", 0, outStream.getCloseCount());
+        assertEquals(0, outStream.getCloseCount(), "Invalid close count");
     }
 
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
@@ -316,7 +315,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 .isEqualTo(1);
 
         final String actual = out.toString();
-        assertEquals("Invalid suppressions file content", expected, actual);
+        assertEquals(expected, actual, "Invalid suppressions file content");
     }
 
     private static class TestByteArrayOutputStream extends ByteArrayOutputStream {

@@ -19,12 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -45,12 +48,12 @@ public class XpathFileGeneratorAstFilterTest {
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(null, null, message, null);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        Assert.assertTrue("filter accepted", filter.accept(event));
+        assertTrue(filter.accept(event), "filter accepted");
 
         final AuditEvent auditEvent = new AuditEvent(this, "Test.java", message);
 
-        Assert.assertNull("filter has no queries",
-                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
+        assertNull(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
+                "filter has no queries");
     }
 
     @Test
@@ -62,14 +65,15 @@ public class XpathFileGeneratorAstFilterTest {
                 "InputXpathFileGeneratorAstFilter.java", message);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        Assert.assertTrue("filter accepted", filter.accept(event));
+        assertTrue(filter.accept(event), "filter accepted");
 
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), message);
 
-        Assert.assertEquals("expected xpath",
+        assertEquals(
                 "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK/LCURLY",
-                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
+                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
+                "expected xpath");
     }
 
     @Test
@@ -81,13 +85,13 @@ public class XpathFileGeneratorAstFilterTest {
                 "InputXpathFileGeneratorAstFilter.java", message);
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        Assert.assertTrue("filter accepted", filter.accept(event));
+        assertTrue(filter.accept(event), "filter accepted");
 
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), message);
 
-        Assert.assertNull("expected null",
-                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
+        assertNull(XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
+                "expected null");
     }
 
     @Test
@@ -100,15 +104,16 @@ public class XpathFileGeneratorAstFilterTest {
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
         filter.setTabWidth(6);
 
-        Assert.assertTrue("filter accepted", filter.accept(event));
+        assertTrue(filter.accept(event), "filter accepted");
 
         final AuditEvent auditEvent = new AuditEvent(this,
                 getPath("InputXpathFileGeneratorAstFilter.java"), message);
 
-        Assert.assertEquals("expected xpath",
+        assertEquals(
                 "/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAstFilter']]/OBJBLOCK"
                         + "/METHOD_DEF[./IDENT[@text='tabMethod']]/SLIST/LITERAL_RETURN",
-                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent));
+                XpathFileGeneratorAstFilter.findCorrespondingXpathQuery(auditEvent),
+                "expected xpath");
     }
 
     /**
@@ -129,9 +134,10 @@ public class XpathFileGeneratorAstFilterTest {
 
         final XpathFileGeneratorAstFilter filter = new XpathFileGeneratorAstFilter();
 
-        Assert.assertTrue("State is not cleared on finishLocalSetup", TestUtil
+        assertTrue(TestUtil
                 .isStatefulFieldClearedDuringLocalSetup(filter, event, "MESSAGE_QUERY_MAP",
-                    variableStack -> ((Map<LocalizedMessage, String>) variableStack).isEmpty()));
+                    variableStack -> ((Map<LocalizedMessage, String>) variableStack).isEmpty()),
+                "State is not cleared on finishLocalSetup");
     }
 
     private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName,
