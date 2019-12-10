@@ -284,7 +284,7 @@
       <version>1.0.3</version>
       <scope>test</scope>
     </dependency>
-    <!-- Junit4 legacy support till https://github.com/checkstyle/checkstyle/issues/6916 -->
+    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
@@ -297,6 +297,7 @@
       <version>1.0</version>
       <scope>test</scope>
     </dependency>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
     <dependency>
       <groupId>com.github.stefanbirkner</groupId>
       <artifactId>system-rules</artifactId>
@@ -315,6 +316,7 @@
       <version>${powermock.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
     <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>

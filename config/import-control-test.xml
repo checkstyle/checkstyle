@@ -18,9 +18,11 @@
 
   <allow pkg=".*" regex="true" />
 
-  <!-- Till https://github.com/checkstyle/checkstyle/issues/6916 -->
+  <!-- Till https://github.com/checkstyle/checkstyle/issues/7368 -->
   <subpackage name="internal">
-    <allow pkg="org.junit"/>
+    <subpackage name="powermock">
+      <allow pkg="org.junit" local-only="true"/>
+    </subpackage>
   </subpackage>
   <file name=".*Test(Support)?" regex="true">
     <allow pkg="org.junit"/>

@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
@@ -36,9 +36,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -112,7 +112,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     private Path javaDir;
     private Path inputDir;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpBeforeClass() throws IOException {
         simpleCheckNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks());
 
@@ -121,7 +121,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 .collect(Collectors.toMap(id -> id.toLowerCase(Locale.ENGLISH), id -> id));
     }
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         javaDir = Paths.get("src/it/java/" + getPackageLocation());
         inputDir = Paths.get(getPath(""));
@@ -142,23 +142,23 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         final Pattern pattern = Pattern.compile("^XpathRegression(.+)Test\\.java$");
         try (DirectoryStream<Path> javaPaths = Files.newDirectoryStream(javaDir)) {
             for (Path path : javaPaths) {
-                assertTrue(path + " is not a regular file", Files.isRegularFile(path));
+                assertTrue(Files.isRegularFile(path), path + " is not a regular file");
                 final String filename = path.toFile().getName();
                 if (filename.startsWith("Abstract")) {
                     continue;
                 }
 
                 final Matcher matcher = pattern.matcher(filename);
-                assertTrue("Invalid test file: " + filename + ", expected pattern: " + pattern,
-                        matcher.matches());
+                assertTrue(matcher.matches(),
+                        "Invalid test file: " + filename + ", expected pattern: " + pattern);
 
                 final String check = matcher.group(1);
-                assertTrue("Unknown check '" + check + "' in test file: " + filename,
-                        simpleCheckNames.contains(check));
+                assertTrue(simpleCheckNames.contains(check),
+                        "Unknown check '" + check + "' in test file: " + filename);
 
-                assertFalse("Check '" + check + "' is now tested. Please update the todo list in"
-                        + " XpathRegressionTest.MISSING_CHECK_NAMES",
-                        MISSING_CHECK_NAMES.contains(check));
+                assertFalse(MISSING_CHECK_NAMES.contains(check),
+                        "Check '" + check + "' is now tested. Please update the todo list in"
+                                + " XpathRegressionTest.MISSING_CHECK_NAMES");
             }
         }
     }
@@ -168,16 +168,17 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         try (DirectoryStream<Path> dirs = Files.newDirectoryStream(inputDir)) {
             for (Path dir : dirs) {
                 // input directory must be named in lower case
-                assertTrue(dir + " is not a directory", Files.isDirectory(dir));
+                assertTrue(Files.isDirectory(dir), dir + " is not a directory");
                 final String dirName = dir.toFile().getName();
-                assertTrue("Invalid directory name: " + dirName,
-                        allowedDirectoryAndChecks.containsKey(dirName));
+                assertTrue(allowedDirectoryAndChecks.containsKey(dirName),
+                        "Invalid directory name: " + dirName);
 
                 // input directory must be connected to an existing test
                 final String check = allowedDirectoryAndChecks.get(dirName);
                 final Path javaPath = javaDir.resolve("XpathRegression" + check + "Test.java");
-                assertTrue("Input directory '" + dir + "' is not connected to Java test case: "
-                        + javaPath, Files.exists(javaPath));
+                assertTrue(Files.exists(javaPath),
+                        "Input directory '" + dir + "' is not connected to Java test case: "
+                                + javaPath);
 
                 // input files should named correctly
                 validateInputDirectory(dir);
@@ -194,12 +195,13 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 final String filename = inputPath.toFile().getName();
                 if (filename.endsWith("java")) {
                     final Matcher matcher = pattern.matcher(filename);
-                    assertTrue("Invalid input file '" + inputPath + "', expected pattern:"
-                            + pattern, matcher.matches());
+                    assertTrue(matcher.matches(),
+                            "Invalid input file '" + inputPath + "', expected pattern:" + pattern);
 
                     final String remaining = matcher.group(1);
-                    assertTrue("Check name '" + check + "' should be included in input file: "
-                            + inputPath, remaining.startsWith(check));
+                    assertTrue(remaining.startsWith(check),
+                            "Check name '" + check + "' should be included in input file: "
+                            + inputPath);
                 }
             }
         }
