@@ -19,9 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -43,8 +43,8 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * Validate commit message has proper structure.
@@ -96,44 +96,44 @@ public class CommitValidationTest {
 
     private static List<RevCommit> lastCommits;
 
-    @BeforeClass
+    @BeforeAll
     public static void setUp() throws Exception {
         lastCommits = getCommitsToCheck();
     }
 
     @Test
     public void testHasCommits() {
-        assertTrue("must have at least one commit to validate",
-                lastCommits != null && !lastCommits.isEmpty());
+        assertTrue(lastCommits != null && !lastCommits.isEmpty(),
+                "must have at least one commit to validate");
     }
 
     @Test
     public void testCommitMessage() {
-        assertEquals("should not accept commit message with periods on end", 3,
-                validateCommitMessage("minor: Test. Test."));
-        assertEquals("should not accept commit message with spaces on end", 3,
-                validateCommitMessage("minor: Test. "));
-        assertEquals("should not accept commit message with tabs on end", 3,
-                validateCommitMessage("minor: Test.\t"));
-        assertEquals("should not accept commit message with period on end, ignoring new line",
-                3, validateCommitMessage("minor: Test.\n"));
-        assertEquals("should not accept commit message with missing prefix", 1,
-                validateCommitMessage("Test. Test"));
-        assertEquals("should not accept commit message with missing prefix", 1,
-                validateCommitMessage("Test. Test\n"));
-        assertEquals("should not accept commit message with multiple lines with text", 2,
-                validateCommitMessage("minor: Test.\nTest"));
-        assertEquals("should accept commit message with a new line on end", 0,
-                validateCommitMessage("minor: Test\n"));
-        assertEquals("should accept commit message with multiple new lines on end", 0,
-                validateCommitMessage("minor: Test\n\n"));
-        assertEquals("should accept commit message that ends properly", 0,
-                validateCommitMessage("minor: Test. Test"));
-        assertEquals("should accept commit message with less than or equal to 200 characters",
-                4, validateCommitMessage("minor: Test Test Test Test Test"
+        assertEquals(3, validateCommitMessage("minor: Test. Test."),
+                "should not accept commit message with periods on end");
+        assertEquals(3, validateCommitMessage("minor: Test. "),
+                "should not accept commit message with spaces on end");
+        assertEquals(3, validateCommitMessage("minor: Test.\t"),
+                "should not accept commit message with tabs on end");
+        assertEquals(3, validateCommitMessage("minor: Test.\n"),
+                "should not accept commit message with period on end, ignoring new line");
+        assertEquals(1, validateCommitMessage("Test. Test"),
+                "should not accept commit message with missing prefix");
+        assertEquals(1, validateCommitMessage("Test. Test\n"),
+                "should not accept commit message with missing prefix");
+        assertEquals(2, validateCommitMessage("minor: Test.\nTest"),
+                "should not accept commit message with multiple lines with text");
+        assertEquals(0, validateCommitMessage("minor: Test\n"),
+                "should accept commit message with a new line on end");
+        assertEquals(0, validateCommitMessage("minor: Test\n\n"),
+                "should accept commit message with multiple new lines on end");
+        assertEquals(0, validateCommitMessage("minor: Test. Test"),
+                "should accept commit message that ends properly");
+        assertEquals(4, validateCommitMessage("minor: Test Test Test Test Test"
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
-                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"));
+                + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"),
+                "should accept commit message with less than or equal to 200 characters");
     }
 
     @Test

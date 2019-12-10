@@ -20,6 +20,9 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -27,9 +30,8 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -41,7 +43,7 @@ public class XdocsMobileWrapperTest {
 
     private static final List<String> NODES_TO_WRAP = new ArrayList<>();
 
-    @Before
+    @BeforeEach
     public void setUp() {
         NODES_TO_WRAP.add("pre");
         NODES_TO_WRAP.add("table");
@@ -56,8 +58,7 @@ public class XdocsMobileWrapperTest {
             final String fileName = file.getName();
 
             final String input = new String(Files.readAllBytes(path), UTF_8);
-            Assert.assertNotEquals(fileName + ": input file cannot be empty", "",
-                    input);
+            assertNotEquals("", input, fileName + ": input file cannot be empty");
             final Document document = XmlUtil.getRawXml(fileName, input, input);
             final NodeList sources = document.getElementsByTagName("section");
 
@@ -81,13 +82,12 @@ public class XdocsMobileWrapperTest {
                 final String wrapperMessage = fileName + "/" + sectionName + ": Tag '"
                         + child.getNodeName() + "' in '" + node.getNodeName()
                         + "' needs a wrapping <span> or <div> with the class 'wrapper'.";
-                Assert.assertTrue(wrapperMessage, "div".equals(node.getNodeName())
-                        || "span".equals(node.getNodeName()));
-                Assert.assertTrue(wrapperMessage, node.hasAttributes());
-                Assert.assertNotNull(wrapperMessage, node.getAttributes().getNamedItem("class"));
-                Assert.assertTrue(wrapperMessage,
-                        node.getAttributes().getNamedItem("class").getNodeValue()
-                                .contains("wrapper"));
+                assertTrue("div".equals(node.getNodeName())
+                        || "span".equals(node.getNodeName()), wrapperMessage);
+                assertTrue(node.hasAttributes(), wrapperMessage);
+                assertNotNull(node.getAttributes().getNamedItem("class"), wrapperMessage);
+                assertTrue(node.getAttributes().getNamedItem("class").getNodeValue()
+                                .contains("wrapper"), wrapperMessage);
 
                 if ("table".equals(child.getNodeName())) {
                     iterateNode(child, fileName, sectionName);
@@ -96,9 +96,8 @@ public class XdocsMobileWrapperTest {
                     final String dataImageInlineMessage = fileName + "/" + sectionName + ": img "
                             + "needs the additional class inline if it should be displayed inline "
                             + "or block if scrolling in mobile view should be enabled.";
-                    Assert.assertTrue(dataImageInlineMessage,
-                            node.getAttributes().getNamedItem("class").getNodeValue()
-                                    .matches(".*(block|inline).*"));
+                    assertTrue(node.getAttributes().getNamedItem("class").getNodeValue()
+                                    .matches(".*(block|inline).*"), dataImageInlineMessage);
                 }
             }
             else {

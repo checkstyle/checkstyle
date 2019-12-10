@@ -23,6 +23,14 @@ import static java.lang.Integer.parseInt;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.CoreMatchers.describedAs;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.beans.PropertyDescriptor;
 import java.io.File;
@@ -54,8 +62,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -239,7 +246,7 @@ public class XdocsPagesTest {
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
-                    Assert.fail(checkName + " is not correctly listed on Available Checks page"
+                    fail(checkName + " is not correctly listed on Available Checks page"
                         + " - add it to " + AVAILABLE_CHECKS_PATH);
                 }
             });
@@ -263,12 +270,11 @@ public class XdocsPagesTest {
                 final Node subSection = subSections.item(position);
                 final Node name = subSection.getAttributes().getNamedItem("name");
 
-                Assert.assertNotNull("All sub-sections in '" + fileName + "' must have a name",
-                        name);
+                assertNotNull(name, "All sub-sections in '" + fileName + "' must have a name");
 
                 final Node id = subSection.getAttributes().getNamedItem("id");
 
-                Assert.assertNotNull("All sub-sections in '" + fileName + "' must have an id", id);
+                assertNotNull(id, "All sub-sections in '" + fileName + "' must have an id");
 
                 final String sectionName;
 
@@ -286,9 +292,9 @@ public class XdocsPagesTest {
                 final String nameString = name.getNodeValue();
                 final String idString = id.getNodeValue();
 
-                Assert.assertEquals(fileName + " sub-section " + nameString + " for section "
-                        + sectionName + " must match",
-                        (sectionName + " " + nameString).replace(' ', '_'), idString);
+                assertEquals((sectionName + " " + nameString).replace(' ', '_'), idString,
+                        fileName + " sub-section " + nameString + " for section "
+                        + sectionName + " must match");
             }
         }
     }
@@ -318,10 +324,10 @@ public class XdocsPagesTest {
                 XmlUtil.getRawXml(fileName, code, unserializedSource);
 
                 // can't test ant structure, or old and outdated checks
-                Assert.assertTrue("Xml is invalid, old or has outdated structure",
-                        fileName.startsWith("anttask")
+                assertTrue(fileName.startsWith("anttask")
                         || fileName.startsWith("releasenotes")
-                        || isValidCheckstyleXml(fileName, code, unserializedSource));
+                        || isValidCheckstyleXml(fileName, code, unserializedSource),
+                        "Xml is invalid, old or has outdated structure");
             }
         }
     }
@@ -424,19 +430,18 @@ public class XdocsPagesTest {
                         .getNodeValue();
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
-                    Assert.assertNull(fileName + " section '" + sectionName + "' should be first",
-                            lastSectionName);
+                    assertNull(lastSectionName,
+                            fileName + " section '" + sectionName + "' should be first");
                     continue;
                 }
 
-                Assert.assertTrue(fileName + " section '" + sectionName
-                        + "' shouldn't end with 'Check'", !sectionName.endsWith("Check"));
+                assertFalse(sectionName.endsWith("Check"),
+                        fileName + " section '" + sectionName + "' shouldn't end with 'Check'");
                 if (lastSectionName != null) {
-                    Assert.assertTrue(
+                    assertTrue(sectionName.toLowerCase(Locale.ENGLISH).compareTo(
+                            lastSectionName.toLowerCase(Locale.ENGLISH)) >= 0,
                             fileName + " section '" + sectionName
-                                    + "' is out of order compared to '" + lastSectionName + "'",
-                            sectionName.toLowerCase(Locale.ENGLISH).compareTo(
-                                    lastSectionName.toLowerCase(Locale.ENGLISH)) >= 0);
+                                + "' is out of order compared to '" + lastSectionName + "'");
                 }
 
                 validateCheckSection(moduleFactory, fileName, sectionName, section);
@@ -512,9 +517,8 @@ public class XdocsPagesTest {
                 subSectionPos++;
             }
 
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' should be in order", getSubSectionName(subSectionPos),
-                    subSectionName);
+            assertEquals(getSubSectionName(subSectionPos), subSectionName,
+                    fileName + " section '" + sectionName + "' should be in order");
 
             switch (subSectionPos) {
                 case 1:
@@ -542,21 +546,21 @@ public class XdocsPagesTest {
         }
 
         if ("Checker".equals(sectionName)) {
-            Assert.assertTrue(fileName + " section '" + sectionName
-                    + "' should contain up to 'Package' sub-section", subSectionPos >= 6);
+            assertTrue(subSectionPos >= 6, fileName + " section '" + sectionName
+                    + "' should contain up to 'Package' sub-section");
         }
         else {
-            Assert.assertTrue(fileName + " section '" + sectionName
-                    + "' should contain up to 'Parent' sub-section", subSectionPos >= 7);
+            assertTrue(subSectionPos >= 7, fileName + " section '" + sectionName
+                    + "' should contain up to 'Parent' sub-section");
         }
     }
 
     private static void validateSinceDescriptionSection(String fileName, String sectionName,
             Node subSection) {
-        Assert.assertTrue(fileName + " section '" + sectionName
-                + "' should have a valid version at the start of the description like:\n"
-                + DESCRIPTION_VERSION.pattern(),
-                DESCRIPTION_VERSION.matcher(subSection.getTextContent().trim()).find());
+        assertTrue(DESCRIPTION_VERSION.matcher(subSection.getTextContent().trim()).find(),
+                fileName + " section '" + sectionName
+                        + "' should have a valid version at the start of the description like:\n"
+                        + DESCRIPTION_VERSION.pattern());
     }
 
     private static Object getSubSectionName(int subSectionPos) {
@@ -600,38 +604,34 @@ public class XdocsPagesTest {
         fixCapturedProperties(sectionName, instance, clss, properties);
 
         if (subSection != null) {
-            Assert.assertTrue(fileName + " section '" + sectionName
-                    + "' should have no properties to show", !properties.isEmpty());
+            assertFalse(properties.isEmpty(), fileName + " section '" + sectionName
+                    + "' should have no properties to show");
 
             final Set<Node> nodes = XmlUtil.getChildrenElements(subSection);
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' subsection 'Properties' should have one child node",
-                1, nodes.size());
+            assertEquals(1, nodes.size(), fileName + " section '" + sectionName
+                    + "' subsection 'Properties' should have one child node");
 
             final Node div = nodes.iterator().next();
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' subsection 'Properties' has unexpected child node",
-                "div", div.getNodeName());
+            assertEquals("div", div.getNodeName(), fileName + " section '" + sectionName
+                        + "' subsection 'Properties' has unexpected child node");
             final String wrapperMessage = fileName + " section '" + sectionName
                     + "' subsection 'Properties' wrapping div for table needs the"
                     + " class 'wrapper'";
-            Assert.assertTrue(wrapperMessage, div.hasAttributes());
-            Assert.assertNotNull(wrapperMessage,
-                    div.getAttributes().getNamedItem("class").getNodeValue());
-            Assert.assertTrue(wrapperMessage,
-                    div.getAttributes().getNamedItem("class").getNodeValue().contains("wrapper"));
+            assertTrue(div.hasAttributes(), wrapperMessage);
+            assertNotNull(div.getAttributes().getNamedItem("class").getNodeValue(), wrapperMessage);
+            assertTrue(div.getAttributes().getNamedItem("class").getNodeValue().contains("wrapper"),
+                    wrapperMessage);
 
             final Node table = XmlUtil.getFirstChildElement(div);
-            Assert.assertEquals(fileName + " section '" + sectionName
-                            + "' subsection 'Properties' has unexpected child node",
-                    "table", table.getNodeName());
+            assertEquals("table", table.getNodeName(), fileName + " section '" + sectionName
+                    + "' subsection 'Properties' has unexpected child node");
 
             validatePropertySectionProperties(fileName, sectionName, table, instance,
                     properties);
         }
 
-        Assert.assertTrue(fileName + " section '" + sectionName + "' should show properties: "
-                + properties, properties.isEmpty());
+        assertTrue(properties.isEmpty(),
+                fileName + " section '" + sectionName + "' should show properties: " + properties);
     }
 
     private static void fixCapturedProperties(String sectionName, Object instance, Class<?> clss,
@@ -702,37 +702,36 @@ public class XdocsPagesTest {
         for (Node row : XmlUtil.getChildrenElements(table)) {
             final List<Node> columns = new ArrayList<>(XmlUtil.getChildrenElements(row));
 
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' should have the requested columns", 5, columns.size());
+            assertEquals(5, columns.size(), fileName + " section '" + sectionName
+                    + "' should have the requested columns");
 
             if (skip) {
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have the specific title", "name", columns.get(0)
-                        .getTextContent());
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have the specific title", "description", columns.get(1)
-                        .getTextContent());
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have the specific title", "type", columns.get(2)
-                        .getTextContent());
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have the specific title", "default value", columns.get(3)
-                        .getTextContent());
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have the specific title", "since", columns.get(4)
-                        .getTextContent());
+                assertEquals("name", columns.get(0).getTextContent(),
+                        fileName + " section '" + sectionName
+                                + "' should have the specific title");
+                assertEquals("description", columns.get(1).getTextContent(),
+                        fileName + " section '" + sectionName
+                                + "' should have the specific title");
+                assertEquals("type", columns.get(2).getTextContent(),
+                        fileName + " section '" + sectionName
+                                + "' should have the specific title");
+                assertEquals("default value", columns.get(3).getTextContent(),
+                        fileName + " section '" + sectionName
+                                + "' should have the specific title");
+                assertEquals("since", columns.get(4).getTextContent(),
+                        fileName + " section '" + sectionName
+                                + "' should have the specific title");
 
                 skip = false;
                 continue;
             }
 
-            Assert.assertFalse(fileName + " section '" + sectionName
-                    + "' should have token properties last", didTokens);
+            assertFalse(didTokens, fileName + " section '" + sectionName
+                    + "' should have token properties last");
 
             final String propertyName = columns.get(0).getTextContent();
-            Assert.assertTrue(fileName + " section '" + sectionName
-                    + "' should not contain the property: " + propertyName,
-                    properties.remove(propertyName));
+            assertTrue(properties.remove(propertyName), fileName + " section '" + sectionName
+                    + "' should not contain the property: " + propertyName);
 
             if ("tokens".equals(propertyName)) {
                 final AbstractCheck check = (AbstractCheck) instance;
@@ -745,34 +744,33 @@ public class XdocsPagesTest {
                 didJavadocTokens = true;
             }
             else {
-                Assert.assertFalse(fileName + " section '" + sectionName
-                        + "' should have javadoc token properties next to last, before tokens",
-                        didJavadocTokens);
+                assertFalse(didJavadocTokens, fileName + " section '" + sectionName
+                            + "' should have javadoc token properties next to last, before tokens");
 
                 validatePropertySectionPropertyEx(fileName, sectionName, instance, columns,
                         propertyName);
             }
 
-            Assert.assertFalse(fileName + " section '" + sectionName
-                    + "' should have a version for " + propertyName, columns.get(4)
-                    .getTextContent().trim().isEmpty());
-            Assert.assertTrue(fileName + " section '" + sectionName
-                    + "' should have a valid version for " + propertyName,
-                    VERSION.matcher(columns.get(4).getTextContent().trim()).matches());
+            assertFalse(columns.get(4).getTextContent().trim().isEmpty(),
+                    fileName + " section '" + sectionName
+                            + "' should have a version for " + propertyName);
+            assertTrue(VERSION.matcher(columns.get(4).getTextContent().trim()).matches(),
+                    fileName + " section '" + sectionName
+                            + "' should have a valid version for " + propertyName);
         }
     }
 
     private static void validatePropertySectionPropertyEx(String fileName, String sectionName,
             Object instance, List<Node> columns, String propertyName) throws Exception {
-        Assert.assertFalse(fileName + " section '" + sectionName
-                + "' should have a description for " + propertyName, columns.get(1)
-                .getTextContent().trim().isEmpty());
+        assertFalse(columns.get(1).getTextContent().trim().isEmpty(),
+                fileName + " section '" + sectionName
+                        + "' should have a description for " + propertyName);
 
         final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
                 .replace("\r", "").replaceAll(" +", " ").trim();
 
-        Assert.assertFalse(fileName + " section '" + sectionName + "' should have a type for "
-                + propertyName, actualTypeName.isEmpty());
+        assertFalse(actualTypeName.isEmpty(),
+                fileName + " section '" + sectionName + "' should have a type for " + propertyName);
 
         final Field field = getField(instance.getClass(), propertyName);
         final Class<?> fieldClss = getFieldClass(fileName, sectionName, instance, field,
@@ -783,55 +781,50 @@ public class XdocsPagesTest {
         final String expectedValue = getModulePropertyExpectedValue(sectionName, propertyName,
                 field, fieldClss, instance);
 
-        Assert.assertEquals(fileName + " section '" + sectionName
-                + "' should have the type for " + propertyName, expectedTypeName,
-                actualTypeName);
+        assertEquals(expectedTypeName, actualTypeName,
+                fileName + " section '" + sectionName
+                        + "' should have the type for " + propertyName);
 
         if (expectedValue != null) {
             final String actualValue = columns.get(3).getTextContent().replace("\n", "")
                     .replace("\r", "").replaceAll(" +", " ").trim();
 
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' should have the value for " + propertyName, expectedValue,
-                    actualValue);
+            assertEquals(expectedValue, actualValue,
+                    fileName + " section '" + sectionName
+                            + "' should have the value for " + propertyName);
         }
     }
 
     private static void validatePropertySectionPropertyTokens(String fileName, String sectionName,
             AbstractCheck check, List<Node> columns) {
-        Assert.assertEquals(fileName + " section '" + sectionName
-                + "' should have the basic token description", "tokens to check", columns.get(1)
-                .getTextContent());
-        Assert.assertEquals(
-                fileName + " section '" + sectionName + "' should have all the acceptable tokens",
-                "subset of tokens "
-                        + CheckUtil.getTokenText(check.getAcceptableTokens(),
-                                check.getRequiredTokens()), columns.get(2).getTextContent()
-                        .replaceAll("\\s+", " ").trim());
-        Assert.assertEquals(fileName + " section '" + sectionName
-                + "' should have all the default tokens",
+        assertEquals("tokens to check", columns.get(1).getTextContent(),
+                fileName + " section '" + sectionName
+                        + "' should have the basic token description");
+        assertEquals("subset of tokens " + CheckUtil.getTokenText(check.getAcceptableTokens(),
+                check.getRequiredTokens()),
+                columns.get(2).getTextContent().replaceAll("\\s+", " ").trim(),
+                fileName + " section '" + sectionName + "' should have all the acceptable tokens");
+        assertEquals(
                 CheckUtil.getTokenText(check.getDefaultTokens(), check.getRequiredTokens()),
-                columns.get(3).getTextContent().replaceAll("\\s+", " ").trim());
+                columns.get(3).getTextContent().replaceAll("\\s+", " ").trim(),
+                fileName + " section '" + sectionName + "' should have all the default tokens");
     }
 
     private static void validatePropertySectionPropertyJavadocTokens(String fileName,
             String sectionName, AbstractJavadocCheck check, List<Node> columns) {
-        Assert.assertEquals(fileName + " section '" + sectionName
-                + "' should have the basic token javadoc description", "javadoc tokens to check",
-                columns.get(1).getTextContent());
-        Assert.assertEquals(
-                fileName + " section '" + sectionName
-                        + "' should have all the acceptable javadoc tokens",
-                "subset of javadoc tokens "
+        assertEquals("javadoc tokens to check",
+                columns.get(1).getTextContent(), fileName + " section '" + sectionName
+                        + "' should have the basic token javadoc description");
+        assertEquals("subset of javadoc tokens "
                         + CheckUtil.getJavadocTokenText(check.getAcceptableJavadocTokens(),
                                 check.getRequiredJavadocTokens()), columns.get(2).getTextContent()
-                        .replaceAll("\\s+", " ").trim());
-        Assert.assertEquals(
-                fileName + " section '" + sectionName
-                        + "' should have all the default javadoc tokens",
+                        .replaceAll("\\s+", " ").trim(), fileName + " section '" + sectionName
+                                + "' should have all the acceptable javadoc tokens");
+        assertEquals(
                 CheckUtil.getJavadocTokenText(check.getDefaultJavadocTokens(),
                         check.getRequiredJavadocTokens()), columns.get(3).getTextContent()
-                        .replaceAll("\\s+", " ").trim());
+                        .replaceAll("\\s+", " ").trim(), fileName + " section '" + sectionName
+                                + "' should have all the default javadoc tokens");
     }
 
     /**
@@ -960,7 +953,7 @@ public class XdocsPagesTest {
             result = "File";
         }
         else {
-            Assert.fail("Unknown property type: " + fieldClass.getSimpleName());
+            fail("Unknown property type: " + fieldClass.getSimpleName());
         }
 
         if ("SuppressWarningsHolder".equals(instanceName)) {
@@ -1173,7 +1166,7 @@ public class XdocsPagesTest {
                 result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
             }
             else {
-                Assert.fail("Unknown property type: " + fieldClass.getSimpleName());
+                fail("Unknown property type: " + fieldClass.getSimpleName());
             }
 
             if (result == null) {
@@ -1225,11 +1218,11 @@ public class XdocsPagesTest {
             result = field.getType();
         }
         if (result == null) {
-            Assert.assertTrue(
-                    fileName + " section '" + sectionName + "' could not find field "
-                            + propertyName,
+            assertTrue(
                     PROPERTIES_ALLOWED_GET_TYPES_FROM_METHOD.contains(sectionName + "."
-                            + propertyName));
+                            + propertyName),
+                    fileName + " section '" + sectionName + "' could not find field "
+                            + propertyName);
 
             final PropertyDescriptor descriptor = PropertyUtils.getPropertyDescriptor(instance,
                     propertyName);
@@ -1249,7 +1242,7 @@ public class XdocsPagesTest {
                 result = Pattern[].class;
             }
             else {
-                Assert.fail("Unknown parameterized type: " + parameterClass.getSimpleName());
+                fail("Unknown parameterized type: " + parameterClass.getSimpleName());
             }
         }
         else if (result == BitSet.class) {
@@ -1288,13 +1281,14 @@ public class XdocsPagesTest {
         }
 
         if (subSection == null) {
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' should have the expected error keys", "", expectedText.toString());
+            assertEquals("", expectedText.toString(), fileName + " section '" + sectionName
+                    + "' should have the expected error keys");
         }
         else {
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' should have the expected error keys", expectedText.toString().trim(),
-                    subSection.getTextContent().replaceAll("\n\\s+", "\n").trim());
+            assertEquals(expectedText.toString().trim(),
+                    subSection.getTextContent().replaceAll("\n\\s+", "\n").trim(),
+                    fileName + " section '" + sectionName
+                            + "' should have the expected error keys");
 
             for (Node node : XmlUtil.findChildElementsByTag(subSection, "a")) {
                 final String url = node.getAttributes().getNamedItem("href").getTextContent();
@@ -1312,8 +1306,8 @@ public class XdocsPagesTest {
                             + linkText + "%22";
                 }
 
-                Assert.assertEquals(fileName + " section '" + sectionName
-                        + "' should have matching url for '" + linkText + "'", expectedUrl, url);
+                assertEquals(expectedUrl, url, fileName + " section '" + sectionName
+                        + "' should have matching url for '" + linkText + "'");
             }
         }
     }
@@ -1322,8 +1316,8 @@ public class XdocsPagesTest {
         final String text = subSection.getTextContent().replace("Checkstyle Style", "")
                 .replace("Google Style", "").replace("Sun Style", "").trim();
 
-        Assert.assertTrue(fileName + " section '" + sectionName
-                + "' has unknown text in 'Example of Usage': " + text, text.isEmpty());
+        assertTrue(text.isEmpty(), fileName + " section '" + sectionName
+                + "' has unknown text in 'Example of Usage': " + text);
 
         boolean hasCheckstyle = false;
         boolean hasGoogle = false;
@@ -1347,9 +1341,9 @@ public class XdocsPagesTest {
                         + "repo%3Acheckstyle%2Fcheckstyle+"
                         + sectionName;
 
-                Assert.assertTrue(fileName + " section '" + sectionName
-                        + "' should be in google_checks.xml or not reference 'Google Style'",
-                        GOOGLE_MODULES.contains(sectionName));
+                assertTrue(
+                        GOOGLE_MODULES.contains(sectionName), fileName + " section '" + sectionName
+                            + "' should be in google_checks.xml or not reference 'Google Style'");
             }
             else if ("Sun Style".equals(linkText)) {
                 hasSun = true;
@@ -1358,30 +1352,30 @@ public class XdocsPagesTest {
                         + "repo%3Acheckstyle%2Fcheckstyle+"
                         + sectionName;
 
-                Assert.assertTrue(fileName + " section '" + sectionName
-                        + "' should be in sun_checks.xml or not reference 'Sun Style'",
-                        SUN_MODULES.contains(sectionName));
+                assertTrue(
+                        SUN_MODULES.contains(sectionName), fileName + " section '" + sectionName
+                                + "' should be in sun_checks.xml or not reference 'Sun Style'");
             }
 
-            Assert.assertEquals(fileName + " section '" + sectionName
-                    + "' should have matching url", expectedUrl, url);
+            assertEquals(expectedUrl, url, fileName + " section '" + sectionName
+                    + "' should have matching url");
         }
 
-        Assert.assertTrue(fileName + " section '" + sectionName
-                + "' should have a checkstyle section", hasCheckstyle);
-        Assert.assertTrue(fileName + " section '" + sectionName
-                + "' should have a google section since it is in it's config", hasGoogle
-                || !GOOGLE_MODULES.contains(sectionName));
-        Assert.assertTrue(fileName + " section '" + sectionName
-                + "' should have a sun section since it is in it's config",
-                hasSun || !SUN_MODULES.contains(sectionName));
+        assertTrue(hasCheckstyle, fileName + " section '" + sectionName
+                + "' should have a checkstyle section");
+        assertTrue(hasGoogle
+                || !GOOGLE_MODULES.contains(sectionName), fileName + " section '" + sectionName
+                        + "' should have a google section since it is in it's config");
+        assertTrue(hasSun || !SUN_MODULES.contains(sectionName),
+                fileName + " section '" + sectionName
+                        + "' should have a sun section since it is in it's config");
     }
 
     private static void validatePackageSection(String fileName, String sectionName,
             Node subSection, Object instance) {
-        Assert.assertEquals(fileName + " section '" + sectionName
-                + "' should have matching package", instance.getClass().getPackage().getName(),
-                subSection.getTextContent().trim());
+        assertEquals(instance.getClass().getPackage().getName(),
+                subSection.getTextContent().trim(), fileName + " section '" + sectionName
+                        + "' should have matching package");
     }
 
     private static void validateParentSection(String fileName, String sectionName,
@@ -1395,10 +1389,8 @@ public class XdocsPagesTest {
             expected = "Checker";
         }
 
-        Assert.assertEquals(
-                fileName + " section '" + sectionName + "' should have matching parent",
-                expected, subSection
-                        .getTextContent().trim());
+        assertEquals(expected, subSection.getTextContent().trim(),
+                fileName + " section '" + sectionName + "' should have matching parent");
     }
 
     private static boolean hasParentModule(String sectionName) {
@@ -1449,7 +1441,7 @@ public class XdocsPagesTest {
                     break;
 
                 default:
-                    Assert.fail("Missing modules list for style file '" + fileName + "'");
+                    fail("Missing modules list for style file '" + fileName + "'");
                     styleChecks = null;
             }
 
@@ -1486,8 +1478,8 @@ public class XdocsPagesTest {
             styleChecks.remove("TreeWalker");
             styleChecks.remove("Checker");
 
-            Assert.assertTrue(fileName + " requires the following check(s) to appear: "
-                    + styleChecks, styleChecks.isEmpty());
+            assertTrue(styleChecks.isEmpty(),
+                    fileName + " requires the following check(s) to appear: " + styleChecks);
         }
     }
 
@@ -1519,16 +1511,14 @@ public class XdocsPagesTest {
                 if (ruleNumberPartsAreNumeric) {
                     final int numericRuleNumberPart = parseInt(ruleNumberPart);
                     final int numericLastRuleNumberPart = parseInt(lastRuleNumberPart);
-                    Assert.assertThat(
-                            outOfOrderReason,
+                    assertThat(outOfOrderReason,
                             numericRuleNumberPart < numericLastRuleNumberPart,
                             describedAs("'%0' should not be less than '%1'",
                                     is(false),
                                     numericRuleNumberPart, numericLastRuleNumberPart));
                 }
                 else {
-                    Assert.assertThat(
-                            outOfOrderReason,
+                    assertThat(outOfOrderReason,
                             ruleNumberPart.compareToIgnoreCase(lastRuleNumberPart) < 0,
                             describedAs("'%0' should not be less than '%1'",
                                     is(false),
@@ -1543,11 +1533,11 @@ public class XdocsPagesTest {
             }
             if (ruleNumberPartsAmount == partIndex && lastRuleNumberPartWasEqual) {
                 if (lastRuleNumberPartsAmount == partIndex) {
-                    Assert.fail(fileName + " rule '" + ruleName + "' and rule '"
+                    fail(fileName + " rule '" + ruleName + "' and rule '"
                             + lastRuleName + "' have the same rule number");
                 }
                 else {
-                    Assert.fail(outOfOrderReason);
+                    fail(outOfOrderReason);
                 }
             }
         }
@@ -1556,13 +1546,13 @@ public class XdocsPagesTest {
     }
 
     private static void validateStyleAnchors(Set<Node> anchors, String fileName, String ruleName) {
-        Assert.assertEquals(fileName + " rule '" + ruleName + "' must have two row anchors", 2,
-                anchors.size());
+        assertEquals(2,
+                anchors.size(), fileName + " rule '" + ruleName + "' must have two row anchors");
 
         final int space = ruleName.indexOf(' ');
-        Assert.assertTrue(fileName + " rule '" + ruleName
-                + "' must have have a space between the rule's number and the rule's name",
-                space != -1);
+        assertNotEquals(-1, space,
+                fileName + " rule '" + ruleName
+                        + "' must have have a space between the rule's number and the rule's name");
 
         final String ruleNumber = ruleName.substring(0, space);
 
@@ -1581,8 +1571,8 @@ public class XdocsPagesTest {
                 expectedUrl = "#" + ruleNumber;
             }
 
-            Assert.assertEquals(fileName + " rule '" + ruleName + "' anchor " + position
-                    + " should have matching name/url", expectedUrl, actualUrl);
+            assertEquals(expectedUrl, actualUrl, fileName + " rule '" + ruleName + "' anchor "
+                    + position + " should have matching name/url");
 
             position++;
         }
@@ -1602,8 +1592,9 @@ public class XdocsPagesTest {
                 continue;
             }
 
-            Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
-                    + "' shouldn't end with 'Check'", !moduleName.endsWith("Check"));
+            assertFalse(moduleName.endsWith("Check"),
+                    styleName + "_style.xml rule '" + ruleName + "' module '" + moduleName
+                        + "' shouldn't end with 'Check'");
 
             styleChecks.remove(moduleName);
 
@@ -1614,13 +1605,13 @@ public class XdocsPagesTest {
                     config = itrConfigs.next();
                 }
                 catch (NoSuchElementException ignore) {
-                    Assert.fail(styleName + "_style.xml rule '" + ruleName + "' module '"
+                    fail(styleName + "_style.xml rule '" + ruleName + "' module '"
                             + moduleName + "' is missing the config link: " + configName);
                 }
 
-                Assert.assertEquals(styleName + "_style.xml rule '" + ruleName + "' module '"
-                        + moduleName + "' has mismatched config/test links", configName,
-                        config.getTextContent().trim());
+                assertEquals(configName, config.getTextContent().trim(),
+                        styleName + "_style.xml rule '" + ruleName + "' module '"
+                                + moduleName + "' has mismatched config/test links");
 
                 final String configUrl = config.getAttributes().getNamedItem("href")
                         .getTextContent();
@@ -1630,30 +1621,32 @@ public class XdocsPagesTest {
                             + "path%3Asrc%2Fmain%2Fresources+filename%3A" + styleName
                             + "_checks.xml+repo%3Acheckstyle%2Fcheckstyle+" + moduleName;
 
-                    Assert.assertEquals(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                    + moduleName + "' should have matching " + configName + " url",
-                            expectedUrl, configUrl);
+                    assertEquals(expectedUrl, configUrl,
+                            styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have matching " + configName + " url");
                 }
                 else if ("test".equals(configName)) {
-                    Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                    + moduleName + "' should have matching " + configName + " url",
+                    assertTrue(
                             configUrl.startsWith("https://github.com/checkstyle/checkstyle/"
                                     + "blob/master/src/it/java/com/" + styleName
-                                    + "/checkstyle/test/"));
-                    Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '"
-                                    + moduleName + "' should have matching " + configName + " url",
-                            configUrl.endsWith("/" + moduleName + "Test.java"));
+                                    + "/checkstyle/test/"),
+                            styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have matching " + configName + " url");
+                    assertTrue(configUrl.endsWith("/" + moduleName + "Test.java"),
+                            styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have matching " + configName + " url");
 
-                    Assert.assertTrue(styleName + "_style.xml rule '" + ruleName + "' module '"
-                            + moduleName + "' should have a test that exists",
+                    assertTrue(
                             new File(configUrl.substring(53)
-                                    .replace('/', File.separatorChar)).exists());
+                                    .replace('/', File.separatorChar)).exists(),
+                            styleName + "_style.xml rule '" + ruleName + "' module '"
+                                    + moduleName + "' should have a test that exists");
                 }
             }
         }
 
-        Assert.assertFalse(styleName + "_style.xml rule '" + ruleName + "' has too many configs",
-                itrConfigs.hasNext());
+        assertFalse(itrConfigs.hasNext(),
+                styleName + "_style.xml rule '" + ruleName + "' has too many configs");
     }
 
 }
