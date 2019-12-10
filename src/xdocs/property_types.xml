@@ -32,21 +32,21 @@
 
     <section name="integer">
       <p>
-        This property represents an integer. The string representation is
+        This type represents an integer. The string representation is
         parsed using the <code>java.lang.Integer</code> class.
       </p>
     </section>
 
     <section name="string">
       <p>
-        This property represents a string. The literal string representation
+        This type represents a string. The literal string representation
         is used.
       </p>
     </section>
 
     <section name="boolean">
       <p>
-        This property represents a boolean. The default value is <code>false</code>.
+        This type represents a boolean. The default value is <code>false</code>.
         The following string representations will map to <code>true</code>:
       </p>
 
@@ -61,11 +61,11 @@
 
     <section name="stringSet">
       <p>
-        This property represents a set of strings. The string representation
+        This type represents a set of strings. The string representation
         is parsed as a set of comma (',') separated strings.
       </p>
       <p>
-        Alternatively, this property can be supplied multiple times which
+        Alternatively, a property of this type can be supplied multiple times which
         is equivalent to a set of comma separated strings. For example, the
         following:
       </p>
@@ -81,12 +81,12 @@
 
     <section name="intSet">
       <p>
-        This property represents a set of integers. The string representation
+        This type represents a set of integers. The string representation
         is parsed as a set of comma (',') separated integers that are parsed
         using the <code>java.lang.Integer</code> class.
       </p>
       <p>
-        Alternatively, this property can be supplied multiple times which
+        Alternatively, a property of this type can be supplied multiple times which
         is equivalent to a set of comma separated integers. For example, the
         following:
       </p>
@@ -102,16 +102,15 @@
 
     <section name="regexp">
       <p>
-        This property represents a regular expression. The string
-        representation is parsed using <a
-        href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">java.util.regex
-        package</a>.
+        This type represents a regular expression. The string representation is parsed using
+        <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
+        java.util.regex package</a>.
       </p>
     </section>
 
     <section name="uri">
       <p>
-        This property represents a URI. The string representation is parsed using a custom
+        This type represents a URI. The string representation is parsed using a custom
         routine to analyze what type of URI the string is.
         It can be a URL, regular file, or a resource path. It will try loading the path as
         a URL first, then as a file that must exist, and then finally as a resource on the
@@ -121,7 +120,7 @@
 
     <section name="lineSeparator">
       <p>
-        This property represents the policy for line returns. The
+        This type represents the policy for line returns. The
         following table describes the valid options:
       </p>
 
@@ -157,7 +156,7 @@
 
     <section name="parenPad">
       <p>
-        This property represents the policy for padding with white space. The
+        This type represents the policy for padding with white space. The
         following table describes the valid options:
       </p>
 
@@ -186,7 +185,7 @@
 
     <section name="wrapOp">
       <p>
-        This property represents the policy for wrapping lines.
+        This type represents the policy for wrapping lines.
         The following table describes the valid options:
       </p>
 
@@ -226,7 +225,7 @@
 
     <section name="block">
       <p>
-        This property represents the policy for checking block statements. The
+        This type represents the policy for checking block statements. The
         following table describes the valid options:
       </p>
 
@@ -268,7 +267,7 @@
 
     <section name="lcurly">
       <p>
-        This property represents the policy for checking the placement of a
+        This type represents the policy for checking the placement of a
         left curly brace (<code>'{'</code>). The following table
         describes the valid options:
       </p>
@@ -338,7 +337,7 @@
 
     <section name="rcurly">
       <p>
-        This property represents the policy for checking the placement of a
+        This type represents the policy for checking the placement of a
         right curly brace (<code>'}'</code>) in blocks but not blocks of expressions.
         For right curly brace of expression blocks please follow issue
         <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>. The following
@@ -466,7 +465,7 @@
     </section>
 
     <section name="scope">
-      <p>This property represents a Java scope. Checks use this to determine which
+      <p>This type represents a Java scope. Checks use this to determine which
       methods/fields/classes will be examined by it's logic. The valid options are:</p>
 
       <ul>
@@ -488,20 +487,20 @@
       </p>
     </section>
 
-      <section name="access_modifiers">
-          <p>This property represents Java access modifiers.</p>
+    <section name="access_modifiers">
+      <p>This type represents Java access modifiers.</p>
 
-          <ul>
-              <li><code>public</code></li>
-              <li><code>protected</code></li>
-              <li><code>package</code></li>
-              <li><code>private</code></li>
-          </ul>
-      </section>
+      <ul>
+        <li><code>public</code></li>
+        <li><code>protected</code></li>
+        <li><code>package</code></li>
+        <li><code>private</code></li>
+      </ul>
+    </section>
 
     <section name="severity">
       <p>
-        This property represents the severity level of a check violation. The
+        This type represents the severity level of a check violation. The
         valid options are:
       </p>
 
@@ -515,7 +514,7 @@
 
     <section name="importOrder">
       <p>
-        This property represents the policy for checking imports order.
+        This type represents the policy for checking imports order.
         The following table describes the valid options:
       </p>
 
@@ -608,7 +607,7 @@
 
     <section name="elementStyle">
       <p>
-        This property represents the policy for the styles for defining
+        This type represents the policy for the styles for defining
         elements in an annotation. The following table
         describes the valid options:
       </p>
@@ -694,7 +693,7 @@
 
     <section name="closingParens">
       <p>
-        This property represents the policy for the styles for the ending
+        This type represents the policy for the styles for the ending
         parenthesis. The following table describes the valid options:
       </p>
 
@@ -737,7 +736,7 @@
 
     <section name="trailingArrayComma">
       <p>
-        This property represents the policy for the styles for the trailing
+        This type represents the policy for the styles for the trailing
         array comma. The following table describes the valid options:
       </p>
 
