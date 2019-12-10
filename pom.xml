@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
   <modelVersion>4.0.0</modelVersion>
 
   <!-- This parent is requirements for deploy of artifacts to maven central -->
   <parent>
-    <artifactId>oss-parent</artifactId>
     <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
     <version>9</version>
   </parent>
 
@@ -223,15 +222,6 @@
     <junit.version>5.5.2</junit.version>
   </properties>
 
-  <!-- that repositories are required for testing plugin's snapshot version -->
-  <pluginRepositories>
-    <pluginRepository>
-      <id>nexus-codehaus-snapshot</id>
-      <name>Codehaus Snapshots</name>
-      <url>https://oss.sonatype.org/content/repositories/codehaus-snapshots/</url>
-    </pluginRepository>
-  </pluginRepositories>
-
   <dependencies>
     <dependency>
       <groupId>info.picocli</groupId>
@@ -292,8 +282,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-    <groupId>com.google.truth</groupId>
-    <artifactId>truth</artifactId>
+      <groupId>com.google.truth</groupId>
+      <artifactId>truth</artifactId>
       <version>1.0</version>
       <scope>test</scope>
     </dependency>
@@ -345,8 +335,8 @@
       <groupId>org.jacoco</groupId>
       <artifactId>org.jacoco.agent</artifactId>
       <version>${maven.jacoco.plugin.version}</version>
-      <scope>test</scope>
       <classifier>runtime</classifier>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>net.sf.saxon</groupId>
@@ -360,6 +350,15 @@
       </exclusions>
     </dependency>
   </dependencies>
+
+  <!-- that repositories are required for testing plugin's snapshot version -->
+  <pluginRepositories>
+    <pluginRepository>
+      <id>nexus-codehaus-snapshot</id>
+      <name>Codehaus Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/codehaus-snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
 
   <build>
     <pluginManagement>
@@ -571,7 +570,7 @@
                   <pluginExecutionFilter>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>tidy-maven-plugin</artifactId>
-                    <versionRange>1.0-beta-1</versionRange>
+                    <versionRange>1.1.0</versionRange>
                     <goals>
                       <goal>check</goal>
                     </goals>
@@ -643,14 +642,10 @@
         <version>3.1.0</version>
       </plugin>
 
-      <!-- It brakes linkcheck plugin report.
-           It works when linkcheck.forceSite=false, but
-           at this case linkcheck report is full of false-positives
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>tidy-maven-plugin</artifactId>
-        <version>1.0-beta-1</version>
+        <version>1.1.0</version>
         <executions>
           <execution>
             <id>validate</id>
@@ -660,7 +655,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin> -->
+      </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
