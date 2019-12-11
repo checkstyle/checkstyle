@@ -39,7 +39,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.itsallcode.io.Capturable;
-import org.itsallcode.junit.sysextensions.SystemOutGuard;
+import org.itsallcode.junit.sysextensions.SystemErrGuard;
+import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
@@ -52,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
-@ExtendWith(SystemOutGuard.class)
+@ExtendWith(SystemErrGuard.class)
 public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @TempDir
@@ -110,14 +111,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParsingErrors(Capturable errStream) throws Exception {
+    public void testParsingErrors(@SysErr Capturable systemErr) throws Exception {
+        systemErr.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocParsingErrors.java"), expected);
-        assertEquals("", errStream.getCapturedData(), "Error is unexpected");
+        assertEquals("", systemErr.getCapturedData(), "Error is unexpected");
     }
 
     @Test
@@ -132,19 +134,21 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAntlrError(Capturable errStream) throws Exception {
+    public void testAntlrError(@SysErr Capturable systemErr) throws Exception {
+        systemErr.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
                     "mismatched input '(' expecting <EOF>", "JAVADOC"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocInvalidAtSeeReference.java"), expected);
-        assertEquals("", errStream.getCapturedData(), "Error is unexpected");
+        assertEquals("", systemErr.getCapturedData(), "Error is unexpected");
     }
 
     @Test
-    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(Capturable errStream)
-            throws Exception {
+    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
+            @SysErr Capturable systemErr) throws Exception {
+        systemErr.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
         expectedMessages.put(getPath("InputAbstractJavadocParsingErrors.java"), asList(
@@ -159,7 +163,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             new File(getPath("InputAbstractJavadocParsingErrors.java")),
             new File(getPath("InputAbstractJavadocInvalidAtSeeReference.java")), },
                 expectedMessages);
-        assertEquals("", errStream.getCapturedData(), "Error is unexpected");
+        assertEquals("", systemErr.getCapturedData(), "Error is unexpected");
     }
 
     @Test
