@@ -363,6 +363,12 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
+    public static final String MSG_SEPARATED_IN_GROUP = "custom.import.order.separated.internally";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
     public static final String MSG_LEX = "custom.import.order.lex";
 
     /**
@@ -555,7 +561,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
             if (importGroup.equals(currentGroup)) {
                 if (isSeparatedByExtraEmptyLine(previousImportObjectFromCurrentGroup,
                                                 importObject)) {
-                    log(importObject.getLineNumber(), MSG_LINE_SEPARATOR, fullImportIdent);
+                    log(importObject.getLineNumber(), MSG_SEPARATED_IN_GROUP, fullImportIdent);
                 }
                 if (isAlphabeticalOrderBroken(previousImportFromCurrentGroup, fullImportIdent)) {
                     log(importObject.getLineNumber(), MSG_LEX,

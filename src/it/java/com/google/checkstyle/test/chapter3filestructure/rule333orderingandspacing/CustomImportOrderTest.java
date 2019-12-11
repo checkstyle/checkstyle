@@ -30,6 +30,8 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
 
     /** Shortcuts to make code more compact. */
     private static final String MSG_LINE_SEPARATOR = CustomImportOrderCheck.MSG_LINE_SEPARATOR;
+    private static final String MSG_SEPARATED_IN_GROUP =
+        CustomImportOrderCheck.MSG_SEPARATED_IN_GROUP;
     private static final String MSG_LEX = CustomImportOrderCheck.MSG_LEX;
     private static final String MSG_NONGROUP_EXPECTED =
         CustomImportOrderCheck.MSG_NONGROUP_EXPECTED;
@@ -112,6 +114,22 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
 
         final Configuration checkConfig = getModuleConfig("CustomImportOrder");
         final String filePath = getPath("InputCustomImportOrder3.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testCustomImport4() throws Exception {
+        final String[] expected = {
+            "7: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+                "javax.swing.WindowConstants.*"),
+            "15: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+                "java.util.StringTokenizer"),
+        };
+
+        final Configuration checkConfig = getModuleConfig("CustomImportOrder");
+        final String filePath = getPath("InputCustomImportOrder4.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);

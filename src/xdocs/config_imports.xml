@@ -605,6 +605,10 @@ import android.*;
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.nonGroup.import%22">
             custom.import.order.nonGroup.import</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fimports+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22custom.import.order.separated.internally%22">
+            custom.import.order.separated.internally</a>
+          </li>
         </ul>
         <p>
           All messages can be customized if the default message doesn't suit you.
