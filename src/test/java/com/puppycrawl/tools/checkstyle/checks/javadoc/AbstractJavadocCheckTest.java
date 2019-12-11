@@ -40,6 +40,7 @@ import java.util.Map;
 
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemOutGuard;
+import org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
@@ -110,14 +111,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testParsingErrors(Capturable errStream) throws Exception {
+    public void testParsingErrors(@SysOut Capturable systemOut) throws Exception {
+        systemOut.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img"),
         };
         verify(checkConfig, getPath("InputAbstractJavadocParsingErrors.java"), expected);
-        assertEquals("", errStream.getCapturedData(), "Error is unexpected");
+        assertEquals("", systemOut.getCapturedData(), "Error is unexpected");
     }
 
     @Test
@@ -132,7 +134,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testAntlrError(Capturable errStream) throws Exception {
+    public void testAntlrError(@SysOut Capturable errStream) throws Exception {
+        errStream.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
@@ -143,8 +146,9 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(Capturable errStream)
-            throws Exception {
+    public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
+            @SysOut Capturable errStream) throws Exception {
+        errStream.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
         expectedMessages.put(getPath("InputAbstractJavadocParsingErrors.java"), asList(
