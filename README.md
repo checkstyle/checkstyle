@@ -8,6 +8,7 @@
 [![][snyk img]][snyk]
 
 [![][codeship img]][codeship]
+[![][dependabot img]][dependabot]
 [![][buddy img]][buddy]
 
 [![][mavenbadge img]][mavenbadge]
@@ -174,3 +175,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [sponsors.opencollective]:https://opencollective.com/checkstyle/
 [sponsors.opencollective img]:https://opencollective.com/checkstyle/sponsors/badge.svg
+
+[dependabot]:https://dependabot.com
+[dependabot img]:https://api.dependabot.com/badges/status?host=github&repo=checkstyle/checkstyle
