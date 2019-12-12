@@ -208,6 +208,7 @@ pitest-javadoc)
 pitest-tree-walker)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
+  "JavadocDetailNodeParser.java.html:<td class='covered'><pre><span  class='survived'>        parser.removeErrorListeners();</span></pre></td></tr>"
   "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!commentChecks.isEmpty()) {</span></pre></td></tr>"
   "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!ordinaryChecks.isEmpty()) {</span></pre></td></tr>"
   "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (filters.isEmpty()) {</span></pre></td></tr>"
