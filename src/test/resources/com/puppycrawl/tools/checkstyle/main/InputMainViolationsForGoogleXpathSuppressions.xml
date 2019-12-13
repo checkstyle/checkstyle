@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+<suppressions>
+  <suppress-xpath
+         files="InputMainViolationsForGoogle.java"
+         checks="MemberNameCheck"
+         query="/CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
+                  OBJBLOCK/VARIABLE_DEF/IDENT[@text='m_field']"
+  />
+  <suppress-xpath
+         files="InputMainViolationsForGoogle.java"
+         checks="MethodNameCheck"
+         query="/CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
+                  OBJBLOCK/METHOD_DEF/IDENT[@text='_method']"
+  />
+</suppressions>

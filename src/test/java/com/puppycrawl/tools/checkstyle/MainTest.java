@@ -150,6 +150,9 @@ public class MainTest {
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
             getClass(), null);
 
+    private final String noViolationsOutput = auditStartMessage.getMessage() + EOL
+                    + auditFinishMessage.getMessage() + EOL;
+
     private static String getPath(String filename) {
         return "src/test/resources/com/puppycrawl/tools/checkstyle/main/" + filename;
     }
@@ -415,6 +418,28 @@ public class MainTest {
                     auditFinishMessage.getMessage()),
                 systemOut.getCapturedData(), "Unexpected output log");
         assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+    }
+
+    @Test
+    public void testViolationsByGoogleAndXpathSuppressions(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) throws Exception {
+        System.setProperty("org.checkstyle.google.suppressionxpathfilter.config",
+                getPath("InputMainViolationsForGoogleXpathSuppressions.xml"));
+        Main.main("-c", "/google_checks.xml",
+                getPath("InputMainViolationsForGoogle.java"));
+        assertThat("Unexpected output log", systemOut.getCapturedData(), is(noViolationsOutput));
+        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
+    }
+
+    @Test
+    public void testViolationsByGoogleAndSuppressions(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) throws Exception {
+        System.setProperty("org.checkstyle.google.suppressionfilter.config",
+                getPath("InputMainViolationsForGoogleSuppressions.xml"));
+        Main.main("-c", "/google_checks.xml",
+                getPath("InputMainViolationsForGoogle.java"));
+        assertThat("Unexpected output log", systemOut.getCapturedData(), is(noViolationsOutput));
+        assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
     }
 
     @Test

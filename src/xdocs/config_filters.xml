@@ -654,6 +654,14 @@ public class UserService {
       <subsection name="Example of Usage" id="SuppressionFilter_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+              Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+              Sun Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
             Checkstyle Style</a>
           </li>
@@ -1391,6 +1399,14 @@ CLASS_DEF -> CLASS_DEF [1:0]
       </subsection>
       <subsection name="Example of Usage" id="SuppressionXpathFilter_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+              Google Style</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+              Sun Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
               Checkstyle Style</a>

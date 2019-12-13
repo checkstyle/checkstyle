@@ -25,6 +25,7 @@
   Most Checks are configurable, be sure to consult the documentation.
 
   To completely disable a check, just comment it out or delete it from the file.
+  To suppress certain violations please review suppression filters.
 
   Finally, it is worth reading the documentation.
 
@@ -46,6 +47,13 @@
     <!-- See https://checkstyle.org/config_filefilters.html -->
     <module name="BeforeExecutionExclusionFileFilter">
         <property name="fileNamePattern" value="module\-info\.java$"/>
+    </module>
+
+    <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${org.checkstyle.sun.suppressionfilter.config}"
+                  default="checkstyle-suppressions.xml" />
+        <property name="optional" value="true"/>
     </module>
 
     <!-- Checks that a package-info.java file exists for each package.     -->
@@ -177,6 +185,13 @@
         <module name="FinalParameters"/>
         <module name="TodoComment"/>
         <module name="UpperEll"/>
+
+        <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
+        <module name="SuppressionXpathFilter">
+            <property name="file" value="${org.checkstyle.sun.suppressionxpathfilter.config}"
+                      default="checkstyle-xpath-suppressions.xml" />
+            <property name="optional" value="true"/>
+        </module>
 
     </module>
 
