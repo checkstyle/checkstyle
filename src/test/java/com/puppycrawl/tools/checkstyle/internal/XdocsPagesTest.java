@@ -1475,6 +1475,8 @@ public class XdocsPagesTest {
 
             // these modules aren't documented, but are added to the config
             styleChecks.remove("BeforeExecutionExclusionFileFilter");
+            styleChecks.remove("SuppressionFilter");
+            styleChecks.remove("SuppressionXpathFilter");
             styleChecks.remove("TreeWalker");
             styleChecks.remove("Checker");
 

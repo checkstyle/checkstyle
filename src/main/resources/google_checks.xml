@@ -11,6 +11,7 @@
     http://checkstyle.org (or in your downloaded distribution).
 
     To completely disable a check, just comment it out or delete it from the file.
+    To suppress certain violations please review suppression filters.
 
     Authors: Max Vetrenko, Ruslan Diachenko, Roman Ivanov.
  -->
@@ -26,6 +27,13 @@
     <module name="BeforeExecutionExclusionFileFilter">
         <property name="fileNamePattern" value="module\-info\.java$"/>
     </module>
+    <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
+    <module name="SuppressionFilter">
+        <property name="file" value="${org.checkstyle.google.suppressionfilter.config}"
+                  default="checkstyle-suppressions.xml" />
+        <property name="optional" value="true"/>
+    </module>
+
     <!-- Checks for whitespace                               -->
     <!-- See http://checkstyle.org/config_whitespace.html -->
     <module name="FileTabCharacter">
@@ -262,5 +270,11 @@
             <property name="exceptionVariableName" value="expected"/>
         </module>
         <module name="CommentsIndentation"/>
+        <!-- https://checkstyle.org/config_filters.html#SuppressionXpathFilter -->
+        <module name="SuppressionXpathFilter">
+            <property name="file" value="${org.checkstyle.google.suppressionxpathfilter.config}"
+                      default="checkstyle-xpath-suppressions.xml" />
+            <property name="optional" value="true"/>
+        </module>
     </module>
 </module>

@@ -997,6 +997,30 @@
           </table>
         </div>
       </subsection>
+      <subsection name="Suppressions" id="Sun_Suppressions">
+        <p>
+          It is possible to suppress some violations by embeded filters
+          <a href="config_filters.html#SuppressionFilter">
+            SuppressionFilter</a>
+          and
+          <a href="config_filters.html#SuppressionXpathFilter">
+            SuppressionXpathFilter</a>.
+          Location of config file for <i>SuppressionFilter</i> can be defined by system property
+          <i>org.checkstyle.sun.suppressionfilter.config</i> (default value is
+          <i>checkstyle-suppressions.xml</i>).
+          Location of config file for <i>SuppressionXpathFilter</i>
+          can be defined by system property
+          <i>org.checkstyle.sun.suppressionxpathfilter.config</i> (default value is
+          <i>checkstyle-xpath-suppressions.xml</i>).
+        </p>
+        <p>
+          For more details please review exact configuration of Filters in sun_checks.xml:
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionFilter">
+                    SuppressionFilter</a>,
+          <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathFilter">
+                    SuppressionXpathFilter</a>.
+        </p>
+      </subsection>
     </section>
   </body>
 </document>
