@@ -386,7 +386,7 @@ public final class Main {
                 }
 
                 listener = new XpathFileGeneratorAuditListener(getOutputStream(options.outputPath),
-                        AutomaticBean.OutputStreamOptions.NONE);
+                        getOutputStreamOptions(options.outputPath));
             }
             else {
                 listener = createListener(options.format, options.outputPath);
