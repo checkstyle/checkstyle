@@ -75,6 +75,7 @@ public final class AnnotationUtil {
      *
      * @param ast the current node
      * @return {@code true} if the AST contains at least one annotation
+     * @throws IllegalArgumentException when ast is null
      */
     public static boolean containsAnnotation(final DetailAST ast) {
         if (ast == null) {
@@ -97,6 +98,7 @@ public final class AnnotationUtil {
      * @return {@code true} if the given AST element is annotated with
      *                      at least one of the specified annotations;
      *                      {@code false} otherwise.
+     * @throws IllegalArgumentException when ast or annotations are null
      */
     public static boolean containsAnnotation(DetailAST ast, List<String> annotations) {
         if (ast == null) {
@@ -132,6 +134,7 @@ public final class AnnotationUtil {
      *
      * @param ast the current node
      * @return the Annotation Holder
+     * @throws IllegalArgumentException when ast is null
      */
     public static DetailAST getAnnotationHolder(DetailAST ast) {
         if (ast == null) {
@@ -171,6 +174,7 @@ public final class AnnotationUtil {
      * @param ast the current node
      * @param annotation the annotation name to check for
      * @return the AST representing that annotation
+     * @throws IllegalArgumentException when ast or annotations are null; when annotation is blank
      */
     public static DetailAST getAnnotation(final DetailAST ast,
         String annotation) {

@@ -270,6 +270,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * Processes a list of files with all FileSetChecks.
      * @param files a list of files to process.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
+     * @throws Error wraps any java.lang.Error happened during execution
      * @noinspection ProhibitedExceptionThrown
      */
     //-@cs[CyclomaticComplexity] no easy way to split this logic of processing the file

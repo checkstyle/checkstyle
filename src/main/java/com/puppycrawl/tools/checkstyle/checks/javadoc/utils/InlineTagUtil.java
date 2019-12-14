@@ -62,6 +62,7 @@ public final class InlineTagUtil {
      * Extract inline Javadoc tags from the given comment.
      * @param lines The Javadoc comment (as lines).
      * @return The extracted inline Javadoc tags.
+     * @throws IllegalArgumentException when comment lines contain newlines
      */
     public static List<TagInfo> extractInlineTags(String... lines) {
         for (String line : lines) {

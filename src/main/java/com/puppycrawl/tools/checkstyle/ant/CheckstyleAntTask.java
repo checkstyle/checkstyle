@@ -230,6 +230,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Sets configuration file.
      * @param configuration the configuration file, URL, or resource to use
+     * @throws BuildException when config was already set
      */
     public void setConfig(String configuration) {
         if (config != null) {

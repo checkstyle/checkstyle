@@ -431,7 +431,8 @@ public final class CommonUtil {
      * @param parameterTypes
      *            of constructor
      * @param <T> type of the target class object.
-     * @return constructor of targetClass or {@link IllegalStateException} if any exception occurs
+     * @return constructor of targetClass
+     * @throws IllegalStateException if any exception occurs
      * @see Class#getConstructor(Class[])
      */
     public static <T> Constructor<T> getConstructor(Class<T> targetClass,
@@ -452,7 +453,8 @@ public final class CommonUtil {
      *            to pass to constructor
      * @param <T>
      *            type of constructor
-     * @return new instance of class or {@link IllegalStateException} if any exception occurs
+     * @return new instance of class
+     * @throws IllegalStateException if any exception occurs
      * @see Constructor#newInstance(Object...)
      */
     public static <T> T invokeConstructor(Constructor<T> constructor, Object... parameters) {
@@ -469,6 +471,7 @@ public final class CommonUtil {
      *
      * @param closeable
      *            Closeable object
+     * @throws IllegalStateException when any IOException occurs
      */
     public static void close(Closeable closeable) {
         if (closeable != null) {

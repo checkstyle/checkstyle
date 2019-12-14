@@ -183,6 +183,7 @@ public class MainFrameModel {
      * Open file and load the file.
      * @param file the file to open.
      * @throws CheckstyleException if the file can not be parsed.
+     * @throws IllegalArgumentException if parseMode is unknown
      */
     public void openFile(File file) throws CheckstyleException {
         if (file != null) {

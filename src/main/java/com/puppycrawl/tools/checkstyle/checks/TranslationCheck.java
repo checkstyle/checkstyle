@@ -295,6 +295,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     /**
      * Validates the correctness of user specified language codes for the check.
      * @param languageCodes user specified language codes for the check.
+     * @throws IllegalArgumentException when any item of languageCodes is not valid language code
      */
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {

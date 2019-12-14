@@ -186,6 +186,7 @@ public class SuppressWarningsHolder
      * Setter to specify aliases for check names that can be used in code
      * within {@code SuppressWarnings}.
      * @param aliasList the list of comma-separated alias assignments
+     * @throws IllegalArgumentException when alias item does not have '='
      */
     public void setAliasList(String... aliasList) {
         for (String sourceAlias : aliasList) {

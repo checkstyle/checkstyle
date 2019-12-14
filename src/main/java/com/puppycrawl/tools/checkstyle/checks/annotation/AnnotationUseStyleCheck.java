@@ -315,6 +315,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * @param enumClass the enum class
      * @param value the string representing the enum
      * @return the enum type
+     * @throws IllegalArgumentException when unable to parse value
      */
     private static <T extends Enum<T>> T getOption(final Class<T> enumClass,
         final String value) {

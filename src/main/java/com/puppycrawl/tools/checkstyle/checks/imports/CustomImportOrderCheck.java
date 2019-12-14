@@ -868,6 +868,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
      * Parses ordering rule and adds it to the list with rules.
      * @param ruleStr
      *        String with rule.
+     * @throws IllegalArgumentException when SAME_PACKAGE rule parameter is not positive integer
+     * @throws IllegalStateException when ruleStr is unexpected value
      */
     private void addRulesToList(String ruleStr) {
         if (STATIC_RULE_GROUP.equals(ruleStr)

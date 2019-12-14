@@ -424,6 +424,7 @@ public final class CheckUtil {
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
      * @param modifiersToken token of type {@link TokenTypes#MODIFIERS}.
      * @return {@link AccessModifier}.
+     * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'
      */
     public static AccessModifier getAccessModifierFromModifiersToken(DetailAST modifiersToken) {
         if (modifiersToken == null || modifiersToken.getType() != TokenTypes.MODIFIERS) {
