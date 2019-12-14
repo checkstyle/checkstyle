@@ -188,6 +188,7 @@ public final class FileText {
      * @param decoder Charset decoder
      * @return File's text
      * @throws IOException Unable to open or read the file
+     * @throws FileNotFoundException when inputFile does not exists
      */
     private static String readFile(final File inputFile, final CharsetDecoder decoder)
             throws IOException {

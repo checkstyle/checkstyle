@@ -82,6 +82,7 @@ public class ThreadModeSettings implements Serializable {
      * Resolves the module name according to the thread settings.
      * @param name The original module name.
      * @return resolved module name.
+     * @throws IllegalArgumentException when name is Checker or TreeWalker
      */
     public final String resolveName(String name) {
         if (checkerThreadsNumber > 1) {

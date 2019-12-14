@@ -142,6 +142,7 @@ public final class TokenUtil {
      * Returns the name of a token for a given ID.
      * @param id the ID of the token name to get
      * @return a token name
+     * @throws IllegalArgumentException when id is not valid
      */
     public static String getTokenName(int id) {
         if (id > TOKEN_VALUE_TO_NAME.length - 1) {
@@ -158,6 +159,7 @@ public final class TokenUtil {
      * Returns the ID of a token for a given name.
      * @param name the name of the token ID to get
      * @return a token ID
+     * @throws IllegalArgumentException when id is null
      */
     public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
@@ -171,6 +173,7 @@ public final class TokenUtil {
      * Returns the short description of a token for a given name.
      * @param name the name of the token ID to get
      * @return a short description
+     * @throws IllegalArgumentException when name is unknown
      */
     public static String getShortDescription(String name) {
         if (!TOKEN_NAME_TO_VALUE.containsKey(name)) {

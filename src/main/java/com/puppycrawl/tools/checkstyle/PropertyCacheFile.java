@@ -98,6 +98,7 @@ public final class PropertyCacheFile {
      *
      * @param config the current configuration, not null
      * @param fileName the cache file
+     * @throws IllegalArgumentException when either arguments are null
      */
     public PropertyCacheFile(Configuration config, String fileName) {
         if (config == null) {
@@ -216,6 +217,7 @@ public final class PropertyCacheFile {
      * Calculates the hashcode for the serializable object based on its content.
      * @param object serializable object.
      * @return the hashcode for serializable object.
+     * @throws IllegalStateException when some unexpected happened.
      */
     private static String getHashCodeBasedOnObjectContent(Serializable object) {
         try {

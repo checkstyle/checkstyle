@@ -104,6 +104,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * @param errorStream the {@code OutputStream} for error messages
      * @param errorStreamOptions if {@code CLOSE} error should be closed in auditFinished()
      * @param messageFormatter formatter for the log message.
+     * @throws IllegalArgumentException if stream options are null
      * @noinspection WeakerAccess
      */
     public DefaultLogger(OutputStream infoStream,
