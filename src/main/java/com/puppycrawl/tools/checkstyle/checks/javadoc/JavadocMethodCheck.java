@@ -30,6 +30,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -147,6 +148,46 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="scope" value="private"/&gt;
  *   &lt;property name="excludeScope" value="protected"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check to validate {@code throws} tags, you can use following config.
+ * ATTENTION: Checkstyle does not have information about hierarchy of exception types so usage
+ * of base class is considered as separate exception type. As workaround you need to
+ * specify both types in javadoc (parent and exact type).
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocMethod"&gt;
+ *   &lt;property name="validateThrows" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * &#47;**
+ *  * Actual exception thrown is child class of class that is declared in throws.
+ *  * It is limitation of checkstyle (as checkstyle does not know type hierarchy).
+ *  * Javadoc is valid not declaring FileNotFoundException
+ *  * BUT checkstyle can not distinguish relationship between exceptions.
+ *  * &#64;param file some file
+ *  * &#64;throws IOException if some problem
+ *  *&#47;
+ * public void doSomething8(File file) throws IOException {
+ *     if (file == null) {
+ *         throw new FileNotFoundException(); // violation
+ *     }
+ * }
+ *
+ * &#47;**
+ *  * Exact throw type referencing in javadoc even first is parent of second type.
+ *  * It is a limitation of checkstyle (as checkstyle does not know type hierarchy).
+ *  * This javadoc is valid for checkstyle and for javadoc tool.
+ *  * &#64;param file some file
+ *  * &#64;throws IOException if some problem
+ *  * &#64;throws FileNotFoundException if file is not found
+ *  *&#47;
+ * public void doSomething9(File file) throws IOException {
+ *     if (file == null) {
+ *         throw new FileNotFoundException();
+ *     }
+ * }
  * </pre>
  *
  * @since 3.0
@@ -455,7 +496,9 @@ public class JavadocMethodCheck extends AbstractCheck {
                     && !AnnotationUtil.containsAnnotation(ast, allowedAnnotations);
 
                 checkParamTags(tags, ast, reportExpectedTags);
-                checkThrowsTags(tags, getThrows(ast), reportExpectedTags);
+                final List<ExceptionInfo> throwed =
+                        combineExceptionInfo(getThrows(ast), getThrowed(ast));
+                checkThrowsTags(tags, throwed, reportExpectedTags);
                 if (CheckUtil.isNonVoidMethod(ast)) {
                     checkReturnTag(tags, ast.getLineNo(), reportExpectedTags);
                 }
@@ -659,6 +702,75 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
         }
         return returnValue;
+    }
+
+    /**
+     * Get ExceptionInfo for all exceptions that throws in method code by 'throw new'.
+     * @param methodAst method DetailAST object where to find exceptions
+     * @return list of ExceptionInfo
+     */
+    private List<ExceptionInfo> getThrowed(DetailAST methodAst) {
+        final List<ExceptionInfo> returnValue = new ArrayList<>();
+        final DetailAST blockAst = methodAst.findFirstToken(TokenTypes.SLIST);
+        if (blockAst != null) {
+            final List<DetailAST> throwLiterals = findTokensInAstByType(blockAst,
+                    TokenTypes.LITERAL_THROW);
+            for (DetailAST throwAst : throwLiterals) {
+                final DetailAST newAst = throwAst.getFirstChild().getFirstChild();
+                if (newAst.getType() == TokenTypes.LITERAL_NEW) {
+                    final FullIdent ident = FullIdent.createFullIdent(newAst.getFirstChild());
+                    final ExceptionInfo exceptionInfo = new ExceptionInfo(
+                            createClassInfo(new Token(ident), currentClassName));
+                    returnValue.add(exceptionInfo);
+                }
+            }
+        }
+        return returnValue;
+    }
+
+    /**
+     * Combine ExceptionInfo lists together by matching names.
+     * @param list1 list of ExceptionInfo
+     * @param list2 list of ExceptionInfo
+     * @return combined list of ExceptionInfo
+     */
+    private static List<ExceptionInfo> combineExceptionInfo(List<ExceptionInfo> list1,
+                                                     List<ExceptionInfo> list2) {
+        final List<ExceptionInfo> result = new ArrayList<>(list1);
+        for (ExceptionInfo expectionInfo : list2) {
+            if (result.stream().noneMatch(item -> isExceptionInfoSame(item, expectionInfo))) {
+                result.add(expectionInfo);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds node of specified type among root children, siblings, siblings children
+     * on any deep level.
+     * @param root    DetailAST
+     * @param astType value of TokenType
+     * @return {@link Optional} of {@link DetailAST} node which matches the predicate.
+     */
+    public static List<DetailAST> findTokensInAstByType(DetailAST root, int astType) {
+        final List<DetailAST> result = new ArrayList<>();
+        DetailAST curNode = root;
+        while (curNode != null) {
+            DetailAST toVisit = curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+                if (curNode == root) {
+                    toVisit = null;
+                    break;
+                }
+            }
+            curNode = toVisit;
+            if (curNode != null && curNode.getType() == astType) {
+                result.add(curNode);
+            }
+        }
+        return result;
     }
 
     /**
@@ -866,6 +978,24 @@ public class JavadocMethodCheck extends AbstractCheck {
         }
     }
 
+    /**
+     * Check that ExceptionInfo objects are same by name.
+     * @param info1 ExceptionInfo object
+     * @param info2 ExceptionInfo object
+     * @return true is ExceptionInfo object have the same name
+     */
+    private static boolean isExceptionInfoSame(ExceptionInfo info1, ExceptionInfo info2) {
+        return isClassNamesSame(info1.getName().getText(),
+                                    info2.getName().getText());
+    }
+
+    /**
+     * Check that class names are same by short name of class. If some class name is fully
+     * qualified it is cut to short name.
+     * @param class1 class name
+     * @param class2 class name
+     * @return true is ExceptionInfo object have the same name
+     */
     private static boolean isClassNamesSame(String class1, String class2) {
         boolean result = false;
         if (class1.equals(class2)) {
@@ -990,6 +1120,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         /**
          * Creates new instance of class information object.
          * @param className token which represents class name.
+         * @throws IllegalArgumentException when className is nulls
          */
         protected ClassInfo(final Token className) {
             if (className == null) {
