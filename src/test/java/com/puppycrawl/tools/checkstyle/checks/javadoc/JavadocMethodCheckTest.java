@@ -88,8 +88,12 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("validateThrows", "true");
         final String[] expected = {
-            "39:56: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
-
+            "41:56: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalStateException"),
+            "56:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "68:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "80:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "java.lang.IllegalArgumentException"),
+            "119:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "FileNotFoundException"),
         };
         verify(config, getPath("InputJavadocMethodExtraThrows.java"), expected);
     }

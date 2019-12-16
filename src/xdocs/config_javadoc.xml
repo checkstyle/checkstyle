@@ -736,6 +736,48 @@ public int checkReturnTag(final int aTagIndex,
   &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>
+          To configure the check to validate <code>throws</code> tags, you can use following config.
+          ATTENTION: Checkstyle does not have information about hierarchy of exception types
+          so usage of base class is considered as separate exception type.
+          As workaround you need to specify both types in javadoc (parent and exact type).
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+  &lt;property name="validateThrows" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+/**
+ * Actual exception thrown is child class of class that is declared in throws.
+ * It is limitation of checkstyle (as checkstyle does not know type hierarchy).
+ * Javadoc is valid not declaring FileNotFoundException
+ * BUT checkstyle can not distinguish relationship between exceptions.
+ * @param file some file
+ * @throws IOException if some problem
+ */
+public void doSomething8(File file) throws IOException {
+    if (file == null) {
+        throw new FileNotFoundException(); // violation
+    }
+}
+
+/**
+ * Exact throw type referencing in javadoc even first is parent of second type.
+ * It is a limitation of checkstyle (as checkstyle does not know type hierarchy).
+ * This javadoc is valid for checkstyle and for javadoc tool.
+ * @param file some file
+ * @throws IOException if some problem
+ * @throws FileNotFoundException if file is not found
+ */
+public void doSomething9(File file) throws IOException {
+    if (file == null) {
+        throw new FileNotFoundException();
+    }
+}
+        </source>
+
       </subsection>
 
       <subsection name="Example of Usage" id="JavadocMethod_Example_of_Usage">
