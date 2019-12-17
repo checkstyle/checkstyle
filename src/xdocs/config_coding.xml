@@ -234,6 +234,81 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
       </subsection>
     </section>
 
+    <section name="AvoidNoArgumentSuperConstructorCall">
+      <p>Since Checkstyle 8.29</p>
+      <subsection name="Description" id="AvoidNoArgumentSuperConstructorCall_Description">
+        <p>
+          Checks if call to superclass constructor without arguments is present.
+          Such invocation is redundant because constructor body implicitly
+          begins with a superclass constructor invocation <code>super();</code>
+          See <a href="https://docs.oracle.com/javase/specs/jls/se13/html/jls-8.html#jls-8.8.7">
+          specification</a> for detailed information.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="AvoidNoArgumentSuperConstructorCall_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;AvoidNoArgumentSuperConstructorCall&quot;/&gt;
+        </source>
+        <p>
+          Example of violations
+        </p>
+        <source>
+class MyClass extends SomeOtherClass {
+    MyClass() {
+        super(); // violation
+    }
+
+    MyClass(int arg) {
+        super(arg); // OK, call with argument have to be explicit
+    }
+
+    MyClass(long arg) {
+        // OK, call is implicit
+    }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="AvoidNoArgumentSuperConstructorCall_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+AvoidNoArgumentSuperConstructorCall">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+                  id="AvoidNoArgumentSuperConstructorCall_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22super.constructor.call%22">
+              super.constructor.call</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="AvoidNoArgumentSuperConstructorCall_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="AvoidNoArgumentSuperConstructorCall_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="CovariantEquals">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="CovariantEquals_Description">
