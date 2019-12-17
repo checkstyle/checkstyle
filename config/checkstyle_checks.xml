@@ -297,6 +297,7 @@
     <!-- Coding -->
     <module name="ArrayTrailingComma"/>
     <module name="AvoidInlineConditionals"/>
+    <module name="AvoidNoArgumentSuperConstructorCall"/>
     <module name="CovariantEquals"/>
     <module name="DeclarationOrder"/>
     <module name="DefaultComesLast"/>

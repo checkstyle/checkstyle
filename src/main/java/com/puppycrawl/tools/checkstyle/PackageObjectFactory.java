@@ -459,6 +459,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.ArrayTrailingCommaCheck");
         NAME_TO_FULL_MODULE_NAME.put("AvoidInlineConditionalsCheck",
                 BASE_PACKAGE + ".checks.coding.AvoidInlineConditionalsCheck");
+        NAME_TO_FULL_MODULE_NAME.put("AvoidNoArgumentSuperConstructorCallCheck",
+                BASE_PACKAGE + ".checks.coding.AvoidNoArgumentSuperConstructorCallCheck");
         NAME_TO_FULL_MODULE_NAME.put("CovariantEqualsCheck",
                 BASE_PACKAGE + ".checks.coding.CovariantEqualsCheck");
         NAME_TO_FULL_MODULE_NAME.put("DeclarationOrderCheck",

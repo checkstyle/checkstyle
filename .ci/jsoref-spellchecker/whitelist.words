@@ -91,6 +91,7 @@ avgt
 avoidescapedunicodecharacters
 avoidinlineconditionals
 avoidnestedblocks
+avoidnoargumentsuperconstructorcall
 avoidstarimport
 avoidstaticimport
 awt

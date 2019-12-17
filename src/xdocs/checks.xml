@@ -90,6 +90,11 @@
             <td>Finds nested blocks.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#AvoidNoArgumentSuperConstructorCall">
+              AvoidNoArgumentSuperConstructorCall</a></td>
+            <td>Detects calls to super constructor without arguments.</td>
+          </tr>
+          <tr>
             <td><a href="config_imports.html#AvoidStarImport">AvoidStarImport</a></td>
             <td>Check that finds import statements that use the * notation.</td>
           </tr>
