@@ -1012,11 +1012,13 @@ public class Test {
           statement.
         </p>
         <p>
-          The check honors special comments to suppress the warning. By
-          default the text "fallthru", "fall through", "fallthrough",
-          "falls through" and "fallsthrough" are recognized (case
-          sensitive). The comment containing these words must be all on one line, and must
-          be on the last non-empty line before the
+          The check honors special comments to suppress the warning.
+          By default the texts
+          "fallthru", "fall thru", "fall-thru",
+          "fallthrough", "fall through", "fall-through"
+          "fallsthrough", "falls through", "falls-through" (case sensitive).
+          The comment containing these words must be all on one line,
+          and must be on the last non-empty line before the
           <code>case</code> triggering the warning or on
           the same line before the <code>case</code>
           (ugly, but possible).
@@ -1038,7 +1040,10 @@ case 4: {
 case 5:
   i++;
 /* fallthru */case 6:
-  i++
+  i++;
+// fall-through
+case 7:
+  i++;
   break;
 }
         </source>
@@ -1048,8 +1053,8 @@ case 5:
         </p>
         <p>
           The following fragment of code will NOT trigger the check,
-          because of the comment "fallthru" and absence of any Java code
-          in case 5.
+          because of the comment "fallthru" or any Java code
+          in case 5 are absent.
         </p>
         <div class="wrapper">
           <pre>
@@ -1057,7 +1062,7 @@ case 3:
     x = 2;
     // fallthru
 case 4:
-case 5:
+case 5: // violation
 case 6:
     break;
           </pre>
@@ -1090,7 +1095,7 @@ case 6:
                 the warning about a fall through.
               </td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
-              <td><code>"fallthru|falls? ?through"</code></td>
+              <td><code>"falls?[ -]?thr(u|ough)"</code></td>
               <td>4.0</td>
             </tr>
           </table>

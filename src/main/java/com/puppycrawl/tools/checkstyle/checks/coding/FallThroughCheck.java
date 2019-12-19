@@ -36,8 +36,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <p>
  * The check honors special comments to suppress the warning.
- * By default the text "fallthru", "fall through", "fallthrough",
- * "falls through" and "fallsthrough" are recognized (case sensitive).
+ * By default the texts
+ * "fallthru", "fall thru", "fall-thru",
+ * "fallthrough", "fall through", "fall-through"
+ * "fallsthrough", "falls through", "falls-through" (case sensitive).
  * The comment containing these words must be all on one line,
  * and must be on the last non-empty line before the {@code case} triggering
  * the warning or on the same line before the {@code case}(ugly, but possible).
@@ -59,7 +61,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * case 5:
  *   i++;
  * &#47;* fallthru *&#47;case 6:
- *   i++
+ *   i++;
+ * // fall-through
+ * case 7:
+ *   i++;
  *   break;
  * }
  * </pre>
@@ -68,15 +73,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <p>
  * The following fragment of code will NOT trigger the check,
- * because of the comment "fallthru" and absence of any Java code
- * in case 5.
+ * because of the comment "fallthru" or any Java code
+ * in case 5 are absent.
  * </p>
  * <pre>
  * case 3:
  *     x = 2;
  *     // fallthru
  * case 4:
- * case 5:
+ * case 5: // violation
  * case 6:
  *     break;
  * </pre>
@@ -88,7 +93,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code reliefPattern} - Define the RegExp to match the relief comment that suppresses
  * the warning about a fall through.
- * Default value is {@code "fallthru|falls? ?through"}.
+ * Default value is {@code "falls?[ -]?thr(u|ough)"}.
  * </li>
  * </ul>
  * <p>
@@ -130,7 +135,7 @@ public class FallThroughCheck extends AbstractCheck {
      * Define the RegExp to match the relief comment that suppresses
      * the warning about a fall through.
      */
-    private Pattern reliefPattern = Pattern.compile("fallthru|falls? ?through");
+    private Pattern reliefPattern = Pattern.compile("falls?[ -]?thr(u|ough)");
 
     @Override
     public int[] getDefaultTokens() {

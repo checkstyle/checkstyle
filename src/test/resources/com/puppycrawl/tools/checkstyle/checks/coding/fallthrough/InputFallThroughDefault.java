@@ -1,6 +1,12 @@
-package com.google.checkstyle.test.chapter4formatting.rule4842fallthrough;
+package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-public class InputFallThrough
+/**
+ * Config: default
+ * checkLastCaseGroup = false
+ * reliefPattern = "falls?[ -]?thr(u|ough)"
+ *
+ */
+public class InputFallThroughDefault
 {
     void method(int i, int j, boolean cond) {
         while (true) {
@@ -11,7 +17,7 @@ public class InputFallThrough
                 break;
             case 2:
                 i++;
-            case 3: //warn
+            case 3: //fall through!!!
                 i++;
                 break;
             case 4:
@@ -35,7 +41,7 @@ public class InputFallThrough
             case 11: {
                 i++;
             }
-            case 12:  //warn
+            case 12: //fall through!!!
                 if (false)
                     break;
                 else
@@ -44,20 +50,20 @@ public class InputFallThrough
                 if (true) {
                     return;
                 }
-            case 14:  //warn
+            case 14:
                 if (true) {
                     return;
                 } else {
                     //do nothing
                 }
-            case 15:  //warn
+            case 15: //fall through!!!
                 do {
                     System.identityHashCode("something");
                     return;
                 } while(true);
             case 16:
                 for (int j1 = 0; j1 < 10; j1++) {
-                    System.identityHashCode("something");
+                    String.valueOf("something");
                     return;
                 }
             case 17:
@@ -67,7 +73,7 @@ public class InputFallThrough
                 while(cond) {
                     break;
                 }
-            case 19:  //warn
+            case 19: //fall through!!!
                 try {
                     i++;
                     break;
@@ -84,7 +90,7 @@ public class InputFallThrough
                 } catch (Error e) {
                     return;
                 }
-            case 21:  //warn
+            case 21: //fall through!!!
                 try {
                     i++;
                 } catch (RuntimeException e) {
@@ -120,7 +126,7 @@ public class InputFallThrough
                 default:
                     return;
                 }
-            default:  //warn
+            default: //fall through!!!
                 // this is the last label
                 i++;
             }
@@ -176,7 +182,7 @@ public class InputFallThrough
               if (true) {
                   return;
               }
-          case 14:  //warn
+          case 14:
               if (true) {
                   return;
               } else {
@@ -190,7 +196,7 @@ public class InputFallThrough
               } while(true);
           case 16:
               for (int j1 = 0; j1 < 10; j1++) {
-                  System.identityHashCode("something");
+                  String.valueOf("something");
                   return;
               }
           case 17:
@@ -237,7 +243,7 @@ public class InputFallThrough
               } finally {
                   i++;
               }
-              /* fallthru */
+
           case 23:
               switch (j) {
               case 1:
@@ -360,18 +366,18 @@ public class InputFallThrough
    }
 
    /* C-style comments with custom fallthru-comment. */
-   void methodFallThruCustomWords(int i, int j, boolean cond) {
+   void methodFallThruCCustomWords(int i, int j, boolean cond) {
       while (true) {
           switch (i){
           case 0:
               i++; /* Continue with next case */
 
-          case 1:  //warn
+          case 1:
               i++;
-          /* Continue with next case.  */
-          case 2:  //warn
+          /* Continue with next case */
+          case 2:
               i++;
-          /* Continue with next case. */case 3:  //warn
+          /* Continue with next case */case 3:
                 break;
           case 4:
               i++;
@@ -404,6 +410,87 @@ public class InputFallThrough
             // do nothing
             break;
         default:
+        }
+    }
+
+    void nestedSwitches() {
+        switch (hashCode()) {
+            case 1:
+                switch (hashCode()) { // causing NullPointerException in the past
+                    case 1:
+                }
+            default: // violation - no fall through comment
+        }
+    }
+
+    void nextedSwitches2() {
+        switch(hashCode()) {
+        case 1:
+            switch(hashCode()){}
+        case 2:
+            System.lineSeparator();
+            break;
+        }
+    }
+
+    void ifWithoutBreak() {
+        switch(hashCode()) {
+        case 1:
+            if (true) {
+                System.lineSeparator();
+            }
+        case 2:
+            System.lineSeparator();
+            break;
+        }
+    }
+
+    void noCommentAtTheEnd() {
+        switch(hashCode()) {
+        case 1: System.lineSeparator();
+
+        case 2:
+            System.lineSeparator();
+            break;
+        }
+    }
+
+    void synchronizedStatement() {
+       switch (hashCode()) {
+           case 1:
+               synchronized (this) {
+                   break;
+               }
+           case 2:
+               // synchronized nested in if
+               if (true) {
+                   synchronized (this) {
+                       break;
+                   }
+               } else {
+                   synchronized (this) {
+                       break;
+                   }
+               }
+           case 3:
+               synchronized (this) {
+               }
+               // fallthru
+           default:
+               break;
+       }
+    }
+
+    void multipleCasesOnOneLine() {
+        int i = 0;
+        switch (i) {
+        case 0: case 1: i *= i; // fall through
+        case 2: case 3: i *= i; // fall through
+        case 4: case 5: i *= i; // fall through
+        case 6: case 7: i *= i;
+            break;
+        default:
+            throw new RuntimeException();
         }
     }
 
