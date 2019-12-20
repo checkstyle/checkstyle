@@ -82,4 +82,8 @@
     <suppress checks="RegexpSingleline"
               files="config[\\/]intellij-idea-inspection-scope.xml"/>
 
+    <!-- there is no way to make line wrap in property value -->
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]customimportorder"/>
+
 </suppressions>
