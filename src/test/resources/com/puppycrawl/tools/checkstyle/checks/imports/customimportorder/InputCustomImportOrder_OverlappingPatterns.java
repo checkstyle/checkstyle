@@ -29,9 +29,14 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.NonEmptyAtclauseDescriptio
 public class InputCustomImportOrder_OverlappingPatterns {
 }
 /*
-test: testRulesOrder_ThirdBeforeSame()
-configuration:
-        checkConfig.addAttribute("customImportOrderRules",
-                "THIRD_PARTY_PACKAGE###SAME_PACKAGE(3)###SPECIAL_IMPORTS");
-        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
-*/
+ * test: testRulesWithOverlappingPatterns()
+ *
+ * Config = default
+ * customImportOrderRules = THIRD_PARTY_PACKAGE###SAME_PACKAGE(6)###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS
+ * standardPackageRegExp = com.puppycrawl.tools.*Check$
+ * thirdPartyPackageRegExp = com.puppycrawl.tools.checkstyle.checks.javadoc.*Javadoc*
+ * specialImportsRegExp = com.puppycrawl.tools.*Tag*
+ * sortImportsInGroupAlphabetically = false
+ * separateLineBetweenGroups = true
+ *
+ */
