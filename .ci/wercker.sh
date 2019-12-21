@@ -176,7 +176,6 @@ no-exception-struts)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
@@ -192,7 +191,6 @@ no-exception-checkstyle-sevntu)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
@@ -208,7 +206,6 @@ no-exception-guava)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#guava/guava/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
@@ -223,7 +220,6 @@ no-exception-hibernate-orm)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
@@ -238,7 +234,6 @@ no-exception-spotbugs)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
@@ -253,7 +248,6 @@ no-exception-spring-framework)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
@@ -268,7 +262,6 @@ no-exception-hbase)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
@@ -283,7 +276,6 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
@@ -300,7 +292,6 @@ no-exception-alot-of-projects)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#RxJava/RxJava/' projects-to-test-on.properties
   sed -i.'' 's/#java-design-patterns/java-design-patterns/' projects-to-test-on.properties
@@ -323,7 +314,6 @@ no-warning-imports-guava)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
       --checkstyleVersion ${CS_POM_VERSION}
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
@@ -348,7 +338,6 @@ no-warning-imports-java-design-patterns)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
-  git checkout cs7329-javadocmethod-deprecated-properties
   groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
       --checkstyleVersion ${CS_POM_VERSION}
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
