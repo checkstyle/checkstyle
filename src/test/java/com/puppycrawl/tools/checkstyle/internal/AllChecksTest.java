@@ -362,7 +362,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 .loadConfiguration("config/checkstyle_checks.xml");
 
         validateAllCheckTokensAreReferencedInConfigFile("checkstyle", configuration,
-                CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE);
+                CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE, false);
     }
 
     @Test
@@ -371,11 +371,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 .loadConfiguration("src/main/resources/google_checks.xml");
 
         validateAllCheckTokensAreReferencedInConfigFile("google", configuration,
-                GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE);
+                GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE, true);
     }
 
     private static void validateAllCheckTokensAreReferencedInConfigFile(String configName,
-            Configuration configuration, Map<String, Set<String>> tokensToIgnore) throws Exception {
+            Configuration configuration, Map<String, Set<String>> tokensToIgnore,
+            boolean defaultTokensMustBeExplicit) throws Exception {
         final ModuleFactory moduleFactory = TestUtil.getPackageObjectFactory();
         final Set<Configuration> configChecks = ConfigurationUtil.getChecks(configuration);
 
@@ -421,7 +422,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 }
                 catch (CheckstyleException ex) {
                     // no tokens defined, so it is using default
-                    configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
+                    if (defaultTokensMustBeExplicit) {
+                        validateDefaultTokens(checkConfig, check, configTokens);
+                    }
+                    else {
+                        configTokens.addAll(CheckUtil.getTokenNameSet(check.getDefaultTokens()));
+                    }
                 }
             }
         }
@@ -431,6 +437,18 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             assertEquals(entry.getValue(), actual,
                     "'" + entry.getKey() + "' should have all acceptable tokens from check in "
                     + configName + " config or specify an override to ignore the specific tokens");
+        }
+    }
+
+    private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
+                                              Set<String> configTokens) {
+        if (Arrays.equals(check.getDefaultTokens(), check.getRequiredTokens())) {
+            configTokens.addAll(
+                    CheckUtil.getTokenNameSet(check.getDefaultTokens()));
+        }
+        else {
+            fail("All default tokens should be used in config for "
+                    + checkConfig.getName());
         }
     }
 
