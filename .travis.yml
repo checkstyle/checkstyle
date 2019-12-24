@@ -311,6 +311,10 @@ matrix:
         - DESC="ensure that no files are in changed state after clone"
         - CMD="./.ci/travis/travis.sh git-status"
 
+    - env:
+        - DESC="validate since javadoc tag if new module is created"
+        - CMD="./.ci/travis/travis.sh check-since-version"
+
 script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
