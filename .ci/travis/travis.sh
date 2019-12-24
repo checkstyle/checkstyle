@@ -534,6 +534,43 @@ git-status)
   fi
   ;;
 
+check-since-version)
+  ## Travis merges the PR commit into origin/master
+  ## This identifies the PR's original commit
+  ## if it notices a merge commit
+  HEAD=`git rev-parse HEAD`
+  if git show --summary HEAD | grep ^Merge: ; then
+      echo "Merge detected."
+      HEAD=`git log -n 1 --no-merges --pretty=format:"%H"`
+  fi
+  ## Identify previous commit to know how much to examine
+  ## Script assumes we are only working with 1 commit if we are in master
+  ## Otherwise, it looks for the common ancestor with master
+  COMMIT=`git rev-parse $HEAD`
+  echo "PR commit: $COMMIT"
+
+  HEAD_NEW_FILES=$(git show $COMMIT | cat | grep -A 1 "\-\-\- /dev/null" | cat)
+  echo "New files in commit: $HEAD_NEW_FILES"
+  MODULE_REG=".*(Check|Filter).java"
+  REGEXP="b/src/main/java/com/puppycrawl/tools/checkstyle/(checks|filters|filefilters)/$MODULE_REG"
+  NEW_CHECK_FILE=$(git show $COMMIT | cat | grep -A 1 "\-\-\- /dev/null" | cat | \
+    grep -E "$REGEXP" | \
+    cat | sed "s/+++ b\///")
+  echo "New Check file: $NEW_CHECK_FILE"
+
+  if [ -f "$NEW_CHECK_FILE" ]; then
+    echo "New Check detected: $NEW_CHECK_FILE"
+    CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+    CS_RELEASE_VERSION=$(echo $CS_POM_VERSION | cut -d '-' -f 1)
+    echo "CS Release version: $CS_RELEASE_VERSION"
+    echo "Grep for @since $CS_RELEASE_VERSION"
+    grep "* @since $CS_RELEASE_VERSION" $NEW_CHECK_FILE
+  else
+    echo "No new Check, all is good."
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
