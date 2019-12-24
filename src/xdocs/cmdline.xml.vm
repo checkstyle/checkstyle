@@ -40,7 +40,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
      [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [--tabWidth &lt;length&gt;] \
-     [-t | --tree] [-T | --treeWithComments] [-J | treeWithJavadoc] [-j | --javadocTree] \
+     [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] file...
       </source>
       </p>
