@@ -41,7 +41,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
      [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [--tabWidth &lt;length&gt;] \
      [-t | --tree] [-T | --treeWithComments] [-J | treeWithJavadoc] [-j | --javadocTree] \
-     [-V | --version] [-h | --help] file...
+     [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] file...
       </source>
       </p>
 
@@ -145,6 +145,10 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </li>
         <li>
           <code>-V, --version</code> - print product version and exit. Any other option is ignored.
+        </li>
+        <li>
+          <code>-b, --branch-matching-xpath xpathQuery</code>
+           - Show Abstract Syntax Tree(AST) branches that match given XPath query.
         </li>
         <li>
           <code>-h, --help</code> - print usage help message and exit. Any other option is ignored.
