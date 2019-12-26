@@ -903,6 +903,7 @@ public class UserService {
           checks:
         </p>
         <ul>
+          <li>AbbreviationAsWordInName</li>
           <li>AbstractClassName</li>
           <li>AnonInnerLength</li>
           <li>ArrayTypeStyle</li>
