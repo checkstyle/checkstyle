@@ -44,6 +44,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul>
  * <li>
+ * AbbreviationAsWordInName
+ * </li>
+ * <li>
  * AbstractClassName
  * </li>
  * <li>
