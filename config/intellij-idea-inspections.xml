@@ -4610,6 +4610,7 @@
     ,org.mockito.InOrder,verify, ,
     ,org.junit.rules.ExpectedException,expect.*, ,
     ,org.hamcrest.MatcherAssert,assertThat, ,
+    ,com.google.common.truth.Truth,assert.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport,verify.*, ,
     ,com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport,verify.*, ,
     ,com.google.checkstyle.test.base.AbstractModuleTestSupport,verify.*, ,
