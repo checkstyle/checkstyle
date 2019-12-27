@@ -899,111 +899,75 @@ public class UserService {
           are queries for suppressed nodes inside the AST tree.
         </p>
         <p>
-          Currently, filter supports the following
-          checks:
+          Currently, filter does not support the following checks:
         </p>
-        <ul>
-          <li>AbbreviationAsWordInName</li>
-          <li>AbstractClassName</li>
-          <li>AnonInnerLength</li>
-          <li>ArrayTypeStyle</li>
-          <li>AvoidInlineConditionals</li>
-          <li>AvoidNestedBlocks</li>
-          <li>BooleanExpressionComplexity</li>
-          <li>CatchParameterName</li>
-          <li>ClassDataAbstractionCoupling</li>
-          <li>ClassFanOutComplexity</li>
-          <li>ClassMemberImpliedModifier</li>
-          <li>ClassTypeParameterName</li>
-          <li>ConstantName</li>
-          <li>CovariantEquals</li>
-          <li>CyclomaticComplexity</li>
-          <li>DeclarationOrder</li>
-          <li>DefaultComesLast</li>
-          <li>DescendantToken</li>
-          <li>DesignForExtension</li>
-          <li>EmptyBlock</li>
-          <li>EmptyForInitializerPad</li>
-          <li>EmptyForIteratorPad</li>
-          <li>EmptyStatement</li>
-          <li>EqualsAvoidNull</li>
-          <li>EqualsHashCode</li>
-          <li>ExecutableStatementCount</li>
-          <li>ExplicitInitialization</li>
-          <li>FallThrough</li>
-          <li>FinalLocalVariable</li>
-          <li>FinalParameters</li>
-          <li>GenericWhitespace</li>
-          <li>HiddenField</li>
-          <li>HideUtilityClassConstructor</li>
-          <li>IllegalInstantiation</li>
-          <li>IllegalToken</li>
-          <li>IllegalTokenText</li>
-          <li>IllegalType</li>
-          <li>InnerAssignment</li>
-          <li>InnerTypeLast</li>
-          <li>InterfaceTypeParameterName</li>
-          <li>JavadocVariable</li>
-          <li>JavaNCSS</li>
-          <li>IllegalImport</li>
-          <li>IllegalThrows</li>
-          <li>ImportControl</li>
-          <li>LeftCurly</li>
-          <li>LocalFinalVariableName</li>
-          <li>LocalVariableName</li>
-          <li>MagicNumber</li>
-          <li>MemberName</li>
-          <li>MethodLength</li>
-          <li>MethodName</li>
-          <li>MethodParamPad</li>
-          <li>MethodTypeParameterName</li>
-          <li>ModifiedControlVariable</li>
-          <li>ModifierOrder</li>
-          <li>MultipleStringLiterals</li>
-          <li>MultipleVariableDeclarations</li>
-          <li>MutableException</li>
-          <li>NestedForDepth</li>
-          <li>NestedIfDepth</li>
-          <li>NestedTryDepth</li>
-          <li>NoWhitespaceAfter</li>
-          <li>NoWhitespaceBefore</li>
-          <li>NPathComplexity</li>
-          <li>OneStatementPerLine</li>
-          <li>OperatorWrap</li>
-          <li>OuterTypeNumber</li>
-          <li>PackageName</li>
-          <li>ParameterAssignment</li>
-          <li>ParameterName</li>
-          <li>ParameterNumber</li>
-          <li>ParenPad</li>
-          <li>RedundantImport</li>
-          <li>RedundantModifier</li>
-          <li>RequireThis</li>
-          <li>ReturnCount</li>
-          <li>RightCurly</li>
-          <li>SeparatorWrap</li>
-          <li>SimplifyBooleanExpression</li>
-          <li>SimplifyBooleanReturn</li>
-          <li>SingleSpaceSeparator</li>
-          <li>StaticVariableName</li>
-          <li>StringLiteralEquality</li>
-          <li>SuperClone</li>
-          <li>SuperFinalize</li>
-          <li>SuppressWarnings</li>
-          <li>ThrowsCount</li>
-          <li>TypecastParenPad</li>
-          <li>TypeName</li>
-          <li>UnnecessarySemicolonInEnumeration</li>
-          <li>UnnecessarySemicolonInTryWithResources</li>
-          <li>UnusedImports</li>
-          <li>UpperEll</li>
-          <li>VisibilityModifier</li>
-          <li>WhitespaceAfter</li>
-          <li>WhitespaceAround</li>
+        <ul id="SuppressionXpathFilter_IncompatibleChecks">
+          <li>AnnotationLocation</li>
+          <li>AnnotationOnSameLine</li>
+          <li>AnnotationUseStyle</li>
+          <li>ArrayTrailingComma</li>
+          <li>AvoidEscapedUnicodeCharacters</li>
+          <li>AvoidStarImport</li>
+          <li>AvoidStaticImport</li>
+          <li>CommentsIndentation</li>
+          <li>CustomImportOrder</li>
+          <li>EmptyCatchBlock</li>
+          <li>EmptyLineSeparator</li>
+          <li>FinalClass</li>
+          <li>IllegalCatch</li>
+          <li>ImportOrder</li>
+          <li>Indentation</li>
+          <li>InterfaceIsType</li>
+          <li>InterfaceMemberImpliedModifier</li>
+          <li>InvalidJavadocPosition</li>
+          <li>JavadocContentLocation</li>
+          <li>JavadocMethod</li>
+          <li>JavadocStyle</li>
+          <li>JavadocType</li>
+          <li>LambdaParameterName</li>
+          <li>MethodCount</li>
+          <li>MissingCtor</li>
+          <li>MissingJavadocMethod</li>
+          <li>MissingJavadocPackage</li>
+          <li>MissingJavadocType</li>
+          <li>MissingOverride</li>
+          <li>MissingSwitchDefault</li>
+          <li>NeedBraces</li>
+          <li>NoClone</li>
+          <li>NoFinalizer</li>
+          <li>NoLineWrap</li>
+          <li>OneTopLevelClass</li>
+          <li>OuterTypeFilename</li>
+          <li>OverloadMethodsDeclarationOrder</li>
+          <li>PackageAnnotation</li>
+          <li>PackageDeclaration</li>
+          <li>Regexp</li>
+          <li>RegexpSinglelineJava</li>
+          <li>SuppressWarningsHolder</li>
+          <li>TodoComment</li>
+          <li>TrailingComment</li>
+          <li>UncommentedMain</li>
+          <li>UnnecessaryParentheses</li>
+          <li>VariableDeclarationUsageDistance</li>
+          <li>WriteTag</li>
         </ul>
         <p>
-          Note, that support for other Checks will be available after resolving
-          <a href="https://github.com/checkstyle/checkstyle/issues/4830">issue 4830</a>.
+          Also, the filter does not support Javadoc checks:
+        </p>
+        <ul id="SuppressionXpathFilter_JavadocChecks">
+          <li>AtclauseOrder</li>
+          <li>JavadocBlockTagLocation</li>
+          <li>JavadocParagraph</li>
+          <li>JavadocTagContinuationIndentation</li>
+          <li>MissingDeprecated</li>
+          <li>NonEmptyAtclauseDescription</li>
+          <li>SingleLineJavadoc</li>
+          <li>SummaryJavadoc</li>
+        </ul>
+        <p>
+          Note, that support for these Checks will be available after resolving issues
+          <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a> and
+          <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>.
         </p>
         <p>
           Currently, filter supports the following

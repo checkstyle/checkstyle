@@ -31,6 +31,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -91,6 +92,29 @@ public final class XmlUtil {
         }
 
         return firstChildElement;
+    }
+
+    /**
+     * Returns the {@code Node} that has an id attribute with the given value.
+     * The id should be unique within the Xml Document.
+     *
+     * @param id the unique {@code id} value for a node.
+     * @return the matching node or {@code null} if none matches.
+     */
+    public static Node findChildElementById(Node node, String id) {
+        Node childElement = null;
+        for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
+            final NamedNodeMap attributes = child.getAttributes();
+            if (attributes != null) {
+                final Node attribute = attributes.getNamedItem("id");
+                if (attribute != null && id.equals(attribute.getNodeValue())) {
+                    childElement = child;
+                    break;
+                }
+            }
+        }
+
+        return childElement;
     }
 
     public static Set<Node> findChildElementsByTag(Node node, String tag) {

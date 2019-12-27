@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static java.lang.Integer.parseInt;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.CoreMatchers.describedAs;
@@ -521,6 +522,9 @@ public class XdocsPagesTest {
                     fileName + " section '" + sectionName + "' should be in order");
 
             switch (subSectionPos) {
+                case 0:
+                    validateDescriptionSection(fileName, sectionName, subSection);
+                    break;
                 case 1:
                     validatePropertySection(fileName, sectionName, subSection, instance);
                     break;
@@ -536,7 +540,6 @@ public class XdocsPagesTest {
                 case 6:
                     validateParentSection(fileName, sectionName, subSection);
                     break;
-                case 0:
                 case 2:
                 default:
                     break;
@@ -594,6 +597,26 @@ public class XdocsPagesTest {
         }
 
         return result;
+    }
+
+    private static void validateDescriptionSection(String fileName, String sectionName,
+            Node subSection) {
+        // Till https://github.com/checkstyle/checkstyle/issues/5777
+        if ("config_filters.xml".equals(fileName) && "SuppressionXpathFilter".equals(sectionName)) {
+            validateListOfSuppressionXpathFilterIncompatibleChecks(subSection);
+        }
+    }
+
+    private static void validateListOfSuppressionXpathFilterIncompatibleChecks(Node subSection) {
+        assertWithMessage(
+            "Incompatible check list should match XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES")
+            .that(getListById(subSection, "SuppressionXpathFilter_IncompatibleChecks"))
+            .isEqualTo(XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES);
+
+        assertWithMessage(
+            "Javadoc check list should match XpathRegressionTest.INCOMPATIBLE_JAVADOC_CHECK_NAMES")
+            .that(getListById(subSection, "SuppressionXpathFilter_JavadocChecks"))
+            .isEqualTo(XpathRegressionTest.INCOMPATIBLE_JAVADOC_CHECK_NAMES);
     }
 
     private static void validatePropertySection(String fileName, String sectionName,
@@ -1249,6 +1272,18 @@ public class XdocsPagesTest {
             result = int[].class;
         }
 
+        return result;
+    }
+
+    private static Set<String> getListById(Node subSection, String id) {
+        Set<String> result = null;
+        final Node node = XmlUtil.findChildElementById(subSection, id);
+        if (node != null) {
+            result = XmlUtil.getChildrenElements(node)
+                    .stream()
+                    .map(Node::getTextContent)
+                    .collect(Collectors.toSet());
+        }
         return result;
     }
 

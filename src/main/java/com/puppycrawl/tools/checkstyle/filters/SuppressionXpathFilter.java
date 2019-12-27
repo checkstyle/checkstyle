@@ -40,304 +40,187 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * suppressed nodes inside the AST tree.
  * </p>
  * <p>
- * Currently, filter supports the following checks:
+ * Currently, filter does not support the following checks:
  * </p>
- * <ul>
+ * <ul id="SuppressionXpathFilter_IncompatibleChecks">
  * <li>
- * AbbreviationAsWordInName
+ * AnnotationLocation
  * </li>
  * <li>
- * AbstractClassName
+ * AnnotationOnSameLine
  * </li>
  * <li>
- * AnonInnerLength
+ * AnnotationUseStyle
  * </li>
  * <li>
- * ArrayTypeStyle
+ * ArrayTrailingComma
  * </li>
  * <li>
- * AvoidInlineConditionals
+ * AvoidEscapedUnicodeCharacters
  * </li>
  * <li>
- * AvoidNestedBlocks
+ * AvoidStarImport
  * </li>
  * <li>
- * BooleanExpressionComplexity
+ * AvoidStaticImport
  * </li>
  * <li>
- * CatchParameterName
+ * CommentsIndentation
  * </li>
  * <li>
- * ClassDataAbstractionCoupling
+ * CustomImportOrder
  * </li>
  * <li>
- * ClassFanOutComplexity
+ * EmptyCatchBlock
  * </li>
  * <li>
- * ClassMemberImpliedModifier
+ * EmptyLineSeparator
  * </li>
  * <li>
- * ClassTypeParameterName
+ * FinalClass
  * </li>
  * <li>
- * ConstantName
+ * IllegalCatch
  * </li>
  * <li>
- * CovariantEquals
+ * ImportOrder
  * </li>
  * <li>
- * CyclomaticComplexity
+ * Indentation
  * </li>
  * <li>
- * DeclarationOrder
+ * InterfaceIsType
  * </li>
  * <li>
- * DefaultComesLast
+ * InterfaceMemberImpliedModifier
  * </li>
  * <li>
- * DescendantToken
+ * InvalidJavadocPosition
  * </li>
  * <li>
- * DesignForExtension
+ * JavadocContentLocation
  * </li>
  * <li>
- * EmptyBlock
+ * JavadocMethod
  * </li>
  * <li>
- * EmptyForInitializerPad
+ * JavadocStyle
  * </li>
  * <li>
- * EmptyForIteratorPad
+ * JavadocType
  * </li>
  * <li>
- * EmptyStatement
+ * LambdaParameterName
  * </li>
  * <li>
- * EqualsAvoidNull
+ * MethodCount
  * </li>
  * <li>
- * EqualsHashCode
+ * MissingCtor
  * </li>
  * <li>
- * ExecutableStatementCount
+ * MissingJavadocMethod
  * </li>
  * <li>
- * ExplicitInitialization
+ * MissingJavadocPackage
  * </li>
  * <li>
- * FallThrough
+ * MissingJavadocType
  * </li>
  * <li>
- * FinalLocalVariable
+ * MissingOverride
  * </li>
  * <li>
- * FinalParameters
+ * MissingSwitchDefault
  * </li>
  * <li>
- * GenericWhitespace
+ * NeedBraces
  * </li>
  * <li>
- * HiddenField
+ * NoClone
  * </li>
  * <li>
- * HideUtilityClassConstructor
+ * NoFinalizer
  * </li>
  * <li>
- * IllegalInstantiation
+ * NoLineWrap
  * </li>
  * <li>
- * IllegalToken
+ * OneTopLevelClass
  * </li>
  * <li>
- * IllegalTokenText
+ * OuterTypeFilename
  * </li>
  * <li>
- * IllegalType
+ * OverloadMethodsDeclarationOrder
  * </li>
  * <li>
- * InnerAssignment
+ * PackageAnnotation
  * </li>
  * <li>
- * InnerTypeLast
+ * PackageDeclaration
  * </li>
  * <li>
- * InterfaceTypeParameterName
+ * Regexp
  * </li>
  * <li>
- * JavadocVariable
+ * RegexpSinglelineJava
  * </li>
  * <li>
- * JavaNCSS
+ * SuppressWarningsHolder
  * </li>
  * <li>
- * IllegalImport
+ * TodoComment
  * </li>
  * <li>
- * IllegalThrows
+ * TrailingComment
  * </li>
  * <li>
- * ImportControl
+ * UncommentedMain
  * </li>
  * <li>
- * LeftCurly
+ * UnnecessaryParentheses
  * </li>
  * <li>
- * LocalFinalVariableName
+ * VariableDeclarationUsageDistance
  * </li>
  * <li>
- * LocalVariableName
- * </li>
- * <li>
- * MagicNumber
- * </li>
- * <li>
- * MemberName
- * </li>
- * <li>
- * MethodLength
- * </li>
- * <li>
- * MethodName
- * </li>
- * <li>
- * MethodParamPad
- * </li>
- * <li>
- * MethodTypeParameterName
- * </li>
- * <li>
- * ModifiedControlVariable
- * </li>
- * <li>
- * ModifierOrder
- * </li>
- * <li>
- * MultipleStringLiterals
- * </li>
- * <li>
- * MultipleVariableDeclarations
- * </li>
- * <li>
- * MutableException
- * </li>
- * <li>
- * NestedForDepth
- * </li>
- * <li>
- * NestedIfDepth
- * </li>
- * <li>
- * NestedTryDepth
- * </li>
- * <li>
- * NoWhitespaceAfter
- * </li>
- * <li>
- * NoWhitespaceBefore
- * </li>
- * <li>
- * NPathComplexity
- * </li>
- * <li>
- * OneStatementPerLine
- * </li>
- * <li>
- * OperatorWrap
- * </li>
- * <li>
- * OuterTypeNumber
- * </li>
- * <li>
- * PackageName
- * </li>
- * <li>
- * ParameterAssignment
- * </li>
- * <li>
- * ParameterName
- * </li>
- * <li>
- * ParameterNumber
- * </li>
- * <li>
- * ParenPad
- * </li>
- * <li>
- * RedundantImport
- * </li>
- * <li>
- * RedundantModifier
- * </li>
- * <li>
- * RequireThis
- * </li>
- * <li>
- * ReturnCount
- * </li>
- * <li>
- * RightCurly
- * </li>
- * <li>
- * SeparatorWrap
- * </li>
- * <li>
- * SimplifyBooleanExpression
- * </li>
- * <li>
- * SimplifyBooleanReturn
- * </li>
- * <li>
- * SingleSpaceSeparator
- * </li>
- * <li>
- * StaticVariableName
- * </li>
- * <li>
- * StringLiteralEquality
- * </li>
- * <li>
- * SuperClone
- * </li>
- * <li>
- * SuperFinalize
- * </li>
- * <li>
- * SuppressWarnings
- * </li>
- * <li>
- * ThrowsCount
- * </li>
- * <li>
- * TypecastParenPad
- * </li>
- * <li>
- * TypeName
- * </li>
- * <li>
- * UnnecessarySemicolonInEnumeration
- * </li>
- * <li>
- * UnnecessarySemicolonInTryWithResources
- * </li>
- * <li>
- * UnusedImports
- * </li>
- * <li>
- * UpperEll
- * </li>
- * <li>
- * VisibilityModifier
- * </li>
- * <li>
- * WhitespaceAfter
- * </li>
- * <li>
- * WhitespaceAround
+ * WriteTag
  * </li>
  * </ul>
  * <p>
- * Note, that support for other Checks will be available after resolving
- * <a href="https://github.com/checkstyle/checkstyle/issues/4830">issue 4830</a>.
+ * Also, the filter does not support Javadoc checks:
+ * </p>
+ * <ul id="SuppressionXpathFilter_JavadocChecks">
+ * <li>
+ * AtclauseOrder
+ * </li>
+ * <li>
+ * JavadocBlockTagLocation
+ * </li>
+ * <li>
+ * JavadocParagraph
+ * </li>
+ * <li>
+ * JavadocTagContinuationIndentation
+ * </li>
+ * <li>
+ * MissingDeprecated
+ * </li>
+ * <li>
+ * NonEmptyAtclauseDescription
+ * </li>
+ * <li>
+ * SingleLineJavadoc
+ * </li>
+ * <li>
+ * SummaryJavadoc
+ * </li>
+ * </ul>
+ * <p>
+ * Note, that support for these Checks will be available after resolving issues
+ * <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a> and
+ * <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>.
  * </p>
  * <p>
  * Currently, filter supports the following xpath axes:
