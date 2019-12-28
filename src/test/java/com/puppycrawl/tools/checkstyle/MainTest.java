@@ -177,8 +177,8 @@ public class MainTest {
      */
     @BeforeEach
     public void setUp(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
-        systemErr.capture();
-        systemOut.capture();
+        systemErr.captureMuted();
+        systemOut.captureMuted();
 
         LOG.setLevel(ORIGINAL_LOG_LEVEL);
 

@@ -41,6 +41,7 @@ import java.util.Map;
 import org.itsallcode.io.Capturable;
 import org.itsallcode.junit.sysextensions.SystemErrGuard;
 import org.itsallcode.junit.sysextensions.SystemErrGuard.SysErr;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
@@ -62,6 +63,19 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/javadoc/abstractjavadoc";
+    }
+
+    /**
+     * <p>Configures the environment for each test.</p>
+     * <ul>
+     * <li>Start output capture for {@link System#err}</li>
+     * </ul>
+     *
+     * @param systemErr wrapper for {@code System.err}
+     */
+    @BeforeEach
+    public void setUp(@SysErr Capturable systemErr) {
+        systemErr.captureMuted();
     }
 
     @Test
@@ -112,7 +126,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testParsingErrors(@SysErr Capturable systemErr) throws Exception {
-        systemErr.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
@@ -135,7 +148,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testAntlrError(@SysErr Capturable systemErr) throws Exception {
-        systemErr.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
             "4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
@@ -148,7 +160,6 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCheckReuseAfterParseErrorWithFollowingAntlrErrorInTwoFiles(
             @SysErr Capturable systemErr) throws Exception {
-        systemErr.capture();
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
         expectedMessages.put(getPath("InputAbstractJavadocParsingErrors.java"), asList(
