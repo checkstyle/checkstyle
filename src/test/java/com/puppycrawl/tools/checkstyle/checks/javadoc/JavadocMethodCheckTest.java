@@ -55,7 +55,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
 
         final int[] actual = javadocMethodCheck.getAcceptableTokens();
         final int[] expected = {
-            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -477,7 +476,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final int[] expected = {
-            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
