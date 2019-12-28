@@ -267,12 +267,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Stack of maps for type params. */
     private final Deque<Map<String, ClassInfo>> currentTypeParams = new ArrayDeque<>();
 
-    /**
-     * Imports details.
-     * @noinspection MismatchedQueryAndUpdateOfCollection
-     */
-    private final Set<String> imports = new HashSet<>();
-
     /** Name of current class. */
     private String currentClassName;
 
@@ -361,7 +355,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     @Override
     public final int[] getRequiredTokens() {
         return new int[] {
-            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
@@ -376,7 +369,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     @Override
     public int[] getAcceptableTokens() {
         return new int[] {
-            TokenTypes.IMPORT,
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
@@ -388,19 +380,13 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        imports.clear();
-        // add java.lang.* since it's always imported
-        imports.add("java.lang.*");
         currentClassName = "";
         currentTypeParams.clear();
     }
 
     @Override
     public final void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.IMPORT) {
-            processImport(ast);
-        }
-        else if (ast.getType() == TokenTypes.CLASS_DEF
+        if (ast.getType() == TokenTypes.CLASS_DEF
                  || ast.getType() == TokenTypes.INTERFACE_DEF
                  || ast.getType() == TokenTypes.ENUM_DEF) {
             processClass(ast);
@@ -1012,15 +998,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Collects the details of imports.
-     * @param ast node containing the import details
-     */
-    private void processImport(DetailAST ast) {
-        final FullIdent name = FullIdent.createFullIdentBelow(ast);
-        imports.add(name.getText());
     }
 
     /**
