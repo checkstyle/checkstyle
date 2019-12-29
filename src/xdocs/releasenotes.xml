@@ -15,6 +15,199 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.28">
+      <div class="releaseDate">29.12.2019</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            JavadocMethodCheck: remove obsolete import token.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7413">#7413</a>
+          </li>
+          <li>
+            Remove properties related to class loading from JavadocMethod .
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7329">#7329</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            New Check NoArrayTrailingComma.
+            Author: sd1998
+            <a href="https://github.com/checkstyle/checkstyle/issues/6971">#6971</a>
+          </li>
+          <li>
+            ANNOTATION_DEF token support in RightCurlyCheck.
+            Author: sd1998
+            <a href="https://github.com/checkstyle/checkstyle/issues/7041">#7041</a>
+          </li>
+          <li>
+            Add suppression filters to google and sun configs.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6946">#6946</a>
+          </li>
+          <li>
+            CustomImportOrder: introduce a new message for the violation within import group.
+            Author: Zhenlei Huang
+            <a href="https://github.com/checkstyle/checkstyle/issues/7278">#7278</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            CustomImportOrder: no expected violations for empty line within import group.
+            Author: Zhenlei Huang
+            <a href="https://github.com/checkstyle/checkstyle/issues/7119">#7119</a>
+          </li>
+          <li>
+            RightCurlyCheck: False Positive with SAME or ALONE_OR_SINGLELINE.
+            Author: sd1998
+            <a href="https://github.com/checkstyle/checkstyle/issues/7187">#7187</a>
+          </li>
+          <li>
+            CustomImportOrder: should check empty line separator between import
+              statements but not the ones before import statement.
+            Author: Zhenlei Huang
+            <a href="https://github.com/checkstyle/checkstyle/issues/7314">#7314</a>
+          </li>
+          <li>
+            EmptyLineSeparator: does not demand empty line if comment is present.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/4763">#4763</a>
+          </li>
+          <li>
+            Generation of xpath suppression file does not close file.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7382">#7382</a>
+          </li>
+          <li>
+            JavadocMethod: missed throws tag for throw in method body.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7380">#7380</a>
+          </li>
+          <li>
+            CustomImportOrder:  unexpected violation for extra empty line between
+              package and import.
+            Author: Zhenlei Huang
+            <a href="https://github.com/checkstyle/checkstyle/issues/6680">#6680</a>
+          </li>
+          <li>
+            RequireThis false positive on method reference .
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7306">#7306</a>
+          </li>
+          <li>
+            MissingJavadocPackage - file header interferes with javadoc detection.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7117">#7117</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            After migration to junit5 build output become to have output.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7391">#7391</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST (part3).
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>
+          </li>
+          <li>
+            Hardcode google tokens in config.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6385">#6385</a>
+          </li>
+          <li>
+            doc: fix treeWithJavadoc command line option.
+            Author: pbludov
+          </li>
+          <li>
+            doc: add info about -b cli option to documentation.
+            Author: Andrei Paikin
+          </li>
+          <li>
+            Upgrade to junit 5.
+            Author: Andrei Paikin, pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6916">#6916</a>
+          </li>
+          <li>
+            Re-enable Tidy plugin.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7372">#7372</a>
+          </li>
+          <li>
+            Fix type of Checker property cacheFile.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7339">#7339</a>
+          </li>
+          <li>
+            doc: change &quot;property&quot; to &quot;type&quot; in property_types.xml.
+            Author: pbludov
+          </li>
+          <li>
+            Fix Issues left from mobile design.
+            Author: Johannes Teklote, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7301">#7301</a>
+          </li>
+          <li>
+            linkcheck does not see dtd files.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7340">#7340</a>
+          </li>
+          <li>
+            Integrate dependabot service.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7224">#7224</a>
+          </li>
+          <li>
+            javadoc links to non-public members .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7341">#7341</a>
+          </li>
+          <li>
+            Appveyor is not failing even build is failed .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7330">#7330</a>
+          </li>
+          <li>
+            Add sprint-integrations to no-error test of werker.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7322">#7322</a>
+          </li>
+          <li>
+            Fix Teamcity inspections issues.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7309">#7309</a>
+          </li>
+          <li>
+            Revert &quot;config: disable functionality of CI skip, to unblock all CIs&quot;.
+            Author: rnveach
+          </li>
+          <li>
+            Remove build for old non-LTS releases .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7299">#7299</a>
+          </li>
+          <li>
+            Set up JDK-13 build and drop jdk-12.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7281">#7281</a>
+          </li>
+          <li>
+            JDK 13 Travis Failure.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7276">#7276</a>
+          </li>
+          <li>
+            Problem to open archive web ages starting from 8.21.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7268">#7268</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.27">
       <div class="releaseDate">30.11.2019</div>
       <p>New:</p>
