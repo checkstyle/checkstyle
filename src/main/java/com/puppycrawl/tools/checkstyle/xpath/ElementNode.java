@@ -122,8 +122,6 @@ public class ElementNode extends AbstractNode {
      * Returns local part.
      * @return local part
      */
-    // -@cs[SimpleAccessorNameNotation] Overrides method from the base class.
-    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
     @Override
     public String getLocalPart() {
         return text;
@@ -160,8 +158,6 @@ public class ElementNode extends AbstractNode {
      * Returns string value.
      * @return string value
      */
-    // -@cs[SimpleAccessorNameNotation] Overrides method from the base class.
-    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
     @Override
     public String getStringValue() {
         return text;
@@ -284,8 +280,6 @@ public class ElementNode extends AbstractNode {
      * Returns underlying node.
      * @return underlying node
      */
-    // -@cs[SimpleAccessorNameNotation] Overrides method from the base class.
-    // Issue: https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/166
     @Override
     public DetailAST getUnderlyingNode() {
         return detailAst;
