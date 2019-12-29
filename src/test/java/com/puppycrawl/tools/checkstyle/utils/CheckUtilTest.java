@@ -154,19 +154,6 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetAccessModifierFromModifiersTokenWithNullParameter() {
-        try {
-            CheckUtil.getAccessModifierFromModifiersToken(null);
-            fail(IllegalArgumentException.class.getSimpleName() + " was expected.");
-        }
-        catch (IllegalArgumentException exc) {
-            final String expectedExceptionMsg = "expected non-null AST-token with type 'MODIFIERS'";
-            final String actualExceptionMsg = exc.getMessage();
-            assertEquals(expectedExceptionMsg, actualExceptionMsg, "Invalid exception message");
-        }
-    }
-
-    @Test
     public void testCreateFullType() throws Exception {
         final DetailAST typeNode = getNodeFromFile(TokenTypes.TYPE);
 
@@ -270,24 +257,31 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAccessModifierFromModifiersToken() throws Exception {
+        final DetailAST interfaceDef = getNodeFromFile(TokenTypes.INTERFACE_DEF);
+        final AccessModifierOption modifierInterface = CheckUtil
+                .getAccessModifierFromModifiersToken(interfaceDef
+                        .findFirstToken(TokenTypes.OBJBLOCK)
+                        .findFirstToken(TokenTypes.METHOD_DEF));
+        assertEquals(AccessModifierOption.PUBLIC, modifierInterface, "Invalid access modifier");
+
         final DetailAST privateVariable = getNodeFromFile(TokenTypes.VARIABLE_DEF);
         final AccessModifierOption modifierPrivate =
-                CheckUtil.getAccessModifierFromModifiersToken(privateVariable.getFirstChild());
+                CheckUtil.getAccessModifierFromModifiersToken(privateVariable);
         assertEquals(AccessModifierOption.PRIVATE, modifierPrivate, "Invalid access modifier");
 
         final DetailAST protectedVariable = privateVariable.getNextSibling();
         final AccessModifierOption modifierProtected =
-                CheckUtil.getAccessModifierFromModifiersToken(protectedVariable.getFirstChild());
+                CheckUtil.getAccessModifierFromModifiersToken(protectedVariable);
         assertEquals(AccessModifierOption.PROTECTED, modifierProtected, "Invalid access modifier");
 
         final DetailAST publicVariable = protectedVariable.getNextSibling();
         final AccessModifierOption modifierPublic =
-                CheckUtil.getAccessModifierFromModifiersToken(publicVariable.getFirstChild());
+                CheckUtil.getAccessModifierFromModifiersToken(publicVariable);
         assertEquals(AccessModifierOption.PUBLIC, modifierPublic, "Invalid access modifier");
 
         final DetailAST packageVariable = publicVariable.getNextSibling();
         final AccessModifierOption modifierPackage =
-                CheckUtil.getAccessModifierFromModifiersToken(packageVariable.getFirstChild());
+                CheckUtil.getAccessModifierFromModifiersToken(packageVariable);
         assertEquals(AccessModifierOption.PACKAGE, modifierPackage, "Invalid access modifier");
     }
 
@@ -335,7 +329,8 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     @Test
     public void testIsReceiverParameter() throws Exception {
         final DetailAST objBlock = getNodeFromFile(TokenTypes.OBJBLOCK);
-        final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling();
+        final DetailAST methodWithReceiverParameter = objBlock.getLastChild().getPreviousSibling()
+                .getPreviousSibling();
         final DetailAST receiverParameter =
                 getNode(methodWithReceiverParameter, TokenTypes.PARAMETER_DEF);
         final DetailAST simpleParameter =
