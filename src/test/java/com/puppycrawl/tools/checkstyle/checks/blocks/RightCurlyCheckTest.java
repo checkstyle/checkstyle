@@ -436,6 +436,14 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRightCurlyIsAloneOrEmptyLambda() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE_OR_EMPTY.toString());
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRightCurlyAloneLambda.java"), expected);
+    }
+
+    @Test
     public void testRightCurlyIsAloneOrSinglelineLambda() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
         checkConfig.addAttribute("option",
@@ -476,12 +484,43 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
             "53:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
             "66:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
             "66:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
-            "70:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
-            "72:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
-            "75:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "67:10: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 10),
+            "71:39: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 39),
+            "73:56: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 56),
+            "76:24: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 24),
+            "85:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "87:23: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 23),
         };
         verify(checkConfig, getPath("InputRightCurlyAlone.java"),
                 expected);
+    }
+
+    @Test
+    public void testOptionAloneOrEmpty() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE_OR_EMPTY.toString());
+        checkConfig.addAttribute("tokens", "CLASS_DEF, METHOD_DEF, LITERAL_IF, LITERAL_ELSE, "
+            + "LITERAL_DO, LITERAL_WHILE, LITERAL_FOR, STATIC_INIT, INSTANCE_INIT");
+        final String[] expected = {
+            "7:15: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 15),
+            "8:21: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 21),
+            "12:26: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 26),
+            "21:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "38:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "42:37: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 37),
+            "45:30: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 30),
+            "47:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "49:17: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 17),
+            "51:53: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 53),
+            "53:27: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 27),
+            "53:52: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 52),
+            "61:42: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 42),
+            "63:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
+            "67:5: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 5),
+            "74:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig, getPath("InputRightCurlyAloneOrEmpty.java"),
+            expected);
     }
 
     @Test

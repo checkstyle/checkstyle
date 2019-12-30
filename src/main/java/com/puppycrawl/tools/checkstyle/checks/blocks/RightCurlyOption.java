@@ -127,4 +127,22 @@ public enum RightCurlyOption {
      **/
     SAME,
 
+    /**
+     * Represents the policy that the brace must be alone on the line, but allows single-line format
+     * of empty blocks. For example:
+     *
+     * <pre>
+     * // Brace is alone on the line
+     * try {
+     *     ...
+     * <b>}</b>
+     * finally {
+     *     ...
+     * <b>}</b>
+     *
+     * // Single-line format of empty block
+     * public void getId() { <b>}</b>
+     * </pre>
+     **/
+    ALONE_OR_EMPTY,
 }

@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-public class InputRightCurlyAlone {
+public class InputRightCurlyAloneOrEmpty {
 
     private int a;
     private static int b;
@@ -58,31 +58,25 @@ public class InputRightCurlyAlone {
                 .collect(java.util.stream.Collectors.toList());
     }
 
+    class TestClass { private int field; }  //violation
+
+    class TestClass2 { private int field; };  //violation
+
+    class TestClass3 {
+        private int field;
+    };  //violation
+
     void method6(int a) {
         java.util.Map<String, String> map3 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-        }{}; // violation
-        {}; //violation
+        }{}; //violation
+        {}; //ok
         };
     }
 
-    public @interface TestAnnotation {} //violation
+    void method7(int a) {} //ok
 
-    public @interface TestAnnotation1{ String value(); } //violation
-
-    public @interface TestAnnotation2 {
-        String value();} //violation
-
-    public @interface TestAnnotation3 {
-        String value();
-    }
-
-    public @interface TestAnnottation4 { String value();
-    }
-
-    void method7(int a) {} //violation
-
-    class TestClass4 {} //violation
+    class TestClass4 {} //ok
 }

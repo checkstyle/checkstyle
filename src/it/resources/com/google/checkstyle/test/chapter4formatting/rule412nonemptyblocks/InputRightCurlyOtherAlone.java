@@ -145,7 +145,7 @@ class WithArraysAlone {
 }
 
 class Interface {
-    public @interface TestAnnotation {} //warn
+    public @interface TestAnnotation {}
 
     public @interface TestAnnotation1 { String someValue(); } //warn
 
