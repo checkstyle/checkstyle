@@ -497,6 +497,7 @@ verify-no-exception-configs)
     | sort | uniq | sed "s/Check$//" > .ci-temp/file.txt
   DIFF_TEXT=$(diff -u .ci-temp/web.txt .ci-temp/file.txt | cat)
   if [[ $DIFF_TEXT != "" ]]; then
+    echo "Diff is detected."
     if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]+)$ ]]; then
       LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
@@ -515,7 +516,7 @@ verify-no-exception-configs)
         false;
       fi
     else
-      diff -u .ci-temp/web.txt .ci-temp/file.txt
+      diff -u .ci-temp/web.txt .ci-temp/file.txt | cat
       echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
       echo 'https://github.com/checkstyle/contribution/checkstyle-tester/checks-nonjavadoc-error.xml'
       echo 'https://github.com/checkstyle/contribution/checkstyle-tester/checks-nonjavadoc-error.xml'
