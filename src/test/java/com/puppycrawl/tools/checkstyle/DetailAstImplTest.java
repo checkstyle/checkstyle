@@ -20,9 +20,7 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,7 +32,6 @@ import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.BitSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.function.Consumer;
@@ -237,68 +234,6 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         setParentMethod.invoke(firstLevelC, root);
 
         assertEquals(firstLevelC, firstLevelA.getNextSibling(), "Invalid next sibling");
-    }
-
-    @Test
-    public void testBranchContains() {
-        final DetailAstImpl root = createToken(null, TokenTypes.CLASS_DEF);
-        final DetailAstImpl modifiers = createToken(root, TokenTypes.MODIFIERS);
-        createToken(modifiers, TokenTypes.LITERAL_PUBLIC);
-
-        assertTrue(root.branchContains(TokenTypes.LITERAL_PUBLIC), "invalid result");
-        assertFalse(root.branchContains(TokenTypes.OBJBLOCK), "invalid result");
-    }
-
-    private static DetailAstImpl createToken(DetailAstImpl root, int type) {
-        final DetailAstImpl result = new DetailAstImpl();
-        result.setType(type);
-        if (root != null) {
-            root.addChild(result);
-        }
-        return result;
-    }
-
-    @Test
-    public void testClearBranchTokenTypes() throws Exception {
-        final DetailAstImpl parent = new DetailAstImpl();
-        final DetailAstImpl child = new DetailAstImpl();
-        parent.setFirstChild(child);
-
-        final List<Consumer<DetailAstImpl>> clearBranchTokenTypesMethods = Arrays.asList(
-                child::setFirstChild,
-                child::setNextSibling,
-                child::addPreviousSibling,
-                child::addNextSibling,
-                child::addChild,
-            ast -> {
-                try {
-                    Whitebox.invokeMethod(child, "setParent", ast);
-                }
-                // -@cs[IllegalCatch] Cannot avoid catching it.
-                catch (Exception exception) {
-                    throw new IllegalStateException(exception);
-                }
-            }
-        );
-
-        for (Consumer<DetailAstImpl> method : clearBranchTokenTypesMethods) {
-            final BitSet branchTokenTypes = Whitebox.invokeMethod(parent, "getBranchTokenTypes");
-            method.accept(null);
-            final BitSet branchTokenTypes2 = Whitebox.invokeMethod(parent, "getBranchTokenTypes");
-            assertEquals(branchTokenTypes, branchTokenTypes2, "Branch token types are not equal");
-            assertNotSame(branchTokenTypes, branchTokenTypes2,
-                    "Branch token types should not be the same");
-        }
-    }
-
-    @Test
-    public void testCacheBranchTokenTypes() {
-        final DetailAST root = new DetailAstImpl();
-        final BitSet bitSet = new BitSet();
-        bitSet.set(999);
-
-        Whitebox.setInternalState(root, "branchTokenTypes", bitSet);
-        assertTrue(root.branchContains(999), "Branch tokens has changed");
     }
 
     @Test

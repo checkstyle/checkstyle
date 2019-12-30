@@ -19,8 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import java.util.BitSet;
-
 import antlr.CommonASTWithHiddenTokens;
 import antlr.Token;
 import antlr.collections.AST;
@@ -51,13 +49,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     /** Previous sibling. */
     private DetailAstImpl previousSibling;
 
-    /**
-     * All token types in this branch.
-     * Token 'x' (where x is an int) is in this branch
-     * if branchTokenTypes.get(x) is true.
-     */
-    private BitSet branchTokenTypes;
-
     @Override
     public void initialize(Token tok) {
         super.initialize(tok);
@@ -80,7 +71,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     @Override
     public void setFirstChild(AST ast) {
-        clearBranchTokenTypes();
         clearChildCountCache(this);
         super.setFirstChild(ast);
         if (ast != null) {
@@ -90,7 +80,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     @Override
     public void setNextSibling(AST ast) {
-        clearBranchTokenTypes();
         clearChildCountCache(parent);
         super.setNextSibling(ast);
         if (ast != null && parent != null) {
@@ -107,7 +96,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
      *        DetailAST object.
      */
     public void addPreviousSibling(DetailAST ast) {
-        clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
             //parent is set in setNextSibling or parent.setFirstChild
@@ -133,7 +121,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
      *        DetailAST object.
      */
     public void addNextSibling(DetailAST ast) {
-        clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
             //parent is set in setNextSibling
@@ -152,7 +139,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     @Override
     public void addChild(AST ast) {
-        clearBranchTokenTypes();
         clearChildCountCache(this);
         if (ast != null) {
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
@@ -195,7 +181,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     private void setParent(DetailAstImpl parent) {
         DetailAstImpl instance = this;
         do {
-            instance.clearBranchTokenTypes();
             instance.parent = parent;
             instance = instance.getNextSibling();
         } while (instance != null);
@@ -315,33 +300,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         return resultNo;
     }
 
-    /**
-     * Returns token type with branch.
-     * @return the token types that occur in the branch as a sorted set.
-     */
-    private BitSet getBranchTokenTypes() {
-        // lazy init
-        if (branchTokenTypes == null) {
-            branchTokenTypes = new BitSet();
-            branchTokenTypes.set(getType());
-
-            // add union of all children
-            DetailAstImpl child = getFirstChild();
-            while (child != null) {
-                final BitSet childTypes = child.getBranchTokenTypes();
-                branchTokenTypes.or(childTypes);
-
-                child = child.getNextSibling();
-            }
-        }
-        return branchTokenTypes;
-    }
-
-    @Override
-    public boolean branchContains(int type) {
-        return getBranchTokenTypes().get(type);
-    }
-
     @Override
     public DetailAST getPreviousSibling() {
         return previousSibling;
@@ -381,18 +339,6 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     private static void clearChildCountCache(DetailAstImpl ast) {
         if (ast != null) {
             ast.childCount = NOT_INITIALIZED;
-        }
-    }
-
-    /**
-     * Clears branchTokenTypes cache for all parents of the current DetailAST instance, and the
-     * child count for the current DetailAST instance.
-     */
-    private void clearBranchTokenTypes() {
-        DetailAstImpl prevParent = parent;
-        while (prevParent != null) {
-            prevParent.branchTokenTypes = null;
-            prevParent = prevParent.parent;
         }
     }
 
