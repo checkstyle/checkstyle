@@ -270,14 +270,16 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#checkstyle/checkstyle/' projects-to-test-on.properties
   sed -i.'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -287,13 +289,15 @@ no-exception-test-guava)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -303,47 +307,55 @@ no-exception-test-guava-with-google-checks)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  sed -i.'' 's/warning/ignore/' src/main/resources/google_checks.xml
-  cd contribution/checkstyle-tester
+  cp src/main/resources/google_checks.xml .ci-temp/google_checks.xml
+  sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config ../../src/main/resources/google_checks.xml --checkstyleVersion $CS_POM_VERSION
+      --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-guava-with-sun-checks)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' src/main/resources/sun_checks.xml
-  cd contribution/checkstyle-tester
+  cp src/main/resources/sun_checks.xml .ci-temp/sun_checks.xml
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config ../../src/main/resources/sun_checks.xml --checkstyleVersion $CS_POM_VERSION
+      --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION
   ;;
 
 no-exception-test-hibernate)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -353,13 +365,15 @@ no-exception-test-spotbugs)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -369,13 +383,15 @@ no-exception-test-spring-framework)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -385,13 +401,15 @@ no-exception-test-hbase)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -401,15 +419,17 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
@@ -419,6 +439,8 @@ no-exception-test-alot-of-project1)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
@@ -428,9 +450,9 @@ no-exception-test-alot-of-project1)
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
   sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-to-test-on.properties
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
-  cd ../../
+  cd ../../../
   mvn -e clean install -Pno-validations
-  cd contribution/checkstyle-tester
+  cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
