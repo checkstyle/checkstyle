@@ -42,12 +42,12 @@ no-error-orekit)
   git checkout $SHA_HIPPARCHUS
   mvn install -DskipTests
   cd -
-  checkout_from https://github.com/checkstyle/Orekit.git
+  checkout_from https://github.com/CS-SI/Orekit.git
   cd .ci-temp/Orekit
   # no CI is enforced in project, so to make our build stable we should
-  # checkout to latest release/development (annotated tag or hash)
+  # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout cs7329-javadocmethod
+  git checkout "a7e67ce73803c67a""ad90e0b28ed77a7781dc28a9"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
@@ -57,9 +57,8 @@ no-error-xwiki)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/xwiki-commons.git
+  checkout_from https://github.com/xwiki/xwiki-commons.git
   cd .ci-temp/xwiki-commons
-  git checkout cs7329-remove-deprecated-properties
   mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
