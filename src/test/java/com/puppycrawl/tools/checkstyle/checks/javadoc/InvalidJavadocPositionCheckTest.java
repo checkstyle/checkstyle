@@ -96,4 +96,13 @@ public class InvalidJavadocPositionCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("package-info.java"), expected);
     }
 
+    @Test
+    public void testPackageInfoComment() throws Exception {
+        final Configuration checkConfig = createModuleConfig(InvalidJavadocPositionCheck.class);
+        final String[] expected = {
+            "1:1: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("comment/package-info.java"), expected);
+    }
+
 }
