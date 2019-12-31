@@ -30,7 +30,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -736,7 +735,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * on any deep level.
      * @param root    DetailAST
      * @param astType value of TokenType
-     * @return {@link Optional} of {@link DetailAST} node which matches the predicate.
+     * @return {@link List} of {@link DetailAST} nodes which matches the predicate.
      */
     public static List<DetailAST> findTokensInAstByType(DetailAST root, int astType) {
         final List<DetailAST> result = new ArrayList<>();
