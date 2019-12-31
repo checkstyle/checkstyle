@@ -189,8 +189,6 @@ sonarqube)
   mvn -e clean package sonar:sonar \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=$SONAR_TOKEN \
-       -Dsonar.projectKey=com.puppycrawl.tools:checkstyle \
-       -Dsonar.organization=checkstyle \
        -Dmaven.test.failure.ignore=true \
        -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true
   ;;
