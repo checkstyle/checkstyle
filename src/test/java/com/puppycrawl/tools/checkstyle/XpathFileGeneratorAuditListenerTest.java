@@ -46,7 +46,9 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import org.junit.jupiter.api.parallel.Isolated;
 
+@Isolated
 public class XpathFileGeneratorAuditListenerTest {
 
     /** OS specific line separator. */
