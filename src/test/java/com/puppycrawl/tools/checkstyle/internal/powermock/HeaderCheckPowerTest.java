@@ -27,6 +27,7 @@ import static org.mockito.ArgumentMatchers.any;
 import java.io.IOException;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -37,6 +38,10 @@ import com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck;
 import com.puppycrawl.tools.checkstyle.checks.header.HeaderCheck;
 import com.puppycrawl.tools.checkstyle.checks.header.HeaderCheckTest;
 
+/**
+ * This test should be run isolated as it uses Powermock.
+ */
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ HeaderCheck.class, HeaderCheckTest.class, AbstractHeaderCheck.class })
 public class HeaderCheckPowerTest extends AbstractModuleTestSupport {
