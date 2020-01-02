@@ -29,6 +29,7 @@ import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -40,6 +41,10 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
 
+/**
+ * This test should be run isolated as it uses Powermock.
+ */
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ParseMode.class)
 public class MainFrameModelPowerTest extends AbstractModuleTestSupport {
