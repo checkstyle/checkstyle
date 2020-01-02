@@ -63,21 +63,25 @@ test-tr)
 
 osx-assembly)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Passembly
+  # Parallel execution of tests disabled till https://github.com/checkstyle/checkstyle/issues/8891
+  mvn -e package -Passembly -Djunit.parallel.mode.classes=same_thread
   ;;
 
 osx-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package
+  # Parallel execution of tests disabled till https://github.com/checkstyle/checkstyle/issues/8891
+  mvn -e package -Djunit.parallel.mode.classes=same_thread
   ;;
 
 osx-jdk13-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package
+  # Parallel execution of tests disabled till https://github.com/checkstyle/checkstyle/issues/8891
+  mvn -e package -Djunit.parallel.mode.classes=same_thread
   ;;
 
 osx-jdk13-assembly)
-  mvn -e package -Passembly
+  # Parallel execution of tests disabled till https://github.com/checkstyle/checkstyle/issues/8891
+  mvn -e package -Passembly -Djunit.parallel.mode.classes=same_thread
   ;;
 
 site)
