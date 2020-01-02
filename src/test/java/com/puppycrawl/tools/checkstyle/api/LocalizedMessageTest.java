@@ -29,6 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.parallel.Resources.LOCALE;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,6 +44,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.junitpioneer.jupiter.DefaultLocale;
 import org.powermock.reflect.Whitebox;
 
@@ -53,9 +56,12 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
  * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
  * though we can't add/change the files for testing. The class loader is nested in this class,
  * so the custom class loader we are using is safe.
+ * This test should be run isolated as it changes the global state (locale settings, class loader).
  *
  * @noinspection ClassLoaderInstantiation
  */
+@Isolated
+@ResourceLock(LOCALE)
 public class LocalizedMessageTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
