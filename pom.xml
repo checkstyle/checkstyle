@@ -220,6 +220,8 @@
     <pitest.junit5.plugin.version>0.10</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.7.0</junit.version>
+    <junit.parallel.mode>same_thread</junit.parallel.mode>
+    <junit.parallel.mode.classes>concurrent</junit.parallel.mode.classes>
   </properties>
 
   <dependencies>
@@ -1366,6 +1368,13 @@
           <includes>
             <include>com/puppycrawl/**/*.java</include>
           </includes>
+          <properties>
+            <configurationParameters>
+              junit.jupiter.execution.parallel.enabled = true
+              junit.jupiter.execution.parallel.mode.default = ${junit.parallel.mode}
+              junit.jupiter.execution.parallel.mode.classes.default = ${junit.parallel.mode.classes}
+            </configurationParameters>
+          </properties>
         </configuration>
       </plugin>
 
