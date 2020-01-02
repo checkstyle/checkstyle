@@ -219,7 +219,7 @@
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>0.10</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.6.2</junit.version>
+    <junit.version>5.7.0-RC1</junit.version>
   </properties>
 
   <dependencies>
@@ -1355,9 +1355,17 @@
         <version>2.22.2</version>
         <configuration>
           <argLine>-Dfile.encoding=UTF-8</argLine>
+          <useUnlimitedThreads>true</useUnlimitedThreads>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
+          <properties>
+            <configurationParameters>
+              junit.jupiter.execution.parallel.enabled = true
+              junit.jupiter.execution.parallel.mode.default = same_thread
+              junit.jupiter.execution.parallel.mode.classes.default = concurrent
+            </configurationParameters>
+          </properties>
           <additionalClasspathElements>
             <additionalClasspathElement>
               src/test/resources-noncompilable

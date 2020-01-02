@@ -25,12 +25,14 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocPackageCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@Isolated
 public class JavadocPackageCheckPowerTest extends AbstractModuleTestSupport {
 
     @Override
