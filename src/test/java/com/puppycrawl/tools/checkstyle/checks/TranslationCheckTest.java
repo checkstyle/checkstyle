@@ -43,6 +43,7 @@ import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.powermock.reflect.Whitebox;
 
 import com.google.common.collect.ImmutableMap;
@@ -59,6 +60,10 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+/**
+ * This test should be run isolated as it changes the global state (locale settings).
+ */
+@Isolated
 public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @TempDir

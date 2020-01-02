@@ -24,11 +24,14 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junitpioneer.jupiter.DefaultLocale;
 
 /**
  * Test cases for {@link SeverityLevel} enumeration.
+ * This test should be run isolated as it changes the global state (locale settings).
  */
+@Isolated
 public class SeverityLevelTest {
 
     /* Additional test for jacoco, since valueOf()
