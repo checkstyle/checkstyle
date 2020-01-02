@@ -25,12 +25,17 @@ import static org.mockito.Mockito.when;
 import java.io.File;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+/**
+ * This test should be run isolated as it uses Powermock.
+ */
+@Isolated
 public class RegexpOnFilenameCheckPowerTest extends AbstractModuleTestSupport {
 
     @Override
