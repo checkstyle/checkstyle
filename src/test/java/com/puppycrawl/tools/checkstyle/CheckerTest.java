@@ -31,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.parallel.Resources.LOCALE;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -60,6 +61,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -92,9 +95,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * CheckerTest.
+ * This test should be run isolated as it changes the global state (locale settings, class loader).
  *
  * @noinspection ClassWithTooManyDependencies
  */
+@Isolated
+@ResourceLock(LOCALE)
 public class CheckerTest extends AbstractModuleTestSupport {
 
     @TempDir
