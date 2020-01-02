@@ -45,6 +45,7 @@ import java.util.Set;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -58,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ PropertyCacheFile.class, ByteStreams.class,
         CommonUtil.class})
