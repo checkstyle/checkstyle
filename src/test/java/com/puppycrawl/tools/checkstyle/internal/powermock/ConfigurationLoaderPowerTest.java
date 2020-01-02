@@ -26,6 +26,7 @@ import static org.powermock.api.mockito.PowerMockito.when;
 import java.util.Properties;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})
 public class ConfigurationLoaderPowerTest extends AbstractPathTestSupport {
