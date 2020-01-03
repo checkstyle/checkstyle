@@ -42,6 +42,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 import org.powermock.reflect.Whitebox;
 
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -262,36 +263,36 @@ public class LocalizedMessageTest {
         assertEquals("Instruction vide.", localizedMessage.getMessage(), "Invalid message");
     }
 
+    @DefaultLocale("fr")
     @Test
     public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
-        Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.US);
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Empty statement.", localizedMessage.getMessage(), "Invalid message");
     }
 
+    @DefaultLocale("fr")
     @Test
     public void testEnforceEnglishLanguageBySettingRootLocale() {
-        Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.ROOT);
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("Empty statement.", localizedMessage.getMessage(), "Invalid message");
     }
 
+    @DefaultLocale("fr")
     @Test
     public void testGetKey() {
-        Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.US);
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("empty.statement", localizedMessage.getKey(), "Invalid message key");
     }
 
+    @DefaultLocale("fr")
     @Test
     public void testCleatBundleCache() {
-        Locale.setDefault(Locale.FRENCH);
         LocalizedMessage.setLocale(Locale.ROOT);
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
@@ -386,7 +387,6 @@ public class LocalizedMessageTest {
 
     @AfterEach
     public void tearDown() {
-        Locale.setDefault(DEFAULT_LOCALE);
         LocalizedMessage.clearCache();
         LocalizedMessage.setLocale(DEFAULT_LOCALE);
     }
