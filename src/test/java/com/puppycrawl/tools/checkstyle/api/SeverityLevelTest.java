@@ -23,9 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import java.util.Locale;
-
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
 
 /**
  * Test cases for {@link SeverityLevel} enumeration.
@@ -72,26 +71,17 @@ public class SeverityLevelTest {
                 "Invalid getInstance result");
     }
 
+    @DefaultLocale(language = "tr", country = "TR")
     @Test
     public void testMixedCaseSpacesWithDifferentLocales() {
-        final Locale[] differentLocales = {new Locale("TR", "tr") };
-        final Locale defaultLocale = Locale.getDefault();
-        try {
-            for (Locale differentLocale : differentLocales) {
-                Locale.setDefault(differentLocale);
-                assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "),
-                        "Invalid getInstance result");
-                assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"),
-                        "Invalid getInstance result");
-                assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"),
-                        "Invalid getInstance result");
-                assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "),
-                        "Invalid getInstance result");
-            }
-        }
-        finally {
-            Locale.setDefault(defaultLocale);
-        }
+        assertEquals(SeverityLevel.IGNORE, SeverityLevel.getInstance("IgnoRe "),
+                "Invalid getInstance result");
+        assertEquals(SeverityLevel.INFO, SeverityLevel.getInstance(" iNfo"),
+                "Invalid getInstance result");
+        assertEquals(SeverityLevel.WARNING, SeverityLevel.getInstance(" WarniNg"),
+                "Invalid getInstance result");
+        assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "),
+                "Invalid getInstance result");
     }
 
 }
