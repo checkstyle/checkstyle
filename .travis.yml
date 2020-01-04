@@ -332,6 +332,14 @@ script:
   - |
     set -e
     if [[ $RUN_JOB == 1 ]]; then
+      MVN_SETTINGS=${TRAVIS_HOME}/.m2/settings.xml
+      if [[ -f ${MVN_SETTINGS} ]]; then
+        if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
+          sed -i'' -e "/<mirrors>/,/<\/mirrors>/ d" $MVN_SETTINGS
+        else
+          xmlstarlet ed --inplace -d "//mirrors" $MVN_SETTINGS
+        fi
+      fi
       if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
        echo "Maven local repo cache is not found, initializing it ..."
        mvn -B install -Pno-validations;
