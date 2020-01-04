@@ -39,7 +39,7 @@ build:
         SKIP_FILES5="|check-only-javadoc-error.sh|eclipse-compiler-javac.sh|idea_inspection"
         SKIP_FILES6="|test-spelling-unknown-words.sh|Jenkinsfile"
         SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4$SKIP_FILES5$SKIP_FILES6
-        export RUN_JOB=1
+        export RUN_JOB=0
         source ./.ci/common.sh
         # should_run_job will change RUN_JOB variable
         should_run_job "recheck" $SKIP_FILES

@@ -23,7 +23,7 @@ jobs:
             FULL_SKIP1=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
             FULL_SKIP2=$SKIP_FILES5$SKIP_FILES6$SKIP_FILES7$SKIP_FILES8
             SKIP_FILES=$FULL_SKIP1$FULL_SKIP2
-            export RUN_JOB=1
+            export RUN_JOB=0
             #source ./.ci/common.sh
             # should_run_job will change RUN_JOB variable
             #should_run_job "recheck" $SKIP_FILES

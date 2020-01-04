@@ -68,7 +68,7 @@ environment:
 
 build_script:
   - ps: |
-      $RUN_JOB=1
+      $RUN_JOB=0
       if ($RUN_JOB -eq 1) {
         $Expr = (get-content env:CMD)
         Write-Host "CMD: $Expr"
