@@ -343,6 +343,7 @@ script:
     else
       echo "CI is skipped";
     fi
+    sleep 5s
 
 after_success:
   - |
@@ -355,6 +356,8 @@ after_success:
         eval $CMD_AFTER_SUCCESS;
         echo "CMD_AFTER_SUCCESS is finished";
     fi
+    sleep 5s
+
   - |
     set -e
     SKIP_DEPLOY=false
@@ -375,3 +378,4 @@ after_success:
         mvn -e -s config/deploy-settings.xml -Pno-validations deploy;
         echo "deploy to maven snapshot repository is finished";
     fi
+    sleep 5s
