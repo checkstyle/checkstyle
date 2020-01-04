@@ -332,16 +332,16 @@ script:
   - |
     set -e
     if [[ $RUN_JOB == 1 ]]; then
-         if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
-           echo "Maven local repo cache is not found, initializing it ..."
-           mvn -B install -Pno-validations;
-         fi
-         echo "eval of CMD is starting";
-         echo "CMD=$CMD";
-         eval $CMD;
-         echo "eval of CMD is completed";
+      if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
+       echo "Maven local repo cache is not found, initializing it ..."
+       mvn -B install -Pno-validations;
+      fi
+      echo "eval of CMD is starting";
+      echo "CMD=$CMD";
+      eval $CMD;
+      echo "eval of CMD is completed";
     else
-         echo "CI is skipped";
+      echo "CI is skipped";
     fi
 
 after_success:
