@@ -590,6 +590,7 @@ check-since-version)
     CS_RELEASE_VERSION=$(echo $CS_POM_VERSION | cut -d '-' -f 1)
     echo "CS Release version: $CS_RELEASE_VERSION"
     echo "Grep for @since $CS_RELEASE_VERSION"
+    sleep 5s
     grep "* @since $CS_RELEASE_VERSION" $NEW_CHECK_FILE
   else
     echo "No new Check, all is good."
