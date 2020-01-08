@@ -177,24 +177,6 @@ assembly-run-all-jar)
   if grep 'warning' output.log ; then exit 1; fi
   ;;
 
-sonarqube)
-  # token could be generated at https://sonarcloud.io/account/security/
-  # executon on local: SONAR_TOKEN=xxxxxxxxxx ./.ci/travis/travis.sh sonarqube
-  if [ -v TRAVIS_PULL_REQUEST ] && [[ $TRAVIS_PULL_REQUEST && $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]];
-    then
-      exit 0;
-  fi
-  if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
-  export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean package sonar:sonar \
-       -Dsonar.host.url=https://sonarcloud.io \
-       -Dsonar.login=$SONAR_TOKEN \
-       -Dsonar.projectKey=org.checkstyle:checkstyle \
-       -Dsonar.organization=checkstyle \
-       -Dmaven.test.failure.ignore=true \
-       -Dcheckstyle.skip=true -Dpmd.skip=true -Dcheckstyle.ant.skip=true
-  ;;
-
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];then
     mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \

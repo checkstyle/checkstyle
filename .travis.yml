@@ -229,13 +229,6 @@ matrix:
         - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
         - CMD="$CMD1 && $CMD2"
 
-    # https://sonarcloud.io (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="sonarcloud.io"
-        - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh sonarqube"
-
     # No error testing - simple-binary-encoding
     - jdk: openjdk8
       env:

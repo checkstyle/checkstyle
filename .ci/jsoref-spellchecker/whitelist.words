@@ -1052,6 +1052,7 @@ pubconstr
 pubifc
 PUBLI
 pubpub
+pullrequest
 puppycrawl
 pw
 pwd
@@ -1199,6 +1200,7 @@ standalone
 staticvariablename
 Stdlib
 stdout
+stedolan
 stefanbirkner
 stemp
 stevewall
@@ -1344,6 +1346,7 @@ verticalwhitespace
 Vetrenko
 Veyor
 Vfs
+viesure
 viewcvs
 visibilitymodifier
 visualstudio

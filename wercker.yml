@@ -8,6 +8,11 @@ build:
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
         mvn -version
         echo "------"
+        if [[ $(grep "pull" .git/FETCH_HEAD | cat | wc -l) > 0 ]]; then
+          export PR=$(cat .git/FETCH_HEAD | cut -d ' ' -f 1 | cut -d '/' -f 3)
+          echo "PR:"$PR
+        fi
+        echo "------"
         echo "Link ${WERCKER_CACHE_DIR} to /root/.m2/repository for Gradle builds"
         mkdir -p /root/.m2
         ln -s ${WERCKER_CACHE_DIR} /root/.m2/repository
@@ -15,6 +20,12 @@ build:
         du -hs ${WERCKER_CACHE_DIR}
         echo "------"
         du -hs ${WERCKER_CACHE_DIR}/* | sort -h
+
+  - script:
+      name: install jq
+      code: |
+        curl -L http://stedolan.github.io/jq/download/linux64/jq -o /usr/local/bin/jq
+        chmod +x /usr/local/bin/jq
 
   - script:
       name: install groovy
@@ -269,6 +280,16 @@ build:
         if [[ $RUN_JOB == 1 ]]; then
           echo "Command: ./.ci/wercker.sh no-warning-imports-java-design-patterns"
           ./.ci/wercker.sh no-warning-imports-java-design-patterns
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
+      name: Sonarqube validation
+      code: |
+        if [[ -n $PR ]]; then
+          echo "Command: ./.ci/wercker.sh sonarqube"
+          ./.ci/wercker.sh sonarqube
         else
           echo "build is skipped ..."
         fi
