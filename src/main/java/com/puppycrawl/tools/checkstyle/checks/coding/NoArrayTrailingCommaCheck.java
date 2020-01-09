@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * To configure the check:
  * </p>
  * <pre>
- * &lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+ * &lt;module name=&quot;NoArrayTrailingComma&quot;/&gt;
  * </pre>
  * <p>
  * Which results in the following violations:
