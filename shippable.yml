@@ -1,7 +1,7 @@
 language: java
 
 jdk:
-  - oraclejdk8
+  - openjdk8
 
 env:
   matrix:
@@ -22,12 +22,10 @@ build:
     - /root/.m2
     - /root/groovy-2.4.7
 
-  # default is drydock/u14javall with jdk 1.8.0.25
-  # that make pitest make different results with latest jdk builds,
-  # "v5.9.4" is latest jdk8_144, versions above 5.9.4 use jdk9
   pre_ci_boot:
+    # This version should match version defined in "Node Pools" in Shippable UI
     image_name: drydock/u16javall
-    image_tag: v5.9.4
+    image_tag: v7.2.4
 
   ci:
     # we skip PRs and commits that are not for Issues, as pitest is too time consuming
