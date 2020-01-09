@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Abstract class for checking a class member (field/method)'s name conforms to
- * a format specified by the format property.
+ * a specified pattern.
  *
  * <p>
  * This class extends {@link AbstractNameCheck} with support for access level

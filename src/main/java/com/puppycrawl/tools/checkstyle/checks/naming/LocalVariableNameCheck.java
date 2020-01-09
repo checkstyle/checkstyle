@@ -25,8 +25,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks that local, non-{@code final} variable names conform to a format specified
- * by the format property. A catch parameter is considered to be
+ * Checks that local, non-{@code final} variable names conform to a specified pattern.
+ * A catch parameter is considered to be
  * a local variable.
  * </p>
  * <ul>

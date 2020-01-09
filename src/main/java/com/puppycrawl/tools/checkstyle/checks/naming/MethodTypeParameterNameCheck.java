@@ -24,8 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that method type parameter names conform to a format specified
- * by the format property.
+ * Checks that method type parameter names conform to a specified pattern.
  * </p>
  * <ul>
  * <li>

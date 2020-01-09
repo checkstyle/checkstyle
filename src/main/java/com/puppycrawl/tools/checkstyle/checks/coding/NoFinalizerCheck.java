@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Verifies there are no {@code finalize()} methods defined in a class.
+ * Checks that there is no method {@code finalize} with zero parameters.
  * </p>
  * <p>
  * See

@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks specified tokens text for matching an illegal pattern from {@code format} property.
+ * Checks specified tokens text for matching an illegal pattern.
  * By default no tokens are specified.
  * </p>
  * <ul>

@@ -27,8 +27,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Check nested (inner) classes/interfaces are declared at the bottom of the
- * class after all method and field declarations.
+ * Checks nested (internal) classes/interfaces are declared at the bottom of the
+ * primary (top-level) class after all method and field declarations.
  * </p>
  * <p>
  * To configure the check:

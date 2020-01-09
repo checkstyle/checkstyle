@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that {@code catch} parameter names conform to a format specified by the format property.
+ * Checks that {@code catch} parameter names conform to a specified pattern.
  * </p>
  * <p>
  * Default pattern has the following characteristic:

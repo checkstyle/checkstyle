@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * This check allows you to specify what warnings that
- * &#64;SuppressWarnings is not allowed to suppress.
+ * Allows to specify what warnings that
+ * {@code @SuppressWarnings} is not allowed to suppress.
  * You can also specify a list of TokenTypes that
  * the configured warning(s) cannot be suppressed on.
  * </p>

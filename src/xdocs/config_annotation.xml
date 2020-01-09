@@ -26,7 +26,7 @@
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="AnnotationLocation_Description">
         <p>
-          Check location of annotation on language elements.
+          Checks location of annotation on language elements.
           By default, Check enforce to locate annotations immediately after documentation block
           and before target element, annotation should be located on separate line from target
           element. This check also verifies that the annotations are on the same indenting level as
@@ -239,7 +239,7 @@ public String getNameIfPresent() { ... }
       <p>Since Checkstyle 8.2</p>
       <subsection name="Description" id="AnnotationOnSameLine_Description">
         <p>
-          The check does verifying that annotations are located on the same line with their targets.
+          Checks that annotations are located on the same line with their targets.
           Verifying with this check is not good practice, but it is using by some style guides.
         </p>
       </subsection>
@@ -367,7 +367,7 @@ public int foo() { ... }
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="AnnotationUseStyle_Description">
         <p>
-          This check controls the style with the usage of annotations.
+          Checks the style of elements in annotations.
         </p>
         <p>
           Annotations have three element styles starting with the least verbose.
@@ -553,8 +553,8 @@ public int foo() { ... }
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="MissingDeprecated_Description">
         <p>
-          Verifies that both the @Deprecated annotation is present
-          and the @deprecated javadoc tag are present when either one is present.
+          Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
+          <code>@deprecated</code> are both present when either of them is present.
         </p>
         <p>
           Both ways of flagging deprecation serve their own purpose.
@@ -678,8 +678,8 @@ public static final int COUNTER = 10; // violation
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="MissingOverride_Description">
         <p>
-          Verifies that the @Override annotation is present
-          when the @inheritDoc javadoc tag is present.
+          Verifies that the <code>@Override</code> annotation is present
+          when the <code>@inheritDoc</code> javadoc tag is present.
         </p>
         <p>
           Rationale: The @Override annotation helps
@@ -789,8 +789,8 @@ public static final int COUNTER = 10; // violation
     <section name="PackageAnnotation">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="PackageAnnotation_Description">
-        <p>  This check makes sure that all package annotations are in the
-             package-info.java file.
+        <p>
+          Checks that all package annotations are in the package-info.java file.
         </p>
         <p>
              According to the Java Language Specification.
@@ -848,8 +848,8 @@ public static final int COUNTER = 10; // violation
     <section name="SuppressWarnings">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="SuppressWarnings_Description">
-        <p> This check allows you to specify what warnings that
-        @SuppressWarnings is not allowed to suppress.
+        <p>Allows to specify what warnings that<code>@SuppressWarnings</code>
+          is not allowed to suppress.
         You can also specify a list of TokenTypes that
         the configured warning(s) cannot be suppressed on.
         </p>

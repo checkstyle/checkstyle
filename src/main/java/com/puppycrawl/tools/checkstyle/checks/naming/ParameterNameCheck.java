@@ -29,8 +29,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks that method parameter names conform to a format specified
- * by the format property. By using {@code accessModifiers} property it is possible
+ * Checks that method parameter names conform to a specified pattern.
+ * By using {@code accessModifiers} property it is possible
  * to specify different formats for methods at different visibility levels.
  * </p>
  * <p>

@@ -26,8 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * A check for detecting single lines that match a supplied
- * regular expression in Java files.
+ * Checks that a specified pattern matches a single line in Java files.
  * </p>
  * <p>
  * This class is variation on

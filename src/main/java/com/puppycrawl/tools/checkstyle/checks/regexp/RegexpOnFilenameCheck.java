@@ -31,8 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Implementation of a check that looks for a file name and/or path match (or
- * mis-match) against specified patterns. It can also be used to verify files
+ * Checks that a specified pattern matches based on file and/or folder path.
+ * It can also be used to verify files
  * match specific naming patterns not covered by other checks (Ex: properties,
  * xml, etc.).
  * </p>

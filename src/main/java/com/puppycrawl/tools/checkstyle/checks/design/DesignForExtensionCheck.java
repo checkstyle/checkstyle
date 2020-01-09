@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * The check finds classes that are designed for extension (subclass creation).
+ * Checks that classes are designed for extension (subclass creation).
  * </p>
  * <p>
  * Nothing wrong could be with founded classes.

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks that variables have Javadoc comments. Ignores {@code serialVersionUID} fields.
+ * Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
  * </p>
  * <ul>
  * <li>

@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * <p>
- * Checks properties files for duplicate property keys.
+ * Detects duplicated keys in properties files.
  * </p>
  * <p>
  * Rationale: Multiple property keys usually appear after merge or rebase of

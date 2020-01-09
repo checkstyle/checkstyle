@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * <p>
- * This check makes sure that all package annotations are in the
- * package-info.java file.
+ * Checks that all package annotations are in the package-info.java file.
  * </p>
  * <p>
  * According to the Java Language Specification.

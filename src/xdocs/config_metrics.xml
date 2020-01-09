@@ -26,9 +26,8 @@
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="BooleanExpressionComplexity_Description">
         <p>
-          Restrict the number of <code>&#x26;&#x26;</code>, <code>||</code>,
-          <code>&#x26;</code>, <code>|</code>
-          and <code>^</code> in an expression.
+          Restricts the number of boolean operators (<code>&#x26;&#x26;</code>, <code>||</code>,
+          <code>&#x26;</code>, <code>|</code> and <code>^</code>) in an expression.
         </p>
 
         <p>
@@ -164,7 +163,7 @@
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="ClassDataAbstractionCoupling_Description">
         <p>
-          This metric measures the number of instantiations of other
+          Measures the number of instantiations of other
           classes within the given class. This type of coupling is not
           caused by inheritance or the object oriented
           paradigm. Generally speaking, any data type with other data
@@ -485,7 +484,7 @@ public class Foo {
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="ClassFanOutComplexity_Description">
         <p>
-          The number of other classes a given class relies on. Also the
+          Checks the number of other classes a given class relies on. Also the
           square of this has been shown to indicate the amount of
           maintenance required in functional programs (on a file basis)
           at least.

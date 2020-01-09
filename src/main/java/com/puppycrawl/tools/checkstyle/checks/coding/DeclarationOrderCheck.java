@@ -33,7 +33,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks the order in which parts of the class or interface declaration are defined.
+ * Checks that the parts of a class or interface declaration appear in the order
+ * suggested by the
+ * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+ * Code Conventions for the Java Programming Language</a>.
  * </p>
  * <p>
  * According to

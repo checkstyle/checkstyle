@@ -27,7 +27,7 @@
       <subsection name="Description" id="EmptyForInitializerPad_Description">
         <p>
           Checks the padding of an empty for initializer; that is whether
-          white space is required at an empty for initializer, or such white
+          a white space is required at an empty for initializer, or such white
           space is forbidden.  No check occurs if there is a line wrap at the
           initializer, as in
         </p>
@@ -124,7 +124,7 @@ for (
       <subsection name="Description" id="EmptyForIteratorPad_Description">
         <p>
           Checks the padding of an empty for iterator; that is whether a white
-          space is required at an empty for iterator, or such white spaces are
+          space is required at an empty for iterator, or such white space is
           forbidden. No check occurs if there is a line wrap at the iterator,
           as in
         </p>
@@ -1580,7 +1580,7 @@ public void foo(final char @NotNull [] param) {} // No violation
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="ParenPad_Description">
         <p>
-          Checks the policy on the padding of parentheses; i.e. whether a
+          Checks the policy on the padding of parentheses; that is whether a
           space is required after a left parenthesis and before a right
           parenthesis, or such spaces are forbidden. No check occurs at
           the right parenthesis after an empty for iterator, at the left

@@ -53,8 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * A <a href="https://checkstyle.org/config.html#Overview">FileSetCheck</a> that
- * ensures the correct translation of code by checking property files for consistency
+ * Ensures the correct translation of code by checking property files for consistency
  * regarding their keys. Two property files describing one and the same context
  * are consistent if they contain the same keys. TranslationCheck also can check
  * an existence of required translations which must exist in project, if

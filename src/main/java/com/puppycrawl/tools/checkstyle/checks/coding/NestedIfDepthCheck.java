@@ -27,7 +27,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
- * Restricts nested if-else blocks to a specified depth (default = 1).
+ * Restricts nested if-else blocks to a specified depth.
  * </p>
  * <ul>
  * <li>

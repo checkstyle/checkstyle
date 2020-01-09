@@ -28,7 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * This check controls the style with the usage of annotations.
+ * Checks the style of elements in annotations.
  * </p>
  * <p>
  * Annotations have three element styles starting with the least verbose.

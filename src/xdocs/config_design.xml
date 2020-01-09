@@ -26,7 +26,7 @@
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="DesignForExtension_Description">
         <p>
-          The check finds classes that are designed for extension (subclass creation).
+          Checks that classes are designed for extension (subclass creation).
         </p>
         <p>
           Nothing wrong could be with founded classes.
@@ -406,8 +406,8 @@ public class StringUtils // not final to allow subclassing
       <p>Since Checkstyle 5.2</p>
       <subsection name="Description" id="InnerTypeLast_Description">
         <p>
-          Check nested (inner) classes/interfaces are declared at the
-          bottom of the class after all method and field declarations.
+          Checks nested (internal) classes/interfaces are declared at the bottom of the
+          primary (top-level) class after all method and field declarations.
         </p>
       </subsection>
 
@@ -752,7 +752,7 @@ public class Foo{
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ThrowsCount_Description">
         <p>
-          Restricts throws statements to a specified count (4 by default).
+          Restricts throws statements to a specified count.
           Methods with "Override" or "java.lang.Override" annotation are skipped
           from validation as current class cannot change signature of these methods.
         </p>
