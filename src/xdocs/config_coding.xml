@@ -3466,7 +3466,7 @@ String[] foo = new String[] {
            To configure the check:
          </p>
          <source>
-&lt;module name=&quot;ArrayTrailingComma&quot;/&gt;
+&lt;module name=&quot;NoArrayTrailingComma&quot;/&gt;
          </source>
          <p>
            Which results in the following violations:
