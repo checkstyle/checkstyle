@@ -284,15 +284,15 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: Sonarqube validation
-      code: |
-        if [[ -n $PR ]]; then
-          echo "Command: ./.ci/wercker.sh sonarqube"
-          ./.ci/wercker.sh sonarqube
-        else
-          echo "build is skipped ..."
-        fi
+  # - script:
+  #     name: Sonarqube validation
+  #     code: |
+  #       if [[ -n $PR ]]; then
+  #         echo "Command: ./.ci/wercker.sh sonarqube"
+  #         ./.ci/wercker.sh sonarqube
+  #       else
+  #         echo "build is skipped ..."
+  #       fi
 
   - script:
       name: Cleanup maven local repo
