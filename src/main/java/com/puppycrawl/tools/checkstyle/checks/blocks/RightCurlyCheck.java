@@ -35,7 +35,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks the placement of right curly braces (<code>'}'</code>)
  * for if-else, try-catch-finally blocks, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
- * instance, static initialization blocks, annotation definitions and enum definitions.
+ * instance, static initialization blocks, annotation definitions,
+ * enum definitions and enum constant definitions.
  * For right curly brace of expression blocks please follow issue
  * <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
  * </p>
@@ -145,6 +146,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INSTANCE_INIT,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
         };
     }
 
@@ -345,6 +347,7 @@ public class RightCurlyCheck extends AbstractCheck {
         private static final int[] TOKENS_WITH_NO_CHILD_SLIST = {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.ENUM_CONSTANT_DEF,
             TokenTypes.ANNOTATION_DEF,
         };
 
@@ -466,7 +469,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Collects validation details for CLASS_DEF, METHOD DEF, CTOR_DEF, STATIC_INIT,
-         * INSTANCE_INIT, ANNOTATION_DEF and ENUM_DEF.
+         * INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF and ENUM_CONSTANT_DEF.
          * @param ast a {@code DetailAST} value
          * @return an object containing all details to make a validation
          */

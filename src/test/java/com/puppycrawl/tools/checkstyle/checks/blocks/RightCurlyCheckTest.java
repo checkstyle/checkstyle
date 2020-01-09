@@ -614,4 +614,89 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRightCurlySameNewTokens.java"), expected);
     }
 
+    @Test
+    public void testEnumConstDefTokenSame() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "19:41: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 41),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlySameEnumConstDefToken.java"), expected);
+    }
+
+    @Test
+    public void testEnumConstDefTokenAlone() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "19:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "23:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
+            "27:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlyAloneEnumConstDefToken.java"), expected);
+    }
+
+    @Test
+    public void testEnumConstDefTokenAloneOrSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option",
+                RightCurlyOption.ALONE_OR_SINGLELINE.toString());
+        checkConfig.addAttribute("tokens", "ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "19:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlyAloneOrSingleLineEnumConstDefToken.java"),
+                expected);
+    }
+
+    @Test
+    public void testEnumConstDefTokenSameWithSemi() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "19:41: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 41),
+            "32:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlySameEnumConstDefTokensWithSemi.java"), expected);
+    }
+
+    @Test
+    public void testEnumConstDefTokenAloneWithSemi() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        checkConfig.addAttribute("tokens", "ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "19:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "23:43: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 43),
+            "27:14: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 14),
+            "32:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlyAloneEnumConstDefTokenWithSemi.java"), expected);
+    }
+
+    @Test
+    public void testEnumConstDefTokenAloneOrSingleLineWithSemi() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option",
+                RightCurlyOption.ALONE_OR_SINGLELINE.toString());
+        checkConfig.addAttribute("tokens", "ENUM_CONSTANT_DEF");
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "19:41: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 41),
+            "32:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+        };
+        verify(checkConfig,
+                getPath("InputRightCurlyAloneOrSingleLineEnumConstDefTokenWithSemi.java"),
+                expected);
+    }
 }

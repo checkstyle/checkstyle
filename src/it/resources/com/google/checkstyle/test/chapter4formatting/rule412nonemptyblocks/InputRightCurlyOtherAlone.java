@@ -173,3 +173,30 @@ enum TestEnum3 {
 
 enum TestEnum4 { SOME_VALUE;
 }
+
+class EnumConstDefs {
+
+    public enum Temp {
+        FOO {
+            int someValue;
+        }
+    }
+
+    public enum Temp1 {
+        FOO {
+            int someValue; } //warn
+    }
+
+    public enum Temp2 {
+        FOO { int someValue; } //warn
+    }
+
+    public enum Temp3 {
+        FOO {} //warn
+    }
+
+    public enum Temp4 {
+        FOO { int someValue;
+        }
+    }
+}
