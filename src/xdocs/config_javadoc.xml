@@ -1507,7 +1507,7 @@ public class TestClass {
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocType_Description">
         <p>
-          Checks Javadoc comments for class and interface definitions.
+          Checks the Javadoc comments for annotation/enum/class/interface definitions.
           By default, does not check for author or version tags. The
           scope to verify is specified using the <code>Scope</code>
           class and defaults to <code>Scope.PRIVATE</code>. To verify
@@ -1745,7 +1745,7 @@ class DatabaseConfiguration {}
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocVariable_Description">
         <p>
-          Checks that variables have Javadoc comments. Ignores <code>serialVersionUID</code>
+          Checks that a variable has a Javadoc comment. Ignores <code>serialVersionUID</code>
           fields.
         </p>
       </subsection>

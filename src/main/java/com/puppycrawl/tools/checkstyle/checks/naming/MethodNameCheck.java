@@ -25,8 +25,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * <p>
- * Checks that method names conform to a format specified
- * by the format property.
+ * Checks that method names conform to a specified pattern.
  * </p>
  *
  * <p>Also, checks if a method name has the same name as the residing class.

@@ -362,7 +362,10 @@ class Test {
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="DeclarationOrder_Description">
         <p>
-          Checks the order in which parts of the class or interface declaration are defined.
+          Checks that the parts of a class or interface declaration appear in the order
+          suggested by the
+          <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
+            Code Conventions for the Java Programming Language</a>.
         </p>
         <p>
           According to <a
@@ -643,7 +646,7 @@ switch (i) {
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="EmptyStatement_Description">
         <p>
-          Detects empty statements (standalone {@code ";"} semicolon).
+          Detects empty statements (standalone <code>";"</code> semicolon).
           Empty statements often introduce bugs that are hard to spot, such as in
         </p>
         <source>
@@ -1792,8 +1795,8 @@ class SomeClass
       <p>Since Checkstyle 4.0</p>
       <subsection name="Description" id="IllegalThrows_Description">
         <p>
-          This check can be used to ensure that types are not declared
-          to be thrown. Declaring that a method throws <code>java.lang.Error</code> or
+          Checks that specified types are not declared to be thrown.
+          Declaring that a method throws <code>java.lang.Error</code> or
           <code>java.lang.RuntimeException</code> is almost never acceptable.
         </p>
       </subsection>
@@ -2003,8 +2006,8 @@ class SomeClass
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="IllegalTokenText_Description">
         <p>
-          Checks specified tokens text for matching an illegal pattern from
-          <code>format</code> property. By default no tokens are specified.
+          Checks specified tokens text for matching an illegal pattern.
+          By default no tokens are specified.
         </p>
       </subsection>
 
@@ -2787,7 +2790,7 @@ class TestMethodCall {
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="MissingSwitchDefault_Description">
         <p>
-          Checks that switch statement has a &quot;default&quot; clause.
+          Checks that switch statement has a <code>default</code> clause.
         </p>
 
         <p>
@@ -2856,7 +2859,7 @@ class TestMethodCall {
       <p>Since Checkstyle 3.5</p>
       <subsection name="Description" id="ModifiedControlVariable_Description">
         <p>
-            Check for ensuring that for loop control variables are not modified inside
+            Checks that for loop control variables are not modified inside
             the for block. An example is:
         </p>
         <source>
@@ -3192,10 +3195,7 @@ for (String line: lines) {
     <section name="NestedForDepth">
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="NestedForDepth_Description">
-        <p>
-          Restricts nested <code>for</code> blocks to a specified depth
-          (default = 1).
-        </p>
+        <p>Restricts nested <code>for</code> blocks to a specified depth.</p>
       </subsection>
 
       <subsection name="Properties" id="NestedForDepth_Properties">
@@ -3275,9 +3275,7 @@ for (String line: lines) {
     <section name="NestedIfDepth">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="NestedIfDepth_Description">
-        <p>
-          Restricts nested if-else blocks to a specified depth (default = 1).
-        </p>
+        <p>Restricts nested if-else blocks to a specified depth.</p>
       </subsection>
 
       <subsection name="Properties" id="NestedIfDepth_Properties">
@@ -3357,9 +3355,7 @@ for (String line: lines) {
     <section name="NestedTryDepth">
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="NestedTryDepth_Description">
-        <p>
-          Restricts nested try blocks to a specified depth (default = 1).
-        </p>
+        <p>Restricts nested try-catch-finally blocks to a specified depth.</p>
       </subsection>
 
       <subsection name="Properties" id="NestedTryDepth_Properties">
@@ -3777,10 +3773,7 @@ enum Foo10 { FOO, BAR } // OK
     <section name="NoFinalizer">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="NoFinalizer_Description">
-        <p>
-          Verifies there are no <code>finalize()</code> methods
-          defined in a class.
-        </p>
+        <p>Checks that there is no method <code>finalize</code> with zero parameters.</p>
         <p>
           See <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()">
           Object.finalize()</a>
@@ -4468,8 +4461,8 @@ class C {
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="ReturnCount_Description">
         <p>
-          Restricts the number of return statements in methods, constructors and lambda expressions
-          (2 by default). Ignores specified methods (<code>equals()</code> by default).
+          Restricts the number of return statements in methods, constructors and lambda expressions.
+          Ignores specified methods (<code>equals</code> by default).
         </p>
 
         <p>

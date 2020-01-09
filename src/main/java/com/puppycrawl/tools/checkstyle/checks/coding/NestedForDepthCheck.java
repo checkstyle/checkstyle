@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Restricts nested {@code for} blocks to a specified depth (default = 1).
+ * Restricts nested {@code for} blocks to a specified depth.
  * </p>
  * <ul>
  * <li>

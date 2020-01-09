@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * A check that makes sure that a specified pattern exists, exists less than
+ * Checks that a specified pattern exists, exists less than
  * a set number of times, or does not exist in the file.
  * </p>
  * <p>

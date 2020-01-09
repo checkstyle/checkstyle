@@ -30,19 +30,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks for uncommented main() methods.
+ * Detects uncommented {@code main} methods.
  * </p>
  * <p>
- * Rationale: A main() method is often used for debugging purposes.
+ * Rationale: A {@code main} method is often used for debugging purposes.
  * When debugging is finished, developers often forget to remove the method,
  * which changes the API and increases the size of the resulting class or JAR file.
- * With the exception of the real program entry points, all main() methods
+ * With the exception of the real program entry points, all {@code main} methods
  * should be removed or commented out of the sources.
  * </p>
  * <ul>
  * <li>
  * Property {@code excludedClasses} - Specify pattern for qualified names of
- * classes which are allowed to have a main method.
+ * classes which are allowed to have a {@code main} method.
  * Default value is {@code "^$" (empty)}.
  * </li>
  * </ul>
@@ -73,7 +73,10 @@ public class UncommentedMainCheck
      */
     public static final String MSG_KEY = "uncommented.main";
 
-    /** Specify pattern for qualified names of classes which are allowed to have a main method. */
+    /**
+     * Specify pattern for qualified names of classes which are allowed to
+     * have a {@code main} method.
+     */
     private Pattern excludedClasses = Pattern.compile("^$");
     /** Current class name. */
     private String currentClass;
@@ -84,7 +87,7 @@ public class UncommentedMainCheck
 
     /**
      * Setter to specify pattern for qualified names of classes which are allowed
-     * to have a main method.
+     * to have a {@code main} method.
      *
      * @param excludedClasses a pattern
      */

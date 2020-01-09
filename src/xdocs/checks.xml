@@ -36,8 +36,8 @@
           <tr>
             <td><a href="config_naming.html#AbbreviationAsWordInName">
               AbbreviationAsWordInName</a></td>
-            <td>The Check validate abbreviations(consecutive capital letters)
-             length in identifier name, it also allow in enforce camel case naming.</td>
+            <td>Validates abbreviations (consecutive capital letters)
+             length in identifier name, it also allows to enforce camel case naming.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#AbstractClassName">AbstractClassName</a></td>
@@ -48,16 +48,15 @@
           </tr>
           <tr>
             <td><a href="config_annotation.html#AnnotationLocation">AnnotationLocation</a></td>
-            <td>Check location of annotation on language elements.</td>
+            <td>Checks location of annotation on language elements.</td>
           </tr>
           <tr>
             <td><a href="config_annotation.html#AnnotationOnSameLine">AnnotationOnSameLine</a></td>
-            <td>The check does verifying that annotations are located on the same line with their
-                targets.</td>
+            <td>Checks that annotations are located on the same line with their targets.</td>
           </tr>
           <tr>
             <td><a href="config_annotation.html#AnnotationUseStyle">AnnotationUseStyle</a></td>
-            <td>This check controls the style with the usage of annotations.</td>
+            <td>Checks the style of elements in annotations.</td>
           </tr>
           <tr>
             <td><a href="config_sizes.html#AnonInnerLength">AnonInnerLength</a></td>
@@ -65,7 +64,7 @@
           </tr>
           <tr>
             <td><a href="config_coding.html#ArrayTrailingComma">ArrayTrailingComma</a></td>
-            <td>Checks if array initialization contains optional trailing comma.</td>
+            <td>Checks that array initialization contains a trailing comma.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#ArrayTypeStyle">ArrayTypeStyle</a></td>
@@ -73,12 +72,12 @@
           </tr>
           <tr>
             <td><a href="config_javadoc.html#AtclauseOrder">AtclauseOrder</a></td>
-            <td>Checks the order of at-clauses.</td>
+            <td>Checks the order of javadoc block-tags or javadoc tags.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">
               AvoidEscapedUnicodeCharacters</a></td>
-            <td>Restrict using Unicode escapes.</td>
+            <td>Restricts using Unicode escapes (such as \u221e).</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#AvoidInlineConditionals">
@@ -87,50 +86,46 @@
           </tr>
           <tr>
             <td><a href="config_blocks.html#AvoidNestedBlocks">AvoidNestedBlocks</a></td>
-            <td>Finds nested blocks.</td>
+            <td>Finds nested blocks (blocks that are used freely in the code).</td>
           </tr>
           <tr>
             <td><a href="config_imports.html#AvoidStarImport">AvoidStarImport</a></td>
-            <td>Check that finds import statements that use the * notation.</td>
+            <td>Checks that there are no import statements that use the * notation.</td>
           </tr>
           <tr>
             <td><a href="config_imports.html#AvoidStaticImport">AvoidStaticImport</a></td>
-            <td>Check that finds static imports.</td>
+            <td>Checks that there are no static import statements.</td>
           </tr>
           <tr>
             <td><a href="config_metrics.html#BooleanExpressionComplexity">
               BooleanExpressionComplexity</a></td>
             <td>
-              Restricts nested boolean operators (&amp;&amp;, ||, &amp;, |
-              and ^) to a specified depth (default = 3).
+              Restricts the number of boolean operators (&amp;&amp;, ||, &amp;, | and ^)
+              in an expression.
             </td>
           </tr>
           <tr>
             <td><a href="config_naming.html#CatchParameterName">CatchParameterName</a></td>
-            <td>Checks that <code>catch</code> parameter names conform to a format specified by the
-                format property.</td>
+            <td>Checks that <code>catch</code> parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_metrics.html#ClassDataAbstractionCoupling">
               ClassDataAbstractionCoupling</a></td>
-            <td>This metric measures the number of instantiations of other classes within the given
-                class.</td>
+            <td>Measures the number of instantiations of other classes within the given class.</td>
           </tr>
           <tr>
             <td><a href="config_metrics.html#ClassFanOutComplexity">ClassFanOutComplexity</a></td>
-            <td>The number of other classes a given class relies on.</td>
+            <td>Checks the number of other classes a given class relies on.</td>
           </tr>
           <tr>
             <td><a href="config_modifier.html#ClassMemberImpliedModifier">
               ClassMemberImpliedModifier</a></td>
-            <td>
-              Checks for implicit modifiers on class members and nested types.</td>
+            <td>Checks for implicit modifiers on nested types in classes.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></td>
             <td>
-              Checks that class type parameter names conform to a format
-              specified by the format property.
+              Checks that class type parameter names conform to a specified pattern.
             </td>
           </tr>
           <tr>
@@ -139,14 +134,13 @@
           </tr>
           <tr>
             <td><a href="config_naming.html#ConstantName">ConstantName</a></td>
-            <td>Checks that constant names conform to a format specified by the
-              format property.</td>
+            <td>Checks that constant names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#CovariantEquals">CovariantEquals</a></td>
             <td>
-              Checks that if a class defines a covariant method equals, then
-              it defines method equals(java.lang.Object).
+              Checks that classes which define a covariant <code>equals()</code>
+              method also override method <code>equals(Object)</code>.
             </td>
           </tr>
           <tr>
@@ -182,37 +176,44 @@
           </tr>
           <tr>
             <td><a href="config_design.html#DesignForExtension">DesignForExtension</a></td>
-            <td>Checks that classes are designed for inheritance.</td>
+            <td>Checks that classes are designed for extension (subclass creation).</td>
           </tr>
           <tr>
             <td><a href="config_blocks.html#EmptyBlock">EmptyBlock</a></td>
-            <td>Checks for empty blocks but does not validate sequential blocks.</td>
+            <td>Checks for empty blocks.</td>
           </tr>
           <tr>
             <td><a href="config_blocks.html#EmptyCatchBlock">EmptyCatchBlock</a></td>
-            <td>Checks for empty catch blocks with few options to skip violation.</td>
+            <td>Checks for empty catch blocks.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#EmptyForInitializerPad">
               EmptyForInitializerPad</a></td>
-            <td>Checks the padding of an empty for initializer; that is whether a
-            space is required at an empty for initializer, or such spaces are
-            forbidden.</td>
+            <td>
+              Checks the padding of an empty for initializer; that is whether
+              a white space is required at an empty for initializer, or such white
+              space is forbidden.
+            </td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#EmptyForIteratorPad">EmptyForIteratorPad</a></td>
-            <td>Checks the padding of an empty for iterator; that is whether a
-            space is required at an empty for iterator, or such spaces are
-            forbidden.</td>
+            <td>
+              Checks the padding of an empty for iterator; that is whether a white
+              space is required at an empty for iterator, or such white space is
+              forbidden.
+            </td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
-            <td>Checks for blank line separators.</td>
+            <td>
+              Checks for empty line separators after header, package,
+              all import declarations, fields, constructors, methods, nested classes,
+              static initializers and instance initializers.
+            </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#EmptyStatement">EmptyStatement</a></td>
-            <td>
-            Detects empty statements (standalone ';').</td>
+            <td>Detects empty statements (standalone <code>";"</code> semicolon).</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#EqualsAvoidNull">EqualsAvoidNull</a></td>
@@ -223,30 +224,26 @@
           <tr>
             <td><a href="config_coding.html#EqualsHashCode">EqualsHashCode</a></td>
             <td>
-            Checks that classes that override equals() also override hashCode().</td>
+              Checks that classes that either override <code>equals()</code>
+              or <code>hashCode()</code> also overrides the other.
+            </td>
           </tr>
           <tr>
             <td><a href="config_sizes.html#ExecutableStatementCount">
               ExecutableStatementCount</a></td>
-            <td>
-              Restricts the number of executable statements to a specified
-              limit (default = 30).
-            </td>
+            <td>Restricts the number of executable statements to a specified limit.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#ExplicitInitialization">ExplicitInitialization</a></td>
             <td>
-              Checks if any class or object member explicitly initialized
-              to default for its type value (<code>null</code> for object
-              references, zero for numeric types and <code>char</code>
-              and <code>false</code> for <code>boolean</code>.
+              Checks if any class or object member is explicitly initialized to default
+              for its type value (<code>null</code> for object references, zero for numeric
+              types and <code>char</code> and <code>false</code> for <code>boolean</code>.
             </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#FallThrough">FallThrough</a></td>
-            <td>Checks for fall through in switch statements
-            Finds locations where a case contains Java code -
-            but lacks a break, return, throw or continue statement.</td>
+            <td>Checks for fall-through in switch statements.</td>
           </tr>
           <tr>
             <td><a href="config_sizes.html#FileLength">FileLength</a></td>
@@ -255,32 +252,36 @@
           </tr>
           <tr>
             <td><a href="config_whitespace.html#FileTabCharacter">FileTabCharacter</a></td>
-            <td>Checks to see if a file contains a tab character.</td>
+            <td>Checks that there are no tab characters ('\t') in the source code.</td>
           </tr>
           <tr>
             <td><a href="config_design.html#FinalClass">FinalClass</a></td>
             <td>
-              Checks that class which has only private constructors
+              Checks that a class which has only private constructors
             is declared as final.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#FinalLocalVariable">FinalLocalVariable</a></td>
             <td>
-              Ensures that local variables that never get their values changed,
-            must be declared final.</td>
+              Checks that local variables that never have their values changed are declared final.
+            </td>
           </tr>
           <tr>
             <td><a href="config_misc.html#FinalParameters">FinalParameters</a></td>
-            <td>Check that method/constructor/catch/foreach parameters are final.</td>
+            <td>
+              Checks that parameters for methods, constructors, catch and for-each blocks are final.
+            </td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#GenericWhitespace">GenericWhitespace</a></td>
-            <td>Checks that the whitespace around the Generic tokens &lt; and &gt; are
-            correct to the <i>typical</i> convention.</td>
+            <td>
+              Checks that the whitespace around the Generic tokens (angle brackets)
+              "&lt;" and "&gt;" are correct to the typical convention.
+            </td>
           </tr>
           <tr>
             <td><a href="config_header.html#Header">Header</a></td>
-            <td>Checks the header of the source against a fixed header file.</td>
+            <td>Checks that a source file begins with a specified header.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#HiddenField">HiddenField</a></td>
@@ -290,13 +291,12 @@
           <tr>
             <td><a href="config_design.html#HideUtilityClassConstructor">
               HideUtilityClassConstructor</a></td>
-            <td>Make sure that utility classes (classes that contain only static methods)
-            do not have a public constructor.</td>
+            <td>Makes sure that utility classes (classes that contain only static
+              methods or fields in their API) do not have a public constructor.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#IllegalCatch">IllegalCatch</a></td>
-            <td>Catching java.lang.Exception, java.lang.Error or java.lang.RuntimeException
-            is almost never acceptable.</td>
+            <td>Checks that certain exception types do not appear in a catch statement.</td>
           </tr>
           <tr>
             <td><a href="config_imports.html#IllegalImport">IllegalImport</a></td>
@@ -310,8 +310,7 @@
           </tr>
           <tr>
             <td><a href="config_coding.html#IllegalThrows">IllegalThrows</a></td>
-            <td>Throwing java.lang.Error or java.lang.RuntimeException
-            is almost never acceptable.</td>
+            <td>Checks that specified types are not declared to be thrown.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#IllegalToken">IllegalToken</a></td>
@@ -321,7 +320,8 @@
           <tr>
             <td><a href="config_coding.html#IllegalTokenText">IllegalTokenText</a></td>
             <td>
-            Checks for illegal token text.</td>
+              Checks specified tokens text for matching an illegal pattern.
+            </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#IllegalType">IllegalType</a></td>
@@ -330,15 +330,15 @@
           </tr>
           <tr>
             <td><a href="config_imports.html#ImportControl">ImportControl</a></td>
-            <td>Check that controls what can be imported in each package and file.</td>
+            <td>Controls what can be imported in each package and file.</td>
           </tr>
           <tr>
             <td><a href="config_imports.html#ImportOrder">ImportOrder</a></td>
-            <td>Ensures that groups of imports come in a specific order.</td>
+            <td>Checks the ordering/grouping of imports.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#Indentation">Indentation</a></td>
-            <td>Checks correct indentation of Java Code.</td>
+            <td>Checks correct indentation of Java code.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#InnerAssignment">InnerAssignment</a></td>
@@ -349,13 +349,14 @@
           <tr>
             <td><a href="config_design.html#InnerTypeLast">InnerTypeLast</a></td>
             <td>
-              Check nested (internal) classes/interfaces are declared at the bottom of the
-            class after all method and field declarations.</td>
+              Checks nested (internal) classes/interfaces are declared at the bottom of the
+              primary (top-level) class after all method and field declarations.
+            </td>
           </tr>
           <tr>
             <td><a href="config_design.html#InterfaceIsType">InterfaceIsType</a></td>
-            <td>Implements Bloch, Effective Java, Item 17 -
-            Use Interfaces only to define types.</td>
+            <td>Implements Joshua Bloch, Effective Java, Item 17 - Use Interfaces only to
+              define types.</td>
           </tr>
           <tr>
             <td><a href="config_modifier.html#InterfaceMemberImpliedModifier">
@@ -367,8 +368,7 @@
             <td><a href="config_naming.html#InterfaceTypeParameterName">
               InterfaceTypeParameterName</a></td>
             <td>
-              Checks that interface type parameter names conform to a format specified
-            by the format property.</td>
+              Checks that interface type parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#InvalidJavadocPosition">
@@ -379,7 +379,8 @@
           <tr>
             <td><a href="config_javadoc.html#JavadocBlockTagLocation">
               JavadocBlockTagLocation</a></td>
-            <td>Checks that a javadoc block tag appears only at the beginning of a line.</td>
+            <td>Checks that a javadoc block tag appears only at the beginning of a line,
+              ignoring leading asterisks and white space.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocContentLocation">
@@ -395,15 +396,15 @@
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></td>
-            <td>Checks that all packages have a package documentation.</td>
+            <td>Checks that each Java package has a Javadoc file used for commenting.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a></td>
-            <td>Checks Javadoc paragraphs.</td>
+            <td>Checks the Javadoc paragraph.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocStyle">JavadocStyle</a></td>
-            <td>Custom Checkstyle Check to validate Javadoc.</td>
+            <td>Validates Javadoc comments to help ensure they are well formed.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">
@@ -412,26 +413,27 @@
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocType">JavadocType</a></td>
-            <td>Checks the Javadoc of a type.</td>
+            <td>Checks the Javadoc comments for annotation/enum/class/interface definitions.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
-            <td>Checks that a variable has Javadoc comment.</td>
+            <td>Checks that a variable has a Javadoc comment.</td>
           </tr>
           <tr>
             <td><a href="config_metrics.html#JavaNCSS">JavaNCSS</a></td>
-            <td>This check calculates the Non Commenting Source Statements (NCSS) metric for
-            Java source files and methods.</td>
+            <td>
+              Determines complexity of methods, classes and files by counting
+              the Non Commenting Source Statements (NCSS).
+            </td>
           </tr>
           <tr>
             <td><a href="config_naming.html#LambdaParameterName">LambdaParameterName</a></td>
-            <td>Check to verify lambda parameter names.</td>
+            <td>Checks lambda parameter names.</td>
           </tr>
           <tr>
             <td><a href="config_blocks.html#LeftCurly">LeftCurly</a></td>
             <td>
-              Checks the placement of left curly braces on types, methods and
-              other blocks:
+              Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
             </td>
           </tr>
           <tr>
@@ -441,25 +443,24 @@
           <tr>
             <td><a href="config_naming.html#LocalFinalVariableName">LocalFinalVariableName</a></td>
             <td>
-              Checks that local final variable names conform to a format specified
-            by the format property.</td>
+              Checks that local final variable names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#LocalVariableName">LocalVariableName</a></td>
             <td>
-              Checks that local, non-final variable names conform to a format specified
-            by the format property.</td>
+              Checks that local, non-final variable names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#MagicNumber">MagicNumber</a></td>
             <td>
-            Checks for magic numbers.</td>
+              Checks that there are no "magic numbers" where a magic number
+              is a numeric literal that is not defined as a constant.
+            </td>
           </tr>
           <tr>
             <td><a href="config_naming.html#MemberName">MemberName</a></td>
             <td>
-              Checks that instance variable names conform to a format specified
-            by the format property.</td>
+              Checks that instance variable names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_sizes.html#MethodCount">MethodCount</a></td>
@@ -468,14 +469,12 @@
           </tr>
           <tr>
             <td><a href="config_sizes.html#MethodLength">MethodLength</a></td>
-            <td>
-            Checks for long methods.</td>
+            <td>Checks for long methods and constructors.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#MethodName">MethodName</a></td>
             <td>
-              Checks that method names conform to a format specified
-            by the format property.</td>
+              Checks that method names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#MethodParamPad">MethodParamPad</a></td>
@@ -488,20 +487,20 @@
             <td><a href="config_naming.html#MethodTypeParameterName">
               MethodTypeParameterName</a></td>
             <td>
-              Checks that class type parameter names conform to a format specified
-            by the format property.</td>
+              Checks that method type parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#MissingCtor">MissingCtor</a></td>
             <td>
-              Checks that classes (except abstract one) define a ctor and don't rely
-            on the default one.</td>
+              Checks that classes (except abstract ones) define a constructor
+              and don't rely on the default one.
+            </td>
           </tr>
           <tr>
             <td><a href="config_annotation.html#MissingDeprecated">MissingDeprecated</a></td>
             <td>
-              This class is used to verify that both the java.lang.Deprecated annotation is
-              present and the @deprecated Javadoc tag is present when either is present.
+              Verifies that the annotation <code>@Deprecated</code> and the Javadoc tag
+              <code>@deprecated</code> are both present when either of them is present.
             </td>
           </tr>
           <tr>
@@ -520,28 +519,26 @@
           <tr>
             <td><a href="config_annotation.html#MissingOverride">MissingOverride</a></td>
             <td>
-            This class is used to verify that the java.lang.Override annotation is present
-            when the {@inheritDoc} javadoc tag is present.
+              Verifies that the <code>@Override</code> annotation is present
+              when the <code>@inheritDoc</code> javadoc tag is present.
             </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#MissingSwitchDefault">MissingSwitchDefault</a></td>
             <td>
-            Checks that switch statement has &quot;default&quot; clause.</td>
+            Checks that switch statement has a <code>default</code> clause.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#ModifiedControlVariable">
               ModifiedControlVariable</a></td>
-            <td>Check for ensuring that for loop control variables are not modified
-            inside the for block.</td>
+            <td>Checks that for loop control variables are not modified inside the for block.</td>
           </tr>
           <tr>
             <td><a href="config_modifier.html#ModifierOrder">ModifierOrder</a></td>
             <td>
               Checks that the order of modifiers conforms to the suggestions in the
-              <a
-                  href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html">
-            Java Language specification, sections 8.1.1, 8.3.1 and 8.4.3</a>.</td>
+              Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3 and 9.4.
+            </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#MultipleStringLiterals">MultipleStringLiterals</a></td>
@@ -557,8 +554,12 @@
           </tr>
           <tr>
             <td><a href="config_design.html#MutableException">MutableException</a></td>
-            <td> Ensures that exceptions (defined as any class name conforming
-            to some regular expression) are immutable.</td>
+            <td>
+              Ensures that exception classes (classes with names conforming to
+              some regular expression and explicitly extending classes with names
+              conforming to other regular expression) are immutable, that is,
+              that they have only final fields.
+            </td>
           </tr>
           <tr>
             <td><a href="config_blocks.html#NeedBraces">NeedBraces</a></td>
@@ -567,24 +568,25 @@
           </tr>
           <tr>
             <td><a href="config_coding.html#NestedForDepth">NestedForDepth</a></td>
-            <td>Restricts nested <code>for</code> blocks to a specified depth (default = 1).</td>
+            <td>Restricts nested <code>for</code> blocks to a specified depth.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#NestedIfDepth">NestedIfDepth</a></td>
-            <td>Restricts nested if-else blocks to a specified depth (default = 1).</td>
+            <td>Restricts nested if-else blocks to a specified depth.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#NestedTryDepth">NestedTryDepth</a></td>
-            <td>Restricts nested try-catch-finally blocks to a specified depth (default = 1).</td>
+            <td>Restricts nested try-catch-finally blocks to a specified depth.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#NewlineAtEndOfFile">NewlineAtEndOfFile</a></td>
             <td>
-            Checks that there is a newline at the end of each file.</td>
+              Checks whether files end with a line separator.
+            </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#NoArrayTrailingComma">NoArrayTrailingComma</a></td>
-            <td>Checks if array initialization does not contain a trailing comma.</td>
+            <td>Checks that array initialization do not contain a trailing comma.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#NoClone">NoClone</a></td>
@@ -594,8 +596,7 @@
           </tr>
           <tr>
             <td><a href="config_coding.html#NoFinalizer">NoFinalizer</a></td>
-            <td>Checks that no method having zero parameters is defined
-            using the name <em>finalize</em>.</td>
+            <td>Checks that there is no method <code>finalize</code> with zero parameters.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#NoLineWrap">NoLineWrap</a></td>
@@ -606,11 +607,11 @@
             <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">
               NonEmptyAtclauseDescription</a></td>
             <td>
-            Checks that the at-clause tag is followed by description .</td>
+            Checks that the at-clause tag is followed by description.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#NoEnumTrailingComma">NoEnumTrailingComma</a></td>
-            <td>Checks if enum definition does not contain trailing comma</td>
+            <td>Checks that enum definition does not contain a trailing comma.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#NoWhitespaceAfter">NoWhitespaceAfter</a></td>
@@ -624,7 +625,7 @@
           </tr>
           <tr>
             <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
-            <td>Checks the npath complexity against a specified limit (default = 200).</td>
+            <td>Checks the NPATH complexity against a specified limit.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
@@ -632,13 +633,12 @@
           </tr>
           <tr>
             <td><a href="config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
-            <td>Checks that each top-level class, interfaces or enum resides in a source file of
+            <td>Checks that each top-level class, interface or enum resides in a source file of
                 its own.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#OperatorWrap">OperatorWrap</a></td>
-            <td>
-            Checks line wrapping for operators.</td>
+            <td>Checks the policy on how to wrap lines on operators.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#OrderedProperties">OrderedProperties</a></td>
@@ -650,7 +650,10 @@
           </tr>
           <tr>
             <td><a href="config_sizes.html#OuterTypeNumber">OuterTypeNumber</a></td>
-            <td>Checks for the number of defined types at the "outer" level.</td>
+            <td>
+              Checks for the number of types declared at the <i>outer</i>
+              (or <i>root</i>) level in a file.
+            </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#OverloadMethodsDeclarationOrder">
@@ -659,96 +662,100 @@
           </tr>
           <tr>
             <td><a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a></td>
-            <td>This check makes sure that all package annotations are in the
-            package-info.java file.</td>
+            <td>Checks that all package annotations are in the package-info.java file.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#PackageDeclaration">PackageDeclaration</a></td>
-            <td>Ensures there is a package declaration and (optionally) in the correct
-              directory.</td>
+            <td>
+              Ensures that a class has a package declaration, and (optionally) whether
+              the package name matches the directory name for the source file.
+            </td>
           </tr>
           <tr>
             <td><a href="config_naming.html#PackageName">PackageName</a></td>
             <td>
-              Checks that package names conform to a format specified
-            by the format property.</td>
+              Checks that package names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#ParameterAssignment">ParameterAssignment</a></td>
             <td>
-            Disallow assignment of parameters.</td>
+            Disallows assignment of parameters.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#ParameterName">ParameterName</a></td>
             <td>
-              Checks that parameter names conform to a format specified
-            by the format property.</td>
+              Checks that method parameter names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_sizes.html#ParameterNumber">ParameterNumber</a></td>
-            <td>
-            Checks the number of parameters that a method or constructor has.</td>
+            <td>Checks the number of parameters of a method or constructor.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#ParenPad">ParenPad</a></td>
-            <td>Checks the padding of parentheses; that is whether a space is required
-            after a left parenthesis and before a right parenthesis, or such spaces are
-            forbidden, with the exception that it does
-            not check for padding of the right parenthesis at an empty for iterator.</td>
+            <td>
+              Checks the policy on the padding of parentheses; that is whether a
+              space is required after a left parenthesis and before a right
+              parenthesis, or such spaces are forbidden.
+            </td>
           </tr>
           <tr>
             <td><a href="config_imports.html#RedundantImport">RedundantImport</a></td>
-            <td>
-            Checks for imports that are redundant.</td>
+            <td>Checks for redundant import statements.</td>
           </tr>
           <tr>
             <td><a href="config_modifier.html#RedundantModifier">RedundantModifier</a></td>
-            <td>Checks for redundant modifiers in interface and annotation definitions,
-              final modifier on methods of final classes, inner <code>interface</code>
-              declarations that are declared as <code>static</code>, non public class
-              constructors and enum constructors, nested enum definitions that are declared
-              as <code>static</code>.</td>
+            <td>Checks for redundant modifiers.</td>
           </tr>
           <tr>
             <td><a href="config_regexp.html#Regexp">Regexp</a></td>
             <td>
-            A check that makes sure that a specified pattern exists (or not) in the file.</td>
+              Checks that a specified pattern exists, exists less than a set
+              number of times, or does not exist in the file.
+            </td>
           </tr>
           <tr>
             <td><a href="config_header.html#RegexpHeader">RegexpHeader</a></td>
-            <td>Checks the header of the source against a header file that contains a
+            <td>
+              Checks the header of a source file against a header that contains
+              a regular expression for each line of the source header.
             </td>
           </tr>
           <tr>
             <td><a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a></td>
-            <td>Implementation of a check that looks that matches across multiple lines in
+            <td>Checks that a specified pattern matches across multiple lines in
             any file type.</td>
           </tr>
           <tr>
             <td><a href="config_regexp.html#RegexpOnFilename">RegexpOnFilename</a></td>
-            <td>Implementation of a check that matches based on file and/or folder path.</td>
+            <td>Checks that a specified pattern matches based on file and/or folder path.</td>
           </tr>
           <tr>
             <td><a href="config_regexp.html#RegexpSingleline">RegexpSingleline</a></td>
-            <td>Implementation of a check that looks for a single line in any file type.</td>
+            <td>Checks that a specified pattern matches a single line in any file type.</td>
           </tr>
           <tr>
             <td><a href="config_regexp.html#RegexpSinglelineJava">RegexpSinglelineJava</a></td>
-            <td>Implementation of a check that looks for a single line in Java files.</td>
+            <td>Checks that a specified pattern matches a single line in Java files.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#RequireThis">RequireThis</a></td>
-            <td>Checks that code doesn't rely on the &quot;this&quot; default.</td>
+            <td>
+              Checks that references to instance variables and methods of the present
+              object are explicitly of the form &quot;this.varName&quot; or
+              &quot;this.methodName(args)&quot; and that those references don't
+              rely on the default behavior when &quot;this.&quot; is absent.
+            </td>
           </tr>
           <tr>
             <td><a href="config_coding.html#ReturnCount">ReturnCount</a></td>
             <td>
-            Restricts return statements to a specified count (default = 2).</td>
+              Restricts the number of return statements in methods, constructors
+              and lambda expressions.
+            </td>
           </tr>
           <tr>
             <td><a href="config_blocks.html#RightCurly">RightCurly</a></td>
-            <td>
-            Checks the placement of right curly braces.</td>
+            <td>Checks the placement of right curly braces (<code>'}'</code>) for code blocks.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#SeparatorWrap">SeparatorWrap</a></td>
@@ -758,19 +765,17 @@
           <tr>
             <td><a href="config_coding.html#SimplifyBooleanExpression">
               SimplifyBooleanExpression</a></td>
-            <td>
-            Checks for overly complicated boolean expressions.</td>
+            <td>Checks for over-complicated boolean expressions.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#SimplifyBooleanReturn">SimplifyBooleanReturn</a></td>
-            <td>
-            Checks for overly complicated boolean return statements.</td>
+            <td>Checks for over-complicated boolean return statements.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
             <td>
-             Checks that a JavaDoc block which can fit on a single line and doesn't contain
-             at-clauses</td>
+              Checks that a Javadoc block can fit in a single line and doesn't contain
+              at-clauses.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>
@@ -781,8 +786,8 @@
           <tr>
             <td><a href="config_naming.html#StaticVariableName">StaticVariableName</a></td>
             <td>
-              Checks that static, non-final variable names conform to a format specified
-            by the format property.</td>
+              Checks that <code>static</code>, non-<code>final</code> variable names
+              conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>
@@ -808,18 +813,19 @@
           <tr>
             <td><a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a></td>
             <td>
-              This check allows you to specify what warnings that
+              Allows to specify what warnings that<code>@SuppressWarnings</code>
+              is not allowed to suppress.
             </td>
           </tr>
           <tr>
             <td><a href="config_design.html#ThrowsCount">ThrowsCount</a></td>
             <td>
-            Restricts throws statements to a specified count (default = 4).</td>
+            Restricts throws statements to a specified count.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#TodoComment">TodoComment</a></td>
             <td>
-            A check for TODO comments.</td>
+            Checks for TODO: comments.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#TrailingComment">TrailingComment</a></td>
@@ -829,22 +835,21 @@
           <tr>
             <td><a href="config_misc.html#Translation">Translation</a></td>
             <td>
-              The TranslationCheck class helps to ensure the correct translation of code by
-            checking property files for consistency regarding their keys.</td>
+              Ensures the correct translation of code by checking property files
+              for consistency regarding their keys.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#TypecastParenPad">TypecastParenPad</a></td>
-            <td>Checks the padding of parentheses for typecasts.</td>
+            <td>Checks the policy on the padding of parentheses for typecasts.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#TypeName">TypeName</a></td>
             <td>
-              Checks that type names conform to a format specified
-            by the format property.</td>
+              Checks that type names conform to a specified pattern.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#UncommentedMain">UncommentedMain</a></td>
-            <td>Detects uncommented main methods.</td>
+            <td>Detects uncommented <code>main</code> methods.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#UniqueProperties">UniqueProperties</a></td>
@@ -906,7 +911,9 @@
           <tr>
             <td><a href="config_javadoc.html#WriteTag">WriteTag</a></td>
             <td>
-            Outputs a JavaDoc tag as information.</td>
+              Requires user defined Javadoc tag to be present in Javadoc comment
+              with defined format.
+            </td>
           </tr>
         </table>
       </div>
@@ -924,7 +931,8 @@
             <td><a href="config_annotation.html#SuppressWarningsHolder">
               SuppressWarningsHolder</a></td>
             <td>
-              Maintains a set of check suppressions from <code>SuppressWarnings</code> annotations.
+              Maintains a set of check suppressions from
+              <code>@SuppressWarnings</code> annotations.
             </td>
           </tr>
         </table>

@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Check that parameters for methods, constructors, catch and for-each blocks are final.
+ * Checks that parameters for methods, constructors, catch and for-each blocks are final.
  * Interface, abstract, and native methods are not checked: the final keyword
  * does not make sense for interface, abstract, and native method parameters as
  * there is no code that could modify the parameter.

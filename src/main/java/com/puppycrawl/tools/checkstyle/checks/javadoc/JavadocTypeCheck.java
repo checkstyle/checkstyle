@@ -40,8 +40,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks Javadoc comments for class and interface definitions. By default, does not check
- * for author or version tags. The scope to verify is specified using the {@code Scope}
+ * Checks the Javadoc comments for annotation/enum/class/interface definitions. By default, does
+ * not check for author or version tags. The scope to verify is specified using the {@code Scope}
  * class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
  * scope to one of the {@code Scope} constants. To define the format for an author
  * tag or a version tag, set property authorFormat or versionFormat respectively to a

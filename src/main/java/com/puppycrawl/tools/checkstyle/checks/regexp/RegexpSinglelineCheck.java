@@ -27,8 +27,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * <p>
- * A check for detecting single lines that match a supplied regular expression.
- * Works with any file type.
+ * Checks that a specified pattern matches a single line in any file type.
  * </p>
  * <p>
  * Rationale: This check can be used to prototype checks and to find common bad

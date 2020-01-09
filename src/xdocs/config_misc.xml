@@ -161,7 +161,7 @@ public class MyClass {
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="AvoidEscapedUnicodeCharacters_Description">
         <p>
-          Restrict using
+          Restricts using
           <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3">
           Unicode escapes</a> (such as \u221e).
           It is possible to allow using escapes for
@@ -943,7 +943,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="FinalParameters_Description">
         <p>
-          Check that parameters for methods, constructors, catch and for-each blocks are
+          Checks that parameters for methods, constructors, catch and for-each blocks are
           final. Interface, abstract, and native methods are not checked: the final
           keyword does not make sense for interface, abstract, and native method
           parameters as there is no code that could modify the parameter.
@@ -1583,7 +1583,7 @@ key.png =value - violation
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="TodoComment_Description">
         <p>
-          A check for <code>TODO:</code> comments. Actually
+          Checks for <code>TODO:</code> comments. Actually
           it is a generic
           <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Pattern.html">
           regular
@@ -1831,8 +1831,7 @@ d = e / f;        // Another comment for this line
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="Translation_Description">
         <p>
-          A <a href="config.html#Overview">FileSetCheck</a> that ensures
-          the correct translation of code by checking property files for
+          Ensures the correct translation of code by checking property files for
           consistency regarding their keys. Two property files
           describing one and the same context are consistent if they
           contain the same keys. TranslationCheck also can check an existence of required
@@ -2039,15 +2038,15 @@ messages_home_fr_CA_UNIX.properties
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="UncommentedMain_Description">
         <p>
-          Checks for uncommented main() methods.
+          Detects uncommented <code>main</code> methods.
         </p>
 
         <p>
-          Rationale: A main() method is often used for debugging
+          Rationale: A <code>main</code> method is often used for debugging
           purposes. When debugging is finished, developers often forget
           to remove the method, which changes the API and increases the
           size of the resulting class or JAR file. With the exception of
-          the real program entry points, all main() methods should be
+          the real program entry points, all <code>main</code> methods should be
           removed or commented out of the sources.
         </p>
       </subsection>
@@ -2065,7 +2064,7 @@ messages_home_fr_CA_UNIX.properties
             <tr>
               <td>excludedClasses</td>
               <td>Specify pattern for qualified names of classes which are allowed
-              to have a main method.</td>
+              to have a <code>main</code> method.</td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>"^$" (empty)</code></td>
               <td>3.2</td>
@@ -2132,7 +2131,7 @@ messages_home_fr_CA_UNIX.properties
       <p>Since Checkstyle 5.7</p>
       <subsection name="Description" id="UniqueProperties_Description">
         <p>
-          Checks properties files for duplicate property keys.
+          Detects duplicated keys in properties files.
         </p>
         <p>
           Rationale: Multiple property keys usually appear after merge

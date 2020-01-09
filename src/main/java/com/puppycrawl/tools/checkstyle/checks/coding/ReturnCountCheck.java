@@ -30,8 +30,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Restricts the number of return statements in methods, constructors and lambda expressions
- * (2 by default). Ignores specified methods ({@code equals()} by default).
+ * Restricts the number of return statements in methods, constructors and lambda expressions.
+ * Ignores specified methods ({@code equals} by default).
  * </p>
  * <p>
  * <b>max</b> property will only check returns in methods and lambdas that

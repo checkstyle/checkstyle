@@ -26,7 +26,7 @@
       <p>Since Checkstyle 3.1</p>
       <subsection name="Description" id="AvoidNestedBlocks_Description">
         <p>
-          Finds nested blocks, i.e. blocks that are used freely in the code.
+          Finds nested blocks (blocks that are used freely in the code).
         </p>
 
         <p>
@@ -941,8 +941,8 @@ allowedFuture.addCallback(result -> {
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="RightCurly_Description">
         <p>
-          Checks the placement of right curly braces (<code>'}'</code>)
-          for if-else, try-catch-finally blocks, while-loops, for-loops,
+          Checks the placement of right curly braces (<code>'}'</code>) for code blocks.
+          This check supports if-else, try-catch-finally blocks, while-loops, for-loops,
           method definitions, class definitions, constructor definitions,
           instance, static initialization blocks, annotation definitions and enum definitions.
           For right curly brace of expression blocks please follow issue

@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Finds nested blocks, i.e. blocks that are used freely in the code.
+ * Finds nested blocks (blocks that are used freely in the code).
  * </p>
  * <p>
  * Rationale: Nested blocks are often leftovers from the

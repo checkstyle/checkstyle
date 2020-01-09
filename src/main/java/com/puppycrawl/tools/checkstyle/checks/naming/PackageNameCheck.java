@@ -29,8 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that package names conform to a format specified
- * by the format property.
+ * Checks that package names conform to a specified pattern.
  * </p>
  * <p>
  * The default value of {@code format} for module {@code PackageName} has been chosen to match

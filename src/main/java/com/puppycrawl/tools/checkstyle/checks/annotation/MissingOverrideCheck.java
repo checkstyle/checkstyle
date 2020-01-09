@@ -33,8 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Verifies that the &#64;Override annotation is present
- * when the &#64;inheritDoc javadoc tag is present.
+ * Verifies that the {@code @Override} annotation is present
+ * when the {@code @inheritDoc} javadoc tag is present.
  * </p>
  * <p>
  * Rationale: The &#64;Override annotation helps

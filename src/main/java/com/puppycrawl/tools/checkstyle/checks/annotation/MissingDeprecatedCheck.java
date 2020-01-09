@@ -30,8 +30,8 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 /**
  * <p>
- * Verifies that both the &#64;Deprecated annotation is present
- * and the &#64;deprecated javadoc tag are present when either one is present.
+ * Verifies that the annotation {@code @Deprecated} and the Javadoc tag
+ * {@code @deprecated} are both present when either of them is present.
  * </p>
  * <p>
  * Both ways of flagging deprecation serve their own purpose.

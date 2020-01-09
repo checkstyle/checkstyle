@@ -30,8 +30,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
- * Restrict the number of {@code &amp;&amp;}, {@code ||}, {@code &amp;}, {@code |} and
- * {@code ^} in an expression.
+ * Restricts the number of boolean operators ({@code &amp;&amp;}, {@code ||},
+ * {@code &amp;}, {@code |} and {@code ^}) in an expression.
  * </p>
  * <p>
  * Rationale: Too many conditions leads to code that is difficult to read

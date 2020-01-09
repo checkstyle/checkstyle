@@ -26,7 +26,7 @@
       <p>Since Checkstyle 4.0</p>
       <subsection name="Description" id="Regexp_Description">
         <p>
-          A check that makes sure that a specified pattern exists, exists less
+          Checks that a specified pattern exists, exists less
           than a set number of times, or does not exist in the file.
         </p>
         <p>
@@ -497,8 +497,8 @@ public static final int A_SETPOINT = 1;
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="RegexpMultiline_Description">
         <p>
-          A check for detecting that matches across multiple lines.
-          Works with any file type.
+          Checks that a specified pattern matches across multiple lines in
+          any file type.
         </p>
 
         <p>
@@ -664,8 +664,8 @@ void method() {
       <p>Since Checkstyle 6.15</p>
       <subsection name="Description" id="RegexpOnFilename_Description">
         <p>
-          Implementation of a check that looks for a file name and/or path match (or mis-match)
-          against specified patterns. It can also be used to verify files match specific naming
+          Checks that a specified pattern matches based on file and/or folder path.
+          It can also be used to verify files match specific naming
           patterns not covered by other checks (Ex: properties, xml, etc.).
         </p>
         <p>
@@ -869,8 +869,7 @@ void method() {
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="RegexpSingleline_Description">
         <p>
-          A check for detecting single lines that match a supplied
-          regular expression. Works with any file type.
+          Checks that a specified pattern matches a single line in any file type.
         </p>
 
         <p>
@@ -1026,8 +1025,7 @@ void method() {
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="RegexpSinglelineJava_Description">
         <p>
-          A check for detecting single lines that match a supplied
-          regular expression in Java files.
+          Checks that a specified pattern matches a single line in Java files.
         </p>
         <p>
           This class is variation on

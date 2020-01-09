@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Check for ensuring that for loop control variables are not modified
+ * Checks that for loop control variables are not modified
  * inside the for block. An example is:
  * </p>
  * <pre>
