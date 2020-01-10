@@ -287,7 +287,7 @@ build:
   - script:
       name: Sonarqube validation
       code: |
-        if [[ -n $PR ]]; then
+        if [[ $RUN_JOB == 1 ]]; then
           echo "Command: ./.ci/wercker.sh sonarqube"
           ./.ci/wercker.sh sonarqube
         else
