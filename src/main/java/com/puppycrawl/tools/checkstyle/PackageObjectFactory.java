@@ -451,9 +451,12 @@ public class PackageObjectFactory implements ModuleFactory {
      * Fill short-to-full module names map with Checks from coding package.
      */
     // -@cs[ExecutableStatementCount] splitting this method is not reasonable.
+    // -@cs[JavaNCSS] splitting this method is not reasonable.
     private static void fillChecksFromCodingPackage() {
         NAME_TO_FULL_MODULE_NAME.put("ArrayTrailingCommaCheck",
                 BASE_PACKAGE + ".checks.coding.ArrayTrailingCommaCheck");
+        NAME_TO_FULL_MODULE_NAME.put("AvoidDoubleBraceInitializationCheck",
+                BASE_PACKAGE + ".checks.coding.AvoidDoubleBraceInitializationCheck");
         NAME_TO_FULL_MODULE_NAME.put("AvoidInlineConditionalsCheck",
                 BASE_PACKAGE + ".checks.coding.AvoidInlineConditionalsCheck");
         NAME_TO_FULL_MODULE_NAME.put("AvoidNoArgumentSuperConstructorCallCheck",

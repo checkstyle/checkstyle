@@ -88,6 +88,7 @@ Autowired
 Autowiring
 avax
 avgt
+avoiddoublebraceinitialization
 avoidescapedunicodecharacters
 avoidinlineconditionals
 avoidnestedblocks
@@ -101,6 +102,7 @@ Backquote
 Backticks
 BADN
 badpackage
+baeldung
 baratali
 Barowski
 basedir
@@ -693,6 +695,7 @@ JLabel
 Jlo
 jls
 JNDI
+jooq
 JOption
 jp
 Jpa

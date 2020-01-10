@@ -75,6 +75,11 @@
             <td>Checks the order of javadoc block-tags or javadoc tags.</td>
           </tr>
           <tr>
+            <td><a href="config_misc.html#AvoidDoubleBraceInitialization">
+              AvoidDoubleBraceInitialization</a></td>
+            <td>Detects double brace initialization.</td>
+          </tr>
+          <tr>
             <td><a href="config_misc.html#AvoidEscapedUnicodeCharacters">
               AvoidEscapedUnicodeCharacters</a></td>
             <td>Restricts using Unicode escapes (such as \u221e).</td>
