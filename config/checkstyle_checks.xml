@@ -304,6 +304,7 @@
 
     <!-- Coding -->
     <module name="ArrayTrailingComma"/>
+    <module name="AvoidDoubleBraceInitialization"/>
     <module name="AvoidInlineConditionals"/>
     <module name="AvoidNoArgumentSuperConstructorCall"/>
     <module name="CovariantEquals"/>
