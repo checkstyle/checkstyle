@@ -203,8 +203,8 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             // This ensures we pick up the correct file based on its name and the
             // number of children it has.
             return !"file".equals(expected.getNodeName())
-                    || expected.getAttributes().getNamedItem("name").getNodeValue()
-                            .equals(actual.getAttributes().getNamedItem("name").getNodeValue())
+                    || XmlUtil.getNameAttributeOfNode(expected)
+                        .equals(XmlUtil.getNameAttributeOfNode(actual))
                     && XmlUtil.getChildrenElements(expected).size() == XmlUtil
                             .getChildrenElements(actual).size();
         }, firstErrorMessage, secondErrorMessage);

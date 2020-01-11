@@ -102,8 +102,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node section = sources.item(position);
-                final String sectionName = section.getAttributes().getNamedItem("name")
-                        .getNodeValue();
+                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
                     continue;
@@ -149,8 +148,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 continue;
             }
 
-            final String subSectionName = subSection.getAttributes().getNamedItem("name")
-                    .getNodeValue();
+            final String subSectionName = XmlUtil.getNameAttributeOfNode(subSection);
 
             examineCheckSubSection(subSection, subSectionName);
         }
@@ -303,7 +301,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         if (sanitize) {
-            result.append(sanitizeXml(node.getTextContent()));
+            result.append(XmlUtil.sanitizeXml(node.getTextContent()));
         }
         else {
             result.append(getNodeText(node));
@@ -396,11 +394,6 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         return result.toString();
-    }
-
-    private static String sanitizeXml(String nodeValue) {
-        return nodeValue.replaceAll("^[\\r\\n\\s]+", "").replaceAll("[\\r\\n\\s]+$", "")
-                .replace("<", "&lt;").replace(">", "&gt;");
     }
 
     private static class JavaDocCapture extends AbstractCheck {
