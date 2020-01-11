@@ -64,8 +64,7 @@ public class XdocsMobileWrapperTest {
 
             for (int position = 0; position < sources.getLength(); position++) {
                 final Node section = sources.item(position);
-                final String sectionName = section.getAttributes().getNamedItem("name")
-                        .getNodeValue();
+                final String sectionName = XmlUtil.getNameAttributeOfNode(section);
 
                 if ("Content".equals(sectionName) || "Overview".equals(sectionName)) {
                     continue;

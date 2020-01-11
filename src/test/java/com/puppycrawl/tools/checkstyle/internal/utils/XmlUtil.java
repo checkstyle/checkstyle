@@ -132,4 +132,33 @@ public final class XmlUtil {
         return result;
     }
 
+    /**
+     * Returns the value of the "name" attribute for the given node.
+     *
+     * @param node to retrieve the name
+     * @return the value of the attribute "name"
+     */
+    public static String getNameAttributeOfNode(Node node) {
+        return node.getAttributes().getNamedItem("name").getNodeValue();
+    }
+
+    /**
+     * <p>Sanitizes the given string for safe use in XML documents.</p>
+     * <ul>
+     * <li>Removes all whitespaces at the beginning and at the end of the string;</li>
+     * <li>Replaces repeated whitespaces in the middle of the string with a single space;</li>
+     * <li>Replaces XML entities with escaped values.</li>
+     * </ul>
+     *
+     * @param rawXml the text to sanitize
+     * @return the sanitized text
+     */
+    public static String sanitizeXml(String rawXml) {
+        return rawXml
+                .replaceAll("(^\\s+|\\s+$)", "")
+                .replaceAll("\\s+", " ")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;");
+    }
+
 }
