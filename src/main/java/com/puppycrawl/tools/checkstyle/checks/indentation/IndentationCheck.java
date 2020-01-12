@@ -41,6 +41,31 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * case, this check should just ensure that a minimal set of indentation
  * rules is followed.
  * </p>
+ * <p>
+ * Basic offset indentation is used for indentation inside code blocks.
+ * For any lines that span more than 1, line wrapping indentation is used for those lines
+ * after the first. Brace adjustment, case, and throws indentations are all used only if
+ * those specific identifiers start the line. If, for example, a brace is used in the
+ * middle of the line, its indentation will not take effect. All indentations have an
+ * accumulative/recursive effect when they are triggered. If during a line wrapping, another
+ * code block is found and it doesn't end on that same line, then the subsequent lines
+ * afterwards, in that new code block, are increased on top of the line wrap and any
+ * indentations above it.
+ * </p>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * if ((condition1 &amp;&amp; condition2)
+ *         || (condition3 &amp;&amp; condition4)    // line wrap with bigger indentation
+ *         ||!(condition5 &amp;&amp; condition6)) { // line wrap with bigger indentation
+ *   field.doSomething()                    // basic offset
+ *       .doSomething()                     // line wrap
+ *       .doSomething( c -&gt; {               // line wrap
+ *         return c.doSome();               // basic offset
+ *       });
+ * }
+ * </pre>
  * <ul>
  * <li>
  * Property {@code basicOffset} - Specify how far new indentation level should be
@@ -80,10 +105,43 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
+ * To configure the check for default behavior:
  * </p>
  * <pre>
  * &lt;module name="Indentation"/&gt;
+ * </pre>
+ * <p>
+ * Example of Compliant code for default configuration (in comment name of property
+ * that controls indentations):
+ * </p>
+ * <pre>
+ * class Test {
+ *    String field;               // basicOffset
+ *    int[] arr = {               // basicOffset
+ *        5,                      // arrayInitIndent
+ *        6 };                    // arrayInitIndent
+ *    void bar() throws Exception // basicOffset
+ *    {                           // braceAdjustment
+ *        foo();                  // basicOffset
+ *    }                           // braceAdjustment
+ *    void foo() {                // basicOffset
+ *        if ((cond1 &amp;&amp; cond2)    // basicOffset
+ *                  || (cond3 &amp;&amp; cond4)    // lineWrappingIndentation, forceStrictCondition
+ *                  ||!(cond5 &amp;&amp; cond6)) { // lineWrappingIndentation, forceStrictCondition
+ *            field.doSomething()          // basicOffset
+ *                .doSomething()           // lineWrappingIndentation and forceStrictCondition
+ *                .doSomething( c -&gt; {     // lineWrappingIndentation and forceStrictCondition
+ *                    return c.doSome();   // basicOffset
+ *                });
+ *        }
+ *    }
+ *    void fooCase()                // basicOffset
+ *        throws Exception {        // throwsIndent
+ *        switch (field) {          // basicOffset
+ *            case "value" : bar(); // caseIndent
+ *        }
+ *    }
+ * }
  * </pre>
  * <p>
  * To configure the check to enforce the indentation style recommended by Oracle:
@@ -94,6 +152,17 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example of Compliant code for default configuration (in comment name of property that controls
+ * indentation):
+ * </p>
+ * <pre>
+ * void fooCase() {          // basicOffset
+ *     switch (field) {      // basicOffset
+ *     case "value" : bar(); // caseIndent
+ *     }
+ * }
+ * </pre>
+ * <p>
  * To configure the Check to enforce strict condition in line-wrapping validation.
  * </p>
  * <pre>
@@ -102,18 +171,49 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Such config doesn't allow next cases:
+ * Such config doesn't allow next cases even code is aligned further to the right for better
+ * reading:
  * </p>
  * <pre>
  * void foo(String aFooString,
- *         int aFooInt) {} // indent:8 ; expected: 4; warn, because 8 != 4
+ *         int aFooInt) { // indent:8 ; expected: 4; violation, because 8 != 4
+ *     if (cond1
+ *         || cond2) {
+ *         field.doSomething()
+ *             .doSomething();
+ *     }
+ *     if ((cond1 &amp;&amp; cond2)
+ *               || (cond3 &amp;&amp; cond4)    // violation
+ *               ||!(cond5 &amp;&amp; cond6)) { // violation
+ *         field.doSomething()
+ *              .doSomething()          // violation
+ *              .doSomething( c -&gt; {    // violation
+ *                  return c.doSome();
+ *             });
+ *     }
+ * }
  * </pre>
  * <p>
  * But if forceStrictCondition = false, this code is valid:
  * </p>
  * <pre>
  * void foo(String aFooString,
- *         int aFooInt) {} // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
+ *         int aFooInt) { // indent:8 ; expected: &gt; 4; ok, because 8 &gt; 4
+ *     if (cond1
+ *         || cond2) {
+ *         field.doSomething()
+ *             .doSomething();
+ *     }
+ *     if ((cond1 &amp;&amp; cond2)
+ *               || (cond3 &amp;&amp; cond4)
+ *               ||!(cond5 &amp;&amp; cond6)) {
+ *         field.doSomething()
+ *              .doSomething()
+ *              .doSomething( c -&gt; {
+ *                  return c.doSome();
+ *             });
+ *     }
+ * }
  * </pre>
  *
  * @noinspection ThisEscapedInObjectConstruction
