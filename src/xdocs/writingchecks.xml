@@ -660,7 +660,7 @@ public class MethodLimitCheck extends AbstractCheck
       <p>
         This means that you cannot implement some of the code inspection
         features that are available in advanced IDEs like Eclipse,
-        <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
+        <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>,
         <a href="https://spotbugs.github.io/">SpotBugs</a>,
         <a href="https://www.sonarqube.org">Sonarqube</a>.
       </p>
