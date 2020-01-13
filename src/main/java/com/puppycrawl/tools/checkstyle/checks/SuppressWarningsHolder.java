@@ -550,6 +550,12 @@ public class SuppressWarningsHolder
         return valueList;
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+        ENTRIES.remove();
+    }
+
     /** Records a particular suppression for a region of a file. */
     private static class Entry {
 

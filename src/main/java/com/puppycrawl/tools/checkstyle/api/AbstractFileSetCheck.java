@@ -66,7 +66,7 @@ public abstract class AbstractFileSetCheck
 
     @Override
     public void destroy() {
-        // No code by default, should be overridden only by demand at subclasses
+        context.remove();
     }
 
     @Override
