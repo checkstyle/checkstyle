@@ -1866,6 +1866,15 @@
                 <!-- needed for SuppressWarningsFilter -->
                 <param>com.puppycrawl.tools.checkstyle.filters.SuppressWarningsFilterTest</param>
               </targetTests>
+              <excludedMethods>
+                <!-- destroy method was added in case module had to free up resources
+                before ending, but currently it does ThreadLocal cleanup,
+                to satisfy sonar violation. But right now checkstyle is not multi threading tool.
+                Ones we start multi-threading implementation we should remove this exclude.
+                If we remove this destroy we would have to remove all of them as they are chained
+                together, so we just exclude it from pitest check. -->
+                <param>destroy</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2233,6 +2242,15 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- destroy method was added in case module had to free up resources
+                before ending, but currently it does ThreadLocal cleanup,
+                to satisfy sonar violation. But right now checkstyle is not multi threading tool.
+                Ones we start multi-threading implementation we should remove this exclude.
+                If we remove this destroy we would have to remove all of them as they are chained
+                together, so we just exclude it from pitest check. -->
+                <param>destroy</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>97</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
@@ -2845,8 +2863,10 @@
                 <param>*.Input*</param>
               </excludedTestClasses>
               <excludedMethods>
-                <!-- destroy in TreeWalker was added in case module had to free up resources
-                before ending, but currently it does nothing, so we cannot check it.
+                <!-- destroy method was added in case module had to free up resources
+                before ending, but currently it does ThreadLocal cleanup,
+                to satisfy sonar violation. But right now checkstyle is not multi threading tool.
+                Ones we start multi-threading implementation we should remove this exclude.
                 If we remove this destroy we would have to remove all of them as they are chained
                 together, so we just exclude it from pitest check. -->
                 <param>destroy</param>
@@ -2904,6 +2924,15 @@
               <excludedTestClasses>
                 <param>*.Input*</param>
               </excludedTestClasses>
+              <excludedMethods>
+                <!-- destroy method was added in case module had to free up resources
+                before ending, but currently it does ThreadLocal cleanup,
+                to satisfy sonar violation. But right now checkstyle is not multi threading tool.
+                Ones we start multi-threading implementation we should remove this exclude.
+                If we remove this destroy we would have to remove all of them as they are chained
+                together, so we just exclude it from pitest check. -->
+                <param>destroy</param>
+              </excludedMethods>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>100</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>

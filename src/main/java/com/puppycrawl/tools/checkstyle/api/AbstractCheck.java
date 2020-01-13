@@ -125,7 +125,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * Destroy the check. It is being retired from service.
      */
     public void destroy() {
-        // No code by default, should be overridden only by demand at subclasses
+        context.remove();
     }
 
     /**

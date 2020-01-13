@@ -378,6 +378,13 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         return javadocTokens.contains(curNode.getType());
     }
 
+    @Override
+    public void destroy() {
+        super.destroy();
+        context.remove();
+        TREE_CACHE.remove();
+    }
+
     /**
      * The file context holder.
      */
