@@ -290,7 +290,7 @@
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
-      <version>1.0</version>
+      <version>1.0.1</version>
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
