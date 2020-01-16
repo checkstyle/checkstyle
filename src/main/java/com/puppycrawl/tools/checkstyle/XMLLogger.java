@@ -290,36 +290,36 @@ public class XMLLogger
     public static boolean isReference(String ent) {
         boolean reference = false;
 
-        if (ent.charAt(0) != '&' || !CommonUtil.endsWithChar(ent, ';')) {
-            reference = false;
-        }
-        else if (ent.charAt(1) == '#') {
-            // prefix is "&#"
-            int prefixLength = 2;
+        if (ent.charAt(0) == '&' && CommonUtil.endsWithChar(ent, ';')) {
+            if (ent.charAt(1) == '#') {
+                // prefix is "&#"
+                int prefixLength = 2;
 
-            int radix = BASE_10;
-            if (ent.charAt(2) == 'x') {
-                prefixLength++;
-                radix = BASE_16;
-            }
-            try {
-                Integer.parseInt(
-                    ent.substring(prefixLength, ent.length() - 1), radix);
-                reference = true;
-            }
-            catch (final NumberFormatException ignored) {
-                reference = false;
-            }
-        }
-        else {
-            final String name = ent.substring(1, ent.length() - 1);
-            for (String element : ENTITIES) {
-                if (name.equals(element)) {
+                int radix = BASE_10;
+                if (ent.charAt(2) == 'x') {
+                    prefixLength++;
+                    radix = BASE_16;
+                }
+                try {
+                    Integer.parseInt(
+                        ent.substring(prefixLength, ent.length() - 1), radix);
                     reference = true;
-                    break;
+                }
+                catch (final NumberFormatException ignored) {
+                    reference = false;
+                }
+            }
+            else {
+                final String name = ent.substring(1, ent.length() - 1);
+                for (String element : ENTITIES) {
+                    if (name.equals(element)) {
+                        reference = true;
+                        break;
+                    }
                 }
             }
         }
+
         return reference;
     }
 
