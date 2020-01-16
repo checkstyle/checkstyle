@@ -343,7 +343,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
      * Leaves ternary operator (?:) and return tokens.
      */
     private void leaveUnitaryOperator() {
-        if (!afterValues.pop()) {
+        if (Boolean.FALSE.equals(afterValues.pop())) {
             final Values valuePair = popValue();
             BigInteger basicRangeValue = valuePair.getRangeValue();
             BigInteger expressionValue = valuePair.getExpressionValue();
