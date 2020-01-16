@@ -351,16 +351,20 @@ public class ParseTreeTablePresentation {
     /**
      * Gets Javadoc (DetailNode) tree of specified block comments.
      * @param blockComment Javadoc comment as a block comment
-     * @return DetailNode tree
+     * @return root of DetailNode tree
      */
     private DetailNode getJavadocTree(DetailAST blockComment) {
-        DetailNode javadocTree = blockCommentToJavadocTree.get(blockComment);
-        if (javadocTree == null) {
-            javadocTree = new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment)
-                    .getTree();
-            blockCommentToJavadocTree.put(blockComment, javadocTree);
-        }
-        return javadocTree;
+        return blockCommentToJavadocTree.computeIfAbsent(blockComment,
+                ParseTreeTablePresentation::parseJavadocTree);
+    }
+
+    /**
+     * Parses Javadoc (DetailNode) tree of specified block comments.
+     * @param blockComment Javadoc comment as a block comment
+     * @return root of DetailNode tree
+     */
+    private static DetailNode parseJavadocTree(DetailAST blockComment) {
+        return new JavadocDetailNodeParser().parseJavadocAsDetailNode(blockComment).getTree();
     }
 
 }
