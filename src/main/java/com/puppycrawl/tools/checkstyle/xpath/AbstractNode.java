@@ -139,13 +139,31 @@ public abstract class AbstractNode implements NodeInfo {
     }
 
     /**
-     * Compares current object with specified for order.
+     * Compares two nodes by their appearance in document (document ordering).
+     * Result is negative if:
+     * <ul>
+     *     <li>Line number of the current object is lower than the
+     *     {@code nodeInfo} line number</li>
+     *     <li>Line numbers are same, but column number of the current object is lower than the
+     *     {@code nodeInfo} column number</li>
+     *     <li>Line number and column number are same, but text of the current node is
+     *     lexicographically lower than the {@code nodeInfo} text</li>
+     * </ul>
+     * Result is zero if two objects have same line number, same column number and same text.
+     * Otherwise, result is positive.
      * @param nodeInfo another {@code NodeInfo} object
      * @return number representing order of current object to specified one
      */
     @Override
     public int compareOrder(NodeInfo nodeInfo) {
-        return getLocalPart().compareTo(nodeInfo.getLocalPart());
+        int result = getLineNumber() - nodeInfo.getLineNumber();
+        if (result == 0) {
+            result = getColumnNumber() - nodeInfo.getColumnNumber();
+            if (result == 0) {
+                result = getLocalPart().compareTo(nodeInfo.getLocalPart());
+            }
+        }
+        return result;
     }
 
     /**

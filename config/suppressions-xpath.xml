@@ -19,4 +19,8 @@
     <suppress-xpath checks="CyclomaticComplexity"
                     query="/CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
                     or @text='JavadocStyleCheck' or @text='CustomImportOrderCheck']]//METHOD_DEF"/>
+
+    <!-- Name of Test class should match name of target class-->
+    <suppress-xpath checks="AbstractClassName"
+                    query="/CLASS_DEF[./IDENT[@text='AbstractNodeTest']]"/>
 </suppressions>
