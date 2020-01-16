@@ -25,6 +25,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
@@ -173,9 +174,8 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
     public void init() {
         validateDefaultJavadocTokens();
         if (javadocTokens.isEmpty()) {
-            for (int id : getDefaultJavadocTokens()) {
-                javadocTokens.add(id);
-            }
+            javadocTokens.addAll(
+                    Arrays.stream(getDefaultJavadocTokens()).boxed().collect(Collectors.toList()));
         }
         else {
             final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
