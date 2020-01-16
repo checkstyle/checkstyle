@@ -146,13 +146,8 @@ public final class PropertyCacheFile {
         if (directory != null) {
             Files.createDirectories(directory);
         }
-        OutputStream out = null;
-        try {
-            out = Files.newOutputStream(path);
+        try (OutputStream out = Files.newOutputStream(path)) {
             details.store(out, null);
-        }
-        finally {
-            flushAndCloseOutStream(out);
         }
     }
 
@@ -162,18 +157,6 @@ public final class PropertyCacheFile {
     public void reset() {
         details.clear();
         details.setProperty(CONFIG_HASH_KEY, configHash);
-    }
-
-    /**
-     * Flushes and closes output stream.
-     * @param stream the output stream
-     * @throws IOException  when there is a problems with file flush and close
-     */
-    private static void flushAndCloseOutStream(OutputStream stream) throws IOException {
-        if (stream != null) {
-            stream.flush();
-            stream.close();
-        }
     }
 
     /**
@@ -247,12 +230,8 @@ public final class PropertyCacheFile {
      */
     private static void serialize(Serializable object,
                                   OutputStream outputStream) throws IOException {
-        final ObjectOutputStream oos = new ObjectOutputStream(outputStream);
-        try {
+        try (ObjectOutputStream oos = new ObjectOutputStream(outputStream)) {
             oos.writeObject(object);
-        }
-        finally {
-            flushAndCloseOutStream(oos);
         }
     }
 
