@@ -247,7 +247,7 @@ public class AutomaticBeanTest {
 
     }
 
-    private static class TestBean extends AutomaticBean {
+    public static final class TestBean extends AutomaticBean {
 
         private String privateField;
 

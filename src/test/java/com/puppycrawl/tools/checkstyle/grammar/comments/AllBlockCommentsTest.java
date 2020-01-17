@@ -59,7 +59,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
         assertTrue(ALL_COMMENTS.isEmpty(), "All comments should be empty");
     }
 
-    private static class BlockCommentListenerCheck extends AbstractCheck {
+    public static class BlockCommentListenerCheck extends AbstractCheck {
 
         @Override
         public boolean isCommentNodesRequired() {
