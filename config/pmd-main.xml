@@ -58,5 +58,13 @@
                       "/>
         </properties>
     </rule>
-
+    <rule ref="category/java/design.xml/ExcessiveMethodLength">
+        <properties>
+            <!-- unfortunate cases -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']
+                                 //MethodDeclaration[@Name='fillChecksFromCodingPackage']
+                      "/>
+        </properties>
+    </rule>
 </ruleset>
