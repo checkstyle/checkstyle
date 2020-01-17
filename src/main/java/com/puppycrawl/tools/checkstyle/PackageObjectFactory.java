@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -354,9 +353,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
         if (clazz != null) {
             try {
-                final Constructor<?> declaredConstructor = clazz.getDeclaredConstructor();
-                declaredConstructor.setAccessible(true);
-                instance = declaredConstructor.newInstance();
+                instance = clazz.getDeclaredConstructor().newInstance();
             }
             catch (final ReflectiveOperationException ex) {
                 throw new CheckstyleException("Unable to instantiate " + className, ex);

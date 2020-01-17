@@ -58,7 +58,7 @@ public class FileSetCheckTest
                 "FileContent should be available during finishProcessing() call");
     }
 
-    private static class TestFileSetCheck extends AbstractFileSetCheck {
+    public static class TestFileSetCheck extends AbstractFileSetCheck {
 
         private static boolean destroyed;
         private static boolean fileContentAvailable;

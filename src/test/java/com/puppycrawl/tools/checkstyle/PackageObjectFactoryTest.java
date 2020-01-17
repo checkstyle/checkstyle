@@ -366,7 +366,7 @@ public class PackageObjectFactoryTest {
             assertEquals("Unable to instantiate com.puppycrawl.tools.checkstyle."
                     + "PackageObjectFactoryTest$FailConstructorFileSet", ex.getMessage(),
                     "Invalid exception message");
-            assertEquals("IllegalArgumentException", ex.getCause().getCause().getClass()
+            assertEquals("IllegalAccessException", ex.getCause().getClass()
                     .getSimpleName(), "Invalid exception cause class");
         }
     }

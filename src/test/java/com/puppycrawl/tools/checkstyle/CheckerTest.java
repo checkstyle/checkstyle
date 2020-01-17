@@ -1435,7 +1435,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.destroy();
     }
 
-    private static class DummyFilter implements Filter {
+    public static class DummyFilter implements Filter {
 
         @Override
         public boolean accept(AuditEvent event) {
@@ -1444,7 +1444,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class DummyFileSetViolationCheck extends AbstractFileSetCheck
+    public static class DummyFileSetViolationCheck extends AbstractFileSetCheck
         implements ExternalResourceHolder {
 
         @Override
@@ -1461,7 +1461,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class DummyFilterSet extends FilterSet implements ExternalResourceHolder {
+    public static class DummyFilterSet extends FilterSet implements ExternalResourceHolder {
 
         @Override
         public Set<String> getExternalResourceLocations() {
@@ -1472,7 +1472,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class DynamicalResourceHolderCheck extends AbstractFileSetCheck
+    public static final class DynamicalResourceHolderCheck extends AbstractFileSetCheck
         implements ExternalResourceHolder {
 
         private String firstExternalResourceLocation;
@@ -1504,7 +1504,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class CheckWhichDoesNotRequireCommentNodes extends AbstractCheck {
+    public static class CheckWhichDoesNotRequireCommentNodes extends AbstractCheck {
 
         /** Number of children of method definition token. */
         private static final int METHOD_DEF_CHILD_COUNT = 7;
@@ -1558,7 +1558,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class CheckWhichRequiresCommentNodes extends AbstractCheck {
+    public static class CheckWhichRequiresCommentNodes extends AbstractCheck {
 
         /** Number of children of method definition token. */
         private static final int METHOD_DEF_CHILD_COUNT = 7;
@@ -1615,7 +1615,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class CheckWhichThrowsError extends AbstractCheck {
+    public static class CheckWhichThrowsError extends AbstractCheck {
 
         @Override
         public int[] getDefaultTokens() {
@@ -1639,7 +1639,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class DummyFileSet extends AbstractFileSetCheck {
+    public static final class DummyFileSet extends AbstractFileSetCheck {
 
         private final List<String> methodCalls = new ArrayList<>();
 
@@ -1688,7 +1688,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class VerifyPositionAfterTabFileSet extends AbstractFileSetCheck {
+    public static class VerifyPositionAfterTabFileSet extends AbstractFileSetCheck {
 
         @Override
         protected void processFiltered(File file, FileText fileText) {

@@ -221,7 +221,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 "finishProcessing was called twice");
     }
 
-    private static class DummyFileSetCheck extends AbstractFileSetCheck {
+    public static class DummyFileSetCheck extends AbstractFileSetCheck {
 
         private static final String MSG_KEY = "File should not be empty.";
 
@@ -234,7 +234,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class ViolationFileSetCheck extends AbstractFileSetCheck {
+    public static class ViolationFileSetCheck extends AbstractFileSetCheck {
 
         private static final String MSG_KEY = "Violation.";
 
@@ -245,7 +245,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class MultiFileViolationFileSetCheck extends AbstractFileSetCheck {
+    public static class MultiFileViolationFileSetCheck extends AbstractFileSetCheck {
 
         private static final String MSG_KEY = "Violation.";
         private static int finishProcessingCount;
@@ -267,7 +267,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class ExceptionFileSetCheck extends AbstractFileSetCheck {
+    public static class ExceptionFileSetCheck extends AbstractFileSetCheck {
 
         private static final String MSG_KEY = "Test.";
         private int count = 1;
@@ -281,7 +281,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class ViolationDispatcher implements MessageDispatcher {
+    public static class ViolationDispatcher implements MessageDispatcher {
         private String name;
         private SortedSet<LocalizedMessage> errorList;
 

@@ -126,7 +126,7 @@ public class AbstractViolationReporterTest {
         }
     }
 
-    private static class EmptyCheck extends AbstractCheck {
+    public static class EmptyCheck extends AbstractCheck {
 
         @Override
         public int[] getDefaultTokens() {

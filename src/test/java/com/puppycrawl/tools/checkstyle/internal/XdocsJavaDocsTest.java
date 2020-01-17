@@ -396,7 +396,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         return result.toString();
     }
 
-    private static class JavaDocCapture extends AbstractCheck {
+    public static class JavaDocCapture extends AbstractCheck {
         private static final Pattern SETTER_PATTERN = Pattern.compile("^set[A-Z].*");
 
         @Override

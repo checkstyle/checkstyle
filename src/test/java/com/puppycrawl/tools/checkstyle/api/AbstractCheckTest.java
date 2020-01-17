@@ -321,7 +321,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputAbstractCheckTestFileContents.java"), expected);
     }
 
-    private static final class DummyAbstractCheck extends AbstractCheck {
+    public static final class DummyAbstractCheck extends AbstractCheck {
 
         private static final int[] DUMMY_ARRAY = {6};
 
@@ -349,7 +349,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    private static final class VisitCounterCheck extends AbstractCheck {
+    public static final class VisitCounterCheck extends AbstractCheck {
 
         private int count;
 
@@ -375,7 +375,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         }
     }
 
-    private static class ViolationCheck extends AbstractCheck {
+    public static class ViolationCheck extends AbstractCheck {
 
         private static final String MSG_KEY = "Violation.";
 
@@ -402,7 +402,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
     }
 
-    private static class ViolationAstCheck extends AbstractCheck {
+    public static class ViolationAstCheck extends AbstractCheck {
 
         private static final String MSG_KEY = "Violation.";
 
