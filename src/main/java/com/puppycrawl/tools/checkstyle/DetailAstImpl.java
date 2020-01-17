@@ -374,6 +374,11 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         return (DetailAstImpl) super.getFirstChild();
     }
 
+    @Override
+    public boolean hasChildren() {
+        return getFirstChild() != null;
+    }
+
     /**
      * Clears the child count for the ast instance.
      * @param ast The ast to clear.
