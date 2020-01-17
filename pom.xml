@@ -1069,23 +1069,23 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>1.6</version>
+                  <version>1.8</version>
                 </requireJavaVersion>
                 <requireMavenVersion>
                   <version>3.0.1</version>
                 </requireMavenVersion>
-                <!-- we can not use this as it require
-                compilation on 1.6 only, due to dependency to 'tools'
+                <!-- we can not use this as it require same version for all dependencies -->
+                <!--
                 <enforceBytecodeVersion>
-                  <maxJdkVersion>1.6</maxJdkVersion>
+                  <maxJdkVersion>1.8</maxJdkVersion>
                 </enforceBytecodeVersion>
                 -->
               </rules>
             </configuration>
           </execution>
         </executions>
-        <!-- we can not use this as it require
-        compilation on 1.6 only, due to dependency to 'tool'
+        <!-- if we activate enforceBytecodeVersion rule, this dependency become required -->
+        <!--
         <dependencies>
           <dependency>
             <groupId>org.codehaus.mojo</groupId>
