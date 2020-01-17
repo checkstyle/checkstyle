@@ -136,7 +136,7 @@ public abstract class AbstractSuperCheck
      */
     private static boolean hasArguments(DetailAST methodCallDotAst) {
         final DetailAST argumentsList = methodCallDotAst.getNextSibling();
-        return argumentsList.getChildCount() > 0;
+        return argumentsList.hasChildren();
     }
 
     /**
@@ -170,7 +170,7 @@ public abstract class AbstractSuperCheck
 
     /**
      * Determines whether an AST is a method definition for this check,
-     * with 0 parameters.
+     * without any parameters.
      * @param ast the method definition AST.
      * @return true if the method of ast is a method for this check.
      */
@@ -186,7 +186,7 @@ public abstract class AbstractSuperCheck
             if (getMethodName().equals(name)
                     && modifiersAST.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
                 final DetailAST params = ast.findFirstToken(TokenTypes.PARAMETERS);
-                overridingMethod = params.getChildCount() == 0;
+                overridingMethod = !params.hasChildren();
             }
         }
         return overridingMethod;

@@ -108,7 +108,7 @@ public class EmptyForInitializerPadCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getChildCount() == 0) {
+        if (!ast.hasChildren()) {
             //empty for initializer. test pad before semi.
             final DetailAST semi = ast.getNextSibling();
             final int semiLineIdx = semi.getLineNo() - 1;

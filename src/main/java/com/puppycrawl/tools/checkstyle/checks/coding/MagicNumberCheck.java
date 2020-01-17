@@ -431,7 +431,7 @@ public class MagicNumberCheck extends AbstractCheck {
                     final DetailAST paramAST = methodDefAST.findFirstToken(TokenTypes.PARAMETERS);
                     // we are in a 'public int hashCode()' method! The compiler will ensure
                     // the method returns an 'int' and is public.
-                    inHashCodeMethod = paramAST.getChildCount() == 0;
+                    inHashCodeMethod = !paramAST.hasChildren();
                 }
             }
         }

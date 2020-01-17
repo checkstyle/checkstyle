@@ -136,12 +136,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testHasChildren() throws Exception {
+    public void testHasChildren() {
         final DetailAstImpl root = new DetailAstImpl();
         final DetailAstImpl child = new DetailAstImpl();
-
         root.setFirstChild(child);
-        getSetParentMethod().invoke(child, root);
 
         assertWithMessage("Root node should have children")
                 .that(root.hasChildren())
