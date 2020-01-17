@@ -118,4 +118,10 @@ public interface DetailAST {
      */
     int getNumberOfChildren();
 
+    /**
+     * Returns whether this AST has any children.
+     *
+     * @return {@code true} if this AST has any children.
+     */
+    boolean hasChildren();
 }
