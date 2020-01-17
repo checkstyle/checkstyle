@@ -68,7 +68,10 @@ public class ClassDefHandler extends BlockParentHandler {
     @Override
     public void checkIndentation() {
         final DetailAST modifiers = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiers.getChildCount() == 0) {
+        if (modifiers.hasChildren()) {
+            checkModifiers();
+        }
+        else {
             if (getMainAst().getType() != TokenTypes.ANNOTATION_DEF) {
                 final DetailAST ident = getMainAst().findFirstToken(TokenTypes.IDENT);
                 final int lineStart = getLineStart(ident);
@@ -76,9 +79,6 @@ public class ClassDefHandler extends BlockParentHandler {
                     logError(ident, "ident", lineStart);
                 }
             }
-        }
-        else {
-            checkModifiers();
         }
         if (getMainAst().getType() == TokenTypes.ANNOTATION_DEF) {
             final DetailAST atAst = getMainAst().findFirstToken(TokenTypes.AT);

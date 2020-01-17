@@ -44,11 +44,11 @@ public class MemberDefHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         final DetailAST modifiersNode = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (modifiersNode.getChildCount() == 0) {
-            checkType();
+        if (modifiersNode.hasChildren()) {
+            checkModifiers();
         }
         else {
-            checkModifiers();
+            checkType();
         }
         final DetailAST firstNode = getMainAst();
         final DetailAST lastNode = getVarDefStatementSemicolon(firstNode);

@@ -328,7 +328,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                 parent.findFirstToken(TokenTypes.FOR_ITERATOR);
-            result = forIterator.getChildCount() == 0;
+            result = !forIterator.hasChildren();
         }
         return result;
     }
@@ -345,7 +345,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                     parent.findFirstToken(TokenTypes.FOR_INIT);
-            result = forIterator.getChildCount() == 0;
+            result = !forIterator.hasChildren();
         }
         return result;
     }

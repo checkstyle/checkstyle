@@ -149,7 +149,7 @@ public class NoWhitespaceBeforeCheck
         if (sibling != null
                 && (sibling.getType() == TokenTypes.FOR_INIT
                         || sibling.getType() == TokenTypes.FOR_CONDITION)
-                && sibling.getChildCount() == 0) {
+                && !sibling.hasChildren()) {
             result = true;
         }
         return result;
