@@ -62,6 +62,7 @@ public class SuperCloneCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(SuperCloneCheck.class);
         final String[] expected = {
+            "43:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
             "9:17: " + getCheckMessage(MSG_KEY, "clone", "super.clone"),
         };
         verify(checkConfig, getPath("InputSuperClonePlainAndSubclasses.java"), expected);
