@@ -317,7 +317,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.CLASS_DEF);
         final DetailAST[] expected = {expectedClassDefNode};
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
-        assertThat("Invalid node name", classDefNode.getStringValue(), equalTo("CLASS_DEF"));
+        assertThat("Invalid node name", classDefNode.getLocalPart(), equalTo("CLASS_DEF"));
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 

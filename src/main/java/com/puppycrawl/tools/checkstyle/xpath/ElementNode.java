@@ -155,15 +155,6 @@ public class ElementNode extends AbstractNode {
     }
 
     /**
-     * Returns string value.
-     * @return string value
-     */
-    @Override
-    public String getStringValue() {
-        return text;
-    }
-
-    /**
      * Determines axis iteration algorithm. Throws {@code UnsupportedOperationException} in case,
      * when there is no axis iterator for given axisNumber.
      *

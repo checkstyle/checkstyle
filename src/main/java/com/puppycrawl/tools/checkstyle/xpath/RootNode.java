@@ -121,15 +121,6 @@ public class RootNode extends AbstractNode {
     }
 
     /**
-     * Returns string value.
-     * @return string value
-     */
-    @Override
-    public String getStringValue() {
-        return ROOT_NAME;
-    }
-
-    /**
      * Determines axis iteration algorithm. Throws {@code UnsupportedOperationException} in case,
      * when there is no axis iterator for given axisNumber.
      * @param axisNumber element from {@code AxisInfo}
