@@ -1612,19 +1612,19 @@
               http://www.mojohaus.org/sonar-maven-plugin/sonar-maven-plugin
             </excludedLink>
             <!-- Excluded due to Maven Codehaus Plugin's issue #4:
-                 https://github.com/mojohaus/mojohaus.github.io/issues/4-->
+                 https://github.com/mojohaus/mojohaus.github.io/issues/4 -->
             <excludedLink>http://mojo.codehaus.org/antlr-maven-plugin</excludedLink>
             <!-- Excluded due to Maven JDepend Plugin's issue #2:
-                 https://github.com/mojohaus/jdepend-maven-plugin/issues/2-->
+                 https://github.com/mojohaus/jdepend-maven-plugin/issues/2 -->
             <excludedLink>http://mojo.codehaus.org/jdepend-maven-plugin</excludedLink>
             <!-- Excluded due to Maven Taglist Plugin's issue #3:
-                 https://github.com/mojohaus/taglist-maven-plugin/issues/3-->
+                 https://github.com/mojohaus/taglist-maven-plugin/issues/3 -->
             <excludedLink>http://mojo.codehaus.org/taglist-maven-plugin</excludedLink>
             <!-- Excluded due to Maven ANTLR4 Plugin's issue #978:
-                 https://github.com/antlr/antlr4/issues/978-->
+                 https://github.com/antlr/antlr4/issues/978 -->
             <excludedLink>http://www.antlr.org/antlr4-maven-plugin</excludedLink>
             <!-- Excluded due to Maven Release Plugin's issue #919:
-                 https://issues.apache.org/jira/browse/MRELEASE-919-->
+                 https://issues.apache.org/jira/browse/MRELEASE-919 -->
             <excludedLink>http://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
             <!-- permanent java.net.UnknownHostException :-->
             <excludedLink>http://jacoco-maven-plugin/</excludedLink>
@@ -1634,7 +1634,7 @@
             </excludedLink>
 
             <!-- Excluded due to linkcheck's issue #22:
-                 https://issues.apache.org/jira/browse/MLINKCHECK-22-->
+                 https://issues.apache.org/jira/browse/MLINKCHECK-22 -->
             <excludedLink>https://twitter.com/checkstyle_java/</excludedLink>
             <!-- linkcheck plugin can not resolve &amps; inside url -->
             <excludedLink>https://flattr.com/submit/</excludedLink>
@@ -1675,7 +1675,7 @@
   <profiles>
 
     <profile>
-      <!-- To be used during development. Run the command-->
+      <!-- To be used during development. Run the command -->
       <!-- mvn -Pno-validations site -->
       <id>no-validations</id>
       <properties>
@@ -1694,7 +1694,7 @@
     </profile>
 
     <profile>
-      <!-- To be used during development. Run the command-->
+      <!-- To be used during development. Run the command -->
       <!-- mvn -Passembly package -->
       <id>assembly</id>
       <properties>
@@ -2735,11 +2735,11 @@
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
               </targetTests>
               <excludedMethods>
-                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
+                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <param>setFeaturesBySystemProperty</param>
               </excludedMethods>
               <avoidCallsTo>
-                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605-->
+                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <avoidCallsTo>
                   com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider
                 </avoidCallsTo>
