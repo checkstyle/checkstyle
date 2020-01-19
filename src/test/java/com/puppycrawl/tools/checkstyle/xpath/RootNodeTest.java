@@ -89,11 +89,6 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testGetStringValue() {
-        assertEquals("ROOT", rootNode.getStringValue(), "Invalid string value");
-    }
-
-    @Test
     public void testIterate() {
         try (AxisIterator following = rootNode.iterateAxis(AxisInfo.FOLLOWING)) {
             assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, following,
@@ -118,6 +113,18 @@ public class RootNodeTest extends AbstractPathTestSupport {
         try (AxisIterator parentNull = rootNode.iterateAxis(AxisInfo.PARENT, null)) {
             assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, parentNull,
                     "Result iterator does not match expected");
+        }
+    }
+
+    @Test
+    public void testGetStringValue() {
+        try {
+            rootNode.getStringValue();
+            fail("Exception is excepted");
+        }
+        catch (UnsupportedOperationException ex) {
+            assertEquals("Operation is not supported",
+                    ex.getMessage(), "Invalid exception message");
         }
     }
 
