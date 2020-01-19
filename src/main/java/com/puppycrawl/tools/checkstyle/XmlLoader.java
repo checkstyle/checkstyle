@@ -124,6 +124,9 @@ public class XmlLoader
         /** Feature that enables including external general entities in XML files. */
         public static final String EXTERNAL_GENERAL_ENTITIES =
                 "http://xml.org/sax/features/external-general-entities";
+        /** Feature that enables including external parameter entities in XML files. */
+        public static final String EXTERNAL_PARAMETER_ENTITIES =
+                "http://xml.org/sax/features/external-parameter-entities";
 
         /** Stop instances being created. **/
         private LoadExternalDtdFeatureProvider() {
@@ -146,6 +149,7 @@ public class XmlLoader
 
             factory.setFeature(LOAD_EXTERNAL_DTD, enableExternalDtdLoad);
             factory.setFeature(EXTERNAL_GENERAL_ENTITIES, enableExternalDtdLoad);
+            factory.setFeature(EXTERNAL_PARAMETER_ENTITIES, enableExternalDtdLoad);
         }
 
     }
