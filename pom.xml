@@ -1814,6 +1814,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -1898,6 +1901,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -1943,6 +1949,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -1988,6 +1997,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2034,6 +2046,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2079,6 +2094,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2124,6 +2142,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2173,6 +2194,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2219,6 +2243,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2274,6 +2301,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2319,6 +2349,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2364,6 +2397,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2409,6 +2445,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2454,6 +2493,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2499,6 +2541,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2545,6 +2590,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2590,6 +2638,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2632,6 +2683,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2706,6 +2760,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2767,6 +2824,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2809,6 +2869,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2902,6 +2965,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -2956,6 +3022,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -3003,6 +3072,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -3071,6 +3143,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
@@ -3141,6 +3216,9 @@
             <artifactId>pitest-maven</artifactId>
             <version>${pitest.plugin.version}</version>
             <configuration>
+              <features>
+                <feature>-FRETEQUIV</feature>
+              </features>
               <mutators>
                 <mutator>CONDITIONALS_BOUNDARY</mutator>
                 <mutator>CONSTRUCTOR_CALLS</mutator>
