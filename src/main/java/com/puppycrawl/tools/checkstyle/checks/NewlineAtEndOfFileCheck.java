@@ -123,6 +123,12 @@ public class NewlineAtEndOfFileCheck
      */
     public static final String MSG_KEY_NO_NEWLINE_EOF = "noNewlineAtEOF";
 
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_WRONG_ENDING = "wrong.line.end";
+
     /** Specify the type of line separator. */
     private LineSeparatorOption lineSeparator = LineSeparatorOption.LF_CR_CRLF;
 
@@ -158,7 +164,11 @@ public class NewlineAtEndOfFileCheck
     private void readAndCheckFile(File file) throws IOException {
         // Cannot use lines as the line separators have been removed!
         try (RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r")) {
-            if (!endsWithNewline(randomAccessFile)) {
+            if (lineSeparator == LineSeparatorOption.LF
+                    && endsWithNewline(randomAccessFile, LineSeparatorOption.CRLF)) {
+                log(1, MSG_KEY_WRONG_ENDING, file.getPath());
+            }
+            else if (!endsWithNewline(randomAccessFile, lineSeparator)) {
                 log(1, MSG_KEY_NO_NEWLINE_EOF, file.getPath());
             }
         }
@@ -167,27 +177,28 @@ public class NewlineAtEndOfFileCheck
     /**
      * Checks whether the content provided by the Reader ends with the platform
      * specific line separator.
-     * @param randomAccessFile The reader for the content to check
+     * @param file The reader for the content to check
+     * @param separator The line separator
      * @return boolean Whether the content ends with a line separator
      * @throws IOException When an IO error occurred while reading from the
      *         provided reader
      */
-    private boolean endsWithNewline(RandomAccessFile randomAccessFile)
+    private static boolean endsWithNewline(RandomAccessFile file, LineSeparatorOption separator)
             throws IOException {
         final boolean result;
-        final int len = lineSeparator.length();
-        if (randomAccessFile.length() < len) {
+        final int len = separator.length();
+        if (file.length() < len) {
             result = false;
         }
         else {
-            randomAccessFile.seek(randomAccessFile.length() - len);
+            file.seek(file.length() - len);
             final byte[] lastBytes = new byte[len];
-            final int readBytes = randomAccessFile.read(lastBytes);
+            final int readBytes = file.read(lastBytes);
             if (readBytes != len) {
                 throw new IOException("Unable to read " + len + " bytes, got "
                         + readBytes);
             }
-            result = lineSeparator.matches(lastBytes);
+            result = separator.matches(lastBytes);
         }
         return result;
     }
