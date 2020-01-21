@@ -1479,6 +1479,10 @@ StaticMethodCandidateCheck.name = Static Method Candidate
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unable.open%22">
             unable.open</a>
           </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22wrong.line.end%22">
+            wrong.line.end</a>
+          </li>
         </ul>
         <p>
           All messages can be customized if the default message doesn't suit you.

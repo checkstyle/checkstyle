@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_NO_NEWLINE_EOF;
 import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_UNABLE_OPEN;
+import static com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck.MSG_KEY_WRONG_ENDING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -60,6 +61,20 @@ public class NewlineAtEndOfFileCheckTest
         verify(
             createChecker(checkConfig),
             getPath("InputNewlineAtEndOfFileLf.java"),
+            expected);
+    }
+
+    @Test
+    public void testNewlineLfAtEndOfFileLfNotOverlapWithCrLf() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(NewlineAtEndOfFileCheck.class);
+        checkConfig.addAttribute("lineSeparator", LineSeparatorOption.LF.toString());
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY_WRONG_ENDING),
+        };
+        verify(
+            createChecker(checkConfig),
+            getPath("InputNewlineAtEndOfFileCrlf.java"),
             expected);
     }
 
@@ -211,7 +226,8 @@ public class NewlineAtEndOfFileCheckTest
     public void testWrongSeparatorLength() throws Exception {
         try (RandomAccessFile file =
                      new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
-            Whitebox.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file);
+            Whitebox.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
+                LineSeparatorOption.LF);
             fail("Exception is expected");
         }
         catch (IOException ex) {
