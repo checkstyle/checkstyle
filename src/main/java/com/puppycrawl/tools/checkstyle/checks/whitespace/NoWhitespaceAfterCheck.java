@@ -170,8 +170,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST whitespaceFollowedAst = getWhitespaceFollowedNode(ast);
 
-        if (whitespaceFollowedAst.getNextSibling() == null
-                || whitespaceFollowedAst.getNextSibling().getType() != TokenTypes.ANNOTATIONS) {
+        if (shouldCheckWhitespaceAfter(whitespaceFollowedAst)) {
             final int whitespaceColumnNo = getPositionAfter(whitespaceFollowedAst);
             final int whitespaceLineNo = whitespaceFollowedAst.getLineNo();
 
@@ -204,6 +203,27 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                 whitespaceFollowedAst = ast;
         }
         return whitespaceFollowedAst;
+    }
+
+    /**
+     * Returns whether whitespace after a visited node should be checked. For example, whitespace
+     * is not allowed between a type and an array declarator (returns true), except when there is
+     * an annotation in between the type and array declarator (returns false).
+     * @param ast the visited node
+     * @return true if whitespace after ast should be checked
+     */
+    private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
+        boolean checkWhitespace = true;
+        final DetailAST sibling = ast.getNextSibling();
+        if (sibling != null) {
+            if (sibling.getType() == TokenTypes.ANNOTATIONS) {
+                checkWhitespace = false;
+            }
+            else if (sibling.getType() == TokenTypes.ARRAY_DECLARATOR) {
+                checkWhitespace = sibling.getFirstChild().getType() != TokenTypes.ANNOTATIONS;
+            }
+        }
+        return checkWhitespace;
     }
 
     /**

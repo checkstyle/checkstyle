@@ -132,4 +132,13 @@ public class AnnotationTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputAnnotations11.java"), expected);
     }
 
+    @Test
+    public void testAnnotationOnVarargs()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MemberNameCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputAnnotations12.java"), expected);
+    }
+
 }
