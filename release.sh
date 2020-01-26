@@ -19,6 +19,11 @@ if [[ -z $PREV_RELEASE ]]; then
   echo "Problem to calculate previous release version."
   exit 1
 fi
+if [[ $(grep "<section name=\"Release $RELEASE\">" src/xdocs/releasenotes.xml \
+           | cat | wc -l) -eq 0 ]]; then
+  echo "src/xdocs/releasenotes.xml do not have section for $RELEASE"
+  exit 1
+fi
 
 SKIP_TEST="-DskipTests -DskipITs"
 SKIP_CHECKSTYLE="-Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true"
