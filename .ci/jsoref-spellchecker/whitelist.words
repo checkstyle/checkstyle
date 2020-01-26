@@ -252,6 +252,7 @@ columnlimit
 Combobox
 commentsindentation
 commerical
+commitish
 commonutil
 Compat
 Compiletime
@@ -292,6 +293,7 @@ Daniil
 daniilyar
 Darguments
 Datasource
+DATETIME
 daveho
 davidwalsh
 Dcheckstyle
@@ -1271,6 +1273,7 @@ throwable
 throwscount
 Thymeleaf
 tidelift
+TKN
 tmp
 toc
 todo
