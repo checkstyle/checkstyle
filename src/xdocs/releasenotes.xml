@@ -15,6 +15,137 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.29">
+      <div class="releaseDate">26.01.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New Check: AvoidNoArgumentSuperConstructorCall.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7363">#7363</a>
+          </li>
+          <li>
+            New Check NoEnumTrailingComma.
+            Author: sd1998
+            <a href="https://github.com/checkstyle/checkstyle/issues/6972">#6972</a>
+          </li>
+          <li>
+            ENUM_DEF token support in RightCurlyCheck.
+            Author: sd1998
+            <a href="https://github.com/checkstyle/checkstyle/issues/7161">#7161</a>
+          </li>
+          <li>
+            FallThrough module does not support the spelling &quot;fall-through&quot; by default.
+            Author: guillaume.lambert
+            <a href="https://github.com/checkstyle/checkstyle/issues/7374">#7374</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Java 8 Grammar: annotations on varargs parameters.
+            Author: Erik Silkensen
+            <a href="https://github.com/checkstyle/checkstyle/issues/3238">#3238</a>
+          </li>
+          <li>
+            Sonar violation: Disable XML external entity (XXE) processing.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7468">#7468</a>
+          </li>
+          <li>
+            Disable instantiation of modules with private ctor.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7472">#7472</a>
+          </li>
+          <li>
+            Sonar violation: &quot;ThreadLocal&quot; variables should be cleaned up
+            when no longer used.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7458">#7458</a>
+          </li>
+          <li>
+            Indentation incorrect level for chained method with bracket on new line.
+            Author: alinkov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6210">#6210</a>
+          </li>
+          <li>
+            InvalidJavadocPosition: false positive when comment is between javadoc and package.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7430">#7430</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add method hasChildren to DetailAST.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7487">#7487</a>
+          </li>
+          <li>
+            doc: extend Indentation Check explanation of line wrap.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Sonar violation: Cognitive Complexity of methods should not be too high (above 20).
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7475">#7475</a>
+          </li>
+          <li>
+            Enforce jdk8 verification during build.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7492">#7492</a>
+          </li>
+          <li>
+            Resolve all violations from SonarQube at sonarcloud.io.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5604">#5604</a>
+          </li>
+          <li>
+            Remove Google plus links from website.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7465">#7465</a>
+          </li>
+          <li>
+            Checks summary page is not in sync with javadoc summary .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7446">#7446</a>
+          </li>
+          <li>
+            doc: sync summaries of all checks.
+            Author: pbludov
+          </li>
+          <li>
+            Shippable CI is slow.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7450">#7450</a>
+          </li>
+          <li>
+            Add a test to make sure that all new checks have XpathRegressionTest.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7405">#7405</a>
+          </li>
+          <li>
+            Avoid using Locale.setDefault in tests.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7436">#7436</a>
+          </li>
+          <li>
+            Google maven mirror do not have artifact for long time .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7444">#7444</a>
+          </li>
+          <li>
+            SonarCloud upcoming change: &quot;sonar.organization&quot; property soon mandatory .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7423">#7423</a>
+          </li>
+          <li>
+            Fix output of failed build item.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7411">#7411</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.28">
       <div class="releaseDate">29.12.2019</div>
       <p>Breaking backward compatibility:</p>
