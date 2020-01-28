@@ -115,7 +115,10 @@ public interface DetailAST {
     /**
      * Get number of children of this AST.
      * @return the number of children.
+     * @deprecated This method will be removed in a future release.
+     *             Use {@link #getChildCount()} instead.
      */
+    @Deprecated
     int getNumberOfChildren();
 
     /**

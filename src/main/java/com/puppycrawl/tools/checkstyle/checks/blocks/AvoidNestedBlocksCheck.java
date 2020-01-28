@@ -135,10 +135,19 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         if (parent.getType() == TokenTypes.SLIST
-                && (!allowInSwitchCase
-                    || parent.getNumberOfChildren() != 1)) {
+                && (!allowInSwitchCase || hasSiblings(ast))) {
             log(ast, MSG_KEY_BLOCK_NESTED);
         }
+    }
+
+    /**
+     * Checks whether the AST node has any siblings or not.
+     *
+     * @param ast node to examine
+     * @return {@code true} if the node has one or more siblings
+     */
+    private static boolean hasSiblings(DetailAST ast) {
+        return ast.getPreviousSibling() != null || ast.getNextSibling() != null;
     }
 
     /**
