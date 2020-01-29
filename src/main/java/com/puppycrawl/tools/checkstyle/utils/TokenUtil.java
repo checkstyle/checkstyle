@@ -245,4 +245,16 @@ public final class TokenUtil {
         }
     }
 
+    /**
+     * Determines if two ASTs are on the same line.
+     *
+     * @param ast1   the first AST
+     * @param ast2   the second AST
+     *
+     * @return true if they are on the same line.
+     */
+    public static boolean areOnSameLine(DetailAST ast1, DetailAST ast2) {
+        return ast1.getLineNo() == ast2.getLineNo();
+    }
+
 }

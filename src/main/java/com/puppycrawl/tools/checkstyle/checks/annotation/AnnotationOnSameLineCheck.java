@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -131,7 +132,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
                     annotationNode != null;
                     annotationNode = annotationNode.getNextSibling()) {
                 if (annotationNode.getType() == TokenTypes.ANNOTATION
-                        && annotationNode.getLineNo() != getNextNode(annotationNode).getLineNo()) {
+                        && !TokenUtil.areOnSameLine(annotationNode, getNextNode(annotationNode))) {
                     log(annotationNode.getLineNo(), MSG_KEY_ANNOTATION_ON_SAME_LINE,
                           getAnnotationName(annotationNode));
                 }

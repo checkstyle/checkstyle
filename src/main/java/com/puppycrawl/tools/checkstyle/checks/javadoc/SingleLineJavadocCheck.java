@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -133,7 +134,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean isSingleLineJavadoc(DetailAST blockCommentStart) {
         final DetailAST blockCommentEnd = blockCommentStart.getLastChild();
-        return blockCommentStart.getLineNo() == blockCommentEnd.getLineNo();
+        return TokenUtil.areOnSameLine(blockCommentStart, blockCommentEnd);
     }
 
     /**

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -125,7 +126,7 @@ public final class UnnecessarySemicolonInTryWithResourcesCheck extends AbstractC
         final DetailAST tokenBeforeCloseParen = closingParen.getPreviousSibling();
         if (tokenBeforeCloseParen.getType() == TokenTypes.SEMI
             && (!allowWhenNoBraceAfterSemicolon
-                || closingParen.getLineNo() == tokenBeforeCloseParen.getLineNo())) {
+                || TokenUtil.areOnSameLine(closingParen, tokenBeforeCloseParen))) {
             log(tokenBeforeCloseParen, MSG_SEMI);
         }
     }

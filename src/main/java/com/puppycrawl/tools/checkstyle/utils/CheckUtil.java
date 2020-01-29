@@ -258,7 +258,7 @@ public final class CheckUtil {
      */
     public static boolean isBeforeInSource(DetailAST ast1, DetailAST ast2) {
         return ast1.getLineNo() < ast2.getLineNo()
-            || ast1.getLineNo() == ast2.getLineNo()
+            || TokenUtil.areOnSameLine(ast1, ast2)
                 && ast1.getColumnNo() < ast2.getColumnNo();
     }
 

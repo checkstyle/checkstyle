@@ -27,6 +27,7 @@ import java.util.TreeMap;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * This class checks line-wrapping into definitions and expressions. The
@@ -262,7 +263,7 @@ public class LineWrappingHandler {
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
                         || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || node.getLineNo() == atNode.getLineNo()) {
+                    || TokenUtil.areOnSameLine(node, atNode)) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else {

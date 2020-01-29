@@ -177,19 +177,6 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Determines if two expressions are on the same line.
-     *
-     * @param ast1   the first expression
-     * @param ast2   the second expression
-     *
-     * @return true if they are, false otherwise
-     * @noinspection WeakerAccess
-     */
-    public static boolean areOnSameLine(DetailAST ast1, DetailAST ast2) {
-        return ast1.getLineNo() == ast2.getLineNo();
-    }
-
-    /**
      * Searches in given sub-tree (including given node) for the token
      * which represents first symbol for this sub-tree in file.
      * @param ast a root of sub-tree in which the search should be performed.

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -163,8 +164,8 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
         final DetailAST previousSibling = rcurly.getPreviousSibling();
 
         if (arrayInit.getChildCount() != 1
-                && rcurly.getLineNo() != previousSibling.getLineNo()
-                && arrayInit.getLineNo() != previousSibling.getLineNo()
+                && !TokenUtil.areOnSameLine(rcurly, previousSibling)
+                && !TokenUtil.areOnSameLine(arrayInit, previousSibling)
                 && previousSibling.getType() != TokenTypes.COMMA) {
             log(rcurly.getLineNo(), MSG_KEY);
         }

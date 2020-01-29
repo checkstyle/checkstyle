@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -320,7 +321,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         }
         else {
             final DetailAST prevSibling = ast.getPreviousSibling();
-            multiline = prevSibling.getLineNo() != ast.getLineNo()
+            multiline = !TokenUtil.areOnSameLine(prevSibling, ast)
                     && ast.getParent() != null;
         }
         return multiline;

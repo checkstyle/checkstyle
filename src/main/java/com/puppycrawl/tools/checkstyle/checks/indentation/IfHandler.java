@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for if statements.
@@ -75,7 +76,7 @@ public class IfHandler extends BlockParentHandler {
         // check if there is an 'else' and an 'if' on the same line
         final DetailAST parent = getMainAst().getParent();
         return parent.getType() == TokenTypes.LITERAL_ELSE
-            && parent.getLineNo() == getMainAst().getLineNo();
+            && TokenUtil.areOnSameLine(parent, getMainAst());
     }
 
     @Override

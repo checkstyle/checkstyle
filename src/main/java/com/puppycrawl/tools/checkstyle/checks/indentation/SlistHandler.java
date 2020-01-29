@@ -23,6 +23,7 @@ import java.util.Arrays;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for a list of statements.
@@ -137,7 +138,7 @@ public class SlistHandler extends BlockParentHandler {
     private boolean isSameLineCaseGroup() {
         final DetailAST parentNode = getMainAst().getParent();
         return parentNode.getType() == TokenTypes.CASE_GROUP
-            && getMainAst().getLineNo() == parentNode.getLineNo();
+            && TokenUtil.areOnSameLine(getMainAst(), parentNode);
     }
 
 }
