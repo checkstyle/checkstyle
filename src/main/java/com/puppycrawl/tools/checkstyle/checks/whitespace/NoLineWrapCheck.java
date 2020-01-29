@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>Checks that chosen statements are not line-wrapped.
@@ -117,7 +118,7 @@ public class NoLineWrapCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getLineNo() != ast.getLastChild().getLineNo()) {
+        if (!TokenUtil.areOnSameLine(ast, ast.getLastChild())) {
             log(ast.getLineNo(), MSG_KEY, ast.getText());
         }
     }

@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -211,7 +212,7 @@ public class JavadocContentLocationCheck extends AbstractCheck {
      * @return {@code true} for multi-line comment nodes
      */
     private static boolean isMultilineComment(DetailAST node) {
-        return node.getLineNo() != node.getLastChild().getLineNo();
+        return !TokenUtil.areOnSameLine(node, node.getLastChild());
     }
 
     /**

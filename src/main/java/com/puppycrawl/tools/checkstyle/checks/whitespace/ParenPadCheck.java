@@ -24,6 +24,7 @@ import java.util.Arrays;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -308,7 +309,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
         boolean result = false;
         if (ast.getParent().getType() == TokenTypes.TYPECAST) {
             final DetailAST firstRparen = ast.getParent().findFirstToken(TokenTypes.RPAREN);
-            if (firstRparen.getLineNo() == ast.getLineNo()
+            if (TokenUtil.areOnSameLine(firstRparen, ast)
                     && firstRparen.getColumnNo() == ast.getColumnNo()) {
                 result = true;
             }

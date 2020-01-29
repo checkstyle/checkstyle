@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -105,7 +106,7 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
                     final DetailAST lastNode = getLastNode(ast);
                     final DetailAST firstNextNode = CheckUtil.getFirstNode(nextNode);
 
-                    if (firstNextNode.getLineNo() == lastNode.getLineNo()) {
+                    if (TokenUtil.areOnSameLine(firstNextNode, lastNode)) {
                         log(firstNode, MSG_MULTIPLE);
                     }
                 }

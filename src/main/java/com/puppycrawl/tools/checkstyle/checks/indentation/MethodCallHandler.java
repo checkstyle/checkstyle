@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for method calls.
@@ -49,7 +50,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         if (getParent() instanceof MethodCallHandler) {
             final MethodCallHandler container =
                     (MethodCallHandler) getParent();
-            if (areOnSameLine(container.getMainAst(), getMainAst())
+            if (TokenUtil.areOnSameLine(container.getMainAst(), getMainAst())
                     || isChainedMethodCallWrapped()
                     || areMethodsChained(container.getMainAst(), getMainAst())) {
                 indentLevel = container.getIndent();
@@ -99,7 +100,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
      */
     private static boolean areMethodsChained(DetailAST ast1, DetailAST ast2) {
         final DetailAST rparen = ast1.findFirstToken(TokenTypes.RPAREN);
-        return rparen.getLineNo() == ast2.getLineNo();
+        return TokenUtil.areOnSameLine(rparen, ast2);
     }
 
     /**
@@ -169,7 +170,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final DetailAST ident = getMethodIdentAst();
         final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
         IndentLevel suggestedLevel = new IndentLevel(getLineStart(ident));
-        if (!areOnSameLine(child.getMainAst().getFirstChild(), ident)) {
+        if (!TokenUtil.areOnSameLine(child.getMainAst().getFirstChild(), ident)) {
             suggestedLevel = new IndentLevel(suggestedLevel,
                     getBasicOffset(),
                     getIndentCheck().getLineWrappingIndentation());
@@ -206,7 +207,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
             final DetailAST rparen = getMainAst().findFirstToken(TokenTypes.RPAREN);
             checkLeftParen(lparen);
 
-            if (rparen.getLineNo() != lparen.getLineNo()) {
+            if (!TokenUtil.areOnSameLine(rparen, lparen)) {
                 checkExpressionSubtree(
                     getMainAst().findFirstToken(TokenTypes.ELIST),
                     new IndentLevel(getIndent(), getBasicOffset()),

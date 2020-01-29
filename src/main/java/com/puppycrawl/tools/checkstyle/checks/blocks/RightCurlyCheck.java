@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -199,7 +200,7 @@ public class RightCurlyCheck extends AbstractCheck {
                                                      Details details) {
         return bracePolicy == RightCurlyOption.SAME
                 && !hasLineBreakBefore(details.rcurly)
-                && details.lcurly.getLineNo() != details.rcurly.getLineNo();
+                && !TokenUtil.areOnSameLine(details.lcurly, details.rcurly);
     }
 
     /**
@@ -211,7 +212,7 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean shouldBeOnSameLine(RightCurlyOption bracePolicy, Details details) {
         return bracePolicy == RightCurlyOption.SAME
                 && !details.shouldCheckLastRcurly
-                && details.rcurly.getLineNo() != details.nextToken.getLineNo();
+                && !TokenUtil.areOnSameLine(details.rcurly, details.nextToken);
     }
 
     /**
@@ -264,7 +265,7 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean isAloneOnLine(Details details, String targetSrcLine) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST nextToken = details.nextToken;
-        return (rcurly.getLineNo() != nextToken.getLineNo() || skipDoubleBraceInstInit(details))
+        return (!TokenUtil.areOnSameLine(rcurly, nextToken) || skipDoubleBraceInstInit(details))
                 && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(), targetSrcLine);
     }
 
@@ -310,8 +311,8 @@ public class RightCurlyCheck extends AbstractCheck {
             final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
             nextToken = Details.getNextToken(doWhileSemi);
         }
-        return rcurly.getLineNo() == lcurly.getLineNo()
-                && (rcurly.getLineNo() != nextToken.getLineNo()
+        return TokenUtil.areOnSameLine(rcurly, lcurly)
+                && (!TokenUtil.areOnSameLine(rcurly, nextToken)
                 || isRightcurlyFollowedBySemicolon(details));
     }
 
@@ -334,7 +335,7 @@ public class RightCurlyCheck extends AbstractCheck {
         if (previousToken == null) {
             previousToken = rightCurly.getParent();
         }
-        return rightCurly.getLineNo() != previousToken.getLineNo();
+        return !TokenUtil.areOnSameLine(rightCurly, previousToken);
     }
 
     /**

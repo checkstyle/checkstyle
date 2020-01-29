@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -343,7 +344,7 @@ public class LeftCurlyCheck
             else if (option == LeftCurlyOption.EOL) {
                 validateEol(brace, braceLine);
             }
-            else if (startToken.getLineNo() != brace.getLineNo()) {
+            else if (!TokenUtil.areOnSameLine(startToken, brace)) {
                 validateNewLinePosition(brace, startToken, braceLine);
             }
         }
@@ -404,7 +405,7 @@ public class LeftCurlyCheck
         }
         return nextToken == null
                 || nextToken.getType() == TokenTypes.RCURLY
-                || leftCurly.getLineNo() != nextToken.getLineNo();
+                || !TokenUtil.areOnSameLine(leftCurly, nextToken);
     }
 
 }

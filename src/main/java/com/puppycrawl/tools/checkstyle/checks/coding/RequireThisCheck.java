@@ -712,7 +712,7 @@ public class RequireThisCheck extends AbstractCheck {
                     TokenTypes.RCURLY);
             for (DetailAST currentRcurly : rcurlyTokens) {
                 final DetailAST parent = currentRcurly.getParent();
-                if (blockStartToken.getLineNo() == parent.getLineNo()) {
+                if (TokenUtil.areOnSameLine(blockStartToken, parent)) {
                     blockEndToken = currentRcurly;
                 }
             }

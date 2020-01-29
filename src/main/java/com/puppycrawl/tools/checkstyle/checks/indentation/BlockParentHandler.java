@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for parents of blocks ('if', 'else', 'while', etc).
@@ -238,7 +239,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         }
         else {
             // NOTE: switch statements usually don't have curlies
-            if (!hasCurlies() || !areOnSameLine(getLeftCurly(), getRightCurly())) {
+            if (!hasCurlies() || !TokenUtil.areOnSameLine(getLeftCurly(), getRightCurly())) {
                 checkChildren(listChild,
                         getCheckedChildren(),
                         getChildrenExpectedIndent(),

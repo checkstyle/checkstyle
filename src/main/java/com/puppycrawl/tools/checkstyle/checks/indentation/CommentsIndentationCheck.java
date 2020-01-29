@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -389,7 +390,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                         currentToken = currentToken.getNextSibling();
                     }
                 }
-                if (previousSibling.getLineNo() != currentToken.getLineNo()) {
+                if (!TokenUtil.areOnSameLine(previousSibling, currentToken)) {
                     isDistributed = true;
                 }
             }
@@ -457,7 +458,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 && commentPreviousSibling.getType() == TokenTypes.LITERAL_THROW) {
             final DetailAST firstChild = commentPreviousSibling.getFirstChild();
             final DetailAST nextSibling = firstChild.getNextSibling();
-            if (nextSibling.getLineNo() != commentPreviousSibling.getLineNo()) {
+            if (!TokenUtil.areOnSameLine(nextSibling, commentPreviousSibling)) {
                 isDistributed = true;
             }
         }
@@ -848,7 +849,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private static DetailAST findStartTokenOfMethodCallChain(DetailAST root) {
         DetailAST startOfMethodCallChain = root;
         while (startOfMethodCallChain.getFirstChild() != null
-                && startOfMethodCallChain.getFirstChild().getLineNo() == root.getLineNo()) {
+                && TokenUtil.areOnSameLine(startOfMethodCallChain.getFirstChild(), root)) {
             startOfMethodCallChain = startOfMethodCallChain.getFirstChild();
         }
         if (startOfMethodCallChain.getFirstChild() != null) {
@@ -1118,7 +1119,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final int commentColumnNo = blockComment.getColumnNo();
         final DetailAST nextSibling = blockComment.getNextSibling();
         return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
-            || nextSibling != null && nextSibling.getLineNo() == blockComment.getLineNo();
+            || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
     }
 
 }
