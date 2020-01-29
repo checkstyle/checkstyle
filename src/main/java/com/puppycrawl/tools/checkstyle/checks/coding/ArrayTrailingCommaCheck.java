@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  * </pre>
  * <p>
- * If closing brace is on the same line as training comma, this benefit is gone
+ * If closing brace is on the same line as trailing comma, this benefit is gone
  * (as the check does not demand a certain location of curly braces the following
  * two cases will not produce a violation):
  * </p>
@@ -78,7 +78,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *  300000000000000000000,} // Added line
  * </pre>
  * <p>
- * If opening brace is on the same line as training comma there's also (more arguable) problem:
+ * If opening brace is on the same line as trailing comma there's also (more arguable) problem:
  * </p>
  * <pre>
  * {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
