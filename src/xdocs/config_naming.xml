@@ -2309,25 +2309,45 @@ public boolean equals(Object o) {
         </p>
 
         <source>
-&lt;module name="TypeName"/&gt;
+&lt;module name=&quot;TypeName&quot;/&gt;
         </source>
-
+        <p>Code Example:</p>
+        <div class="wrapper">
+          <pre>
+ public interface FirstName {} // OK
+ protected class SecondName {} // OK
+ enum Third_Name {} // violation, name 'Third_Name' must match pattern '^[A-Z][a-zA-Z0-9]*$'
+ private class FourthName_ {} // violation, name 'FourthName_'
+                              // must match pattern '^[A-Z][a-zA-Z0-9]*$'
+          </pre>
+        </div>
         <p>
           An example of how to configure the check for names that begin with a lower case letter,
-          followed by letters, digits, and underscores is:
+          followed by letters, digits, and underscores. Also, suppress the check from being
+          applied to protected and private type:
         </p>
         <source>
-&lt;module name="TypeName"&gt;
-  &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
+&lt;module name=&quot;TypeName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^[a-z](_?[a-zA-Z0-9]+)*$&quot;/&gt;
+  &lt;property name=&quot;applyToProtected&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;applyToPrivate&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>Code Example:</p>
+        <div class="wrapper">
+          <pre>
+ public interface firstName {} // OK
+ public class SecondName {} // violation, name 'SecondName'
+                            // must match pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ protected class ThirdName {} // OK
+ private class FourthName {} // OK
+          </pre>
+        </div>
         <p>
           The following configuration element ensures that
           interface names begin with <code>"I_"</code>, followed by
           letters and digits:
         </p>
-
         <source>
 &lt;module name=&quot;TypeName&quot;&gt;
   &lt;property name=&quot;format&quot;
@@ -2336,6 +2356,14 @@ public boolean equals(Object o) {
     value=&quot;INTERFACE_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Code Example:</p>
+        <div class="wrapper">
+          <pre>
+ public interface I_firstName {} // OK
+ interface SecondName {} // violation, name 'SecondName'
+                         // must match pattern '^I_[a-zA-Z0-9]*$'
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="TypeName_Example_of_Usage">
