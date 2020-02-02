@@ -137,6 +137,13 @@
     <property name="message"
               value="Old site links should not be used, please use https://checkstyle.org"/>
   </module>
+  <module name="RegexpSingleline">
+    <property name="id" value="noPackageCommentWithOtherVisibility"/>
+    <property name="format" value="/\*\s+package\s+\*/\s+(private|protected|public)"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message"
+              value="Package comment marker should not be used if other visibility is defined"/>
+  </module>
   <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">
       <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
