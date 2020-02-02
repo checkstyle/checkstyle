@@ -147,6 +147,14 @@
                 value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
     </properties>
   </rule>
+  <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier">
+      <properties>
+          <property name="ignoredAnnotations" value="" />
+          <property name="regex" value="\/\*\s+(package)\s+\*\/" />
+          <property name="checkTopLevelTypes" value="false" />
+      </properties>
+  </rule>
+
   <rule ref="category/java/errorprone.xml">
     <!-- That rule is not practical, no options to allow some magic numbers,
          we will use our implementation. -->
