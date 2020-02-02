@@ -365,7 +365,7 @@ public class ElementNode extends AbstractNode {
          * Create an iterator over the "following" axis.
          * @param start the initial context node.
          */
-        /* default */ FollowingEnumeration(NodeInfo start) {
+        /* package */ FollowingEnumeration(NodeInfo start) {
             siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);
         }
 

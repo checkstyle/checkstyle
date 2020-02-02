@@ -1189,7 +1189,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @param lineNo token's line number
          * @param columnNo token's column number
          */
-        /* default */ Token(String text, int lineNo, int columnNo) {
+        /* package */ Token(String text, int lineNo, int columnNo) {
             this.text = text;
             this.lineNo = lineNo;
             this.columnNo = columnNo;
@@ -1199,7 +1199,7 @@ public class JavadocMethodCheck extends AbstractCheck {
          * Converts FullIdent to Token.
          * @param fullIdent full ident to convert.
          */
-        /* default */ Token(FullIdent fullIdent) {
+        /* package */ Token(FullIdent fullIdent) {
             text = fullIdent.getText();
             lineNo = fullIdent.getLineNo();
             columnNo = fullIdent.getColumnNo();
