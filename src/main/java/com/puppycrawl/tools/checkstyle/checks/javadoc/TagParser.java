@@ -154,8 +154,8 @@ class TagParser {
         final int column = pos.getColumnNo() + 1;
         final String text = javadocText[pos.getLineNo()];
 
-        //Character.isJavaIdentifier... may not be a valid HTML
-        //identifier but is valid for generics
+        // Character.isJavaIdentifier... may not be a valid HTML
+        // identifier but is valid for generics
         return column >= text.length()
                 || Character.isJavaIdentifierStart(text.charAt(column))
                     || text.charAt(column) == '/';
@@ -179,8 +179,8 @@ class TagParser {
             text = text.substring(column).trim();
             int position = 0;
 
-            //Character.isJavaIdentifier... may not be a valid HTML
-            //identifier but is valid for generics
+            // Character.isJavaIdentifier... may not be a valid HTML
+            // identifier but is valid for generics
             while (position < text.length()
                     && (Character.isJavaIdentifierStart(text.charAt(position))
                         || Character.isJavaIdentifierPart(text.charAt(position)))) {
@@ -251,7 +251,7 @@ class TagParser {
             line++;
             column = 0;
             if (line < text.length) {
-                //skip beginning spaces and stars
+                // skip beginning spaces and stars
                 final String currentLine = text[line];
                 while (column < currentLine.length()
                        && (Character.isWhitespace(currentLine.charAt(column))

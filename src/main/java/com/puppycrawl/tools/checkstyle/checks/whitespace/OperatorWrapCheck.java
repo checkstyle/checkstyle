@@ -143,7 +143,7 @@ public class OperatorWrapCheck
             TokenTypes.EQUAL,             // "=="
             TokenTypes.NOT_EQUAL,         // "!="
             TokenTypes.DIV,               // '/'
-            TokenTypes.PLUS,              //' +' (unary plus is UNARY_PLUS)
+            TokenTypes.PLUS,              // '+' (unary plus is UNARY_PLUS)
             TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
             TokenTypes.STAR,              // '*'
             TokenTypes.MOD,               // '%'
@@ -172,7 +172,7 @@ public class OperatorWrapCheck
             TokenTypes.EQUAL,             // "=="
             TokenTypes.NOT_EQUAL,         // "!="
             TokenTypes.DIV,               // '/'
-            TokenTypes.PLUS,              //' +' (unary plus is UNARY_PLUS)
+            TokenTypes.PLUS,              // '+' (unary plus is UNARY_PLUS)
             TokenTypes.MINUS,             // '-' (unary minus is UNARY_MINUS)
             TokenTypes.STAR,              // '*'
             TokenTypes.MOD,               // '%'
@@ -193,7 +193,7 @@ public class OperatorWrapCheck
             TokenTypes.ASSIGN,            // '='
             TokenTypes.DIV_ASSIGN,        // "/="
             TokenTypes.PLUS_ASSIGN,       // "+="
-            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.MINUS_ASSIGN,      // "-="
             TokenTypes.STAR_ASSIGN,       // "*="
             TokenTypes.MOD_ASSIGN,        // "%="
             TokenTypes.SR_ASSIGN,         // ">>="
@@ -214,7 +214,7 @@ public class OperatorWrapCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parent = ast.getParent();
-        //we do not want to check colon for cases and defaults
+        // we do not want to check colon for cases and defaults
         if (parent.getType() != TokenTypes.LITERAL_DEFAULT
                 && parent.getType() != TokenTypes.LITERAL_CASE) {
             final String text = ast.getText();

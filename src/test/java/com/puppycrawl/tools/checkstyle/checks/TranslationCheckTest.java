@@ -226,9 +226,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testLogIoExceptionFileNotFound() throws Exception {
-        //I can't put wrong file here. Checkstyle fails before check started.
-        //I saw some usage of file or handling of wrong file in Checker, or somewhere
-        //in checks running part. So I had to do it with reflection to improve coverage.
+        // I can't put wrong file here. Checkstyle fails before check started.
+        // I saw some usage of file or handling of wrong file in Checker, or somewhere
+        // in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         final TestMessageDispatcher dispatcher = new TestMessageDispatcher();
@@ -249,9 +249,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @Test
     public void testLogIoException() throws Exception {
-        //I can't put wrong file here. Checkstyle fails before check started.
-        //I saw some usage of file or handling of wrong file in Checker, or somewhere
-        //in checks running part. So I had to do it with reflection to improve coverage.
+        // I can't put wrong file here. Checkstyle fails before check started.
+        // I saw some usage of file or handling of wrong file in Checker, or somewhere
+        // in checks running part. So I had to do it with reflection to improve coverage.
         final TranslationCheck check = new TranslationCheck();
         final DefaultConfiguration checkConfig = createModuleConfig(TranslationCheck.class);
         final TestMessageDispatcher dispatcher = new TestMessageDispatcher();

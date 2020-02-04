@@ -56,7 +56,7 @@ public class ImportControlLoaderPowerTest {
 
         try {
             ImportControlLoader.load(uri);
-            //Using available to bypass 'ignored result' warning
+            // Using available to bypass 'ignored result' warning
             fail("exception expected " + available);
         }
         catch (CheckstyleException ex) {

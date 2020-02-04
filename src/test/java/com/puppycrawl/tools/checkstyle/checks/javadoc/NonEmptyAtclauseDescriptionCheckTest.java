@@ -60,17 +60,17 @@ public class NonEmptyAtclauseDescriptionCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonEmptyAtclauseDescriptionCheck.class);
         final String[] expected = {
-            //this is a case with description that is sequences of spaces
+            // this is a case with description that is sequences of spaces
             "26: " + getCheckMessage(MSG_KEY),
-            //this is a case with description that is sequences of spaces
+            // this is a case with description that is sequences of spaces
             "27: " + getCheckMessage(MSG_KEY),
-            //this is a case with description that is sequences of spaces
+            // this is a case with description that is sequences of spaces
             "28: " + getCheckMessage(MSG_KEY),
-            //this is a case with description that is sequences of spaces
+            // this is a case with description that is sequences of spaces
             "37: " + getCheckMessage(MSG_KEY),
-            //this is a case with description that is sequences of spaces
+            // this is a case with description that is sequences of spaces
             "38: " + getCheckMessage(MSG_KEY),
-            //this is a case with description that is sequences of spaces
+            // this is a case with description that is sequences of spaces
             "39: " + getCheckMessage(MSG_KEY),
             "75: " + getCheckMessage(MSG_KEY),
             "76: " + getCheckMessage(MSG_KEY),

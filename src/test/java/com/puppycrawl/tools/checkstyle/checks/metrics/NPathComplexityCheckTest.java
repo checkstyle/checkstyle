@@ -326,7 +326,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         assertEquals(0, messages1.size(), "No exception messages expected");
 
-        //visiting ternary, it lies before expressionSpatialRange
+        // visiting ternary, it lies before expressionSpatialRange
         npathComplexityCheckObj.visitToken(astTernary);
         final SortedSet<LocalizedMessage> messages2 = npathComplexityCheckObj.getMessages();
 

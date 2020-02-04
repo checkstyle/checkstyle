@@ -165,7 +165,7 @@ public class ParameterNumberCheck
      *         false otherwise
      */
     private boolean shouldIgnoreNumberOfParameters(DetailAST ast) {
-        //if you override a method, you have no power over the number of parameters
+        // if you override a method, you have no power over the number of parameters
         return ignoreOverriddenMethods
                 && (AnnotationUtil.containsAnnotation(ast, OVERRIDE)
                 || AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE));

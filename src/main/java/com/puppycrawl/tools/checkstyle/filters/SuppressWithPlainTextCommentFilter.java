@@ -520,8 +520,8 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
                 commentFormat = filter.offCommentFormat;
             }
 
-            //Expand regexp for check and message
-            //Does not intern Patterns with Utils.getPattern()
+            // Expand regexp for check and message
+            // Does not intern Patterns with Utils.getPattern()
             String format = "";
             try {
                 format = CommonUtil.fillTemplateWithStringsByRegexp(

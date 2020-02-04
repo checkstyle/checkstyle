@@ -339,7 +339,7 @@ public class JavadocTypeCheck
                     CheckUtil.getTypeParameterNames(ast);
 
                 if (!allowMissingParamTags) {
-                    //Check type parameters that should exist, do
+                    // Check type parameters that should exist, do
                     for (final String typeParamName : typeParamNames) {
                         checkTypeParamTag(
                             lineNo, tags, typeParamName);

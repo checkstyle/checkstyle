@@ -89,7 +89,7 @@ public class MethodTypeParameterNameCheckTest
             "28:10: " + getCheckMessage(MSG_INVALID_PATTERN, "_fo", pattern),
             "35:6: " + getCheckMessage(MSG_INVALID_PATTERN, "E", pattern),
             "37:14: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
-            //"40:14: Name 'EE' must match pattern '^foo$'.",
+            // "40:14: Name 'EE' must match pattern '^foo$'.",
         };
         verify(checkConfig, getPath("InputMethodTypeParameterName.java"), expected);
     }

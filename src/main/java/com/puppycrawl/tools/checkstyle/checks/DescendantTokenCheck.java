@@ -335,7 +335,7 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        //reset counts
+        // reset counts
         Arrays.fill(counts, 0);
         countTokens(ast, 0);
 
@@ -425,7 +425,7 @@ public class DescendantTokenCheck extends AbstractCheck {
      */
     private void countTokens(DetailAST ast, int depth) {
         if (depth <= maximumDepth) {
-            //update count
+            // update count
             if (depth >= minimumDepth) {
                 final int type = ast.getType();
                 if (type <= counts.length) {

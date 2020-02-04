@@ -80,7 +80,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
             "22:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
             "27:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            //"29:8: Unused import - java.awt.Component.", // Should be detected
+            // "29:8: Unused import - java.awt.Component.", // Should be detected
             "30:8: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
             "31:8: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
             "32:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
@@ -118,7 +118,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "20:8: " + getCheckMessage(MSG_KEY, "javax.swing.JToggleButton"),
             "22:8: " + getCheckMessage(MSG_KEY, "javax.swing.BorderFactory"),
             "27:15: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
-            //"29:8: Unused import - java.awt.Component.", // Should be detected
+            // "29:8: Unused import - java.awt.Component.", // Should be detected
             "32:8: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
             "44:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.DefaultLogger"),
         };

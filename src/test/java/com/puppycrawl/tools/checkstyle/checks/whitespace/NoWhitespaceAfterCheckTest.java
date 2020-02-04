@@ -229,7 +229,7 @@ public class NoWhitespaceAfterCheckTest
 
     @Test
     public void testVisitTokenSwitchReflection() {
-        //unexpected parent for ARRAY_DECLARATOR token
+        // unexpected parent for ARRAY_DECLARATOR token
         final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import", "mockfile");
         final DetailAstImpl astArrayDeclarator = mockAST(TokenTypes.ARRAY_DECLARATOR, "[",
                 "mockfile");

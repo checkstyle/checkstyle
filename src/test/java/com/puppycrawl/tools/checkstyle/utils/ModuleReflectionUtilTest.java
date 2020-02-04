@@ -154,7 +154,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
     }
@@ -198,7 +198,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void processFiltered(File file, FileText fileText) {
-            //dummy method
+            // dummy method
         }
 
     }
@@ -207,7 +207,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
         @Override
@@ -222,7 +222,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
         @Override
@@ -236,12 +236,12 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void addListener(AuditListener listener) {
-            //dummy method
+            // dummy method
         }
 
         @Override
@@ -251,12 +251,12 @@ public class ModuleReflectionUtilTest {
 
         @Override
         public void destroy() {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void setModuleClassLoader(ClassLoader moduleClassLoader) {
-            //dummy method
+            // dummy method
         }
 
     }
@@ -265,7 +265,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
         @Override
@@ -279,37 +279,37 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void auditStarted(AuditEvent event) {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void auditFinished(AuditEvent event) {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void fileStarted(AuditEvent event) {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void fileFinished(AuditEvent event) {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void addError(AuditEvent event) {
-            //dummy method
+            // dummy method
         }
 
         @Override
         public void addException(AuditEvent event, Throwable throwable) {
-            //dummy method
+            // dummy method
         }
 
     }
@@ -325,7 +325,7 @@ public class ModuleReflectionUtilTest {
         private int field;
 
         protected InvalidNonDefaultConstructorClass(int data) {
-            //keep pmd calm and happy
+            // keep pmd calm and happy
             field = 0;
             method(data);
         }
@@ -343,7 +343,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         protected void finishLocalSetup() {
-            //dummy method
+            // dummy method
         }
 
     }

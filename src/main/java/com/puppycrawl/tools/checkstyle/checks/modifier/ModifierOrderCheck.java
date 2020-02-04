@@ -149,12 +149,12 @@ public class ModifierOrderCheck
     private static DetailAST checkOrderSuggestedByJls(List<DetailAST> modifiers) {
         final Iterator<DetailAST> iterator = modifiers.iterator();
 
-        //Speed past all initial annotations
+        // Speed past all initial annotations
         DetailAST modifier = skipAnnotations(iterator);
 
         DetailAST offendingModifier = null;
 
-        //All modifiers are annotations, no problem
+        // All modifiers are annotations, no problem
         if (modifier.getType() != TokenTypes.ANNOTATION) {
             int index = 0;
 
@@ -162,7 +162,7 @@ public class ModifierOrderCheck
                     && offendingModifier == null) {
                 if (modifier.getType() == TokenTypes.ANNOTATION) {
                     if (!isAnnotationOnType(modifier)) {
-                        //Annotation not at start of modifiers, bad
+                        // Annotation not at start of modifiers, bad
                         offendingModifier = modifier;
                     }
                     break;
@@ -174,14 +174,14 @@ public class ModifierOrderCheck
                 }
 
                 if (index == JLS_ORDER.length) {
-                    //Current modifier is out of JLS order
+                    // Current modifier is out of JLS order
                     offendingModifier = modifier;
                 }
                 else if (iterator.hasNext()) {
                     modifier = iterator.next();
                 }
                 else {
-                    //Reached end of modifiers without problem
+                    // Reached end of modifiers without problem
                     modifier = null;
                 }
             }

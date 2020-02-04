@@ -34,9 +34,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * forbidden.  No check occurs if there is a line wrap at the initializer, as in
  * </p>
  * <pre>
-for (
-      ; i &lt; j; i++, j--)
-   </pre>
+ * for (
+ *     ; i &lt; j; i++, j--)
+ *  </pre>
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to pad an empty for iterator.
@@ -109,12 +109,12 @@ public class EmptyForInitializerPadCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (!ast.hasChildren()) {
-            //empty for initializer. test pad before semi.
+            // empty for initializer. test pad before semi.
             final DetailAST semi = ast.getNextSibling();
             final int semiLineIdx = semi.getLineNo() - 1;
             final String line = getLines()[semiLineIdx];
             final int before = semi.getColumnNo() - 1;
-            //don't check if semi at beginning of line
+            // don't check if semi at beginning of line
             if (!CommonUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(before))) {

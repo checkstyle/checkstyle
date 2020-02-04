@@ -404,21 +404,21 @@ public final class ConfigurationLoader {
                                            List<String> propertyRefs)
             throws CheckstyleException {
         int prev = 0;
-        //search for the next instance of $ from the 'prev' position
+        // search for the next instance of $ from the 'prev' position
         int pos = value.indexOf(DOLLAR_SIGN, prev);
         while (pos >= 0) {
-            //if there was any text before this, add it as a fragment
+            // if there was any text before this, add it as a fragment
             if (pos > 0) {
                 fragments.add(value.substring(prev, pos));
             }
-            //if we are at the end of the string, we tack on a $
-            //then move past it
+            // if we are at the end of the string, we tack on a $
+            // then move past it
             if (pos == value.length() - 1) {
                 fragments.add(String.valueOf(DOLLAR_SIGN));
                 prev = pos + 1;
             }
             else if (value.charAt(pos + 1) == '{') {
-                //property found, extract its name or bail on a typo
+                // property found, extract its name or bail on a typo
                 final int endName = value.indexOf('}', pos);
                 if (endName == -1) {
                     throw new CheckstyleException("Syntax error in property: "
@@ -431,21 +431,21 @@ public final class ConfigurationLoader {
             }
             else {
                 if (value.charAt(pos + 1) == DOLLAR_SIGN) {
-                    //backwards compatibility two $ map to one mode
+                    // backwards compatibility two $ map to one mode
                     fragments.add(String.valueOf(DOLLAR_SIGN));
                 }
                 else {
-                    //new behaviour: $X maps to $X for all values of X!='$'
+                    // new behaviour: $X maps to $X for all values of X!='$'
                     fragments.add(value.substring(pos, pos + 2));
                 }
                 prev = pos + 2;
             }
 
-            //search for the next instance of $ from the 'prev' position
+            // search for the next instance of $ from the 'prev' position
             pos = value.indexOf(DOLLAR_SIGN, prev);
         }
-        //no more $ signs found
-        //if there is any tail to the file, append it
+        // no more $ signs found
+        // if there is any tail to the file, append it
         if (prev < value.length()) {
             fragments.add(value.substring(prev));
         }
@@ -494,7 +494,7 @@ public final class ConfigurationLoader {
                                  Attributes attributes)
                 throws SAXException {
             if (qName.equals(MODULE)) {
-                //create configuration
+                // create configuration
                 final String originalName = attributes.getValue(NAME);
                 final String name = threadModeSettings.resolveName(originalName);
                 final DefaultConfiguration conf =
@@ -504,7 +504,7 @@ public final class ConfigurationLoader {
                     configuration = conf;
                 }
 
-                //add configuration to it's parent
+                // add configuration to it's parent
                 if (!configStack.isEmpty()) {
                     final DefaultConfiguration top =
                         configStack.peek();
@@ -514,7 +514,7 @@ public final class ConfigurationLoader {
                 configStack.push(conf);
             }
             else if (qName.equals(PROPERTY)) {
-                //extract value and name
+                // extract value and name
                 final String value;
                 try {
                     value = replaceProperties(attributes.getValue(VALUE),
@@ -526,17 +526,17 @@ public final class ConfigurationLoader {
                 }
                 final String name = attributes.getValue(NAME);
 
-                //add to attributes of configuration
+                // add to attributes of configuration
                 final DefaultConfiguration top =
                     configStack.peek();
                 top.addAttribute(name, value);
             }
             else if (qName.equals(MESSAGE)) {
-                //extract key and value
+                // extract key and value
                 final String key = attributes.getValue(KEY);
                 final String value = attributes.getValue(VALUE);
 
-                //add to messages of configuration
+                // add to messages of configuration
                 final DefaultConfiguration top = configStack.peek();
                 top.addMessage(key, value);
             }

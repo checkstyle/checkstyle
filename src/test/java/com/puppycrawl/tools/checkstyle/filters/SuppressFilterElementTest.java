@@ -54,7 +54,7 @@ public class SuppressFilterElementTest {
         final LocalizedMessage message =
             new LocalizedMessage(1, 0, "", "", null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
-        //deny because there are matches on file and check names
+        // deny because there are matches on file and check names
         assertFalse(filter.accept(ev), "Names match");
     }
 
@@ -82,7 +82,7 @@ public class SuppressFilterElementTest {
                 new SuppressFilterElement("Test", "Test", null, null, "1-9, 11", null);
         final SuppressFilterElement filter3 =
                 new SuppressFilterElement("Test", "Test", null, null, null, null);
-        //deny because there are matches on file name, check name, and line
+        // deny because there are matches on file name, check name, and line
         assertFalse(filter1.accept(ev), "In range 1-10");
         assertTrue(filter2.accept(ev), "Not in 1-9, 11");
         assertFalse(filter3.accept(ev), "none");
@@ -98,7 +98,7 @@ public class SuppressFilterElementTest {
         final SuppressFilterElement filter2 =
                 new SuppressFilterElement("Test", "Test", null, null, null, "1-9, 11");
 
-        //deny because there are matches on file name, check name, and column
+        // deny because there are matches on file name, check name, and column
         assertFalse(filter1.accept(ev), "In range 1-10");
         assertTrue(filter2.accept(ev), "Not in 1-9, 1)");
     }

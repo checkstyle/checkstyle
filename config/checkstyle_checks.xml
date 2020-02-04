@@ -601,6 +601,12 @@
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />
     </module>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/7388 -->
+    <module name="TodoComment">
+      <property name="id" value="commentStartWithSpace"/>
+      <property name="format" value="^([^\s\/*])"/>
+      <message key="todo.match" value="Comment text should start with space."/>
+    </module>
     <module name="TrailingComment"/>
     <module name="UncommentedMain">
       <property name="excludedClasses" value="\.(Main|JavadocPropertiesGenerator)$"/>

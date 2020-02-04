@@ -33,10 +33,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * forbidden. No check occurs if there is a line wrap at the iterator, as in
  * </p>
  * <pre>
-for (Iterator foo = very.long.line.iterator();
-      foo.hasNext();
-     )
-   </pre>
+ * for (Iterator foo = very.long.line.iterator();
+ *     foo.hasNext();
+ *    )
+ * </pre>
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to pad an empty for iterator.
@@ -109,11 +109,11 @@ public class EmptyForIteratorPadCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (!ast.hasChildren()) {
-            //empty for iterator. test pad after semi.
+            // empty for iterator. test pad after semi.
             final DetailAST semi = ast.getPreviousSibling();
             final String line = getLines()[semi.getLineNo() - 1];
             final int after = semi.getColumnNo() + 1;
-            //don't check if at end of line
+            // don't check if at end of line
             if (after < line.length()) {
                 if (option == PadOption.NOSPACE
                     && Character.isWhitespace(line.charAt(after))) {

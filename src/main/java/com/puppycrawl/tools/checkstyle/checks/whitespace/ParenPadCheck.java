@@ -248,8 +248,8 @@ public class ParenPadCheck extends AbstractParenPadCheck {
                 processRight(childAst);
             }
             else if (!isAcceptableToken(childAst)) {
-                //Traverse all subtree tokens which will never be configured
-                //to be launched in visitToken()
+                // Traverse all subtree tokens which will never be configured
+                // to be launched in visitToken()
                 processExpression(childAst);
             }
             childAst = childAst.getNextSibling();
@@ -324,7 +324,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     private static boolean isFollowsEmptyForIterator(DetailAST ast) {
         boolean result = false;
         final DetailAST parent = ast.getParent();
-        //Only traditional for statements are examined, not for-each statements
+        // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                 parent.findFirstToken(TokenTypes.FOR_ITERATOR);
@@ -341,7 +341,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     private static boolean isPrecedingEmptyForInit(DetailAST ast) {
         boolean result = false;
         final DetailAST parent = ast.getParent();
-        //Only traditional for statements are examined, not for-each statements
+        // Only traditional for statements are examined, not for-each statements
         if (parent.findFirstToken(TokenTypes.FOR_EACH_CLAUSE) == null) {
             final DetailAST forIterator =
                     parent.findFirstToken(TokenTypes.FOR_INIT);

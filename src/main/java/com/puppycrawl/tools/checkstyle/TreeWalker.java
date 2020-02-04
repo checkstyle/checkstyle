@@ -213,7 +213,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         else {
             tokens = check.getRequiredTokens();
 
-            //register configured tokens
+            // register configured tokens
             final int[] acceptableTokens = check.getAcceptableTokens();
             Arrays.sort(acceptableTokens);
             for (String token : checkTokens) {

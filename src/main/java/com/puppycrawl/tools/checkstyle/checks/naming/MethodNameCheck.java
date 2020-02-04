@@ -216,8 +216,8 @@ public class MethodNameCheck
         if (!allowClassName) {
             final DetailAST method =
                 ast.findFirstToken(TokenTypes.IDENT);
-            //in all cases this will be the classDef type except anon inner
-            //with anon inner classes this will be the Literal_New keyword
+            // in all cases this will be the classDef type except anon inner
+            // with anon inner classes this will be the Literal_New keyword
             final DetailAST classDefOrNew = ast.getParent().getParent();
             final DetailAST classIdent =
                 classDefOrNew.findFirstToken(TokenTypes.IDENT);
