@@ -137,7 +137,7 @@ public final class SuppressionsLoader
                              Attributes attributes)
             throws SAXException {
         if ("suppress".equals(qName)) {
-            //add SuppressFilterElement filter to the filter chain
+            // add SuppressFilterElement filter to the filter chain
             final SuppressFilterElement suppress = getSuppressElement(attributes);
             filterChain.addFilter(suppress);
         }

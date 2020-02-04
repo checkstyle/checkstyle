@@ -110,7 +110,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
-            //parent is set in setNextSibling or parent.setFirstChild
+            // parent is set in setNextSibling or parent.setFirstChild
             final DetailAstImpl previousSiblingNode = previousSibling;
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
 
@@ -136,7 +136,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         clearBranchTokenTypes();
         clearChildCountCache(parent);
         if (ast != null) {
-            //parent is set in setNextSibling
+            // parent is set in setNextSibling
             final DetailAstImpl nextSibling = getNextSibling();
             final DetailAstImpl astImpl = (DetailAstImpl) ast;
 

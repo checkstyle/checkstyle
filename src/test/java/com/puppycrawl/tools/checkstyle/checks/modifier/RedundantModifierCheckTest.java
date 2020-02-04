@@ -60,7 +60,7 @@ public class RedundantModifierCheckTest
             "57:9: " + getCheckMessage(MSG_KEY, "public"),
             "63:9: " + getCheckMessage(MSG_KEY, "abstract"),
             "66:9: " + getCheckMessage(MSG_KEY, "public"),
-            //"69:9: Redundant 'abstract' modifier.",
+            // "69:9: Redundant 'abstract' modifier.",
             "72:9: " + getCheckMessage(MSG_KEY, "final"),
             "79:13: " + getCheckMessage(MSG_KEY, "final"),
             "88:12: " + getCheckMessage(MSG_KEY, "final"),

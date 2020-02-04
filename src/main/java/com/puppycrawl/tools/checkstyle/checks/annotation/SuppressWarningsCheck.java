@@ -203,9 +203,9 @@ public class SuppressWarningsCheck extends AbstractCheck {
                 warning = token.findFirstToken(TokenTypes.EXPR);
             }
 
-            //rare case with empty array ex: @SuppressWarnings({})
+            // rare case with empty array ex: @SuppressWarnings({})
             if (warning == null) {
-                //check to see if empty warnings are forbidden -- are by default
+                // check to see if empty warnings are forbidden -- are by default
                 logMatch(warningHolder, "");
             }
             else {
@@ -213,7 +213,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
                     if (warning.getType() == TokenTypes.EXPR) {
                         final DetailAST fChild = warning.getFirstChild();
                         switch (fChild.getType()) {
-                            //typical case
+                            // typical case
                             case TokenTypes.STRING_LITERAL:
                                 final String warningText =
                                     removeQuotes(warning.getFirstChild().getText());

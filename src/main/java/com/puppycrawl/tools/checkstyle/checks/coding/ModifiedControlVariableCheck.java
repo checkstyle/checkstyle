@@ -193,7 +193,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR:
             case TokenTypes.FOR_ITERATOR:
             case TokenTypes.FOR_EACH_CLAUSE:
-                //we need that Tokens only at leaveToken()
+                // we need that Tokens only at leaveToken()
                 break;
             case TokenTypes.ASSIGN:
             case TokenTypes.PLUS_ASSIGN:
@@ -252,7 +252,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
             case TokenTypes.POST_INC:
             case TokenTypes.DEC:
             case TokenTypes.POST_DEC:
-                //we need that Tokens only at visitToken()
+                // we need that Tokens only at visitToken()
                 break;
             default:
                 throw new IllegalStateException(ILLEGAL_TYPE_OF_TOKEN + ast);

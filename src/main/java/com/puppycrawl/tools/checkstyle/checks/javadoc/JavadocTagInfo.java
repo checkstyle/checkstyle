@@ -393,7 +393,7 @@ public enum JavadocTagInfo {
         NAME_TO_TAG = Collections.unmodifiableMap(Arrays.stream(JavadocTagInfo.values())
             .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -> tagName)));
 
-        //Arrays sorting for binary search
+        // Arrays sorting for binary search
         Arrays.sort(DEF_TOKEN_TYPES);
         Arrays.sort(DEF_TOKEN_TYPES_DEPRECATED);
     }

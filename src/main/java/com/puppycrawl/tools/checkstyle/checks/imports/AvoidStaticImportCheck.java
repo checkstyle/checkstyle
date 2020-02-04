@@ -159,16 +159,16 @@ public class AvoidStaticImportCheck
     private static boolean isStarImportOfPackage(String classOrStaticMember, String exclude) {
         boolean result = false;
         if (exclude.endsWith(".*")) {
-            //this section allows explicit imports
-            //to be exempt when configured using
-            //a starred import
+            // this section allows explicit imports
+            // to be exempt when configured using
+            // a starred import
             final String excludeMinusDotStar =
                 exclude.substring(0, exclude.length() - 2);
             if (classOrStaticMember.startsWith(excludeMinusDotStar)
                     && !classOrStaticMember.equals(excludeMinusDotStar)) {
                 final String member = classOrStaticMember.substring(
                         excludeMinusDotStar.length() + 1);
-                //if it contains a dot then it is not a member but a package
+                // if it contains a dot then it is not a member but a package
                 if (member.indexOf('.') == -1) {
                     result = true;
                 }

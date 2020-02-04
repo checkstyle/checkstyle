@@ -271,7 +271,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      */
     private ElementStyle elementStyle = ElementStyle.COMPACT_NO_ARRAY;
 
-    //defaulting to NEVER because of the strange compiler behavior
+    // defaulting to NEVER because of the strange compiler behavior
     /**
      * Define the policy for trailing comma in arrays.
      */
@@ -431,13 +431,13 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         final DetailAST arrayInit =
             annotation.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
 
-        //in compact style with one value
+        // in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
             log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
-        //in expanded style with pairs
+        // in expanded style with pairs
         else {
             DetailAST ast = annotation.getFirstChild();
             while (ast != null) {
@@ -490,7 +490,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
     private void logCommaViolation(final DetailAST ast) {
         final DetailAST rCurly = ast.findFirstToken(TokenTypes.RCURLY);
 
-        //comma can be null if array is empty
+        // comma can be null if array is empty
         final DetailAST comma = rCurly.getPreviousSibling();
 
         if (trailingArrayComma == TrailingArrayComma.ALWAYS) {

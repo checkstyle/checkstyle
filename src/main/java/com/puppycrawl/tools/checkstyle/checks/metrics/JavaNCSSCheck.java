@@ -181,7 +181,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     public void beginTree(DetailAST rootAST) {
         counters = new ArrayDeque<>();
 
-        //add a counter for the file
+        // add a counter for the file
         counters.push(new Counter());
     }
 
@@ -194,13 +194,13 @@ public class JavaNCSSCheck extends AbstractCheck {
             || tokenType == TokenTypes.CTOR_DEF
             || tokenType == TokenTypes.STATIC_INIT
             || tokenType == TokenTypes.INSTANCE_INIT) {
-            //add a counter for this class/method
+            // add a counter for this class/method
             counters.push(new Counter());
         }
 
-        //check if token is countable
+        // check if token is countable
         if (isCountable(ast)) {
-            //increment the stacked counters
+            // increment the stacked counters
             counters.forEach(Counter::increment);
         }
     }
@@ -212,7 +212,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             || tokenType == TokenTypes.CTOR_DEF
             || tokenType == TokenTypes.STATIC_INIT
             || tokenType == TokenTypes.INSTANCE_INIT) {
-            //pop counter from the stack
+            // pop counter from the stack
             final Counter counter = counters.pop();
 
             final int count = counter.getCount();
@@ -221,7 +221,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             }
         }
         else if (tokenType == TokenTypes.CLASS_DEF) {
-            //pop counter from the stack
+            // pop counter from the stack
             final Counter counter = counters.pop();
 
             final int count = counter.getCount();
@@ -233,7 +233,7 @@ public class JavaNCSSCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST rootAST) {
-        //pop counter from the stack
+        // pop counter from the stack
         final Counter counter = counters.pop();
 
         final int count = counter.getCount();
@@ -285,11 +285,11 @@ public class JavaNCSSCheck extends AbstractCheck {
 
         final int tokenType = ast.getType();
 
-        //check if an expression is countable
+        // check if an expression is countable
         if (tokenType == TokenTypes.EXPR) {
             countable = isExpressionCountable(ast);
         }
-        //check if an variable definition is countable
+        // check if an variable definition is countable
         else if (tokenType == TokenTypes.VARIABLE_DEF) {
             countable = isVariableDefCountable(ast);
         }
@@ -305,7 +305,7 @@ public class JavaNCSSCheck extends AbstractCheck {
     private static boolean isVariableDefCountable(DetailAST ast) {
         boolean countable = false;
 
-        //count variable definitions only if they are direct child to a slist or
+        // count variable definitions only if they are direct child to a slist or
         // object block
         final int parentType = ast.getParent().getType();
 
@@ -313,9 +313,9 @@ public class JavaNCSSCheck extends AbstractCheck {
             || parentType == TokenTypes.OBJBLOCK) {
             final DetailAST prevSibling = ast.getPreviousSibling();
 
-            //is countable if no previous sibling is found or
-            //the sibling is no COMMA.
-            //This is done because multiple assignment on one line are counted
+            // is countable if no previous sibling is found or
+            // the sibling is no COMMA.
+            // This is done because multiple assignment on one line are counted
             // as 1
             countable = prevSibling == null
                     || prevSibling.getType() != TokenTypes.COMMA;
@@ -333,9 +333,9 @@ public class JavaNCSSCheck extends AbstractCheck {
     private static boolean isExpressionCountable(DetailAST ast) {
         final boolean countable;
 
-        //count expressions only if they are direct child to a slist (method
+        // count expressions only if they are direct child to a slist (method
         // body, for loop...)
-        //or direct child of label,if,else,do,while,for
+        // or direct child of label,if,else,do,while,for
         final int parentType = ast.getParent().getType();
         switch (parentType) {
             case TokenTypes.SLIST :
@@ -345,7 +345,7 @@ public class JavaNCSSCheck extends AbstractCheck {
             case TokenTypes.LITERAL_WHILE :
             case TokenTypes.LITERAL_IF :
             case TokenTypes.LITERAL_ELSE :
-                //don't count if or loop conditions
+                // don't count if or loop conditions
                 final DetailAST prevSibling = ast.getPreviousSibling();
                 countable = prevSibling == null
                     || prevSibling.getType() != TokenTypes.LPAREN;

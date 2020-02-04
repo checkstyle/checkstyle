@@ -86,7 +86,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
                 getPath("InputConfigurationLoaderChecks.xml"), new PropertiesExpander(props));
 
-        //verify the root, and property substitution
+        // verify the root, and property substitution
         final Properties attributes = new Properties();
         attributes.setProperty("tabWidth", "4");
         attributes.setProperty("basedir", "basedir");
@@ -241,13 +241,13 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             (DefaultConfiguration) loadConfiguration(
                 "InputConfigurationLoaderChecks.xml", props);
 
-        //verify the root, and property substitution
+        // verify the root, and property substitution
         final Properties atts = new Properties();
         atts.setProperty("tabWidth", "4");
         atts.setProperty("basedir", "basedir");
         verifyConfigNode(config, "Checker", 3, atts);
 
-        //verify children
+        // verify children
         final Configuration[] children = config.getChildren();
         atts.clear();
         verifyConfigNode(
@@ -261,7 +261,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
             8,
             atts);
 
-        //verify TreeWalker's first, last, NoWhitespaceAfterCheck
+        // verify TreeWalker's first, last, NoWhitespaceAfterCheck
         final Configuration[] grandchildren = children[0].getChildren();
         atts.clear();
         verifyConfigNode(

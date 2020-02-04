@@ -818,7 +818,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "112: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
         };
 
-        //Test input for this test case is not checked due to issue #693.
+        // Test input for this test case is not checked due to issue #693.
         verify(checkConfig, fileName, expected);
     }
 

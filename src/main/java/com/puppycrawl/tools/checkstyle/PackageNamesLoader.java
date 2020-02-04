@@ -91,7 +91,7 @@ public final class PackageNamesLoader
                              String qName,
                              Attributes attributes) {
         if (PACKAGE_ELEMENT_NAME.equals(qName)) {
-            //push package name, name is mandatory attribute with not empty value by DTD
+            // push package name, name is mandatory attribute with not empty value by DTD
             final String name = attributes.getValue("name");
             packageStack.push(name);
         }
@@ -137,8 +137,8 @@ public final class PackageNamesLoader
             throws CheckstyleException {
         final Set<String> result;
         try {
-            //create the loader outside the loop to prevent PackageObjectFactory
-            //being created anew for each file
+            // create the loader outside the loop to prevent PackageObjectFactory
+            // being created anew for each file
             final PackageNamesLoader namesLoader = new PackageNamesLoader();
 
             final Enumeration<URL> packageFiles = classLoader.getResources(CHECKSTYLE_PACKAGES);

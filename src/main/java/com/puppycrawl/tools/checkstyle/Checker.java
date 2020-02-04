@@ -273,7 +273,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @throws Error wraps any java.lang.Error happened during execution
      * @noinspection ProhibitedExceptionThrown
      */
-    //-@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
+    // -@cs[CyclomaticComplexity] no easy way to split this logic of processing the file
     private void processFiles(List<File> files) throws CheckstyleException {
         for (final File file : files) {
             String fileName = null;

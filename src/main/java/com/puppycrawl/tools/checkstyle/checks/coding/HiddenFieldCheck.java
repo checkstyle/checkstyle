@@ -286,11 +286,11 @@ public class HiddenFieldCheck
      * @param type type of the token
      */
     private void visitOtherTokens(DetailAST ast, int type) {
-        //A more thorough check of enum constant class bodies is
-        //possible (checking for hidden fields against the enum
-        //class body in addition to enum constant class bodies)
-        //but not attempted as it seems out of the scope of this
-        //check.
+        // A more thorough check of enum constant class bodies is
+        // possible (checking for hidden fields against the enum
+        // class body in addition to enum constant class bodies)
+        // but not attempted as it seems out of the scope of this
+        // check.
         final DetailAST typeMods = ast.findFirstToken(TokenTypes.MODIFIERS);
         final boolean isStaticInnerType =
                 typeMods != null
@@ -305,7 +305,7 @@ public class HiddenFieldCheck
         }
         final FieldFrame newFrame = new FieldFrame(frame, isStaticInnerType, frameName);
 
-        //add fields to container
+        // add fields to container
         final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
         // enum constants may not have bodies
         if (objBlock != null) {
@@ -335,7 +335,7 @@ public class HiddenFieldCheck
         if (ast.getType() == TokenTypes.CLASS_DEF
             || ast.getType() == TokenTypes.ENUM_DEF
             || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-            //pop
+            // pop
             frame = frame.getParent();
         }
     }

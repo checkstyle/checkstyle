@@ -151,7 +151,7 @@ public class InnerAssignmentCheck
             TokenTypes.ASSIGN,            // '='
             TokenTypes.DIV_ASSIGN,        // "/="
             TokenTypes.PLUS_ASSIGN,       // "+="
-            TokenTypes.MINUS_ASSIGN,      //"-="
+            TokenTypes.MINUS_ASSIGN,      // "-="
             TokenTypes.STAR_ASSIGN,       // "*="
             TokenTypes.MOD_ASSIGN,        // "%="
             TokenTypes.SR_ASSIGN,         // ">>="

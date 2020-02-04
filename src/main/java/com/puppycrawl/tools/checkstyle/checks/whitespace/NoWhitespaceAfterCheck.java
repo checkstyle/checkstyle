@@ -233,7 +233,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private static int getPositionAfter(DetailAST ast) {
         final int after;
-        //If target of possible redundant whitespace is in method definition.
+        // If target of possible redundant whitespace is in method definition.
         if (ast.getType() == TokenTypes.IDENT
                 && ast.getNextSibling() != null
                 && ast.getNextSibling().getType() == TokenTypes.LPAREN) {
@@ -318,7 +318,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                 case TokenTypes.METHOD_REF:
                     final DetailAST ident = getIdentLastToken(ast);
                     if (ident == null) {
-                        //i.e. int[]::new
+                        // i.e. int[]::new
                         previousElement = ast.getFirstChild();
                     }
                     else {
@@ -394,7 +394,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         if (result == null) {
             result = getIdentLastToken(ast);
             if (result == null) {
-                //primitive literal expected
+                // primitive literal expected
                 result = ast.getFirstChild();
             }
         }
@@ -427,7 +427,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         else if (ident.getLineNo() < ast.getLineNo()) {
             previousElement = ident;
         }
-        //ident and lastTypeNode lay on one line
+        // ident and lastTypeNode lay on one line
         else {
             final int instanceOfSize = 13;
             // +2 because ast has `[]` after the ident

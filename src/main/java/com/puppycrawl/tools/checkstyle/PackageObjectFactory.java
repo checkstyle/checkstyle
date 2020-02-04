@@ -140,7 +140,7 @@ public class PackageObjectFactory implements ModuleFactory {
             throw new IllegalArgumentException(NULL_PACKAGE_MESSAGE);
         }
 
-        //create a copy of the given set, but retain ordering
+        // create a copy of the given set, but retain ordering
         packages = new LinkedHashSet<>(packageNames);
         this.moduleClassLoader = moduleClassLoader;
         this.moduleLoadOption = moduleLoadOption;

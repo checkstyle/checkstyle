@@ -572,7 +572,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 previousImportObjectFromCurrentGroup = importObject;
             }
             else {
-                //not the last group, last one is always NON_GROUP
+                // not the last group, last one is always NON_GROUP
                 if (customImportOrderRules.size() > currentGroupNumber + 1) {
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
