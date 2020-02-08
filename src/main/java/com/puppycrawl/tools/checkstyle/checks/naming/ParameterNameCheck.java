@@ -67,52 +67,98 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * An example of how to configure the check:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"/&gt;
+ * &lt;module name=&quot;ParameterName&quot;/&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void method1(int v1) {} // OK
+ *   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+ * }
  * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"&gt;
- *   &lt;property name="format" value="^[a-z][_a-zA-Z0-9]+$"/&gt;
+ * &lt;module name=&quot;ParameterName&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][_a-zA-Z0-9]+$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void method1(int v1) {} // OK
+ *   void method2(int v_2) {} // OK
+ *   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][_a-zA-Z0-9]+$'
+ * }
  * </pre>
  * <p>
  * An example of how to configure the check to skip methods with Override annotation from
  * validation:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"&gt;
- *   &lt;property name="ignoreOverridden" value="true"/&gt;
+ * &lt;module name=&quot;ParameterName&quot;&gt;
+ *   &lt;property name=&quot;ignoreOverridden&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void method1(int v1) {} // OK
+ *   void method2(int V2) {} // violation, name 'V2' must match pattern '^[a-z][a-zA-Z0-9]*$'
+ *   &#064;Override
+ *   public boolean equals(Object V3) { // OK
+ *       return true;
+ *   }
+ * }
  * </pre>
  * <p>
  * An example of how to configure the check for names that begin with a lower case letter, followed
  * by letters and digits is:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"&gt;
- *   &lt;property name="format" value="^[a-z][a-zA-Z0-9]+$"/&gt;
+ * &lt;module name=&quot;ParameterName&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-zA-Z0-9]+$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void method1(int v1) {} // OK
+ *   void method2(int v_2) {} // violation, name 'v_2' must match pattern '^[a-z][a-zA-Z0-9]+$'
+ *   void method3(int V3) {} // violation, name 'V3' must match pattern '^[a-z][a-zA-Z0-9]+$'
+ * }
  * </pre>
  * <p>
  * The following configuration checks that the parameters always start with two lowercase
  * characters and, in addition, that public method parameters cannot be one character long:
  * </p>
  * <pre>
- * &lt;module name="ParameterName"&gt;
- *   &lt;property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/&gt;
- *   &lt;property name="accessModifiers" value="protected, package, private"/&gt;
- *   &lt;message key="name.invalidPattern"
- *     value="Parameter name ''{0}'' must match pattern ''{1}''"/&gt;
+ * &lt;module name=&quot;ParameterName&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
+ *   &lt;property name=&quot;accessModifiers&quot;
+ *     value=&quot;protected, package, private&quot;/&gt;
+ *   &lt;message key=&quot;name.invalidPattern&quot;
+ *     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
  * &lt;/module&gt;
- * &lt;module name="ParameterName"&gt;
- *   &lt;property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/&gt;
- *   &lt;property name="accessModifiers" value="public"/&gt;
- *   &lt;message key="name.invalidPattern"
- *     value="Parameter name ''{0}'' must match pattern ''{1}''"/&gt;
+ * &lt;module name=&quot;ParameterName&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
+ *   &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+ *   &lt;message key=&quot;name.invalidPattern&quot;
+ *     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   void method1(int v1) {} // OK
+ *   protected method2(int V2) {} // violation, Parameter name 'V2'
+ *                                // must match pattern '^[a-z]([a-z0-9][a-zA-Z0-9]*)?$'
+ *   private method3(int a) {} // OK
+ *   public method4(int b) {} // violation, Parameter name 'b'
+ *                            // must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'
+ * }
  * </pre>
  *
  * @since 3.0
