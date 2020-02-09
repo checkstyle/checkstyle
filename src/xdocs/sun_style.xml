@@ -68,6 +68,13 @@
         </p>
       </subsection>
       <subsection name="Coverage table" id="Sun_Coverage_table">
+        <p>
+          <b>ATTENTION:</b>
+          Links to config and test in following table reference to latest (not released yet) config.
+          Config might be slightly different from what we have in latest release.
+          Please always use config that is embedded to jar or use a custom version copied
+          from one that matches your checkstyle version.
+        </p>
         <div class="wrapper">
           <table>
             <thead>
