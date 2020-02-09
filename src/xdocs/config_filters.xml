@@ -1829,6 +1829,12 @@ public class TestClass {
             Checkstyle Style</a>
           </li>
         </ul>
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SuppressionXpathSingleFilter">
+            Google Style</a>
+          </li>
+        </ul>
       </subsection>
       <subsection name="Package" id="SuppressionXpathSingleFilter_Package">
         <p> com.puppycrawl.tools.checkstyle.filters </p>

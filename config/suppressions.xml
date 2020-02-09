@@ -6,7 +6,7 @@
 
 <suppressions>
     <!-- can't split long messages between lines -->
-    <suppress checks="RegexpSingleline" files="google_checks\.xml" lines="56,113"/>
+    <suppress checks="RegexpSingleline" files="google_checks\.xml" lines="56,119"/>
     <!-- don't validate generated files -->
     <suppress checks="RegexpSingleline" files="releasenotes\.xml"/>
 
