@@ -38,7 +38,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li> should be preceded with whitespace only
  *   in generic methods definitions.</li>
  * <li> should not be preceded with whitespace
- *   when it is precede method name or following type name.</li>
+ *   when it is precede method name or constructor.</li>
+ * <li> should not be preceded with whitespace when following type name.</li>
  * <li> should not be followed with whitespace in all cases.</li>
  * </ul>
  * <p>
@@ -47,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li> should not be preceded with whitespace in all cases.</li>
  * <li> should be followed with whitespace in almost all cases,
- *   except diamond operators and when preceding method name.</li></ul>
+ *   except diamond operators and when preceding method name or constructor.</li></ul>
  * <p>
  * Examples with correct spacing:
  * </p>
@@ -66,6 +67,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
  * // Method reference
  * sort(list, Comparable::&lt;String&gt;compareTo);
+ * // Constructor call
+ * MyClass obj = new &lt;String&gt;MyClass();
  * </pre>
  * <p>
  * To configure the check:
@@ -214,12 +217,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
      */
     private void processSingleGeneric(DetailAST ast, String line, int after) {
         final char charAfter = line.charAt(after);
-
-        // Need to handle a number of cases. First is:
-        //    Collections.<Object>emptySet();
-        //                        ^
-        //                        +--- whitespace not allowed
-        if (isGenericBeforeMethod(ast)) {
+        if (isGenericBeforeMethod(ast) || isGenericBeforeCtor(ast)) {
             if (Character.isWhitespace(charAfter)) {
                 log(ast, MSG_WS_FOLLOWED, CLOSE_ANGLE_BRACKET);
             }
@@ -227,6 +225,18 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         else if (!isCharacterValidAfterGenericEnd(charAfter)) {
             log(ast, MSG_WS_ILLEGAL_FOLLOW, CLOSE_ANGLE_BRACKET);
         }
+    }
+
+    /**
+     * Checks if generic is before constructor invocation.
+     * @param ast ast
+     * @return true if generic before a constructor invocation
+     */
+    private static boolean isGenericBeforeCtor(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return parent.getParent().getType() == TokenTypes.LITERAL_NEW
+                && (parent.getNextSibling().getType() == TokenTypes.IDENT
+                    || parent.getNextSibling().getType() == TokenTypes.DOT);
     }
 
     /**
@@ -270,7 +280,8 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             final DetailAST parent = ast.getParent();
             final DetailAST grandparent = parent.getParent();
             if (grandparent.getType() == TokenTypes.CTOR_DEF
-                    || grandparent.getType() == TokenTypes.METHOD_DEF) {
+                    || grandparent.getType() == TokenTypes.METHOD_DEF
+                    || isGenericBeforeCtor(ast)) {
                 // Require whitespace
                 if (!Character.isWhitespace(line.charAt(before))) {
                     log(ast, MSG_WS_NOT_PRECEDED, OPEN_ANGLE_BRACKET);

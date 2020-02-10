@@ -77,5 +77,18 @@ Integer> x = new ArrayList<Integer
         Map<Class<?>, Integer> a = new HashMap<Class<?>, Integer>();
         Map<Class<?>, Integer> b = (Map<Class<?>, Integer>) a;
     }
+    Object ok = new <String>Object();
+    Object notOkStart = new<String>Object(); // violation
+    Object notOkEnd = new <String> Object(); // violation
+    Object notOkStartAndEnd = new<String> Object(); // violation
+    Object okWithPackage = new <String>java.lang.Object();
+    Object ok2 = new <String>Outer.Inner();
+    Object notOkStart2 = new<String>Outer.Inner(); // violation
+    Object notOkEnd2 = new <String> Outer.Inner(); // violation
+    Object notOkStartAndEnd2 = new<String> Outer.Inner(); // violation
 }
 interface SupplierFunction<T> extends Map<List<T>, T> {}
+
+class Outer {
+    static class Inner {}
+}

@@ -643,7 +643,8 @@ class Foo {
         <ul>
           <li> should be preceded with whitespace only in generic methods definitions.</li>
           <li> should not be preceded with whitespace when it is precede method name
-               or following type name.</li>
+            or constructor.</li>
+          <li> should not be preceded with whitespace when following type name.</li>
           <li> should not be followed with whitespace in all cases.</li>
         </ul>
         <p>
@@ -652,7 +653,7 @@ class Foo {
         <ul>
           <li> should not be preceded with whitespace in all cases.</li>
           <li> should be followed with whitespace in almost all cases, except diamond operators
-               and when preceding method name.</li>
+               and when preceding method name or constructor.</li>
         </ul>
 
         <p>
@@ -673,6 +674,8 @@ Pair&lt;Integer, String&gt; p1 = new Pair&lt;&gt;(1, "apple");
 List&lt;T&gt; list = ImmutableList.Builder&lt;T&gt;::new;
 // Method reference
 sort(list, Comparable::&lt;String&gt;compareTo);
+// Constructor call
+MyClass obj = new &lt;String&gt;MyClass();
         </source>
       </subsection>
 

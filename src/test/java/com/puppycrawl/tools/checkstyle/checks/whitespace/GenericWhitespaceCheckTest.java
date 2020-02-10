@@ -85,6 +85,14 @@ public class GenericWhitespaceCheckTest
             "42:29: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
             "60:59: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "&"),
             "63:59: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "81:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "82:34: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "83:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "83:41: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "86:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "87:35: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
+            "88:35: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "<"),
+            "88:42: " + getCheckMessage(MSG_WS_FOLLOWED, ">"),
         };
         verify(checkConfig, getPath("InputGenericWhitespaceDefault.java"), expected);
     }
