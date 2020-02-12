@@ -169,12 +169,13 @@ assembly-run-all-jar)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
-  FOLDER=src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule332nolinewrap
-  FILE=InputNoLineWrapGood.java
+  mkdir -p .ci-temp
+  FOLDER=src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks
+  FILE=InputRightCurlyAloneOrEmptyNoViolations.java
   java -jar target/checkstyle-$CS_POM_VERSION-all.jar -c /google_checks.xml \
-        $FOLDER/$FILE > output.log
-  if grep -vE '(Starting audit)|(warning)|(Audit done.)' output.log ; then exit 1; fi
-  if grep 'warning' output.log ; then exit 1; fi
+        $FOLDER/$FILE > .ci-temp/output.log
+  if grep -vE '(Starting audit)|(warning)|(Audit done.)' .ci-temp/output.log ; then exit 1; fi
+  if grep 'warning' .ci-temp/output.log ; then exit 1; fi
   ;;
 
 release-dry-run)
