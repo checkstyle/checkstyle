@@ -618,11 +618,11 @@ public int foo() { ... }
         </source>
         <p>Examples of validating source code:</p>
         <source>
-@deprecated
+@Deprecated
 public static final int MY_CONST = 123456; // no violation
 
 /** This javadoc is missing deprecated tag. */
-@deprecated
+@Deprecated
 public static final int COUNTER = 10; // violation
         </source>
       </subsection>
