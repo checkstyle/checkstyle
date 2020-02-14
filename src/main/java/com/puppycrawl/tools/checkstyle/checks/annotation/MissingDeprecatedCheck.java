@@ -83,11 +83,11 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * Examples of validating source code:
  * </p>
  * <pre>
- * &#64;deprecated
+ * &#64;Deprecated
  * public static final int MY_CONST = 123456; // no violation
  *
  * &#47;** This javadoc is missing deprecated tag. *&#47;
- * &#64;deprecated
+ * &#64;Deprecated
  * public static final int COUNTER = 10; // violation
  * </pre>
  *
