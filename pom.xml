@@ -206,7 +206,7 @@
     <maven.jacoco.plugin.version>0.8.5</maven.jacoco.plugin.version>
     <powermock.version>2.0.5</powermock.version>
     <saxon.version>9.9.1-6</saxon.version>
-    <maven.checkstyle.plugin.version>3.1.0</maven.checkstyle.plugin.version>
+    <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.37.1</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
       8.29
