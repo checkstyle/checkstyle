@@ -229,6 +229,22 @@ no-exception-checkstyle-sevntu)
   rm -rf contribution
   ;;
 
+no-exception-checkstyle-sevntu-javadoc)
+  set -e
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
+  sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
+  sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
+  sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
+  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  cd ../../
+  rm -rf contribution
+  ;;
+
 no-exception-guava)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
