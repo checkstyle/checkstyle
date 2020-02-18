@@ -193,6 +193,18 @@ build:
           echo "build is skipped ..."
         fi
 
+  # disabled until https://github.com/checkstyle/checkstyle/issues/7534
+  #
+  # - script:
+  #     name: NoExceptiontest - Checkstyle ,sevntu-checkstyle javadoc
+  #     code: |
+  #       if [[ $RUN_JOB == 1 ]]; then
+  #         echo "Command: ./.ci/wercker.sh no-exception-checkstyle-sevntu-javadoc"
+  #         ./.ci/wercker.sh no-exception-checkstyle-sevntu-javadoc
+  #       else
+  #         echo "build is skipped ..."
+  #       fi
+
   - script:
       name: NoExceptiontest - Guava
       code: |
