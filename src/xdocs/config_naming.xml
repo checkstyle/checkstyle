@@ -332,7 +332,7 @@ public class MyClass { // OK, ignore checking the class name
         <div class="wrapper">
           <pre>
 abstract class AbstractFirstClass {} // OK
-abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
+abstract class AbstractSecondClass {} // OK
 class AbstractThirdClass {} // OK, no "abstract" modifier
           </pre>
         </div>
