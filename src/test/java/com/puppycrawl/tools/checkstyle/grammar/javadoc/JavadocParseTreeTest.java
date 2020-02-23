@@ -388,4 +388,10 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
                 getHtmlPath("InputParagraph.javadoc"));
     }
 
+    @Test
+    public void testCdata() throws Exception {
+        verifyJavadocTree(getHtmlPath("expectedCdataAst.txt"),
+                getHtmlPath("InputCdata.javadoc"));
+    }
+
 }
