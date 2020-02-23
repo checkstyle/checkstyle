@@ -48,6 +48,20 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <pre>
  * &lt;module name=&quot;PackageAnnotation&quot;/&gt;
  * </pre>
+ * <p>Example of validating MyClass.java:</p>
+ * <pre>
+ * &#64;Deprecated
+ * package com.example.annotations.packageannotation; //violation
+ * </pre>
+ * <p>Example of fixing violation in MyClass.java:</p>
+ * <pre>
+ * package com.example.annotations.packageannotation; //ok
+ * </pre>
+ * <p>Example of validating package-info.java:</p>
+ * <pre>
+ * &#64;Deprecated
+ * package com.example.annotations.packageannotation; //ok
+ * </pre>
  *
  * @since 5.0
  */
