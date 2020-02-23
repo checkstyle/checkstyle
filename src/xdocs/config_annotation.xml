@@ -877,7 +877,20 @@ class Test5 {
 
       <subsection name="Examples" id="PackageAnnotation_Examples">
         <p> To configure the check:</p>
-        <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
+        <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt; </source>
+        <p>Example of validating MyClass.java:</p>
+        <source>
+@Deprecated
+package com.example.annotations.packageannotation; //violation
+        </source>
+        <p>Example of fixing violation in MyClass.java:</p>
+        <source>
+package com.example.annotations.packageannotation; //ok
+        </source>
+        <p>Example of validating package-info.java:</p>
+        <source>
+@Deprecated
+package com.example.annotations.packageannotation; //ok
         </source>
       </subsection>
 
