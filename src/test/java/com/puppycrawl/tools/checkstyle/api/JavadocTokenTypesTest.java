@@ -117,7 +117,6 @@ public class JavadocTokenTypesTest {
         assertEquals(94, JavadocTokenTypes.WBR_HTML_TAG_NAME, msg);
         assertEquals(2, JavadocTokenTypes.HTML_COMMENT_START, msg);
         assertEquals(91, JavadocTokenTypes.HTML_COMMENT_END, msg);
-        assertEquals(3, JavadocTokenTypes.CDATA, msg);
         assertEquals(1, JavadocTokenTypes.LEADING_ASTERISK, msg);
         assertEquals(6, JavadocTokenTypes.NEWLINE, msg);
         assertEquals(24, JavadocTokenTypes.CHAR, msg);
