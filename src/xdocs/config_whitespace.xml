@@ -2258,6 +2258,24 @@ public long toMicros(long d) { return d / (C1 / C0); }
         <source>
 &lt;module name=&quot;WhitespaceAfter&quot;/&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+              <pre>
+public void myTest() {
+    if (foo) {              // OK
+        //...
+    } else if(bar) {        // violation
+        //...
+    }
+
+    testMethod(foo, bar);   // OK
+    testMethod(foo,bar);    // violation
+
+    for (;;){}               // OK
+    for(;;){}                // violation, space after 'for' is required
+}
+              </pre>
+          </div>
 
         <p>
           To configure the check for whitespace only after COMMA and SEMI
@@ -2268,6 +2286,20 @@ public long toMicros(long d) { return d / (C1 / C0); }
   &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>Example:</p>
+          <div class='wrapper'>
+                  <pre>
+public void myTest() {
+    int a; int b;           // OK
+    int a;int b;            // violation
+
+    testMethod(foo, bar);   // OK
+    testMethod(foo,bar);    // violation
+
+    for(;;) {} // OK
+}
+                  </pre>
+          </div>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAfter_Example_of_Usage">
