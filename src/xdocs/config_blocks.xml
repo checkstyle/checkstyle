@@ -822,6 +822,40 @@ try {
 &lt;/module&gt;
         </source>
 
+<<<<<<< HEAD
+		<p>		
+          Examples of single-line statements without braces:
+		</p>
+		
+		<source>
+int a = 5;
+int b = 10;
+
+//single-line statements for "if-else" statement
+if (a &gt; b)
+    System.out.println("a is greater than b");
+else
+    System.out.println("b is greater than a");
+
+//single-line statements for "while" loop
+while (a &lt; 7)
+    a++;
+System.out.println("New value of a is: " + a);
+
+//single-line statements for "do-while" loop
+do
+    b--;
+while (b &gt; 8);
+System.out.println("New value of b is: " + b);
+
+//single-line statements for "for" loop
+for (int i = 0; i &gt; a; i += 2)
+    System.out.print(i + " ");
+	
+		</source>
+		
+=======
+>>>>>>> parent of 27b7c6f37... added examples for single-line statements without braces (#7583)
         <p>
           Next statements won't be violated by check:
         </p>
