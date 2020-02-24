@@ -95,13 +95,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * Example to allow multiple annotations on the same line
+ * Default configuration, to allow one single parameterless annotation on the same line:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("deprecation") &#64;Mock DataLoader loader; // no violations
+ * &lt;module name=&quot;AnnotationLocation&quot;/&gt;
  * </pre>
  * <p>
- * Use the following configuration:
+ * Example for above configuration:
+ * </p>
+ * <pre>
+ * &#64;NotNull private boolean field1; //ok
+ * &#64;Override public int hashCode() { return 1; } //ok
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //violation
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
+ * &#64;NotNull &#64;Mock DataLoader loader; //violation
+ * </pre>
+ * <p>
+ * Use the following configuration to allow multiple annotations on the same line:
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
@@ -112,32 +127,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example to allow one single parameterless annotation on the same line
+ * Example to allow any location multiple annotations:
  * </p>
  * <pre>
- * &#64;Override public int hashCode() { ... } // no violations
- * &#64;SuppressWarnings("deprecation") public int foo() { ... } // violation
+ * &#64;NotNull private boolean field1; //ok
+ * &#64;Override public int hashCode() { return 1; } //ok
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+ * &#64;NotNull &#64;Mock DataLoader loader; //ok
  * </pre>
  * <p>
- * Use the following configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;AnnotationLocation&quot;&gt;
- *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
- *     value=&quot;true&quot;/&gt;
- *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Example to allow only one and only parameterized annotation on the same line
- * </p>
- * <pre>
- * &#64;SuppressWarnings("deprecation") DataLoader loader; // no violations
- * &#64;Mock DataLoader loader; // violation
- * </pre>
- * <p>
- * Use the following configuration:
+ * Use the following configuration to allow only one and only parameterized annotation
+ * on the same line:
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;&gt;
@@ -146,6 +152,49 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example to allow only one and only parameterized annotation on the same line:
+ * </p>
+ * <pre>
+ * &#64;NotNull private boolean field1; //violation
+ * &#64;Override public int hashCode() { return 1; } //violation
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //violation
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+ * &#64;NotNull &#64;Mock DataLoader loader; //violation
+ * </pre>
+ * <p>
+ * Use the following configuration to only validate annotations on methods to allow one
+ * single parameterless annotation on the same line:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AnnotationLocation&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+ *     value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example for above configuration to check only methods:
+ * </p>
+ * <pre>
+ * &#64;NotNull private boolean field1; //ok
+ * &#64;Override public int hashCode() { return 1; } //ok
+ * &#64;NotNull //ok
+ * private boolean field2;
+ * &#64;Override //ok
+ * public boolean equals(Object obj) { return true; }
+ * &#64;Mock DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") DataLoader loader; //ok
+ * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
+ * &#64;NotNull &#64;Mock DataLoader loader; //ok
  * </pre>
  *
  * @since 6.0
