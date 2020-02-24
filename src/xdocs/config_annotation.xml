@@ -142,13 +142,28 @@ public String getNameIfPresent() { ... }
 
       <subsection name="Examples" id="AnnotationLocation_Examples">
         <p>
-          Example to allow multiple annotations on the same line
+          Default configuration, to allow one single parameterless annotation on the same line:
         </p>
         <source>
-@SuppressWarnings("deprecation") @Mock DataLoader loader; // no violations
+&lt;module name=&quot;AnnotationLocation&quot;/&gt;
         </source>
         <p>
-          Use the following configuration:
+          Example for above configuration:
+        </p>
+        <source>
+@NotNull private boolean field1; //ok
+@Override public int hashCode() { return 1; } //ok
+@NotNull //ok
+private boolean field2;
+@Override //ok
+public boolean equals(Object obj) { return true; }
+@Mock DataLoader loader; //ok
+@SuppressWarnings("deprecation") DataLoader loader; //violation
+@SuppressWarnings("deprecation") public int foo() { return 1; } //violation
+@NotNull @Mock DataLoader loader; //violation
+        </source>
+        <p>
+          Use the following configuration to allow multiple annotations on the same line:
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
@@ -159,32 +174,23 @@ public String getNameIfPresent() { ... }
 &lt;/module&gt;
         </source>
         <p>
-          Example to allow one single parameterless annotation on the same line
+          Example to allow any location multiple annotations:
         </p>
         <source>
-@Override public int hashCode() { ... } // no violations
-@SuppressWarnings("deprecation") public int foo() { ... } // violation
+@NotNull private boolean field1; //ok
+@Override public int hashCode() { return 1; } //ok
+@NotNull //ok
+private boolean field2;
+@Override //ok
+public boolean equals(Object obj) { return true; }
+@Mock DataLoader loader; //ok
+@SuppressWarnings("deprecation") DataLoader loader; //ok
+@SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+@NotNull @Mock DataLoader loader; //ok
         </source>
         <p>
-          Use the following configuration:
-        </p>
-        <source>
-&lt;module name=&quot;AnnotationLocation&quot;&gt;
-  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
-  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
-    value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-          Example to allow only one and only parameterized annotation on the same line
-        </p>
-        <source>
-@SuppressWarnings("deprecation") DataLoader loader; // no violations
-@Mock DataLoader loader; // violation
-        </source>
-        <p>
-          Use the following configuration:
+          Use the following configuration to allow only one and only parameterized annotation
+          on the same line:
         </p>
         <source>
 &lt;module name=&quot;AnnotationLocation&quot;&gt;
@@ -193,6 +199,49 @@ public String getNameIfPresent() { ... }
     value=&quot;false&quot;/&gt;
   &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example to allow only one and only parameterized annotation on the same line:
+        </p>
+        <source>
+@NotNull private boolean field1; //violation
+@Override public int hashCode() { return 1; } //violation
+@NotNull //ok
+private boolean field2;
+@Override //ok
+public boolean equals(Object obj) { return true; }
+@Mock DataLoader loader; //violation
+@SuppressWarnings("deprecation") DataLoader loader; //ok
+@SuppressWarnings("deprecation") public int foo() { return 1; } //ok
+@NotNull @Mock DataLoader loader; //violation
+        </source>
+        <p>
+          Use the following configuration to only validate annotations on methods to allow one
+          single parameterless annotation on the same line:
+        </p>
+        <source>
+&lt;module name=&quot;AnnotationLocation&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
+  &lt;property name=&quot;allowSamelineMultipleAnnotations&quot; value=&quot;false&quot;/&gt;
+  &lt;property name=&quot;allowSamelineSingleParameterlessAnnotation&quot;
+    value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowSamelineParameterizedAnnotation&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example for above configuration to check only methods:
+        </p>
+        <source>
+@NotNull private boolean field1; //ok
+@Override public int hashCode() { return 1; } //ok
+@NotNull //ok
+private boolean field2;
+@Override //ok
+public boolean equals(Object obj) { return true; }
+@Mock DataLoader loader; //ok
+@SuppressWarnings("deprecation") DataLoader loader; //ok
+@SuppressWarnings("deprecation") public int foo() { return 1; } //violation
+@NotNull @Mock DataLoader loader; //ok
         </source>
       </subsection>
 
