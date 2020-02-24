@@ -62,6 +62,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;WhitespaceAfter&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *  public void myTest() {
+ *      if (foo) {              // OK
+ *              //...
+ *      } else if(bar) {        // violation
+ *              //...
+ *      }
+ *
+ *      testMethod(foo, bar);   // OK
+ *      testMethod(foo,bar);    // violation
+ *
+ *      for (;;){}               // OK
+ *      for(;;){}                // violation, space after 'for' is required
+ *      }
+ * </pre>
  * <p>
  * To configure the check for whitespace only after COMMA and SEMI tokens:
  * </p>
@@ -70,7 +86,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ *     public void myTest() {
+ *         int a; int b;           // OK
+ *         int a;int b;            // violation
  *
+ *         testMethod(foo, bar);   // OK
+ *         testMethod(foo,bar);    // violation
+ *
+ *         for(;;) {} // OK
+ *     }
+ * </pre>
  * @since 3.0
  */
 @StatelessCheck
