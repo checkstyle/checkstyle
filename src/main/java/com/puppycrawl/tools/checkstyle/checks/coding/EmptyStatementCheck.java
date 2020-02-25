@@ -34,6 +34,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   doConditionalStuff();
  * doUnconditionalStuff();
  * </pre>
+ * <p>Example:</p>
+ * <div class="wrapper">
+ * <pre>
+ * class Expression {
+ *     List&lt;Expression&gt; arguments;
+ *     public void calculate() {
+ *         // Calculates something
+ *     }
+ *
+ *     public bool isConstant() {
+ *         // Returns true, if Expression is constant, else returns false
+ *     }
+ * }
+ * for (int i = 0; i &lt; arguments.size(); arguments.get(i++).calculate()); // OK
+ * while (arguments.get(arguments.size() - ).isConstant()); // violation
+ * if (arguments.get(0).isConstant()); // violation
+ * </pre>
+ * </div>
  * <p>
  * To configure the check:
  * </p>
