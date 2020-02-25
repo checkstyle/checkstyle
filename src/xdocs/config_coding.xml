@@ -4061,7 +4061,7 @@ enum Foo10 { FOO, BAR } // OK
               An example of how to configure this Check:
           </p>
           <source>
-              &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
+&lt;module name=&quot;OneStatementPerLine&quot;/&gt;
           </source>
           <p>
               The following examples will be flagged as a violation:
