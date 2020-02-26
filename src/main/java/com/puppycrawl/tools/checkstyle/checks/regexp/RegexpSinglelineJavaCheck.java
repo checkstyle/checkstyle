@@ -72,6 +72,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="ignoreComments" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * System.out.println(""); // violation, instruction matches illegal pattern
+ * System.out.
+ *   println(""); // OK
+ * &#47;* System.out.println *&#47; // OK, comments are ignored
+ * </pre>
  * <p>
  * To configure the check to find case-insensitive occurrences of "debug":
  * </p>
@@ -81,7 +88,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="ignoreCase" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Example:</p>
+ * <pre>
+ * int debug = 0; // violation, variable name matches illegal pattern
+ * public class Debug { // violation, class name matches illegal pattern
+ * &#47;* this is for de
+ *   bug only; *&#47; // OK
+ * </pre>
  * @since 6.0
  */
 @StatelessCheck

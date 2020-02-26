@@ -1104,7 +1104,13 @@ void method() {
   &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>Example:</p>
+        <source>
+System.out.println(""); // violation, instruction matches illegal pattern
+System.out.
+println(""); // OK
+/* System.out.println */ // OK, comments are ignored
+        </source>
         <p>
           To configure the check to find case-insensitive occurrences of
           &quot;debug&quot;:
@@ -1114,6 +1120,13 @@ void method() {
   &lt;property name=&quot;format&quot; value=&quot;debug&quot;/&gt;
   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+int debug = 0; // violation, variable name matches illegal pattern
+public class Debug { // violation, class name matches illegal pattern
+/* this is for de
+   bug only; */ // OK
         </source>
       </subsection>
 
