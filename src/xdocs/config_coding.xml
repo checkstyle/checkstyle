@@ -2988,6 +2988,30 @@ class TestMethodCall {
         <source>
 &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
         </source>
+        <p>
+          Example of violation:
+        </p>
+        <source>
+switch (i) {    // violation
+  case 1:
+    break;
+  case 2:
+    break;
+}
+        </source>
+        <p>
+          Example of correct code:
+        </p>
+        <source>
+switch (i) {
+  case 1:
+    break;
+  case 2:
+    break;
+  default: // OK
+    break;
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MissingSwitchDefault_Example_of_Usage">

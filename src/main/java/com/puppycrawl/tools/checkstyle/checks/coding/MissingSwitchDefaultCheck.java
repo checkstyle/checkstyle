@@ -43,7 +43,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
  * </pre>
- *
+ * <p>Example of violation:</p>
+ * <pre>
+ * switch (i) {    // violation
+ *  case 1:
+ *    break;
+ *  case 2:
+ *    break;
+ * }
+ * </pre>
+ * <p>Example of correct code:</p>
+ * <pre>
+ * switch (i) {
+ *  case 1:
+ *    break;
+ *  case 2:
+ *    break;
+ *  default: // OK
+ *    break;
+ * }
+ * </pre>
  * @since 3.1
  */
 @StatelessCheck
