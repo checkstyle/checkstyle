@@ -58,6 +58,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * /**
+ * * Description.
+ * *
+ * * &#64;param for some parameter
+ * * &#64;@return type
+ * *&#47;//Correct JavaDoc
+ * 
+ * /**Description. &#64param for parameter*&#47;////not a JavaDoc, ignored. /** and *&#47 should be on different lines
+ * </pre>
  * <p>
  * To configure the check with a list of ignored at-clauses
  * and make inline at-clauses not ignored:
@@ -68,7 +79,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Example:</p>
+ * <pre>
+ * /**
+ * * My <b>class</b>.
+ * * 
+ * * &#64see annotation
+ * *
+ * * {&#64link}
+ * *&#47 //&#64see tag is ignored and not considered a tag for the javadoc and {&#64link} is expanded as needed
  * @since 6.0
  */
 @StatelessCheck

@@ -2531,6 +2531,19 @@ class DatabaseConfiguration {}
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <div class = "wrapper">
+          <pre>
+/**
+* Description.
+* 
+* @param for some parameter
+* @return type
+*/ //Correct JavaDoc
+
+/**Description. @param for parameter*/ //not a JavaDoc, ignored. /** and */ should be on different lines
+          </pre>
+        </div>
         <p>
           To configure the check with a list of ignored at-clauses and make
           inline at-clauses not ignored:
@@ -2541,6 +2554,19 @@ class DatabaseConfiguration {}
   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <div class = "wrapper">
+          <pre>
+/**
+* My <b>class</b>.
+* 
+* @see annotation
+* 
+* {@link}
+*/ //@see tag is ignored and not considered a tag for the javadoc and {@link} is expanded as needed
+
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="SingleLineJavadoc_Example_of_Usage">
