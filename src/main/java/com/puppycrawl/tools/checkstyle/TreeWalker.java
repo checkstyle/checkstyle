@@ -85,17 +85,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     }
 
     /**
-     * Sets classLoader to load class.
-     * @param classLoader class loader to resolve classes with.
-     * @deprecated Checkstyle is not type aware tool and all class loading is potentially
-     *     unstable.
-     */
-    @Deprecated
-    public void setClassLoader(ClassLoader classLoader) {
-        // no code
-    }
-
-    /**
      * Sets the module factory for creating child modules (Checks).
      * @param moduleFactory the factory
      */
@@ -108,7 +97,6 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         final DefaultContext checkContext = new DefaultContext();
         checkContext.add("severity", getSeverity());
         checkContext.add("tabWidth", String.valueOf(getTabWidth()));
-
         childContext = checkContext;
     }
 
