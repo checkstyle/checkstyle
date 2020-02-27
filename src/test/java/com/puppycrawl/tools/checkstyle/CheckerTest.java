@@ -354,7 +354,6 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public void testSetters() {
         // all  that is set by reflection, so just make code coverage be happy
         final Checker checker = new Checker();
-        checker.setClassLoader(null);
         checker.setBasedir("some");
         checker.setSeverity("ignore");
 
