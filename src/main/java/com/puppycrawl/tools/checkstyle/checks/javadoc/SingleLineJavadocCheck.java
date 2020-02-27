@@ -64,7 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * * Description.
  * *
  * * &#64;param for some parameter
- * * &#64;@return type
+ * * &#64;return type
  * *&#47;//Correct JavaDoc
  * 
  * /**Description. &#64param for parameter*&#47;////not a JavaDoc, ignored. /** and *&#47 should be on different lines
@@ -84,10 +84,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * /**
  * * My <b>class</b>.
  * * 
- * * &#64see annotation
+ * * &#64;see annotation
  * *
- * * {&#64link}
- * *&#47 //&#64see tag is ignored and not considered a tag for the javadoc and {&#64link} is expanded as needed
+ * * {&#64;link}
+ * *&#47; //&#64;see tag is ignored and not considered a tag for the javadoc and {&#64;link} is expanded as needed
  * @since 6.0
  */
 @StatelessCheck
