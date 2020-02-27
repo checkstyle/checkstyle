@@ -586,20 +586,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         this.severity = SeverityLevel.getInstance(severity);
     }
 
-    /**
-     * Sets the classloader that is used to contextualize fileset checks.
-     * Some Check implementations will use that classloader to improve the
-     * quality of their reports, e.g. to load a class and then analyze it via
-     * reflection.
-     * @param classLoader the new classloader
-     * @deprecated Checkstyle is not type aware tool and all class loading is potentially
-     *     unstable.
-     */
-    @Deprecated
-    public final void setClassLoader(ClassLoader classLoader) {
-        // no code
-    }
-
     @Override
     public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
         this.moduleClassLoader = moduleClassLoader;
