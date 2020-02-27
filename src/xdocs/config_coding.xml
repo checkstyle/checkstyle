@@ -3321,6 +3321,14 @@ for (String line: lines) {
         <source>
 &lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
         </source>
+        <p>
+          Which results in the following violations:
+        </p>
+        <source>
+int foo, bar; // violation
+int foo; // OK
+int bar; // OK
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MultipleVariableDeclarations_Example_of_Usage">
