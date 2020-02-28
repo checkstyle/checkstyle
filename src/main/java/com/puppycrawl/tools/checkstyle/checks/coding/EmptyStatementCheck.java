@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     }
  * }
  * for (int i = 0; i &lt; arguments.size(); arguments.get(i++).calculate()); // OK
- * while (arguments.get(arguments.size() - ).isConstant()); // violation
+ * while (true); // violation
  * if (arguments.get(0).isConstant()); // violation
  * </pre>
  * </div>
