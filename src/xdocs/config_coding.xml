@@ -835,18 +835,9 @@ doUnconditionalStuff();
         <p>Example:</p>
         <div class="wrapper">
           <pre>
-class Expression {
-    List&lt;Expression&gt; arguments;
-    public void calculate() {
-        // Calculates something
-    }
-    public bool isConstant() {
-        // Returns true, if Expression is constant, else returns false
-    }
-}
-for (int i = 0; i &lt; arguments.size(); arguments.get(i++).calculate()); // OK
+for (int i = 0; i &lt; 10; System.out.println(++i)); // OK
 while (true); // violation
-if (arguments.get(0).isConstant()); // violation
+if (Math.random() &gt; 0.5); // OK
         </pre>
       </div>
       </subsection>
@@ -3005,6 +2996,30 @@ class TestMethodCall {
         <source>
 &lt;module name=&quot;MissingSwitchDefault&quot;/&gt;
         </source>
+        <p>
+          Example of violation:
+        </p>
+        <source>
+switch (i) {    // violation
+  case 1:
+    break;
+  case 2:
+    break;
+}
+        </source>
+        <p>
+          Example of correct code:
+        </p>
+        <source>
+switch (i) {
+  case 1:
+    break;
+  case 2:
+    break;
+  default: // OK
+    break;
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MissingSwitchDefault_Example_of_Usage">
@@ -4988,6 +5003,12 @@ return !valid();
         <p>
           Checks that string literals are not used with <code>==</code> or
           <code>&#33;=</code>.
+          Since <code>==</code> will compare the object references,
+          not the actual value of the strings,
+          <code>String.equals()</code> should be used.
+          More information can be found
+          <a href="http://www.thejavageek.com/2013/07/27/string-comparison-with-equals-and-assignment-operator/">
+          in this article</a>.
         </p>
 
         <p>
@@ -5009,6 +5030,25 @@ if (&quot;something&quot;.equals(x))
         </p>
         <source>
 &lt;module name=&quot;StringLiteralEquality&quot;/&gt;
+        </source>
+        <p>
+          Examples of violations:
+        </p>
+        <source>
+String status = "pending";
+
+if (status == "done") {} // violation
+
+while (status != "done") {} // violation
+
+boolean flag = (status == "done"); // violation
+
+boolean flag = (status.equals("done")); // OK
+
+String name = "X";
+
+if (name == getName()) {}
+// OK, limitation that check cannot tell runtime type returned from method call
         </source>
       </subsection>
 

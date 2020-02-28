@@ -37,19 +37,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  * <div class="wrapper">
  * <pre>
- * class Expression {
- *     List&lt;Expression&gt; arguments;
- *     public void calculate() {
- *         // Calculates something
- *     }
- *
- *     public bool isConstant() {
- *         // Returns true, if Expression is constant, else returns false
- *     }
- * }
- * for (int i = 0; i &lt; arguments.size(); arguments.get(i++).calculate()); // OK
+ * for (int i = 0; i &lt; 10; System.out.println(++i)); // OK
  * while (true); // violation
- * if (arguments.get(0).isConstant()); // violation
+ * if (Math.random() &gt; 0.5); // OK
  * </pre>
  * </div>
  * <p>
