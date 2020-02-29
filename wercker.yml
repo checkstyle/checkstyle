@@ -183,6 +183,15 @@ build:
          echo "build is skipped ..."
        fi
 
+     name: NoErrorTest - methods distance
+     code: |
+       if [[ $RUN_JOB == 1 ]]; then
+         echo "Command: ./.ci/wercker.sh no-error-methods-distance"
+         ./.ci/wercker.sh no-error-methods-distance
+       else
+         echo "build is skipped ..."
+       fi
+
   - script:
       name: NoExceptiontest - Apache Struts
       code: |
