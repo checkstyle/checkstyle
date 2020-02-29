@@ -673,7 +673,7 @@
           <tr>
             <td><a href="config_coding.html#OverloadMethodsDeclarationOrder">
               OverloadMethodsDeclarationOrder</a></td>
-            <td>Checks that overload methods are grouped together.</td>
+            <td>Checks that overloaded methods are grouped together.</td>
           </tr>
           <tr>
             <td><a href="config_annotation.html#PackageAnnotation">PackageAnnotation</a></td>
