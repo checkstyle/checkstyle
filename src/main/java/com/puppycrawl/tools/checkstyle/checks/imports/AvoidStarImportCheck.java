@@ -64,6 +64,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="AvoidStarImport"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // violation
+ * import static java.lang.Math.*;   // violation
+ * import java.util.*;               // violation
+ * import java.net.*;                // violation
+ * </pre>
  * <p>
  * To configure the check so that star imports from packages
  * {@code java.io and java.net} as well as static members from class
@@ -73,6 +81,46 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="AvoidStarImport"&gt;
  *   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // OK
+ * import java.util.*;               // violation
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * To configure the check so that star imports from all packages are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowClassImports" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // OK
+ * import static java.lang.Math.*;   // violation
+ * import java.util.*;               // OK
+ * import java.net.*;                // OK
+ * </pre>
+ * <p>
+ * To configure the check so that starred static member imports from all packages are allowed:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidStarImport"&gt;
+ *   &lt;property name="allowStaticMemberImports" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.util.Scanner;         // OK
+ * import java.io.*;                 // violation
+ * import static java.lang.Math.*;   // OK
+ * import java.util.*;               // violation
+ * import java.net.*;                // violation
  * </pre>
  *
  * @since 3.0
