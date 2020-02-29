@@ -29,25 +29,36 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks that overload methods are grouped together.
+ * Checks that overloaded methods are grouped together. Overloaded methods have the same
+ * name but different signatures where the signature can differ by the number of
+ * input parameters or type of input parameters or both.
  * </p>
  * <p>
- * Example of incorrect grouping overload methods:
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example of correct grouping of overloaded methods:
  * </p>
  * <pre>
  * public void foo(int i) {}
  * public void foo(String s) {}
- * public void notFoo() {} // Have to be after foo(int i, String s)
+ * public void foo(String s, int i) {}
  * public void foo(int i, String s) {}
+ * public void notFoo() {}
  * </pre>
  * <p>
- * An example of how to configure the check is:
+ * Example of incorrect grouping of overloaded methods:
  * </p>
- *
  * <pre>
- * &lt;module name=&quot;OverloadMethodsDeclarationOrder&quot;/&gt;
+ * public void foo(int i) {} // OK
+ * public void foo(String s) {} // OK
+ * public void notFoo() {} // violation. Have to be after foo(String s, int i)
+ * public void foo(int i, String s) {}
+ * public void foo(String s, int i) {}
  * </pre>
- *
  * @since 5.8
  */
 @StatelessCheck
