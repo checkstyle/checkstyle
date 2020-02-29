@@ -399,6 +399,8 @@ public class SuppressWarningsHolder
         switch (parentAST.getType()) {
             case TokenTypes.MODIFIERS:
             case TokenTypes.ANNOTATIONS:
+            case TokenTypes.ANNOTATION:
+            case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
                 targetAST = getAcceptableParent(parentAST);
                 break;
             default:
@@ -437,6 +439,8 @@ public class SuppressWarningsHolder
             case TokenTypes.TYPE_ARGUMENT:
             case TokenTypes.IMPLEMENTS_CLAUSE:
             case TokenTypes.DOT:
+            case TokenTypes.ANNOTATION:
+            case TokenTypes.MODIFIERS:
                 result = parent;
                 break;
             default:
