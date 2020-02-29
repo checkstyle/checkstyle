@@ -380,6 +380,15 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSuppressWarningsAsAnnotationProperty() throws Exception {
+        final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputSuppressWarningsHolder7.java"), expected);
+    }
+
+    @Test
     @SuppressWarnings("unchecked")
     public void testClearState() throws Exception {
         final SuppressWarningsHolder check = new SuppressWarningsHolder();
