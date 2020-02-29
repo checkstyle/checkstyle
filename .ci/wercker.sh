@@ -188,6 +188,19 @@ no-error-contribution)
   rm -rf checkstyle
   ;;
 
+no-error-methods-distance)
+  set -e
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
+  cd .ci-temp/methods-distance
+  mvn -e verify -DskipTests -Dcheckstyle-version=${CS_POM_VERSION} \
+     -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
+  cd ../../
+  rm -rf checkstyle
+  ;;
+
 no-error-strata)
   set -e
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
