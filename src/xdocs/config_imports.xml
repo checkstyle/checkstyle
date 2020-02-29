@@ -95,6 +95,16 @@
 &lt;module name="AvoidStarImport"/&gt;
         </source>
         <p>
+          Example:
+        </p>
+        <source>
+import java.util.Scanner;         // OK
+import java.io.*;                 // violation
+import static java.lang.Math.*;   // violation
+import java.util.*;               // violation
+import java.net.*;                // violation
+        </source>
+        <p>
           To configure the check so that star imports from packages
           <code>java.io and java.net</code> as well as static members from class
           <code>java.lang.Math</code> are allowed:
@@ -103,6 +113,54 @@
 &lt;module name="AvoidStarImport"&gt;
   &lt;property name="excludes" value="java.io,java.net,java.lang.Math"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import java.util.Scanner;         // OK
+import java.io.*;                 // OK
+import static java.lang.Math.*;   // OK
+import java.util.*;               // violation
+import java.net.*;                // OK
+        </source>
+        <p>
+          To configure the check so that star imports
+          from all packages are allowed:
+        </p>
+        <source>
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="allowClassImports" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import java.util.Scanner;         // OK
+import java.io.*;                 // OK
+import static java.lang.Math.*;   // violation
+import java.util.*;               // OK
+import java.net.*;                // OK
+        </source>
+        <p>
+          To configure the check so that starred static member imports
+          from all packages are allowed:
+        </p>
+        <source>
+&lt;module name="AvoidStarImport"&gt;
+  &lt;property name="allowStaticMemberImports" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import java.util.Scanner;         // OK
+import java.io.*;                 // violation
+import static java.lang.Math.*;   // OK
+import java.util.*;               // violation
+import java.net.*;                // violation
         </source>
       </subsection>
 
