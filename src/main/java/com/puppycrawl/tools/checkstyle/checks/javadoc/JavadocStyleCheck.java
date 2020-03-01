@@ -79,7 +79,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * "caption", "cite", "code", "colgroup", "dd", "del", "div", "dfn", "dl", "dt",
  * "em", "fieldset", "font", "h1" to "h6", "hr", "i", "img", "ins", "kbd", "li",
  * "ol", "p", "pre", "q", "samp", "small", "span", "strong", "sub", "sup",
- * "table", "tbody", "td", "tfoot", "th", "thread", "tr", "tt", "u", "ul".
+ * "table", "tbody", "td", "tfoot", "th", "thread", "tr", "tt", "u", "ul", "var".
  * </li>
  * </ul>
  * <p>
