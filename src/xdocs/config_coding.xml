@@ -3428,7 +3428,6 @@ for (String line: lines) {
         <source>
 &lt;module name=&quot;NestedForDepth&quot;/&gt;
         </source>
-
         <p>
           To configure the check to allow nesting depth 3:
         </p>
@@ -3437,6 +3436,30 @@ for (String line: lines) {
   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>Violation</p>
+          <source>
+              for(int i; i&lt;10; i++){
+                for(int j; j&lt;i; j++){
+                    for(int k; k&lt;j; k++){
+                        for(int l; l&lt;k; l++){
+                            for(int m; m&lt;l; m++){
+                            }
+                        }
+                    }
+                }
+              }
+          </source>
+          <p>acceptable code</p>
+          <source>
+              for(int i; i&lt;10; i++){
+                for(int j; j&lt;i; j++){
+                    for(int k; k&lt;j; k++){
+                        for(int l; l&lt;k; l++){
+                        }
+                    }
+                }
+              }
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="NestedForDepth_Example_of_Usage">
