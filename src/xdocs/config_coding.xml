@@ -3419,7 +3419,7 @@ for (String line: lines) {
                 for(int j; j&lt;i; j++){
                     for(int k; k&lt;j; k++){
                         for(int l; l&lt;k; l++){
-                            for(int m; m&lt;l; m++){
+                            for(int m; m&lt;l; m++){ //Violation
                             }
                         }
                     }
@@ -3431,7 +3431,7 @@ for (String line: lines) {
               for(int i; i&lt;10; i++){
                 for(int j; j&lt;i; j++){
                     for(int k; k&lt;j; k++){
-                        for(int l; l&lt;k; l++){
+                        for(int l; l&lt;k; l++){ //OK
                         }
                     }
                 }
