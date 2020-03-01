@@ -3498,7 +3498,7 @@ for (String line: lines) {
               if(condition 1){
                 if(condition 2){
                     if(condition 3){
-                        if(condition 4){
+                        if(condition 4){ //violation
                         }
                     }
                 }
@@ -3508,7 +3508,7 @@ for (String line: lines) {
           <source>
               if(condition 1){
                     if(condition 2){
-                if(condition 3){
+                if(condition 3){ //OK
                     }
                 }
               }
