@@ -15,6 +15,115 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.30">
+      <div class="releaseDate">29.02.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New check: AvoidDoubleBraceInitialization.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6480">#6480</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            False-positive RightCurly in google_checks since 8.20.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6807">#6807</a>
+          </li>
+          <li>
+            GenericWhitespace complains about normal spacing with generic constructor.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6104">#6104</a>
+          </li>
+          <li>
+            NewlineAtEndOfFile=lf does not create error when file uses crlf.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/4074">#4074</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update doc for StringLiteralEquality.
+            Author: gaurabdg
+            <a href="https://github.com/checkstyle/checkstyle/issues/7660">#7660</a>
+          </li>
+          <li>
+            Update doc for MissingSwitchDefault.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7668">#7668</a>
+          </li>
+          <li>
+            Update doc for WhitespaceAfter.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/7631">#7631</a>
+          </li>
+          <li>
+            doc: fix indentation of config example.
+            Author: Andrei Paikin
+          </li>
+          <li>
+            doc: add example of non-instance member for MemberNameCheck.
+            Author: pbludov
+          </li>
+          <li>
+            Code samples for Naming Checks.
+            Author: 0blivious
+            <a href="https://github.com/checkstyle/checkstyle/issues/5832">#5832</a>
+          </li>
+          <li>
+            doc: deprecated -&gt; Deprecated.
+            Author: Andrei Paikin
+          </li>
+          <li>
+            Add warning message at style coverage pages that referenced config is not released.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7505">#7505</a>
+          </li>
+          <li>
+            Change line number comparisons to use common isOnSameLine method.
+            Author: Andrei_Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7518">#7518</a>
+          </li>
+          <li>
+            Xpath implementation: relationship between getLocalPart and getStringValue .
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/7486">#7486</a>
+          </li>
+          <li>
+            Put in doc reason why ENUM_CONSTANT_DEF and LAMBDA tokens are not supported in
+            RightCurlyCheck.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7174">#7174</a>
+          </li>
+          <li>
+            doc: fix typo training -&gt; trailing.
+            Author: Andrei_Paikin
+          </li>
+          <li>
+            Mark DetailAST::getNumberOfChildren as deprecated.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7512">#7512</a>
+          </li>
+          <li>
+            PMD warnings about duplicate rules.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7509">#7509</a>
+          </li>
+          <li>
+            automation of github actions for release.sh.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6186">#6186</a>
+          </li>
+          <li>
+            update release.sh with minor improvments.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6333">#6333</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.29">
       <div class="releaseDate">26.01.2020</div>
       <p>New:</p>
