@@ -938,30 +938,55 @@ void method() {
 
       <subsection name="Examples" id="RegexpSingleline_Examples">
         <p>
-          To configure the check to find trailing whitespace at the end
-          of a line:
+        To configure the check with default values:
         </p>
         <source>
-&lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;!-- \s matches whitespace character, $ matches end of line. --&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
-&lt;/module&gt;
+&lt;module name=&quot;RegexpSingleline&quot; /&gt;
         </source>
-
         <p>
-          To configure the check to find trailing whitespace at the end
-          of a line, with some <i>slack</i> of allowing two occurrences
-          per file:
+        This configuration does not match to anything,
+        so we do not provide any code example for it
+        as no violation will ever be reported.
+        </p>
+        <p>
+        To configure the check to find occurrences of 'System.exit('
+        with some <i>slack</i> of allowing only one occurrence per file:
         </p>
         <source>
 &lt;module name=&quot;RegexpSingleline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\s+$&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;System.exit\(&quot;/&gt;
   &lt;!-- next line not required as 0 is the default --&gt;
   &lt;property name=&quot;minimum&quot; value=&quot;0&quot;/&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+  &lt;property name=&quot;maximum&quot; value=&quot;1&quot;/&gt;
 &lt;/module&gt;
         </source>
 
+        <p>Example:</p>
+        <source>
+class MyClass {
+    void myFunction() {
+        try {
+            doSomething();
+        } catch (Exception e) {
+            System.exit(1); // OK, as only there is only one occurrence.
+        }
+    }
+    void doSomething(){};
+}
+        </source>
+        <source>
+class MyClass {
+    void myFunction() {
+        try {
+            doSomething();
+            System.exit(0);
+        } catch (Exception e) {
+            System.exit(1); // Violation, as there are more than one occurrence.
+        }
+    }
+    void doSomething(){};
+}
+        </source>
         <p>
           An example of how to configure the check to make sure a copyright
           statement is included in the file:
@@ -974,8 +999,53 @@ void method() {
   &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
 &lt;/module&gt;
         </source>
-      </subsection>
+      <p>Example:</p>
+      <source>
+/**
+* This file is copyrighted under CC. // Ok, as the file contains a copyright statement.
+*/
+class MyClass {
 
+}
+      </source>
+      <source>
+/** // violation, as the file doesn't contain a copyright statement.
+* MyClass as a configuration example.
+*/
+class MyClass {
+
+}
+      </source>
+      <p>
+       An example of how to configure the check to make sure sql files contains the term 'license'.
+      </p>
+      <source>
+&lt;module name=&quot;RegexpSingleline&quot;&gt;
+    &lt;property name=&quot;format&quot; value=&quot;license&quot;/&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;9999&quot;/&gt;
+    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+    &lt;!--  Configure a message to be shown on violation of the Check. --&gt;
+    &lt;property name=&quot;message&quot;
+          value=&quot;File must contain at least one occurrence of 'license' term&quot;/&gt;
+    &lt;!--  Perform the Check only on files with java extension. --&gt;
+    &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
+&lt;/module&gt;
+      </source>
+      <p>Example:</p>
+      <source>
+/*
+ AP 2.0 License. // Ok, Check ignores the case of the term.
+*/
+CREATE DATABASE MyDB;
+      </source>
+      <source>
+/* // violation, file doesn't contain the term.
+ Example sql file.
+*/
+CREATE DATABASE MyDB;
+      </source>
+      </subsection>
       <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">
         <ul>
           <li>
