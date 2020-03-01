@@ -75,13 +75,24 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * &lt;module name="BooleanExpressionComplexity"/&gt;
  * </pre>
  * <p>
- * To configure the check with 7 allowed operation in boolean expression:
+ * To configure the check with 2 allowed operation in boolean expression:
  * </p>
  * <pre>
  * &lt;module name="BooleanExpressionComplexity"&gt;
- *   &lt;property name="max" value="7"/&gt;
+ *   &lt;property name="max" value="2"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * public class Test {
+ *    public static void main(String args[]) {
+ *      boolean a = true;
+ *      boolean b = false;
+ *      boolean c = (a &amp; b) | a; // OK, since max Boolean expression complexity is 2 (max allowed is 2).
+ *      boolean d = (!a &amp; b) | (a &amp; !b); // violation, Boolean expression complexity is 3 (max allowed is 2).
+ *    }
+ *  }
+ *  </pre>
  * <p>
  * To configure the check to ignore {@code &amp;} and {@code |}:
  * </p>
@@ -90,6 +101,17 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *   &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * public class Test {
+ *    public static void main(String args[]) {
+ *      boolean a = true;
+ *      boolean b = false;
+ *      boolean c = (!a &amp;&amp; b) ^ (a || !b) &amp;&amp; a // violation, Boolean expression complexity is 4 (max allowed is 3(default));
+ *      boolean d = (a &amp; b) | (b &amp; a) &amp; a; // OK, since the operations to check are BXOR,LAND,LOR;
+ *    }
+ *  }
+ *  </pre>
  *
  * @since 3.4
  */
