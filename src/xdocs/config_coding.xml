@@ -3852,6 +3852,20 @@ System.out.println(s2 instanceof Square); //true
         <source>
 &lt;module name=&quot;NoClone&quot;/&gt;
         </source>
+        <p>Example: </p>
+        <source>
+public class Foo {
+
+ public Object clone() {return null;} // violation, overrides the clone method
+
+ public Foo clone() {return null;} // violation, overrides the clone method
+
+ public static Object clone(Object o) {return null;} // OK
+
+ public static Foo clone(Foo o) {return null;} // OK
+
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="NoClone_Example_of_Usage">

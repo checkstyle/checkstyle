@@ -133,6 +133,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;NoClone&quot;/&gt;
  * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * public class Foo {
+ *
+ *  public Object clone() {return null;} // violation, overrides the clone method
+ *
+ *  public Foo clone() {return null;} // violation, overrides the clone method
+ *
+ *  public static Object clone(Object o) {return null;} // OK
+ *
+ *  public static Foo clone(Foo o) {return null;} // OK
+ *
+ * }
+ * </pre>
  *
  * @since 5.0
  */
