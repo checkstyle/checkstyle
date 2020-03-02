@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public class, enum or interface, top-level type is the first type in file.
  * </p>
  * <p>
- * An example of check's configuration:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name=&quot;OneTopLevelClass&quot;/&gt;
@@ -52,32 +52,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * An example of code with violations:
  * </p>
  * <pre>
- * public class Foo{
- *   //methods
+ * public class Foo { // OK, first top-level class
+ *   // methods
  * }
  *
- * class Foo2{
- *   //methods
+ * class Foo2 { // violation, second top-level class
+ *   // methods
  * }
  * </pre>
  * <p>
  * An example of code without public top-level type:
  * </p>
  * <pre>
- * class Foo{ // top-level class
- *   //methods
+ * class Foo { // OK, first top-level class
+ *   // methods
  * }
  *
- * class Foo2{
- *   //methods
+ * class Foo2 { // violation, second top-level class
+ *   // methods
  * }
  * </pre>
  * <p>
  * An example of code without violations:
  * </p>
  * <pre>
- * public class Foo{
- *   //methods
+ * public class Foo { // OK, only one top-level class
+ *   // methods
  * }
  * </pre>
  *
