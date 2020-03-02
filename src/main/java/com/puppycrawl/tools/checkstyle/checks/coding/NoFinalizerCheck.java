@@ -41,10 +41,41 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * To configure the check:
- * </p>
+ * <p>Example for violation:</p>
  * <pre>
- * &lt;module name=&quot;NoFinalizer&quot;/&gt;
+ * public class Test {
+ *
+ *
+ *     public static void main(String[] args) {
+ *         Test test = new Test();
+ *         test.finalize(); //usage of the function does not affect the violation trigger, only triggered by overriding finalize() in Object
+ *
+ *         System.gc(); //used to trigger Java garbage collector to clear the memory using java garbage collector thread
+ *     }
+ *
+ *     public void finalize() { //causes NoFinalize violation
+ *
+ *         System.out.println("Finalize() is overridden");//just to show that the function got overridden
+ *     }
+ * }
+ *  * </pre>
+ *
+ * <p>Example for non-violation:</p>
+ * <pre>
+ * public class Test2 {
+ *     public static void main(String[] args) throws Throwable { //"throws throwable" as finalize itself throws exception
+ *         Test2 test2 = new Test2();
+ *         test2.finalize();//the usage of finalize() does not trigger the NoFinalizer violation
+ *
+ *         System.gc();
+ *     }
+ *
+ *     public void finalize(Object object) { //overloading does not cause any NoFinalizer violation
+ *         System.out.println("overloading finalize() in Object ");
+ *     }
+ * }
  * </pre>
+ *
  *
  * @since 5.0
  */
@@ -69,7 +100,7 @@ public class NoFinalizerCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return new int[]{TokenTypes.METHOD_DEF};
     }
 
     @Override
@@ -79,9 +110,7 @@ public class NoFinalizerCheck extends AbstractCheck {
 
         if ("finalize".equals(name)) {
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean hasEmptyParamList =
-                params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
-
+            final boolean hasEmptyParamList = params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
             if (hasEmptyParamList) {
                 log(aAST.getLineNo(), MSG_KEY);
             }
