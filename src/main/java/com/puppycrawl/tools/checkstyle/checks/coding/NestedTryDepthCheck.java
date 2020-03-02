@@ -41,12 +41,92 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name=&quot;NestedTryDepth&quot;/&gt;
  * </pre>
  * <p>
+ *     case 1: Example of code with violation:
+ * </p>
+ * <pre>
+ * try {
+ *     try {
+ *         try { // violation, current depth is 2, default max allowed depth is 1
+ *         } catch (Exception e) {
+ *         }
+ *     } catch (Exception e) {
+ *     }
+ * } catch (Exception e) {
+ * }
+ * </pre>
+ * <p>
+ *     case 1: Example of compliant code:
+ * </p>
+ * <pre>
+ * try {
+ *     try { // OK, current depth is 1, default max allowed depth is also 1
+ *     } catch (Exception e) {
+ *     }
+ * } catch (Exception e) {
+ * }
+ *         </pre>
+ *         <p>case 2: Example of code for handling unique and general exceptions</p>
+ *         <pre>
+ * try {
+ *     try { // OK, current depth is 1, default max allowed depth is also 1
+ *             // any more nesting could cause code violation!
+ *             throw ArithmeticException();
+ *     } catch (ArithmeticException e) { // catches arithmetic exceptions
+ *     } catch (NumberFormatException e) { // catches number-format exceptions
+ *     } catch (Exception e) { // catches general exceptions other than stated above
+ *     }
+ * } catch (
+ *   ArithmeticException
+ *   | NumberFormatException
+ *   | ArrayIndexOutOfBoundsException e) { // catches any of the 3 exception
+ * } catch (Exception e) { // catches general exception
+ * } finally { // do something when try-catch block finished execution
+ * }
+ * </pre>
+ * <p>
  * To configure the check to allow nesting depth 3:
  * </p>
  * <pre>
  * &lt;module name=&quot;NestedTryDepth&quot;&gt;
  *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ *     Example of code with violation:
+ * </p>
+ * <pre>
+ * try {
+ *     try {
+ *         try {
+ *             try {
+ *                 try { // violation, current depth is 4, max allowed depth is 3
+ *                 } catch (Exception e) {
+ *                 }
+ *             } catch (Exception e) {
+ *             }
+ *         } catch (Exception e) {
+ *         }
+ *     } catch (Exception e) {
+ *     }
+ * } catch (Exception e) {
+ * }
+ * </pre>
+ * <p>
+ *      Example of compliant code:
+ * </p>
+ * <pre>
+ * try {
+ *     try {
+ *         try {
+ *             try { // OK, current depth is 3, max allowed depth is also 3
+ *             } catch (Exception e) {
+ *             }
+ *         } catch (Exception e) {
+ *         }
+ *     } catch (Exception e) {
+ *     }
+ * } catch (Exception e) {
+ * }
  * </pre>
  *
  * @since 3.2
