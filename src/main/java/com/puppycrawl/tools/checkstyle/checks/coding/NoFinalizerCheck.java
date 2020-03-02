@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <p>
  * To configure the check:
+ * &lt;module name=&quot;NoFinalizer&quot;/&gt;
  * <p>Example for violation:</p>
  * <pre>
  * public class Test {
@@ -48,22 +49,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  *     public static void main(String[] args) {
  *         Test test = new Test();
- *         test.finalize(); //usage of the function does not affect the violation trigger, only triggered by overriding finalize() in Object
+ *         test.finalize(); //usage of the function does not affect the violation trigger, only
+ *         //triggered by overriding finalize() in Object
  *
- *         System.gc(); //used to trigger Java garbage collector to clear the memory using java garbage collector thread
+ *         System.gc(); //used to trigger Java garbage collector to clear the memory using java
+ *         //garbage collector thread
  *     }
  *
  *     public void finalize() { //causes NoFinalize violation
  *
- *         System.out.println("Finalize() is overridden");//just to show that the function got overridden
+ *         System.out.println("Finalize() is overridden");//just to show that the function got
+ *         //overridden
  *     }
  * }
- *  * </pre>
+ *  </pre>
  *
  * <p>Example for non-violation:</p>
  * <pre>
  * public class Test2 {
- *     public static void main(String[] args) throws Throwable { //"throws throwable" as finalize itself throws exception
+ *     public static void main(String[] args) throws Throwable { //"throws throwable" as finalize
+ *     //itself throws exception
  *         Test2 test2 = new Test2();
  *         test2.finalize();//the usage of finalize() does not trigger the NoFinalizer violation
  *
@@ -75,7 +80,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     }
  * }
  * </pre>
- *
  *
  * @since 5.0
  */
@@ -109,7 +113,10 @@ public class NoFinalizerCheck extends AbstractCheck {
         final String name = mid.getText();
 
         if ("finalize".equals(name)) {
-            final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
+            final DetailAST params =
+
+                    aAST.findFirstToken(TokenTypes.PARAMETERS);
+
             final boolean hasEmptyParamList =
 
                     params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
