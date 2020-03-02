@@ -666,7 +666,7 @@ public class StringUtils // not final to allow subclassing
 
       <subsection name="Examples" id="OneTopLevelClass_Examples">
         <p>
-          An example of check's configuration:
+          To configure the check:
         </p>
         <source>
 &lt;module name="OneTopLevelClass"/&gt;
@@ -678,35 +678,41 @@ public class StringUtils // not final to allow subclassing
         <p>
           An example of code with violations:
         </p>
-        <source>
-public class Foo{
-  //methods
+        <div class="wrapper">
+          <pre>
+public class Foo { // OK, first top-level class
+  // methods
 }
 
-class Foo2{
-  //methods
+class Foo2 { // violation, second top-level class
+  // methods
 }
-        </source>
+          </pre>
+        </div>
         <p>
           An example of code without public top-level type:
         </p>
-        <source>
-class Foo{ // top-level class
-  //methods
+        <div class="wrapper">
+          <pre>
+class Foo { // OK, first top-level class
+  // methods
 }
 
-class Foo2{
-  //methods
+class Foo2 { // violation, second top-level class
+  // methods
 }
-        </source>
+          </pre>
+        </div>
         <p>
           An example of code without violations:
         </p>
-        <source>
-public class Foo{
-  //methods
+        <div class="wrapper">
+          <pre>
+public class Foo { // OK, only one top-level class
+  // methods
 }
-        </source>
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="OneTopLevelClass_Example_of_Usage">
