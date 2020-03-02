@@ -100,7 +100,7 @@ public class NoFinalizerCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[]{TokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.METHOD_DEF};
     }
 
     @Override
@@ -110,7 +110,10 @@ public class NoFinalizerCheck extends AbstractCheck {
 
         if ("finalize".equals(name)) {
             final DetailAST params = aAST.findFirstToken(TokenTypes.PARAMETERS);
-            final boolean hasEmptyParamList = params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
+            final boolean hasEmptyParamList =
+
+                    params.findFirstToken(TokenTypes.PARAMETER_DEF) == null;
+
             if (hasEmptyParamList) {
                 log(aAST.getLineNo(), MSG_KEY);
             }
