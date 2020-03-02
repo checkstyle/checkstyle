@@ -71,6 +71,51 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="RightCurly"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ *public class Test {
+ *
+ *  public void test() {
+ *
+ *    if (foo) {
+ *      bar();
+ *    }           // violation, right curly must be in the same line as the 'else' keyword
+ *    else {
+ *      bar();
+ *    }
+ *
+ *    if (foo) {
+ *      bar();
+ *    } else {     // OK
+ *      bar();
+ *    }
+ *
+ *    if (foo) { bar(); } int i = 0; // violation
+ *                  // ^^^ statement is not allowed on same line after curly right brace
+ *
+ *    if (foo) { bar(); }            // OK
+ *    int i = 0;
+ *
+ *    try {
+ *      bar();
+ *    }           // violation, rightCurly must be in the same line as 'catch' keyword
+ *    catch (Exception e) {
+ *      bar();
+ *    }
+ *
+ *    try {
+ *      bar();
+ *    } catch (Exception e) { // OK
+ *      bar();
+ *    }
+ *
+ *  }                         // OK
+ *
+ *  public void testSingleLine() { bar(); } // OK, because singleline is allowed
+ *}
+ * </pre>
+ * <p>
  * To configure the check with policy {@code alone} for {@code else} and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
  * METHOD_DEF</a> tokens:
@@ -81,9 +126,85 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_ELSE, METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ *public class Test {
+ *
+ *  public void test() {
+ *
+ *    if (foo) {
+ *      bar();
+ *    } else { bar(); }   // violation, right curly must be alone on line
+ *
+ *    if (foo) {
+ *      bar();
+ *    } else {
+ *      bar();
+ *    }                   // OK
+ *
+ *    try {
+ *      bar();
+ *    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
+ *      bar();
+ *    }
+ *
+ *  }                         // OK
+ *
+ *  public void violate() { bar; } // violation, singleline is not allowed here
+ *
+ *  public void ok() {
+ *    bar();
+ *  }                              // OK
+ *}
+ * </pre>
+ * <p>
+ * To configure the check with policy {@code alone_or_singleline} for {@code if}
+ * and <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * METHOD_DEF</a>
+ * tokens:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RightCurly&quot;&gt;
+ *  &lt;property name=&quot;option&quot; value=&quot;alone_or_singleline&quot;/&gt;
+ *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, METHOD_DEF&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ *public class Test {
+ *
+ *  public void test() {
+ *
+ *    if (foo) {
+ *      bar();
+ *    } else {        // violation, right curly must be alone on line
+ *      bar();
+ *    }
+ *
+ *    if (foo) {
+ *      bar();
+ *    }               // OK
+ *    else {
+ *      bar();
+ *    }
+ *
+ *    try {
+ *      bar();
+ *    } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
+ *      bar();
+ *    }
+ *
+ *  }                                // OK
+ *
+ *  public void violate() { bar(); } // OK , because singleline
+ *}
+ * </pre>
  *
  * @since 3.0
- *
  */
 @StatelessCheck
 public class RightCurlyCheck extends AbstractCheck {
