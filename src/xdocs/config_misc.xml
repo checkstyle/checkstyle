@@ -1731,7 +1731,13 @@ key.png =value - violation
         <source>
 &lt;module name=&quot;TodoComment&quot;/&gt;
         </source>
-
+        <p>
+          Example:
+        </p>
+        <source>
+i++; // TODO: do differently in future   // violation
+i++; // todo: do differently in future   // OK
+        </source>
         <p>
           To configure the check for comments that contain <code>TODO</code> and <code>FIXME</code>:
         </p>
@@ -1739,6 +1745,15 @@ key.png =value - violation
 &lt;module name=&quot;TodoComment&quot;&gt;
   &lt;property name=&quot;format&quot; value=&quot;(TODO)|(FIXME)&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+i++;   // TODO: do differently in future   // violation
+i++;   // todo: do differently in future   // OK
+i=i/x; // FIXME: handle x = 0 case         // violation
+i=i/x; // FIX :  handle x = 0 case         // OK
         </source>
       </subsection>
 
