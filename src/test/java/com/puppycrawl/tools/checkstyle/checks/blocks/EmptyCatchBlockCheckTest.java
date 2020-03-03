@@ -48,8 +48,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyCatchBlockCheck.class);
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "42: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "35:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "42:83: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
@@ -61,14 +61,14 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
         checkConfig.addAttribute("commentFormat", "This is expected");
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "63: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "97: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "186: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "195: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "214: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "35:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "63:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "97:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "186:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "195:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "214:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "230:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "239:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         verify(checkConfig, getPath("InputEmptyCatchBlockDefault.java"), expected);
     }
@@ -80,14 +80,14 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
         checkConfig.addAttribute("commentFormat", "This is expected");
         final String[] expected = {
-            "35: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "63: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "97: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "186: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "195: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "214: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "230: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
-            "239: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "35:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "63:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "97:29: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "186:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "195:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "214:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "230:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
+            "239:33: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
         };
         final String originalLineSeparator = System.getProperty("line.separator");
         try {
