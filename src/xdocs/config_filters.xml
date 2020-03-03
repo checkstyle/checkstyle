@@ -911,7 +911,6 @@ public class UserService {
           <li>AvoidStaticImport</li>
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
-          <li>EmptyCatchBlock</li>
           <li>EmptyLineSeparator</li>
           <li>FinalClass</li>
           <li>IllegalCatch</li>

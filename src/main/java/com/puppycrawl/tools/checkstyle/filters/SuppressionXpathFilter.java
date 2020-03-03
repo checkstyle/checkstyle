@@ -71,9 +71,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * CustomImportOrder
  * </li>
  * <li>
- * EmptyCatchBlock
- * </li>
- * <li>
  * EmptyLineSeparator
  * </li>
  * <li>
