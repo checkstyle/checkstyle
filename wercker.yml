@@ -13,9 +13,8 @@ build:
           echo "PR:"$PR
         fi
         echo "------"
-        echo "Link ${WERCKER_CACHE_DIR} to /root/.m2/repository for Gradle builds"
-        mkdir -p /root/.m2
-        ln -s ${WERCKER_CACHE_DIR} /root/.m2/repository
+        echo "Specify Maven Local location ${WERCKER_CACHE_DIR} for Gradle builds"
+        export GRADLE_OPTS="$GRADLE_OPTS -Dmaven.repo.local=${WERCKER_CACHE_DIR}"
         echo "------"
         du -hs ${WERCKER_CACHE_DIR}
         echo "------"
