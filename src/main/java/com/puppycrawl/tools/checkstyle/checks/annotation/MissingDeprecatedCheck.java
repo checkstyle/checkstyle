@@ -191,6 +191,9 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
             if (TYPES_HASH_SET.contains(type)) {
                 result = result.getParent();
             }
+            else if (type == TokenTypes.SINGLE_LINE_COMMENT) {
+                result = result.getNextSibling();
+            }
             else {
                 break;
             }
