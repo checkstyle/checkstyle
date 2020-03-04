@@ -74,12 +74,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * NOT missing from any package-info.java files.
  * </li>
  * <li>
- * Check for allowed HTML tags. The list of allowed HTML tags is "a", "abbr",
- * "acronym", "address", "area", "b", "bdo", "big", "blockquote", "br",
- * "caption", "cite", "code", "colgroup", "dd", "del", "div", "dfn", "dl", "dt",
- * "em", "fieldset", "font", "h1" to "h6", "hr", "i", "img", "ins", "kbd", "li",
- * "ol", "p", "pre", "q", "samp", "small", "span", "strong", "sub", "sup",
- * "table", "tbody", "td", "tfoot", "th", "thread", "tr", "tt", "u", "ul", "var".
+ * Check for allowed HTML tags. The list of allowed HTML tags is
+ * "a", "abbr", "acronym", "address", "area", "b", "bdo", "big", "blockquote",
+ * "br", "caption", "cite", "code", "colgroup", "dd", "del", "div", "dfn", "dl",
+ * "dt", "em", "fieldset", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr",
+ * "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q", "samp", "small",
+ * "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
+ * "thead", "tr", "tt", "u", "ul", "var".
  * </li>
  * </ul>
  * <p>
