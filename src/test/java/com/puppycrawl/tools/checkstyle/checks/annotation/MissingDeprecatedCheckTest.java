@@ -168,4 +168,23 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("package-info.java"), expected);
     }
 
+    @Test
+    public void testDepPackageInfoBelowComment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
+
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+        };
+
+        verify(checkConfig, getPath("InputMissingDeprecatedAbovePackage.java"), expected);
+    }
+
+    @Test
+    public void testPackageInfoBelowComment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputMissingDeprecatedSingleComment.java"), expected);
+    }
 }
