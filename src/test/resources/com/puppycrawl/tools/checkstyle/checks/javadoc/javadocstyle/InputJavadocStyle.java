@@ -64,7 +64,7 @@ public class InputJavadocStyle
     * <dd>The dt and dd don't require end tags.
     * </dl>
     * </td>Extra tag shouldn't be here
-    *
+    * <style>this tag isn't supported in Javadoc</style>
     * @param arg1 <code>dummy.
     */
    private void method5(int arg1)
