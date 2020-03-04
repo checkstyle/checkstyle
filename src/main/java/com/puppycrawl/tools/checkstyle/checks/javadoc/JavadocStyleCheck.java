@@ -76,7 +76,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Check for allowed HTML tags. The list of allowed HTML tags is
  * "a", "abbr", "acronym", "address", "area", "b", "bdo", "big", "blockquote",
- * "br", "caption", "cite", "code", "colgroup", "dd", "del", "div", "dfn", "dl",
+ * "br", "caption", "cite", "code", "colgroup", "dd", "del", "dfn", "div", "dl",
  * "dt", "em", "fieldset", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr",
  * "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q", "samp", "small",
  * "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
@@ -211,7 +211,7 @@ public class JavadocStyleCheck
         Arrays.stream(new String[] {
             "a", "abbr", "acronym", "address", "area", "b", "bdo", "big",
             "blockquote", "br", "caption", "cite", "code", "colgroup", "dd",
-            "del", "div", "dfn", "dl", "dt", "em", "fieldset", "font", "h1",
+            "del", "dfn", "div", "dl", "dt", "em", "fieldset", "font", "h1",
             "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd",
             "li", "ol", "p", "pre", "q", "samp", "small", "span", "strong",
             "style", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
