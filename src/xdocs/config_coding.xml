@@ -2135,14 +2135,33 @@ class SomeClass
         <source>
 &lt;module name=&quot;IllegalToken&quot;/&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+          <pre>
+public void myTest() {
+    outer: // violation
+    for (int i = 0; i &lt; 5; i++) {
+        if (i == 1) {
+            break outer;
+        }
+    }
+}
+          </pre>
+          </div>
         <p>
-          To configure the check to find token LITERAL_NATIVE:
+          To configure the check to report violation on token LITERAL_NATIVE:
         </p>
         <source>
 &lt;module name=&quot;IllegalToken&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NATIVE&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+              <pre>
+public native void myTest(); // violation
+              </pre>
+          </div>
       </subsection>
 
       <subsection name="Example of Usage" id="IllegalToken_Example_of_Usage">
