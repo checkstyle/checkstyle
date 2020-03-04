@@ -62,7 +62,11 @@ no-error-pgjdbc)
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
+<<<<<<< HEAD
  removeFolderWithProtectedFiles pgjdbc
+=======
+  rm -rf pgjdbc
+>>>>>>> infra: pgjdbc, migrate Maven -> Gradle
   ;;
 
 no-error-orekit)
