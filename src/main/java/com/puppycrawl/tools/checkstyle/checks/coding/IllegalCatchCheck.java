@@ -56,7 +56,79 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * &lt;module name=&quot;IllegalCatch&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * try {
+ *     // some code here
+ * } catch (Exception e) { // violation
  *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException e) { // OK
+ *
+ * } catch (Exception e) { // violation, catching Exception is illegal
+ *                           and order of catch blocks doesn't matter
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException | Exception e) { // violation, catching Exception is illegal
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException e) { // OK
+ *
+ * }
+ *
+ * </pre>
+ * <p>
+ * To configure the check to override the default list
+ * with ArithmeticException and OutOfMemoryError:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalCatch&quot;&gt;
+ *   &lt;property name=&quot;illegalClassNames&quot; value=&quot;ArithmeticException,
+ *               OutOfMemoryError&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * try {
+ *     // some code here
+ * } catch (OutOfMemoryError e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (NullPointerException e) { // OK
+ *
+ * } catch (OutOfMemoryError e) { // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (ArithmeticException | Exception e) {  // violation
+ *
+ * }
+ *
+ * try {
+ *     // some code here
+ * } catch (Exception e) { // OK
+ *
+ * }
+ * </pre>
  * @since 3.2
  */
 @StatelessCheck
