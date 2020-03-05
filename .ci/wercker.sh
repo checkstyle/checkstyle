@@ -100,11 +100,11 @@ no-error-apex-core)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/apache/incubator-apex-core.git
-  cd .ci-temp/incubator-apex-core
+  checkout_from https://github.com/checkstyle/apex-core
+  cd .ci-temp/apex-core
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
-  rm -rf incubator-apex-core
+  rm -rf apex-core
   ;;
 
 no-error-equalsverifier)
