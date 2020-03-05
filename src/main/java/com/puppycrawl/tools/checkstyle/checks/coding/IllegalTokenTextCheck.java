@@ -60,6 +60,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;format&quot; value=&quot;a href&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     String test = "a href"; // violation
+ *     String test2 = "A href"; // OK, case is sensitive
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to forbid String literals containing {@code "a href"}
+ * for the ignoreCase mode:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalTokenText&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;STRING_LITERAL&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;a href&quot;/&gt;
+ *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     String test = "a href"; // violation
+ *     String test2 = "A href"; // violation, case is ignored
+ * }
+ * </pre>
  * <p>
  * To configure the check to forbid leading zeros in an integer literal,
  * other than zero and a hex literal:
@@ -70,6 +95,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;format&quot; value=&quot;^0[^lx]&quot;/&gt;
  *   &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     int test1 = 0; // OK
+ *     int test2 = 0x111; // OK
+ *     int test3 = 0X111; // OK, case is ignored
+ *     int test4 = 010; // violation
+ *     long test5 = 0L; // OK
+ *     long test6 = 010L; // violation
+ * }
  * </pre>
  *
  * @since 3.2
