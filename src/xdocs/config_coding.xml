@@ -5342,6 +5342,32 @@ if (name == getName()) {}
         <source>
 &lt;module name=&quot;SuperClone&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class A {
+
+ public Object clone() { // OK
+  return super.clone();
+ }
+}
+
+class B {
+private int b;
+
+ public B clone() { // violation, does not call super.clone()
+  B other = new B();
+  other.b = this.b;
+  return other;
+ }
+}
+
+class C {
+
+ public C clone() { // OK
+  return (C) super.clone();
+ }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="SuperClone_Example_of_Usage">
