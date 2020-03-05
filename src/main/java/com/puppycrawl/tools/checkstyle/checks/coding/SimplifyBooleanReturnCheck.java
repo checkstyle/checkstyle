@@ -51,6 +51,55 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;SimplifyBooleanReturn&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *  private boolean cond;
+ *  private Foo a;
+ *  private Foo b;
+ *
+ *  public boolean check1() {
+ *   if (cond) { // violation, can be simplified
+ *     return true;
+ *   }
+ *   else {
+ *     return false;
+ *   }
+ *  }
+ *
+ *  // Ok, simplified version of check1()
+ *  public boolean check2() {
+ *   return cond;
+ *  }
+ *
+ *  // violations, can be simplified
+ *  public boolean check3() {
+ *   if (cond == true) { // can be simplified to "if (cond)"
+ *     return false;
+ *   }
+ *   else {
+ *     return true; // can be simplified to "return !cond"
+ *   }
+ *  }
+ *
+ *  // Ok, can be simplified but doesn't return a Boolean
+ *  public Foo choose1() {
+ *   if (cond) {
+ *     return a;
+ *   }
+ *   else {
+ *     return b;
+ *   }
+ *  }
+ *
+ *  // Ok, simplified version of choose1()
+ *  public Foo choose2() {
+ *   return cond ? a: b;
+ *  }
+ *
+ * }
+ * </pre>
  *
  * @since 3.0
  */
