@@ -2197,7 +2197,24 @@ messages_home_fr_CA_UNIX.properties
         <source>
 &lt;module name=&quot;UncommentedMain&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+public class Game {
+   public static void main(String... args){}   // violation
+}
 
+public class Main {
+   public static void main(String[] args){}   // violation
+}
+
+public class Launch {
+   //public static void main(String[] args){} // OK
+}
+
+public class Start {
+   public void main(){}                       // OK
+}
+        </source>
         <p>
           To configure the check to allow the <code>main</code> method for all classes
           with &quot;Main&quot; name:
@@ -2206,6 +2223,24 @@ messages_home_fr_CA_UNIX.properties
 &lt;module name=&quot;UncommentedMain&quot;&gt;
   &lt;property name=&quot;excludedClasses&quot; value=&quot;\.Main$&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Game {
+   public static void main(String... args){}   // violation
+}
+
+public class Main {
+   public static void main(String[] args){}   // OK
+}
+
+public class Launch {
+   //public static void main(String[] args){} // OK
+}
+
+public class Start {
+   public void main(){}                       // OK
+}
         </source>
       </subsection>
 
