@@ -74,46 +74,46 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Example:
  * </p>
  * <pre>
- *public class Test {
+ * public class Test {
  *
- *  public void test() {
+ *   public void test() {
  *
- *    if (foo) {
- *      bar();
- *    }           // violation, right curly must be in the same line as the 'else' keyword
- *    else {
- *      bar();
- *    }
+ *     if (foo) {
+ *       bar();
+ *     }           // violation, right curly must be in the same line as the 'else' keyword
+ *     else {
+ *       bar();
+ *     }
  *
- *    if (foo) {
- *      bar();
- *    } else {     // OK
- *      bar();
- *    }
+ *     if (foo) {
+ *       bar();
+ *     } else {     // OK
+ *       bar();
+ *     }
  *
- *    if (foo) { bar(); } int i = 0; // violation
- *                  // ^^^ statement is not allowed on same line after curly right brace
+ *     if (foo) { bar(); } int i = 0; // violation
+ *                   // ^^^ statement is not allowed on same line after curly right brace
  *
- *    if (foo) { bar(); }            // OK
- *    int i = 0;
+ *     if (foo) { bar(); }            // OK
+ *     int i = 0;
  *
- *    try {
- *      bar();
- *    }           // violation, rightCurly must be in the same line as 'catch' keyword
- *    catch (Exception e) {
- *      bar();
- *    }
+ *     try {
+ *       bar();
+ *     }           // violation, rightCurly must be in the same line as 'catch' keyword
+ *     catch (Exception e) {
+ *       bar();
+ *     }
  *
- *    try {
- *      bar();
- *    } catch (Exception e) { // OK
- *      bar();
- *    }
+ *     try {
+ *       bar();
+ *     } catch (Exception e) { // OK
+ *       bar();
+ *     }
  *
- *  }                         // OK
+ *   }                         // OK
  *
- *  public void testSingleLine() { bar(); } // OK, because singleline is allowed
- *}
+ *   public void testSingleLine() { bar(); } // OK, because singleline is allowed
+ * }
  * </pre>
  * <p>
  * To configure the check with policy {@code alone} for {@code else} and
@@ -130,34 +130,34 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Example:
  * </p>
  * <pre>
- *public class Test {
+ * public class Test {
  *
- *  public void test() {
+ *   public void test() {
  *
- *    if (foo) {
- *      bar();
- *    } else { bar(); }   // violation, right curly must be alone on line
+ *     if (foo) {
+ *       bar();
+ *     } else { bar(); }   // violation, right curly must be alone on line
  *
- *    if (foo) {
- *      bar();
- *    } else {
- *      bar();
- *    }                   // OK
+ *     if (foo) {
+ *       bar();
+ *     } else {
+ *       bar();
+ *     }                   // OK
  *
- *    try {
- *      bar();
- *    } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
- *      bar();
- *    }
+ *     try {
+ *       bar();
+ *     } catch (Exception e) { // OK because config is set to token METHOD_DEF and LITERAL_ELSE
+ *       bar();
+ *     }
  *
- *  }                         // OK
+ *   }                         // OK
  *
- *  public void violate() { bar; } // violation, singleline is not allowed here
+ *   public void violate() { bar; } // violation, singleline is not allowed here
  *
- *  public void ok() {
- *    bar();
- *  }                              // OK
- *}
+ *   public void ok() {
+ *     bar();
+ *   }                              // OK
+ * }
  * </pre>
  * <p>
  * To configure the check with policy {@code alone_or_singleline} for {@code if}
@@ -175,33 +175,33 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Example:
  * </p>
  * <pre>
- *public class Test {
+ * public class Test {
  *
- *  public void test() {
+ *   public void test() {
  *
- *    if (foo) {
- *      bar();
- *    } else {        // violation, right curly must be alone on line
- *      bar();
- *    }
+ *     if (foo) {
+ *       bar();
+ *     } else {        // violation, right curly must be alone on line
+ *       bar();
+ *     }
  *
- *    if (foo) {
- *      bar();
- *    }               // OK
- *    else {
- *      bar();
- *    }
+ *     if (foo) {
+ *       bar();
+ *     }               // OK
+ *     else {
+ *       bar();
+ *     }
  *
- *    try {
- *      bar();
- *    } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
- *      bar();
- *    }
+ *     try {
+ *       bar();
+ *     } catch (Exception e) {        // OK because config did not set token LITERAL_TRY
+ *       bar();
+ *     }
  *
- *  }                                // OK
+ *   }                                // OK
  *
- *  public void violate() { bar(); } // OK , because singleline
- *}
+ *   public void violate() { bar(); } // OK , because singleline
+ * }
  * </pre>
  *
  * @since 3.0

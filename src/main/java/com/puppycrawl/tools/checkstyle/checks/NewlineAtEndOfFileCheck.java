@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
- *<p>
+ * <p>
  * Checks whether files end with a line separator.
  * </p>
  * <p>
