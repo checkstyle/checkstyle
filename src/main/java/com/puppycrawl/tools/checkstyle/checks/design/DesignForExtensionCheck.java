@@ -205,7 +205,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *   public int foo4() {return 4;} // violation
  * }
- *</pre>
+ * </pre>
  *
  * @since 3.1
  */
