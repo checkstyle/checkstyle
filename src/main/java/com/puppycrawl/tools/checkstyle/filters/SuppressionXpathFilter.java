@@ -140,9 +140,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NoLineWrap
  * </li>
  * <li>
- * OneTopLevelClass
- * </li>
- * <li>
  * OuterTypeFilename
  * </li>
  * <li>
