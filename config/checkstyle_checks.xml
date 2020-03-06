@@ -514,6 +514,7 @@
     <module name="JavadocMethod">
       <property name="validateThrows" value="true"/>
     </module>
+    <module name="JavadocMissingWhitespaceAfterAsterisk"/>
     <module name="JavadocParagraph"/>
     <module name="JavadocStyle">
       <property name="scope" value="public"/>
