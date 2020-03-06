@@ -460,7 +460,7 @@ public final class JavadocTokenTypes {
      *
      * <p><b>Example:</b></p>
      * <pre><code>{&#64;docRoot
-     *}</code></pre>
+     * }</code></pre>
      * <b>Tree:</b>
      * <pre>
      * <code>  |--JAVADOC_INLINE_TAG[1x0] : [{&#64;docRoot \n}]
