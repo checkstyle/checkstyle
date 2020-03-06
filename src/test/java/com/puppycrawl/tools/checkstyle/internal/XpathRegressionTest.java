@@ -84,6 +84,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
                     "AtclauseOrder",
                     "JavadocBlockTagLocation",
+                    "JavadocMissingWhitespaceAfterAsterisk",
                     "JavadocParagraph",
                     "JavadocStyle",
                     "JavadocTagContinuationIndentation",
