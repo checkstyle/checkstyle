@@ -72,6 +72,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;MissingOverride&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test extends SuperClass {
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     &#64;Override
+ *     public void test1() { // OK
+ *
+ *     }
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     public void test2() { // violation, should be annotated with &#64;Override
+ *
+ *     }
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     private void test3() { // violation, using the &#64;inheritDoc tag on private method
+ *
+ *     }
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     public static void test4() { // violation, using the &#64;inheritDoc tag on static method
+ *
+ *     }
+ * }
+ * </pre>
  * <p>
  * To configure the check for the {@code javaFiveCompatibility} mode:
  * </p>
@@ -80,6 +106,47 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="javaFiveCompatibility"
  *       value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test1 {
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     public void equals() { // violation, should be annotated with &#64;Override
+ *
+ *     }
+ * }
+ *
+ * interface Test2 {
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     void test(); // violation, should be annotated with &#64;Override
+ * }
+ *
+ * class Test3 extends SuperClass {
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     public void test() { // OK, is ignored because class extends other class
+ *
+ *     }
+ * }
+ *
+ * class Test4 implements SuperInterface {
+ *
+ *     &#47;** {&#64;inheritDoc} *&#47;
+ *     public void test() { // OK, is ignored because class implements interface
+ *
+ *     }
+ * }
+ *
+ * class Test5 {
+ *     Runnable r = new Runnable() {
+ *          &#47;** {&#64;inheritDoc} *&#47;
+ *          public void run() { // OK, is ignored because class is anonymous class
+ *
+ *          }
+ *     };
+ * }
  * </pre>
  *
  * @since 5.0
