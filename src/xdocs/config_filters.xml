@@ -934,7 +934,6 @@ public class UserService {
           <li>NeedBraces</li>
           <li>NoFinalizer</li>
           <li>NoLineWrap</li>
-          <li>OneTopLevelClass</li>
           <li>OuterTypeFilename</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageAnnotation</li>
