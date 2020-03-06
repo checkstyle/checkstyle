@@ -640,6 +640,7 @@ javadocblocktaglocation
 javadoccontentlocation
 javadocdetailnodeparser
 javadocmethod
+javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
 javadocpropertiesgenerator
@@ -759,6 +760,7 @@ libexec
 lifecycle
 linebreak
 linecolumn
+linejava
 linelength
 linkcheck
 linkplain
