@@ -84,7 +84,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "NeedBraces",
             "NoFinalizer",
             "NoLineWrap",
-            "OneTopLevelClass",
             "OuterTypeFilename",
             "OverloadMethodsDeclarationOrder",
             "PackageAnnotation",
