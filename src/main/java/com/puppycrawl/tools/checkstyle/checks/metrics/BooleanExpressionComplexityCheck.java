@@ -74,13 +74,44 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * &lt;module name="BooleanExpressionComplexity"/&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * public class Test
+ * {
+ * public static void main(String ... args)
+ * {
+ * boolean a = true;
+ * boolean b = false;
+ *
+ * boolean c = (a &amp; b) | (b ^ a);       // OK, 1(&amp;) + 1(|) + 1(^) = 3 (max allowed 3)
+ *
+ * boolean d = (a &amp; b) ^ (a || b) | a;  // violation, 1(&amp;) + 1(^) + 1(||) + 1(|) = 4
+ * }
+ * }
+ * </pre>
  * <p>
- * To configure the check with 7 allowed operation in boolean expression:
+ * To configure the check with 5 allowed operation in boolean expression:
  * </p>
  * <pre>
  * &lt;module name="BooleanExpressionComplexity"&gt;
- *   &lt;property name="max" value="7"/&gt;
+ *   &lt;property name="max" value="5"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * public class Test
+ * {
+ *  public static void main(String ... args)
+ *  {
+ *   boolean a = true;
+ *   boolean b = false;
+ *
+ *   boolean c = (a &amp; b) | (b ^ a) | (a ^ b);   // OK, 1(&amp;) + 1(|) + 1(^) + 1(|) + 1(^) = 5
+ *
+ *   boolean d = (a | b) ^ (a | b) ^ (a || b) &amp; b; // violation,
+ *                                               // 1(|) + 1(^) + 1(|) + 1(^) + 1(||) + 1(&amp;) = 6
+ *  }
+ * }
  * </pre>
  * <p>
  * To configure the check to ignore {@code &amp;} and {@code |}:
@@ -90,6 +121,24 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *   &lt;property name="tokens" value="BXOR,LAND,LOR"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * public class Test
+ * {
+ *  public static void main(String ... args)
+ *   {
+ *     boolean a = true;
+ *     boolean b = false;
+ *
+ *     boolean c = (!a &amp;&amp; b) | (a || !b) ^ a;    // OK, 1(&amp;&amp;) + 1(||) + 1(^) = 3
+ *                                                // | is ignored here
+ *
+ *     boolean d = a ^ (a || b) ^ (b || a) &amp; a; // violation, 1(^) + 1(||) + 1(^) + 1(||) = 4
+ *                                               // &amp; is ignored here
+ *    }
+ *  }
+ * </pre>
+ *
  *
  * @since 3.4
  */
