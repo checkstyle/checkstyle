@@ -935,7 +935,6 @@ public class UserService {
           <li>NoClone</li>
           <li>NoFinalizer</li>
           <li>NoLineWrap</li>
-          <li>OneTopLevelClass</li>
           <li>OuterTypeFilename</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageAnnotation</li>
