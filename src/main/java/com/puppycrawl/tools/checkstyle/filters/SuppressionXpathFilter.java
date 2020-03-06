@@ -118,6 +118,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocBlockTagLocation
  * </li>
  * <li>
+ * JavadocMissingWhitespaceAfterAsterisk
+ * </li>
+ * <li>
  * JavadocParagraph
  * </li>
  * <li>
