@@ -78,6 +78,7 @@ no-error-orekit)
   git checkout "b67b419db7014f4b""ad921a1bac6c848384ad2b92"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
+  rm -rf hipparchus
   rm -rf Orekit
   ;;
 
