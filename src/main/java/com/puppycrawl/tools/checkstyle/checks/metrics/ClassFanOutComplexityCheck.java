@@ -86,6 +86,45 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="max" value="10"/&gt;
  * &lt;/module&gt;
  * </pre>
+
+ * <p>
+ * To configure the check with two excluded classes {@code HashMap} and {@code HashSet}:
+ * </p>
+ * <pre>
+ * &lt;module name="ClassFanOutComplexity"&gt;
+ *   &lt;property name="excludedClasses" value="HashMap, HashSet"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check with two regular expressions {@code ^Array.*} and {@code .*Exception$}:
+ * </p>
+ * <pre>
+ * &lt;module name="ClassFanOutComplexity"&gt;
+ *   &lt;property name="excludeClassesRegexps"
+ *     value="^Array.*, .*Exception$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * The following example demonstrates usage of <b>excludedClasses</b> and
+ * <b>excludeClassesRegexps</b> properties
+ * </p>
+ * <p>
+ * Expected result is one class {@code Date}
+ * </p>
+ * <pre>
+ * &lt;module name="ClassFanOutComplexity"&gt;
+ *   &lt;property name="excludedClasses" value="ArrayList"/&gt;
+ *   &lt;property name="excludeClassesRegexps" value="^Hash.*"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class InputClassComplexity {
+ *   public Set _set = new HashSet();
+ *   public Map _map = new HashMap();
+ *   public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+ *   public Date _date = new Date();
+ * }
+ * </pre>
  * <p>
  * Override property {@code excludedPackages} to mark some packages as excluded.
  * Each member of {@code excludedPackages} should be a valid identifier:
@@ -118,7 +157,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * For example, assuming the config is
  * </p>
  * <pre>
- * &lt;module name="ClassDataAbstractionCoupling"&gt;
+ * &lt;module name="ClassFanOutComplexity"&gt;
  *   &lt;property name="excludedPackages" value="a.b"/&gt;
  * &lt;/module&gt;
  * </pre>

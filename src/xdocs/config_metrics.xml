@@ -581,7 +581,46 @@ public class Foo {
   &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>
+          To configure the check with two excluded classes <code>HashMap</code> and
+          <code>HashSet</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          To configure the check with two regular expressions <code>^Array.*</code> and
+          <code>.*Exception$</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot;
+    value=&quot;^Array.*, .*Exception$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          The following example demonstrates usage of <b>excludedClasses</b> and
+          <b>excludeClassesRegexps</b> properties
+        </p>
+        <p>
+          Expected result is one class <code>Date</code>
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+public class InputClassComplexity {
+  public Set _set = new HashSet();
+  public Map _map = new HashMap();
+  public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+  public Date _date = new Date();
+}
+        </source>
         <p>
           Override property <code>excludedPackages</code> to mark some packages as excluded.
           Each member of <code>excludedPackages</code> should be a valid identifier:
@@ -614,7 +653,7 @@ public class Foo {
           assuming the config is
         </p>
         <source>
-&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
   &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
 &lt;/module&gt;
         </source>
