@@ -83,7 +83,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "MissingOverride",
             "MissingSwitchDefault",
             "NeedBraces",
-            "NoClone",
             "NoFinalizer",
             "NoLineWrap",
             "OneTopLevelClass",

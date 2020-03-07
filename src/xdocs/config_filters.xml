@@ -933,7 +933,6 @@ public class UserService {
           <li>MissingOverride</li>
           <li>MissingSwitchDefault</li>
           <li>NeedBraces</li>
-          <li>NoClone</li>
           <li>NoFinalizer</li>
           <li>NoLineWrap</li>
           <li>OneTopLevelClass</li>

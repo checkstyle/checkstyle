@@ -137,9 +137,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NeedBraces
  * </li>
  * <li>
- * NoClone
- * </li>
- * <li>
  * NoFinalizer
  * </li>
  * <li>
