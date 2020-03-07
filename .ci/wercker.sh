@@ -66,7 +66,7 @@ no-error-orekit)
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
-  SHA_HIPPARCHUS="4c6c6fc45e859e""ae2d4eb091a3a3c0a7a458b8d9"
+  SHA_HIPPARCHUS="1fbfb8a2a259a9""7a23e2a387e8fdc5e0a8402e77"
   git checkout $SHA_HIPPARCHUS
   mvn install -DskipTests
   cd -
@@ -75,7 +75,7 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout "a7e67ce73803c67a""ad90e0b28ed77a7781dc28a9"
+  git checkout "b67b419db7014f4b""ad921a1bac6c848384ad2b92"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf Orekit
