@@ -134,9 +134,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NeedBraces
  * </li>
  * <li>
- * NoFinalizer
- * </li>
- * <li>
  * NoLineWrap
  * </li>
  * <li>

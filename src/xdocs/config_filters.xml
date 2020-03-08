@@ -932,7 +932,6 @@ public class UserService {
           <li>MissingOverride</li>
           <li>MissingSwitchDefault</li>
           <li>NeedBraces</li>
-          <li>NoFinalizer</li>
           <li>NoLineWrap</li>
           <li>OuterTypeFilename</li>
           <li>OverloadMethodsDeclarationOrder</li>
