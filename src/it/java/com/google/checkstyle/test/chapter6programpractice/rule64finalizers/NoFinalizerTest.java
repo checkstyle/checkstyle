@@ -37,7 +37,7 @@ public class NoFinalizerTest extends AbstractGoogleModuleTestSupport {
         final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
-            "5: " + msg,
+            "5:5: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("NoFinalizer");
@@ -52,15 +52,15 @@ public class NoFinalizerTest extends AbstractGoogleModuleTestSupport {
         final String msg = getCheckMessage(NoFinalizerCheck.class, "avoid.finalizer.method");
 
         final String[] expected = {
-            "9: " + msg,
-            "21: " + msg,
-            "33: " + msg,
-            "45: " + msg,
-            "57: " + msg,
-            "69: " + msg,
-            "79: " + msg,
-            "119: " + msg,
-            "136: " + msg,
+            "9:5: " + msg,
+            "21:5: " + msg,
+            "33:5: " + msg,
+            "45:5: " + msg,
+            "57:5: " + msg,
+            "69:5: " + msg,
+            "79:9: " + msg,
+            "119:13: " + msg,
+            "136:5: " + msg,
         };
 
         final Configuration checkConfig = getModuleConfig("NoFinalizer");
