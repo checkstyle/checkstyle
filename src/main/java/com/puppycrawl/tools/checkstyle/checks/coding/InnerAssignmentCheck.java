@@ -57,6 +57,50 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;InnerAssignment"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass {
+ *
+ *   void foo() {
+ *     int a, b;
+ *     a = b = 5; // violation, assignment to each variable should be in a separate statement
+ *     a = b += 5; // violation
+ *
+ *     a = 5; // OK
+ *     b = 5; // OK
+ *     a = 5; b = 5; // OK
+ *
+ *     double myDouble;
+ *     double[] doubleArray = new double[] {myDouble = 4.5, 15.5}; // violation
+ *
+ *     String nameOne;
+ *     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
+ *     myList.add(nameOne = "tom"); // violation
+
+ *     for (int k = 0; k &lt; 10; k = k + 2) { // OK
+ *       // some code
+ *     }
+ *
+ *     boolean someVal;
+ *     if (someVal = true) { // violation
+ *       // some code
+ *     }
+ *
+ *     while (someVal = false) {} // violation
+ *
+ *     InputStream is = new FileInputStream("textFile.txt");
+ *     while ((b = is.read()) != -1) { // OK, this is a common idiom
+ *       // some code
+ *     }
+ *
+ *   }
+ *
+ *   boolean testMethod() {
+ *     boolean val;
+ *     return val = true; // violation
+ *   }
+ * }
+ * </pre>
  *
  * @since 3.0
  */
