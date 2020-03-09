@@ -64,7 +64,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "10:1: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -74,7 +74,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@author");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "10:1: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -85,7 +85,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tag", "@incomplete");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+            "11:1: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This class needs more code..."),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
@@ -97,8 +97,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tag", "@doubletag");
         checkConfig.addAttribute("tagFormat", "\\S");
         final String[] expected = {
-            "12: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
-            "13: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
+            "12:1: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text"),
+            "13:1: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -109,7 +109,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tag", "@emptytag");
         checkConfig.addAttribute("tagFormat", "");
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
+            "14:1: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", ""),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -119,7 +119,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         checkConfig.addAttribute("tag", "@missingtag");
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
+            "16:1: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -133,8 +133,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
             "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
         checkConfig.addAttribute("severity", "ignore");
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a constructor comment"),
-            "30: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
+            "19:9: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a constructor comment"),
+            "30:5: " + getCheckMessage(MSG_WRITE_TAG, "@todo", "Add a comment"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -146,7 +146,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tagFormat", "\\S");
         checkConfig.addAttribute("severity", "ignore");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
+            "10:1: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -178,7 +178,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tag", "@author");
         checkConfig.addAttribute("tagFormat", "ABC");
         final String[] expected = {
-            "10: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "10:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
         verify(checkConfig, getPath("InputWriteTag.java"), expected);
     }
@@ -193,12 +193,12 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tokens",
             "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "This enum needs more code..."),
-            "13: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+            "9:1: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "This enum needs more code..."),
+            "13:5: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This enum constant needs more code..."),
-            "19: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+            "19:1: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This annotation needs more code..."),
-            "23: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
+            "23:5: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This annotation field needs more code..."),
         };
         verify(checkConfig, getPath("InputWriteTag2.java"), expected);
@@ -208,7 +208,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     public void testNoJavadocs() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_MISSING_TAG, "null"),
+            "3:1: " + getCheckMessage(MSG_MISSING_TAG, "null"),
         };
         verify(checkConfig, getPath("InputWriteTag3.java"), expected);
     }
