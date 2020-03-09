@@ -90,15 +90,16 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: NoErrorTest - Apache Apex
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-apex-core"
-          ./.ci/wercker.sh no-error-apex-core
-        else
-          echo "build is skipped ..."
-        fi
+# disabled till https://github.com/checkstyle/checkstyle/issues/7815
+#  - script:
+#      name: NoErrorTest - Apache Apex
+#      code: |
+#        if [[ $RUN_JOB == 1 ]]; then
+#          echo "Command: ./.ci/wercker.sh no-error-apex-core"
+#          ./.ci/wercker.sh no-error-apex-core
+#        else
+#          echo "build is skipped ..."
+#        fi
 
 # disabled till project migrate to config of 8.28
 #  - script:
