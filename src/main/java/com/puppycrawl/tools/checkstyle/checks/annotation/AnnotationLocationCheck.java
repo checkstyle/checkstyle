@@ -282,11 +282,11 @@ public class AnnotationLocationCheck extends AbstractCheck {
             final boolean hasParameters = isParameterized(annotation);
 
             if (!isCorrectLocation(annotation, hasParameters)) {
-                log(annotation.getLineNo(),
+                log(annotation,
                         MSG_KEY_ANNOTATION_LOCATION_ALONE, getAnnotationName(annotation));
             }
             else if (annotation.getColumnNo() != correctIndentation && !hasNodeBefore(annotation)) {
-                log(annotation.getLineNo(), MSG_KEY_ANNOTATION_LOCATION,
+                log(annotation, MSG_KEY_ANNOTATION_LOCATION,
                     getAnnotationName(annotation), annotation.getColumnNo(), correctIndentation);
             }
             annotation = annotation.getNextSibling();
