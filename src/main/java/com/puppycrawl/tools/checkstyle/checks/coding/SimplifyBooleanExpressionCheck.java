@@ -39,7 +39,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;SimplifyBooleanExpression&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
  *
+ *   public void bar() {
+ *
+ *     boolean a, b;
+ *     Foo c, d, e;
+ *
+ *     if (!false) {}; // violation, can be simplified to true
+ *
+ *     if (a == true) {}; // violation, can be simplified to a
+ *     if (a == b) {}; // OK
+ *     if (a == false) {}; // violation, can be simplified to !a
+ *     if (!(a != true)) {}; // violation, can be simplified to a
+ *
+ *     e = (a || b) ? c : d; // OK
+ *     e = (a || false) ? c : d; // violation, can be simplified to a
+ *     e = (a &amp;&amp; b) ? c : d; // OK
+ *
+ *  }
+ *
+ * }
+ * </pre>
  * @since 3.0
  */
 @StatelessCheck
