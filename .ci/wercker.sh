@@ -136,11 +136,8 @@ no-error-htmlunit)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  echo "checkouting project sources ..."
-  svn -q export https://svn.code.sf.net/p/htmlunit/code/trunk/htmlunit@r14923 htmlunit
-  cd htmlunit
- sed -i "s/            <version>2.28-SNAPSHOT/            <version>2.28-20171106.080245-12/" pom.xml
-  echo "Running checkstyle validation ..."
+  checkout_from https://github.com/HtmlUnit/htmlunit
+  cd .ci-temp/htmlunit
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
   rm -rf htmlunit
