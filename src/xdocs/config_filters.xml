@@ -928,7 +928,6 @@ public class UserService {
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocPackage</li>
           <li>MissingJavadocType</li>
-          <li>MissingOverride</li>
           <li>MissingSwitchDefault</li>
           <li>NeedBraces</li>
           <li>NoLineWrap</li>
