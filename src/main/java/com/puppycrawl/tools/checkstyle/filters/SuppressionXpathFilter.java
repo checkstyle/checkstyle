@@ -125,9 +125,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocType
  * </li>
  * <li>
- * MissingOverride
- * </li>
- * <li>
  * MissingSwitchDefault
  * </li>
  * <li>

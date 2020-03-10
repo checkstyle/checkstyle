@@ -214,7 +214,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
 
         final boolean containsTag = containsJavadocTag(javadoc);
         if (containsTag && !JavadocTagInfo.INHERIT_DOC.isValidOn(ast)) {
-            log(ast.getLineNo(), MSG_KEY_TAG_NOT_VALID_ON,
+            log(ast, MSG_KEY_TAG_NOT_VALID_ON,
                 JavadocTagInfo.INHERIT_DOC.getText());
         }
         else {
@@ -234,7 +234,7 @@ public final class MissingOverrideCheck extends AbstractCheck {
                 && containsTag
                 && !AnnotationUtil.containsAnnotation(ast, OVERRIDE)
                 && !AnnotationUtil.containsAnnotation(ast, FQ_OVERRIDE)) {
-                log(ast.getLineNo(), MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
+                log(ast, MSG_KEY_ANNOTATION_MISSING_OVERRIDE);
             }
         }
     }
