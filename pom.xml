@@ -1382,6 +1382,7 @@
               <includes>
                 <include>google_checks.xml</include>
                 <include>sun_checks.xml</include>
+                <include>config.xml</include>
               </includes>
             </validationSet>
           </validationSets>

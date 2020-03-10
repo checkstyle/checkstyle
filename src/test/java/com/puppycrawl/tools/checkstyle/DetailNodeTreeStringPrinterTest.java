@@ -19,22 +19,17 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_MISSED_HTML_CLOSE;
-import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_PARSE_RULE_ERROR;
-import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.MSG_JAVADOC_WRONG_SINGLETON_TAG;
-import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.*;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import org.junit.jupiter.api.Test;
+import org.powermock.reflect.Whitebox;
 
 import java.io.File;
 import java.lang.reflect.Method;
 
-import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
-
-import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import static com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.*;
+import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
@@ -133,7 +128,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String expected = "[ERROR:100] " + localizedMessage.getMessage();
         assertEquals(expected, actual,
                 "Javadoc parse error message for void elements with close tag "
-                    + "doesn't meet expectations");
+                        + "doesn't meet expectations");
     }
 
     @Test
