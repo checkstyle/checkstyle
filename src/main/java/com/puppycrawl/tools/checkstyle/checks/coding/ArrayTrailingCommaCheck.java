@@ -167,7 +167,7 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
                 && !TokenUtil.areOnSameLine(rcurly, previousSibling)
                 && !TokenUtil.areOnSameLine(arrayInit, previousSibling)
                 && previousSibling.getType() != TokenTypes.COMMA) {
-            log(rcurly.getLineNo(), MSG_KEY);
+            log(previousSibling, MSG_KEY);
         }
     }
 

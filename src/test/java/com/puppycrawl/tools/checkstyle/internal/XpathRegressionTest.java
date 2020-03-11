@@ -55,7 +55,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "AnnotationLocation",
             "AnnotationOnSameLine",
             "AnnotationUseStyle",
-            "ArrayTrailingComma",
             "AvoidEscapedUnicodeCharacters",
             "AvoidStarImport",
             "AvoidStaticImport",
