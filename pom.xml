@@ -1665,6 +1665,8 @@
             </excludedLink>
             <!-- ConnectTimeoutException -->
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
+            <!-- very frequent SocketTimeoutException : Read timed out -->
+            <excludedLink>https://maven.apache.org/*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
