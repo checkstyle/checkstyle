@@ -3315,11 +3315,27 @@ for (String line: lines) {
         </p>
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-  &lt;property name=&quot;allowedDuplicates&quot; value=&quot;2&quot;/&gt;
+  &lt;property name=&quot;allowedDuplicates&quot; value=&quot;1"/&gt;
 &lt;/module&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+          <pre>
+          public class myTest1() {
 
-        <p>
+          string name1="ABC";
+          string name2="CDE";
+          string name3="GFH";
+          string name4="ABC";  //violation
+          /*more useful in a long
+          list of names to find r repetition*/
+
+          string r="A"+"B"+"C";   //no violation
+          }
+          </pre>
+          </div>
+
+          <p>
           To configure the check so that it ignores ", " and empty strings:
         </p>
         <source>
@@ -3328,17 +3344,46 @@ for (String line: lines) {
     value='^((&quot;&quot;)|(&quot;, &quot;))$'/&gt;
 &lt;/module&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+          <pre>
+          public class myTest2() {
+          string x=", ";
+          string y=", ";
+          /*no violation since comma(followed by a space) is ignored while
+          checking for repetitions*/
+          }
+          </pre>
+          </div>
 
-        <p>
+
+          <p>
           To configure the check so that it flags duplicate strings in all
           syntactical contexts, even in annotations like
           <code>@SuppressWarnings("unchecked")</code>:
         </p>
         <source>
 &lt;module name=&quot;MultipleStringLiterals&quot;&gt;
-  &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
+  &lt;property name=&quot;ignoreOccurrenceContext&quot; value="LITERAL_IF"/&gt;
 &lt;/module&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+          <pre>
+          public class myTest3() {
+              int y1=1;
+              if(y1==1)
+              {
+              string d="Hello";
+              }
+              if(y1==1)
+              {
+              string d1="Hello";
+              }
+              /*no violation because of the keyword LITERAL_IF which ignores the duplicates in if statements*/
+        }
+          </pre>
+          </div>
       </subsection>
 
       <subsection name="Example of Usage" id="MultipleStringLiterals_Example_of_Usage">
