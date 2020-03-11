@@ -722,6 +722,24 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMultiplePatternMultipleImportFirstPatternHasLaterPosition() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+                "SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE");
+        checkConfig.addAttribute("specialImportsRegExp", "Test");
+        checkConfig.addAttribute("standardPackageRegExp", "unit");
+
+        createChecker(checkConfig);
+        final String[] expected = {
+            "4: " + getCheckMessage(MSG_NONGROUP_EXPECTED, STD, "org.junit.Test"),
+        };
+        verify(checkConfig,
+            getPath("InputCustomImportOrder_MultiplePatternMultipleImport.java"),
+            expected);
+    }
+
+    @Test
     public void testNoPackage() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CustomImportOrderCheck.class);
