@@ -62,6 +62,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ *   To configure the check with default values:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpSinglelineJava&quot;/&gt;
+ * </pre>
+ * <p>
+ *   This configuration does not match to anything,
+ *   so we do not provide any code example for it
+ *   as no violation will ever be reported.
+ * </p>
+ * <p>
  * To configure the check for calls to {@code System.out.println}, except in comments:
  * </p>
  * <pre>
@@ -72,6 +83,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="ignoreComments" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * System.out.println(""); // violation, instruction matches illegal pattern
+ * System.out.
+ *   println(""); // OK
+ * &#47;* System.out.println *&#47; // OK, comments are ignored
+ * </pre>
  * <p>
  * To configure the check to find case-insensitive occurrences of "debug":
  * </p>
@@ -81,7 +99,90 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="ignoreCase" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * int debug = 0; // violation, variable name matches illegal pattern
+ * public class Debug { // violation, class name matches illegal pattern
+ * &#47;* this is for de
+ *   bug only; *&#47; // OK
+ * </pre>
+ * <p>
+ * To configure the check to find occurrences of
+ * &quot;\.read(.*)|\.write(.*)&quot;
+ * and display &quot;IO found&quot; for each violation.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;\.read(.*)|\.write(.*)&quot;/&gt;
+ *   &lt;property name=&quot;message&quot; value=&quot;IO found&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * FileReader in = new FileReader("path/to/input");
+ * int ch = in.read(); // violation
+ * while(ch != -1) {
+ *   System.out.print((char)ch);
+ *   ch = in.read(); // violation
+ * }
  *
+ * FileWriter out = new FileWriter("path/to/output");
+ * out.write("something"); // violation
+ * </pre>
+ * <p>
+ * To configure the check to find occurrences of
+ * &quot;\.log(.*)&quot;. We want to allow a maximum of 2 occurrences.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;\.log(.*)&quot;/&gt;
+ *   &lt;property name=&quot;maximum&quot; value=&quot;2&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Foo{
+ *   public void bar(){
+ *     Logger.log("first"); // OK, first occurrence is allowed
+ *     Logger.log("second"); // OK, second occurrence is allowed
+ *     Logger.log("third"); // violation
+ *     System.out.println("fourth");
+ *     Logger.log("fifth"); // violation
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to find all occurrences of
+ * &quot;public&quot;. We want to ignore comments,
+ * display &quot;public member found&quot; for each violation
+ * and say if less than 2 occurrences.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpSinglelineJava&quot;&gt;
+ *   &lt;property name=&quot;format&quot; value=&quot;public&quot;/&gt;
+ *   &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
+ *   &lt;property name=&quot;message&quot; value=&quot;public member found&quot;/&gt;
+ *   &lt;property name=&quot;ignoreComments&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Foo{ // violation, file contains less than 2 occurrences of "public"
+ *   private int a;
+ *   &#47;* public comment *&#47; // OK, comment is ignored
+ *   private void bar1() {}
+ *   public void bar2() {} // violation
+ * }
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Foo{
+ *   private int a;
+ *  &#47;* public comment *&#47; // OK, comment is ignored
+ *   public void bar1() {} // violation
+ *   public void bar2() {} // violation
+ * }
+ * </pre>
  * @since 6.0
  */
 @StatelessCheck
