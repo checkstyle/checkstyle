@@ -53,9 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * AnnotationUseStyle
  * </li>
  * <li>
- * ArrayTrailingComma
- * </li>
- * <li>
  * AvoidEscapedUnicodeCharacters
  * </li>
  * <li>
