@@ -214,8 +214,8 @@ public class JavadocStyleCheck
             "del", "dfn", "div", "dl", "dt", "em", "fieldset", "font", "h1",
             "h2", "h3", "h4", "h5", "h6", "hr", "i", "img", "ins", "kbd",
             "li", "ol", "p", "pre", "q", "samp", "small", "span", "strong",
-            "style", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
-            "thead", "tr", "tt", "u", "ul", "var", })
+            "sub", "sup", "table", "tbody", "td", "tfoot", "th", "thead",
+            "tr", "tt", "u", "ul", "var", })
         .collect(Collectors.toCollection(TreeSet::new)));
 
     /** Specify the visibility scope where Javadoc comments are checked. */
