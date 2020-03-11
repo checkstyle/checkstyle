@@ -55,6 +55,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *     if(condition 2){
  *         if(condition 3){
  *             if(condition 4){
+ *                 if(condition 5){ // Violation
+ *                 }
  *             }
  *         }
  *     }
@@ -65,6 +67,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * if(condition 1){
  *     if(condition 2){
  *         if(condition 3){
+ *             if(condition 4){ // OK
+ *             }
  *         }
  *     }
  * }
