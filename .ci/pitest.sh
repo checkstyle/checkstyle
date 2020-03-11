@@ -73,7 +73,6 @@ pitest-imports)
   declare -a ignoredItems=(
   "AvoidStarImportCheck.java.html:<td class='covered'><pre><span  class='survived'>            &#38;&#38; ast.getType() == TokenTypes.STATIC_IMPORT) {</span></pre></td></tr>"
   "AvoidStarImportCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {</span></pre></td></tr>"
-  "AvoidStaticImportCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (exclude.endsWith(&#34;.*&#34;)) {</span></pre></td></tr>"
   "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>                        &#38;&#38; matcher.start() &#60; betterMatchCandidate.matchPosition) {</span></pre></td></tr>"
   "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        else if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {</span></pre></td></tr>"
   "CustomImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (bestMatch.group.equals(NON_GROUP_RULE_GROUP)) {</span></pre></td></tr>"
