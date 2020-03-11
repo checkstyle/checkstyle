@@ -13,7 +13,7 @@ public class InputArrayTrailingComma
     {
         1,
         2,
-        3
+        3 // violation
     };
 
     int[] b1 = new int[] {1, 2, 3,};
@@ -33,7 +33,7 @@ public class InputArrayTrailingComma
         {1,
          2},
         {3, 3,},
-        {5, 6,}
+        {5, 6,} // violation
     };
 
     int[] e1 = new int[] {
@@ -58,4 +58,20 @@ public class InputArrayTrailingComma
             1,
             2
             ,};
+
+    Object[][] g1 = new Object[][]
+    {
+        { 1, 1 },
+        {
+           null,
+           new int[] { 2,
+                   3 }, }, };
+
+    Object[][] g2 = new Object[][]
+    {
+        { 1, 1 },
+        {
+           null,
+           new int[] { 2,
+                   3 } } }; // violation
 }
