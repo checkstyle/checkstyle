@@ -55,8 +55,10 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc/pgjdbc
   mvn -e checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-  cd ../../
-  rm -rf pgjdbc
+  cd ../
+  find -delete
+  cd ../
+  rmdir pgjdbc
   ;;
 
 no-error-orekit)
@@ -77,8 +79,9 @@ no-error-orekit)
   # git checkout $(git describe --abbrev=0 --tags)
   git checkout "b67b419db7014f4b""ad921a1ba""c6c848384ad2b92"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
+  find -delete
   cd ../
-  rm -rf Orekit
+  rmdir Orekit
   ;;
 
 no-error-xwiki)
@@ -92,8 +95,9 @@ no-error-xwiki)
   mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
-  cd ../../
-  rm -rf xwiki-commons
+  find -delete
+  cd ../
+  rmdir xwiki-commons
   ;;
 
 no-error-apex-core)
@@ -103,8 +107,9 @@ no-error-apex-core)
   checkout_from https://github.com/checkstyle/apex-core
   cd .ci-temp/apex-core
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  find -delete
   cd ../
-  rm -rf apex-core
+  rmdir apex-core
   ;;
 
 no-error-equalsverifier)
@@ -114,8 +119,9 @@ no-error-equalsverifier)
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  find -delete
   cd ../
-  rm -rf equalsverifier
+  rmdir equalsverifier
   ;;
 
 no-error-hibernate-search)
@@ -128,8 +134,9 @@ no-error-hibernate-search)
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
   mvn -e checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+  find -delete
   cd ../
-  rm -rf hibernate-search
+  rmdir hibernate-search
   ;;
 
 no-error-htmlunit)
@@ -139,8 +146,9 @@ no-error-htmlunit)
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  find -delete
   cd ../
-  rm -rf htmlunit
+  rmdir htmlunit
   ;;
 
 no-error-checkstyles-sevntu)
@@ -162,8 +170,10 @@ no-error-sevntu-checks)
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
   mvn -e -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
-  cd ../../
-  rm -rf sevntu.checkstyle
+  cd ../
+  find -delete
+  cd ../
+  rmdir sevntu.checkstyle
   ;;
 
 no-error-contribution)
@@ -181,8 +191,9 @@ no-error-contribution)
   mvn -e verify -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../
-  cd ../../
-  rm -rf checkstyle
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-error-methods-distance)
@@ -194,8 +205,9 @@ no-error-methods-distance)
   cd .ci-temp/methods-distance
   mvn -e verify -DskipTests -Dcheckstyle-version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
-  cd ../../
-  rm -rf checkstyle
+  find -delete
+  cd ../
+  rmdir methods-distance
   ;;
 
 no-error-strata)
@@ -210,8 +222,9 @@ no-error-strata)
   mvn install -e -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
+  find -delete
   cd ../
-  rm -rf Strata
+  rmdir Strata
   ;;
 
 no-error-spring-integration)
@@ -224,8 +237,9 @@ no-error-spring-integration)
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION}
+  find -delete
   cd ../
-  rm -rf spring-integration
+  rmdir spring-integration
   ;;
 
 no-exception-struts)
@@ -238,8 +252,10 @@ no-exception-struts)
   sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-checkstyle-sevntu)
@@ -254,8 +270,10 @@ no-exception-checkstyle-sevntu)
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-checkstyle-sevntu-javadoc)
@@ -270,8 +288,10 @@ no-exception-checkstyle-sevntu-javadoc)
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-guava)
@@ -284,8 +304,10 @@ no-exception-guava)
   sed -i'' 's/#guava/guava/' projects-for-wercker.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-hibernate-orm)
@@ -298,8 +320,10 @@ no-exception-hibernate-orm)
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-spotbugs)
@@ -312,8 +336,10 @@ no-exception-spotbugs)
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-spring-framework)
@@ -326,8 +352,10 @@ no-exception-spring-framework)
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-hbase)
@@ -340,8 +368,10 @@ no-exception-hbase)
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-Pmd-elasticsearch-lombok-ast)
@@ -356,8 +386,10 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-exception-alot-of-projects)
@@ -375,8 +407,10 @@ no-exception-alot-of-projects)
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   ;;
 
 no-warning-imports-guava)
@@ -391,8 +425,10 @@ no-warning-imports-guava)
   groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
       --checkstyleVersion ${CS_POM_VERSION}
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   if [ -z "$RESULT" ]; then
     echo "Inspection did not find any warnings"
   else
@@ -415,8 +451,10 @@ no-warning-imports-java-design-patterns)
   groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
       --checkstyleVersion ${CS_POM_VERSION}
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
-  cd ../../
-  rm -rf contribution
+  cd ../
+  find -delete
+  cd ../
+  rmdir contribution
   if [ -z "$RESULT" ]; then
     echo "Inspection did not find any warnings"
   else
