@@ -70,6 +70,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest2:
     machine: true
@@ -92,6 +94,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest3:
     machine: true
@@ -114,6 +118,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest4:
     machine: true
@@ -136,6 +142,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest5:
     machine: true
@@ -158,6 +166,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest6:
     machine: true
@@ -180,6 +190,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest7:
     machine: true
@@ -199,6 +211,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
   pitest8:
     machine: true
@@ -218,6 +232,8 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - store_artifacts:
+          path: ./target/pit-reports
 
 workflows:
   version: 2
