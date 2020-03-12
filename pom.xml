@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.30-SNAPSHOT</version>
+  <version>8.31-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -205,7 +205,7 @@
     <pmd.version>6.21.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.5</maven.jacoco.plugin.version>
     <powermock.version>2.0.5</powermock.version>
-    <saxon.version>9.9.1-6</saxon.version>
+    <saxon.version>9.9.1-7</saxon.version>
     <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.37.1</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
@@ -328,7 +328,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.6.1.202002131546-r</version>
+      <version>5.7.0.202003090808-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1143,7 +1143,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.1.0</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -1665,6 +1665,8 @@
             </excludedLink>
             <!-- ConnectTimeoutException -->
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
+            <!-- very frequent SocketTimeoutException : Read timed out -->
+            <excludedLink>https://maven.apache.org/*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>

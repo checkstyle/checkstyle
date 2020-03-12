@@ -911,7 +911,6 @@ public class UserService {
           <li>AvoidStaticImport</li>
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
-          <li>EmptyCatchBlock</li>
           <li>EmptyLineSeparator</li>
           <li>FinalClass</li>
           <li>IllegalCatch</li>
@@ -933,10 +932,7 @@ public class UserService {
           <li>MissingOverride</li>
           <li>MissingSwitchDefault</li>
           <li>NeedBraces</li>
-          <li>NoClone</li>
-          <li>NoFinalizer</li>
           <li>NoLineWrap</li>
-          <li>OneTopLevelClass</li>
           <li>OuterTypeFilename</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageAnnotation</li>

@@ -738,7 +738,32 @@ public static final int COUNTER = 10; // violation
         <source>
 &lt;module name=&quot;MissingOverride&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test extends SuperClass {
 
+    /** {@inheritDoc} */
+    @Override
+    public void test1() { // OK
+
+    }
+
+    /** {@inheritDoc} */
+    public void test2() { // violation, should be annotated with @Override
+
+    }
+
+    /** {@inheritDoc} */
+    private void test3() { // violation, using the @inheritDoc tag on private method
+
+    }
+
+    /** {@inheritDoc} */
+    public static void test4() { // violation, using the @inheritDoc tag on static method
+
+    }
+}
+        </source>
         <p>
           To configure the check for the <code>javaFiveCompatibility</code>
           mode:
@@ -748,6 +773,48 @@ public static final int COUNTER = 10; // violation
   &lt;property name=&quot;javaFiveCompatibility&quot;
       value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class Test1 {
+
+    /** {@inheritDoc} */
+    public void equals() { // violation, should be annotated with @Override
+
+    }
+}
+
+interface Test2 {
+
+    /** {@inheritDoc} */
+    void test(); // violation, should be annotated with @Override
+}
+
+class Test3 extends SuperClass {
+
+    /** {@inheritDoc} */
+    public void test() { // OK, is ignored because class extends other class
+
+    }
+}
+
+class Test4 implements SuperInterface {
+
+    /** {@inheritDoc} */
+    public void test() { // OK, is ignored because class implements interface
+
+    }
+}
+
+class Test5 {
+    Runnable r = new Runnable() {
+
+        /** {@inheritDoc} */
+        public void run() { // OK, is ignored because class is anonymous class
+
+        }
+    };
+}
         </source>
       </subsection>
 
@@ -810,7 +877,20 @@ public static final int COUNTER = 10; // violation
 
       <subsection name="Examples" id="PackageAnnotation_Examples">
         <p> To configure the check:</p>
-        <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt;
+        <source> &lt;module name=&quot;PackageAnnotation&quot;/&gt; </source>
+        <p>Example of validating MyClass.java:</p>
+        <source>
+@Deprecated
+package com.example.annotations.packageannotation; //violation
+        </source>
+        <p>Example of fixing violation in MyClass.java:</p>
+        <source>
+package com.example.annotations.packageannotation; //ok
+        </source>
+        <p>Example of validating package-info.java:</p>
+        <source>
+@Deprecated
+package com.example.annotations.packageannotation; //ok
         </source>
       </subsection>
 

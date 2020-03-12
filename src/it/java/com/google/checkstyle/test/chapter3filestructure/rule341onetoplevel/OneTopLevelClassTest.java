@@ -39,12 +39,12 @@ public class OneTopLevelClassTest extends AbstractGoogleModuleTestSupport {
         final String messageKey = "one.top.level.class";
 
         final String[] expected = {
-            "25: " + getCheckMessage(clazz, messageKey, "NoSuperClone"),
-            "33: " + getCheckMessage(clazz, messageKey, "InnerClone"),
-            "50: " + getCheckMessage(clazz, messageKey, "CloneWithTypeArguments"),
-            "55: " + getCheckMessage(clazz, messageKey, "CloneWithTypeArgumentsAndNoSuper"),
-            "60: " + getCheckMessage(clazz, messageKey, "MyClassWithGenericSuperMethod"),
-            "77: " + getCheckMessage(clazz, messageKey, "AnotherClass"),
+            "25:1: " + getCheckMessage(clazz, messageKey, "NoSuperClone"),
+            "33:1: " + getCheckMessage(clazz, messageKey, "InnerClone"),
+            "50:1: " + getCheckMessage(clazz, messageKey, "CloneWithTypeArguments"),
+            "55:1: " + getCheckMessage(clazz, messageKey, "CloneWithTypeArgumentsAndNoSuper"),
+            "60:1: " + getCheckMessage(clazz, messageKey, "MyClassWithGenericSuperMethod"),
+            "77:1: " + getCheckMessage(clazz, messageKey, "AnotherClass"),
         };
 
         final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
@@ -71,7 +71,7 @@ public class OneTopLevelClassTest extends AbstractGoogleModuleTestSupport {
         final String messageKey = "one.top.level.class";
 
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, messageKey, "FooEnum"),
+            "4:1: " + getCheckMessage(clazz, messageKey, "FooEnum"),
         };
 
         final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
@@ -87,8 +87,8 @@ public class OneTopLevelClassTest extends AbstractGoogleModuleTestSupport {
         final String messageKey = "one.top.level.class";
 
         final String[] expected = {
-            "5: " + getCheckMessage(clazz, messageKey, "FooIn"),
-            "7: " + getCheckMessage(clazz, messageKey, "FooClass"),
+            "5:1: " + getCheckMessage(clazz, messageKey, "FooIn"),
+            "7:1: " + getCheckMessage(clazz, messageKey, "FooClass"),
         };
 
         final Configuration checkConfig = getModuleConfig("OneTopLevelClass");

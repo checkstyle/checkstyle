@@ -71,9 +71,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * CustomImportOrder
  * </li>
  * <li>
- * EmptyCatchBlock
- * </li>
- * <li>
  * EmptyLineSeparator
  * </li>
  * <li>
@@ -137,16 +134,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NeedBraces
  * </li>
  * <li>
- * NoClone
- * </li>
- * <li>
- * NoFinalizer
- * </li>
- * <li>
  * NoLineWrap
- * </li>
- * <li>
- * OneTopLevelClass
  * </li>
  * <li>
  * OuterTypeFilename

@@ -16,16 +16,16 @@ public class InputEmptyCatchBlockViolationsByComment
     private void foo1() {
         try {
             throw new RuntimeException();
-        } catch (Exception e) //warn
-        {}
+        } catch (Exception e)
+        {} // warn
 
     }
 
     private void foo2() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException ignore) //warn
-        {
+        } catch (IOException | NullPointerException | ArithmeticException ignore)
+        /*warn*/ {
         }
     }
 
