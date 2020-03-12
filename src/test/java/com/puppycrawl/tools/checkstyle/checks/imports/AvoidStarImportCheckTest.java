@@ -60,7 +60,7 @@ public class AvoidStarImportCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidStarImportCheck.class);
         checkConfig.addAttribute("excludes",
-            "java.io,java.lang,javax.swing.WindowConstants.*, javax.swing.WindowConstants");
+            "java.io,java.lang,javax.swing.WindowConstants.*");
         // allow the java.io/java.lang,javax.swing.WindowConstants star imports
         final String[] expected2 = {
             "7: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports.*"),
