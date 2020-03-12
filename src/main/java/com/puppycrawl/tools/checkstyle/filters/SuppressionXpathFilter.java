@@ -131,9 +131,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * TrailingComment
  * </li>
  * <li>
- * UncommentedMain
- * </li>
- * <li>
  * UnnecessaryParentheses
  * </li>
  * <li>
