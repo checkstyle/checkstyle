@@ -185,12 +185,7 @@ public class AvoidStarImportCheck
      */
     public void setExcludes(String... excludesParam) {
         for (final String exclude : excludesParam) {
-            if (exclude.endsWith(STAR_IMPORT_SUFFIX)) {
-                excludes.add(exclude);
-            }
-            else {
-                excludes.add(exclude + STAR_IMPORT_SUFFIX);
-            }
+            excludes.add(exclude);
         }
     }
 
