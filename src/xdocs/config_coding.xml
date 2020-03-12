@@ -3493,30 +3493,30 @@ for (String line: lines) {
   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
-	<p>Violation</p>
-	<source>
-	if(condition 1){
-		if(condition 2){
-			if(condition 3){
-                if(condition 4){
-                    if(condition 5){ // Violation
+          <p>Violation</p>
+          <source>
+              if(condition 1){
+                if(condition 2){
+                    if(condition 3){
+                        if(condition 4){
+                            if(condition 5){ // Violation
+                            }
+                        }
+                    }
+		        }
+              }
+          </source>
+          <p>acceptable code</p>
+          <source>
+              if(condition 1){
+                if(condition 2){
+                    if(condition 3){
+                        if(condition 4){ // OK
+                        }
                     }
                 }
-            }
-		}
-	}
- 	</source>
-	<p>acceptable code</p>
-	<source>
-	if(condition 1){
-        if(condition 2){
-            if(condition 3){
-                if(condition 4){ // OK
-                }
-            }
-        }
-    }
-	 </source>
+              }
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="NestedIfDepth_Example_of_Usage">
