@@ -928,7 +928,6 @@ public class UserService {
           <li>RegexpSinglelineJava</li>
           <li>TodoComment</li>
           <li>TrailingComment</li>
-          <li>UncommentedMain</li>
           <li>UnnecessaryParentheses</li>
           <li>VariableDeclarationUsageDistance</li>
           <li>WriteTag</li>
