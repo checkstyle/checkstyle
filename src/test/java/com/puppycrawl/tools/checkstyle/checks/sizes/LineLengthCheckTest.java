@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.checks.sizes;
 
 import static com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck.MSG_KEY;
 
+import java.nio.charset.StandardCharsets;
+
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
@@ -96,6 +98,24 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
             "4: " + getCheckMessage(MSG_KEY, 80, 98),
         };
         verify(checkConfig, getPath("InputLineLengthLongLink.java"), expected);
+    }
+
+    @Test
+    public void countUnicodePointsOnce() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("max", "100");
+        // we need to set charset to let test pass when default charset is not UTF-8
+        final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
+        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+
+        final String[] expected = {
+            "6: " + getCheckMessage(MSG_KEY, 100, 136),
+            "7: " + getCheckMessage(MSG_KEY, 100, 136),
+        };
+
+        verify(checkerConfig, getPath("InputLineLengthUnicodeChars.java"), expected);
+
     }
 
 }
