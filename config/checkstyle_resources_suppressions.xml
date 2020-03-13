@@ -63,5 +63,7 @@
     files="outertypefilename[\\/]InputOuterTypeFilenameNoPublic\.java"/>
   <suppress checks="OuterTypeFilename"
     files="[\\/]package-info\.java"/>
+  <suppress checks="OuterTypeFilename"
+    files="src[\\/]it[\\/]resources[\\/].*[\\/]SuppressionXpathRegressionOuterTypeFilename.*\.java"/>
 
 </suppressions>
