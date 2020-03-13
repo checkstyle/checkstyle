@@ -115,7 +115,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST rootAST) {
         if (!hasPublic && wrongType != null) {
-            log(wrongType.getLineNo(), MSG_KEY);
+            log(wrongType, MSG_KEY);
         }
     }
 
