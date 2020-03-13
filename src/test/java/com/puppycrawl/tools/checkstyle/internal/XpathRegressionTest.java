@@ -87,7 +87,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "PackageDeclaration",
             "Regexp",
             "RegexpSinglelineJava",
-            "SuppressWarningsHolder",
             "TodoComment",
             "TrailingComment",
             "UncommentedMain",
