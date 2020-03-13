@@ -60,14 +60,42 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * /**
- * * Description.
- * *
- * * &#64;param for some parameter
- * * &#64;return type
- * *&#47;//Correct JavaDoc
+ * public class Test {
+ *   /** &#64;return integer value *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * } //Violation. If Javadoc comment contains at least one at-clause, it should be formatted in more than one lines. 
  * 
- * /**Description. &#64param for parameter*&#47;////not a JavaDoc, ignored. /** and *&#47 should be on different lines
+ * 
+ * public class Test {
+ *   /** 
+ *    * &#64;return integer value 
+ *    *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * } //OK. Correct Javadoc. 
+ * </pre>
+ * <p>
+ * To configure this check to print violations if Tight-HTML rules are being violated.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+ *   &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   /**
+ *    *&#64;return integer value
+ *    *&lt;p&gt; First
+ *    *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *     }
+ * } //Prints violation for unclosed HTML tag.
  * </pre>
  * <p>
  * To configure the check with a list of ignored at-clauses
@@ -79,15 +107,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>Example:</p>
+ * <p>Exmples:</p>
  * <pre>
- * /**
- * * My <b>class</b>.
- * * 
- * * &#64;see annotation
- * *
- * * {&#64;link}
- * *&#47; //&#64;see tag is ignored and not considered a tag for the javadoc and {&#64;link} is expanded as needed
+ * public class Test {
+ *   /** @see #sum(int a, int b) *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * }//OK. No violation because @see is in list of ignored tags
+ * 
+ * public class Test {
+ *   /** Testing class for {@link Example} *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * }//Prints violation for making Javadoc with inline tag in single line.
+ * </pre>
  * @since 6.0
  */
 @StatelessCheck
