@@ -19,12 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
-import java.util.Comparator;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
-
-import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -84,7 +79,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @since 5.8
  */
-@FileStatefulCheck
+@StatelessCheck
 public class OneTopLevelClassCheck extends AbstractCheck {
 
     /**
@@ -92,20 +87,6 @@ public class OneTopLevelClassCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "one.top.level.class";
-
-    /** Compare DetailAST nodes by line and then column number to make a unique ordering. */
-    private static final Comparator<DetailAST> LINE_AND_COL_COMPARATOR =
-            Comparator.comparingInt(DetailAST::getLineNo).thenComparingInt(DetailAST::getColumnNo);
-
-    /**
-     * True if a java source file contains a type
-     * with a public access level modifier.
-     */
-    private boolean publicTypeFound;
-
-    /** Mapping between type names and DetailAST nodes of the type declarations. */
-    private final SortedMap<DetailAST, String> lineNumberTypeMap =
-            new TreeMap<>(LINE_AND_COL_COMPARATOR);
 
     @Override
     public int[] getDefaultTokens() {
@@ -125,40 +106,47 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        publicTypeFound = false;
-        lineNumberTypeMap.clear();
-
         DetailAST currentNode = rootAST;
+        boolean publicTypeFound = false;
+        DetailAST firstType = null;
+
         while (currentNode != null) {
-            if (currentNode.getType() == TokenTypes.CLASS_DEF
-                    || currentNode.getType() == TokenTypes.ENUM_DEF
-                    || currentNode.getType() == TokenTypes.INTERFACE_DEF) {
+            if (isTypeDef(currentNode)) {
                 if (isPublic(currentNode)) {
+                    // log the first type later
                     publicTypeFound = true;
                 }
-                else {
+                if (firstType == null) {
+                    // first type is set aside
+                    firstType = currentNode;
+                }
+                else if (!isPublic(currentNode)) {
+                    // extra non-public type, log immediately
                     final String typeName = currentNode
-                            .findFirstToken(TokenTypes.IDENT).getText();
-                    lineNumberTypeMap.put(currentNode, typeName);
+                        .findFirstToken(TokenTypes.IDENT).getText();
+                    log(currentNode, MSG_KEY, typeName);
                 }
             }
             currentNode = currentNode.getNextSibling();
         }
+
+        // if there was a public type and first type is non-public, log it
+        if (publicTypeFound && !isPublic(firstType)) {
+            final String typeName = firstType
+                .findFirstToken(TokenTypes.IDENT).getText();
+            log(firstType, MSG_KEY, typeName);
+        }
     }
 
-    @Override
-    public void finishTree(DetailAST rootAST) {
-        if (!lineNumberTypeMap.isEmpty()) {
-            if (!publicTypeFound) {
-                // skip first top-level type.
-                lineNumberTypeMap.remove(lineNumberTypeMap.firstKey());
-            }
-
-            for (Map.Entry<DetailAST, String> entry
-                    : lineNumberTypeMap.entrySet()) {
-                log(entry.getKey(), MSG_KEY, entry.getValue());
-            }
-        }
+    /**
+     * Checks if an AST node is a type definition.
+     * @param node AST node to check.
+     * @return true if the node is a type (class, enum, interface) definition.
+     */
+    private static boolean isTypeDef(DetailAST node) {
+        return node.getType() == TokenTypes.CLASS_DEF
+                || node.getType() == TokenTypes.ENUM_DEF
+                || node.getType() == TokenTypes.INTERFACE_DEF;
     }
 
     /**
