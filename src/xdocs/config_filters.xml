@@ -925,7 +925,6 @@ public class UserService {
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocPackage</li>
           <li>MissingJavadocType</li>
-          <li>MissingSwitchDefault</li>
           <li>NeedBraces</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageDeclaration</li>
