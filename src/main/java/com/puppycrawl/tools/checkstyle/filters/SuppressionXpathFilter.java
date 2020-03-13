@@ -155,9 +155,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * RegexpSinglelineJava
  * </li>
  * <li>
- * SuppressWarningsHolder
- * </li>
- * <li>
  * TodoComment
  * </li>
  * <li>
