@@ -315,7 +315,7 @@ public final class CommonUtil {
             int tabWidth) {
         int len = 0;
         for (int idx = 0; idx < toIdx; idx++) {
-            if (inputString.charAt(idx) == '\t') {
+            if (inputString.codePointAt(idx) == '\t') {
                 len = (len / tabWidth + 1) * tabWidth;
             }
             else {
