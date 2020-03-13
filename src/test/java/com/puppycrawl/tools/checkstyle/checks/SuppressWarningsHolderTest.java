@@ -252,7 +252,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final Configuration checkConfig = createModuleConfig(SuppressWarningsHolder.class);
 
         final String[] expected = {
-            "11: " + getCheckMessage(SuppressWarningsHolder.MSG_KEY),
+            "11:14: " + getCheckMessage(SuppressWarningsHolder.MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputSuppressWarningsHolder2.java"), expected);
