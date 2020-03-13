@@ -131,9 +131,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NoLineWrap
  * </li>
  * <li>
- * OuterTypeFilename
- * </li>
- * <li>
  * OverloadMethodsDeclarationOrder
  * </li>
  * <li>
