@@ -60,7 +60,7 @@ public class OuterTypeFilenameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testOuterTypeFilename3() throws Exception {
         final String[] expected = {
-            "3: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),
+            "3:1: " + getCheckMessage(OuterTypeFilenameCheck.class, MSG_KEY),
         };
 
         final Configuration checkConfig = getModuleConfig("OuterTypeFilename");
