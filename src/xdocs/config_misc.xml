@@ -1640,6 +1640,30 @@ key.png =value - violation
         <source>
 &lt;module name=&quot;OuterTypeFilename&quot;/&gt;
         </source>
+        <p>Example of class Test in a file named Test.java</p>
+        <source>
+public class Test { // OK
+
+}
+        </source>
+        <p>Example of class Foo in a file named Test.java</p>
+        <source>
+class Foo { // violation
+
+}
+        </source>
+        <p>Example of interface Foo in a file named Test.java</p>
+        <source>
+interface Foo { // violation
+
+}
+        </source>
+        <p>Example of enum Foo in a file named Test.java</p>
+        <source>
+enum Foo { // violation
+
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="OuterTypeFilename_Example_of_Usage">
