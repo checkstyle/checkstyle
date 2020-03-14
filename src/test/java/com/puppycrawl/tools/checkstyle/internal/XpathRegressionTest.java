@@ -44,6 +44,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
@@ -66,7 +67,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "InvalidJavadocPosition",
             "JavadocContentLocation",
             "JavadocMethod",
-            "JavadocStyle",
             "JavadocType",
             "LambdaParameterName",
             "MethodCount",
@@ -95,12 +95,18 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "AtclauseOrder",
                     "JavadocBlockTagLocation",
                     "JavadocParagraph",
+                    "JavadocStyle",
                     "JavadocTagContinuationIndentation",
                     "MissingDeprecated",
                     "NonEmptyAtclauseDescription",
                     "SingleLineJavadoc",
                     "SummaryJavadoc"
     )));
+
+    // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
+    // but not subclasses of AbstractJavadocCheck.
+    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS =
+            Collections.singleton(JavadocStyleCheck.class);
 
     // Checks that allowed to have no XPath IT Regression Testing
     // till https://github.com/checkstyle/checkstyle/issues/6207
@@ -196,10 +202,13 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     @Test
     public void validateIncompatibleJavadocCheckNames() throws IOException {
+        // subclasses of AbstractJavadocCheck
         final Set<Class<?>> abstractJavadocCheckNames = CheckUtil.getCheckstyleChecks()
                 .stream()
                 .filter(AbstractJavadocCheck.class::isAssignableFrom)
                 .collect(Collectors.toSet());
+        // add the extra checks
+        abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
         assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contains all descendants "
                     + "of AbstractJavadocCheck")
             .that(CheckUtil.getSimpleNames(abstractJavadocCheckNames))

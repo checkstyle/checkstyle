@@ -916,7 +916,6 @@ public class UserService {
           <li>InvalidJavadocPosition</li>
           <li>JavadocContentLocation</li>
           <li>JavadocMethod</li>
-          <li>JavadocStyle</li>
           <li>JavadocType</li>
           <li>LambdaParameterName</li>
           <li>MethodCount</li>
@@ -936,12 +935,13 @@ public class UserService {
           <li>WriteTag</li>
         </ul>
         <p>
-          Also, the filter does not support Javadoc checks:
+          Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
         </p>
         <ul id="SuppressionXpathFilter_JavadocChecks">
           <li>AtclauseOrder</li>
           <li>JavadocBlockTagLocation</li>
           <li>JavadocParagraph</li>
+          <li>JavadocStyle</li>
           <li>JavadocTagContinuationIndentation</li>
           <li>MissingDeprecated</li>
           <li>NonEmptyAtclauseDescription</li>
