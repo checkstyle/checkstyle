@@ -922,7 +922,6 @@ public class UserService {
           <li>JavadocType</li>
           <li>LambdaParameterName</li>
           <li>MethodCount</li>
-          <li>MissingCtor</li>
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocPackage</li>
           <li>MissingJavadocType</li>
