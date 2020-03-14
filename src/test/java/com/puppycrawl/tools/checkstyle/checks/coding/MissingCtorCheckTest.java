@@ -40,7 +40,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY),
+            "3:1: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
@@ -54,6 +54,22 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
         assertNotNull(check.getDefaultTokens(), "Default tokens should not be null");
         assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
+    }
+
+    @Test
+    public void testMissingCtorClassOnOneLine() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MissingCtorCheck.class);
+
+        final String[] expected = {
+            "3:1: " + getCheckMessage(MSG_KEY),
+            "3:34: " + getCheckMessage(MSG_KEY),
+            "3:49: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig,
+                getPath("InputMissingCtor2.java"),
+                expected);
     }
 
 }
