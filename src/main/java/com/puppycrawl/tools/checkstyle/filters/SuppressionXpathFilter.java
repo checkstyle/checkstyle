@@ -104,9 +104,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MethodCount
  * </li>
  * <li>
- * MissingCtor
- * </li>
- * <li>
  * MissingJavadocMethod
  * </li>
  * <li>
