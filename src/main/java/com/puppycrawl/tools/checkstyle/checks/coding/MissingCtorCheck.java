@@ -68,7 +68,7 @@ public class MissingCtorCheck extends AbstractCheck {
         if (modifiers.findFirstToken(TokenTypes.ABSTRACT) == null
                 && ast.findFirstToken(TokenTypes.OBJBLOCK)
                     .findFirstToken(TokenTypes.CTOR_DEF) == null) {
-            log(ast.getLineNo(), MSG_KEY);
+            log(ast, MSG_KEY);
         }
     }
 
