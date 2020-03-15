@@ -1245,19 +1245,6 @@ public void someFunctionWithInvalidStyle() {
         </ul>
       </subsection>
 
-      <subsection name="Violation Messages" id="SuppressWarningsHolder_Violation_Messages">
-        <ul>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22suppress.warnings.invalid.target%22">
-            suppress.warnings.invalid.target</a>
-          </li>
-        </ul>
-        <p>
-          All messages can be customized if the default message doesn't suit you.
-          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
-        </p>
-      </subsection>
-
       <subsection name="Package" id="SuppressWarningsHolder_Package">
         <p> com.puppycrawl.tools.checkstyle.checks </p>
       </subsection>
