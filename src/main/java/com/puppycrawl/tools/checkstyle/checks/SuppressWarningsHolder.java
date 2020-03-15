@@ -106,12 +106,6 @@ public class SuppressWarningsHolder
     extends AbstractCheck {
 
     /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY = "suppress.warnings.invalid.target";
-
-    /**
      * Optional prefix for warning suppressions that are only intended to be
      * recognized by checkstyle. For instance, to suppress {@code
      * FallThroughCheck} only in checkstyle (and not in javac), use the
@@ -302,34 +296,29 @@ public class SuppressWarningsHolder
             if (!isAnnotationEmpty(values)) {
                 final DetailAST targetAST = getAnnotationTarget(ast);
 
-                if (targetAST == null) {
-                    log(ast, MSG_KEY);
+                // get text range of target
+                final int firstLine = targetAST.getLineNo();
+                final int firstColumn = targetAST.getColumnNo();
+                final DetailAST nextAST = targetAST.getNextSibling();
+                final int lastLine;
+                final int lastColumn;
+                if (nextAST == null) {
+                    lastLine = Integer.MAX_VALUE;
+                    lastColumn = Integer.MAX_VALUE;
                 }
                 else {
-                    // get text range of target
-                    final int firstLine = targetAST.getLineNo();
-                    final int firstColumn = targetAST.getColumnNo();
-                    final DetailAST nextAST = targetAST.getNextSibling();
-                    final int lastLine;
-                    final int lastColumn;
-                    if (nextAST == null) {
-                        lastLine = Integer.MAX_VALUE;
-                        lastColumn = Integer.MAX_VALUE;
-                    }
-                    else {
-                        lastLine = nextAST.getLineNo();
-                        lastColumn = nextAST.getColumnNo() - 1;
-                    }
+                    lastLine = nextAST.getLineNo();
+                    lastColumn = nextAST.getColumnNo() - 1;
+                }
 
-                    // add suppression entries for listed checks
-                    final List<Entry> entries = ENTRIES.get();
-                    for (String value : values) {
-                        String checkName = value;
-                        // strip off the checkstyle-only prefix if present
-                        checkName = removeCheckstylePrefixIfExists(checkName);
-                        entries.add(new Entry(checkName, firstLine, firstColumn,
-                                lastLine, lastColumn));
-                    }
+                // add suppression entries for listed checks
+                final List<Entry> entries = ENTRIES.get();
+                for (String value : values) {
+                    String checkName = value;
+                    // strip off the checkstyle-only prefix if present
+                    checkName = removeCheckstylePrefixIfExists(checkName);
+                    entries.add(new Entry(checkName, firstLine, firstColumn,
+                            lastLine, lastColumn));
                 }
             }
         }
@@ -411,54 +400,13 @@ public class SuppressWarningsHolder
             case TokenTypes.ANNOTATIONS:
             case TokenTypes.ANNOTATION:
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                targetAST = getAcceptableParent(parentAST);
+                targetAST = parentAST.getParent();
                 break;
             default:
                 // unexpected container type
                 throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
         }
         return targetAST;
-    }
-
-    /**
-     * Returns parent of given ast if parent has one of the following types:
-     * ANNOTATION_DEF, PACKAGE_DEF, CLASS_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, CTOR_DEF,
-     * METHOD_DEF, PARAMETER_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, TYPE, LITERAL_NEW,
-     * LITERAL_THROWS, TYPE_ARGUMENT, IMPLEMENTS_CLAUSE, DOT.
-     *
-     * @param child an ast
-     * @return returns ast - parent of given
-     */
-    private static DetailAST getAcceptableParent(DetailAST child) {
-        final DetailAST result;
-        final DetailAST parent = child.getParent();
-        switch (parent.getType()) {
-            case TokenTypes.ANNOTATION_DEF:
-            case TokenTypes.PACKAGE_DEF:
-            case TokenTypes.CLASS_DEF:
-            case TokenTypes.INTERFACE_DEF:
-            case TokenTypes.ENUM_DEF:
-            case TokenTypes.ENUM_CONSTANT_DEF:
-            case TokenTypes.CTOR_DEF:
-            case TokenTypes.METHOD_DEF:
-            case TokenTypes.PARAMETER_DEF:
-            case TokenTypes.VARIABLE_DEF:
-            case TokenTypes.ANNOTATION_FIELD_DEF:
-            case TokenTypes.TYPE:
-            case TokenTypes.LITERAL_NEW:
-            case TokenTypes.LITERAL_THROWS:
-            case TokenTypes.TYPE_ARGUMENT:
-            case TokenTypes.IMPLEMENTS_CLAUSE:
-            case TokenTypes.DOT:
-            case TokenTypes.ANNOTATION:
-            case TokenTypes.MODIFIERS:
-                result = parent;
-                break;
-            default:
-                // it's possible case, but shouldn't be processed here
-                result = null;
-        }
-        return result;
     }
 
     /**
