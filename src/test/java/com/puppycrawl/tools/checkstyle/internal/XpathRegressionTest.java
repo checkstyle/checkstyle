@@ -159,6 +159,11 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "VisibilityModifier"
     ));
 
+    // Modules that will never have xpath support ever because they not report violations
+    private static final Set<String> NO_VIOLATION_MODULES = new HashSet<>(Collections.singletonList(
+            "SuppressWarningsHolder"
+    ));
+
     private static Set<String> simpleCheckNames;
     private static Map<String, String> allowedDirectoryAndChecks;
 
@@ -241,6 +246,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         allChecks.removeAll(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
         allChecks.removeAll(INCOMPATIBLE_CHECK_NAMES);
         allChecks.removeAll(MISSING_CHECK_NAMES);
+        allChecks.removeAll(NO_VIOLATION_MODULES);
         allChecks.removeAll(compatibleChecks);
 
         assertTrue(allChecks.isEmpty(), "XpathRegressionTest is missing for ["
