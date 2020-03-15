@@ -131,9 +131,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * OverloadMethodsDeclarationOrder
  * </li>
  * <li>
- * PackageAnnotation
- * </li>
- * <li>
  * PackageDeclaration
  * </li>
  * <li>
