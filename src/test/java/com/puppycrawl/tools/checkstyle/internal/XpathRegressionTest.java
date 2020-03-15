@@ -83,7 +83,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "NoLineWrap",
             "OuterTypeFilename",
             "OverloadMethodsDeclarationOrder",
-            "PackageAnnotation",
             "PackageDeclaration",
             "Regexp",
             "RegexpSinglelineJava",

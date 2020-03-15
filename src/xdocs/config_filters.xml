@@ -933,7 +933,6 @@ public class UserService {
           <li>NoLineWrap</li>
           <li>OuterTypeFilename</li>
           <li>OverloadMethodsDeclarationOrder</li>
-          <li>PackageAnnotation</li>
           <li>PackageDeclaration</li>
           <li>Regexp</li>
           <li>RegexpSinglelineJava</li>
