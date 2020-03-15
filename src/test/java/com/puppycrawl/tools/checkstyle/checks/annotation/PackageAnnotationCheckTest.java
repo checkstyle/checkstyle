@@ -45,19 +45,19 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
+        verify(checkConfig, getPath("package-info.java"), expected);
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final PackageAnnotationCheck constantNameCheckObj = new PackageAnnotationCheck();
         final int[] actual = constantNameCheckObj.getAcceptableTokens();
-        final int[] expected = {TokenTypes.PACKAGE_DEF };
+        final int[] expected = {TokenTypes.PACKAGE_DEF};
         assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
 
     @Test
-    public void testAnnotationNotInPackageInfo() throws Exception {
+    public void testNoPackageAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -66,11 +66,11 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testWithoutAnnotation() throws Exception {
+    public void testBadPackageAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {
-            "3: " + getCheckMessage(MSG_KEY),
+            "4:1: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);
