@@ -53,6 +53,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </ul>
  * <p>
  * The following example shows how to configure the {@code AbstractClassName} to
+ * default values
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbstractClassName"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * abstract class AbstractFirstClass {} // OK
+ * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
+ * class AbstractThirdClass {} // violation, abstract access modifier should be present
+ * class FourthClass {} // OK
+ * </pre>
+ * <p>
+ * The following example shows how to configure the {@code AbstractClassName} to
  * checks names, but ignore missing {@code abstract} modifiers:
  * </p>
  * <p>Configuration:</p>
@@ -64,8 +79,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  * <pre>
  * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
+ * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
  * class AbstractThirdClass {} // OK, no "abstract" modifier
+ * class FourthClass {} // OK
+ * </pre>
+ * <p>
+ * The following example shows how to configure the {@code AbstractClassName} to
+ * checks names, but ignore {@code Name} modifiers:
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbstractClassName"&gt;
+ *   &lt;property name="ignoreName" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * abstract class AbstractFirstClass {} // OK
+ * abstract class SecondClass {} // OK
+ * class AbstractThirdClass {} // violation
+ * class FourthClass {} // OK
  * </pre>
  * @since 3.2
  */
