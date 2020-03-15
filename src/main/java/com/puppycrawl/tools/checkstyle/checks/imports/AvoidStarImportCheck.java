@@ -216,12 +216,13 @@ public class AvoidStarImportCheck
 
     @Override
     public void visitToken(final DetailAST ast) {
-        if (!allowClassImports && ast.getType() == TokenTypes.IMPORT) {
-            final DetailAST startingDot = ast.getFirstChild();
-            logsStarredImportViolation(startingDot);
+        if (ast.getType() == TokenTypes.IMPORT) {
+            if (!allowClassImports) {
+                final DetailAST startingDot = ast.getFirstChild();
+                logsStarredImportViolation(startingDot);
+            }
         }
-        else if (!allowStaticMemberImports
-            && ast.getType() == TokenTypes.STATIC_IMPORT) {
+        else if (!allowStaticMemberImports) {
             // must navigate past the static keyword
             final DetailAST startingDot = ast.getFirstChild().getNextSibling();
             logsStarredImportViolation(startingDot);
