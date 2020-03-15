@@ -56,9 +56,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * AvoidStarImport
  * </li>
  * <li>
- * AvoidStaticImport
- * </li>
- * <li>
  * CommentsIndentation
  * </li>
  * <li>
