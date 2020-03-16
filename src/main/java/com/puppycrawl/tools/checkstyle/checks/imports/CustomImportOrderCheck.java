@@ -1030,6 +1030,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
          * <b>Note:</b> It can be different from <b>startLineNumber</b> when import statement span
          * multiple lines.
          * </p>
+         *
          * @return import end line from ast.
          */
         public int getEndLineNumber() {
