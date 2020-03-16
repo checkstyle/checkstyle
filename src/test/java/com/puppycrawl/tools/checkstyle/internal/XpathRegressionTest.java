@@ -60,7 +60,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "CustomImportOrder",
             "EmptyLineSeparator",
             "IllegalCatch",
-            "ImportOrder",
             "Indentation",
             "InterfaceIsType",
             "InterfaceMemberImpliedModifier",
