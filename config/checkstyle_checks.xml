@@ -534,6 +534,7 @@
     <module name="SingleLineJavadoc"/>
     <module name="WriteTag"/>
     <module name="SummaryJavadoc"/>
+    <module name="RequireEmptyLineBeforeAtClauseBlock"/>
 
     <!-- Metrics -->
     <module name="BooleanExpressionComplexity">
