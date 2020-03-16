@@ -619,12 +619,97 @@ public class Foo {
         </source>
 
         <p>
+          Code example:
+        </p>
+        <p>
+          The check passes without violations as default allowance is 20.
+        </p>
+        <source>
+public class InputClassComplexity {
+  public Set _set = new HashSet(); // Ignored due to default excludedClasses property
+  public Map _map = new HashMap(); // Ignored due to default excludedClasses property
+  public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+                      // Ignored due to default excludedClasses property
+  public Date _date = new Date(); // Counted, 1
+  public Time _time = new Time(); // Counted, 2
+  public Place _place = new Place(); // Counted, 3
+}
+        </source>
+
+        <p>
           To configure the check with a threshold of 10:
         </p>
         <source>
 &lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
   &lt;property name=&quot;max&quot; value=&quot;10&quot;/&gt;
 &lt;/module&gt;
+        </source>
+
+        <p>
+          The following example demonstrates usage of <b>max</b> property
+        </p>
+        <p>
+          Expected result is a violation as the total count exceeds that set
+          by the <b>max</b> property
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+public class InputClassComplexity {
+  public Set _set = new HashSet(); // Ignored due to default excludedClasses property
+  public Map _map = new HashMap(); // Ignored due to default excludedClasses property
+  public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+                      // Ignored due to default excludedClasses property
+  public Date _date = new Date(); // Counted, 1
+  public Time _time = new Time(); // Counted, 2
+  public Place _place = new Place(); // Counted, 3
+}
+        </source>
+
+        <p>
+          To configure the check with two excluded classes <code>HashMap</code> and
+          <code>HashSet</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;HashMap, HashSet&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure the check with two regular expressions <code>^Array.*</code> and
+          <code>.*Exception$</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot;
+    value=&quot;^Array.*, .*Exception$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          The following example demonstrates usage of <b>excludedClasses</b> and
+          <b>excludeClassesRegexps</b> properties
+        </p>
+        <p>
+          Expected result is one class <code>Date</code>
+        </p>
+        <source>
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
+  &lt;property name=&quot;excludedClasses&quot; value=&quot;ArrayList&quot;/&gt;
+  &lt;property name=&quot;excludeClassesRegexps&quot; value=&quot;^Hash.*&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+public class InputClassComplexity {
+  public Set _set = new HashSet();
+  public Map _map = new HashMap();
+  public List&lt;String&gt; _list = new ArrayList&lt;&gt;();
+  public Date _date = new Date(); // Counted, 1
+}
         </source>
 
         <p>
@@ -659,7 +744,7 @@ public class Foo {
           assuming the config is
         </p>
         <source>
-&lt;module name=&quot;ClassDataAbstractionCoupling&quot;&gt;
+&lt;module name=&quot;ClassFanOutComplexity&quot;&gt;
   &lt;property name=&quot;excludedPackages&quot; value=&quot;a.b&quot;/&gt;
 &lt;/module&gt;
         </source>
