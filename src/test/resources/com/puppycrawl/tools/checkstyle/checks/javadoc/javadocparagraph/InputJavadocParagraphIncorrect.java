@@ -84,4 +84,31 @@ class InputJavadocParagraphIncorrect {
          */
          void doubleNewline() {}
     };
+
+    /**
+     * This documents the private method.
+     *
+     * @param thisParamAtClauseHasNoIssue this documents the parameter.
+     * @param thisSecondParamAtClauseHasNoIssue this documents the parameter.
+     */
+    private boolean paramAtClauseHasNoIssue(
+            boolean thisParamAtClauseHasNoIssue,
+            boolean thisSecondParamAtClauseHasNoIssue) {
+        return false;
+    }
+
+    /**
+     * @param thisParamHasNoIssue this documents the parameter.
+     */
+    private boolean onlyHasAtClause(boolean thisParamHasNoIssue) {
+        return false;
+    }
+
+    /**
+     * This documents the private method.
+     * @param thisParamAtClauseNeedsNewline this documents the parameter.
+     */
+    private boolean paramAtClauseNeedsNewline(boolean thisParamAtClauseNeedsNewline) {
+        return false;
+    }
 }
