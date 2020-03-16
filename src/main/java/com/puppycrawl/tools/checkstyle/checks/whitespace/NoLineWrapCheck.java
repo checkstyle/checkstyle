@@ -119,7 +119,7 @@ public class NoLineWrapCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (!TokenUtil.areOnSameLine(ast, ast.getLastChild())) {
-            log(ast.getLineNo(), MSG_KEY, ast.getText());
+            log(ast, MSG_KEY, ast.getText());
         }
     }
 

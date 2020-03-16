@@ -37,9 +37,9 @@ public class NoLineWrapTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testBadLineWrap() throws Exception {
         final String[] expected = {
-            "1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "package"),
-            "6: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
-            "10: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
+            "1:1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "package"),
+            "6:1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
+            "10:1: " + getCheckMessage(NoLineWrapCheck.class, "no.line.wrap", "import"),
         };
 
         final Configuration checkConfig = getModuleConfig("NoLineWrap");
