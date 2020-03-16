@@ -128,9 +128,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NeedBraces
  * </li>
  * <li>
- * NoLineWrap
- * </li>
- * <li>
  * OverloadMethodsDeclarationOrder
  * </li>
  * <li>
