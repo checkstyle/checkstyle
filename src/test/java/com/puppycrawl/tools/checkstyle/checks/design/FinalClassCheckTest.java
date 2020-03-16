@@ -55,9 +55,9 @@ public class FinalClassCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
-            "15: " + getCheckMessage(MSG_KEY, "test4"),
-            "113: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "7:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
+            "15:4: " + getCheckMessage(MSG_KEY, "test4"),
+            "113:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
         };
         verify(checkConfig, getPath("InputFinalClass.java"), expected);
     }
@@ -67,7 +67,7 @@ public class FinalClassCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
-            "16: " + getCheckMessage(MSG_KEY, "C"),
+            "16:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verify(checkConfig,
                 getNonCompilablePath(
@@ -81,7 +81,7 @@ public class FinalClassCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_KEY, "C"),
+            "8:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verify(checkConfig,
                 getNonCompilablePath(
