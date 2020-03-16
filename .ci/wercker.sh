@@ -80,8 +80,11 @@ no-error-orekit)
   git checkout "b67b419db7014f4b""ad921a1ba""c6c848384ad2b92"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   find -delete
+  cd ../hipparchus
+  find -delete
   cd ../
   rmdir Orekit
+  rmdir hipparchus
   ;;
 
 no-error-xwiki)
