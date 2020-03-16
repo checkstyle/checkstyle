@@ -938,6 +938,7 @@ public class UserService {
           <li>JavadocType</li>
           <li>MissingDeprecated</li>
           <li>NonEmptyAtclauseDescription</li>
+          <li>RequireEmptyLineBeforeAtClauseBlock</li>
           <li>SingleLineJavadoc</li>
           <li>SummaryJavadoc</li>
           <li>WriteTag</li>
