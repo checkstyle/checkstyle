@@ -819,6 +819,13 @@
               at-clauses.</td>
           </tr>
           <tr>
+            <td><a href="config_javadoc.html#RequireEmptyLineBeforeBlockTagGroup">
+              RequireEmptyLineBeforeBlockTagGroup</a></td>
+            <td>
+              Checks that one blank line before the block tag if it is present in Javadoc.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>
             <td>
              Checks that non-whitespace characters are separated by no more than one

@@ -2034,11 +2034,21 @@
                         alt="" />
                   </span>
                   <a href="config_javadoc.html#JavadocParagraph">JavadocParagraph</a>
+                  <span class="wrapper inline">
+                    <img
+                        src="images/ok_green.png"
+                        alt="" />
+                  </span>
+                  <a href="config_javadoc.html#RequireEmptyLineBeforeBlockTagGroup">RequireEmptyLineBeforeBlockTagGroup</a>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocParagraph">
                     config</a><br/>
                   <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/JavadocParagraphTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RequireEmptyLineBeforeBlockTagGroup">
+                    config</a><br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter7javadoc/rule712paragraphs/RequireEmptyLineBeforeBlockTagGroupTest.java">
                     test</a>
                 </td>
               </tr>
