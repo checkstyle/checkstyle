@@ -939,6 +939,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           <li>JavadocType</li>
           <li>MissingDeprecated</li>
           <li>NonEmptyAtclauseDescription</li>
+          <li>RequireEmptyLineBeforeBlockTagGroup</li>
           <li>SingleLineJavadoc</li>
           <li>SummaryJavadoc</li>
           <li>WriteTag</li>
