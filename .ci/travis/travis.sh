@@ -2,6 +2,13 @@
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
 
+removeFolderWithProtectedFiles() {
+  cd "$1"
+  find . -delete
+  cd ..
+  rmdir "$1"
+}
+
 case $1 in
 
 checkstyle-and-sevntu)
@@ -441,6 +448,20 @@ no-exception-test-alot-of-project1)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  ;;
+
+
+no-error-pmd)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  mkdir -p .ci-temp/
+  cd .ci-temp/
+  git clone https://github.com/pmd/pmd.git
+  cd pmd
+  mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  cd ..
+  removeFolderWithProtectedFiles pmd
   ;;
 
 check-missing-pitests)
