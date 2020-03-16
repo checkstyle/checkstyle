@@ -610,7 +610,6 @@ public class ImportOrderCheck
     // -@cs[CyclomaticComplexity] SWITCH was transformed into IF-ELSE.
     @Override
     public void visitToken(DetailAST ast) {
-        final int line = ast.getLineNo();
         final FullIdent ident;
         final boolean isStatic;
 
@@ -628,15 +627,15 @@ public class ImportOrderCheck
         // https://github.com/checkstyle/checkstyle/issues/1387
         if (option == ImportOrderOption.TOP || option == ImportOrderOption.ABOVE) {
             final boolean isStaticAndNotLastImport = isStatic && !lastImportStatic;
-            doVisitToken(ident, isStatic, isStaticAndNotLastImport, line);
+            doVisitToken(ident, isStatic, isStaticAndNotLastImport, ast);
         }
         else if (option == ImportOrderOption.BOTTOM || option == ImportOrderOption.UNDER) {
             final boolean isLastImportAndNonStatic = lastImportStatic && !isStatic;
-            doVisitToken(ident, isStatic, isLastImportAndNonStatic, line);
+            doVisitToken(ident, isStatic, isLastImportAndNonStatic, ast);
         }
         else if (option == ImportOrderOption.INFLOW) {
             // "previous" argument is useless here
-            doVisitToken(ident, isStatic, true, line);
+            doVisitToken(ident, isStatic, true, ast);
         }
         else {
             throw new IllegalStateException(
@@ -655,25 +654,27 @@ public class ImportOrderCheck
      * @param isStatic whether the token is static or not.
      * @param previous previous non-static but current is static (above), or
      *                  previous static but current is non-static (under).
-     * @param line the line of the current import.
+     * @param ast node of the AST.
      */
-    private void doVisitToken(FullIdent ident, boolean isStatic, boolean previous, int line) {
+    private void doVisitToken(FullIdent ident, boolean isStatic, boolean previous, DetailAST ast) {
         final String name = ident.getText();
         final int groupIdx = getGroupNumber(isStatic && staticImportsApart, name);
 
         if (groupIdx > lastGroup) {
-            if (!beforeFirstImport && line - lastImportLine < 2 && needSeparator(isStatic)) {
-                log(line, MSG_SEPARATION, name);
+            if (!beforeFirstImport
+                && ast.getLineNo() - lastImportLine < 2
+                && needSeparator(isStatic)) {
+                log(ast, MSG_SEPARATION, name);
             }
         }
         else if (groupIdx == lastGroup) {
-            doVisitTokenInSameGroup(isStatic, previous, name, line);
+            doVisitTokenInSameGroup(isStatic, previous, name, ast);
         }
         else {
-            log(line, MSG_ORDERING, name);
+            log(ast, MSG_ORDERING, name);
         }
-        if (isSeparatorInGroup(groupIdx, isStatic, line)) {
-            log(line, MSG_SEPARATED_IN_GROUP, name);
+        if (isSeparatorInGroup(groupIdx, isStatic, ast.getLineNo())) {
+            log(ast, MSG_SEPARATED_IN_GROUP, name);
         }
 
         lastGroup = groupIdx;
@@ -728,14 +729,14 @@ public class ImportOrderCheck
      * @param previous previous non-static but current is static (above), or
      *     previous static but current is non-static (under).
      * @param name the name of the current import.
-     * @param line the line of the current import.
+     * @param ast node of the AST.
      */
     private void doVisitTokenInSameGroup(boolean isStatic,
-            boolean previous, String name, int line) {
+            boolean previous, String name, DetailAST ast) {
         if (ordered) {
             if (option == ImportOrderOption.INFLOW) {
                 if (isWrongOrder(name, isStatic)) {
-                    log(line, MSG_ORDERING, name);
+                    log(ast, MSG_ORDERING, name);
                 }
             }
             else {
@@ -751,7 +752,7 @@ public class ImportOrderCheck
                     && isWrongOrder(name, isStatic);
 
                 if (shouldFireError) {
-                    log(line, MSG_ORDERING, name);
+                    log(ast, MSG_ORDERING, name);
                 }
             }
         }

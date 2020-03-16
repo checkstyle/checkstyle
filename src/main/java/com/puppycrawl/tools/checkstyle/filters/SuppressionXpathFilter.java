@@ -65,9 +65,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * IllegalCatch
  * </li>
  * <li>
- * ImportOrder
- * </li>
- * <li>
  * Indentation
  * </li>
  * <li>
