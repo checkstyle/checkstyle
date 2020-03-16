@@ -909,7 +909,6 @@ public class UserService {
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
-          <li>FinalClass</li>
           <li>IllegalCatch</li>
           <li>ImportOrder</li>
           <li>Indentation</li>
