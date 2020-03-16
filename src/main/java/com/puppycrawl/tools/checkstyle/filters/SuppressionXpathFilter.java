@@ -111,6 +111,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NonEmptyAtclauseDescription
  * </li>
  * <li>
+ * RequireEmptyLineBeforeAtClauseBlock
+ * </li>
+ * <li>
  * SingleLineJavadoc
  * </li>
  * <li>
