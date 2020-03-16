@@ -105,6 +105,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code name.invalidPattern}
  * </li>
  * </ul>
+ *
  * @since 8.36
  */
 public class PatternVariableNameCheck extends AbstractNameCheck {
