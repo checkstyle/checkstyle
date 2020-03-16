@@ -789,6 +789,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * Checks if a 'throw' usage is contained within a block that should be ignored.
      * Such blocks consist of try (with catch) blocks, local classes, anonymous classes,
      * and lambda expressions. Note that a try block without catch is not considered.
+     *
      * @param methodBodyAst DetailAST node representing the method body
      * @param throwAst DetailAST node representing the 'throw' literal
      * @return true if throwAst is inside a block that should be ignored

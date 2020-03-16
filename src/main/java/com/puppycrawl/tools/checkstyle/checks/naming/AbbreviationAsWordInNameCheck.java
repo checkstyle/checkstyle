@@ -340,6 +340,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Setter to allow to skip variables with both {@code static} and {@code final} modifiers.
+     *
      * @param ignoreStaticFinal
      *        Defines if ignore variables with both 'static' and 'final' modifiers or not.
      */
@@ -462,6 +463,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Checks if a variable is to be ignored based on its modifiers.
+     *
      * @param modifiers modifiers of the variable to be checked
      * @return true if there is a modifier to be ignored
      */
