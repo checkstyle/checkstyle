@@ -1117,6 +1117,7 @@ regexpsinglelinejava
 relativized
 releasenotes
 remkop
+requireemptylinebeforeatclauseblock
 requirethis
 Rethrown
 returncount
