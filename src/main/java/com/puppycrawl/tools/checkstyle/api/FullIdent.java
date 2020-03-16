@@ -49,6 +49,7 @@ public final class FullIdent {
 
     /**
      * Creates a new FullIdent starting from the child of the specified node.
+     *
      * @param ast the parent node from where to start from
      * @return a {@code FullIdent} value
      */
