@@ -99,6 +99,13 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 
+    /**
+     * Do not check for newline before a paragraph tag when the attribute is set to false. Do not
+     * check for an empty line before the group of at-clauses by default, when
+     * atClauseRequiresEmptyLineBefore is not set.
+     *
+     * @throws Exception should not be thrown.
+     */
     @Test
     public void testAllowNewlineParagraph() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
@@ -126,5 +133,4 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
-
 }
