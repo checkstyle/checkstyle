@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public void foo(int i, String s) {}
  * public void foo(String s, int i) {}
  * </pre>
+ *
  * @since 5.8
  */
 @StatelessCheck
