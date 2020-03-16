@@ -47,7 +47,7 @@ class InputIncorrectJavadocParagraphCheck {
          * /^WARN/
          * <p> //warn
          *  /^WARN/ Some Javadoc.<p> //warn
-         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
+         * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules"> //warn
          *     Documentation about GWT emulated source</a>
          */
         boolean emulated() {return false;}

@@ -515,7 +515,9 @@
       <property name="validateThrows" value="true"/>
     </module>
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
-    <module name="JavadocParagraph"/>
+    <module name="JavadocParagraph">
+      <property name="atClauseRequiresEmptyLineBefore" value="true"/>
+    </module>
     <module name="JavadocStyle">
       <property name="scope" value="public"/>
     </module>

@@ -51,6 +51,11 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * should be placed immediately before the first word.
  * Default value is {@code true}.
  * </li>
+ * <li>
+ * Property {@code atClauseRequiresEmptyLineBefore} - Control whether the group of at-clauses at
+ * the bottom of a javadoc like {@code @return}, require an empty line before the first at-clause.
+ * Default value is {@code false}.
+ * </li>
  * </ul>
  * <p>
  * To configure the default check:
@@ -106,6 +111,26 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class TestClass {
  * }
  * </pre>
+ * <p>
+ * By default {@code atClauseRequiresEmptyLineBefore} is set to {@code false}. As a result the
+ * following example will not have any violations:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * No tag (ok).
+ *  * &#64;return something (violation ignored)
+ *  *&#47;
+ * public class TestClass {
+ * }
+ * </pre>
+ * <p>
+ * To require empty lines before the at-clauses add this to your config:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;JavadocParagraph&quot;&gt;
+ *   &lt;property name=&quot;atClauseRequiresEmptyLineBefore&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
  *
  * @since 6.0
  */
@@ -125,6 +150,12 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     public static final String MSG_LINE_BEFORE = "javadoc.paragraph.line.before";
 
     /**
+     * The key in "messages.properties" for the message that describes an at-clause in javadoc
+     * requiring an empty line before it.
+     */
+    public static final String MSG_JAVADOC_TAG_LINE_BEFORE = "javadoc.tag.line.before";
+
+    /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
@@ -137,9 +168,29 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     public static final String MSG_MISPLACED_TAG = "javadoc.paragraph.misplaced.tag";
 
     /**
+     * When javadoc has only a javadoc tag like {@literal @} in it, the JAVADOC_TAG in a JAVADOC
+     * detail node will always have 3 siblings before it. The parse tree looks like:
+     * <pre>
+     * JAVADOC
+     * \
+     *  -- NEWLINE
+     *  -- LEADING_ASTERISK
+     *  -- WS
+     *  -- JAVADOC_TAG
+     * </pre>
+     */
+    private static final int NUM_OF_SIBLINGS_BEFORE_ONLY_JAVADOC_TAG = 3;
+
+    /**
      * Control whether the &lt;p&gt; tag should be placed immediately before the first word.
      */
     private boolean allowNewlineParagraph = true;
+
+    /**
+     * Control whether the group of at-clauses at the bottom of a javadoc like {@code @return},
+     * require an empty line before the first at-clause.
+     */
+    private boolean atClauseRequiresEmptyLineBefore;
 
     /**
      * Setter to control whether the &lt;p&gt; tag should be placed
@@ -151,11 +202,22 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         allowNewlineParagraph = value;
     }
 
+    /**
+     * Setter to control whether the group of at-clauses at the bottom of a javadoc like
+     * {@code @return}, require an empty line before the first at-clause.
+     *
+     * @param value value to set.
+     */
+    public void setAtClauseRequiresEmptyLineBefore(boolean value) {
+        atClauseRequiresEmptyLineBefore = value;
+    }
+
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[] {
             JavadocTokenTypes.NEWLINE,
             JavadocTokenTypes.HTML_ELEMENT,
+            JavadocTokenTypes.JAVADOC_TAG,
         };
     }
 
@@ -173,10 +235,15 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
                 && JavadocUtil.getFirstChild(ast).getType() == JavadocTokenTypes.P_TAG_START) {
             checkParagraphTag(ast);
         }
+        else if (atClauseRequiresEmptyLineBefore
+                && ast.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+            checkAtClause(ast);
+        }
     }
 
     /**
      * Determines whether or not the next line after empty line has paragraph tag in the beginning.
+     *
      * @param newline NEWLINE node.
      */
     private void checkEmptyLine(DetailNode newline) {
@@ -189,6 +256,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Determines whether or not the line with paragraph tag has previous empty line.
+     *
      * @param tag html tag.
      */
     private void checkParagraphTag(DetailNode tag) {
@@ -206,6 +274,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Returns nearest node.
+     *
      * @param node DetailNode node.
      * @return nearest node.
      */
@@ -220,6 +289,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Determines whether or not the line is empty line.
+     *
      * @param newLine NEWLINE node.
      * @return true, if line is empty line.
      */
@@ -240,6 +310,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Determines whether or not the line with paragraph tag is first line in javadoc.
+     *
      * @param paragraphTag paragraph tag.
      * @return true, if line with paragraph tag is first line in javadoc.
      */
@@ -262,6 +333,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Finds and returns nearest empty line in javadoc.
+     *
      * @param node DetailNode node.
      * @return Some nearest empty line in javadoc.
      */
@@ -279,6 +351,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
 
     /**
      * Tests whether the paragraph tag is immediately followed by the text.
+     *
      * @param tag html tag.
      * @return true, if the paragraph tag is immediately followed by the text.
      */
@@ -287,6 +360,69 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         return nextSibling.getType() == JavadocTokenTypes.NEWLINE
                 || nextSibling.getType() == JavadocTokenTypes.EOF
                 || CommonUtil.startsWithChar(nextSibling.getText(), ' ');
+    }
+
+    /**
+     * Logs when there is no empty line before the at clause.
+     *
+     * @param atClause the at clause to check for an empty space before it.
+     */
+    private void checkAtClause(DetailNode atClause) {
+        if (!isAnotherAtClauseBefore(atClause)
+                && !isOnlyAtClauseNothingElse(atClause)
+                && insufficientConsecutiveNewlines(atClause)) {
+            log(atClause.getLineNumber(),
+                MSG_JAVADOC_TAG_LINE_BEFORE,
+                atClause.getChildren()[0].getText());
+        }
+    }
+
+    private static boolean isAnotherAtClauseBefore(DetailNode atClause) {
+        boolean found = false;
+        DetailNode currentClause = JavadocUtil.getPreviousSibling(atClause);
+        while (currentClause != null) {
+            if (currentClause.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+                found = true;
+                break;
+            }
+            currentClause = JavadocUtil.getPreviousSibling(currentClause);
+        }
+        return found;
+    }
+
+    private static boolean isOnlyAtClauseNothingElse(DetailNode atClause) {
+        int count = 0;
+        DetailNode currentClause = JavadocUtil.getPreviousSibling(atClause);
+        while (currentClause != null) {
+            count++;
+            currentClause = JavadocUtil.getPreviousSibling(currentClause);
+        }
+        return count == NUM_OF_SIBLINGS_BEFORE_ONLY_JAVADOC_TAG;
+    }
+
+    /**
+     * Iterates through the previous siblings of the atClause looking for empty lines until
+     * there are no more siblings or it hits something other than asterisk, whitespace or newline.
+     * If it finds at least one empty line, return true. Return false otherwise.
+     *
+     * @param atClause the atClause to check if there are sufficient empty lines before it.
+     * @return true if there are enough empty lines before the atClause.
+     */
+    public static boolean insufficientConsecutiveNewlines(DetailNode atClause) {
+        int count = 0;
+        DetailNode currentClause = JavadocUtil.getPreviousSibling(atClause);
+        while (currentClause != null
+                && count <= 1
+                && (currentClause.getType() == JavadocTokenTypes.NEWLINE
+                    || currentClause.getType() == JavadocTokenTypes.WS
+                    || currentClause.getType() == JavadocTokenTypes.LEADING_ASTERISK)) {
+            if (currentClause.getType() == JavadocTokenTypes.NEWLINE) {
+                count++;
+            }
+            currentClause = JavadocUtil.getPreviousSibling(currentClause);
+        }
+
+        return count <= 1;
     }
 
 }
