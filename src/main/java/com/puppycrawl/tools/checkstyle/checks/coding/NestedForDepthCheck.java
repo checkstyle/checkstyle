@@ -54,7 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *      for(int j=0; j&lt;i; j++){
  *          for(int k=0; k&lt;j; k++){
  *              for(int l=0; l&lt;k; l++){
- *                  for(int m=0; m&lt;l; m++){ //Violation
+ *                  for(int m=0; m&lt;l; m++){  //Violation
  *                  }
  *              }
  *           }
@@ -66,7 +66,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     for(int i=0; i&lt;10; i++){
  *      for(int j=0; j&lt;i; j++){
  *          for(int k=0; k&lt;j; k++){
- *              for(int l=0; l&lt;k; l++){ //OK
+ *              for(int l=0; l&lt;k; l++){  //OK
  *              }
  *          }
  *      }
