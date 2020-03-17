@@ -58,6 +58,45 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   /** &#64;return integer value *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * } //Violation. If Javadoc contains at least one at-clause, it should be formatted in multiple lines. 
+ * 
+ * 
+ * public class Test {
+ *   /** 
+ *    * &#64;return integer value 
+ *    *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * } //OK. Correct Javadoc. 
+ * </pre>
+ * <p>
+ * To configure this check to print violations if Tight-HTML rules are being violated.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+ *   &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   /**
+ *    *&#64;return integer value
+ *    *&lt;p&gt; First
+ *    *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *     }
+ * } //Prints violation for unclosed HTML tag.
+ * </pre>
  * <p>
  * To configure the check with a list of ignored at-clauses
  * and make inline at-clauses not ignored:
@@ -68,7 +107,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Examples:</p>
+ * <pre>
+ * public class Test {
+ *   /** @see #sum(int a, int b) *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * }//OK. No violation because @see is in list of ignored tags
+ * 
+ * public class Test {
+ *   /** Testing class for {@link Example} *&#47;
+ *   public int sum(int a, int b) {
+ *     return a + b;
+ *   }
+ * }//Prints violation for making Javadoc with inline tag in single line.
+ * </pre>
  * @since 6.0
  */
 @StatelessCheck

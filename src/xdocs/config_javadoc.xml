@@ -2531,6 +2531,49 @@ class DatabaseConfiguration {}
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <div class = "wrapper">
+          <pre>
+public class Test {
+  /** @return integer value */ 
+  public int sum(int a, int b) {
+    return a + b;
+  }
+} //Violation. If Javadoc contains at least one at-clause, it should be formatted in multiple lines.
+
+
+public class Test {
+  /** 
+   * @return integer value 
+   */
+  public int sum(int a, int b) {
+    return a + b;
+  }
+} //OK. Correct Javadoc.
+          </pre>
+        </div>
+        <p>
+          To configure this check to print violations if Tight-HTML rules are being violated.
+        </p>
+        <source>
+&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+  &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <div class = "wrapper">
+         <pre>
+public class Test {
+  /**
+   *@return integer value
+   *&lt;p&gt; First
+   */
+  public int sum(int a, int b) {
+    return a + b;
+  }
+} //Prints violation for unclosed HTML tag.
+         </pre>
+        </div>
         <p>
           To configure the check with a list of ignored at-clauses and make
           inline at-clauses not ignored:
@@ -2541,6 +2584,24 @@ class DatabaseConfiguration {}
   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Examples:</p>
+        <div class = "wrapper">
+         <pre>
+public class Test {
+  /** @see #sum(int a, int b) */
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}//OK. No violation because @see is in list of ignored tags
+
+public class Test {
+  /** Testing class for {@link Example} */
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}//Prints violation for making Javadoc with inline tag in single line.
+         </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="SingleLineJavadoc_Example_of_Usage">
