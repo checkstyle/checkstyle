@@ -55,8 +55,18 @@ public class RootNode extends AbstractNode {
     public RootNode(DetailAST detailAst) {
         super(new GenericTreeInfo(Configuration.newConfiguration()));
         this.detailAst = detailAst;
-
         createChildren();
+    }
+
+    /**
+     * Compares current object with specified for order.
+     * Throws {@code UnsupportedOperationException} because functionality not required here.
+     * @param nodeInfo another {@code NodeInfo} object
+     * @return number representing order of current object to specified one
+     */
+    @Override
+    public int compareOrder(NodeInfo nodeInfo) {
+        throw throwUnsupportedOperationException();
     }
 
     /**
