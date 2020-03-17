@@ -329,6 +329,12 @@ build:
   - script:
       name: Cleanup maven local repo
       code: |
+        echo "git status"
+        git status
+        echo "------"
+        echo "Content of .ci-temp folder:"
+        ls -la .ci-temp
+        echo "------"
         find ${WERCKER_CACHE_DIR} -type d -name "*SNAPSHOT" -ls -exec rm -rf {} +
         echo "------"
         du -hs ${WERCKER_CACHE_DIR}
