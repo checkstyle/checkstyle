@@ -483,9 +483,9 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         assertThat("Empty node should not have children", emptyRootNode.hasChildNodes(),
                 equalTo(false));
         assertThat("Invalid number of nodes", emptyRootNode.iterateAxis(AxisInfo.DESCENDANT),
-                equalTo(EmptyIterator.OfNodes.THE_INSTANCE));
+                equalTo(EmptyIterator.ofNodes()));
         assertThat("Invalid number of nodes", emptyRootNode.iterateAxis(AxisInfo.CHILD),
-                equalTo(EmptyIterator.OfNodes.THE_INSTANCE));
+                equalTo(EmptyIterator.ofNodes()));
     }
 
     @Test
