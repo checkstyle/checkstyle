@@ -59,6 +59,49 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testParentChildOrdering() {
+        final DetailAstImpl detailAST = new DetailAstImpl();
+        detailAST.setType(TokenTypes.VARIABLE_DEF);
+
+        final DetailAstImpl parentAST = new DetailAstImpl();
+        parentAST.setFirstChild(detailAST);
+        parentAST.setType(TokenTypes.METHOD_DEF);
+
+        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST);
+        final AbstractNode childNode = new ElementNode(rootNode, parentNode, detailAST);
+        assertEquals(-1, parentNode.compareOrder(childNode), "Incorrect ordering value");
+        assertEquals(1, childNode.compareOrder(parentNode), "Incorrect ordering value");
+    }
+
+    @Test
+    public void testSiblingsOrdering() {
+        final DetailAstImpl detailAst1 = new DetailAstImpl();
+        detailAst1.setType(TokenTypes.VARIABLE_DEF);
+
+        final DetailAstImpl detailAst2 = new DetailAstImpl();
+        detailAst2.setType(TokenTypes.NUM_INT);
+
+        final DetailAstImpl parentAST = new DetailAstImpl();
+        parentAST.setType(TokenTypes.METHOD_DEF);
+        parentAST.addChild(detailAst1);
+        parentAST.addChild(detailAst2);
+
+        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST);
+        final List<AbstractNode> children = parentNode.getChildren();
+
+        assertEquals(-1, children.get(0).compareOrder(children.get(1)), "Incorrect ordering value");
+        assertEquals(1, children.get(1).compareOrder(children.get(0)), "Incorrect ordering value");
+    }
+
+    @Test
+    public void testCompareOrderWrongInstance() throws Exception {
+        final String xpath = "//OBJBLOCK";
+        final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);
+        final int result = nodes.get(0).compareOrder(rootNode);
+        assertEquals(0, result, "Expected result wrong");
+    }
+
+    @Test
     public void testGetParent() throws Exception {
         final String xpath = "//OBJBLOCK";
         final List<NodeInfo> nodes = getXpathItems(xpath, rootNode);

@@ -49,6 +49,9 @@ public abstract class AbstractNode implements NodeInfo {
     /** The {@code TreeInfo} object. */
     private final TreeInfo treeInfo;
 
+    /** Depth of the node. */
+    private int depth;
+
     /**
      * Constructor of the abstract class {@code AbstractNode}.
      *
@@ -69,6 +72,22 @@ public abstract class AbstractNode implements NodeInfo {
      * @return underlying node
      */
     public abstract DetailAST getUnderlyingNode();
+
+    /**
+     * Getter method for node depth.
+     * @return depth
+     */
+    public int getDepth() {
+        return depth;
+    }
+
+    /**
+     * Setter method for node depth.
+     * @param depth depth of node
+     */
+    public final void setDepth(int depth) {
+        this.depth = depth;
+    }
 
     /**
      * Getter method for children.
@@ -136,16 +155,6 @@ public abstract class AbstractNode implements NodeInfo {
             axisIterator = new Navigator.AxisFilter(axisIterator, nodeTest);
         }
         return axisIterator;
-    }
-
-    /**
-     * Compares current object with specified for order.
-     * @param nodeInfo another {@code NodeInfo} object
-     * @return number representing order of current object to specified one
-     */
-    @Override
-    public int compareOrder(NodeInfo nodeInfo) {
-        return getLocalPart().compareTo(nodeInfo.getLocalPart());
     }
 
     /**
