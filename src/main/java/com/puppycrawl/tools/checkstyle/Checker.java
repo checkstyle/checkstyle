@@ -119,7 +119,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     private SeverityLevel severity = SeverityLevel.ERROR;
 
     /** Name of a charset. */
-    private String charset = System.getProperty("file.encoding", StandardCharsets.UTF_8.name());
+    private String charset = StandardCharsets.UTF_8.name();
 
     /** Cache file. **/
     private PropertyCacheFile cacheFile;

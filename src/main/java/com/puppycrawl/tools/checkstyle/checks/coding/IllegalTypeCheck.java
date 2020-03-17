@@ -130,12 +130,87 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check so that it ignores getInstance() methods:
+ * Default Configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalType&quot;/&gt;
+ * </pre>
+ * <pre>
+ * public class Test extends TreeSet { // violation
+ *   public &lt;T extends java.util.HashSet&gt; void method() { // violation
+ *
+ *     LinkedHashMap&lt;Integer, String&gt; lhmap =
+ *     new LinkedHashMap&lt;Integer, String&gt;(); // violation
+ *     TreeMap&lt;Integer, String&gt; treemap =
+ *     new TreeMap&lt;Integer, String&gt;(); // violation
+ *     Test t; // OK
+ *     HashMap&lt;String, String&gt; hmap; // violation
+ *     Queue&lt;Integer&gt; intqueue; // OK
+ *
+ *     java.lang.IllegalArgumentException illegalex; // OK
+ *     java.util.TreeSet treeset; // violation
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
+ * To configure the Check so that particular tokens are checked:
+ * </p>
+ * <pre>
+ * &lt;module name="IllegalType"&gt;
+ *   &lt;property name="tokens" value="METHOD_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class Test extends TreeSet { // OK
+ *   public &lt;T extends java.util.HashSet&gt; void method() { // violation
+ *     LinkedHashMap&lt;Integer, String&gt; lhmap =
+ *     new LinkedHashMap&lt;Integer, String&gt;(); // OK
+ *
+ *     java.lang.IllegalArgumentException illegalex; // OK
+ *     java.util.TreeSet treeset; // Ok
+ *   }
+ *
+ *   public &lt;T extends java.util.HashSet&gt; void typeParam(T t) {} // violation
+ *
+ *   public void fullName(TreeSet a) {} // OK
+ *
+ * }
+ * </pre>
+ * <p>
+ * To configure the Check so that it ignores function() methods:
  * </p>
  * <pre>
  * &lt;module name=&quot;IllegalType&quot;&gt;
- *   &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;getInstance&quot;/&gt;
+ *   &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;function&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class Test {
+ *   public HashMap&lt;String, String&gt; function() { // OK
+ *     // code
+ *   }
+ *
+ *   public HashMap&lt;String, String&gt; function1() { // violation
+ *     // code
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the Check so that it validates abstract class names:
+ * </p>
+ * <pre>
+ *  &lt;module name=&quot;IllegalType&quot;&gt;
+ *    &lt;property name=&quot;validateAbstractClassNames&quot; value=&quot;true&quot;/&gt;
+ *    &lt;property name=&quot;illegalAbstractClassNameFormat&quot; value=&quot;Gitt&quot;/&gt;
+ *  &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test extends Gitter { // violation
+ * }
+ *
+ * class Test1 extends Github { // OK
+ * }
  * </pre>
  * <p>
  * To configure the Check so that it verifies only public, protected or static methods and fields:
@@ -145,6 +220,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;memberModifiers&quot; value=&quot;LITERAL_PUBLIC,
  *    LITERAL_PROTECTED, LITERAL_STATIC&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class Test {
+ *   public HashMap&lt;String, String&gt; function1() { // violation
+ *     // code
+ *   }
+ *
+ *   private HashMap&lt;String, String&gt; function2() { // OK
+ *     // code
+ *   }
+ *
+ *   protected HashMap&lt;Integer, String&gt; function3() { // violation
+ *     // code
+ *   }
+ *
+ *   public static TreeMap&lt;Integer, String&gt; function4() { // violation
+ *     // code
+ *   }
+ *
+ * }
  * </pre>
  * <p>
  * To configure the check so that it verifies usage of types Boolean and Foo:
