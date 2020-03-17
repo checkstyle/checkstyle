@@ -4,9 +4,9 @@ public class InputMissingSwitchDefault {
     public void foo() {
         int i = 1;
         switch (i) {
-        case 1: i++; break;
-        case 2: i--; break;
-        default: return;
+            case 1: i++; break;
+            case 2: i--; break;
+            default: return;
         }
     }
 }
@@ -14,9 +14,9 @@ public class InputMissingSwitchDefault {
 class bad_test {
     public void foo() {
         int i = 1;
-        switch (i) {
-        case 1: i++; break;
-        case 2: i--; break;
+        switch (i) { // violation
+            case 1: i++; break;
+            case 2: i--; break;
         }
     }
 
