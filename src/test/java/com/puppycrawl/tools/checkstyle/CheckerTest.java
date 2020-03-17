@@ -415,7 +415,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.finishLocalSetup();
 
         final Context context = Whitebox.getInternalState(checker, "childContext");
-        final String encoding = System.getProperty("file.encoding", StandardCharsets.UTF_8.name());
+        final String encoding = StandardCharsets.UTF_8.name();
         assertEquals(encoding, context.get("charset"), "Charset was different than expected");
         assertEquals("error", context.get("severity"), "Severity is set to unexpected value");
         assertEquals("testBaseDir", context.get("basedir"), "Basedir is set to unexpected value");
