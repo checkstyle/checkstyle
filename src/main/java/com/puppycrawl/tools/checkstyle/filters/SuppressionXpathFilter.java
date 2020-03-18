@@ -53,9 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * AvoidEscapedUnicodeCharacters
  * </li>
  * <li>
- * AvoidStarImport
- * </li>
- * <li>
  * CommentsIndentation
  * </li>
  * <li>

@@ -905,7 +905,6 @@ public class UserService {
           <li>AnnotationOnSameLine</li>
           <li>AnnotationUseStyle</li>
           <li>AvoidEscapedUnicodeCharacters</li>
-          <li>AvoidStarImport</li>
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
