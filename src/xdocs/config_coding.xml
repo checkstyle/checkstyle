@@ -751,7 +751,44 @@ class K {
 &lt;module name=&quot;DefaultComesLast&quot;/&gt;
         </source>
         <p>
-            To configure the check for skipIfLastAndSharedWithCase:
+          Example:
+        </p>
+        <source>
+switch (i) {
+  case 1:
+    break;
+  case 2:
+    break;
+  default: // OK
+    break;
+}
+
+switch (i) {
+  case 1:
+    break;
+  case 2:
+    break; // OK, no default
+}
+
+switch (i) {
+  case 1:
+    break;
+  default: // violation, 'default' before 'case'
+    break;
+  case 2:
+    break;
+}
+
+switch (i) {
+  case 1:
+  default: // violation, 'default' before 'case'
+    break;
+  case 2:
+    break;
+}
+        </source>
+        <p>
+          To configure the check to allow default label to be not last if it is shared with case:
         </p>
         <source>
 &lt;module name=&quot;DefaultComesLast&quot;&gt;
@@ -759,22 +796,23 @@ class K {
 &lt;/module&gt;
         </source>
         <p>
-            Example when skipIfLastAndSharedWithCase is set to true.
+          Example:
         </p>
         <source>
 switch (i) {
   case 1:
     break;
   case 2:
-  default: // No violation with the new option is expected
+  default: // OK
     break;
   case 3:
     break;
 }
+
 switch (i) {
   case 1:
     break;
-  default: // violation with the new option is expected
+  default: // violation
   case 2:
     break;
 }
