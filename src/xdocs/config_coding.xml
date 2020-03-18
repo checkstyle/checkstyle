@@ -3015,6 +3015,10 @@ class MyClass {
     int i = i + 1; // no violation
     int j = j + 8; // violation
   }
+
+  public int hashCode() {
+    return 10;    // violation
+  }
 }
 @interface anno {
   int value() default 10; // no violation
@@ -3091,6 +3095,23 @@ class TestMethodCall {
   }
 }
        </source>
+
+          <p>
+          Config example of ignoreHashCodeMethod option:
+          </p>
+          <source>
+&lt;module name=&quot;MagicNumber&quot;&gt;
+    &lt;property name=&quot;ignoreHashCodeMethod&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+          </source>
+          <p>result is no violation:</p>
+          <source>
+class TestHashCode {
+  public int hashCode() {
+    return 10;              // OK
+  }
+}
+          </source>
 
   </subsection>
 

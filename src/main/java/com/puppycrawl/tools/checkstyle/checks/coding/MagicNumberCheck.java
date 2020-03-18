@@ -134,6 +134,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     int i = i + 1; // no violation
  *     int j = j + 8; // violation
  *   }
+ *
+ *   public int hashCode() {
+ *     return 10;    // violation
+ *   }
  * }
  * &#64;interface anno {
  *   int value() default 10; // no violation
@@ -209,6 +213,25 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     final int w = 3 - 4;    // violation
  *     final int x = (int)(3.4);    //ok as waiver is TYPECAST
  *   }
+ * }
+ * </pre>
+ *
+ * <p>
+ * Config example of ignoreHashCodeMethod option:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MagicNumber&quot;&gt;
+ *   &lt;property name=&quot;ignoreHashCodeMethod&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * result is no violation:
+ * </p>
+ * <pre>
+ * class TestHashCode {
+ *     public int hashCode() {
+ *         return 10;       // OK
+ *     }
  * }
  * </pre>
  *
