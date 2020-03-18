@@ -63,6 +63,18 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * &lt;module name="IllegalThrows"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void func1() throws RuntimeException {} // violation
+ *   public void func2() throws Exception {}  // ok
+ *   public void func3() throws Error {}  // violation
+ *   public void func4() throws Throwable {} // violation
+ *   public void func5() throws NullPointerException {} // ok
+ *   &#064;Override
+ *   public void toString() throws Error {} // ok
+ * }
+ * </pre>
  * <p>
  * To configure the check rejecting throws NullPointerException from methods:
  * </p>
@@ -71,13 +83,37 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *   &lt;property name="illegalClassNames" value="NullPointerException"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void func1() throws RuntimeException {} // ok
+ *   public void func2() throws Exception {}  // ok
+ *   public void func3() throws Error {}  // ok
+ *   public void func4() throws Throwable {} // ok
+ *   public void func5() throws NullPointerException {} // violation
+ *   &#064;Override
+ *   public void toString() throws Error {} // ok
+ * }
+ * </pre>
  * <p>
- * To configure the check ignoring method named "foo()":
+ * To configure the check ignoring method named "func1()":
  * </p>
  * <pre>
  * &lt;module name="IllegalThrows"&gt;
- *   &lt;property name="ignoredMethodNames" value="foo"/&gt;
+ *   &lt;property name="ignoredMethodNames" value="func1"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void func1() throws RuntimeException {} // ok
+ *   public void func2() throws Exception {}  // ok
+ *   public void func3() throws Error {}  // violation
+ *   public void func4() throws Throwable {} // violation
+ *   public void func5() throws NullPointerException {} // ok
+ *   &#064;Override
+ *   public void toString() throws Error {} // ok
+ * }
  * </pre>
  * <p>
  * To configure the check to warn on overridden methods:
@@ -86,6 +122,18 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * &lt;module name=&quot;IllegalThrows&quot;&gt;
  *   &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void func1() throws RuntimeException {} // violation
+ *   public void func2() throws Exception {}  // ok
+ *   public void func3() throws Error {}  // violation
+ *   public void func4() throws Throwable {} // violation
+ *   public void func5() throws NullPointerException {} // ok
+ *   &#064;Override
+ *   public void toString() throws Error {} // violation
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
