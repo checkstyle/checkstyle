@@ -238,7 +238,7 @@ public class AvoidStarImportCheck
         final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
         if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
-            log(startingDot.getLineNo(), MSG_KEY, importText);
+            log(startingDot, MSG_KEY, importText);
         }
     }
 
