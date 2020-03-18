@@ -40,7 +40,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * for (int i = 0; i &lt; 1; i++) {
- *   i++; //violation
+ *           i++;                 // violation
+ * } 
+ * for (int i = 0; i &lt; 1; i++) {
+ *           i = i + 1;   // violation
+ *    }
+ * for (int i = 0; i &lt; 1; i++) {
+ *           for (int j = 0; j &lt; 1; i++) {  // violation
+ *                     --i;                    // violation
+ *              }
+ *    }  
+ * for (int i = 0, j = 0; i &lt; 1; i++) {
+ *            j++;                       // violation
+ *    }        
+ * for (int i = 0, l = 0,m=0; l &lt; 10; i++,m=m+2) {
+ *           l++;
+ *           m++;                               // violation
+ *    }  
+ * for (int i=0;i&lt;10; java.sql.Date.valueOf(""),this.i++,w++) {
+ *           i++;
+ *           w++;                               // violation
+ *    }
+ * for (int i=0,k=0; i&lt;10 &#38;&#38; k &lt; 10; ++i,++k) {
+ *           i = i + 3;                         // violtion
+ *           k = k + 4;                         // violation
+ *    }
+ * for (int i = 0,j = 0 ; i &lt; 10; i++) {
+ *           j++;       // violation
+ *    }        
+ * for (int i = 0; i &lt; 10; i += 1) {          // violation
+ *           for (i = 7; i &lt; 10; i += 1) {}   // okay
+ *    }
  * }
  * </pre>
  * <p>
@@ -55,6 +85,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * for (int i = 0; i &lt; 10;) {
  *   i++;
+ * }
+ * for (int i = 0; i &lt; 1; i++) {  // ok
+ * }  
+ * for (int i = 0; i &lt; 1; i++) {  // ok
+ *   int x = i;
+ * }
+ * for (int k = 0; k &lt; 1; k++) {  // ok
+ *     this.k++;
  * }
  * </pre>
  * <ul>
