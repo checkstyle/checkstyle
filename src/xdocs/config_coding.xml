@@ -2156,6 +2156,15 @@ try {
         <source>
 &lt;module name=&quot;IllegalThrows&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {} // violation
+  public void func2() throws Exception {}  // ok
+  public void func3() throws Error {}  // violation
+  public void func4() throws Throwable {} // violation
+}
+        </source>
         <p>
           To configure the check rejecting throws NullPointerException from methods:
         </p>
@@ -2164,13 +2173,27 @@ try {
   &lt;property name=&quot;illegalClassNames&quot; value=&quot;NullPointerException&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {} // ok
+  public void func2() throws NullPointerException {} // violation
+}
+        </source>
         <p>
-          To configure the check ignoring method named &quot;foo()&quot;:
+          To configure the check ignoring method named &quot;func1()&quot;:
         </p>
         <source>
 &lt;module name=&quot;IllegalThrows&quot;&gt;
-  &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;foo&quot;/&gt;
+  &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;func1&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+  public void func1() throws RuntimeException {}  // ok
+  public void func2() throws Error {}  // violation
+}
         </source>
         <p>
           To configure the check to warn on overridden methods:
@@ -2179,6 +2202,15 @@ try {
 &lt;module name=&quot;IllegalThrows&quot;&gt;
   &lt;property name=&quot;ignoreOverriddenMethods&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+  public void func1() throws Throwable {} // violation
+}
+class OverrideTest extends Test {
+  public void func1() throws RuntimeException {}  // violation
+}
         </source>
       </subsection>
 
