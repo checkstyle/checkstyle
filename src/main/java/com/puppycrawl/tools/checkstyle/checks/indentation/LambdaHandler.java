@@ -66,7 +66,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         // If the start of the lambda is the first element on the line;
         // assume line wrapping with respect to its parent.
         final DetailAST firstChild = getMainAst().getFirstChild();
-        if (getLineStart(firstChild) == firstChild.getColumnNo()) {
+        if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             level = new IndentLevel(level, getIndentCheck().getLineWrappingIndentation());
         }
 
@@ -77,19 +77,19 @@ public class LambdaHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         // If the argument list is the first element on the line
         final DetailAST firstChild = getMainAst().getFirstChild();
-        if (getLineStart(firstChild) == firstChild.getColumnNo()) {
+        if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final IndentLevel level = getIndent();
-            if (!level.isAcceptable(firstChild.getColumnNo())) {
-                logError(firstChild, "arguments", firstChild.getColumnNo(), level);
+            if (!level.isAcceptable(expandedTabsColumnNo(firstChild))) {
+                logError(firstChild, "arguments", expandedTabsColumnNo(firstChild), level);
             }
         }
 
         // If the "->" is the first element on the line, assume line wrapping.
-        if (getLineStart(getMainAst()) == getMainAst().getColumnNo()) {
+        if (getLineStart(getMainAst()) == expandedTabsColumnNo(getMainAst())) {
             final IndentLevel level =
                 new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
-            if (!level.isAcceptable(getMainAst().getColumnNo())) {
-                logError(getMainAst(), "", getMainAst().getColumnNo(), level);
+            if (!level.isAcceptable(expandedTabsColumnNo(getMainAst()))) {
+                logError(getMainAst(), "", expandedTabsColumnNo(getMainAst()), level);
             }
         }
     }
