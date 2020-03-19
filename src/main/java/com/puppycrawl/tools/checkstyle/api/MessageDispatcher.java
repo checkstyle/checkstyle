@@ -28,18 +28,21 @@ public interface MessageDispatcher {
 
     /**
      * Notify all listeners about the beginning of a file audit.
+     *
      * @param fileName the file to be audited
      */
     void fireFileStarted(String fileName);
 
     /**
      * Notify all listeners about the end of a file audit.
+     *
      * @param fileName the audited file
      */
     void fireFileFinished(String fileName);
 
     /**
      * Notify all listeners about the errors in a file.
+     *
      * @param fileName the audited file
      * @param errors the audit errors from the file
      */

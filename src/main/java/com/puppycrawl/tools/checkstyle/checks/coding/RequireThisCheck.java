@@ -282,6 +282,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Setter to control whether to check references to fields.
+     *
      * @param checkFields should we check fields usage or not.
      */
     public void setCheckFields(boolean checkFields) {
@@ -290,6 +291,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Setter to control whether to check references to methods.
+     *
      * @param checkMethods should we check methods usage or not.
      */
     public void setCheckMethods(boolean checkMethods) {
@@ -298,6 +300,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Setter to control whether to check only overlapping by variables or arguments.
+     *
      * @param validateOnlyOverlapping should we check only overlapping by variables or arguments.
      */
     public void setValidateOnlyOverlapping(boolean validateOnlyOverlapping) {
@@ -392,6 +395,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Checks if a given IDENT is method call or field name which
      * requires explicit {@code this} qualifier.
+     *
      * @param ast IDENT to check.
      */
     private void processIdent(DetailAST ast) {
@@ -428,6 +432,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Helper method to log a LocalizedMessage.
+     *
      * @param ast a node to get line id column numbers associated with the message.
      * @param msgKey key to locale message format.
      * @param frame the class frame where the violation is found.
@@ -444,6 +449,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Returns the frame where the field is declared, if the given field is used without
      * 'this', and null otherwise.
+     *
      * @param ast field definition ast token.
      * @param parentType type of the parent.
      * @return the frame where the field is declared, if the given field is used without
@@ -470,6 +476,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Parses the next AST for declarations.
+     *
      * @param frameStack stack containing the FrameTree being built.
      * @param ast AST to parse.
      */
@@ -540,6 +547,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Collects variable declarations.
+     *
      * @param ast variable token.
      * @param frame current frame.
      */
@@ -563,6 +571,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Ends parsing of the AST for declarations.
+     *
      * @param frameStack Stack containing the FrameTree being built.
      * @param ast AST that was parsed.
      */
@@ -591,6 +600,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Whether the AST is a definition of an anonymous class.
+     *
      * @param ast the AST to process.
      * @return true if the AST is a definition of an anonymous class.
      */
@@ -603,6 +613,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Returns the class frame where violation is found (where the field is used without 'this')
      * or null otherwise.
+     *
      * @param ast IDENT ast to check.
      * @return the class frame where violation is found or null otherwise.
      */
@@ -666,6 +677,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks whether user arranges 'this' for variable in method, constructor, or block on his own.
+     *
      * @param currentFrame current frame.
      * @param ident ident token.
      * @return true if user arranges 'this' for variable in method, constructor,
@@ -697,6 +709,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Returns the token which ends the code block.
+     *
      * @param blockNameIdent block name identifier.
      * @param blockStartToken token which starts the block.
      * @return the token which ends the code block.
@@ -722,6 +735,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks whether the current variable is returned from the method.
+     *
      * @param currentFrame current frame.
      * @param ident variable ident token.
      * @return true if the current variable is returned from the method.
@@ -747,6 +761,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks if the given {@code ast} is equal to the {@code tree} or a child of it.
+     *
      * @param tree The tree to search.
      * @param ast The AST to look for.
      * @return {@code true} if the {@code ast} was found.
@@ -769,6 +784,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks whether a field can be referenced from a static context.
+     *
      * @param ident ident token.
      * @return true if field can be referenced from a static context.
      */
@@ -811,6 +827,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Returns code block definition token for current identifier.
+     *
      * @param ident ident token.
      * @return code block definition token for current identifier or null if code block
      *         definition was not found.
@@ -830,6 +847,7 @@ public class RequireThisCheck extends AbstractCheck {
      * Checks whether a value can be assigned to a field.
      * A value can be assigned to a final field only in constructor block. If there is a method
      * block, value assignment can be performed only to non final field.
+     *
      * @param ast an identifier token.
      * @return true if a value can be assigned to a field.
      */
@@ -845,6 +863,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks whether a field usage frame is inside constructor frame.
+     *
      * @param frame frame, where field is used.
      * @return true if the field usage frame is inside constructor frame.
      */
@@ -864,6 +883,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks whether an overlapping by method or constructor argument takes place.
+     *
      * @param ast an identifier.
      * @return true if an overlapping by method or constructor argument takes place.
      */
@@ -886,6 +906,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks whether an overlapping by local variable takes place.
+     *
      * @param ast an identifier.
      * @return true if an overlapping by local variable takes place.
      */
@@ -903,6 +924,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Collects all tokens of specific type starting with the current ast node.
+     *
      * @param ast ast node.
      * @param tokenType token type.
      * @return a set of all tokens of specific type starting with the current ast node.
@@ -931,6 +953,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Collects all tokens of specific type starting with the current ast node and which line
      * number is lower or equal to the end line number.
+     *
      * @param ast ast node.
      * @param tokenType token type.
      * @param endLineNumber end line number.
@@ -963,6 +986,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Collects all tokens which are equal to current token starting with the current ast node and
      * which line number is lower or equal to the end line number.
+     *
      * @param ast ast node.
      * @param token token.
      * @param endLineNumber end line number.
@@ -995,6 +1019,7 @@ public class RequireThisCheck extends AbstractCheck {
     /**
      * Returns the frame where the method is declared, if the given method is used without
      * 'this' and null otherwise.
+     *
      * @param ast the IDENT ast of the name to check.
      * @return the frame where the method is declared, if the given method is used without
      *         'this' and null otherwise.
@@ -1014,6 +1039,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Find the class frame containing declaration.
+     *
      * @param name IDENT ast of the declaration to find.
      * @param lookForMethod whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
@@ -1036,6 +1062,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Find frame containing declaration.
+     *
      * @param name IDENT ast of the declaration to find.
      * @param lookForMethod whether we are looking for a method name.
      * @return AbstractFrame containing declaration or null.
@@ -1046,6 +1073,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Find frame containing declaration.
+     *
      * @param frame The parent frame to searching in.
      * @param name IDENT ast of the declaration to find.
      * @param lookForMethod whether we are looking for a method name.
@@ -1058,6 +1086,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Check that token is related to Definition tokens.
+     *
      * @param parentType token Type.
      * @return true if token is related to Definition Tokens.
      */
@@ -1067,6 +1096,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Check that token is related to assign tokens.
+     *
      * @param tokenType token type.
      * @return true if token is related to assign tokens.
      */
@@ -1076,6 +1106,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Check that token is related to compound assign tokens.
+     *
      * @param tokenType token type.
      * @return true if token is related to compound assign tokens.
      */
@@ -1085,6 +1116,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Gets the name of the nearest parent ClassFrame.
+     *
      * @return the name of the nearest parent ClassFrame.
      */
     private String getNearestClassFrameName() {
@@ -1097,6 +1129,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks if the token is a Lambda parameter.
+     *
      * @param ast the {@code DetailAST} value of the token to be checked
      * @return true if the token is a Lambda parameter
      */
@@ -1132,6 +1165,7 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Checks if 2 AST are similar by their type and text.
+     *
      * @param left The first AST to check.
      * @param right The second AST to check.
      * @return {@code true} if they are similar.
@@ -1174,6 +1208,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Constructor -- invocable only via super() from subclasses.
+         *
          * @param parent parent frame.
          * @param ident frame name ident.
          */
@@ -1185,12 +1220,14 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Get the type of the frame.
+         *
          * @return a FrameType.
          */
         protected abstract FrameType getType();
 
         /**
          * Add a name to the frame.
+         *
          * @param identToAdd the name we're adding.
          */
         private void addIdent(DetailAST identToAdd) {
@@ -1211,6 +1248,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Check whether the frame contains a field or a variable with the given name.
+         *
          * @param nameToFind the IDENT ast of the name we're looking for.
          * @return whether it was found.
          */
@@ -1220,6 +1258,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Check whether the frame contains a given name.
+         *
          * @param nameToFind IDENT ast of the name we're looking for.
          * @param lookForMethod whether we are looking for a method name.
          * @return whether it was found.
@@ -1240,6 +1279,7 @@ public class RequireThisCheck extends AbstractCheck {
         /**
          * Whether the set contains a declaration with the text of the specified
          * IDENT ast and it is declared in a proper position.
+         *
          * @param set the set of declarations.
          * @param ident the specified IDENT ast.
          * @return true if the set contains a declaration with the text of the specified
@@ -1258,6 +1298,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Whether the definition is correspondent to the IDENT.
+         *
          * @param ident the IDENT ast to check.
          * @param ast the IDENT ast of the definition to check.
          * @return true if ast is correspondent to ident.
@@ -1276,6 +1317,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates method frame.
+         *
          * @param parent parent frame.
          * @param ident method name identifier token.
          */
@@ -1297,6 +1339,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates a constructor frame.
+         *
          * @param parent parent frame.
          * @param ident frame name ident.
          */
@@ -1327,6 +1370,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates new instance of ClassFrame.
+         *
          * @param parent parent frame.
          * @param ident frame name ident.
          */
@@ -1345,6 +1389,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Adds static member's ident.
+         *
          * @param ident an ident of static member of the class.
          */
         public void addStaticMember(final DetailAST ident) {
@@ -1353,6 +1398,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Adds static method's name.
+         *
          * @param ident an ident of static method of the class.
          */
         public void addStaticMethod(final DetailAST ident) {
@@ -1361,6 +1407,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Adds instance member's ident.
+         *
          * @param ident an ident of instance member of the class.
          */
         public void addInstanceMember(final DetailAST ident) {
@@ -1369,6 +1416,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Adds instance method's name.
+         *
          * @param ident an ident of instance method of the class.
          */
         public void addInstanceMethod(final DetailAST ident) {
@@ -1377,6 +1425,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Checks if a given name is a known instance member of the class.
+         *
          * @param ident the IDENT ast of the name to check.
          * @return true is the given name is a name of a known
          *         instance member of the class.
@@ -1387,6 +1436,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Checks if a given name is a known instance method of the class.
+         *
          * @param ident the IDENT ast of the method call to check.
          * @return true if the given ast is correspondent to a known
          *         instance method of the class.
@@ -1397,6 +1447,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Checks if a given name is a known static method of the class.
+         *
          * @param ident the IDENT ast of the method call to check.
          * @return true is the given ast is correspondent to a known
          *         instance method of the class.
@@ -1407,6 +1458,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Checks whether given instance member has final modifier.
+         *
          * @param instanceMember an instance member of a class.
          * @return true if given instance member has final modifier.
          */
@@ -1451,6 +1503,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Check whether the frame contains a given method.
+         *
          * @param methodToFind the AST of the method to find.
          * @return true, if a method with the same name and number of parameters is found.
          */
@@ -1462,6 +1515,7 @@ public class RequireThisCheck extends AbstractCheck {
         /**
          * Whether the set contains a method definition with the
          *     same name and number of parameters.
+         *
          * @param set the set of definitions.
          * @param ident the specified method call IDENT ast.
          * @return true if the set contains a definition with the
@@ -1480,6 +1534,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Whether the method definition has the same name and number of parameters.
+         *
          * @param ident the specified method call IDENT ast.
          * @param ast the ast of a method definition to compare with.
          * @return true if a method definition has the same name and number of parameters
@@ -1509,6 +1564,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates anonymous class frame.
+         *
          * @param parent parent frame.
          * @param frameName name of the frame.
          */
@@ -1531,6 +1587,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates block frame.
+         *
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */
@@ -1552,6 +1609,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates catch frame.
+         *
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */
@@ -1573,6 +1631,7 @@ public class RequireThisCheck extends AbstractCheck {
 
         /**
          * Creates for frame.
+         *
          * @param parent parent frame.
          * @param ident ident frame name ident.
          */

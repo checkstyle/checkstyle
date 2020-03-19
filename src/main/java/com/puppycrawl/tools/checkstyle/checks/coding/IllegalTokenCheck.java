@@ -74,6 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * public native void myTest(); // violation
  * </pre>
+ *
  * @since 3.2
  */
 @StatelessCheck
@@ -119,6 +120,7 @@ public class IllegalTokenCheck
 
     /**
      * Converts given AST node to string representation.
+     *
      * @param ast node to be represented as string
      * @return string representation of AST node
      */

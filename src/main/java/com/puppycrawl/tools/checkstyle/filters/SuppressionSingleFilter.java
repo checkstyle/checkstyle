@@ -174,6 +174,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  *   &lt;property name="message" value="Name 'log' must match pattern"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
  * @since 8.23
  */
 public class SuppressionSingleFilter extends AutomaticBean implements Filter {
@@ -213,6 +214,7 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Setter to define the RegExp for matching against the file name associated with an audit
      * event.
+     *
      * @param files regular expression for filtered file names
      */
     public void setFiles(Pattern files) {
@@ -222,6 +224,7 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Setter to define the RegExp for matching against the name of the check associated with an
      * audit event.
+     *
      * @param checks the name of the check
      */
     public void setChecks(String checks) {
@@ -231,6 +234,7 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Setter to define the RegExp for matching against the message of the check associated with
      * an audit event.
+     *
      * @param message the message of the check
      */
     public void setMessage(Pattern message) {
@@ -240,6 +244,7 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Setter to specify a string matched against the ID of the check associated with an audit
      * event.
+     *
      * @param id the ID of the check
      */
     public void setId(String id) {
@@ -249,6 +254,7 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Setter to specify a comma-separated list of values, where each value is an integer or a
      * range of integers denoted by integer-integer.
+     *
      * @param lines the lines of the check
      */
     public void setLines(String lines) {
@@ -258,6 +264,7 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     /**
      * Setter to specify a comma-separated list of values, where each value is an integer or a
      * range of integers denoted by integer-integer.
+     *
      * @param columns the columns of the check
      */
     public void setColumns(String columns) {

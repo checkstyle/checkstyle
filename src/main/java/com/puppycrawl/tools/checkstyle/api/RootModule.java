@@ -35,6 +35,7 @@ public interface RootModule extends Configurable {
      * Processes a set of files.
      * Once this is done, it is highly recommended to call for
      * the destroy method to close and remove the listeners.
+     *
      * @param files the list of files to be audited.
      * @return the total number of audit events with error severity found
      * @throws CheckstyleException if error condition within Checkstyle occurs
@@ -44,6 +45,7 @@ public interface RootModule extends Configurable {
 
     /**
      * Add the listener that will be used to receive events from the audit.
+     *
      * @param listener the nosy thing
      */
     void addListener(AuditListener listener);
@@ -53,6 +55,7 @@ public interface RootModule extends Configurable {
      * classes when the module tree is being built up.
      * If no custom ModuleFactory is being set for the root module then
      * this module classloader must be specified.
+     *
      * @param moduleClassLoader the classloader used to load module classes
      */
     void setModuleClassLoader(ClassLoader moduleClassLoader);

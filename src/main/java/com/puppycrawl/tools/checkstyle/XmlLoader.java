@@ -57,6 +57,7 @@ public class XmlLoader
 
     /**
      * Creates a new instance.
+     *
      * @param publicIdToResourceNameMap maps public IDs to DTD resource names
      * @throws SAXException if an error occurs
      * @throws ParserConfigurationException if an error occurs
@@ -75,6 +76,7 @@ public class XmlLoader
 
     /**
      * Parses the specified input source.
+     *
      * @param inputSource the input source to parse.
      * @throws IOException if an error occurs
      * @throws SAXException in an error occurs
@@ -137,6 +139,7 @@ public class XmlLoader
          * to use external DTD file loading, this is not activated by default to no allow
          * usage of schema files that checkstyle do not know
          * it is even security problem to allow files from outside.
+         *
          * @param factory factory to be configured with special features
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs

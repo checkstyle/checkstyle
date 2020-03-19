@@ -27,6 +27,7 @@ public interface BeforeExecutionFileFilter {
 
     /**
      * Determines whether or not a before execution file filtered event is accepted.
+     *
      * @param uri the uri to filter.
      * @return true if the event is accepted.
      */
