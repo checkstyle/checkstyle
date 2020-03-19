@@ -53,6 +53,7 @@ class PkgImportControl extends AbstractImportControl {
 
     /**
      * Construct a root, package node.
+     *
      * @param packageName the name of the package.
      * @param regex flags interpretation of name as regex pattern.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
@@ -78,6 +79,7 @@ class PkgImportControl extends AbstractImportControl {
     /**
      * Construct a sub-package node. The concatenation of regular expressions needs special care:
      * see {@link #ensureSelfContainedRegex(String, boolean)} for more details.
+     *
      * @param parent the parent package.
      * @param subPackageName the name of the current sub-package.
      * @param regex flags interpretation of name as regex pattern.
@@ -141,6 +143,7 @@ class PkgImportControl extends AbstractImportControl {
 
     /**
      * Enclose {@code expression} in a (non-capturing) group.
+     *
      * @param expression the input regular expression
      * @return a grouped pattern.
      */
@@ -151,6 +154,7 @@ class PkgImportControl extends AbstractImportControl {
     /**
      * Converts a normal package name into a regex pattern by escaping all
      * special characters that may occur in a java package name.
+     *
      * @param input the input string.
      * @return a regex string.
      */
@@ -160,6 +164,7 @@ class PkgImportControl extends AbstractImportControl {
 
     /**
      * Creates a Pattern from {@code expression} that matches exactly and child packages.
+     *
      * @param expression a self-contained regular expression matching the full package exactly.
      * @return a Pattern.
      */
@@ -171,6 +176,7 @@ class PkgImportControl extends AbstractImportControl {
 
     /**
      * Creates a Pattern from {@code expression}.
+     *
      * @param expression a self-contained regular expression matching the full package exactly.
      * @return a Pattern.
      */
@@ -199,6 +205,7 @@ class PkgImportControl extends AbstractImportControl {
 
     /**
      * Adds new child import control.
+     *
      * @param importControl child import control
      */
     public void addChild(AbstractImportControl importControl) {
@@ -207,6 +214,7 @@ class PkgImportControl extends AbstractImportControl {
 
     /**
      * Matches other package name exactly or partially at front.
+     *
      * @param pkg the package to compare with.
      * @return if it matches.
      */
@@ -224,6 +232,7 @@ class PkgImportControl extends AbstractImportControl {
     /**
      * Non-regex case. Ensure a trailing dot for subpackages, i.e. "com.puppy"
      * will match "com.puppy.crawl" but not "com.puppycrawl.tools".
+     *
      * @param pkg the package to compare with.
      * @return if it matches.
      */

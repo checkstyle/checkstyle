@@ -86,6 +86,7 @@ public class MemberDefHandler extends AbstractExpressionHandler {
 
     /**
      * Checks if variable_def node is array declaration.
+     *
      * @param variableDef current variable_def.
      * @return true if variable_def node is array declaration.
      */
@@ -96,6 +97,7 @@ public class MemberDefHandler extends AbstractExpressionHandler {
 
     /**
      * Returns semicolon for variable definition statement.
+     *
      * @param variableDef
      *          ast node of type TokenTypes.VARIABLE_DEF
      * @return ast node of type TokenTypes.SEMI

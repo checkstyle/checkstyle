@@ -48,6 +48,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse a file and print the parse tree.
+     *
      * @param file the file to print.
      * @return parse tree as a string
      * @throws IOException if the file could not be read.
@@ -58,6 +59,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse block comment DetailAST as Javadoc DetailNode tree.
+     *
      * @param blockComment DetailAST
      * @return DetailNode tree
      */
@@ -72,6 +74,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse javadoc comment to DetailNode tree.
+     *
      * @param javadocComment javadoc comment content
      * @return tree
      */
@@ -82,6 +85,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Builds error message base on ParseErrorMessage's message key, its arguments, etc.
+     *
      * @param parseErrorMessage ParseErrorMessage
      * @return error message
      */
@@ -99,6 +103,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Print AST.
+     *
      * @param ast the root AST node.
      * @param rootPrefix prefix for the root node
      * @param prefix prefix for other nodes
@@ -127,6 +132,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Get indentation for a node.
+     *
      * @param node the DetailNode to get the indentation for.
      * @return the indentation in String format.
      */
@@ -160,6 +166,7 @@ public final class DetailNodeTreeStringPrinter {
 
     /**
      * Parse a file and return the parse tree.
+     *
      * @param file the file to parse.
      * @return the root node of the parse tree.
      * @throws IOException if the file could not be read.

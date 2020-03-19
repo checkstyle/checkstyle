@@ -45,6 +45,7 @@ public abstract class AbstractNameCheck
 
     /**
      * Creates a new {@code AbstractNameCheck} instance.
+     *
      * @param format format to check with
      */
     protected AbstractNameCheck(String format) {
@@ -54,6 +55,7 @@ public abstract class AbstractNameCheck
     /**
      * Decides whether the name of an AST should be checked against
      * the format regexp.
+     *
      * @param ast the AST to check.
      * @return true if the IDENT subnode of ast should be checked against
      *     the format regexp.
@@ -62,6 +64,7 @@ public abstract class AbstractNameCheck
 
     /**
      * Set the format for the specified regular expression.
+     *
      * @param pattern the new pattern
      */
     public final void setFormat(Pattern pattern) {

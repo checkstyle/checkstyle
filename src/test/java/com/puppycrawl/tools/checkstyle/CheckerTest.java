@@ -92,6 +92,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * CheckerTest.
+ *
  * @noinspection ClassWithTooManyDependencies
  */
 public class CheckerTest extends AbstractModuleTestSupport {
@@ -667,6 +668,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -681,6 +683,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             /**
              * Test is checking catch clause when exception is thrown.
+             *
              * @noinspection ProhibitedExceptionThrown
              */
             @Override
@@ -709,6 +712,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -723,6 +727,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             /**
              * Test is checking catch clause when exception is thrown.
+             *
              * @noinspection ProhibitedExceptionThrown
              */
             @Override
@@ -981,6 +986,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -1005,6 +1011,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             /**
              * Test is checking catch clause when exception is thrown.
+             *
              * @noinspection ProhibitedExceptionThrown
              */
             @Override
@@ -1044,6 +1051,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -1063,6 +1071,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             /**
              * Test is checking catch clause when exception is thrown.
+             *
              * @noinspection ProhibitedExceptionThrown
              */
             @Override
@@ -1101,6 +1110,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -1113,6 +1123,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             /**
              * Test is checking catch clause when exception is thrown.
+             *
              * @noinspection ProhibitedExceptionThrown
              */
             @Override
@@ -1138,6 +1149,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -1156,6 +1168,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
             /**
              * Test is checking catch clause when exception is thrown.
+             *
              * @noinspection ProhibitedExceptionThrown
              */
             @Override

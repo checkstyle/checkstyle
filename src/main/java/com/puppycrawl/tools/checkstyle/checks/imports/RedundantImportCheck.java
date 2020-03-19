@@ -140,6 +140,7 @@ public class RedundantImportCheck
 
     /**
      * Determines if an import statement is for types from a specified package.
+     *
      * @param importName the import name
      * @param pkg the package name
      * @return whether from the package

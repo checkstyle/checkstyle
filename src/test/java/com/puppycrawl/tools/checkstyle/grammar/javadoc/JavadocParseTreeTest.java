@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractTreeTestSupport;
 
 /**
  * JavadocParseTreeTest.
+ *
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public class JavadocParseTreeTest extends AbstractTreeTestSupport {

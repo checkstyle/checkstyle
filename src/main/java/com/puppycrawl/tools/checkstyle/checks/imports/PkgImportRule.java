@@ -32,6 +32,7 @@ class PkgImportRule extends AbstractImportRule {
 
     /**
      * Constructs an instance.
+     *
      * @param allow whether to allow access.
      * @param localOnly whether the rule is to be applied locally only
      * @param pkgName the package to apply the rule on.
@@ -48,6 +49,7 @@ class PkgImportRule extends AbstractImportRule {
 
     /**
      * Verifies whether a package name is used.
+     *
      * @param forImport the import to check.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */

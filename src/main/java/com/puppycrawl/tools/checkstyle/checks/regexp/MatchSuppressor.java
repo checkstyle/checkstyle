@@ -27,6 +27,7 @@ public interface MatchSuppressor {
 
     /**
      * Checks if the specified selection should be suppressed.
+     *
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number

@@ -230,6 +230,7 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
+     *
      * @param fileName name of the suppressions file.
      */
     public void setFile(String fileName) {
@@ -241,6 +242,7 @@ public class SuppressionFilter extends AutomaticBean implements Filter, External
      * If {@code optional} is set to {@code false} the file must exist, or else
      * it ends with error. On the other hand if optional is {@code true}
      * and file is not found, the filter accept all audit events.
+     *
      * @param optional tells if config file existence is optional.
      */
     public void setOptional(boolean optional) {

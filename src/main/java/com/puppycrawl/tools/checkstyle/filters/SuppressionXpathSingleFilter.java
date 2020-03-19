@@ -487,6 +487,7 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
 
     /**
      * Setter to define a string xpath query.
+     *
      * @param query the xpath query
      */
     public void setQuery(String query) {

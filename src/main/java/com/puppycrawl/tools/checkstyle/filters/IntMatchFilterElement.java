@@ -29,6 +29,7 @@ class IntMatchFilterElement implements IntFilterElement {
 
     /**
      * Constructs a MatchFilter for an int.
+     *
      * @param matchValue the matching int.
      */
     /* package */ IntMatchFilterElement(int matchValue) {

@@ -159,6 +159,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
 
     /**
      * Setter to control whether whitespace is allowed if the token is at a linebreak.
+     *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at linebreaks.
      */
@@ -183,6 +184,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     /**
      * For a visited ast node returns node that should be checked
      * for not being followed by whitespace.
+     *
      * @param ast
      *        , visited node.
      * @return node before ast.
@@ -209,6 +211,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * Returns whether whitespace after a visited node should be checked. For example, whitespace
      * is not allowed between a type and an array declarator (returns true), except when there is
      * an annotation in between the type and array declarator (returns false).
+     *
      * @param ast the visited node
      * @return true if whitespace after ast should be checked
      */
@@ -228,6 +231,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
 
     /**
      * Gets position after token (place of possible redundant whitespace).
+     *
      * @param ast Node representing token.
      * @return position after token.
      */
@@ -249,6 +253,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
 
     /**
      * Checks if there is unwanted whitespace after the visited node.
+     *
      * @param ast
      *        , visited node.
      * @param whitespaceColumnNo
@@ -275,6 +280,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * Returns proper argument for getPositionAfter method, it is a token after
      * {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR}, in can be {@link TokenTypes#RBRACK
      * RBRACK}, {@link TokenTypes#IDENT IDENT} or an array type definition (literal).
+     *
      * @param ast
      *        , {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
      * @return previous node by text order.
@@ -336,6 +342,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * Gets previous node for {@link TokenTypes#INDEX_OP INDEX_OP} token
      * for usage in getPositionAfter method, it is a simplified copy of
      * getArrayDeclaratorPreviousElement method.
+     *
      * @param ast
      *        , {@link TokenTypes#INDEX_OP INDEX_OP} node.
      * @return previous node by text order.
@@ -370,6 +377,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
 
     /**
      * Get node that owns {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} sequence.
+     *
      * @param ast
      *        , {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
      * @return owner node.
@@ -385,6 +393,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     /**
      * Searches parameter node for a type node.
      * Returns it or its last node if it has an extended structure.
+     *
      * @param ast
      *        , subject node.
      * @return type node.
@@ -407,6 +416,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     /**
      * Finds previous node by text order for an array declarator,
      * which parent type is {@link TokenTypes#TYPE TYPE}.
+     *
      * @param ast
      *        , array declarator node.
      * @param parent
@@ -446,6 +456,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
 
     /**
      * Gets leftmost token of identifier.
+     *
      * @param ast
      *        , token possibly possessing an identifier.
      * @return leftmost token of identifier.

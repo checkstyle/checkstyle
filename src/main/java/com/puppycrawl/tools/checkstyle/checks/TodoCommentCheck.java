@@ -98,6 +98,7 @@ public class TodoCommentCheck
 
     /**
      * Setter to specify pattern to match comments against.
+     *
      * @param pattern
      *        pattern of 'todo' comment.
      */
