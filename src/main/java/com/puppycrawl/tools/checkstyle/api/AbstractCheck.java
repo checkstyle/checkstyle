@@ -38,6 +38,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * The check context.
+     *
      * @noinspection ThreadLocalNotStaticFinal
      */
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
@@ -51,6 +52,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Returns the default token a check is interested in. Only used if the
      * configuration for a check does not define the tokens.
+     *
      * @return the default tokens
      * @see TokenTypes
      */
@@ -61,6 +63,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      * Used to protect Checks against malicious users who specify an
      * unacceptable token set in the configuration file.
      * The default implementation returns the check's default tokens.
+     *
      * @return the token set this check is designed for.
      * @see TokenTypes
      */
@@ -68,6 +71,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * The tokens that this check must be registered for.
+     *
      * @return the token set this must be registered for.
      * @see TokenTypes
      */
@@ -75,6 +79,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Whether comment nodes are required or not.
+     *
      * @return false as a default value.
      */
     public boolean isCommentNodesRequired() {
@@ -83,6 +88,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Adds a set of tokens the check is interested in.
+     *
      * @param strRep the string representation of the tokens interested in
      * @noinspection WeakerAccess
      */
@@ -92,6 +98,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Returns the tokens registered for the check.
+     *
      * @return the set of token names
      */
     public final Set<String> getTokenNames() {
@@ -100,6 +107,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Returns the sorted set of {@link LocalizedMessage}.
+     *
      * @return the sorted set of {@link LocalizedMessage}.
      */
     public SortedSet<LocalizedMessage> getMessages() {
@@ -131,6 +139,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Called before the starting to process a tree. Ideal place to initialize
      * information that is to be collected whilst processing a tree.
+     *
      * @param rootAST the root of the tree
      */
     public void beginTree(DetailAST rootAST) {
@@ -140,6 +149,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Called after finished processing a tree. Ideal place to report on
      * information collected whilst processing a tree.
+     *
      * @param rootAST the root of the tree
      */
     public void finishTree(DetailAST rootAST) {
@@ -148,6 +158,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Called to process a token.
+     *
      * @param ast the token to process
      */
     public void visitToken(DetailAST ast) {
@@ -156,6 +167,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Called after all the child nodes have been process.
+     *
      * @param ast the token leaving
      */
     public void leaveToken(DetailAST ast) {
@@ -164,6 +176,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Returns the lines associated with the tree.
+     *
      * @return the file contents
      */
     public final String[] getLines() {
@@ -172,6 +185,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Returns the line associated with the tree.
+     *
      * @param index index of the line
      * @return the line from the file contents
      */
@@ -181,6 +195,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Set the file contents associated with the tree.
+     *
      * @param contents the manager
      */
     public final void setFileContents(FileContents contents) {
@@ -189,6 +204,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Returns the file contents associated with the tree.
+     *
      * @return the file contents
      * @noinspection WeakerAccess
      */
@@ -198,6 +214,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Get tab width to report audit events with.
+     *
      * @return the tab width to audit events with
      */
     protected final int getTabWidth() {
@@ -206,6 +223,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     /**
      * Set the tab width to report audit events with.
+     *
      * @param tabWidth an {@code int} value
      */
     public final void setTabWidth(int tabWidth) {

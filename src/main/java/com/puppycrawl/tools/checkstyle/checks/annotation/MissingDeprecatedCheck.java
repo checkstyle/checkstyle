@@ -176,6 +176,7 @@ public final class MissingDeprecatedCheck extends AbstractJavadocCheck {
 
     /**
      * Returns the parent node of the comment.
+     *
      * @param commentBlock child node.
      * @return parent node.
      */

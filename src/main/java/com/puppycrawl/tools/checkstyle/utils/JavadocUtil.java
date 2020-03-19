@@ -86,6 +86,7 @@ public final class JavadocUtil {
 
     /**
      * Gets validTags from a given piece of Javadoc.
+     *
      * @param textBlock
      *        the Javadoc comment to process.
      * @param tagType
@@ -134,6 +135,7 @@ public final class JavadocUtil {
 
     /**
      * Checks that commentContent starts with '*' javadoc comment identifier.
+     *
      * @param commentContent
      *        content of block comment
      * @return true if commentContent starts with '*' javadoc comment
@@ -152,6 +154,7 @@ public final class JavadocUtil {
 
     /**
      * Checks block comment content starts with '*' javadoc comment identifier.
+     *
      * @param blockCommentBegin
      *        block comment AST
      * @return true if block comment content starts with '*' javadoc comment
@@ -164,6 +167,7 @@ public final class JavadocUtil {
 
     /**
      * Gets content of block comment.
+     *
      * @param blockCommentBegin
      *        block comment AST.
      * @return content of block comment.
@@ -175,6 +179,7 @@ public final class JavadocUtil {
 
     /**
      * Get content of Javadoc comment.
+     *
      * @param javadocCommentBegin
      *        Javadoc comment AST
      * @return content of Javadoc comment.
@@ -186,6 +191,7 @@ public final class JavadocUtil {
 
     /**
      * Returns the first child token that has a specified type.
+     *
      * @param detailNode
      *        Javadoc AST node
      * @param type
@@ -285,6 +291,7 @@ public final class JavadocUtil {
 
     /**
      * Gets previous sibling of specified node.
+     *
      * @param node DetailNode
      * @return previous sibling
      */
@@ -301,6 +308,7 @@ public final class JavadocUtil {
 
     /**
      * Returns the name of a token for a given ID.
+     *
      * @param id
      *        the ID of the token name to get
      * @return a token name
@@ -324,6 +332,7 @@ public final class JavadocUtil {
 
     /**
      * Returns the ID of a token for a given name.
+     *
      * @param name
      *        the name of the token ID to get
      * @return a token ID
@@ -356,6 +365,7 @@ public final class JavadocUtil {
 
     /**
      * Replace all control chars with escaped symbols.
+     *
      * @param text the String to process.
      * @return the processed String with all control chars escaped.
      */

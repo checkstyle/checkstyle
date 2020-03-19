@@ -596,6 +596,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Setter to allow empty method bodies.
+     *
      * @param allow {@code true} to allow empty method bodies.
      */
     public void setAllowEmptyMethods(boolean allow) {
@@ -604,6 +605,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Setter to allow empty constructor bodies.
+     *
      * @param allow {@code true} to allow empty constructor bodies.
      */
     public void setAllowEmptyConstructors(boolean allow) {
@@ -614,6 +616,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Setter to ignore whitespace around colon in
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for</a> loop.
+     *
      * @param ignore {@code true} to ignore enhanced for colon.
      */
     public void setIgnoreEnhancedForColon(boolean ignore) {
@@ -622,6 +625,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Setter to allow empty class, interface and enum bodies.
+     *
      * @param allow {@code true} to allow empty type bodies.
      */
     public void setAllowEmptyTypes(boolean allow) {
@@ -630,6 +634,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Setter to allow empty loop bodies.
+     *
      * @param allow {@code true} to allow empty loops bodies.
      */
     public void setAllowEmptyLoops(boolean allow) {
@@ -638,6 +643,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Setter to allow empty lambda bodies.
+     *
      * @param allow {@code true} to allow empty lambda expressions.
      */
     public void setAllowEmptyLambdas(boolean allow) {
@@ -646,6 +652,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Setter to allow empty catch bodies.
+     *
      * @param allow {@code true} to allow empty catch blocks.
      */
     public void setAllowEmptyCatches(boolean allow) {
@@ -680,6 +687,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Is ast not a target of Check.
+     *
      * @param ast ast
      * @param currentType type of ast
      * @return true is ok to skip validation
@@ -716,6 +724,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * For second left curly brace in first line when we would return true from
      * isNotRelevantSituation it wouldn't later check that the next token(setProperty)
      * is not separated from previous token.
+     *
      * @param ast current AST.
      * @return true if it should be checked if previous token is separated by whitespace,
      *      false otherwise.
@@ -728,6 +737,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Check if it should be checked if next token is separated from current by
      * whitespace. Explanation why this method is needed is identical to one
      * included in shouldCheckSeparationFromPreviousToken method.
+     *
      * @param ast current AST.
      * @param nextChar next character.
      * @return true if it should be checked if next token is separated by whitespace,
@@ -743,6 +753,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Check for "})" or "};" or "},". Happens with anon-inners
+     *
      * @param currentType token
      * @param nextChar next symbol
      * @return true is that is end of anon inner class
@@ -757,6 +768,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Is empty block.
+     *
      * @param ast ast
      * @param parentType parent
      * @return true is block is empty
@@ -803,6 +815,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Whether colon belongs to cases or defaults.
+     *
      * @param parentType parent
      * @return true if current token in colon of case or default tokens
      */
@@ -813,6 +826,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Whether colon belongs to for-each.
+     *
      * @param parentType parent
      * @return true if current token in colon of for-each token
      */
@@ -823,6 +837,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Is array initialization.
+     *
      * @param currentType current token
      * @param parentType parent token
      * @return true is current token inside array initialization
@@ -836,6 +851,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Test if the given {@code DetailAST} is part of an allowed empty
      * method block.
+     *
      * @param ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
      * @return {@code true} if {@code ast} makes up part of an
@@ -849,6 +865,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Test if the given {@code DetailAST} is part of an allowed empty
      * constructor (ctor) block.
+     *
      * @param ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
      * @return {@code true} if {@code ast} makes up part of an
@@ -861,6 +878,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
     /**
      * Checks if loop is empty.
+     *
      * @param ast ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
      * @return {@code true} if {@code ast} makes up part of an
@@ -876,6 +894,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Test if the given {@code DetailAST} is part of an allowed empty
      * lambda block.
+     *
      * @param ast the {@code DetailAST} to test.
      * @param parentType the token type of {@code ast}'s parent.
      * @return {@code true} if {@code ast} makes up part of an
@@ -888,6 +907,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Tests if the given {@code DetailAst} is part of an allowed empty
      * catch block.
+     *
      * @param ast the {@code DetailAst} to test.
      * @param parentType the token type of {@code ast}'s parent
      * @return {@code true} if {@code ast} makes up part of an
@@ -922,6 +942,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     /**
      * Check if given ast is part of double brace initializer and if it
      * should omit checking if previous token is separated by whitespace.
+     *
      * @param ast ast to check
      * @return true if it should omit checking for previous token, false otherwise
      */
@@ -938,6 +959,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * should omit checking if next token is separated by whitespace.
      * See <a href="https://github.com/checkstyle/checkstyle/pull/2845">
      * PR#2845</a> for more information why this function was needed.
+     *
      * @param ast ast to check
      * @return true if it should omit checking for next token, false otherwise
      */

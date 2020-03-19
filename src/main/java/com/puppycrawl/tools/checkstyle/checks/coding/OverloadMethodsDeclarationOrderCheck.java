@@ -90,6 +90,7 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     /**
      * Checks that if overload methods are grouped together they should not be
      * separated from each other.
+     *
      * @param objectBlock
      *        is a class, interface or enum object block.
      */

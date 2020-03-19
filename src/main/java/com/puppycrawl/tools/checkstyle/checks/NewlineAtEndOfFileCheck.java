@@ -142,6 +142,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * // Any txt file
  * This is a sample text file. // ok, this file is not specified in the config.
  * </pre>
+ *
  * @since 3.1
  */
 @StatelessCheck
@@ -194,6 +195,7 @@ public class NewlineAtEndOfFileCheck
 
     /**
      * Reads the file provided and checks line separators.
+     *
      * @param file the file to be processed
      * @throws IOException When an IO error occurred while reading from the
      *         file provided
@@ -214,6 +216,7 @@ public class NewlineAtEndOfFileCheck
     /**
      * Checks whether the content provided by the Reader ends with the platform
      * specific line separator.
+     *
      * @param file The reader for the content to check
      * @param separator The line separator
      * @return boolean Whether the content ends with a line separator

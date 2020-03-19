@@ -40,6 +40,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /**
      * Constructor to initialise treeTable.
+     *
      * @param jTreeTable TreeTable to perform updates on.
      */
     /* package */ ListToTreeSelectionModelWrapper(TreeTable jTreeTable) {
@@ -112,6 +113,7 @@ class ListToTreeSelectionModelWrapper extends DefaultTreeSelectionModel {
 
     /**
      * If the row at given index is selected, selected paths are updated.
+     *
      * @param counter number of row.
      */
     private void updateSelectedPathIfRowIsSelected(int counter) {

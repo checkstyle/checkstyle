@@ -113,6 +113,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets node's type.
+     *
      * @param type Node's type.
      */
     public void setType(int type) {
@@ -121,6 +122,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets node's text content.
+     *
      * @param text Node's text content.
      */
     public void setText(String text) {
@@ -129,6 +131,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets line number.
+     *
      * @param lineNumber Line number.
      */
     public void setLineNumber(int lineNumber) {
@@ -137,6 +140,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets column number.
+     *
      * @param columnNumber Column number.
      */
     public void setColumnNumber(int columnNumber) {
@@ -145,6 +149,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets array of child nodes.
+     *
      * @param children Array of child nodes.
      */
     public void setChildren(DetailNode... children) {
@@ -153,6 +158,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets parent node.
+     *
      * @param parent Parent node.
      */
     public void setParent(DetailNode parent) {
@@ -161,6 +167,7 @@ public class JavadocNodeImpl implements DetailNode {
 
     /**
      * Sets node's index among parent's children.
+     *
      * @param index Node's index among parent's children.
      */
     public void setIndex(int index) {

@@ -36,6 +36,7 @@ public final class SeverityLevelCounter implements AuditListener {
 
     /**
      * Creates a new counter.
+     *
      * @param level the severity level events need to have, must be non-null.
      * @throws IllegalArgumentException when level is null
      */
@@ -82,6 +83,7 @@ public final class SeverityLevelCounter implements AuditListener {
 
     /**
      * Returns the number of counted events since audit started.
+     *
      * @return the number of counted events since audit started.
      */
     public int getCount() {

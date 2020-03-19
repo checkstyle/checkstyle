@@ -114,6 +114,7 @@ public final class CommonUtil {
 
     /**
      * Create block comment from string content.
+     *
      * @param content comment content.
      * @return DetailAST block comment
      */
@@ -143,6 +144,7 @@ public final class CommonUtil {
 
     /**
      * Create block comment from token.
+     *
      * @param token
      *        Token object.
      * @return DetailAST with BLOCK_COMMENT type.
@@ -179,6 +181,7 @@ public final class CommonUtil {
 
     /**
      * Count lines and columns (in last line) in text.
+     *
      * @param text
      *        String.
      * @param initialLinesCnt
@@ -345,6 +348,7 @@ public final class CommonUtil {
 
     /**
      * Returns base class name from qualified name.
+     *
      * @param type
      *            the fully qualified name. Cannot be null
      * @return the base class name from a fully qualified name
@@ -426,6 +430,7 @@ public final class CommonUtil {
 
     /**
      * Gets constructor of targetClass.
+     *
      * @param targetClass
      *            from which constructor is returned
      * @param parameterTypes
@@ -447,6 +452,7 @@ public final class CommonUtil {
 
     /**
      * Returns new instance of a class.
+     *
      * @param constructor
      *            to invoke
      * @param parameters
@@ -486,6 +492,7 @@ public final class CommonUtil {
 
     /**
      * Resolve the specified filename to a URI.
+     *
      * @param filename name os the file
      * @return resolved header file URI
      * @throws CheckstyleException on failure
@@ -533,6 +540,7 @@ public final class CommonUtil {
     /**
      * Puts part of line, which matches regexp into given template
      * on positions $n where 'n' is number of matched part in line.
+     *
      * @param template the string to expand.
      * @param lineToPlaceInTemplate contains expression which should be placed into string.
      * @param regexp expression to find in comment.
@@ -555,6 +563,7 @@ public final class CommonUtil {
      * Returns file name without extension.
      * We do not use the method from Guava library to reduce Checkstyle's dependencies
      * on external libraries.
+     *
      * @param fullFilename file name with extension.
      * @return file name without extension.
      */
@@ -576,6 +585,7 @@ public final class CommonUtil {
      * or empty string if file does not have an extension.
      * We do not use the method from Guava library to reduce Checkstyle's dependencies
      * on external libraries.
+     *
      * @param fileNameWithExtension file name with extension.
      * @return file extension for the given file name
      *         or empty string if file does not have an extension.
@@ -595,6 +605,7 @@ public final class CommonUtil {
 
     /**
      * Checks whether the given string is a valid identifier.
+     *
      * @param str A string to check.
      * @return true when the given string contains valid identifier.
      */
@@ -615,6 +626,7 @@ public final class CommonUtil {
 
     /**
      * Checks whether the given string is a valid name.
+     *
      * @param str A string to check.
      * @return true when the given string contains valid name.
      */
@@ -632,6 +644,7 @@ public final class CommonUtil {
     /**
      * Checks if the value arg is blank by either being null,
      * empty, or contains only whitespace characters.
+     *
      * @param value A string to check.
      * @return true if the arg is blank.
      */
@@ -650,6 +663,7 @@ public final class CommonUtil {
 
     /**
      * Checks whether the string contains an integer value.
+     *
      * @param str a string to check
      * @return true if the given string is an integer, false otherwise.
      */

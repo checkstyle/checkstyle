@@ -38,6 +38,7 @@ abstract class AbstractImportControl {
 
     /**
      * Construct a child node.
+     *
      * @param parent the parent node.
      * @param strategyOnMismatch strategy in a case if matching allow/disallow rule was not found.
      */
@@ -49,6 +50,7 @@ abstract class AbstractImportControl {
 
     /**
      * Search down the tree to locate the finest match for a supplied package.
+     *
      * @param forPkg the package to search for.
      * @param forFileName the file name to search for.
      * @return the finest match, or null if no match at all.
@@ -57,6 +59,7 @@ abstract class AbstractImportControl {
 
     /**
      * Check for equality of this with pkg.
+     *
      * @param pkg the package to compare with.
      * @param fileName the file name to compare with.
      * @return if it matches.
@@ -65,6 +68,7 @@ abstract class AbstractImportControl {
 
     /**
      * Adds an {@link AbstractImportRule} to the node.
+     *
      * @param rule the rule to be added.
      */
     protected void addImportRule(AbstractImportRule rule) {
@@ -77,6 +81,7 @@ abstract class AbstractImportControl {
      * found then calls its parent looking for a match. This will recurse
      * looking for match. If there is no clear result then
      * {@link AccessResult#UNKNOWN} is returned.
+     *
      * @param inPkg the package doing the import.
      * @param inFileName the file name doing the import.
      * @param forImport the import to check on.
@@ -113,6 +118,7 @@ abstract class AbstractImportControl {
     /**
      * Checks whether any of the rules for this node control access to
      * a specified package or file.
+     *
      * @param inPkg the package doing the import.
      * @param inFileName the file name doing the import.
      * @param forImport the import to check on.
