@@ -277,6 +277,28 @@ public class FooTest {
         <source>
 &lt;module name=&quot;FinalClass&quot;/&gt;
         </source>
+        <p>
+          Examples :
+          
+class Parent{
+Parent(){
+}}
+class Test {
+public static void main(String args[]){
+Parent s = new Parent();
+System.out.println("OK");
+}} //OK
+          
+class Parent{
+private Parent(){
+}}
+class Test {
+public static void main(String args[]){
+Parent s = new Parent();
+System.out.println("violation");
+}}// violation, error: Parent() has private access in Parent
+          
+        </p>
       </subsection>
 
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
@@ -290,7 +312,7 @@ public class FooTest {
             Checkstyle Style</a>
           </li>
         </ul>
-      </subsection>
+      </subsection> 
 
       <subsection name="Violation Messages" id="FinalClass_Violation_Messages">
         <ul>
