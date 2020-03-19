@@ -217,7 +217,7 @@ public class NeedBracesCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final boolean hasNoSlist = ast.findFirstToken(TokenTypes.SLIST) == null;
         if (hasNoSlist && !isSkipStatement(ast) && isBracesNeeded(ast)) {
-            log(ast.getLineNo(), MSG_KEY_NEED_BRACES, ast.getText());
+            log(ast, MSG_KEY_NEED_BRACES, ast.getText());
         }
     }
 
