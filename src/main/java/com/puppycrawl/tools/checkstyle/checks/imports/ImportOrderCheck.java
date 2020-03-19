@@ -718,7 +718,7 @@ public class ImportOrderCheck
      * @return true if there is separator before current import which isn't the first import.
      */
     private boolean isSeparatorBeforeImport(int line) {
-        return !beforeFirstImport && line - lastImportLine > 1;
+        return line - lastImportLine > 1;
     }
 
     /**
