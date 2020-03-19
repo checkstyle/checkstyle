@@ -61,7 +61,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "Indentation",
             "InterfaceIsType",
             "InterfaceMemberImpliedModifier",
-            "JavadocContentLocation",
             "JavadocMethod",
             "JavadocType",
             "MethodCount",

@@ -910,7 +910,6 @@ public class UserService {
           <li>Indentation</li>
           <li>InterfaceIsType</li>
           <li>InterfaceMemberImpliedModifier</li>
-          <li>JavadocContentLocation</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
           <li>MethodCount</li>
