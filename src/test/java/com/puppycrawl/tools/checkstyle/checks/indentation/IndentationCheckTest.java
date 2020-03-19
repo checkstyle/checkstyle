@@ -1760,6 +1760,47 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLambda3() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        final String[] expected = {
+            "15: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "23: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 20, "12, 16"),
+            "29: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "30: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "31: " + getCheckMessage(MSG_ERROR, "block rcurly", 8, 12),
+            "43: " + getCheckMessage(MSG_ERROR, "lambda arguments", 20, 16),
+            "65: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "67: " + getCheckMessage(MSG_ERROR, "lambda", 28, 24),
+            "87: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 8),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationLambda3.java"), expected);
+    }
+
+    @Test
+    public void testLambda4() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationLambda4.java"), expected);
+    }
+
+    @Test
+    public void testLambda5() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "3");
+        checkConfig.addAttribute("basicOffset", "3");
+        checkConfig.addAttribute("caseIndent", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "6");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationLambda5.java"), expected);
+    }
+
+    @Test
     public void testSeparatedStatements() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
