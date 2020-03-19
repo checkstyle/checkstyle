@@ -332,7 +332,7 @@ build:
         git status
         echo "------"
         echo "Content of .ci-temp folder:"
-        ls -la .ci-temp
+        ls -la .ci-temp | cat
         echo "------"
         find ${WERCKER_CACHE_DIR} -type d -name "*SNAPSHOT" -ls -exec rm -rf {} +
         echo "------"
