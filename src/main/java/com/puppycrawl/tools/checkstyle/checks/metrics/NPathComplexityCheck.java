@@ -119,14 +119,102 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="NPathComplexity"/&gt;
  * </pre>
  * <p>
- * To configure the check with a threshold of 1000:
+ * Example:
+ * </p>
+ * <pre>
+ * public abstract class Test {
+ *
+ * final int a = 0;
+ * int b = 0;
+ *
+ * public void foo() { // OK, NPath complexity is less than default threshold
+ *   // function consists of one if-else block with an NPath Complexity of 3
+ *   if (a &gt; 10) {
+ *     if (a &gt; b) { // nested if-else decision tree adds 2 to the complexity count
+ *       buzz();
+ *     } else {
+ *       fizz();
+ *     }
+ *   } else { // last possible outcome of the main if-else block, adds 1 to complexity
+ *     buzz();
+ *   }
+ * }
+ *
+ * public void boo() { // violation, NPath complexity is 217 (max allowed is 200)
+ *   // looping through 3 switch statements produces 6^3 + 1 (217) possible outcomes
+ *   for(int i = 0; i &lt; b; i++) { // for statement adds 1 to final complexity
+ *     switch(i) { // each independent switch statement multiplies complexity by 6
+ *       case a:
+ *         // ternary with &amp;&amp; adds 3 to switch's complexity
+ *         print(f(i) &amp;&amp; g(i) ? fizz() : buzz());
+ *       default:
+ *         // ternary with || adds 3 to switch's complexity
+ *         print(f(i) || g(i) ? fizz() : buzz());
+ *     }
+ *     switch(i - 1) { // multiplies complexity by 6
+ *       case a:
+ *         print(f(i) &amp;&amp; g(i) ? fizz() : buzz());
+ *       default:
+ *         print(f(i) || g(i) ? fizz() : buzz());
+ *     }
+ *     switch(i + 1) { // multiplies complexity by 6
+ *       case a:
+ *         print(f(i) &amp;&amp; g(i) ? fizz() : buzz());
+ *       default:
+ *         print(f(i) || g(i) ? fizz() : buzz());
+ *     }
+ *   }
+ * }
+ *
+ * public abstract boolean f(int x);
+ * public abstract boolean g(int x);
+ * public abstract String fizz();
+ * public abstract String buzz();
+ * public abstract void print(String str);
+ * }
+ * </pre>
+ * <p>
+ * To configure the check with a threshold of 100:
  * </p>
  * <pre>
  * &lt;module name="NPathComplexity"&gt;
- *   &lt;property name="max" value="1000"/&gt;
+ *   &lt;property name="max" value="100"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public abstract class Test1 {
+ * public void foo() { // violation, NPath complexity is 128 (max allowed is 100)
+ *   int a,b,t,m,n;
+ *   a=b=t=m=n = 0;
  *
+ *   // Complexity is achieved by choosing from 2 options 7 times (2^7 = 128 possible outcomes)
+ *   if (a &gt; b) { // non-nested if-else decision tree multiplies complexity by 2
+ *     bar();
+ *   } else {
+ *     baz();
+ *   }
+ *
+ *   print(t &gt; 1 ? bar() : baz()); // 5 ternary statements multiply complexity by 2^5
+ *   print(t &gt; 2 ? bar() : baz());
+ *   print(t &gt; 3 ? bar() : baz());
+ *   print(t &gt; 4 ? bar() : baz());
+ *   print(t &gt; 5 ? bar() : baz());
+ *
+ *   if (m &gt; n) { // multiplies complexity by 2
+ *     baz();
+ *   } else {
+ *     bar();
+ *   }
+ * }
+ *
+ * public abstract String bar();
+ * public abstract String baz();
+ * public abstract void print(String str);
+ * }
+ * </pre>
  * @since 3.4
  */
 // -@cs[AbbreviationAsWordInName] Can't change check name
