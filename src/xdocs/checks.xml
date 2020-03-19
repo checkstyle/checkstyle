@@ -885,6 +885,11 @@
             <td>Checks if unnecessary semicolon is used in last resource declaration.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#UnnecessarySemicolonAfterOuterTypeDeclaration">
+              UnnecessarySemicolonAfterOuterTypeDeclaration</a></td>
+            <td>Checks if unnecessary semicolon is used after type declaration.</td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
               UnnecessarySemicolonAfterTypeMemberDeclaration</a></td>
             <td>Checks if unnecessary semicolon is used after type member declaration.</td>

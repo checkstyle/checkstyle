@@ -5913,6 +5913,162 @@ myList.stream()
       </subsection>
     </section>
 
+    <section name="UnnecessarySemicolonAfterOuterTypeDeclaration">
+      <p>Since Checkstyle 8.31</p>
+      <subsection name="Description"
+                  id="UnnecessarySemicolonAfterOuterTypeDeclaration_Description">
+        <p>
+          Checks if unnecessary semicolon is used after type declaration.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Notes">
+        <p>
+          This check is not applicable to nested type declarations,
+          <a
+          href="https://checkstyle.org/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+          UnnecessarySemicolonAfterTypeMemberDeclaration</a> is responsible for it.
+        </p>
+      </subsection>
+      <subsection name="Properties" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>
+                subset of tokens
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                 CLASS_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                INTERFACE_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                ENUM_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>.
+              </td>
+              <td>
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>.
+              </td>
+              <td>8.31</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;/&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+ class A {
+
+     class Nested {
+
+     }; // OK, nested type declarations are ignored
+
+ }; // violation
+
+ interface B {
+
+ }; // violation
+
+ enum C {
+
+ }; // violation
+
+ {@literal @}interface D {
+
+ }; // violation
+        </source>
+        <p>
+           To configure the check to detect unnecessary semicolon only after top level class
+           definitions:
+        </p>
+        <source>
+ &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
+   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+ &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+ class A {
+
+ }; // violation
+
+ interface B {
+
+ }; // OK
+
+ enum C {
+
+ }; // OK
+
+ {@literal @}interface D {
+
+ }; // OK
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage"
+                  id="UnnecessarySemicolonAfterOuterTypeDeclaration_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+UnnecessarySemicolonAfterOuterTypeDeclaration">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+                  id="UnnecessarySemicolonAfterOuterTypeDeclaration_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22unnecessary.semicolon%22">
+                unnecessary.semicolon</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="UnnecessarySemicolonAfterOuterTypeDeclaration_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module"
+                  id="UnnecessarySemicolonAfterOuterTypeDeclaration_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="UnnecessarySemicolonAfterTypeMemberDeclaration">
       <p>Since Checkstyle 8.24</p>
       <subsection name="Description"
