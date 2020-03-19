@@ -75,6 +75,27 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example of violation of above config:
+ * </p>
+ * <pre>
+ * void method() {
+ *   System.out.print("Example"); // OK
+ *   System.out.println("Example"); // OK
+ *   System.out. // OK
+ *   print("Example");
+ *   System.out. // OK
+ *   println("Example");
+ *   System.out.print //OK
+ *   ("Example");
+ *   System.out.println //OK
+ *   ("Example");
+ *   System. // violation
+ *   out.print("Example");
+ *   System. // violation
+ *   out.println("Example");
+ * }
+ * </pre>
+ * <p>
  * To configure the check to match text that spans multiple lines,
  * like normal code in a Java file:
  * </p>
@@ -91,8 +112,15 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * void method() {
  *   System.out. // violation
  *   print("Example");
- *   System.out.
- *   print("Example");
+ *   System.out // vioaltion
+ *   .print("Example");
+ *   System.out.print("Example"); // OK
+ *   System. // violation
+ *   out.print("Example");
+ *   System // violation
+ *   .out.print("Example");
+ *   System.out.print // violation
+ *   ("Example");
  * }
  * </pre>
  * <p>

@@ -581,7 +581,27 @@ public static final int A_SETPOINT = 1;
     value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>
+          Example of violation from the above config:
+        </p>
+        <source>
+void method() {
+  System.out.print("Example"); // OK
+  System.out.println("Example"); // OK
+  System.out. // OK
+  print("Example");
+  System.out. // OK
+  println("Example");
+  System.out.print //OK
+  ("Example");
+  System.out.println //OK
+  ("Example");
+  System. // violation
+  out.print("Example");
+  System. // violation
+  out.println("Example");
+}
+        </source>
         <p>
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
@@ -599,8 +619,15 @@ public static final int A_SETPOINT = 1;
 void method() {
   System.out. // violation
   print("Example");
-  System.out.
-  print("Example");
+  System.out // vioaltion
+  .print("Example");
+  System.out.print("Example"); // OK
+  System. // violation
+  out.print("Example");
+  System // violation
+  .out.print("Example");
+  System.out.print // violation
+  ("Example");
 }
         </source>
         <p>
