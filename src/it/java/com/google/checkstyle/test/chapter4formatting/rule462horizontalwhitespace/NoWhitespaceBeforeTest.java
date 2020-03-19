@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoWhitespaceBeforeTest extends AbstractGoogleModuleTestSupport {
 
@@ -58,6 +59,16 @@ public class NoWhitespaceBeforeTest extends AbstractGoogleModuleTestSupport {
         };
         final Configuration checkConfig = getModuleConfig("NoWhitespaceBefore");
         final String filePath = getPath("InputNoWhitespaceBeforeColonOfLabel.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
+    public void testAnnotations() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final Configuration checkConfig = getModuleConfig("NoWhitespaceBefore");
+        final String filePath = getPath("InputNoWhitespaceBeforeAnnotations.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
