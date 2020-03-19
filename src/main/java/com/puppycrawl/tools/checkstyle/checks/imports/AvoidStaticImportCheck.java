@@ -152,6 +152,7 @@ public class AvoidStaticImportCheck
     /**
      * Returns true if classOrStaticMember is a starred name of package,
      *  not just member name.
+     *
      * @param classOrStaticMember - full name of member
      * @param exclude - current exclusion
      * @return true if member in exclusion list

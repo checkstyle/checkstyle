@@ -79,6 +79,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Find the module creation option to use for the module name.
+     *
      * @param moduleName The module name.
      * @return The module creation option.
      */
@@ -86,6 +87,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Creates {@link DefaultConfiguration} instance for the given module class.
+     *
      * @param clazz module class.
      * @return {@link DefaultConfiguration} instance.
      */
@@ -93,6 +95,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Returns test logger.
+     *
      * @return logger test logger
      */
     protected final BriefUtLogger getBriefUtLogger() {
@@ -104,6 +107,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * The path is formed base on the non-compilable resources location.
      * This implementation uses 'src/test/resources-noncompilable/'
      * as a non-compilable resource location.
+     *
      * @param filename file name.
      * @return canonical path for the file with the given file name.
      * @throws IOException if I/O exception occurs while forming the path.
@@ -115,6 +119,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Creates {@link Checker} instance based on the given {@link Configuration} instance.
+     *
      * @param moduleConfig {@link Configuration} instance.
      * @return {@link Checker} instance based on the given {@link Configuration} instance.
      * @throws Exception if an exception occurs during checker configuration.
@@ -128,6 +133,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Creates {@link Checker} instance based on specified {@link Configuration}.
+     *
      * @param moduleConfig {@link Configuration} instance.
      * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
      *                                                  under {@link TreeWalker}.
@@ -164,6 +170,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Creates {@link DefaultConfiguration} or the {@link Checker}.
      * based on the given {@link Configuration}.
+     *
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the {@link Checker}.
      */
@@ -180,6 +187,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Creates {@link DefaultConfiguration} for the given {@link Configuration} instance.
+     *
      * @param config {@link Configuration} instance.
      * @return {@link DefaultConfiguration} for the given {@link Configuration} instance.
      */
@@ -196,6 +204,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      * This implementation uses overloaded
      * {@link AbstractItModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
      * method inside.
+     *
      * @param config configuration.
      * @param fileName file name to verify.
      * @param expected an array of expected messages.
@@ -211,6 +220,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Performs verification of files. Uses provided {@link Checker} instance.
+     *
      * @param checker {@link Checker} instance.
      * @param processedFiles files to process.
      * @param messageFileName message file name.
@@ -283,6 +293,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     /**
      * Gets the check message 'as is' from appropriate 'messages.properties' file.
+     *
      * @param messages The map of messages to scan.
      * @param messageKey the key of message in 'messages.properties' file.
      * @param arguments the arguments of message in 'messages.properties' file.
@@ -313,6 +324,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     /**
      * Returns an array of integers which represents the warning line numbers in the file
      * with the given file name.
+     *
      * @param fileName file name.
      * @return an array of integers which represents the warning line numbers.
      * @throws IOException if I/O exception occurs while reading the file.

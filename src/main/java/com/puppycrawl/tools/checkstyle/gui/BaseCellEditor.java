@@ -81,6 +81,7 @@ public class BaseCellEditor implements CellEditor {
     /**
      * Notifies all listeners that have registered interest for
      * 'editing stopped' event.
+     *
      * @see EventListenerList
      */
     protected void fireEditingStopped() {
@@ -98,6 +99,7 @@ public class BaseCellEditor implements CellEditor {
     /**
      * Notifies all listeners that have registered interest for
      * 'editing canceled' event.
+     *
      * @see EventListenerList
      */
     protected void fireEditingCanceled() {

@@ -232,6 +232,7 @@ public class AvoidStarImportCheck
     /**
      * Gets the full import identifier.  If the import is a starred import and
      * it's not excluded then a violation is logged.
+     *
      * @param startingDot the starting dot for the import statement
      */
     private void logsStarredImportViolation(DetailAST startingDot) {

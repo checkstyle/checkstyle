@@ -171,6 +171,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**
      * Checks if this is assignments of parameter.
+     *
      * @param ast assignment to check.
      */
     private void visitAssign(DetailAST ast) {
@@ -179,6 +180,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**
      * Checks if this is increment/decrement of parameter.
+     *
      * @param ast dec/inc to check.
      */
     private void visitIncDec(DetailAST ast) {
@@ -187,6 +189,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**
      * Check if ident is parameter.
+     *
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
@@ -201,6 +204,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**
      * Creates new set of parameters and store old one in stack.
+     *
      * @param ast a method to process.
      */
     private void visitMethodDef(DetailAST ast) {
@@ -217,6 +221,7 @@ public final class ParameterAssignmentCheck extends AbstractCheck {
 
     /**
      * Creates new parameter set for given method.
+     *
      * @param ast a method for process.
      */
     private void visitMethodParameters(DetailAST ast) {

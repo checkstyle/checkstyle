@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * class MyClass3&lt;abc&gt; {} // violation, the class type parameter
  *                              // name should match the regular expression "^[a-zA-Z]$"
  * </pre>
+ *
  * @since 5.0
  */
 public class ClassTypeParameterNameCheck

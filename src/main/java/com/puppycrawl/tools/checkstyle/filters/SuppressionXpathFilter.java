@@ -548,6 +548,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
+     *
      * @param fileName name of the suppressions file.
      */
     public void setFile(String fileName) {
@@ -559,6 +560,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
      * If optional is set to false the file must exist, or else it ends with error.
      * On the other hand if optional is true and file is not found,
      * the filter accepts all audit events.
+     *
      * @param optional tells if config file existence is optional.
      */
     public void setOptional(boolean optional) {

@@ -447,6 +447,7 @@ public class ImportControlCheckTest extends AbstractModuleTestSupport {
      * and caught in test (it was caught and re-thrown twice after that)
      * Note: this is helper method with hard-coded structure of exception causes. It works
      * fine for methods mentioned, you may need to adjust it if you try to use it for other needs
+     *
      * @param exception Exception
      * @return String message of original exception
      */

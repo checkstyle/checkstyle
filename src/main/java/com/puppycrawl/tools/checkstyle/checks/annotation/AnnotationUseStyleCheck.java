@@ -311,6 +311,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
     /**
      * Retrieves an {@link Enum Enum} type from a @{link String String}.
+     *
      * @param <T> the enum type
      * @param enumClass the enum class
      * @param value the string representing the enum

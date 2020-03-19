@@ -161,6 +161,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     /**
      * Setter to enable resources processing.
+     *
      * @param treatTryResourcesAsStatement user's value of treatTryResourcesAsStatement.
      */
     public void setTreatTryResourcesAsStatement(boolean treatTryResourcesAsStatement) {
@@ -240,6 +241,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     /**
      * Checks if given semicolon is in different line than previous.
+     *
      * @param ast semicolon to check
      */
     private void checkIfSemicolonIsInDifferentLineThanPrevious(DetailAST ast) {
@@ -295,6 +297,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     /**
      * Checks whether two statements are on the same line.
+     *
      * @param ast token for the current statement.
      * @param lastStatementEnd the line-number where the last statement ended.
      * @param forStatementEnd the line-number where the last 'for-loop'
@@ -311,6 +314,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
 
     /**
      * Checks whether statement is multiline.
+     *
      * @param ast token for the current statement.
      * @return true if one statement is distributed over two or more lines.
      */

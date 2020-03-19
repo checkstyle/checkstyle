@@ -70,6 +70,7 @@ public class SynchronizedHandler extends BlockParentHandler {
 
     /**
      * Checks if given synchronized is modifier of method.
+     *
      * @param ast synchronized(TokenTypes.LITERAL_SYNCHRONIZED) to check
      * @return true if synchronized only modifies method
      */
@@ -79,6 +80,7 @@ public class SynchronizedHandler extends BlockParentHandler {
 
     /**
      * Returns right parenthesis of synchronized statement.
+     *
      * @param syncStatementAST ast node(TokenTypes.LITERAL_SYNCHRONIZED)
      * @return right parenthesis of synchronized statement.
      */

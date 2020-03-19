@@ -53,6 +53,7 @@ public final class SuppressionsStringPrinter {
 
     /**
      * Prints generated suppressions.
+     *
      * @param file the file to process.
      * @param suppressionLineColumnNumber line and column number of the suppression
      * @param tabWidth length of the tab character
@@ -82,6 +83,7 @@ public final class SuppressionsStringPrinter {
 
     /**
      * Creates {@code XpathQueryGenerator} instance and generates suppressions.
+     *
      * @param fileText {@code FileText} object.
      * @param detailAST {@code DetailAST} object.
      * @param lineNumber line number.
