@@ -71,9 +71,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * InterfaceMemberImpliedModifier
  * </li>
  * <li>
- * JavadocContentLocation
- * </li>
- * <li>
  * JavadocMethod
  * </li>
  * <li>
