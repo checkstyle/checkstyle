@@ -182,19 +182,19 @@ public class WriteTagCheck
         final TextBlock cmt =
             contents.getJavadocBefore(lineNo);
         if (cmt == null) {
-            log(ast, MSG_MISSING_TAG, tag);
+            log(lineNo, MSG_MISSING_TAG, tag);
         }
         else {
-            checkTag(ast, cmt.getText());
+            checkTag(lineNo, cmt.getText());
         }
     }
 
     /**
      * Verifies that a type definition has a required tag.
-     * @param ast the DetailAST instance for which the Javadoc comment is associated
+     * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
      */
-    private void checkTag(DetailAST ast, String... comment) {
+    private void checkTag(int lineNo, String... comment) {
         if (tagRegExp != null) {
             boolean hasTag = false;
             for (int i = 0; i < comment.length; i++) {
@@ -205,17 +205,15 @@ public class WriteTagCheck
                     final int contentStart = matcher.start(1);
                     final String content = commentValue.substring(contentStart);
                     if (tagFormat == null || tagFormat.matcher(content).find()) {
-                        logTag(ast.getLineNo() + i - comment.length, ast.getColumnNo(),
-                                tag, content);
+                        logTag(lineNo + i - comment.length, tag, content);
                     }
                     else {
-                        log(ast.getLineNo() + i - comment.length, ast.getColumnNo(),
-                                MSG_TAG_FORMAT, tag, tagFormat.pattern());
+                        log(lineNo + i - comment.length, MSG_TAG_FORMAT, tag, tagFormat.pattern());
                     }
                 }
             }
             if (!hasTag) {
-                log(ast, MSG_MISSING_TAG, tag);
+                log(lineNo, MSG_MISSING_TAG, tag);
             }
         }
     }
@@ -224,17 +222,16 @@ public class WriteTagCheck
      * Log a message.
      *
      * @param line the line number where the violation was found
-     * @param column the column number where the violation was found
      * @param tagName the javadoc tag to be logged
      * @param tagValue the contents of the tag
      *
      * @see java.text.MessageFormat
      */
-    private void logTag(int line, int column, String tagName, String tagValue) {
+    private void logTag(int line, String tagName, String tagValue) {
         final String originalSeverity = getSeverity();
         setSeverity(tagSeverity.getName());
 
-        log(line, column, MSG_WRITE_TAG, tagName, tagValue);
+        log(line, MSG_WRITE_TAG, tagName, tagValue);
 
         setSeverity(originalSeverity);
     }

@@ -375,7 +375,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertThat(errorMessage, output.get(0), is(auditStartedMessage.getMessage()));
         assertThat(errorMessage, output.get(1), allOf(
                 startsWith("[WARN]"),
-                containsString("InputCheckstyleAntTaskError.java:4:1: "),
+                containsString("InputCheckstyleAntTaskError.java:4: "),
                 endsWith("@incomplete=Some javadoc [WriteTag]")));
         assertThat(errorMessage, output.get(2), allOf(
                 startsWith("[ERROR]"),
