@@ -140,6 +140,7 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
     /**
      * Checks if an AST node is a type definition.
+     *
      * @param node AST node to check.
      * @return true if the node is a type (class, enum, interface) definition.
      */
@@ -151,6 +152,7 @@ public class OneTopLevelClassCheck extends AbstractCheck {
 
     /**
      * Checks if a type is public.
+     *
      * @param typeDef type definition node.
      * @return true if a type has a public access level modifier.
      */

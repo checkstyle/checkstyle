@@ -77,6 +77,7 @@ public final class PackageNamesLoader
 
     /**
      * Creates a new {@code PackageNamesLoader} instance.
+     *
      * @throws ParserConfigurationException if an error occurs
      * @throws SAXException if an error occurs
      */
@@ -99,6 +100,7 @@ public final class PackageNamesLoader
 
     /**
      * Creates a full package name from the package names on the stack.
+     *
      * @return the full name of the current package.
      */
     private String getPackageName() {
@@ -128,6 +130,7 @@ public final class PackageNamesLoader
      * Returns the set of package names, compiled from all
      * checkstyle_packages.xml files found on the given class loaders
      * classpath.
+     *
      * @param classLoader the class loader for loading the
      *          checkstyle_packages.xml files.
      * @return the set of package names.
@@ -161,6 +164,7 @@ public final class PackageNamesLoader
 
     /**
      * Reads the file provided and parses it with package names loader.
+     *
      * @param packageFile file from package
      * @param namesLoader package names loader
      * @throws SAXException if an error while parsing occurs
@@ -179,6 +183,7 @@ public final class PackageNamesLoader
 
     /**
      * Creates mapping between local resources and dtd ids.
+     *
      * @return map between local resources and dtd ids.
      */
     private static Map<String, String> createIdToResourceNameMap() {

@@ -188,6 +188,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * {@link TokenTypes#ENUM_CONSTANT_DEF}, {@link TokenTypes#ANNOTATION}
      * {@link TokenTypes#LITERAL_SYNCHRONIZED}, {@link TokenTypes#LITERAL_NEW} and
      * {@link TokenTypes#LAMBDA}.
+     *
      * @param ast the token to check.
      */
     private void visitTokenWithOptionalParentheses(DetailAST ast) {
@@ -200,6 +201,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks parens in {@link TokenTypes#RESOURCE_SPECIFICATION}.
+     *
      * @param ast the token to check.
      */
     private void visitResourceSpecification(DetailAST ast) {
@@ -212,6 +214,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token is preceded by a semi-colon.
+     *
      * @param ast the token to check
      * @return whether a token is preceded by a semi-colon
      */
@@ -221,6 +224,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks parens in {@link TokenTypes#LITERAL_FOR}.
+     *
      * @param ast the token to check.
      */
     private void visitLiteralFor(DetailAST ast) {
@@ -237,6 +241,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     /**
      * Checks parens inside {@link TokenTypes#EXPR}, {@link TokenTypes#QUESTION}
      * and {@link TokenTypes#METHOD_CALL}.
+     *
      * @param ast the token to check.
      */
     private void processExpression(DetailAST ast) {
@@ -259,6 +264,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks whether AcceptableTokens contains the given ast.
+     *
      * @param ast the token to check.
      * @return true if the ast is in AcceptableTokens.
      */
@@ -272,6 +278,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Returns array of acceptable tokens.
+     *
      * @return acceptableTokens.
      */
     private static int[] makeAcceptableTokens() {
@@ -302,6 +309,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     /**
      * Checks whether {@link TokenTypes#RPAREN} is a closing paren
      * of a {@link TokenTypes#TYPECAST}.
+     *
      * @param ast of a {@link TokenTypes#RPAREN} to check.
      * @return true if ast is a closing paren of a {@link TokenTypes#TYPECAST}.
      */
@@ -319,6 +327,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token follows an empty for iterator.
+     *
      * @param ast the token to check
      * @return whether a token follows an empty for iterator
      */
@@ -336,6 +345,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token precedes an empty for initializer.
+     *
      * @param ast the token to check
      * @return whether a token precedes an empty for initializer
      */

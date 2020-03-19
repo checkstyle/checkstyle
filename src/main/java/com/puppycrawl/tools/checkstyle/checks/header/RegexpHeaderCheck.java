@@ -275,6 +275,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
     /**
      * Returns the line from the header. Where the line is blank return the regexp pattern
      * for a blank line.
+     *
      * @param headerLineNo header line number to return
      * @return the line from the header
      */
@@ -288,6 +289,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Logs warning if any non-multiline lines left in header regexp.
+     *
      * @param startHeaderLine header line number to start from
      * @param headerSize whole header size
      */
@@ -302,6 +304,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Checks if a code line matches the required header line.
+     *
      * @param line the code line
      * @param headerLineNo the header line number.
      * @return true if and only if the line matches the required header line.
@@ -312,6 +315,7 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Returns true if line is multiline header lines or false.
+     *
      * @param lineNo a line number
      * @return if {@code lineNo} is one of the repeat header lines.
      */

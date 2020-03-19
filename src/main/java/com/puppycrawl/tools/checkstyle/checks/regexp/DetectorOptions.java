@@ -59,6 +59,7 @@ public final class DetectorOptions {
 
     /**
      * Returns new Builder object.
+     *
      * @return Builder object.
      */
     public static Builder newBuilder() {
@@ -67,6 +68,7 @@ public final class DetectorOptions {
 
     /**
      * Format of the regular expression.
+     *
      * @return format of the regular expression.
      */
     public String getFormat() {
@@ -75,6 +77,7 @@ public final class DetectorOptions {
 
     /**
      * The violation reporter to use.
+     *
      * @return the violation reporter to use.
      */
     public AbstractViolationReporter getReporter() {
@@ -83,6 +86,7 @@ public final class DetectorOptions {
 
     /**
      * The message to report violations with.
+     *
      * @return the message to report violations with.
      */
     public String getMessage() {
@@ -91,6 +95,7 @@ public final class DetectorOptions {
 
     /**
      * The minimum number of allowed detections.
+     *
      * @return the minimum number of allowed detections.
      */
     public int getMinimum() {
@@ -99,6 +104,7 @@ public final class DetectorOptions {
 
     /**
      * The maximum number of allowed detections.
+     *
      * @return the maximum number of allowed detections.
      */
     public int getMaximum() {
@@ -107,6 +113,7 @@ public final class DetectorOptions {
 
     /**
      * The suppressor to use.
+     *
      * @return the suppressor to use.
      */
     public MatchSuppressor getSuppressor() {
@@ -115,6 +122,7 @@ public final class DetectorOptions {
 
     /**
      * The pattern to use when matching.
+     *
      * @return the pattern to use when matching.
      */
     public Pattern getPattern() {
@@ -126,6 +134,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies the violation reporter and returns Builder object.
+         *
          * @param val for reporting violations.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
@@ -138,6 +147,7 @@ public final class DetectorOptions {
         /**
          * Specifies the compile flags to compile a regular expression with
          * and returns Builder object.
+         *
          * @param val the format to use when matching lines.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
@@ -149,6 +159,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies the format to use when matching lines and returns Builder object.
+         *
          * @param val the format to use when matching lines.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
@@ -160,6 +171,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies message to use when reporting a match and returns Builder object.
+         *
          * @param val message to use when reporting a match.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
@@ -171,6 +183,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies the minimum allowed number of detections and returns Builder object.
+         *
          * @param val the minimum allowed number of detections.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
@@ -182,6 +195,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies the maximum allowed number of detections and returns Builder object.
+         *
          * @param val the maximum allowed number of detections.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass
@@ -193,6 +207,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies whether to ignore case when matching and returns Builder object.
+         *
          * @param val whether to ignore case when matching.
          * @return Builder object.
          * @noinspection ReturnOfInnerClass, BooleanParameter
@@ -204,6 +219,7 @@ public final class DetectorOptions {
 
         /**
          * Specifies the suppressor to use and returns Builder object.
+         *
          * @param val the suppressor to use.
          * @return current instance
          * @noinspection ReturnOfInnerClass
@@ -215,6 +231,7 @@ public final class DetectorOptions {
 
         /**
          * Returns new DetectorOptions instance.
+         *
          * @return DetectorOptions instance.
          */
         public DetectorOptions build() {
@@ -226,6 +243,7 @@ public final class DetectorOptions {
 
         /**
          * Creates pattern to use by DetectorOptions instance.
+         *
          * @param formatValue the format to use.
          * @return Pattern object.
          */

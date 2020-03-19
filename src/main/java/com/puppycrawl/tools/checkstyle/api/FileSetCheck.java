@@ -32,6 +32,7 @@ public interface FileSetCheck
     /**
      * Sets the MessageDispatcher that is used to dispatch audit events
      * to AuditListeners during processing.
+     *
      * @param dispatcher the dispatcher
      */
     void setMessageDispatcher(MessageDispatcher dispatcher);
@@ -47,6 +48,7 @@ public interface FileSetCheck
 
     /**
      * Called when about to be called to process a set of files.
+     *
      * @param charset the character set used to read the files.
      */
     void beginProcessing(String charset);

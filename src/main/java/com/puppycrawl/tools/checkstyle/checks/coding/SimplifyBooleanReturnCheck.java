@@ -211,6 +211,7 @@ public class SimplifyBooleanReturnCheck
 
     /**
      * Checks if a token type is a literal true or false.
+     *
      * @param tokenType the TokenType
      * @return true iff tokenType is LITERAL_TRUE or LITERAL_FALSE
      */

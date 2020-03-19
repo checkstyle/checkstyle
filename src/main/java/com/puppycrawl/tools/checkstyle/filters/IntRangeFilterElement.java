@@ -35,6 +35,7 @@ class IntRangeFilterElement implements IntFilterElement {
     /**
      * Constructs a {@code IntRangeFilterElement} with a
      * lower bound and an upper bound for the range.
+     *
      * @param lowerBound the lower bound of the range.
      * @param upperBound the upper bound of the range.
      */

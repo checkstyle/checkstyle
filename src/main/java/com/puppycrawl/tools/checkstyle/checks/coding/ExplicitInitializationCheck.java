@@ -127,6 +127,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
     /**
      * Setter to control whether only explicit initializations made to null
      * for objects should be checked.
+     *
      * @param onlyObjectReferences whether only explicit initialization made to null
      *                             should be checked
      */
@@ -152,6 +153,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Checks for explicit initializations made to 'false', '0' and '\0'.
+     *
      * @param ast token being checked for explicit initializations
      */
     private void validateNonObjects(DetailAST ast) {
@@ -176,6 +178,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Examine char literal for initializing to default value.
+     *
      * @param exprStart expression
      * @return true is literal is initialized by zero symbol
      */
@@ -186,6 +189,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Checks for cases that should be skipped: no assignment, local variable, final variables.
+     *
      * @param ast Variable def AST
      * @return true is that is a case that need to be skipped.
      */
@@ -208,6 +212,7 @@ public class ExplicitInitializationCheck extends AbstractCheck {
 
     /**
      * Determine if a given type is a numeric type.
+     *
      * @param type code of the type for check.
      * @return true if it's a numeric type.
      * @see TokenTypes

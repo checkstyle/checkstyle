@@ -297,6 +297,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
+     *
      * @param pattern a pattern.
      */
     public final void setCommentFormat(Pattern pattern) {
@@ -305,6 +306,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Returns FileContents for this filter.
+     *
      * @return the FileContents for this filter.
      */
     private FileContents getFileContents() {
@@ -313,6 +315,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Set the FileContents for this filter.
+     *
      * @param fileContents the FileContents for this filter.
      * @noinspection WeakerAccess
      */
@@ -322,6 +325,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to specify check pattern to suppress.
+     *
      * @param format a {@code String} value
      */
     public final void setCheckFormat(String format) {
@@ -330,6 +334,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to define message pattern to suppress.
+     *
      * @param format a {@code String} value
      */
     public void setMessageFormat(String format) {
@@ -338,6 +343,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to specify check ID pattern to suppress.
+     *
      * @param format a {@code String} value
      */
     public void setIdFormat(String format) {
@@ -347,6 +353,7 @@ public class SuppressWithNearbyCommentFilter
     /**
      * Setter to specify negative/zero/positive value that defines the number
      * of lines preceding/at/following the suppression comment.
+     *
      * @param format a {@code String} value
      */
     public final void setInfluenceFormat(String format) {
@@ -355,6 +362,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to control whether to check C++ style comments ({@code //}).
+     *
      * @param checkCpp {@code true} if C++ comments are checked.
      */
     // -@cs[AbbreviationAsWordInName] We can not change it as,
@@ -365,6 +373,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Setter to control whether to check C style comments ({@code &#47;* ... *&#47;}).
+     *
      * @param checkC {@code true} if C comments are checked.
      */
     public void setCheckC(boolean checkC) {
@@ -398,6 +407,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Whether current event matches any tag from {@link #tags}.
+     *
      * @param event TreeWalkerAuditEvent to test match on {@link #tags}.
      * @return true if event matches any tag from {@link #tags}, false otherwise.
      */
@@ -432,6 +442,7 @@ public class SuppressWithNearbyCommentFilter
     /**
      * Appends the suppressions in a collection of comments to the full
      * set of suppression tags.
+     *
      * @param comments the set of comments.
      */
     private void tagSuppressions(Collection<TextBlock> comments) {
@@ -448,6 +459,7 @@ public class SuppressWithNearbyCommentFilter
     /**
      * Tags a string if it matches the format for turning
      * checkstyle reporting on or the format for turning reporting off.
+     *
      * @param text the string to tag.
      * @param line the line number of text.
      */
@@ -460,6 +472,7 @@ public class SuppressWithNearbyCommentFilter
 
     /**
      * Adds a comment suppression {@code Tag} to the list of all tags.
+     *
      * @param text the text of the tag.
      * @param line the line number of the tag.
      */
@@ -493,6 +506,7 @@ public class SuppressWithNearbyCommentFilter
 
         /**
          * Constructs a tag.
+         *
          * @param text the text of the suppression.
          * @param line the line number.
          * @param filter the {@code SuppressWithNearbyCommentFilter} with the context
@@ -589,6 +603,7 @@ public class SuppressWithNearbyCommentFilter
         /**
          * Determines whether the source of an audit event
          * matches the text of this tag.
+         *
          * @param event the {@code TreeWalkerAuditEvent} to check.
          * @return true if the source of event matches the text of this tag.
          */
@@ -601,6 +616,7 @@ public class SuppressWithNearbyCommentFilter
 
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
+         *
          * @param event {@link TreeWalkerAuditEvent} instance.
          * @return true if the {@link TreeWalkerAuditEvent} is in the scope of the suppression.
          */
@@ -611,6 +627,7 @@ public class SuppressWithNearbyCommentFilter
 
         /**
          * Checks whether {@link TreeWalkerAuditEvent} source name matches the check format.
+         *
          * @param event {@link TreeWalkerAuditEvent} instance.
          * @return true if the {@link TreeWalkerAuditEvent} source name matches the check format.
          */
@@ -621,6 +638,7 @@ public class SuppressWithNearbyCommentFilter
 
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} module ID matches the ID format.
+         *
          * @param event {@link TreeWalkerAuditEvent} instance.
          * @return true if the {@link TreeWalkerAuditEvent} module ID matches the ID format.
          */
@@ -640,6 +658,7 @@ public class SuppressWithNearbyCommentFilter
 
         /**
          * Checks whether the {@link TreeWalkerAuditEvent} message matches the message format.
+         *
          * @param event {@link TreeWalkerAuditEvent} instance.
          * @return true if the {@link TreeWalkerAuditEvent} message matches the message format.
          */

@@ -52,6 +52,7 @@ public enum LineSeparatorOption {
 
     /**
      * Creates a new {@code LineSeparatorOption} instance.
+     *
      * @param sep the line separator, e.g. "\r\n"
      */
     LineSeparatorOption(String sep) {
@@ -60,6 +61,7 @@ public enum LineSeparatorOption {
 
     /**
      * Checks that bytes is equal to the byte representation of this line separator.
+     *
      * @param bytes a bytes array to check
      * @return if bytes is equal to the byte representation
      *     of this line separator
@@ -79,6 +81,7 @@ public enum LineSeparatorOption {
 
     /**
      * Returns length of file separator in bytes.
+     *
      * @return the length of the file separator in bytes,
      *     e.g. 1 for CR, 2 for CRLF, ...
      */

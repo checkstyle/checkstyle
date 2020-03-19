@@ -288,6 +288,7 @@ public final class LocalizedMessage
     /**
      * Indicates whether some other object is "equal to" this one.
      * Suppression on enumeration is needed so code stays consistent.
+     *
      * @noinspection EqualsCalledOnEnumConstant
      */
     // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
@@ -326,6 +327,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the translated message.
+     *
      * @return the translated message
      */
     public String getMessage() {
@@ -355,6 +357,7 @@ public final class LocalizedMessage
 
     /**
      * Returns the formatted custom message if one is configured.
+     *
      * @return the formatted custom message or {@code null}
      *          if there is no custom message
      */
@@ -371,6 +374,7 @@ public final class LocalizedMessage
      * Find a ResourceBundle for a given bundle name. Uses the classloader
      * of the class emitting this message, to be sure to get the correct
      * bundle.
+     *
      * @param bundleName the bundle name
      * @return a ResourceBundle
      */
@@ -383,6 +387,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the line number.
+     *
      * @return the line number
      */
     public int getLineNo() {
@@ -391,6 +396,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the column number.
+     *
      * @return the column number
      */
     public int getColumnNo() {
@@ -399,6 +405,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the column char index.
+     *
      * @return the column char index
      */
     public int getColumnCharIndex() {
@@ -407,6 +414,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the token type.
+     *
      * @return the token type
      */
     public int getTokenType() {
@@ -415,6 +423,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the severity level.
+     *
      * @return the severity level
      */
     public SeverityLevel getSeverityLevel() {
@@ -423,6 +432,7 @@ public final class LocalizedMessage
 
     /**
      * Returns id of module.
+     *
      * @return the module identifier.
      */
     public String getModuleId() {
@@ -441,6 +451,7 @@ public final class LocalizedMessage
 
     /**
      * Gets the name of the source for this LocalizedMessage.
+     *
      * @return the name of the source for this LocalizedMessage
      */
     public String getSourceName() {
@@ -449,6 +460,7 @@ public final class LocalizedMessage
 
     /**
      * Sets a locale to use for localization.
+     *
      * @param locale the locale to use for localization
      */
     public static void setLocale(Locale locale) {

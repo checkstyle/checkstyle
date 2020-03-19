@@ -47,6 +47,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
     /**
      * {@inheritDoc}.
+     *
      * @noinspection MethodWithMultipleReturnPoints
      */
     @Override
