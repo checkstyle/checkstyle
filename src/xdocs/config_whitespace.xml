@@ -1280,7 +1280,7 @@ public void foo(final char @NotNull [] param) {} // No violation
                   GENERIC_END</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
                   ELLIPSIS</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                   METHOD_REF</a>.
               </td>
               <td>
