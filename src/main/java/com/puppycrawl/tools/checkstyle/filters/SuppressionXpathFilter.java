@@ -62,9 +62,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * EmptyLineSeparator
  * </li>
  * <li>
- * IllegalCatch
- * </li>
- * <li>
  * ImportOrder
  * </li>
  * <li>
