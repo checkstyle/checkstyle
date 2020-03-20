@@ -312,11 +312,22 @@ public class MyClass { // OK, ignore checking the class name
 
       <subsection name="Examples" id="AbstractClassName_Examples">
         <p>
-          The following example shows how to configure the
-          <code>AbstractClassName</code> to checks names, but ignore
-          missing <code>abstract</code> modifiers:
+          To configure the check:
         </p>
-        <p>Configuration:</p>
+        <source>
+&lt;module name=&quot;AbstractClassName&quot;/&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+abstract class AbstractFirstClass {} // OK
+abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
+class AbstractThirdClass {} // violation, must be declared 'abstract'
+class FourthClass {} // OK
+        </source>
+        <p>
+          To configure the check so that it check name
+          but ignore <code>abstract</code> modifier:
+        </p>
         <source>
 &lt;module name=&quot;AbstractClassName&quot;&gt;
   &lt;property name=&quot;ignoreModifier&quot; value=&quot;true&quot;/&gt;
@@ -325,9 +336,42 @@ public class MyClass { // OK, ignore checking the class name
         <p>Example:</p>
         <source>
 abstract class AbstractFirstClass {} // OK
-abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
+abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
 class AbstractThirdClass {} // OK, no "abstract" modifier
+class FourthClass {} // OK
+         </source>
+         <p>
+            To configure the check to ignore name
+            validation when class declared as 'abstract'
+        </p>
+        <source>
+&lt;module name=&quot;AbstractClassName&quot;&gt;
+  &lt;property name=&quot;ignoreName&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+abstract class AbstractFirstClass {} // OK
+abstract class SecondClass {} // OK, name validation is ignored
+class AbstractThirdClass {} // violation, must be declared as 'abstract'
+class FourthClass {} // OK, no "abstract" modifier
+         </source>
+        <p>
+          To configure the check
+          with <code>format</code>:
+        </p>
+        <source>
+&lt;module name=&quot;AbstractClassName&quot;&gt;
+  &lt;property name=&quot;format&quot; value=&quot;^Generator.+$&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+abstract class GeneratorFirstClass {} // OK
+abstract class SecondClass {} // violation, must match pattern '^Generator.+$'
+class GeneratorThirdClass {} // violation, must be declared 'abstract'
+class FourthClass {} // OK, no "abstract" modifier
+      </source>
       </subsection>
 
       <subsection name="Example of Usage" id="AbstractClassName_Example_of_Usage">

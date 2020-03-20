@@ -52,10 +52,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * {@code false}.</li>
  * </ul>
  * <p>
- * The following example shows how to configure the {@code AbstractClassName} to
- * checks names, but ignore missing {@code abstract} modifiers:
+ * To configure the check:
  * </p>
- * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbstractClassName"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * abstract class AbstractFirstClass {} // OK
+ * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
+ * class AbstractThirdClass {} // violation, must be declared 'abstract'
+ * class FourthClass {} // OK
+ * </pre>
+ * <p>
+ * To configure the check so that it check name
+ * but ignore {@code abstract} modifier:
+ * </p>
  * <pre>
  * &lt;module name="AbstractClassName"&gt;
  *   &lt;property name="ignoreModifier" value="true"/&gt;
@@ -64,8 +76,41 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  * <pre>
  * abstract class AbstractFirstClass {} // OK
- * abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
+ * abstract class SecondClass {} // violation, it should match pattern "^Abstract.+$"
  * class AbstractThirdClass {} // OK, no "abstract" modifier
+ * class FourthClass {} // OK
+ * </pre>
+ * <p>
+ * To configure the check to ignore name
+ * validation when class declared as 'abstract'
+ * </p>
+ * <pre>
+ * &lt;module name="AbstractClassName"&gt;
+ *   &lt;property name="ignoreName" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * abstract class AbstractFirstClass {} // OK
+ * abstract class SecondClass {} // OK, name validation is ignored
+ * class AbstractThirdClass {} // violation, must be declared as 'abstract'
+ * class FourthClass {} // OK, no "abstract" modifier
+ * </pre>
+ * <p>
+ * To configure the check
+ * with {@code format}:
+ * </p>
+ * <pre>
+ * &lt;module name="AbstractClassName"&gt;
+ *   &lt;property name="format" value="^Generator.+$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * abstract class GeneratorFirstClass {} // OK
+ * abstract class SecondClass {} // violation, must match pattern '^Generator.+$'
+ * class GeneratorThirdClass {} // violation, must be declared 'abstract'
+ * class FourthClass {} // OK, no "abstract" modifier
  * </pre>
  * @since 3.2
  */
