@@ -113,6 +113,13 @@ line 5: ////////////////////////////////////////////////////////////////////
               <td><code>all files</code></td>
               <td>6.9</td>
             </tr>
+            <tr>
+              <td>skipFiles</td>
+              <td>Specify files to skip.</td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>"^$" (empty)</code></td>
+              <td>8.31</td>
+            </tr>
           </table>
         </div>
       </subsection>

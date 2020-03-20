@@ -49,6 +49,36 @@ public class HeaderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testPackageInfoCheck() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addAttribute("skipFiles", "package-info.java");
+        checkConfig.addAttribute("header", "example");
+        createChecker(checkConfig);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("package-info.java"), expected);
+    }
+
+    @Test
+    public void testPackageInfoCheckFalse() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        createChecker(checkConfig);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("package-info.java"), expected);
+    }
+
+    @Test
+    public void testPackageInfoCheckOtherFile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
+        checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.header"));
+        checkConfig.addAttribute("ignoreLines", "");
+        checkConfig.addAttribute("skipFiles", "package-info.java");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_MISSING),
+        };
+        verify(checkConfig, getPath("InputHeader.java"), expected);
+    }
+
+    @Test
     public void testStaticHeader() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HeaderCheck.class);
         checkConfig.addAttribute("headerFile", getPath("InputHeaderjava.header"));

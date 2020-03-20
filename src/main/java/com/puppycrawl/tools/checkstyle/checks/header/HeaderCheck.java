@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.header;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
@@ -75,6 +76,10 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of files to process.
  * Default value is {@code all files}.
+ * </li>
+ * <li>
+ * Property {@code skipFiles} - Specify files to skip.
+ * Default value is {@code "^$" (empty)}.
  * </li>
  * </ul>
  * <p>
@@ -135,6 +140,9 @@ public class HeaderCheck extends AbstractHeaderCheck {
     /** Specify the line numbers to ignore. */
     private int[] ignoreLines = EMPTY_INT_ARRAY;
 
+    /** Specify files to skip. */
+    private Pattern skipFiles = Pattern.compile("^$");
+
     /**
      * Returns true if lineNo is header lines or false.
      * @param lineNo a line number
@@ -157,6 +165,15 @@ public class HeaderCheck extends AbstractHeaderCheck {
     }
 
     /**
+     * Checks if the file is set to be skipped.
+     * @param file the file to check whether it should be skipped.
+     * @return true if and only if the file name matches the skipFiles regex string.
+     */
+    private boolean skipFile(File file) {
+        return skipFiles.matcher(file.getName()).find();
+    }
+
+    /**
      * Setter to specify the line numbers to ignore.
      *
      * @param list comma separated list of line numbers to ignore in header.
@@ -172,16 +189,27 @@ public class HeaderCheck extends AbstractHeaderCheck {
         }
     }
 
+    /**
+     * Setter to specify files to skip.
+     *
+     * @param skipFiles regex to specify the files to skip.
+     */
+    public void setSkipFiles(Pattern skipFiles) {
+        this.skipFiles = skipFiles;
+    }
+
     @Override
     protected void processFiltered(File file, FileText fileText) {
-        if (getHeaderLines().size() > fileText.size()) {
-            log(1, MSG_MISSING);
-        }
-        else {
-            for (int i = 0; i < getHeaderLines().size(); i++) {
-                if (!isMatch(i, fileText.get(i))) {
-                    log(i + 1, MSG_MISMATCH, getHeaderLines().get(i));
-                    break;
+        if (!skipFile(file)) {
+            if (getHeaderLines().size() > fileText.size()) {
+                log(1, MSG_MISSING);
+            }
+            else {
+                for (int i = 0; i < getHeaderLines().size(); i++) {
+                    if (!isMatch(i, fileText.get(i))) {
+                        log(i + 1, MSG_MISMATCH, getHeaderLines().get(i));
+                        break;
+                    }
                 }
             }
         }
