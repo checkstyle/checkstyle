@@ -213,6 +213,35 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;WhitespaceAround&quot;/&gt;
  * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public Test(){} // 2 violations, '{' is not followed and preceded by whitespace.
+ *     public static void main(String[] args) {
+ *         if (foo) { // ok
+ *             // body
+ *         }
+ *         else{ // violation
+ *             // body
+ *         }
+ *
+ *         for (int i = 1; i &gt; 1; i++) {} // violation, '{' is not followed by whitespace.
+ *
+ *         Runnable noop = () -&gt;{}; // 2 violations,
+ *                                     // '{' is not followed and preceded by whitespace.
+ *         try {
+ *             // body
+ *         } catch (Exception e){} // 2 violations,
+ *                                 // '{' is not followed and preceded by whitespace.
+ *
+ *         char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+ *         for (char item: vowels) { // ok, because ignoreEnhancedForColon is true by default
+ *             // body
+ *         }
+ *     }
+ * }
+ * </pre>
  * <p>To configure the check for whitespace only around
  * assignment operators:
  * </p>
@@ -224,12 +253,54 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *            BOR_ASSIGN,BAND_ASSIGN&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *         int b=10; // violation
+ *         int c = 10; // ok
+ *         b+=10; // violation
+ *         b += 10; // ok
+ *         c*=10; // violation
+ *         c *= 10; // ok
+ *         c-=5; // violation
+ *         c -= 5; // ok
+ *         c/=2; // violation
+ *         c /= 2; // ok
+ *         c%=1; // violation
+ *         c %= 1; // ok
+ *         c&gt;&gt;=1; // violation
+ *         c &gt;&gt;= 1; // ok
+ *         c&gt;&gt;&gt;=1; // violation
+ *         c &gt;&gt;&gt;= 1; // ok
+ *     }
+ *     public void myFunction() {
+ *         c^=1; // violation
+ *         c ^= 1; // ok
+ *         c|=1; // violation
+ *         c |= 1; // ok
+ *         c&amp;=1; // violation
+ *         c &amp;= 1; // ok
+ *         c&lt;&lt;=1; // violation
+ *         c &lt;&lt;= 1; // ok
+ *     }
+ * }
+ * </pre>
  * <p>To configure the check for whitespace only around curly braces:
  * </p>
  * <pre>
  * &lt;module name=&quot;WhitespaceAround&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LCURLY,RCURLY&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public void myFunction() {} // violation
+ *     public void myFunction() { } // ok
+ * }
  * </pre>
  * <p>
  * To configure the check to allow empty method bodies:
@@ -239,6 +310,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowEmptyMethods&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public void muFunction() {} // ok
+ *     int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+ * }
+ * </pre>
  * <p>
  * To configure the check to allow empty constructor bodies:
  * </p>
@@ -246,6 +325,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;WhitespaceAround&quot;&gt;
  *   &lt;property name=&quot;allowEmptyConstructors&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public Test(){} // ok
+ *     public void muFunction() {} // violation, '{' is not followed by whitespace.
+ * }
  * </pre>
  * <p>
  * To configure the check to allow empty type bodies:
@@ -255,6 +342,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowEmptyTypes&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {} // ok
+ * interface testInterface{} // ok
+ * class anotherTest {
+ *     int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+ * }
+ * </pre>
  * <p>
  * To configure the check to allow empty loop bodies:
  * </p>
@@ -262,6 +358,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;WhitespaceAround&quot;&gt;
  *   &lt;property name=&quot;allowEmptyLoops&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *         for (int i = 100;i &gt; 10; i--){} // ok
+ *         do {} while (i = 1); // ok
+ *         int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+ *     }
+ * }
  * </pre>
  * <p>
  * To configure the check to allow empty lambda bodies:
@@ -271,6 +378,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;allowEmptyLambdas&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *         Runnable noop = () -&gt; {}; // ok
+ *         int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+ *     }
+ * }
+ * </pre>
  * <p>
  * To configure the check to allow empty catch bodies:
  * </p>
@@ -278,6 +395,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;WhitespaceAround&quot;&gt;
  *   &lt;property name=&quot;allowEmptyCatches&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *         int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+ *         try {
+ *             // body
+ *         } catch (Exception e){} // ok
+ *     }
+ * }
  * </pre>
  * <p>
  * Also, this check can be configured to ignore the colon in an enhanced for
@@ -288,8 +417,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &lt;module name=&quot;WhitespaceAround&quot;&gt;
- *   &lt;property name=&quot;ignoreEnhancedForColon&quot; value=&quot;true&quot; /&gt;
+ *   &lt;property name=&quot;ignoreEnhancedForColon&quot; value=&quot;false&quot; /&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *         int a=4; // 2 violations , '=' is not followed and preceded by whitespace.
+ *         char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+ *         for (char item: vowels) { // violation, ':' is not preceded by whitespace.
+ *             // body
+ *         }
+ *     }
+ * }
  * </pre>
  *
  * @since 3.0
