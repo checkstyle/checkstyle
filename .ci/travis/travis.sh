@@ -3,10 +3,7 @@
 set -e
 
 removeFolderWithProtectedFiles() {
-  cd "$1"
-  find . -delete
-  cd ..
-  rmdir "$1"
+  find $1 -delete
 }
 
 case $1 in
