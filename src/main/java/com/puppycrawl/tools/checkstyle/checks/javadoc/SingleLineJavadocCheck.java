@@ -61,21 +61,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Example:</p>
  * <pre>
  * public class Test {
- *   /** &#64;return integer value *&#47;
+ *   /** &#64;return integer value *&#47;//Violation. Javadoc contains one at-clause, it should be written in multiple lines.
  *   public int sum(int a, int b) {
  *     return a + b;
  *   }
- * } //Violation. If Javadoc contains at least one at-clause, it should be formatted in multiple lines. 
- * 
- * 
+ * }
  * public class Test {
  *   /** 
  *    * &#64;return integer value 
- *    *&#47;
+ *    *&#47;//OK. Correct Javadoc. 
  *   public int sum(int a, int b) {
  *     return a + b;
  *   }
- * } //OK. Correct Javadoc. 
+ * }
  * </pre>
  * <p>
  * To configure this check to print violations if Tight-HTML rules are being violated.
@@ -91,11 +89,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   /**
  *    *&#64;return integer value
  *    *&lt;p&gt; First
- *    *&#47;
+ *    *&#47;//Prints violation for unclosed HTML tag.
  *   public int sum(int a, int b) {
  *     return a + b;
  *     }
- * } //Prints violation for unclosed HTML tag.
+ * } 
  * </pre>
  * <p>
  * To configure the check with a list of ignored at-clauses
@@ -110,18 +108,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Examples:</p>
  * <pre>
  * public class Test {
- *   /** @see #sum(int a, int b) *&#47;
+ *   /** &#64;see #sum(int a, int b) *&#47;//OK. No violation because @see is in list of ignored tags
  *   public int sum(int a, int b) {
  *     return a + b;
  *   }
- * }//OK. No violation because @see is in list of ignored tags
- * 
+ * }
  * public class Test {
- *   /** Testing class for {@link Example} *&#47;
+ *   /** Testing class for {&#64;link Example} *&#47;//Prints violation for making Javadoc with inline tag in single line.
  *   public int sum(int a, int b) {
  *     return a + b;
  *   }
- * }//Prints violation for making Javadoc with inline tag in single line.
+ * }
  * </pre>
  * @since 6.0
  */

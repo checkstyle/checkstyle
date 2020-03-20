@@ -2535,21 +2535,19 @@ class DatabaseConfiguration {}
         <div class = "wrapper">
           <pre>
 public class Test {
-  /** @return integer value */ 
+  /** @return integer value */ //Violation. Javadoc contains one at-clause, it should be written in multiple lines.
   public int sum(int a, int b) {
     return a + b;
   }
-} //Violation. If Javadoc contains at least one at-clause, it should be formatted in multiple lines.
-
-
+} 
 public class Test {
   /** 
    * @return integer value 
-   */
+   */ //OK. Correct Javadoc.
   public int sum(int a, int b) {
     return a + b;
   }
-} //OK. Correct Javadoc.
+}
           </pre>
         </div>
         <p>
@@ -2567,11 +2565,11 @@ public class Test {
   /**
    *@return integer value
    *&lt;p&gt; First
-   */
+   */ //Prints violation for unclosed HTML tag.
   public int sum(int a, int b) {
     return a + b;
   }
-} //Prints violation for unclosed HTML tag.
+}
          </pre>
         </div>
         <p>
@@ -2588,18 +2586,17 @@ public class Test {
         <div class = "wrapper">
          <pre>
 public class Test {
-  /** @see #sum(int a, int b) */
+  /** @see #sum(int a, int b) */ //OK. No violation because @see is in list of ignored tags
   public int sum(int a, int b) {
     return a + b;
   }
-}//OK. No violation because @see is in list of ignored tags
-
+}
 public class Test {
-  /** Testing class for {@link Example} */
+  /** Testing class for {@link Example} */ //Prints violation for making Javadoc with inline tag in single line.
   public int sum(int a, int b) {
     return a + b;
   }
-}//Prints violation for making Javadoc with inline tag in single line.
+}
          </pre>
         </div>
       </subsection>
