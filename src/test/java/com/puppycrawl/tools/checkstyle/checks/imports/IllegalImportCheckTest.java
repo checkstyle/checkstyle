@@ -94,6 +94,20 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIllegalClassesStarImport()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IllegalImportCheck.class);
+        checkConfig.addAttribute("illegalClasses", "java.io.*");
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+    }
+
+    @Test
     public void testIllegalPackagesRegularExpression()
             throws Exception {
         final DefaultConfiguration checkConfig =
