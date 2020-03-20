@@ -908,14 +908,12 @@ public class UserService {
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
-          <li>ImportOrder</li>
           <li>Indentation</li>
           <li>InterfaceIsType</li>
           <li>InterfaceMemberImpliedModifier</li>
           <li>InvalidJavadocPosition</li>
           <li>JavadocContentLocation</li>
           <li>JavadocMethod</li>
-          <li>JavadocStyle</li>
           <li>JavadocType</li>
           <li>LambdaParameterName</li>
           <li>MethodCount</li>
@@ -929,18 +927,18 @@ public class UserService {
           <li>RegexpSinglelineJava</li>
           <li>TodoComment</li>
           <li>TrailingComment</li>
-          <li>UncommentedMain</li>
           <li>UnnecessaryParentheses</li>
           <li>VariableDeclarationUsageDistance</li>
           <li>WriteTag</li>
         </ul>
         <p>
-          Also, the filter does not support Javadoc checks:
+          Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
         </p>
         <ul id="SuppressionXpathFilter_JavadocChecks">
           <li>AtclauseOrder</li>
           <li>JavadocBlockTagLocation</li>
           <li>JavadocParagraph</li>
+          <li>JavadocStyle</li>
           <li>JavadocTagContinuationIndentation</li>
           <li>MissingDeprecated</li>
           <li>NonEmptyAtclauseDescription</li>

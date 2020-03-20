@@ -331,7 +331,7 @@ public class JavadocStyleCheck
             // made sense to make another check just to ensure that the
             // package-info.java file actually contains package Javadocs.
             if (getFileContents().inPackageInfo()) {
-                log(ast.getLineNo(), MSG_JAVADOC_MISSING);
+                log(ast, MSG_JAVADOC_MISSING);
             }
         }
         else {

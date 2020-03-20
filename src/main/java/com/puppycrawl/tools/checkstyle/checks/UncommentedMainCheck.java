@@ -217,7 +217,7 @@ public class UncommentedMainCheck
                 && checkModifiers(method)
                 && checkType(method)
                 && checkParams(method)) {
-            log(method.getLineNo(), MSG_KEY);
+            log(method, MSG_KEY);
         }
     }
 

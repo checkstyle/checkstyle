@@ -525,10 +525,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            if (customImportOrderRules.contains(SAME_PACKAGE_RULE_GROUP)) {
-                samePackageDomainsRegExp = createSamePackageRegexp(
-                        samePackageMatchingDepth, ast);
-            }
+            samePackageDomainsRegExp = createSamePackageRegexp(
+                    samePackageMatchingDepth, ast);
         }
         else {
             final String importFullPath = getFullImportIdent(ast);
