@@ -228,8 +228,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = {
-            "20: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
-            "21: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
+            "20:30: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
+            "21:30: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
         };
         verifyWarns(checkConfig, getPath("InputIndentationMethodCStyle.java"), expected);
     }
@@ -261,15 +261,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = {
-            "42: " + getCheckMessage(MSG_ERROR, "extends", 3, 8),
-            "44: " + getCheckMessage(MSG_ERROR, "member def type", 3, 4),
-            "47: " + getCheckMessage(MSG_ERROR, "foo", 8, 12),
-            "50: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
-            "53: " + getCheckMessage(MSG_ERROR, "true", 13, 16),
-            "56: " + getCheckMessage(MSG_ERROR, "+", 16, 20),
-            "57: " + getCheckMessage(MSG_ERROR, "if", 8, 12),
-            "60: " + getCheckMessage(MSG_ERROR, "if rcurly", 11, 12),
-            "62: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 7, 8),
+            "42:4: " + getCheckMessage(MSG_ERROR, "extends", 3, 8),
+            "44:4: " + getCheckMessage(MSG_ERROR, "member def type", 3, 4),
+            "47:9: " + getCheckMessage(MSG_ERROR, "foo", 8, 12),
+            "50:9: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
+            "53:14: " + getCheckMessage(MSG_ERROR, "true", 13, 16),
+            "56:17: " + getCheckMessage(MSG_ERROR, "+", 16, 20),
+            "57:9: " + getCheckMessage(MSG_ERROR, "if", 8, 12),
+            "60:12: " + getCheckMessage(MSG_ERROR, "if rcurly", 11, 12),
+            "62:8: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 7, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationAndroidStyle.java"), expected);
     }
@@ -287,9 +287,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "53: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 18, 20),
-            "54: " + getCheckMessage(MSG_ERROR, "method call rparen", 14, 16),
-            "75: " + getCheckMessage(MSG_ERROR, "lambda arguments", 12, 16),
+            "53:19: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 18, 20),
+            "54:15: " + getCheckMessage(MSG_ERROR, "method call rparen", 14, 16),
+            "75:13: " + getCheckMessage(MSG_ERROR, "lambda arguments", 12, 16),
         };
         verifyWarns(checkConfig, getPath("InputIndentationMethodCallLineWrap.java"), expected);
     }
@@ -307,9 +307,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "40: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
-            "41: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
-            "50: " + getCheckMessage(MSG_ERROR, "@", 6, 8),
+            "40:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
+            "41:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
+            "50:7: " + getCheckMessage(MSG_ERROR, "@", 6, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationDifficultAnnotations.java"), expected);
     }
@@ -323,11 +323,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
 
         final String[] expected = {
-            "34: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
-            "36: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
-            "40: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
-            "42: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
-            "46: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "34:17: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "36:17: " + getCheckMessage(MSG_ERROR, ")", 16, 0),
+            "40:9: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "42:9: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
+            "46:9: " + getCheckMessage(MSG_ERROR, ")", 8, 4),
         };
 
         verifyWarns(checkConfig,
@@ -457,25 +457,25 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "28: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "29: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "30: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "34: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "35: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
-            "39: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "40: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "41: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "45: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "46: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "50: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "51: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
-            "52: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
-            "56: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
-            "57: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
-            "62: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
-            "63: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
-            "68: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
-            "69: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "28:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "29:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "30:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "34:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "35:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 6),
+            "39:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "40:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "41:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "45:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "46:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "50:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "51:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "52:5: " + getCheckMessage(MSG_ERROR, "x", 4, 8),
+            "56:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 6),
+            "57:5: " + getCheckMessage(MSG_ERROR, "method call lparen", 4, 6),
+            "62:5: " + getCheckMessage(MSG_ERROR, ".", 4, 10),
+            "63:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
+            "68:5: " + getCheckMessage(MSG_ERROR, "super", 4, 10),
+            "69:5: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 4, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCtorCall.java"), expected);
     }
@@ -493,8 +493,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_ERROR, "=", 5, 6),
-            "57: " + getCheckMessage(MSG_ERROR, "class def rcurly", 3, 2),
+            "22:6: " + getCheckMessage(MSG_ERROR, "=", 5, 6),
+            "57:4: " + getCheckMessage(MSG_ERROR, "class def rcurly", 3, 2),
         };
 
         verifyWarns(checkConfig, getPath("InputIndentationMembers.java"), expected);
@@ -513,12 +513,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "24: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 10, "8, 12"),
-            "33: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 2, "4, 8"),
-            "36: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 18, "8, 12"),
-            "37: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 18, 8),
-            "39: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 6, "8, 12"),
-            "41: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 6, "8, 12"),
+            "24:11: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 10, "8, 12"),
+            "33:3: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 2, "4, 8"),
+            "36:19: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 18, "8, 12"),
+            "37:19: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 18, 8),
+            "39:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 6, "8, 12"),
+            "41:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 6, "8, 12"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationInvalidLabelIndent.java"), expected);
     }
@@ -536,8 +536,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "18: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "4, 8"),
-            "19: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
+            "18:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "4, 8"),
+            "19:10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "label", 9, "8, 12"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationInvalidLabelWithWhileLoopIndent.java"),
             expected);
@@ -573,7 +573,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationValidIfIndent.java");
         final String[] expected = {
-            "231: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
+            "231:9: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -611,8 +611,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationValidMethodIndent.java");
         final String[] expected = {
-            "129: " + getCheckMessage(MSG_ERROR, "void", 4, 8),
-            "130: " + getCheckMessage(MSG_ERROR, "method5", 4, 8),
+            "129:5: " + getCheckMessage(MSG_ERROR, "void", 4, 8),
+            "130:5: " + getCheckMessage(MSG_ERROR, "method5", 4, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -632,39 +632,39 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidMethodIndent.java");
         final String[] expected = {
-            "23: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 6, 4),
-            "26: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 6, 4),
-            "27: " + getCheckMessage(MSG_ERROR, "ctor def lcurly", 2, 4),
-            "28: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 6, 4),
-            "31: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
-            "32: " + getCheckMessage(MSG_ERROR, "method def rcurly", 6, 4),
-            "69: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
-            "70: " + getCheckMessage(MSG_ERROR, "final", 5, 9),
-            "71: " + getCheckMessage(MSG_ERROR, "void", 5, 9),
-            "72: " + getCheckMessage(MSG_ERROR, "method5", 4, 9),
-            "80: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 4),
-            "81: " + getCheckMessage(MSG_ERROR, "final", 3, 7),
-            "82: " + getCheckMessage(MSG_ERROR, "void", 3, 7),
-            "83: " + getCheckMessage(MSG_ERROR, "method6", 5, 7),
-            "93: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 8),
-            "98: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
-            "99: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
-            "100: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
-            "101: " + getCheckMessage(MSG_ERROR, "if rcurly", 6, 8),
-            "104: " + getCheckMessage(MSG_ERROR, "Arrays", 10, 12),
-            "113: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "122: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
-            "126: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
-            "127: " + getCheckMessage(MSG_ERROR, ")", 6, 8),
-            "131: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
-            "145: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "148: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "158: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 12),
-            "170: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
-            "175: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
-            "179: " + getCheckMessage(MSG_ERROR, "int", 0, 8),
-            "180: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
-            "190: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "23:7: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 6, 4),
+            "26:7: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 6, 4),
+            "27:3: " + getCheckMessage(MSG_ERROR, "ctor def lcurly", 2, 4),
+            "28:7: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 6, 4),
+            "31:3: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
+            "32:7: " + getCheckMessage(MSG_ERROR, "method def rcurly", 6, 4),
+            "69:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
+            "70:6: " + getCheckMessage(MSG_ERROR, "final", 5, 9),
+            "71:6: " + getCheckMessage(MSG_ERROR, "void", 5, 9),
+            "72:5: " + getCheckMessage(MSG_ERROR, "method5", 4, 9),
+            "80:4: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 4),
+            "81:4: " + getCheckMessage(MSG_ERROR, "final", 3, 7),
+            "82:4: " + getCheckMessage(MSG_ERROR, "void", 3, 7),
+            "83:6: " + getCheckMessage(MSG_ERROR, "method6", 5, 7),
+            "93:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 8),
+            "98:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
+            "99:7: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
+            "100:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "101:7: " + getCheckMessage(MSG_ERROR, "if rcurly", 6, 8),
+            "104:11: " + getCheckMessage(MSG_ERROR, "Arrays", 10, 12),
+            "113:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "122:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
+            "126:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
+            "127:7: " + getCheckMessage(MSG_ERROR, ")", 6, 8),
+            "131:7: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
+            "145:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "148:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "158:7: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 12),
+            "170:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "175:5: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 4, 8),
+            "179:1: " + getCheckMessage(MSG_ERROR, "int", 0, 8),
+            "180:5: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
+            "190:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -684,34 +684,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidSwitchIndent.java");
         final String[] expected = {
-            "30: " + getCheckMessage(MSG_ERROR, "switch", 6, 8),
-            "32: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
-            "33: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
-            "37: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
-            "39: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 12),
-            "40: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
-            "43: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
-            "44: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
-            "45: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
-            "53: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
-            "54: " + getCheckMessage(MSG_CHILD_ERROR, "block", 18, 16),
-            "55: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
-            "59: " + getCheckMessage(MSG_ERROR, "block lcurly", 10, 12),
-            "62: " + getCheckMessage(MSG_ERROR, "block rcurly", 14, 12),
-            "66: " + getCheckMessage(MSG_ERROR, "block lcurly", 14, 12),
-            "69: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
-            "76: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
-            "81: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
-            "89: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
-            "92: " + getCheckMessage(MSG_ERROR, "switch lcurly", 6, 8),
-            "93: " + getCheckMessage(MSG_ERROR, "switch rcurly", 10, 8),
-            "95: " + getCheckMessage(MSG_ERROR, "switch lcurly", 10, 8),
-            "96: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
-            "99: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
-            "100: " + getCheckMessage(MSG_ERROR, "if", 12, 16),
-            "101: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 20),
-            "102: " + getCheckMessage(MSG_ERROR, "else", 12, 16),
-            "103: " + getCheckMessage(MSG_CHILD_ERROR, "else", 16, 20),
+            "30:7: " + getCheckMessage(MSG_ERROR, "switch", 6, 8),
+            "32:11: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
+            "33:15: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
+            "37:15: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
+            "39:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 12),
+            "40:11: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
+            "43:11: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 12),
+            "44:15: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
+            "45:15: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
+            "53:15: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
+            "54:19: " + getCheckMessage(MSG_CHILD_ERROR, "block", 18, 16),
+            "55:11: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
+            "59:11: " + getCheckMessage(MSG_ERROR, "block lcurly", 10, 12),
+            "62:15: " + getCheckMessage(MSG_ERROR, "block rcurly", 14, 12),
+            "66:15: " + getCheckMessage(MSG_ERROR, "block lcurly", 14, 12),
+            "69:11: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
+            "76:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
+            "81:15: " + getCheckMessage(MSG_CHILD_ERROR, "case", 14, 16),
+            "89:7: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
+            "92:7: " + getCheckMessage(MSG_ERROR, "switch lcurly", 6, 8),
+            "93:11: " + getCheckMessage(MSG_ERROR, "switch rcurly", 10, 8),
+            "95:11: " + getCheckMessage(MSG_ERROR, "switch lcurly", 10, 8),
+            "96:7: " + getCheckMessage(MSG_ERROR, "switch rcurly", 6, 8),
+            "99:9: " + getCheckMessage(MSG_CHILD_ERROR, "case", 8, 12),
+            "100:13: " + getCheckMessage(MSG_ERROR, "if", 12, 16),
+            "101:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 20),
+            "102:13: " + getCheckMessage(MSG_ERROR, "else", 12, 16),
+            "103:17: " + getCheckMessage(MSG_CHILD_ERROR, "else", 16, 20),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -785,37 +785,38 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidArrayInitIndent.java");
         final String[] expected = {
-            "21: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
-            "22: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
-            "24: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
-            "28: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
-            "29: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 8, 10),
-            "30: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 4, "6, 10"),
-            "33: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 9, 8),
-            "34: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 7, 8),
-            "35: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 9, 8),
-            "40: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
-            "44: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "4, 8"),
-            "48: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
-            "52: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 20,
+            "21:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
+            "22:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
+            "24:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
+            "28:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
+            "29:9: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 8, 10),
+            "30:5: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 4, "6, 10"),
+            "33:10: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 9, 8),
+            "34:8: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 7, 8),
+            "35:10: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 9, 8),
+            "40:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
+            "44:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "4, 8"),
+            "48:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 2, "4, 8"),
+            "52:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 20,
                 "8, 31, 33"),
-            "53: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 4, "8, 31, 33"),
-            "58: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 6, 8),
-            "63: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
-            "65: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
-            "66: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 2, "6, 10"),
-            "69: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 6, 8),
-            "76: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
-            "89: " + getCheckMessage(MSG_ERROR, "1", 8, 12),
-            "100: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
-            "101: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
-            "104: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
-            "105: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
-            "106: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
-            "109: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 6, "8, 12"),
-            "110: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
-            "111: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
-            "112: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
+            "53:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "array initialization", 4,
+                "8, 31, 33"),
+            "58:7: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 6, 8),
+            "63:3: " + getCheckMessage(MSG_ERROR, "member def type", 2, 4),
+            "65:7: " + getCheckMessage(MSG_ERROR, "member def type", 6, 4),
+            "66:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 2, "6, 10"),
+            "69:7: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 6, 8),
+            "76:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
+            "89:9: " + getCheckMessage(MSG_ERROR, "1", 8, 12),
+            "100:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
+            "101:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
+            "104:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
+            "105:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
+            "106:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
+            "109:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization lcurly", 6, "8, 12"),
+            "110:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
+            "111:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
+            "112:7: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
         };
 
         // Test input for this test case is not checked due to issue #693.
@@ -855,34 +856,34 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidTryIndent.java");
         final String[] expected = {
-            "25: " + getCheckMessage(MSG_ERROR, "try", 9, 8),
-            "26: " + getCheckMessage(MSG_ERROR, "try rcurly", 7, 8),
-            "28: " + getCheckMessage(MSG_ERROR, "catch rcurly", 7, 8),
-            "30: " + getCheckMessage(MSG_ERROR, "try", 4, 8),
-            "31: " + getCheckMessage(MSG_CHILD_ERROR, "try", 8, 12),
-            "32: " + getCheckMessage(MSG_ERROR, "try rcurly", 4, 8),
-            "33: " + getCheckMessage(MSG_CHILD_ERROR, "finally", 8, 12),
-            "38: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 8, 12),
-            "43: " + getCheckMessage(MSG_ERROR, "try rcurly", 10, 8),
-            "45: " + getCheckMessage(MSG_ERROR, "catch rcurly", 6, 8),
-            "52: " + getCheckMessage(MSG_ERROR, "catch rcurly", 5, 8),
-            "59: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
-            "60: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 14, 12),
-            "61: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
-            "63: " + getCheckMessage(MSG_ERROR, "catch", 6, 8),
-            "70: " + getCheckMessage(MSG_ERROR, "try lcurly", 10, 8),
-            "72: " + getCheckMessage(MSG_ERROR, "try rcurly", 10, 8),
-            "74: " + getCheckMessage(MSG_ERROR, "catch lcurly", 6, 8),
-            "77: " + getCheckMessage(MSG_ERROR, "catch rcurly", 10, 8),
-            "80: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
-            "86: " + getCheckMessage(MSG_ERROR, "try", 0, 8),
-            "87: " + getCheckMessage(MSG_ERROR, "try rcurly", 0, 8),
-            "88: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 12),
-            "89: " + getCheckMessage(MSG_ERROR, "catch rcurly", 0, 8),
-            "91: " + getCheckMessage(MSG_ERROR, "try", 0, 8),
-            "92: " + getCheckMessage(MSG_ERROR, "try rcurly", 0, 8),
-            "93: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 12),
-            "94: " + getCheckMessage(MSG_ERROR, "catch rcurly", 0, 8),
+            "25:10: " + getCheckMessage(MSG_ERROR, "try", 9, 8),
+            "26:8: " + getCheckMessage(MSG_ERROR, "try rcurly", 7, 8),
+            "28:8: " + getCheckMessage(MSG_ERROR, "catch rcurly", 7, 8),
+            "30:5: " + getCheckMessage(MSG_ERROR, "try", 4, 8),
+            "31:9: " + getCheckMessage(MSG_CHILD_ERROR, "try", 8, 12),
+            "32:5: " + getCheckMessage(MSG_ERROR, "try rcurly", 4, 8),
+            "33:9: " + getCheckMessage(MSG_CHILD_ERROR, "finally", 8, 12),
+            "38:9: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 8, 12),
+            "43:11: " + getCheckMessage(MSG_ERROR, "try rcurly", 10, 8),
+            "45:7: " + getCheckMessage(MSG_ERROR, "catch rcurly", 6, 8),
+            "52:6: " + getCheckMessage(MSG_ERROR, "catch rcurly", 5, 8),
+            "59:11: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
+            "60:15: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 14, 12),
+            "61:11: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
+            "63:7: " + getCheckMessage(MSG_ERROR, "catch", 6, 8),
+            "70:11: " + getCheckMessage(MSG_ERROR, "try lcurly", 10, 8),
+            "72:11: " + getCheckMessage(MSG_ERROR, "try rcurly", 10, 8),
+            "74:7: " + getCheckMessage(MSG_ERROR, "catch lcurly", 6, 8),
+            "77:11: " + getCheckMessage(MSG_ERROR, "catch rcurly", 10, 8),
+            "80:11: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 10, 12),
+            "86:1: " + getCheckMessage(MSG_ERROR, "try", 0, 8),
+            "87:1: " + getCheckMessage(MSG_ERROR, "try rcurly", 0, 8),
+            "88:1: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 12),
+            "89:1: " + getCheckMessage(MSG_ERROR, "catch rcurly", 0, 8),
+            "91:1: " + getCheckMessage(MSG_ERROR, "try", 0, 8),
+            "92:1: " + getCheckMessage(MSG_ERROR, "try rcurly", 0, 8),
+            "93:1: " + getCheckMessage(MSG_CHILD_ERROR, "catch", 0, 12),
+            "94:1: " + getCheckMessage(MSG_ERROR, "catch rcurly", 0, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -902,42 +903,42 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidClassDefIndent.java");
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 0),
-            "28: " + getCheckMessage(MSG_ERROR, "class def lcurly", 2, 0),
-            "31: " + getCheckMessage(MSG_ERROR, "class def rcurly", 2, 0),
-            "34: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 0),
-            "38: " + getCheckMessage(MSG_ERROR, "class def rcurly", 2, 0),
-            "43: " + getCheckMessage(MSG_ERROR, "extends", 2, 4),
-            "44: " + getCheckMessage(MSG_ERROR, "implements", 2, 4),
-            "50: " + getCheckMessage(MSG_ERROR, "extends", 2, 4),
-            "58: " + getCheckMessage(MSG_ERROR, "implements", 2, 4),
-            "59: " + getCheckMessage(MSG_ERROR, "java", 2, 4),
-            "64: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 0),
-            "65: " + getCheckMessage(MSG_ERROR, "class def lcurly", 2, 0),
-            "73: " + getCheckMessage(MSG_ERROR, "class def rcurly", 2, 0),
-            "77: " + getCheckMessage(MSG_ERROR, "extends", 2, 4),
-            "86: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
-            "88: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
-            "91: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
-            "95: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
-            "101: " + getCheckMessage(MSG_ERROR, "int", 10, 12),
-            "106: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
-            "111: " + getCheckMessage(MSG_ERROR, "class def rcurly", 6, 4),
-            "113: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
-            "119: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 8),
-            "122: " + getCheckMessage(MSG_ERROR, "class def ident", 10, 8),
-            "124: " + getCheckMessage(MSG_ERROR, "class def rcurly", 10, 8),
-            "127: " + getCheckMessage(MSG_ERROR, "member def type", 10, 12),
-            "132: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
-            "133: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 8, "10, 14"),
-            "137: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 8, "10, 14"),
-            "141: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 6, "8, 12"),
-            "142: " + getCheckMessage(MSG_ERROR, "method def modifier", 12, 10),
-            "144: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 10),
-            "145: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 6, "8, 12"),
-            "150: " + getCheckMessage(MSG_ERROR, "method def modifier", 10, 12),
-            "152: " + getCheckMessage(MSG_ERROR, "method def rcurly", 10, 12),
-            "188: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
+            "22:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 0),
+            "28:3: " + getCheckMessage(MSG_ERROR, "class def lcurly", 2, 0),
+            "31:3: " + getCheckMessage(MSG_ERROR, "class def rcurly", 2, 0),
+            "34:9: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 0),
+            "38:3: " + getCheckMessage(MSG_ERROR, "class def rcurly", 2, 0),
+            "43:3: " + getCheckMessage(MSG_ERROR, "extends", 2, 4),
+            "44:3: " + getCheckMessage(MSG_ERROR, "implements", 2, 4),
+            "50:3: " + getCheckMessage(MSG_ERROR, "extends", 2, 4),
+            "58:3: " + getCheckMessage(MSG_ERROR, "implements", 2, 4),
+            "59:3: " + getCheckMessage(MSG_ERROR, "java", 2, 4),
+            "64:3: " + getCheckMessage(MSG_ERROR, "class def modifier", 2, 0),
+            "65:3: " + getCheckMessage(MSG_ERROR, "class def lcurly", 2, 0),
+            "73:3: " + getCheckMessage(MSG_ERROR, "class def rcurly", 2, 0),
+            "77:3: " + getCheckMessage(MSG_ERROR, "extends", 2, 4),
+            "86:9: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
+            "88:13: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
+            "91:9: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
+            "95:7: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
+            "101:11: " + getCheckMessage(MSG_ERROR, "int", 10, 12),
+            "106:7: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
+            "111:7: " + getCheckMessage(MSG_ERROR, "class def rcurly", 6, 4),
+            "113:13: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
+            "119:13: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 8),
+            "122:17: " + getCheckMessage(MSG_ERROR, "class def ident", 10, 8),
+            "124:11: " + getCheckMessage(MSG_ERROR, "class def rcurly", 10, 8),
+            "127:11: " + getCheckMessage(MSG_ERROR, "member def type", 10, 12),
+            "132:11: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 10, 8),
+            "133:9: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 8, "10, 14"),
+            "137:9: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 8, "10, 14"),
+            "141:7: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 6, "8, 12"),
+            "142:13: " + getCheckMessage(MSG_ERROR, "method def modifier", 12, 10),
+            "144:13: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 10),
+            "145:7: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 6, "8, 12"),
+            "150:11: " + getCheckMessage(MSG_ERROR, "method def modifier", 10, 12),
+            "152:11: " + getCheckMessage(MSG_ERROR, "method def rcurly", 10, 12),
+            "188:1: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -957,52 +958,52 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidBlockIndent.java");
         final String[] expected = {
-            "26: " + getCheckMessage(MSG_ERROR, "block lcurly", 7, 8),
-            "27: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
-            "29: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
-            "30: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
-            "32: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
-            "34: " + getCheckMessage(MSG_ERROR, "block rcurly", 6, 8),
-            "35: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
-            "38: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
-            "39: " + getCheckMessage(MSG_CHILD_ERROR, "block", 13, 12),
-            "41: " + getCheckMessage(MSG_CHILD_ERROR, "block", 13, 12),
-            "42: " + getCheckMessage(MSG_ERROR, "block rcurly", 9, 8),
-            "45: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
-            "46: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
-            "48: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
-            "49: " + getCheckMessage(MSG_ERROR, "block rcurly", 6, 8),
-            "52: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
-            "55: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
-            "59: " + getCheckMessage(MSG_ERROR, "block lcurly", 10, 12),
-            "63: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
-            "68: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
-            "70: " + getCheckMessage(MSG_ERROR, "block lcurly", 10, 12),
-            "71: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
-            "86: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
-            "95: " + getCheckMessage(MSG_ERROR, "static initialization", 2, 4),
-            "96: " + getCheckMessage(MSG_ERROR, "static initialization", 6, 4),
-            "100: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 7, 8),
-            "103: " + getCheckMessage(MSG_ERROR, "static initialization", 6, 4),
-            "105: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 2, 4),
-            "107: " + getCheckMessage(MSG_ERROR, "static initialization", 2, 4),
-            "109: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 6, 4),
-            "111: " + getCheckMessage(MSG_ERROR, "static initialization", 2, 4),
-            "113: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 6, 8),
-            "116: " + getCheckMessage(MSG_ERROR, "static initialization lcurly", 2, 4),
-            "117: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 6, 8),
-            "118: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 6, 4),
-            "123: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 6, 8),
-            "128: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 4, 8),
-            "129: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 2, 4),
-            "134: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 6, 4),
-            "137: " + getCheckMessage(MSG_ERROR, "block lcurly", 2, 4),
-            "138: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 4),
-            "141: " + getCheckMessage(MSG_ERROR, "block lcurly", 2, 4),
-            "143: " + getCheckMessage(MSG_ERROR, "block rcurly", 6, 4),
-            "145: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 4),
-            "147: " + getCheckMessage(MSG_ERROR, "block rcurly", 2, 4),
-            "150: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 8),
+            "26:8: " + getCheckMessage(MSG_ERROR, "block lcurly", 7, 8),
+            "27:10: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
+            "29:10: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
+            "30:8: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
+            "32:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
+            "34:7: " + getCheckMessage(MSG_ERROR, "block rcurly", 6, 8),
+            "35:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
+            "38:10: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
+            "39:14: " + getCheckMessage(MSG_CHILD_ERROR, "block", 13, 12),
+            "41:14: " + getCheckMessage(MSG_CHILD_ERROR, "block", 13, 12),
+            "42:10: " + getCheckMessage(MSG_ERROR, "block rcurly", 9, 8),
+            "45:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
+            "46:11: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
+            "48:11: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
+            "49:7: " + getCheckMessage(MSG_ERROR, "block rcurly", 6, 8),
+            "52:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
+            "55:11: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
+            "59:11: " + getCheckMessage(MSG_ERROR, "block lcurly", 10, 12),
+            "63:11: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
+            "68:11: " + getCheckMessage(MSG_CHILD_ERROR, "block", 10, 12),
+            "70:11: " + getCheckMessage(MSG_ERROR, "block lcurly", 10, 12),
+            "71:15: " + getCheckMessage(MSG_CHILD_ERROR, "block", 14, 16),
+            "86:11: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 12),
+            "95:3: " + getCheckMessage(MSG_ERROR, "static initialization", 2, 4),
+            "96:7: " + getCheckMessage(MSG_ERROR, "static initialization", 6, 4),
+            "100:8: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 7, 8),
+            "103:7: " + getCheckMessage(MSG_ERROR, "static initialization", 6, 4),
+            "105:3: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 2, 4),
+            "107:3: " + getCheckMessage(MSG_ERROR, "static initialization", 2, 4),
+            "109:7: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 6, 4),
+            "111:3: " + getCheckMessage(MSG_ERROR, "static initialization", 2, 4),
+            "113:7: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 6, 8),
+            "116:3: " + getCheckMessage(MSG_ERROR, "static initialization lcurly", 2, 4),
+            "117:7: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 6, 8),
+            "118:7: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 6, 4),
+            "123:7: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 6, 8),
+            "128:5: " + getCheckMessage(MSG_CHILD_ERROR, "static initialization", 4, 8),
+            "129:3: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 2, 4),
+            "134:7: " + getCheckMessage(MSG_ERROR, "static initialization rcurly", 6, 4),
+            "137:3: " + getCheckMessage(MSG_ERROR, "block lcurly", 2, 4),
+            "138:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 4),
+            "141:3: " + getCheckMessage(MSG_ERROR, "block lcurly", 2, 4),
+            "143:7: " + getCheckMessage(MSG_ERROR, "block rcurly", 6, 4),
+            "145:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 4),
+            "147:3: " + getCheckMessage(MSG_ERROR, "block rcurly", 2, 4),
+            "150:7: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1022,84 +1023,84 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidIfIndent.java");
         final String[] expected = {
-            "55: " + getCheckMessage(MSG_ERROR, "if", 1, 8),
-            "60: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
-            "61: " + getCheckMessage(MSG_ERROR, "if lcurly", 9, 8),
-            "62: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
-            "64: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
-            "65: " + getCheckMessage(MSG_ERROR, "if lcurly", 5, 8),
-            "66: " + getCheckMessage(MSG_ERROR, "if rcurly", 5, 8),
-            "70: " + getCheckMessage(MSG_ERROR, "if rcurly", 10, 8),
-            "71: " + getCheckMessage(MSG_ERROR, "else rcurly", 7, 8),
-            "74: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
+            "55:2: " + getCheckMessage(MSG_ERROR, "if", 1, 8),
+            "60:10: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
+            "61:10: " + getCheckMessage(MSG_ERROR, "if lcurly", 9, 8),
+            "62:8: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
+            "64:7: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
+            "65:6: " + getCheckMessage(MSG_ERROR, "if lcurly", 5, 8),
+            "66:6: " + getCheckMessage(MSG_ERROR, "if rcurly", 5, 8),
+            "70:11: " + getCheckMessage(MSG_ERROR, "if rcurly", 10, 8),
+            "71:8: " + getCheckMessage(MSG_ERROR, "else rcurly", 7, 8),
+            "74:10: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
 
-            "75: " + getCheckMessage(MSG_ERROR, "if lcurly", 7, 8),
-            "77: " + getCheckMessage(MSG_ERROR, "else", 9, 8),
-            "79: " + getCheckMessage(MSG_ERROR, "else rcurly", 9, 8),
-            "82: " + getCheckMessage(MSG_ERROR, "if", 10, 8),
-            "83: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
-            "84: " + getCheckMessage(MSG_ERROR, "else", 9, 8),
-            "85: " + getCheckMessage(MSG_ERROR, "else lcurly", 7, 8),
-            "86: " + getCheckMessage(MSG_ERROR, "else rcurly", 9, 8),
+            "75:8: " + getCheckMessage(MSG_ERROR, "if lcurly", 7, 8),
+            "77:10: " + getCheckMessage(MSG_ERROR, "else", 9, 8),
+            "79:10: " + getCheckMessage(MSG_ERROR, "else rcurly", 9, 8),
+            "82:11: " + getCheckMessage(MSG_ERROR, "if", 10, 8),
+            "83:8: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
+            "84:10: " + getCheckMessage(MSG_ERROR, "else", 9, 8),
+            "85:8: " + getCheckMessage(MSG_ERROR, "else lcurly", 7, 8),
+            "86:10: " + getCheckMessage(MSG_ERROR, "else rcurly", 9, 8),
 
-            "90: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
-            "91: " + getCheckMessage(MSG_ERROR, "if lcurly", 9, 8),
-            "92: " + getCheckMessage(MSG_ERROR, "if rcurly", 9, 8),
-            "93: " + getCheckMessage(MSG_ERROR, "else lcurly", 7, 8),
-            "94: " + getCheckMessage(MSG_ERROR, "else rcurly", 10, 8),
-            "97: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
-            "98: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 8),
-            "99: " + getCheckMessage(MSG_ERROR, "if rcurly", 10, 8),
-            "100: " + getCheckMessage(MSG_ERROR, "else rcurly", 7, 8),
-            "103: " + getCheckMessage(MSG_ERROR, "if", 5, 8),
-            "104: " + getCheckMessage(MSG_ERROR, "if rcurly", 11, 8),
-            "105: " + getCheckMessage(MSG_ERROR, "else", 5, 8),
-            "106: " + getCheckMessage(MSG_ERROR, "else rcurly", 11, 8),
+            "90:10: " + getCheckMessage(MSG_ERROR, "if", 9, 8),
+            "91:10: " + getCheckMessage(MSG_ERROR, "if lcurly", 9, 8),
+            "92:10: " + getCheckMessage(MSG_ERROR, "if rcurly", 9, 8),
+            "93:8: " + getCheckMessage(MSG_ERROR, "else lcurly", 7, 8),
+            "94:11: " + getCheckMessage(MSG_ERROR, "else rcurly", 10, 8),
+            "97:7: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
+            "98:11: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 8),
+            "99:11: " + getCheckMessage(MSG_ERROR, "if rcurly", 10, 8),
+            "100:8: " + getCheckMessage(MSG_ERROR, "else rcurly", 7, 8),
+            "103:6: " + getCheckMessage(MSG_ERROR, "if", 5, 8),
+            "104:12: " + getCheckMessage(MSG_ERROR, "if rcurly", 11, 8),
+            "105:6: " + getCheckMessage(MSG_ERROR, "else", 5, 8),
+            "106:12: " + getCheckMessage(MSG_ERROR, "else rcurly", 11, 8),
 
-            "126: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
-            "131: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 8),
-            "132: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
-            "137: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
-            "138: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "140: " + getCheckMessage(MSG_CHILD_ERROR, "else", 10, 12),
-            "141: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
+            "126:15: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
+            "131:11: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 8),
+            "132:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "137:15: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
+            "138:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
+            "140:11: " + getCheckMessage(MSG_CHILD_ERROR, "else", 10, 12),
+            "141:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 12),
 
-            "148: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
-            "149: " + getCheckMessage(MSG_ERROR, "if rcurly", 9, 8),
-            "152: " + getCheckMessage(MSG_CHILD_ERROR, "else", 16, 12),
-            "158: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
-            "162: " + getCheckMessage(MSG_CHILD_ERROR, "else", 40, 12),
-            "169: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
+            "148:17: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
+            "149:10: " + getCheckMessage(MSG_ERROR, "if rcurly", 9, 8),
+            "152:17: " + getCheckMessage(MSG_CHILD_ERROR, "else", 16, 12),
+            "158:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "162:41: " + getCheckMessage(MSG_CHILD_ERROR, "else", 40, 12),
+            "169:15: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
 
-            "172: " + getCheckMessage(MSG_CHILD_ERROR, "else", 14, 12),
-            "178: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
-            "180: " + getCheckMessage(MSG_CHILD_ERROR, "else", 10, 12),
-            "184: " + getCheckMessage(MSG_ERROR, "if", 10, 8),
-            "185: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
-            "186: " + getCheckMessage(MSG_ERROR, "if rcurly", 10, 8),
-            "187: " + getCheckMessage(MSG_ERROR, "else", 10, 8),
+            "172:15: " + getCheckMessage(MSG_CHILD_ERROR, "else", 14, 12),
+            "178:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "180:11: " + getCheckMessage(MSG_CHILD_ERROR, "else", 10, 12),
+            "184:11: " + getCheckMessage(MSG_ERROR, "if", 10, 8),
+            "185:15: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
+            "186:11: " + getCheckMessage(MSG_ERROR, "if rcurly", 10, 8),
+            "187:11: " + getCheckMessage(MSG_ERROR, "else", 10, 8),
 
-            "188: " + getCheckMessage(MSG_CHILD_ERROR, "else", 14, 12),
-            "189: " + getCheckMessage(MSG_ERROR, "else rcurly", 10, 8),
-            "192: " + getCheckMessage(MSG_CHILD_ERROR, "if", 9, 12),
-            "193: " + getCheckMessage(MSG_CHILD_ERROR, "if", 11, 12),
-            "197: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
-            "200: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
-            "207: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
-            "209: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "188:15: " + getCheckMessage(MSG_CHILD_ERROR, "else", 14, 12),
+            "189:11: " + getCheckMessage(MSG_ERROR, "else rcurly", 10, 8),
+            "192:10: " + getCheckMessage(MSG_CHILD_ERROR, "if", 9, 12),
+            "193:12: " + getCheckMessage(MSG_CHILD_ERROR, "if", 11, 12),
+            "197:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "200:8: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
+            "207:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
+            "209:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
 
-            "225: " + getCheckMessage(MSG_ERROR, "if", 10, 12),
-            "229: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 20),
-            "240: " + getCheckMessage(MSG_ERROR, "if rparen", 10, 8),
-            "245: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
-            "251: " + getCheckMessage(MSG_ERROR, "if lparen", 6, 8),
-            "253: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
-            "256: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
-            "257: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
-            "258: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
-            "259: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
-            "260: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
-            "262: " + getCheckMessage(MSG_ERROR, "else", 0, 8),
+            "225:11: " + getCheckMessage(MSG_ERROR, "if", 10, 12),
+            "229:19: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 20),
+            "240:11: " + getCheckMessage(MSG_ERROR, "if rparen", 10, 8),
+            "245:7: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
+            "251:7: " + getCheckMessage(MSG_ERROR, "if lparen", 6, 8),
+            "253:7: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
+            "256:1: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
+            "257:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "258:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "259:1: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
+            "260:1: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
+            "262:1: " + getCheckMessage(MSG_ERROR, "else", 0, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1119,38 +1120,38 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidWhileIndent.java");
         final String[] expected = {
-            "25: " + getCheckMessage(MSG_ERROR, "while", 9, 8),
-            "26: " + getCheckMessage(MSG_ERROR, "while rcurly", 7, 8),
-            "28: " + getCheckMessage(MSG_ERROR, "while", 7, 8),
-            "29: " + getCheckMessage(MSG_ERROR, "while lcurly", 9, 8),
-            "30: " + getCheckMessage(MSG_ERROR, "while rcurly", 9, 8),
+            "25:10: " + getCheckMessage(MSG_ERROR, "while", 9, 8),
+            "26:8: " + getCheckMessage(MSG_ERROR, "while rcurly", 7, 8),
+            "28:8: " + getCheckMessage(MSG_ERROR, "while", 7, 8),
+            "29:10: " + getCheckMessage(MSG_ERROR, "while lcurly", 9, 8),
+            "30:10: " + getCheckMessage(MSG_ERROR, "while rcurly", 9, 8),
 
-            "32: " + getCheckMessage(MSG_ERROR, "while", 9, 8),
-            "33: " + getCheckMessage(MSG_ERROR, "while lcurly", 6, 8),
-            "34: " + getCheckMessage(MSG_CHILD_ERROR, "while", 14, 12),
-            "35: " + getCheckMessage(MSG_ERROR, "while rcurly", 6, 8),
+            "32:10: " + getCheckMessage(MSG_ERROR, "while", 9, 8),
+            "33:7: " + getCheckMessage(MSG_ERROR, "while lcurly", 6, 8),
+            "34:15: " + getCheckMessage(MSG_CHILD_ERROR, "while", 14, 12),
+            "35:7: " + getCheckMessage(MSG_ERROR, "while rcurly", 6, 8),
 
-            "37: " + getCheckMessage(MSG_ERROR, "while", 10, 8),
-            "39: " + getCheckMessage(MSG_ERROR, "while rcurly", 10, 8),
-            "41: " + getCheckMessage(MSG_ERROR, "while", 10, 8),
-            "44: " + getCheckMessage(MSG_ERROR, "while rcurly", 10, 8),
+            "37:11: " + getCheckMessage(MSG_ERROR, "while", 10, 8),
+            "39:11: " + getCheckMessage(MSG_ERROR, "while rcurly", 10, 8),
+            "41:11: " + getCheckMessage(MSG_ERROR, "while", 10, 8),
+            "44:11: " + getCheckMessage(MSG_ERROR, "while rcurly", 10, 8),
 
-            "46: " + getCheckMessage(MSG_ERROR, "while", 6, 8),
-            "47: " + getCheckMessage(MSG_ERROR, "while lcurly", 10, 8),
-            "50: " + getCheckMessage(MSG_ERROR, "while rcurly", 6, 8),
-            "53: " + getCheckMessage(MSG_ERROR, "if", 14, 12),
-            "54: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 16),
-            "55: " + getCheckMessage(MSG_ERROR, "if rcurly", 14, 12),
-            "56: " + getCheckMessage(MSG_CHILD_ERROR, "while", 14, 12),
-            "57: " + getCheckMessage(MSG_ERROR, "while rcurly", 10, 8),
+            "46:7: " + getCheckMessage(MSG_ERROR, "while", 6, 8),
+            "47:11: " + getCheckMessage(MSG_ERROR, "while lcurly", 10, 8),
+            "50:7: " + getCheckMessage(MSG_ERROR, "while rcurly", 6, 8),
+            "53:15: " + getCheckMessage(MSG_ERROR, "if", 14, 12),
+            "54:19: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 16),
+            "55:15: " + getCheckMessage(MSG_ERROR, "if rcurly", 14, 12),
+            "56:15: " + getCheckMessage(MSG_CHILD_ERROR, "while", 14, 12),
+            "57:11: " + getCheckMessage(MSG_ERROR, "while rcurly", 10, 8),
 
-            "60: " + getCheckMessage(MSG_CHILD_ERROR, "while", 10, 12),
-            "66: " + getCheckMessage(MSG_CHILD_ERROR, "while", 10, 12),
-            "71: " + getCheckMessage(MSG_CHILD_ERROR, "while", 10, 12),
-            "78: " + getCheckMessage(MSG_ERROR, "while rparen", 5, 8),
-            "85: " + getCheckMessage(MSG_ERROR, "while rparen", 10, 8),
-            "92: " + getCheckMessage(MSG_ERROR, "while rparen", 10, 8),
-            "99: " + getCheckMessage(MSG_CHILD_ERROR, "while", 8, 12),
+            "60:11: " + getCheckMessage(MSG_CHILD_ERROR, "while", 10, 12),
+            "66:11: " + getCheckMessage(MSG_CHILD_ERROR, "while", 10, 12),
+            "71:11: " + getCheckMessage(MSG_CHILD_ERROR, "while", 10, 12),
+            "78:6: " + getCheckMessage(MSG_ERROR, "while rparen", 5, 8),
+            "85:11: " + getCheckMessage(MSG_ERROR, "while rparen", 10, 8),
+            "92:11: " + getCheckMessage(MSG_ERROR, "while rparen", 10, 8),
+            "99:9: " + getCheckMessage(MSG_CHILD_ERROR, "while", 8, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1187,39 +1188,39 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidForIndent.java");
         final String[] expected = {
-            "26: " + getCheckMessage(MSG_ERROR, "for", 6, 8),
-            "27: " + getCheckMessage(MSG_ERROR, "for rcurly", 10, 8),
-            "29: " + getCheckMessage(MSG_ERROR, "for", 9, 8),
-            "30: " + getCheckMessage(MSG_ERROR, "for lcurly", 6, 8),
-            "31: " + getCheckMessage(MSG_ERROR, "for rcurly", 6, 8),
-            "35: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "26:7: " + getCheckMessage(MSG_ERROR, "for", 6, 8),
+            "27:11: " + getCheckMessage(MSG_ERROR, "for rcurly", 10, 8),
+            "29:10: " + getCheckMessage(MSG_ERROR, "for", 9, 8),
+            "30:7: " + getCheckMessage(MSG_ERROR, "for lcurly", 6, 8),
+            "31:7: " + getCheckMessage(MSG_ERROR, "for rcurly", 6, 8),
+            "35:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
 
-            "36: " + getCheckMessage(MSG_ERROR, "for rcurly", 10, 8),
-            "39: " + getCheckMessage(MSG_ERROR, "for lcurly", 10, 8),
-            "40: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
-            "48: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
-            "54: " + getCheckMessage(MSG_ERROR, "for", 7, 8),
+            "36:11: " + getCheckMessage(MSG_ERROR, "for rcurly", 10, 8),
+            "39:11: " + getCheckMessage(MSG_ERROR, "for lcurly", 10, 8),
+            "40:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "48:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "54:8: " + getCheckMessage(MSG_ERROR, "for", 7, 8),
 
-            "55: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
-            "64: " + getCheckMessage(MSG_CHILD_ERROR, "for", 7, 12),
+            "55:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "64:8: " + getCheckMessage(MSG_CHILD_ERROR, "for", 7, 12),
 
-            "69: " + getCheckMessage(MSG_ERROR, "for", 6, 8),
-            "70: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
-            "71: " + getCheckMessage(MSG_CHILD_ERROR, "for", 14, 16),
-            "72: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
-            "81: " + getCheckMessage(MSG_ERROR, "for rparen", 12, 8),
-            "86: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
-            "87: " + getCheckMessage(MSG_ERROR, "for", 4, 8),
-            "88: " + getCheckMessage(MSG_CHILD_ERROR, "for", 8, 12),
-            "89: " + getCheckMessage(MSG_CHILD_ERROR, "for", 6, 12),
-            "90: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 16),
-            "92: " + getCheckMessage(MSG_ERROR, "for", 0, 8),
-            "93: " + getCheckMessage(MSG_ERROR, "for lparen", 0, 8),
-            "94: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
-            "95: " + getCheckMessage(MSG_ERROR, ";", 0, 4),
-            "96: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
-            "97: " + getCheckMessage(MSG_ERROR, ";", 0, 4),
-            "98: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
+            "69:7: " + getCheckMessage(MSG_ERROR, "for", 6, 8),
+            "70:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "71:15: " + getCheckMessage(MSG_CHILD_ERROR, "for", 14, 16),
+            "72:11: " + getCheckMessage(MSG_CHILD_ERROR, "for", 10, 12),
+            "81:13: " + getCheckMessage(MSG_ERROR, "for rparen", 12, 8),
+            "86:3: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
+            "87:5: " + getCheckMessage(MSG_ERROR, "for", 4, 8),
+            "88:9: " + getCheckMessage(MSG_CHILD_ERROR, "for", 8, 12),
+            "89:7: " + getCheckMessage(MSG_CHILD_ERROR, "for", 6, 12),
+            "90:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 16),
+            "92:1: " + getCheckMessage(MSG_ERROR, "for", 0, 8),
+            "93:1: " + getCheckMessage(MSG_ERROR, "for lparen", 0, 8),
+            "94:1: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
+            "95:1: " + getCheckMessage(MSG_ERROR, ";", 0, 4),
+            "96:1: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
+            "97:1: " + getCheckMessage(MSG_ERROR, ";", 0, 4),
+            "98:1: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1275,23 +1276,23 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationInvalidDoWhileIndent.java");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "8: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "9: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "10: " + getCheckMessage(MSG_ERROR, "do..while rcurly", 0, 8),
-            "11: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "12: " + getCheckMessage(MSG_ERROR, "do..while while", 0, 8),
-            "13: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "14: " + getCheckMessage(MSG_ERROR, "do..while lcurly", 0, 8),
-            "15: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "16: " + getCheckMessage(MSG_ERROR, "do..while while", 0, 8),
-            "17: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
-            "18: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "19: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
-            "20: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
-            "21: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
-            "22: " + getCheckMessage(MSG_CHILD_ERROR, "do..while", 0, 8),
-            "23: " + getCheckMessage(MSG_ERROR, "do..while rparen", 0, 8),
+            "7:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "8:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "9:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "10:1: " + getCheckMessage(MSG_ERROR, "do..while rcurly", 0, 8),
+            "11:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "12:1: " + getCheckMessage(MSG_ERROR, "do..while while", 0, 8),
+            "13:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "14:1: " + getCheckMessage(MSG_ERROR, "do..while lcurly", 0, 8),
+            "15:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "16:1: " + getCheckMessage(MSG_ERROR, "do..while while", 0, 8),
+            "17:1: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
+            "18:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "19:1: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
+            "20:1: " + getCheckMessage(MSG_ERROR, "do..while", 0, 8),
+            "21:1: " + getCheckMessage(MSG_ERROR, "do..while lparen", 0, 8),
+            "22:1: " + getCheckMessage(MSG_CHILD_ERROR, "do..while", 0, 8),
+            "23:1: " + getCheckMessage(MSG_ERROR, "do..while rparen", 0, 8),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1347,8 +1348,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String fileName = getPath("InputIndentationValidClassDefIndent.java");
         final String[] expected = {
-            "49: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
-            "71: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
+            "49:1: " + getCheckMessage(MSG_ERROR, "class", 0, 4),
+            "71:9: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1402,7 +1403,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 9, 8),
+            "29:10: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 9, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationUseTabs.java"), expected);
     }
@@ -1420,7 +1421,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "29: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 5, 4),
+            "29:6: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 5, 4),
         };
         verifyWarns(checkConfig, getPath("InputIndentationUseTwoSpaces.java"), expected);
     }
@@ -1451,19 +1452,19 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "5");
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
-            "10: " + getCheckMessage(MSG_ERROR, "NullPointerException", 0, 6),
-            "13: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
-            "16: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
-            "18: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
-            "19: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
-            "22: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
-            "23: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
-            "24: " + getCheckMessage(MSG_ERROR, "NullPointerException", 0, 6),
-            "27: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
-            "28: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
-            "31: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
-            "37: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "7:1: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
+            "10:1: " + getCheckMessage(MSG_ERROR, "NullPointerException", 0, 6),
+            "13:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "16:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "18:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "19:1: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
+            "22:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "23:1: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
+            "24:1: " + getCheckMessage(MSG_ERROR, "NullPointerException", 0, 6),
+            "27:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "28:1: " + getCheckMessage(MSG_ERROR, "Exception", 0, 6),
+            "31:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
+            "37:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 6),
         };
         verifyWarns(checkConfig, getPath("InputIndentationInvalidThrowsIndent2.java"), expected);
     }
@@ -1481,7 +1482,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 8),
+            "27:11: " + getCheckMessage(MSG_CHILD_ERROR, "case", 10, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCaseLevel.java"), expected);
     }
@@ -1499,7 +1500,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "28: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 10),
+            "28:9: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 10),
         };
         verifyWarns(checkConfig, getPath("InputIndentationBraceAdjustment.java"), expected);
     }
@@ -1517,10 +1518,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "22: " + getCheckMessage(MSG_ERROR, "getLineNo", 10, 12),
-            "24: " + getCheckMessage(MSG_ERROR, "getLine", 10, 12),
-            "28: " + getCheckMessage(MSG_ERROR, "=", 9, 12),
-            "29: " + getCheckMessage(MSG_ERROR, "1", 10, 12),
+            "22:11: " + getCheckMessage(MSG_ERROR, "getLineNo", 10, 12),
+            "24:11: " + getCheckMessage(MSG_ERROR, "getLine", 10, 12),
+            "28:10: " + getCheckMessage(MSG_ERROR, "=", 9, 12),
+            "29:11: " + getCheckMessage(MSG_ERROR, "1", 10, 12),
         };
         verifyWarns(checkConfig, getPath("InputIndentationInvalidAssignIndent.java"), expected);
     }
@@ -1531,8 +1532,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("basicOffset", "8");
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_ERROR, ".", 2, 4),
-            "5: " + getCheckMessage(MSG_ERROR, "import", 1, 0),
+            "4:3: " + getCheckMessage(MSG_ERROR, ".", 2, 4),
+            "5:2: " + getCheckMessage(MSG_ERROR, "import", 1, 0),
         };
         verifyWarns(checkConfig, getPath("InputIndentationInvalidImportIndent.java"), expected);
     }
@@ -1615,8 +1616,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_CHILD_ERROR, "synchronized", 0, 12),
-            "30: " + getCheckMessage(MSG_ERROR, "synchronized lparen", 12, 8),
+            "27:1: " + getCheckMessage(MSG_CHILD_ERROR, "synchronized", 0, 12),
+            "30:13: " + getCheckMessage(MSG_ERROR, "synchronized lparen", 12, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationSynchronizedStatement.java"), expected);
     }
@@ -1647,12 +1648,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         checkConfig.addAttribute("arrayInitIndent", "2");
         final String[] expected = {
-            "19: " + getCheckMessage(MSG_ERROR, "method def modifier", 8, 2),
-            "20: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 16, 4),
-            "21: " + getCheckMessage(MSG_ERROR_MULTI, "method def modifier", 24, "18, 20, 22"),
-            "23: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "method def", 32, "20, 22, 24"),
-            "24: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 24, "18, 20, 22"),
-            "26: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 2),
+            "19:9: " + getCheckMessage(MSG_ERROR, "method def modifier", 8, 2),
+            "20:17: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 16, 4),
+            "21:25: " + getCheckMessage(MSG_ERROR_MULTI, "method def modifier", 24, "18, 20, 22"),
+            "23:33: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "method def", 32, "20, 22, 24"),
+            "24:25: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 24, "18, 20, 22"),
+            "26:9: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 2),
         };
         verifyWarns(checkConfig, getPath("InputIndentationAnonymousClassInMethod.java"), expected);
     }
@@ -1668,13 +1669,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         checkConfig.addAttribute("arrayInitIndent", "4");
         final String[] expected = {
-            "40: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "8, 12, 16"),
-            "42: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
-            "48: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "8, 12, 16"),
-            "60: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "8, 12, 16"),
-            "66: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "8, 12, 16"),
-            "69: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "8, 12, 16"),
-            "75: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "8, 12, 16"),
+            "40:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "8, 12, 16"),
+            "42:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "48:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "8, 12, 16"),
+            "60:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "8, 12, 16"),
+            "66:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "8, 12, 16"),
+            "69:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 14, "8, 12, 16"),
+            "75:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "8, 12, 16"),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationAnonymousClassInMethodCurlyOnNewLine.java"), expected);
@@ -1693,7 +1694,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
+            "1:2: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
         };
         verifyWarns(checkConfig, getPath("InputIndentationPackageDeclaration.java"), expected);
     }
@@ -1703,7 +1704,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
+            "2:2: " + getCheckMessage(MSG_ERROR, "package def", 1, 0),
         };
         verifyWarns(checkConfig,
             getPath("package-info.java"), expected);
@@ -1722,8 +1723,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_ERROR, "com", 0, 4),
-            "3: " + getCheckMessage(MSG_ERROR, "checks", 0, 4),
+            "2:1: " + getCheckMessage(MSG_ERROR, "com", 0, 4),
+            "3:1: " + getCheckMessage(MSG_ERROR, "checks", 0, 4),
         };
         verifyWarns(checkConfig, getPath("InputIndentationPackageDeclaration4.java"), expected);
     }
@@ -1735,16 +1736,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("basicOffset", "2");
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         final String[] expected = {
-            "46: " + getCheckMessage(MSG_ERROR, "block lcurly", 5, 4),
-            "47: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
-            "50: " + getCheckMessage(MSG_ERROR, "lambda arguments", 9, 8),
-            "51: " + getCheckMessage(MSG_ERROR, "lambda", 11, 12),
-            "52: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
-            "64: " + getCheckMessage(MSG_CHILD_ERROR, "block", 7, 6),
-            "65: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
-            "179: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
-            "180: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
-            "185: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
+            "46:6: " + getCheckMessage(MSG_ERROR, "block lcurly", 5, 4),
+            "47:6: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
+            "50:10: " + getCheckMessage(MSG_ERROR, "lambda arguments", 9, 8),
+            "51:12: " + getCheckMessage(MSG_ERROR, "lambda", 11, 12),
+            "52:10: " + getCheckMessage(MSG_ERROR, "block lcurly", 9, 8),
+            "64:8: " + getCheckMessage(MSG_CHILD_ERROR, "block", 7, 6),
+            "65:6: " + getCheckMessage(MSG_ERROR, "block rcurly", 5, 4),
+            "179:10: " + getCheckMessage(MSG_CHILD_ERROR, "block", 9, 10),
+            "180:12: " + getCheckMessage(MSG_CHILD_ERROR, "block", 11, 10),
+            "185:8: " + getCheckMessage(MSG_ERROR, "block rcurly", 7, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationLambda1.java"), expected);
     }
@@ -1766,15 +1767,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         final String[] expected = {
-            "15: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
-            "23: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 20, "12, 16"),
-            "29: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
-            "30: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
-            "31: " + getCheckMessage(MSG_ERROR, "block rcurly", 8, 12),
-            "43: " + getCheckMessage(MSG_ERROR, "lambda arguments", 20, 16),
-            "65: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
-            "67: " + getCheckMessage(MSG_ERROR, "lambda", 28, 24),
-            "87: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 8),
+            "15:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "23:21: " + getCheckMessage(MSG_ERROR_MULTI, "lambda arguments", 20, "12, 16"),
+            "29:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "30:13: " + getCheckMessage(MSG_CHILD_ERROR, "block", 12, 16),
+            "31:9: " + getCheckMessage(MSG_ERROR, "block rcurly", 8, 12),
+            "43:21: " + getCheckMessage(MSG_ERROR, "lambda arguments", 20, 16),
+            "65:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+            "67:29: " + getCheckMessage(MSG_ERROR, "lambda", 28, 24),
+            "87:13: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationLambda3.java"), expected);
     }
@@ -1876,9 +1877,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName =
             getPath("InputIndentationAnnotationIncorrect.java");
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
-            "14: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
-            "19: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "11:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
+            "14:9: " + getCheckMessage(MSG_ERROR, "(", 8, 12),
+            "19:5: " + getCheckMessage(MSG_ERROR, "(", 4, 8),
         };
         verify(checkConfig, fileName, expected);
     }
@@ -1891,7 +1892,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("forceStrictCondition", "true");
         final String fileName = getPath("InputIndentationAnnotationScopeIndentationCheck.java");
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_ERROR, "}", 8, 0),
+            "9:9: " + getCheckMessage(MSG_ERROR, "}", 8, 0),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1907,35 +1908,35 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("forceStrictCondition", "true");
         final String fileName = getPath("InputIndentationCustomAnnotation.java");
         final String[] expected = {
-            "14: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
-            "15: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
-            "16: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
-            "17: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
-            "18: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
-            "20: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
-            "22: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
-            "23: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
-            "25: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
-            "26: " + getCheckMessage(MSG_ERROR, "AnnotationWithLineWrap", 5, 0),
-            "30: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
-            "31: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
-            "34: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
-            "35: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
-            "36: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 0, 4),
-            "37: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
-            "38: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap", 8, 4),
-            "41: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
-            "58: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap2", 4, 0),
-            "59: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 3, 4),
-            "60: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
-            "61: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
-            "72: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
-            "117: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 4),
-            "128: " + getCheckMessage(MSG_ERROR, "interface", 1, 0),
-            "134: " + getCheckMessage(MSG_ERROR, "@", 11, 0),
-            "137: " + getCheckMessage(MSG_ERROR, "@", 16, 0),
-            "144: " + getCheckMessage(MSG_ERROR, "@", 12, 4),
-            "148: " + getCheckMessage(MSG_ERROR, "class def ident", 16, 0),
+            "14:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
+            "15:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "16:6: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
+            "17:1: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
+            "18:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "20:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
+            "22:1: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 0, 4),
+            "23:6: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 5, 0),
+            "25:6: " + getCheckMessage(MSG_ERROR, "@", 5, 0),
+            "26:6: " + getCheckMessage(MSG_ERROR, "AnnotationWithLineWrap", 5, 0),
+            "30:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 0),
+            "31:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 0),
+            "34:6: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 5, 4),
+            "35:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "36:1: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 0, 4),
+            "37:1: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
+            "38:9: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap", 8, 4),
+            "41:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 8),
+            "58:5: " + getCheckMessage(MSG_ERROR, "AnnotationInnerLineWrap2", 4, 0),
+            "59:4: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 3, 4),
+            "60:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
+            "61:5: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
+            "72:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "117:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 4),
+            "128:2: " + getCheckMessage(MSG_ERROR, "interface", 1, 0),
+            "134:12: " + getCheckMessage(MSG_ERROR, "@", 11, 0),
+            "137:17: " + getCheckMessage(MSG_ERROR, "@", 16, 0),
+            "144:13: " + getCheckMessage(MSG_ERROR, "@", 12, 4),
+            "148:23: " + getCheckMessage(MSG_ERROR, "class def ident", 16, 0),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1949,28 +1950,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         final String fileName = getPath("InputIndentationTryWithResourcesStrict.java");
         final String[] expected = {
-            "26: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
-            "28: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 13, "8, 12"),
-            "33: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),
-            "39: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 12),
-            "59: " + getCheckMessage(MSG_ERROR, "try resource", 20, 16),
-            "84: " + getCheckMessage(MSG_ERROR, "writ", 19, 12),
-            "91: " + getCheckMessage(MSG_ERROR, "writ", 19, 16),
-            "98: " + getCheckMessage(MSG_ERROR, "writ", 21, 16),
-            "113: " + getCheckMessage(MSG_ERROR, "zipFileName", 17, 16),
-            "120: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
-            "130: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
-            "135: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
-            "141: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
-            "142: " + getCheckMessage(MSG_CHILD_ERROR, "try", 9, 12),
-            "146: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
-            "147: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 11, 16),
-            "148: " + getCheckMessage(MSG_CHILD_ERROR, "try", 13, 12),
-            "150: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
-            "151: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
-            "155: " + getCheckMessage(MSG_ERROR, "try", 9, 8),
-            "161: " + getCheckMessage(MSG_ERROR, ".", 13, 12),
-            "167: " + getCheckMessage(MSG_ERROR, ".", 11, 12),
+            "26:1: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
+            "28:14: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 13, "8, 12"),
+            "33:1: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),
+            "39:1: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 12),
+            "59:21: " + getCheckMessage(MSG_ERROR, "try resource", 20, 16),
+            "84:20: " + getCheckMessage(MSG_ERROR, "writ", 19, 12),
+            "91:20: " + getCheckMessage(MSG_ERROR, "writ", 19, 16),
+            "98:22: " + getCheckMessage(MSG_ERROR, "writ", 21, 16),
+            "113:18: " + getCheckMessage(MSG_ERROR, "zipFileName", 17, 16),
+            "120:16: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
+            "130:8: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "135:16: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
+            "141:12: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "142:10: " + getCheckMessage(MSG_CHILD_ERROR, "try", 9, 12),
+            "146:12: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "147:12: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 11, 16),
+            "148:14: " + getCheckMessage(MSG_CHILD_ERROR, "try", 13, 12),
+            "150:8: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "151:8: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
+            "155:10: " + getCheckMessage(MSG_ERROR, "try", 9, 8),
+            "161:14: " + getCheckMessage(MSG_ERROR, ".", 13, 12),
+            "167:12: " + getCheckMessage(MSG_ERROR, ".", 11, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1983,21 +1984,21 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         final String fileName = getPath("InputIndentationTryResourcesNotStrict.java");
         final String[] expected = {
-            "27: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
-            "33: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),
-            "39: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 12),
-            "120: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
-            "130: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
-            "135: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
-            "141: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
-            "142: " + getCheckMessage(MSG_CHILD_ERROR, "try", 9, 12),
-            "146: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
-            "147: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 11, 16),
-            "148: " + getCheckMessage(MSG_CHILD_ERROR, "try", 13, 12),
-            "150: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
-            "151: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
-            "164: " + getCheckMessage(MSG_ERROR, ".", 8, 12),
-            "172: " + getCheckMessage(MSG_ERROR, "new", 11, 12),
+            "27:1: " + getCheckMessage(MSG_ERROR, "try resource", 0, 12),
+            "33:1: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 16),
+            "39:1: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 0, 12),
+            "120:16: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
+            "130:8: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "135:16: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
+            "141:12: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "142:10: " + getCheckMessage(MSG_CHILD_ERROR, "try", 9, 12),
+            "146:12: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),
+            "147:12: " + getCheckMessage(MSG_ERROR, "newBufferedWriter", 11, 16),
+            "148:14: " + getCheckMessage(MSG_CHILD_ERROR, "try", 13, 12),
+            "150:8: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
+            "151:8: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
+            "164:9: " + getCheckMessage(MSG_ERROR, ".", 8, 12),
+            "172:12: " + getCheckMessage(MSG_ERROR, "new", 11, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -2049,10 +2050,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
-            "10: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
-            "13: " + getCheckMessage(MSG_CHILD_ERROR, "operator new", 0, 8),
-            "15: " + getCheckMessage(MSG_ERROR, "operator new lparen", 0, 8),
+            "8:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
+            "10:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
+            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "operator new", 0, 8),
+            "15:1: " + getCheckMessage(MSG_ERROR, "operator new lparen", 0, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
@@ -2070,12 +2071,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "2");
         checkConfig.addAttribute("throwsIndent", "2");
         final String[] expected = {
-            "44: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 8),
-            "45: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 10),
-            "47: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
-            "61: " + getCheckMessage(MSG_ERROR, "foo", 5, 8),
-            "82: " + getCheckMessage(MSG_ERROR, "if rcurly", 4, 6),
-            "84: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 2, 4),
+            "44:7: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 6, 8),
+            "45:9: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 8, 10),
+            "47:7: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
+            "61:6: " + getCheckMessage(MSG_ERROR, "foo", 5, 8),
+            "82:5: " + getCheckMessage(MSG_ERROR, "if rcurly", 4, 6),
+            "84:3: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 2, 4),
         };
         final String fileName = "InputIndentationChainedMethodWithBracketOnNewLine.java";
         verifyWarns(checkConfig, getPath(fileName), expected);
