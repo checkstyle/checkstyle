@@ -101,6 +101,10 @@ public class InputIndentationInvalidSwitchIndent { //indent:0 exp:0
 	    		break; //indent:16 exp:20 warn
 	    	else //indent:12 exp:16 warn
 	    		break; //indent:16 exp:20 warn
+            case 4: //indent:12 exp:12
+                s++; //indent:16 exp:16
+    /* hello */ case 5: //indent:4 exp:12 warn
+                s++; //indent:16 exp:16
         } //indent:8 exp:8
 
     } //indent:4 exp:4
