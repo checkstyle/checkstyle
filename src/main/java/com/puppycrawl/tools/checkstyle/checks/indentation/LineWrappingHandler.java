@@ -355,14 +355,14 @@ public class LineWrappingHandler {
     private void logWarningMessage(DetailAST currentNode, int currentIndent) {
         if (indentCheck.isForceStrictCondition()) {
             if (expandedTabsColumnNo(currentNode) != currentIndent) {
-                indentCheck.indentationLog(currentNode.getLineNo(),
+                indentCheck.indentationLog(currentNode,
                         IndentationCheck.MSG_ERROR, currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
         else {
             if (expandedTabsColumnNo(currentNode) < currentIndent) {
-                indentCheck.indentationLog(currentNode.getLineNo(),
+                indentCheck.indentationLog(currentNode,
                         IndentationCheck.MSG_ERROR, currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
