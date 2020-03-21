@@ -256,6 +256,16 @@ build:
         fi
 
   - script:
+      name: NoExceptiontest - spoon
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh no-exception-spoon"
+          ./.ci/wercker.sh no-exception-spoon
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
       name: NoExceptiontest - spring-framework
       code: |
         if [[ $RUN_JOB == 1 ]]; then

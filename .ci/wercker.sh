@@ -316,6 +316,20 @@ no-exception-spotbugs)
   rm -rf contribution
   ;;
 
+no-exception-spoon)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/checkstyle/contribution.git
+  cd .ci-temp/contribution/checkstyle-tester
+  sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
+  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  cd ../../
+  rm -rf contribution
+  ;;
+
 no-exception-spring-framework)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
