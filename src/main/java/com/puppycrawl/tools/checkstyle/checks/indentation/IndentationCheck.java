@@ -450,16 +450,16 @@ public class IndentationCheck extends AbstractCheck {
     /**
      * Log a violation message.
      *
-     * @param line the line number where the violation was found
+     * @param  ast the ast for which error to be logged
      * @param key the message that describes the violation
      * @param args the details of the message
      *
      * @see java.text.MessageFormat
      */
-    public void indentationLog(int line, String key, Object... args) {
-        if (!incorrectIndentationLines.contains(line)) {
-            incorrectIndentationLines.add(line);
-            log(line, key, args);
+    public void indentationLog(DetailAST ast, String key, Object... args) {
+        if (!incorrectIndentationLines.contains(ast.getLineNo())) {
+            incorrectIndentationLines.add(ast.getLineNo());
+            log(ast, key, args);
         }
     }
 
