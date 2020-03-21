@@ -316,7 +316,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                 }
 
                 // We need to catch all errors to put a reason failure (file name) in error
-                throw new Error("Error was thrown while processing " + file.getPath(), error);
+//                throw new Error("Error was thrown while processing " + file.getPath(), error);
             }
         }
     }
