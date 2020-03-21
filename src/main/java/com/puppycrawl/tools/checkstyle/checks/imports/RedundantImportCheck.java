@@ -150,7 +150,7 @@ public class RedundantImportCheck
         // So '.' must be present in member name and we are not checking for it
         final int index = importName.lastIndexOf('.');
         final String front = importName.substring(0, index);
-        return front.equals(pkg);
+        return pkg.equals(front);
     }
 
 }
