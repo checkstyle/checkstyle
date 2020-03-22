@@ -419,7 +419,7 @@ public class IllegalImportCheck
                 break;
             }
         }
-        if (!result && illegalClasses != null) {
+        if (illegalClasses != null) {
             for (String element : illegalClasses) {
                 if (importText.equals(element)) {
                     result = true;
