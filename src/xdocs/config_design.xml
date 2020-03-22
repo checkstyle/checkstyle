@@ -510,6 +510,39 @@ public class StringUtils // not final to allow subclassing
         <source>
 &lt;module name=&quot;InterfaceIsType&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+public interface Test1 { // violation
+    int a = 3;
+}
+
+public interface Test2 { // OK
+
+}
+
+public interface Test3 { // OK
+    int a = 3;
+    void test();
+}
+        </source>
+        <p>
+          To configure the check to report violation so that it doesn't allow Marker Interfaces:
+        </p>
+        <source>
+&lt;module name=&quot;InterfaceIsType&quot;&gt;
+  &lt;property name=&quot;allowMarkerInterfaces&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public interface Test1 { // violation
+    int a = 3;
+}
+
+public interface Test2 { // violation
+
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="InterfaceIsType_Example_of_Usage">
