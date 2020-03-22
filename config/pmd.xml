@@ -199,6 +199,8 @@
   </rule>
 
   <rule ref="category/java/design.xml">
+    <!-- We use our own CyclomaticComplexityCheck and count SWITCH in a special way. -->
+    <exclude name="CyclomaticComplexity"/>
     <!-- Too much false-positives on the check classes.
          We do not follow the philosophy of complete encapsulation, we like data classes
          (preferable immutable) to transfer content from one part to another.
@@ -285,55 +287,6 @@
       | //ClassOrInterfaceDeclaration[@Image='SuppressFilterElement']
              //ConstructorDeclaration
       "/>
-    </properties>
-  </rule>
-  <rule ref="category/java/design.xml/CyclomaticComplexity">
-    <properties>
-      <property name="classReportLevel" value="75"/>
-      <property name="methodReportLevel" value="11"/>
-      <!-- RequireThisCheck, VariableDeclarationUsageDistanceCheck, XdocsPagesTest,
-             JavadocMethodCheck and CommentsIndentationCheck are big classes and should not
-             be split without a good reason.
-           Main.validateCli is not reasonable to split as encapsulation of the logic will be
-             damaged.
-           *.visitToken are a big SWITCH block with a number of IF blocks.
-             If we split the block to several methods it will damage the readability.
-           JavadocStyleCheck is deprecated.
-           SuppressWarningsHolder.getAcceptableParent, FallThroughCheck.isTerminated,
-             ElementNode.iterateAxis, RootNode.iterateAxis are also huge switches,
-             they has to be monolithic.
-           CustomImportOrderCheck.finishImportList, CustomImportOrderCheck.getImportGroup are
-             validated by checkstyle version of Npath, we think that pmd is wrong here.
-           Checker.processFiles is validated by checkstyle version of Npath, we think that pmd is
-             wrong here.
-           CommonUtil is clearly designed for a large number of small methods for common use.
-           XdocsJavaDocsTest.testAllCheckSectionJavaDocs is needed until all suppressions are
-             removed. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck'
-      or @Image='VariableDeclarationUsageDistanceCheck' or @Image='XdocsPagesTest'
-      or @Image='JavadocMethodCheck' or @Image='CommentsIndentationCheck' or @Image='CommonUtil']
-    | //ClassOrInterfaceDeclaration[@Image='Main']//MethodDeclaration[@Name='validateCli']
-    | //ClassOrInterfaceDeclaration[@Image='Checker']//MethodDeclaration[@Name='processFiles']
-    | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']
-          //MethodDeclaration[@Name='isTerminated']
-    | //ClassOrInterfaceDeclaration[@Image='SuppressWarningsHolder']
-          //MethodDeclaration[@Name='getAcceptableParent']
-    | //ClassOrInterfaceDeclaration[@Image='CustomImportOrderCheck']
-          //MethodDeclaration[@Name='finishImportList' or @Name='getImportGroup']
-    | //ClassOrInterfaceDeclaration[@Image='JavadocStyleCheck']
-          //MethodDeclaration[@Name='checkHtmlTags']
-    | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']
-          //MethodDeclaration[@Name='iterateAxis']
-    | //ClassOrInterfaceDeclaration[@Image='NPathComplexityCheck'
-      or @Image='EmptyLineSeparatorCheck' or @Image='LeftCurlyCheck'
-      or @Image='DeclarationOrderCheck' or @Image='MissingOverrideCheck'
-      or @Image='FinalLocalVariableCheck' or @Image='ModifiedControlVariableCheck'
-      or @Image='ParameterAssignmentCheck' or @Image='UnnecessaryParenthesesCheck'
-      or @Image='AbstractClassCouplingCheck' or @Image='BooleanExpressionComplexityCheck'
-      or @Image='ParenPadCheck' or @Image='IllegalTypeCheck']//MethodDeclaration[@Name='visitToken']
-    | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']
-          //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyFields">
