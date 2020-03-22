@@ -920,7 +920,6 @@ public class UserService {
           <li>MethodCount</li>
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocPackage</li>
-          <li>MissingJavadocType</li>
           <li>NeedBraces</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageDeclaration</li>

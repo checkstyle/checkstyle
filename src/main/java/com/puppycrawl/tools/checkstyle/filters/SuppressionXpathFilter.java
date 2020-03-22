@@ -98,9 +98,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocPackage
  * </li>
  * <li>
- * MissingJavadocType
- * </li>
- * <li>
  * NeedBraces
  * </li>
  * <li>
