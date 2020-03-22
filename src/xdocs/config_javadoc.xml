@@ -2531,6 +2531,49 @@ class DatabaseConfiguration {}
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <div class="wrapper">
+        <pre>
+public class Test {
+  /** @return integer value */ // violation
+  // Javadoc has one at-clause, should be written in multiple lines
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}
+public class Test {
+  /**
+   * @return integer value
+   */ // ok
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}
+        </pre>
+        </div>
+        <p>
+          To configure this check to print violations for unclosed HTML tags.
+        </p>
+        <source>
+&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+  &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <div class="wrapper">
+        <pre>
+public class Test {
+  /**
+   * @return integer value
+   *
+   * &lt;p&gt; First // violation, unclosed HTML tag &lt;p&gt;
+   */
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}
+        </pre>
+        </div>
         <p>
           To configure the check with a list of ignored at-clauses and make
           inline at-clauses not ignored:
@@ -2541,6 +2584,24 @@ class DatabaseConfiguration {}
   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <div class="wrapper">
+        <pre>
+public class Test {
+  /** @see #sum(int a, int b) */ // ok
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}
+public class Test {
+  /** Testing class for {@link Example} */ // violation
+  // single-line javadoc comment should be multi-line
+  public int sum(int a, int b) {
+    return a + b;
+  }
+}
+        </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="SingleLineJavadoc_Example_of_Usage">
