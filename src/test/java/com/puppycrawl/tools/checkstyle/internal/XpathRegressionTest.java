@@ -61,6 +61,10 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "InterfaceMemberImpliedModifier",
             "JavadocMethod",
             "JavadocType",
+<<<<<<< HEAD
+=======
+            "MethodCount",
+>>>>>>> Issue #7742: Update AbstractChecks to log DetailAST - LambdaParameterName
             "MissingJavadocMethod",
             "MissingJavadocType",
             "OverloadMethodsDeclarationOrder",

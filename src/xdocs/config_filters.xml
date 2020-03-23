@@ -910,6 +910,10 @@ public class UserService {
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
+<<<<<<< HEAD
+=======
+          <li>MethodCount</li>
+>>>>>>> Issue #7742: Update AbstractChecks to log DetailAST - LambdaParameterName
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>OverloadMethodsDeclarationOrder</li>

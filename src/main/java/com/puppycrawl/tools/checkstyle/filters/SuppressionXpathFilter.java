@@ -68,6 +68,12 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocType
  * </li>
  * <li>
+<<<<<<< HEAD
+=======
+ * MethodCount
+ * </li>
+ * <li>
+>>>>>>> Issue #7742: Update AbstractChecks to log DetailAST - LambdaParameterName
  * MissingJavadocMethod
  * </li>
  * <li>
