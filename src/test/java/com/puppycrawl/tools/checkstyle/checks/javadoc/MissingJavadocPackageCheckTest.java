@@ -68,7 +68,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testPackageJavadocMissing() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "1:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/package-info.java"), expected);
     }
@@ -77,7 +77,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testBlockCommentInsteadOfJavadoc() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "4:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/blockcomment/package-info.java"), expected);
     }
@@ -86,7 +86,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testSinglelineCommentInsteadOfJavadoc() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "2:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/singleline/package-info.java"), expected);
     }
@@ -95,7 +95,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testSinglelineCommentInsteadOfJavadoc2() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "2:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/single/package-info.java"), expected);
     }
@@ -104,7 +104,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testPackageJavadocMissingWithAnnotation() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "2:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/annotation/package-info.java"), expected);
     }
@@ -113,7 +113,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testPackageJavadocMissingWithAnnotationAndBlockComment() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "6: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "6:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/annotation/blockcomment/package-info.java"), expected);
     }
@@ -122,7 +122,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testPackageJavadocMissingDetachedJavadoc() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "5:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/detached/package-info.java"), expected);
     }
@@ -138,7 +138,7 @@ public class MissingJavadocPackageCheckTest extends AbstractModuleTestSupport {
     public void testPackageJavadocMissingWithBlankLines() throws Exception {
         final DefaultConfiguration config = createModuleConfig(MissingJavadocPackageCheck.class);
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
+            "2:1: " + getCheckMessage(MSG_PKG_JAVADOC_MISSING),
         };
         verify(config, getPath("nojavadoc/blank/package-info.java"), expected);
     }

@@ -89,9 +89,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocMethod
  * </li>
  * <li>
- * MissingJavadocPackage
- * </li>
- * <li>
  * MissingJavadocType
  * </li>
  * <li>
