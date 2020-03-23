@@ -914,7 +914,6 @@ public class UserService {
           <li>JavadocContentLocation</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
-          <li>LambdaParameterName</li>
           <li>MethodCount</li>
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
