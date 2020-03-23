@@ -80,9 +80,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocType
  * </li>
  * <li>
- * LambdaParameterName
- * </li>
- * <li>
  * MethodCount
  * </li>
  * <li>
