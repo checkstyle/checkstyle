@@ -917,7 +917,6 @@ public class UserService {
           <li>LambdaParameterName</li>
           <li>MethodCount</li>
           <li>MissingJavadocMethod</li>
-          <li>MissingJavadocPackage</li>
           <li>MissingJavadocType</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageDeclaration</li>
