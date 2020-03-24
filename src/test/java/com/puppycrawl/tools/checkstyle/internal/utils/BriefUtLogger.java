@@ -20,9 +20,12 @@
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
 import java.io.OutputStream;
+import java.util.function.Function;
 
+import com.puppycrawl.tools.checkstyle.AuditEventFormatter;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
 /**
  * A brief logger that only display info about errors.
@@ -30,12 +33,35 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 public class BriefUtLogger extends DefaultLogger {
 
     /**
+     * A factory to create BriefUtLogger.
+     */
+    public enum Factory implements Function<OutputStream, BriefUtLogger> {
+        DEFAULT(new AuditEventUtFormatter()),
+        DETAIL(new DetailAuditEventUtFormatter());
+
+        private final AuditEventFormatter formatter;
+
+        Factory(final AuditEventFormatter formatter) {
+            this.formatter = formatter;
+        }
+
+        @Override
+        public BriefUtLogger apply(OutputStream out) {
+            return new BriefUtLogger(out, formatter);
+        }
+    }
+
+    /**
      * Creates BriefLogger object.
      * @param out output stream for info messages and errors.
      */
     public BriefUtLogger(OutputStream out) {
+        this(out, new AuditEventUtFormatter());
+    }
+
+    protected BriefUtLogger(OutputStream out, AuditEventFormatter eventFormatter) {
         super(out, OutputStreamOptions.CLOSE, out,
-                OutputStreamOptions.NONE, new AuditEventUtFormatter());
+                OutputStreamOptions.NONE, eventFormatter);
     }
 
     @Override
@@ -43,4 +69,21 @@ public class BriefUtLogger extends DefaultLogger {
         // has to NOT log audit started event
     }
 
+    /**
+     * This {link AuditEventFormatter} implementation enriches {@code AuditEvent} formatting
+     * of the {@link AuditEventUtFormatter} by appending the {@link LocalizedMessage} attributes.
+     */
+    private static final class DetailAuditEventUtFormatter implements AuditEventFormatter {
+        private final AuditEventFormatter core = new AuditEventUtFormatter();
+
+        @Override
+        public String format(AuditEvent event) {
+            final LocalizedMessage locMsg = event.getLocalizedMessage();
+            final StringBuilder msgBuilder = new StringBuilder(core.format(event));
+            if (locMsg.getTokenType() > 0) {
+                msgBuilder.append(": [TokenType : ").append(locMsg.getTokenType()).append(']');
+            }
+            return msgBuilder.toString();
+        }
+    }
 }

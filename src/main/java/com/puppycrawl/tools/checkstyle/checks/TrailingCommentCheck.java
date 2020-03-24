@@ -25,10 +25,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.regex.Pattern;
 
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -186,9 +188,13 @@ public class TrailingCommentCheck extends AbstractCheck {
             final String line = getLines()[lineNo - 1];
             final String lineBefore;
             final TextBlock comment;
+            final int commentTokenType;
             if (cppComments.containsKey(lineNo)) {
                 comment = cppComments.get(lineNo);
                 lineBefore = line.substring(0, comment.getStartColNo());
+
+                // Comment type is CPP-style single line comment
+                commentTokenType = TokenTypes.SINGLE_LINE_COMMENT;
             }
             else {
                 final List<TextBlock> commentList = cComments.get(lineNo);
@@ -201,12 +207,23 @@ public class TrailingCommentCheck extends AbstractCheck {
                             .substring(comment.getEndColNo() + 1))) {
                     continue;
                 }
+
+                // Comment type is C-style block comment begin given we are logging start line
+                commentTokenType = TokenTypes.BLOCK_COMMENT_BEGIN;
             }
             if (!format.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
-                log(lineNo, MSG_KEY);
+                log(getDetailAstFromTextBlock(comment, commentTokenType), MSG_KEY);
             }
         }
+    }
+
+    private static DetailAST getDetailAstFromTextBlock(TextBlock textBlock, int tokenType) {
+        final DetailAstImpl ast = new DetailAstImpl();
+        ast.setType(tokenType);
+        ast.setLineNo(textBlock.getStartLineNo());
+        ast.setColumnNo(textBlock.getStartColNo());
+        return ast;
     }
 
     /**

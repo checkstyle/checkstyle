@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
@@ -129,6 +130,22 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     public final Checker createChecker(Configuration moduleConfig,
                                  ModuleCreationOption moduleCreationOption)
             throws Exception {
+        return createChecker(moduleConfig, moduleCreationOption, new BriefUtLogger(stream));
+    }
+
+    /**
+     * Creates {@link Checker} instance based on the given {@link Configuration} instance.
+     * @param moduleConfig {@link Configuration} instance.
+     * @param moduleCreationOption {@code IN_TREEWALKER} if the {@code moduleConfig} should be added
+     *                                              under {@link TreeWalker}.
+     * @param listener {@link AuditListener} instance
+     * @return {@link Checker} instance based on the given {@link Configuration} instance.
+     * @throws Exception if an exception occurs during checker configuration.
+     */
+    public static Checker createChecker(Configuration moduleConfig,
+                                       ModuleCreationOption moduleCreationOption,
+                                       AuditListener listener)
+            throws Exception {
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
 
@@ -143,7 +160,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             final Configuration dc = createRootConfig(moduleConfig);
             checker.configure(dc);
         }
-        checker.addListener(new BriefUtLogger(stream));
+        checker.addListener(listener);
         return checker;
     }
 
