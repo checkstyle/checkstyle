@@ -922,7 +922,6 @@ public class UserService {
           <li>AvoidEscapedUnicodeCharacters</li>
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
-          <li>EmptyLineSeparator</li>
           <li>Indentation</li>
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
