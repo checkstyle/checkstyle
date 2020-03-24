@@ -57,6 +57,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>violation</p>
+ * <pre>
+ * for(int i; i&lt;10;){
+ *     //violation
+ * }
+ * </pre>
+ * <p>acceptable code</p>
+ * <pre>
+ * for(int i; i&lt;10; i++){
+ *     //OK
+ * }
+ * </pre>
  *
  * @since 3.0
  */

@@ -173,6 +173,18 @@ for (Iterator foo = very.long.line.iterator();
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>violation</p>
+          <source>
+for(int i; i&lt;10;){
+    //violation
+}
+          </source>
+          <p>acceptable code</p>
+          <source>
+for(int i; i&lt;10; i++){
+    //OK
+}
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="EmptyForIteratorPad_Example_of_Usage">
