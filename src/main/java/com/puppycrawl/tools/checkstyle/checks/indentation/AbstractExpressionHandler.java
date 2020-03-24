@@ -530,8 +530,8 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * Check the indentation of the right parenthesis.
-     * @param rparen parenthesis to check
      * @param lparen left parenthesis associated with aRparen
+     * @param rparen parenthesis to check
      */
     protected final void checkRightParen(DetailAST lparen, DetailAST rparen) {
         if (rparen != null) {

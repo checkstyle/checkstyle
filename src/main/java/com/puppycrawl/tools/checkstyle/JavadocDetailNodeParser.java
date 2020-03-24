@@ -244,8 +244,8 @@ public class JavadocDetailNodeParser {
 
     /**
      * Creates child nodes for each node from 'nodes' array.
-     * @param parseTreeParent original ParseTree parent node
      * @param nodes array of JavadocNodeImpl nodes
+     * @param parseTreeParent original ParseTree parent node
      */
     private void insertChildrenNodes(final JavadocNodeImpl[] nodes, ParseTree parseTreeParent) {
         for (int i = 0; i < nodes.length; i++) {
