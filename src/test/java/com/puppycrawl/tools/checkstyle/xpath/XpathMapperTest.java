@@ -70,7 +70,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
 
     @Test
     public void testFullPath() throws Exception {
-        final String xpath = "/CLASS_DEF/OBJBLOCK/METHOD_DEF[1]/SLIST/VARIABLE_DEF[2]";
+        final String xpath = "/CLASS_DEF/OBJBLOCK/METHOD_DEF[1]/SLIST/VARIABLES[2]/VARIABLE_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -78,23 +78,25 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .getNextSibling()
-                .getNextSibling();
+                .getNextSibling()
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testParent() throws Exception {
-        final String xpath = "(//VARIABLE_DEF)[1]/..";
+        final String xpath = "(//VARIABLES/VARIABLE_DEF)[1]/..";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
-                .findFirstToken(TokenTypes.SLIST);
+                .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLES);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
@@ -216,7 +218,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
 
     @Test
     public void testQueryElementByIndex() throws Exception {
-        final String xpath = "(//VARIABLE_DEF)[1]";
+        final String xpath = "(//VARIABLES/VARIABLE_DEF)[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         assertThat("Invalid number of nodes", actual.length, equalTo(1));
@@ -225,6 +227,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
@@ -386,9 +389,10 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .getNextSibling()
-                .getNextSibling();
+                .getNextSibling()
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
@@ -639,6 +643,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
@@ -655,9 +660,10 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .getNextSibling()
-                .getNextSibling();
+                .getNextSibling()
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
@@ -866,6 +872,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .findFirstToken(TokenTypes.MODIFIERS)
                 .getNextSibling()
@@ -903,7 +910,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
 
     @Test
     public void testQueryElementPrecedingSibling() throws Exception {
-        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::*";
+        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/parent::*/preceding-sibling::*";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode1 = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -911,7 +918,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF);
+                .findFirstToken(TokenTypes.VARIABLES);
         final DetailAST expectedSemiNode1 = expectedVariableDefNode1.getNextSibling();
         final DetailAST expectedVariableDefNode2 = expectedSemiNode1.getNextSibling();
         final DetailAST expectedSemiNode2 = expectedVariableDefNode2.getNextSibling();
@@ -922,8 +929,8 @@ public class XpathMapperTest extends AbstractPathTestSupport {
 
     @Test
     public void testQueryElementPrecedingSiblingVariableDef() throws Exception {
-        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::"
-                + "VARIABLE_DEF";
+        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/parent::*"
+                + "/preceding-sibling::VARIABLES/VARIABLE_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode1 = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -931,16 +938,19 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
-        final DetailAST expectedVariableDefNode2 = expectedVariableDefNode1.getNextSibling()
-                .getNextSibling();
+        final DetailAST expectedVariableDefNode2 = expectedVariableDefNode1.getParent()
+                .getNextSibling().getNextSibling().getFirstChild();
         final DetailAST[] expected = {expectedVariableDefNode1, expectedVariableDefNode2};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
     @Test
     public void testQueryElementPrecedingSiblingArray() throws Exception {
-        final String xpath = "//VARIABLE_DEF[./IDENT[@text='array']]/preceding-sibling::*[1]";
+
+        final String xpath = "(//VARIABLE_DEF[./IDENT[@text='array']]/parent::*" +
+                "/preceding-sibling::*/VARIABLE_DEF)[1]";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
@@ -948,6 +958,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST[] expected = {expectedVariableDefNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
