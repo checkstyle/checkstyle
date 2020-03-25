@@ -110,6 +110,15 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    //Needed to add these here to preserve order of tokens
+    SINGLE_LINE_COMMENT_CONTENT; BLOCK_COMMENT_CONTENT; STD_ESC;
+    BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
+    FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
+    SIGNED_INTEGER; BINARY_EXPONENT;
+
+    //Variable Declarator List
+    VAR_DEC_LIST;
 }
 
 {
@@ -822,11 +831,25 @@ implementsClause
                                         tc,
                                         s2,
                                         s5);}
-                       |    v:variableDefinitions[#mods,#t] (s6:SEMI)?
-                           {
-                               #field = #v;
-                               #v.addChild(#s6);
-                           }
+
+                     |   vd:variableDefinitions[#mods,#t] (s6:SEMI)?
+                     ({
+                         if(#vd.getNextSibling() != null) {
+                             #field = #(#[VAR_DEC_LIST, "VAR_DEC_LIST"], vd);
+                             while (#vd.getNextSibling() != null)
+                             {
+                                 #vd = #vd.getNextSibling();
+                             }
+                         }
+                         else {
+                             #field = #vd;
+                         }
+                         //#vd.addchild(#s6);//option2
+                         #field.addChild(#s6);//option3
+                     })
+
+
+
                        )
                    )
                )
