@@ -50,15 +50,6 @@ public abstract class AbstractFileSetCheck
     /** The tab width for column reporting. */
     private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
-    /**
-     * Called to process a file that matches the specified file extensions.
-     * @param file the file to be processed
-     * @param fileText the contents of the file.
-     * @throws CheckstyleException if error condition within Checkstyle occurs.
-     */
-    protected abstract void processFiltered(File file, FileText fileText)
-            throws CheckstyleException;
-
     @Override
     public void init() {
         // No code by default, should be overridden only by demand at subclasses
@@ -73,6 +64,15 @@ public abstract class AbstractFileSetCheck
     public void beginProcessing(String charset) {
         // No code by default, should be overridden only by demand at subclasses
     }
+
+    /**
+     * Called to process a file that matches the specified file extensions.
+     * @param file the file to be processed
+     * @param fileText the contents of the file.
+     * @throws CheckstyleException if error condition within Checkstyle occurs.
+     */
+    protected abstract void processFiltered(File file, FileText fileText)
+            throws CheckstyleException;
 
     @Override
     public final SortedSet<LocalizedMessage> process(File file, FileText fileText)
