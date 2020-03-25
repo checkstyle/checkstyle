@@ -155,9 +155,9 @@ public final class BlockCommentPosition {
         return isOnPlainClassMember(blockComment, TokenTypes.VARIABLE_DEF)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.VARIABLE_DEF)
                     && blockComment.getParent().getParent().getParent()
-                        .getType() == TokenTypes.OBJBLOCK
+                        .getParent().getType() == TokenTypes.OBJBLOCK
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.VARIABLE_DEF)
-                    && blockComment.getParent().getParent().getParent()
+                    && blockComment.getParent().getParent().getParent().getParent()
                         .getParent().getType() == TokenTypes.OBJBLOCK;
     }
 
@@ -268,13 +268,15 @@ public final class BlockCommentPosition {
                 || parent.getType() == TokenTypes.ARRAY_DECLARATOR)) {
             parent = parent.getParent();
         }
-        return parent != null
+        boolean result = parent != null
                 && (parent.getType() == TokenTypes.TYPE
                     || parent.getType() == TokenTypes.TYPE_PARAMETERS)
                 && parent.getParent().getType() == memberType
                 // previous parent sibling is always TokenTypes.MODIFIERS
                 && !parent.getPreviousSibling().hasChildren()
-                && parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK;
+                && (parent.getParent().getParent().getParent().getType() == TokenTypes.OBJBLOCK
+                || parent.getParent().getParent().getType() == TokenTypes.OBJBLOCK);
+        return result;
     }
 
     /**

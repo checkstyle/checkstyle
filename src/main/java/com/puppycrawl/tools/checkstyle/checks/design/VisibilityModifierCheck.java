@@ -609,7 +609,7 @@ public class VisibilityModifierCheck
      * @return true if current variable definition is definition of an anonymous class.
      */
     private static boolean isAnonymousClassVariable(DetailAST variableDef) {
-        return variableDef.getParent().getType() != TokenTypes.OBJBLOCK;
+        return variableDef.getParent().getParent().getType() != TokenTypes.OBJBLOCK;
     }
 
     /**
@@ -624,7 +624,7 @@ public class VisibilityModifierCheck
 
         if (!inInterfaceOrAnnotationBlock && !hasIgnoreAnnotation(variableDef)) {
             final DetailAST varNameAST = variableDef.findFirstToken(TokenTypes.TYPE)
-                .getNextSibling();
+                    .getNextSibling();
             final String varName = varNameAST.getText();
             if (!hasProperAccessModifier(variableDef, varName)) {
                 log(varNameAST, MSG_KEY, varName);
@@ -759,7 +759,7 @@ public class VisibilityModifierCheck
      * @return true if immutable field is defined in final class.
      */
     private boolean isImmutableFieldDefinedInFinalClass(DetailAST variableDef) {
-        final DetailAST classDef = variableDef.getParent().getParent();
+        final DetailAST classDef = variableDef.getParent().getParent().getParent();
         final Set<String> classModifiers = getModifiers(classDef);
         return (classModifiers.contains(FINAL_KEYWORD) || classDef.getType() == TokenTypes.ENUM_DEF)
                 && isImmutableField(variableDef);

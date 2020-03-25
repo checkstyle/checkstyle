@@ -246,9 +246,14 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
             while (child != null) {
                 final int type = child.getType();
                 if (type == TokenTypes.METHOD_DEF
-                        || type == TokenTypes.VARIABLE_DEF) {
-                    final DetailAST modifiers =
-                        child.findFirstToken(TokenTypes.MODIFIERS);
+                        || type == TokenTypes.VARIABLES) {
+                    DetailAST modifiers = child.findFirstToken(TokenTypes.MODIFIERS);
+
+                    if (type == TokenTypes.VARIABLES) {
+                        modifiers =
+                                child.getFirstChild().findFirstToken(TokenTypes.MODIFIERS);
+                    }
+
                     final boolean isStatic =
                         modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
 

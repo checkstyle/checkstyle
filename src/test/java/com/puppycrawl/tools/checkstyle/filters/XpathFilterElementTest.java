@@ -102,9 +102,10 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testComplexQuery() throws Exception {
-        final String xpath = "//VARIABLE_DEF[./IDENT[@text='pi'] and "
-                + "../../IDENT[@text='countTokens']] "
-                + "| //VARIABLE_DEF[./IDENT[@text='someVariable'] and ../../IDENT[@text='sum']]";
+        final String xpath = "//VARIABLES/VARIABLE_DEF[./IDENT[@text='pi'] and "
+                + "../../../IDENT[@text='countTokens']] "
+                + "| //VARIABLES/VARIABLE_DEF[./IDENT[@text='someVariable'] and "
+                + "../../../IDENT[@text='sum']]";
         final XpathFilterElement filter = new XpathFilterElement(
                 "InputXpathFilterElementSuppressByXpath", "Test", null, null, xpath);
         final TreeWalkerAuditEvent eventOne = getEvent(5, 8,

@@ -860,9 +860,10 @@ public class MainTest {
             "`--OBJBLOCK -> OBJBLOCK [3:28]",
             "    |--METHOD_DEF -> METHOD_DEF [4:4]",
             "    |   `--SLIST -> { [4:20]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
-            "    |       |   |--IDENT -> a [5:12]");
-        Main.main("-b", "/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]//VARIABLE_DEF/IDENT",
+            "    |       |--VARIABLES -> VARIABLES [5:8]",
+            "    |       |   `--VARIABLE_DEF -> VARIABLE_DEF [5:8]",
+            "    |       |       |--IDENT -> a [5:12]");
+        Main.main("-b", "/CLASS_DEF//METHOD_DEF[./IDENT[@text='methodOne']]//VARIABLES/VARIABLE_DEF/IDENT",
                 getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
@@ -898,9 +899,10 @@ public class MainTest {
             "`--OBJBLOCK -> OBJBLOCK [3:28]",
             "    |--METHOD_DEF -> METHOD_DEF [8:4]",
             "    |   `--SLIST -> { [8:26]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [9:8]",
-            "    |       |   |--IDENT -> a [9:12]");
-        final String xpath = "/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]//VARIABLE_DEF/IDENT";
+            "    |       |--VARIABLES -> VARIABLES [9:8]",
+            "    |       |   `--VARIABLE_DEF -> VARIABLE_DEF [9:8]",
+            "    |       |       |--IDENT -> a [9:12]");
+        final String xpath = "/CLASS_DEF//METHOD_DEF[./IDENT[@text='method']]//VARIABLES/VARIABLE_DEF/IDENT";
         Main.main("--branch-matching-xpath", xpath, getPath("InputMainXPath.java"));
         assertThat("Unexpected output log", systemOut.getCapturedData(), is(expected));
         assertThat("Unexpected system error log", systemErr.getCapturedData(), is(""));
@@ -1007,18 +1009,20 @@ public class MainTest {
     public void testPrintSuppressionAndTabWidthOption(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = addEndOfLine(
-            "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST/VARIABLES",
+                "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]"
-                    + "/SLIST/VARIABLE_DEF[./IDENT[@text='var']]",
+                    + "/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='var']]",
                 "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
-                    + "/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS",
+                    + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='var']]/MODIFIERS",
                 "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
-                    + "/VARIABLE_DEF[./IDENT[@text='var']]/TYPE",
+                    + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='var']]/TYPE",
                 "/CLASS_DEF[./IDENT[@text='InputMainSuppressionsStringPrinter']]/OBJBLOCK"
                     + "/METHOD_DEF[./IDENT[@text='getName']]/SLIST"
-                    + "/VARIABLE_DEF[./IDENT[@text='var']]/TYPE/LITERAL_INT");
+                    + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='var']]/TYPE/LITERAL_INT");
 
         Main.main(getPath("InputMainSuppressionsStringPrinter.java"),
                 "-s", "7:9", "--tabWidth", "2");
@@ -1189,7 +1193,7 @@ public class MainTest {
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"ExplicitInitializationCheck\"",
             "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathSuppressions']]"
-                + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
+                + "/OBJBLOCK/VARIABLES/VARIABLE_DEF/IDENT[@text='low']\"/>",
             "<suppress-xpath",
             "       files=\"InputMainGenerateXpathSuppressions.java\"",
             "       checks=\"IllegalThrowsCheck\"",
@@ -1237,7 +1241,7 @@ public class MainTest {
                 "       checks=\"ExplicitInitializationCheck\"",
                 "       query=\"/CLASS_DEF[./IDENT["
                     + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
-                    + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF/IDENT[@text='low']\"/>",
                 "</suppressions>");
         final File file = new File(temporaryFolder, "file.output");
         Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"), "-o", file.getPath(),
@@ -1265,7 +1269,7 @@ public class MainTest {
                 "       checks=\"ExplicitInitializationCheck\"",
                 "       query=\"/CLASS_DEF[./IDENT["
                     + "@text='InputMainGenerateXpathSuppressionsTabWidth']]"
-                    + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='low']\"/>",
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF/IDENT[@text='low']\"/>",
                 "</suppressions>");
 
         Main.main("-c", getPath("InputMainConfig-xpath-suppressions.xml"),
