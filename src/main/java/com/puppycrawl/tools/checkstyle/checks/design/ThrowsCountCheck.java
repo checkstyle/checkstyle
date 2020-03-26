@@ -62,6 +62,40 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure check:
+ * </p>
+ * <pre>
+ * &lt;module name="ThrowsCount"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public void myFunction() throws CloneNotSupportedException,
+ *                             ArrayIndexOutOfBoundsException,
+ *                             StringIndexOutOfBoundsException,
+ *                             IllegalStateException,
+ *                             NullPointerException { // violation, max allowed is 4
+ *         // body
+ *     }
+ *
+ *     public void myFunc() throws ArithmeticException,
+ *             NumberFormatException { // ok
+ *         // body
+ *     }
+ *
+ *     private void privateFunc() throws CloneNotSupportedException,
+ *                             ClassNotFoundException,
+ *                             IllegalAccessException,
+ *                             ArithmeticException,
+ *                             ClassCastException { // ok, private methods are ignored
+ *         // body
+ *     }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow more than two throws per method:
  * </p>
  * <pre>
@@ -70,12 +104,71 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public void myFunction() throws IllegalStateException,
+ *                                 ArrayIndexOutOfBoundsException,
+ *                                 NullPointerException { // violation, max allowed is 2
+ *         // body
+ *     }
+ *
+ *     public void myFunc() throws ArithmeticException,
+ *                                 NumberFormatException { // ok
+ *         // body
+ *     }
+ *
+ *     private void privateFunc() throws CloneNotSupportedException,
+ *                                 ClassNotFoundException,
+ *                                 IllegalAccessException,
+ *                                 ArithmeticException,
+ *                                 ClassCastException { // ok, private methods are ignored
+ *         // body
+ *     }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't skip private methods:
  * </p>
  * <pre>
  * &lt;module name="ThrowsCount"&gt;
  *   &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public void myFunction() throws CloneNotSupportedException,
+ *                                 ArrayIndexOutOfBoundsException,
+ *                                 StringIndexOutOfBoundsException,
+ *                                 IllegalStateException,
+ *                                 NullPointerException { // violation, max allowed is 4
+ *         // body
+ *     }
+ *
+ *     public void myFunc() throws ArithmeticException,
+ *                                 NumberFormatException { // ok
+ *         // body
+ *     }
+ *
+ *     private void privateFunc() throws CloneNotSupportedException,
+ *                                 ClassNotFoundException,
+ *                                 IllegalAccessException,
+ *                                 ArithmeticException,
+ *                                 ClassCastException { // violation, max allowed is 4
+ *         // body
+ *     }
+ *
+ *     private void func() throws IllegalStateException,
+ *                                 NullPointerException { // ok
+ *         // body
+ *     }
+ *
+ * }
  * </pre>
  *
  * @since 3.2
