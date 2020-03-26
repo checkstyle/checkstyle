@@ -847,6 +847,40 @@ public class Foo { // OK, only one top-level class
 
       <subsection name="Examples" id="ThrowsCount_Examples">
         <p>
+          To configure check:
+        </p>
+        <source>
+&lt;module name="ThrowsCount"/&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+    public void myFunction() throws CloneNotSupportedException,
+                                ArrayIndexOutOfBoundsException,
+                                StringIndexOutOfBoundsException,
+                                IllegalStateException,
+                                NullPointerException { // violation, max allowed is 4
+        // body
+    }
+
+    public void myFunc() throws ArithmeticException,
+                                NumberFormatException { // ok
+        // body
+    }
+
+    private void privateFunc() throws CloneNotSupportedException,
+                                ClassNotFoundException,
+                                IllegalAccessException,
+                                ArithmeticException,
+                                ClassCastException { // ok, private methods are ignored
+        // body
+    }
+
+}
+        </source>
+        <p>
           To configure the check so that it doesn't allow more than two throws
           per method:
         </p>
@@ -855,7 +889,32 @@ public class Foo { // OK, only one top-level class
   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+    public void myFunction() throws IllegalStateException,
+                                ArrayIndexOutOfBoundsException,
+                                NullPointerException { // violation, max allowed is 2
+        // body
+    }
 
+    public void myFunc() throws ArithmeticException,
+                                NumberFormatException { // ok
+        // body
+    }
+
+    private void privateFunc() throws CloneNotSupportedException,
+                                ClassNotFoundException,
+                                IllegalAccessException,
+                                ArithmeticException,
+                                ClassCastException { // ok, private methods are ignored
+        // body
+    }
+
+}
+        </source>
         <p>
           To configure the check so that it doesn't skip private methods:
         </p>
@@ -863,6 +922,39 @@ public class Foo { // OK, only one top-level class
 &lt;module name=&quot;ThrowsCount&quot;&gt;
   &lt;property name=&quot;ignorePrivateMethods&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Test {
+    public void myFunction() throws CloneNotSupportedException,
+                                ArrayIndexOutOfBoundsException,
+                                StringIndexOutOfBoundsException,
+                                IllegalStateException,
+                                NullPointerException { // violation, max allowed is 4
+        // body
+    }
+
+    public void myFunc() throws ArithmeticException,
+                                NumberFormatException { // ok
+        // body
+    }
+
+    private void privateFunc() throws CloneNotSupportedException,
+                                ClassNotFoundException,
+                                IllegalAccessException,
+                                ArithmeticException,
+                                ClassCastException { // violation, max allowed is 4
+        // body
+    }
+
+    private void func() throws IllegalStateException,
+                                NullPointerException { // ok
+        // body
+    }
+
+}
         </source>
       </subsection>
 
