@@ -65,9 +65,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Indentation
  * </li>
  * <li>
- * InterfaceIsType
- * </li>
- * <li>
  * InterfaceMemberImpliedModifier
  * </li>
  * <li>
