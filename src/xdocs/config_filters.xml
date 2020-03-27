@@ -902,7 +902,6 @@ public class UserService {
           Currently, filter does not support the following checks:
         </p>
         <ul id="SuppressionXpathFilter_IncompatibleChecks">
-          <li>AnnotationOnSameLine</li>
           <li>AnnotationUseStyle</li>
           <li>AvoidEscapedUnicodeCharacters</li>
           <li>CommentsIndentation</li>
