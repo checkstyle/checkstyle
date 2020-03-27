@@ -902,6 +902,10 @@ public class UserService {
           Currently, filter does not support the following checks:
         </p>
         <ul id="SuppressionXpathFilter_IncompatibleChecks">
+<<<<<<< HEAD
+=======
+          <li>AnnotationUseStyle</li>
+>>>>>>> Issue #7721: Update AbstractChecks to log DetailAST - AnnotationOnSameLine
           <li>AvoidEscapedUnicodeCharacters</li>
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>

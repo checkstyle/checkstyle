@@ -44,6 +44,12 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul id="SuppressionXpathFilter_IncompatibleChecks">
  * <li>
+<<<<<<< HEAD
+=======
+ * AnnotationUseStyle
+ * </li>
+ * <li>
+>>>>>>> Issue #7721: Update AbstractChecks to log DetailAST - AnnotationOnSameLine
  * AvoidEscapedUnicodeCharacters
  * </li>
  * <li>
