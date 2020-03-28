@@ -795,6 +795,22 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUseContainerOrderingForStatic() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("ordered", "true");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
+        checkConfig.addAttribute("useContainerOrderingForStatic", "true");
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_ORDERING,
+                    "io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same"),
+            "7:1: " + getCheckMessage(MSG_ORDERING,
+                    "io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputImportOrderContainerOrdering.java"),
+                expected);
+    }
+
+    @Test
     public void testImportGroupsRedundantSeparatedInternally() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         checkConfig.addAttribute("groups", "/^javax\\./,com");
