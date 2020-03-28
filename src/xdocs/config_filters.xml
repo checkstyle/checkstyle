@@ -911,7 +911,6 @@ public class UserService {
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
-          <li>MethodCount</li>
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>OverloadMethodsDeclarationOrder</li>
