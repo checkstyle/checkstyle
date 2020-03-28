@@ -68,6 +68,7 @@ no-error-pgjdbc)
   cd ../
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
  removeFolderWithProtectedFiles pgjdbc
 =======
 =======
@@ -79,6 +80,9 @@ no-error-pgjdbc)
 >>>>>>> Revert "Revert "infra: pgjdbc, migrate Maven -> Gradle""
   rm -rf pgjdbc
 >>>>>>> infra: pgjdbc, migrate Maven -> Gradle
+=======
+ removeFolderWithProtectedFiles pgjdbc
+>>>>>>> Issue #7892: Improve clean up of .ci-temp directory
   ;;
 
 no-error-orekit)
