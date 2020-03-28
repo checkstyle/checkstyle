@@ -918,9 +918,12 @@ public class UserService {
           <li>JavadocMethod</li>
           <li>JavadocType</li>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           <li>MethodCount</li>
 >>>>>>> Issue #7742: Update AbstractChecks to log DetailAST - LambdaParameterName
+=======
+>>>>>>> Issue #7743: Update AbstractChecks to log DetailAST - MethodCount
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>OverloadMethodsDeclarationOrder</li>

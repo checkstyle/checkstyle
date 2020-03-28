@@ -78,11 +78,14 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
  * MethodCount
  * </li>
  * <li>
 >>>>>>> Issue #7742: Update AbstractChecks to log DetailAST - LambdaParameterName
+=======
+>>>>>>> Issue #7743: Update AbstractChecks to log DetailAST - MethodCount
  * MissingJavadocMethod
  * </li>
  * <li>
