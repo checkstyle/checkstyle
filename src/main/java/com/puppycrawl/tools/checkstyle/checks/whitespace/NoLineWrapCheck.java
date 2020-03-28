@@ -46,13 +46,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <p>Examples of line-wrapped statements (bad case):
  * </p>
  * <pre>
- * package com.puppycrawl. //violation
+ * package com.puppycrawl. // violation
  *     tools.checkstyle.checks;
  *
- * import com.puppycrawl.tools. //violation
+ * import com.puppycrawl.tools. // violation
  *     checkstyle.api.AbstractCheck;
  *
- * import static java.math. //violation
+ * import static java.math. // violation
  *     BigInteger.ZERO;
  * </pre>
  *
@@ -63,6 +63,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;NoLineWrap&quot;/&gt;
  * </pre>
+ * <p>
+ * Examples:
+ * </p>
+ * <pre>
+ * package com.puppycrawl.tools.checkstyle. // violation
+ *   checks.whitespace;
+ *
+ * import java.lang.Object; // OK
+ * import java.lang. // violation
+ *   Integer;
+ *
+ * import static java.math. // violation
+ *   BigInteger.TEN;
+ * </pre>
+ * <pre>
+ * package com.puppycrawl.tools.checkstyle.checks.coding; // OK
+ *
+ * import java.lang. // violation
+ *   Boolean;
+ *
+ * import static java.math.BigInteger.ONE; // OK
+ * </pre>
  *
  * <p>
  * To configure the check to force no line-wrapping only
@@ -72,6 +94,54 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;NoLineWrap&quot;&gt;
  *   &lt;property name="tokens" value="IMPORT"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * package com.puppycrawl. // OK
+ *   tools.checkstyle.checks;
+ *
+ * import java.io.*; // OK
+ * import java.lang. // violation
+ *  Boolean;
+ *
+ * import static java.math. // OK
+ * BigInteger.ZERO;
+ * </pre>
+ * <p>
+ * To configure the check to force no line-wrapping only
+ * in class, method and constructor definitions:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoLineWrap&quot;&gt;
+ *   &lt;property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class // violation, class definition not wrapped in a single line
+ *   Foo {
+ *
+ *   public Foo() { // OK
+ *   }
+ *
+ *   public static void // violation, method definition not wrapped in a single line
+ *     doSomething() {
+ *   }
+ * }
+ *
+ * public class Bar { // OK
+ *
+ *   public // violation, constructor definition not wrapped in a single line
+ *     Bar() {
+ *   }
+ *
+ *   public int fun() { // OK
+ *   }
+ * }
  * </pre>
  *
  * <p>Examples of not line-wrapped statements (good case):
