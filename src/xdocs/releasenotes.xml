@@ -15,6 +15,419 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.31">
+      <div class="releaseDate">29.03.2020</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Remove all deprecated setClassLoader methods from Checker and TreeWalker.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/7190">#7190</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            New check: UnnecessarySemicolonAfterOuterTypeDeclaration.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7677">#7677</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Update AbstractChecks to log DetailAST - AnnotationOnSameLine.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7721">#7721</a>
+          </li>
+          <li>
+            Indentation violation for lambda depends on tab symbols in code.
+            Author: liach
+            <a href="https://github.com/checkstyle/checkstyle/issues/5969">#5969</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - LambdaParameterName.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7742">#7742</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - MissingJavadocPackage.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7746">#7746</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - IllegalCatch.
+            Author: sulkykookie
+            <a href="https://github.com/checkstyle/checkstyle/issues/7732">#7732</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - InvalidJavadocPosition.
+            Author: Shrey Kumar Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7737">#7737</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - NeedBraces.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7750">#7750</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - UncommentedMain.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7764">#7764</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - ImportOrder.
+            Author: kaustubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7733">#7733</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - JavadocStyle.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7740">#7740</a>
+          </li>
+          <li>
+            NPE in MissingDeprecatedCheck.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/7534">#7534</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - AvoidStarImport.
+            Author: Akhil singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7725">#7725</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - FinalClass.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7731">#7731</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - MissingSwitchDefault.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7749">#7749</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - MissingCtor.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7744">#7744</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - AvoidStaticImport.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7726">#7726</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - NoLineWrap.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7753">#7753</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - PackageAnnotation.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7757">#7757</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - AnnotationLocation.
+            Author: malintha1996
+            <a href="https://github.com/checkstyle/checkstyle/issues/7768">#7768</a>
+          </li>
+          <li>
+            LineLength measures Java characters, not Unicode characters.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/5089">#5089</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - OuterTypeFilename.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7755">#7755</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - SuppressWarningsHolder.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7761">#7761</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - MissingOverride.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7748">#7748</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - ArrayTrailingComma.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7723">#7723</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - NoFinalizer.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7752">#7752</a>
+          </li>
+          <li>
+            Exception when using SuppressWarningsHolder with @SuppressWarnings as
+              an annotation property (e.g. in Lombok).
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7522">#7522</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - OneTopLevelClass.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7754">#7754</a>
+          </li>
+          <li>
+            JavadocStyleCheck incorrectly allows &quot;style&quot; tag.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7779">#7779</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - NoClone.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7751">#7751</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - EmptyCatchBlock.
+            Author: gaurabdg
+            <a href="https://github.com/checkstyle/checkstyle/issues/7729">#7729</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update doc for NoLineWrap.
+            Author: sulkykookie
+            <a href="https://github.com/checkstyle/checkstyle/issues/7623">#7623</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - IllegalImportCheck (2).
+            Author: Harsh Kukreja
+            <a href="https://github.com/checkstyle/checkstyle/issues/7855">#7855</a>
+          </li>
+          <li>
+            update doc for AnnotationLocation to have config first and code sample after.
+            Author: Prabod Dunuwila
+            <a href="https://github.com/checkstyle/checkstyle/issues/7569">#7569</a>
+          </li>
+          <li>
+            Update doc for ThrowsCount.
+            Author: Harsh Kukreja
+            <a href="https://github.com/checkstyle/checkstyle/issues/7615">#7615</a>
+          </li>
+          <li>
+            update doc for NPathComplexity.
+            Author: edwardlee
+            <a href="https://github.com/checkstyle/checkstyle/issues/7694">#7694</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - RedundantImportCheck.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7920">#7920</a>
+          </li>
+          <li>
+            Update doc for InterfaceIsType.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7612">#7612</a>
+          </li>
+          <li>
+            Update doc for InnerAssignment.
+            Author: Anubhav
+            <a href="https://github.com/checkstyle/checkstyle/issues/7666">#7666</a>
+          </li>
+          <li>
+            Update doc for MagicNumber.
+            Author: Parag Pachpute
+            <a href="https://github.com/checkstyle/checkstyle/issues/7648">#7648</a>
+          </li>
+          <li>
+            update doc for JavaNCSS.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7693">#7693</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - IllegalImportCheck (1).
+            Author: Akhil singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7854">#7854</a>
+          </li>
+          <li>
+            add spoon project to no-exception testing.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7914">#7914</a>
+          </li>
+          <li>
+            doc: fix typo in config_whitespace.xml.
+            Author: HuGanghui
+          </li>
+          <li>
+            Resolve Pitest Issues - CustomImportOrderCheck (4).
+            Author: malintha1996
+            <a href="https://github.com/checkstyle/checkstyle/issues/7805">#7805</a>
+          </li>
+          <li>
+            Add pmd to no-error validation build item.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/7810">#7810</a>
+          </li>
+          <li>
+            Update doc for DefaultComesLast.
+            Author: kaustubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7636">#7636</a>
+          </li>
+          <li>
+            Update doc for NoWhitespaceBefore.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7625">#7625</a>
+          </li>
+          <li>
+            pitest: problem with coverage in SuppressWarningsHolder.java.isSuppressedAfterEventStart
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7885">#7885</a>
+          </li>
+          <li>
+            Update doc for OuterTypeFilename.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7590">#7590</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - AvoidStarImportCheck (1).
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7799">#7799</a>
+          </li>
+          <li>
+            Update doc for RightCurly.
+            Author: amoooma
+            <a href="https://github.com/checkstyle/checkstyle/issues/7584">#7584</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - AvoidStarImportCheck (2).
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7800">#7800</a>
+          </li>
+          <li>
+            Publish pitest report as artifact at circleci.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7832">#7832</a>
+          </li>
+          <li>
+            Update doc for SingleSpaceSeparator.
+            Author: Shrey Kumar Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7629">#7629</a>
+          </li>
+          <li>
+            Update doc for NestedTryDepth.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7653">#7653</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - CustomImportOrderCheck (1).
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7802">#7802</a>
+          </li>
+          <li>
+            Update doc for EqualsHashCode.
+            Author: kaustubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7638">#7638</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - AvoidStaticImportCheck.
+            Author: gaurabdg
+            <a href="https://github.com/checkstyle/checkstyle/issues/7801">#7801</a>
+          </li>
+          <li>
+            update doc for PackageAnnotation.
+            Author: Prabod Dunuwila
+            <a href="https://github.com/checkstyle/checkstyle/issues/7574">#7574</a>
+          </li>
+          <li>
+            Update doc for SuperClone.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7661">#7661</a>
+          </li>
+          <li>
+            update doc for RegexpSinglelineJava.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7698">#7698</a>
+          </li>
+          <li>
+            update doc for MissingOverride.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7573">#7573</a>
+          </li>
+          <li>
+            Update doc for SimplifyBooleanExpression.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7658">#7658</a>
+          </li>
+          <li>
+            Update doc for IllegalCatch.
+            Author: gaurabdg
+            <a href="https://github.com/checkstyle/checkstyle/issues/7642">#7642</a>
+          </li>
+          <li>
+            update doc for BooleanExpressionComplexity.
+            Author: Akhil singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7689">#7689</a>
+          </li>
+          <li>
+            Update doc for UncommentedMain.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7594">#7594</a>
+          </li>
+          <li>
+            Update doc for IllegalTokenText.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7646">#7646</a>
+          </li>
+          <li>
+            Update doc for OneTopLevelClass.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7614">#7614</a>
+          </li>
+          <li>
+            Update doc for SimplifyBooleanReturn.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7659">#7659</a>
+          </li>
+          <li>
+            Update doc for IllegalToken.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7645">#7645</a>
+          </li>
+          <li>
+            CI should validate checkstyle violations in satelite projects.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/7705">#7705</a>
+          </li>
+          <li>
+            doc: fix out-of-order div and dfn tags.
+            Author: wltan
+          </li>
+          <li>
+            doc: fix inconsistencies between code and docs.
+            Author: wltan
+          </li>
+          <li>
+            JavadocStyleCheck: need to support VAR html tag .
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/2410">#2410</a>
+          </li>
+          <li>
+            Update doc for NoClone.
+            Author: Wilfried Bounsi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7670">#7670</a>
+          </li>
+          <li>
+            update doc for AvoidStarImport.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7684">#7684</a>
+          </li>
+          <li>
+            Update doc for GenericWhitespace.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7621">#7621</a>
+          </li>
+          <li>
+            Update doc for TodoComment.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7591">#7591</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.30">
       <div class="releaseDate">29.02.2020</div>
       <p>New:</p>
