@@ -717,9 +717,9 @@ public class JavadocMethodCheck extends AbstractCheck {
     private static List<ExceptionInfo> combineExceptionInfo(List<ExceptionInfo> list1,
                                                      List<ExceptionInfo> list2) {
         final List<ExceptionInfo> result = new ArrayList<>(list1);
-        for (ExceptionInfo expectionInfo : list2) {
-            if (result.stream().noneMatch(item -> isExceptionInfoSame(item, expectionInfo))) {
-                result.add(expectionInfo);
+        for (ExceptionInfo exceptionInfo : list2) {
+            if (result.stream().noneMatch(item -> isExceptionInfoSame(item, exceptionInfo))) {
+                result.add(exceptionInfo);
             }
         }
         return result;
