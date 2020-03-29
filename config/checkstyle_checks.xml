@@ -115,7 +115,8 @@
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
   <module name="RegexpSingleline">
-    <property name="format" value="^(?!(\s*&lt;a href=&quot;[^&quot;]+&quot;&gt;|.*http)).{101,}$"/>
+    <property name="format"
+              value="^(?!(\s*,?\s*&lt;a href=&quot;[^&quot;]+&quot;&gt;|.*http)).{101,}$"/>
     <property name="fileExtensions" value="xml, vm"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
