@@ -286,19 +286,17 @@ Parent(){
 class Test {
 public static void main(String args[]){
 Parent s = new Parent();
-System.out.println("OK");
-}} //OK
+}} // ok
           
 class Parent{
-private Parent(){
+private Parent() {
 }}
 class Test {
 public static void main(String args[]){
 Parent s = new Parent();
-System.out.println("violation");
-}}// violation, error: Parent() has private access in Parent
+}} // violation
           
-        </p>
+      </p>
       </subsection>
 
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
@@ -312,8 +310,8 @@ System.out.println("violation");
             Checkstyle Style</a>
           </li>
         </ul>
-      </subsection> 
-
+      </subsection>
+      
       <subsection name="Violation Messages" id="FinalClass_Violation_Messages">
         <ul>
           <li>
