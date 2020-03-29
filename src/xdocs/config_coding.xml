@@ -1485,15 +1485,17 @@ case 6:
               <td>
                 subset of tokens <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>,
-                <a
+                  VARIABLE_DEF</a>
+                , <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>.
+                  PARAMETER_DEF</a>
+                  .
               </td>
               <td>
                 <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>.
+                  VARIABLE_DEF</a>
+                  .
               </td>
               <td>3.2</td>
             </tr>
@@ -1710,25 +1712,27 @@ class PageBuilder {
               <td>
                 subset of tokens <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>,
-                <a
+                  VARIABLE_DEF</a>
+                , <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>,
-                <a
+                  PARAMETER_DEF</a>
+                , <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  LAMBDA</a>
+                  .
               </td>
 
               <td>
                 <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>,
-                <a
+                  VARIABLE_DEF</a>
+                , <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>,
-                <a
+                  PARAMETER_DEF</a>
+                , <a
                 href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  LAMBDA</a>
+                  .
               </td>
               <td>3.0</td>
             </tr>
@@ -2074,12 +2078,14 @@ try {
               <td>
                 subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>.
+                CLASS_DEF</a>
+                  .
               </td>
 
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                CLASS_DEF</a>.
+                CLASS_DEF</a>
+                  .
               </td>
               <td>3.0</td>
             </tr>
@@ -2285,10 +2291,12 @@ try {
               <td>tokens to check</td>
               <td>
                 subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>.
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
+                  .
               </td>
               <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">LABELED_STAT</a>.
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">LABELED_STAT</a>
+                  .
               </td>
               <td>3.2</td>
             </tr>
@@ -2413,21 +2421,25 @@ public native void myTest(); // violation
               <td>tokens to check</td>
               <td>subset of tokens
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                  NUM_DOUBLE</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                  NUM_FLOAT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                  NUM_INT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                  NUM_LONG</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                  IDENT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
-                  COMMENT_CONTENT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                  STRING_LITERAL</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
-                  CHAR_LITERAL</a>.
+                  NUM_DOUBLE</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                  IDENT</a>
+                  , <a href=
+                  "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMENT_CONTENT">
+                  COMMENT_CONTENT</a>
+                  , <a href=
+                  "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                  STRING_LITERAL</a>
+                  , <a href=
+                  "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
+                  CHAR_LITERAL</a>
+                  .
               </td>
               <td>empty</td>
               <td>3.2</td>
@@ -2617,40 +2629,50 @@ public void myTest() {
               <td>tokens to check</td>
               <td>
                 subset of tokens
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                  METHOD_CALL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                  METHOD_REF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>.
+                <a href=
+               "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href=
+                "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                  METHOD_CALL</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                  METHOD_REF</a>
+                , <a href=
+                "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>
+                , <a href=
+                "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>
+                  .
               </td>
               <td>
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                  ANNOTATION_FIELD_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
-                  METHOD_CALL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
-                  METHOD_REF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
-                  PARAMETER_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>.
+                <a href=
+               "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                  ANNOTATION_FIELD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                  CLASS_DEF</a>
+                , <a href=
+                "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                  INTERFACE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                  METHOD_CALL</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
+                  METHOD_REF</a>
+                , <a href=
+                "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
+                  PARAMETER_DEF</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a>
+                  .
               </td>
               <td>3.2</td>
             </tr>
@@ -2983,13 +3005,15 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                 <td>
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
                   TYPECAST</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
+                  <a href=
+                 "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_CALL">
                   METHOD_CALL</a>,
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
                   EXPR</a>,
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
                   ARRAY_INIT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
+                  <a href=
+                 "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
                   UNARY_MINUS</a>,
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
                   UNARY_PLUS</a>,
@@ -3005,7 +3029,8 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
                   MINUS</a>,
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV">
                   DIV</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+                  <a href=
+                 "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
                   LITERAL_NEW</a>
                 </td>
                 <td>6.11</td>
@@ -3015,23 +3040,25 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
               <td>tokens to check</td>
               <td>subset of tokens
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                  NUM_DOUBLE</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                  NUM_FLOAT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                  NUM_INT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                  NUM_LONG</a>.
+                  NUM_DOUBLE</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>
+                  .
               </td>
               <td>
                   <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                  NUM_DOUBLE</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                  NUM_FLOAT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                  NUM_INT</a>,
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                  NUM_LONG</a>.
+                  NUM_DOUBLE</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>
+                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>
+                  .
               </td>
               <td>3.1</td>
             </tr>
@@ -5105,19 +5132,21 @@ class C {
               <td>
                 subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>
+                  .
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>
+                  .
               </td>
               <td>3.2</td>
             </tr>
@@ -5705,7 +5734,7 @@ class C {
             int x = (a + b) + c;
         </source>
         <p>
-          In the above case, given that <em>a</em>,<em>b</em>, and <em>c</em> are all
+          In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
           <code>int</code> variables, the parentheses around <code>a + b</code> are not needed.
         </p>
       </subsection>
@@ -5726,99 +5755,111 @@ class C {
               <td>
                 subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
-                  EXPR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                  IDENT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                  NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                  NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                  NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                  NUM_LONG</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                  STRING_LITERAL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
-                  LITERAL_NULL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
-                  LITERAL_FALSE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
-                  LITERAL_TRUE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                  ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
-                  BAND_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
-                  BOR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
-                  BSR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
-                  BXOR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
-                  DIV_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
-                  MINUS_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
-                  MOD_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
-                  PLUS_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
-                  SL_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
-                  SR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
-                  STAR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  EXPR</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                  IDENT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                  STRING_LITERAL</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
+                  LITERAL_NULL</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
+                  LITERAL_FALSE</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
+                  LITERAL_TRUE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                  ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
+                  BAND_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
+                  BOR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
+                  BSR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
+                  BXOR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
+                  DIV_ASSIGN</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
+                  MINUS_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
+                  MOD_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
+                  PLUS_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
+                  SL_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
+                  SR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
+                  STAR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>
+                  .
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
-                  EXPR</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
-                  IDENT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
-                  NUM_DOUBLE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
-                  NUM_FLOAT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
-                  NUM_INT</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
-                  NUM_LONG</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
-                  STRING_LITERAL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
-                  LITERAL_NULL</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
-                  LITERAL_FALSE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
-                  LITERAL_TRUE</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
-                  ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
-                  BAND_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
-                  BOR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
-                  BSR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
-                  BXOR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
-                  DIV_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
-                  MINUS_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
-                  MOD_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
-                  PLUS_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
-                  SL_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
-                  SR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
-                  STAR_ASSIGN</a>,
-                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  EXPR</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IDENT">
+                  IDENT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
+                  NUM_DOUBLE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_FLOAT">
+                  NUM_FLOAT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_INT">
+                  NUM_INT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_LONG">
+                  NUM_LONG</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STRING_LITERAL">
+                  STRING_LITERAL</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NULL">
+                  LITERAL_NULL</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_FALSE">
+                  LITERAL_FALSE</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRUE">
+                  LITERAL_TRUE</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ASSIGN">
+                  ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND_ASSIGN">
+                  BAND_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BOR_ASSIGN">
+                  BOR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BSR_ASSIGN">
+                  BSR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR_ASSIGN">
+                  BXOR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DIV_ASSIGN">
+                  DIV_ASSIGN</a>
+                , <a href=
+                    "apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MINUS_ASSIGN">
+                  MINUS_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#MOD_ASSIGN">
+                  MOD_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PLUS_ASSIGN">
+                  PLUS_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SL_ASSIGN">
+                  SL_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#SR_ASSIGN">
+                  SR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
+                  STAR_ASSIGN</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>
+                  .
               </td>
               <td>3.4</td>
             </tr>
@@ -5945,23 +5986,32 @@ myList.stream()
               <td>
                 subset of tokens
                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                 CLASS_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>.
+                 CLASS_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                INTERFACE_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                ENUM_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+                  .
               </td>
               <td>
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                    CLASS_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                    INTERFACE_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                    ENUM_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                    ANNOTATION_DEF</a>.
+                <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                  .
               </td>
               <td>8.31</td>
             </tr>
@@ -6101,51 +6151,73 @@ myList.stream()
               <td>
                 subset of tokens
                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                 CLASS_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                INTERFACE_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                ENUM_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                ANNOTATION_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                ANNOTATION_FIELD_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                STATIC_INIT</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                INSTANCE_INIT</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                CTOR_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                ENUM_CONSTANT_DEF</a>.
+                 CLASS_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                INTERFACE_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                ENUM_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                ANNOTATION_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                VARIABLE_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                ANNOTATION_FIELD_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                STATIC_INIT</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                INSTANCE_INIT</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                CTOR_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                METHOD_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                ENUM_CONSTANT_DEF</a>
+                  .
               </td>
               <td>
                 <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                    CLASS_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                    INTERFACE_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                    ENUM_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
-                    ANNOTATION_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                    VARIABLE_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
-                    ANNOTATION_FIELD_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
-                    STATIC_INIT</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                    INSTANCE_INIT</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                    CTOR_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                    METHOD_DEF</a>,
-                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
-                    ENUM_CONSTANT_DEF</a>.
+                    CLASS_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
+                    ANNOTATION_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
+                    ANNOTATION_FIELD_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
+                    STATIC_INIT</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                    INSTANCE_INIT</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a
+                      href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
+                    ENUM_CONSTANT_DEF</a>
+                  .
               </td>
               <td>8.24</td>
             </tr>
