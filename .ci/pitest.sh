@@ -49,9 +49,12 @@ pitest-regexp)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (message == null) {</span></pre></td></tr>"
 >>>>>>> Issue #7981: Resolve Pitest Issues - DetectorOptions
+=======
+>>>>>>> Issue #7982: Resolve Pitest Issues - RegexpCheck (1)
   "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        return errorCount &#60;= errorLimit - 1</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
