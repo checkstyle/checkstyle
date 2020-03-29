@@ -1,0 +1,62 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2020 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
+
+import org.junit.jupiter.api.Test;
+
+import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
+
+public class WhitespaceAfterTest extends AbstractGoogleModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace";
+    }
+
+    @Test
+    public void testWhitespaceAfterBasic() throws Exception {
+        final Class<WhitespaceAfterCheck> clazz = WhitespaceAfterCheck.class;
+        final String message = "ws.notFollowed";
+
+        final String[] expected = {
+            "4:29: " + getCheckMessage(clazz, message, ","),
+            "5:9: " + getCheckMessage(clazz, message, "for"),
+            "5:20: " + getCheckMessage(clazz, message, ","),
+            "5:24: " + getCheckMessage(clazz, message, ";"),
+            "5:28: " + getCheckMessage(clazz, message, ";"),
+            "5:32: " + getCheckMessage(clazz, message, ","),
+            "6:9: " + getCheckMessage(clazz, message, "while"),
+            "7:20: " + getCheckMessage(clazz, message, ","),
+            "9:9: " + getCheckMessage(clazz, message, "do"),
+            "11:10: " + getCheckMessage(clazz, message, "while"),
+            "13:35: " + getCheckMessage(clazz, message, ","),
+            "14:9: " + getCheckMessage(clazz, message, "if"),
+            "17:9: " + getCheckMessage(clazz, message, "else"),
+        };
+        final Configuration checkConfig = getModuleConfig("WhitespaceAfter");
+        final String filePath = getPath("InputWhitespaceAfter.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+}

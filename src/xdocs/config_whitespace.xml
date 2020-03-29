@@ -2592,6 +2592,10 @@ public void myTest() {
       <subsection name="Example of Usage" id="WhitespaceAfter_Example_of_Usage">
         <ul>
           <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+            Google Style</a>
+          </li>
+          <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
             Sun Style</a>
           </li>
