@@ -13,10 +13,14 @@
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <version>8.32-SNAPSHOT</version>
 =======
   <version>8.31</version>
 >>>>>>> [maven-release-plugin] prepare release checkstyle-8.31
+=======
+  <version>8.32-SNAPSHOT</version>
+>>>>>>> [maven-release-plugin] prepare for next development iteration
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
