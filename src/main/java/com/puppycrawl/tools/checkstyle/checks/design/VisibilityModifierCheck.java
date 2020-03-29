@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * by their <b>canonical</b> names.
  * </p>
  * <p>
- * Rationale: Forcing all fields of class to have private modifier by default is
+ * Property Rationale: Forcing all fields of class to have private modifier by default is
  * good in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
  * One of such cases are immutable classes.
  * </p>
