@@ -48,6 +48,11 @@
 
     <module name="TreeWalker">
         <module name="OuterTypeFilename"/>
+        <module name="WhitespaceAfter">
+            <property name="tokens"
+             value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE,
+                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, DO_WHILE"/>
+        </module>
         <module name="IllegalTokenText">
             <property name="tokens" value="STRING_LITERAL, CHAR_LITERAL"/>
             <property name="format"
