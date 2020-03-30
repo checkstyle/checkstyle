@@ -90,4 +90,18 @@
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]customimportorder"/>
 
+    <!-- untill https://github.com/checkstyle/checkstyle/issues/8036 -->
+    <suppress checks="RegexpSingleline"
+              files="[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
+    <suppress checks="RegexpSingleline"
+              files="[\\/]InputJavadocMethod_1379666.java"/>
+        <suppress checks="RegexpSingleline"
+              files="[\\/]grammar[\\/]InputJava7MultiCatch.java"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalType.*\.java"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeMemberModifiers.*\.java"/>
+    <suppress checks="RegexpSingleline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.*\.java"/>
+
 </suppressions>

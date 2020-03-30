@@ -19,7 +19,7 @@
     <module name="RegexpSingleline">
       <!-- catch lines above 100 symbols -->
       <property name="format"
-                value="^(?!(.*href|.*http|import|.* com.*|.*com/.*|.* files=)).{101,}$"/>
+               value="^(?!(.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd)).{101,}$"/>
       <property name="message" value="Line should not be longer than 100 symbols"/>
     </module>
 </module>
