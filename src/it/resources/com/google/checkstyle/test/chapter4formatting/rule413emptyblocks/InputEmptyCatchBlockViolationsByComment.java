@@ -46,7 +46,7 @@ public class InputEmptyCatchBlockViolationsByComment
     private void foo5() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException e) { // Some singleline comment
+        } catch (IOException | NullPointerException | ArithmeticException e) { // singleline comment
         }
     }
     private void some() {
