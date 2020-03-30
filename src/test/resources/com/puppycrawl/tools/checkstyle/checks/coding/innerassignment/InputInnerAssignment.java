@@ -49,7 +49,7 @@ public class InputInnerAssignment
     public static void demoInputStreamIdiom(java.io.InputStream is) throws java.io.IOException
     {
         int b;
-        while ((b = is.read()) != -1) // common idiom to avoid clumsy loop control logic, don't flag (make configurable later)
+        while ((b = is.read()) != -1) // common idiom to avoid clumsy loop control logic don't flag
         {
             // work with b
         }

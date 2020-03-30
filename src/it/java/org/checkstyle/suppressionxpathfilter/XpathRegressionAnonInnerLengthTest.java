@@ -48,17 +48,17 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         moduleConfig.addAttribute("max", String.valueOf(maxLen));
 
         final String[] expectedViolation = {
-            "7:41: " + getCheckMessage(AnonInnerLengthCheck.class,
+            "7:35: " + getCheckMessage(AnonInnerLengthCheck.class,
                     AnonInnerLengthCheck.MSG_KEY, 6, maxLen),
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLength']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comparator']]/ASSIGN/EXPR",
+                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLength']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comparator']]/ASSIGN/EXPR"
+                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
                         + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
         );
 
