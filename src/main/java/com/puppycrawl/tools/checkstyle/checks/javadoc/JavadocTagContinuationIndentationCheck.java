@@ -103,9 +103,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         if (!isInlineDescription(ast)) {
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
             for (DetailNode newlineNode : textNodes) {
-                final DetailNode textNode = JavadocUtil.getNextSibling(JavadocUtil
-                        .getNextSibling(newlineNode));
-                if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT) {
+                final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
+                if (textNode.getType() == JavadocTokenTypes.TEXT) {
                     final String text = textNode.getText();
                     if (!CommonUtil.isBlank(text.trim())
                             && (text.length() <= offset
@@ -126,7 +125,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = JavadocUtil.getFirstChild(descriptionNode);
         while (JavadocUtil.getNextSibling(node) != null) {
-            if (node.getType() == JavadocTokenTypes.NEWLINE) {
+            if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK) {
                 textNodes.add(node);
             }
             node = JavadocUtil.getNextSibling(node);
