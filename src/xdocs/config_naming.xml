@@ -97,6 +97,14 @@
                <td>5.8</td>
              </tr>
              <tr>
+               <td>ignoreStaticFinal</td>
+               <td>Allow to skip variables with both <code>static</code>
+                 and <code>final</code> modifiers.</td>
+               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><code>true</code></td>
+               <td>8.32</td>
+             </tr>
+             <tr>
                <td>ignoreOverriddenMethods</td>
                <td>Allow to ignore methods tagged with <code>@Override</code> annotation
                (that usually mean inherited name).</td>
@@ -213,6 +221,29 @@ public class MyClass { // OK, ignore checking the class name
                         // would be ignored
   String firstCSV; // OK, CSV abbreviation is allowed
   String firstXML; // violation, XML abbreviation is not allowed
+}
+        </source>
+        <p>
+          To configure to check variables, enforcing no abbreviations
+          except for variables that are both static and final.
+        </p>
+        <p>Configuration:</p>
+        <source>
+&lt;module name="AbbreviationAsWordInName"&gt;
+    &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+    &lt;property name="ignoreFinal" value="false"/&gt;
+    &lt;property name="ignoreStatic" value="false"/&gt;
+    &lt;property name="ignoreStaticFinal" value="true"/&gt;
+    &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class MyClass {
+    public int AAAA = 1;              // violation
+    public final int BBBB = 2;        // violation
+    public static int CCCC = 3;       // violation
+    public static final int DDDD = 4; // OK, ignored
 }
         </source>
       </subsection>
