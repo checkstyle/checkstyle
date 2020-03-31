@@ -44,64 +44,124 @@
               files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
 
     <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
-    <suppress checks="RegexpSingleline" files="pom.xml"/>
+    <suppress id="lineLength" files="pom.xml"/>
     <!-- this file is created by Appveyor CI after checkout -->
-    <suppress checks="RegexpSingleline" files="appveyor.cmd"/>
+    <suppress id="lineLength" files="appveyor.cmd"/>
     <!-- test resources are weird by design, no validations in them -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]it[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
 
     <!-- we can not change expected as it will require change of main class logic -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
 
     <!-- content is generated -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]xdocs[\\/]releasenotes.xml"/>
     <!-- it contains list of html text, no way to wrap -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files=".ci[\\/]pitest.sh"/>
     <!-- property names a too long, nothing we can do -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="config[\\/]org.eclipse.jdt.core.prefs"/>
     <!-- there is no way to make line wrap in property value -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="config[\\/]intellij-idea-inspection-scope.xml"/>
 
     <!-- there is no way to make line wrap in property value -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]customimportorder"/>
 
     <!-- there is no way to make line wrap in property value -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]customimportorder"/>
 
     <!-- untill https://github.com/checkstyle/checkstyle/issues/8036 -->
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="[\\/]InputJavadocMethod_1379666.java"/>
-        <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="[\\/]grammar[\\/]InputJava7MultiCatch.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalType.*\.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeMemberModifiers.*\.java"/>
-    <suppress checks="RegexpSingleline"
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.*\.java"/>
+
+    <!-- apply check numberOfTestCases only for files in suppressionxpathfilter directory -->
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]base[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]checks[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]resources[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]resources-noncompilable[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]test[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]site[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]xdocs[\\/].*" />
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]AbstractXpathTestSupport.java"/>
+
+    <!-- till https://github.com/checkstyle/checkstyle/issues/7987 -->
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAnonInnerLengthTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAvoidDoubleBraceInitializationTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAvoidNoArgumentSuperConstructorCallTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNestedForDepthTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNestedIfDepthTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNestedTryDepthTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNoWhitespaceAfterTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNoWhitespaceBeforeTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOneTopLevelClassTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOuterTypeNumberTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionSingleSpaceSeparatorTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionSuppressWarningsHolderTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUnnecessarySemicolonInEnumerationTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUnnecessarySemicolonInTryWithResourcesTest.java"/>
+    <suppress  id="numberOfTestCases"
+               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUpperEllTest.java"/>
 
 </suppressions>
