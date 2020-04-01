@@ -135,8 +135,8 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <pre>
  * &lt;module name="MethodName"&gt;
  *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
- *    &lt;property name="applyToPublic" value="false"&gt;
- *    &lt;property name="applyToProtected" value="false"&gt;
+ *    &lt;property name="applyToPublic" value="false"/&gt;
+ *    &lt;property name="applyToProtected" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>
