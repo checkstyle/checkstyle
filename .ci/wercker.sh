@@ -53,9 +53,10 @@ no-error-pgjdbc)
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/pgjdbc/pgjdbc.git
-  cd .ci-temp/pgjdbc/pgjdbc
-  mvn -e checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-  cd ../../
+  cd .ci-temp/pgjdbc
+  ./gradlew --no-parallel --no-daemon checkstyleAll \
+            -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
+  cd ../
   rm -rf pgjdbc
   ;;
 
