@@ -30,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -38,6 +39,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -593,6 +596,34 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         verify(config, getPath("InputJavadocMethodLoadErrors.java"),
                 CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
+    public void testClassAliasResolving() throws Exception {
+        final File file = new File(getPath("InputJavadocMethodClassAliasTest.java"));
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+        final DetailAST classAst = rootAst.getNextSibling().getNextSibling();
+
+        final JavadocMethodCheck obj = new JavadocMethodCheck();
+        obj.beginTree(rootAst);
+        obj.visitToken(classAst);
+
+        final Class<?> clazz = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "JavadocMethodCheck");
+        final Class<?> tokenClazz = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
+                + "JavadocMethodCheck$Token");
+        final Constructor<?> tokenConstructor = tokenClazz.getDeclaredConstructor(String.class,
+                int.class, int.class);
+        final Object token = tokenConstructor.newInstance("B1", 21, 22);
+
+        final Method createClassInfo = clazz.getDeclaredMethod("createClassInfo", tokenClazz,
+                String.class);
+        createClassInfo.setAccessible(true);
+        final Object instanceResult = createClassInfo.invoke(obj, token,
+                "InputJavadocMethodClassAliasTest");
+        assertEquals("ClassAlias[alias Token[B1(21x22)] for Token[Collections(12x59)]]",
+                instanceResult.toString(), "subclass doesn't match");
+
     }
 
 }
