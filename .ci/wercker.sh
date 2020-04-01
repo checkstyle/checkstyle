@@ -58,6 +58,7 @@ no-error-pgjdbc)
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/pgjdbc/pgjdbc.git
+<<<<<<< HEAD
   cd .ci-temp/pgjdbc
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
@@ -65,6 +66,11 @@ no-error-pgjdbc)
 <<<<<<< HEAD
  removeFolderWithProtectedFiles pgjdbc
 =======
+=======
+  cd .ci-temp/pgjdbc/pgjdbc
+  mvn -e checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  cd ../../
+>>>>>>> Revert "infra: pgjdbc, migrate Maven -> Gradle"
   rm -rf pgjdbc
 >>>>>>> infra: pgjdbc, migrate Maven -> Gradle
   ;;
