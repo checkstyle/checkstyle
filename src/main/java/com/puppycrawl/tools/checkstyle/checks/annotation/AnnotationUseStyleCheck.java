@@ -385,7 +385,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
             annotation.getChildCount(TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
         if (valuePairCount == 0 && hasArguments(annotation)) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE, ElementStyle.EXPANDED);
+            log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE, ElementStyle.EXPANDED);
         }
     }
 
@@ -417,7 +417,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         if (valuePairCount == 1
             && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
                 valuePair.getFirstChild().getText())) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT);
         }
     }
@@ -434,7 +434,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
         // in compact style with one value
         if (arrayInit != null
             && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-            log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+            log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyle.COMPACT_NO_ARRAY);
         }
         // in expanded style with pairs
@@ -445,7 +445,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
                     ast.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
                 if (nestedArrayInit != null
                     && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
-                    log(annotation.getLineNo(), MSG_KEY_ANNOTATION_INCORRECT_STYLE,
+                    log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                         ElementStyle.COMPACT_NO_ARRAY);
                 }
                 ast = ast.getNextSibling();
@@ -515,11 +515,11 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
             if (closingParens == ClosingParens.ALWAYS) {
                 if (paren.getType() != TokenTypes.RPAREN) {
-                    log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_MISSING);
+                    log(ast, MSG_KEY_ANNOTATION_PARENS_MISSING);
                 }
             }
             else if (paren.getPreviousSibling().getType() == TokenTypes.LPAREN) {
-                log(ast.getLineNo(), MSG_KEY_ANNOTATION_PARENS_PRESENT);
+                log(ast, MSG_KEY_ANNOTATION_PARENS_PRESENT);
             }
         }
     }

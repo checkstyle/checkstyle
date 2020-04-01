@@ -77,6 +77,10 @@ class Example3 {}
 @AnnotationWithAnnotationValue(value = @Another())
 class Example4 {}
 
+class Foo {
+   Foo(@Another String par1, @Another int par2) {}
+}
+
 @interface AnnotationWithAnnotationValue {
     Another value();
 }
