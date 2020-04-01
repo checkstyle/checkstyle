@@ -59,10 +59,14 @@ no-error-pgjdbc)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/pgjdbc/pgjdbc.git
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Revert "Revert "infra: pgjdbc, migrate Maven -> Gradle""
   cd .ci-temp/pgjdbc
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
+<<<<<<< HEAD
 <<<<<<< HEAD
  removeFolderWithProtectedFiles pgjdbc
 =======
@@ -71,6 +75,8 @@ no-error-pgjdbc)
   mvn -e checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../../
 >>>>>>> Revert "infra: pgjdbc, migrate Maven -> Gradle"
+=======
+>>>>>>> Revert "Revert "infra: pgjdbc, migrate Maven -> Gradle""
   rm -rf pgjdbc
 >>>>>>> infra: pgjdbc, migrate Maven -> Gradle
   ;;
