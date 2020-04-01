@@ -19,17 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Deque;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -332,9 +328,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     private static final Pattern MATCH_JAVADOC_NOARG_CURLY =
             CommonUtil.createPattern("\\{\\s*@(inheritDoc)\\s*\\}");
 
-    /** Stack of maps for type params. */
-    private final Deque<Map<String, ClassInfo>> currentTypeParams = new ArrayDeque<>();
-
     /** Name of current class. */
     private String currentClassName;
 
@@ -459,9 +452,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             processClass(ast);
         }
         else {
-            if (ast.getType() == TokenTypes.METHOD_DEF) {
-                processTypeParams(ast);
-            }
             processAST(ast);
         }
     }
@@ -474,10 +464,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             // perhaps it was inner class
             final int dotIdx = currentClassName.lastIndexOf('$');
             currentClassName = currentClassName.substring(0, dotIdx);
-            currentTypeParams.pop();
-        }
-        else if (ast.getType() == TokenTypes.METHOD_DEF) {
-            currentTypeParams.pop();
         }
     }
 
@@ -730,7 +716,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @param ast the method node.
      * @return the list of exception nodes for ast.
      */
-    private List<ExceptionInfo> getThrows(DetailAST ast) {
+    private static List<ExceptionInfo> getThrows(DetailAST ast) {
         final List<ExceptionInfo> returnValue = new ArrayList<>();
         final DetailAST throwsAST = ast
                 .findFirstToken(TokenTypes.LITERAL_THROWS);
@@ -741,7 +727,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                         || child.getType() == TokenTypes.DOT) {
                     final FullIdent ident = FullIdent.createFullIdent(child);
                     final ExceptionInfo exceptionInfo = new ExceptionInfo(
-                            createClassInfo(new Token(ident), currentClassName));
+                            new ClassInfo(new Token(ident)));
                     returnValue.add(exceptionInfo);
                 }
                 child = child.getNextSibling();
@@ -756,7 +742,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @param methodAst method DetailAST object where to find exceptions
      * @return list of ExceptionInfo
      */
-    private List<ExceptionInfo> getThrowed(DetailAST methodAst) {
+    private static List<ExceptionInfo> getThrowed(DetailAST methodAst) {
         final List<ExceptionInfo> returnValue = new ArrayList<>();
         final DetailAST blockAst = methodAst.findFirstToken(TokenTypes.SLIST);
         if (blockAst != null) {
@@ -768,7 +754,7 @@ public class JavadocMethodCheck extends AbstractCheck {
                     if (newAst.getType() == TokenTypes.LITERAL_NEW) {
                         final FullIdent ident = FullIdent.createFullIdent(newAst.getFirstChild());
                         final ExceptionInfo exceptionInfo = new ExceptionInfo(
-                                createClassInfo(new Token(ident), currentClassName));
+                                new ClassInfo(new Token(ident)));
                         returnValue.add(exceptionInfo);
                     }
                 }
@@ -1018,8 +1004,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             // Loop looking for matching throw
             final Token token = new Token(tag.getFirstArg(), tag.getLineNo(), tag
                     .getColumnNo());
-            final ClassInfo documentedClassInfo = createClassInfo(token,
-                    currentClassName);
+            final ClassInfo documentedClassInfo = new ClassInfo(token);
             processThrows(throwsList, documentedClassInfo, foundThrows);
         }
         // Now dump out all throws without tags :- unless
@@ -1100,39 +1085,6 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Process type params (if any) for given class, enum or method.
-     *
-     * @param ast class, enum or method to process.
-     */
-    private void processTypeParams(DetailAST ast) {
-        final DetailAST params =
-            ast.findFirstToken(TokenTypes.TYPE_PARAMETERS);
-
-        final Map<String, ClassInfo> paramsMap = new HashMap<>();
-        currentTypeParams.push(paramsMap);
-
-        if (params != null) {
-            for (DetailAST child = params.getFirstChild();
-                 child != null;
-                 child = child.getNextSibling()) {
-                if (child.getType() == TokenTypes.TYPE_PARAMETER) {
-                    final DetailAST bounds =
-                        child.findFirstToken(TokenTypes.TYPE_UPPER_BOUNDS);
-                    if (bounds != null) {
-                        final FullIdent name =
-                            FullIdent.createFullIdentBelow(bounds);
-                        final ClassInfo classInfo =
-                            createClassInfo(new Token(name), currentClassName);
-                        final String alias =
-                                child.findFirstToken(TokenTypes.IDENT).getText();
-                        paramsMap.put(alias, classInfo);
-                    }
-                }
-            }
-        }
-    }
-
-    /**
      * Processes class definition.
      *
      * @param ast class definition to process.
@@ -1143,48 +1095,6 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         innerClass = "$" + innerClass;
         currentClassName += innerClass;
-        processTypeParams(ast);
-    }
-
-    /**
-     * Creates class info for given name.
-     *
-     * @param name name of type.
-     * @param surroundingClass name of surrounding class.
-     * @return class info for given name.
-     */
-    private ClassInfo createClassInfo(final Token name,
-                                      final String surroundingClass) {
-        final ClassInfo result;
-        final ClassInfo classInfo = findClassAlias(name.getText());
-        if (classInfo == null) {
-            result = new RegularClass(name, surroundingClass, this);
-        }
-        else {
-            result = new ClassAlias(name, classInfo);
-        }
-        return result;
-    }
-
-    /**
-     * Looking if a given name is alias.
-     *
-     * @param name given name
-     * @return ClassInfo for alias if it exists, null otherwise
-     * @noinspection WeakerAccess
-     */
-    private ClassInfo findClassAlias(final String name) {
-        ClassInfo classInfo = null;
-        final Iterator<Map<String, ClassInfo>> iterator = currentTypeParams
-                .descendingIterator();
-        while (iterator.hasNext()) {
-            final Map<String, ClassInfo> paramMap = iterator.next();
-            classInfo = paramMap.get(name);
-            if (classInfo != null) {
-                break;
-            }
-        }
-        return classInfo;
     }
 
     /**
@@ -1202,10 +1112,6 @@ public class JavadocMethodCheck extends AbstractCheck {
          * @throws IllegalArgumentException when className is nulls
          */
         protected ClassInfo(final Token className) {
-            if (className == null) {
-                throw new IllegalArgumentException(
-                    "ClassInfo's name should be non-null");
-            }
             name = className;
         }
 
@@ -1216,63 +1122,6 @@ public class JavadocMethodCheck extends AbstractCheck {
          */
         public final Token getName() {
             return name;
-        }
-
-    }
-
-    /** Represents regular classes/enums. */
-    private static final class RegularClass extends ClassInfo {
-
-        /** Name of surrounding class. */
-        private final String surroundingClass;
-        /** The check we use to resolve classes. */
-        private final JavadocMethodCheck check;
-
-        /**
-         * Creates new instance of of class information object.
-         *
-         * @param name {@code FullIdent} associated with new object.
-         * @param surroundingClass name of current surrounding class.
-         * @param check the check we use to load class.
-         */
-        /* package */ RegularClass(final Token name,
-                             final String surroundingClass,
-                             final JavadocMethodCheck check) {
-            super(name);
-            this.surroundingClass = surroundingClass;
-            this.check = check;
-        }
-
-        @Override
-        public String toString() {
-            return "RegularClass[name=" + getName()
-                    + ", in class='" + surroundingClass + '\''
-                    + ", check=" + check.hashCode()
-                    + ']';
-        }
-
-    }
-
-    /** Represents type param which is "alias" for real type. */
-    private static class ClassAlias extends ClassInfo {
-
-        /** Class information associated with the alias. */
-        private final ClassInfo classInfo;
-
-        /**
-         * Creates new instance of the class.
-         *
-         * @param name token which represents name of class alias.
-         * @param classInfo class information associated with the alias.
-         */
-        /* package */ ClassAlias(final Token name, ClassInfo classInfo) {
-            super(name);
-            this.classInfo = classInfo;
-        }
-
-        @Override
-        public String toString() {
-            return "ClassAlias[alias " + getName() + " for " + classInfo.getName() + "]";
         }
 
     }
