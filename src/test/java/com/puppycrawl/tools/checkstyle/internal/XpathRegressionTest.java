@@ -54,9 +54,12 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public static final Set<String> INCOMPATIBLE_CHECK_NAMES =
         Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "AnnotationUseStyle",
 >>>>>>> Issue #7721: Update AbstractChecks to log DetailAST - AnnotationOnSameLine
+=======
+>>>>>>> Issue #7722: Update AbstractChecks to log DetailAST - AnnotationUseStyle
             "AvoidEscapedUnicodeCharacters",
             "CommentsIndentation",
             "CustomImportOrder",

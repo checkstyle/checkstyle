@@ -903,9 +903,12 @@ public class UserService {
         </p>
         <ul id="SuppressionXpathFilter_IncompatibleChecks">
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
           <li>AnnotationUseStyle</li>
 >>>>>>> Issue #7721: Update AbstractChecks to log DetailAST - AnnotationOnSameLine
+=======
+>>>>>>> Issue #7722: Update AbstractChecks to log DetailAST - AnnotationUseStyle
           <li>AvoidEscapedUnicodeCharacters</li>
           <li>CommentsIndentation</li>
           <li>CustomImportOrder</li>
