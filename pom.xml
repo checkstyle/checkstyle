@@ -286,10 +286,14 @@
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <version>0.5.6</version>
 =======
       <version>0.5.5</version>
 >>>>>>> dependency: bump junit-pioneer from 0.5.4 to 0.5.5
+=======
+      <version>0.5.6</version>
+>>>>>>> dependency: bump junit-pioneer from 0.5.5 to 0.5.6
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
