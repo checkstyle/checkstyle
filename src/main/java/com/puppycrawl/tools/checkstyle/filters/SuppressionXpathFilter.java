@@ -86,6 +86,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * VariableDeclarationUsageDistance
  * </li>
  * </ul>
+ * <p>Reason for RegexpSinglelineJava and Regexp support unavailability is at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7759">#7759</a>
+ * </p>
  * <p>
  * Certain Checks are partially supported by the filter:
  * </p>
