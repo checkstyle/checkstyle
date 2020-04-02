@@ -928,13 +928,22 @@ public class UserService {
           <li>JavadocMethod</li>
           <li>JavadocType</li>
           <li>MissingJavadocType</li>
-          <li>PackageDeclaration</li>
           <li>Regexp</li>
           <li>RegexpSinglelineJava</li>
           <li>TodoComment</li>
           <li>TrailingComment</li>
           <li>UnnecessaryParentheses</li>
           <li>VariableDeclarationUsageDistance</li>
+        </ul>
+        <p>
+          Certain Checks are partially supported by the filter:
+        </p>
+        <ul>
+          <li>
+             PackageDeclaration
+             (until
+             <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110</a>)
+          </li>
         </ul>
         <p>
           Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
