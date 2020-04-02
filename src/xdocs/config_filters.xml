@@ -927,8 +927,8 @@ public class UserService {
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>MissingJavadocType</li>
-          <li>Regexp</li>
-          <li>RegexpSinglelineJava</li>
+          <li>Regexp (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
+          <li>RegexpSinglelineJava (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
           <li>TodoComment</li>
           <li>TrailingComment</li>
           <li>UnnecessaryParentheses</li>
