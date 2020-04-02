@@ -63,7 +63,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "JavadocMethod",
             "JavadocType",
             "MissingJavadocType",
-            "PackageDeclaration",
             "Regexp",
             "RegexpSinglelineJava",
             "TodoComment",
