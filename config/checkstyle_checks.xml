@@ -286,6 +286,10 @@
       <property name="tokens" value="LITERAL_DO"/>
       <property name="option" value="same"/>
     </module>
+    <module name="RightCurly">
+      <property name="tokens" value="INTERFACE_DEF"/>
+      <property name="option" value="alone_or_singleline"/>
+    </module>
 
     <!-- Class Design -->
     <module name="DesignForExtension">
