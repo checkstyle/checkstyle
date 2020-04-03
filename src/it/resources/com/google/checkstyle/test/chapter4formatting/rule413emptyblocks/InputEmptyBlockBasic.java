@@ -334,3 +334,7 @@ class Example {
 
     }
 }
+
+interface InterfaceEndingWithSemiColon {
+    public void fooEmpty();
+};
