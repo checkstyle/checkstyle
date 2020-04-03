@@ -1153,7 +1153,7 @@ public class RequireThisCheck extends AbstractCheck {
         BLOCK_FRAME,
         /** Catch frame type. */
         CATCH_FRAME,
-        /** Lambda frame type. */
+        /** For frame type. */
         FOR_FRAME,
 
     }
