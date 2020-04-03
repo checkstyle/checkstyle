@@ -178,7 +178,6 @@ pitest-javadoc)
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>                 child != null;</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (child.getType() == TokenTypes.TYPE_PARAMETER) {</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (classInfo != null) {</span></pre></td></tr>"
-  "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (dotIdx == -1) {</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        currentTypeParams.clear();</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (iterator.hasNext()) {</span></pre></td></tr>"
   "JavadocTagInfo.java.html:<td class='covered'><pre><span  class='survived'>            .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -&#62; tagName)));</span></pre></td></tr>"
