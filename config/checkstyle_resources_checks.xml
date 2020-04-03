@@ -15,8 +15,10 @@
         <property name="file"
                   value="${project.basedir}/config/checkstyle_resources_suppressions.xml"/>
     </module>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/4100
+    <!-- until https://github.com/checkstyle/checkstyle/issues/8019
     <module name="FileTabCharacter"/>
+    -->
+    <!-- until https://github.com/checkstyle/checkstyle/issues/8020
     <module name="RegexpSingleline">
         <property name="format" value="\s+$"/>
         <property name="message" value="Trailing whitespace"/>
