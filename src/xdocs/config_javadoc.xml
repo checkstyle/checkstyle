@@ -1418,15 +1418,42 @@ public class TestClass {
 &lt;module name="JavadocStyle"/&gt;
         </source>
 
-        <p>
-          To configure the check for <code>public</code>
-          scope:
-        </p>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here. // OK
+     *&#47;
+    private void methodWithValidCommentStyle() {}
 
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     *&#47;
+    private void methodWithInvalidCommentStyle() {}
+}
+        </source>
+
+        <p>
+          To configure the check for <code>public</code> scope:
+        </p>
         <source>
 &lt;module name="JavadocStyle"&gt;
-  &lt;property name="scope" value="public"/&gt;
+&lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     *&#47;
+    public void test1() {}
+
+    &#47;**
+     * Some description here // OK
+     *&#47;
+    private void test2() {}
+}
         </source>
 
         <p>
@@ -1436,9 +1463,23 @@ public class TestClass {
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-  &lt;property name="scope" value="private"/&gt;
-  &lt;property name="excludeScope" value="package"/&gt;
+&lt;property name="scope" value="private"/&gt;
+&lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     *&#47;
+    private void test1() {}
+
+    &#47;**
+     * Some description here // OK
+     *&#47;
+    void test2() {}
+}
         </source>
 
         <p>
@@ -1447,10 +1488,62 @@ public class TestClass {
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-  &lt;property name="checkFirstSentence" value="false"/&gt;
+&lt;property name="checkFirstSentence" value="false"/&gt;
 &lt;/module&gt;
         </source>
-      </subsection>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // OK
+     * Second line of description // violation, the sentence must end with a proper punctuation
+     *&#47;
+    private void test1() {}
+}
+        </source>
+
+        <p>
+          To configure the check to turn off validation of incomplete html tags:
+        </p>
+        <source>
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkHtml" value="false"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     * &lt;p // OK
+     *&#47;
+    private void test1() {}
+}
+        </source>
+
+        <p>
+          To configure the check for only class definitions:
+        </p>
+        <source>
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="tokens" value="CLASS_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+&#47;**
+ * Some description here // violation, the sentence must end with a proper punctuation
+ *&#47;
+public class Test {
+    &#47;**
+     * Some description here // OK
+     *&#47;
+    private void test1() {}
+}
+        </source>
+    </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
         <ul>
