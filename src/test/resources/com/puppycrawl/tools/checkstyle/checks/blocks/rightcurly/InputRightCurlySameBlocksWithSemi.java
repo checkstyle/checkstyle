@@ -56,4 +56,22 @@ public class InputRightCurlySameBlocksWithSemi {
 
     enum TestEnum4{ SOME_VALUE;
     }; //violation
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); }; // violation
+
+    interface Interface2
+    { int i = 1; public void meth1(); };
+
+    interface Interface3 {
+        void display();
+        interface Interface4 {
+            void myMethod();
+        };}; // violaton  - for both of the right curly braces
+
+    interface InterfaceEndingWithSemiColon2 {
+        public void fooEmpty();
+    }; // ok until #7541
 }
