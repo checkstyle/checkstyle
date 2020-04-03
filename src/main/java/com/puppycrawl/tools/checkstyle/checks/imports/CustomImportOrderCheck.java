@@ -786,18 +786,17 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 bestMatch.matchLength = importPath.length();
             }
         }
-        if (bestMatch.group.equals(NON_GROUP_RULE_GROUP)) {
-            for (String group : customOrderRules) {
-                if (STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(group)) {
-                    bestMatch = findBetterPatternMatch(importPath,
-                            STANDARD_JAVA_PACKAGE_RULE_GROUP, standardPackageRegExp, bestMatch);
-                }
-                if (SPECIAL_IMPORTS_RULE_GROUP.equals(group)) {
-                    bestMatch = findBetterPatternMatch(importPath,
-                            group, specialImportsRegExp, bestMatch);
-                }
+        for (String group : customOrderRules) {
+            if (STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(group)) {
+                bestMatch = findBetterPatternMatch(importPath,
+                        STANDARD_JAVA_PACKAGE_RULE_GROUP, standardPackageRegExp, bestMatch);
+            }
+            if (SPECIAL_IMPORTS_RULE_GROUP.equals(group)) {
+                bestMatch = findBetterPatternMatch(importPath,
+                        group, specialImportsRegExp, bestMatch);
             }
         }
+
         if (bestMatch.group.equals(NON_GROUP_RULE_GROUP)
                 && customOrderRules.contains(THIRD_PARTY_PACKAGE_RULE_GROUP)
                 && thirdPartyPackageRegExp.matcher(importPath).find()) {
