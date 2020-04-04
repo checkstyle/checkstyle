@@ -648,8 +648,8 @@
           </tr>
           <tr>
             <td><a href="config_design.html#OneTopLevelClass">OneTopLevelClass</a></td>
-            <td>Checks that each top-level class, interface or enum resides in a source file of
-                its own.</td>
+            <td>Checks that each top-level class, interface, enum or annotation resides in
+              a source file of its own.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#OperatorWrap">OperatorWrap</a></td>
