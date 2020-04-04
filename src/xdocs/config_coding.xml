@@ -2744,6 +2744,7 @@ public class Test extends TreeSet { // OK
         </source>
         <p>
           To configure the Check so that it ignores function() methods:
+<<<<<<< HEAD
         </p>
         <source>
 &lt;module name=&quot;IllegalType&quot;&gt;
@@ -2771,6 +2772,35 @@ public class Test {
 &lt;/module&gt;
         </source>
         <source>
+=======
+        </p>
+        <source>
+&lt;module name=&quot;IllegalType&quot;&gt;
+  &lt;property name=&quot;ignoredMethodNames&quot; value=&quot;function&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+public class Test {
+  public HashMap&lt;String, String&gt; function() { // OK
+    // code
+  }
+
+  public HashMap&lt;String, String&gt; function1() { // violation
+    // code
+  }
+}
+        </source>
+        <p>
+          To configure the Check so that it validates abstract class names:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalType&quot;&gt;
+  &lt;property name=&quot;validateAbstractClassNames&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;illegalAbstractClassNameFormat&quot; value=&quot;Gitt&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+>>>>>>> Issue #7647: Update doc for IllegalType
 class Test extends Gitter { // violation
 }
 
