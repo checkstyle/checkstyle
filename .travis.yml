@@ -1,5 +1,7 @@
+version: ~> 1.0
+dist: xenial
+os: linux
 language: java
-sudo: false
 
 cache:
   directories:
@@ -18,7 +20,7 @@ branches:
 install:
   - ""
 
-matrix:
+jobs:
   fast_finish: true
   include:
     # testing age of pr
@@ -206,7 +208,7 @@ matrix:
     - os: osx
       osx_image: xcode9.3
       env:
-        - DESC="MacOS JDK8 verify, site, assembly
+        - DESC="MacOS JDK8 verify, site, assembly"
         - CMD1="./.ci/travis/travis.sh osx-package"
         - CMD2="./.ci/travis/travis.sh osx-assembly"
         - CMD="$CMD1 && $CMD2"
@@ -215,7 +217,7 @@ matrix:
     - os: osx
       osx_image: xcode10.1
       env:
-        - DESC="MacOS JDK11 verify, site, assembly
+        - DESC="MacOS JDK11 verify, site, assembly"
         - CMD1="./.ci/travis/travis.sh osx-package"
         - CMD2="./.ci/travis/travis.sh osx-assembly"
         - CMD="$CMD1 && $CMD2"
@@ -224,7 +226,7 @@ matrix:
     - os: osx
       osx_image: xcode11.2
       env:
-        - DESC="MacOS JDK13 verify, site, assembly
+        - DESC="MacOS JDK13 verify, site, assembly"
         - CMD1="./.ci/travis/travis.sh osx-jdk13-package"
         - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
         - CMD="$CMD1 && $CMD2"
