@@ -6,7 +6,7 @@ class InputJavadocTagContinuationIndentationGuavaFalsePositive {
 
     /**
      * This class implements the GWT serialization of {@link HashMultimap}.
-     * 
+     *
      * @author Jord Sonneveld
      * 
      */
