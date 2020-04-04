@@ -39,17 +39,9 @@ pitest-annotation|pitest-design \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
 |pitest-main \
-|pitest-coding)
+|pitest-coding | pitest-regexp)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-regexp)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        return errorCount &#60;= errorLimit - 1</span></pre></td></tr>"
-  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
