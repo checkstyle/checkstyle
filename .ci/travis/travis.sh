@@ -115,26 +115,26 @@ javac9)
   fi
   ;;
 
-javac13)
-  files=($(grep -Rl --include='*.java' ': Compilable with Java13' \
+javac14)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java14' \
         src/test/resources-noncompilable || true))
   if [[  ${#files[@]} -eq 0 ]]; then
-    echo "No Java13 files to process"
+    echo "No Java14 files to process"
   else
       mkdir -p target
       for file in "${files[@]}"
       do
-        javac --release 13 --enable-preview -d target "${file}"
+        javac --release 14 --enable-preview -d target "${file}"
       done
   fi
   ;;
 
-jdk13-assembly-site)
+jdk14-assembly-site)
   mvn -e package -Passembly
   mvn -e site -Pno-validations
   ;;
 
-jdk13-verify-limited)
+jdk14-verify-limited)
   # we skip pmd and spotbugs as they executed in special Travis build
   mvn -e verify -Dpmd.skip=true -Dspotbugs.skip=true
   ;;
