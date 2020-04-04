@@ -79,8 +79,8 @@ jobs:
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
         - USE_MAVEN_REPO="true"
 
-    # spotbugs and pmd (openjdk13)
-    - jdk: openjdk13
+    # spotbugs and pmd (openjdk14)
+    - jdk: openjdk14
       env:
         - DESC="spotbugs,pmd"
         - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean compile pmd:check spotbugs:check"
@@ -260,19 +260,19 @@ jobs:
         - USE_MAVEN_REPO="true"
         - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
-    # OpenJDK13 build
-    - jdk: openjdk13
+    # OpenJDK14 build
+    - jdk: openjdk14
       env:
-        - DESC="build with OpenJDK13"
+        - DESC="build with OpenJDK14"
         - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk13-assembly-site"
+        - CMD="./.ci/travis/travis.sh jdk14-assembly-site"
 
-    # OpenJDK13 verify limited
-    - jdk: openjdk13
+    # OpenJDK14 verify limited
+    - jdk: openjdk14
       env:
-        - DESC="verify limited with OpenJDK13"
+        - DESC="verify limited with OpenJDK14"
         - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk13-verify-limited"
+        - CMD="./.ci/travis/travis.sh jdk14-verify-limited"
 
     # OpenJDK11 compile input files with jdk9 specific syntax
     - jdk: openjdk11
@@ -286,11 +286,11 @@ jobs:
         - DESC="compile input files that are not compiled by eclipse"
         - CMD="./.ci/travis/travis.sh javac8"
 
-    # OpenJDK13 compile input files with jdk13 specific syntax
-    - jdk: openjdk13
+    # OpenJDK14 compile input files with jdk14 specific syntax
+    - jdk: openjdk14
       env:
-        - DESC="compile input files with jdk13 specific syntax"
-        - CMD="./.ci/travis/travis.sh javac13"
+        - DESC="compile input files with jdk14 specific syntax"
+        - CMD="./.ci/travis/travis.sh javac14"
 
     # find missing pitests
     - env:
