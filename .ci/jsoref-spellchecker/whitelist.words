@@ -550,6 +550,7 @@ hh
 hiddenfield
 hideutilityclassconstructor
 hipparchus
+hmap
 hne
 Homepage
 horizontalwhitespace
@@ -576,6 +577,7 @@ igorminar
 IInterfacable
 Ilja
 illegalcatch
+illegalex
 illegalimport
 illegalinstantiation
 illegalthrows
@@ -611,6 +613,7 @@ intercell
 interfaceistype
 interfacememberimpliedmodifier
 interfacetypeparametername
+intqueue
 invalidformat
 invalidinherit
 invalidjavadocposition
@@ -753,6 +756,7 @@ len
 lexer
 lgpl
 lharris
+lhmap
 LHSOf
 libcore
 liberapay
@@ -1295,6 +1299,8 @@ Toolbar
 Touchscreen
 trailingcomment
 treelayout
+treemap
+treeset
 treewalker
 TRequest
 tschneeberger
