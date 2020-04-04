@@ -27,12 +27,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * Checks that each top-level class, interface
- * or enum resides in a source file of its own.
+ * Checks that each top-level class, interface, enum
+ * or annotation resides in a source file of its own.
  * Official description of a 'top-level' term:
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-7.html#jls-7.6">
  * 7.6. Top Level Type Declarations</a>. If file doesn't contains
- * public class, enum or interface, top-level type is the first type in file.
+ * public class, interface, enum or annotation, top-level type is the first type in file.
  * </p>
  * <p>
  * To configure the check:
@@ -141,12 +141,13 @@ public class OneTopLevelClassCheck extends AbstractCheck {
     /**
      * Checks if an AST node is a type definition.
      * @param node AST node to check.
-     * @return true if the node is a type (class, enum, interface) definition.
+     * @return true if the node is a type (class, enum, interface, annotation) definition.
      */
     private static boolean isTypeDef(DetailAST node) {
         return node.getType() == TokenTypes.CLASS_DEF
                 || node.getType() == TokenTypes.ENUM_DEF
-                || node.getType() == TokenTypes.INTERFACE_DEF;
+                || node.getType() == TokenTypes.INTERFACE_DEF
+                || node.getType() == TokenTypes.ANNOTATION_DEF;
     }
 
     /**
