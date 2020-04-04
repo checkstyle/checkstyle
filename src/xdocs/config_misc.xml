@@ -2450,6 +2450,13 @@ public class Start {
         <source>
 &lt;module name=&quot;UpperEll&quot;/&gt;
         </source>
+        <source>
+class Test {
+  long var1 = 508987; // OK
+  long var2 = 508987l; // violation
+  long var3 = 508987L; // OK
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="UpperEll_Example_of_Usage">

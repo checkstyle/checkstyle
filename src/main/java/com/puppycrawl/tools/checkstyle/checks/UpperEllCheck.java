@@ -41,6 +41,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;UpperEll&quot;/&gt;
  * </pre>
+ * <pre>
+ * class Test {
+ *   long var1 = 508987; // OK
+ *   long var2 = 508987l; // violation
+ *   long var3 = 508987L; // OK
+ * }
+ * </pre>
  *
  * @since 3.0
  */
