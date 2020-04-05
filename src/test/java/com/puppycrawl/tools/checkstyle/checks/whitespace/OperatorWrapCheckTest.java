@@ -49,6 +49,9 @@ public class OperatorWrapCheckTest
             "26:18: " + getCheckMessage(MSG_LINE_NEW, "&&"),
             "48:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
             "61:30: " + getCheckMessage(MSG_LINE_NEW, "&"),
+            "81:28: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "83:29: " + getCheckMessage(MSG_LINE_NEW, "+"),
+            "85:29: " + getCheckMessage(MSG_LINE_NEW, "+"),
         };
         verify(checkConfig, getPath("InputOperatorWrap.java"), expected);
     }
