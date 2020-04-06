@@ -447,6 +447,16 @@ no-warning-imports-java-design-patterns)
   fi
   ;;
 
+validate-ci-temp-empty)
+  fail=0
+  if [ "$(ls -A .ci-temp)" ]; then
+    ls -A .ci-temp
+    echo ".ci-temp/ is not empty. Verification failed."
+    fail=1
+  fi
+  exit $fail
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
