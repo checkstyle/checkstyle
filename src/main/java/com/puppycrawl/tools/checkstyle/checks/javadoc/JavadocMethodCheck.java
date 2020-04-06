@@ -405,13 +405,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             || ast.getType() == TokenTypes.ENUM_DEF) {
             // perhaps it was inner class
             final int dotIdx = currentClassName.lastIndexOf('$');
-            if (dotIdx == -1) {
-                // looks like a topmost class
-                currentClassName = "";
-            }
-            else {
-                currentClassName = currentClassName.substring(0, dotIdx);
-            }
+            currentClassName = currentClassName.substring(0, dotIdx);
             currentTypeParams.pop();
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
@@ -1047,9 +1041,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         final DetailAST ident = ast.findFirstToken(TokenTypes.IDENT);
         String innerClass = ident.getText();
 
-        if (!currentClassName.isEmpty()) {
-            innerClass = "$" + innerClass;
-        }
+        innerClass = "$" + innerClass;
         currentClassName += innerClass;
         processTypeParams(ast);
     }
