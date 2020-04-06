@@ -560,6 +560,16 @@ git-status)
   fi
   ;;
 
+validate-ci-temp-empty)
+  fail=0
+  if [ "$(ls -A .ci-temp)" ]; then
+    find ".ci-temp" -mindepth 1 -type d -exec echo "Found directory in .ci-temp: " {} \;
+    find ".ci-temp" -mindepth 1 -type f -exec echo "Found file in .ci-temp: " {} \;
+    fail=1
+  fi
+  exit $fail
+  ;;
+
 check-since-version)
   ## Travis merges the PR commit into origin/master
   ## This identifies the PR's original commit
