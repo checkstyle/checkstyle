@@ -55,14 +55,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
  * </pre>
  * <p>
- * To configure the check so that it only checks for objects that explicitly initialize to null:
- * </p>
- * <pre>
- * &lt;module name=&quot;ExplicitInitialization&quot;&gt;
- *   &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
  * Example:
  * </p>
  * <pre>
@@ -80,6 +72,47 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   private boolean c = true;
  *   private boolean d = false; // violation
  *   private boolean e = false; // violation
+ *
+ *   private A a = new A();
+ *   private A b = null; // violation
+ *   private C c = null; // violation
+ *   private D d = new D();
+ *
+ *   int ar1[] = null; // violation
+ *   int ar2[] = new int[];
+ *   int ar3[];
+ *   private Bar&lt;String&gt; bar = null; // violation
+ *   private Bar&lt;String&gt;[] barArray = null; // violation
+ *   public static void main( String [] args ) {
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it only checks for objects that explicitly initialize to null:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ExplicitInitialization&quot;&gt;
+ *   &lt;property name=&quot;onlyObjectReferences&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a = 0;
+ *   private int b = 1;
+ *   private int c = 2;
+ *
+ *   private char a = '\0';
+ *   private char b = 'b';
+ *   private char c = 'c';
+ *
+ *   private boolean a = true;
+ *   private boolean b = false;
+ *   private boolean c = true;
+ *   private boolean d = false;
+ *   private boolean e = false;
  *
  *   private A a = new A();
  *   private A b = null; // violation
