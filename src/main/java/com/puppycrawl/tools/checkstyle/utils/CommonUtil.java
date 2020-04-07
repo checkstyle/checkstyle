@@ -539,12 +539,16 @@ public final class CommonUtil {
      * @return the string, based on template filled with given lines
      */
     public static String fillTemplateWithStringsByRegexp(
-        String template, String lineToPlaceInTemplate, Pattern regexp) {
+        String template, String lineToPlaceInTemplate, Pattern regexp) throws IllegalArgumentException{
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
+                if (matcher.group(i) == null) {
+                    throw new IllegalArgumentException("");
+                }
+                else
                 result = result.replaceAll("\\$" + i, matcher.group(i));
             }
         }
