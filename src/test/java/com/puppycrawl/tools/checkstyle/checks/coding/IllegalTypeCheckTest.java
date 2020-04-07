@@ -84,8 +84,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
-                    + "InputIllegalType.AbstractClass"),
+                "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "25:36: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "42:14: " + getCheckMessage(MSG_KEY, "HashMap"),
@@ -118,8 +117,7 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = {
             "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
-                    + "InputIllegalType.AbstractClass"),
+                "InputIllegalType.AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
             "42:14: " + getCheckMessage(MSG_KEY, "HashMap"),
@@ -273,13 +271,11 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "6:13: " + getCheckMessage(MSG_KEY, "AbstractClass"),
             "9:13: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
-                    + "InputIllegalTypeMemberModifiers.AbstractClass"),
+                "AbstractClass"),
             "16:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "17:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
             "23:15: " + getCheckMessage(MSG_KEY,
-                "com.puppycrawl.tools.checkstyle.checks.coding.illegaltype."
-                    + "InputIllegalTypeMemberModifiers.AbstractClass"),
+                "AbstractClass"),
             "25:25: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
             "33:15: " + getCheckMessage(MSG_KEY, "AbstractClass"),
         };

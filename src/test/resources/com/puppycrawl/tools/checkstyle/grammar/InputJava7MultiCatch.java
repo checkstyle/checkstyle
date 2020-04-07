@@ -23,7 +23,8 @@ public class InputJava7MultiCatch
         try {
             FileInputStream in = new FileInputStream("InputJava7MultiCatch.java");
             throw new CustomException();
-        } catch (final FileNotFoundException | CustomException | com.puppycrawl.tools.checkstyle.grammar.InputJava7MultiCatch.AnotherCustomException e) {
+        } catch (final FileNotFoundException | CustomException |
+            com.puppycrawl.tools.checkstyle.grammar.InputJava7MultiCatch.AnotherCustomException e) {
             logException(e);
         }
     }
