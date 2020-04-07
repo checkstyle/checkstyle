@@ -90,20 +90,6 @@
     <suppress id="lineLength"
               files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]customimportorder"/>
 
-    <!-- untill https://github.com/checkstyle/checkstyle/issues/8036 -->
-    <suppress id="lineLength"
-              files="[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
-    <suppress id="lineLength"
-              files="[\\/]InputJavadocMethod_1379666.java"/>
-    <suppress id="lineLength"
-              files="[\\/]grammar[\\/]InputJava7MultiCatch.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalType.*\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeMemberModifiers.*\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.*\.java"/>
-
     <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
@@ -161,5 +147,4 @@
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUnnecessarySemicolonInTryWithResourcesTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUpperEllTest.java"/>
-
 </suppressions>
