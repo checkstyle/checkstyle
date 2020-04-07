@@ -248,8 +248,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 5.0
  */
 public class SuppressWithNearbyCommentFilter
-    extends AutomaticBean
-    implements TreeWalkerFilter {
+    extends AutomaticBean implements TreeWalkerFilter {
 
     /** Format to turns checkstyle reporting off. */
     private static final String DEFAULT_COMMENT_FORMAT =
@@ -546,6 +545,7 @@ public class SuppressWithNearbyCommentFilter
                 throw new IllegalArgumentException(
                     "unable to parse expanded comment " + format, ex);
             }
+
         }
 
         /**
