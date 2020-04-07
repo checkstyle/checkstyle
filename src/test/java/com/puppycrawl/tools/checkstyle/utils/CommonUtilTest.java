@@ -297,6 +297,17 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertEquals("before word 123 after1 word after2 123 after3",
                 CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
                         "word 123", Pattern.compile("(\\w+) (\\d+)")), "invalid result");
+        try {
+            CommonUtil.fillTemplateWithStringsByRegexp("$3",
+                    "-@csl[FinalLocalVariable]",
+                    Pattern.compile("-@csl\\[(\\w{8,}((\\||\\(|\\))\\w+)*)]"));
+            fail("Exception has occured");
+        }
+        catch (IllegalArgumentException ex) {
+            assertEquals("unable to compute null regex group: $3", ex.getMessage(),
+                "Invalid exception message");
+        }
+
     }
 
     @Test
