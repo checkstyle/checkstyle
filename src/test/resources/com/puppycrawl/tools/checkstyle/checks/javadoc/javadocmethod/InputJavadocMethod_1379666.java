@@ -13,10 +13,10 @@ public class InputJavadocMethod_1379666 {
 
     /**
      * Some comment.
-     * @throws com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod.InputJavadocMethod_1379666.BadStringFormat some text
+     * @throws BadStringFormat some text
      */
     public void error1()
-        throws com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod.InputJavadocMethod_1379666.BadStringFormat {
+        throws BadStringFormat {
     }
 
     /**

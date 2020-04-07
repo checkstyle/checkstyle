@@ -67,6 +67,7 @@ public class FinalClassCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY, "B"),
             "16:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verify(checkConfig,

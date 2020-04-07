@@ -10,7 +10,7 @@ public class InputFinalClassClassWithPrivateCtorWithNestedExtendingClass {
     class B {
         private B() {}
         private class ExtendB extends
-                com.puppycrawl.tools.checkstyle.checks.design.finalclass.InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.B {}
+                InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.B {}
     }
 
     class C {
