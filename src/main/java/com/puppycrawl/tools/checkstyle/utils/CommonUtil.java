@@ -543,6 +543,15 @@ public final class CommonUtil {
         final Matcher matcher = regexp.matcher(lineToPlaceInTemplate);
         String result = template;
         if (matcher.find()) {
+            final Pattern pattern = Pattern.compile("(^(\\$\\d+))$");
+            final Matcher match = pattern.matcher(template);
+            final boolean matchTemplate = match.matches();
+            if (matchTemplate
+                    && Integer.parseInt(template.substring(1)) <= matcher.groupCount()
+                    && matcher.group(Integer.parseInt(template.substring(1))) == null) {
+                throw new IllegalArgumentException("unable to compute null regex group: "
+                        + template);
+            }
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
                 result = result.replaceAll("\\$" + i, matcher.group(i));
