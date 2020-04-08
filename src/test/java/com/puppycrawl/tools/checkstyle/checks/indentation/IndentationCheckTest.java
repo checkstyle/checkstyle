@@ -49,7 +49,6 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import org.junit.platform.commons.util.CollectionUtils;
 
 /**
  * Unit test for IndentationCheck.
