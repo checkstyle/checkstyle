@@ -21,11 +21,11 @@ public class InputIndentationBraceAdjustment //indent:0 exp:0
     public InputIndentationBraceAdjustment() //indent:4 exp:4
       { //indent:6 exp:6
         // sorry about the religious commentary... :) //indent:8 exp:8
-        boolean uglyGnuStyle = true; //indent:8 exp:8
-        if (uglyGnuStyle) //indent:8 exp:8
-          { //indent:10 exp:10
-            System.identityHashCode("ugly GNU style braces"); //indent:12 exp:12
-        } //indent:8 exp:10 warn
+        boolean uglyGnuStyle = true; //indent:8 exp:10 warn
+        if (uglyGnuStyle) //indent:8 exp:10 warn
+          { //indent:10 exp:12 warn
+            System.identityHashCode("ugly GNU style braces"); //indent:12 exp:14,16 warn
+        } //indent:8 exp:12 warn
       } //indent:6 exp:6
 
   } //indent:2 exp:2

@@ -139,9 +139,9 @@ final class InputIndentationValidClassDefIndent66 extends Object { //indent:0 ex
 
         new JButton().addActionListener(new ActionListener()  //indent:8 exp:8
       { //indent:6 exp:8,12 warn
-            public void actionPerformed(ActionEvent e) { //indent:12 exp:10 warn
+            public void actionPerformed(ActionEvent e) { //indent:12 exp:12
 
-            } //indent:12 exp:10 warn
+            } //indent:12 exp:12
       }); //indent:6 exp:8,12 warn
 
 
