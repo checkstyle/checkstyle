@@ -909,7 +909,7 @@ public class ImportOrderCheck
                     bestEnd = matcher.end();
                     bestPos = matcher.start();
                 }
-                else if (matcher.start() == bestPos && matcher.end() > bestEnd) {
+                else if (bestEnd < matcher.end()) {
                     bestIndex = i;
                     bestEnd = matcher.end();
                 }
