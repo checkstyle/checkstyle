@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.junit.platform.commons.util.CollectionUtils;
 
 /**
  * Unit test for IndentationCheck.
@@ -666,6 +667,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "179:1: " + getCheckMessage(MSG_ERROR, "int", 0, 8),
             "180:5: " + getCheckMessage(MSG_ERROR, "method9", 4, 8),
             "190:13: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 12, 8),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAlternativeGoogleStyleSwitchCaseAndEnums()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "2");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationSwitchCasesAndEnums.java");
+        final String[] expected = {
+            "18: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 4),
+            "35: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
+            "38: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 8),
+            "54: " + getCheckMessage(MSG_ERROR, "block lcurly", 4, 2),
+            "55: " + getCheckMessage(MSG_CHILD_ERROR, "block", 2, 4),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1502,7 +1527,21 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "28:9: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 10),
+            "18:1: " + getCheckMessage(MSG_ERROR, "class def lcurly", 0, 2),
+            "21:3: " + getCheckMessage(MSG_ERROR, "ctor def modifier", 2, 6),
+            "22:3: " + getCheckMessage(MSG_ERROR, "ctor def lcurly", 2, 8),
+            "26:13: " + getCheckMessage(MSG_ERROR, "if lcurly", 12, 14),
+            "27:15: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 18),
+            "28:13: " + getCheckMessage(MSG_ERROR, "if rcurly", 12, 14),
+            "29:3: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 2, 8),
+            "31:1: " + getCheckMessage(MSG_ERROR, "class def rcurly", 0, 2),
+
+            "34:1: " + getCheckMessage(MSG_ERROR, "class def lcurly", 0, 2),
+            "35:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 6),
+            "36:5: " + getCheckMessage(MSG_ERROR, "method def lcurly", 4, 8),
+            "38:5: " + getCheckMessage(MSG_ERROR, "method def modifier", 4, 6),
+            "39:5: " + getCheckMessage(MSG_ERROR, "method def rcurly", 4, 6),
+            "40:1: " + getCheckMessage(MSG_ERROR, "class def rcurly", 0, 2),
         };
         verifyWarns(checkConfig, getPath("InputIndentationBraceAdjustment.java"), expected);
     }
