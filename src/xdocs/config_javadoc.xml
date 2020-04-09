@@ -3112,19 +3112,42 @@ public class TestClass {
   &lt;property name="tagFormat" value="\S"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Valid
+* @author Author
+* Invalid
+* @author
+*/
+public class Test{}
+        </source>
 
         <p>
          To configure the check to print warnings if an
-         "@incomplete" tag is found, and not print anything if it is not found:
+         "@incomplete" tag is found:
         </p>
 
         <source>
 &lt;module name="WriteTag"&gt;
   &lt;property name="tag" value="@incomplete"/&gt;
   &lt;property name="tagFormat" value="\S"/&gt;
-  &lt;property name="severity" value="ignore"/&gt;
-  &lt;property name="tagSeverity" value="warning"/&gt;
+  &lt;property name="tagSeverity" value="warning"/>
 &lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Valid
+* @incomplete Incomplete
+* Invalid
+* @incomplete
+*/
+public class Test{}
         </source>
       </subsection>
 

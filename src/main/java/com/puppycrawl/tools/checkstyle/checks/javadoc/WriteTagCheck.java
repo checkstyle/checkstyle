@@ -73,18 +73,39 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check to print warnings if an "@incomplete" tag is found,
- * and not print anything if it is not found:
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Valid
+ * * &#64;author Author
+ * * Invalid
+ * * &#64;author
+ * *&#47;
+ * public class Test{}
+ * </pre>
+ * <p>
+ * To configure the check to print warnings if an "@incomplete" tag is found:
  * </p>
  * <pre>
  * &lt;module name="WriteTag"&gt;
  *   &lt;property name="tag" value="@incomplete"/&gt;
  *   &lt;property name="tagFormat" value="\S"/&gt;
- *   &lt;property name="severity" value="ignore"/&gt;
  *   &lt;property name="tagSeverity" value="warning"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Valid
+ * * &#64;incomplete Incomplete
+ * * Invalid
+ * * &#64;incomplete
+ * *&#47;
+ * public class Test{}
+ * </pre>
  * @since 4.2
  */
 @StatelessCheck
