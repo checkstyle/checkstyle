@@ -926,7 +926,6 @@ public class UserService {
           <li>Indentation</li>
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
-          <li>JavadocType</li>
           <li>MissingJavadocType</li>
           <li>PackageDeclaration</li>
           <li>Regexp</li>
@@ -946,6 +945,7 @@ public class UserService {
           <li>JavadocParagraph</li>
           <li>JavadocStyle</li>
           <li>JavadocTagContinuationIndentation</li>
+          <li>JavadocType</li>
           <li>MissingDeprecated</li>
           <li>NonEmptyAtclauseDescription</li>
           <li>SingleLineJavadoc</li>
