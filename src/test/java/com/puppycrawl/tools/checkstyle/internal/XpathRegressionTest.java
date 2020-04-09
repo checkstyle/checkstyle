@@ -45,6 +45,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
@@ -61,7 +62,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "Indentation",
             "InterfaceMemberImpliedModifier",
             "JavadocMethod",
-            "JavadocType",
             "MissingJavadocType",
             "OverloadMethodsDeclarationOrder",
             "PackageDeclaration",
@@ -85,6 +85,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "JavadocParagraph",
                     "JavadocStyle",
                     "JavadocTagContinuationIndentation",
+                    "JavadocType",
                     "MissingDeprecated",
                     "NonEmptyAtclauseDescription",
                     "SingleLineJavadoc",
@@ -94,10 +95,12 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
     // but not subclasses of AbstractJavadocCheck.
-    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = new HashSet<>(Arrays.asList(
-            JavadocStyleCheck.class,
-            WriteTagCheck.class
-    ));
+    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS =
+            Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+                    JavadocStyleCheck.class,
+                    JavadocTypeCheck.class,
+                    WriteTagCheck.class
+    )));
 
     // Checks that allowed to have no XPath IT Regression Testing
     // till https://github.com/checkstyle/checkstyle/issues/6207
