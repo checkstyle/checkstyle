@@ -40,8 +40,8 @@
     <section name="How to report a bug?">
 
       <p>
-        First and foremost, do not think that your issue is obvious and do not need details.<br/>
-        Even tiny issue need all details
+        First and foremost, do not think that your issue is obvious and doesn't need details.<br/>
+        Even tiny issues need all details
         (Check name, config with options, source file, Checkstyle version) and context to be
         shared with us.
       </p>
@@ -113,21 +113,53 @@ Audit done.
 
     </section>
 
-    <section name="How to request new feature for existing functionality?">
+    <section name="How to request enhancement to existing functionality?">
 
       <p>
         Please always specify exact name of the Check/Module.
       </p>
 
       <p>
-        Please provide detailed description of problem and chunks of code and config
-        that you currently have.
+        Please provide a clear and detailed description of theproblem and describe what
+        you would want to happen instead. Relevant chunks of code and config that you currently
+        have will definitely facilitate understanding. Any other context or
+        screenshots which elaborate futher on the relevence and rational behind
+        the new feature may also be added.
       </p>
 
       <p>
-        Imagine that everything is possible and propose name of the new option and its behaviour.
-        Do not think that your issue is so obvious.
+        A clear and concise description of any alternative or existing
+        solution or feature that you may've considered or seen elsewhere.
       </p>
+
+      <p>
+        Imagine that everything is possible and propose name of the new option and its
+        describe its behaviour.
+        Never think that your issue is obvious.
+      </p>
+
+      <p>
+        Example of Feature Request/Enhancement that we expect:
+      </p>
+      
+      <source>
+Check documentation: https://checkstyle.org/config_whitespace.html#WhitespaceAround
+
+Describe the problem in detail:
+
+/var/tmp $ javac Test.java
+
+/var/tmp $ cat Test.java
+public class Test { // Note
+  private static final int SOMETHING = 1;
+}
+
+Describe how the additional functionality will solve the problem:
+
+Describe alternatives you've considered:
+
+Additional context, screenshots or examples:
+      </source>
     </section>
 
     <section name="How to request new Check/Module?">
@@ -139,8 +171,36 @@ Audit done.
         The more examples the better.
       </p>
       <p>
-        If you have open source project, please send a link to the whole java file.
+        Explain the rationale behind implementing the new check with relevant
+        references (if possible).
       </p>
+      <p>
+        Feel free to propose a name for the new Check, along with all its attributes.
+      </p>
+      <p>
+        If you have open source project, please give a link to the whole java file.
+      </p>
+      <p>
+        Example of Check/Module Request that we expect:
+      </p>
+      
+      <source>
+Describe the problem in detail:
+
+/var/tmp $ javac Test.java
+
+/var/tmp $ cat Test.java
+public class Test { // To be checked
+  private static final int SOMETHING = 1;
+}
+
+Describe how the new check will solve the problem. Mention the required properties
+and their behaviour.
+
+Describe alternatives you've considered:
+
+Additional context, screenshots or examples:
+      </source>
     </section>
 
   </body>
