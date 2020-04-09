@@ -1289,6 +1289,9 @@ public class TestClass {
             "sup", "table", "tbody", "td", "tfoot", "th", "thead", "tr", "tt",
             "u", "ul", "var".
           </li>
+          <li>
+            Checks if the first javadoc tag is missing an empty line before it.
+          </li>
         </ul>
 
         <p>
@@ -1355,6 +1358,16 @@ public class TestClass {
               <td><a href="property_types.html#boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
+            </tr>
+            <tr>
+              <td>checkEmptyLineBeforeFirstTag</td>
+              <td>
+                Control whether to check if the first javadoc tag is missing an empty line before
+                  it.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.32</td>
             </tr>
             <tr>
               <td>tokens</td>
@@ -1571,6 +1584,10 @@ public class Test {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.incompleteTag%22">
             javadoc.incompleteTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.linegapTag%22">
+            javadoc.linegapTag</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing%22">

@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -82,6 +83,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
  * "thead", "tr", "tt", "u", "ul", "var".
  * </li>
+ * <li>
+ * Checks if the first javadoc tag is missing an empty line before it.
+ * </li>
  * </ul>
  * <p>
  * These checks were patterned after the checks made by the
@@ -116,6 +120,11 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code checkHtml} - Control whether to check for incomplete HTML tags.
  * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code checkEmptyLineBeforeFirstTag} - Control whether to check if the first javadoc
+ * tag is missing an empty line before it.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check Default value is:
@@ -269,17 +278,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class JavadocStyleCheck
     extends AbstractCheck {
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the Missing Javadoc message. */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the Empty Javadoc message. */
     public static final String MSG_EMPTY = "javadoc.empty";
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the No Javadoc end of Sentence Period message. */
     public static final String MSG_NO_PERIOD = "javadoc.noPeriod";
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the Incomplete Tag message. */
     public static final String MSG_INCOMPLETE_TAG = "javadoc.incompleteTag";
+
+    /** Message property key for the Missing Line Gap before First Javadoc Tag Message. */
+    public static final String MSG_LINEGAP_FIRST_TAG = "javadoc.linegapTag";
 
     /** Message property key for the Unclosed HTML message. */
     public static final String MSG_UNCLOSED_HTML = JavadocDetailNodeParser.MSG_UNCLOSED_HTML_TAG;
@@ -308,6 +320,9 @@ public class JavadocStyleCheck
             "tr", "tt", "u", "ul", "var", })
         .collect(Collectors.toCollection(TreeSet::new)));
 
+    /** Compiled regexp to match non empty line before a javadoc tag. */
+    private final Pattern matchJavadocLinegapFirstTag = Pattern.compile("\\*\\s*\\w+");
+
     /** Specify the visibility scope where Javadoc comments are checked. */
     private Scope scope = Scope.PRIVATE;
 
@@ -331,6 +346,11 @@ public class JavadocStyleCheck
      * Control whether to check if the Javadoc is missing a describing text.
      */
     private boolean checkEmptyJavadoc;
+
+    /**
+     * Control whether to check if the first javadoc tag is missing an empty line before it.
+     */
+    private boolean checkEmptyLineBeforeFirstTag;
 
     @Override
     public int[] getDefaultTokens() {
@@ -435,6 +455,31 @@ public class JavadocStyleCheck
 
             if (checkEmptyJavadoc) {
                 checkJavadocIsNotEmpty(comment);
+            }
+
+            if (checkEmptyLineBeforeFirstTag) {
+                checkFirstTagLineGap(ast, comment);
+            }
+        }
+    }
+
+    /**
+     * Checks whether the first javadoc tag has a line empty before it.
+     *
+     * @param ast the current node
+     * @param comment the source lines that make up the Javadoc comment.
+     */
+    private void checkFirstTagLineGap(DetailAST ast, TextBlock comment) {
+        final String[] lines = comment.getText();
+        final Pattern tagPattern = Pattern.compile("\\*\\s*@\\w+");
+        for (int i = 1; i < lines.length; i++) {
+            final Matcher matcher = tagPattern.matcher(lines[i]);
+            if (matcher.find()) {
+                final Matcher matcherLineGap = matchJavadocLinegapFirstTag.matcher(lines[i - 1]);
+                if (matcherLineGap.find()) {
+                    log(ast.getLineNo() - lines.length + i, MSG_LINEGAP_FIRST_TAG);
+                }
+                break;
             }
         }
     }
@@ -762,6 +807,16 @@ public class JavadocStyleCheck
      */
     public void setCheckEmptyJavadoc(boolean flag) {
         checkEmptyJavadoc = flag;
+    }
+
+    /**
+     * Setter to control whether to check if the first javadoc tag is missing an empty line
+     * before it.
+     *
+     * @param flag {@code true} if empty line before first javadoc tag checking should be done.
+     */
+    public void setCheckEmptyLineBeforeFirstTag(boolean flag) {
+        checkEmptyLineBeforeFirstTag = flag;
     }
 
 }

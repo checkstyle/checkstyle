@@ -23,6 +23,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.M
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_EXTRA_HTML;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_INCOMPLETE_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_JAVADOC_MISSING;
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_LINEGAP_FIRST_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_NO_PERIOD;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck.MSG_UNCLOSED_HTML;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -432,6 +433,19 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
+    }
+
+    @Test
+    public void testLineGapBeforeParam() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("checkEmptyLineBeforeFirstTag", "true");
+        final String[] expected = {
+            "34: " + getCheckMessage(MSG_LINEGAP_FIRST_TAG),
+            "74: " + getCheckMessage(MSG_LINEGAP_FIRST_TAG),
+            "86: " + getCheckMessage(MSG_LINEGAP_FIRST_TAG),
+            "98: " + getCheckMessage(MSG_LINEGAP_FIRST_TAG),
+        };
+        verify(checkConfig, getPath("InputJavadocStyleTags.java"), expected);
     }
 
 }

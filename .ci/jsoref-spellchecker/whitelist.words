@@ -760,6 +760,7 @@ libexec
 lifecycle
 linebreak
 linecolumn
+linegap
 linejava
 linelength
 linkcheck
