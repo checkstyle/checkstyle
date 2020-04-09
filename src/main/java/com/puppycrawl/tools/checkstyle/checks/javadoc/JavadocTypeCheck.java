@@ -329,9 +329,9 @@ public class JavadocTypeCheck
                 final List<JavadocTag> tags = getJavadocTags(textBlock);
                 if (ScopeUtil.isOuterMostType(ast)) {
                     // don't check author/version for inner classes
-                    checkTag(lineNo, tags, JavadocTagInfo.AUTHOR.getName(),
+                    checkTag(ast, tags, JavadocTagInfo.AUTHOR.getName(),
                             authorFormat);
-                    checkTag(lineNo, tags, JavadocTagInfo.VERSION.getName(),
+                    checkTag(ast, tags, JavadocTagInfo.VERSION.getName(),
                             versionFormat);
                 }
 
@@ -342,7 +342,7 @@ public class JavadocTypeCheck
                     // Check type parameters that should exist, do
                     for (final String typeParamName : typeParamNames) {
                         checkTypeParamTag(
-                            lineNo, tags, typeParamName);
+                            ast, tags, typeParamName);
                     }
                 }
 
@@ -399,12 +399,12 @@ public class JavadocTypeCheck
     /**
      * Verifies that a type definition has a required tag.
      *
-     * @param lineNo the line number for the type definition.
+     * @param ast the AST node for the type definition.
      * @param tags tags from the Javadoc comment for the type definition.
      * @param tagName the required tag name.
      * @param formatPattern regexp for the tag value.
      */
-    private void checkTag(int lineNo, List<JavadocTag> tags, String tagName,
+    private void checkTag(DetailAST ast, List<JavadocTag> tags, String tagName,
                           Pattern formatPattern) {
         if (formatPattern != null) {
             boolean hasTag = false;
@@ -414,12 +414,12 @@ public class JavadocTypeCheck
                 if (tag.getTagName().equals(tagName)) {
                     hasTag = true;
                     if (!formatPattern.matcher(tag.getFirstArg()).find()) {
-                        log(lineNo, MSG_TAG_FORMAT, tagPrefix + tagName, formatPattern.pattern());
+                        log(ast, MSG_TAG_FORMAT, tagPrefix + tagName, formatPattern.pattern());
                     }
                 }
             }
             if (!hasTag) {
-                log(lineNo, MSG_MISSING_TAG, tagPrefix + tagName);
+                log(ast, MSG_MISSING_TAG, tagPrefix + tagName);
             }
         }
     }
@@ -428,11 +428,11 @@ public class JavadocTypeCheck
      * Verifies that a type definition has the specified param tag for
      * the specified type parameter name.
      *
-     * @param lineNo the line number for the type definition.
+     * @param ast the AST node for the type definition.
      * @param tags tags from the Javadoc comment for the type definition.
      * @param typeParamName the name of the type parameter
      */
-    private void checkTypeParamTag(final int lineNo,
+    private void checkTypeParamTag(final DetailAST ast,
             final List<JavadocTag> tags, final String typeParamName) {
         boolean found = false;
         for (int i = tags.size() - 1; i >= 0; i--) {
@@ -445,7 +445,7 @@ public class JavadocTypeCheck
             }
         }
         if (!found) {
-            log(lineNo, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
+            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
                 + " " + OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
         }
     }
