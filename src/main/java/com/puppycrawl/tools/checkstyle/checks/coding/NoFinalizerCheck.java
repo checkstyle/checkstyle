@@ -45,6 +45,31 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;NoFinalizer&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ * 
+ * // Violation    
+ * @Override
+ *  protected void finalize() throws Throwable {
+ *      try {
+ *          System.out.println("overriding finalize()");
+ *      } catch (Throwable t) {
+ *          throw t;
+ *      } finally {
+ *          super.finalize();
+ *      }
+ *  }
+ * }
+ *
+ * class Test2 {
+ *
+ *  // Violation
+ *  public void finalize() {
+ *      System.out.println("using a function by name finalize but does not override");
+ *  }
+ * }
+ * </pre>
  *
  * @since 5.0
  */
