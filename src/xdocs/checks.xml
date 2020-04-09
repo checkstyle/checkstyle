@@ -713,6 +713,13 @@
               parenthesis, or such spaces are forbidden.
             </td>
           </tr>
+           <tr>
+            <td><a href="config_coding.html#RedundantThis">RedundantThis</a></td>
+            <td>
+              Checks that references to instance variables and methods of the present
+            object are not unnecessarily of the form "this.varName" or "this.methodName(args)".
+            </td>
+          </tr>
           <tr>
             <td><a href="config_imports.html#RedundantImport">RedundantImport</a></td>
             <td>Checks for redundant import statements.</td>

@@ -48,13 +48,6 @@
          so content is big and that is by design. -->
     <exclude name="CommentSize"/>
   </rule>
-  <rule ref="category/java/documentation.xml/CommentRequired">
-    <properties>
-      <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck']"/>
-    </properties>
-  </rule>
 
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
@@ -259,7 +252,7 @@
   <rule ref="category/java/design.xml/NcssCount">
     <properties>
       <property name="methodReportLevel" value="32"/>
-      <!-- Main, PackageObjectFactory, RequireThisCheck, HandlerFactory,
+      <!-- Main, PackageObjectFactory, RequireThisCheck, RedundantThisCheck, HandlerFactory,
              VariableDeclarationUsageDistanceCheck,
              are big and should not be split without a good reason.
            The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
@@ -270,7 +263,7 @@
            SuppressFilterElement is a single constructor and can't be split easily -->
       <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
         or @Image='PackageObjectFactory' or @Image='RequireThisCheck'
-        or @Image='VariableDeclarationUsageDistanceCheck'
+        or @Image='RedundantThisCheck' or @Image='VariableDeclarationUsageDistanceCheck'
         or @Image='HandlerFactory']
       | //ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclaration[@Name='encode']
       | //ClassOrInterfaceDeclaration[@Image='LeftCurlyCheck' or @Image='FinalLocalVariableCheck'
@@ -319,11 +312,10 @@
   <rule ref="category/java/design.xml/ExcessiveClassLength">
     <properties>
       <!-- *TokenTypes are special classes that are big due to a lot of description comments.
-           RequireThisCheck has to work with and identify many frames.
            JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
-        or @Image='TokenTypes' or @Image='RequireThisCheck' or @Image='JavadocMethodCheck']"/>
+        or @Image='TokenTypes' or @Image='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">

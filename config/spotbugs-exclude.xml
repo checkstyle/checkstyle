@@ -119,7 +119,7 @@
       <!-- false positive, beginTree is a kind of constructor for Checks -->
       <Or>
         <Class name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck" />
-        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" />
+        <Class name="com.puppycrawl.tools.checkstyle.checks.coding.AbstractFrameCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />

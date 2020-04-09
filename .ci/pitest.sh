@@ -38,10 +38,18 @@ pitest-annotation|pitest-design \
 |pitest-packagenamesloader \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
-|pitest-main \
-|pitest-coding)
+|pitest-main)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+pitest-coding)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+  "RedundantThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                    register(ast, frame);</span></pre></td></tr>"
+  "RequireThisCheck.java.html:<td class='covered'><pre><span  class='survived'>                    register(ast, frame);</span></pre></td></tr>"
+  );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 

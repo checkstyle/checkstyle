@@ -195,7 +195,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "19:25: " + getCheckMessage(MSG_METHOD, "doSideEffect", ""),
             "23:24: " + getCheckMessage(MSG_VARIABLE, "bar", "InputRequireThisAnonymousEmpty."),
-            "46:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
+            "48:17: " + getCheckMessage(MSG_VARIABLE, "foobar", ""),
         };
         verify(checkConfig,
                 getPath("InputRequireThisAnonymousEmpty.java"),
@@ -408,7 +408,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");
 
-        final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
+        final Class<?> cls = Class.forName(AbstractFrameCheck.class.getName() + "$CatchFrame");
         final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
         constructor.setAccessible(true);
         final Object o = constructor.newInstance(null, ident);

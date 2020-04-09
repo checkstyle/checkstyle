@@ -391,6 +391,7 @@
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
     <module name="ParameterAssignment"/>
+    <module name="RedundantThis"/>
     <module name="RequireThis"/>
     <module name="ReturnCount">
       <property name="max" value="1"/>

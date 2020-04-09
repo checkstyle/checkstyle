@@ -24,6 +24,8 @@ public class InputRequireThisAnonymousEmpty {
             }
         };
 
+        this.bar = 0;
+
         new AnonWithEmpty() {
             int anonMember = 0;
 
@@ -47,4 +49,17 @@ public class InputRequireThisAnonymousEmpty {
             }
         };
     }
+
+    public void anotherMethod() {
+
+        this.anonMethod(new AnonWithEmpty() {
+            private int member;
+
+            public void fooEmpty() {
+                this.member++;
+            }
+        });
+    }
+
+    public void anonMethod(AnonWithEmpty aw) { }
 }
