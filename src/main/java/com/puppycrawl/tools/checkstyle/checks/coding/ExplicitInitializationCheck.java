@@ -56,6 +56,32 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;ExplicitInitialization&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int intField1 = 0; // violation
+ *   private int intField2 = 1;
+ *   private int intField3;
+ *
+ *   private char charField1 = '\0'; // violation
+ *   private char charField2 = 'b';
+ *   private char charField3;
+ *
+ *   private boolean boolField1 = false; // violation
+ *   private boolean boolField2 = true;
+ *   private boolean boolField3;
+ *
+ *   private Obj objField1 = null; // violation
+ *   private Obj objField2 = new Obj();
+ *   private Obj objField3;
+ *
+ *   private int arrField1[] = null; // violation
+ *   private int arrField2[] = new int[10];
+ *   private int arrField3[];
+ * }
+ * </pre>
+ * <p>
  * To configure the check so that it only checks for objects that explicitly initialize to null:
  * </p>
  * <pre>
@@ -68,29 +94,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class Test {
- *   private int a = 0;
- *   private int b = 1;
- *   private int c = 2;
+ *   private int intField1 = 0; // ignored
+ *   private int intField2 = 1;
+ *   private int intField3;
  *
- *   private boolean a = true;
- *   private boolean b = false;
- *   private boolean c = true;
- *   private boolean d = false;
- *   private boolean e = false;
+ *   private char charField1 = '\0'; // ignored
+ *   private char charField2 = 'b';
+ *   private char charField3;
  *
- *   private A a = new A();
- *   private A b = null; // violation
- *   private C c = null; // violation
- *   private D d = new D();
+ *   private boolean boolField1 = false; // ignored
+ *   private boolean boolField2 = true;
+ *   private boolean boolField3;
  *
- *   int ar1[] = null; // violation
- *   int ar2[] = new int[];
- *   int ar3[];
- *   private Bar&lt;String&gt; bar = null; // violation
- *   private Bar&lt;String&gt;[] barArray = null; // violation
+ *   private Obj objField1 = null; // violation
+ *   private Obj objField2 = new Obj();
+ *   private Obj objField3;
  *
- *   public static void main( String [] args ) {
- *   }
+ *   private int arrField1[] = null; // violation
+ *   private int arrField2[] = new int[10];
+ *   private int arrField3[];
  * }
  * </pre>
  * <p>
