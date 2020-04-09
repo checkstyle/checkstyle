@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
 
 ```
@@ -24,11 +33,11 @@ in place of the last 2 commands above.
 
 ---------------
 
-Describe what you expect in detail.
+**Describe what you expect in detail.**
 
 --------------
 
 Still not clear ???
 see example - https://checkstyle.org/report_issue.html#How_to_report_a_bug.3F
 
-ATTENTION: FAILURE TO FOLLOW THE ABOVE TEMPLATE WILL RESULT IN THE ISSUE BEING CLOSED.
+ATTENTION: FAILURE TO FOLLOW THE ABOVE TEMPLATE MAY RESULT IN THE ISSUE BEING CLOSED.
