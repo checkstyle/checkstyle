@@ -48,7 +48,7 @@ class InputAbbreviationAsWordInTypeNameCheck {
 
 class AbbreviationsIncorrect {
 
-    int newCustomerID;
+    int newCustomerID; // warn
 
     boolean supportsIPv6OnIOS; //warn
 
@@ -56,7 +56,7 @@ class AbbreviationsIncorrect {
 
     class InnerBad {
 
-        int newCustomerID;
+        int newCustomerID; // warn
 
         boolean supportsIPv6OnIOS; //warn
 
@@ -66,7 +66,7 @@ class AbbreviationsIncorrect {
         InputAbbreviationAsWordInTypeNameCheck anonymousBad
             = new InputAbbreviationAsWordInTypeNameCheck() {
 
-            int newCustomerID;
+            int newCustomerID; // warn
 
             boolean supportsIPv6OnIOS; //warn
 

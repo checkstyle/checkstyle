@@ -39,13 +39,16 @@ public class AbbreviationAsWordInNameTest extends AbstractGoogleModuleTestSuppor
 
     @Test
     public void testAbbreviationAsWordInName() throws Exception {
-        final int maxCapitalCount = 2;
+        final int maxCapitalCount = 1;
 
         final String[] expected = {
+            "51:9: " + getWarningMessage("newCustomerID", maxCapitalCount),
             "53:13: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
             "55:10: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "59:13: " + getWarningMessage("newCustomerID", maxCapitalCount),
             "61:17: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
             "63:14: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
+            "69:17: " + getWarningMessage("newCustomerID", maxCapitalCount),
             "71:21: " + getWarningMessage("supportsIPv6OnIOS", maxCapitalCount),
             "73:18: " + getWarningMessage("XMLHTTPRequest", maxCapitalCount),
         };
