@@ -475,6 +475,7 @@ Flushables
 Fmain
 Fmetrics
 Fmodifier
+Fmodule
 Fnaming
 forbiddenapis
 foreach
