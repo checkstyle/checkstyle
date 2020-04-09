@@ -240,6 +240,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // google uses GenericWhitespace for this behavior
                 "GENERIC_START", "GENERIC_END").collect(Collectors.toSet()));
+        GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("MissingJavadocType", Stream.of(
+                // only classes are specified in '7.3 Where Javadoc is used'
+                "INTERFACE_DEF", "ENUM_DEF", "ANNOTATION_DEF")
+                .collect(Collectors.toSet()));
     }
 
     @Override
