@@ -6,11 +6,11 @@
   <suppress
          files="InputMainViolationsForGoogle.java"
          checks="MemberNameCheck"
-         lines="4"
+         lines="7"
   />
   <suppress
          files="InputMainViolationsForGoogle.java"
          checks="MethodNameCheck"
-         lines="6"
+         lines="10"
   />
 </suppressions>
