@@ -99,79 +99,124 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="CyclomaticComplexity"/&gt;
  * </pre>
  * <p>
- * To configure the check with a threshold of 15:
+ * Example:
+ * </p>
+ * <pre>
+ * class CyclomaticComplexity {
+ *   // Cyclomatic Complexity = 11
+ *   int a, b, c, d, n;
+ *   public void foo() { // 1, function declaration
+ *     if (a == 1) { // 2, if
+ *       fun1();
+ *     } else if (a == b // 3, if
+ *       &amp;&amp; a == c) { // 4, &amp;&amp; operator
+ *       if (c == 2) { // 5, if
+ *         fun2();
+ *       }
+ *     } else if (a == d) { // 6, if
+ *       try {
+ *         fun4();
+ *       } catch (Exception e) { // 7, catch
+ *       }
+ *     } else {
+ *       switch(n) {
+ *         case 1: // 8, case
+ *           fun1();
+ *           break;
+ *         case 2: // 9, case
+ *           fun2();
+ *           break;
+ *         case 3: // 10, case
+ *           fun3();
+ *           break;
+ *         default:
+ *           break;
+ *       }
+ *     }
+ *     d = a &lt; 0 ? -1 : 1; // 11, ternary operator
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check with a threshold of 4 and check only for while and do-while loops:
  * </p>
  * <pre>
  * &lt;module name="CyclomaticComplexity"&gt;
- *   &lt;property name="max" value="15"/&gt;
+ *   &lt;property name="max" value="4"/&gt;
+ *   &lt;property name="tokens" value="LITERAL_WHILE, LITERAL_DO"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to false):
+ * Example:
  * </p>
  * <pre>
- * class CC {
- *   // Cyclomatic Complexity = 12
- *   public void doSmth()  {         // 1
- *     if (a == b)  {                // 2
- *       if (a1 == b1                // 3
- *         &amp;&amp; c1 == d1) {            // 4
- *         fiddle();
- *       }
- *       else if (a2 == b2           // 5
- *               || c1 &lt; d1) {       // 6
- *         fiddle();
- *       }
- *       else {
- *         fiddle();
- *       }
+ * class CyclomaticComplexity {
+ *   // Cyclomatic Complexity = 5
+ *   int a, b, c, d;
+ *   public void foo() { // 1, function declaration
+ *     while (a &lt; b // 2, while
+ *       &amp;&amp; a &gt; c) {
+ *       fun();
  *     }
- *     else if (c == d) {            // 7
- *       while (c == d) {            // 8
- *         fiddle();
+ *     if (a == b) {
+ *       do { // 3, do
+ *         fun();
+ *       } while (d);
+ *     } else if (c == d) {
+ *       while (c &gt; 0) { // 4, while
+ *         fun();
  *       }
- *     }
- *     else if (e == f) {
- *       for (n = 0; n &lt; h            // 9
- *             || n &lt; 6; n++) {       // 10
- *         fiddle();
- *       }
- *     }
- *       else {
- *         switch (z) {
- *           case 1:                  // 11
- *             fiddle();
- *             break;
- *           case 2:                  // 12
- *             fiddle();
- *             break;
- *           default:
- *             fiddle();
- *             break;
- *       }
+ *       do { // 5, do-while
+ *         fun();
+ *       } while (a);
  *     }
  *   }
  * }
  * </pre>
  * <p>
- * Explanation on how complexity is calculated (switchBlockAsSingleDecisionPoint is set to true):
+ * To configure the check to consider switch-case block as one decision point.
  * </p>
  * <pre>
- * class SwitchExample {
- *   // Cyclomatic Complexity = 2
- *   public void doSmth()  {          // 1
- *     int z = 1;
- *     switch (z) {                   // 2
- *       case 1:
- *         foo1();
- *         break;
- *       case 2:
- *         foo2();
- *         break;
- *       default:
- *         fooDefault();
- *         break;
- *      }
+ * &lt;module name="CyclomaticComplexity"&gt;
+ *   &lt;property name="switchBlockAsSingleDecisionPoint" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class CyclomaticComplexity {
+ *   // Cyclomatic Complexity = 11
+ *   int a, b, c, d, e, n;
+ *   public void foo() { // 1, function declaration
+ *     if (a == b) { // 2, if
+ *       fun1();
+ *     } else if (a == 0 // 3, if
+ *       &amp;&amp; b == c) { // 4, &amp;&amp; operator
+ *       if (c == -1) { // 5, if
+ *         fun2();
+ *       }
+ *     } else if (a == c // 6, if
+ *       || a == d) { // 7, || operator
+ *       fun3();
+ *     } else if (d == e) { // 8, if
+ *       try {
+ *         fun4();
+ *       } catch (Exception e) { // 9, catch
+ *       }
+ *     } else {
+ *       switch(n) { // 10, switch
+ *         case 1:
+ *           fun1();
+ *           break;
+ *         case 2:
+ *           fun2();
+ *           break;
+ *         default:
+ *           break;
+ *       }
+ *     }
+ *     a = a &gt; 0 ? b : c; // 11, ternary operator
  *   }
  * }
  * </pre>
