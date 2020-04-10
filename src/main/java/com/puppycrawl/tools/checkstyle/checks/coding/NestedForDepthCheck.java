@@ -48,6 +48,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Violation</p>
+ * <pre>
+ * for(int i=0; i &lt; 10; i++){
+ *  for(int j=0; j &lt; i; j++){
+ *      for(int k=0; k &lt; j; k++){
+ *          for(int l=0; l &lt; k; l++){
+ *              for(int m=0; m &lt; l; m++){ //Violation
+ *              }
+ *          }
+ *      }
+ *  }
+ * }
+ * </pre>
+ * <p>acceptable code</p>
+ * <pre>
+ * for(int i=0; i &lt; 10; i++){
+ *  for(int j=0; j &lt; i; j++){
+ *      for(int k=0; k &lt; j; k++){
+ *          for(int l=0; l &lt; k; l++){ //OK
+ *          }
+ *      }
+ *  }
+ * }
+ * </pre>
  *
  * @since 5.3
  */
