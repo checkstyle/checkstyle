@@ -110,6 +110,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Violation</p>
+ * <pre>
+ *     switch (i) {
+ *      case 0:
+ *      case 1:
+ *          i++;
+ *      case 2: //Violation
+ *    }
+ * </pre>
+ * <p>acceptable code</p>
+ * <pre>
+ *     switch (i) {
+ *      case 0:
+ *          i++;
+ *          break;
+ *      case 1:
+ *          i++;
+ *          //fall through
+ *    }
+ * </pre>
  *
  * @since 3.4
  */

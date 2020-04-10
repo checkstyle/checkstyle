@@ -1390,6 +1390,26 @@ case 6:
   &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>Violation</p>
+          <source>
+switch (i) {
+    case 0:
+    case 1:
+        i++;
+    case 2: //Violation
+}
+          </source>
+          <p>acceptable code</p>
+          <source>
+switch (i) {
+    case 0:
+        i++;
+        break;
+    case 1:
+        i++;
+        //fall through
+}
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="FallThrough_Example_of_Usage">
