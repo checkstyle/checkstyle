@@ -94,9 +94,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <li>
  * VariableDeclarationUsageDistance
  * </li>
- * <li>
- * WriteTag
- * </li>
  * </ul>
  * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
@@ -131,6 +128,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * SummaryJavadoc
+ * </li>
+ * <li>
+ * WriteTag
  * </li>
  * </ul>
  * <p>
