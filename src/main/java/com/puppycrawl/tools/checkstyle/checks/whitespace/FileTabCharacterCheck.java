@@ -68,6 +68,18 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>violation</p>
+ * <pre>
+ * for(int i=0; i&lt;10; i++){
+ *     //violation(extra spaces after open bracket)
+ * }
+ * </pre>
+ * <p>acceptable code</p>
+ * <pre>
+ * for(int i=0; i&lt;10; i++){
+ *     //OK(no space after bracket)
+ * }
+ * </pre>
  *
  * @since 5.0
  */

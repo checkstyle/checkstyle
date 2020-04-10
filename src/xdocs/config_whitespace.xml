@@ -580,6 +580,18 @@ class Foo {
   &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>violation</p>
+          <source>
+for(int i=0; i&lt;10; i++){
+//violation(extra spaces after open bracket)
+}
+          </source>
+          <p>acceptable code</p>
+          <source>
+for(int i=0; i&lt;10; i++){
+//OK(no space after bracket)
+}
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="FileTabCharacter_Example_of_Usage">
