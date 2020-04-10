@@ -920,7 +920,6 @@ public class UserService {
           <li>TrailingComment</li>
           <li>UnnecessaryParentheses</li>
           <li>VariableDeclarationUsageDistance</li>
-          <li>WriteTag</li>
         </ul>
         <p>
           Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
@@ -936,6 +935,7 @@ public class UserService {
           <li>NonEmptyAtclauseDescription</li>
           <li>SingleLineJavadoc</li>
           <li>SummaryJavadoc</li>
+          <li>WriteTag</li>
         </ul>
         <p>
           Note, that support for these Checks will be available after resolving issues
