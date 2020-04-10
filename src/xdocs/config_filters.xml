@@ -910,7 +910,6 @@ public class UserService {
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
-          <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageDeclaration</li>

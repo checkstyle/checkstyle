@@ -68,9 +68,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocType
  * </li>
  * <li>
- * MissingJavadocMethod
- * </li>
- * <li>
  * MissingJavadocType
  * </li>
  * <li>
