@@ -288,7 +288,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testFillTemplateWithStringsByRegexp() {
+    public void testFillTemplateWithStringsByRegexp() throws Exception {
         assertEquals("template", CommonUtil.fillTemplateWithStringsByRegexp("template",
                 "lineToPlaceInTemplate", Pattern.compile("NO MATCH")), "invalid result");
         assertEquals("before word after",
@@ -297,6 +297,16 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         assertEquals("before word 123 after1 word after2 123 after3",
                 CommonUtil.fillTemplateWithStringsByRegexp("before $0 after1 $1 after2 $2 after3",
                         "word 123", Pattern.compile("(\\w+) (\\d+)")), "invalid result");
+        try{
+            CommonUtil.fillTemplateWithStringsByRegexp("$3",
+                    "-@csl[FinalLocalVariable](5) my comment",
+                    Pattern.compile("-@csl\\[(\\w{8,}((\\||\\(|\\))\\w+)*)\\]\\((\\d+)\\) .{10,}"));
+            fail("Exception has occured");
+        }
+        catch (IllegalArgumentException ex){
+        assertEquals("Regex$3", ex.getMessage(),
+                "Invalid exception message");}
+
     }
 
     @Test

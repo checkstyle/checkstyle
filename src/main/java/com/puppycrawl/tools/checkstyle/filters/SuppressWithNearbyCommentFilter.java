@@ -247,6 +247,7 @@ public class SuppressWithNearbyCommentFilter
     extends AutomaticBean
     implements TreeWalkerFilter {
 
+
     /** Format to turns checkstyle reporting off. */
     private static final String DEFAULT_COMMENT_FORMAT =
         "SUPPRESS CHECKSTYLE (\\w+)";
@@ -473,6 +474,7 @@ public class SuppressWithNearbyCommentFilter
      */
     private static final class Tag {
 
+
         /** The text of the tag. */
         private final String text;
 
@@ -541,6 +543,13 @@ public class SuppressWithNearbyCommentFilter
             catch (final PatternSyntaxException ex) {
                 throw new IllegalArgumentException(
                     "unable to parse expanded comment " + format, ex);
+            }
+            catch (final IllegalArgumentException ex){
+                if(ex.getMessage().contains("using"))
+                    throw ex;
+                else
+                    throw new IllegalArgumentException("Regex"+filter.influenceFormat,ex);
+
             }
         }
 
