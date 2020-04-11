@@ -52,6 +52,7 @@ apos
 applet
 appveyor
 APRV
+archunit
 areaoftest
 arget
 argn
@@ -1293,6 +1294,7 @@ Thymeleaf
 tidelift
 TKN
 tmp
+tngtech
 toc
 todo
 todocomment
