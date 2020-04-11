@@ -7,6 +7,6 @@ import static java.lang.String . CASE_INSENSITIVE_ORDER;
 
 
 import java .
-		net.Socket    ;
+        net.Socket    ;
 
 public class InputCustomImportOrderViolationsSameLine {}

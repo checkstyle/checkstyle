@@ -64,7 +64,7 @@ class InputSuppressWithNearbyCommentFilter
                     } catch(Exception e) {
                         // bad bad bad
                     } catch (Throwable t) {
-                    	// ALLOW CATCH Throwable BECAUSE I threw this together.
+                        // ALLOW CATCH Throwable BECAUSE I threw this together.
                     }
                 }
                 // blah blah blah

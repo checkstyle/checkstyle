@@ -223,15 +223,15 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDot
     {
         // avoid conflict between WhiteSpaceAfter ';' and ParenPad(nospace)
         for (int i = 0; i++ < 5;) {
-	    //                  ^ no whitespace
-	}
+        //                  ^ no whitespace
+    }
 
         // bug 895072
-	// avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
-	int i = 0;
-	for ( ; i < 5; i++ ) {
-	//   ^ whitespace
-	}
+    // avoid conflict between ParenPad(space) and NoWhiteSpace before ';'
+    int i = 0;
+    for ( ; i < 5; i++ ) {
+    //   ^ whitespace
+    }
         for (int anInt : getSomeInts()) {
             //Should be ignored
         }

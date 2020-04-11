@@ -158,7 +158,7 @@ enum MyEnum {
 
     public int something( Object o ) {
         if ( o == null || !( o instanceof Float ) ) {
-        	return -1;
+            return -1;
         }
         return Integer.valueOf( 22 ).compareTo( (Integer) o );
     }

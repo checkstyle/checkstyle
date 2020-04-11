@@ -211,7 +211,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public void foo30() {
         // comment
         int a = 5;
-//		violation
+//        violation
     }
 
     public void foo31() {
@@ -231,7 +231,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
     public void foo33() {
         // comment
         this.foo22();
-//		violation
+//        violation
     }
 
     public void foo34() throws Exception {

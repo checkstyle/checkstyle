@@ -9,7 +9,7 @@ import static java.math.BigInteger.ZERO;
 
 public class InputNoLineWrapGood {
 
-	public void fooMethod() {
-		//
-	}
+    public void fooMethod() {
+        //
+    }
 }
