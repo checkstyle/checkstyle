@@ -36,4 +36,7 @@
     so static Loggers are okay there. -->
     <suppress checks="AvoidModifiersForTypesCheck"
               files="Main\.java|MainTest\.java"/>
+
+    <!-- Used for capturing the error message which is required for checking diff. -->
+    <suppress checks="RequireFailForTryCatchInJunit" files="ArchUnitTest\.java"/>
 </suppressions>
