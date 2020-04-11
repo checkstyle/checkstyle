@@ -14,6 +14,9 @@ Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedChe
 /var/tmp $ java $RUN_LOCALE -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java
 #[[PLACE YOUR OUTPUT HERE]]
 ```
+For Windows users, please use `type` instead of `cat` and run 
+`java -Duser.language=en -Duser.country=US -jar checkstyle-X.XX-all.jar
+-c config.xml YOUR_FILE.java` in place of the last command above.
 
 ---------------
 
