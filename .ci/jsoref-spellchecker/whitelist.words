@@ -52,6 +52,7 @@ apos
 applet
 appveyor
 APRV
+archunit
 areaoftest
 arget
 argn
@@ -228,6 +229,7 @@ clazz
 clemens
 Clickable
 Clientjunk
+clinit
 clirr
 Cloneable
 clp
@@ -333,6 +335,7 @@ Dgpg
 Dgui
 dhj
 Diachenko
+difflib
 dirname
 distelli
 Djacoco
@@ -771,6 +774,7 @@ linkplain
 linksource
 linux
 Lisetskii
+Ljava
 lkuehne
 llll
 lmessage
@@ -1287,6 +1291,7 @@ Thymeleaf
 tidelift
 TKN
 tmp
+tngtech
 toc
 todo
 todocomment
