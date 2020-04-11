@@ -251,7 +251,8 @@
         </module>
         <module name="NoWhitespaceBefore">
             <property name="tokens"
-             value="COMMA, SEMI, POST_INC, POST_DEC, DOT, ELLIPSIS, METHOD_REF"/>
+             value="COMMA, SEMI, POST_INC, POST_DEC, DOT, ELLIPSIS,
+                    LABELED_STAT, COLON, METHOD_REF"/>
             <property name="allowLineBreaks" value="true"/>
         </module>
         <module name="ParenPad">
