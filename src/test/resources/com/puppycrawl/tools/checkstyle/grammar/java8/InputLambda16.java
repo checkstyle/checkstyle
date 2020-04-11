@@ -7,7 +7,7 @@ import java.util.Comparator;
 
 public class InputLambda16 {
 
-	static final Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> DATE_TIME_ORDER =
+    static final Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>> DATE_TIME_ORDER =
          (Comparator<ChronoLocalDateTime<? extends ChronoLocalDate>>) (dateTime1, dateTime2) -> {
              int cmp = Long.compare(dateTime1.toLocalDate().toEpochDay(),
                 dateTime2.toLocalDate().toEpochDay());
@@ -18,7 +18,7 @@ public class InputLambda16 {
              return cmp;
          };
 
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 
-	}
+    }
 }
