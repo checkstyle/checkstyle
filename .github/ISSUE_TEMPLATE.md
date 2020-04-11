@@ -15,6 +15,13 @@ Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedChe
 #[[PLACE YOUR OUTPUT HERE]]
 ```
 
+For Windows users, please use `type` instead of `cat` and run 
+```
+set RUN_LOCALE="-Duser.language=en -Duser.country=US"
+java %RUN_LOCALE% -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java
+```
+in place of the last 2 commands above.
+
 ---------------
 
 Describe what you expect in detail.
