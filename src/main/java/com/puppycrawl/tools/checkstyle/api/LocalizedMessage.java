@@ -286,102 +286,6 @@ public final class LocalizedMessage
     }
 
     /**
-     * Indicates whether some other object is "equal to" this one.
-     * Suppression on enumeration is needed so code stays consistent.
-     * @noinspection EqualsCalledOnEnumConstant
-     */
-    // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) {
-            return true;
-        }
-        if (object == null || getClass() != object.getClass()) {
-            return false;
-        }
-        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
-        return Objects.equals(lineNo, localizedMessage.lineNo)
-                && Objects.equals(columnNo, localizedMessage.columnNo)
-                && Objects.equals(columnCharIndex, localizedMessage.columnCharIndex)
-                && Objects.equals(tokenType, localizedMessage.tokenType)
-                && Objects.equals(severityLevel, localizedMessage.severityLevel)
-                && Objects.equals(moduleId, localizedMessage.moduleId)
-                && Objects.equals(key, localizedMessage.key)
-                && Objects.equals(bundle, localizedMessage.bundle)
-                && Objects.equals(sourceClass, localizedMessage.sourceClass)
-                && Objects.equals(customMessage, localizedMessage.customMessage)
-                && Arrays.equals(args, localizedMessage.args);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(lineNo, columnNo, columnCharIndex, tokenType, severityLevel, moduleId,
-                key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
-    }
-
-    /** Clears the cache. */
-    public static void clearCache() {
-        BUNDLE_CACHE.clear();
-    }
-
-    /**
-     * Gets the translated message.
-     * @return the translated message
-     */
-    public String getMessage() {
-        String message = getCustomMessage();
-
-        if (message == null) {
-            try {
-                // Important to use the default class loader, and not the one in
-                // the GlobalProperties object. This is because the class loader in
-                // the GlobalProperties is specified by the user for resolving
-                // custom classes.
-                final ResourceBundle resourceBundle = getBundle(bundle);
-                final String pattern = resourceBundle.getString(key);
-                final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
-                message = formatter.format(args);
-            }
-            catch (final MissingResourceException ignored) {
-                // If the Check author didn't provide i18n resource bundles
-                // and logs audit event messages directly, this will return
-                // the author's original message
-                final MessageFormat formatter = new MessageFormat(key, Locale.ROOT);
-                message = formatter.format(args);
-            }
-        }
-        return message;
-    }
-
-    /**
-     * Returns the formatted custom message if one is configured.
-     * @return the formatted custom message or {@code null}
-     *          if there is no custom message
-     */
-    private String getCustomMessage() {
-        String message = null;
-        if (customMessage != null) {
-            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
-            message = formatter.format(args);
-        }
-        return message;
-    }
-
-    /**
-     * Find a ResourceBundle for a given bundle name. Uses the classloader
-     * of the class emitting this message, to be sure to get the correct
-     * bundle.
-     * @param bundleName the bundle name
-     * @return a ResourceBundle
-     */
-    private ResourceBundle getBundle(String bundleName) {
-        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
-            return ResourceBundle.getBundle(
-                name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
-        });
-    }
-
-    /**
      * Gets the line number.
      * @return the line number
      */
@@ -461,6 +365,45 @@ public final class LocalizedMessage
         }
     }
 
+    /** Clears the cache. */
+    public static void clearCache() {
+        BUNDLE_CACHE.clear();
+    }
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * Suppression on enumeration is needed so code stays consistent.
+     * @noinspection EqualsCalledOnEnumConstant
+     */
+    // -@cs[CyclomaticComplexity] equals - a lot of fields to check.
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) {
+            return true;
+        }
+        if (object == null || getClass() != object.getClass()) {
+            return false;
+        }
+        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
+        return Objects.equals(lineNo, localizedMessage.lineNo)
+                && Objects.equals(columnNo, localizedMessage.columnNo)
+                && Objects.equals(columnCharIndex, localizedMessage.columnCharIndex)
+                && Objects.equals(tokenType, localizedMessage.tokenType)
+                && Objects.equals(severityLevel, localizedMessage.severityLevel)
+                && Objects.equals(moduleId, localizedMessage.moduleId)
+                && Objects.equals(key, localizedMessage.key)
+                && Objects.equals(bundle, localizedMessage.bundle)
+                && Objects.equals(sourceClass, localizedMessage.sourceClass)
+                && Objects.equals(customMessage, localizedMessage.customMessage)
+                && Arrays.equals(args, localizedMessage.args);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lineNo, columnNo, columnCharIndex, tokenType, severityLevel, moduleId,
+                key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
+    }
+
     ////////////////////////////////////////////////////////////////////////////
     // Interface Comparable methods
     ////////////////////////////////////////////////////////////////////////////
@@ -492,6 +435,63 @@ public final class LocalizedMessage
             result = Integer.compare(lineNo, other.lineNo);
         }
         return result;
+    }
+
+    /**
+     * Gets the translated message.
+     * @return the translated message
+     */
+    public String getMessage() {
+        String message = getCustomMessage();
+
+        if (message == null) {
+            try {
+                // Important to use the default class loader, and not the one in
+                // the GlobalProperties object. This is because the class loader in
+                // the GlobalProperties is specified by the user for resolving
+                // custom classes.
+                final ResourceBundle resourceBundle = getBundle(bundle);
+                final String pattern = resourceBundle.getString(key);
+                final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
+                message = formatter.format(args);
+            }
+            catch (final MissingResourceException ignored) {
+                // If the Check author didn't provide i18n resource bundles
+                // and logs audit event messages directly, this will return
+                // the author's original message
+                final MessageFormat formatter = new MessageFormat(key, Locale.ROOT);
+                message = formatter.format(args);
+            }
+        }
+        return message;
+    }
+
+    /**
+     * Returns the formatted custom message if one is configured.
+     * @return the formatted custom message or {@code null}
+     *          if there is no custom message
+     */
+    private String getCustomMessage() {
+        String message = null;
+        if (customMessage != null) {
+            final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
+            message = formatter.format(args);
+        }
+        return message;
+    }
+
+    /**
+     * Find a ResourceBundle for a given bundle name. Uses the classloader
+     * of the class emitting this message, to be sure to get the correct
+     * bundle.
+     * @param bundleName the bundle name
+     * @return a ResourceBundle
+     */
+    private ResourceBundle getBundle(String bundleName) {
+        return BUNDLE_CACHE.computeIfAbsent(bundleName, name -> {
+            return ResourceBundle.getBundle(
+                name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
+        });
     }
 
     /**
