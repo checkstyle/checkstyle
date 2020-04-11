@@ -158,6 +158,18 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testOrderRuleEmpty() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules", "");
+        final String[] expected = {
+            "5: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.List"),
+        };
+
+        verify(checkConfig, getPath("InputCustomImportOrderEmptyRule.java"), expected);
+    }
+
+    @Test
     public void testOrderRuleWithOneGroup() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(CustomImportOrderCheck.class);

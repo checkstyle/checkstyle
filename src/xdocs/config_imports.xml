@@ -425,9 +425,9 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             </tr>
             <tr>
               <td>customImportOrderRules</td>
-              <td>Specify list of order declaration customizing by user.</td>
+              <td>Specify format of order declaration customizing by user.</td>
               <td><a href="property_types.html#string">String</a></td>
-              <td><code>{}</code></td>
+              <td><code>""</code></td>
               <td>5.8</td>
             </tr>
             <tr>
