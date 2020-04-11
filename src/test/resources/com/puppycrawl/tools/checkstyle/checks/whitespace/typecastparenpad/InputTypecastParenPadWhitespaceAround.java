@@ -23,9 +23,9 @@ class InputTypecastParenPadWhitespaceAround
 }
 
 @interface CronExpression_TypecastParenPad {
-	Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 }
 
 @interface CronExpression1_TypecastParenPad {
-	Class<?>[] groups() default { }; // extra space
+    Class<?>[] groups() default { }; // extra space
 }

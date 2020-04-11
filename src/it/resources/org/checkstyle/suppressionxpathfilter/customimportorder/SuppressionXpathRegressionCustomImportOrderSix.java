@@ -11,5 +11,5 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class SuppressionXpathRegressionCustomImportOrderSix {
-	// code
+    // code
 }

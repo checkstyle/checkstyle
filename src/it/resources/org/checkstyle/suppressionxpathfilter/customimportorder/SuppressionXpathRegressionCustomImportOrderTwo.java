@@ -8,5 +8,5 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class SuppressionXpathRegressionCustomImportOrderTwo {
-	// code
+    // code
 }

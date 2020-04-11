@@ -5,11 +5,11 @@ import java.util.List;
 
 
 public class InputAnnotations9 {
-	public static <T> void methodName(Object str) {
-		List<@Immutable ? extends Comparable<T>> unchangeable;
-	}
+    public static <T> void methodName(Object str) {
+        List<@Immutable ? extends Comparable<T>> unchangeable;
+    }
 
-	@Target(ElementType.TYPE_USE)
-	@interface Immutable {
-	}
+    @Target(ElementType.TYPE_USE)
+    @interface Immutable {
+    }
 }

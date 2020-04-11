@@ -10,5 +10,5 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class SuppressionXpathRegressionCustomImportOrderThree {
-	// code
+    // code
 }
