@@ -6,6 +6,7 @@
 [![][shippable img]][shippable]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
+[![][semaphoreci img]][semaphoreci]
 
 [![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
@@ -157,6 +158,9 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
+
+[semaphoreci]: https://checkstyle.semaphoreci.com/projects/checkstyle
+[semaphoreci img]: https://checkstyle.semaphoreci.com/badges/checkstyle/branches/master.svg?style=shields
 
 [flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org
 [flattr img]:https://button.flattr.com/flattr-badge-large.png
