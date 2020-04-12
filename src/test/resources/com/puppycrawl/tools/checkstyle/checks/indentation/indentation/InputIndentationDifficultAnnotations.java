@@ -37,8 +37,8 @@ public class InputIndentationDifficultAnnotations { //indent:0 exp:0
 } //indent:0 exp:0
 
 @DifficultAnnotation({ //indent:0 exp:0
-@MyType(value = Boolean.class, name = "boolean"), //indent:0 exp:4 warn
-@MyType(value = String.class, name = "string") }) //indent:0 exp:4 warn
+@MyType(value = Boolean.class, name = "boolean"), //indent:0 exp:4,23,25 warn
+@MyType(value = String.class, name = "string") }) //indent:0 exp:4,23,25 warn
 class IncorrectClass { //indent:0 exp:0
 
     @DifficultAnnotation({ //indent:4 exp:4
@@ -47,7 +47,7 @@ class IncorrectClass { //indent:0 exp:0
     String foo = "foo"; //indent:4 exp:4
 
     @DifficultAnnotation({ //indent:4 exp:4
-      @MyType(value = Boolean.class, name = "boolean"), //indent:6 exp:8 warn
+      @MyType(value = Boolean.class, name = "boolean"), //indent:6 exp:8,27,29 warn
         @MyType(value = String.class, name = "string") }) //indent:8 exp:8
     void foo() { //indent:4 exp:4
 
