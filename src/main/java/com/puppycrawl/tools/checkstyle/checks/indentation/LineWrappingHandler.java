@@ -256,17 +256,20 @@ public class LineWrappingHandler {
             final DetailAST node = itr.next();
 
             final DetailAST parentNode = node.getParent();
+            final boolean isArrayInitPresentInAncestors =
+                isParentContainsTokenType(node, TokenTypes.ANNOTATION_ARRAY_INIT);
             final boolean isCurrentNodeCloseAnnotationAloneInLine =
                 node.getLineNo() == lastAnnotationLine
                     && isEndOfScope(lastAnnotationNode, node);
-            if (isCurrentNodeCloseAnnotationAloneInLine
+            if (!isArrayInitPresentInAncestors
+                    && (isCurrentNodeCloseAnnotationAloneInLine
                     || node.getType() == TokenTypes.AT
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
                         || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode)) {
+                    || TokenUtil.areOnSameLine(node, atNode))) {
                 logWarningMessage(node, firstNodeIndent);
             }
-            else {
+            else if (!isArrayInitPresentInAncestors) {
                 logWarningMessage(node, currentIndent);
             }
             itr.remove();
@@ -299,6 +302,17 @@ public class LineWrappingHandler {
             }
         }
         return endOfScope;
+    }
+
+    private static boolean isParentContainsTokenType(final DetailAST node, int type) {
+        boolean returnValue = false;
+        for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {
+            if (ast.getType() == type) {
+                returnValue = true;
+                break;
+            }
+        }
+        return returnValue;
     }
 
     /**

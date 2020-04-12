@@ -501,6 +501,36 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationArrayInit() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 0, "2, 4, 43, 45"),
+            "23: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 2, "0, 4"),
+            "36: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 2, "4, 8"),
+
+            "52: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 5, "4, 6, 8, 10"),
+            "54: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 5, "2, 6"),
+
+        };
+        final String fileName = getPath("InputIndentationAnnotationArrayInit.java");
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidLabel() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
