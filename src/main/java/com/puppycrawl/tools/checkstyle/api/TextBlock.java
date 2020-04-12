@@ -38,6 +38,7 @@ public interface TextBlock {
     /**
      * The line in the input file where the text block starts.
      * Counting starts from 1.
+     *
      * @return first line of the text block
      */
     int getStartLineNo();
@@ -45,6 +46,7 @@ public interface TextBlock {
     /**
      * The last line of the text block in the input file.
      * Counting starts from 1.
+     *
      * @return last line of the text block
      */
     int getEndLineNo();
@@ -52,6 +54,7 @@ public interface TextBlock {
     /**
      * The column in the input file where the text block starts.
      * Counting starts from 0.
+     *
      * @return first line of the text block
      */
     int getStartColNo();
@@ -59,6 +62,7 @@ public interface TextBlock {
     /**
      * The column in the input file where the text block ends.
      * Counting starts from 0.
+     *
      * @return last line of the text block
      */
     int getEndColNo();

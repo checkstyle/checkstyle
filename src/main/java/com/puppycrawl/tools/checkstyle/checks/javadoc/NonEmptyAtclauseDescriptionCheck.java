@@ -97,6 +97,7 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
 
     /**
      * Tests if at-clause tag is empty.
+     *
      * @param tagNode at-clause tag.
      * @return true, if at-clause tag is empty.
      */

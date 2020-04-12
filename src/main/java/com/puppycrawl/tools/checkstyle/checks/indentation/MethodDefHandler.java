@@ -119,6 +119,7 @@ public class MethodDefHandler extends BlockParentHandler {
 
     /**
      * Returns right parenthesis of method definition parameter list.
+     *
      * @param methodDefAst
      *          method definition ast node(TokenTypes.LITERAL_IF)
      * @return right parenthesis of method definition parameter list.

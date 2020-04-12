@@ -39,6 +39,7 @@ public final class AnnotationUtil {
 
     /**
      * Private utility constructor.
+     *
      * @throws UnsupportedOperationException if called
      */
     private AnnotationUtil() {

@@ -44,6 +44,7 @@ public class Comment implements TextBlock {
 
     /**
      * Creates new instance.
+     *
      * @param text the lines that make up the comment.
      * @param firstCol number of the first column of the comment.
      * @param lastLine number of the last line of the comment.

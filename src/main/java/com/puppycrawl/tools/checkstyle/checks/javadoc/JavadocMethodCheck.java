@@ -421,6 +421,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Called to process an AST when visiting it.
+     *
      * @param ast the AST to process. Guaranteed to not be PACKAGE_DEF or
      *             IMPORT tokens.
      */
@@ -591,6 +592,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Calculates column number using Javadoc tag matcher.
+     *
      * @param javadocTagMatcher found javadoc tag matcher
      * @param lineNumber line number of Javadoc tag in comment
      * @param startColumnNumber column number of Javadoc comment beginning
@@ -607,6 +609,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Gets multiline Javadoc tags with no arguments.
+     *
      * @param noargMultilineStart javadoc tag Matcher
      * @param lines comment text lines
      * @param lineIndex line number that contains the javadoc tag
@@ -687,6 +690,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Get ExceptionInfo for all exceptions that throws in method code by 'throw new'.
+     *
      * @param methodAst method DetailAST object where to find exceptions
      * @return list of ExceptionInfo
      */
@@ -711,6 +715,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Combine ExceptionInfo lists together by matching names.
+     *
      * @param list1 list of ExceptionInfo
      * @param list2 list of ExceptionInfo
      * @return combined list of ExceptionInfo
@@ -729,6 +734,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     /**
      * Finds node of specified type among root children, siblings, siblings children
      * on any deep level.
+     *
      * @param root    DetailAST
      * @param astType value of TokenType
      * @return {@link List} of {@link DetailAST} nodes which matches the predicate.
@@ -813,6 +819,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Returns true if required type found in type parameters.
+     *
      * @param typeParams
      *            list of type parameters
      * @param requiredTypeName
@@ -838,6 +845,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Remove parameter from params collection by name.
+     *
      * @param params collection of DetailAST parameters
      * @param paramName name of parameter
      * @return true if parameter found and removed
@@ -961,6 +969,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Check that ExceptionInfo objects are same by name.
+     *
      * @param info1 ExceptionInfo object
      * @param info2 ExceptionInfo object
      * @return true is ExceptionInfo object have the same name
@@ -973,6 +982,7 @@ public class JavadocMethodCheck extends AbstractCheck {
     /**
      * Check that class names are same by short name of class. If some class name is fully
      * qualified it is cut to short name.
+     *
      * @param class1 class name
      * @param class2 class name
      * @return true is ExceptionInfo object have the same name
@@ -997,6 +1007,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Process type params (if any) for given class, enum or method.
+     *
      * @param ast class, enum or method to process.
      */
     private void processTypeParams(DetailAST ast) {
@@ -1029,6 +1040,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Processes class definition.
+     *
      * @param ast class definition to process.
      */
     private void processClass(DetailAST ast) {
@@ -1044,6 +1056,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Creates class info for given name.
+     *
      * @param name name of type.
      * @param surroundingClass name of surrounding class.
      * @return class info for given name.
@@ -1063,6 +1076,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
     /**
      * Looking if a given name is alias.
+     *
      * @param name given name
      * @return ClassInfo for alias if it exists, null otherwise
      * @noinspection WeakerAccess
@@ -1091,6 +1105,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Creates new instance of class information object.
+         *
          * @param className token which represents class name.
          * @throws IllegalArgumentException when className is nulls
          */
@@ -1104,6 +1119,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Gets class name.
+         *
          * @return class name
          */
         public final Token getName() {
@@ -1122,6 +1138,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Creates new instance of of class information object.
+         *
          * @param name {@code FullIdent} associated with new object.
          * @param surroundingClass name of current surrounding class.
          * @param check the check we use to load class.
@@ -1152,6 +1169,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Creates new instance of the class.
+         *
          * @param name token which represents name of class alias.
          * @param classInfo class information associated with the alias.
          */
@@ -1181,6 +1199,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Creates token.
+         *
          * @param text token's text
          * @param lineNo token's line number
          * @param columnNo token's column number
@@ -1193,6 +1212,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Converts FullIdent to Token.
+         *
          * @param fullIdent full ident to convert.
          */
         /* package */ Token(FullIdent fullIdent) {
@@ -1203,6 +1223,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Gets line number of the token.
+         *
          * @return line number of the token
          */
         public int getLineNo() {
@@ -1211,6 +1232,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Gets column number of the token.
+         *
          * @return column number of the token
          */
         public int getColumnNo() {
@@ -1219,6 +1241,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Gets text of the token.
+         *
          * @return text of the token
          */
         public String getText() {
@@ -1257,6 +1280,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Checks that the exception has throws tag associated with it.
+         *
          * @return whether the exception has throws tag associated with
          */
         private boolean isFound() {
@@ -1265,6 +1289,7 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         /**
          * Gets exception name.
+         *
          * @return exception's name
          */
         private Token getName() {

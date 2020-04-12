@@ -442,6 +442,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Setter to specify RegExp for STANDARD_JAVA_PACKAGE group imports.
+     *
      * @param regexp
      *        user value.
      */
@@ -451,6 +452,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Setter to specify RegExp for THIRD_PARTY_PACKAGE group imports.
+     *
      * @param regexp
      *        user value.
      */
@@ -460,6 +462,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Setter to specify RegExp for SPECIAL_IMPORTS group imports.
+     *
      * @param regexp
      *        user value.
      */
@@ -469,6 +472,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Setter to force empty line separator between import groups.
+     *
      * @param value
      *        user value.
      */
@@ -479,6 +483,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /**
      * Setter to force grouping alphabetically, in
      * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+     *
      * @param value
      *        user value.
      */
@@ -488,6 +493,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Setter to specify list of order declaration customizing by user.
+     *
      * @param inputCustomImportOrder
      *        user value.
      */
@@ -596,6 +602,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Log violation if empty line is missed.
+     *
      * @param previousImport previous import from current group.
      * @param importObject current import.
      * @param fullImportIdent full import identifier.
@@ -609,6 +616,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Log violation if extra empty line is present.
+     *
      * @param previousImport previous import from current group.
      * @param importObject current import.
      * @param fullImportIdent full import identifier.
@@ -687,6 +695,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Log wrong import group order.
+     *
      * @param currentImportLine
      *        line number of current import current import.
      * @param importGroup
@@ -711,6 +720,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Get next import group.
+     *
      * @param currentGroupNumber
      *        current group number.
      * @return
@@ -730,6 +740,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Checks if current group contains any import.
+     *
      * @param currentGroup
      *        current group.
      * @return
@@ -748,6 +759,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Get import valid group.
+     *
      * @param isStatic
      *        is static import.
      * @param importPath
@@ -820,6 +832,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Checks compare two import paths.
+     *
      * @param import1
      *        current import.
      * @param import2
@@ -849,6 +862,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Counts empty lines between given parameters.
+     *
      * @param fromLineNo
      *        One-based line number of previous import.
      * @param toLineNo
@@ -871,6 +885,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Forms import full path.
+     *
      * @param token
      *        current token.
      * @return full path or null.
@@ -885,6 +900,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Parses ordering rule and adds it to the list with rules.
+     *
      * @param ruleStr
      *        String with rule.
      * @throws IllegalArgumentException when SAME_PACKAGE rule parameter is not positive integer
@@ -914,6 +930,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Creates samePackageDomainsRegExp of the first package domains.
+     *
      * @param firstPackageDomainsCount
      *        number of first package domains.
      * @param packageNode
@@ -928,6 +945,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
     /**
      * Extracts defined amount of domains from the left side of package/import identifier.
+     *
      * @param firstPackageDomainsCount
      *        number of first package domains.
      * @param packageFullPath
@@ -975,6 +993,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Initialise importFullPath, startLineNumber, endLineNumber, importGroup, staticImport.
+         *
          * @param importFullPath
          *        import full path.
          * @param startLineNumber
@@ -997,6 +1016,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Get import full path variable.
+         *
          * @return import full path variable.
          */
         public String getImportFullPath() {
@@ -1005,6 +1025,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Get import start line number.
+         *
          * @return import start line.
          */
         public int getStartLineNumber() {
@@ -1013,6 +1034,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Get import end line number.
+         *
          * @return import end line.
          */
         public int getEndLineNumber() {
@@ -1021,6 +1043,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Get import group.
+         *
          * @return import group.
          */
         public String getImportGroup() {
@@ -1029,6 +1052,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
 
         /**
          * Checks if import is static.
+         *
          * @return true, if import is static.
          */
         public boolean isStaticImport() {

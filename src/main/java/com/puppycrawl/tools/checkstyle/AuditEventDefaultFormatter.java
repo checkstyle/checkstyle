@@ -81,6 +81,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
      * Returns the length of the buffer for StringBuilder.
      * bufferLength = fileNameLength + messageLength + lengthOfAllSeparators +
      * + severityNameLength + checkNameLength.
+     *
      * @param event audit event.
      * @param severityLevelNameLength length of severity level name.
      * @return the length of the buffer for StringBuilder.
@@ -93,6 +94,7 @@ public class AuditEventDefaultFormatter implements AuditEventFormatter {
 
     /**
      * Returns check name without 'Check' suffix.
+     *
      * @param event audit event.
      * @return check name without 'Check' suffix.
      */

@@ -349,6 +349,7 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Log violations for each Token.
+     *
      * @param ast token
      */
     private void logAsSeparated(DetailAST ast) {
@@ -388,6 +389,7 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Log validation as one violation.
+     *
      * @param ast current token
      */
     private void logAsTotal(DetailAST ast) {
@@ -420,6 +422,7 @@ public class DescendantTokenCheck extends AbstractCheck {
 
     /**
      * Counts the number of occurrences of descendant tokens.
+     *
      * @param ast the root token for descendants.
      * @param depth the maximum depth of the counted descendants.
      */

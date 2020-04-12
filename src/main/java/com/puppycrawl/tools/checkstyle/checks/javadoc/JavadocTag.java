@@ -35,6 +35,7 @@ public class JavadocTag {
 
     /**
      * Constructs the object.
+     *
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
@@ -49,6 +50,7 @@ public class JavadocTag {
 
     /**
      * Constructs the object.
+     *
      * @param line the line number of the tag
      * @param column the column number of the tag
      * @param tag the tag string
@@ -59,6 +61,7 @@ public class JavadocTag {
 
     /**
      * Gets tag name.
+     *
      * @return the tag string
      */
     public String getTagName() {
@@ -67,6 +70,7 @@ public class JavadocTag {
 
     /**
      * Returns first argument.
+     *
      * @return the first argument. null if not set.
      */
     public String getFirstArg() {
@@ -75,6 +79,7 @@ public class JavadocTag {
 
     /**
      * Gets the line number.
+     *
      * @return the line number
      */
     public int getLineNo() {
@@ -83,6 +88,7 @@ public class JavadocTag {
 
     /**
      * Gets column number.
+     *
      * @return the column number
      */
     public int getColumnNo() {
@@ -99,6 +105,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is an 'return' tag.
+     *
      * @return whether the tag is an 'return' tag
      */
     public boolean isReturnTag() {
@@ -107,6 +114,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is an 'param' tag.
+     *
      * @return whether the tag is an 'param' tag
      */
     public boolean isParamTag() {
@@ -115,6 +123,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is an 'throws' or 'exception' tag.
+     *
      * @return whether the tag is an 'throws' or 'exception' tag
      */
     public boolean isThrowsTag() {
@@ -124,6 +133,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is a 'see' or 'inheritDoc' tag.
+     *
      * @return whether the tag is a 'see' or 'inheritDoc' tag
      */
     public boolean isSeeOrInheritDocTag() {
@@ -132,6 +142,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag is a 'inheritDoc' tag.
+     *
      * @return whether the tag is a 'inheritDoc' tag
      */
     public boolean isInheritDocTag() {
@@ -140,6 +151,7 @@ public class JavadocTag {
 
     /**
      * Checks that the tag can contain references to imported classes.
+     *
      * @return whether the tag can contain references to imported classes
      */
     public boolean canReferenceImports() {

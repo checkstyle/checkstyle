@@ -265,6 +265,7 @@ public class HiddenFieldCheck
      * Checks whether a lambda parameter shadows a field.
      * Note, that when parameter of lambda expression is untyped,
      * ANTLR parses the parameter as an identifier.
+     *
      * @param ast the lambda token.
      */
     private void processLambda(DetailAST ast) {
@@ -344,6 +345,7 @@ public class HiddenFieldCheck
      * Process a variable token.
      * Check whether a local variable or parameter shadows a field.
      * Store a field for later comparison with local variables and parameters.
+     *
      * @param ast the variable token.
      */
     private void processVariable(DetailAST ast) {
@@ -365,6 +367,7 @@ public class HiddenFieldCheck
 
     /**
      * Checks whether method or constructor parameter is ignored.
+     *
      * @param ast the parameter token.
      * @param name the parameter name.
      * @return true if parameter is ignored.
@@ -377,6 +380,7 @@ public class HiddenFieldCheck
 
     /**
      * Check for instance field.
+     *
      * @param ast token
      * @param name identifier of token
      * @return true if instance field
@@ -387,6 +391,7 @@ public class HiddenFieldCheck
 
     /**
      * Check name by regExp.
+     *
      * @param name string value to check
      * @return true is regexp is matching
      */
@@ -397,6 +402,7 @@ public class HiddenFieldCheck
     /**
      * Determines whether an AST node is in a static method or static
      * initializer.
+     *
      * @param ast the node to check.
      * @return true if ast is in a static method or a static block;
      */
@@ -494,6 +500,7 @@ public class HiddenFieldCheck
     /**
      * Capitalizes a given property name the way we expect to see it in
      * a setter name.
+     *
      * @param name a property name
      * @return capitalized property name
      */
@@ -511,6 +518,7 @@ public class HiddenFieldCheck
     /**
      * Decides whether to ignore an AST node that is the parameter of a
      * constructor.
+     *
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
      *     ignoreConstructorParameter is true and ast is a constructor parameter.
@@ -529,6 +537,7 @@ public class HiddenFieldCheck
     /**
      * Decides whether to ignore an AST node that is the parameter of an
      * abstract method.
+     *
      * @param ast the AST to check.
      * @return true if ast should be ignored because check property
      *     ignoreAbstractMethods is true and ast is a parameter of abstract methods.
@@ -548,6 +557,7 @@ public class HiddenFieldCheck
 
     /**
      * Setter to define the RegExp for names of variables and parameters to ignore.
+     *
      * @param pattern a pattern.
      */
     public void setIgnoreFormat(Pattern pattern) {
@@ -556,6 +566,7 @@ public class HiddenFieldCheck
 
     /**
      * Setter to allow to ignore the parameter of a property setter method.
+     *
      * @param ignoreSetter decide whether to ignore the parameter of
      *     a property setter method.
      */
@@ -580,6 +591,7 @@ public class HiddenFieldCheck
 
     /**
      * Setter to control whether to ignore constructor parameters.
+     *
      * @param ignoreConstructorParameter decide whether to ignore
      *     constructor parameters.
      */
@@ -590,6 +602,7 @@ public class HiddenFieldCheck
 
     /**
      * Setter to control whether to ignore parameters of abstract methods.
+     *
      * @param ignoreAbstractMethods decide whether to ignore
      *     parameters of abstract methods.
      */
@@ -620,6 +633,7 @@ public class HiddenFieldCheck
 
         /**
          * Creates new frame.
+         *
          * @param parent parent frame.
          * @param staticType is this a static inner type (class or enum).
          * @param frameName name associated with the frame, which can be a
@@ -632,6 +646,7 @@ public class HiddenFieldCheck
 
         /**
          * Adds an instance field to this FieldFrame.
+         *
          * @param field  the name of the instance field.
          */
         public void addInstanceField(String field) {
@@ -640,6 +655,7 @@ public class HiddenFieldCheck
 
         /**
          * Adds a static field to this FieldFrame.
+         *
          * @param field  the name of the instance field.
          */
         public void addStaticField(String field) {
@@ -648,6 +664,7 @@ public class HiddenFieldCheck
 
         /**
          * Determines whether this FieldFrame contains an instance field.
+         *
          * @param field the field to check.
          * @return true if this FieldFrame contains instance field field.
          */
@@ -660,6 +677,7 @@ public class HiddenFieldCheck
 
         /**
          * Determines whether this FieldFrame contains a static field.
+         *
          * @param field the field to check.
          * @return true if this FieldFrame contains static field field.
          */
@@ -671,6 +689,7 @@ public class HiddenFieldCheck
 
         /**
          * Getter for parent frame.
+         *
          * @return parent frame.
          */
         public FieldFrame getParent() {

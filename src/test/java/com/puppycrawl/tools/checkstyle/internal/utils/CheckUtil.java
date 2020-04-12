@@ -70,6 +70,7 @@ public final class CheckUtil {
     /**
      * Retrieves a list of class names, removing 'Check' from the end if the class is
      * a checkstyle check.
+     *
      * @param checks class instances.
      * @return a set of simple names.
      */
@@ -136,6 +137,7 @@ public final class CheckUtil {
 
     /**
      * Gets all checkstyle's non-abstract checks.
+     *
      * @return the set of checkstyle's non-abstract check classes.
      * @throws IOException if the attempt to read class path resources failed.
      */
@@ -150,6 +152,7 @@ public final class CheckUtil {
 
     /**
      * Gets all checkstyle's modules.
+     *
      * @return the set of checkstyle's module classes.
      * @throws IOException if the attempt to read class path resources failed.
      */
@@ -162,6 +165,7 @@ public final class CheckUtil {
 
     /**
      * Gets checkstyle's modules in the given package recursively.
+     *
      * @param packageName the package name to use
      * @param loader the class loader used to load Checkstyle package name
      * @return the set of checkstyle's module classes
@@ -192,6 +196,7 @@ public final class CheckUtil {
 
     /**
      * Get's the check's messages.
+     *
      * @param module class to examine.
      * @return a set of checkstyle's module message fields.
      * @throws ClassNotFoundException if the attempt to read a protected class fails.

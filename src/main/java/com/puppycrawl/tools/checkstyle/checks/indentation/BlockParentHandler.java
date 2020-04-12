@@ -75,6 +75,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     /**
      * Returns array of token types which should be checked among children.
+     *
      * @return array of token types to check.
      */
     protected int[] getCheckedChildren() {
@@ -251,6 +252,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     /**
      * Gets indentation level expected for children.
+     *
      * @return indentation level expected for children
      */
     protected IndentLevel getChildrenExpectedIndent() {
@@ -279,6 +281,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
 
     /**
      * A shortcut for {@code IndentationCheck} property.
+     *
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */

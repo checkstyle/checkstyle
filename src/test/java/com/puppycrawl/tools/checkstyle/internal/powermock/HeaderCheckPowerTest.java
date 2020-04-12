@@ -49,6 +49,7 @@ public class HeaderCheckPowerTest extends AbstractModuleTestSupport {
     /**
      * This test needs powermock because {@code StringReader} can't throw an exception to trigger
      * the catch otherwise unless the reader is mishandled.
+     *
      * @throws Exception if there is an error.
      */
     @Test
