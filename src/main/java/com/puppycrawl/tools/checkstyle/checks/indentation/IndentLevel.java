@@ -33,6 +33,7 @@ public class IndentLevel {
 
     /**
      * Creates new instance with one acceptable indentation level.
+     *
      * @param indent acceptable indentation level.
      */
     public IndentLevel(int indent) {
@@ -41,6 +42,7 @@ public class IndentLevel {
 
     /**
      * Creates new instance for nested structure.
+     *
      * @param base parent's level
      * @param offsets offsets from parent's level.
      */
@@ -62,6 +64,7 @@ public class IndentLevel {
 
     /**
      * Checks whether we have more than one level.
+     *
      * @return whether we have more than one level.
      */
     public final boolean isMultiLevel() {
@@ -70,6 +73,7 @@ public class IndentLevel {
 
     /**
      * Checks if given indentation is acceptable.
+     *
      * @param indent indentation to check.
      * @return true if given indentation is acceptable,
      *         false otherwise.
@@ -81,6 +85,7 @@ public class IndentLevel {
     /**
      * Returns true if indent less than minimal of
      * acceptable indentation levels, false otherwise.
+     *
      * @param indent indentation to check.
      * @return true if {@code indent} less than minimal of
      *         acceptable indentation levels, false otherwise.
@@ -91,6 +96,7 @@ public class IndentLevel {
 
     /**
      * Adds one or more acceptable indentation level.
+     *
      * @param base class to add new indentations to.
      * @param additions new acceptable indentation.
      * @return New acceptable indentation level instance.
@@ -106,6 +112,7 @@ public class IndentLevel {
 
     /**
      * Combines 2 acceptable indentation level classes.
+     *
      * @param base class to add new indentations to.
      * @param addition new acceptable indentation.
      * @return New acceptable indentation level instance.
@@ -119,6 +126,7 @@ public class IndentLevel {
 
     /**
      * Returns first indentation level.
+     *
      * @return indentation level.
      */
     public int getFirstIndentLevel() {
@@ -127,6 +135,7 @@ public class IndentLevel {
 
     /**
      * Returns last indentation level.
+     *
      * @return indentation level.
      */
     public int getLastIndentLevel() {

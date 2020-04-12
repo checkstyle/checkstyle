@@ -136,6 +136,7 @@ public class XpathQueryGenerator {
     /**
      * Returns list of xpath queries of nodes, matching line number, column number and token type.
      * This approach uses DetailAST traversal. DetailAST means detail abstract syntax tree.
+     *
      * @return list of xpath queries of nodes, matching line number, column number and token type
      */
     public List<String> generate() {
@@ -147,6 +148,7 @@ public class XpathQueryGenerator {
 
     /**
      * Returns child {@code DetailAst} element of the given root, which has text attribute.
+     *
      * @param root {@code DetailAST} root ast
      * @return child {@code DetailAst} element of the given root
      */
@@ -158,6 +160,7 @@ public class XpathQueryGenerator {
     /**
      * Returns child {@code DetailAst} element of the given root, which has text attribute.
      * Performs search recursively inside node's subtree.
+     *
      * @param root {@code DetailAST} root ast
      * @return child {@code DetailAst} element of the given root
      */
@@ -172,6 +175,7 @@ public class XpathQueryGenerator {
 
     /**
      * Returns full xpath query for given ast element.
+     *
      * @param ast {@code DetailAST} ast element
      * @return full xpath query for given ast element
      */
@@ -193,6 +197,7 @@ public class XpathQueryGenerator {
 
     /**
      * Finds position of the ast element among siblings.
+     *
      * @param ast {@code DetailAST} ast element
      * @return position of the ast element
      */
@@ -210,6 +215,7 @@ public class XpathQueryGenerator {
 
     /**
      * Checks if ast element has all requirements to have unique xpath query.
+     *
      * @param ast {@code DetailAST} ast element
      * @return true if ast element will have unique xpath query, false otherwise
      */
@@ -221,6 +227,7 @@ public class XpathQueryGenerator {
 
     /**
      * Returns list of nodes matching defined line number, column number and token type.
+     *
      * @return list of nodes matching defined line number, column number and token type
      */
     private List<DetailAST> getMatchingAstElements() {
@@ -243,6 +250,7 @@ public class XpathQueryGenerator {
 
     /**
      * Returns relative xpath query for given ast element from root.
+     *
      * @param root {@code DetailAST} root element
      * @param ast {@code DetailAST} ast element
      * @return relative xpath query for given ast element from root
@@ -276,6 +284,7 @@ public class XpathQueryGenerator {
 
     /**
      * Checks if the given ast element has unique {@code TokenTypes} among siblings.
+     *
      * @param ast {@code DetailAST} ast element
      * @return if the given ast element has unique {@code TokenTypes} among siblings
      */
@@ -302,6 +311,7 @@ public class XpathQueryGenerator {
 
     /**
      * Returns the column number with tabs expanded.
+     *
      * @param ast {@code DetailAST} root ast
      * @return the column number with tabs expanded
      */
@@ -313,6 +323,7 @@ public class XpathQueryGenerator {
     /**
      * Checks if the given {@code DetailAST} node is matching line number, column number and token
      * type.
+     *
      * @param ast {@code DetailAST} ast element
      * @return true if the given {@code DetailAST} node is matching
      */

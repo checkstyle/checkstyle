@@ -437,6 +437,7 @@ public enum JavadocTagInfo {
 
     /**
      * Gets the tag text.
+     *
      * @return the tag text
      */
     public String getText() {
@@ -445,6 +446,7 @@ public enum JavadocTagInfo {
 
     /**
      * Gets the tag name.
+     *
      * @return the tag name
      */
     public String getName() {
@@ -453,6 +455,7 @@ public enum JavadocTagInfo {
 
     /**
      * Gets the Tag type defined by {@link Type Type}.
+     *
      * @return the Tag type
      */
     public Type getType() {
@@ -461,6 +464,7 @@ public enum JavadocTagInfo {
 
     /**
      * Returns a JavadocTag from the tag text.
+     *
      * @param text String representing the tag text
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null
@@ -483,6 +487,7 @@ public enum JavadocTagInfo {
 
     /**
      * Returns a JavadocTag from the tag name.
+     *
      * @param name String name of the tag
      * @return Returns a JavadocTag type from a String representing the tag
      * @throws NullPointerException if the text is null
@@ -506,6 +511,7 @@ public enum JavadocTagInfo {
 
     /**
      * Returns whether the provided name is for a valid tag.
+     *
      * @param name the tag name to check.
      * @return whether the provided name is for a valid tag.
      */

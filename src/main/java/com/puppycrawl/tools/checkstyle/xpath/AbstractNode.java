@@ -60,18 +60,21 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Getter method for token type.
+     *
      * @return token type
      */
     public abstract int getTokenType();
 
     /**
      * Returns underlying node.
+     *
      * @return underlying node
      */
     public abstract DetailAST getUnderlyingNode();
 
     /**
      * Getter method for children.
+     *
      * @return children list
      */
     protected List<AbstractNode> getChildren() {
@@ -80,6 +83,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Add new child node to children list.
+     *
      * @param node child node
      */
     protected void addChild(AbstractNode node) {
@@ -88,6 +92,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Returns true if nodes are same, false otherwise.
+     *
      * @param nodeInfo other node
      * @return {@code TreeInfo}
      */
@@ -98,6 +103,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Returns if implementation provides fingerprints.
+     *
      * @return {@code boolean}
      */
     @Override
@@ -107,6 +113,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Returns uri of the namespace for the current node.
+     *
      * @return uri
      */
     @Override
@@ -116,6 +123,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Returns if current node has children.
+     *
      * @return if current node has children
      */
     @Override
@@ -125,6 +133,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Determines axis iteration algorithm.
+     *
      * @param axisNumber element from {@code AxisInfo}
      * @param nodeTest filter for iterator
      * @return {@code AxisIterator} object
@@ -140,6 +149,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Compares current object with specified for order.
+     *
      * @param nodeInfo another {@code NodeInfo} object
      * @return number representing order of current object to specified one
      */
@@ -150,6 +160,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Returns tree info.
+     *
      * @return tree info
      */
     @Override
@@ -160,6 +171,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns string value. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return string value
      */
     @Override
@@ -170,6 +182,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns namespace array. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @param namespaceBindings namespace array
      * @return namespace array
      */
@@ -181,6 +194,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return boolean
      */
     @Override
@@ -191,6 +205,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return boolean
      */
     @Override
@@ -201,6 +216,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return boolean
      */
     @Override
@@ -211,6 +227,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns boolean. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return boolean
      */
     @Override
@@ -221,6 +238,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns configuration. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return configuration
      */
     @Override
@@ -231,6 +249,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Sets system id. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @param systemId system id
      */
     @Override
@@ -241,6 +260,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns system id. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return system id
      */
     @Override
@@ -251,6 +271,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns public id. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return public id
      */
     @Override
@@ -261,6 +282,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns base uri. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return base uri
      */
     @Override
@@ -271,6 +293,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns location. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return location
      */
     @Override
@@ -281,6 +304,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns CharSequence string value. Throws {@code UnsupportedOperationException},
      * because no child class implements it and this method is not used for querying.
+     *
      * @return CharSequence string value
      */
     @Override
@@ -291,6 +315,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns fingerprint. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return fingerprint
      */
     @Override
@@ -301,6 +326,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns display name. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return display name
      */
     @Override
@@ -311,6 +337,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns prefix. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return prefix
      */
     @Override
@@ -321,6 +348,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns type of the schema. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return type of the schema
      */
     @Override
@@ -331,6 +359,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns AtomicSequence. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @return AtomicSequence
      */
     @Override
@@ -341,6 +370,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Generate id method. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @param fastStringBuffer fastStringBuffer
      */
     @Override
@@ -351,6 +381,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Copy method. Throws {@code UnsupportedOperationException}, because no child
      * class implements it and this method is not used for querying.
+     *
      * @param receiver receiver
      * @param index index
      * @param location location
@@ -363,6 +394,7 @@ public abstract class AbstractNode implements NodeInfo {
     /**
      * Returns UnsupportedOperationException exception. Methods which throws this exception are
      * not supported for all nodes.
+     *
      * @return UnsupportedOperationException exception
      */
     private static UnsupportedOperationException createUnsupportedOperationException() {

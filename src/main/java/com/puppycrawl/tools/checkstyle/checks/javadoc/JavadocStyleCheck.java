@@ -374,6 +374,7 @@ public class JavadocStyleCheck
 
     /**
      * Whether we should check this node.
+     *
      * @param ast a given node.
      * @return whether we should check a given node.
      */
@@ -475,6 +476,7 @@ public class JavadocStyleCheck
 
     /**
      * Returns the comment text from the Javadoc.
+     *
      * @param comments the lines of Javadoc.
      * @return a comment text String.
      */
@@ -501,6 +503,7 @@ public class JavadocStyleCheck
      * Finds the index of the first non-whitespace character ignoring the
      * Javadoc comment start and end strings (&#47** and *&#47) as well as any
      * leading asterisk.
+     *
      * @param line the Javadoc comment line of text to scan.
      * @return the int index relative to 0 for the start of text
      *         or -1 if not found.
@@ -528,6 +531,7 @@ public class JavadocStyleCheck
 
     /**
      * Trims any trailing whitespace or the end of Javadoc comment string.
+     *
      * @param builder the StringBuilder to trim.
      */
     private static void trimTail(StringBuilder builder) {

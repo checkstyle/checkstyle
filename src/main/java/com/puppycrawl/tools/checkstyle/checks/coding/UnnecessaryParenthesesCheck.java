@@ -355,6 +355,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      * In short, does {@code ast} have a previous sibling whose type is
      * {@code TokenTypes.LPAREN} and a next sibling whose type is {@code
      * TokenTypes.RPAREN}.
+     *
      * @param ast the {@code DetailAST} to check if it is surrounded by
      *        parentheses.
      * @return {@code true} if {@code ast} is surrounded by
@@ -369,6 +370,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
      * Tests if the given expression node is surrounded by parentheses.
+     *
      * @param ast a {@code DetailAST} whose type is
      *        {@code TokenTypes.EXPR}.
      * @return {@code true} if the expression is surrounded by
@@ -381,6 +383,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     /**
      * Tests if the given lambda node has a single parameter, no defined type, and is surrounded
      * by parentheses.
+     *
      * @param ast a {@code DetailAST} whose type is
      *        {@code TokenTypes.LAMBDA}.
      * @return {@code true} if the lambda has a single parameter, no defined type, and is
@@ -401,6 +404,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
     /**
      * Check if the given token type can be found in an array of token types.
+     *
      * @param type the token type.
      * @param tokens an array of token types to search.
      * @return {@code true} if {@code type} was found in {@code
@@ -422,6 +426,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      * Returns the specified string chopped to {@code MAX_QUOTED_LENGTH}
      * plus an ellipsis (...) if the length of the string exceeds {@code
      * MAX_QUOTED_LENGTH}.
+     *
      * @param value the string to potentially chop.
      * @return the chopped string if {@code string} is longer than
      *         {@code MAX_QUOTED_LENGTH}; otherwise {@code string}.

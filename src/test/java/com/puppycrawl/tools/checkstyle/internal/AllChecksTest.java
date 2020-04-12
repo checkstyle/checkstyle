@@ -569,6 +569,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     /**
      * Checks that an array is a subset of other array.
+     *
      * @param array to check whether it is a subset.
      * @param arrayToCheckIn array to check in.
      * @return {@code true} if all elements in {@code array} are in {@code arrayToCheckIn}.

@@ -144,6 +144,7 @@ public final class ConfigurationLoader {
 
     /**
      * Creates a new {@code ConfigurationLoader} instance.
+     *
      * @param overrideProps resolver for overriding properties
      * @param omitIgnoredModules {@code true} if ignored modules should be
      *         omitted
@@ -165,6 +166,7 @@ public final class ConfigurationLoader {
      * Creates mapping between local resources and dtd ids. This method can't be
      * moved to inner class because it must stay static because it is called
      * from constructor and inner class isn't static.
+     *
      * @return map between local resources and dtd ids.
      * @noinspection MethodOnlyUsedFromInnerClass
      */
@@ -198,6 +200,7 @@ public final class ConfigurationLoader {
 
     /**
      * Returns the module configurations in a specified file.
+     *
      * @param config location of config file, can be either a URL or a filename
      * @param overridePropsResolver overriding properties
      * @return the check configurations
@@ -210,6 +213,7 @@ public final class ConfigurationLoader {
 
     /**
      * Returns the module configurations in a specified file.
+     *
      * @param config location of config file, can be either a URL or a filename
      * @param overridePropsResolver overriding properties
      * @param threadModeSettings the thread mode configuration
@@ -479,6 +483,7 @@ public final class ConfigurationLoader {
 
         /**
          * Creates a new InternalLoader.
+         *
          * @throws SAXException if an error occurs
          * @throws ParserConfigurationException if an error occurs
          */
@@ -586,6 +591,7 @@ public final class ConfigurationLoader {
 
         /**
          * Util method to recheck attribute in module.
+         *
          * @param module module to check
          * @param attributeName name of attribute in module to find
          * @return true if attribute is present in module

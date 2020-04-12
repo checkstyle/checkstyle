@@ -183,6 +183,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
      * xpath queries.
      * Third one constructs new configuration with {@code SuppressionXpathFilter} using generated
      * xpath queries, executes checker and checks if no violation occurred.
+     *
      * @param moduleConfig module configuration.
      * @param fileToProcess input class file.
      * @param expectedViolations expected violation messages.

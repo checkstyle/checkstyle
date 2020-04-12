@@ -106,6 +106,7 @@ public class IfHandler extends BlockParentHandler {
 
     /**
      * Returns right parenthesis of if statement.
+     *
      * @param literalIfAst
      *          literal-if ast node(TokenTypes.LITERAL_IF)
      * @return right parenthesis of if statement.

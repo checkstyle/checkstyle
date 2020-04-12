@@ -143,6 +143,7 @@ public class SuppressWarningsHolder
      * Returns the default alias for the source name of a check, which is the
      * source name in lower case with any dotted prefix or "Check" suffix
      * removed.
+     *
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @return the default alias for the given check
@@ -160,6 +161,7 @@ public class SuppressWarningsHolder
      * Returns the alias for the source name of a check. If an alias has been
      * explicitly registered via {@link #setAliasList(String...)}, that
      * alias is returned; otherwise, the default alias is used.
+     *
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @return the current alias for the given check
@@ -174,6 +176,7 @@ public class SuppressWarningsHolder
 
     /**
      * Registers an alias for the source name of a check.
+     *
      * @param sourceName the source name of the check (generally the class
      *        name)
      * @param checkAlias the alias used in {@link SuppressWarnings} annotations
@@ -185,6 +188,7 @@ public class SuppressWarningsHolder
     /**
      * Setter to specify aliases for check names that can be used in code
      * within {@code SuppressWarnings}.
+     *
      * @param aliasList the list of comma-separated alias assignments
      * @throws IllegalArgumentException when alias item does not have '='
      */
@@ -205,6 +209,7 @@ public class SuppressWarningsHolder
     /**
      * Checks for a suppression of a check with the given source name and
      * location in the last file processed.
+     *
      * @param event audit event.
      * @return whether the check with the given name is suppressed at the given
      *         source location
@@ -235,6 +240,7 @@ public class SuppressWarningsHolder
     /**
      * Checks whether suppression entry position is after the audit event occurrence position
      * in the source file.
+     *
      * @param line the line number in the source file where the event occurred.
      * @param column the column number in the source file where the event occurred.
      * @param entry suppression entry.
@@ -250,6 +256,7 @@ public class SuppressWarningsHolder
     /**
      * Checks whether suppression entry position is before the audit event occurrence position
      * in the source file.
+     *
      * @param line the line number in the source file where the event occurred.
      * @param column the column number in the source file where the event occurred.
      * @param entry suppression entry.
@@ -345,6 +352,7 @@ public class SuppressWarningsHolder
 
     /**
      * Get all annotation values.
+     *
      * @param ast annotation token
      * @return list values
      */
@@ -381,6 +389,7 @@ public class SuppressWarningsHolder
 
     /**
      * Checks that annotation is empty.
+     *
      * @param values list of values in the annotation
      * @return whether annotation is empty or contains some values
      */
@@ -390,6 +399,7 @@ public class SuppressWarningsHolder
 
     /**
      * Get target of annotation.
+     *
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */
@@ -415,6 +425,7 @@ public class SuppressWarningsHolder
      * ANNOTATION_DEF, PACKAGE_DEF, CLASS_DEF, ENUM_DEF, ENUM_CONSTANT_DEF, CTOR_DEF,
      * METHOD_DEF, PARAMETER_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF, TYPE, LITERAL_NEW,
      * LITERAL_THROWS, TYPE_ARGUMENT, IMPLEMENTS_CLAUSE, DOT.
+     *
      * @param child an ast
      * @return returns ast - parent of given
      */
@@ -452,6 +463,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the n'th child of an AST node.
+     *
      * @param ast the AST node to get the child of
      * @param index the index of the child to get
      * @return the n'th child of the given AST node, or {@code null} if none
@@ -466,6 +478,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the Java identifier represented by an AST.
+     *
      * @param ast an AST node for an IDENT or DOT
      * @return the Java identifier represented by the given AST subtree
      * @throws IllegalArgumentException if the AST is invalid
@@ -487,6 +500,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the literal string expression represented by an AST.
+     *
      * @param ast an AST node for an EXPR
      * @return the Java string represented by the given AST expression
      *         or empty string if expression is too complex
@@ -516,6 +530,7 @@ public class SuppressWarningsHolder
 
     /**
      * Returns the annotation values represented by an AST.
+     *
      * @param ast an AST node for an EXPR or ANNOTATION_ARRAY_INIT
      * @return the list of Java string represented by the given AST for an
      *         expression or annotation array initializer
@@ -539,6 +554,7 @@ public class SuppressWarningsHolder
 
     /**
      * Method looks at children and returns list of expressions in strings.
+     *
      * @param parent ast, that contains children
      * @return list of expressions in strings
      */
@@ -576,6 +592,7 @@ public class SuppressWarningsHolder
 
         /**
          * Constructs a new suppression region entry.
+         *
          * @param checkName the source name of the suppressed check
          * @param firstLine the first line of the suppression region
          * @param firstColumn the first column of the suppression region
@@ -593,6 +610,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets he source name of the suppressed check.
+         *
          * @return the source name of the suppressed check
          */
         public String getCheckName() {
@@ -601,6 +619,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the first line of the suppression region.
+         *
          * @return the first line of the suppression region
          */
         public int getFirstLine() {
@@ -609,6 +628,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the first column of the suppression region.
+         *
          * @return the first column of the suppression region
          */
         public int getFirstColumn() {
@@ -617,6 +637,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the last line of the suppression region.
+         *
          * @return the last line of the suppression region
          */
         public int getLastLine() {
@@ -625,6 +646,7 @@ public class SuppressWarningsHolder
 
         /**
          * Gets the last column of the suppression region.
+         *
          * @return the last column of the suppression region
          */
         public int getLastColumn() {
