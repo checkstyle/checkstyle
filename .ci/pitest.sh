@@ -48,7 +48,6 @@ pitest-annotation|pitest-design \
 pitest-regexp)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (message == null) {</span></pre></td></tr>"
   "RegexpCheck.java.html:<td class='covered'><pre><span  class='survived'>        return errorCount &#60;= errorLimit - 1</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
@@ -170,7 +169,6 @@ pitest-javadoc)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>            Arrays.sort(acceptableJavadocTokens);</span></pre></td></tr>"
-  "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>            Arrays.sort(defaultJavadocTokens);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        beginJavadocTree(root);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        finishJavadocTree(root);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        javadocTokens.clear();</span></pre></td></tr>"
@@ -179,7 +177,6 @@ pitest-javadoc)
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>                 child != null;</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>                if (child.getType() == TokenTypes.TYPE_PARAMETER) {</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (classInfo != null) {</span></pre></td></tr>"
-  "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>            if (dotIdx == -1) {</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        currentTypeParams.clear();</span></pre></td></tr>"
   "JavadocMethodCheck.java.html:<td class='covered'><pre><span  class='survived'>        while (iterator.hasNext()) {</span></pre></td></tr>"
   "JavadocTagInfo.java.html:<td class='covered'><pre><span  class='survived'>            .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -&#62; tagName)));</span></pre></td></tr>"

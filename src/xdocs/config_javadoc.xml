@@ -847,6 +847,122 @@ public void doSomething9(File file) throws IOException {
       </subsection>
     </section>
 
+    <section name="JavadocMissingWhitespaceAfterAsterisk">
+      <p>Since Checkstyle 8.32</p>
+      <subsection name="Description" id="JavadocMissingWhitespaceAfterAsterisk_Description">
+        <p>
+          Checks that there is at least one whitespace after the leading asterisk.
+          Although spaces after asterisks are optional in the Javadoc comments, their absence
+          makes the documentation difficult to read. It is the de facto standard to put at least
+          one whitespace after the leading asterisk.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="JavadocMissingWhitespaceAfterAsterisk_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>
+                Control when to print violations if the Javadoc being examined by this check
+                violates the tight html rules defined at
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.3</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="JavadocMissingWhitespaceAfterAsterisk_Examples">
+        <p>
+          To configure the default check:
+        </p>
+        <source>
+&lt;module name="JavadocMissingWhitespaceAfterAsterisk"/&gt;
+        </source>
+        <p>
+          Code Example:
+        </p>
+        <source>
+/** This is valid single-line Javadoc. */
+class TestClass {
+  /**
+   *This is invalid Javadoc.
+   */
+  int invalidJavaDoc;
+  /**
+   * This is valid Javadoc.
+   */
+  void validJavaDocMethod() {
+  }
+  /**This is invalid single-line Javadoc. */
+  void invalidSingleLineJavaDocMethod() {
+  }
+  /** This is valid single-line Javadoc. */
+  void validSingleLineJavaDocMethod() {
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage"
+        id="JavadocMissingWhitespaceAfterAsterisk_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocMissingWhitespaceAfterAsterisk">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+        id="JavadocMissingWhitespaceAfterAsterisk_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+            javadoc.missed.html.close</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.whitespace%22">
+            javadoc.missing.whitespace</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+            javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+            javadoc.wrong.singleton.html.tag</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="JavadocMissingWhitespaceAfterAsterisk_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="JavadocMissingWhitespaceAfterAsterisk_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="JavadocPackage">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="JavadocPackage_Description">
@@ -1302,15 +1418,42 @@ public class TestClass {
 &lt;module name="JavadocStyle"/&gt;
         </source>
 
-        <p>
-          To configure the check for <code>public</code>
-          scope:
-        </p>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here. // OK
+     *&#47;
+    private void methodWithValidCommentStyle() {}
 
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     *&#47;
+    private void methodWithInvalidCommentStyle() {}
+}
+        </source>
+
+        <p>
+          To configure the check for <code>public</code> scope:
+        </p>
         <source>
 &lt;module name="JavadocStyle"&gt;
-  &lt;property name="scope" value="public"/&gt;
+&lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     *&#47;
+    public void test1() {}
+
+    &#47;**
+     * Some description here // OK
+     *&#47;
+    private void test2() {}
+}
         </source>
 
         <p>
@@ -1320,9 +1463,23 @@ public class TestClass {
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-  &lt;property name="scope" value="private"/&gt;
-  &lt;property name="excludeScope" value="package"/&gt;
+&lt;property name="scope" value="private"/&gt;
+&lt;property name="excludeScope" value="package"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     *&#47;
+    private void test1() {}
+
+    &#47;**
+     * Some description here // OK
+     *&#47;
+    void test2() {}
+}
         </source>
 
         <p>
@@ -1331,10 +1488,62 @@ public class TestClass {
 
         <source>
 &lt;module name="JavadocStyle"&gt;
-  &lt;property name="checkFirstSentence" value="false"/&gt;
+&lt;property name="checkFirstSentence" value="false"/&gt;
 &lt;/module&gt;
         </source>
-      </subsection>
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // OK
+     * Second line of description // violation, the sentence must end with a proper punctuation
+     *&#47;
+    private void test1() {}
+}
+        </source>
+
+        <p>
+          To configure the check to turn off validation of incomplete html tags:
+        </p>
+        <source>
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="checkHtml" value="false"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+public class Test {
+    &#47;**
+     * Some description here // violation, the sentence must end with a proper punctuation
+     * &lt;p // OK
+     *&#47;
+    private void test1() {}
+}
+        </source>
+
+        <p>
+          To configure the check for only class definitions:
+        </p>
+        <source>
+&lt;module name="JavadocStyle"&gt;
+&lt;property name="tokens" value="CLASS_DEF"/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>Example:</p>
+        <source>
+&#47;**
+ * Some description here // violation, the sentence must end with a proper punctuation
+ *&#47;
+public class Test {
+    &#47;**
+     * Some description here // OK
+     *&#47;
+    private void test1() {}
+}
+        </source>
+    </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
         <ul>

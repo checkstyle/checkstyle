@@ -907,11 +907,9 @@ public class UserService {
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
           <li>Indentation</li>
-          <li>InterfaceIsType</li>
           <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
-          <li>MethodCount</li>
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>OverloadMethodsDeclarationOrder</li>
@@ -930,6 +928,7 @@ public class UserService {
         <ul id="SuppressionXpathFilter_JavadocChecks">
           <li>AtclauseOrder</li>
           <li>JavadocBlockTagLocation</li>
+          <li>JavadocMissingWhitespaceAfterAsterisk</li>
           <li>JavadocParagraph</li>
           <li>JavadocStyle</li>
           <li>JavadocTagContinuationIndentation</li>

@@ -94,6 +94,34 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="OperatorWrap"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *         String s = "Hello" +
+ *         "World"; // violation, '+' should be on new line
+ *
+ *         if (10 ==
+ *                 20) { // violation, '==' should be on new line.
+ *         // body
+ *         }
+ *         if (10
+ *                 ==
+ *                 20) { // ok
+ *         // body
+ *         }
+ *
+ *         int c = 10 /
+ *                 5; // violation, '/' should be on new line.
+ *
+ *         int d = c
+ *                 + 10; // ok
+ *     }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check for assignment operators at the end of a line:
  * </p>
  * <pre>
@@ -103,6 +131,49 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *            SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
  *   &lt;property name="option" value="eol"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     public static void main(String[] args) {
+ *             int b
+ *                     = 10; // violation, '=' should be on previous line
+ *             int c =
+ *                     10; // ok
+ *             b
+ *                     += 10; // violation, '+=' should be on previous line
+ *             b +=
+ *                     10; // ok
+ *             c
+ *                     *= 10; // violation, '*=' should be on previous line
+ *             c *=
+ *                     10; // ok
+ *             c
+ *                     -= 5; // violation, '-=' should be on previous line
+ *             c -=
+ *                     5; // ok
+ *             c
+ *                     /= 2; // violation, '/=' should be on previous line
+ *             c
+ *                     %= 1; // violation, '%=' should be on previous line
+ *             c
+ *                     &gt;&gt;= 1; // violation, '&gt;&gt;=' should be on previous line
+ *             c
+ *                 &gt;&gt;&gt;= 1; // violation, '&gt;&gt;&gt;=' should be on previous line
+ *         }
+ *         public void myFunction() {
+ *             c
+ *                     ^= 1; // violation, '^=' should be on previous line
+ *             c
+ *                     |= 1; // violation, '|=' should be on previous line
+ *             c
+ *                     &amp;=1 ; // violation, '&amp;=' should be on previous line
+ *             c
+ *                     &lt;&lt;= 1; // violation, '&lt;&lt;=' should be on previous line
+ *     }
+ * }
  * </pre>
  *
  * @since 3.0

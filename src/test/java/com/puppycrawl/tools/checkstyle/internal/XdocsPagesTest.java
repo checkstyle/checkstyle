@@ -1071,7 +1071,7 @@ public class XdocsPagesTest {
                 result = "default locale language for the Java Virtual Machine";
             }
             else if ("Checker".equals(sectionName) && "charset".equals(propertyName)) {
-                result = "System property \"file.encoding\"";
+                result = "UTF-8";
             }
             else if ("charset".equals(propertyName)) {
                 result = "the charset property of the parent Checker module";

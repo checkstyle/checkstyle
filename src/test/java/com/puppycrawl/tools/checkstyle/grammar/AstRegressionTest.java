@@ -123,6 +123,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testCharLiteralSurrogatePair() throws Exception {
+        verifyAst(getPath("InputCharLiteralSurrogatePair.txt"),
+                getPath("InputCharLiteralSurrogatePair.java"));
+    }
+
+    @Test
     public void testUnusedConstructors1() throws Exception {
         final Class<?> clss = GeneratedJavaLexer.class;
         final Constructor<?> constructor = clss.getDeclaredConstructor(InputStream.class);

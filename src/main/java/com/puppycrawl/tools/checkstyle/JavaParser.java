@@ -136,7 +136,7 @@ public final class JavaParser {
     public static DetailAST parseFile(File file, Options options)
             throws IOException, CheckstyleException {
         final FileText text = new FileText(file.getAbsoluteFile(),
-            System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+            StandardCharsets.UTF_8.name());
         return parseFileText(text, options);
     }
 

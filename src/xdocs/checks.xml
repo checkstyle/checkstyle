@@ -405,6 +405,11 @@
             <td>Checks the Javadoc of a method or constructor.</td>
           </tr>
           <tr>
+            <td>
+              <a href="config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a></td>
+            <td>Checks that there is at least one whitespace after the leading asterisk.</td>
+          </tr>
+          <tr>
             <td><a href="config_javadoc.html#JavadocPackage">JavadocPackage</a></td>
             <td>Checks that each Java package has a Javadoc file used for commenting.</td>
           </tr>
