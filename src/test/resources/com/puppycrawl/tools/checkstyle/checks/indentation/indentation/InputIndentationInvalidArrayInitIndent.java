@@ -112,5 +112,25 @@ public class InputIndentationInvalidArrayInitIndent { //indent:0 exp:0
       };
 
     }
-
+    interface SomeInterface1 {
+        @interface SomeAnnotation1 {
+            String[] values();
+            String[] description() default "";
+            String[] description2() default { "hello",
+            "checkstyle"};
+        }
+        @SomeAnnotation1(values =
+            {
+              "hello",
+            "checkstyle"
+            },
+            description = { "hello",
+              "checkstyle"
+        },
+            description2 = {
+            "hello", "chekstyle"
+            }
+        )
+      void worked();
+    }
 }
