@@ -57,7 +57,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>Violation</p>
+ * <pre>
+ * for(; i &lt; 10; i++){
+ *     //Violation
+ * }
+ * </pre>
+ * <p>accepted</p>
+ * <pre>
+ * for( ; i &lt; 10; i++){
+ *    //OK
+ * }
+ * </pre>
+ * 
  * @since 3.4
  */
 @StatelessCheck

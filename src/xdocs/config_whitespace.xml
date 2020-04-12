@@ -76,6 +76,18 @@ for (
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
+          <p>Violation</p>
+          <source>
+for(; i &lt; 10; i++){
+    //Violation
+}
+          </source>
+          <p>accepted</p>
+          <source>
+for( ; i &lt; 10; i++){
+    //OK
+}
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="EmptyForInitializerPad_Example_of_Usage">
