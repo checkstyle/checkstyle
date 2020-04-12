@@ -75,7 +75,7 @@
             <td>Checks the order of javadoc block-tags or javadoc tags.</td>
           </tr>
           <tr>
-            <td><a href="config_misc.html#AvoidDoubleBraceInitialization">
+            <td><a href="config_coding.html#AvoidDoubleBraceInitialization">
               AvoidDoubleBraceInitialization</a></td>
             <td>Detects double brace initialization.</td>
           </tr>
