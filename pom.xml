@@ -1667,6 +1667,9 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://maven.apache.org/*</excludedLink>
+            <!-- very frequent SocketTimeoutException : Read timed out -->
+            <excludedLink>https://www.bountysource.com/*</excludedLink>
+            <excludedLink>https://api.bountysource.com/*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
