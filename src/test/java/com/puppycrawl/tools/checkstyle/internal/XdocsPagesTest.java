@@ -937,11 +937,6 @@ public class XdocsPagesTest {
             // dynamic custom expression
             result = "Regular Expression";
         }
-        else if ("CustomImportOrder".equals(sectionName)
-                && "customImportOrderRules".equals(propertyName)) {
-            // specially separated list
-            result = "String";
-        }
         else if (fieldClass == boolean.class) {
             result = "Boolean";
         }
