@@ -701,7 +701,7 @@ public class ImportOrderCheck
             staticImportSeparator = isStatic && separated;
         }
         final boolean separatorBetween = isStatic != lastImportStatic
-            && (separated || separatedStaticGroups) && staticImportsApart;
+            && (separated || separatedStaticGroups);
 
         return typeImportSeparator || staticImportSeparator || separatorBetween;
     }
