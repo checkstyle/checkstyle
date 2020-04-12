@@ -64,7 +64,8 @@
         that cause problem.<br/>
         We do not need real source code. Any obfuscation of your super secret code is OK.<br/>
         Link to your source code would be awesome.
-        Code has to be compilable, in other case behaviour could be strange.
+        Code has to be compilable, in other case behaviour could be strange.<br/>
+        Always specify what is expected.
       </p>
 
       <p>
@@ -99,16 +100,49 @@ private static final int SOMETHING = 1;
 Starting audit...
 Audit done.
 
+Expected: violation on first line.
+/var/tmp/Test.java:1:28: error: '{' is not preceded with whitespace.
         ]]></source>
       </p>
 
       <p>
-        Always specify what is expected.<br/>
+        For Windows users, please use "type" command instead of "cat".
+        Example of report that we expect:
 
-        <code>
-          Expected: violation on first line.
-          /var/tmp/Test.java:1:28: error: '{' is not preceded with whitespace.
-        </code>
+        <source><![CDATA[
+Check documentation: https://checkstyle.org/config_misc.html#Indentation
+
+D:\>type config.xml
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+          "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+          "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="TreeWalker">
+        <module name="Indentation"/>
+    </module>
+</module>
+
+D:\>type Test.java
+class Test {
+    void method() {
+        try { return; // false positive
+        }
+        catch (Exception e) { return; // false positive
+        }
+    }
+}
+
+D:\>java -jar -Duser.language=en -Duser.country=US checkstyle-8.XX-all.jar-c config.xml Test.java
+Starting audit...
+[ERROR] D:\Test.java:3: 'try' child has incorrect indentation level 8,
+expected level should be 12. [Indentation]
+[ERROR] D:\Test.java:5: 'catch' child has incorrect indentation level 8,
+expected level should be 12. [Indentation]
+Audit done.
+
+Expected: no violations.
+        ]]></source>
       </p>
 
     </section>
