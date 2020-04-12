@@ -43,6 +43,10 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * Attention: This filter only supports single suppression, and will need multiple instances if
  * users wants to suppress multiple violations.
  * </p>
+ * <p>
+ * SuppressionSingleFilter can suppress Checks that have Treewalker or
+ * Checker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code files} - Define the RegExp for matching against the file name associated with

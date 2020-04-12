@@ -204,6 +204,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * if no file found, then passed to the {@code ClassLoader.getResource()} method.
  * </li>
  * </ol>
+ * <p>
+ * SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.
