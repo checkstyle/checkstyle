@@ -307,9 +307,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "40: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
-            "41: " + getCheckMessage(MSG_ERROR, "@", 0, 4),
-            "50: " + getCheckMessage(MSG_ERROR, "@", 6, 8),
+            "40: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 0, "4, 8, 12, 16, 20, 23, 25"),
+            "41: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 0, "4, 8, 12, 16, 20, 23, 25"),
+            "50: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 6, "8, 12, 16, 20, 24, 27, 29"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationDifficultAnnotations.java"), expected);
     }
@@ -498,6 +501,109 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         };
 
         verifyWarns(checkConfig, getPath("InputIndentationMembers.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationArrayInit() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "6");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 0,
+                "4, 6, 10, 12, 16, 18, 22, 24, 28, 30, 34, 36"),
+            "22: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 13,
+                "4, 6, 10, 12, 16, 18, 22, 24, 28, 30, 34, 36"),
+            "23: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 2, "0, 4"),
+            "35: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 6,
+                "8, 10, 14, 16, 20, 22, 26, 28, 31, 33"),
+            "36: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 2, "4, 8"),
+
+            "52: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                    "annotation array initialization", 5, "6, 8, 10"),
+            "54: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 5, "2, 6"),
+        };
+        final String fileName = getPath("InputIndentationAnnArrInit.java");
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testAnnotationArrayInitTwo() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "0");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "0");
+        checkConfig.addAttribute("tabWidth", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String[] expected = {
+            "16: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "0, 33, 35"),
+            "29: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 8, "4, 29, 31"),
+            "31: " + getCheckMessage(MSG_ERROR,
+                "annotation array initialization rcurly", 2, 4),
+            "46: " + getCheckMessage(MSG_ERROR,
+                "annotation array initialization lcurly", 6, 2),
+            "48: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
+                "annotation array initialization", 4, "2, 6, 8"),
+        };
+        final String fileName = getPath("InputIndentationAnnArrInit2.java");
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testOddAnnotations()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "3");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "9");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationoddLineWrappingAndArrayInit.java");
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 16,
+                "11, 17, 20, 26, 29, 35, 38, 44, 53, 54"),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testZeroAnnotationArrayInit()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "0");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationZeroArrayInit.java");
+        final String[] expected = {
+            "7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 11,
+                "8, 12, 35, 37"),
+        };
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -816,6 +922,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "110: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
             "111: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
             "112: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 6, "8, 12"),
+            // following are tests for annotation array initialisation
+            "120: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 12,
+                "16, 20, 24, 28, 32, 36, 40, 44, 46, 48"),
+            "124: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization", 14, 12),
+            "128: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 14,
+                "16, 20, 24, 28, 30"),
+            "129: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
+                8, "12, 16"),
+            "131: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization", 12, 16),
+
         };
 
         // Test input for this test case is not checked due to issue #693.
@@ -1891,7 +2007,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("forceStrictCondition", "true");
         final String fileName = getPath("InputIndentationAnnotationScopeIndentationCheck.java");
         final String[] expected = {
-            "9: " + getCheckMessage(MSG_ERROR, "}", 8, 0),
+            "9: " + getCheckMessage(MSG_ERROR_MULTI,
+                    "annotation array initialization rcurly", 8, "0, 4"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
