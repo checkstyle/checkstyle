@@ -650,6 +650,16 @@ public int checkReturnTag(final int aTagIndex,
               <td>6.0</td>
             </tr>
             <tr>
+              <td>validateParameterOrder</td>
+              <td>
+                  Control whether to check if the <code>param</code> tags are in the order the
+                  appear in code.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.32</td>
+            </tr>
+            <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
               <td><a href="property_types.html#scope">Scope</a></td>
@@ -778,6 +788,34 @@ public void doSomething9(File file) throws IOException {
 }
         </source>
 
+        <p>
+          To configure the check to validate that the <code>param</code> tags, appear in the order
+          they appear in code.
+        </p>
+        <source>
+&lt;module name="JavadocMethod"&gt;
+  &lt;property name="validateParameterOrder" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example: </p>
+        <source>
+/**
+ * Some description here.
+ * @param &lt;T&gt; // OK
+ * @param &lt;E&gt; // OK
+ * @param a // OK
+ * @param b // OK
+ */
+public &lt;T, E&gt; void testCorrectTypeOrder(T a, E b) {}
+
+/**
+ * Some description here.
+ * @param b // violation, b should be the third parameter as show in the code below .
+ * @param a // OK
+ * @param &lt;E&gt; // violation, &lt;E&gt; should be the third parameter as show in the code below.
+ */
+public &lt;E&gt; void testIncorrectTypeOrder(E a, int b) {}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="JavadocMethod_Example_of_Usage">
@@ -810,6 +848,10 @@ public void doSomething9(File file) throws IOException {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.expectedTag%22">
             javadoc.expectedTag</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.incorrectTagOrder%22">
+            javadoc.incorrectTagOrder</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.invalidInheritDoc%22">

@@ -428,8 +428,8 @@ public class RequireThisCheck extends AbstractCheck {
 
     /**
      * Helper method to log a LocalizedMessage.
-     * @param ast a node to get line id column numbers associated with the message.
      * @param msgKey key to locale message format.
+     * @param ast a node to get line id column numbers associated with the message.
      * @param frame the class frame where the violation is found.
      */
     private void logViolation(String msgKey, DetailAST ast, AbstractFrame frame) {

@@ -491,8 +491,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Checks whether case block is empty.
-     * @param nextStmt previous statement.
      * @param prevStmt next statement.
+     * @param nextStmt previous statement.
      * @return true if case block is empty.
      */
     private static boolean isInEmptyCaseBlock(DetailAST prevStmt, DetailAST nextStmt) {
@@ -925,9 +925,9 @@ public class CommentsIndentationCheck extends AbstractCheck {
 
     /**
      * Logs comment which can have the same indentation level as next or previous statement.
+     * @param prevStmt previous statement.
      * @param comment comment.
      * @param nextStmt next statement.
-     * @param prevStmt previous statement.
      */
     private void logMultilineIndentation(DetailAST prevStmt, DetailAST comment,
                                          DetailAST nextStmt) {
