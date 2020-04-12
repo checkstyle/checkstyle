@@ -152,6 +152,7 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
 
     /**
      * Setter to allow nested blocks if they are the only child of a switch case.
+     *
      * @param allowInSwitchCase whether nested blocks are allowed
      *                 if they are the only child of a switch case.
      */

@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    break;
  * }
  * </pre>
+ *
  * @since 3.1
  */
 @StatelessCheck
@@ -100,6 +101,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
 
     /**
      * Checks if the case group or its sibling contain the 'default' switch.
+     *
      * @param caseGroupAst first case group to check.
      * @return true if 'default' switch found.
      */

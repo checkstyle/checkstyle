@@ -49,6 +49,7 @@ public abstract class AbstractSuperCheck
 
     /**
      * Returns the name of the overriding method.
+     *
      * @return the name of the overriding method.
      */
     protected abstract String getMethodName();
@@ -90,6 +91,7 @@ public abstract class AbstractSuperCheck
     /**
      * Determines whether a 'super' literal is a call to the super method
      * for this check.
+     *
      * @param literalSuperAst the AST node of a 'super' literal.
      * @return true if ast is a call to the super method for this check.
      */
@@ -131,6 +133,7 @@ public abstract class AbstractSuperCheck
 
     /**
      * Does method have any arguments.
+     *
      * @param methodCallDotAst DOT DetailAST
      * @return true if any parameters found
      */
@@ -141,6 +144,7 @@ public abstract class AbstractSuperCheck
 
     /**
      * Is same name of method.
+     *
      * @param ast method AST
      * @return true if method name is the same
      */
@@ -171,6 +175,7 @@ public abstract class AbstractSuperCheck
     /**
      * Determines whether an AST is a method definition for this check,
      * without any parameters.
+     *
      * @param ast the method definition AST.
      * @return true if the method of ast is a method for this check.
      */
@@ -206,6 +211,7 @@ public abstract class AbstractSuperCheck
 
         /**
          * Constructs a stack node for a method definition.
+         *
          * @param ast AST for the method definition.
          */
         /* package */ MethodNode(DetailAST ast) {
@@ -223,6 +229,7 @@ public abstract class AbstractSuperCheck
         /**
          * Determines whether the overriding method has a call to the super
          * method.
+         *
          * @return true if the overriding method has a call to the super method.
          */
         public boolean isCallingSuper() {
@@ -231,6 +238,7 @@ public abstract class AbstractSuperCheck
 
         /**
          * Returns the overriding method definition AST.
+         *
          * @return the overriding method definition AST.
          */
         public DetailAST getMethod() {

@@ -86,6 +86,7 @@ public final class FileText {
      * The full text contents of the file.
      *
      * <p>Field is not final to ease reaching full test coverage.
+     *
      * @noinspection FieldMayBeFinal
      */
     private String fullText;
@@ -144,6 +145,7 @@ public final class FileText {
 
     /**
      * Copy constructor.
+     *
      * @param fileText to make copy of
      */
     public FileText(FileText fileText) {
@@ -184,6 +186,7 @@ public final class FileText {
 
     /**
      * Reads file using specific decoder and returns all its content as a String.
+     *
      * @param inputFile File to read
      * @param decoder Charset decoder
      * @return File's text
@@ -212,6 +215,7 @@ public final class FileText {
 
     /**
      * Get the name of the file.
+     *
      * @return an object containing the name of the file
      */
     public File getFile() {
@@ -221,6 +225,7 @@ public final class FileText {
     /**
      * Get the character set which was used to read the file.
      * Will be {@code null} for a file reconstructed from its lines.
+     *
      * @return the charset used when the file was read
      */
     public Charset getCharset() {
@@ -229,6 +234,7 @@ public final class FileText {
 
     /**
      * Retrieve the full text of the file.
+     *
      * @return the full text of the file
      */
     public CharSequence getFullText() {
@@ -239,6 +245,7 @@ public final class FileText {
      * Returns an array of all lines.
      * {@code text.toLinesArray()} is equivalent to
      * {@code text.toArray(new String[text.size()])}.
+     *
      * @return an array of all lines of the text
      */
     public String[] toLinesArray() {
@@ -247,6 +254,7 @@ public final class FileText {
 
     /**
      * Find positions of line breaks in the full text.
+     *
      * @return an array giving the first positions of each line.
      */
     private int[] findLineBreaks() {
@@ -269,6 +277,7 @@ public final class FileText {
 
     /**
      * Determine line and column numbers in full text.
+     *
      * @param pos the character position in the full text
      * @return the line and column numbers of this character
      */
@@ -289,6 +298,7 @@ public final class FileText {
     /**
      * Retrieves a line of the text by its number.
      * The returned line will not contain a trailing terminator.
+     *
      * @param lineNo the number of the line to get, starting at zero
      * @return the line with the given number
      */
@@ -298,6 +308,7 @@ public final class FileText {
 
     /**
      * Counts the lines of the text.
+     *
      * @return the number of lines in the text
      */
     public int size() {

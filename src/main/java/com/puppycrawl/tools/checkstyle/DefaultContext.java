@@ -46,6 +46,7 @@ public final class DefaultContext implements Context {
 
     /**
      * Adds a context entry.
+     *
      * @param key the context key
      * @param value the value for key
      */

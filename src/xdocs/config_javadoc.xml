@@ -1120,6 +1120,16 @@ class TestClass {
               <td><code>true</code></td>
               <td>6.9</td>
             </tr>
+              <tr>
+                  <td>atClauseRequiresEmptyLineBefore</td>
+                  <td>
+                      Control whether the group of at-clauses at the bottom of a javadoc like
+                      <code>@return</code>, require an empty line before the first at-clause.
+                  </td>
+                  <td><a href="property_types.html#boolean">Boolean</a></td>
+                  <td><code>false</code></td>
+                  <td>8.32</td>
+              </tr>
           </table>
         </div>
       </subsection>
@@ -1177,6 +1187,26 @@ public class TestClass {
 public class TestClass {
 }
         </source>
+        <p>
+          By default <code>atClauseRequiresEmptyLineBefore</code> is set to <code>false</code>.
+          As a result the following example will not have any violations:
+        </p>
+        <source>
+&#47;**
+ * No tag (ok).
+ * @return something (violation ignored)
+ *&#47;
+public class TestClass {
+}
+        </source>
+        <p>
+            To require empty lines before the at-clauses add this to your config:
+        </p>
+        <source>
+&lt;module name=&quot;JavadocParagraph&quot;&gt;
+    &lt;property name=&quot;atClauseRequiresEmptyLineBefore&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="JavadocParagraph_Example_of_Usage">
@@ -1217,6 +1247,10 @@ public class TestClass {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
             javadoc.parse.rule.error</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.tag.line.before%22">
+            javadoc.tag.line.before</a>
           </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">

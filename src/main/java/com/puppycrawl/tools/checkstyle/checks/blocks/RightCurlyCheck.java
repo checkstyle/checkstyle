@@ -234,6 +234,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Setter to specify the policy on placement of a right curly brace (<code>'}'</code>).
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
@@ -293,6 +294,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Does general validation.
+     *
      * @param details for validation.
      * @return violation message or empty string
      *     if there was not violation during validation.
@@ -313,6 +315,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks whether a right curly should have a line break before.
+     *
      * @param bracePolicy option for placing the right curly brace.
      * @param details details for validation.
      * @return true if a right curly should have a line break before.
@@ -326,6 +329,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks that a right curly should be on the same line as the next statement.
+     *
      * @param bracePolicy option for placing the right curly brace
      * @param details Details for validation
      * @return true if a right curly should be alone on a line.
@@ -338,6 +342,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks that a right curly should be alone on a line.
+     *
      * @param bracePolicy option for placing the right curly brace
      * @param details Details for validation
      * @param targetSrcLine A string with contents of rcurly's line
@@ -355,6 +360,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Whether right curly should be alone on line when ALONE option is used.
+     *
      * @param details details for validation.
      * @param targetSrcLine A string with contents of rcurly's line
      * @return true, if right curly should be alone on line when ALONE option is used.
@@ -366,6 +372,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Whether right curly should be alone on line when ALONE_OR_SINGLELINE or SAME option is used.
+     *
      * @param details details for validation.
      * @param targetSrcLine A string with contents of rcurly's line
      * @return true, if right curly should be alone on line
@@ -379,6 +386,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks whether right curly is alone on a line.
+     *
      * @param details for validation.
      * @param targetSrcLine A string with contents of rcurly's line
      * @return true if right curly is alone on a line.
@@ -418,6 +426,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks whether block has a single-line format and is alone on a line.
+     *
      * @param details for validation.
      * @return true if block has single-line format and is alone on a line.
      */
@@ -439,6 +448,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks whether the right curly is followed by a semicolon.
+     *
      * @param details details for validation.
      * @return true if the right curly is followed by a semicolon.
      */
@@ -448,6 +458,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
     /**
      * Checks if right curly has line break before.
+     *
      * @param rightCurly right curly token.
      * @return true, if right curly has line break before.
      */
@@ -484,6 +495,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Constructor.
+         *
          * @param lcurly the lcurly of the token whose details are being collected
          * @param rcurly the rcurly of the token whose details are being collected
          * @param nextToken the token after the token whose details are being collected
@@ -499,6 +511,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Collects validation Details.
+         *
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
@@ -528,6 +541,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Collects validation details for LITERAL_TRY, LITERAL_CATCH, and LITERAL_FINALLY.
+         *
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
@@ -564,6 +578,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Collects validation details for LITERAL_IF and LITERAL_ELSE.
+         *
          * @param ast a {@code DetailAST} value
          * @return object containing all details to make a validation
          */
@@ -592,6 +607,7 @@ public class RightCurlyCheck extends AbstractCheck {
         /**
          * Collects validation details for CLASS_DEF, METHOD DEF, CTOR_DEF, STATIC_INIT,
          * INSTANCE_INIT, ANNOTATION_DEF and ENUM_DEF.
+         *
          * @param ast a {@code DetailAST} value
          * @return an object containing all details to make a validation
          */
@@ -617,6 +633,7 @@ public class RightCurlyCheck extends AbstractCheck {
         /**
          * Tests whether the provided tokenType will never have a SLIST as child in its AST.
          * Like CLASS_DEF, ANNOTATION_DEF etc.
+         *
          * @param tokenType the tokenType to test against.
          * @return weather provided tokenType is definition token.
          */
@@ -626,6 +643,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Collects validation details for loops' tokens.
+         *
          * @param ast a {@code DetailAST} value
          * @return an object containing all details to make a validation
          */
@@ -657,6 +675,7 @@ public class RightCurlyCheck extends AbstractCheck {
 
         /**
          * Finds next token after the given one.
+         *
          * @param ast the given node.
          * @return the token which represents next lexical item.
          */

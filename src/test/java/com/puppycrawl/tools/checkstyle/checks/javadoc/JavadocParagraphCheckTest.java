@@ -19,16 +19,19 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_JAVADOC_TAG_LINE_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_LINE_BEFORE;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_MISPLACED_TAG;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_REDUNDANT_PARAGRAPH;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParagraphCheck.MSG_TAG_AFTER;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -58,6 +61,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrect() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
+        checkConfig.addAttribute("atClauseRequiresEmptyLineBefore", "true");
         final String[] expected = {
             "7: " + getCheckMessage(MSG_MISPLACED_TAG),
             "7: " + getCheckMessage(MSG_LINE_BEFORE),
@@ -86,6 +90,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "50: " + getCheckMessage(MSG_LINE_BEFORE),
             "51: " + getCheckMessage(MSG_MISPLACED_TAG),
             "51: " + getCheckMessage(MSG_LINE_BEFORE),
+            "52: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@see"),
             "61: " + getCheckMessage(MSG_REDUNDANT_PARAGRAPH),
             "62: " + getCheckMessage(MSG_TAG_AFTER),
             "70: " + getCheckMessage(MSG_MISPLACED_TAG),
@@ -95,10 +100,18 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
             "75: " + getCheckMessage(MSG_LINE_BEFORE),
             "81: " + getCheckMessage(MSG_TAG_AFTER),
             "82: " + getCheckMessage(MSG_TAG_AFTER),
+            "109: " + getCheckMessage(MSG_JAVADOC_TAG_LINE_BEFORE, "@param"),
         };
         verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 
+    /**
+     * Do not check for newline before a paragraph tag when the attribute is set to false. Do not
+     * check for an empty line before the group of at-clauses by default, when
+     * atClauseRequiresEmptyLineBefore is not set.
+     *
+     * @throws Exception should not be thrown.
+     */
     @Test
     public void testAllowNewlineParagraph() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocParagraphCheck.class);
@@ -127,4 +140,29 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputJavadocParagraphIncorrect.java"), expected);
     }
 
+    /**
+     * Covers the branch in insufficientConsecutiveNewlines's while loop when getPreviousSibling
+     * returns null before hitting a node that is not WS, NEWLINE, nor LEADING_ASTERISK.
+     */
+    @Test
+    public void testNullPreviousSibling() {
+        // JAVADOC
+        //   \__JAVADOC_TAG
+        //       \__PARAM_LITERAL
+        final JavadocNodeImpl javadocNode = new JavadocNodeImpl();
+        javadocNode.setType(JavadocTokenTypes.JAVADOC);
+        final JavadocNodeImpl paramNode = new JavadocNodeImpl();
+        paramNode.setType(JavadocTokenTypes.JAVADOC_TAG);
+        javadocNode.setLineNumber(1);
+        paramNode.setParent(javadocNode);
+        javadocNode.setChildren(paramNode);
+        final JavadocNodeImpl paramLiteralNode = new JavadocNodeImpl();
+        paramLiteralNode.setType(JavadocTokenTypes.PARAM_LITERAL);
+        paramLiteralNode.setLineNumber(1);
+        paramLiteralNode.setText("@param");
+        paramNode.setChildren(paramLiteralNode);
+
+        assertTrue("A javadoc tag with no previous sibling has insufficient empty newlines.",
+                JavadocParagraphCheck.insufficientConsecutiveNewlines(paramNode));
+    }
 }

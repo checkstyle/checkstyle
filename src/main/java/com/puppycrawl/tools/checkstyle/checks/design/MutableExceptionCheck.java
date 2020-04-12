@@ -89,6 +89,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Setter to specify pattern for extended class names.
+     *
      * @param extendedClassNameFormat a {@code String} value
      */
     public void setExtendedClassNameFormat(Pattern extendedClassNameFormat) {
@@ -97,6 +98,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Setter to specify pattern for exception class names.
+     *
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {
@@ -141,6 +143,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Called when we start processing class definition.
+     *
      * @param ast class definition node
      */
     private void visitClassDef(DetailAST ast) {
@@ -155,6 +158,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Checks variable definition.
+     *
      * @param ast variable def node for check
      */
     private void visitVariableDef(DetailAST ast) {
@@ -170,6 +174,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Checks that a class name conforms to specified format.
+     *
      * @param ast class definition node
      * @return true if a class name conforms to specified format
      */
@@ -180,6 +185,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     /**
      * Checks that if extended class name conforms to specified format.
+     *
      * @param ast class definition node
      * @return true if extended class name conforms to specified format
      */

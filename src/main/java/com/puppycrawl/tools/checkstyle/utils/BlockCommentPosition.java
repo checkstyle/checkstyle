@@ -36,6 +36,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on type definition.
+     *
      * @param blockComment DetailAST
      * @return true if node is before class, interface, enum or annotation.
      */
@@ -48,6 +49,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on class definition.
+     *
      * @param blockComment DetailAST
      * @return true if node is before class
      */
@@ -59,6 +61,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on package definition.
+     *
      * @param blockComment DetailAST
      * @return true if node is before package
      */
@@ -81,6 +84,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on interface definition.
+     *
      * @param blockComment DetailAST
      * @return true if node is before interface
      */
@@ -92,6 +96,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on enum definition.
+     *
      * @param blockComment DetailAST
      * @return true if node is before enum
      */
@@ -103,6 +108,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on annotation definition.
+     *
      * @param blockComment DetailAST
      * @return true if node is before annotation
      */
@@ -114,6 +120,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on type member declaration.
+     *
      * @param blockComment DetailAST
      * @return true if node is before method, field, constructor, enum constant
      *     or annotation field
@@ -128,6 +135,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on method declaration.
+     *
      * @param blockComment DetailAST
      * @return true if node is before method
      */
@@ -139,6 +147,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on field declaration.
+     *
      * @param blockComment DetailAST
      * @return true if node is before field
      */
@@ -154,6 +163,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on constructor.
+     *
      * @param blockComment DetailAST
      * @return true if node is before constructor
      */
@@ -165,6 +175,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on enum constant.
+     *
      * @param blockComment DetailAST
      * @return true if node is before enum constant
      */
@@ -188,6 +199,7 @@ public final class BlockCommentPosition {
 
     /**
      * Node is on annotation field declaration.
+     *
      * @param blockComment DetailAST
      * @return true if node is before annotation field
      */
@@ -199,6 +211,7 @@ public final class BlockCommentPosition {
 
     /**
      * Checks that block comment is on specified token without any modifiers.
+     *
      * @param blockComment block comment start DetailAST
      * @param parentTokenType parent token type
      * @param nextTokenType next token type
@@ -214,6 +227,7 @@ public final class BlockCommentPosition {
 
     /**
      * Checks that block comment is on specified token with modifiers.
+     *
      * @param blockComment block comment start DetailAST
      * @param tokenType parent token type
      * @return true if block comment is on specified token with modifiers
@@ -227,6 +241,7 @@ public final class BlockCommentPosition {
 
     /**
      * Checks that block comment is on specified token with annotation.
+     *
      * @param blockComment block comment start DetailAST
      * @param tokenType parent token type
      * @return true if block comment is on specified token with annotation
@@ -241,6 +256,7 @@ public final class BlockCommentPosition {
 
     /**
      * Checks that block comment is on specified class member without any modifiers.
+     *
      * @param blockComment block comment start DetailAST
      * @param memberType parent token type
      * @return true if block comment is on specified token without modifiers
@@ -263,6 +279,7 @@ public final class BlockCommentPosition {
 
     /**
      * Get next sibling node skipping any comment nodes.
+     *
      * @param node current node
      * @return next sibling
      */
@@ -277,6 +294,7 @@ public final class BlockCommentPosition {
 
     /**
      * Get previous sibling node skipping any comments.
+     *
      * @param node current node
      * @return previous sibling
      */

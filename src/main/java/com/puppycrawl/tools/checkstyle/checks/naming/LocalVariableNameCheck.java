@@ -161,6 +161,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ *
  * @since 3.0
  */
 public class LocalVariableNameCheck
@@ -255,6 +256,7 @@ public class LocalVariableNameCheck
 
     /**
      * Checks if a variable is the loop's one.
+     *
      * @param variableDef variable definition.
      * @return true if a variable is the loop's one.
      */

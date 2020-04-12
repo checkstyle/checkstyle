@@ -84,6 +84,7 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
     /**
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link #getModuleConfig(String, String)} method inside.
+     *
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */
@@ -94,6 +95,7 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
     /**
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link #getModuleConfig(String)} method inside.
+     *
      * @param moduleName module name.
      * @param moduleId module id.
      * @return {@link Configuration} instance for the given module name.
@@ -128,6 +130,7 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
 
     /**
      * Returns a list of all {@link Configuration} instances for the given module name.
+     *
      * @param moduleName module name.
      * @return {@link Configuration} instance for the given module name.
      */

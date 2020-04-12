@@ -37,36 +37,42 @@ public interface AuditListener
 
     /**
      * Notify that the audit is about to start.
+     *
      * @param event the event details
      */
     void auditStarted(AuditEvent event);
 
     /**
      * Notify that the audit is finished.
+     *
      * @param event the event details
      */
     void auditFinished(AuditEvent event);
 
     /**
      * Notify that audit is about to start on a specific file.
+     *
      * @param event the event details
      */
     void fileStarted(AuditEvent event);
 
     /**
      * Notify that audit is finished on a specific file.
+     *
      * @param event the event details
      */
     void fileFinished(AuditEvent event);
 
     /**
      * Notify that an audit error was discovered on a specific file.
+     *
      * @param event the event details
      */
     void addError(AuditEvent event);
 
     /**
      * Notify that an exception happened while performing audit.
+     *
      * @param event the event details
      * @param throwable details of the exception
      */
