@@ -31,6 +31,11 @@
           level</a> of the event.
         </p>
       </subsection>
+      <subsection name="Notes" id="SeverityMatchFilter_Notes">
+        <p>
+          SeverityMatchFilter can suppress Checks that have Treewalker or Checker as parent module.
+        </p>
+      </subsection>
       <subsection name="Properties" id="SeverityMatchFilter_Properties">
         <div class="wrapper">
           <table>
@@ -129,6 +134,9 @@
           <code>offCommentFormat</code> and <code>onCommentFormat</code> must have equal
           <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
             paren counts</a>.
+        </p>
+        <p>
+          SuppressionCommentFilter can suppress Checks that have Treewalker as parent module.
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionCommentFilter_Properties">
@@ -551,6 +559,9 @@ public class UserService {
             <code>ClassLoader.getResource()</code> method.
           </li>
         </ol>
+        <p>
+          SuppressionFilter can suppress Checks that have Treewalker or Checker as parent module.
+        </p>
       </subsection>
       <subsection name="Examples" id="SuppressionFilter_Examples">
           <p>
@@ -698,6 +709,12 @@ public class UserService {
         <p>
           Attention: This filter only supports single suppression, and will need
           multiple instances if users wants to suppress multiple violations.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="SuppressionSingleFilter_Notes">
+        <p>
+          SuppressionSingleFilter can suppress Checks that have Treewalker or
+          Checker as parent module.
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionSingleFilter_Properties">
@@ -985,6 +1002,9 @@ public class UserService {
             <code>ClassLoader.getResource()</code> method.
           </li>
         </ol>
+        <p>
+          SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+        </p>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathFilter_Properties">
         <div class="wrapper">
@@ -1383,6 +1403,11 @@ CLASS_DEF -> CLASS_DEF [1:0]
         <p>
           Attention: This filter only supports single suppression, and will need
           multiple instances if users wants to suppress multiple violations.
+        </p>
+      </subsection>
+      <subsection name="Notes" id="SuppressionXpathSingleFilter_Notes">
+        <p>
+          SuppressionXpathSingleFilter can suppress Checks that have Treewalker as parent module.
         </p>
       </subsection>
       <subsection name="Properties" id="SuppressionXpathSingleFilter_Properties">
@@ -1845,6 +1870,12 @@ public class TestClass {
               and should be written with any dotted prefix or "Check" suffix removed.
           </p>
       </subsection>
+      <subsection name="Notes" id="SuppressWarningsFilter_Notes">
+        <p>
+          SuppressWarningsFilter can suppress Checks that have Treewalker or
+          Checker as parent module.
+        </p>
+      </subsection>
       <subsection name="Examples" id="SuppressWarningsFilter_Examples">
           <p>
               To configure the check that makes tha annotations available to
@@ -1950,6 +1981,12 @@ public static void foo() {
                 a <a href="config_filters.html#SuppressWithPlainTextCommentFilter">
                 SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
             </p>
+        </subsection>
+        <subsection name="Notes" id="SuppressWithNearbyCommentFilter_Notes">
+          <p>
+            SuppressWithNearbyCommentFilter can suppress Checks that have
+            Treewalker as parent module.
+          </p>
         </subsection>
         <subsection name="Properties" id="SuppressWithNearbyCommentFilter_Properties">
           <div class="wrapper">
@@ -2280,6 +2317,10 @@ public class UserService {
                   must have equal
                   <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
                   paren counts</a>.
+              </p>
+              <p>
+                SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+                Checker as parent module.
               </p>
           </subsection>
           <subsection name="Examples" id="SuppressWithPlainTextCommentFilter_Examples">
