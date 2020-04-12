@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.Arrays;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -38,7 +40,23 @@ public class ArrayInitHandler extends BlockParentHandler {
      */
     public ArrayInitHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "array initialization", ast, parent);
+        super(indentCheck, getHandlerName(ast), ast, parent);
+    }
+
+    private int[] checkedParentAstType() {
+        return new int[] {
+            TokenTypes.ASSIGN,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.ANNOTATION,
+            TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR,
+        };
+    }
+
+    private boolean isContained(int type) {
+        final int[] parentTypes = checkedParentAstType();
+        Arrays.sort(parentTypes);
+        return Arrays.binarySearch(parentTypes, type) >= 0;
     }
 
     @Override
@@ -46,8 +64,7 @@ public class ArrayInitHandler extends BlockParentHandler {
         final DetailAST parentAST = getMainAst().getParent();
         final int type = parentAST.getType();
         final IndentLevel indentLevel;
-        if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
-            // note: assumes new or assignment is line to align with
+        if (isContained(type)) {
             indentLevel = new IndentLevel(getLineStart(parentAST));
         }
         else {
@@ -140,6 +157,21 @@ public class ArrayInitHandler extends BlockParentHandler {
      */
     private int getLineWrappingIndentation() {
         return getIndentCheck().getLineWrappingIndentation();
+    }
+
+    /**
+     * Creates a handler name for this class according to ast type.
+     *
+     * @param ast the abstract syntax tree.
+     * @return handler name for this class.
+     */
+    private static String getHandlerName(DetailAST ast) {
+        String handlerName = "array initialization";
+        if (ast.getType() == TokenTypes.ANNOTATION_ARRAY_INIT) {
+            handlerName = "annotation array initialization";
+        }
+
+        return handlerName;
     }
 
 }
