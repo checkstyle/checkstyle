@@ -68,6 +68,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()">
  * paren counts</a>.
  * </p>
+ * <p>
+ * SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+ * Checker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code offCommentFormat} - Specify comment pattern to trigger filter

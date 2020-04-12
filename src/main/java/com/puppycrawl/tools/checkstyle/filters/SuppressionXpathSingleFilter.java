@@ -44,6 +44,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * Attention: This filter only supports single suppression, and will need multiple
  * instances if users wants to suppress multiple violations.
  * </p>
+ * <p>
+ * SuppressionXpathSingleFilter can suppress Checks that have Treewalker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code files} - Define a Regular Expression matched against the file
