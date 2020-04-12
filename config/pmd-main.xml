@@ -54,6 +54,8 @@
                       |//ClassOrInterfaceDeclaration[@Image='CheckstyleAntTask']
                                  //MethodDeclaration[@Name='getListeners'
                                                        or @Name='createDefaultLogger']
+                      |//ClassOrInterfaceDeclaration[@Image='XdocsUrlTest']
+                                 //MethodDeclaration[@Name=testXdocsUrl]
                       "/>
         </properties>
     </rule>
