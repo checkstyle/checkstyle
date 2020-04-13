@@ -5864,7 +5864,11 @@ class C {
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
                   STAR_ASSIGN</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  LAMBDA</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+                  LAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
+                  LITERAL_INSTANCEOF</a>.
               </td>
               <td>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
@@ -5912,7 +5916,11 @@ class C {
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
                   STAR_ASSIGN</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
-                  LAMBDA</a>.
+                  LAMBDA</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+                  LAND</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
+                  LITERAL_INSTANCEOF</a>.
               </td>
               <td>3.4</td>
             </tr>
