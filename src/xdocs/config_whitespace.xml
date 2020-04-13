@@ -2091,37 +2091,35 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
 
       <subsection name="Examples" id="SeparatorWrap_Examples">
         <p>
-          Code example for comma and dot at the new line:
-        </p>
-        <source>
-s
-    .isEmpty();
-foo(i
-    ,s);
-        </source>
-        <p>
           To configure the check:
         </p>
         <source>
 &lt;module name="SeparatorWrap"/&gt;
         </source>
         <p>
-          Code example for comma and dot at the previous line:
+          Example:
         </p>
         <source>
-s.
-    isEmpty();
-foo(i,
-    s);
-        </source>
-        <p>
-          Example for checking method reference at new line (good case and bad case):
-        </p>
-        <source>
-Arrays.sort(stringArray, String:: // violation
-    compareToIgnoreCase);
-Arrays.sort(stringArray, String
-    ::compareToIgnoreCase); // good
+import java.io.
+         IOException; // OK
+import java.lang.String;
+
+class Test {
+
+  String s;
+
+  public void foo(int a,
+                    int b) { // OK
+  }
+
+  public void bar(int p
+                    , int q) { // violation, separator comma on new line
+    if (s
+          .isEmpty()) { // violation, separator dot on new line
+    }
+  }
+
+}
         </source>
         <p>
           To configure the check for
@@ -2135,6 +2133,26 @@ Arrays.sort(stringArray, String
 &lt;/module&gt;
         </source>
         <p>
+          Example:
+        </p>
+        <source>
+import java.lang.String;
+import java.util.Arrays;
+
+class Test2{
+
+  String[] stringArray = {"foo", "bar"};
+
+  void fun() {
+    Arrays.sort(stringArray, String::
+      compareToIgnoreCase);  // violation, separator method reference on same line
+    Arrays.sort(stringArray, String
+      ::compareTo);  // OK
+  }
+
+}
+        </source>
+        <p>
           To configure the check for comma at the new line:
         </p>
         <source>
@@ -2142,6 +2160,31 @@ Arrays.sort(stringArray, String
   &lt;property name="tokens" value="COMMA"/&gt;
   &lt;property name="option" value="nl"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import java.lang.String;
+
+class Test3 {
+
+  String s;
+
+  int a,
+    b;  // violation, separator comma on same line
+
+  public void foo(int a,
+                     int b) {  // violation, separator comma on the same line
+    int r
+      , s; // OK
+  }
+
+  public void bar(int p
+                    , q) {  // OK
+  }
+
+}
         </source>
       </subsection>
 
