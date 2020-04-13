@@ -25,7 +25,7 @@ class InputOperatorWrap
         Arrays.sort(null, String
                     ::
                     compareToIgnoreCase);
-        Arrays.sort(null, String::  /*(warn)*/
+        Arrays.sort(null, String::  /*warn*/
                     compareToIgnoreCase);
         Arrays.sort(null, String
                     ::compareToIgnoreCase);
