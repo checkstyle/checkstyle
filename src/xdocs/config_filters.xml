@@ -912,7 +912,6 @@ public class UserService {
           <li>JavadocType</li>
           <li>MissingJavadocMethod</li>
           <li>MissingJavadocType</li>
-          <li>OverloadMethodsDeclarationOrder</li>
           <li>PackageDeclaration</li>
           <li>Regexp</li>
           <li>RegexpSinglelineJava</li>
