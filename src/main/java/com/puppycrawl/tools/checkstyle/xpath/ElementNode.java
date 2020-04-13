@@ -77,8 +77,43 @@ public class ElementNode extends AbstractNode {
         this.detailAst = detailAst;
         text = TokenUtil.getTokenName(detailAst.getType());
         indexAmongSiblings = parent.getChildren().size();
+        setDepth(parent.getDepth() + 1);
         createTextAttribute();
         createChildren();
+    }
+
+    /**
+     * Compares current object with specified for order.
+     * @param other another {@code NodeInfo} object
+     * @return number representing order of current object to specified one
+     */
+    @Override
+    public int compareOrder(NodeInfo other) {
+        int result = 0;
+        if (other instanceof ElementNode) {
+            result = getDepth() - ((ElementNode) other).getDepth();
+            if (result == 0) {
+                final ElementNode[] children = getCommonAncestorChildren(other);
+                result = children[0].indexAmongSiblings - children[1].indexAmongSiblings;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the ancestors of the children whose parent is their common ancestor.
+     * @param other another {@code NodeInfo} object
+     * @return {@code ElementNode} immediate children(also ancestors of the given children) of the
+     *         common ancestor
+     */
+    private ElementNode[] getCommonAncestorChildren(NodeInfo other) {
+        NodeInfo child1 = this;
+        NodeInfo child2 = other;
+        while (!child1.getParent().equals(child2.getParent())) {
+            child1 = child1.getParent();
+            child2 = child2.getParent();
+        }
+        return new ElementNode[] {(ElementNode) child1, (ElementNode) child2};
     }
 
     /**
