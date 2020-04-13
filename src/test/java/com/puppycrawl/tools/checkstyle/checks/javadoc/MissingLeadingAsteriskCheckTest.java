@@ -27,7 +27,6 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingLeadingAsteriskCheckTest
         extends AbstractModuleTestSupport {
@@ -55,27 +54,24 @@ public class MissingLeadingAsteriskCheckTest
 
         final int[] actual = check.getRequiredTokens();
         final int[] expected = {
-                TokenTypes.BLOCK_COMMENT_BEGIN,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
 
         assertArrayEquals(expected, actual, "Required tokens are invalid");
     }
 
     @Test
-    public void testFalsePositive() throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MissingLeadingAsteriskCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMissingLeadingAsteriskFalsePositive.java"),
-                expected);
-    }
-
-    @Test
-    public void testCheck() throws Exception {
+    public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MissingLeadingAsteriskCheck.class);
         final String[] expected = {
-            "4:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "5:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "20:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "27:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "34:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "48:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "56:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
+            "62:3: " + getCheckMessage(MSG_MISSING_ASTERISK),
         };
         verify(checkConfig, getPath("InputMissingLeadingAsterisk.java"),
                 expected);

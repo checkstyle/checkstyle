@@ -25,13 +25,14 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
  * Checks if the javadoc has leading asterisk on each line or not.
  * </p>
  * <p>
- * To configure the default check:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="MissingLeadingAsterisk"/&gt;
@@ -40,16 +41,24 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Example:
  * </p>
  * <pre>
- * &#47;**
- *  * Some description here // OK
- *  * Another line of description // OK
- *    Another line of description // violation, missing leading asterisk at the start
+ * &#47;** // violation, javadoc has lines without leading asterisk.
+ *  * Some description here.
+ *    Another line of description.
  *  *&#47;
- * public void test() {}
+ * public class Test {
+ *   &#47;** // violation, javadoc has lines without leading asterisk.
+ *    * Some description here.
+ *    * Another line of description.
+ *      Another line of description.
+ *    *&#47;
+ *   public void test() {}
+ *
+ *   &#47;** Some description here. *&#47; // OK
+ *   public void test1() {}
+ * }
  * </pre>
  *
- * @since 6.0
- *
+ * @since 8.32
  */
 @StatelessCheck
 public class MissingLeadingAsteriskCheck extends AbstractCheck {
@@ -63,11 +72,6 @@ public class MissingLeadingAsteriskCheck extends AbstractCheck {
      * The new line character that separates each line of javadoc.
      */
     private static final String COMMENT_SEPARATOR = "\n";
-
-    /**
-     * This character is present at the start of a javadoc.
-     */
-    private static final char JAVADOC_COMMENT_START = '*';
 
     @Override
     public int[] getDefaultTokens() {
@@ -94,7 +98,7 @@ public class MissingLeadingAsteriskCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final String commentContent = JavadocUtil.getBlockCommentContent(ast);
-        if (isJavaDocComment(commentContent) && !isInlineComment(commentContent)) {
+        if (JavadocUtil.isJavadocComment(commentContent) && !isInlineComment(ast)) {
             for (String singleLine : commentContent.split(COMMENT_SEPARATOR)) {
                 if (!CommonUtil.isBlank(singleLine) && singleLine.trim().charAt(0) != '*') {
                     log(ast, MSG_MISSING_ASTERISK);
@@ -105,19 +109,11 @@ public class MissingLeadingAsteriskCheck extends AbstractCheck {
 
     /**
      * Checks, if the given comment is an inline comment or not.
-     * @param comment content of javadoc.
+     * @param blockStart block comment start token
      * @return true, if the given comment is an inline comment.
      */
-    private static boolean isInlineComment(String comment) {
-        return comment.split(COMMENT_SEPARATOR).length == 1;
-    }
-
-    /**
-     * Checks if the given comment is an javadoc comment or not.
-     * @param comment content of the comment.
-     * @return true, if the given comment is an javadoc comment.
-     */
-    private static boolean isJavaDocComment(String comment) {
-        return comment.charAt(0) == JAVADOC_COMMENT_START;
+    private static boolean isInlineComment(DetailAST blockStart) {
+        final DetailAST blockEnd = blockStart.findFirstToken(TokenTypes.BLOCK_COMMENT_END);
+        return TokenUtil.areOnSameLine(blockStart, blockEnd);
     }
 }
