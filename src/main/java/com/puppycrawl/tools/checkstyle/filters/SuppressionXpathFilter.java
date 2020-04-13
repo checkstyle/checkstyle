@@ -74,9 +74,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocType
  * </li>
  * <li>
- * OverloadMethodsDeclarationOrder
- * </li>
- * <li>
  * PackageDeclaration
  * </li>
  * <li>
