@@ -43,19 +43,6 @@
     </properties>
   </rule>
 
-  <rule ref="category/java/documentation.xml">
-    <!-- We use class comments as source for xdoc files,
-         so content is big and that is by design. -->
-    <exclude name="CommentSize"/>
-  </rule>
-  <rule ref="category/java/documentation.xml/CommentRequired">
-    <properties>
-      <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck']"/>
-    </properties>
-  </rule>
-
   <rule ref="category/java/codestyle.xml">
     <!-- Opposite to UnnecessaryConstructor. -->
     <exclude name="AtLeastOneConstructor"/>
