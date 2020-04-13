@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingleadingasterisk;
 
-public class InputMissingLeadingAsteriskFalsePositive {
+public class InputMissingLeadingAsteriskCorrect {
   /**
    * Some description here
    * Another line of description

@@ -2555,7 +2555,7 @@ class DatabaseConfiguration {}
     </section>
 
     <section name="MissingLeadingAsterisk">
-      <p>Since Checkstyle 6.0</p>
+      <p>Since Checkstyle 8.32</p>
       <subsection name="Description" id="MissingLeadingAsterisk_Description">
         <p>
           Checks if the javadoc has leading asterisk on each line or not.
@@ -2572,11 +2572,20 @@ class DatabaseConfiguration {}
         <p>Example: </p>
         <source>
 /**
- * Some description here // OK
- * Another line of description // OK
-   Another line of description // violation, missing leading asterisk at the start
+ * Some description here. // OK
+            Another line of description. // violation, missing leading asterisk at the start
  */
-public void test() {}
+public class Test {
+   /**
+    * Some description here. // OK
+    * Another line of description. // OK
+      Another line of description. // violation, missing leading asterisk at the start
+    */
+    public void test() {}
+
+    /** Some description here. */ // OK
+    public void test1() {}
+}
         </source>
       </subsection>
 
