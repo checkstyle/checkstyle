@@ -50,6 +50,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * is what should be used to enforce strict camel casing. The identifier 'MyTest' would
  * be allowed, but 'MyTEst' would not be.
  * </p>
+ * <p>
+ * {@code ignoreFinal}, {@code ignoreStatic}, and {@code ignoreStaticFinal}
+ * control whether variables with the respective modifiers are to be ignored.
+ * Note that a variable that is both static and final will always be considered under
+ * {@code ignoreStaticFinal} only, regardless of the values of {@code ignoreFinal}
+ * and {@code ignoreStatic}. So for example if {@code ignoreStatic} is true but
+ * {@code ignoreStaticFinal} is false, then static final variables will not be ignored.
+ * </p>
  * <ul>
  * <li>
  * Property {@code allowedAbbreviationLength} - Indicate the number of consecutive capital
@@ -67,6 +75,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code ignoreStatic} - Allow to skip variables with {@code static} modifier. Default
  * value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code ignoreStaticFinal} - Allow to skip variables with both {@code static} and
+ * {@code final} modifiers. Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoreOverriddenMethods} - Allow to ignore methods tagged with {@code @Override}
@@ -123,6 +135,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *                         // and only 1 consecutive capital letter is allowed
  *   String firstXML; // OK, XML abbreviation is allowed
  *   String firstURL; // OK, URL abbreviation is allowed
+ *   final int TOTAL = 5; // OK, final is ignored
+ *   static final int LIMIT = 10; // OK, static final is ignored
  * }
  * </pre>
  * <p>
@@ -152,6 +166,54 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *                         // would be ignored
  *   String firstCSV; // OK, CSV abbreviation is allowed
  *   String firstXML; // violation, XML abbreviation is not allowed
+ *   final int TOTAL = 5; // OK, final is ignored
+ *   static final int LIMIT = 10; // OK, static final is ignored
+ * }
+ * </pre>
+ * <p>
+ * To configure to check variables, enforcing no abbreviations
+ * except for variables that are both static and final.
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbbreviationAsWordInName"&gt;
+ *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+ *     &lt;property name="ignoreFinal" value="false"/&gt;
+ *     &lt;property name="ignoreStatic" value="false"/&gt;
+ *     &lt;property name="ignoreStaticFinal" value="true"/&gt;
+ *     &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyClass {
+ *     public int counterXYZ = 1;                // violation
+ *     public final int customerID = 2;          // violation
+ *     public static int nextID = 3;             // violation
+ *     public static final int MAX_ALLOWED = 4;  // OK, ignored
+ * }
+ * </pre>
+ * <p>
+ * To configure to check variables, enforcing no abbreviations
+ * and ignoring static (but non-final) variables only.
+ * </p>
+ * <p>Configuration:</p>
+ * <pre>
+ * &lt;module name="AbbreviationAsWordInName"&gt;
+ *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+ *     &lt;property name="ignoreFinal" value="false"/&gt;
+ *     &lt;property name="ignoreStatic" value="true"/&gt;
+ *     &lt;property name="ignoreStaticFinal" value="false"/&gt;
+ *     &lt;property name="allowedAbbreviationLength" value="0"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyClass {
+ *     public int counterXYZ = 1;                // violation
+ *     public final int customerID = 2;          // violation
+ *     public static int nextID = 3;             // OK, ignored
+ *     public static final int MAX_ALLOWED = 4;  // violation
  * }
  * </pre>
  *
@@ -190,6 +252,9 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /** Allow to skip variables with {@code static} modifier. */
     private boolean ignoreStatic = true;
 
+    /** Allow to skip variables with both {@code static} and {@code final} modifiers. */
+    private boolean ignoreStaticFinal = true;
+
     /**
      * Allow to ignore methods tagged with {@code @Override} annotation (that
      * usually mean inherited name).
@@ -212,6 +277,15 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      */
     public void setIgnoreStatic(boolean ignoreStatic) {
         this.ignoreStatic = ignoreStatic;
+    }
+
+    /**
+     * Setter to allow to skip variables with both {@code static} and {@code final} modifiers.
+     * @param ignoreStaticFinal
+     *        Defines if ignore variables with both 'static' and 'final' modifiers or not.
+     */
+    public void setIgnoreStaticFinal(boolean ignoreStaticFinal) {
+        this.ignoreStaticFinal = ignoreStaticFinal;
     }
 
     /**
@@ -300,23 +374,18 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * @param ast input DetailAST node.
      * @return true if it is an ignore situation found for given input DetailAST
      *         node.
-     * @noinspection SimplifiableIfStatement
      */
     private boolean isIgnoreSituation(DetailAST ast) {
         final DetailAST modifiers = ast.getFirstChild();
 
         final boolean result;
         if (ast.getType() == TokenTypes.VARIABLE_DEF) {
-            if ((ignoreFinal || ignoreStatic)
-                    && isInterfaceDeclaration(ast)) {
+            if (isInterfaceDeclaration(ast)) {
                 // field declarations in interface are static/final
-                result = true;
+                result = ignoreStaticFinal;
             }
             else {
-                result = ignoreFinal
-                          && modifiers.findFirstToken(TokenTypes.FINAL) != null
-                    || ignoreStatic
-                        && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+                result = hasIgnoredModifiers(modifiers);
             }
         }
         else if (ast.getType() == TokenTypes.METHOD_DEF) {
@@ -324,6 +393,24 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
         }
         else {
             result = CheckUtil.isReceiverParameter(ast);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if a variable is to be ignored based on its modifiers.
+     * @param modifiers modifiers of the variable to be checked
+     * @return true if there is a modifier to be ignored
+     */
+    private boolean hasIgnoredModifiers(DetailAST modifiers) {
+        final boolean isStatic = modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final boolean isFinal = modifiers.findFirstToken(TokenTypes.FINAL) != null;
+        final boolean result;
+        if (isStatic && isFinal) {
+            result = ignoreStaticFinal;
+        }
+        else {
+            result = ignoreStatic && isStatic || ignoreFinal && isFinal;
         }
         return result;
     }
