@@ -401,7 +401,12 @@ public class SuppressWarningsHolder
             case TokenTypes.ANNOTATIONS:
             case TokenTypes.ANNOTATION:
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                targetAST = getAcceptableParent(parentAST);
+                if ((parentAST.getParent() != null && parentAST.getParent().getParent() != null)
+                        &&(parentAST.getParent().getParent().getType() == TokenTypes.RESOURCE)) {
+                        targetAST = getAcceptableParent(parentAST.getParent());
+                }
+                else
+                    targetAST = getAcceptableParent(parentAST);
                 break;
             default:
                 // unexpected container type

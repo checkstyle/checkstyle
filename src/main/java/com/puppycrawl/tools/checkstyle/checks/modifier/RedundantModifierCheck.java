@@ -401,7 +401,7 @@ public class RedundantModifierCheck
      * @param ast ast
      */
     private void processResources(DetailAST ast) {
-        checkForRedundantModifier(ast, TokenTypes.FINAL);
+        checkForRedundantModifier(ast.getFirstChild(), TokenTypes.FINAL);
     }
 
     /**
