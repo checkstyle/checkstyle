@@ -55,7 +55,7 @@ public class MissingLeadingAsteriskCheckTest
 
         final int[] actual = check.getRequiredTokens();
         final int[] expected = {
-                TokenTypes.BLOCK_COMMENT_BEGIN,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
         };
 
         assertArrayEquals(expected, actual, "Required tokens are invalid");
