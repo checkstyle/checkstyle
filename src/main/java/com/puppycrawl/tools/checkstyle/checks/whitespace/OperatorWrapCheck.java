@@ -299,8 +299,7 @@ public class OperatorWrapCheck
                     && !text.equals(currentLine.trim())) {
                 if(CommonUtil.isBlank(currentLine.substring(colNo + text.length()))){
                     log(ast, MSG_LINE_NEW, text);
-                } else if(ast.getFirstChild() != null
-                            && ast.getFirstChild().getNextSibling() != null
+                } else if((ast.getFirstChild() != null)
                             && (ast.getFirstChild().getNextSibling().getType()
                                 == TokenTypes.SINGLE_LINE_COMMENT
                             || ast.getFirstChild().getNextSibling().getType()
