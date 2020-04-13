@@ -137,6 +137,7 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
 
     /**
      * Checks that ast is a javadoc comment.
+     *
      * @param ast token to check
      * @return true if ast is a javadoc comment, false otherwise
      */

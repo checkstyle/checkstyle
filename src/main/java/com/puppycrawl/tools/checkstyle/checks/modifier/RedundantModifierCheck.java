@@ -245,6 +245,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if interface has proper modifiers.
+     *
      * @param ast interface to check
      */
     private void checkInterfaceModifiers(DetailAST ast) {
@@ -262,6 +263,7 @@ public class RedundantModifierCheck
 
     /**
      * Check if enum constructor has proper modifiers.
+     *
      * @param ast constructor of enum
      */
     private void checkEnumConstructorModifiers(DetailAST ast) {
@@ -275,6 +277,7 @@ public class RedundantModifierCheck
 
     /**
      * Retrieves the first modifier that is not an annotation.
+     *
      * @param modifiers The ast to examine.
      * @return The first modifier or {@code null} if none found.
      */
@@ -290,6 +293,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks whether enum has proper modifiers.
+     *
      * @param ast enum definition.
      */
     private void checkEnumDef(DetailAST ast) {
@@ -303,6 +307,7 @@ public class RedundantModifierCheck
 
     /**
      * Do validation of interface of annotation.
+     *
      * @param ast token AST
      */
     private void processInterfaceOrAnnotation(DetailAST ast) {
@@ -331,6 +336,7 @@ public class RedundantModifierCheck
 
     /**
      * Process validation of Methods.
+     *
      * @param ast method AST
      */
     private void processMethods(DetailAST ast) {
@@ -372,6 +378,7 @@ public class RedundantModifierCheck
 
     /**
      * Process validation of parameters for Methods with no definition.
+     *
      * @param ast method AST
      */
     private void processAbstractMethodParameters(DetailAST ast) {
@@ -387,6 +394,7 @@ public class RedundantModifierCheck
 
     /**
      * Check if class constructor has proper modifiers.
+     *
      * @param classCtorAst class constructor ast
      */
     private void checkClassConstructorModifiers(DetailAST classCtorAst) {
@@ -398,6 +406,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if given resource has redundant modifiers.
+     *
      * @param ast ast
      */
     private void processResources(DetailAST ast) {
@@ -406,6 +415,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if given ast has a redundant modifier.
+     *
      * @param ast ast
      * @param modifierType The modifier to check for.
      */
@@ -423,6 +433,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if given class ast has protected modifier.
+     *
      * @param classDef class ast
      * @return true if class is protected, false otherwise
      */
@@ -434,6 +445,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if given class is accessible from "public" scope.
+     *
      * @param ast class def to check
      * @return true if class is accessible from public scope,false otherwise
      */
@@ -460,6 +472,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if current AST node is member of Enum.
+     *
      * @param ast AST node
      * @return true if it is an enum member
      */
@@ -470,6 +483,7 @@ public class RedundantModifierCheck
 
     /**
      * Checks if current AST node is member of Interface or Annotation, not of their subnodes.
+     *
      * @param ast AST node
      * @return true or false
      */
@@ -488,6 +502,7 @@ public class RedundantModifierCheck
      * Checks if method definition is annotated with.
      * <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/SafeVarargs.html">
      * SafeVarargs</a> annotation
+     *
      * @param methodDef method definition node
      * @return true or false
      */
@@ -505,6 +520,7 @@ public class RedundantModifierCheck
 
     /**
      * Gets the list of annotations on method definition.
+     *
      * @param methodDef method definition node
      * @return List of annotations
      */

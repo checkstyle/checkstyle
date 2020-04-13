@@ -119,6 +119,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     /**
      * Finds and collects all NEWLINE nodes inside DESCRIPTION node.
+     *
      * @param descriptionNode DESCRIPTION node.
      * @return List with NEWLINE nodes.
      */
@@ -136,6 +137,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     /**
      * Checks, if description node is a description of in-line tag.
+     *
      * @param description DESCRIPTION node.
      * @return true, if description node is a description of in-line tag.
      */

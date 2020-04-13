@@ -515,6 +515,7 @@ public class XdocsPagesTest {
 
     /**
      * Test contains asserts in callstack, but idea does not see them.
+     *
      * @noinspection JUnitTestMethodWithNoAssertions
      */
     @Test
@@ -911,6 +912,7 @@ public class XdocsPagesTest {
 
     /**
      * Get's the name of the bean property's type for the class.
+     *
      * @param sectionName The name of the section/module being worked on.
      * @param fieldClass The bean property's type.
      * @param instance The class instance to work with.
@@ -1043,6 +1045,7 @@ public class XdocsPagesTest {
 
     /**
      * Get's the name of the bean property's default value for the class.
+     *
      * @param sectionName The name of the section/module being worked on.
      * @param propertyName The property name to work with.
      * @param field The bean property's field.
@@ -1256,6 +1259,7 @@ public class XdocsPagesTest {
 
     /**
      * Checks if the given property is takes token names as a type.
+     *
      * @param sectionName The name of the section/module being worked on.
      * @param propertyName The property name to work with.
      * @return {@code true} if the property is takes token names as a type.

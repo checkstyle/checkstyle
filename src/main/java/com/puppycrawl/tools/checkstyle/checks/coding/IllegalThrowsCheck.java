@@ -157,6 +157,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
 
     /**
      * Checks if current method is ignorable due to Check's properties.
+     *
      * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if method is ignorable.
      */
@@ -169,6 +170,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
 
     /**
      * Check if the method is specified in the ignore method list.
+     *
      * @param name the name to check
      * @return whether the method with the passed name should be ignored
      */
@@ -178,6 +180,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
 
     /**
      * Setter to specify names of methods to ignore.
+     *
      * @param methodNames array of ignored method names
      */
     public void setIgnoredMethodNames(String... methodNames) {
@@ -188,6 +191,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
     /**
      * Setter to allow to ignore checking overridden methods
      * (marked with {@code Override} or {@code java.lang.Override} annotation).
+     *
      * @param ignoreOverriddenMethods Check's property.
      */
     public void setIgnoreOverriddenMethods(boolean ignoreOverriddenMethods) {

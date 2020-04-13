@@ -244,6 +244,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
     /**
      * Checks if logical operator is part of constructor or method call.
+     *
      * @param logicalOperator logical operator
      * @return true if logical operator is part of constructor or method call
      */
@@ -256,6 +257,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
      * in
      * <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20">
      * multi-catch</a> (pipe-syntax).
+     *
      * @param binaryOr {@link TokenTypes#BOR binary or}
      * @return true if binary or is applied to exceptions in multi-catch.
      */
@@ -280,6 +282,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
     /**
      * Creates new context for a given method.
+     *
      * @param ast a method we start to check.
      */
     private void visitMethodDef(DetailAST ast) {
@@ -301,6 +304,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
     /**
      * Restores previous context.
+     *
      * @param ast expression we leave.
      */
     private void leaveExpr(DetailAST ast) {
@@ -324,6 +328,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
         /**
          * Creates new instance.
+         *
          * @param checking should we check in current context or not.
          */
         /* package */ Context(boolean checking) {
@@ -333,6 +338,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
         /**
          * Getter for checking property.
+         *
          * @return should we check in current context or not.
          */
         public boolean isChecking() {
@@ -346,6 +352,7 @@ public final class BooleanExpressionComplexityCheck extends AbstractCheck {
 
         /**
          * Checks if we violates maximum allowed complexity.
+         *
          * @param ast a node we check now.
          */
         public void checkCount(DetailAST ast) {

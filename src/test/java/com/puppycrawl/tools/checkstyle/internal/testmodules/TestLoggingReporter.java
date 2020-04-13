@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractViolationReporter;
 
 /**
  * TestLoggingReporter.
+ *
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class TestLoggingReporter extends AbstractViolationReporter {

@@ -174,6 +174,7 @@ public class MethodParamPadCheck
 
     /**
      * Setter to allow a line break between the identifier and left parenthesis.
+     *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */
@@ -183,6 +184,7 @@ public class MethodParamPadCheck
 
     /**
      * Setter to specify policy on how to pad method parameter.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */

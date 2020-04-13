@@ -67,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * abstract class SecondClass {} // violation, it should match the pattern "^Abstract.+$"
  * class AbstractThirdClass {} // OK, no "abstract" modifier
  * </pre>
+ *
  * @since 3.2
  */
 @StatelessCheck
@@ -103,6 +104,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     /**
      * Setter to control whether to ignore checking for the {@code abstract} modifier on
      * classes that match the name.
+     *
      * @param value new value
      */
     public void setIgnoreModifier(boolean value) {
@@ -112,6 +114,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
     /**
      * Setter to control whether to ignore checking the name. Realistically only useful if
      * using the check to identify that match name and do not have the {@code abstract} modifier.
+     *
      * @param value new value.
      */
     public void setIgnoreName(boolean value) {
@@ -120,6 +123,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
 
     /**
      * Setter to specify valid identifiers.
+     *
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {
@@ -148,6 +152,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
 
     /**
      * Checks class definition.
+     *
      * @param ast class definition for check.
      */
     private void visitClassDef(DetailAST ast) {
@@ -166,6 +171,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
 
     /**
      * Checks if declared class is abstract or not.
+     *
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
@@ -178,6 +184,7 @@ public final class AbstractClassNameCheck extends AbstractCheck {
 
     /**
      * Returns true if class name matches format of abstract class names.
+     *
      * @param className class name for check.
      * @return true if class name matches format of abstract class names.
      */

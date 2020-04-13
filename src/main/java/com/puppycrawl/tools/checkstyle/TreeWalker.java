@@ -86,6 +86,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Sets the module factory for creating child modules (Checks).
+     *
      * @param moduleFactory the factory
      */
     public void setModuleFactory(ModuleFactory moduleFactory) {
@@ -102,6 +103,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * {@inheritDoc} Creates child module.
+     *
      * @noinspection ChainOfInstanceofChecks
      */
     @Override
@@ -166,6 +168,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Returns filtered set of {@link LocalizedMessage}.
+     *
      * @param fileName path to the file
      * @param fileContents the contents of the file
      * @param rootAST root AST element {@link DetailAST} of the file
@@ -189,6 +192,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Register a check for a given configuration.
+     *
      * @param check the check to register
      * @throws CheckstyleException if an error occurs
      */
@@ -230,6 +234,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Register a check for a specified token id.
+     *
      * @param tokenId the id of the token
      * @param check the check to register
      * @throws CheckstyleException if Check is misconfigured
@@ -240,6 +245,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Register a check for a specified token name.
+     *
      * @param token the name of the token
      * @param check the check to register
      * @throws CheckstyleException if Check is misconfigured
@@ -261,6 +267,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Initiates the walk of an AST.
+     *
      * @param ast the root AST
      * @param contents the contents of the file the AST was generated from.
      * @param astState state of AST.
@@ -274,6 +281,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Notify checks that we are about to begin walking a tree.
+     *
      * @param rootAST the root of the tree.
      * @param contents the contents of the file the AST was generated from.
      * @param astState state of AST.
@@ -298,6 +306,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Notify checks that we have finished walking a tree.
+     *
      * @param rootAST the root of the tree.
      * @param astState state of AST.
      */
@@ -319,6 +328,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Notify checks that visiting a node.
+     *
      * @param ast the node to notify for.
      * @param astState state of AST.
      */
@@ -334,6 +344,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Notify checks that leaving a node.
+     *
      * @param ast
      *        the node to notify for
      * @param astState state of AST.
@@ -397,6 +408,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Returns a set of external configuration resource locations which are used by the filters set.
+     *
      * @return a set of external configuration resource locations which are used by the filters set.
      */
     private Set<String> getExternalResourceLocationsOfFilters() {
@@ -412,6 +424,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     /**
      * Returns a set of external configuration resource locations which are used by the checks set.
+     *
      * @param checks a set of checks.
      * @return a set of external configuration resource locations which are used by the checks set.
      */
@@ -428,6 +441,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     /**
      * Processes a node calling interested checks at each node.
      * Uses iterative algorithm.
+     *
      * @param root the root of tree for process
      * @param astState state of AST.
      */

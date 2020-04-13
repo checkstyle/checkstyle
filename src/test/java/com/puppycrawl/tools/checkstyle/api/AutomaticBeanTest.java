@@ -292,6 +292,7 @@ public class AutomaticBeanTest {
 
         /**
          * Setter for strings.
+         *
          * @param strings strings.
          */
         public void setStrings(String... strings) {
@@ -300,6 +301,7 @@ public class AutomaticBeanTest {
 
         /**
          * Setter for pattern.
+         *
          * @param pattern pattern.
          */
         public void setPattern(Pattern pattern) {
@@ -308,6 +310,7 @@ public class AutomaticBeanTest {
 
         /**
          * Setter for severity level.
+         *
          * @param severityLevel severity level.
          */
         public void setSeverityLevel(SeverityLevel severityLevel) {
@@ -316,6 +319,7 @@ public class AutomaticBeanTest {
 
         /**
          * Setter for scope.
+         *
          * @param scope scope.
          */
         public void setScope(Scope scope) {
@@ -324,6 +328,7 @@ public class AutomaticBeanTest {
 
         /**
          * Setter for uri.
+         *
          * @param uri uri.
          */
         public void setUri(URI uri) {
@@ -332,6 +337,7 @@ public class AutomaticBeanTest {
 
         /**
          * Setter for access modifiers.
+         *
          * @param accessModifiers access modifiers.
          */
         public void setAccessModifiers(AccessModifier... accessModifiers) {

@@ -116,6 +116,7 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
 
     /**
      * Finds sub-node for given node maximum (line, column) pair.
+     *
      * @param node the root of tree for search.
      * @return sub-node with maximum (line, column) pair.
      */

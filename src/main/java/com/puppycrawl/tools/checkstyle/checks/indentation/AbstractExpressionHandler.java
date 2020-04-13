@@ -179,6 +179,7 @@ public abstract class AbstractExpressionHandler {
     /**
      * Searches in given sub-tree (including given node) for the token
      * which represents first symbol for this sub-tree in file.
+     *
      * @param ast a root of sub-tree in which the search should be performed.
      * @return a token which occurs first in the file.
      * @noinspection WeakerAccess
@@ -238,6 +239,7 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * Checks that indentation should be increased after first line in checkLinesIndent().
+     *
      * @return true if indentation should be increased after
      *              first line in checkLinesIndent()
      *         false otherwise
@@ -513,6 +515,7 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * A shortcut for {@code IndentationCheck} property.
+     *
      * @return value of basicOffset property of {@code IndentationCheck}
      */
     protected final int getBasicOffset() {
@@ -521,6 +524,7 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * A shortcut for {@code IndentationCheck} property.
+     *
      * @return value of braceAdjustment property
      *         of {@code IndentationCheck}
      */
@@ -530,6 +534,7 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * Check the indentation of the right parenthesis.
+     *
      * @param rparen parenthesis to check
      * @param lparen left parenthesis associated with aRparen
      */
@@ -551,6 +556,7 @@ public abstract class AbstractExpressionHandler {
 
     /**
      * Check the indentation of the left parenthesis.
+     *
      * @param lparen parenthesis to check
      */
     protected final void checkLeftParen(final DetailAST lparen) {

@@ -70,6 +70,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * if (name == getName()) {}
  * // OK, limitation that check cannot tell runtime type returned from method call
  * </pre>
+ *
  * @since 3.2
  * @noinspection HtmlTagCanBeJavadocTag
  */

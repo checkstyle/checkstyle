@@ -83,6 +83,7 @@ public class NonEmptyAtclauseDescriptionTest extends AbstractGoogleModuleTestSup
      * Gets line numbers with violations from an array with expected messages.
      * This is used as using "warn" comments in input files would affects the work
      * of the Check.
+     *
      * @param expected an array with expected messages.
      * @return Integer array with numbers of lines with violations.
      */

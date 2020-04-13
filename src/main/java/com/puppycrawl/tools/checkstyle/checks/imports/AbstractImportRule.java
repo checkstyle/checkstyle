@@ -38,6 +38,7 @@ abstract class AbstractImportRule {
 
     /**
      * Constructs an instance.
+     *
      * @param allow whether to allow access.
      * @param localOnly whether the rule is to be applied locally only.
      * @param regExp whether the name is to be interpreted as a regular
@@ -52,6 +53,7 @@ abstract class AbstractImportRule {
 
     /**
      * Verifies whether a package name is used.
+     *
      * @param forImport the import to check.
      * @return a result {@link AccessResult} indicating whether it can be used.
      */
@@ -59,6 +61,7 @@ abstract class AbstractImportRule {
 
     /**
      * Return true if the guard is to only be applied locally or false.
+     *
      * @return whether the guard is to only be applied locally.
      */
     public boolean isLocalOnly() {
@@ -67,6 +70,7 @@ abstract class AbstractImportRule {
 
     /**
      * Return true if the name is to be interpreted as a regular expression or false.
+     *
      * @return whether the name is to be interpreted as a regular expression.
      */
     protected boolean isRegExp() {
@@ -76,6 +80,7 @@ abstract class AbstractImportRule {
     /**
      * Returns the appropriate {@link AccessResult} based on whether there
      * was a match and if the rule is to allow access.
+     *
      * @param matched indicates whether there was a match.
      * @return An appropriate {@link AccessResult}.
      */

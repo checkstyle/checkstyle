@@ -105,6 +105,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     /**
      * If this is the first chained method call which was moved to the next line.
+     *
      * @return true if chained class are wrapped
      */
     private boolean isChainedMethodCallWrapped() {
@@ -226,6 +227,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
 
     /**
      * Returns method or constructor call right paren.
+     *
      * @param firstNode
      *          call ast(TokenTypes.METHOD_CALL|TokenTypes.CTOR_CALL|TokenTypes.SUPER_CTOR_CALL)
      * @return ast node containing right paren for specified method or constructor call. If
