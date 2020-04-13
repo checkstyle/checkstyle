@@ -112,6 +112,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="MissingJavadocMethod"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <source>
+ * public class Test {
+ *   public Test() {} // violation, missing javadoc for constructor
+ *   public void test() {} // violation, missing javadoc for method
+ *   &#47;**
+ *    * Some description here.
+ *    *&#47;
+ *   public void test2() {}
+ * }
+ * </source>
+ *
+ * <p>
  * To configure the check for {@code private} scope:
  * </p>
  * <pre>
@@ -119,6 +133,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="scope" value="private"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * public class Test {
+ *   public void test() {} // violation, the public method is missing javadoc
+ *   private void test1() {} // violation, the private method is missing javadoc
+ * }
+ * </pre>
+ *
  * <p>
  * To configure the check for methods which are in {@code private}, but not in {@code protected}
  * scope:
@@ -129,6 +151,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="excludeScope" value="protected"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * public class Test {
+ *   private void test1() {} // violation, the private method is missing javadoc
+ *   &#47;**
+ *    * Some description here
+ *    *&#47;
+ *   private void test1() {} // ok
+ *   protected void test2() {} // ok
+ * }
+ * </pre>
+ *
  * <p>
  * To configure the check for ignoring methods named {@code foo(),foo1(),foo2()}, etc.:
  * </p>
@@ -137,6 +171,34 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * public class Test {
+ *   public void test1() {} // violation, method is missing javadoc
+ *   public void foo() {} // ok
+ *   public void foobar() {} // ok
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure the check for ignoring missing javadoc for accessor methods:
+ * </p>
+ * <source>
+ * &lt;module name="MissingJavadocMethod"&gt;
+ *   &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
+ * &lt;/module&gt;
+ * </source>
+ * <p>Example: </p>
+ * <pre>
+ * public class Test {
+ *   private String text;
+ *
+ *   public void test() {} // violation, method is missing javadoc
+ *   public String getText() { return text; } // ok
+ *   public void setText(String text) { this.text = text; } // ok
+ * }
+ * </pre>
+ *
  * @since 8.21
  */
 @FileStatefulCheck
