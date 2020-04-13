@@ -16,4 +16,5 @@ public class InputMissingLeadingAsterisk {
   /*
       This is a non javadoc comment.
    */
+  /**/ // This is empty comment for 100% code coverage.
 }
