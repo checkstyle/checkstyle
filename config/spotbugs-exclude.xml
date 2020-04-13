@@ -160,6 +160,13 @@
         <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
     </Match>
     <Match>
+        <!-- false-positive. Bugs reported even though casting is done only
+             after verification using getType -->
+        <Class name="com.puppycrawl.tools.checkstyle.utils.FrameUtil"/>
+        <Method name="collectVariableDeclarations"/>
+        <Bug pattern="BC_UNCONFIRMED_CAST"/>
+    </Match>
+    <Match>
         <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
         <Class name="com.puppycrawl.tools.checkstyle.Main"/>
         <Method name="loadProperties"/>
