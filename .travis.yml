@@ -317,6 +317,13 @@ jobs:
           - USE_MAVEN_REPO="true"
           - CMD="./.ci/travis/travis.sh no-error-pmd"
 
+    # Ensure that .ci-temp is empty
+    - env:
+        - DESC="ensure that .ci-temp is empty after CI scripts run"
+        - CMD="./.ci/travis/travis.sh validate-ci-temp-empty"
+        - SKIP_JOB_BY_FILES="false"
+
+
 script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
