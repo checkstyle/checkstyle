@@ -1224,15 +1224,19 @@ resources
     ;
 
 
-resource
-    : IDENT
-      | modifiers typeSpec[true] IDENT resource_assign
-      {#resource = #([RESOURCE, "RESOURCE"], #resource);}
+tryResourceDeclaration!
+    : m: parameterModifier t: typeSpec[false] v:variableDefinitions[#m,#t]
+    {#tryResourceDeclaration = #v;}
 ;
 
-resource_assign
-    : ASSIGN^ expression
-    ;
+
+resource
+    : ((tryResourceDeclaration)=>  tryResourceDeclaration
+    | ((primaryExpression DOT^)+ identifier)=> (primaryExpression DOT^)+ identifier
+    | IDENT)+
+    {#resource = #([RESOURCE, "RESOURCE"], #resource);}
+;
+
 
 // an exception handler
 handler
