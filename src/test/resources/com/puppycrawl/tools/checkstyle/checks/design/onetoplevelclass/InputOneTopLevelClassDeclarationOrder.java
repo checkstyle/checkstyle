@@ -7,7 +7,7 @@ public class InputOneTopLevelClassDeclarationOrder
     }
 }
 
-enum InputDeclarationOrderEnum
+enum InputDeclarationOrderEnum // violation
 {
     ENUM_VALUE_1;
 
@@ -15,4 +15,9 @@ enum InputDeclarationOrderEnum
         private final int startLogErrorsCnt = 0;
         protected final int maxTotalConcurrentTasks = 0;
     }
+}
+
+@interface InputDeclarationOrderAnnotation // violation
+{
+
 }

@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -61,8 +60,9 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             new File(secondInputFilePath),
         };
 
-        final List<String> expectedFirstInput = Collections.singletonList(
-            "10:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"));
+        final List<String> expectedFirstInput = Arrays.asList(
+            "10:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
+            "20:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation"));
         final List<String> expectedSecondInput = Arrays.asList(
             "3:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner1"),
             "11:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassInterface2inner2"));
@@ -107,6 +107,14 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFileWithOneTopLevelAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputOneTopLevelClassAnnotation.java"), expected);
+    }
+
+    @Test
     public void testFileWithNoPublicTopLevelClass() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OneTopLevelClassCheck.class);
@@ -139,6 +147,17 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFileWithThreeTopLevelAnnotation() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "9:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2A"),
+            "14:1: " + getCheckMessage(MSG_KEY, "InputOneTopLevelClassAnnotation2B"),
+        };
+        verify(checkConfig, getPath("InputOneTopLevelClassAnnotation2.java"), expected);
+    }
+
+    @Test
     public void testFileWithFewTopLevelClasses() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(OneTopLevelClassCheck.class);
@@ -160,6 +179,7 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(OneTopLevelClassCheck.class);
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderEnum"),
+            "20:1: " + getCheckMessage(MSG_KEY, "InputDeclarationOrderAnnotation"),
         };
         verify(checkConfig, getPath("InputOneTopLevelClassDeclarationOrder.java"), expected);
     }
