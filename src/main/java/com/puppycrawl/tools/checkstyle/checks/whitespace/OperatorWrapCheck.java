@@ -293,19 +293,31 @@ public class OperatorWrapCheck
             final int lineNo = ast.getLineNo();
             final String currentLine = getLine(lineNo - 1);
 
-            // Check if rest of line is whitespace, and not just the operator
-            // by itself. This last bit is to handle the operator on a line by
-            // itself.
+            // Check if post the operator a whitespace or a comment node exists,
+            // in order to log a warning for operatorWrao.
             if (option == WrapOption.NL
-                    && !text.equals(currentLine.trim())
-                    && CommonUtil.isBlank(currentLine.substring(colNo + text.length()))) {
-                log(ast, MSG_LINE_NEW, text);
+                    && !text.equals(currentLine.trim())) {
+                if(CommonUtil.isBlank(currentLine.substring(colNo + text.length()))){
+                    log(ast, MSG_LINE_NEW, text);
+                } else if((ast.getFirstChild() != null)
+                            && (ast.getFirstChild().getNextSibling().getType()
+                                == TokenTypes.SINGLE_LINE_COMMENT
+                            || ast.getFirstChild().getNextSibling().getType()
+                                == TokenTypes.BLOCK_COMMENT_BEGIN)){
+                        log(ast, MSG_LINE_NEW, text);
+                }
+
             }
             else if (option == WrapOption.EOL
                     && CommonUtil.hasWhitespaceBefore(colNo - 1, currentLine)) {
                 log(ast, MSG_LINE_PREVIOUS, text);
             }
         }
+    }
+
+    @Override
+    public boolean isCommentNodesRequired() {
+        return true;
     }
 
 }
