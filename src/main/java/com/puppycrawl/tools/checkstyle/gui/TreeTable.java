@@ -183,7 +183,8 @@ public final class TreeTable extends JTable {
                 "Tree.foreground", "Tree.font");
     }
 
-    /* Workaround for BasicTableUI anomaly. Make sure the UI never tries to
+    /**
+     * Workaround for BasicTableUI anomaly. Make sure the UI never tries to
      * paint the editor. The UI currently uses different techniques to
      * paint the renderers and editors and overriding setBounds() below
      * is not the right thing to do for an editor. Returning -1 for the
