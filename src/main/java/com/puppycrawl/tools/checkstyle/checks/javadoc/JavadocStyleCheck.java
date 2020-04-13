@@ -147,6 +147,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name="JavadocStyle"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     &#47;**
+ *      * Some description here. // OK
+ *      *&#47;
+ *     private void methodWithValidCommentStyle() {}
+ *
+ *     &#47;**
+ *      * Some description here // violation, the sentence must end with a proper punctuation
+ *      *&#47;
+ *     private void methodWithInvalidCommentStyle() {}
+ * }
+ * </pre>
  * <p>
  * To configure the check for {@code public} scope:
  * </p>
@@ -154,6 +168,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocStyle"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     &#47;**
+ *      * Some description here // violation, the sentence must end with a proper punctuation
+ *      *&#47;
+ *     public void test1() {}
+ *
+ *     &#47;**
+ *      * Some description here // OK
+ *      *&#47;
+ *     private void test2() {}
+ * }
  * </pre>
  * <p>
  * To configure the check for javadoc which is in {@code private}, but not in {@code package} scope:
@@ -164,6 +192,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="excludeScope" value="package"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     &#47;**
+ *      * Some description here // violation, the sentence must end with a proper punctuation
+ *      *&#47;
+ *     private void test1() {}
+ *
+ *     &#47;**
+ *      * Some description here // OK
+ *      *&#47;
+ *     void test2() {}
+ * }
+ * </pre>
  * <p>
  * To configure the check to turn off first sentence checking:
  * </p>
@@ -171,6 +213,54 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocStyle"&gt;
  *   &lt;property name="checkFirstSentence" value="false"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     &#47;**
+ *      * Some description here // OK
+ *      * Second line of description // violation, the sentence must end with a proper punctuation
+ *      *&#47;
+ *     private void test1() {}
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to turn off validation of incomplete html tags:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocStyle"&gt;
+ * &lt;property name="checkHtml" value="false"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     &#47;**
+ *      * Some description here // violation, the sentence must end with a proper punctuation
+ *      * &lt;p // OK
+ *      *&#47;
+ *     private void test1() {}
+ * }
+ * </pre>
+ * <p>
+ * To configure the check for only class definitions:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocStyle"&gt;
+ * &lt;property name="tokens" value="CLASS_DEF"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * &#47;**
+ *  * Some description here // violation, the sentence must end with a proper punctuation
+ *  *&#47;
+ * public class Test {
+ *     &#47;**
+ *      * Some description here // OK
+ *      *&#47;
+ *     private void test1() {}
+ * }
  * </pre>
  *
  * @since 3.2

@@ -202,9 +202,9 @@
     <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.0.0</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.13.0</maven.pmd.plugin.version>
-    <pmd.version>6.21.0</pmd.version>
+    <pmd.version>6.22.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.5</maven.jacoco.plugin.version>
-    <powermock.version>2.0.6</powermock.version>
+    <powermock.version>2.0.7</powermock.version>
     <saxon.version>9.9.1-7</saxon.version>
     <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.37.1</maven.sevntu.checkstyle.plugin.version>
@@ -219,7 +219,7 @@
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>0.10</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.6.1</junit.version>
+    <junit.version>5.6.2</junit.version>
   </properties>
 
   <dependencies>
@@ -277,7 +277,7 @@
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <version>0.5.4</version>
+      <version>0.5.6</version>
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
@@ -1667,6 +1667,11 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://maven.apache.org/*</excludedLink>
+            <!-- very frequent SocketTimeoutException : Read timed out -->
+            <excludedLink>https://www.bountysource.com/*</excludedLink>
+            <excludedLink>https://api.bountysource.com/*</excludedLink>
+            <!-- This URL become to require to login first to see content -->
+            <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>

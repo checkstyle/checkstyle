@@ -27,7 +27,7 @@ if "%OPTION%" ==  "verify_without_checkstyle_JDK11" (
   goto :END_CASE
 )
 
-if "%OPTION%" ==  "verify_without_checkstyle_JDK13" (
+if "%OPTION%" ==  "verify_without_checkstyle_JDK14" (
   call mvn -e verify -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true^
     || goto :ERROR
   goto :END_CASE

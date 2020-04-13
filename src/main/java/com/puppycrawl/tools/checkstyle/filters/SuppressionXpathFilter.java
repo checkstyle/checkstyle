@@ -44,9 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul id="SuppressionXpathFilter_IncompatibleChecks">
  * <li>
- * AnnotationUseStyle
- * </li>
- * <li>
  * AvoidEscapedUnicodeCharacters
  * </li>
  * <li>
@@ -62,25 +59,13 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Indentation
  * </li>
  * <li>
- * InterfaceIsType
- * </li>
- * <li>
  * InterfaceMemberImpliedModifier
- * </li>
- * <li>
- * JavadocContentLocation
  * </li>
  * <li>
  * JavadocMethod
  * </li>
  * <li>
  * JavadocType
- * </li>
- * <li>
- * MethodCount
- * </li>
- * <li>
- * MissingJavadocMethod
  * </li>
  * <li>
  * MissingJavadocType
@@ -109,9 +94,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <li>
  * VariableDeclarationUsageDistance
  * </li>
- * <li>
- * WriteTag
- * </li>
  * </ul>
  * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
@@ -122,6 +104,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocBlockTagLocation
+ * </li>
+ * <li>
+ * JavadocMissingWhitespaceAfterAsterisk
  * </li>
  * <li>
  * JavadocParagraph
@@ -144,11 +129,16 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <li>
  * SummaryJavadoc
  * </li>
+ * <li>
+ * WriteTag
+ * </li>
  * </ul>
  * <p>
  * Note, that support for these Checks will be available after resolving issues
  * <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a> and
  * <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>.
+ * Support for Indentation check will be available after resolving issue
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7734">#7734</a>.
  * </p>
  * <p>
  * Currently, filter supports the following xpath axes:

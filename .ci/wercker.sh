@@ -18,6 +18,10 @@ function checkout_from {
   cd ../
 }
 
+removeFolderWithProtectedFiles() {
+  find $1 -delete
+}
+
 case $1 in
 
 sonarqube)
@@ -45,6 +49,7 @@ sonarqube)
     .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
   export SONAR_API_TOKEN=$SONAR_TOKEN
   .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
+  removeFolderWithProtectedFiles .ci-temp/blog-sonar-build-breaker
   ;;
 
 
@@ -53,10 +58,11 @@ no-error-pgjdbc)
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/pgjdbc/pgjdbc.git
-  cd .ci-temp/pgjdbc/pgjdbc
-  mvn -e checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
-  cd ../../
-  rm -rf pgjdbc
+  cd .ci-temp/pgjdbc
+  ./gradlew --no-parallel --no-daemon checkstyleAll \
+            -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
+  cd ../
+ removeFolderWithProtectedFiles pgjdbc
   ;;
 
 no-error-orekit)
@@ -77,8 +83,9 @@ no-error-orekit)
   # git checkout $(git describe --abbrev=0 --tags)
   git checkout "b67b419db7014f4b""ad921a1ba""c6c848384ad2b92"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
-  cd ../
-  rm -rf Orekit
+  cd ..
+  removeFolderWithProtectedFiles Orekit
+  removeFolderWithProtectedFiles hipparchus
   ;;
 
 no-error-xwiki)
@@ -92,8 +99,8 @@ no-error-xwiki)
   mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
-  cd ../../
-  rm -rf xwiki-commons
+  cd ..
+  removeFolderWithProtectedFiles xwiki-commons
   ;;
 
 no-error-apex-core)
@@ -104,7 +111,7 @@ no-error-apex-core)
   cd .ci-temp/apex-core
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
-  rm -rf apex-core
+  removeFolderWithProtectedFiles apex-core
   ;;
 
 no-error-equalsverifier)
@@ -115,7 +122,7 @@ no-error-equalsverifier)
   cd .ci-temp/equalsverifier
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
-  rm -rf equalsverifier
+  removeFolderWithProtectedFiles equalsverifier
   ;;
 
 no-error-hibernate-search)
@@ -129,7 +136,7 @@ no-error-hibernate-search)
      -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
   mvn -e checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
   cd ../
-  rm -rf hibernate-search
+  removeFolderWithProtectedFiles hibernate-search
   ;;
 
 no-error-htmlunit)
@@ -140,7 +147,7 @@ no-error-htmlunit)
   cd .ci-temp/htmlunit
   mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
-  rm -rf htmlunit
+  removeFolderWithProtectedFiles htmlunit
   ;;
 
 no-error-checkstyles-sevntu)
@@ -163,7 +170,7 @@ no-error-sevntu-checks)
   mvn -e -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../../
-  rm -rf sevntu.checkstyle
+  removeFolderWithProtectedFiles sevntu.checkstyle
   ;;
 
 no-error-contribution)
@@ -180,9 +187,8 @@ no-error-contribution)
   cd releasenotes-builder
   mvn -e verify -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
-  cd ../
   cd ../../
-  rm -rf checkstyle
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-error-methods-distance)
@@ -194,8 +200,8 @@ no-error-methods-distance)
   cd .ci-temp/methods-distance
   mvn -e verify -DskipTests -Dcheckstyle-version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
-  cd ../../
-  rm -rf checkstyle
+  cd ..
+  removeFolderWithProtectedFiles  methods-distance
   ;;
 
 no-error-strata)
@@ -211,7 +217,7 @@ no-error-strata)
      -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
-  rm -rf Strata
+  removeFolderWithProtectedFiles Strata
   ;;
 
 no-error-spring-integration)
@@ -225,7 +231,7 @@ no-error-spring-integration)
   PROP_CS_VERSION="checkstyleVersion"
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION}
   cd ../
-  rm -rf spring-integration
+  removeFolderWithProtectedFiles spring-integration
   ;;
 
 no-exception-struts)
@@ -239,7 +245,7 @@ no-exception-struts)
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-checkstyle-sevntu)
@@ -255,7 +261,7 @@ no-exception-checkstyle-sevntu)
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-checkstyle-sevntu-javadoc)
@@ -271,7 +277,7 @@ no-exception-checkstyle-sevntu-javadoc)
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-guava)
@@ -285,7 +291,7 @@ no-exception-guava)
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-hibernate-orm)
@@ -299,7 +305,7 @@ no-exception-hibernate-orm)
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-spotbugs)
@@ -313,7 +319,7 @@ no-exception-spotbugs)
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-spoon)
@@ -327,7 +333,7 @@ no-exception-spoon)
   groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-spring-framework)
@@ -341,7 +347,7 @@ no-exception-spring-framework)
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-hbase)
@@ -355,7 +361,7 @@ no-exception-hbase)
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-Pmd-elasticsearch-lombok-ast)
@@ -371,7 +377,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-alot-of-projects)
@@ -390,7 +396,7 @@ no-exception-alot-of-projects)
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-warning-imports-guava)
@@ -406,7 +412,7 @@ no-warning-imports-guava)
       --checkstyleVersion ${CS_POM_VERSION}
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   if [ -z "$RESULT" ]; then
     echo "Inspection did not find any warnings"
   else
@@ -430,7 +436,7 @@ no-warning-imports-java-design-patterns)
       --checkstyleVersion ${CS_POM_VERSION}
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
   cd ../../
-  rm -rf contribution
+  removeFolderWithProtectedFiles contribution
   if [ -z "$RESULT" ]; then
     echo "Inspection did not find any warnings"
   else

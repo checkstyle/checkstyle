@@ -66,4 +66,12 @@
   <suppress checks="OuterTypeFilename"
     files="src[\\/]it[\\/]resources[\\/].*[\\/]SuppressionXpathRegressionOuterTypeFilename.*\.java"/>
 
+  <!-- intentional problem for testing -->
+  <suppress checks="RegexpSingleline"
+    files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
+  <suppress checks="RegexpSingleline"
+    files="[\\/]InputJavadocParagraphCorrect\.java"/>
+  <suppress checks="RegexpSingleline"
+    files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
+
 </suppressions>

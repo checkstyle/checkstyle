@@ -521,12 +521,7 @@ public class RegexpCheck extends AbstractCheck {
      * @param message custom message which should be used in report.
      */
     public void setMessage(String message) {
-        if (message == null) {
-            this.message = "";
-        }
-        else {
-            this.message = message;
-        }
+        this.message = message;
     }
 
     /**

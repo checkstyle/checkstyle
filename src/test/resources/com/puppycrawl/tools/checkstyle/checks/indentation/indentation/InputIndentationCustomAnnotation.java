@@ -11,7 +11,7 @@ public @interface InputIndentationCustomAnnotation { //indent:0 exp:0
     int value() default 0; //indent:4 exp:4
 } //indent:0 exp:0
 
-     @Retention(RetentionPolicy.SOURCE) @interface AnnotationWithComments { //inside comments //indent:5 exp:0 warn
+     @Retention(RetentionPolicy.SOURCE) @interface AnnotationWithComments { // //indent:5 exp:0 warn
      } //indent:5 exp:0 warn
      @interface AnnotationWithStringProperty { //indent:5 exp:0 warn
 String author(); //indent:0 exp:4 warn

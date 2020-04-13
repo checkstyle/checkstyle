@@ -82,17 +82,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </ul>
  * <p>
  * Classes known to be immutable are listed in <b>immutableClassCanonicalNames</b>
- * by their <b>canonical</b> names.
+ * by their canonical names.
  * </p>
  * <p>
- * Rationale: Forcing all fields of class to have private modifier by default is
+ * Property Rationale: Forcing all fields of class to have private modifier by default is
  * good in most cases, but in some cases it drawbacks in too much boilerplate get/set code.
  * One of such cases are immutable classes.
  * </p>
  * <p>
- * <b>Restriction</b>: Check doesn't check if class is immutable, there's no checking
+ * Restriction: Check doesn't check if class is immutable, there's no checking
  * if accessory methods are missing and all fields are immutable, we only check
- * <b>if current field is immutable or final</b>.
+ * if current field is immutable or final.
  * Under the flag <b>allowPublicImmutableFields</b>, the enclosing class must
  * also be final, to encourage immutability.
  * Under the flag <b>allowPublicFinalFields</b>, the final modifier
@@ -100,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <p>
  * Star imports are out of scope of this Check. So if one of type imported via
- * <b>star import</b> collides with user specified one by its short name - there
+ * star import collides with user specified one by its short name - there
  * won't be Check's violation.
  * </p>
  * <ul>

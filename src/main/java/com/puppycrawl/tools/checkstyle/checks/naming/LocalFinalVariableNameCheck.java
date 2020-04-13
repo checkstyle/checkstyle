@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;LocalFinalVariableName&quot;&gt;
  *   &lt;property name="format" value="^[A-Z][A-Z0-9]*$"/&gt;
- *   &lt;property name="tokens" value="PARAMETER_DEF,RESOURCE"&gt;
+ *   &lt;property name="tokens" value="PARAMETER_DEF,RESOURCE"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Code Example:</p>

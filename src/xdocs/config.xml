@@ -337,7 +337,7 @@
               <td>charset</td>
               <td>name of the file charset</td>
               <td><a href="property_types.html#string">String</a></td>
-              <td>System property &quot;file.encoding&quot;</td>
+              <td><code>UTF-8</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -425,12 +425,12 @@
 
         <p>
           To configure a <code>Checker</code> so that it
-          handles files with the <code>UTF-8</code> charset:
+          handles files with the <code>ISO-8859-5</code> charset:
         </p>
 
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
-  &lt;property name=&quot;charset&quot; value=&quot;UTF-8&quot;/&gt;
+  &lt;property name=&quot;charset&quot; value=&quot;ISO-8859-5&quot;/&gt;
   ...
 &lt;/module&gt;
         </source>

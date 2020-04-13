@@ -1665,7 +1665,34 @@ Lists.charactersOf("foo")
         <source>
 &lt;module name=&quot;OperatorWrap&quot;/&gt;
         </source>
+        <p>
+         Example:
+        </p>
+        <source>
+class Test {
+    public static void main(String[] args) {
+        String s = "Hello" +
+        "World"; // violation, '+' should be on new line
 
+        if (10 ==
+                20) { // violation, '==' should be on new line.
+        // body
+        }
+        if (10
+                ==
+                20) { // ok
+        // body
+        }
+
+        int c = 10 /
+                5; // violation, '/' should be on new line.
+
+        int d = c
+                + 10; // ok
+    }
+
+}
+        </source>
         <p>
           To configure the check for assignment operators at the end of a line:
         </p>
@@ -1676,6 +1703,49 @@ Lists.charactersOf("foo")
            SR_ASSIGN,BSR_ASSIGN,SL_ASSIGN,BXOR_ASSIGN,BOR_ASSIGN,BAND_ASSIGN"/&gt;
   &lt;property name="option" value="eol"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+         Example:
+        </p>
+        <source>
+class Test {
+    public static void main(String[] args) {
+            int b
+                    = 10; // violation, '=' should be on previous line
+            int c =
+                    10; // ok
+            b
+                    += 10; // violation, '+=' should be on previous line
+            b +=
+                    10; // ok
+            c
+                    *= 10; // violation, '*=' should be on previous line
+            c *=
+                    10; // ok
+            c
+                    -= 5; // violation, '-=' should be on previous line
+            c -=
+                    5; // ok
+            c
+                    /= 2; // violation, '/=' should be on previous line
+            c
+                    %= 1; // violation, '%=' should be on previous line
+            c
+                    &gt;&gt;= 1; // violation, '&gt;&gt;=' should be on previous line
+            c
+                &gt;&gt;&gt;= 1; // violation, '&gt;&gt;&gt;=' should be on previous line
+        }
+        public void myFunction() {
+            c
+                    ^= 1; // violation, '^=' should be on previous line
+            c
+                    |= 1; // violation, '|=' should be on previous line
+            c
+                    &amp;=1 ; // violation, '&amp;=' should be on previous line
+            c
+                    &lt;&lt;= 1; // violation, '&lt;&lt;=' should be on previous line
+    }
+}
         </source>
       </subsection>
 
@@ -2293,6 +2363,26 @@ float f1; // OK, 1 whitespace
         <source>
 &lt;module name=&quot;TypecastParenPad&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Foo {
+
+  float f1 = 3.14f;
+
+  int n = ( int ) f1; // violation, space after left parenthesis and before right parenthesis
+
+  double d = 1.234567;
+
+  float f2 = (float ) d; // violation, space before right parenthesis
+
+  float f3 = (float) d; // OK
+
+  float f4 = ( float) d; // violation, space after left parenthesis
+
+}
+        </source>
 
         <p>
           To configure the check to require spaces:
@@ -2301,6 +2391,26 @@ float f1; // OK, 1 whitespace
 &lt;module name=&quot;TypecastParenPad&quot;&gt;
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Bar {
+
+  double d1 = 3.14;
+
+  int n = ( int ) d1; // OK
+
+  int m = (int ) d1; // violation, no space after left parenthesis
+
+  double d2 = 9.8;
+
+  int x = (int) d2; // violation, no space after left parenthesis and before right parenthesis
+
+  int y = ( int) d2; // violation, no space before right parenthesis
+
+}
         </source>
       </subsection>
 
@@ -2874,6 +2984,34 @@ try {
         <source>
 &lt;module name=&quot;WhitespaceAround&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public Test(){} // 2 violations, '{' is not followed and preceded by whitespace.
+    public static void main(String[] args) {
+        if (foo) { // ok
+            // body
+        }
+        else{ // violation
+            // body
+        }
+
+        for (int i = 1; i &gt; 1; i++) {} // violation, '{' is not followed by whitespace.
+
+        Runnable noop = () -&gt;{}; // 2 violations,
+                                 // '{' is not followed and preceded by whitespace.
+        try {
+            // body
+        } catch (Exception e){} // 2 violations,
+                                // '{' is not followed and preceded by whitespace.
+
+        char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+        for (char item: vowels) { // ok, because ignoreEnhancedForColon is true by default
+            // body
+        }
+    }
+}
+        </source>
         <p>
           To configure the check for whitespace only around assignment operators:
         </p>
@@ -2885,6 +3023,39 @@ try {
            BOR_ASSIGN,BAND_ASSIGN"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public static void main(String[] args) {
+        int b=10; // violation
+        int c = 10; // ok
+        b+=10; // violation
+        b += 10; // ok
+        c*=10; // violation
+        c *= 10; // ok
+        c-=5; // violation
+        c -= 5; // ok
+        c/=2; // violation
+        c /= 2; // ok
+        c%=1; // violation
+        c %= 1; // ok
+        c&gt;&gt;=1; // violation
+        c &gt;&gt;= 1; // ok
+        c&gt;&gt;&gt;=1; // violation
+        c &gt;&gt;&gt;= 1; // ok
+    }
+    public void myFunction() {
+        c^=1; // violation
+        c ^= 1; // ok
+        c|=1; // violation
+        c |= 1; // ok
+        c&amp;=1; // violation
+        c &amp;= 1; // ok
+        c&lt;&lt;=1; // violation
+        c &lt;&lt;= 1; // ok
+    }
+}
+        </source>
         <p>
           To configure the check for whitespace only around curly braces:
         </p>
@@ -2892,6 +3063,13 @@ try {
 &lt;module name="WhitespaceAround"&gt;
   &lt;property name="tokens" value="LCURLY,RCURLY"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public void myFunction() {} // violation
+    public void myFunction() { } // ok
+}
         </source>
         <p>
           To configure the check to allow empty method bodies:
@@ -2901,6 +3079,13 @@ try {
   &lt;property name=&quot;allowEmptyMethods&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public void muFunction() {} // ok
+    int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+}
+        </source>
         <p>
           To configure the check to allow empty constructor bodies:
         </p>
@@ -2908,6 +3093,13 @@ try {
 &lt;module name=&quot;WhitespaceAround&quot;&gt;
   &lt;property name=&quot;allowEmptyConstructors&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public Test(){} // ok
+    public void muFunction() {} // violation, '{' is not followed by whitespace.
+}
         </source>
         <p>
           To configure the check to allow empty type bodies:
@@ -2917,6 +3109,14 @@ try {
   &lt;property name=&quot;allowEmptyTypes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test {} // ok
+interface testInterface{} // ok
+class anotherTest {
+    int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+}
+        </source>
         <p>
           To configure the check to allow empty loop bodies:
         </p>
@@ -2924,6 +3124,16 @@ try {
 &lt;module name=&quot;WhitespaceAround&quot;&gt;
   &lt;property name=&quot;allowEmptyLoops&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public static void main(String[] args) {
+        for (int i = 100;i &gt; 10; i--){} // ok
+        do {} while (i = 1); // ok
+        int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+    }
+}
         </source>
         <p>
           To configure the check to allow empty lambda bodies:
@@ -2933,6 +3143,15 @@ try {
   &lt;property name=&quot;allowEmptyLambdas&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public static void main(String[] args) {
+        Runnable noop = () -&gt; {}; // ok
+        int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+    }
+}
+        </source>
         <p>
           To configure the check to allow empty catch bodies:
         </p>
@@ -2940,6 +3159,17 @@ try {
 &lt;module name=&quot;WhitespaceAround&quot;&gt;
   &lt;property name=&quot;allowEmptyCatches&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class Test {
+    public static void main(String[] args) {
+        int a=4; // 2 violations, '=' is not followed and preceded by whitespace.
+        try {
+            // body
+        } catch (Exception e){} // ok
+    }
+}
         </source>
         <p>
           Also, this check can be configured to ignore the colon in an enhanced for loop.
@@ -2950,9 +3180,21 @@ try {
         </p>
         <source>
 &lt;module name=&quot;WhitespaceAround&quot;&gt;
-  &lt;property name="ignoreEnhancedForColon" value="true" /&gt;
+  &lt;property name="ignoreEnhancedForColon" value="false" /&gt;
 &lt;/module&gt;
         </source>
+          <p>Example:</p>
+          <source>
+class Test {
+    public static void main(String[] args) {
+        int a=4; // 2 violations , '=' is not followed and preceded by whitespace.
+        char[] vowels = {'a', 'e', 'i', 'o', 'u'};
+        for (char item: vowels) { // violation, ':' is not preceded by whitespace.
+            // body
+        }
+    }
+}
+          </source>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">

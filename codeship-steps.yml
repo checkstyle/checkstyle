@@ -1,6 +1,7 @@
 - type: parallel
   # Codeship does not support PR from fork, it supports only builds of branches
   # so to keep running validation at least from main repo branches we should not define tag
+  # Codeship does not support multiline commands.
   #tag: master
   service: system
   steps:

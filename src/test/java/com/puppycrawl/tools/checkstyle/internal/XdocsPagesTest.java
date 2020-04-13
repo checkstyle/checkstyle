@@ -937,11 +937,6 @@ public class XdocsPagesTest {
             // dynamic custom expression
             result = "Regular Expression";
         }
-        else if ("CustomImportOrder".equals(sectionName)
-                && "customImportOrderRules".equals(propertyName)) {
-            // specially separated list
-            result = "String";
-        }
         else if (fieldClass == boolean.class) {
             result = "Boolean";
         }
@@ -1071,7 +1066,7 @@ public class XdocsPagesTest {
                 result = "default locale language for the Java Virtual Machine";
             }
             else if ("Checker".equals(sectionName) && "charset".equals(propertyName)) {
-                result = "System property \"file.encoding\"";
+                result = "UTF-8";
             }
             else if ("charset".equals(propertyName)) {
                 result = "the charset property of the parent Checker module";

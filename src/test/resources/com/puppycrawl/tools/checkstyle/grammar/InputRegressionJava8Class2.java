@@ -19,7 +19,7 @@ public class InputRegressionJava8Class2 {
     static class Inner3<T> { public void m() {} }
 
     public void m1(@MyAnnotation String @MyAnnotation ... vararg) {}
-    public String m2() @MyAnnotation [] @MyAnnotation [] { return null; }    
+    public String m2() @MyAnnotation [] @MyAnnotation [] { return null; }
 
     public void instructions() {
         // annotations
@@ -28,7 +28,7 @@ public class InputRegressionJava8Class2 {
         (new Inner3()).<@MyAnnotation String>m();
         Object arr = new @MyAnnotation String @MyAnnotation [3];
         for (String a @MyAnnotation [] : m2()) {}
-        Object arr2 = new @MyAnnotation int[3];        
+        Object arr2 = new @MyAnnotation int[3];
     }
 }
 
