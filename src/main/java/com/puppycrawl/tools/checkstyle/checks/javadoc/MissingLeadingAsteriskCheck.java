@@ -118,6 +118,10 @@ public class MissingLeadingAsteriskCheck extends AbstractCheck {
      * @return true, if the given comment is an javadoc comment.
      */
     private static boolean isJavaDocComment(String comment) {
-        return comment.charAt(0) == JAVADOC_COMMENT_START;
+        boolean result = false;
+        if (comment.length() > 0) {
+            result = comment.charAt(0) == JAVADOC_COMMENT_START;
+        }
+        return result;
     }
 }
