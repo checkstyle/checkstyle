@@ -17,9 +17,22 @@
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile" />
     <module name="RegexpSingleline">
+      <property name="id" value="lineLength"/>
       <!-- catch lines above 100 symbols -->
       <property name="format"
                value="^(?!(.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd)).{101,}$"/>
       <property name="message" value="Line should not be longer than 100 symbols"/>
     </module>
+
+    <!-- check the number of testCases -->
+    <module name="RegexpSingleline">
+      <property name="id" value="numberOfTestCases"/>
+      <property name="format" value="@Test"/>
+      <property name="minimum" value="2"/>
+      <property name="maximum" value="9999"/>
+      <property name="fileExtensions" value="java"/>
+      <property name="message"
+                value="Two or more test cases are required"/>
+    </module>
+    
 </module>
