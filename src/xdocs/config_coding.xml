@@ -4468,6 +4468,24 @@ enum Foo10 { FOO, BAR } // OK
         <source>
 &lt;module name=&quot;NoFinalizer&quot;/&gt;
         </source>
+          <p>Example:</p>
+          <div class="wrapper">
+              <pre>
+public class Test {
+
+    // Violation
+    protected void finalize() throws Throwable {
+        try {
+            System.out.println("overriding finalize()");
+        } catch (Throwable t) {
+            throw t;
+        } finally {
+            super.finalize();
+        }
+    }
+}
+              </pre>
+          </div>
       </subsection>
 
       <subsection name="Example of Usage" id="NoFinalizer_Example_of_Usage">
