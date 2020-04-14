@@ -78,5 +78,12 @@ class Switch {
             ;
         }
         for (int k : new int[]{1,2,3}) {}
+        String s = "Hello" + //warn
+                "WOrld";
+        String s1 = "Hello" + /*warn*/
+                "WOrld";
+        String s2 = "Hello" + /*
+        warn*/
+                "WOrld";
     }
 }
