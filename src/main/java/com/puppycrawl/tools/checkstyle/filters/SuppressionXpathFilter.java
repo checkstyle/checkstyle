@@ -44,9 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul id="SuppressionXpathFilter_IncompatibleChecks">
  * <li>
- * AvoidEscapedUnicodeCharacters
- * </li>
- * <li>
  * CommentsIndentation
  * </li>
  * <li>
