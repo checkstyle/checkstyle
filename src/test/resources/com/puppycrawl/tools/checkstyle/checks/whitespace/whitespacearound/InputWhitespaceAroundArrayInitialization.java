@@ -15,8 +15,8 @@ public class InputWhitespaceAroundArrayInitialization {
         final String[][] COLORS22 = { {"White", "Yellow"}, {"Pink"} }; //valid
 
         final String[][][] COLORS31 = { { {"Black", "Blue"}, {"Gray", "White"}},
-        		                       { {"Green", "Brown", "Magneta"}},
-        		                       { {"Red", "Purple", "Violet"}} }; //valid
+                                       { {"Green", "Brown", "Magneta"}},
+                                       { {"Red", "Purple", "Violet"}} }; //valid
 
         final String[][][] COLORS32 = { {{"Red", "Green"},{"Pink"}} }; //missing before Red and Pink
 

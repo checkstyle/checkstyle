@@ -5,19 +5,19 @@ import java.lang.annotation.Target;
 
 
 public class InputAnnotations10 {
-	public static Object methodName(Object str) {
-		try {
+    public static Object methodName(Object str) {
+        try {
             return null;
 
         } catch (@MyAnnotation1(name = "ABC", version = 1) Exception ex) {
             return "";
         }
-	}
+    }
 
-	@Target(ElementType.TYPE_USE)
-	@interface MyAnnotation1 {
+    @Target(ElementType.TYPE_USE)
+    @interface MyAnnotation1 {
 
-	String name();
-	int version();
-	}
+    String name();
+    int version();
+    }
 }

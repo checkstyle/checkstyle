@@ -2,343 +2,343 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 import java.util.*;
 public class InputVariableDeclarationUsageDistance {
 
-	private static int test1 = 0;
+    private static int test1 = 0;
 
-	static {
-		int b = 0;
-		int d = 0;
-		{
-			d = ++b;
-		}
-	}
+    static {
+        int b = 0;
+        int d = 0;
+        {
+            d = ++b;
+        }
+    }
 
-	static {
-		int c = 0;
-		int a = 3;
-		int b = 2;
-		{
-			a = a + b;
-			c = b;
-		}
-		{
-			c--;
-		}
-		a = 7;
-	}
+    static {
+        int c = 0;
+        int a = 3;
+        int b = 2;
+        {
+            a = a + b;
+            c = b;
+        }
+        {
+            c--;
+        }
+        a = 7;
+    }
 
-	static {
-		int a = -1;
-		int b = 2;
-		b++;
-		int c = --b;
-		a = b; // DECLARATION OF VARIABLE 'a' SHOULD BE HERE (distance = 2)
-	}
+    static {
+        int a = -1;
+        int b = 2;
+        b++;
+        int c = --b;
+        a = b; // DECLARATION OF VARIABLE 'a' SHOULD BE HERE (distance = 2)
+    }
 
-	public InputVariableDeclarationUsageDistance(int test1) {
-		int temp = -1;
-		this.test1 = test1;
-		temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
-	}
+    public InputVariableDeclarationUsageDistance(int test1) {
+        int temp = -1;
+        this.test1 = test1;
+        temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
+    }
 
-	public boolean testMethod() {
-		int temp = 7;
-		new InputVariableDeclarationUsageDistance(2);
-		String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
-		boolean result = false;
-		String str = "";
-		if (test1 > 1) {
-			str = "123";
-			result = true;
-		}
-		return result;
-	}
+    public boolean testMethod() {
+        int temp = 7;
+        new InputVariableDeclarationUsageDistance(2);
+        String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
+        boolean result = false;
+        String str = "";
+        if (test1 > 1) {
+            str = "123";
+            result = true;
+        }
+        return result;
+    }
 
-	public void testMethod2() {
-		int count;
-		int a = 3;
-		int b = 2;
-		{
-			a = a
-					+ b
-					- 5
-					+ 2
-					* a;
-			count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
-		}
-	}
+    public void testMethod2() {
+        int count;
+        int a = 3;
+        int b = 2;
+        {
+            a = a
+                    + b
+                    - 5
+                    + 2
+                    * a;
+            count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 2)
+        }
+    }
 
-	public void testMethod3() {
-		int count;
-		int a = 3;
-		int b = 3;
-		a = a + b;
-		b = a + a;
-		testMethod2();
-		count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 4)
-	}
+    public void testMethod3() {
+        int count;
+        int a = 3;
+        int b = 3;
+        a = a + b;
+        b = a + a;
+        testMethod2();
+        count = b; // DECLARATION OF VARIABLE 'count' SHOULD BE HERE (distance = 4)
+    }
 
-	public void testMethod4(int arg) {
-		int d = 0;
-		for (int i = 0; i < 10; i++) {
-			d++;
-			if (i > 5) {
-				d += arg;
-			}
-		}
+    public void testMethod4(int arg) {
+        int d = 0;
+        for (int i = 0; i < 10; i++) {
+            d++;
+            if (i > 5) {
+                d += arg;
+            }
+        }
 
-		String ar[] = { "1", "2" };
-		for (String st : ar) {
-			System.identityHashCode(st);
-		}
-	}
+        String ar[] = { "1", "2" };
+        for (String st : ar) {
+            System.identityHashCode(st);
+        }
+    }
 
-	public void testMethod5() {
-		int arg = 7;
-		boolean b = true;
-		boolean bb = false;
-		if (b)
-			if (!bb)
-				b = false;
-		testMethod4(arg); // DECLARATION OF VARIABLE 'arg' SHOULD BE HERE (distance = 2)
-	}
+    public void testMethod5() {
+        int arg = 7;
+        boolean b = true;
+        boolean bb = false;
+        if (b)
+            if (!bb)
+                b = false;
+        testMethod4(arg); // DECLARATION OF VARIABLE 'arg' SHOULD BE HERE (distance = 2)
+    }
 
-	public void testMethod6() {
-		int blockNumWithSimilarVar = 3;
-		int dist = 0;
-		int index = 0;
-		int block = 0;
+    public void testMethod6() {
+        int blockNumWithSimilarVar = 3;
+        int dist = 0;
+        int index = 0;
+        int block = 0;
 
-		if (blockNumWithSimilarVar <= 1) {
-			do {
-				dist++;
-				if (block > 4) {
-					break;
-				}
-				index++;
-				block++;
-			} while (index < 7);
-		} else {
-			while (index < 8) {
-				dist += block;
-				index++;
-				block++;
-			}
-		}
-	}
+        if (blockNumWithSimilarVar <= 1) {
+            do {
+                dist++;
+                if (block > 4) {
+                    break;
+                }
+                index++;
+                block++;
+            } while (index < 7);
+        } else {
+            while (index < 8) {
+                dist += block;
+                index++;
+                block++;
+            }
+        }
+    }
 
-	public boolean testMethod7(int a) {
-		boolean res;
-		switch (a) {
-		case 1:
-			res = true;
-			break;
-		default:
-			res = false;
-		}
-		return res;
-	}
+    public boolean testMethod7(int a) {
+        boolean res;
+        switch (a) {
+        case 1:
+            res = true;
+            break;
+        default:
+            res = false;
+        }
+        return res;
+    }
 
-	public void testMethod8() {
-		int b = 0;
-		int c = 0;
-		int m = 0;
-		int n = 0;
-		{
-			c++;
-			b++;
-		}
-		{
-			n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
-			m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
-			b++;
-		}
-	}
+    public void testMethod8() {
+        int b = 0;
+        int c = 0;
+        int m = 0;
+        int n = 0;
+        {
+            c++;
+            b++;
+        }
+        {
+            n++; // DECLARATION OF VARIABLE 'n' SHOULD BE HERE (distance = 2)
+            m++; // DECLARATION OF VARIABLE 'm' SHOULD BE HERE (distance = 3)
+            b++;
+        }
+    }
 
-	public void testMethod9() {
-		boolean result = false;
-		boolean b1 = true;
-		boolean b2 = false;
-		if (b1) {
-			if (!b2) {
-				result = true;
-			}
-			result = true;
-		}
-	}
+    public void testMethod9() {
+        boolean result = false;
+        boolean b1 = true;
+        boolean b2 = false;
+        if (b1) {
+            if (!b2) {
+                result = true;
+            }
+            result = true;
+        }
+    }
 
-	public boolean testMethod10() {
-		boolean result;
-		try {
-			result = true;
-		} catch (Exception e) {
-			result = false;
-		} finally {
-			result = false;
-		}
-		return result;
-	}
+    public boolean testMethod10() {
+        boolean result;
+        try {
+            result = true;
+        } catch (Exception e) {
+            result = false;
+        } finally {
+            result = false;
+        }
+        return result;
+    }
 
-	public void testMethod11() {
-		int a = 0;
-		int b = 10;
-		boolean result;
-		try {
-			b--;
-		} catch (Exception e) {
-			b++;
-			result = false; // DECLARATION OF VARIABLE 'result' SHOULD BE HERE (distance = 2)
-		} finally {
-			a++;
-		}
-	}
+    public void testMethod11() {
+        int a = 0;
+        int b = 10;
+        boolean result;
+        try {
+            b--;
+        } catch (Exception e) {
+            b++;
+            result = false; // DECLARATION OF VARIABLE 'result' SHOULD BE HERE (distance = 2)
+        } finally {
+            a++;
+        }
+    }
 
-	public void testMethod12() {
-		boolean result = false;
-		boolean b3 = true;
-		boolean b1 = true;
-		boolean b2 = false;
-		if (b1) {
-			if (b3) {
-				if (!b2) {
-					result = true;
-				}
-				result = true;
-			}
-		}
-	}
+    public void testMethod12() {
+        boolean result = false;
+        boolean b3 = true;
+        boolean b1 = true;
+        boolean b2 = false;
+        if (b1) {
+            if (b3) {
+                if (!b2) {
+                    result = true;
+                }
+                result = true;
+            }
+        }
+    }
 
-	public void testMethod13() {
-		int i = 9;
-		int j = 6;
-		int g = i + 8;
-		int k = j + 10;
-	}
+    public void testMethod13() {
+        int i = 9;
+        int j = 6;
+        int g = i + 8;
+        int k = j + 10;
+    }
 
-	public void testMethod14() {
-		Session s = openSession();
-		Transaction t = s.beginTransaction();
-		A a = new A();
-		E d1 = new E();
-		C1 c = new C1();
-		E d2 = new E();
-		a.setForward(d1);
-		d1.setReverse(a);
-		c.setForward(d2); // DECLARATION OF VARIABLE 'c' SHOULD BE HERE (distance = 3)
-							// DECLARATION OF VARIABLE 'd2' SHOULD BE HERE (distance = 3)
-		d2.setReverse(c);
-		Serializable aid = s.save(a);
-		Serializable d2id = s.save(d2);
-		t.commit(); // DECLARATION OF VARIABLE 't' SHOULD BE HERE (distance = 5)
-		s.close();
-	}
+    public void testMethod14() {
+        Session s = openSession();
+        Transaction t = s.beginTransaction();
+        A a = new A();
+        E d1 = new E();
+        C1 c = new C1();
+        E d2 = new E();
+        a.setForward(d1);
+        d1.setReverse(a);
+        c.setForward(d2); // DECLARATION OF VARIABLE 'c' SHOULD BE HERE (distance = 3)
+                            // DECLARATION OF VARIABLE 'd2' SHOULD BE HERE (distance = 3)
+        d2.setReverse(c);
+        Serializable aid = s.save(a);
+        Serializable d2id = s.save(d2);
+        t.commit(); // DECLARATION OF VARIABLE 't' SHOULD BE HERE (distance = 5)
+        s.close();
+    }
 
-	public boolean isCheckBoxEnabled(int path) {
-		String model = "";
-		if (true) {
-			for (int index = 0; index < path; ++index) {
-				int nodeIndex = model.codePointAt(path);
-				if (model.contains("")) {
-					return false;
-				}
-			}
-		} else {
-			int nodeIndex = model.codePointAt(path);
-			if (model.contains("")) {
-				return false;
-			}
-		}
-		return true;
-	}
+    public boolean isCheckBoxEnabled(int path) {
+        String model = "";
+        if (true) {
+            for (int index = 0; index < path; ++index) {
+                int nodeIndex = model.codePointAt(path);
+                if (model.contains("")) {
+                    return false;
+                }
+            }
+        } else {
+            int nodeIndex = model.codePointAt(path);
+            if (model.contains("")) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-	public Object readObject(String in) throws Exception {
-		String startDay = new String("");
-		String endDay = new String("");
-		return new String(startDay + endDay);
-	}
+    public Object readObject(String in) throws Exception {
+        String startDay = new String("");
+        String endDay = new String("");
+        return new String(startDay + endDay);
+    }
 
-	public int[] getSelectedIndices() {
-		int[] sel = new int[5];
-		String model = "";
-		int a = 0;
-		a++;
-		for (int index = 0; index < 5; ++index) {
-			sel[index] = Integer.parseInt(model.valueOf(a)); // 'sel' SHOULD BE HERE (distance = 2)
-									// DECLARATION OF VARIABLE 'model' SHOULD BE HERE (distance = 2)
-		}
-		return sel;
-	}
+    public int[] getSelectedIndices() {
+        int[] sel = new int[5];
+        String model = "";
+        int a = 0;
+        a++;
+        for (int index = 0; index < 5; ++index) {
+            sel[index] = Integer.parseInt(model.valueOf(a)); // 'sel' SHOULD BE HERE (distance = 2)
+                                    // DECLARATION OF VARIABLE 'model' SHOULD BE HERE (distance = 2)
+        }
+        return sel;
+    }
 
-	public void testMethod15() {
-		String confDebug = "";
-		if (!confDebug.equals("") && !confDebug.equals("null")) {
-			LogLog.warn("The \"" + "\" attribute is deprecated.");
-			LogLog.warn("Use the \"" + "\" attribute instead.");
-			LogLog.setInternalDebugging(confDebug, true);
-		}
+    public void testMethod15() {
+        String confDebug = "";
+        if (!confDebug.equals("") && !confDebug.equals("null")) {
+            LogLog.warn("The \"" + "\" attribute is deprecated.");
+            LogLog.warn("Use the \"" + "\" attribute instead.");
+            LogLog.setInternalDebugging(confDebug, true);
+        }
 
-		int i = 0;
-		int k = 7;
-		boolean b = false;
-		for (; i < k; i++) {
-			b = true;
-			k++;
-		}
+        int i = 0;
+        int k = 7;
+        boolean b = false;
+        for (; i < k; i++) {
+            b = true;
+            k++;
+        }
 
-		int sw;
-		switch (i) {
-		case 0:
-			k++;
-			sw = 0; // DECLARATION OF VARIABLE 'sw' SHOULD BE HERE (distance = 2)
-			break;
-		case 1:
-			b = false;
-			break;
-		default:
-			b = true;
-		}
+        int sw;
+        switch (i) {
+        case 0:
+            k++;
+            sw = 0; // DECLARATION OF VARIABLE 'sw' SHOULD BE HERE (distance = 2)
+            break;
+        case 1:
+            b = false;
+            break;
+        default:
+            b = true;
+        }
 
-		int wh = 0;
-		b = true;
-		do {
-			k--;
-			i++;
-		} while (wh > 0); // DECLARATION OF VARIABLE 'wh' SHOULD BE HERE (distance = 2)
+        int wh = 0;
+        b = true;
+        do {
+            k--;
+            i++;
+        } while (wh > 0); // DECLARATION OF VARIABLE 'wh' SHOULD BE HERE (distance = 2)
 
-		if (wh > 0) {
-			k++;
-		} else if (!b) {
-			i++;
-		} else {
-			i--;
-		}
-	}
+        if (wh > 0) {
+            k++;
+        } else if (!b) {
+            i++;
+        } else {
+            i--;
+        }
+    }
 
-	public void testMethod16() {
-		int wh = 1, i = 4, k = 0;
-		if (i > 0) {
-			k++;
-		} else if (wh > 0) {
-			i++;
-		} else {
-			i--;
-		}
-	}
+    public void testMethod16() {
+        int wh = 1, i = 4, k = 0;
+        if (i > 0) {
+            k++;
+        } else if (wh > 0) {
+            i++;
+        } else {
+            i--;
+        }
+    }
 
-	protected JMenuItem createSubMenuItem(LogLevel level) {
-	    final JMenuItem result = new JMenuItem(level.toString());
-	    final LogLevel logLevel = level;
-	    result.setMnemonic(level.toString().charAt(0));
-	    result.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
-	        showLogLevelColorChangeDialog(result, logLevel);//'logLevel' SHOULD BE HERE (distance=2)
-	      }
-	    });
+    protected JMenuItem createSubMenuItem(LogLevel level) {
+        final JMenuItem result = new JMenuItem(level.toString());
+        final LogLevel logLevel = level;
+        result.setMnemonic(level.toString().charAt(0));
+        result.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+            showLogLevelColorChangeDialog(result, logLevel);//'logLevel' SHOULD BE HERE (distance=2)
+          }
+        });
 
-	    return result;
+        return result;
 
-	  }
+      }
 
-	public static Color darker(Color color, double fraction) {
+    public static Color darker(Color color, double fraction) {
         int red = (int) Math.round(color.getRed() * (1.0 - fraction));
         int green = (int) Math.round(color.getGreen() * (1.0 - fraction));
         int blue = (int) Math.round(color.getBlue() * (1.0 - fraction));
@@ -362,10 +362,10 @@ public class InputVariableDeclarationUsageDistance {
         return new Color(red, green, blue, alpha);
     }
 
-	public void testFinal() {
-		AuthUpdateTask task = null;
-		final long intervalMs = 30 * 60000L; // 30 min
-		Object authCheckUrl = null, authInfo = null;
+    public void testFinal() {
+        AuthUpdateTask task = null;
+        final long intervalMs = 30 * 60000L; // 30 min
+        Object authCheckUrl = null, authInfo = null;
         task = new AuthUpdateTask(authCheckUrl, authInfo, new IAuthListener() {
             @Override
             public void authTokenChanged(String cookie, String token) {
@@ -375,22 +375,22 @@ public class InputVariableDeclarationUsageDistance {
 
         Timer timer = new Timer("Auth Guard", true);
         timer.schedule(task, intervalMs / 2, intervalMs);//'intervalMs' SHOULD BE HERE(distance = 2)
-	}
+    }
 
-	public void testForCycle() {
-		int filterCount = 0;
-		for (int i = 0; i < 10; i++, filterCount++) {
-			int abc = 0;
-			System.identityHashCode(abc);
+    public void testForCycle() {
+        int filterCount = 0;
+        for (int i = 0; i < 10; i++, filterCount++) {
+            int abc = 0;
+            System.identityHashCode(abc);
 
-			for (int j = 0; j < 10; j++) {
-				abc = filterCount;
-				System.identityHashCode(abc);
-			}
-		}
-	}
+            for (int j = 0; j < 10; j++) {
+                abc = filterCount;
+                System.identityHashCode(abc);
+            }
+        }
+    }
 
-	public void testIssue32_1()
+    public void testIssue32_1()
     {
         Option srcDdlFile = OptionBuilder.create("f");
         Option logDdlFile = OptionBuilder.create("o");
@@ -716,7 +716,7 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     boolean isNull(Option o) {
-		return false;}
+        return false;}
 
     class Writer {
 
@@ -732,16 +732,16 @@ public class InputVariableDeclarationUsageDistance {
 
         }
 
-		public void
-				addOption(Option srcDdlFile, Option logDdlFile, Option help)
-		{
+        public void
+                addOption(Option srcDdlFile, Option logDdlFile, Option help)
+        {
 
-		}
+        }
 
-		public void something()
-		{
+        public void something()
+        {
 
-		}
+        }
 
     }
 
@@ -764,62 +764,62 @@ public class InputVariableDeclarationUsageDistance {
 
     static class LogLog {
 
-		public static void warn(String string)
-		{
+        public static void warn(String string)
+        {
 
-		}
+        }
 
-		public static void setInternalDebugging(String confDebug, boolean b)
-		{
+        public static void setInternalDebugging(String confDebug, boolean b)
+        {
 
-		}
+        }
 
     }
 
     static class OptionBuilder {
 
-		public static Option create(String string)
-		{
-			return null;
-		}
+        public static Option create(String string)
+        {
+            return null;
+        }
 
     }
 
     class MyObject {
 
-		public void setEnabled(boolean b)
-		{
+        public void setEnabled(boolean b)
+        {
 
-		}
+        }
 
-		public void setCalendar(Calendar cal)
-		{
+        public void setCalendar(Calendar cal)
+        {
 
-		}
+        }
 
-		public void setSize(int i)
-		{
+        public void setSize(int i)
+        {
 
-		}
+        }
 
-		public void setUrl(String string)
-		{
+        public void setUrl(String string)
+        {
 
-		}
+        }
 
-		public void setColor(int i)
-		{
+        public void setColor(int i)
+        {
 
-		}
+        }
 
     }
 
     static class otherWriter {
 
-		public static void write(String line)
-		{
+        public static void write(String line)
+        {
 
-		}
+        }
 
     }
 
@@ -829,10 +829,10 @@ public class InputVariableDeclarationUsageDistance {
 
     static class builder {
 
-		public static void append(String line)
-		{
+        public static void append(String line)
+        {
 
-		}
+        }
 
     }
 

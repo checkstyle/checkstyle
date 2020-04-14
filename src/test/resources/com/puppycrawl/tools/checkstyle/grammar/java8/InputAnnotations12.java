@@ -12,5 +12,5 @@ public class InputAnnotations12 {
     public void m5(@MyAnnotation1 String[][] @MyAnnotation1 [] @MyAnnotation1 [] ... vararg) {}
 
     @Target(ElementType.TYPE_USE)
-	@interface MyAnnotation1 {}
+    @interface MyAnnotation1 {}
 }

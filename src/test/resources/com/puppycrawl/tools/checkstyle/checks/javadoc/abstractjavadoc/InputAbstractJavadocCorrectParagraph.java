@@ -79,7 +79,7 @@ class InputAbstractJavadocCorrectParagraph {
 
     InnerInputCorrectJavaDocParagraphCheck anon = new InnerInputCorrectJavaDocParagraphCheck() {
 
-    	/**
+        /**
          * Some Javadoc.
          *
          * <p>Some Javadoc.

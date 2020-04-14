@@ -6,11 +6,11 @@ import java.util.logging.Logger;
 
 public class InputLambda6 {
 
-	private static final Logger LOG = Logger.getLogger(InputLambda6.class.getName());
+    private static final Logger LOG = Logger.getLogger(InputLambda6.class.getName());
 
-	public void doSomething() {
-		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+    public void doSomething() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-		numbers.forEach((value) -> LOG.info(value.toString()));
-	}
+        numbers.forEach((value) -> LOG.info(value.toString()));
+    }
 }

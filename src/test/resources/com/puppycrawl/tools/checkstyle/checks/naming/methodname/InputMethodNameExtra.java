@@ -5,10 +5,10 @@ public class InputMethodNameExtra
     public void doit()
     {
         Object historyDetails = null;
-		Object previousNameService = null;
-		Object entityId = null;
-		Object agencyName = null;
-		createNameHistoryDetails(historyDetails, previousNameService, entityId,
+        Object previousNameService = null;
+        Object entityId = null;
+        Object agencyName = null;
+        createNameHistoryDetails(historyDetails, previousNameService, entityId,
             new More.ViewChangeHistoryBaseAction.ChangeHistoryDisplayName(agencyName)
             {
                 String getDisplayName()
@@ -18,40 +18,40 @@ public class InputMethodNameExtra
             });
     }
 
-	private
-			void
-			createNameHistoryDetails(Object historyDetails, Object previousNameService,
-					Object entityId, More.ViewChangeHistoryBaseAction.ChangeHistoryDisplayName
-							changeHistoryDisplayName)
-	{
+    private
+            void
+            createNameHistoryDetails(Object historyDetails, Object previousNameService,
+                    Object entityId, More.ViewChangeHistoryBaseAction.ChangeHistoryDisplayName
+                            changeHistoryDisplayName)
+    {
 
-	}
+    }
 
-	protected String getPreviousName()
-	{
-		return null;
-	}
+    protected String getPreviousName()
+    {
+        return null;
+    }
 
-	private void createNameHistoryDetails(Object historyDetails, Object previousNameService,
-			Object entityId, ChangeHistoryDisplayName changeHistoryDisplayName)
-	{
+    private void createNameHistoryDetails(Object historyDetails, Object previousNameService,
+            Object entityId, ChangeHistoryDisplayName changeHistoryDisplayName)
+    {
 
-	}
+    }
 
-	private static class More {
-		public static class ViewChangeHistoryBaseAction {
-			public static class ChangeHistoryDisplayName {
+    private static class More {
+        public static class ViewChangeHistoryBaseAction {
+            public static class ChangeHistoryDisplayName {
 
-				public ChangeHistoryDisplayName(Object agencyName)
-				{
+                public ChangeHistoryDisplayName(Object agencyName)
+                {
 
-				}
+                }
 
-			}
-		}
-	}
+            }
+        }
+    }
 
-	private class ChangeHistoryDisplayName {
+    private class ChangeHistoryDisplayName {
 
-	}
+    }
 }
