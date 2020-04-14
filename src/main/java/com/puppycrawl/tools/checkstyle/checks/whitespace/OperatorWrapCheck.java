@@ -293,20 +293,15 @@ public class OperatorWrapCheck
             final int lineNo = ast.getLineNo();
             final String currentLine = getLine(lineNo - 1);
 
-            // Check if post the operator a whitespace or a comment node exists,
-            // in order to log a warning for operatorWrao.
+            // Check if post the operator a whitespace or a comment exists,
+            // in order to log a warning for operatorWrap.
+            final String currentLineSubstring = currentLine.substring(colNo + text.length());
             if (option == WrapOption.NL
-                    && !text.equals(currentLine.trim())) {
-                if(CommonUtil.isBlank(currentLine.substring(colNo + text.length()))){
-                    log(ast, MSG_LINE_NEW, text);
-                } else if((ast.getFirstChild() != null)
-                            && (ast.getFirstChild().getNextSibling().getType()
-                                == TokenTypes.SINGLE_LINE_COMMENT
-                            || ast.getFirstChild().getNextSibling().getType()
-                                == TokenTypes.BLOCK_COMMENT_BEGIN)){
-                        log(ast, MSG_LINE_NEW, text);
-                }
-
+                    && !text.equals(currentLine.trim())
+                    && (CommonUtil.isBlank(currentLineSubstring)
+                    || currentLineSubstring.trim().indexOf("//") == 0
+                    || currentLineSubstring.trim().indexOf("/*") == 0)) {
+                log(ast, MSG_LINE_NEW, text);
             }
             else if (option == WrapOption.EOL
                     && CommonUtil.hasWhitespaceBefore(colNo - 1, currentLine)) {
