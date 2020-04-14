@@ -545,7 +545,15 @@ public final class CommonUtil {
         if (matcher.find()) {
             for (int i = 0; i <= matcher.groupCount(); i++) {
                 // $n expands comment match like in Pattern.subst().
-                result = result.replaceAll("\\$" + i, matcher.group(i));
+                if (template.matches("(^(\\$\\d+))$")
+                        && Integer.parseInt(template.substring(1)) <= matcher.groupCount()
+                        && matcher.group(Integer.parseInt(template.substring(1))) == null) {
+                    throw new IllegalArgumentException("unable to compute null regex group: "
+                            + template);
+                }
+                else {
+                    result = result.replaceAll("\\$" + i, matcher.group(i));
+                }
             }
         }
         return result;
