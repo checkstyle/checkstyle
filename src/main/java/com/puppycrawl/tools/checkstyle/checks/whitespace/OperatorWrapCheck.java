@@ -293,12 +293,14 @@ public class OperatorWrapCheck
             final int lineNo = ast.getLineNo();
             final String currentLine = getLine(lineNo - 1);
 
-            // Check if rest of line is whitespace, and not just the operator
-            // by itself. This last bit is to handle the operator on a line by
-            // itself.
+            // Check if post the operator a whitespace or a comment exists,
+            // in order to log a warning for operatorWrap.
+            final String currentLineSubstring = currentLine.substring(colNo + text.length());
             if (option == WrapOption.NL
                     && !text.equals(currentLine.trim())
-                    && CommonUtil.isBlank(currentLine.substring(colNo + text.length()))) {
+                    && (CommonUtil.isBlank(currentLineSubstring)
+                    || currentLineSubstring.trim().indexOf("//") == 0
+                    || currentLineSubstring.trim().indexOf("/*") == 0)) {
                 log(ast, MSG_LINE_NEW, text);
             }
             else if (option == WrapOption.EOL
@@ -307,5 +309,4 @@ public class OperatorWrapCheck
             }
         }
     }
-
 }
