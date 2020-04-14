@@ -309,10 +309,4 @@ public class OperatorWrapCheck
             }
         }
     }
-
-    @Override
-    public boolean isCommentNodesRequired() {
-        return true;
-    }
-
 }
