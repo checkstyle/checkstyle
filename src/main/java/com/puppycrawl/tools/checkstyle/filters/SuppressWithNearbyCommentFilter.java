@@ -52,6 +52,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * a <a href="https://checkstyle.org/config_filters.html#SuppressWithPlainTextCommentFilter">
  * SuppressWithPlainTextCommentFilter</a> or similar filter must be used.
  * </p>
+ * <p>
+ * SuppressWithNearbyCommentFilter can suppress Checks that have
+ * Treewalker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code commentFormat} - Specify comment pattern to trigger filter to begin suppression.
