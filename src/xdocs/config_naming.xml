@@ -153,11 +153,64 @@
       </subsection>
 
       <subsection name="Examples" id="AbbreviationAsWordInName_Examples">
-       <p>
-         Default configuration
-       </p>
+       <p>Default Configuration:</p>
        <source>
 &lt;module name="AbbreviationAsWordInName"/&gt;
+       </source>
+       <p>Example:</p>
+       <source>
+public class MyClass extends SuperClass { // OK, camel case
+  int CURRENT_COUNTER; // violation, at most 4 consecutive capital letters allowed
+  static int GLOBAL_COUNTER; // OK, static is ignored
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
+
+  &#64;Override
+  void printCOUNTER() { // OK, overridden method is ignored
+    System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
+  }
+
+  void incrementCOUNTER() { // violation, at most 4 consecutive capital letters allowed
+    CURRENT_COUNTER++; // OK, only definitions are checked
+  }
+
+  static void incrementGLOBAL() { // violation, static method is not ignored
+    GLOBAL_COUNTER++; // OK, only definitions are checked
+  }
+
+}
+       </source>
+       <p>
+         To configure to include static variables and
+         methods tagged with <code>@Override</code> annotation.
+       </p>
+       <p>Configuration:</p>
+       <source>
+&lt;module name="AbbreviationAsWordInName"&gt;
+  &lt;property name="ignoreStatic" value="false"/&gt;
+  &lt;property name="ignoreOverriddenMethods" value="false"/&gt;
+&lt;/module&gt;
+       </source>
+       <p>Example:</p>
+       <source>
+public class MyClass extends SuperClass { // OK, camel case
+  int CURRENT_COUNTER; // violation, at most 4 consecutive capital letters allowed
+  static int GLOBAL_COUNTER; // violation, static is not ignored
+  final Set&lt;String&gt; stringsFOUND = new HashSet&lt;&gt;(); // OK, final is ignored
+
+  &#64;Override
+  void printCOUNTER() { // violation, overridden method is not ignored
+    System.out.println(CURRENT_COUNTER); // OK, only definitions are checked
+  }
+
+  void incrementCOUNTER() { // violation, at most 4 consecutive capital letters allowed
+    CURRENT_COUNTER++; // OK, only definitions are checked
+  }
+
+  static void incrementGLOBAL() { // violation, at most 4 consecutive capital letters allowed
+    GLOBAL_COUNTER++; // OK, only definitions are checked
+  }
+
+}
        </source>
        <p>
           To configure to check all variables and identifiers
