@@ -74,7 +74,7 @@ no-error-orekit)
   # checkout to version that Orekit expects
   SHA_HIPPARCHUS="1fb""fb8a2a259a9""7a23e2a387e8fd""c5e0a8402e77"
   git checkout $SHA_HIPPARCHUS
-  mvn install -DskipTests
+  mvn -e install -DskipTests
   cd -
   checkout_from https://github.com/CS-SI/Orekit.git
   cd .ci-temp/Orekit
@@ -96,7 +96,7 @@ no-error-xwiki)
   cd .ci-temp/xwiki-commons
   SHA_XWIKI="4fa""a8a49de3a70b""ba9c6c3849784e5d""fb642fa8d"
   git checkout $SHA_XWIKI
-  mvn -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
+  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
@@ -213,7 +213,7 @@ no-error-strata)
   cd .ci-temp/Strata
   STRATA_CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  mvn install -e -B -Dstrict -DskipTests \
+  mvn -e install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
