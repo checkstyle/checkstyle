@@ -923,7 +923,6 @@ public class UserService {
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
           <li>Indentation</li>
-          <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>Regexp (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
