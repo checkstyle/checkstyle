@@ -6,8 +6,8 @@ public class InputIllegalTypeMemberModifiers {
     private AbstractClass a = null; //WARNING
     private NotAnAbstractClass b = null; /*another comment*/
 
-    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeMemberModifiers.AbstractClass c = null; //WARNING
-    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeMemberModifiers.NotAnAbstractClass d = null;
+    private AbstractClass c = null; //WARNING
+    private NotAnAbstractClass d = null;
 
     private abstract class AbstractClass {/*one more comment*/}
 
@@ -20,7 +20,7 @@ public class InputIllegalTypeMemberModifiers {
     }
 
     //WARNING if memberModifiers is set and contains TokenTypes.LITERAL_PROTECTED
-    protected com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeMemberModifiers.AbstractClass c1 = null;
+    protected AbstractClass c1 = null;
     //NO WARNING if memberModifiers is set and does not contain TokenTypes.LITERAL_PUBLIC
     public final static java.util.TreeSet<Object> table3() { return null; }
 

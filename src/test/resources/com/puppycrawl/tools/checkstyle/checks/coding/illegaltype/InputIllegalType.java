@@ -6,8 +6,8 @@ public class InputIllegalType implements InputIllegalTypeSuper {
     private AbstractClass a = null; //WARNING
     private NotAnAbstractClass b = null; /*another comment*/
 
-    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass c = null; //WARNING
-    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.NotAnAbstractClass d = null;
+    private InputIllegalType.AbstractClass c = null; //WARNING
+    private NotAnAbstractClass d = null;
 
     private abstract class AbstractClass {/*one more comment*/}
 
