@@ -924,7 +924,6 @@ public class UserService {
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
           <li>Indentation</li>
-          <li>InterfaceMemberImpliedModifier</li>
           <li>JavadocMethod</li>
           <li>JavadocType</li>
           <li>MissingJavadocType</li>

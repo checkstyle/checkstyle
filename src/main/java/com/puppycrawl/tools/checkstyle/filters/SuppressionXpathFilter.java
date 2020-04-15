@@ -59,9 +59,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Indentation
  * </li>
  * <li>
- * InterfaceMemberImpliedModifier
- * </li>
- * <li>
  * JavadocMethod
  * </li>
  * <li>
