@@ -77,7 +77,7 @@ pipeline {
       parallel {
         stage('Package') {
           steps {
-            sh "mvn -B package"
+            sh "mvn -e -B package"
           }
         }
       }

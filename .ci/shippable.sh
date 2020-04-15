@@ -21,7 +21,7 @@ function checkout_from {
 function build_checkstyle {
   if [[ "$SHIPPABLE" == "true" ]]; then
     echo "Build checkstyle ..."
-    mvn clean install -Pno-validations
+    mvn -e clean install -Pno-validations
   fi
 }
 

@@ -344,7 +344,7 @@ script:
       fi
       if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
        echo "Maven local repo cache is not found, initializing it ..."
-       mvn -B install -Pno-validations;
+       mvn -e -B install -Pno-validations;
       fi
       echo "eval of CMD is starting";
       echo "CMD=$CMD";

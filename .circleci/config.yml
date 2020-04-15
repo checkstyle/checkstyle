@@ -38,7 +38,7 @@ jobs:
               ls -la
               java -version
               mvn --version
-              mvn -Ppitest-metrics dependency:go-offline
+              mvn -e -Ppitest-metrics dependency:go-offline
             else
               echo "build is skipped ..."
             fi
