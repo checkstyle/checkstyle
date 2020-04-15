@@ -2554,6 +2554,77 @@ class DatabaseConfiguration {}
       </subsection>
     </section>
 
+    <section name="MissingLeadingAsterisk">
+      <p>Since Checkstyle 8.32</p>
+      <subsection name="Description" id="MissingLeadingAsterisk_Description">
+        <p>
+          Checks if the javadoc has leading asterisk on each line or not.
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="MissingLeadingAsterisk_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;MissingLeadingAsterisk&quot;/&gt;
+        </source>
+        <p>Example: </p>
+        <source>
+/** // violation, javadoc has lines without leading asterisk.
+ * Some description here.
+            Another line of description.
+ */
+public class Test {
+   /** // violation, javadoc has lines without leading asterisk.
+    * Some description here.
+    * Another line of description.
+      Another line of description.
+    */
+    public void test() {}
+
+    /** Some description here. */ // OK
+    public void test1() {}
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="MissingLeadingAsterisk_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MissingLeadingAsterisk">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+                  id="MissingLeadingAsterisk_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missing.asterisk%22">
+            javadoc.missing.asterisk</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="MissingLeadingAsterisk_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="MissingLeadingAsterisk_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="NonEmptyAtclauseDescription">
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="NonEmptyAtclauseDescription_Description">
