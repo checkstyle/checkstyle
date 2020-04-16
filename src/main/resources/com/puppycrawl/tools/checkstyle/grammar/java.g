@@ -1224,15 +1224,27 @@ resources
     ;
 
 
-resource
-    : IDENT
-      | modifiers typeSpec[true] IDENT resource_assign
-      {#resource = #([RESOURCE, "RESOURCE"], #resource);}
+tryResourceDeclarator![AST mods, AST t]
+    :    id:IDENT d:declaratorBrackets[t] v:varInitializer
+        {#tryResourceDeclarator = #(#[RESOURCE, "RESOURCE"], mods, #(#[TYPE,"TYPE"],d), id, v);}
+    ;
+
+
+tryResourceDeclaration!
+    : m: parameterModifier t: typeSpec[false]
+                                    v: tryResourceDeclarator[(AST) getASTFactory().dupTree(#m),
+                                    //dupList as this also copies siblings (like TYPE_ARGUMENTS)
+                                    (AST) getASTFactory().dupList(#t)]
+    {#tryResourceDeclaration = #v;}
 ;
 
-resource_assign
-    : ASSIGN^ expression
-    ;
+
+resource
+    : (tryResourceDeclaration)=>  tryResourceDeclaration
+    | ( (primaryExpression DOT^)+ identifier
+    | IDENT)+
+    {#resource = #([RESOURCE, "RESOURCE"], #resource);}
+;
 
 // an exception handler
 handler
