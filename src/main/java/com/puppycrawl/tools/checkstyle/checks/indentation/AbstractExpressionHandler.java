@@ -143,25 +143,25 @@ public abstract class AbstractExpressionHandler {
         if (expectedIndent.isMultiLevel()) {
             messageKey = IndentationCheck.MSG_ERROR_MULTI;
         }
-        indentCheck.indentationLog(ast.getLineNo(), messageKey,
+        indentCheck.indentationLog(ast, messageKey,
             typeName + typeStr, actualIndent, expectedIndent);
     }
 
     /**
      * Log child indentation error.
      *
-     * @param line           the expression that caused the error
+     * @param ast            the abstract syntax tree that causes the error
      * @param actualIndent   the actual indent level of the expression
      * @param expectedIndent the expected indent level of the expression
      */
-    private void logChildError(int line,
+    private void logChildError(DetailAST ast,
                                int actualIndent,
                                IndentLevel expectedIndent) {
         String messageKey = IndentationCheck.MSG_CHILD_ERROR;
         if (expectedIndent.isMultiLevel()) {
             messageKey = IndentationCheck.MSG_CHILD_ERROR_MULTI;
         }
-        indentCheck.indentationLog(line, messageKey,
+        indentCheck.indentationLog(ast, messageKey,
             typeName, actualIndent, expectedIndent);
     }
 
@@ -251,26 +251,26 @@ public abstract class AbstractExpressionHandler {
     /**
      * Check the indentation for a set of lines.
      *
-     * @param lines              the set of lines to check
+     * @param astSet             the set of abstract syntax tree to check
      * @param indentLevel        the indentation level
      * @param firstLineMatches   whether or not the first line has to match
      * @param firstLine          first line of whole expression
      */
-    private void checkLinesIndent(LineSet lines,
+    private void checkLinesIndent(DetailAstSet astSet,
                                   IndentLevel indentLevel,
                                   boolean firstLineMatches,
                                   int firstLine) {
-        if (!lines.isEmpty()) {
+        if (!astSet.isEmpty()) {
             // check first line
-            final int startLine = lines.firstLine();
-            final int endLine = lines.lastLine();
-            final int startCol = lines.firstLineCol();
+            final DetailAST startLine = astSet.firstLine();
+            final int endLine = astSet.lastLine();
+            final int startCol = expandedTabsColumnNo(astSet.firstLine());
 
             final int realStartCol =
-                getLineStart(indentCheck.getLine(startLine - 1));
+                getLineStart(indentCheck.getLine(startLine.getLineNo() - 1));
 
             if (realStartCol == startCol) {
-                checkLineIndent(startLine, startCol, indentLevel,
+                checkLineIndent(startLine, indentLevel,
                     firstLineMatches);
             }
 
@@ -287,14 +287,14 @@ public abstract class AbstractExpressionHandler {
             }
 
             // check following lines
-            for (int i = startLine + 1; i <= endLine; i++) {
-                final Integer col = lines.getStartColumn(i);
+            for (int i = startLine.getLineNo() + 1; i <= endLine; i++) {
+                final Integer col = astSet.getStartColumn(i);
                 // startCol could be null if this line didn't have an
                 // expression that was required to be checked (it could be
                 // checked by a child expression)
 
                 if (col != null) {
-                    checkLineIndent(i, col, theLevel, false);
+                    checkLineIndent(astSet.getAst(i), theLevel, false);
                 }
             }
         }
@@ -303,22 +303,21 @@ public abstract class AbstractExpressionHandler {
     /**
      * Check the indentation for a single line.
      *
-     * @param lineNum       the number of the line to check
-     * @param colNum        the column number we are starting at
+     * @param ast           the abstract syntax tree to check
      * @param indentLevel   the indentation level
      * @param mustMatch     whether or not the indentation level must match
      */
-    private void checkLineIndent(int lineNum, int colNum,
+    private void checkLineIndent(DetailAST ast,
         IndentLevel indentLevel, boolean mustMatch) {
-        final String line = indentCheck.getLine(lineNum - 1);
+        final String line = indentCheck.getLine(ast.getLineNo() - 1);
         final int start = getLineStart(line);
         // if must match is set, it is a violation if the line start is not
         // at the correct indention level; otherwise, it is an only an
         // violation if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch && !indentLevel.isAcceptable(start)
-                || !mustMatch && colNum == start && indentLevel.isGreaterThan(start)) {
-            logChildError(lineNum, start, indentLevel);
+                || !mustMatch && ast.getColumnNo() == start && indentLevel.isGreaterThan(start)) {
+            logChildError(ast, start, indentLevel);
         }
     }
 
@@ -390,37 +389,51 @@ public abstract class AbstractExpressionHandler {
         boolean firstLineMatches,
         boolean allowNesting
     ) {
-        final LineSet subtreeLines = new LineSet();
-        final int firstLine = getFirstLine(Integer.MAX_VALUE, tree);
+        final DetailAstSet subtreeAst = new DetailAstSet();
+        final int firstLine = getFirstLine(tree);
         if (firstLineMatches && !allowNesting) {
-            subtreeLines.addLineAndCol(firstLine,
-                getLineStart(indentCheck.getLine(firstLine - 1)));
+            final DetailAST firstAst = getFirstAst(tree, tree);
+            subtreeAst.addAst(firstAst);
         }
-        findSubtreeLines(subtreeLines, tree, allowNesting);
+        findSubtreeAst(subtreeAst, tree, allowNesting);
 
-        checkLinesIndent(subtreeLines, indentLevel, firstLineMatches, firstLine);
+        checkLinesIndent(subtreeAst, indentLevel, firstLineMatches, firstLine);
     }
 
     /**
-     * Get the first line for a given expression.
+     * Get the first line number for given expression.
      *
-     * @param startLine   the line we are starting from
+     * @param tree      the expression to find the first line for
+     * @return          the first line of expression
+     */
+    protected static int getFirstLine(DetailAST tree) {
+        return getFirstAst(tree, tree).getLineNo();
+    }
+
+    /**
+     * Get the first ast for given expression.
+     *
+     * @param ast         the current ast that may have minimum line number
      * @param tree        the expression to find the first line for
      *
-     * @return the first line of the expression
+     * @return the first ast of the expression
      */
-    protected static int getFirstLine(int startLine, DetailAST tree) {
-        int realStart = startLine;
-        final int currLine = tree.getLineNo();
-        if (currLine < realStart) {
-            realStart = currLine;
+    protected static DetailAST getFirstAst(DetailAST ast, DetailAST tree) {
+        DetailAST realStart = ast;
+
+        if (tree.getLineNo() < realStart.getLineNo()) {
+            realStart = tree;
+        }
+        if (tree.getLineNo() == realStart.getLineNo()
+                && tree.getColumnNo() < realStart.getColumnNo()) {
+            realStart = tree;
         }
 
         // check children
         for (DetailAST node = tree.getFirstChild();
-            node != null;
-            node = node.getNextSibling()) {
-            realStart = getFirstLine(realStart, node);
+             node != null;
+             node = node.getNextSibling()) {
+            realStart = getFirstAst(realStart, node);
         }
 
         return realStart;
@@ -443,28 +456,28 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
-     * Find the set of lines for a given subtree.
+     * Find the set of abstract syntax tree for a given subtree.
      *
-     * @param lines          the set of lines to add to
+     * @param astSet         the set of ast to add
      * @param tree           the subtree to examine
      * @param allowNesting   whether or not to allow nested subtrees
      */
-    protected final void findSubtreeLines(LineSet lines, DetailAST tree,
+    protected final void findSubtreeAst(DetailAstSet astSet, DetailAST tree,
         boolean allowNesting) {
         if (!indentCheck.getHandlerFactory().isHandledType(tree.getType())) {
             final int lineNum = tree.getLineNo();
-            final Integer colNum = lines.getStartColumn(lineNum);
+            final Integer colNum = astSet.getStartColumn(lineNum);
 
             final int thisLineColumn = expandedTabsColumnNo(tree);
             if (colNum == null || thisLineColumn < colNum) {
-                lines.addLineAndCol(lineNum, thisLineColumn);
+                astSet.addAst(tree);
             }
 
             // check children
             for (DetailAST node = tree.getFirstChild();
                 node != null;
                 node = node.getNextSibling()) {
-                findSubtreeLines(lines, node, allowNesting);
+                findSubtreeAst(astSet, node, allowNesting);
             }
         }
     }
