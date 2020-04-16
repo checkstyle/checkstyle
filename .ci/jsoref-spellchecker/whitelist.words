@@ -823,6 +823,7 @@ missingdeprecated
 missingjavadocmethod
 missingjavadocpackage
 missingjavadoctype
+missingleadingasterisk
 missingoverride
 missingswitchdefault
 missingtag
