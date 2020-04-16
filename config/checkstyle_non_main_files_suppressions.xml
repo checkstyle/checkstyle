@@ -6,125 +6,16 @@
 
 <suppressions>
 
-    <!-- Input files for NewlineAtEndOfFileCheckTest, intentional no new line at the end. -->
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]InputNewlineAtEndOfFile.*\.(java|txt)"/>
-
-    <!-- Intentional no new line at the end. -->
-     <suppress checks="NewlineAtEndOfFile"
-               files="[\\/]test[\\/].*[\\/]grammar[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
-     <suppress checks="NewlineAtEndOfFile"
-               files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
-
-    <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
-     <suppress checks="NewlineAtEndOfFile"
-               files="[\\/]test[\\/].*[\\/]grammar[\\/]InputEmbeddedNullChar\.java"/>
-
-    <!-- Javadoc files should not have new line by design (on purpose). -->
-     <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
-
-    <!--Empty file cannot have any new line at the end. -->
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
-
-    <!-- File with CR line separators used for testing -->
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockCommentsCR\.java"/>
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]grammar[\\/]InputAstRegressionNewlineCrAtEndOfFile\.java"/>
-
-    <!-- File with LF line separators used for testing -->
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]checks[\\/]blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF\.java"/>
-
-    <!-- For the testing purposes -->
-    <suppress checks="NewlineAtEndOfFile"
-              files="[\\/]test[\\/].*[\\/]checks[\\/]uniqueproperties[\\/]InputUniquePropertiesWithDuplicates\.properties"/>
-
     <!-- till https://issues.apache.org/jira/browse/MRELEASE-1008 -->
     <suppress id="lineLength" files="pom.xml"/>
     <!-- this file is created by Appveyor CI after checkout -->
     <suppress id="lineLength" files="appveyor.cmd"/>
-    <!-- test resources are weird by design, no validations in them -->
-    <suppress id="lineLength"
-              files="src[\\/]it[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
-
-    <!-- we can not change expected as it will require change of main class logic -->
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/].*ExpectedXMLLogger.*\.xml"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
-
-    <!-- content is generated -->
-    <suppress id="lineLength"
-              files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
-    <suppress id="lineLength"
-              files="src[\\/]xdocs[\\/]releasenotes.xml"/>
     <!-- it contains list of html text, no way to wrap -->
-    <suppress id="lineLength"
-              files=".ci[\\/]pitest.sh"/>
+    <suppress id="lineLength" files=".ci[\\/]pitest.sh"/>
     <!-- property names a too long, nothing we can do -->
-    <suppress id="lineLength"
-              files="config[\\/]org.eclipse.jdt.core.prefs"/>
+    <suppress id="lineLength" files="config[\\/]org.eclipse.jdt.core.prefs"/>
     <!-- there is no way to make line wrap in property value -->
-    <suppress id="lineLength"
-              files="config[\\/]intellij-idea-inspection-scope.xml"/>
-
-    <!-- there is no way to make line wrap in property value -->
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]customimportorder"/>
-
-    <!-- there is no way to make line wrap in property value -->
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]customimportorder"/>
-
-    <!-- untill https://github.com/checkstyle/checkstyle/issues/8036 -->
-    <suppress id="lineLength"
-              files="[\\/]InputFinalClassClassWithPrivateCtorWithNestedExtendingClass.java"/>
-    <suppress id="lineLength"
-              files="[\\/]InputJavadocMethod_1379666.java"/>
-    <suppress id="lineLength"
-              files="[\\/]grammar[\\/]InputJava7MultiCatch.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalType.*\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]coding[\\/]illegaltype[\\/]InputIllegalTypeMemberModifiers.*\.java"/>
-    <suppress id="lineLength"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.*\.java"/>
-
-    <!-- apply check numberOfTestCasesInXpath only for files in suppressionxpathfilter directory -->
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]base[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]checks[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]resources[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]resources-noncompilable[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]com[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]test[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]site[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]xdocs[\\/].*" />
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]AbstractXpathTestSupport.java"/>
+    <suppress id="lineLength" files="config[\\/]intellij-idea-inspection-scope.xml"/>
 
     <!-- Until https://github.com/checkstyle/checkstyle/issues/8151 -->
     <suppress  id="numberOfTestCasesInXpath"
@@ -140,22 +31,4 @@
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUpperEllTest.java"/>
 
-
-    <!-- Empty files that are used as input for UT -->
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/].*"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile\.java"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
-    <suppress checks="RegexpMultiline"
-              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
 </suppressions>
