@@ -66,8 +66,10 @@
         <fileset dir="${basedir}" includes="**/*">
           <exclude name=".git/**/*"/>
           <exclude name="src/main/**/*"/>
+          <exclude name="src/xdocs/**/*"/>
+          <exclude name="src/site/**/*"/>
           <exclude name="src/test/java/**/*"/>
-          <exclude name="src/site/resources/images/**/*"/>
+          <exclude name="src/it/java/**/*"/>
           <!-- styleguides are copied/cached from origin place we should not change them  -->
           <exclude name="src/site/resources/styleguides/**/*"/>
 
@@ -138,7 +140,9 @@
                 >
       <path>
         <fileset dir="src"
-            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*">
+            includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*
+            it/resources-noncompilable/**/*">
+
          <!-- bad syntax, permanent exclude -->
          <exclude name="**/InputAstTreeStringPrinter.java" />
          <exclude name="**/InputSuppressionsStringPrinter.java"/>
