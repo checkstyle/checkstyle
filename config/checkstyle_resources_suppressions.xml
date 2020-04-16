@@ -74,4 +74,9 @@
   <suppress checks="RegexpSingleline"
     files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
 
+  <suppress checks="RegexpOnFilename"
+    files="[\\/]SuppressionXpathRegressionPackageAnnotationOne\.java"/>
+  <suppress checks="RegexpOnFilename"
+    files="[\\/]SuppressionXpathRegressionPackageAnnotationTwo\.java"/>
+
 </suppressions>
