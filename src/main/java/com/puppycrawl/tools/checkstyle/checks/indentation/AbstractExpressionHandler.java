@@ -424,7 +424,7 @@ public abstract class AbstractExpressionHandler {
         if (tree.getLineNo() < realStart.getLineNo()) {
             realStart = tree;
         }
-        if (tree.getLineNo() == realStart.getLineNo()
+        else if (tree.getLineNo() == realStart.getLineNo()
                 && tree.getColumnNo() < realStart.getColumnNo()) {
             realStart = tree;
         }
