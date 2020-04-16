@@ -39,10 +39,10 @@ public class OverloadMethodsDeclarationOrderTest extends AbstractGoogleModuleTes
         final String messageKey = "overload.methods.declaration";
 
         final String[] expected = {
-            "26: " + getCheckMessage(clazz, messageKey, 15),
-            "54: " + getCheckMessage(clazz, messageKey, 43),
-            "66: " + getCheckMessage(clazz, messageKey, 64),
-            "109: " + getCheckMessage(clazz, messageKey, 98),
+            "26:5: " + getCheckMessage(clazz, messageKey, 15),
+            "54:9: " + getCheckMessage(clazz, messageKey, 43),
+            "66:5: " + getCheckMessage(clazz, messageKey, 64),
+            "109:5: " + getCheckMessage(clazz, messageKey, 98),
         };
 
         final Configuration checkConfig = getModuleConfig("OverloadMethodsDeclarationOrder");
