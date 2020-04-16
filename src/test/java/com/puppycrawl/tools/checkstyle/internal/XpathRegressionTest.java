@@ -45,6 +45,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
 public class XpathRegressionTest extends AbstractModuleTestSupport {
@@ -61,17 +62,14 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "InterfaceMemberImpliedModifier",
             "JavadocMethod",
             "JavadocType",
-            "MissingJavadocMethod",
             "MissingJavadocType",
-            "OverloadMethodsDeclarationOrder",
             "PackageDeclaration",
             "Regexp",
             "RegexpSinglelineJava",
             "TodoComment",
             "TrailingComment",
             "UnnecessaryParentheses",
-            "VariableDeclarationUsageDistance",
-            "WriteTag"
+            "VariableDeclarationUsageDistance"
     )));
 
     // Javadoc checks are not compatible with SuppressionXpathFilter
@@ -89,13 +87,16 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                     "MissingDeprecated",
                     "NonEmptyAtclauseDescription",
                     "SingleLineJavadoc",
-                    "SummaryJavadoc"
+                    "SummaryJavadoc",
+                    "WriteTag"
     )));
 
     // Older regex-based checks that are under INCOMPATIBLE_JAVADOC_CHECK_NAMES
     // but not subclasses of AbstractJavadocCheck.
-    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS =
-            Collections.singleton(JavadocStyleCheck.class);
+    private static final Set<Class<?>> REGEXP_JAVADOC_CHECKS = new HashSet<>(Arrays.asList(
+            JavadocStyleCheck.class,
+            WriteTagCheck.class
+    ));
 
     // Checks that allowed to have no XPath IT Regression Testing
     // till https://github.com/checkstyle/checkstyle/issues/6207

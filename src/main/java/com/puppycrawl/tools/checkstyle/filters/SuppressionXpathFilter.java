@@ -68,13 +68,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocType
  * </li>
  * <li>
- * MissingJavadocMethod
- * </li>
- * <li>
  * MissingJavadocType
- * </li>
- * <li>
- * OverloadMethodsDeclarationOrder
  * </li>
  * <li>
  * PackageDeclaration
@@ -96,9 +90,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * VariableDeclarationUsageDistance
- * </li>
- * <li>
- * WriteTag
  * </li>
  * </ul>
  * <p>
@@ -134,6 +125,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * SummaryJavadoc
+ * </li>
+ * <li>
+ * WriteTag
  * </li>
  * </ul>
  * <p>
@@ -204,6 +198,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * if no file found, then passed to the {@code ClassLoader.getResource()} method.
  * </li>
  * </ol>
+ * <p>
+ * SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.

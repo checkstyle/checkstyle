@@ -219,7 +219,7 @@
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>0.10</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.6.1</junit.version>
+    <junit.version>5.6.2</junit.version>
   </properties>
 
   <dependencies>
@@ -246,7 +246,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>28.2-jre</version>
+      <version>29.0-jre</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
@@ -405,7 +405,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-shade-plugin</artifactId>
-          <version>3.2.2</version>
+          <version>3.2.3</version>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
@@ -1667,6 +1667,11 @@
             <excludedLink>https://www.w3.org/TR/*</excludedLink>
             <!-- very frequent SocketTimeoutException : Read timed out -->
             <excludedLink>https://maven.apache.org/*</excludedLink>
+            <!-- very frequent SocketTimeoutException : Read timed out -->
+            <excludedLink>https://www.bountysource.com/*</excludedLink>
+            <excludedLink>https://api.bountysource.com/*</excludedLink>
+            <!-- This URL become to require to login first to see content -->
+            <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>

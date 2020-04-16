@@ -4653,27 +4653,34 @@ try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violatio
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="OverloadMethodsDeclarationOrder_Description">
         <p>
-          Checks that overload methods are grouped together.
+          Checks that overloaded methods are grouped together. Overloaded methods have the same
+          name but different signatures where the signature can differ by the number of input
+          parameters or type of input parameters or both.
         </p>
       </subsection>
 
       <subsection name="Examples" id="OverloadMethodsDeclarationOrder_Examples">
-        <p>
-          Example of incorrect grouping overload methods:
-        </p>
-        <source>
-public void foo(int i) {}
-public void foo(String s) {}
-public void notFoo() {} // Have to be after foo(int i, String s)
-public void foo(int i, String s) {}
-        </source>
-        <p>
-          An example of how to configure the check is:
-        </p>
+        <p>To configure the check:</p>
         <source>
 &lt;module name="OverloadMethodsDeclarationOrder"/&gt;
         </source>
-        </subsection>
+        <p>Example of correct grouping of overloaded methods:</p>
+        <source>
+public void foo(int i) {}
+public void foo(String s) {}
+public void foo(String s, int i) {}
+public void foo(int i, String s) {}
+public void notFoo() {}
+        </source>
+        <p>Example of incorrect grouping of overloaded methods:</p>
+        <source>
+public void foo(int i) {} // OK
+public void foo(String s) {} // OK
+public void notFoo() {} // violation. Have to be after foo(String s, int i)
+public void foo(int i, String s) {}
+public void foo(String s, int i) {}
+        </source>
+      </subsection>
 
       <subsection name="Example of Usage" id="OverloadMethodsDeclarationOrder_Example_of_Usage">
         <ul>
