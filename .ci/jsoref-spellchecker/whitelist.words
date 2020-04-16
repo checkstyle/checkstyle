@@ -663,6 +663,7 @@ javadoccontentlocation
 javadocdetailnodeparser
 javadocmetadatascraper
 javadocmethod
+javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
