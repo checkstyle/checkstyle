@@ -59,32 +59,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class Test {
- *   private int a = 0; // violation
- *   private int b = 1;
- *   private int c = 2;
+ *   private int a_int = 0; // violation
+ *   private int b_int = 1;
+ *   private int c_int;
  *
- *   private char a = '\0'; // violation
- *   private char b = 'b';
- *   private char c = 'c';
+ *   private char a_char = '\0'; // violation
+ *   private char b_char = 'b';
+ *   private char c_char;
  *
- *   private boolean a = true;
- *   private boolean b = false; // violation
- *   private boolean c = true;
- *   private boolean d = false; // violation
- *   private boolean e = false; // violation
+ *   private boolean a_bool = false; // violation
+ *   private boolean b_bool = true;
+ *   private boolean c_bool;
  *
- *   private A a = new A();
- *   private A b = null; // violation
- *   private C c = null; // violation
- *   private D d = new D();
+ *   private Obj a_O = null; // violation
+ *   private Obj b_O = new Obj();
+ *   private Obj c_O;
  *
- *   int ar1[] = null; // violation
- *   int ar2[] = new int[];
- *   int ar3[];
- *   private Bar&lt;String&gt; bar = null; // violation
- *   private Bar&lt;String&gt;[] barArray = null; // violation
- *   public static void main( String [] args ) {
- *   }
+ *   private int ar1[] = null; // violation
+ *   private int ar2[] = new int[];
+ *   private int ar3[];
  * }
  * </pre>
  * <p>
@@ -100,33 +93,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class Test {
- *   private int a = 0;
- *   private int b = 1;
- *   private int c = 2;
+ *   private int a_int = 0;
+ *   private int b_int = 1;
+ *   private int c_int;
  *
- *   private char a = '\0';
- *   private char b = 'b';
- *   private char c = 'c';
+ *   private char a_char = '\0';
+ *   private char b_char = 'b';
+ *   private char c_char;
  *
- *   private boolean a = true;
- *   private boolean b = false;
- *   private boolean c = true;
- *   private boolean d = false;
- *   private boolean e = false;
+ *   private boolean a_bool = false;
+ *   private boolean b_bool = true;
+ *   private boolean c_bool;
  *
- *   private A a = new A();
- *   private A b = null; // violation
- *   private C c = null; // violation
- *   private D d = new D();
+ *   private Obj a_O = null; // violation
+ *   private Obj b_O = new Obj();
+ *   private Obj c_O;
  *
- *   int ar1[] = null; // violation
- *   int ar2[] = new int[];
- *   int ar3[];
- *   private Bar&lt;String&gt; bar = null; // violation
- *   private Bar&lt;String&gt;[] barArray = null; // violation
- *
- *   public static void main( String [] args ) {
- *   }
+ *   private int ar1[] = null; // violation
+ *   private int ar2[] = new int[];
+ *   private int ar3[];
  * }
  * </pre>
  *
