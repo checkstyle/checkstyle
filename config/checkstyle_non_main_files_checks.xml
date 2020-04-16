@@ -30,17 +30,6 @@
      value="mvn execution should be with '-e' option to produce error message in case of problem"/>
     </module>
 
-    <!-- check the number of testCases -->
-    <module name="RegexpSingleline">
-      <property name="id" value="numberOfTestCasesInXpath"/>
-      <property name="format" value="@Test"/>
-      <property name="minimum" value="2"/>
-      <property name="maximum" value="9999"/>
-      <property name="fileExtensions" value="java"/>
-      <property name="message"
-               value="Two or more test cases are required for unit testing in Xpath "/>
-    </module>
-
     <!-- To restrict empty files -->
     <module name="RegexpMultiline">
         <property name="format" value="^\s*$" />
