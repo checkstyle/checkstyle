@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
@@ -79,6 +80,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * SPECIAL_IMPORTS group. This group may contains some imports that have particular meaning for the
  * user.
+ * </li>
+ * <li>
+ * BLANK_LINE. This optional attribute can be used between groups to give more flexibility
+ * and control over placing blankLines between them.
  * </li>
  * </ol>
  * <p>
@@ -233,7 +238,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * To configure the check so that it matches default IntelliJ IDEA formatter configuration
- * (tested on v14):
+ * (tested on v2019.3.4):
  * </p>
  * <ul>
  * <li>
@@ -250,17 +255,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * Note: "separated" option is disabled because IDEA default has blank line between "java" and
- * static imports, and no blank line between "javax" and "java"
+ * Note: "BLANK_LINE" attribute is used here to gain extra control over
+ * blank lines because IDEA default has blank line between "java"
+ * and static imports, and no blank line between "javax" and "java"
  * </p>
  * <pre>
  * &lt;module name="CustomImportOrder"&gt;
  *   &lt;property name="customImportOrderRules"
- *     value="THIRD_PARTY_PACKAGE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE###STATIC"/&gt;
+ *     value=&quot;THIRD_PARTY_PACKAGE###BLANK_LINE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE
+ *             ###BLANK_LINE###STATIC&quot;/&gt;
  *   &lt;property name="specialImportsRegExp" value="^javax\."/&gt;
  *   &lt;property name="standardPackageRegExp" value="^java\."/&gt;
  *   &lt;property name="sortImportsInGroupAlphabetically" value="true"/&gt;
- *   &lt;property name="separateLineBetweenGroups" value="false"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -297,6 +303,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ *    To configure the check to only allow empty line between static and thirdPartyGroups.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;CustomImportOrder&quot;&gt;
+ *   &lt;property name=&quot;customImportOrderRules&quot;
+ *     value=&quot;STATIC###BLANK_LINE###THIRD_PARTY_PACKAGE###STANDARD_JAVA_PACKAGE&quot;/&gt;
+ *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^(com|org)\.&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -410,6 +426,9 @@ public class CustomImportOrderCheck extends AbstractCheck {
     /** Pattern used to separate groups of imports. */
     private static final Pattern GROUP_SEPARATOR_PATTERN = Pattern.compile("\\s*###\\s*");
 
+    /** Blank line group name that is used as customImportOrderRules attribute. */
+    private static final String BLANK_LINE = "BLANK_LINE";
+
     /** Processed list of import order rules. */
     private final List<String> customOrderRules = new ArrayList<>();
 
@@ -510,6 +529,49 @@ public class CustomImportOrderCheck extends AbstractCheck {
         customImportOrderRules = inputCustomImportOrder;
     }
 
+    /**
+     * Check if BLANK_LINE property is being used in the customImportOrderRules.
+     * @return If BLANK_LINE attribute is present in the customImportOrderRules.
+     * */
+    private boolean isBlankLinePresent() {
+        return customImportOrderRules.contains(BLANK_LINE);
+    }
+
+    /**
+     * Get the number of BLANK_LINE property being set in customImportOrderRule.
+     * @return Number of BLANK_LINE attribute being used.
+     * */
+    private int blankLineCount() {
+        return Collections.frequency(customOrderRules, BLANK_LINE);
+    }
+
+    /**
+     * Check if BLANK_LINE attribute is present between the two groups.
+     * @param currentGroupNo Index of CurrentGroup in CustomImportOrderRules.
+     * @param importObject Instance of importObject in importToGroupList.
+     * @param previousImportObject Previous Import Object from Current Group.
+     * @param fullImportIdent Full name of Import.
+     * @return if BLANK_LINE attribute is present between the two groups.
+     */
+    private boolean checkBlankLineAtGroupChange(int currentGroupNo, ImportDetails importObject,
+                    ImportDetails previousImportObject, String fullImportIdent) {
+        boolean isBlankLinePresentBetweenGroups = false;
+        if (isBlankLinePresent()) {
+            if (customOrderRules.get(currentGroupNo + 1).equals(BLANK_LINE)) {
+                separateLineBetweenGroups = true;
+                validateMissedEmptyLine(previousImportObject,
+                    importObject, fullImportIdent);
+                separateLineBetweenGroups = false;
+                isBlankLinePresentBetweenGroups = true;
+            }
+            else {
+                validateExtraEmptyLine(previousImportObject,
+                    importObject, fullImportIdent);
+            }
+        }
+        return isBlankLinePresentBetweenGroups;
+    }
+
     @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
@@ -582,8 +644,13 @@ public class CustomImportOrderCheck extends AbstractCheck {
                 previousImportObjectFromCurrentGroup = importObject;
             }
             else {
-                // not the last group, last one is always NON_GROUP
-                if (customOrderRules.size() > currentGroupNumber + 1) {
+                if (customOrderRules.size() > currentGroupNumber + blankLineCount() + 1) {
+                    if (checkBlankLineAtGroupChange(currentGroupNumber, importObject,
+                        previousImportObjectFromCurrentGroup, fullImportIdent)) {
+                        currentGroupNumber++;
+                    }
+
+                    // not the last group, last one is always NON_GROUP
                     final String nextGroup = getNextImportGroup(currentGroupNumber + 1);
                     if (importGroup.equals(nextGroup)) {
                         validateMissedEmptyLine(previousImportObjectFromCurrentGroup,
@@ -916,7 +983,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
         if (STATIC_RULE_GROUP.equals(ruleStr)
                 || THIRD_PARTY_PACKAGE_RULE_GROUP.equals(ruleStr)
                 || STANDARD_JAVA_PACKAGE_RULE_GROUP.equals(ruleStr)
-                || SPECIAL_IMPORTS_RULE_GROUP.equals(ruleStr)) {
+                || SPECIAL_IMPORTS_RULE_GROUP.equals(ruleStr)
+                || BLANK_LINE.equals(ruleStr)) {
             customOrderRules.add(ruleStr);
         }
         else if (ruleStr.startsWith(SAME_PACKAGE_RULE_GROUP)) {

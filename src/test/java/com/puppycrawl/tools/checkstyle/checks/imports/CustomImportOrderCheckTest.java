@@ -128,6 +128,41 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputCustomImportOrderDefault.java"), expected);
     }
 
+    /** Checks IntelliJ default formatting abilities. */
+    @Test
+    public void intellijConfig1() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+            "THIRD_PARTY_PACKAGE###BLANK_LINE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE"
+                + "###BLANK_LINE###STATIC");
+        checkConfig.addAttribute("specialImportsRegExp", "^javax\\.");
+        checkConfig.addAttribute("standardPackageRegExp", "^java\\.");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("InputCustomImportOrderIntellijGoodCase.java"), expected);
+    }
+
+    @Test
+    public void intellijConfig2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(CustomImportOrderCheck.class);
+        checkConfig.addAttribute("customImportOrderRules",
+            "THIRD_PARTY_PACKAGE###BLANK_LINE###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE"
+                + "###BLANK_LINE###STATIC");
+        checkConfig.addAttribute("specialImportsRegExp", "^javax\\.");
+        checkConfig.addAttribute("standardPackageRegExp", "^java\\.");
+        checkConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.applet.AudioClip"),
+        };
+
+        verify(checkConfig, getPath("InputCustomImportOrderIntellijBadCase.java"), expected);
+    }
+
     /**
      * Checks different combinations for same_package group.
      */
