@@ -104,4 +104,8 @@
     <suppress checks="RegexpSingleline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]metrics[\\/]classfanoutcomplexity[\\/]InputClassFanOutComplexityPackageName.*\.java"/>
 
+    <!-- to suppress archunit ViolationStore and Rules files -->
+    <suppress checks="NewlineAtEndOfFile" files="[\\/]archunit_store"/>
+    <suppress checks="RegexpSingleline" files="[\\/]archunit_store"/>
+
 </suppressions>
