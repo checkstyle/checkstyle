@@ -234,6 +234,18 @@ no-error-spring-integration)
   removeFolderWithProtectedFiles spring-integration
   ;;
 
+no-error-spring-cloud-gcp)
+  set -e
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/spring-cloud/spring-cloud-gcp
+  cd .ci-temp/spring-cloud-gcp
+  mvn -e validate -P full-checkstyle -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
+  cd ..
+  removeFolderWithProtectedFiles spring-cloud-gcp
+  ;;
+
 no-exception-struts)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
