@@ -45,15 +45,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * COMMA</a>.
  * </li>
  * </ul>
- * <p>
- * Code example for comma and dot at the new line:
- * </p>
- * <pre>
- * s
- *     .isEmpty();
- * foo(i
- *     ,s);
- * </pre>
  *  <p>
  * To configure the check:
  * </p>
@@ -61,22 +52,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;SeparatorWrap&quot;/&gt;
  * </pre>
  * <p>
- * Code example for comma and dot at the previous line:
+ * Example:
  * </p>
  * <pre>
- * s.
- *     isEmpty();
- * foo(i,
- *     s);
- * </pre>
- * <p>
- * Example for checking method reference at new line (good case and bad case):
- * </p>
- * <pre>
- * Arrays.sort(stringArray, String:: // violation
- *     compareToIgnoreCase);
- * Arrays.sort(stringArray, String
- *     ::compareToIgnoreCase); // good
+ * import java.io.
+ *          IOException; // OK
+ *
+ * class Test {
+ *
+ *   String s;
+ *
+ *   public void foo(int a,
+ *                     int b) { // OK
+ *   }
+ *
+ *   public void bar(int p
+ *                     , int q) { // violation, separator comma on new line
+ *     if (s
+ *           .isEmpty()) { // violation, separator dot on new line
+ *     }
+ *   }
+ *
+ * }
  * </pre>
  * <p>
  * To configure the check for
@@ -90,6 +87,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import java.util.Arrays;
+ *
+ * class Test2 {
+ *
+ *   String[] stringArray = {&quot;foo&quot;, &quot;bar&quot;};
+ *
+ *   void fun() {
+ *     Arrays.sort(stringArray, String::
+ *       compareToIgnoreCase);  // violation, separator method reference on same line
+ *     Arrays.sort(stringArray, String
+ *       ::compareTo);  // OK
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check for comma at the new line:
  * </p>
  * <pre>
@@ -97,6 +113,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;COMMA&quot;/&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;nl&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Test3 {
+ *
+ *   String s;
+ *
+ *   int a,
+ *     b;  // violation, separator comma on same line
+ *
+ *   public void foo(int a,
+ *                      int b) {  // violation, separator comma on the same line
+ *     int r
+ *       , t; // OK
+ *   }
+ *
+ *   public void bar(int p
+ *                     , int q) {  // OK
+ *   }
+ *
+ * }
  * </pre>
  *
  * @since 5.8
