@@ -883,14 +883,32 @@ public class XdocsPagesTest {
         assertEquals("tokens to check", columns.get(1).getTextContent(),
                 fileName + " section '" + sectionName
                         + "' should have the basic token description");
-        assertEquals("subset of tokens " + CheckUtil.getTokenText(check.getAcceptableTokens(),
-                check.getRequiredTokens()),
-                columns.get(2).getTextContent().replaceAll("\\s+", " ").trim(),
+
+        String acceptableTokenText = columns.get(2).getTextContent().trim();
+        assertEquals("subset of tokens " +
+                    CheckUtil.getTokenText(check.getAcceptableTokens(), check.getRequiredTokens()),
+                acceptableTokenText
+                        .replaceAll("\\s+", " ")
+                        .replaceAll("\\s,", ",")
+                        .replaceAll("\\s\\.", "."),
                 fileName + " section '" + sectionName + "' should have all the acceptable tokens");
-        assertEquals(
-                CheckUtil.getTokenText(check.getDefaultTokens(), check.getRequiredTokens()),
-                columns.get(3).getTextContent().replaceAll("\\s+", " ").trim(),
+        assertFalse(isInvalidTokenPunctuation(acceptableTokenText),
+                "',' & '.' should be placed at beginning of the next corresponding lines "
+                + "in " + fileName + " acceptable token section: " + sectionName);
+
+
+        final String defaultTokenText = columns.get(3).getTextContent().trim();
+        assertEquals(CheckUtil.getTokenText(check.getDefaultTokens(),
+                check.getRequiredTokens()),
+                defaultTokenText
+                        .replaceAll("\\s+", " ")
+                        .replaceAll("\\s,", ",")
+                        .replaceAll("\\s\\.", "."),
                 fileName + " section '" + sectionName + "' should have all the default tokens");
+        assertFalse(isInvalidTokenPunctuation(defaultTokenText),
+                "',' & '.' should be placed at beginning of the next corresponding lines "
+                + "in " + fileName + " default token section: " + sectionName);
+
     }
 
     private static void validatePropertySectionPropertyJavadocTokens(String fileName,
@@ -898,16 +916,38 @@ public class XdocsPagesTest {
         assertEquals("javadoc tokens to check",
                 columns.get(1).getTextContent(), fileName + " section '" + sectionName
                         + "' should have the basic token javadoc description");
-        assertEquals("subset of javadoc tokens "
-                        + CheckUtil.getJavadocTokenText(check.getAcceptableJavadocTokens(),
-                                check.getRequiredJavadocTokens()), columns.get(2).getTextContent()
-                        .replaceAll("\\s+", " ").trim(), fileName + " section '" + sectionName
-                                + "' should have all the acceptable javadoc tokens");
-        assertEquals(
-                CheckUtil.getJavadocTokenText(check.getDefaultJavadocTokens(),
-                        check.getRequiredJavadocTokens()), columns.get(3).getTextContent()
-                        .replaceAll("\\s+", " ").trim(), fileName + " section '" + sectionName
-                                + "' should have all the default javadoc tokens");
+
+        String acceptableTokenText = columns.get(2).getTextContent().trim();
+        assertEquals("subset of javadoc tokens " +
+                        CheckUtil.getJavadocTokenText(check.getAcceptableJavadocTokens(),
+                check.getRequiredJavadocTokens()),
+                acceptableTokenText
+                        .replaceAll("\\s+", " ")
+                        .replaceAll("\\s,", ",")
+                        .replaceAll("\\s\\.", "."),
+                fileName + " section '" + sectionName
+                        + "' should have all the acceptable javadoc tokens");
+        assertFalse(isInvalidTokenPunctuation(acceptableTokenText),
+                "',' & '.' should be placed at beginning of the next corresponding lines "
+                + "in " + fileName + " acceptable javadoc token section: " + sectionName);
+
+        final String defaultTokenText = columns.get(3).getTextContent().trim();
+        assertEquals(CheckUtil.getJavadocTokenText(check.getDefaultJavadocTokens(),
+                check.getRequiredJavadocTokens()),
+                defaultTokenText
+                        .replaceAll("\\s+", " ")
+                        .replaceAll("\\s,", ",")
+                        .replaceAll("\\s\\.", "."),
+                fileName + " section '" + sectionName
+                        + "' should have all the default javadoc tokens");
+        assertFalse(isInvalidTokenPunctuation(defaultTokenText),
+                ", & . should be placed at beginning of the next corresponding lines "
+                + "in " + fileName + " default javadoc token section: " + sectionName);
+    }
+
+    private static boolean isInvalidTokenPunctuation(String tokenText) {
+        return Pattern.compile("\\w,").matcher(tokenText).find()
+                || Pattern.compile("\\w\\.").matcher(tokenText).find();
     }
 
     /**
