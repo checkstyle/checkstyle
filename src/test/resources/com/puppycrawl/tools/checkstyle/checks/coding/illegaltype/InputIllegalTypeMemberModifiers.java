@@ -3,7 +3,7 @@ import java.util.TreeSet;
 import java.util.Hashtable;
 //configuration: default
 public class InputIllegalTypeMemberModifiers {
-    private AbstractClass a = null; //WARNING
+    private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeMemberModifiers.AbstractClass a = null; //WARNING
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalTypeMemberModifiers.AbstractClass c = null; //WARNING
