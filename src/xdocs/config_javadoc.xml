@@ -1651,12 +1651,57 @@ public class Test {
 &lt;module name=&quot;JavadocTagContinuationIndentation&quot;/&gt;
         </source>
         <p>
+          Example:
+        </p>
+        <source>
+&#47;**
+ * @tag comment
+ *  Indentation spacing is 1. Line with violation
+ *   Indentation spacing is 2. Line with violation
+ *     Indentation spacing is 4. OK
+ *&#47;
+public class Test {
+}
+        </source>
+        <p>
           To configure the check with two spaces indentation:
         </p>
         <source>
 &lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
   &lt;property name=&quot;offset&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+&#47;**
+ * @tag comment
+ * Indentation spacing is 0. Line with violation
+ *   Indentation spacing is 2. OK
+ *  Indentation spacing is 1. Line with violation
+ *&#47;
+public class Test {
+}
+        </source>
+        <p>
+          To configure the check to show violations for Tight-HTML Rules:
+        </p>
+        <source>
+&lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
+  &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+&#47;**
+ * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
+ * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
+ *&#47;
+public class Test {
+}
         </source>
       </subsection>
 
