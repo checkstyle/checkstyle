@@ -671,6 +671,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.javadoc.MissingJavadocPackageCheck");
         NAME_TO_FULL_MODULE_NAME.put("MissingJavadocTypeCheck",
                 BASE_PACKAGE + ".checks.javadoc.MissingJavadocTypeCheck");
+        NAME_TO_FULL_MODULE_NAME.put("MissingLeadingAsteriskCheck",
+                BASE_PACKAGE + ".checks.javadoc.MissingLeadingAsteriskCheck");
         NAME_TO_FULL_MODULE_NAME.put("NonEmptyAtclauseDescriptionCheck",
                 BASE_PACKAGE + ".checks.javadoc.NonEmptyAtclauseDescriptionCheck");
         NAME_TO_FULL_MODULE_NAME.put("SingleLineJavadocCheck",
