@@ -53,6 +53,10 @@
     files="linelength[\\/]InputLineLengthLongPackageStatement\.java"/>
 
   <!-- intentional problem for testing -->
+  <suppress checks="PackageDeclarationCheck"
+    files="suppressionxpathfilter[\\/]packagedeclaration[\\/]SuppressionXpathRegression.*\.java"/>
+
+  <!-- intentional problem for testing -->
   <suppress checks="OuterTypeFilename"
     files="[\\/]InputOuterType.*\.java"/>
   <suppress checks="OuterTypeFilename"
@@ -73,5 +77,14 @@
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
   <suppress checks="RegexpSingleline"
     files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
+
+  <suppress id="inputFileName"
+    files="[\\/]SuppressionXpathRegressionPackageAnnotationOne\.java"/>
+  <suppress id="inputFileName"
+    files="[\\/]SuppressionXpathRegressionPackageAnnotationTwo\.java"/>
+  <suppress id="inputFileName"
+    files="[\\/]SuppressionXpathRegression1\.java"/>
+  <suppress id="inputFileName"
+    files="[\\/]SuppressionXpathRegression2\.java"/>
 
 </suppressions>
