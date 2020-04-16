@@ -375,7 +375,7 @@
              see no old versions -->
         <plugin>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>1.8</version>
+          <version>3.0.0</version>
         </plugin>
         <plugin>
           <artifactId>maven-assembly-plugin</artifactId>
