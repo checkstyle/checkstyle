@@ -65,9 +65,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocMethod
  * </li>
  * <li>
- * JavadocType
- * </li>
- * <li>
  * MissingJavadocType
  * </li>
  * <li>
@@ -113,6 +110,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocTagContinuationIndentation
+ * </li>
+ * <li>
+ * JavadocType
  * </li>
  * <li>
  * MissingDeprecated
