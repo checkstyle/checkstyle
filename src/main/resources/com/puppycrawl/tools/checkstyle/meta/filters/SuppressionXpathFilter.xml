@@ -44,6 +44,9 @@
  JavadocMethod
  &lt;/li&gt;
  &lt;li&gt;
+ JavadocMissingLeadingAsterisk
+ &lt;/li&gt;
+ &lt;li&gt;
  JavadocMissingWhitespaceAfterAsterisk
  &lt;/li&gt;
  &lt;li&gt;
