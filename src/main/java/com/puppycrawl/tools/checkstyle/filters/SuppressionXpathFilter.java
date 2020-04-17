@@ -93,6 +93,10 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * </ul>
  * <p>
+ * Reason for RegexpSinglelineJava support unavailability is at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7760">#7760</a>
+ * </p>
+ * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
  * </p>
  * <ul id="SuppressionXpathFilter_JavadocChecks">
