@@ -1227,7 +1227,7 @@ resources
 tryResourceDeclarator![AST mods, AST t]
     :    id:IDENT d:declaratorBrackets[t] v:varInitializer
         {#tryResourceDeclarator = #(#[RESOURCE, "RESOURCE"], mods, #(#[TYPE,"TYPE"],d), id, v);}
-    ;
+;
 
 
 tryResourceDeclaration!
