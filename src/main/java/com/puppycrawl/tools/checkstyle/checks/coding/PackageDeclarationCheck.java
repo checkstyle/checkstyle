@@ -141,11 +141,9 @@ public final class PackageDeclarationCheck extends AbstractCheck {
     @Override
     public void finishTree(DetailAST ast) {
         if (!defined) {
-            int lineNumber = DEFAULT_LINE_NUMBER;
             if (ast != null) {
-                lineNumber = ast.getLineNo();
+                log(ast.getLineNo(), MSG_KEY_MISSING);
             }
-            log(lineNumber, MSG_KEY_MISSING);
         }
     }
 

@@ -93,6 +93,11 @@
       <property name="message"
                 value="First sentence in a comment should start with a capital letter"/>
   </module>
+  <module name="RegexpMultiline">
+    <property name="format" value="^\s*$" />
+    <property name="matchAcrossLines" value="true" />
+    <property name="message" value="Empty file is not allowed" />
+  </module>
   <module name="RegexpSingleline">
     <property name="format" value="\s+$"/>
     <property name="minimum" value="0"/>
