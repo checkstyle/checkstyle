@@ -1056,35 +1056,8 @@ public class JavadocMethodCheck extends AbstractCheck {
     private ClassInfo createClassInfo(final Token name,
                                       final String surroundingClass) {
         final ClassInfo result;
-        final ClassInfo classInfo = findClassAlias(name.getText());
-        if (classInfo == null) {
-            result = new RegularClass(name, surroundingClass, this);
-        }
-        else {
-            result = new ClassAlias(name, classInfo);
-        }
+        result = new RegularClass(name, surroundingClass, this);
         return result;
-    }
-
-    /**
-     * Looking if a given name is alias.
-     *
-     * @param name given name
-     * @return ClassInfo for alias if it exists, null otherwise
-     * @noinspection WeakerAccess
-     */
-    private ClassInfo findClassAlias(final String name) {
-        ClassInfo classInfo = null;
-        final Iterator<Map<String, ClassInfo>> iterator = currentTypeParams
-                .descendingIterator();
-        while (iterator.hasNext()) {
-            final Map<String, ClassInfo> paramMap = iterator.next();
-            classInfo = paramMap.get(name);
-            if (classInfo != null) {
-                break;
-            }
-        }
-        return classInfo;
     }
 
     /**
@@ -1149,30 +1122,6 @@ public class JavadocMethodCheck extends AbstractCheck {
                     + ", in class='" + surroundingClass + '\''
                     + ", check=" + check.hashCode()
                     + ']';
-        }
-
-    }
-
-    /** Represents type param which is "alias" for real type. */
-    private static class ClassAlias extends ClassInfo {
-
-        /** Class information associated with the alias. */
-        private final ClassInfo classInfo;
-
-        /**
-         * Creates new instance of the class.
-         *
-         * @param name token which represents name of class alias.
-         * @param classInfo class information associated with the alias.
-         */
-        /* package */ ClassAlias(final Token name, ClassInfo classInfo) {
-            super(name);
-            this.classInfo = classInfo;
-        }
-
-        @Override
-        public String toString() {
-            return "ClassAlias[alias " + getName() + " for " + classInfo.getName() + "]";
         }
 
     }
