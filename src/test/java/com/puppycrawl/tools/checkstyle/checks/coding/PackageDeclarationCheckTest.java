@@ -57,17 +57,6 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testOnFileWithCommentOnly() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
-
-        final String[] expected = {
-            "1: " + getCheckMessage(MSG_KEY_MISSING),
-        };
-
-        verify(checkConfig, getPath("InputPackageDeclarationWithCommentOnly.java"), expected);
-    }
-
-    @Test
     public void testFileForDiffDirectoryMismatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
 
@@ -146,6 +135,16 @@ public class PackageDeclarationCheckTest extends AbstractModuleTestSupport {
 
         verify(checkConfig,
                 getNonCompilablePath("InputPackageDeclarationNoPackage.java"),
+                expected);
+    }
+
+    @Test
+    public void testEmptyFile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(PackageDeclarationCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+                getNonCompilablePath("InputPackageDeclarationEmptyFile.java"),
                 expected);
     }
 
