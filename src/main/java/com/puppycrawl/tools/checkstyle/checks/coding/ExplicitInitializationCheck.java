@@ -59,25 +59,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class Test {
- *   private int a_int = 0; // violation
- *   private int b_int = 1;
- *   private int c_int;
+ *   private int intField1 = 0; // violation
+ *   private int intField2 = 1;
+ *   private int intField3;
  *
- *   private char a_char = '\0'; // violation
- *   private char b_char = 'b';
- *   private char c_char;
+ *   private char charField1 = '\0'; // violation
+ *   private char charField2 = 'b';
+ *   private char charField3;
  *
- *   private boolean a_bool = false; // violation
- *   private boolean b_bool = true;
- *   private boolean c_bool;
+ *   private boolean boolField1 = false; // violation
+ *   private boolean boolField2 = true;
+ *   private boolean boolField3;
  *
- *   private Obj a_O = null; // violation
- *   private Obj b_O = new Obj();
- *   private Obj c_O;
+ *   private Obj objField1 = null; // violation
+ *   private Obj objField2 = new Obj();
+ *   private Obj objField3;
  *
- *   private int ar1[] = null; // violation
- *   private int ar2[] = new int[];
- *   private int ar3[];
+ *   private int arrField1[] = null; // violation
+ *   private int arrField2[] = new int[10];
+ *   private int arrField3[];
  * }
  * </pre>
  * <p>
@@ -93,25 +93,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * public class Test {
- *   private int a_int = 0;
- *   private int b_int = 1;
- *   private int c_int;
+ *   private int intField1 = 0; // ignored
+ *   private int intField2 = 1;
+ *   private int intField3;
  *
- *   private char a_char = '\0';
- *   private char b_char = 'b';
- *   private char c_char;
+ *   private char charField1 = '\0'; // ignored
+ *   private char charField2 = 'b';
+ *   private char charField3;
  *
- *   private boolean a_bool = false;
- *   private boolean b_bool = true;
- *   private boolean c_bool;
+ *   private boolean boolField1 = false; // ignored
+ *   private boolean boolField2 = true;
+ *   private boolean boolField3;
  *
- *   private Obj a_O = null; // violation
- *   private Obj b_O = new Obj();
- *   private Obj c_O;
+ *   private Obj objField1 = null; // violation
+ *   private Obj objField2 = new Obj();
+ *   private Obj objField3;
  *
- *   private int ar1[] = null; // violation
- *   private int ar2[] = new int[];
- *   private int ar3[];
+ *   private int arrField1[] = null; // violation
+ *   private int arrField2[] = new int[10];
+ *   private int arrField3[];
  * }
  * </pre>
  *
