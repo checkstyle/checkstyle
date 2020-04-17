@@ -60,6 +60,17 @@ public class RootNode extends AbstractNode {
     }
 
     /**
+     * Compares current object with specified for order.
+     * Throws {@code UnsupportedOperationException} because functionality not required here.
+     * @param nodeInfo another {@code NodeInfo} object
+     * @return number representing order of current object to specified one
+     */
+    @Override
+    public int compareOrder(NodeInfo nodeInfo) {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
      * Iterates siblings of the current node and
      * recursively creates new Xpath-nodes.
      */
