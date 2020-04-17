@@ -442,7 +442,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
                                               Set<String> configTokens) {
-        if (Arrays.equals(check.getDefaultTokens(), check.getRequiredTokens())) {
+        final int[] defaultTokens = check.getDefaultTokens();
+        final int[] requiredTokens = check.getRequiredTokens();
+        Arrays.sort(defaultTokens);
+        Arrays.sort(requiredTokens);
+
+        if (Arrays.equals(defaultTokens, requiredTokens)) {
             configTokens.addAll(
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
