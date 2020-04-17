@@ -4738,6 +4738,13 @@ public void foo(String s, int i) {}
           These directories are added to the classpath so that your classes
           are visible to JVM when it runs the code.
         </p>
+        <p>
+          <b>Note:</b>
+          This Check is partially supported by Xpath Suppression Filters. In case of testing empty
+          java files, Xpath Suppression Filters are not supported for this Check. (until
+          <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110
+          </a>)
+        </p>
       </subsection>
 
       <subsection name="Properties" id="PackageDeclaration_Properties">
