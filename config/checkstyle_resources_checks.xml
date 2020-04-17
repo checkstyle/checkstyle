@@ -33,6 +33,12 @@
                       should be named
                       ''Input*.java'' or ''package-info.java'' or ''*.properties''."/>
     </module>
+    <!-- To restrict empty files -->
+    <module name="RegexpMultiline">
+        <property name="format" value="^\s*$" />
+        <property name="matchAcrossLines" value="true" />
+        <property name="message" value="Empty file is not allowed" />
+    </module>
 
     <module name="TreeWalker">
       <module name="PackageDeclarationCheck"/>
