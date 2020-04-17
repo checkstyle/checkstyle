@@ -22,4 +22,10 @@
                value="^(?!(.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd)).{101,}$"/>
       <property name="message" value="Line should not be longer than 100 symbols"/>
     </module>
+    <!-- To restrict empty files -->
+    <module name="RegexpMultiline">
+        <property name="format" value="^\s*$" />
+        <property name="matchAcrossLines" value="true" />
+        <property name="message" value="Empty file is not allowed" />
+    </module>
 </module>
