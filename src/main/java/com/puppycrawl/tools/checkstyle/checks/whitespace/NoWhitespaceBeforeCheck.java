@@ -50,9 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
- * POST_DEC</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
- * ELLIPSIS</a>.
+ * POST_DEC</a>.
  * </li>
  * </ul>
  * <p>
@@ -156,7 +154,6 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.SEMI,
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
-            TokenTypes.ELLIPSIS,
         };
     }
 
