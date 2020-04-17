@@ -11,6 +11,7 @@ public class InputLeftCurlyNlowSwitch {
         int x = 1;
         switch (x) {
             case 0:
+            // Test
             { // warn
                 break;
             }
