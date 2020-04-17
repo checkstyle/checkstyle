@@ -104,6 +104,23 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * greedy will allow multiple violations in the example to be found in the same file.
  * </p>
  *
+ * <p>
+ * To configure the check to restrict an empty file:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpMultiline&quot;&gt;
+ *     &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot; /&gt;
+ *     &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
+ *     &lt;property name=&quot;message&quot; value=&quot;Empty file is not allowed&quot; /&gt;
+ * &lt;/module>
+ * </pre>
+ * <p>
+ * Example of violation from the above config:
+ * </p>
+ * <pre>
+ * [...This is an empty file] // violation
+ * </pre>
+ *
  * @since 5.0
  */
 @StatelessCheck
