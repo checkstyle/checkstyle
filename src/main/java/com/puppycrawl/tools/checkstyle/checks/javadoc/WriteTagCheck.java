@@ -64,7 +64,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check for printing author name:
+ * Note that by default, the check does nothing. Thus, there is no default configuration.
+ * To configure the check for printing author name and the check will report a violation,
+ * if an empty author tag is found:
  * </p>
  * <pre>
  * &lt;module name="WriteTag"&gt;
@@ -85,7 +87,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public class Test{}
  * </pre>
  * <p>
- * To configure the check to print warnings if an "@incomplete" tag is found:
+ * To configure the check to print warnings if an "@incomplete" tag is found and
+ * the check will report a violation, if an empty incomplete tag is found:
  * </p>
  * <pre>
  * &lt;module name="WriteTag"&gt;

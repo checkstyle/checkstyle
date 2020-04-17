@@ -3103,7 +3103,11 @@ public class TestClass {
 
       <subsection name="Examples" id="WriteTag_Examples">
         <p>
-        To configure the check for printing author name:
+         Note that by default, the check does nothing.
+         Thus, there is no default configuration.
+         To configure the check for printing author name
+         and the check will report a violation, if an empty
+         author tag is found:
         </p>
 
         <source>
@@ -3127,7 +3131,8 @@ public class Test{}
 
         <p>
          To configure the check to print warnings if an
-         "@incomplete" tag is found:
+         "@incomplete" tag is found and the check will
+         report a violation, if an empty incomplete tag is found:
         </p>
 
         <source>
