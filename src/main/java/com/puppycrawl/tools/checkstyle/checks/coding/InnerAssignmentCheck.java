@@ -76,7 +76,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     String nameOne;
  *     List&lt;String&gt; myList = new ArrayList&lt;String&gt;();
  *     myList.add(nameOne = "tom"); // violation
-
  *     for (int k = 0; k &lt; 10; k = k + 2) { // OK
  *       // some code
  *     }
