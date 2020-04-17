@@ -101,6 +101,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;RegexpOnFilename&quot;/&gt;
  * </pre>
+ *
+ * <p>Example:</p>
+ * <pre>
+ * src/xdocs/config_regexp.xml  //OK, contains no whitespace
+ * src/xdocs/&quot;config regexp&quot;.xml  //violation, contains whitespace
+ * </pre>
+ *
  * <p>
  * To configure the check to force picture files to not be 'gif':
  * </p>
@@ -121,6 +128,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * <p>Example:</p>
+ * <pre>
+ * src/site/resources/images/favicon.png  //OK
+ * src/site/resources/images/logo.jpg  //OK
+ * src/site/resources/images/groups.gif  //violation, .gif images not allowed
+ * </pre>
+ *
  * <p>
  * To configure the check to only allow property and xml files to be located in
  * the resource folder:
@@ -135,6 +149,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * <p>Example:</p>
+ * <pre>
+ * src/main/resources/sun_checks.xml  //OK
+ * src/main/resources/check_properties.properties  //OK
+ * src/main/resources/JavaClass.java  //violation, xml|property files are allowed in resource folder
+ * </pre>
+ *
  * <p>
  * To configure the check to only allow Java and XML files in your folders use
  * the below.
@@ -145,6 +166,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>Example:</p>
+ * <pre>
+ * src/main/java/JavaClass.java  //OK
+ * src/main/MainClass.java  //OK
+ * src/main/java/java_xml.xml  //OK
+ * src/main/main_xml.xml  //OK
+ * src/main/java/image.png  //violation, folders should only contain java or xml files
+ * src/main/check_properties.properties  //violation, folders should only contain java or xml files
  * </pre>
  *
  * <p>
@@ -158,6 +189,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;\.(java|xml)$&quot;/&gt;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>Example:</p>
+ * <pre>
+ * src/SourceClass.java  //OK
+ * src/source_xml.xml  //OK
+ * src/image.png  //violation, only java and xml files are allowed in src folder
+ * src/main/main_properties.properties  //OK, this check only applies to src folder
  * </pre>
  *
  * <p>
@@ -176,6 +215,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;match&quot; value=&quot;false&quot;/&gt;
  *   &lt;property name=&quot;ignoreFileNameExtensions&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ *
+ * <p>Example:</p>
+ * <pre>
+ * src/main/java/JavaClass.java  //OK
+ * src/main/MainClass.java  //OK
+ * src/main/java/java_class.java  //violation, file names should be in Camel Case
+ * src/main/main_class.java  //violation, file names should be in Camel Case
  * </pre>
  *
  * @since 6.15
