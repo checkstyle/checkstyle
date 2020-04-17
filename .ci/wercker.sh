@@ -447,6 +447,17 @@ no-warning-imports-java-design-patterns)
   fi
   ;;
 
+validate-ci-temp-empty)
+  fail=0
+  if [ "$(ls -A .ci-temp)" ]; then
+    find ".ci-temp" -mindepth 1 -type d -exec echo "Found directory in .ci-temp: " {} \;
+    find ".ci-temp" -mindepth 1 -type f -exec echo "Found file in .ci-temp: " {} \;
+    echo ".ci-temp/ is not empty. Verification failed."
+    fail=1
+  fi
+  exit $fail
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
