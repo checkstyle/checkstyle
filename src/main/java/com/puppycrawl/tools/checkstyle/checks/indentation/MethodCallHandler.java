@@ -68,9 +68,9 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         else {
             // if our expression isn't first on the line, just use the start
             // of the line
-            final LineSet lines = new LineSet();
-            findSubtreeLines(lines, getMainAst().getFirstChild(), true);
-            final int firstCol = lines.firstLineCol();
+            final DetailAstSet astSet = new DetailAstSet();
+            findSubtreeAst(astSet, getMainAst().getFirstChild(), true);
+            final int firstCol = expandedTabsColumnNo(astSet.firstLine());
             final int lineStart = getLineStart(getFirstAst(getMainAst()));
             if (lineStart == firstCol) {
                 indentLevel = super.getIndentImpl();
