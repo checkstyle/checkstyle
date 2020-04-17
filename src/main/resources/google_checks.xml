@@ -303,6 +303,11 @@
             <property name="allowedAnnotations" value="Override, Test"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF"/>
         </module>
+        <module name="MissingJavadocType">
+            <property name="scope" value="public"/>
+            <property name="skipAnnotations" value=""/>
+            <property name="tokens" value="CLASS_DEF"/>
+        </module>
         <module name="MethodName">
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
             <message key="name.invalidPattern"
