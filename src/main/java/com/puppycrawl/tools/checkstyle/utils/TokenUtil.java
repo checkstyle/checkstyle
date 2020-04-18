@@ -269,4 +269,74 @@ public final class TokenUtil {
         return ast1.getLineNo() == ast2.getLineNo();
     }
 
+    /**
+     * Whether the AST is a definition of an anonymous class.
+     *
+     * @param ast the AST to process.
+     * @return true if the AST is a definition of an anonymous class.
+     */
+    public static boolean isAnonymousClassDef(DetailAST ast) {
+        final DetailAST lastChild = ast.getLastChild();
+        return lastChild != null
+                && lastChild.getType() == TokenTypes.OBJBLOCK;
+    }
+
+    /**
+     * Checks if 2 AST are similar by their type and text.
+     *
+     * @param left  The first AST to check.
+     * @param right The second AST to check.
+     * @return {@code true} if they are similar.
+     */
+    public static boolean isAstSimilar(DetailAST left, DetailAST right) {
+        return left.getType() == right.getType() && left.getText().equals(right.getText());
+    }
+
+    /**
+     * Checks ast parent is in expression.
+     *
+     * @param ast token to check
+     * @return true if token is part of expression, false otherwise
+     */
+    public static boolean isInExpression(DetailAST ast) {
+        return TokenTypes.DOT == ast.getParent().getType()
+                || TokenTypes.METHOD_REF == ast.getParent().getType();
+    }
+
+    /**
+     * Checks if the token is a Lambda parameter.
+     *
+     * @param ast the {@code DetailAST} value of the token to be checked
+     * @return true if the token is a Lambda parameter
+     */
+    public static boolean isLambdaParameter(DetailAST ast) {
+        DetailAST parent;
+        for (parent = ast.getParent(); parent != null; parent = parent.getParent()) {
+            if (parent.getType() == TokenTypes.LAMBDA) {
+                break;
+            }
+        }
+        final boolean isLambdaParameter;
+        if (parent == null) {
+            isLambdaParameter = false;
+        }
+        else if (ast.getType() == TokenTypes.PARAMETER_DEF) {
+            isLambdaParameter = true;
+        }
+        else {
+            final DetailAST lambdaParameters = parent.findFirstToken(TokenTypes.PARAMETERS);
+            if (lambdaParameters == null) {
+                isLambdaParameter = parent.getFirstChild().getText().equals(ast.getText());
+            }
+            else {
+                isLambdaParameter = findFirstTokenByPredicate(lambdaParameters,
+                    paramDef -> {
+                        final DetailAST param = paramDef.findFirstToken(TokenTypes.IDENT);
+                        return param != null && param.getText().equals(ast.getText());
+                    }).isPresent();
+            }
+        }
+        return isLambdaParameter;
+    }
+
 }
