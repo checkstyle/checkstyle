@@ -103,6 +103,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="EmptyBlock"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private void emptyLoop(){
+ *     for(int i=0; i&lt;10; i++){
+ *       // violation
+ *     }
+ *
+ *     try {
+ *       // violation
+ *     } catch (Exception e) {
+ *       // ignored
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check for the {@code text} policy and only {@code try} blocks:
  * </p>
  * <pre>
@@ -111,7 +129,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private void emptyLoop(){
+ *     for(int i=0; i&lt;10; i++){
+ *       // ignored
+ *     }
  *
+ *     try {
+ *       // violation
+ *     } catch (Exception e) {
+ *       // ignored
+ *     }
+ *   }
+ * }
+ * </pre>
  * @since 3.0
  */
 @StatelessCheck
