@@ -33,6 +33,7 @@ public final class InvalidJavadocTag {
 
     /**
      * Creates an instance.
+     *
      * @param line the line of the tag
      * @param col the column of the tag
      * @param name the name of the invalid tag
@@ -45,6 +46,7 @@ public final class InvalidJavadocTag {
 
     /**
      *  Getter for line field.
+     *
      *  @return line field
      */
     public int getLine() {
@@ -53,6 +55,7 @@ public final class InvalidJavadocTag {
 
     /**
      *  Getter for col field.
+     *
      *  @return col field
      */
     public int getCol() {
@@ -61,6 +64,7 @@ public final class InvalidJavadocTag {
 
     /**
      *  Getter for name field.
+     *
      *  @return name field
      */
     public String getName() {

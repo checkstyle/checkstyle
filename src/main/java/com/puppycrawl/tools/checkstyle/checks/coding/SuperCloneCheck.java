@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  *  }
  * }
  * </pre>
+ *
  * @since 3.2
  */
 @StatelessCheck

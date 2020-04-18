@@ -133,6 +133,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     /**
      * Setter to specify the maximum number of occurrences to allow without generating a warning.
+     *
      * @param allowedDuplicates The maximum number of duplicates.
      */
     public void setAllowedDuplicates(int allowedDuplicates) {
@@ -141,6 +142,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     /**
      * Setter to specify RegExp for ignored strings (with quotation marks).
+     *
      * @param ignoreStringsRegexp
      *        regular expression pattern for ignored strings
      * @noinspection WeakerAccess
@@ -158,6 +160,7 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * Setter to specify token type names where duplicate strings are ignored even
      * if they don't match ignoredStringsRegexp. This allows you to exclude
      * syntactical contexts like annotations or static initializers from the check.
+     *
      * @param strRep the string representation of the tokens interested in
      */
     public final void setIgnoreOccurrenceContext(String... strRep) {

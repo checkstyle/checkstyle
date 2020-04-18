@@ -82,6 +82,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
     /**
      * Test contains asserts in callstack, but idea does not see them.
+     *
      * @noinspection JUnitTestMethodWithNoAssertions
      */
     @Test
@@ -506,6 +507,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
          * Returns whether an AST represents a setter method. This is similar to
          * {@link CheckUtil#isSetterMethod(DetailAST)} except this doesn't care
          * about the number of children in the method.
+         *
          * @param ast the AST to check with.
          * @return whether the AST represents a setter method.
          */

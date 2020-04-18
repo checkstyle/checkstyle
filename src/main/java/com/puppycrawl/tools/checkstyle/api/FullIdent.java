@@ -49,6 +49,7 @@ public final class FullIdent {
 
     /**
      * Creates a new FullIdent starting from the specified node.
+     *
      * @param ast the node to start from
      * @return a {@code FullIdent} value
      */
@@ -60,6 +61,7 @@ public final class FullIdent {
 
     /**
      * Creates a new FullIdent starting from the child of the specified node.
+     *
      * @param ast the parent node from where to start from
      * @return a {@code FullIdent} value
      */
@@ -69,6 +71,7 @@ public final class FullIdent {
 
     /**
      * Gets the text.
+     *
      * @return the text
      */
     public String getText() {
@@ -77,6 +80,7 @@ public final class FullIdent {
 
     /**
      * Gets the topmost leftmost DetailAST for this FullIdent.
+     *
      * @return the topmost leftmost ast
      */
     public DetailAST getDetailAst() {
@@ -85,6 +89,7 @@ public final class FullIdent {
 
     /**
      * Gets the line number.
+     *
      * @return the line number
      */
     public int getLineNo() {
@@ -93,6 +98,7 @@ public final class FullIdent {
 
     /**
      * Gets the column number.
+     *
      * @return the column number
      */
     public int getColumnNo() {
@@ -131,6 +137,7 @@ public final class FullIdent {
 
     /**
      * Append the specified text.
+     *
      * @param text the text to append
      */
     private void append(String text) {
@@ -140,6 +147,7 @@ public final class FullIdent {
     /**
      * Append the specified token and also recalibrate the first line and
      * column.
+     *
      * @param ast the token to append
      */
     private void append(DetailAST ast) {

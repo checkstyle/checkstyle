@@ -165,6 +165,7 @@ public class FallThroughCheck extends AbstractCheck {
 
     /**
      * Setter to control whether the last case group must be checked.
+     *
      * @param value new value of the property.
      */
     public void setCheckLastCaseGroup(boolean value) {
@@ -193,6 +194,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given subtree terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param ast root of given subtree
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
@@ -242,6 +244,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given SLIST terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param slistAst SLIST to check
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
@@ -262,6 +265,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given IF terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param ast IF to check
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
@@ -281,6 +285,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given loop terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param ast loop to check
      * @return true if loop is terminated.
      */
@@ -300,6 +305,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given try/catch/finally block terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param ast loop to check
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
@@ -340,6 +346,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given switch terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param literalSwitchAst loop to check
      * @param useContinue should we consider continue as terminator.
      * @return true if switch is terminated.
@@ -359,6 +366,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Checks if a given synchronized block terminated by return, throw or,
      * if allowed break, continue.
+     *
      * @param synchronizedAst synchronized block to check.
      * @param useBreak should we consider break as terminator.
      * @param useContinue should we consider continue as terminator.
@@ -427,6 +435,7 @@ public class FallThroughCheck extends AbstractCheck {
     /**
      * Does a regular expression match on the given line and checks that a
      * possible match is within a comment.
+     *
      * @param pattern The regular expression pattern to use.
      * @param line The line of test to do the match on.
      * @param lineNo The line number in the file.

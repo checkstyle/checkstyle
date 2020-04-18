@@ -159,6 +159,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  * </pre>
+ *
  * @since 3.5
  */
 // -@cs[AbbreviationAsWordInName] We can not change it as,

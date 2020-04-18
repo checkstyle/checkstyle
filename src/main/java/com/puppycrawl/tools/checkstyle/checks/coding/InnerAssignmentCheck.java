@@ -283,6 +283,7 @@ public class InnerAssignmentCheck
 
     /**
      * Checks if an AST is a comparison operator.
+     *
      * @param ast the AST to check
      * @return true iff ast is a comparison operator.
      */

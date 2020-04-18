@@ -146,6 +146,7 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     /**
      * Setter to specify pattern for strings allowed before the comment.
+     *
      * @param pattern a pattern
      */
     public final void setFormat(Pattern pattern) {
@@ -212,6 +213,7 @@ public class TrailingCommentCheck extends AbstractCheck {
     /**
      * Checks if given comment is legal (single-line and matches to the
      * pattern).
+     *
      * @param comment comment to check.
      * @return true if the comment if legal.
      */

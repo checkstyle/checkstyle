@@ -84,6 +84,7 @@ public class EmptyForInitializerPadCheck
 
     /**
      * Setter to specify policy on how to pad an empty for iterator.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */

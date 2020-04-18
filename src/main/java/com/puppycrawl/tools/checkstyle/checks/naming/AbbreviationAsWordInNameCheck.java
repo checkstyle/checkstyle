@@ -198,6 +198,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Setter to allow to skip variables with {@code final} modifier.
+     *
      * @param ignoreFinal
      *        Defines if ignore variables with 'final' modifier or not.
      */
@@ -207,6 +208,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Setter to allow to skip variables with {@code static} modifier.
+     *
      * @param ignoreStatic
      *        Defines if ignore variables with 'static' modifier or not.
      */
@@ -217,6 +219,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Setter to allow to ignore methods tagged with {@code @Override}
      * annotation (that usually mean inherited name).
+     *
      * @param ignoreOverriddenMethods
      *        Defines if ignore methods with "@Override" annotation or not.
      */
@@ -228,6 +231,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * Setter to indicate the number of consecutive capital letters allowed
      * in targeted identifiers (abbreviations in the classes, interfaces,
      * variables and methods names, ... ).
+     *
      * @param allowedAbbreviationLength amount of allowed capital letters in
      *        abbreviation.
      */
@@ -238,6 +242,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Setter to specify list of abbreviations that must be skipped for checking.
      * Abbreviations should be separated by comma.
+     *
      * @param allowedAbbreviations an string of abbreviations that must be
      *        skipped from checking, each abbreviation separated by comma.
      */
@@ -297,6 +302,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Checks if it is an ignore situation.
+     *
      * @param ast input DetailAST node.
      * @return true if it is an ignore situation found for given input DetailAST
      *         node.
@@ -330,6 +336,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Check that variable definition in interface or @interface definition.
+     *
      * @param variableDefAst variable definition.
      * @return true if variable definition(variableDefAst) is in interface
      *     or @interface definition.
@@ -348,6 +355,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Checks that the method has "@Override" annotation.
+     *
      * @param methodModifiersAST
      *        A DetailAST nod is related to the given method modifiers
      *        (MODIFIERS type).
@@ -368,6 +376,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
 
     /**
      * Gets the disallowed abbreviation contained in given String.
+     *
      * @param str
      *        the given String.
      * @return the disallowed abbreviation contained in given String as a
@@ -409,6 +418,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Get Abbreviation if it is illegal, where {@code beginIndex} and {@code endIndex} are
      * inclusive indexes of a sequence of consecutive upper-case characters.
+     *
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index
@@ -439,6 +449,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      * For example, {@code getAbbreviation("getXMLParser", 3, 6)} returns "XML"
      * (not "XMLP"), and so does {@code getAbbreviation("parseXML", 5, 7)}.
      * </p>
+     *
      * @param str name
      * @param beginIndex begin index
      * @param endIndex end index
@@ -458,6 +469,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
     /**
      * Gets all the children which are one level below on the current DetailAST
      * parent node.
+     *
      * @param node
      *        Current parent node.
      * @return The list of children one level below on the current parent node.

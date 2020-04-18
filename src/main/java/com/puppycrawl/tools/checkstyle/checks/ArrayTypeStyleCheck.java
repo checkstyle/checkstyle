@@ -145,6 +145,7 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
 
     /**
      * Setter to control whether to enforce Java style (true) or C style (false).
+     *
      * @param javaStyle true if Java style should be used.
      */
     public void setJavaStyle(boolean javaStyle) {

@@ -285,6 +285,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
      * visit the same token twice and we are only visiting on very specific tokens.
      * The line can't be removed or reworked as other tests fail, and regression shows us no
      * use cases to create a UT for.
+     *
      * @throws Exception if there is an error.
      */
     @Test
@@ -335,6 +336,7 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
     /**
      * Creates MOCK lexical token and returns AST node for this token.
+     *
      * @param tokenType type of token
      * @param tokenText text of token
      * @param tokenFileName file name of token

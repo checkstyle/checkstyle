@@ -39,6 +39,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * AllTestsTest.
+ *
  * @noinspection ClassIndependentOfModule
  */
 public class AllTestsTest {

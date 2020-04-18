@@ -41,6 +41,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Constructor.
+     *
      * @param ast ast node.
      * @param lines2position list to map lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
@@ -52,6 +53,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Constructor.
+     *
      * @param node DetailNode node.
      * @param lines2position list to map lines.
      * @noinspection AssignmentOrReturnOfFieldWithMutableType
@@ -63,6 +65,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Returns selection start position.
+     *
      * @return selection start position.
      */
     public int getSelectionStart() {
@@ -71,6 +74,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Returns selection end position.
+     *
      * @return selection end position.
      */
     public int getSelectionEnd() {
@@ -91,6 +95,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Find start and end selection positions from AST line and Column.
+     *
      * @param ast DetailAST node for which selection finds
      */
     private void findSelectionPositions(DetailAST ast) {
@@ -106,6 +111,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Find start and end selection positions from DetailNode line and Column.
+     *
      * @param detailNode DetailNode node for which selection finds
      */
     private void findSelectionPositions(DetailNode detailNode) {
@@ -117,6 +123,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Finds the last position of node without children.
+     *
      * @param astNode DetailAST node.
      * @return Last position of node without children.
      */
@@ -134,6 +141,7 @@ public class CodeSelectorPresentation {
 
     /**
      * Finds the last position of node without children.
+     *
      * @param detailNode DetailNode node.
      * @return Last position of node without children.
      */

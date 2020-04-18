@@ -36,6 +36,7 @@ public final class BeforeExecutionFileFilterSet
 
     /**
      * Adds a Filter to the set.
+     *
      * @param filter the Filter to add.
      */
     public void addBeforeExecutionFileFilter(BeforeExecutionFileFilter filter) {
@@ -44,6 +45,7 @@ public final class BeforeExecutionFileFilterSet
 
     /**
      * Removes filter.
+     *
      * @param filter filter to remove.
      */
     public void removeBeforeExecutionFileFilter(BeforeExecutionFileFilter filter) {
@@ -52,6 +54,7 @@ public final class BeforeExecutionFileFilterSet
 
     /**
      * Returns the Filters of the filter set.
+     *
      * @return the Filters of the filter set.
      */
     public Set<BeforeExecutionFileFilter> getBeforeExecutionFileFilters() {

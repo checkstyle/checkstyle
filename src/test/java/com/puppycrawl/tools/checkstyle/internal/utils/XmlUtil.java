@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.XmlLoader;
 
 /**
  * XmlUtil.
+ *
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class XmlUtil {

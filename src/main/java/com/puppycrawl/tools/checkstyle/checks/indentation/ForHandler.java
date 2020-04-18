@@ -77,6 +77,7 @@ public class ForHandler extends BlockParentHandler {
 
     /**
      * Returns right parenthesis of for-loop statement.
+     *
      * @param literalForAst
      *          literal-for ast node(TokenTypes.LITERAL_FOR)
      * @return right parenthesis of for-loop statement.

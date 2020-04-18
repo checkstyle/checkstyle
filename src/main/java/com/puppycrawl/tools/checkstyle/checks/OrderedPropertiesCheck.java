@@ -103,6 +103,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
 
     /**
      * Processes the file and check order.
+     *
      * @param file the file to be processed
      * @param fileText the contents of the file.
      * @noinspection EnumerationCanBeIteration
@@ -216,6 +217,7 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
 
         /**
          * Puts the value into list by its key.
+         *
          * @noinspection UseOfPropertiesAsHashtable
          *
          * @param key the hashtable key

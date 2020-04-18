@@ -629,6 +629,7 @@ public final class TokenTypes {
      *         +--ELIST
      *         +--RPAREN ())
      * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.16">Java
      * Language Specification, &sect;15.16</a>
@@ -1719,6 +1720,7 @@ public final class TokenTypes {
     public static final int LITERAL_DO = GeneratedJavaTokenTypes.LITERAL_do;
     /**
      * Literal {@code while} in do-while loop.
+     *
      * @see #LITERAL_DO
      */
     public static final int DO_WHILE = GeneratedJavaTokenTypes.DO_WHILE;

@@ -36,6 +36,7 @@ public final class JavadocTags {
 
     /**
      * Creates an instance.
+     *
      * @param tags the list of valid tags
      * @param invalidTags the list of invalid tags
      */
@@ -48,6 +49,7 @@ public final class JavadocTags {
 
     /**
      *  Getter for validTags field.
+     *
      *  @return validTags field
      */
     public List<JavadocTag> getValidTags() {
@@ -56,6 +58,7 @@ public final class JavadocTags {
 
     /**
      *  Getter for invalidTags field.
+     *
      *  @return invalidTags field
      */
     public List<InvalidJavadocTag> getInvalidTags() {

@@ -49,6 +49,7 @@ public enum SeverityLevel {
 
     /**
      * Returns name of severity level.
+     *
      * @return the name of this severity level.
      */
     public String getName() {

@@ -114,6 +114,7 @@ public final class UnnecessarySemicolonInTryWithResourcesCheck extends AbstractC
 
     /**
      * Setter to allow unnecessary semicolon if closing paren is not on the same line.
+     *
      * @param allowWhenNoBraceAfterSemicolon a value to set.
      */
     public void setAllowWhenNoBraceAfterSemicolon(boolean allowWhenNoBraceAfterSemicolon) {

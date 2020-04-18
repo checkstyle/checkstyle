@@ -147,6 +147,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Constructs an instance.
+     *
      * @throws ParserConfigurationException if an error occurs.
      * @throws SAXException if an error occurs.
      */
@@ -195,6 +196,7 @@ public final class ImportControlLoader extends XmlLoader {
     /**
      * Constructs an instance of an import rule based on the given {@code name} and
      * {@code attributes}.
+     *
      * @param qName The qualified name.
      * @param attributes The attributes attached to the element.
      * @return The created import rule.
@@ -226,6 +228,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Check if the given attributes contain the regex attribute.
+     *
      * @param attributes the attributes.
      * @return if the regex attribute is contained.
      */
@@ -243,6 +246,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Loads the import control file from a file.
+     *
      * @param uri the uri of the file to load.
      * @return the root {@link PkgImportControl} object.
      * @throws CheckstyleException if an error occurs.
@@ -253,6 +257,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Loads the import control file from a {@link InputSource}.
+     *
      * @param source the source to load from.
      * @param uri uri of the source being loaded.
      * @return the root {@link PkgImportControl} object.
@@ -276,6 +281,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Loads the import control file from a URI.
+     *
      * @param uri the uri of the file to load.
      * @return the root {@link PkgImportControl} object.
      * @throws CheckstyleException if an error occurs.
@@ -295,6 +301,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Returns root PkgImportControl.
+     *
      * @return the root {@link PkgImportControl} object loaded.
      */
     private PkgImportControl getRoot() {
@@ -303,6 +310,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Utility to get a strategyOnMismatch property for "import-control" tag.
+     *
      * @param attributes collect to get attribute from.
      * @return the value of the attribute.
      */
@@ -317,6 +325,7 @@ public final class ImportControlLoader extends XmlLoader {
 
     /**
      * Utility to get a strategyOnMismatch property for "subpackage" tag.
+     *
      * @param attributes collect to get attribute from.
      * @return the value of the attribute.
      */
@@ -335,6 +344,7 @@ public final class ImportControlLoader extends XmlLoader {
     /**
      * Utility to safely get an attribute. If it does not exist an exception
      * is thrown.
+     *
      * @param attributes collect to get attribute from.
      * @param name name of the attribute to get.
      * @return the value of the attribute.

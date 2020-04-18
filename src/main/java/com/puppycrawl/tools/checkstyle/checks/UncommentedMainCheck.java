@@ -183,6 +183,7 @@ public class UncommentedMainCheck
 
     /**
      * Sets current package.
+     *
      * @param packageDef node for package definition
      */
     private void visitPackageDef(DetailAST packageDef) {
@@ -192,6 +193,7 @@ public class UncommentedMainCheck
 
     /**
      * If not inner class then change current class name.
+     *
      * @param classDef node for class definition
      */
     private void visitClassDef(DetailAST classDef) {
@@ -207,6 +209,7 @@ public class UncommentedMainCheck
     /**
      * Checks method definition if this is
      * {@code public static void main(String[])}.
+     *
      * @param method method definition node
      */
     private void visitMethodDef(DetailAST method) {
@@ -223,6 +226,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that current class is not excluded.
+     *
      * @return true if check passed, false otherwise
      */
     private boolean checkClassName() {
@@ -231,6 +235,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that method name is @quot;main@quot;.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -241,6 +246,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that method has final and static modifiers.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -254,6 +260,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that return type is {@code void}.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -265,6 +272,7 @@ public class UncommentedMainCheck
 
     /**
      * Checks that method has only {@code String[]} or only {@code String...} param.
+     *
      * @param method the METHOD_DEF node
      * @return true if check passed, false otherwise
      */
@@ -291,6 +299,7 @@ public class UncommentedMainCheck
 
     /**
      * Whether the type is java.lang.String.
+     *
      * @param typeAst the type to check.
      * @return true, if the type is java.lang.String.
      */

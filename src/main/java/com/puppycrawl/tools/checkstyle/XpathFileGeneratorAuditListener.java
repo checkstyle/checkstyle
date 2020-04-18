@@ -52,6 +52,7 @@ public class XpathFileGeneratorAuditListener extends AutomaticBean implements Au
     /**
      * Creates a new {@code SuppressionFileGenerator} instance.
      * Sets the output to a defined stream.
+     *
      * @param out the output stream
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
      */

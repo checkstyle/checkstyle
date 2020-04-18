@@ -203,6 +203,7 @@ public class NoWhitespaceBeforeCheck
 
     /**
      * Checks that semicolon is in empty for initializer or condition.
+     *
      * @param semicolonAst DetailAST of semicolon.
      * @return true if semicolon is in empty for initializer or condition.
      */
@@ -220,6 +221,7 @@ public class NoWhitespaceBeforeCheck
 
     /**
      * Setter to control whether whitespace is allowed if the token is at a linebreak.
+     *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */

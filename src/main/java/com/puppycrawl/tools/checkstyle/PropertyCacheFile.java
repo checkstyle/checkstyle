@@ -113,6 +113,7 @@ public final class PropertyCacheFile {
 
     /**
      * Load cached values from file.
+     *
      * @throws IOException when there is a problems with file read
      */
     public void load() throws IOException {
@@ -138,6 +139,7 @@ public final class PropertyCacheFile {
 
     /**
      * Cleans up the object and updates the cache file.
+     *
      * @throws IOException  when there is a problems with file save
      */
     public void persist() throws IOException {
@@ -161,6 +163,7 @@ public final class PropertyCacheFile {
 
     /**
      * Checks that file is in cache.
+     *
      * @param uncheckedFileName the file to check
      * @param timestamp the timestamp of the file to check
      * @return whether the specified file has already been checked ok
@@ -172,6 +175,7 @@ public final class PropertyCacheFile {
 
     /**
      * Records that a file checked ok.
+     *
      * @param checkedFileName name of the file that checked ok
      * @param timestamp the timestamp of the file
      */
@@ -181,6 +185,7 @@ public final class PropertyCacheFile {
 
     /**
      * Retrieves the hash of a specific file.
+     *
      * @param name The name of the file to retrieve.
      * @return The has of the file or {@code null}.
      */
@@ -190,6 +195,7 @@ public final class PropertyCacheFile {
 
     /**
      * Removed a specific file from the cache.
+     *
      * @param checkedFileName The name of the file to remove.
      */
     public void remove(String checkedFileName) {
@@ -198,6 +204,7 @@ public final class PropertyCacheFile {
 
     /**
      * Calculates the hashcode for the serializable object based on its content.
+     *
      * @param object serializable object.
      * @return the hashcode for serializable object.
      * @throws IllegalStateException when some unexpected happened.
@@ -224,6 +231,7 @@ public final class PropertyCacheFile {
 
     /**
      * Serializes object to output stream.
+     *
      * @param object object to be serialized
      * @param outputStream serialization stream
      * @throws IOException if an error occurs
@@ -238,6 +246,7 @@ public final class PropertyCacheFile {
     /**
      * Puts external resources in cache.
      * If at least one external resource changed, clears the cache.
+     *
      * @param locations locations of external resources.
      */
     public void putExternalResources(Set<String> locations) {
@@ -250,6 +259,7 @@ public final class PropertyCacheFile {
 
     /**
      * Loads a set of {@link ExternalResource} based on their locations.
+     *
      * @param resourceLocations locations of external configuration resources.
      * @return a set of {@link ExternalResource}.
      */
@@ -277,6 +287,7 @@ public final class PropertyCacheFile {
 
     /**
      * Loads the content of external resource.
+     *
      * @param location external resource location.
      * @return array of bytes which represents the content of external resource in binary form.
      * @throws IOException if error while loading occurs.
@@ -293,6 +304,7 @@ public final class PropertyCacheFile {
 
     /**
      * Reads all the contents of an input stream and returns it as a byte array.
+     *
      * @param stream The input stream to read from.
      * @return The resulting byte array of the stream.
      * @throws IOException if there is an error reading the input stream.
@@ -314,6 +326,7 @@ public final class PropertyCacheFile {
 
     /**
      * Checks whether the contents of external configuration resources were changed.
+     *
      * @param resources a set of {@link ExternalResource}.
      * @return true if the contents of external configuration resources were changed.
      */
@@ -337,6 +350,7 @@ public final class PropertyCacheFile {
     /**
      * Fills cache with a set of {@link ExternalResource}.
      * If external resource from the set is already in cache, it will be skipped.
+     *
      * @param externalResources a set of {@link ExternalResource}.
      */
     private void fillCacheWithExternalResources(Set<ExternalResource> externalResources) {
@@ -346,6 +360,7 @@ public final class PropertyCacheFile {
 
     /**
      * Checks whether resource location is in cache.
+     *
      * @param location resource location.
      * @return true if resource location is in cache.
      */
@@ -366,6 +381,7 @@ public final class PropertyCacheFile {
 
         /**
          * Creates an instance.
+         *
          * @param location resource location.
          * @param contentHashSum content hash sum.
          */

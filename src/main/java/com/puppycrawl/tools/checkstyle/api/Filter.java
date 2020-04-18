@@ -27,6 +27,7 @@ public interface Filter {
 
     /**
      * Determines whether or not a filtered AuditEvent is accepted.
+     *
      * @param event the AuditEvent to filter.
      * @return true if the event is accepted.
      */

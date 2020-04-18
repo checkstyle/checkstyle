@@ -100,6 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ *
  * @since 3.0
  */
 public class LocalFinalVariableNameCheck

@@ -105,6 +105,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
  * }
  * </pre>
+ *
  * @since 3.0
  */
 public class ConstantNameCheck

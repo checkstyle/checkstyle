@@ -111,6 +111,7 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     /**
      * Setter to control whether to check for directory and package name match.
+     *
      * @param matchDirectoryStructure the new value.
      */
     public void setMatchDirectoryStructure(boolean matchDirectoryStructure) {
@@ -167,6 +168,7 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     /**
      * Returns the directory name this file is in.
+     *
      * @return Directory name.
      */
     private String getDirectoryName() {

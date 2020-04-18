@@ -191,6 +191,7 @@ public class ModifierOrderCheck
 
     /**
      * Skip all annotations in modifier block.
+     *
      * @param modifierIterator iterator for collection of modifiers
      * @return modifier next to last annotation
      */
@@ -204,6 +205,7 @@ public class ModifierOrderCheck
 
     /**
      * Checks whether annotation on type takes place.
+     *
      * @param modifier modifier token.
      * @return true if annotation on type takes place.
      */

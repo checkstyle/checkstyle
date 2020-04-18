@@ -283,6 +283,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Setter to allow no empty line between fields.
+     *
      * @param allow
      *        User's value.
      */
@@ -292,6 +293,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Setter to allow multiple empty lines between class members.
+     *
      * @param allow User's value.
      */
     public void setAllowMultipleEmptyLines(boolean allow) {
@@ -300,6 +302,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Setter to allow multiple empty lines inside class members.
+     *
      * @param allow User's value.
      */
     public void setAllowMultipleEmptyLinesInsideClassMembers(boolean allow) {
@@ -406,6 +409,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     /**
      * Log violation in case there are multiple empty lines inside constructor,
      * initialization block or method.
+     *
      * @param ast the ast to check.
      */
     private void processMultipleLinesInside(DetailAST ast) {
@@ -423,6 +427,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Whether the AST is a class member block.
+     *
      * @param astType the AST to check.
      * @return true if the AST is a class member block.
      */
@@ -435,6 +440,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Get list of empty lines.
+     *
      * @param ast the ast to check.
      * @return list of line numbers for empty lines.
      */
@@ -459,6 +465,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Get list of empty lines to log.
+     *
      * @param emptyLines list of empty lines.
      * @return list of empty lines to log.
      */
@@ -478,6 +485,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Whether the token has not allowed multiple empty lines before.
+     *
      * @param ast the ast to check.
      * @return true if the token has not allowed multiple empty lines before.
      */
@@ -493,6 +501,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Package.
+     *
      * @param ast token
      * @param nextToken next token
      */
@@ -514,6 +523,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Import.
+     *
      * @param ast token
      * @param nextToken next token
      */
@@ -526,6 +536,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Process Variable.
+     *
      * @param ast token
      * @param nextToken next Token
      */
@@ -539,6 +550,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks whether token placement violates policy of empty line between fields.
+     *
      * @param detailAST token to be analyzed
      * @return true if policy is violated and warning should be raised; false otherwise
      */
@@ -550,6 +562,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if a token has empty two previous lines and multiple empty lines is not allowed.
+     *
      * @param token DetailAST token
      * @return true, if token has empty two lines before and allowMultipleEmptyLines is false
      */
@@ -560,6 +573,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Check if group of comments located right before token has more than one previous empty line.
+     *
      * @param token DetailAST token
      */
     private void checkComments(DetailAST token) {
@@ -582,6 +596,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     /**
      * Check if group of comments located at the start of token has more than one previous empty
      * line.
+     *
      * @param token DetailAST token
      */
     private void checkCommentsInsideToken(DetailAST token) {
@@ -611,6 +626,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if a token has empty pre-previous line.
+     *
      * @param token DetailAST token.
      * @return true, if token has empty lines before.
      */
@@ -628,6 +644,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if token have empty line after.
+     *
      * @param token token.
      * @return true if token have empty line after.
      */
@@ -664,6 +681,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     /**
      * Checks, whether there are empty lines within the specified line range. Line numbering is
      * started from 1 for parameter values
+     *
      * @param startLine number of the first line in the range
      * @param endLine number of the second line in the range
      * @return {@code true} if found any blank line within the range, {@code false}
@@ -685,6 +703,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Checks if a token has a empty line before.
+     *
      * @param token token.
      * @return true, if token have empty line before.
      */
@@ -701,6 +720,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Check if token is comment, which starting in beginning of line.
+     *
      * @param comment comment token for check.
      * @return true, if token is comment, which starting in beginning of line.
      */
@@ -717,6 +737,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Check if token is preceded by javadoc comment.
+     *
      * @param token token for check.
      * @return true, if token is preceded by javadoc comment.
      */
@@ -732,6 +753,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * Check if token is a comment.
+     *
      * @param ast ast node
      * @return true, if given ast is comment.
      */
@@ -742,6 +764,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     /**
      * If variable definition is a type field.
+     *
      * @param variableDef variable definition.
      * @return true variable definition is a type field.
      */

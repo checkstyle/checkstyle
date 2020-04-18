@@ -64,6 +64,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Constructor initialise root node.
+     *
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTablePresentation(DetailAST parseTree) {
@@ -73,6 +74,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Set parse tree.
+     *
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
@@ -81,6 +83,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Set parse mode.
+     *
      * @param mode ParseMode enum
      */
     protected void setParseMode(ParseMode mode) {
@@ -89,6 +92,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns number of available columns.
+     *
      * @return the number of available columns.
      */
     public int getColumnCount() {
@@ -97,6 +101,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns name for specified column number.
+     *
      * @param column the column number
      * @return the name for column number {@code column}.
      */
@@ -106,6 +111,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns type of specified column number.
+     *
      * @param column the column number
      * @return the type for column number {@code column}.
      */
@@ -134,6 +140,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns the value to be displayed for node at column number.
+     *
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node}, at column number {@code column}.
@@ -153,6 +160,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns the child of parent at index.
+     *
      * @param parent the node to get a child from.
      * @param index the index of a child.
      * @return the child of parent at index.
@@ -172,6 +180,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns the number of children of parent.
+     *
      * @param parent the node to count children for.
      * @return the number of children of the node parent.
      */
@@ -199,6 +208,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Returns value of root.
+     *
      * @return the root.
      */
     public Object getRoot() {
@@ -207,6 +217,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Whether the node is a leaf.
+     *
      * @param node the node to check.
      * @return true if the node is a leaf.
      */
@@ -240,6 +251,7 @@ public class ParseTreeTablePresentation {
     /**
      * Indicates whether the the value for node {@code node}, at column number {@code column} is
      * editable.
+     *
      * @param column the column number
      * @return true if editable
      */
@@ -249,6 +261,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Creates artificial tree root.
+     *
      * @return artificial tree root.
      */
     private static DetailAST createArtificialTreeRoot() {
@@ -259,6 +272,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets child of DetailAST node at specified index.
+     *
      * @param parent DetailAST node
      * @param index child index
      * @return child DetailsAST or DetailNode if child is Javadoc node
@@ -286,6 +300,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets a value for DetailNode object.
+     *
      * @param node DetailNode(Javadoc) node.
      * @param column column index.
      * @return value at specified column.
@@ -318,6 +333,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets a value for DetailAST object.
+     *
      * @param ast DetailAST node.
      * @param column column index.
      * @return value at specified column.
@@ -350,6 +366,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Gets Javadoc (DetailNode) tree of specified block comments.
+     *
      * @param blockComment Javadoc comment as a block comment
      * @return root of DetailNode tree
      */
@@ -360,6 +377,7 @@ public class ParseTreeTablePresentation {
 
     /**
      * Parses Javadoc (DetailNode) tree of specified block comments.
+     *
      * @param blockComment Javadoc comment as a block comment
      * @return root of DetailNode tree
      */

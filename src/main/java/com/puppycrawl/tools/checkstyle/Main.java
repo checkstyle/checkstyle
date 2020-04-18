@@ -98,6 +98,7 @@ public final class Main {
     /**
      * Loops over the files specified checking them for errors. The exit code
      * is the number of errors found in all the files.
+     *
      * @param args the command line arguments.
      * @throws IOException if there is a problem with files access
      * @noinspection UseOfSystemOutOrSystemErr, CallToPrintStackTrace, CallToSystemExit
@@ -154,6 +155,7 @@ public final class Main {
 
     /**
      * Returns the version string printed when the user requests version help (--version or -V).
+     *
      * @return a version string based on the package implementation version
      */
     private static String getVersionString() {
@@ -163,6 +165,7 @@ public final class Main {
     /**
      * Validates the user input and returns {@value #EXIT_WITH_INVALID_USER_INPUT_CODE} if
      * invalid, otherwise executes CheckStyle and returns the number of violations.
+     *
      * @param parseResult generic access to options and parameters found on the command line
      * @param options encapsulates options and parameters specified on the command line
      * @return number of violations
@@ -191,6 +194,7 @@ public final class Main {
 
     /**
      * Determines the files to process.
+     *
      * @param options the user-specified options
      * @return list of files to process
      */
@@ -207,6 +211,7 @@ public final class Main {
     /**
      * Traverses a specified node looking for files to check. Found files are added to
      * a specified list. Subdirectories are also traversed.
+     *
      * @param node
      *        the node to process
      * @param patternsToExclude The list of patterns to exclude from searching or being added as
@@ -238,6 +243,7 @@ public final class Main {
     /**
      * Checks if a directory/file {@code path} should be excluded based on if it matches one of the
      * patterns supplied.
+     *
      * @param path The path of the directory/file to check
      * @param patternsToExclude The list of patterns to exclude from searching or being added as
      *        files.
@@ -258,6 +264,7 @@ public final class Main {
 
     /**
      * Do execution of CheckStyle based on Command line options.
+     *
      * @param options user-specified options
      * @param filesToProcess the list of files whose style to check
      * @return number of violations
@@ -329,6 +336,7 @@ public final class Main {
 
     /**
      * Executes required Checkstyle actions based on passed parameters.
+     *
      * @param options user-specified options
      * @param filesToProcess the list of files whose style to check
      * @return number of violations of ERROR level
@@ -408,6 +416,7 @@ public final class Main {
 
     /**
      * Loads properties from a File.
+     *
      * @param file
      *        the properties file
      * @return the properties in file
@@ -434,6 +443,7 @@ public final class Main {
     /**
      * Creates a new instance of the root module that will control and run
      * Checkstyle.
+     *
      * @param name The name of the module. This will either be a short name that
      *        will have to be found or the complete package name.
      * @param moduleClassLoader Class loader used to load the root module.
@@ -450,6 +460,7 @@ public final class Main {
 
     /**
      * Returns {@code TreeWalker} module configuration.
+     *
      * @param config The configuration object.
      * @return The {@code TreeWalker} module configuration.
      */
@@ -470,6 +481,7 @@ public final class Main {
      * This method creates in AuditListener an open stream for validation data, it must be
      * closed by {@link RootModule} (default implementation is {@link Checker}) by calling
      * {@link AuditListener#auditFinished(AuditEvent)}.
+     *
      * @param format format of the audit listener
      * @param outputLocation the location of output
      * @return a fresh new {@code AuditListener}
@@ -485,6 +497,7 @@ public final class Main {
 
     /**
      * Create output stream or return System.out
+     *
      * @param outputPath output location
      * @return output stream
      * @throws IOException might happen
@@ -504,6 +517,7 @@ public final class Main {
 
     /**
      * Create {@link AutomaticBean.OutputStreamOptions} for the given location.
+     *
      * @param outputPath output location
      * @return output stream options
      */
@@ -532,6 +546,7 @@ public final class Main {
 
         /**
          * Returns a new AuditListener for this OutputFormat.
+         *
          * @param out the output stream
          * @param options the output stream options
          * @return a new AuditListener for this OutputFormat
@@ -566,6 +581,7 @@ public final class Main {
 
         /**
          * Returns whether the specified record should be logged.
+         *
          * @param record the record to log
          * @return true if the logger name is in the package of this class or a subpackage
          */
@@ -577,6 +593,7 @@ public final class Main {
 
     /**
      * Command line options.
+     *
      * @noinspection unused, FieldMayBeFinal, CanBeFinal,
      *              MismatchedQueryAndUpdateOfCollection, LocalCanBeFinal
      */
@@ -728,6 +745,7 @@ public final class Main {
 
         /**
          * Gets the list of exclusions provided through the command line arguments.
+         *
          * @return List of exclusion patterns.
          */
         private List<Pattern> getExclusions() {
@@ -742,6 +760,7 @@ public final class Main {
 
         /**
          * Validates the user-specified command line options.
+         *
          * @param parseResult used to verify if the format option was specified on the command line
          * @param filesToProcess the list of files whose style to check
          * @return list of violations
@@ -797,6 +816,7 @@ public final class Main {
 
         /**
          * Validates optional command line parameters that might be used with config file.
+         *
          * @return list of violations
          */
         private List<String> validateOptionalCliParametersIfConfigDefined() {

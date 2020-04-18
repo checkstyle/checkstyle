@@ -168,6 +168,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * *&#47;
  * CREATE DATABASE MyDB;
  * </pre>
+ *
  * @since 5.0
  */
 @StatelessCheck

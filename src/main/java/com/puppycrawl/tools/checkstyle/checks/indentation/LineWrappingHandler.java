@@ -53,6 +53,7 @@ public class LineWrappingHandler {
 
         /**
          * Builds enum value from boolean.
+         *
          * @param val value.
          * @return enum instance.
          *

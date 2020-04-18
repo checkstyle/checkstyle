@@ -40,6 +40,7 @@ public class CodeSelector {
 
     /**
      * Constructor.
+     *
      * @param node ast node.
      * @param editor text area editor.
      * @param lines2position list to map lines.

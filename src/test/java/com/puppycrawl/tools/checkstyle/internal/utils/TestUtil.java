@@ -45,6 +45,7 @@ public final class TestUtil {
 
     /**
      * Verifies that utils class has private constructor and invokes it to satisfy code coverage.
+     *
      * @param utilClass class to test for c-tor
      * @param checkConstructorIsPrivate flag to skip check for private visibility, it is useful
      *                                  for Classes that are mocked by PowerMockRunner that make
@@ -159,6 +160,7 @@ public final class TestUtil {
 
     /**
      * Returns the default PackageObjectFactory with the default package names.
+     *
      * @return the default PackageObjectFactory.
      */
     public static PackageObjectFactory getPackageObjectFactory() throws CheckstyleException {
@@ -170,6 +172,7 @@ public final class TestUtil {
     /**
      * Finds node of specified type among root children, siblings, siblings children
      * on any deep level.
+     *
      * @param root      DetailAST
      * @param predicate predicate
      * @return {@link Optional} of {@link DetailAST} node which matches the predicate.

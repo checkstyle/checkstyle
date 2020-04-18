@@ -73,6 +73,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Creates a new {@code DefaultLogger} instance.
+     *
      * @param outputStream where to log audit events
      * @param outputStreamOptions if {@code CLOSE} that should be closed in auditFinished()
      */
@@ -83,6 +84,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     /**
      * Creates a new {@code DefaultLogger} instance.
+     *
      * @param infoStream the {@code OutputStream} for info messages.
      * @param infoStreamOptions if {@code CLOSE} info should be closed in auditFinished()
      * @param errorStream the {@code OutputStream} for error messages.
@@ -142,6 +144,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
     /**
      * Print an Emacs compliant line on the error stream.
      * If the column number is non zero, then also display it.
+     *
      * @see AuditListener
      **/
     @Override

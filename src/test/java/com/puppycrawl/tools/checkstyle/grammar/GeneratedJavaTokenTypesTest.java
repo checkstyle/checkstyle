@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * GeneratedJavaTokenTypesTest.
+ *
  * @noinspection ClassIndependentOfModule
  */
 public class GeneratedJavaTokenTypesTest {

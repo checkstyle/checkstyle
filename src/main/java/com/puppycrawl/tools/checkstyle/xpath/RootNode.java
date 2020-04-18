@@ -75,6 +75,7 @@ public class RootNode extends AbstractNode {
     /**
      * Returns attribute value. Throws {@code UnsupportedOperationException} because root node
      * has no attributes.
+     *
      * @param namespace namespace
      * @param localPart actual name of the attribute
      * @return attribute value
@@ -86,6 +87,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns local part.
+     *
      * @return local part
      */
     @Override
@@ -95,6 +97,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns type of the node.
+     *
      * @return node kind
      */
     @Override
@@ -104,6 +107,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns parent.
+     *
      * @return parent
      */
     @Override
@@ -113,6 +117,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns root of the tree.
+     *
      * @return root of the tree
      */
     @Override
@@ -123,6 +128,7 @@ public class RootNode extends AbstractNode {
     /**
      * Determines axis iteration algorithm. Throws {@code UnsupportedOperationException} in case,
      * when there is no axis iterator for given axisNumber.
+     *
      * @param axisNumber element from {@code AxisInfo}
      * @return {@code AxisIterator} object
      */
@@ -181,6 +187,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns line number.
+     *
      * @return line number
      */
     @Override
@@ -190,6 +197,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns column number.
+     *
      * @return column number
      */
     @Override
@@ -199,6 +207,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Getter method for token type.
+     *
      * @return token type
      */
     @Override
@@ -208,6 +217,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns underlying node.
+     *
      * @return underlying node
      */
     @Override
@@ -217,6 +227,7 @@ public class RootNode extends AbstractNode {
 
     /**
      * Returns UnsupportedOperationException exception.
+     *
      * @return UnsupportedOperationException exception
      */
     private static UnsupportedOperationException throwUnsupportedOperationException() {

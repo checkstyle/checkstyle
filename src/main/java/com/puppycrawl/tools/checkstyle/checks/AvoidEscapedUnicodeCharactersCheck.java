@@ -266,6 +266,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Setter to allow use escapes for non-printable, control characters.
+     *
      * @param allow user's value.
      */
     public final void setAllowEscapesForControlCharacters(boolean allow) {
@@ -274,6 +275,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Setter to allow use escapes if trail comment is present.
+     *
      * @param allow user's value.
      */
     public final void setAllowByTailComment(boolean allow) {
@@ -282,6 +284,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Setter to allow if all characters in literal are escaped.
+     *
      * @param allow user's value.
      */
     public final void setAllowIfAllCharactersEscaped(boolean allow) {
@@ -290,6 +293,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Setter to allow use escapes for non-printable, whitespace characters.
+     *
      * @param allow user's value.
      */
     public final void setAllowNonPrintableEscapes(boolean allow) {
@@ -333,6 +337,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Checks if literal has Unicode chars.
+     *
      * @param literal String literal.
      * @return true if literal has Unicode chars.
      */
@@ -344,6 +349,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Check if String literal contains Unicode control chars.
+     *
      * @param literal String literal.
      * @param pattern RegExp for valid characters.
      * @return true, if String literal contains Unicode control chars.
@@ -358,6 +364,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Check if trail comment is present after ast token.
+     *
      * @param ast current token.
      * @return true if trail comment is present after ast token.
      */
@@ -380,6 +387,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Whether the C style comment is trailing.
+     *
      * @param comment the comment to check.
      * @param line the line where the comment starts.
      * @return true if the comment is trailing.
@@ -391,6 +399,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Count regexp matches into String literal.
+     *
      * @param pattern pattern.
      * @param target String literal.
      * @return count of regexp matches.
@@ -406,6 +415,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /**
      * Checks if all characters in String literal is escaped.
+     *
      * @param literal current literal.
      * @return true if all characters in String literal is escaped.
      */

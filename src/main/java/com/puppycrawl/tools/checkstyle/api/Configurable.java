@@ -33,6 +33,7 @@ public interface Configurable {
 
     /**
      * Configures this component.
+     *
      * @param configuration the configuration to use.
      * @throws CheckstyleException if there is a configuration error.
      */

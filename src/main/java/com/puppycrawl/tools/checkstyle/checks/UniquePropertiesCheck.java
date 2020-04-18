@@ -165,6 +165,7 @@ public class UniquePropertiesCheck extends AbstractFileSetCheck {
 
         /**
          * Puts the value into properties by the key specified.
+         *
          * @noinspection UseOfPropertiesAsHashtable
          */
         @Override

@@ -130,6 +130,7 @@ public class MethodLengthCheck extends AbstractCheck {
 
     /**
      * Returns length of code only without comments and blank lines.
+     *
      * @param openingBrace block opening brace
      * @param closingBrace block closing brace
      * @return number of lines with code for current block

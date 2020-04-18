@@ -182,6 +182,7 @@ public class IllegalTokenTextCheck
     /**
      * Setter to define the message which is used to notify about violations;
      * if empty then the default message is used.
+     *
      * @param message custom message which should be used
      *                 to report about violations.
      */
@@ -196,6 +197,7 @@ public class IllegalTokenTextCheck
 
     /**
      * Setter to define the RegExp for illegal pattern.
+     *
      * @param format a {@code String} value
      */
     public void setFormat(String format) {
@@ -205,6 +207,7 @@ public class IllegalTokenTextCheck
 
     /**
      * Setter to control whether to ignore case when matching.
+     *
      * @param caseInsensitive true if the match is case insensitive.
      */
     public void setIgnoreCase(boolean caseInsensitive) {

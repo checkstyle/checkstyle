@@ -135,6 +135,7 @@ public class EmptyBlockCheck
 
     /**
      * Setter to specify the policy on block contents.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
@@ -213,6 +214,7 @@ public class EmptyBlockCheck
 
     /**
      * Checks if SLIST token contains any text.
+     *
      * @param slistAST a {@code DetailAST} value
      * @return whether the SLIST token contains any text.
      */

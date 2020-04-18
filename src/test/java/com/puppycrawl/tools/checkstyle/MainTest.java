@@ -477,6 +477,7 @@ public class MainTest {
      * Similar test to {@link #testExistingTargetFileWithError}, but for PIT mutation tests:
      * this test fails if the boundary condition is changed from {@code if (exitStatus > 0)}
      * to {@code if (exitStatus > 1)}.
+     *
      * @throws Exception should not throw anything
      */
     @Test
@@ -685,6 +686,7 @@ public class MainTest {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test
@@ -715,6 +717,7 @@ public class MainTest {
 
     /**
      * Test doesn't need to be serialized.
+     *
      * @noinspection SerializableInnerClassWithNonSerializableOuterClass
      */
     @Test

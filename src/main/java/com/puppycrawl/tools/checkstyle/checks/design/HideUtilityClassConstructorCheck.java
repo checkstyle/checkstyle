@@ -151,6 +151,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     /**
      * Returns true if given class is abstract or false.
+     *
      * @param ast class definition for check.
      * @return true if a given class declared as abstract.
      */
@@ -161,6 +162,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     /**
      * Returns true if given class is static or false.
+     *
      * @param ast class definition for check.
      * @return true if a given class declared as static.
      */
@@ -187,6 +189,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * C-tor.
+         *
          * @param ast class ast
          * */
         /* package */ Details(DetailAST ast) {
@@ -195,6 +198,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasNonStaticMethodOrField() {
@@ -203,6 +207,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasNonPrivateStaticMethodOrField() {
@@ -211,6 +216,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasDefaultCtor() {
@@ -219,6 +225,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
         /**
          * Getter.
+         *
          * @return boolean
          */
         public boolean isHasPublicCtor() {

@@ -148,6 +148,7 @@ public class FileTextTest extends AbstractPathTestSupport {
      * Reflection is the only way to test that a field is cached since we can't
      * access the field directly or receive notice when the field is
      * initialized.
+     *
      * @throws Exception if there is an error.
      */
     @Test

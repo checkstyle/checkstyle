@@ -333,6 +333,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Checks if ast is annotation argument and should be checked.
+     *
      * @param ast token to check
      * @return true if element is skipped, false otherwise
      */
@@ -342,6 +343,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Checks if ast is annotation element default value and should be checked.
+     *
      * @param ast token to check
      * @return true if element is skipped, false otherwise
      */
@@ -351,6 +353,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Is magic number some where at ast tree.
+     *
      * @param ast ast token
      * @param constantDefAST constant ast
      * @return true if magic number is present
@@ -371,6 +374,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Finds the constant definition that contains aAST.
+     *
      * @param ast the AST
      * @return the constant def or null if ast is not contained in a constant definition.
      */
@@ -404,6 +408,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Reports aAST as a magic number, includes unary operators as needed.
+     *
      * @param ast the AST node that contains the number to report
      */
     private void reportMagicNumber(DetailAST ast) {
@@ -464,6 +469,7 @@ public class MagicNumberCheck extends AbstractCheck {
     /**
      * Decides whether the number of an AST is in the ignore list of this
      * check.
+     *
      * @param ast the AST to check
      * @return true if the number of ast is in the ignore list of this check.
      */
@@ -499,6 +505,7 @@ public class MagicNumberCheck extends AbstractCheck {
     /**
      * Setter to specify tokens that are allowed in the AST path from the
      * number literal to the enclosing constant definition.
+     *
      * @param tokens The string representation of the tokens interested in
      */
     public void setConstantWaiverParentToken(String... tokens) {
@@ -511,6 +518,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Setter to specify non-magic numbers.
+     *
      * @param list list of numbers to ignore.
      */
     public void setIgnoreNumbers(double... list) {
@@ -526,6 +534,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Setter to ignore magic numbers in hashCode methods.
+     *
      * @param ignoreHashCodeMethod decide whether to ignore
      *     hash code methods
      */
@@ -535,6 +544,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Setter to ignore magic numbers in annotation declarations.
+     *
      * @param ignoreAnnotation decide whether to ignore annotations
      */
     public void setIgnoreAnnotation(boolean ignoreAnnotation) {
@@ -543,6 +553,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Setter to ignore magic numbers in field declarations.
+     *
      * @param ignoreFieldDeclaration decide whether to ignore magic numbers
      *     in field declaration
      */
@@ -552,6 +563,7 @@ public class MagicNumberCheck extends AbstractCheck {
 
     /**
      * Setter to ignore magic numbers in annotation elements defaults.
+     *
      * @param ignoreAnnotationElementDefaults decide whether to ignore annotation elements defaults
      */
     public void setIgnoreAnnotationElementDefaults(boolean ignoreAnnotationElementDefaults) {

@@ -176,6 +176,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Perform processing for an import token.
+     *
      * @param ast the import token
      */
     private void processImport(DetailAST ast) {
@@ -187,6 +188,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Perform processing for an package token.
+     *
      * @param ast the package token
      */
     private void processPackageDef(DetailAST ast) {
@@ -199,6 +201,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Collects a "new" token.
+     *
      * @param ast the "new" token
      */
     private void processLiteralNew(DetailAST ast) {
@@ -210,6 +213,7 @@ public class IllegalInstantiationCheck
     /**
      * Processes one of the collected "new" tokens when walking tree
      * has finished.
+     *
      * @param newTokenAst the "new" token.
      */
     private void postProcessLiteralNew(DetailAST newTokenAst) {
@@ -228,6 +232,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Checks illegal instantiations.
+     *
      * @param className instantiated class, may or may not be qualified
      * @return the fully qualified class name of className
      *     or null if instantiation of className is OK
@@ -267,6 +272,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Check import statements.
+     *
      * @param className name of the class
      * @return value of illegal instantiated type
      */
@@ -290,6 +296,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Check that type is of the same package.
+     *
      * @param className class name
      * @param pkgNameLen package name
      * @param illegal illegal value
@@ -312,6 +319,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Is Standard Class.
+     *
      * @param className class name
      * @param illegal illegal value
      * @return true if type is standard
@@ -339,6 +347,7 @@ public class IllegalInstantiationCheck
 
     /**
      * Setter to specify fully qualified class names that should not be instantiated.
+     *
      * @param names a comma separate list of class names
      */
     public void setClasses(String... names) {

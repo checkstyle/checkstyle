@@ -480,6 +480,7 @@ public class ImportOrderCheck
 
     /**
      * Setter to specify policy on the relative order between type imports and static imports.
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
@@ -556,6 +557,7 @@ public class ImportOrderCheck
      * Case sensitive sorting is in
      * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
      * It affects both type imports and static imports.
+     *
      * @param caseSensitive
      *            whether string comparison should be case sensitive.
      */
@@ -566,6 +568,7 @@ public class ImportOrderCheck
     /**
      * Setter to control whether <b>static imports</b> located at <b>top</b> or
      * <b>bottom</b> are sorted within the group.
+     *
      * @param sortAlphabetically true or false.
      */
     public void setSortStaticImportsAlphabetically(boolean sortAlphabetically) {
@@ -575,6 +578,7 @@ public class ImportOrderCheck
     /**
      * Setter to control whether to use container ordering (Eclipse IDE term) for static
      * imports or not.
+     *
      * @param useContainerOrdering whether to use container ordering for static imports or not.
      */
     public void setUseContainerOrderingForStatic(boolean useContainerOrdering) {
@@ -683,6 +687,7 @@ public class ImportOrderCheck
 
     /**
      * Checks whether import groups should be separated.
+     *
      * @param isStatic whether the token is static or not.
      * @return true if imports groups should be separated.
      */
@@ -703,6 +708,7 @@ public class ImportOrderCheck
 
     /**
      * Checks whether imports group separated internally.
+     *
      * @param groupIdx group number.
      * @param isStatic whether the token is static or not.
      * @param line the line of the current import.
@@ -715,6 +721,7 @@ public class ImportOrderCheck
 
     /**
      * Checks whether there is any separator before current import.
+     *
      * @param line the line of the current import.
      * @return true if there is separator before current import which isn't the first import.
      */
@@ -760,6 +767,7 @@ public class ImportOrderCheck
 
     /**
      * Checks whether import name is in wrong order.
+     *
      * @param name import name.
      * @param isStatic whether it is a static import name.
      * @return true if import name is in wrong order.
@@ -843,6 +851,7 @@ public class ImportOrderCheck
      * import static HttpHeaders.setHeader   => HttpHeaders
      * import static HttpHeaders.Names.DATE  => HttpHeaders.Names
      * </p>
+     *
      * @param qualifiedImportName fully qualified import name.
      * @return import container name.
      */

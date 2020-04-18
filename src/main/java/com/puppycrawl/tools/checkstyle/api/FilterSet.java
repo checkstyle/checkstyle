@@ -36,6 +36,7 @@ public class FilterSet
 
     /**
      * Adds a Filter to the set.
+     *
      * @param filter the Filter to add.
      */
     public void addFilter(Filter filter) {
@@ -44,6 +45,7 @@ public class FilterSet
 
     /**
      * Removes filter.
+     *
      * @param filter filter to remove.
      */
     public void removeFilter(Filter filter) {
@@ -52,6 +54,7 @@ public class FilterSet
 
     /**
      * Returns the Filters of the filter set.
+     *
      * @return the Filters of the filter set.
      */
     public Set<Filter> getFilters() {

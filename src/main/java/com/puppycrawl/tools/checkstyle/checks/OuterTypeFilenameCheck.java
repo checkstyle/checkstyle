@@ -62,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  * </pre>
+ *
  * @since 5.3
  */
 @FileStatefulCheck
@@ -144,6 +145,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
 
     /**
      * Get source file name.
+     *
      * @return source file name.
      */
     private String getFileName() {

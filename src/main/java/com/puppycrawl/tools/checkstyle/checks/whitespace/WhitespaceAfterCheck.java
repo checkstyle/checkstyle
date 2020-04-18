@@ -98,6 +98,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *         for(;;) {} // OK
  *     }
  * </pre>
+ *
  * @since 3.0
  */
 @StatelessCheck
@@ -161,6 +162,7 @@ public class WhitespaceAfterCheck
 
     /**
      * Checks whether token is followed by a whitespace.
+     *
      * @param targetAST Ast token.
      * @param line The line associated with the ast token.
      * @return true if ast token is followed by a whitespace.

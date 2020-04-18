@@ -63,6 +63,7 @@ class MultilineDetector {
 
     /**
      * Creates an instance.
+     *
      * @param options the options to use.
      */
     /* package */ MultilineDetector(DetectorOptions options) {
@@ -71,6 +72,7 @@ class MultilineDetector {
 
     /**
      * Processes an entire text file looking for matches.
+     *
      * @param fileText the text to process
      */
     public void processLines(FileText fileText) {

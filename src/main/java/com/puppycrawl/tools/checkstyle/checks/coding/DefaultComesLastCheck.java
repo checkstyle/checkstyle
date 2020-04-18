@@ -151,6 +151,7 @@ public class DefaultComesLastCheck extends AbstractCheck {
     /**
      * Setter to control whether to allow {@code default} along with
      * {@code case} if they are not last.
+     *
      * @param newValue whether to ignore checking.
      */
     public void setSkipIfLastAndSharedWithCase(boolean newValue) {

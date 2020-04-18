@@ -137,6 +137,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
  * @since 8.21
  */
 @FileStatefulCheck
@@ -174,6 +175,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Setter to configure the list of annotations that allow missed documentation.
+     *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
@@ -182,6 +184,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Setter to ignore method whose names are matching specified regex.
+     *
      * @param pattern a pattern.
      */
     public void setIgnoreMethodNamesRegex(Pattern pattern) {
@@ -190,6 +193,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Setter to control the minimal amount of lines in method to allow no documentation.
+     *
      * @param value user's value.
      */
     public void setMinLineCount(int value) {
@@ -258,6 +262,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Some javadoc.
+     *
      * @param methodDef Some javadoc.
      * @return Some javadoc.
      */
@@ -277,6 +282,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Checks if a missing Javadoc is allowed by the check's configuration.
+     *
      * @param ast the tree node for the method or constructor.
      * @return True if this method or constructor doesn't need Javadoc.
      */
@@ -303,6 +309,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     /**
      * Checks if the given method name matches the regex. In that case
      * we skip enforcement of javadoc for this method
+     *
      * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if given method name matches the regex.
      */

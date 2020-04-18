@@ -73,6 +73,7 @@ public final class CheckUtil {
 
     /**
      * Creates {@code FullIdent} for given type node.
+     *
      * @param typeAST a type node.
      * @return {@code FullIdent} for given type.
      */
@@ -89,6 +90,7 @@ public final class CheckUtil {
 
     /**
      * Tests whether a method definition AST defines an equals covariant.
+     *
      * @param ast the method definition AST to test.
      *     Precondition: ast is a TokenTypes.METHOD_DEF node.
      * @return true if ast defines an equals covariant.
@@ -118,6 +120,7 @@ public final class CheckUtil {
 
     /**
      * Returns whether a token represents an ELSE as part of an ELSE / IF set.
+     *
      * @param ast the token to check
      * @return whether it is
      */
@@ -130,6 +133,7 @@ public final class CheckUtil {
 
     /**
      * Returns whether a token represents an ELSE.
+     *
      * @param ast the token to check
      * @return whether the token represents an ELSE
      */
@@ -140,6 +144,7 @@ public final class CheckUtil {
     /**
      * Returns whether a token represents an SLIST as part of an ELSE
      * statement.
+     *
      * @param ast the token to check
      * @return whether the toke does represent an SLIST as part of an ELSE
      */
@@ -152,6 +157,7 @@ public final class CheckUtil {
     /**
      * Returns the value represented by the specified string of the specified
      * type. Returns 0 for types other than float, double, int, and long.
+     *
      * @param text the string to be parsed.
      * @param type the token type of the text. Should be a constant of
      *     {@link TokenTypes}.
@@ -193,6 +199,7 @@ public final class CheckUtil {
      * Parses the string argument as an integer or a long in the radix specified by
      * the second argument. The characters in the string must all be digits of
      * the specified radix.
+     *
      * @param text the String containing the integer representation to be
      *     parsed. Precondition: text contains a parsable int.
      * @param radix the radix to be used while parsing text.
@@ -233,6 +240,7 @@ public final class CheckUtil {
 
     /**
      * Finds sub-node for given node minimal (line, column) pair.
+     *
      * @param node the root of tree for search.
      * @return sub-node with minimal (line, column) pair.
      */
@@ -252,6 +260,7 @@ public final class CheckUtil {
 
     /**
      * Retrieves whether ast1 is located before ast2.
+     *
      * @param ast1 the first node.
      * @param ast2 the second node.
      * @return true, if ast1 is located before ast2.
@@ -264,6 +273,7 @@ public final class CheckUtil {
 
     /**
      * Retrieves the names of the type parameters to the node.
+     *
      * @param node the parameterized AST node
      * @return a list of type parameter names
      */
@@ -293,6 +303,7 @@ public final class CheckUtil {
 
     /**
      * Retrieves the type parameters to the node.
+     *
      * @param node the parameterized AST node
      * @return a list of type parameter names
      */
@@ -320,6 +331,7 @@ public final class CheckUtil {
 
     /**
      * Returns whether an AST represents a setter method.
+     *
      * @param ast the AST to check with
      * @return whether the AST represents a setter method
      */
@@ -357,6 +369,7 @@ public final class CheckUtil {
 
     /**
      * Returns whether an AST represents a getter method.
+     *
      * @param ast the AST to check with
      * @return whether the AST represents a getter method
      */
@@ -422,6 +435,7 @@ public final class CheckUtil {
     /**
      * Returns {@link AccessModifier} based on the information about access modifier
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
+     *
      * @param modifiersToken token of type {@link TokenTypes#MODIFIERS}.
      * @return {@link AccessModifier}.
      * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'

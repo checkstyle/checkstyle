@@ -137,6 +137,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Returns true if lineNo is header lines or false.
+     *
      * @param lineNo a line number
      * @return if {@code lineNo} is one of the ignored header lines.
      */
@@ -146,6 +147,7 @@ public class HeaderCheck extends AbstractHeaderCheck {
 
     /**
      * Checks if a code line matches the required header line.
+     *
      * @param lineNumber the line number to check against the header
      * @param line the line contents
      * @return true if and only if the line matches the required header line

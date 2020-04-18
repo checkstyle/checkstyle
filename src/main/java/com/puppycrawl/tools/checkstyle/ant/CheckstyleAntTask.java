@@ -123,6 +123,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Tells this task to write failure message to the named property when there
      * is a violation.
+     *
      * @param propertyName the name of the property to set
      *                      in the event of an failure.
      */
@@ -132,6 +133,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets flag - whether to fail if a violation is found.
+     *
      * @param fail whether to fail if a violation is found
      */
     public void setFailOnViolation(boolean fail) {
@@ -140,6 +142,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets the maximum number of errors allowed. Default is 0.
+     *
      * @param maxErrors the maximum number of errors allowed.
      */
     public void setMaxErrors(int maxErrors) {
@@ -149,6 +152,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Sets the maximum number of warnings allowed. Default is
      * {@link Integer#MAX_VALUE}.
+     *
      * @param maxWarnings the maximum number of warnings allowed.
      */
     public void setMaxWarnings(int maxWarnings) {
@@ -157,6 +161,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Adds a path.
+     *
      * @param path the path to add.
      */
     public void addPath(Path path) {
@@ -165,6 +170,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Adds set of files (nested fileset attribute).
+     *
      * @param fileSet the file set to add
      */
     public void addFileset(FileSet fileSet) {
@@ -173,6 +179,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Add a formatter.
+     *
      * @param formatter the formatter to add for logging.
      */
     public void addFormatter(Formatter formatter) {
@@ -181,6 +188,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Add an override property.
+     *
      * @param property the property to add
      */
     public void addProperty(Property property) {
@@ -189,6 +197,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Set the class path.
+     *
      * @param classpath the path to locate classes
      */
     public void setClasspath(Path classpath) {
@@ -202,6 +211,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Set the class path from a reference defined elsewhere.
+     *
      * @param classpathRef the reference to an instance defining the classpath
      */
     public void setClasspathRef(Reference classpathRef) {
@@ -210,6 +220,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Creates classpath.
+     *
      * @return a created path for locating classes
      */
     public Path createClasspath() {
@@ -221,6 +232,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets file to be checked.
+     *
      * @param file the file to be checked
      */
     public void setFile(File file) {
@@ -229,6 +241,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets configuration file.
+     *
      * @param configuration the configuration file, URL, or resource to use
      * @throws BuildException when config was already set
      */
@@ -241,6 +254,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Sets flag - whether to execute ignored modules.
+     *
      * @param omit whether to execute ignored modules
      */
     public void setExecuteIgnoredModules(boolean omit) {
@@ -254,6 +268,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Sets a properties file for use instead
      * of individually setting them.
+     *
      * @param props the properties File to use
      */
     public void setProperties(File props) {
@@ -295,6 +310,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Helper implementation to perform execution.
+     *
      * @param checkstyleVersion Checkstyle compile version.
      */
     private void realExecute(String checkstyleVersion) {
@@ -323,6 +339,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Scans and processes files by means given root module.
+     *
      * @param rootModule Root module to process files
      * @param warningCounter Root Module's counter of warnings
      * @param checkstyleVersion Checkstyle compile version
@@ -373,6 +390,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Creates new instance of the root module.
+     *
      * @return new instance of the root module
      */
     private RootModule createRootModule() {
@@ -412,6 +430,7 @@ public class CheckstyleAntTask extends Task {
     /**
      * Create the Properties object based on the arguments specified
      * to the ANT task.
+     *
      * @return the properties for property expansion expansion
      */
     private Properties createOverridingProperties() {
@@ -445,6 +464,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Return the list of listeners set in this task.
+     *
      * @return the list of listeners.
      */
     private AuditListener[] getListeners() {
@@ -476,6 +496,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Returns the list of files (full path name) to process.
+     *
      * @return the list of files included via the fileName, filesets and paths.
      */
     private List<File> getFilesToCheck() {
@@ -498,6 +519,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Retrieves all files from the defined paths.
+     *
      * @return a list of files defined via paths.
      */
     private List<File> scanPaths() {
@@ -550,6 +572,7 @@ public class CheckstyleAntTask extends Task {
 
     /**
      * Returns the list of files (full path name) to process.
+     *
      * @return the list of files included via the filesets.
      */
     protected List<File> scanFileSets() {
@@ -613,6 +636,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Set the type of the formatter.
+         *
          * @param type the type
          */
         public void setType(FormatterType type) {
@@ -621,6 +645,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Set the file to output to.
+         *
          * @param destination destination the file to output to
          */
         public void setTofile(File destination) {
@@ -629,6 +654,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets whether or not we write to a file if it is provided.
+         *
          * @param use whether not not to use provided file.
          */
         public void setUseFile(boolean use) {
@@ -637,6 +663,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Creates a listener for the formatter.
+         *
          * @param task the task running
          * @return a listener
          * @throws IOException if an error occurs
@@ -655,6 +682,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Creates default logger.
+         *
          * @param task the task to possibly log to
          * @return a DefaultLogger instance
          * @throws IOException if an error occurs
@@ -681,6 +709,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Creates XML logger.
+         *
          * @param task the task to possibly log to
          * @return an XMLLogger instance
          * @throws IOException if an error occurs
@@ -712,6 +741,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Gets key.
+         *
          * @return the property key
          */
         public String getKey() {
@@ -720,6 +750,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets key.
+         *
          * @param key sets the property key
          */
         public void setKey(String key) {
@@ -728,6 +759,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Gets value.
+         *
          * @return the property value
          */
         public String getValue() {
@@ -736,6 +768,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets value.
+         *
          * @param value set the property value
          */
         public void setValue(String value) {
@@ -744,6 +777,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets the property value from a File.
+         *
          * @param file set the property value from a File
          */
         public void setFile(File file) {
@@ -760,6 +794,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Gets class name.
+         *
          * @return the class name
          */
         public String getClassname() {
@@ -768,6 +803,7 @@ public class CheckstyleAntTask extends Task {
 
         /**
          * Sets class name.
+         *
          * @param name set the class name
          */
         public void setClassname(String name) {

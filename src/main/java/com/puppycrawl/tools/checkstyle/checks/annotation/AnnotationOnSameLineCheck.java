@@ -142,6 +142,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
 
     /**
      * Finds next node of ast tree.
+     *
      * @param node current node
      * @return node that is next to given
      */
@@ -155,6 +156,7 @@ public class AnnotationOnSameLineCheck extends AbstractCheck {
 
     /**
      * Returns the name of the given annotation.
+     *
      * @param annotation annotation node.
      * @return annotation name.
      */

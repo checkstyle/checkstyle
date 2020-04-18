@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 
 /**
  * TestFileSetCheck.
+ *
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public class TestFileSetCheck extends AbstractFileSetCheck {
@@ -39,6 +40,7 @@ public class TestFileSetCheck extends AbstractFileSetCheck {
 
     /**
      * Checks if {@link #processFiltered(File, FileText)} was called.
+     *
      * @return {@code true} if it was called.
      */
     public boolean wasCalled() {
