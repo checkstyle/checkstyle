@@ -276,7 +276,24 @@ switch (a) {
         <source>
 &lt;module name=&quot;EmptyBlock&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  private void emptyLoop(){
+    for(int i=0; i&#60;10; i++){
+      // violation
+    }
 
+    try {
+      // violation
+    } catch (Exception e) {
+      // ignored
+    }
+  }
+}
+        </source>
         <p>
           To configure the check for the <code>text</code>
           policy and only <code> try</code> blocks:
@@ -286,6 +303,24 @@ switch (a) {
   &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  private void emptyLoop(){
+    for(int i=0; i&#60;10; i++){
+      // ignored
+    }
+
+    try {
+      // violation
+    } catch (Exception e) {
+      // ignored
+    }
+  }
+}
         </source>
       </subsection>
 
