@@ -20,3 +20,39 @@ public class InputJava9TryWithResources
         try (resource1;resource2) { } finally { }
     }
 }
+
+class Foo {
+    static final Bar BAR = new Bar();
+    static class Bar implements AutoCloseable {
+        public void close() {
+        }
+    }
+
+
+    final AutoCloseable closable = () -> {};
+
+    public void method1(TestClass cls) throws Exception {
+        try (closable) {
+        }
+        try (cls.closable) {
+        }
+
+    }
+
+    void method() {
+        Foo.Bar bar = new Foo.Bar();
+        try (Foo.BAR; BAR) {
+        }
+        try(this.BAR.bar){}
+        try(this.BAR){
+        }
+        try(Foo.Bar b = new Foo.Bar()) {
+        }
+        try(Foo.super.BAR) {
+        }
+        try (new TwrForVariable1() { }.finalWrapper.finalField) {
+        }
+        try ((args.length > 0 ? v : new TwrForVariable1()).finalWrapper.finalField) {
+        }
+    }
+}

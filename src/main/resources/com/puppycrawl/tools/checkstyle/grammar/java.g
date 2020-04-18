@@ -1231,8 +1231,8 @@ tryResourceDeclarator![AST mods, AST t]
 
 
 tryResourceDeclaration!
-    : m: parameterModifier t: typeSpec[false]
-                                    v: tryResourceDeclarator[(AST) getASTFactory().dupTree(#m),
+    : m:parameterModifier t:typeSpec[false]
+                                    v:tryResourceDeclarator[(AST) getASTFactory().dupTree(#m),
                                     //dupList as this also copies siblings (like TYPE_ARGUMENTS)
                                     (AST) getASTFactory().dupList(#t)]
     {#tryResourceDeclaration = #v;}
@@ -1241,8 +1241,7 @@ tryResourceDeclaration!
 
 resource
     : (tryResourceDeclaration)=>  tryResourceDeclaration
-    | ( (primaryExpression DOT^)+ identifier
-    | IDENT)+
+    | (primaryExpression DOT^)* IDENT
     {#resource = #([RESOURCE, "RESOURCE"], #resource);}
 ;
 
