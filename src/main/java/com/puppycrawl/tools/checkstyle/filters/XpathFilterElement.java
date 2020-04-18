@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.sxpath.XPathDynamicContext;
 import net.sf.saxon.sxpath.XPathEvaluator;
@@ -107,7 +108,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
             xpathExpression = null;
         }
         else {
-            final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+            final XPathEvaluator xpathEvaluator = new XPathEvaluator(
+                    Configuration.newConfiguration());
             try {
                 xpathExpression = xpathEvaluator.createExpression(xpathQuery);
             }
@@ -158,7 +160,8 @@ public class XpathFilterElement implements TreeWalkerFilter {
             xpathExpression = null;
         }
         else {
-            final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+            final XPathEvaluator xpathEvaluator = new XPathEvaluator(
+                    Configuration.newConfiguration());
             try {
                 xpathExpression = xpathEvaluator.createExpression(xpathQuery);
             }
@@ -232,7 +235,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @param event {@code TreeWalkerAuditEvent} object
      * @return list of nodes matching xpath expression given event
      */
-    private List<Item<?>> getItems(TreeWalkerAuditEvent event) {
+    private List<Item> getItems(TreeWalkerAuditEvent event) {
         final RootNode rootNode;
         if (event.getRootAst() == null) {
             rootNode = null;
@@ -240,7 +243,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
         else {
             rootNode = new RootNode(event.getRootAst());
         }
-        final List<Item<?>> items;
+        final List<Item> items;
         try {
             final XPathDynamicContext xpathDynamicContext =
                     xpathExpression.createDynamicContext(rootNode);

@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.function.Predicate;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.Configuration;
@@ -141,10 +143,11 @@ public class RootNode extends AbstractNode {
      * when there is no axis iterator for given axisNumber.
      *
      * @param axisNumber element from {@code AxisInfo}
+     * @param nodeTest filter for iterator
      * @return {@code AxisIterator} object
      */
     @Override
-    public AxisIterator iterateAxis(byte axisNumber) {
+    public AxisIterator iterateAxis(int axisNumber, Predicate<? super NodeInfo> nodeTest) {
         final AxisIterator result;
         switch (axisNumber) {
             case AxisInfo.ANCESTOR:
@@ -154,7 +157,7 @@ public class RootNode extends AbstractNode {
             case AxisInfo.FOLLOWING_SIBLING:
             case AxisInfo.PRECEDING:
             case AxisInfo.PRECEDING_SIBLING:
-                result = EmptyIterator.OfNodes.THE_INSTANCE;
+                result = EmptyIterator.ofNodes();
                 break;
             case AxisInfo.ANCESTOR_OR_SELF:
             case AxisInfo.SELF:
@@ -170,7 +173,7 @@ public class RootNode extends AbstractNode {
                     }
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT:
@@ -181,7 +184,7 @@ public class RootNode extends AbstractNode {
                     }
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
