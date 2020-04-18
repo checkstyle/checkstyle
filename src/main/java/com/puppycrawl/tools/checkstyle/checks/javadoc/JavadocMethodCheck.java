@@ -893,21 +893,26 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     public static List<DetailAST> findTokensInAstByType(DetailAST root, int astType) {
         final List<DetailAST> result = new ArrayList<>();
-        DetailAST curNode = root;
+        if (root.getType() == astType) {
+            result.add(root);
+        }
+        // iterative preorder depth-first search
+        DetailAST curNode = root.getFirstChild();
         while (curNode != null) {
-            DetailAST toVisit = curNode.getFirstChild();
-            while (curNode != null && toVisit == null) {
-                toVisit = curNode.getNextSibling();
-                curNode = curNode.getParent();
-                if (curNode == root) {
-                    toVisit = null;
-                    break;
-                }
-            }
-            curNode = toVisit;
-            if (curNode != null && curNode.getType() == astType) {
+            // process curNode
+            if (curNode.getType() == astType) {
                 result.add(curNode);
             }
+            // process children (if any)
+            if (curNode.hasChildren()) {
+                curNode = curNode.getFirstChild();
+                continue;
+            }
+            // backtrack to parent if last child (excluding backtrack to root)
+            while (curNode.getNextSibling() == null && curNode.getParent() != root) {
+                curNode = curNode.getParent();
+            }
+            curNode = curNode.getNextSibling();
         }
         return result;
     }
