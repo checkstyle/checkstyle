@@ -89,6 +89,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *  100000000000000000001, // More work needed to duplicate
  * }
  * </pre>
+ * <ul>
+ * <li>
+ * Property {@code alwaysDemandTrailingComma} - Control whether to always check for a trailing
+ * comma, even when an array is inline.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
  * <p>
  * To configure the check:
  * </p>
@@ -132,6 +139,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   ,};        // no violation
  * </pre>
  *
+ * <p>To configure check to always validate trailing comma:</p>
+ * <pre>
+ * &lt;module name="ArrayTrailingComma"&gt;
+ *   &lt;property name="alwaysDemandTrailingComma" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * int[] a = new int[] {1, 2}; // violation, array should contain trailing comma.
+ * String[] b = new String[]{"foo", "bar",}; // ok
+ * int[] c = {1
+ *  2 // violation, array should contain trailing comma.
+ * };
+ * int[] d = {
+ * 1}; // violation, array should contain trailing comma.
+ * int[] c = {
+ *     1,
+ *     2 // violation, array should contain trailing comma.
+ * };
+ * </pre>
+ *
  * @since 3.2
  */
 @StatelessCheck
@@ -142,6 +170,20 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "array.trailing.comma";
+
+    /**
+     * Control whether to always check for a trailing comma, even when an array is inline.
+     */
+    private boolean alwaysDemandTrailingComma;
+
+    /**
+     * Setter to control whether to always check for a trailing comma, even when an array is inline.
+     *
+     * @param alwaysDemandTrailingComma whether to always check for a trailing comma.
+     */
+    public void setAlwaysDemandTrailingComma(boolean alwaysDemandTrailingComma) {
+        this.alwaysDemandTrailingComma = alwaysDemandTrailingComma;
+    }
 
     @Override
     public int[] getDefaultTokens() {
@@ -164,8 +206,9 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
         final DetailAST previousSibling = rcurly.getPreviousSibling();
 
         if (arrayInit.getChildCount() != 1
-                && !TokenUtil.areOnSameLine(rcurly, previousSibling)
-                && !TokenUtil.areOnSameLine(arrayInit, previousSibling)
+                && (alwaysDemandTrailingComma
+                    || !TokenUtil.areOnSameLine(rcurly, previousSibling)
+                        && !TokenUtil.areOnSameLine(arrayInit, previousSibling))
                 && previousSibling.getType() != TokenTypes.COMMA) {
             log(previousSibling, MSG_KEY);
         }
