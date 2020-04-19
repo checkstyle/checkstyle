@@ -461,6 +461,34 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-test-josm)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  mkdir -p .ci-temp
+  cd .ci-temp
+  ANT_VERSION=1.10.7
+  wget -q http://www-us.apache.org/dist//ant/binaries/apache-ant-${ANT_VERSION}-bin.zip -O tmp.zip
+  unzip -o -q tmp.zip
+  rm tmp.zip
+  export ANT_HOME=$(pwd)/apache-ant-${ANT_VERSION}
+  export PATH=$ANT_HOME/bin/:$PATH
+  TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
+  echo "JOSM $TESTED"
+  svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r $TESTED josm
+  cd josm
+  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
+   tools/ivy.xml
+  ant -v checkstyle
+  grep '<error' checkstyle-josm.xml | cat > errors.log
+  echo "Checkstyle Errors:"
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
+  echo 'Size of output:'$RESULT
+  cd ../..
+  if [[ $RESULT != 0 ]]; then false; fi
+  ;;
+
 check-missing-pitests)
   fail=0
   mkdir -p target
