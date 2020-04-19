@@ -849,6 +849,24 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
         <source>
 &lt;module name=&quot;MethodParamPad&quot;/&gt;
         </source>
+        <source>
+public class Test
+{
+  public Test() // OK
+  {
+    super(); // OK
+  }
+
+  public Test (int aParam) // Violation - '(' is preceded with whitespace
+  {
+    super (); // Violation - '(' is preceded with whitespace
+  }
+
+  public void method() // OK
+  {
+  }
+}
+        </source>
 
         <p>
           To configure the check to require a space after the identifier of a
@@ -861,6 +879,24 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <source>
+public class Test
+{
+  public Test() // OK
+  {
+    super(); // OK
+  }
+
+  public Test (int aParam) // OK
+  {
+    super (); // OK
+  }
+
+  public void method() // Violation - '(' is preceded with whitespace
+  {
+  }
+}
         </source>
       </subsection>
 
