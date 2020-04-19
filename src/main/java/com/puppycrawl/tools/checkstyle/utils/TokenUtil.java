@@ -269,4 +269,15 @@ public final class TokenUtil {
         return ast1.getLineNo() == ast2.getLineNo();
     }
 
+    /**
+     * Checks if 2 AST are similar by their type and text.
+     *
+     * @param left  The first AST to check.
+     * @param right The second AST to check.
+     * @return {@code true} if they are similar.
+     */
+    public static boolean isAstSimilar(DetailAST left, DetailAST right) {
+        return left.getType() == right.getType() && left.getText().equals(right.getText());
+    }
+
 }
