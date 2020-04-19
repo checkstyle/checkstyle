@@ -3103,24 +3103,8 @@ public class TestClass {
 
       <subsection name="Examples" id="WriteTag_Examples">
         <p>
-          To configure the check with default configuration:
+          If no properties are specified, the check does nothing.
         </p>
-        <source>
-&lt;module name="WriteTag"/&gt;
-        </source>
-        <p>
-        Example:
-        </p>
-        <source>
-/**
-* Ok, the check does nothing by default.
-* @author Author
-* Ok, the check does nothing by default.
-* @author
-*/
-public class Test{}
-        </source>
-
         <p>
          To configure the check to print warnings if an
          "@incomplete" tag is found and the check will

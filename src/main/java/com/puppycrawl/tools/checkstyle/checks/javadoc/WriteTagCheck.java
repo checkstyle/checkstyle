@@ -64,23 +64,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check with default configuration:
+ * If no properties are specified, the check does nothing.
  * </p>
- * <pre>
- * &lt;module name="WriteTag"/&gt;
- * </pre>
- * <p>
- * Example:
- * </p>
- * <pre>
- * &#47;**
- * * Ok, the check does nothing by default.
- * * &#64;author Author
- * * Ok, the check does nothing by default.
- * * &#64;author
- * *&#47;
- * public class Test{}
- * </pre>
  * <p>
  * To configure the check to print warnings if an "@incomplete" tag is found and
  * the check will report a violation, if an empty incomplete tag is found:
