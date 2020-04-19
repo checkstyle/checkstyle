@@ -433,6 +433,17 @@ public final class CheckUtil {
     }
 
     /**
+     * Whether the AST is a definition of an anonymous class.
+     *
+     * @param ast the AST to process.
+     * @return true if the AST is a definition of an anonymous class.
+     */
+    public static boolean isAnonymousClassDef(DetailAST ast) {
+        final DetailAST lastChild = ast.getLastChild();
+        return lastChild != null && lastChild.getType() == TokenTypes.OBJBLOCK;
+    }
+
+    /**
      * Returns {@link AccessModifier} based on the information about access modifier
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
      *
