@@ -92,8 +92,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * public class Test {
- *   private void emptyLoop(){
- *     for(int i=0; i&lt;10; i++){
+ *   private void emptyLoop() {
+ *     for (int i = 0; i &lt; 10; i++) {
  *       // violation
  *     }
  *
@@ -125,8 +125,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p> Example: </p>
  * <pre>
  * public class Test {
- *   private void emptyLoop(){
- *     for(int i=0; i&lt;10; i++){
+ *   private void emptyLoop() {
+ *     for (int i = 0; i &lt; 10; i++) {
  *       // ignored
  *     }
  *
