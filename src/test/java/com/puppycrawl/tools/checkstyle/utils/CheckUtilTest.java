@@ -348,6 +348,25 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testIsAnonymousObjectDef() {
+        final DetailAstImpl literalNew = new DetailAstImpl();
+        literalNew.setType(TokenTypes.LITERAL_NEW);
+
+        final DetailAstImpl rparen = new DetailAstImpl();
+        rparen.setType(TokenTypes.RPAREN);
+        literalNew.addChild(rparen);
+        final boolean expectedFalse = CheckUtil.isAnonymousClassDef(literalNew);
+
+        final DetailAstImpl objBlock = new DetailAstImpl();
+        objBlock.setType(TokenTypes.OBJBLOCK);
+        literalNew.addChild(objBlock);
+        final boolean expectedTrue = CheckUtil.isAnonymousClassDef(literalNew);
+
+        assertFalse(expectedFalse, "Invalid result: Last child is not an object block");
+        assertTrue(expectedTrue, "Valid result: Last child is an object block");
+    }
+
+    @Test
     public void testParseDoubleFloatingPointValues() {
         assertEquals(-0.05, CheckUtil.parseDouble("-0.05f", TokenTypes.NUM_FLOAT), 0,
                 "Invalid parse result");

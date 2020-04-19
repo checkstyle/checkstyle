@@ -27,6 +27,15 @@
     <suppress checks="ForbidCertainImports"
               files="JavadocUtil\.java|JavadocUtilTest\.java"/>
 
+    <!-- A significant amount of the code in FrameUtil was once in RequireThisCheck,
+      coverage and pitest for that code are already met by RequireThisCheckTest methods,
+      hence it's reasonable to reused them in FrameUtilTest.
+      See https://github.com/checkstyle/checkstyle/issues/8126 for more details.
+      -->
+    <suppress checks="ForbidCertainImports"
+              files="FrameUtilTest.java"
+              lines="33"/>
+
     <!-- Tone down the checking for test code -->
     <suppress checks="ForbidCertainImports"
               files="DetailAstImplTest\.java"/>
