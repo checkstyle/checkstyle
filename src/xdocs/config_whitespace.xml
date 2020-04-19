@@ -1350,6 +1350,8 @@ public void foo(final char @NotNull [] param) {} // No violation
                   GENERIC_END</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
                   ELLIPSIS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+                  LABELED_STAT</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                   METHOD_REF</a>.
               </td>
@@ -1363,7 +1365,9 @@ public void foo(final char @NotNull [] param) {} // No violation
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                   POST_DEC</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>.
+                  ELLIPSIS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+                  LABELED_STAT</a>.
               </td>
               <td>3.0</td>
             </tr>
@@ -1451,6 +1455,29 @@ Lists .charactersOf("foo") //violation, whitespace before '.' is not allowed
 Lists.charactersOf("foo")
        .listIterator()
        .forEachRemaining(System.out::print); // OK
+       </source>
+       <p>
+           To Configure the check to restrict the use of whitespace before
+           LABELED_STAT tokens:
+       </p>
+       <source>
+&lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LABELED_STAT&quot;/&gt;
+&lt;/module&gt;
+       </source>
+       <p>Example:</p>
+       <source>
+class Foo {
+  {
+    label1 : // violation, whitespace before ':' is not allowed
+    System.out.println();
+  }
+
+  {
+    label2: // OK
+    System.out.println();
+  }
+}
        </source>
       </subsection>
 
