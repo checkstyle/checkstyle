@@ -64,24 +64,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * Note that by default, the check does nothing. Thus, there is no default configuration.
- * To configure the check for printing author name and the check will report a violation,
- * if an empty author tag is found:
+ * To configure the check with default configuration:
  * </p>
  * <pre>
- * &lt;module name="WriteTag"&gt;
- *   &lt;property name="tag" value="@author"/&gt;
- *   &lt;property name="tagFormat" value="\S"/&gt;
- * &lt;/module&gt;
+ * &lt;module name="WriteTag"/&gt;
  * </pre>
  * <p>
  * Example:
  * </p>
  * <pre>
  * &#47;**
- * * Valid
+ * * Ok, the check does nothing by default.
  * * &#64;author Author
- * * Invalid
+ * * Ok, the check does nothing by default.
  * * &#64;author
  * *&#47;
  * public class Test{}
@@ -102,9 +97,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * &#47;**
- * * Valid
- * * &#64;incomplete Incomplete
- * * Invalid
+ * * Ok, tag with link to the issue
+ * * &#64;incomplete https://example.com/tracker/issue-1234
+ * * Violation - no link provided
  * * &#64;incomplete
  * *&#47;
  * public class Test{}
