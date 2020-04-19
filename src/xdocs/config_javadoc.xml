@@ -3103,28 +3103,48 @@ public class TestClass {
 
       <subsection name="Examples" id="WriteTag_Examples">
         <p>
-        To configure the check for printing author name:
+          To configure the check with default configuration:
         </p>
-
         <source>
-&lt;module name="WriteTag"&gt;
-  &lt;property name="tag" value="@author"/&gt;
-  &lt;property name="tagFormat" value="\S"/&gt;
-&lt;/module&gt;
+&lt;module name="WriteTag"/&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Ok, the check does nothing by default.
+* @author Author
+* Ok, the check does nothing by default.
+* @author
+*/
+public class Test{}
         </source>
 
         <p>
          To configure the check to print warnings if an
-         "@incomplete" tag is found, and not print anything if it is not found:
+         "@incomplete" tag is found and the check will
+         report a violation, if an empty incomplete tag is found:
         </p>
 
         <source>
 &lt;module name="WriteTag"&gt;
   &lt;property name="tag" value="@incomplete"/&gt;
   &lt;property name="tagFormat" value="\S"/&gt;
-  &lt;property name="severity" value="ignore"/&gt;
-  &lt;property name="tagSeverity" value="warning"/&gt;
+  &lt;property name="tagSeverity" value="warning"/>
 &lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Ok, tag with link to the issue
+* @incomplete https://example.com/tracker/issue-1234
+* Violation - no link provided
+* @incomplete
+*/
+public class Test{}
         </source>
       </subsection>
 
