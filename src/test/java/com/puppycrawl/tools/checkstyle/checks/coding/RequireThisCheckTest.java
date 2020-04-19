@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
-import java.lang.reflect.Constructor;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
@@ -401,23 +400,6 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("validateOnlyOverlapping", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputRequireThisExtendedMethod.java"), expected);
-    }
-
-    @Test
-    public void testUnusedMethod() throws Exception {
-        final DetailAstImpl ident = new DetailAstImpl();
-        ident.setText("testName");
-
-        final Class<?> cls = Class.forName(RequireThisCheck.class.getName() + "$CatchFrame");
-        final Constructor<?> constructor = cls.getDeclaredConstructors()[0];
-        constructor.setAccessible(true);
-        final Object o = constructor.newInstance(null, ident);
-
-        final Object actual = TestUtil.getClassDeclaredMethod(cls, "getFrameNameIdent").invoke(o);
-        assertEquals(ident, actual, "expected ident token");
-        assertEquals("CATCH_FRAME",
-            TestUtil.getClassDeclaredMethod(cls, "getType").invoke(o).toString(),
-                "expected catch frame type");
     }
 
     /**

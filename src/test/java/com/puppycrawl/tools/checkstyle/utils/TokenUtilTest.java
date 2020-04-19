@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -275,6 +276,28 @@ public class TokenUtilTest {
 
         assertEquals(1, children.size(), "Must be one match");
         assertEquals(secondSibling, firstChild, "Mismatched child node");
+    }
+
+    @Test
+    public void testIsAstSimilar() {
+        final DetailAstImpl left = new DetailAstImpl();
+        final DetailAstImpl right = new DetailAstImpl();
+        left.setType(TokenTypes.IDENT);
+        left.setText("ident");
+        right.setType(TokenTypes.IDENT);
+        right.setText("ident");
+        final boolean expectedTrue = TokenUtil.isAstSimilar(left, right);
+
+        right.setText("another");
+        final boolean expectedFalseOne = TokenUtil.isAstSimilar(left, right);
+
+        right.setType(TokenTypes.COLON);
+        right.setText(":");
+        final boolean expectedFalseTwo = TokenUtil.isAstSimilar(left, right);
+
+        assertTrue(expectedTrue, "Matching type and text");
+        assertFalse(expectedFalseOne, "Mismatched text only");
+        assertFalse(expectedFalseTwo, "Mismatched both type and text");
     }
 
 }
