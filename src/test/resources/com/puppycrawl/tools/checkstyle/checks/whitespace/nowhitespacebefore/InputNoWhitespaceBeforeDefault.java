@@ -286,4 +286,14 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
+
+    {
+        label1 : // violation
+        for(int i = 0; i < 10; i++) {}
+    }
+
+    public void foo() {
+        label2: // no violation
+        while (true) {}
+    }
 }
