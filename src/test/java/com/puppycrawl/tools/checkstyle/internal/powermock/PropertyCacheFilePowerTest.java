@@ -60,7 +60,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ PropertyCacheFile.class, ByteStreams.class,
-        CommonUtil.class})
+    CommonUtil.class})
 public class PropertyCacheFilePowerTest extends AbstractPathTestSupport {
 
     @Rule
