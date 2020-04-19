@@ -52,7 +52,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
  * POST_DEC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
- * ELLIPSIS</a>.
+ * ELLIPSIS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+ * LABELED_STAT</a>.
  * </li>
  * </ul>
  * <p>
@@ -133,6 +135,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *        .listIterator()
  *        .forEachRemaining(System.out::print); // OK
  * </pre>
+ * <p>
+ *     To Configure the check to restrict the use of whitespace before
+ *     LABELED_STAT tokens:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LABELED_STAT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Foo {
+ *   {
+ *     label1 : // violation, whitespace before ':' is not allowed
+ *     System.out.println();
+ *   }
+ *   {
+ *     label2: // OK
+ *     System.out.println();
+ *   }
+ * }
+ * </pre>
  *
  * @since 3.0
  */
@@ -157,6 +181,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LABELED_STAT,
         };
     }
 
@@ -171,6 +196,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LABELED_STAT,
             TokenTypes.METHOD_REF,
         };
     }
