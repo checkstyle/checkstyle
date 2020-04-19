@@ -269,16 +269,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 public class JavadocStyleCheck
     extends AbstractCheck {
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the Missing Javadoc message. */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the Empty Javadoc message. */
     public static final String MSG_EMPTY = "javadoc.empty";
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the No Javadoc end of Sentence Period message. */
     public static final String MSG_NO_PERIOD = "javadoc.noPeriod";
 
-    /** Message property key for the Unclosed HTML message. */
+    /** Message property key for the Incomplete Tag message. */
     public static final String MSG_INCOMPLETE_TAG = "javadoc.incompleteTag";
 
     /** Message property key for the Unclosed HTML message. */
