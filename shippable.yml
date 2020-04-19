@@ -58,3 +58,6 @@ build:
       else
         echo "Build is skipped"
       fi
+
+  post-ci:
+  - CMD="./.ci/shippable.sh remove-contribution-directory"
