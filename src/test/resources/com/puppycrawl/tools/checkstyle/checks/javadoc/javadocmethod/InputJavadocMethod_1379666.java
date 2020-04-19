@@ -5,36 +5,23 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
  */
 public class InputJavadocMethod_1379666 {
     /**
-     * @throws BadStringFormat some text
+     * @throws Exception some text
      */
-    public void ok() throws BadStringFormat {
+    public void ok() throws Exception {
     }
 
 
     /**
      * Some comment.
-     * @throws com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod.InputJavadocMethod_1379666.BadStringFormat some text
+     * @throws Exception some text
      */
     public void error1()
-        throws com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod.InputJavadocMethod_1379666.BadStringFormat {
+        throws Exception {
     }
 
     /**
-     * @throws InputJavadocMethod_1379666.BadStringFormat some text
+     * @throws Exception some text
      */
-    public void error2() throws InputJavadocMethod_1379666.BadStringFormat {
-    }
-
-    /**
-     * Some exception class.
-     */
-    public static class BadStringFormat extends Exception {
-        /**
-         * Some comment.
-         * @param s string.
-         */
-        BadStringFormat(String s) {
-            super(s);
-        }
+    public void error2() throws Exception {
     }
 }
