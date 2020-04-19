@@ -36,6 +36,20 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;InnerTypeLast&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test {
+ *     private String s; // OK
+ *     class InnerTest1 {}
+ *     public void test() {} // violation, method should be declared before inner types.
+ * }
+ *
+ * class Test2 {
+ *     private String s; // OK
+ *     public void test() {} // OK
+ *     class InnerTest1 {}
+ * }
+ * </pre>
  *
  * @since 5.2
  */
