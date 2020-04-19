@@ -659,6 +659,24 @@ try {
         <source>
 &lt;module name=&quot;LeftCurly&quot;/&gt;
         </source>
+        <source>
+class Test
+{ // Violation - should be on the previous line
+  private interface TestInterface
+  { // Violation - should be on the previous line
+  }
+
+  private
+  class
+  MyClass { // OK
+  }
+
+  enum Colors {RED, // OK
+    BLUE,
+    GREEN;
+  }
+}
+        </source>
         <p>
           To configure the check to apply the <code>nl</code> policy to
           type blocks:
@@ -669,6 +687,24 @@ try {
   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <source>
+class Test
+{ // OK
+  private interface TestInterface
+  { // OK
+  }
+
+  private
+  class
+  MyClass { // Violation - should be on a new line
+  }
+
+  enum Colors {RED, // OK
+    BLUE,
+    GREEN;
+  }
+}
+        </source>
         <p>
           An example of how to configure the check to validate enum definitions:
         </p>
@@ -676,6 +712,24 @@ try {
 &lt;module name="LeftCurly"&gt;
   &lt;property name="ignoreEnums" value="false"/&gt;
 &lt;/module&gt;
+        </source>
+        <source>
+class Test
+{ // Violation - should be on the previous line
+  private interface TestInterface
+  { // Violation - should be on the previous line
+  }
+
+  private
+  class
+  MyClass { // OK
+  }
+
+  enum Colors {RED, // Violation - should have line break after
+  BLUE,
+  GREEN;
+  }
+}
         </source>
       </subsection>
 
