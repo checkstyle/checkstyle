@@ -50,6 +50,8 @@ public class NoWhitespaceBeforeCheckTest
             "270:16: " + getCheckMessage(MSG_KEY, ";"),
             "284:1: " + getCheckMessage(MSG_KEY, ";"),
             "287:62: " + getCheckMessage(MSG_KEY, "..."),
+            "292:20: " + getCheckMessage(MSG_KEY, ":"),
+            "296:21: " + getCheckMessage(MSG_KEY, ":"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeDefault.java"), expected);
     }

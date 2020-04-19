@@ -286,4 +286,15 @@ class SpecialCasesInForLoop_NoWhitespaceBeforeDefault
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
+
+    public void methodWithSwitch() {
+        switch(1) {
+            case 1 : // violation
+                break;
+		    case 2: // no violation
+                break;
+            default : // violation
+                break;
+        }
+    }
 }
