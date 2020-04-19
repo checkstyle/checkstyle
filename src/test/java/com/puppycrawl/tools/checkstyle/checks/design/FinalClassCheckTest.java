@@ -67,7 +67,7 @@ public class FinalClassCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(FinalClassCheck.class);
         final String[] expected = {
-            "16:5: " + getCheckMessage(MSG_KEY, "C"),
+            "15:5: " + getCheckMessage(MSG_KEY, "C"),
         };
         verify(checkConfig,
                 getNonCompilablePath(
