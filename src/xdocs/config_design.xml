@@ -452,6 +452,48 @@ class UtilityClass { // violation, class only has a static field
         <source>
 &lt;module name=&quot;InnerTypeLast&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class Test { // violation, field should be declared before inner types.
+    public void test1() {}
+    class InnerTest1 {}
+    private String s;
+
+    class InnerTest2 {
+        public void innerTest() {
+            int n;
+            class LocalClass {
+                public void test3() {}
+            }
+            int x;
+        }
+    }
+
+    public void test() {}
+    interface InnerInterface {}
+    private int n;
+}
+
+class Test2 { // ok
+    private String s;
+    private int n;
+    public void test() {}
+    public void test1() {}
+
+    class InnerTest1 {
+        class InnerTest2 {
+            int n;
+            public void innerTest() {
+                int x;
+
+                class LocalClass {
+                    public void test3() {}
+                }
+            }
+        }
+    }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="InnerTypeLast_Example_of_Usage">

@@ -36,6 +36,48 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;InnerTypeLast&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class Test { // violation, field should be declared before inner types.
+ *     public void test1() {}
+ *     class InnerTest1 {}
+ *     private String s;
+ *
+ *     class InnerTest2 {
+ *         public void innerTest() {
+ *             int n;
+ *             class LocalClass {
+ *                 public void test3() {}
+ *             }
+ *             int x;
+ *         }
+ *     }
+ *
+ *     public void test() {}
+ *     interface InnerInterface {}
+ *     private int n;
+ * }
+ *
+ * class Test2 { // ok
+ *     private String s;
+ *     private int n;
+ *     public void test() {}
+ *     public void test1() {}
+ *
+ *     class InnerTest1 {
+ *         class InnerTest2 {
+ *             int n;
+ *             public void innerTest() {
+ *                 int x;
+ *
+ *                 class LocalClass {
+ *                     public void test3() {}
+ *                 }
+ *             }
+ *         }
+ *     }
+ * }
+ * </pre>
  *
  * @since 5.2
  */
