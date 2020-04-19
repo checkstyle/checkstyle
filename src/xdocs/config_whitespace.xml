@@ -1943,19 +1943,77 @@ class Test {
         <source>
 &lt;module name=&quot;ParenPad&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Foo {
 
+  public Test(int y ) {  // violation, space before right parenthesis
+  }
+
+  public void foo() {  // OK
+    bar( 1);  // violation, space after left parenthesis
+  }
+
+  public void bar(int k ) {  // violation, space before right parenthesis
+    while (k &gt; 0) {  // OK
+    }
+
+    Test obj = new Test(k);  // OK
+  }
+
+  public void fun() {  // OK
+    switch(y ) {  // violation, space before right parenthesis
+      default:
+        break;
+    }
+  }
+
+}
+        </source>
         <p>
           To configure the check to require spaces for the parentheses of
           constructor, method, and super constructor calls:
         </p>
         <source>
 &lt;module name=&quot;ParenPad&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
     SUPER_CTOR_CALL&quot;/&gt;
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Foo {
 
+  int x;
+
+  public Foo(int n) {
+  }
+
+  public void fun() {
+    try {
+      System.out.println(x);
+    } catch( Exception e) {  // violation, no space before right parenthesis
+    }
+
+    for ( int i = 0; i &lt; x; i++ ) {  // OK
+    }
+  }
+
+}
+
+class Bar extends Foo {
+
+  public Bar() {
+    super(1 );  // violation, no space after left parenthesis
+  }
+
+}
+        </source>
         <p>
           The following cases not checked:
         </p>
