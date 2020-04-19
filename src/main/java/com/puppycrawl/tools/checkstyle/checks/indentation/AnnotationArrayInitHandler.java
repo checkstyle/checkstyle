@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Handler for array initialization blocks.
  *
  */
-public class ArrayInitHandler extends BlockParentHandler {
+public class AnnotationArrayInitHandler extends BlockParentHandler {
 
     /**
      * Construct an instance of this handler with the given indentation check,
@@ -36,25 +36,15 @@ public class ArrayInitHandler extends BlockParentHandler {
      * @param ast           the abstract syntax tree
      * @param parent        the parent handler
      */
-    public ArrayInitHandler(IndentationCheck indentCheck,
-        DetailAST ast, AbstractExpressionHandler parent) {
-        super(indentCheck, "array initialization", ast, parent);
+    public AnnotationArrayInitHandler(IndentationCheck indentCheck,
+                            DetailAST ast, AbstractExpressionHandler parent) {
+        super(indentCheck, "annotation array initialization", ast, parent);
     }
 
     @Override
     protected IndentLevel getIndentImpl() {
         final DetailAST parentAST = getMainAst().getParent();
-        final int type = parentAST.getType();
-        final IndentLevel indentLevel;
-        if (type == TokenTypes.LITERAL_NEW || type == TokenTypes.ASSIGN) {
-            // note: assumes new or assignment is line to align with
-            indentLevel = new IndentLevel(getLineStart(parentAST));
-        }
-        else {
-            // at this point getParent() is instance of BlockParentHandler
-            indentLevel = ((BlockParentHandler) getParent()).getChildrenExpectedIndent();
-        }
-        return indentLevel;
+        return new IndentLevel(getLineStart(parentAST));
     }
 
     @Override
@@ -71,7 +61,7 @@ public class ArrayInitHandler extends BlockParentHandler {
     protected IndentLevel curlyIndent() {
         final IndentLevel level = new IndentLevel(getIndent(), getBraceAdjustment());
         return IndentLevel.addAcceptable(level, level.getLastIndentLevel()
-                + getLineWrappingIndentation());
+            + getLineWrappingIndentation());
     }
 
     @Override
@@ -92,16 +82,15 @@ public class ArrayInitHandler extends BlockParentHandler {
     @Override
     protected IndentLevel getChildrenExpectedIndent() {
         IndentLevel expectedIndent =
-            new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
-                    getIndentCheck().getLineWrappingIndentation());
+            new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
 
         final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
         if (firstChildPos >= 0) {
-            expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
-                    + getLineWrappingIndentation());
+            expectedIndent = addAnnotationArrayIndentationLevels(expectedIndent,
+                firstChildPos, lcurlyPos);
         }
         return expectedIndent;
     }
@@ -123,7 +112,7 @@ public class ArrayInitHandler extends BlockParentHandler {
         final String line = getIndentCheck().getLines()[lineNo - 1];
         final int lineLength = line.length();
         while (realColumnNo < lineLength
-               && Character.isWhitespace(line.charAt(realColumnNo))) {
+            && Character.isWhitespace(line.charAt(realColumnNo))) {
             realColumnNo++;
         }
 
@@ -135,7 +124,6 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     /**
      * A shortcut for {@code IndentationCheck} property.
-     *
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */
@@ -143,5 +131,36 @@ public class ArrayInitHandler extends BlockParentHandler {
         return getIndentCheck().getLineWrappingIndentation();
     }
 
-}
+    /**
+     * A shortcut for {@code IndentationCheck} property.
+     * @return value of arrayInitIndent property
+     *         of {@code IndentationCheck}
+     */
+    private int getArrayInitIndentation() {
+        return getIndentCheck().getArrayInitIndent();
+    }
 
+    /**
+     * Add indentation levels for {@code ANNOTATION_ARRAY_INIT} handler.
+     * @param expectedIndent        initial expected indent levels
+     * @param firstChildPosition    first child position
+     * @param lcurlyPos             left curly brace porition
+     * @return                      all the expected indent levels before firstChild
+     */
+    private IndentLevel addAnnotationArrayIndentationLevels(IndentLevel expectedIndent,
+                                                            int firstChildPosition, int lcurlyPos) {
+        IndentLevel annotationIndents = expectedIndent;
+        if (getLineWrappingIndentation() != 0 && getArrayInitIndentation() != 0) {
+            int startIndex = expectedIndent.getLastIndentLevel();
+            while (startIndex < firstChildPosition - getLineWrappingIndentation()) {
+                annotationIndents = IndentLevel.addAcceptable(annotationIndents,
+                    startIndex + getLineWrappingIndentation(),
+                    startIndex + getArrayInitIndentation());
+                startIndex += Math.max(getLineWrappingIndentation(), getArrayInitIndentation());
+            }
+        }
+        annotationIndents = IndentLevel.addAcceptable(annotationIndents, firstChildPosition,
+            lcurlyPos + getLineWrappingIndentation());
+        return annotationIndents;
+    }
+}
