@@ -126,4 +126,14 @@ public class NoWhitespaceBeforeCheckTest
         verify(checkConfig, getPath("InputNoWhitespaceBeforeEmptyForLoop.java"), expected);
     }
 
+    @Test
+    public void testLabel() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
+        checkConfig.addAttribute("tokens", "LABELED_STAT");
+        final String[] expected = {
+            "6:24: " + getCheckMessage(MSG_KEY, ":"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceBeforeLabel.java"), expected);
+    }
+
 }
