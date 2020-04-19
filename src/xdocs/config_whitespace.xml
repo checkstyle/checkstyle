@@ -1306,6 +1306,7 @@ public void foo(final char @NotNull [] param) {} // No violation
           whitespace. To allow linebreaks before a token, set property
           <code>allowLineBreaks</code> to <code>true</code>. No check occurs
           before semi-colons in empty for loop initializers or conditions.
+          Check warns only on colons from case and default.
         </p>
       </subsection>
 
@@ -1350,6 +1351,8 @@ public void foo(final char @NotNull [] param) {} // No violation
                   GENERIC_END</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
                   ELLIPSIS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COLON">
+                  COLON</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                   METHOD_REF</a>.
               </td>
@@ -1363,7 +1366,9 @@ public void foo(final char @NotNull [] param) {} // No violation
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                   POST_DEC</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>.
+                  ELLIPSIS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COLON">
+                  COLON</a>.
               </td>
               <td>3.0</td>
             </tr>
@@ -1393,6 +1398,14 @@ int[][] array2 = { { 1, 2 },
 Lists.charactersOf("foo").listIterator()
        .forEachRemaining(System.out::print)
        ; // violation, whitespace before ';' is not allowed
+switch(1) {
+  case 1 : // violation, whitespace before ':' is not allowed
+    break;
+  case 2: // OK
+    break;
+  default : // violation, whitespace before ':' is not allowed
+    break;
+}
         </source>
         <p>
             To configure the check to allow linebreaks before default tokens:

@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * or (if linebreaks are allowed) all characters on the line before are
  * whitespace. To allow linebreaks before a token, set property
  * {@code allowLineBreaks} to {@code true}. No check occurs before semi-colons in empty
- * for loop initializers or conditions.
+ * for loop initializers or conditions. Check warns only on colons from case and default.
  * </p>
  * <ul>
  * <li>
@@ -52,7 +52,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
  * POST_DEC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
- * ELLIPSIS</a>.
+ * ELLIPSIS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COLON">
+ * COLON</a>.
  * </li>
  * </ul>
  * <p>
@@ -76,6 +78,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Lists.charactersOf("foo").listIterator()
  *        .forEachRemaining(System.out::print)
  *        ; // violation, whitespace before ';' is not allowed
+ * switch(1) {
+ *   case 1 : // violation, whitespace before ':' is not allowed
+ *     break;
+ *   case 2: // OK
+ *     break;
+ *   default : // violation, whitespace before ':' is not allowed
+ *     break;
+ * }
  * </pre>
  * <p>To configure the check to allow linebreaks before default tokens:</p>
  * <pre>
@@ -157,6 +167,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.ELLIPSIS,
+            TokenTypes.COLON,
         };
     }
 
@@ -171,6 +182,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.COLON,
             TokenTypes.METHOD_REF,
         };
     }
@@ -186,7 +198,8 @@ public class NoWhitespaceBeforeCheck
         final int before = ast.getColumnNo() - 1;
 
         if ((before == -1 || Character.isWhitespace(line.charAt(before)))
-                && !isInEmptyForInitializerOrCondition(ast)) {
+                && !isInEmptyForInitializerOrCondition(ast)
+                && (ast.getType() != TokenTypes.COLON || isColonOfCaseOrDefault(ast))) {
             boolean flag = !allowLineBreaks;
             // verify all characters before '.' are whitespace
             for (int i = 0; i <= before - 1; i++) {
@@ -199,6 +212,17 @@ public class NoWhitespaceBeforeCheck
                 log(ast, MSG_KEY, ast.getText());
             }
         }
+    }
+
+    /**
+     * Checks that ast is a colon of switch case or default.
+     * @param colonAst DetailAST to check.
+     * @return true if ast is a COLON and is child of LITERAL_CASE or LITERAL_DEFAULT.
+     */
+    private static boolean isColonOfCaseOrDefault(DetailAST colonAst) {
+        final DetailAST parent = colonAst.getParent();
+        return parent.getType() == TokenTypes.LITERAL_CASE
+                || parent.getType() == TokenTypes.LITERAL_DEFAULT;
     }
 
     /**
