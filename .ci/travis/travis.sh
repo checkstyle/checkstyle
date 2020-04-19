@@ -461,6 +461,35 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-error-test-josm)
+  mkdir -p .ci-temp
+  cd .ci-temp
+  echo "installing new ant ..."
+  wget http://www-us.apache.org/dist//ant/binaries/apache-ant-1.10.7-bin.zip
+  unzip -q apache-ant-1.10.7-bin.zip
+  export ANT_HOME=$(pwd)/apache-ant-1.10.7
+  export PATH=$ANT_HOME/bin/:$PATH
+  echo "building checkstyle ..."
+  mvn -e clean package -Passembly
+  export CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  echo "Checkouting sources ...."
+  svn -q export https://josm.openstreetmap.de/svn/trunk/ josm
+  cd josm
+  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
+   tools/ivy.xml
+  ant -v checkstyle
+  ls -la
+  grep '<error' checkstyle-josm.xml | cat > errors.log
+  echo "Checkstyle Errors:"
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
+  echo 'Size of output:'$RESULT
+  cd ../..
+  if [[ $RESULT != 0 ]]; then false; fi
+  ;;
+
 check-missing-pitests)
   fail=0
   mkdir -p target
