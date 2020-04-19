@@ -25,6 +25,9 @@ function build_checkstyle {
   fi
 }
 
+function removeFolderWithProtectedFiles() {
+  find $1 -delete
+}
 case $1 in
 
 no-exception-openjdk7-openjdk8)
@@ -105,6 +108,10 @@ no-exception-only-javadoc)
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
   groovy launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  ;;
+
+remove-contribution-directory)
+  removeFolderWithProtectedFiles .ci-temp/contribution
   ;;
 
 *)
