@@ -64,27 +64,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check for printing author name:
+ * If no properties are specified, the check does nothing.
  * </p>
- * <pre>
- * &lt;module name="WriteTag"&gt;
- *   &lt;property name="tag" value="@author"/&gt;
- *   &lt;property name="tagFormat" value="\S"/&gt;
- * &lt;/module&gt;
- * </pre>
  * <p>
- * To configure the check to print warnings if an "@incomplete" tag is found,
- * and not print anything if it is not found:
+ * To configure the check to print warnings if an "@incomplete" tag is found and
+ * the check will report a violation, if an empty incomplete tag is found:
  * </p>
  * <pre>
  * &lt;module name="WriteTag"&gt;
  *   &lt;property name="tag" value="@incomplete"/&gt;
  *   &lt;property name="tagFormat" value="\S"/&gt;
- *   &lt;property name="severity" value="ignore"/&gt;
  *   &lt;property name="tagSeverity" value="warning"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Ok, tag with link to the issue
+ * * &#64;incomplete https://example.com/tracker/issue-1234
+ * * Violation - no link provided
+ * * &#64;incomplete
+ * *&#47;
+ * public class Test{}
+ * </pre>
  * @since 4.2
  */
 @StatelessCheck
