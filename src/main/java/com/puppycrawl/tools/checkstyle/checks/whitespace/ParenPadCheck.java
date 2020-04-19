@@ -101,18 +101,87 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;ParenPad&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Foo {
+ *
+ *   int n;
+ *
+ *   public void fun() {  // OK
+ *     bar( 1);  // violation, space after left parenthesis
+ *   }
+ *
+ *   public void bar(int k ) {  // violation, space before right parenthesis
+ *     while (k &gt; 0) {  // OK
+ *     }
+ *
+ *     Test obj = new Test(k);  // OK
+ *   }
+ *
+ *   public void fun2() {  // OK
+ *     switch( n) {  // violation, space after left parenthesis
+ *       case 2:
+ *         bar(n);  // OK
+ *       default:
+ *         break;
+ *     }
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check to require spaces for the
  * parentheses of constructor, method, and super constructor calls:
  * </p>
  * <pre>
  * &lt;module name=&quot;ParenPad&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
  *     SUPER_CTOR_CALL&quot;/&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * The following cases not checked:
+ * Example:
+ * </p>
+ * <pre>
+ * class Foo {
+ *
+ *   int x;
+ *
+ *   public Foo(int n) {
+ *   }
+ *
+ *   public void fun() {
+ *     try {
+ *       System.out.println(x);
+ *     } catch( IOException e) {  // violation, no space before right parenthesis
+ *     } catch( Exception e ) {  // OK
+ *     }
+ *
+ *     for ( int i = 0; i &lt; x; i++ ) {  // OK
+ *     }
+ *   }
+ *
+ * }
+ *
+ * class Bar extends Foo {
+ *
+ *   public Bar() {
+ *     super(1 );  // violation, no space after left parenthesis
+ *   }
+ *
+ *   public Bar(int k) {
+ *     super( k ); // OK
+ *
+ *     for ( int i = 0; i &lt; k; i++) {  // violation, no space before right parenthesis
+ *     }
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
+ * The following cases are not checked:
  * </p>
  * <pre>
  * for ( ; i &lt; j; i++, j--) // no check after left parenthesis
