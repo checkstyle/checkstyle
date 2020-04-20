@@ -67,7 +67,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "RegexpSinglelineJava",
             "TodoComment",
             "TrailingComment",
-            "UnnecessaryParentheses",
             "VariableDeclarationUsageDistance"
     )));
 
