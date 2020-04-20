@@ -3540,6 +3540,20 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * Variable Declarator List.
+     *
+     * <pre>
+     * +--VAR_DEC_LIST
+     *         |
+     *         +--VARIABLE_DEF
+     *         |
+     *         +--VARIABLE_DEF
+     * </pre>
+     */
+    public static final int VARIABLE_DEC =
+            GeneratedJavaTokenTypes.VARIABLE_DEC;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
