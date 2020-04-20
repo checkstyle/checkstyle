@@ -68,10 +68,12 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocType
  * </li>
  * <li>
- * Regexp
+ * Regexp (reason is at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
  * <li>
- * RegexpSinglelineJava
+ * RegexpSinglelineJava (reason is at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
  * <li>
  * TodoComment
@@ -86,9 +88,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * VariableDeclarationUsageDistance
  * </li>
  * </ul>
- * <p>Reason for RegexpSinglelineJava and Regexp support unavailability is at
- * <a href="https://github.com/checkstyle/checkstyle/issues/7759">#7759</a>
- * </p>
  * <p>
  * Certain Checks are partially supported by the filter:
  * </p>
