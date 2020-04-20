@@ -118,7 +118,7 @@ tokens {
     SIGNED_INTEGER; BINARY_EXPONENT;
 
     //Variable Declarator List
-    VAR_DEC_LIST;
+    VARIABLE_DEC;
 }
 
 {
@@ -834,22 +834,9 @@ implementsClause
 
                      |   vd:variableDefinitions[#mods,#t] (s6:SEMI)?
                      ({
-                         if(#vd.getNextSibling() != null) {
-                             #field = #(#[VAR_DEC_LIST, "VAR_DEC_LIST"], vd);
-                             while (#vd.getNextSibling() != null)
-                             {
-                                 #vd = #vd.getNextSibling();
-                             }
-                         }
-                         else {
-                             #field = #vd;
-                         }
-                         //#vd.addchild(#s6);//option2
-                         #field.addChild(#s6);//option3
+                         #field = #(#[VARIABLE_DEC, "VARIABLE_DEC"], vd);
+                         #field.addChild(#s6);
                      })
-
-
-
                        )
                    )
                )

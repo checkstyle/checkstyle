@@ -253,7 +253,7 @@ public class GeneratedJavaTokenTypesTest {
         assertEquals(195, GeneratedJavaTokenTypes.HEX_DOUBLE_LITERAL, message);
         assertEquals(196, GeneratedJavaTokenTypes.SIGNED_INTEGER, message);
         assertEquals(197, GeneratedJavaTokenTypes.BINARY_EXPONENT, message);
-        assertEquals(198, GeneratedJavaTokenTypes.VAR_DEC_LIST, message);
+        assertEquals(198, GeneratedJavaTokenTypes.VARIABLE_DEC, message);
         // Read JavaDoc before changing
         assertEquals(197, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
                 "all tokens must be added to list in"

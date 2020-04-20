@@ -3551,8 +3551,8 @@ public final class TokenTypes {
      *         +--VARIABLE_DEF
      * </pre>
      */
-    public static final int VAR_DEC_LIST =
-            GeneratedJavaTokenTypes.VAR_DEC_LIST;
+    public static final int VARIABLE_DEC =
+            GeneratedJavaTokenTypes.VARIABLE_DEC;
 
     /** Prevent instantiation. */
     private TokenTypes() {
