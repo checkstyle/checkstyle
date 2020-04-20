@@ -530,6 +530,7 @@
     </module>
     <module name="MissingJavadocPackage"/>
     <module name="MissingJavadocType"/>
+    <module name="MissingLeadingAsterisk"/>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="SingleLineJavadoc"/>
     <module name="WriteTag"/>
