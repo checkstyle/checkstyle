@@ -175,25 +175,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Returns the lines associated with the tree.
-     *
-     * @return the file contents
-     */
-    public final String[] getLines() {
-        return context.get().fileContents.getLines();
-    }
-
-    /**
-     * Returns the line associated with the tree.
-     *
-     * @param index index of the line
-     * @return the line from the file contents
-     */
-    public final String getLine(int index) {
-        return context.get().fileContents.getLine(index);
-    }
-
-    /**
      * Set the file contents associated with the tree.
      *
      * @param contents the manager
@@ -230,6 +211,38 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         this.tabWidth = tabWidth;
     }
 
+    @Override
+    public final void log(int line, String key, Object... args) {
+        context.get().messages.add(
+            new LocalizedMessage(
+                line,
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                getClass(),
+                getCustomMessages().get(key)));
+    }
+
+    @Override
+    public final void log(int lineNo, int colNo, String key,
+            Object... args) {
+        final int col = 1 + CommonUtil.lengthExpandedTabs(
+            getLines()[lineNo - 1], colNo, tabWidth);
+        context.get().messages.add(
+            new LocalizedMessage(
+                lineNo,
+                col,
+                getMessageBundle(),
+                key,
+                args,
+                getSeverityLevel(),
+                getId(),
+                getClass(),
+                getCustomMessages().get(key)));
+    }
+
     /**
      * Helper method to log a LocalizedMessage.
      *
@@ -262,36 +275,21 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
                         getCustomMessages().get(key)));
     }
 
-    @Override
-    public final void log(int line, String key, Object... args) {
-        context.get().messages.add(
-            new LocalizedMessage(
-                line,
-                getMessageBundle(),
-                key,
-                args,
-                getSeverityLevel(),
-                getId(),
-                getClass(),
-                getCustomMessages().get(key)));
+    /**
+     * Returns the lines associated with the tree.
+     * @return the file contents
+     */
+    public final String[] getLines() {
+        return context.get().fileContents.getLines();
     }
 
-    @Override
-    public final void log(int lineNo, int colNo, String key,
-            Object... args) {
-        final int col = 1 + CommonUtil.lengthExpandedTabs(
-            getLines()[lineNo - 1], colNo, tabWidth);
-        context.get().messages.add(
-            new LocalizedMessage(
-                lineNo,
-                col,
-                getMessageBundle(),
-                key,
-                args,
-                getSeverityLevel(),
-                getId(),
-                getClass(),
-                getCustomMessages().get(key)));
+    /**
+     * Returns the line associated with the tree.
+     * @param index index of the line
+     * @return the line from the file contents
+     */
+    public final String getLine(int index) {
+        return context.get().fileContents.getLine(index);
     }
 
     /**

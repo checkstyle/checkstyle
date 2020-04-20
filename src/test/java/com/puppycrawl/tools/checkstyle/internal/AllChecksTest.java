@@ -488,6 +488,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         for (Class<?> module : CheckUtil.getCheckstyleChecks()) {
             final String name = module.getSimpleName();
 
+            // No messages in just module
+            if ("SuppressWarningsHolder".equals(name)) {
+                continue;
+            }
+
             assertFalse(CheckUtil.getCheckMessages(module).isEmpty(),
                     name + " should have at least one 'MSG_*' field for error messages");
         }

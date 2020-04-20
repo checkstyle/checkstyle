@@ -48,6 +48,15 @@ public final class FullIdent {
     }
 
     /**
+     * Creates a new FullIdent starting from the child of the specified node.
+     * @param ast the parent node from where to start from
+     * @return a {@code FullIdent} value
+     */
+    public static FullIdent createFullIdentBelow(DetailAST ast) {
+        return createFullIdent(ast.getFirstChild());
+    }
+
+    /**
      * Creates a new FullIdent starting from the specified node.
      *
      * @param ast the node to start from
@@ -60,13 +69,27 @@ public final class FullIdent {
     }
 
     /**
-     * Creates a new FullIdent starting from the child of the specified node.
+     * Recursively extract a FullIdent.
      *
-     * @param ast the parent node from where to start from
-     * @return a {@code FullIdent} value
+     * @param full the FullIdent to add to
+     * @param ast the node to recurse from
      */
-    public static FullIdent createFullIdentBelow(DetailAST ast) {
-        return createFullIdent(ast.getFirstChild());
+    private static void extractFullIdent(FullIdent full, DetailAST ast) {
+        if (ast != null) {
+            if (ast.getType() == TokenTypes.DOT) {
+                extractFullIdent(full, ast.getFirstChild());
+                full.append(".");
+                extractFullIdent(
+                    full, ast.getFirstChild().getNextSibling());
+            }
+            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
+                extractFullIdent(full, ast.getFirstChild());
+                full.append("[]");
+            }
+            else {
+                full.append(ast);
+            }
+        }
     }
 
     /**
@@ -109,30 +132,6 @@ public final class FullIdent {
     public String toString() {
         return String.join("", elements)
             + "[" + detailAst.getLineNo() + "x" + detailAst.getColumnNo() + "]";
-    }
-
-    /**
-     * Recursively extract a FullIdent.
-     *
-     * @param full the FullIdent to add to
-     * @param ast the node to recurse from
-     */
-    private static void extractFullIdent(FullIdent full, DetailAST ast) {
-        if (ast != null) {
-            if (ast.getType() == TokenTypes.DOT) {
-                extractFullIdent(full, ast.getFirstChild());
-                full.append(".");
-                extractFullIdent(
-                    full, ast.getFirstChild().getNextSibling());
-            }
-            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                extractFullIdent(full, ast.getFirstChild());
-                full.append("[]");
-            }
-            else {
-                full.append(ast);
-            }
-        }
     }
 
     /**
