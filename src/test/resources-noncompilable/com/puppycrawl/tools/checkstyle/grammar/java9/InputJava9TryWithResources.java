@@ -4,74 +4,64 @@ package com.puppycrawl.tools.checkstyle.grammar.java9;
 /**
  * Input for Java 9 try-with-resources.
  */
-public class InputJava9TryWithResources
+public class InputJava9TryWithResources implements AutoCloseable
 {
-    public static class MyResource implements AutoCloseable {
-        @Override
-        public void close() throws Exception { }
+    //Constructor
+    public InputJava9TryWithResources(boolean throwException) {
+        if (throwException)
+            throw new RuntimeException("Initialization exception");
     }
 
+    //Constructor
+    public InputJava9TryWithResources() {
+        this(false);
+    }
+
+    //Main method
     public static void main(String[] args) throws Exception {
-        MyResource resource = new MyResource();
-        try (resource) { } finally { }
-
-        final MyResource resource1 = new MyResource();
-        final MyResource resource2 = new MyResource();
-        try (resource1;resource2) { } finally { }
-    }
-}
-
-class TwrForVariable1 implements AutoCloseable  {
-    private static int closeCount = 0;
-    public static void main(String... args) throws Exception{
-
-        TwrForVariable1 v = new TwrForVariable1();
-
-
-        try (v) {
-        }
+        InputJava9TryWithResources v = new InputJava9TryWithResources();
 
         try (v.finalWrapper.finalField) {
         }
 
-        try (new TwrForVariable1() { }.finalWrapper.finalField) {
+        try (new InputJava9TryWithResources() { }.finalWrapper.finalField) {
         }
 
-        try ((args.length > 0 ? v : new TwrForVariable1()).finalWrapper.finalField) {
+        try ((args.length > 0 ? v : new InputJava9TryWithResources()).finalWrapper.finalField) {
         }
 
         //More than one resource
-        TwrForVariable1 i1 = new TwrForVariable1();
-        try (i1; TwrForVariable1 i2 = new TwrForVariable1(true)) {
+        InputJava9TryWithResources i1 = new InputJava9TryWithResources();
+        try (i1; InputJava9TryWithResources i2 = new InputJava9TryWithResources(true)) {
         }
 
-        TwrForVariable1 m1 = new TwrForVariable1();
-        try (m1; TwrForVariable1 m2 = m1; TwrForVariable1 m3 = m2;) {
+        InputJava9TryWithResources m1 = new InputJava9TryWithResources();
+        try (m1; InputJava9TryWithResources m2 = m1; InputJava9TryWithResources m3 = m2;) {
         }
 
         // Nested try
         try {
-            throw new CloseableException();
-        } catch (CloseableException ex) {
-            try (ex) {
+        } catch (Exception ex) {
+            try (v) {
             }
         }
         // null test cases
-        TwrForVariable1 n = null;
+        InputJava9TryWithResources n = null;
         try (n) {
         }
 
-        // anonymous class implementing AutoCloseable as variable in twr
+        // anonymous class implementing AutoCloseable as variable in try
         AutoCloseable a = new AutoCloseable() {
             public void close() { };
         };
         try (a) {
         } catch (Exception e) {}
+
+
     }
 
-    public void close() {
-        closeCount++;
-    }
+    private static int closeCount = 0;
+
 
     final static FinalWrapper finalWrapper = new FinalWrapper();
     public void method() throws Exception {
@@ -87,19 +77,8 @@ class TwrForVariable1 implements AutoCloseable  {
         };
     }
 
-    static class CloseableException extends Exception implements AutoCloseable {
-        @Override
-        public void close() {
-            closeCount++;
-        }
-    }
+    @Override
+    public void close() throws Exception {
 
-    public TwrForVariable1(boolean throwException) {
-        if (throwException)
-            throw new RuntimeException("Initialization exception");
-    }
-
-    public TwrForVariable1() {
-        this(false);
     }
 }
