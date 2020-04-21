@@ -1541,6 +1541,72 @@ This is a sample text file. // ok, this file is not specified in the config.
       </subsection>
     </section>
 
+    <section name="NoCodeInFile">
+      <p>Since Checkstyle 8.33</p>
+
+      <subsection name="Description" id="NoCodeInFile_Description">
+        <p>
+          Checks whether file contains code.
+          Files which are considered to have no code:
+            1. File with no text
+            2. File with single line comment(s).
+            3. File with a multi line comment(s).
+        </p>
+      </subsection>
+
+      <subsection name="Examples" id="NoCodeInFile_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NoCodeInFile&quot;/&gt;
+        </source>
+        <p>Example:</p>
+          Violations:
+        <source>
+
+        </source>
+          <source>
+// comment
+          </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NoCodeInFile_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoCodeInFile">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NoCodeInFile_Violation_Messages">
+        <ul>
+          <li>
+            <a
+                    href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22nocode.in.file%22">
+            nocode.in.file</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="NoCodeInFile_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NoCodeInFile_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="OrderedProperties">
       <p>Since Checkstyle 8.22</p>
       <subsection name="Description" id="OrderedProperties_Description">
