@@ -15,6 +15,12 @@
     files="[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]Input.*\.java"/>
   <suppress checks="PackageDeclarationCheck"
     files="[\\/]resources[\\/].*[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorEmpty\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]resources[\\/].*[\\/]nocodeinfile[\\/]InputNoCodeInFile1\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]resources[\\/].*[\\/]nocodeinfile[\\/]InputNoCodeInFile2\.java"/>
+  <suppress checks="PackageDeclarationCheck"
+    files="[\\/]resources[\\/].*[\\/]nocodeinfile[\\/]InputNoCodeInFile3\.java"/>
 
   <!-- intentional problem for testing -->
   <suppress checks="PackageDeclarationCheck"
