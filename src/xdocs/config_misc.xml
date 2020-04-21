@@ -2386,6 +2386,17 @@ public class Start {
   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <p>
+          File name: main.properties
+        </p>
+        <source>
+          host=localhost // OK
+          key=value1 // Violation - duplicate property 'key'
+          key=value2 // Violation - duplicate property 'key'
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="UniqueProperties_Example_of_Usage">
