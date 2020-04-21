@@ -60,18 +60,18 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * class MyClass {
- *   List list1 = new ArrayList&lt;Object&gt; { // violation
- *     {
- *       add(new Object());
- *     }
- *   };
- *   List list2 = new ArrayList&lt;Object&gt; { // violation, comments and semicolons are ignored
- *     ;
- *     // my comment
- *     {
- *       add(new Object());
- *     }
- *   };
+ *     List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
+ *         {
+ *             add(1);
+ *         }
+ *     };
+ *     List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
+ *         ;
+ *         // comments and semicolons are ignored
+ *         {
+ *             add("foo");
+ *         }
+ *     };
  * }
  * </pre>
  * <p>
@@ -82,12 +82,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * class MyClass {
- *  List list = new ArrayList&lt;Object&gt; { // OK as it is not pure double brace pattern
- *     private int field;
- *     {
- *       add(new Object());
- *     }
- *   };
+ *     List&lt;Object&gt; list = new ArrayList&lt;&gt;() { // OK, not pure double brace pattern
+ *         private int field;
+ *         {
+ *             add(new Object());
+ *         }
+ *     };
  * }
  * </pre>
  *
