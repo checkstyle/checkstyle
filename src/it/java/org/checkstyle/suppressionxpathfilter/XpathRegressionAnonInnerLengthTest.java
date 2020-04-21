@@ -38,6 +38,34 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
     }
 
     @Test
+    public void testDefault() throws Exception {
+        final File fileToProcess =
+            new File(getPath("SuppressionXpathRegressionAnonInnerLengthDefault.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(AnonInnerLengthCheck.class);
+
+        final String[] expectedViolation = {
+            "7:29: " + getCheckMessage(AnonInnerLengthCheck.class,
+                AnonInnerLengthCheck.MSG_KEY, 26, 20),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLengthDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='runnable']]"
+                + "/ASSIGN/EXPR",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLengthDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/VARIABLE_DEF[./IDENT[@text='runnable']]"
+                + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Runnable']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
+
+    @Test
     public void testMaxLength() throws Exception {
         final int maxLen = 5;
         final File fileToProcess =
@@ -65,5 +93,4 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
-
 }
