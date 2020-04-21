@@ -59,4 +59,28 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testAllowWhenNoBraceAfterSemicolon() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace.java"
+        ));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
+        moduleConfig.addAttribute("allowWhenNoBraceAfterSemicolon", "false");
+
+        final String[] expectedViolation = {
+            "8:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+                UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text="
+                    + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
