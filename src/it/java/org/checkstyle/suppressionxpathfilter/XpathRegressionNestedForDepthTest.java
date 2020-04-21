@@ -59,4 +59,31 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testDefault() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionNestedForDepthDefault.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(NestedForDepthCheck.class);
+        moduleConfig.addAttribute("max", "2");
+
+        final String[] expectedViolation = {
+            "8:21: " + getCheckMessage(NestedForDepthCheck.class,
+                NestedForDepthCheck.MSG_KEY, 3, 2),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNestedForDepthDefault']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/LITERAL_FOR/"
+                + "SLIST/LITERAL_FOR/"
+                + "SLIST/LITERAL_FOR/"
+                + "SLIST/LITERAL_FOR"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
