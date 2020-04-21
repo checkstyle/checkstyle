@@ -60,4 +60,50 @@ public class InputLeftCurlyDefault
             while(true) {/*foo*/}
         }
     }
+
+    public void testEmptyLineAfter() {
+        if(true)
+
+        { // violation
+        }
+
+        int x = 10;
+        switch (x) {
+            case 10:
+
+
+            { // violation
+                break;
+            }
+
+            case 20: {
+                break;
+            }
+        }
+    }
+
+    public void testWithCommentAfter() {
+        if(true)
+        // A block of comment here
+        // Another block of comment
+        { // violation
+
+        }
+
+        int x = 20;
+
+        switch(x) {
+            case 10:
+                // A block of comment here
+                // Another block of comment
+            { // violation
+                break;
+            }
+
+            case 20: {
+                break;
+            }
+        }
+    }
+
 }

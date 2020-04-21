@@ -380,7 +380,7 @@ public class LeftCurlyCheck
      */
     private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
         // not on the same line
-        if (startToken.getLineNo() + 1 == brace.getLineNo()) {
+        if (startToken.getLineNo() < brace.getLineNo()) {
             if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                 log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }
