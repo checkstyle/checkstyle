@@ -56,6 +56,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocType
  * </li>
  * <li>
+ * NoCodeInFile (reason is that AST is not generated for a file not containing code)
+ * </li>
+ * <li>
  * Regexp (reason is at
  * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
