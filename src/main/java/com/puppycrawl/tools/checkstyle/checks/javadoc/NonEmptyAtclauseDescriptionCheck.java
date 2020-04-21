@@ -57,6 +57,22 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * &lt;module name="NonEmptyAtclauseDescription"/&gt;
  * </pre>
+ * <pre>
+ * class Test
+ * {
+ * &#47;**
+ * *
+ * * &#64;param a Some javadoc // OK
+ * * &#64;param b // Violation - At-clause should have a non-empty description.
+ * * &#64;deprecated // Violation - At-clause should have a non-empty description.
+ * * &#64;throws Exception // Violation - At-clause should have a non-empty description.
+ * *&#47;
+ * public int method(String a, int b) throws Exception
+ * {
+ * return 1;
+ * }
+ * }
+ * </pre>
  * <p>
  * To configure the check to validate only {@code @param} and {@code @return} tags:
  * </p>
@@ -65,7 +81,22 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *   &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <pre>
+ * class Test
+ * {
+ * &#47;**
+ * *
+ * * &#64;param a Some javadoc // OK
+ * * &#64;param b // Violation - At-clause should have a non-empty description.
+ * * &#64;deprecated // ignored
+ * * &#64;throws Exception // ignored
+ * *&#47;
+ * public int method(String a, int b) throws Exception
+ * {
+ * return 1;
+ * }
+ * }
+ * </pre>
  * @since 6.0
  */
 @StatelessCheck
