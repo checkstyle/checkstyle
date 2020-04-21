@@ -59,4 +59,28 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
                 expectedXpathQueries);
     }
 
+    @Test
+    public void testValidateComments() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "SuppressionXpathRegressionSingleSpaceSeparatorValidateComments.java"
+        ));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
+        moduleConfig.addAttribute("validateComments", "true");
+
+        final String[] expectedViolation = {
+            "4:17: " + getCheckMessage(SingleSpaceSeparatorCheck.class,
+                    SingleSpaceSeparatorCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[."
+                + "/IDENT[@text='SuppressionXpathRegressionSingleSpaceSeparatorValidateComments']]"
+                + "/OBJBLOCK/SINGLE_LINE_COMMENT"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
 }
