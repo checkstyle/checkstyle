@@ -144,4 +144,6 @@
               files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
     <suppress checks="RegexpMultiline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile1\.java"/>
 </suppressions>
