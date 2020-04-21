@@ -107,9 +107,6 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_MISMATCH = "mismatch.package.directory";
 
-    /** Line number used to log violation when no AST nodes are present in file. */
-    private static final int DEFAULT_LINE_NUMBER = 1;
-
     /** Is package defined. */
     private boolean defined;
 
@@ -147,13 +144,8 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST ast) {
-        if (!defined) {
-            if (ast == null) {
-                log(DEFAULT_LINE_NUMBER, MSG_KEY_MISSING);
-            }
-            else {
-                log(ast, MSG_KEY_MISSING);
-            }
+        if (!defined && ast != null) {
+            log(ast, MSG_KEY_MISSING);
         }
     }
 
