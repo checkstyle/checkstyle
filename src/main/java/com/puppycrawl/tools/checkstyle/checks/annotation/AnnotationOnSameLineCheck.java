@@ -56,19 +56,72 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;AnnotationOnSameLine&quot;/&gt;
  * </pre>
  * <p>
- * Example to allow annotations on the same line
+ * Example:
  * </p>
  * <pre>
- * &#64;Override public int toString() { ... } // no violations
- * &#64;Before &#64;Override public void set() { ... } // no violation
+ * class Foo {
+ *
+ *   &#64;SuppressWarnings("deprecation")  // violation, annotation should be on the same line
+ *   public Foo() {
+ *   }
+ *
+ *   &#64;SuppressWarnings("unchecked") public void fun2() {  // OK
+ *   }
+ *
+ * }
+ *
+ * &#64;SuppressWarnings("unchecked") class Bar extends Foo {  // OK
+ *
+ *   &#64;Deprecated public Bar() {  // OK
+ *   }
+ *
+ *   &#64;Override  // violation, annotation should be on the same line
+ *   public void fun1() {
+ *   }
+ *
+ *   &#64;Before &#64;Override public void fun2() {  // OK
+ *   }
+ *
+ *   &#64;SuppressWarnings("deprecation")  // violation, annotation should be on the same line
+ *   &#64;Before public void fun3() {
+ *   }
+ *
+ * }
  * </pre>
  * <p>
- * Example to disallow annotations on previous line
+ * To configure the check to check for annotations applied on
+ * interfaces, variables and constructors:
  * </p>
  * <pre>
- * &#64;SuppressWarnings("deprecation") // violation
- * &#64;Override // violation
- * public int foo() { ... }
+ * &lt;module name=&quot;AnnotationOnSameLine&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot;
+ *       value=&quot;INTERFACE_DEF, VARIABLE_DEF, CTOR_DEF&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;Deprecated interface Foo {  // OK
+ *
+ *   void doSomething();
+ *
+ * }
+ *
+ * class Bar implements Foo {
+ *
+ *   &#64;SuppressWarnings("deprecation")  // violation, annotation should be on the same line
+ *   public Bar() {
+ *   }
+ *
+ *   &#64;Override  // OK
+ *   public void doSomething() {
+ *   }
+ *
+ *   &#64;Nullable  // violation, annotation should be on the same line
+ *   String s;
+ *
+ * }
  * </pre>
  *
  * @since 8.2
