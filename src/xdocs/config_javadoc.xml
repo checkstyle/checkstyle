@@ -2668,6 +2668,22 @@ class DatabaseConfiguration {}
         <source>
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
         </source>
+        <source>
+class Test
+{
+  /**
+  *
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b // Violation - At-clause should have a non-empty description.
+  * <code>@deprecated</code> // Violation - At-clause should have a non-empty description.
+  * <code>@throws</code> Exception // Violation - At-clause should have a non-empty description.
+  */
+  public int method(String a, int b) throws Exception
+  {
+    return 1;
+  }
+}
+        </source>
         <p>
           To configure the check to validate only <code>@param</code> and
           <code>@return</code> tags:
@@ -2676,6 +2692,22 @@ class DatabaseConfiguration {}
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;&gt;
   &lt;property name="javadocTokens" value="PARAM_LITERAL,RETURN_LITERAL"/&gt;
 &lt;/module&gt;
+        </source>
+        <source>
+class Test
+{
+  /**
+  *
+  * <code>@param</code> a Some javadoc // OK
+  * <code>@param</code> b // Violation - At-clause should have a non-empty description.
+  * <code>@deprecated</code> // ignored
+  * <code>@throws</code> Exception // ignored
+  */
+  public int method(String a, int b) throws Exception
+  {
+    return 1;
+  }
+}
         </source>
       </subsection>
 
