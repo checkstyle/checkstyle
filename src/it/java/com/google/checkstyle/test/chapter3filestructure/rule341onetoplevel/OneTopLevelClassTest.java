@@ -72,6 +72,7 @@ public class OneTopLevelClassTest extends AbstractGoogleModuleTestSupport {
 
         final String[] expected = {
             "4:1: " + getCheckMessage(clazz, messageKey, "FooEnum"),
+            "5:1: " + getCheckMessage(clazz, messageKey, "FooAt"),
         };
 
         final Configuration checkConfig = getModuleConfig("OneTopLevelClass");
