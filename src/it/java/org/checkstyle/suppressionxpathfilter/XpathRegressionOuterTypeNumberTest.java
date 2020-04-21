@@ -38,6 +38,27 @@ public class XpathRegressionOuterTypeNumberTest extends AbstractXpathTestSupport
     }
 
     @Test
+    public void testDefault() throws Exception {
+        final File fileToProcess =
+            new File(getPath("SuppressionXpathRegressionOuterTypeNumberDefault.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(OuterTypeNumberCheck.class);
+
+        final String[] expectedViolation = {
+            "1:1: " + getCheckMessage(OuterTypeNumberCheck.class,
+                OuterTypeNumberCheck.MSG_KEY, 2, 1),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/PACKAGE_DEF"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
+
+    @Test
     public void testOne() throws Exception {
         final File fileToProcess =
                 new File(getPath("SuppressionXpathRegressionOuterTypeNumber.java"));
