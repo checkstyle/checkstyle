@@ -17,6 +17,7 @@
     <!-- Miscellaneous -->
     <module name="NewlineAtEndOfFile" />
     <module name="RegexpSingleline">
+      <property name="id" value="lineLength"/>
       <!-- catch lines above 100 symbols -->
       <property name="format"
                value="^(?!(.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd)).{101,}$"/>
