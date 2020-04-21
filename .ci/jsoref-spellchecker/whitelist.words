@@ -901,6 +901,8 @@ noarraytrailingcomma
 noauto
 nobr
 noclone
+nocode
+nocodeinfile
 nocstylearray
 nodeps
 NODESET

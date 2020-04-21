@@ -15,6 +15,8 @@
                files="[\\/]test[\\/].*[\\/]grammar[\\/]comments[\\/]InputFullOfSinglelineComments\.java"/>
      <suppress checks="NewlineAtEndOfFile"
                files="[\\/]test[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfSinglelineComments\.java"/>
+    <suppress checks="NewlineAtEndOfFile"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
 
     <!-- Grammar specific input file, should have exact structure to reproduce the case. -->
      <suppress checks="NewlineAtEndOfFile"
@@ -144,4 +146,8 @@
               files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
     <suppress checks="RegexpMultiline"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile1\.java"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
 </suppressions>
