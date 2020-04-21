@@ -58,7 +58,17 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>
+ * Example:
+ * </p>
+ * <p>
+ * File name: main.properties
+ * </p>
+ * <pre>
+ * host=localhost // OK
+ * key=value1 // Violation - duplicate property 'key'
+ * key=value2 // Violation - duplicate property 'key'
+ * </pre>
  * @since 5.7
  */
 @StatelessCheck
