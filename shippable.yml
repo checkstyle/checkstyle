@@ -6,7 +6,7 @@ jdk:
 env:
   matrix:
     # we skip openjdk till we find way to install "hg" to shippable image
-    #- CMD="./.ci/shippable.sh no-exception-openjdk7-openjdk8"
+    # - CMD="./.ci/shippable.sh no-exception-openjdk7-openjdk8"
     - CMD="./.ci/shippable.sh no-exception-openjdk9-lucene-and-others"
     - CMD="./.ci/shippable.sh no-exception-cassandra-storm-tapestry"
     - CMD="./.ci/shippable.sh no-exception-hadoop-apache-groovy-scouter"
