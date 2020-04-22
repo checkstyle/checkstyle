@@ -344,6 +344,7 @@ public class SuppressWarningsHolder
      *
      * @param ast annotation token
      * @return list values
+     * @throws IllegalArgumentException if there is an unknown annotation value type.
      */
     private static List<String> getAllAnnotationValues(DetailAST ast) {
         // get values of annotation
@@ -391,6 +392,7 @@ public class SuppressWarningsHolder
      *
      * @param ast the AST node to get the child of
      * @return get target of annotation
+     * @throws IllegalArgumentException if there is an unexpected container type.
      */
     private static DetailAST getAnnotationTarget(DetailAST ast) {
         final DetailAST targetAST;

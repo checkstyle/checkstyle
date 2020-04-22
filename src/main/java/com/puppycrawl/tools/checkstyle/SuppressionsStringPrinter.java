@@ -59,6 +59,7 @@ public final class SuppressionsStringPrinter {
      * @param tabWidth length of the tab character
      * @return generated suppressions.
      * @throws IOException if the file could not be read.
+     * @throws IllegalStateException if suppressionLineColumnNumber is not of a valid format.
      * @throws CheckstyleException if the file is not a Java source.
      */
     public static String printSuppressions(File file, String suppressionLineColumnNumber,
