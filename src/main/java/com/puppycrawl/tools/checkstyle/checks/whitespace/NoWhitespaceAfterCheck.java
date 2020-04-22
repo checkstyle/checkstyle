@@ -298,6 +298,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @param ast
      *        , {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
      * @return previous node by text order.
+     * @throws IllegalStateException if an unexpected token type is encountered.
      */
     private static DetailAST getArrayDeclaratorPreviousElement(DetailAST ast) {
         final DetailAST previousElement;
