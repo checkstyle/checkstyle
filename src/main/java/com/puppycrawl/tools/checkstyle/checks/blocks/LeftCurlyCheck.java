@@ -24,6 +24,7 @@ import java.util.Locale;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -379,8 +380,12 @@ public class LeftCurlyCheck
      * @param braceLine content of line with Brace
      */
     private void validateNewLinePosition(DetailAST brace, DetailAST startToken, String braceLine) {
-        // not on the same line
-        if (startToken.getLineNo() + 1 == brace.getLineNo()) {
+        // not on the same line and does not contain empty lines or comments in between
+        final FileContents fileContents = getFileContents();
+
+        if (startToken.getLineNo() + 1 == brace.getLineNo()
+            || (fileContents.lineIsBlank(brace.getLineNo() - 2)
+                    || fileContents.lineIsComment(brace.getLineNo() - 2))) {
             if (CommonUtil.hasWhitespaceBefore(brace.getColumnNo(), braceLine)) {
                 log(brace, MSG_KEY_LINE_PREVIOUS, OPEN_CURLY_BRACE, brace.getColumnNo() + 1);
             }

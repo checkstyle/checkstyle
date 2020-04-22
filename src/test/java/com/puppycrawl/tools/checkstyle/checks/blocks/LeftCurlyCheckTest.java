@@ -67,6 +67,10 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "14:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "18:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
             "22:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "67:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "75:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "89:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "103:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
         };
         verify(checkConfig, getPath("InputLeftCurlyDefault.java"), expected);
     }
@@ -86,6 +90,13 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "58:27: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 27),
             "59:23: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 23),
             "60:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
+            "64:38: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 38),
+            "71:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 20),
+            "79:22: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 22),
+            "85:40: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 40),
+            "94:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
+            "99:19: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 19),
+            "107:22: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 22),
         };
         verify(checkConfig, getPath("InputLeftCurlyDefault.java"), expected);
     }
@@ -107,6 +118,10 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "45:12: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 12),
             "50:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
             "55:20: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 20),
+            "67:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "75:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
+            "89:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "103:13: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 13),
         };
         verify(checkConfig, getPath("InputLeftCurlyDefault.java"), expected);
     }
