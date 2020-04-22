@@ -62,6 +62,7 @@ public final class DetailNodeTreeStringPrinter {
      *
      * @param blockComment DetailAST
      * @return DetailNode tree
+     * @throws IllegalArgumentException if there is an error parsing the Javadoc.
      */
     public static DetailNode parseJavadocAsDetailNode(DetailAST blockComment) {
         final JavadocDetailNodeParser parser = new JavadocDetailNodeParser();
