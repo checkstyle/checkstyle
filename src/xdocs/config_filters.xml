@@ -922,7 +922,6 @@ public class UserService {
           <li>CustomImportOrder</li>
           <li>EmptyLineSeparator</li>
           <li>Indentation</li>
-          <li>JavadocMethod</li>
           <li>MissingJavadocType</li>
           <li>Regexp (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
           <li>RegexpSinglelineJava (reason is at <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)</li>
@@ -937,6 +936,7 @@ public class UserService {
         <ul id="SuppressionXpathFilter_JavadocChecks">
           <li>AtclauseOrder</li>
           <li>JavadocBlockTagLocation</li>
+          <li>JavadocMethod</li>
           <li>JavadocMissingWhitespaceAfterAsterisk</li>
           <li>JavadocParagraph</li>
           <li>JavadocStyle</li>
