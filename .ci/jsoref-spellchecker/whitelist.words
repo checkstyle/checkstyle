@@ -350,6 +350,7 @@ DOTALL
 doubletag
 Dpi
 Dpmd
+Dproject
 Dpuppycrawl
 dropdown
 drydock
@@ -497,6 +498,7 @@ func
 Fwhitespace
 Fx
 gav
+gcp
 generalform
 genericwhitespace
 Getenv
