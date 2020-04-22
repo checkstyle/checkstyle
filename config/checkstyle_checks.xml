@@ -413,7 +413,7 @@
     <module name="UnnecessarySemicolonInTryWithResources"/>
     <module name="VariableDeclarationUsageDistance"/>
 
-    <!-- Filters-->
+    <!-- Filters -->
     <module name="SuppressionCommentFilter">
       <!--
         Use suppressions.xml for suppressions, this is only example.
@@ -545,7 +545,7 @@
       <property name="max" value="7"/>
     </module>
     <module name="ClassDataAbstractionCoupling">
-        <!-- Default classes are also listed-->
+        <!-- Default classes are also listed -->
         <property name="excludedClasses"
                   value="boolean, byte, char, double, float, int, long, short, void,
                          Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void,
@@ -561,7 +561,7 @@
     </module>
     <module name="ClassFanOutComplexity">
         <property name="max" value="25"/>
-        <!-- Default classes are also listed-->
+        <!-- Default classes are also listed -->
         <property name="excludedClasses"
                   value="boolean, byte, char, double, float, int, long, short,
                          void, Boolean, Byte, Character, Double, Float, Integer,
