@@ -317,7 +317,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 handleCommentAtTheEndOfTheCodeBlock(prevStmt, comment, nextStmt);
             }
             else if (nextStmt != null && !areSameLevelIndented(comment, nextStmt, nextStmt)) {
-                log(comment.getLineNo(), getMessageKey(comment), nextStmt.getLineNo(),
+                log(comment, getMessageKey(comment), nextStmt.getLineNo(),
                     comment.getColumnNo(), nextStmt.getColumnNo());
             }
         }
@@ -674,7 +674,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     || prevStmt.getType() == TokenTypes.CASE_GROUP
                     || prevStmt.getType() == TokenTypes.LITERAL_DEFAULT) {
                 if (comment.getColumnNo() < nextStmt.getColumnNo()) {
-                    log(comment.getLineNo(), getMessageKey(comment), nextStmt.getLineNo(),
+                    log(comment, getMessageKey(comment), nextStmt.getLineNo(),
                         comment.getColumnNo(), nextStmt.getColumnNo());
                 }
             }
@@ -685,7 +685,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
             }
             else if (!areSameLevelIndented(comment, prevStmt, prevStmt)) {
                 final int prevStmtLineNo = prevStmt.getLineNo();
-                log(comment.getLineNo(), getMessageKey(comment), prevStmtLineNo,
+                log(comment, getMessageKey(comment), prevStmtLineNo,
                         comment.getColumnNo(), getLineStart(prevStmtLineNo));
             }
         }
@@ -729,7 +729,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
      */
     private void handleCommentInEmptyCodeBlock(DetailAST comment, DetailAST nextStmt) {
         if (comment.getColumnNo() < nextStmt.getColumnNo()) {
-            log(comment.getLineNo(), getMessageKey(comment), nextStmt.getLineNo(),
+            log(comment, getMessageKey(comment), nextStmt.getLineNo(),
                 comment.getColumnNo(), nextStmt.getColumnNo());
         }
     }
@@ -961,7 +961,7 @@ public class CommentsIndentationCheck extends AbstractCheck {
     private void logMultilineIndentation(DetailAST prevStmt, DetailAST comment,
                                          DetailAST nextStmt) {
         final String multilineNoTemplate = "%d, %d";
-        log(comment.getLineNo(), getMessageKey(comment),
+        log(comment, getMessageKey(comment),
             String.format(Locale.getDefault(), multilineNoTemplate, prevStmt.getLineNo(),
                 nextStmt.getLineNo()), comment.getColumnNo(),
             String.format(Locale.getDefault(), multilineNoTemplate,
