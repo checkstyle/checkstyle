@@ -56,7 +56,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public static final Set<String> INCOMPATIBLE_CHECK_NAMES =
         Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
             "AvoidEscapedUnicodeCharacters",
-            "CommentsIndentation",
             "CustomImportOrder",
             "EmptyLineSeparator",
             "Indentation",
