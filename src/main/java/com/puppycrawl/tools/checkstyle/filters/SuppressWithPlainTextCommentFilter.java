@@ -399,6 +399,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      *
      * @param fileName the name of the file.
      * @return {@link FileText} instance.
+     * @throws IllegalStateException if the file could not be read.
      */
     private static FileText getFileText(String fileName) {
         final File file = new File(fileName);
@@ -513,6 +514,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
          * @param columnNo suppression column number.
          * @param suppressionType suppression type.
          * @param filter the {@link SuppressWithPlainTextCommentFilter} with the context.
+         * @throws IllegalArgumentException if there is an error in the filter regex syntax.
          */
         /* package */ Suppression(
             String text,
