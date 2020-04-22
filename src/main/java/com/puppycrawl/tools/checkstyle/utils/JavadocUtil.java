@@ -312,6 +312,7 @@ public final class JavadocUtil {
      * @param id
      *        the ID of the token name to get
      * @return a token name
+     * @throws IllegalArgumentException if an unknown token ID was specified.
      */
     public static String getTokenName(int id) {
         final String name;
@@ -336,6 +337,7 @@ public final class JavadocUtil {
      * @param name
      *        the name of the token ID to get
      * @return a token ID
+     * @throws IllegalArgumentException if an unknown token name was specified.
      */
     public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
