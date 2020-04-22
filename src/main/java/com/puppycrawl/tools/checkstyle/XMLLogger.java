@@ -79,6 +79,7 @@ public class XMLLogger
      *
      * @param outputStream the stream to write logs to.
      * @param outputStreamOptions if {@code CLOSE} stream should be closed in auditFinished()
+     * @throws IllegalArgumentException if outputStreamOptions is null.
      */
     public XMLLogger(OutputStream outputStream, OutputStreamOptions outputStreamOptions) {
         writer = new PrintWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
