@@ -40,7 +40,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
             "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
@@ -52,6 +52,29 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
         final List<String> expectedXpathQueries = Collections.singletonList("/CLASS_DEF[./IDENT"
             + "[@text='SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclaration']]"
             + "/OBJBLOCK/SEMI"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
+    @Test
+    public void testTokens() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
+                + ".java"));
+        final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
+        moduleConfig.addAttribute("tokens", "METHOD_DEF");
+
+        final String[] expectedViolation = {
+            "4:21: " + getCheckMessage(CLASS,
+                UnnecessarySemicolonAfterTypeMemberDeclarationCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[."
+                + "/IDENT[@text='SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMember"
+                    + "DeclarationTokens']]"
+                + "/OBJBLOCK/SEMI[1]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
