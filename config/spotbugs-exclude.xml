@@ -123,14 +123,14 @@
         <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
-        <!-- createJavadocNode is private and can not be launched without visitToken-->
+        <!-- createJavadocNode is private and can not be launched without visitToken -->
         <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
-        <!-- has only one public method and all initialized in that method-->
+        <!-- has only one public method and all initialized in that method -->
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
         <!-- beginProcessing() is kind of c-tor -->
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck" />
         <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck" />
-        <!--Uses setters to set fields values-->
+        <!-- Uses setters to set fields values -->
         <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck" />
         <!-- We cannot modify fields since we won't have the values
                 to create the instance until the setters are called -->

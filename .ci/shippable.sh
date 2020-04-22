@@ -56,7 +56,7 @@ no-exception-openjdk9-lucene-and-others)
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   # till hg is installed
-  #sed -i'' 's/#openjdk9/openjdk9/' projects-for-circle.properties
+  # sed -i'' 's/#openjdk9/openjdk9/' projects-for-circle.properties
   sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
   sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
   sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
