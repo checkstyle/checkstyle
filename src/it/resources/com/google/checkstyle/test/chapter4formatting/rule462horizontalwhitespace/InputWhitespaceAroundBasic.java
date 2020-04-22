@@ -235,6 +235,14 @@ class SpecialCasesInForLoop
         int i = (int) ( 2 / 3 );
         return null;
     }
+
+    void forColon() {
+        int ll[] = new int[10];
+        for (int x:ll) {} // warn
+        for (int x :ll) {} // warn
+        for (int x: ll) {} // warn
+        for (int x : ll) {} // ok
+    }
 }
 
 /**
