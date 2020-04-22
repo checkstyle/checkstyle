@@ -38,4 +38,19 @@
       <property name="message"
                value="Two or more test cases are required for unit testing in Xpath "/>
     </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="&lt;!--[^ ]"/>
+        <property name="fileExtensions" value="xml, properties"/>
+        <property name="message" value="space is required in comments"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[^ ]--&gt;"/>
+        <property name="fileExtensions" value="xml, properties"/>
+        <property name="message" value="space is required in comments"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value=" #[^ !]"/>
+        <property name="fileExtensions" value="sh, yml"/>
+        <property name="message" value="space is required in comments"/>
+    </module>
 </module>
