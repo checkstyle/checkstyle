@@ -150,8 +150,6 @@
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOneTopLevelClassTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOuterTypeNumberTest.java"/>
-    <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionSingleSpaceSeparatorTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionSuppressWarningsHolderTest.java"/>
