@@ -9,7 +9,7 @@ e.g. - provided link corresponds to rule S3776
     <name>checkstyle-profile</name>
     <language>java</language>
     <rules>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>common-java</repositoryKey>
@@ -24,7 +24,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -39,7 +39,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -72,7 +72,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -87,7 +87,7 @@ e.g. - provided link corresponds to rule S3776
         </rule>
         -->
 
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -148,7 +148,7 @@ e.g. - provided link corresponds to rule S3776
                 </parameter>
             </parameters>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -172,7 +172,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -192,7 +192,7 @@ e.g. - provided link corresponds to rule S3776
                 </parameter>
             </parameters>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -250,7 +250,7 @@ e.g. - provided link corresponds to rule S3776
                 </parameter>
             </parameters>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -265,7 +265,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -304,7 +304,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -313,7 +313,7 @@ e.g. - provided link corresponds to rule S3776
             <parameters/>
         </rule>
         -->
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -322,7 +322,7 @@ e.g. - provided link corresponds to rule S3776
             <parameters/>
         </rule>
         -->
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -343,7 +343,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -424,7 +424,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -445,7 +445,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>CRITICAL</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -478,7 +478,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>BLOCKER</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -689,7 +689,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>CRITICAL</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -722,7 +722,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -785,7 +785,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -848,7 +848,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -923,7 +923,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -938,7 +938,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1091,7 +1091,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1196,7 +1196,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1277,7 +1277,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>CRITICAL</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1556,7 +1556,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MINOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1672,7 +1672,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1747,7 +1747,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>MAJOR</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
@@ -1779,7 +1779,7 @@ e.g. - provided link corresponds to rule S3776
             <priority>CRITICAL</priority>
             <parameters/>
         </rule>
-        <!--till #4912-->
+        <!-- till #4912 -->
         <!--
         <rule>
             <repositoryKey>squid</repositoryKey>
