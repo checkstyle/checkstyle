@@ -77,6 +77,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @param message regular expression for messages.
      * @param moduleId the module id
      * @param query the xpath query
+     * @throws IllegalArgumentException if the xpath query is not expected.
      */
     public XpathFilterElement(String files, String checks,
                        String message, String moduleId, String query) {
@@ -125,6 +126,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
      * @param message regular expression for messages.
      * @param moduleId the module id
      * @param query the xpath query
+     * @throws IllegalArgumentException if the xpath query is not correct.
      */
     public XpathFilterElement(Pattern files, Pattern checks, Pattern message,
                            String moduleId, String query) {
@@ -231,6 +233,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
      *
      * @param event {@code TreeWalkerAuditEvent} object
      * @return list of nodes matching xpath expression given event
+     * @throws IllegalStateException if the xpath query could not be evaluated.
      */
     private List<Item<?>> getItems(TreeWalkerAuditEvent event) {
         final RootNode rootNode;
