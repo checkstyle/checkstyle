@@ -114,6 +114,7 @@ public class ParseTreeTablePresentation {
      *
      * @param column the column number
      * @return the type for column number {@code column}.
+     * @throws IllegalStateException if an unknown column index was specified.
      */
     // -@cs[ForbidWildcardAsReturnType] We need to satisfy javax.swing.table.AbstractTableModel
     // public Class<?> getColumnClass(int columnIndex) {...}
@@ -304,6 +305,7 @@ public class ParseTreeTablePresentation {
      * @param node DetailNode(Javadoc) node.
      * @param column column index.
      * @return value at specified column.
+     * @throws IllegalStateException if an unknown column index was specified.
      */
     private static Object getValueAtDetailNode(DetailNode node, int column) {
         final Object value;
@@ -337,6 +339,7 @@ public class ParseTreeTablePresentation {
      * @param ast DetailAST node.
      * @param column column index.
      * @return value at specified column.
+     * @throws IllegalStateException if an unknown column index was specified.
      */
     private static Object getValueAtDetailAST(DetailAST ast, int column) {
         final Object value;
