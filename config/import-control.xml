@@ -101,7 +101,7 @@
     <allow class="com.puppycrawl.tools.checkstyle.grammar.CommentListener"
            local-only="true"/>
     <!-- AccessModifier is in util package (should be moved to api package) to disallow
-    its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
+    its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511 -->
     <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier"
            local-only="true"/>
 

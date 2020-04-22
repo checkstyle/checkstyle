@@ -48,7 +48,7 @@
 #     execute_commands:
 #     - "ls -la"
 #     # "find: unrecognized: -executable"
-#     #- "./.ci/travis/travis.sh check-chmod"
+#     # - "./.ci/travis/travis.sh check-chmod"
 #     cached_dirs:
 #     - "/buddy/checkstyle/.m2"
 #     mount_filesystem_path: "/buddy/checkstyle"
@@ -68,7 +68,7 @@
 #     execute_commands:
 #     - "ls -la"
 #     # "perl,unxz not found"
-#     #- "./.ci/test-spelling-unknown-words.sh"
+#     # - "./.ci/test-spelling-unknown-words.sh"
 #     cached_dirs:
 #     - "/buddy/checkstyle/.m2"
 #     mount_filesystem_path: "/buddy/checkstyle"
