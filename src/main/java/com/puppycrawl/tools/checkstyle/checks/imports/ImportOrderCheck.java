@@ -1099,6 +1099,7 @@ public class ImportOrderCheck
      *
      * @param packageGroups a comma-separated list of package names/prefixes.
      * @return array of compiled patterns.
+     * @throws IllegalArgumentException if any of the package groups are not valid.
      */
     private static Pattern[] compilePatterns(String... packageGroups) {
         final Pattern[] patterns = new Pattern[packageGroups.length];
