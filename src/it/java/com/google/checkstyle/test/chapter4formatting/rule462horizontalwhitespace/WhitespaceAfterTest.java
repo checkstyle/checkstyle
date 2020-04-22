@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class WhitespaceAfterTest extends AbstractGoogleModuleTestSupport {
 
@@ -62,8 +63,7 @@ public class WhitespaceAfterTest extends AbstractGoogleModuleTestSupport {
 
     @Test
     public void testWhitespaceAfterGood() throws Exception {
-        final String[] expected = {
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final Configuration checkConfig = getModuleConfig("WhitespaceAfter");
         final String filePath = getPath("InputWhitespaceAfterGood.java");
 
