@@ -189,7 +189,9 @@ public class WhitespaceAroundCheckTest
     @Test
     public void test1322879And1649038() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "8:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+        };
         verify(checkConfig, getPath("InputWhitespaceAround.java"),
                expected);
     }
@@ -214,6 +216,7 @@ public class WhitespaceAroundCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addAttribute("ignoreEnhancedForColon", "false");
         final String[] expected = {
+            "8:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
             "19:20: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ":"),
         };
         verify(checkConfig, getPath("InputWhitespaceAround.java"),
@@ -278,7 +281,9 @@ public class WhitespaceAroundCheckTest
     public void allowEmptyMethods() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addAttribute("allowEmptyMethods", "true");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "8:18: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "//"),
+        };
         verify(checkConfig, getPath("InputWhitespaceAround.java"), expected);
     }
 
@@ -330,6 +335,7 @@ public class WhitespaceAroundCheckTest
             TokenTypes.PLUS_ASSIGN,
             TokenTypes.QUESTION,
             TokenTypes.RCURLY,
+            TokenTypes.SINGLE_LINE_COMMENT,
             TokenTypes.SL,
             TokenTypes.SLIST,
             TokenTypes.SL_ASSIGN,
