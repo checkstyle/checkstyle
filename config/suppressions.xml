@@ -39,10 +39,10 @@
     <suppress checks="JavadocMethod" files=".*AbstractPathTestSupport\.java"/>
     <suppress checks="JavadocMethod" files=".*AbstractXmlTestSupport\.java"/>
 
-    <!--The Check generates too many violations, fixing them will make code unmanageable.-->
+    <!-- The Check generates too many violations, fixing them will make code unmanageable. -->
     <suppress checks="MagicNumber" files="(ParseTreeTablePresentation|MainFrame)\.java"/>
 
-    <!-- Methods that build fake AST are very long-->
+    <!-- Methods that build fake AST are very long -->
     <suppress checks="MethodLength" files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
     <suppress checks="ExecutableStatementCount"
               files=".*(Generated)?Java(doc)?TokenTypesTest\.java"/>
@@ -66,9 +66,9 @@
     <suppress checks="MethodCount" files="[\\/]JavadocMethodCheck.java$"/>
     <!-- Apart from a complex logic there is a lot of small methods for a better readability.  -->
     <suppress checks="MethodCount" files="[\\/]CommentsIndentationCheck.java$"/>
-    <!--VisibilityModifierCheck has 7 options which require 7 additional methods (setters)-->
+    <!-- VisibilityModifierCheck has 7 options which require 7 additional methods (setters) -->
     <suppress checks="MethodCount" files="[\\/]VisibilityModifierCheck.java$"/>
-    <!--RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
+    <!-- RequireThisCheck has a hierarchy of nested classes which contains a lot of methods. -->
     <suppress checks="MethodCount" files="[\\/]RequireThisCheck.java$"/>
 
     <!-- we need that set of converters -->
