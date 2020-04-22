@@ -872,19 +872,16 @@ for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         <p>
           To configure the check to lambdas:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;LAMBDA&quot;/&gt;
   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
-          </pre>
-        </div>
+        </source>
         <p>
           Results in following:
         </p>
-        <div class="wrapper">
-          <pre>
+        <source>
 allowedFuture.addCallback(result -> assertEquals("Invalid response",
   EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result), // violation, lambda spans 2 lines
   ex -> fail(ex.getMessage())); // OK
@@ -894,8 +891,7 @@ allowedFuture.addCallback(result -> {
     EnumSet.of(HttpMethod.GET, HttpMethod.OPTIONS), result);
   }, // OK
   ex -> fail(ex.getMessage()));
-          </pre>
-        </div>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="NeedBraces_Example_of_Usage">
