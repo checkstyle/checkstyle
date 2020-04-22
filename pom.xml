@@ -1843,6 +1843,7 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck*</param>
+                <parama>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck*</parama>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder*</param>

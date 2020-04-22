@@ -510,7 +510,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                     && !file.getName().endsWith("InputGrammar.java")
                     // comment only files, no root
                     && !file.getName().endsWith("InputPackageDeclarationWithCommentOnly.java")
-                    && !file.getName().endsWith("InputSingleSpaceSeparatorEmpty.java")) {
+                    && !file.getName().endsWith("InputSingleSpaceSeparatorEmpty.java")
+                    && !file.getName().endsWith("InputNoCodeInFile1.java")
+                    && !file.getName().endsWith("InputNoCodeInFile2.java")
+                    && !file.getName().endsWith("InputNoCodeInFile3.java")) {
                 result.add(file);
             }
 
