@@ -34,7 +34,7 @@ matrix:
 environment:
   global:
     CMD: " "
-  # We do matrix as AppVeyor could fail to finish simple "mvn verify"
+  # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
     # checkstyle and sevntu.checkstyle
