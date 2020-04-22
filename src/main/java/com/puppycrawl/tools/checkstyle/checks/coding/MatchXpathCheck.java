@@ -232,6 +232,7 @@ public class MatchXpathCheck extends AbstractCheck {
      * Setter to specify Xpath query.
      *
      * @param query Xpath query.
+     * @throws IllegalStateException if creation of xpath expression fails
      */
     public void setQuery(String query) {
         this.query = query;
