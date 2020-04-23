@@ -280,6 +280,14 @@
       <property name="tokens" value="LITERAL_DO"/>
       <property name="option" value="same"/>
     </module>
+    <module name="EmptyLineWrappingInBlock">
+      <property name="tokens" value="ENUM_CONSTANT_DEF, CTOR_DEF, CASE_GROUP, SLIST, LITERAL_SWITCH,
+      LITERAL_ELSE, LITERAL_FINALLY, ANNOTATION_ARRAY_INIT, LITERAL_NEW, LITERAL_DEFAULT,
+      STATIC_INIT, LITERAL_DO, METHOD_DEF, LITERAL_SYNCHRONIZED, CLASS_DEF, LITERAL_CATCH,
+      LITERAL_IF, LITERAL_TRY, ENUM_DEF, INTERFACE_DEF, ANNOTATION_DEF, INSTANCE_INIT, LAMBDA,
+      ARRAY_INIT, LITERAL_FOR, LITERAL_WHILE,
+      LITERAL_CASE"/>
+    </module>
 
     <!-- Class Design -->
     <module name="DesignForExtension">
