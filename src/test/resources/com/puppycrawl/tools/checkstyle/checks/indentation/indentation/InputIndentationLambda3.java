@@ -20,7 +20,7 @@ public class InputIndentationLambda3 { //indent:0 exp:0
 
 	public Consumer<Integer> returnFunctionOfLambda() { //indent:4 exp:4
 		return par( //indent:8 exp:8
-					(x) -> print(x * 1), //indent:20 exp:12,16 warn
+					(x) -> print(x * 1), //indent:20 exp:20
 				(x) -> print(x * 2) //indent:16 exp:16
 		); //indent:8 exp:8
 	} //indent:4 exp:4
