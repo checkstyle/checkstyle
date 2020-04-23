@@ -269,4 +269,24 @@ public final class TokenUtil {
         return ast1.getLineNo() == ast2.getLineNo();
     }
 
+    /**
+     * Determines if the AST belongs to the given types.
+     *
+     * @param type the Token Type to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(int type, int... types) {
+        boolean result = false;
+        final int length = types.length;
+        for (int i = 0; i < length; i++) {
+            if (type == types[i]) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
 }
