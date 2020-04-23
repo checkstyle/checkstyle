@@ -57,7 +57,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
             "AvoidEscapedUnicodeCharacters",
             "CommentsIndentation",
-            "CustomImportOrder",
             "EmptyLineSeparator",
             "Indentation",
             "InterfaceMemberImpliedModifier",
