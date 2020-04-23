@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -275,6 +276,38 @@ public class TokenUtilTest {
 
         assertEquals(1, children.size(), "Must be one match");
         assertEquals(secondSibling, firstChild, "Mismatched child node");
+    }
+
+    @Test
+    public void testIsOfTypeTrue() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest = new DetailAstImpl();
+        astForTest.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
+        final boolean result2 = TokenUtil.isOfType(astForTest, TokenTypes.LITERAL_FOR,
+                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_CATCH);
+
+        assertTrue(result1, "Token type did not match");
+        assertTrue(result2, "Token type did not match");
+    }
+
+    @Test
+    public void testIsOfTypeFalse() {
+        final int type = TokenTypes.LITERAL_CATCH;
+        final DetailAstImpl astForTest1 = new DetailAstImpl();
+        final DetailAstImpl astForTest2 = null;
+        astForTest1.setType(type);
+        final boolean result1 = TokenUtil.isOfType(type, TokenTypes.LITERAL_FOR,
+                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
+        final boolean result2 = TokenUtil.isOfType(astForTest1, TokenTypes.LITERAL_FOR,
+                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
+        final boolean result3 = TokenUtil.isOfType(astForTest2, TokenTypes.LITERAL_FOR,
+                                TokenTypes.LITERAL_IF, TokenTypes.LITERAL_ELSE);
+
+        assertFalse(result1, "Token type should not match");
+        assertFalse(result2, "Token type should not match");
+        assertFalse(result3, "Token type should not match");
     }
 
 }
