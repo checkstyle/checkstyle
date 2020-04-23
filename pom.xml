@@ -626,6 +626,7 @@
               <logViolationsToConsole>true</logViolationsToConsole>
               <maxAllowedViolations>0</maxAllowedViolations>
               <violationSeverity>error</violationSeverity>
+              <cacheFile>${project.build.directory}/cachefile_sevntu</cacheFile>
               <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
               <sourceDirectories>
                 <sourceDirectory>${project.basedir}/src</sourceDirectory>
