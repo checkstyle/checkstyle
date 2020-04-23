@@ -261,6 +261,15 @@
       </p>
 
       <p>
+        Apart from the above mentioned properties, there are a few system
+        properties that changes the way how Checkstyle behaves. For example,
+        if you want to change the language of the output of Checkstyle, it
+        can be done by changing the property checkstyle.locale.language. All
+        of the system properties can be found at the
+        <a href="config_system_properties.html">system properties</a> page.
+      </p>
+
+      <p>
         You can find information about property types on
         <a href="property_types.html">Property Types</a> page.
       </p>
