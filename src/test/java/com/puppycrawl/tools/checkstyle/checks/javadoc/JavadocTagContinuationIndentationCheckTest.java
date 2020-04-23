@@ -109,4 +109,26 @@ public class JavadocTagContinuationIndentationCheckTest
                 expected);
     }
 
+    @Test
+    public void testBlockTag() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
+        checkConfig.addAttribute("offset", "4");
+        final String[] expected = {
+            "17: " + getCheckMessage(MSG_KEY, 4),
+            "28: " + getCheckMessage(MSG_KEY, 4),
+            "38: " + getCheckMessage(MSG_KEY, 4),
+            "58: " + getCheckMessage(MSG_KEY, 4),
+            "60: " + getCheckMessage(MSG_KEY, 4),
+            "70: " + getCheckMessage(MSG_KEY, 4),
+            "71: " + getCheckMessage(MSG_KEY, 4),
+            "72: " + getCheckMessage(MSG_KEY, 4),
+            "82: " + getCheckMessage(MSG_KEY, 4),
+            "83: " + getCheckMessage(MSG_KEY, 4),
+            "84: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verify(checkConfig, getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
+                expected);
+    }
+
 }
