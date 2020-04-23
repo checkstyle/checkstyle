@@ -222,6 +222,14 @@
             </td>
           </tr>
           <tr>
+            <td>
+              <a href="config_whitespace.html#EmptyLineWrappingInBlock">EmptyLineWrappingInBlock</a>
+            </td>
+            <td>
+              Checks if empty/blank line is present or not before/after the code blocks.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#EmptyStatement">EmptyStatement</a></td>
             <td>Detects empty statements (standalone <code>";"</code> semicolon).</td>
           </tr>
