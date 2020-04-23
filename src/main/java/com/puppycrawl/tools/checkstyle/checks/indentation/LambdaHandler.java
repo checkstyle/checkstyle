@@ -80,8 +80,11 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final DetailAST firstChild = getMainAst().getFirstChild();
         if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final IndentLevel level = getIndent();
-            if (!level.isAcceptable(expandedTabsColumnNo(firstChild))) {
-                logError(firstChild, "arguments", expandedTabsColumnNo(firstChild), level);
+            if (expandedTabsColumnNo(firstChild) < level.getFirstIndentLevel()
+                || shouldIndentationNotBeIncreased(firstChild, level)) {
+                if (!level.isAcceptable(expandedTabsColumnNo(firstChild))) {
+                    logError(firstChild, "arguments", expandedTabsColumnNo(firstChild), level);
+                }
             }
         }
 
@@ -93,6 +96,28 @@ public class LambdaHandler extends AbstractExpressionHandler {
                 logError(getMainAst(), "", expandedTabsColumnNo(getMainAst()), level);
             }
         }
+    }
+
+    /**
+     *Indentation should not be increased, true only in the case {@code forceStrictCondition} is false.
+     *
+     * @param ast   the detail abstract tree to check
+     * @param level  the indentation levels
+     * @return      true if the indentation should be increased after meeting all the conditions
+     */
+    private boolean shouldIndentationNotBeIncreased(DetailAST ast, IndentLevel level) {
+        int indentImpl = level.getFirstIndentLevel();
+        int astPosition = expandedTabsColumnNo(ast);
+        int lineWrapping = getIndentCheck().getLineWrappingIndentation();
+
+        boolean returnValue = false;
+
+        if (!getIndentCheck().isForceStrictCondition() && lineWrapping != 0) {
+            if (((astPosition - indentImpl) % lineWrapping) != 0) {
+                returnValue = true;
+            }
+        }
+        return returnValue;
     }
 
 }

@@ -60,6 +60,11 @@ public class IfHandler extends BlockParentHandler {
         if (isIfAfterElse()) {
             result = getParent().getIndent();
         }
+        else if ((getMainAst().getParent().getParent().getType() == TokenTypes.LAMBDA)
+                && !getIndentCheck().isForceStrictCondition()) {
+            result = new IndentLevel(getLineStart(getMainAst().getLineNo() - 1)
+                                        + getBasicOffset());
+        }
         else {
             result = super.getIndentImpl();
         }
