@@ -284,4 +284,29 @@ public final class TokenUtil {
                 || type == TokenTypes.ENUM_DEF
                 || type == TokenTypes.RECORD_DEF;
     }
+
+    /**
+     * Determines if the token type belongs to the given types.
+     *
+     * @param type the Token Type to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(int type, int... types) {
+        return Arrays.stream(types).anyMatch(tokenType -> tokenType == type);
+    }
+
+    /**
+     * Determines if the AST belongs to the given types.
+     *
+     * @param ast the AST node to check
+     * @param types the acceptable types
+     *
+     * @return true if type matches one of the given types.
+     */
+    public static boolean isOfType(DetailAST ast, int... types) {
+        return ast != null && isOfType(ast.getType(), types);
+    }
+
 }
