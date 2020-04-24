@@ -63,6 +63,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "InterfaceMemberImpliedModifier",
             "JavadocMethod",
             "MissingJavadocType",
+            "NoCodeInFile",
             "Regexp (reason is at  #7759)",
             "RegexpSinglelineJava (reason is at  #7759)",
             "TodoComment",

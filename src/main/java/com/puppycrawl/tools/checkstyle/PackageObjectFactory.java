@@ -841,6 +841,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.FinalParametersCheck");
         NAME_TO_FULL_MODULE_NAME.put("NewlineAtEndOfFileCheck",
                 BASE_PACKAGE + ".checks.NewlineAtEndOfFileCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NoCodeInFileCheck",
+                BASE_PACKAGE + ".checks.NoCodeInFileCheck");
         NAME_TO_FULL_MODULE_NAME.put("OuterTypeFilenameCheck",
                 BASE_PACKAGE + ".checks.OuterTypeFilenameCheck");
         NAME_TO_FULL_MODULE_NAME.put("OrderedPropertiesCheck",
