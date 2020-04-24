@@ -708,7 +708,16 @@
       <property name="tokens" value="INDEX_OP"/>
       <property name="tokens" value="METHOD_REF"/>
     </module>
-    <module name="NoWhitespaceBefore"/>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="COMMA"/>
+      <property name="tokens" value="SEMI"/>
+      <property name="tokens" value="POST_INC"/>
+      <property name="tokens" value="POST_DEC"/>
+      <property name="tokens" value="LABELED_STAT"/>
+    </module>
+    <module name="NoWhitespaceBefore">
+      <property name="tokens" value="ELLIPSIS"/>
+    </module>
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="DOT"/>
       <property name="tokens" value="METHOD_REF"/>
