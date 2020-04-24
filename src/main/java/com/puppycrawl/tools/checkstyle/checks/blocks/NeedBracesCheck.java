@@ -253,7 +253,7 @@ public class NeedBracesCheck extends AbstractCheck {
      *
      * @param ast token to check
      * @return result of additional checks for specific token types,
-     * {@code true} if there is no additional checks for token
+     *     {@code true} if there is no additional checks for token
      */
     private boolean isBracesNeeded(DetailAST ast) {
         final boolean result;
@@ -539,7 +539,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * case group is on a single line.
      *
      * @param statement {@link TokenTypes#LITERAL_CASE case statement} or
-     * {@link TokenTypes#LITERAL_DEFAULT default statement}.
+     *     {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current switch member is single-line statement.
      */
     private static boolean isSingleLineSwitchMember(DetailAST statement) {
@@ -567,7 +567,7 @@ public class NeedBracesCheck extends AbstractCheck {
      *
      *
      * @param ast {@link TokenTypes#LITERAL_CASE case statement} or
-     * {@link TokenTypes#LITERAL_DEFAULT default statement}.
+     *     {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current switch member is single-line statement.
      */
     private static boolean isSingleLineCaseGroup(DetailAST ast) {
