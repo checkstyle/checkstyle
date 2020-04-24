@@ -724,8 +724,6 @@ public final class Main {
          *
          * @noinspection CanBeFinal
          */
-        @Option(names = {"-C", "--checker-threads-number"}, description = "(experimental) The "
-                + "number of Checker threads (must be greater than zero)")
         private int checkerThreadsNumber = DEFAULT_THREAD_COUNT;
 
         /**
@@ -734,8 +732,6 @@ public final class Main {
          *
          * @noinspection CanBeFinal
          */
-        @Option(names = {"-W", "--tree-walker-threads-number"}, description = "(experimental) The "
-                + "number of TreeWalker threads (must be greater than zero)")
         private int treeWalkerThreadsNumber = DEFAULT_THREAD_COUNT;
 
         /** Show AST branches that match xpath. */
@@ -824,12 +820,6 @@ public final class Main {
             if (propertiesFile != null && !propertiesFile.exists()) {
                 result.add(String.format(Locale.ROOT,
                         "Could not find file '%s'.", propertiesFile));
-            }
-            if (checkerThreadsNumber < 1) {
-                result.add("Checker threads number must be greater than zero");
-            }
-            if (treeWalkerThreadsNumber < 1) {
-                result.add("TreeWalker threads number must be greater than zero");
             }
             return result;
         }
