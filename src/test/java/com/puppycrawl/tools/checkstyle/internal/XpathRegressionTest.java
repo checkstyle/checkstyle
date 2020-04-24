@@ -58,7 +58,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "AvoidEscapedUnicodeCharacters",
             "CommentsIndentation",
             "CustomImportOrder",
-            "EmptyLineSeparator",
             "Indentation",
             "InterfaceMemberImpliedModifier",
             "JavadocMethod",
