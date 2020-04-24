@@ -50,11 +50,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
  * POST_INC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
+<<<<<<< HEAD
  * POST_DEC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
  * ELLIPSIS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
  * LABELED_STAT</a>.
+=======
+ * POST_DEC</a>.
+>>>>>>> Issue #6707: fix false violation report that does not allow spaces in front of ellipsis tokens for Google Style
  * </li>
  * </ul>
  * <p>
