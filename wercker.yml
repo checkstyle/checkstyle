@@ -335,13 +335,20 @@ build:
         fi
 
   - script:
+      name: Empty .ci-temp validation
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh validate-ci-temp-empty"
+          ./.ci/wercker.sh validate-ci-temp-empty
+        else
+          echo "build is skipped ..."
+        fi
+
+  - script:
       name: Cleanup maven local repo
       code: |
         echo "git status"
         git status
-        echo "------"
-        echo "Content of .ci-temp folder:"
-        ls -la .ci-temp | cat
         echo "------"
         find ${WERCKER_CACHE_DIR} -type d -name "*SNAPSHOT" -ls -exec rm -rf {} +
         echo "------"
