@@ -170,10 +170,21 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     private void checkRightCurly() {
         final DetailAST rcurly = getRightCurly();
         final int rcurlyPos = expandedTabsColumnNo(rcurly);
+        IndentLevel rcurlyIndentLevels = curlyIndent();
 
-        if (!curlyIndent().isAcceptable(rcurlyPos)
+        if (getMainAst().getType() == TokenTypes.SLIST
+            && getMainAst().getParent().getType() == TokenTypes.LAMBDA) {
+            DetailAST firstChild = getMainAst().getParent().getFirstChild();
+            // if parameters list is on the start of line
+            if (expandedTabsColumnNo(firstChild) == getLineStart(firstChild)) {
+                rcurlyIndentLevels = IndentLevel.addAcceptable(rcurlyIndentLevels,
+                    expandedTabsColumnNo(firstChild));
+            }
+        }
+
+        if (!rcurlyIndentLevels.isAcceptable(rcurlyPos)
                 && isOnStartOfLine(rcurly)) {
-            logError(rcurly, "rcurly", rcurlyPos, curlyIndent());
+            logError(rcurly, "rcurly", rcurlyPos, rcurlyIndentLevels);
         }
     }
 
