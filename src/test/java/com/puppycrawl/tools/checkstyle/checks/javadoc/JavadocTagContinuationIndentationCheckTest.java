@@ -93,4 +93,17 @@ public class JavadocTagContinuationIndentationCheckTest
                 expected);
     }
 
+    @Test
+    public void testCheckWithDescription() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocTagContinuationIndentationCheck.class);
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_KEY, 4),
+            "9: " + getCheckMessage(MSG_KEY, 4),
+            "10: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verify(checkConfig, getPath("InputJavadocTagContinuationIndentationDescription.java"),
+                expected);
+    }
+
 }
