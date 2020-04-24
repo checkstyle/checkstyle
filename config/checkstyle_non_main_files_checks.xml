@@ -22,12 +22,14 @@
                value="^(?!(.*href=|.*http(s)?:|import |(.* )?package |.* files=|.*\.dtd)).{101,}$"/>
       <property name="message" value="Line should not be longer than 100 symbols"/>
     </module>
+
     <module name="RegexpSingleline">
         <property name="format" value="(mvn [^-])|(mvn \-(?!v)(?!-v)[^e])"/>
         <property name="fileExtensions" value="sh, yml"/>
         <property name="message"
      value="mvn execution should be with '-e' option to produce error message in case of problem"/>
     </module>
+
     <!-- check the number of testCases -->
     <module name="RegexpSingleline">
       <property name="id" value="numberOfTestCasesInXpath"/>
@@ -37,5 +39,12 @@
       <property name="fileExtensions" value="java"/>
       <property name="message"
                value="Two or more test cases are required for unit testing in Xpath "/>
+    </module>
+
+    <!-- To restrict empty files -->
+    <module name="RegexpMultiline">
+        <property name="format" value="^\s*$" />
+        <property name="matchAcrossLines" value="true" />
+        <property name="message" value="Empty file is not allowed" />
     </module>
 </module>
