@@ -359,8 +359,8 @@ public final class Main {
 
         // create a configuration
         final ThreadModeSettings multiThreadModeSettings =
-                new ThreadModeSettings(options.checkerThreadsNumber,
-                        options.treeWalkerThreadsNumber);
+                new ThreadModeSettings(CliOptions.CHECKER_THREADS_NUMBER,
+                        CliOptions.TREE_WALKER_THREADS_NUMBER);
 
         final ConfigurationLoader.IgnoredModulesOptions ignoredModulesOptions;
         if (options.executeIgnoredModules) {
@@ -619,6 +619,24 @@ public final class Main {
         /** Option name for output format. */
         private static final String OUTPUT_FORMAT_OPTION = "-f";
 
+        /**
+         * The checker threads number.
+         * Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * This option has been skipped for CLI options intentionally.
+         *
+         * @noinspection CanBeFinal
+         */
+        private static final int CHECKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
+
+        /**
+         * The tree walker threads number.
+         * Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
+         * This option has been skipped for CLI options intentionally.
+         *
+         * @noinspection CanBeFinal
+         */
+        private static final int TREE_WALKER_THREADS_NUMBER = DEFAULT_THREAD_COUNT;
+
         /** List of file to validate. */
         @Parameters(arity = "1..*", description = "One or more source files to verify")
         private List<File> files;
@@ -718,26 +736,6 @@ public final class Main {
                 description = "Allows ignored modules to be run.")
         private boolean executeIgnoredModules;
 
-        /**
-         * The checker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
-         *
-         * @noinspection CanBeFinal
-         */
-        @Option(names = {"-C", "--checker-threads-number"}, description = "(experimental) The "
-                + "number of Checker threads (must be greater than zero)")
-        private int checkerThreadsNumber = DEFAULT_THREAD_COUNT;
-
-        /**
-         * The tree walker threads number.
-         * Suppression: CanBeFinal - we use picocli and it use  reflection to manage such fields
-         *
-         * @noinspection CanBeFinal
-         */
-        @Option(names = {"-W", "--tree-walker-threads-number"}, description = "(experimental) The "
-                + "number of TreeWalker threads (must be greater than zero)")
-        private int treeWalkerThreadsNumber = DEFAULT_THREAD_COUNT;
-
         /** Show AST branches that match xpath. */
         @Option(names = {"-b", "--branch-matching-xpath"},
             description = "Show Abstract Syntax Tree(AST) branches that match XPath")
@@ -824,12 +822,6 @@ public final class Main {
             if (propertiesFile != null && !propertiesFile.exists()) {
                 result.add(String.format(Locale.ROOT,
                         "Could not find file '%s'.", propertiesFile));
-            }
-            if (checkerThreadsNumber < 1) {
-                result.add("Checker threads number must be greater than zero");
-            }
-            if (treeWalkerThreadsNumber < 1) {
-                result.add("TreeWalker threads number must be greater than zero");
             }
             return result;
         }
