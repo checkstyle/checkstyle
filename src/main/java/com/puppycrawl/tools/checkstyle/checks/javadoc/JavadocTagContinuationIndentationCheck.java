@@ -30,7 +30,10 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
- * Checks the indentation of the continuation lines in at-clauses.
+ * Checks the indentation of the continuation lines in at-clauses. That is whether the continued
+ * description of at clauses should be intended or not. If the text is not properly intended it
+ * throws a violation. Default indentation required is at least 4, but this can be changed with the
+ * help of properties below.
  * </p>
  * <ul>
  * <li>
@@ -148,9 +151,8 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         if (!isInlineDescription(ast)) {
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
             for (DetailNode newlineNode : textNodes) {
-                final DetailNode textNode = JavadocUtil.getNextSibling(JavadocUtil
-                        .getNextSibling(newlineNode));
-                if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT) {
+                final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
+                if (textNode.getType() == JavadocTokenTypes.TEXT) {
                     final String text = textNode.getText();
                     if (!CommonUtil.isBlank(text.trim())
                             && (text.length() <= offset
@@ -172,7 +174,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = JavadocUtil.getFirstChild(descriptionNode);
         while (JavadocUtil.getNextSibling(node) != null) {
-            if (node.getType() == JavadocTokenTypes.NEWLINE) {
+            if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK) {
                 textNodes.add(node);
             }
             node = JavadocUtil.getNextSibling(node);
