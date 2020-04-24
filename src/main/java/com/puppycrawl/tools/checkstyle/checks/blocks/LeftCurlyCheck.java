@@ -365,7 +365,7 @@ public class LeftCurlyCheck
      *
      * @param ast {@code DetailAST}.
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
-     * {@code null} otherwise.
+     *     {@code null} otherwise.
      */
     private static DetailAST getBraceFromSwitchMember(DetailAST ast) {
         final DetailAST brace;
