@@ -233,8 +233,17 @@ for (Iterator foo = very.long.line.iterator();
           not after line where token is found.
           If token does not have same type sibling then empty line
           is required at its end (for example for CLASS_DEF it is after '}').
-          Also, trailing comments are skipped.
+          Also, trailing comments are skipped. Moreover, the violations
+          concerning multiple empty lines inside class members cannot be
+          Xpath Suppressed. Example:
         </p>
+        <source>
+class A {
+  void foo() {&#10;&#10;
+
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Properties" id="EmptyLineSeparator_Properties">
