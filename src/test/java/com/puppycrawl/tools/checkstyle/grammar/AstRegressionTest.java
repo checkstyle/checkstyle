@@ -99,6 +99,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava14SwitchExpression() throws Exception {
+        verifyAst(getPath("InputRegressionJava14SwitchExpressionAst.txt"),
+            getNonCompilablePath("InputRegressionJava14SwitchExpression.java"));
+    }
+
+    @Test
     public void testEnumAstTree1() throws Exception {
         verifyAst(getPath("InputRegressionJavaEnum1Ast.txt"),
                 getPath("InputRegressionJavaEnum1.java"));
