@@ -300,6 +300,16 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         <source>
 &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+int x = 5;
+boolean result = (x == 5) ? true : false; // violation
+boolean foo = "foo".equals("bar") ? (x == 5) ? true : false : true; // violation
+boolean foobar = (x == 5); // OK
+boolean result1 = (x == 10)
+     ? true // violation
+     : false;
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="AvoidInlineConditionals_Example_of_Usage">

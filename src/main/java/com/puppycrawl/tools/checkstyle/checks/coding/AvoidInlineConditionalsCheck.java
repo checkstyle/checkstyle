@@ -42,6 +42,16 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * int x = 5;
+ * boolean result = (x == 5) ? true : false; // violation
+ * boolean foo = "foo".equals("bar") ? (x == 5) ? true : false : true; // violation
+ * boolean foobar = (x == 5); // OK
+ * boolean result1 = (x == 10)
+ *   ? true // violation
+ *   : false;
+ * </pre>
  *
  * @since 3.1
  */
