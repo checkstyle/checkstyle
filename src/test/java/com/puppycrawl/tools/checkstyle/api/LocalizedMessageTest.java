@@ -334,6 +334,16 @@ public class LocalizedMessageTest {
     }
 
     @Test
+    public void testCompareToWithDifferentModuleName() {
+        final LocalizedMessage message1 = createSampleLocalizedMessageWithName(
+                LocalizedMessage.class);
+        final LocalizedMessage message2 = createSampleLocalizedMessageWithName(
+                MessageDispatcher.class);
+
+        assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
+    }
+
+    @Test
     public void testCompareToWithDifferentModuleId() {
         final LocalizedMessage message1 = createSampleLocalizedMessageWithId("module1");
         final LocalizedMessage message2 = createSampleLocalizedMessageWithId("module2");
@@ -370,6 +380,11 @@ public class LocalizedMessageTest {
 
     private static LocalizedMessage createSampleLocalizedMessage() {
         return createSampleLocalizedMessageWithId("module");
+    }
+
+    private static LocalizedMessage createSampleLocalizedMessageWithName(Class<?> name) {
+        return new LocalizedMessage(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                "empty.statement", EMPTY_OBJECT_ARRAY, name, null);
     }
 
     private static LocalizedMessage createSampleLocalizedMessageWithId(String id) {
