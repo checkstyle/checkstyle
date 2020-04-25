@@ -260,6 +260,10 @@
                     LABELED_STAT, METHOD_REF"/>
             <property name="allowLineBreaks" value="true"/>
         </module>
+        <module name="NoWhitespaceBeforeCaseDefaultColon">
+            <property name="tokens"
+             value="COLON"/>
+        </module>
         <module name="ParenPad">
             <property name="tokens"
              value="ANNOTATION, ANNOTATION_FIELD_DEF, CTOR_CALL, CTOR_DEF, DOT, ENUM_CONSTANT_DEF,
