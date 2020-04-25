@@ -1053,6 +1053,9 @@ traditionalStatement
         // up, but that's pretty hard without a symbol table ;)
         |    (declaration)=> declaration SEMI
 
+        // switch/case statement
+        |    "switch"^ LPAREN expression RPAREN switchBlock
+
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
         // side-effects.
@@ -1095,16 +1098,11 @@ traditionalStatement
         // Return an expression
         |    "return"^ (expression)? SEMI
 
-        // switch/case statement
-        |    "switch"^ LPAREN expression RPAREN LCURLY
-                ( casesGroup )*
-            RCURLY
-
         // exception try-catch block
         |    tryBlock
 
         // throw an exception
-        |    "throw"^ expression SEMI
+        |    throwStatement
 
         // synchronize a statement
         |    "synchronized"^ LPAREN expression RPAREN compoundStatement
@@ -1145,6 +1143,12 @@ elseStatement
     : "else"^ statement
     ;
 
+switchBlock
+    : LCURLY
+    ( casesGroup )*
+    RCURLY
+    ;
+
 casesGroup
     :    (    // CONFLICT: to which case group do the statements bind?
             //           ANTLR generates proper code: it groups the
@@ -1161,7 +1165,16 @@ casesGroup
     ;
 
 aCase
-    :    ("case"^ expression | "default"^) COLON
+    :    ("case"^ exprConditionalExpression (COMMA exprConditionalExpression )* | "default"^)
+    (   COLON
+    |   LAMBDA switchRule
+    )
+    ;
+
+// Compatibility hack, wraps our conditionalExpression with the EXPR AST node
+exprConditionalExpression
+    :   conditionalExpression
+        {#exprConditionalExpression = #(#[EXPR,"EXPR"],#exprConditionalExpression);}
     ;
 
 caseSList
@@ -1177,6 +1190,16 @@ caseSList
                 statement
         )+
         {#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
+    ;
+
+// New Java 14 switch rules
+switchRule
+    :
+    ( // can be one of an expression, block of statements, or throw statement
+        expression SEMI
+    |   compoundStatement
+    |   throwStatement
+    )
     ;
 
 // The initializer for a for loop
@@ -1210,6 +1233,10 @@ tryBlock
         compoundStatement
         (handler)*
         ( finallyHandler )?
+    ;
+
+throwStatement
+    : "throw"^ expression SEMI
     ;
 
 resourceSpecification
@@ -1404,7 +1431,8 @@ unaryExpression
     ;
 
 unaryExpressionNotPlusMinus
-    :    BNOT^ unaryExpression
+    :    "switch"^ LPAREN expression RPAREN switchBlock
+    |    BNOT^ unaryExpression
     |    LNOT^ unaryExpression
 
     |    (    // subrule allows option to shut off warnings
