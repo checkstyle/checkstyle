@@ -753,6 +753,13 @@
             <td>Checks that a specified pattern matches a single line in Java files.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#RequireEmptyLineBeforeAtClauseBlock">
+              RequireEmptyLineBeforeAtClauseBlock</a></td>
+            <td>
+              Checks that one blank line before the at-clauses block if it is present in Javadoc.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#RequireThis">RequireThis</a></td>
             <td>
               Checks that references to instance variables and methods of the present
