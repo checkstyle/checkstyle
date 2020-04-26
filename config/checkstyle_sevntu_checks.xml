@@ -72,8 +72,8 @@
             <property name="proposeEntrySetUsage" value="true"/>
         </module>
 
-        <!--Might cause problems related to issue:
-        https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/352-->
+        <!-- Might cause problems related to issue:
+        https://github.com/sevntu-checkstyle/sevntu.checkstyle/issues/352 -->
         <module name="AvoidConstantAsFirstOperandInConditionCheck">
             <property name="targetConstantTypes"
                       value="LITERAL_NULL,LITERAL_TRUE,LITERAL_FALSE,
@@ -123,7 +123,7 @@
                       value=".+\.checkstyle\.api.*|.+\.checkstyle\.utils.*"/>
             <property name="forbiddenImportsRegexp" value=".+\.checks\..+"/>
             <!-- AccessModifier is in util package (should be moved to api package) to disallow
-            its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511-->
+            its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511 -->
             <property name="forbiddenImportsExcludesRegexp"
                       value="^com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier$"/>
         </module>
