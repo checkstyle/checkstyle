@@ -52,6 +52,37 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="CatchParameterName"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest() {
+ *     try {
+ *       // ...
+ *     } catch (ArithmeticException e) { // OK
+ *       // ...
+ *     } catch (ArrayIndexOutOfBoundsException ex) { // OK
+ *       // ...
+ *     } catch (IOException t) { // OK
+ *       // ...
+ *     } catch (Exception e123) { // violation, numeric characters
+ *                                // not allowed
+ *       // ...
+ *     } catch (Exception ab) { // violation, should have at least
+ *                              // three characters if not e|t|ex
+ *       // ...
+ *     } catch (Exception abc) { // OK
+ *       // ...
+ *     } catch (Exception aBC) { // violation, first two characters
+ *                               // should be in lowercase
+ *       // ...
+ *     } catch (Exception abC) { // OK
+ *       // ...
+ *     } catch (Exception abCD) { // OK
+ *       // ...
+ *     }
+ *   }
+ * }
+ * </pre>
  * <p>
  * An example of how to configure the check for names that begin with a lower case letter,
  * followed by any letters or digits is:
@@ -68,11 +99,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   public void myTest() {
  *     try {
  *       // ...
- *     } catch (ArithmeticException ex) { //OK
+ *     } catch (ArithmeticException ex) { // OK
  *       // ...
- *     } catch (ArrayIndexOutOfBoundsException ex2) { //OK
+ *     } catch (ArrayIndexOutOfBoundsException ex2) { // OK
  *       // ...
- *     } catch (IOException thirdException) { //OK
+ *     } catch (IOException thirdException) { // OK
  *       // ...
  *     } catch (Exception FourthException) { // violation, the initial letter
  *                                           // should be lowercase
