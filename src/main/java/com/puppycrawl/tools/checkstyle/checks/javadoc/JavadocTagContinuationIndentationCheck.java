@@ -43,6 +43,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Property {@code offset} - Specify how many spaces to use for new indentation level.
  * Default value is {@code 4}.
  * </li>
+ * <li>
+ * Property {@code forceStrictCondition} - Force strict indent level of the continuations lines in
+ * at-clauses. If value is true, continuation lines indent have to be same as offset parameter. If
+ * value is false, line wrap indent could be bigger on any value user would like.
+ * Default value is {@code false}.
+ * </li>
  * </ul>
  * <p>
  * To configure the default check:
@@ -103,6 +109,27 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class Test {
  * }
  * </pre>
+ * <p>
+ * To configure the check with force strict condition:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
+ *   &lt;property name="forceStrictCondition" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * @tag comment
+ *  *     Indentation spacing is 4. OK
+ *  *   Indentation spacing is 2. Line with violation
+ *  *      Indentation spacing is 5. Line with violation
+ *  *&#47;
+ * public class Test {
+ * }
+ * </pre>
  *
  * @since 6.0
  *
@@ -125,12 +152,30 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
     private int offset = DEFAULT_INDENTATION;
 
     /**
+     * Force strict indent level of the continuations lines in at-clauses. If value is true,
+     * continuation lines indent have to be same as offset parameter. If value is false, line wrap
+     * indent could be bigger on any value user would like.
+     */
+    private boolean forceStrictCondition;
+
+    /**
      * Setter to specify how many spaces to use for new indentation level.
      *
      * @param offset custom value.
      */
     public void setOffset(int offset) {
         this.offset = offset;
+    }
+
+    /**
+     * Setter to force strict indent level of the continuations lines in at-clauses. If value is
+     * true, continuation lines indent have to be same as offset parameter. If value is false, line
+     * wrap indent could be bigger on any value user would like.
+     *
+     * @param value user's value of forceStrictCondition
+     */
+    public void setForceStrictCondition(boolean value) {
+        forceStrictCondition = value;
     }
 
     @Override
@@ -152,9 +197,11 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
                         .getNextSibling(newlineNode));
                 if (textNode != null && textNode.getType() == JavadocTokenTypes.TEXT) {
                     final String text = textNode.getText();
+                    final int indentSize = getIndentSize(text);
                     if (!CommonUtil.isBlank(text.trim())
-                            && (text.length() <= offset
-                                    || !text.substring(1, offset + 1).trim().isEmpty())) {
+                            && (forceStrictCondition && offset != indentSize
+                                || text.length() <= offset
+                                || !text.substring(1, offset + 1).trim().isEmpty())) {
                         log(textNode.getLineNumber(), MSG_KEY, offset);
                     }
                 }
@@ -197,6 +244,25 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             inlineTag = inlineTag.getParent();
         }
         return isInline;
+    }
+
+    /**
+     * Counts the indent size from the given javadoc comment.
+     *
+     * @param text a javadoc comment line.
+     * @return indent size of the given comment.
+     */
+    private static int getIndentSize(String text) {
+        int indentSize = 0;
+        for (char a : text.toCharArray()) {
+            if (a != ' ') {
+                break;
+            }
+            indentSize++;
+        }
+
+        // As javadoc text always has a single space which is not considered in indent
+        return indentSize - 1;
     }
 
 }

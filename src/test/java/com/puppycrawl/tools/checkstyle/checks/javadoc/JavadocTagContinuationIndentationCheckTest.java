@@ -93,4 +93,21 @@ public class JavadocTagContinuationIndentationCheckTest
                 expected);
     }
 
+    @Test
+    public void testCheckWithForceStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTagContinuationIndentationCheck.class);
+        checkConfig.addAttribute("forceStrictCondition", "true");
+
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_KEY, 4),
+            "19: " + getCheckMessage(MSG_KEY, 4),
+            "20: " + getCheckMessage(MSG_KEY, 4),
+            "22: " + getCheckMessage(MSG_KEY, 4),
+        };
+        verify(checkConfig,
+            getPath("InputJavadocTagContinuationIndentationForceStrictCondition.java"),
+            expected);
+    }
+
 }
