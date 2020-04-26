@@ -531,6 +531,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.NoEnumTrailingCommaCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoFinalizerCheck",
                 BASE_PACKAGE + ".checks.coding.NoFinalizerCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NullTestAroundInstanceOfCheck",
+                BASE_PACKAGE + ".checks.coding.NullTestAroundInstanceOfCheck");
         NAME_TO_FULL_MODULE_NAME.put("OneStatementPerLineCheck",
                 BASE_PACKAGE + ".checks.coding.OneStatementPerLineCheck");
         NAME_TO_FULL_MODULE_NAME.put("OverloadMethodsDeclarationOrderCheck",
