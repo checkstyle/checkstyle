@@ -249,4 +249,14 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
     }
 
+    @Test
+    public void testSingleWordPackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "module"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputUnusedImportsSingleWordPackage.java"),
+                expected);
+    }
+
 }
