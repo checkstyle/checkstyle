@@ -4612,6 +4612,98 @@ enum Foo10 { FOO, BAR } // OK
       </subsection>
     </section>
 
+  <section name="NullBeforeInstanceOf">
+      <p>Since Checkstyle 8.33</p>
+      <subsection name="Description" id="NullBeforeInstanceOf_Description">
+          <p>Checks if unnecessary null check is used before instanceof expression.</p>
+      </subsection>
+
+      <subsection name="Properties" id="NullBeforeInstanceOf_Properties">
+          <div class="wrapper">
+              <table>
+                  <tr>
+                      <th>name</th>
+                      <th>description</th>
+                      <th>type</th>
+                      <th>default value</th>
+                      <th>since</th>
+                  </tr>
+                  <tr>
+                      <td>tokens</td>
+                      <td>tokens to check</td>
+                      <td>
+                          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">subset of tokens LITERAL_IF</a>.
+                      </td>
+                      <td>
+                          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_IF">LITERAL_IF</a>.
+                      </td>
+                      <td>8.33</td>
+                  </tr>
+              </table>
+          </div>
+      </subsection>
+
+      <subsection name="Examples" id="NullBeforeInstanceOf_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;NullBeforeInstanceOf&quot;/&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+class Test {
+
+    if (myObj != null &amp;&amp; myObj instanceof Object) { // violation
+
+    }
+
+    if (myObj != null) { // violation
+        if (myObj instanceof Object) {
+
+        }
+    }
+
+    if ((myObj != null) &amp;&amp; (myObj instanceof Object)) {}  // violation
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="NullBeforeInstanceOf_Example_of_Usage">
+          <ul>
+              <li>
+                  <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NullBeforeInstanceOf">
+                      Checkstyle Style</a>
+              </li>
+          </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="NullBeforeInstanceOf_Violation_Messages">
+          <ul>
+              <li>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22null.before.instanceof%22">
+                      null.before.instanceof</a>
+              </li>
+          </ul>
+          <p>
+           All messages can be customized if the default message doesn't suit you.
+           Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+          </p>
+      </subsection>
+
+      <subsection name="Package" id="NullBeforeInstanceOf_Package">
+          <p>
+              com.puppycrawl.tools.checkstyle.checks.coding
+          </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="NullBeforeInstanceOf_Parent_Module">
+          <p>
+              <a href="config.html#TreeWalker">TreeWalker</a>
+          </p>
+      </subsection>
+  </section>
+
     <section name="OneStatementPerLine">
       <p>Since Checkstyle 5.3</p>
       <subsection name="Description" id="OneStatementPerLine_Description">
