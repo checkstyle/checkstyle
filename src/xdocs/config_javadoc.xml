@@ -1639,6 +1639,17 @@ public class Test {
               <td><code>4</code></td>
               <td>6.0</td>
             </tr>
+            <tr>
+              <td>forceStrictCondition</td>
+              <td>
+                Force strict indent level of the continuations lines in at-clauses. If value is
+                true, continuation lines indent have to be same as offset parameter. If value is
+                false, line wrap indent could be bigger on any value user would like.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.33</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -1699,6 +1710,27 @@ public class Test {
 &#47;**
  * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
  * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
+ *&#47;
+public class Test {
+}
+        </source>
+        <p>
+          To configure the check with force strict condition:
+        </p>
+        <source>
+&lt;module name=&quot;JavadocTagContinuationIndentation&quot;&gt;
+  &lt;property name="forceStrictCondition" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+&#47;**
+ * @tag comment
+ *     Indentation spacing is 4. OK
+ *   Indentation spacing is 2. Line with violation
+ *      Indentation spacing is 5. Line with violation
  *&#47;
 public class Test {
 }
