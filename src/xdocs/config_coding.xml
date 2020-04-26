@@ -2971,20 +2971,30 @@ public class Test {
         </p>
 
         <p>
-          Rationale: With the exception of <code>for</code> iterators and assignment in
-          <code>while</code> idiom, all assignments should occur in their own top-level statement
+          Rationale: With the exception of loop idioms,
+          all assignments should occur in their own top-level statement
           to increase readability. With inner assignments like the one given above, it is difficult
           to see all places where a variable is set.
         </p>
 
         <p>
-          Note: Check allows usage of the popular assignment in <code>while</code> idiom:
+          Note: Check allows usage of the popular assignments in loops:
         </p>
         <source>
 String line;
-while ((line = bufferedReader.readLine()) != null) {
+while ((line = bufferedReader.readLine()) != null) { // OK
   // process the line
 }
+
+int flag;
+for (;(flag = Integer.parseInt(bufferedReader.readLine())) &lt;= 0;) { // OK
+  // process the line
+}
+
+do {
+  // process the line
+}
+while ((line = bufferedReader.readLine()) != null); // OK
         </source>
         <p>
           Assignment inside a condition is not a problem here, as the assignment is surrounded by

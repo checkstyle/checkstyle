@@ -59,6 +59,7 @@ public class InnerAssignmentCheckTest
             "45:27: " + getCheckMessage(MSG_KEY),
             "46:32: " + getCheckMessage(MSG_KEY),
             "86:19: " + getCheckMessage(MSG_KEY),
+            "175:22: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInnerAssignment.java"), expected);
     }
