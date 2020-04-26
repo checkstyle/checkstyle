@@ -22,6 +22,7 @@
         <property name="message" value="Trailing whitespace"/>
     </module>
     <module name="RegexpOnFilename">
+      <property name="id" value="inputFileName"/>
       <property name="folderPattern"
                 value="[\\/]src[\\/](it|test)[\\/]resources(-noncompilable?)[\\/]"/>
       <property name="fileNamePattern"
