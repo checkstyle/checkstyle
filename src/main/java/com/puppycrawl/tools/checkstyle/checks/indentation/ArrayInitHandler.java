@@ -95,7 +95,7 @@ public class ArrayInitHandler extends BlockParentHandler {
             new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
 
-        final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
+        final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
