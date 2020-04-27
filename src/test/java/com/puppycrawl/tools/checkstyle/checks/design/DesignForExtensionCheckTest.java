@@ -128,4 +128,21 @@ public class DesignForExtensionCheckTest
         verify(checkConfig, getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
 
+    @Test
+    public void testRequiredJavadocPhrase() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
+        checkConfig.addAttribute("requiredJavadocPhrase", "^This implementation.*\\.$");
+        final String[] expected = {
+            "30:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionRequiredJavadocPhrase",
+                    "foo4"),
+            "33:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionRequiredJavadocPhrase",
+                    "foo5"),
+            "40:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionRequiredJavadocPhrase",
+                    "foo8"),
+            "43:5: " + getCheckMessage(MSG_KEY, "InputDesignForExtensionRequiredJavadocPhrase",
+                    "foo9"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionRequiredJavadocPhrase.java"), expected);
+    }
+
 }
