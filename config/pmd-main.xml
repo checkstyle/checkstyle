@@ -16,9 +16,7 @@
             <!-- Fields with these annotations will have their value injected by picocli.
               These fields should not be marked final. -->
             <property name="ignoredAnnotations"
-                      value="picocli.CommandLine.Option
-                            |picocli.CommandLine.Parameters
-                            |picocli.CommandLine.Spec"/>
+                      value="picocli.CommandLine$Option"/>
             <!-- final modifier prevent us from reaching full test coverage,
                  we value full coverage more than final modifier. -->
             <property name="violationSuppressXPath"
