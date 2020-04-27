@@ -297,6 +297,9 @@
         ...
                 </pre>
               </div>
+              This policy of placement of the left curly brace follows the
+              <a href="https://en.wikipedia.org/wiki/Indentation_style#Variant:_Java">
+              Java variant of the K&amp;R style.</a>
             </td>
           </tr>
 
@@ -311,6 +314,9 @@
         ...
                 </pre>
               </div>
+              This policy of placement of the left curly brace follows the
+              <a href="https://en.wikipedia.org/wiki/Indentation_style#Allman_style">
+              Allman style.</a>
             </td>
           </tr>
 
@@ -327,6 +333,9 @@
         ...
                 </pre>
              </div>
+              This policy of placement of the left curly brace follows the
+              <a href="https://en.wikipedia.org/wiki/Indentation_style#Variant:_Java">
+              Java variant of the K&amp;R style.</a>
               But for a statement spanning multiple lines, Checkstyle will
               enforce:
               <div class="wrapper">
@@ -337,6 +346,9 @@
         ...
                 </pre>
               </div>
+              This policy of placement of the left curly brace follows the
+              <a href="https://en.wikipedia.org/wiki/Indentation_style#Allman_style">
+              Allman style.</a>
             </td>
           </tr>
         </table>
@@ -373,6 +385,9 @@
     <b>}</b>
                 </pre>
               </div>
+              This policy of placement of the right curly brace follows the
+              <a href="https://en.wikipedia.org/wiki/Indentation_style#Variant:_Stroustrup">
+              Stroustrup variant of the K&amp;R style.</a>
             </td>
           </tr>
 
@@ -465,6 +480,9 @@
     } else { ... <b>}</b> // OK, single-line multi-block statement
                 </pre>
               </div>
+              This policy of placement of the right curly brace follows the
+              <a href="https://en.wikipedia.org/wiki/Indentation_style#K&amp;R_style">
+              K&amp;R style.</a>
             </td>
           </tr>
 
