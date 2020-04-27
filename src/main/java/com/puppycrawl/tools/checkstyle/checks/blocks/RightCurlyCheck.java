@@ -294,6 +294,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.OBJBLOCK,
         };
     }
 
