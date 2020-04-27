@@ -280,6 +280,9 @@
       <property name="tokens" value="LITERAL_DO"/>
       <property name="option" value="same"/>
     </module>
+    <module name="EmptyLineWrappingInBlock">
+      <property name="tokens" value="METHOD_DEF, CTOR_DEF, LITERAL_SWITCH, LITERAL_ELSE, CLASS_DEF, LITERAL_TRY, LITERAL_IF, ENUM_DEF, INTERFACE_DEF, ANNOTATION_DEF, INSTANCE_INIT, LITERAL_FOR, STATIC_INIT, LITERAL_WHILE, LITERAL_DO"/>
+    </module>
 
     <!-- Class Design -->
     <module name="DesignForExtension">

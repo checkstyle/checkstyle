@@ -472,6 +472,83 @@
       </div>
     </section>
 
+    <section name="emptylinewrappinginblock">
+      <p>
+        This type represents the policy for checking empty line wrapping in blocks.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="empty line wrapping in block options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>empty_line</code></td>
+            <td>
+              The block must have an empty/blank line before/after it. For example:#
+              <div class="wrapper">
+                <pre>
+
+    public void test() {
+
+        if(true) { // Some code here
+        }
+
+    }
+
+    public void test2() {}
+
+    public void test3() {}
+
+                </pre>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>no_empty_line</code></td>
+            <td>
+              The block must not have an empty/blank line before/after it. For example:#
+              <div class="wrapper">
+                <pre>
+    public void test() {
+       if(true) {
+
+      }
+    }
+    public void test2() {}
+    public void test3() {}
+                </pre>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td><code>empty_line_allowed</code></td>
+            <td>
+              The block can have an empty/blank line or a non empty/blank line. For example:#
+              <div class="wrapper">
+                <pre>
+
+    public void test() {
+
+        if(true) {
+            // Some code here
+        }
+    }
+
+    public void test2() {}
+    public void test3() {}
+                </pre>
+              </div>
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </section>
+
     <section name="scope">
       <p>This type represents a Java scope. Checks use this to determine which
       methods/fields/classes will be examined by it's logic. The valid options are:</p>

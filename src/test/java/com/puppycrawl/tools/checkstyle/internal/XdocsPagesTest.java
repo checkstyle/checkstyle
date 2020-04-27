@@ -65,6 +65,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import com.puppycrawl.tools.checkstyle.checks.blocks.EmptyLineWrappingInBlockOption;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
 import org.w3c.dom.Document;
@@ -1015,6 +1016,9 @@ public class XdocsPagesTest {
         }
         else if (fieldClass == RightCurlyOption.class) {
             result = "Right Curly Brace Policy";
+        }
+        else if (fieldClass == EmptyLineWrappingInBlockOption.class) {
+            result = "Empty Line Wrapping In Block Policy";
         }
         else if (fieldClass == LineSeparatorOption.class) {
             result = "Line Separator Policy";
