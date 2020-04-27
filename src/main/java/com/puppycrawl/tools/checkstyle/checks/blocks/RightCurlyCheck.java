@@ -271,6 +271,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INSTANCE_INIT,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.OBJBLOCK,
         };
     }
 
