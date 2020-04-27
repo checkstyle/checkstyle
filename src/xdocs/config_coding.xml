@@ -3324,6 +3324,21 @@ class TestHashCode {
         <source>
 &lt;module name=&quot;MissingCtor&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class ExampleOk { // OK
+  private int a;
+  ExampleOk(int a) {
+    this.a = a;
+  }
+}
+class InvalidExample { // violation, class must have a constructor.
+  public void test() {}
+}
+abstract class AbstractExample { // OK
+  public abstract void test() {}
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
