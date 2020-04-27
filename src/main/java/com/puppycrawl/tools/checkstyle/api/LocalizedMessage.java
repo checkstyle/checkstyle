@@ -286,6 +286,28 @@ public final class LocalizedMessage
     }
 
     /**
+     * Creates a new {@code LocalizedMessage} instance. The column number
+     * defaults to 0, and moduleId defaults to null.
+     *
+     * @param lineNo line number associated with the message
+     * @param bundle name of a resource bundle that contains audit event messages
+     * @param key the key to locate the translation
+     * @param args arguments for the translation
+     * @param sourceClass the name of the source for the message
+     * @param customMessage optional custom message overriding the default
+     */
+    public LocalizedMessage(
+        int lineNo,
+        String bundle,
+        String key,
+        Object[] args,
+        Class<?> sourceClass,
+        String customMessage) {
+        this(lineNo, 0, bundle, key, args, DEFAULT_SEVERITY, null,
+                sourceClass, customMessage);
+    }
+
+    /**
      * Gets the line number.
      *
      * @return the line number
@@ -422,17 +444,27 @@ public final class LocalizedMessage
 
         if (lineNo == other.lineNo) {
             if (columnNo == other.columnNo) {
-                if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getMessage().compareTo(other.getMessage());
-                }
-                else if (moduleId == null) {
-                    result = -1;
-                }
-                else if (other.moduleId == null) {
-                    result = 1;
+                if (moduleId == null && other.moduleId == null) {
+                    if (getSourceName().equals(other.getSourceName())) {
+                        result = getMessage().compareTo(other.getMessage());
+                    }
+                    else {
+                        result = getSourceName().compareTo(other.getSourceName());
+                    }
                 }
                 else {
-                    result = moduleId.compareTo(other.moduleId);
+                    if (Objects.equals(moduleId, other.moduleId)) {
+                        result = getMessage().compareTo(other.getMessage());
+                    }
+                    else if (moduleId == null) {
+                        result = -1;
+                    }
+                    else if (other.moduleId == null) {
+                        result = 1;
+                    }
+                    else {
+                        result = moduleId.compareTo(other.moduleId);
+                    }
                 }
             }
             else {
