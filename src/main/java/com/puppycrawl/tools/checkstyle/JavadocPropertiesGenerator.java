@@ -126,11 +126,12 @@ public final class JavadocPropertiesGenerator {
             throws CheckstyleException {
         for (DetailAST member = objBlock.getFirstChild(); member != null;
                 member = member.getNextSibling()) {
-            if (isPublicStaticFinalIntField(member)) {
-                final DetailAST modifiers = member.findFirstToken(TokenTypes.MODIFIERS);
+            boolean isVariables = member.getType() == TokenTypes.VARIABLES;
+            if (isVariables && isPublicStaticFinalIntField(member.getFirstChild())) {
+                final DetailAST modifiers = member.getFirstChild().findFirstToken(TokenTypes.MODIFIERS);
                 final String firstJavadocSentence = getFirstJavadocSentence(modifiers);
                 if (firstJavadocSentence != null) {
-                    consumer.accept(getName(member) + "=" + firstJavadocSentence.trim());
+                    consumer.accept(getName(member.getFirstChild()) + "=" + firstJavadocSentence.trim());
                 }
             }
         }
