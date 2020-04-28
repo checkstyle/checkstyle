@@ -42,13 +42,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * These directories are added to the classpath so that your classes
  * are visible to JVM when it runs the code.
  * </p>
- * <p>
- * <b>Note:</b>
- * This Check is partially supported by Xpath Suppression Filters. In case of testing empty
- * java files, Xpath Suppression Filters are not supported for this Check.
- * (until
- * <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110</a>)
- * </p>
  * <ul>
  * <li>
  * Property {@code matchDirectoryStructure} - Control whether to check for
@@ -107,9 +100,6 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      */
     public static final String MSG_KEY_MISMATCH = "mismatch.package.directory";
 
-    /** Line number used to log violation when no AST nodes are present in file. */
-    private static final int DEFAULT_LINE_NUMBER = 1;
-
     /** Is package defined. */
     private boolean defined;
 
@@ -147,13 +137,8 @@ public final class PackageDeclarationCheck extends AbstractCheck {
 
     @Override
     public void finishTree(DetailAST ast) {
-        if (!defined) {
-            if (ast == null) {
-                log(DEFAULT_LINE_NUMBER, MSG_KEY_MISSING);
-            }
-            else {
-                log(ast, MSG_KEY_MISSING);
-            }
+        if (!defined && ast != null) {
+            log(ast, MSG_KEY_MISSING);
         }
     }
 
