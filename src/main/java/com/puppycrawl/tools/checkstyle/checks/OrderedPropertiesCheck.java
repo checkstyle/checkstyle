@@ -137,7 +137,9 @@ public class OrderedPropertiesCheck extends AbstractFileSetCheck {
             previousProp = propKey;
         }
     }
-
+    
+    void hellO(){;}
+    
     /**
      * Method returns the index number where the key is detected (starting at 0).
      * To assure that we get the correct line it starts at the point
