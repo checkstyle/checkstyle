@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -327,9 +328,13 @@ public class SuppressWithNearbyCommentFilterTest
             createModuleConfig(ConstantNameCheck.class);
         constantNameCheckConfig.addAttribute("id", null);
 
+        final DefaultConfiguration constantNameCheckConfig2 =
+                createModuleConfig(FinalLocalVariableCheck.class);
+
         final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
         treewalkerConfig.addChild(memberNameCheckConfig);
         treewalkerConfig.addChild(constantNameCheckConfig);
+        treewalkerConfig.addChild(constantNameCheckConfig2);
         treewalkerConfig.addChild(createModuleConfig(IllegalCatchCheck.class));
 
         if (moduleConfig != null) {
