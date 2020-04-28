@@ -57,4 +57,25 @@ public class ArrayTrailingCommaCheckTest
         assertNotNull(check.getRequiredTokens(), "Invalid required tokens");
     }
 
+    @Test
+    public void testAlwaysDemandTrailingComma() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ArrayTrailingCommaCheck.class);
+        checkConfig.addAttribute("alwaysDemandTrailingComma", "true");
+        final String[] expected = {
+            "12:26: " + getCheckMessage(MSG_KEY),
+            "19:29: " + getCheckMessage(MSG_KEY),
+            "24:14: " + getCheckMessage(MSG_KEY),
+            "26:17: " + getCheckMessage(MSG_KEY),
+            "29:20: " + getCheckMessage(MSG_KEY),
+            "35:17: " + getCheckMessage(MSG_KEY),
+            "44:13: " + getCheckMessage(MSG_KEY),
+            "49:28: " + getCheckMessage(MSG_KEY),
+            "51:17: " + getCheckMessage(MSG_KEY),
+            "53:13: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+            getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);
+    }
+
 }
