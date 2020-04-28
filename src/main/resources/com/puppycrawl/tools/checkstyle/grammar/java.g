@@ -1223,12 +1223,16 @@ resources
       {#resources = #([RESOURCES, "RESOURCES"], #resources);}
     ;
 
+resource
+    : (tryResourceDeclaration)=>  tryResourceDeclaration
+    | (primaryExpression DOT^)* IDENT
+    {#resource = #([RESOURCE, "RESOURCE"], #resource);}
+;
 
 tryResourceDeclarator![AST mods, AST t]
     :    id:IDENT d:declaratorBrackets[t] v:varInitializer
         {#tryResourceDeclarator = #(#[RESOURCE, "RESOURCE"], mods, #(#[TYPE,"TYPE"],d), id, v);}
 ;
-
 
 tryResourceDeclaration!
     : m:parameterModifier t:typeSpec[false]
@@ -1236,13 +1240,6 @@ tryResourceDeclaration!
                                     //dupList as this also copies siblings (like TYPE_ARGUMENTS)
                                     (AST) getASTFactory().dupList(#t)]
     {#tryResourceDeclaration = #v;}
-;
-
-
-resource
-    : (tryResourceDeclaration)=>  tryResourceDeclaration
-    | (primaryExpression DOT^)* IDENT
-    {#resource = #([RESOURCE, "RESOURCE"], #resource);}
 ;
 
 // an exception handler
