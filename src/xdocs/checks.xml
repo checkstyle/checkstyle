@@ -532,6 +532,13 @@
             interface definitions.</td>
           </tr>
           <tr>
+            <td><a href="config_javadoc.html#MissingLeadingAsterisk">MissingLeadingAsterisk</a></td>
+            <td>
+              Checks if the javadoc has <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">leading asterisk</a>
+              on each line.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_annotation.html#MissingOverride">MissingOverride</a></td>
             <td>
               Verifies that the <code>@Override</code> annotation is present
