@@ -99,6 +99,7 @@
       </p>
       <div class="wrap-content">
         <source>
+          git checkout master
           git pull main master
           git push origin master
         </source>
@@ -108,6 +109,7 @@
       </p>
       <div class="wrap-content">
         <source>
+          git checkout my-new-check
           git rebase master
         </source>
       </div>
