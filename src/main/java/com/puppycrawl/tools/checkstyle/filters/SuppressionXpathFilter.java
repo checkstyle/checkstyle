@@ -47,9 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * CommentsIndentation
  * </li>
  * <li>
- * CustomImportOrder
- * </li>
- * <li>
  * EmptyLineSeparator
  * </li>
  * <li>
