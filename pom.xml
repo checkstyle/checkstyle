@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.32-SNAPSHOT</version>
+  <version>8.33-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -626,6 +626,7 @@
               <logViolationsToConsole>true</logViolationsToConsole>
               <maxAllowedViolations>0</maxAllowedViolations>
               <violationSeverity>error</violationSeverity>
+              <cacheFile>${project.build.directory}/cachefile_sevntu</cacheFile>
               <propertyExpansion>project.basedir=${project.basedir}</propertyExpansion>
               <sourceDirectories>
                 <sourceDirectory>${project.basedir}/src</sourceDirectory>
@@ -1394,7 +1395,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>2.7</version>
+        <version>3.0</version>
         <configuration>
           <targetVersion>${java.version}</targetVersion>
           <failOnUnsupportedJava>false</failOnUnsupportedJava>

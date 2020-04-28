@@ -1350,6 +1350,8 @@ public void foo(final char @NotNull [] param) {} // No violation
                   GENERIC_END</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
                   ELLIPSIS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+                  LABELED_STAT</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_REF">
                   METHOD_REF</a>.
               </td>
@@ -1363,7 +1365,9 @@ public void foo(final char @NotNull [] param) {} // No violation
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
                   POST_DEC</a>,
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
-                  ELLIPSIS</a>.
+                  ELLIPSIS</a>,
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+                  LABELED_STAT</a>.
               </td>
               <td>3.0</td>
             </tr>
@@ -1393,6 +1397,15 @@ int[][] array2 = { { 1, 2 },
 Lists.charactersOf("foo").listIterator()
        .forEachRemaining(System.out::print)
        ; // violation, whitespace before ';' is not allowed
+{
+  label1 : // violation, whitespace before ':' is not allowed
+  for (int i = 0; i &lt; 10; i++) {}
+}
+
+{
+  label2: // OK
+  while (true) {}
+}
         </source>
         <p>
             To configure the check to allow linebreaks before default tokens:
@@ -1943,21 +1956,88 @@ class Test {
         <source>
 &lt;module name=&quot;ParenPad&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class Foo {
 
+  int n;
+
+  public void fun() {  // OK
+    bar( 1);  // violation, space after left parenthesis
+  }
+
+  public void bar(int k ) {  // violation, space before right parenthesis
+    while (k &gt; 0) {  // OK
+    }
+
+    Test obj = new Test(k);  // OK
+  }
+
+  public void fun2() {  // OK
+    switch( n) {  // violation, space after left parenthesis
+      case 2:
+        bar(n);  // OK
+      default:
+        break;
+    }
+  }
+
+}
+        </source>
         <p>
           To configure the check to require spaces for the parentheses of
           constructor, method, and super constructor calls:
         </p>
         <source>
 &lt;module name=&quot;ParenPad&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
     SUPER_CTOR_CALL&quot;/&gt;
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-          The following cases not checked:
+          Example:
+        </p>
+        <source>
+class Foo {
+
+  int x;
+
+  public Foo(int n) {
+  }
+
+  public void fun() {
+    try {
+      System.out.println(x);
+    } catch( IOException e) {  // violation, no space before right parenthesis
+    } catch( Exception e ) {  // OK
+    }
+
+    for ( int i = 0; i &lt; x; i++ ) {  // OK
+    }
+  }
+
+}
+
+class Bar extends Foo {
+
+  public Bar() {
+    super(1 );  // violation, no space after left parenthesis
+  }
+
+  public Bar(int k) {
+    super( k ); // OK
+
+    for ( int i = 0; i &lt; k; i++) {  // violation, no space before right parenthesis
+    }
+  }
+
+}
+        </source>
+        <p>
+          The following cases are not checked:
         </p>
         <source>
 for ( ; i &lt; j; i++, j--) // no check after left parenthesis
@@ -2630,6 +2710,10 @@ public void myTest() {
 
       <subsection name="Example of Usage" id="WhitespaceAfter_Example_of_Usage">
         <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
+            Google Style</a>
+          </li>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+WhitespaceAfter">
             Sun Style</a>

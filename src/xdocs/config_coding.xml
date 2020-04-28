@@ -38,7 +38,7 @@ int[] a = new int[]
         </source>
 
         <p>
-          The check demands a comma at the end if neither left nor right curly braces
+          By default, the check demands a comma at the end if neither left nor right curly braces
           are on the same line as the last element of the array.
         </p>
         <source>
@@ -93,6 +93,30 @@ return new int[] {
         </source>
       </subsection>
 
+      <subsection name="Properties" id="ArrayTrailingComma_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>alwaysDemandTrailingComma</td>
+              <td>
+                  Control whether to always check for a trailing comma, even when an array is
+                  inline.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.33</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="ArrayTrailingComma_Examples">
           <p>
           To configure the check:
@@ -135,6 +159,47 @@ int[] a2 = new int[]{
   1,
   2
   ,};        // no violation
+          </source>
+
+          <p>To configure check to always validate trailing comma:</p>
+          <source>
+&lt;module name="ArrayTrailingComma"&gt;
+    &lt;property name="alwaysDemandTrailingComma" value="true"/&gt;
+&lt;/module&gt;
+          </source>
+          <p>Example:</p>
+          <source>
+int[] numbers = {1, 2, 3}; // violation
+boolean[] bools = {
+true,
+true,
+false // violation
+};
+
+String[][] text = {{},{},}; // OK
+
+double[][] decimals = {
+{0.5, 2.3, 1.1,}, // OK
+{1.7, 1.9, 0.6}, // violation
+{0.8, 7.4, 6.5} // violation
+}; // violation, previous line misses a comma
+
+char[] chars = {'a', 'b', 'c'  // violation
+  };
+
+String[] letters = {
+  "a", "b", "c"}; // violation
+
+int[] a1 = new int[]{
+  1,
+  2
+  ,
+}; // OK
+
+int[] a2 = new int[]{
+  1,
+  2
+  ,}; // OK
           </source>
       </subsection>
 
@@ -209,18 +274,18 @@ int[] a2 = new int[]{
         </p>
         <source>
 class MyClass {
-  List list1 = new ArrayList&lt;Object&gt; { // violation
-    {
-      add(new Object());
-    }
-  };
-  List list2 = new ArrayList&lt;Object&gt; { // violation, comments and semicolons are ignored
-    ;
-    // my comment
-    {
-      add(new Object());
-    }
-  };
+    List&lt;Integer&gt; list1 = new ArrayList&lt;&gt;() { // violation
+        {
+            add(1);
+        }
+    };
+    List&lt;String&gt; list2 = new ArrayList&lt;&gt;() { // violation
+        ;
+        // comments and semicolons are ignored
+        {
+            add("foo");
+        }
+    };
 }
         </source>
         <p>
@@ -231,12 +296,12 @@ class MyClass {
         </p>
           <source>
 class MyClass {
-  List list = new ArrayList&lt;Object&gt; { // OK as it is not pure double brace pattern
-     private int field;
-     {
-       add(new Object());
-     }
-  };
+    List&lt;Object&gt; list = new ArrayList&lt;&gt;() { // OK, not pure double brace pattern
+        private int field;
+        {
+            add(new Object());
+        }
+    };
 }
           </source>
       </subsection>
@@ -299,6 +364,23 @@ String b = (a==null || a.length()&lt;1) ? null : a.substring(1);
         </p>
         <source>
 &lt;module name=&quot;AvoidInlineConditionals&quot;/&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+int x = 5;
+boolean foobar = (x == 5); // OK
+
+String text;
+text = (text == null) ? "" : text; // violation
+
+String b;
+if (a != null &amp;&amp; a.length() &gt;= 1) { // OK
+    b = a.substring(1);
+} else {
+    b = null;
+}
+
+b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
         </source>
       </subsection>
 

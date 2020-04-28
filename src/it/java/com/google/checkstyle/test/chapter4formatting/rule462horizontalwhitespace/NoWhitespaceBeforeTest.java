@@ -48,5 +48,20 @@ public class NoWhitespaceBeforeTest extends AbstractGoogleModuleTestSupport {
         verify(checkConfig, filePath, expected, warnList);
     }
 
+    @Test
+    public void testColonOfLabel() throws Exception {
+        final Class<NoWhitespaceBeforeCheck> clazz = NoWhitespaceBeforeCheck.class;
+        final String messageKeyPreceded = "ws.preceded";
+
+        final String[] expected = {
+            "6:16: " + getCheckMessage(clazz, messageKeyPreceded, ":"),
+        };
+        final Configuration checkConfig = getModuleConfig("NoWhitespaceBefore");
+        final String filePath = getPath("InputNoWhitespaceBeforeColonOfLabel.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
 }
 
