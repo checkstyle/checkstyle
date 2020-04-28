@@ -298,14 +298,6 @@
     | //ClassOrInterfaceDeclaration[@Image='Main']"/>
     </properties>
   </rule>
-  <rule ref="category/java/design.xml/ImmutableField">
-    <properties>
-      <!-- Main has annotated fields whose value is injected by picocli.
-        These fields should not be marked final. -->
-      <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
-    </properties>
-  </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
     <properties>
       <property name="maxmethods" value="20"/>
