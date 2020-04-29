@@ -317,7 +317,7 @@ public class OperatorWrapCheck
      * @return true If it ends and there is no code after the end,
      *     If it doesn't end on the same line
      * */
-    private boolean checkCodeForMultilineComment(String currentLineSubstring) {
+    private static boolean checkCodeForMultilineComment(String currentLineSubstring) {
         boolean result = false;
         if (currentLineSubstring.trim().indexOf("/*") == 0) {
             final int indexOfMultilineCommentEnd = currentLineSubstring.trim().indexOf("*/");
