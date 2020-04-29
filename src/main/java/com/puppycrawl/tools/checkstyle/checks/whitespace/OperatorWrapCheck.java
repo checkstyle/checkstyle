@@ -199,7 +199,6 @@ public class OperatorWrapCheck
 
     /**
      * Setter to specify policy on how to wrap lines.
-     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
@@ -294,12 +293,14 @@ public class OperatorWrapCheck
             final int lineNo = ast.getLineNo();
             final String currentLine = getLine(lineNo - 1);
 
-            // Check if rest of line is whitespace, and not just the operator
-            // by itself. This last bit is to handle the operator on a line by
-            // itself.
+            // Check if post the operator a whitespace or a comment exists,
+            // in order to log a warning for operatorWrap.
+            final String currentLineSubstring = currentLine.substring(colNo + text.length());
             if (option == WrapOption.NL
                     && !text.equals(currentLine.trim())
-                    && CommonUtil.isBlank(currentLine.substring(colNo + text.length()))) {
+                    && (CommonUtil.isBlank(currentLineSubstring)
+                    || currentLineSubstring.trim().indexOf("//") == 0
+                    || checkCodeForMultilineComment(currentLineSubstring))) {
                 log(ast, MSG_LINE_NEW, text);
             }
             else if (option == WrapOption.EOL
@@ -309,4 +310,26 @@ public class OperatorWrapCheck
         }
     }
 
+    /**
+     * Checks for multiline comment start and end. Also checks if there is ant code after comment.
+     *
+     * @param currentLineSubstring A string to check.
+     * @return true If it ends and there is no code after the end,
+     *     If it doesn't end on the same line
+     * */
+    private static boolean checkCodeForMultilineComment(String currentLineSubstring) {
+        boolean result = false;
+        if (currentLineSubstring.trim().indexOf("/*") == 0) {
+            final int indexOfMultilineCommentEnd = currentLineSubstring.trim().indexOf("*/");
+            if (indexOfMultilineCommentEnd == -1) { // doesn't end.
+                result = true;
+            }
+            else if (CommonUtil.isBlank(currentLineSubstring.trim()
+                    .substring(indexOfMultilineCommentEnd + 2))) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
+
