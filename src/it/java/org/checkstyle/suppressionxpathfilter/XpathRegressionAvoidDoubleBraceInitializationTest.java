@@ -61,4 +61,31 @@ public class XpathRegressionAvoidDoubleBraceInitializationTest extends AbstractX
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
 
+    @Test
+    public void testTwo() throws Exception {
+        final File fileToProcess = new File(
+            getPath("SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo.java"));
+
+        final DefaultConfiguration moduleConfig = createModuleConfig(clazz);
+
+        final String[] expectedViolation = {
+            "7:31: " + getCheckMessage(clazz, AvoidDoubleBraceInitializationCheck.MSG_KEY),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text="
+                    + "'SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='HashSet']]"
+                + "/OBJBLOCK",
+            "/CLASS_DEF[./IDENT[@text="
+                    + "'SuppressionXpathRegressionAvoidDoubleBraceInitializationTwo']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/EXPR/LITERAL_NEW[./IDENT[@text='HashSet']]"
+                + "/OBJBLOCK/LCURLY"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
 }
