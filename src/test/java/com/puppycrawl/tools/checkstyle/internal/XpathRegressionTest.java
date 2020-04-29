@@ -60,6 +60,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "Indentation",
             "JavadocMethod",
             "MissingJavadocType",
+            "NoCodeInFile",
             "Regexp (reason is at  #7759)",
             "RegexpSinglelineJava (reason is at  #7759)",
             "TodoComment",
