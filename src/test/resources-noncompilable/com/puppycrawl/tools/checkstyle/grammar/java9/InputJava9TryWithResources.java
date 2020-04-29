@@ -20,3 +20,4 @@ public class InputJava9TryWithResources
         try (resource1;resource2) { } finally { }
     }
 }
+
