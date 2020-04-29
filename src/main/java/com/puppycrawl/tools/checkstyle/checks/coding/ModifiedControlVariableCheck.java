@@ -136,6 +136,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * Setter to control whether to check
      * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
      * enhanced for-loop</a> variable.
+     *
      * @param skipEnhancedForLoopVariable whether to skip enhanced for-loop variable
      */
     public void setSkipEnhancedForLoopVariable(boolean skipEnhancedForLoopVariable) {
@@ -275,6 +276,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Get current variable stack.
+     *
      * @return current variable stack
      */
     private Deque<String> getCurrentVariables() {
@@ -283,6 +285,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Check if ident is parameter.
+     *
      * @param ast ident to check.
      */
     private void checkIdent(DetailAST ast) {
@@ -297,6 +300,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Push current variables to the stack.
+     *
      * @param ast a for definition.
      */
     private void leaveForIter(DetailAST ast) {
@@ -309,6 +313,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
     /**
      * Determines which variable are specific to for loop and should not be
      * change by inner loop body.
+     *
      * @param ast For Loop
      * @return Set of Variable Name which are managed by for
      */
@@ -321,6 +326,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Push current variables to the stack.
+     *
      * @param paramDef a for-each clause variable
      */
     private void leaveForEach(DetailAST paramDef) {
@@ -330,6 +336,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Pops the variables from the stack.
+     *
      * @param ast a for definition.
      */
     private void leaveForDef(DetailAST ast) {
@@ -348,6 +355,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Pops given number of variables from currentVariables.
+     *
      * @param count Count of variables to be popped from currentVariables
      */
     private void popCurrentVariables(int count) {
@@ -358,6 +366,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Get all variables initialized In init part of for loop.
+     *
      * @param ast for loop token
      * @return set of variables initialized in for loop
      */
@@ -380,6 +389,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Get all variables which for loop iterating part change in every loop.
+     *
      * @param ast for loop literal(TokenTypes.LITERAL_FOR)
      * @return names of variables change in iterating part of for
      */
@@ -401,6 +411,7 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
 
     /**
      * Find all child of given AST of type TokenType.EXPR
+     *
      * @param ast parent of expressions to find
      * @return all child of given ast
      */

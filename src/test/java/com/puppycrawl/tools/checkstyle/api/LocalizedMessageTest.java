@@ -52,6 +52,7 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
  * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
  * though we can't add/change the files for testing. The class loader is nested in this class,
  * so the custom class loader we are using is safe.
+ *
  * @noinspection ClassLoaderInstantiation
  */
 public class LocalizedMessageTest {
@@ -146,6 +147,7 @@ public class LocalizedMessageTest {
 
     /**
      * Ignore resource errors for testing.
+     *
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Test
@@ -193,6 +195,7 @@ public class LocalizedMessageTest {
 
     /**
      * Ignore resource errors for testing.
+     *
      * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Test
@@ -394,6 +397,7 @@ public class LocalizedMessageTest {
     /**
      * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
      * though we can't add/change the files for testing.
+     *
      * @noinspection CustomClassloader
      */
     private static class TestUrlsClassLoader extends ClassLoader {

@@ -48,17 +48,6 @@ public final class FullIdent {
     }
 
     /**
-     * Creates a new FullIdent starting from the specified node.
-     * @param ast the node to start from
-     * @return a {@code FullIdent} value
-     */
-    public static FullIdent createFullIdent(DetailAST ast) {
-        final FullIdent ident = new FullIdent();
-        extractFullIdent(ident, ast);
-        return ident;
-    }
-
-    /**
      * Creates a new FullIdent starting from the child of the specified node.
      * @param ast the parent node from where to start from
      * @return a {@code FullIdent} value
@@ -68,41 +57,15 @@ public final class FullIdent {
     }
 
     /**
-     * Gets the text.
-     * @return the text
+     * Creates a new FullIdent starting from the specified node.
+     *
+     * @param ast the node to start from
+     * @return a {@code FullIdent} value
      */
-    public String getText() {
-        return String.join("", elements);
-    }
-
-    /**
-     * Gets the topmost leftmost DetailAST for this FullIdent.
-     * @return the topmost leftmost ast
-     */
-    public DetailAST getDetailAst() {
-        return detailAst;
-    }
-
-    /**
-     * Gets the line number.
-     * @return the line number
-     */
-    public int getLineNo() {
-        return detailAst.getLineNo();
-    }
-
-    /**
-     * Gets the column number.
-     * @return the column number
-     */
-    public int getColumnNo() {
-        return detailAst.getColumnNo();
-    }
-
-    @Override
-    public String toString() {
-        return String.join("", elements)
-            + "[" + detailAst.getLineNo() + "x" + detailAst.getColumnNo() + "]";
+    public static FullIdent createFullIdent(DetailAST ast) {
+        final FullIdent ident = new FullIdent();
+        extractFullIdent(ident, ast);
+        return ident;
     }
 
     /**
@@ -130,7 +93,50 @@ public final class FullIdent {
     }
 
     /**
+     * Gets the text.
+     *
+     * @return the text
+     */
+    public String getText() {
+        return String.join("", elements);
+    }
+
+    /**
+     * Gets the topmost leftmost DetailAST for this FullIdent.
+     *
+     * @return the topmost leftmost ast
+     */
+    public DetailAST getDetailAst() {
+        return detailAst;
+    }
+
+    /**
+     * Gets the line number.
+     *
+     * @return the line number
+     */
+    public int getLineNo() {
+        return detailAst.getLineNo();
+    }
+
+    /**
+     * Gets the column number.
+     *
+     * @return the column number
+     */
+    public int getColumnNo() {
+        return detailAst.getColumnNo();
+    }
+
+    @Override
+    public String toString() {
+        return String.join("", elements)
+            + "[" + detailAst.getLineNo() + "x" + detailAst.getColumnNo() + "]";
+    }
+
+    /**
      * Append the specified text.
+     *
      * @param text the text to append
      */
     private void append(String text) {
@@ -140,6 +146,7 @@ public final class FullIdent {
     /**
      * Append the specified token and also recalibrate the first line and
      * column.
+     *
      * @param ast the token to append
      */
     private void append(DetailAST ast) {

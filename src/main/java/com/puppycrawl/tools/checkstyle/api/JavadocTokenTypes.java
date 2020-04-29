@@ -384,6 +384,7 @@ public final class JavadocTokenTypes {
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
      * </code>
      * </pre>
+     *
      * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int JAVADOC_INLINE_TAG_START = JavadocParser.JAVADOC_INLINE_TAG_START;
@@ -403,6 +404,7 @@ public final class JavadocTokenTypes {
      *         |--JAVADOC_INLINE_TAG_END[3x21] : [}]
      * </code>
      * </pre>
+     *
      * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int JAVADOC_INLINE_TAG_END = JavadocParser.JAVADOC_INLINE_TAG_END;
@@ -1318,6 +1320,7 @@ public final class JavadocTokenTypes {
      *        |--JAVADOC_INLINE_TAG_END[4x16] : [}]
      * </code>
      * </pre>
+     *
      * @noinspection HtmlTagCanBeJavadocTag
      */
     public static final int JAVADOC_INLINE_TAG = JavadocParser.RULE_javadocInlineTag
@@ -1645,6 +1648,7 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML void element {@code <embed>}.
+     *
      * @see #SINGLETON_ELEMENT
      * @see <a href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-embed">
      *     W3 docs</a>
@@ -1653,6 +1657,7 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML void element {@code <keygen>}.
+     *
      * @see #SINGLETON_ELEMENT
      * @see <a href="https://www.w3.org/TR/html51/sec-forms.html#elementdef-keygen">
      *     W3 docs</a>
@@ -1661,6 +1666,7 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML void element {@code <source>}.
+     *
      * @see #SINGLETON_ELEMENT
      * @see <a href=
      *     "https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-media-source">
@@ -1670,6 +1676,7 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML void element {@code <track>}.
+     *
      * @see #SINGLETON_ELEMENT
      * @see <a
      *     href="https://www.w3.org/TR/html51/semantics-embedded-content.html#elementdef-track">
@@ -1679,6 +1686,7 @@ public final class JavadocTokenTypes {
 
     /**
      * HTML void element {@code <wbr>}.
+     *
      * @see #SINGLETON_ELEMENT
      * @see <a href="https://www.w3.org/TR/html51/textlevel-semantics.html#elementdef-wbr">
      *     W3 docs</a>

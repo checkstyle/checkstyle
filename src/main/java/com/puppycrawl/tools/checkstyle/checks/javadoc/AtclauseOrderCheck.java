@@ -124,6 +124,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * Setter to specify the list of targets to check at-clauses.
+     *
      * @param targets user's targets.
      */
     public void setTarget(String... targets) {
@@ -136,6 +137,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * Setter to specify the order by tags.
+     *
      * @param orders user's orders.
      */
     public void setTagOrder(String... orders) {
@@ -169,6 +171,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * Checks order of atclauses in tag section node.
+     *
      * @param javadoc Javadoc root node.
      */
     private void checkOrderInTagSection(DetailNode javadoc) {
@@ -193,6 +196,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     /**
      * Returns type of parent node.
+     *
      * @param commentBlock child node.
      * @return parent type.
      */

@@ -56,6 +56,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Returns name of file being audited.
+     *
      * @return the file name currently being audited or null if there is
      *     no relation to a file.
      */
@@ -65,6 +66,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Returns contents of the file.
+     *
      * @return contents of the file.
      */
     public FileContents getFileContents() {
@@ -73,6 +75,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Gets the localized message.
+     *
      * @return the localized message
      */
     public LocalizedMessage getLocalizedMessage() {
@@ -82,6 +85,7 @@ public class TreeWalkerAuditEvent {
     /**
      * Return the line number on the source file where the event occurred.
      * This may be 0 if there is no relation to a file content.
+     *
      * @return an integer representing the line number in the file source code.
      */
     public int getLine() {
@@ -90,6 +94,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Return the message associated to the event.
+     *
      * @return the event message
      */
     public String getMessage() {
@@ -98,6 +103,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Gets the column associated with the message.
+     *
      * @return the column associated with the message
      */
     public int getColumn() {
@@ -106,6 +112,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Gets the column char index associated with the message.
+     *
      * @return the column char index associated with the message
      */
     public int getColumnCharIndex() {
@@ -114,6 +121,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Returns id of module.
+     *
      * @return the identifier of the module that generated the event. Can return
      *         null.
      */
@@ -123,6 +131,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Gets the name of the source for the message.
+     *
      * @return the name of the source for the message
      */
     public String getSourceName() {
@@ -131,6 +140,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Gets the token type of the message.
+     *
      * @return the token type of the message
      */
     public int getTokenType() {
@@ -139,6 +149,7 @@ public class TreeWalkerAuditEvent {
 
     /**
      * Gets the root element of the AST tree.
+     *
      * @return the root element of the AST tree
      */
     public DetailAST getRootAst() {

@@ -201,6 +201,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      *   return super.equals(o);
      * }
      * </pre>
+     *
      * @param ignoreOverridden Flag for skipping methods with Override annotation.
      */
     public void setIgnoreOverridden(boolean ignoreOverridden) {
@@ -209,6 +210,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
 
     /**
      * Setter to access modifiers of methods where parameters are checked.
+     *
      * @param accessModifiers access modifiers of methods which should be checked.
      */
     public void setAccessModifiers(AccessModifier... accessModifiers) {
@@ -270,6 +272,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
 
     /**
      * Checks whether a method has the correct access modifier to be checked.
+     *
      * @param accessModifier the access modifier of the method.
      * @return whether the method matches the expected access modifier.
      */
@@ -279,6 +282,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
 
     /**
      * Checks whether a method is annotated with Override annotation.
+     *
      * @param ast method parameter definition token.
      * @return true if a method is annotated with Override annotation.
      */

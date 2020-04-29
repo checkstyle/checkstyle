@@ -27,6 +27,7 @@ interface IntFilterElement {
 
     /**
      * Determines whether or not a filtered Integer is accepted.
+     *
      * @param intValue the Integer to filter.
      * @return true if the intValue is accepted.
      */

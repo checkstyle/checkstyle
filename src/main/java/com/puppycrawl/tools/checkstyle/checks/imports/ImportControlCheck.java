@@ -543,6 +543,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     /**
      * Returns package text.
+     *
      * @param ast PACKAGE_DEF ast node
      * @return String that represents full package name
      */
@@ -553,6 +554,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
 
     /**
      * Returns import text.
+     *
      * @param ast ast node that represents import
      * @return String that represents importing class
      */

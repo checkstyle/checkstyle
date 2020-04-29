@@ -31,7 +31,7 @@ public class InputUnusedImportsFromJavaLang {
         }
     };
     private ProcessBuilder processBuilder = new ProcessBuilder();
-    private Modifier modifier = new Modifier();
+    private int modifier = Modifier.fieldModifiers();
     private Field field;
     private Annotation annotation;
 

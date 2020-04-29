@@ -50,6 +50,7 @@ public final class AuditEvent
 
     /**
      * Creates a new instance.
+     *
      * @param source the object that created the event
      */
     public AuditEvent(Object source) {
@@ -58,6 +59,7 @@ public final class AuditEvent
 
     /**
      * Creates a new {@code AuditEvent} instance.
+     *
      * @param src source of the event
      * @param fileName file associated with the event
      */
@@ -80,6 +82,7 @@ public final class AuditEvent
 
     /**
      * Returns name of file being audited.
+     *
      * @return the file name currently being audited or null if there is
      *     no relation to a file.
      */
@@ -90,6 +93,7 @@ public final class AuditEvent
     /**
      * Return the line number on the source file where the event occurred.
      * This may be 0 if there is no relation to a file content.
+     *
      * @return an integer representing the line number in the file source code.
      */
     public int getLine() {
@@ -98,6 +102,7 @@ public final class AuditEvent
 
     /**
      * Return the message associated to the event.
+     *
      * @return the event message
      */
     public String getMessage() {
@@ -106,6 +111,7 @@ public final class AuditEvent
 
     /**
      * Gets the column associated with the message.
+     *
      * @return the column associated with the message
      */
     public int getColumn() {
@@ -114,6 +120,7 @@ public final class AuditEvent
 
     /**
      * Gets the audit event severity level.
+     *
      * @return the audit event severity level
      */
     public SeverityLevel getSeverityLevel() {
@@ -126,6 +133,7 @@ public final class AuditEvent
 
     /**
      * Returns id of module.
+     *
      * @return the identifier of the module that generated the event. Can return
      *         null.
      */
@@ -135,6 +143,7 @@ public final class AuditEvent
 
     /**
      * Gets the name of the source for the message.
+     *
      * @return the name of the source for the message
      */
     public String getSourceName() {
@@ -143,6 +152,7 @@ public final class AuditEvent
 
     /**
      * Gets the localized message.
+     *
      * @return the localized message
      */
     public LocalizedMessage getLocalizedMessage() {

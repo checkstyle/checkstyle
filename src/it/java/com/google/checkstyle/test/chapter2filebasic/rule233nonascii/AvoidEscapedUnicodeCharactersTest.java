@@ -37,12 +37,12 @@ public class AvoidEscapedUnicodeCharactersTest extends AbstractGoogleModuleTestS
     @Test
     public void testUnicodeEscapes() throws Exception {
         final String[] expected = {
-            "5: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "15: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "25: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "33: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "35: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
-            "36: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "5:42: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "15:38: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "25:36: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "33:38: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "35:38: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
+            "36:47: " + getCheckMessage(AvoidEscapedUnicodeCharactersCheck.class, MSG_KEY),
         };
 
         final Configuration checkConfig = getModuleConfig("AvoidEscapedUnicodeCharacters");

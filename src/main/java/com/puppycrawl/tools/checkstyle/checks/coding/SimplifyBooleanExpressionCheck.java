@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  * </pre>
+ *
  * @since 3.0
  */
 @StatelessCheck

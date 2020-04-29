@@ -106,6 +106,7 @@ public class PackageNameCheck
 
     /**
      * Setter to specifies valid identifiers.
+     *
      * @param pattern the new pattern
      */
     public void setFormat(Pattern pattern) {

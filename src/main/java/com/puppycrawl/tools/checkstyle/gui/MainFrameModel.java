@@ -60,6 +60,7 @@ public class MainFrameModel {
 
         /**
          * Provides description.
+         *
          * @param descr description
          */
         ParseMode(String descr) {
@@ -101,6 +102,7 @@ public class MainFrameModel {
 
     /**
      * Set current parse mode.
+     *
      * @param mode ParseMode enum.
      */
     public void setParseMode(ParseMode mode) {
@@ -109,6 +111,7 @@ public class MainFrameModel {
 
     /**
      * Get parse tree table model.
+     *
      * @return parse tree table model.
      */
     public ParseTreeTableModel getParseTreeTableModel() {
@@ -117,6 +120,7 @@ public class MainFrameModel {
 
     /**
      * Get text to display in a text area.
+     *
      * @return text to display in a text area.
      */
     public String getText() {
@@ -125,6 +129,7 @@ public class MainFrameModel {
 
     /**
      * Returns title for the main frame.
+     *
      * @return title for the main frame.
      */
     public String getTitle() {
@@ -133,6 +138,7 @@ public class MainFrameModel {
 
     /**
      * Returns true if the reload action is enabled, false otherwise.
+     *
      * @return true if the reload action is enabled.
      */
     public boolean isReloadActionEnabled() {
@@ -141,6 +147,7 @@ public class MainFrameModel {
 
     /**
      * Whether a file chooser should accept the file as a source file.
+     *
      * @param file the file to check.
      * @return true if the file should be accepted.
      */
@@ -150,6 +157,7 @@ public class MainFrameModel {
 
     /**
      * Get the directory of the last loaded file.
+     *
      * @return directory of the last loaded file.
      */
     public File getLastDirectory() {
@@ -162,6 +170,7 @@ public class MainFrameModel {
 
     /**
      * Get current file.
+     *
      * @return current file.
      */
     public File getCurrentFile() {
@@ -173,6 +182,7 @@ public class MainFrameModel {
      * It returns unmodifiable collection to
      * prevent additional overhead of copying
      * and possible state modifications.
+     *
      * @return lines to position map.
      */
     public List<Integer> getLinesToPosition() {
@@ -181,6 +191,7 @@ public class MainFrameModel {
 
     /**
      * Open file and load the file.
+     *
      * @param file the file to open.
      * @throws CheckstyleException if the file can not be parsed.
      * @throws IllegalArgumentException if parseMode is unknown
@@ -233,6 +244,7 @@ public class MainFrameModel {
 
     /**
      * Get FileText from a file.
+     *
      * @param file the file to get the FileText from.
      * @return the FileText.
      * @throws IOException if the file could not be read.

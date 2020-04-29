@@ -54,6 +54,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class TestClass {
  * }
  * </pre>
+ *
  * @since 8.23
  */
 @StatelessCheck

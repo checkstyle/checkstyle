@@ -60,6 +60,7 @@ public final class ScopeUtil {
 
     /**
      * Returns the scope of the surrounding "block".
+     *
      * @param node the node to return the scope for
      * @return the Scope of the surrounding block
      */
@@ -245,6 +246,7 @@ public final class ScopeUtil {
      * Determines whether a node is a local variable definition.
      * I.e. if it is declared in a code block, a for initializer,
      * or a catch parameter.
+     *
      * @param node the node to check.
      * @return whether aAST is a local variable definition.
      */
@@ -274,6 +276,7 @@ public final class ScopeUtil {
      * Determines whether a node is a class field definition.
      * I.e. if a variable is not declared in a code block, a for initializer,
      * or a catch parameter.
+     *
      * @param node the node to check.
      * @return whether a node is a class field definition.
      */
@@ -283,6 +286,7 @@ public final class ScopeUtil {
 
     /**
      * Checks whether ast node is in a specific scope.
+     *
      * @param ast the node to check.
      * @param scope a {@code Scope} value.
      * @return true if the ast node is in the scope.

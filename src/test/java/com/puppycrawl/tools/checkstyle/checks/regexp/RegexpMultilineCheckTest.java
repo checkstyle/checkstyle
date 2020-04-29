@@ -137,6 +137,7 @@ public class RegexpMultilineCheckTest extends AbstractModuleTestSupport {
 
     /**
      * Done as a UT cause new instance of Detector is created each time 'verify' executed.
+     *
      * @throws Exception some Exception
      */
     @Test

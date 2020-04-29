@@ -111,6 +111,7 @@ public final class UnnecessarySemicolonInEnumerationCheck extends AbstractCheck 
 
     /**
      * Checks if enum body has no code elements after enum constants semicolon.
+     *
      * @param ast semicolon in enum constants definition end
      * @return true if there is no code elements, false otherwise.
      */

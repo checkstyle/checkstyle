@@ -187,6 +187,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Setter to specify method names to ignore.
+     *
      * @param pattern a pattern.
      */
     public void setFormat(Pattern pattern) {
@@ -196,6 +197,7 @@ public final class ReturnCountCheck extends AbstractCheck {
     /**
      * Setter to specify maximum allowed number of return statements
      * in non-void methods/lambdas.
+     *
      * @param max maximum allowed number of return statements.
      */
     public void setMax(int max) {
@@ -205,6 +207,7 @@ public final class ReturnCountCheck extends AbstractCheck {
     /**
      * Setter to specify maximum allowed number of return statements
      * in void methods/constructors/lambdas.
+     *
      * @param maxForVoid maximum allowed number of return statements for void methods.
      */
     public void setMaxForVoid(int maxForVoid) {
@@ -253,6 +256,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Creates new method context and places old one on the stack.
+     *
      * @param ast method definition for check.
      */
     private void visitMethodDef(DetailAST ast) {
@@ -264,6 +268,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Checks number of return statements and restore previous context.
+     *
      * @param ast node to leave.
      */
     private void leave(DetailAST ast) {
@@ -281,6 +286,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     /**
      * Examines the return statement and tells context about it.
+     *
      * @param ast return statement to check.
      */
     private void visitReturn(DetailAST ast) {
@@ -310,6 +316,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
         /**
          * Creates new method context.
+         *
          * @param checking should we check this method or not.
          */
         /* package */ Context(boolean checking) {
@@ -318,6 +325,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
         /**
          * Increase the number of return statements and set context return type.
+         *
          * @param maxAssigned Maximum allowed number of return statements.
          * @param voidReturn Identifies if context is void.
          */
@@ -331,6 +339,7 @@ public final class ReturnCountCheck extends AbstractCheck {
         /**
          * Checks if number of return statements in the method are more
          * than allowed.
+         *
          * @param ast method def associated with this context.
          */
         public void checkCount(DetailAST ast) {

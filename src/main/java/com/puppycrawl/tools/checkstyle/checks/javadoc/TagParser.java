@@ -50,6 +50,7 @@ class TagParser {
 
     /**
      * Constructs a TagParser and finds the first tag if any.
+     *
      * @param text the line of text to parse.
      * @param lineNo the source line number.
      */
@@ -59,6 +60,7 @@ class TagParser {
 
     /**
      * Returns the next available HtmlTag.
+     *
      * @return a HtmlTag or {@code null} if none available.
      * @throws IndexOutOfBoundsException if there are no HtmlTags
      *         left to return.
@@ -69,6 +71,7 @@ class TagParser {
 
     /**
      * Indicates if there are any more HtmlTag to retrieve.
+     *
      * @return {@code true} if there are more tags.
      */
     public boolean hasNextTag() {
@@ -78,6 +81,7 @@ class TagParser {
     /**
      * Performs lazy initialization on the internal tags List
      * and adds the tag.
+     *
      * @param tag the HtmlTag to add.
      */
     private void add(HtmlTag tag) {
@@ -87,6 +91,7 @@ class TagParser {
     /**
      * Parses the text line for any HTML tags and adds them to the internal
      * List of tags.
+     *
      * @param text the source line to parse.
      * @param lineNo the source line number.
      */
@@ -110,6 +115,7 @@ class TagParser {
 
     /**
      * Parses the tag and return position after it.
+     *
      * @param text the source line to parse.
      * @param lineNo the source line number.
      * @param nLines line length
@@ -146,6 +152,7 @@ class TagParser {
 
     /**
      * Checks if the given position is start one for HTML tag.
+     *
      * @param javadocText text of javadoc comments.
      * @param pos position to check.
      * @return {@code true} some HTML tag starts from given position.
@@ -163,6 +170,7 @@ class TagParser {
 
     /**
      * Parse tag id.
+     *
      * @param javadocText text of javadoc comments.
      * @param tagStart start position of the tag
      * @return id for given tag
@@ -194,6 +202,7 @@ class TagParser {
 
     /**
      * If this is a HTML-comments.
+     *
      * @param text text of javadoc comments
      * @param pos position to check
      * @return {@code true} if HTML-comments
@@ -205,6 +214,7 @@ class TagParser {
 
     /**
      * Skips HTML comments.
+     *
      * @param text text of javadoc comments.
      * @param fromPoint start position of HTML-comments
      * @return position after HTML-comments
@@ -221,6 +231,7 @@ class TagParser {
 
     /**
      * Finds next occurrence of given character.
+     *
      * @param text text to search
      * @param character character to search
      * @param from position to start search
@@ -239,6 +250,7 @@ class TagParser {
     /**
      * Returns position of next comment character, skips
      * whitespaces and asterisks.
+     *
      * @param text to search.
      * @param from location to search from
      * @return location of the next character.
@@ -282,6 +294,7 @@ class TagParser {
 
         /**
          * Creates new {@code Point} instance.
+         *
          * @param lineNo line number
          * @param columnNo column number
          */
@@ -292,6 +305,7 @@ class TagParser {
 
         /**
          * Getter for line number.
+         *
          * @return line number of the position.
          */
         public int getLineNo() {
@@ -300,6 +314,7 @@ class TagParser {
 
         /**
          * Getter for column number.
+         *
          * @return column number of the position.
          */
         public int getColumnNo() {

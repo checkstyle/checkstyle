@@ -126,6 +126,7 @@ public class SuppressFilterElement
 
     /**
      * Creates a {@code SuppressFilterElement} instance.
+     *
      * @param files regular expression for filtered file names
      * @param checks regular expression for filtered check classes
      * @param message regular expression for messages.
@@ -187,6 +188,7 @@ public class SuppressFilterElement
 
     /**
      * Is matching by file name, module id, and Check name.
+     *
      * @param event event
      * @return true if it is matching
      */
@@ -200,6 +202,7 @@ public class SuppressFilterElement
 
     /**
      * Is matching by message.
+     *
      * @param event event
      * @return true if it is matching or not set.
      */
@@ -209,6 +212,7 @@ public class SuppressFilterElement
 
     /**
      * Whether line and column match.
+     *
      * @param event event to process.
      * @return true if line and column are matching or not set.
      */

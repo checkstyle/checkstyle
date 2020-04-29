@@ -85,6 +85,7 @@ public abstract class AutomaticBean
      * <p>
      * The default implementation does nothing.
      * </p>
+     *
      * @throws CheckstyleException if there is a configuration error.
      */
     protected abstract void finishLocalSetup() throws CheckstyleException;
@@ -109,6 +110,7 @@ public abstract class AutomaticBean
     /**
      * Register basic types of JDK like boolean, int, and String to use with BeanUtils. All these
      * types are found in the {@code java.lang} package.
+     *
      * @param cub
      *            Instance of {@link ConvertUtilsBean} to register types with.
      */
@@ -154,6 +156,7 @@ public abstract class AutomaticBean
     /**
      * Register custom types of JDK like URI and Checkstyle specific classes to use with BeanUtils.
      * None of these types should be found in the {@code java.lang} package.
+     *
      * @param cub
      *            Instance of {@link ConvertUtilsBean} to register types with.
      */
@@ -201,6 +204,7 @@ public abstract class AutomaticBean
 
     /**
      * Recheck property and try to copy it.
+     *
      * @param key key of value
      * @param value value
      * @param recheck whether to check for property existence before copy
@@ -245,6 +249,7 @@ public abstract class AutomaticBean
 
     /**
      * Implements the Contextualizable interface using bean introspection.
+     *
      * @see Contextualizable
      */
     @Override
@@ -261,6 +266,7 @@ public abstract class AutomaticBean
 
     /**
      * Returns the configuration that was used to configure this component.
+     *
      * @return the configuration that was used to configure this component.
      */
     protected final Configuration getConfiguration() {

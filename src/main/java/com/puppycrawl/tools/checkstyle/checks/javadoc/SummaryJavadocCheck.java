@@ -213,6 +213,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Checks if the node starts with an {&#64;inheritDoc}.
+     *
      * @param root The root node to examine.
      * @return {@code true} if the javadoc starts with an {&#64;inheritDoc}.
      */
@@ -237,6 +238,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Checks if period is at the end of sentence.
+     *
      * @param ast Javadoc root node.
      * @return violation string
      */
@@ -264,6 +266,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Concatenates string within text of html tags.
+     *
      * @param result javadoc string
      * @param detailNode javadoc tag node
      * @return java doc tag content appended in result
@@ -282,6 +285,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Finds and returns first sentence.
+     *
      * @param ast Javadoc root node.
      * @return first sentence.
      */
@@ -309,6 +313,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Tests if first sentence contains forbidden summary fragment.
+     *
      * @param firstSentence String with first sentence.
      * @return true, if first sentence contains forbidden summary fragment.
      */
@@ -320,6 +325,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Trims the given {@code text} of duplicate whitespaces.
+     *
      * @param text The text to transform.
      * @return The finalized form of the text.
      */

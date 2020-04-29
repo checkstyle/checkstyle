@@ -49,6 +49,7 @@ public final class BlockTagUtil {
 
     /**
      * Extract the block tags from a Javadoc comment.
+     *
      * @param lines The text of the comment, as separate lines.
      * @return The tags extracted from the block.
      */

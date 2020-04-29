@@ -77,8 +77,43 @@ public class ElementNode extends AbstractNode {
         this.detailAst = detailAst;
         text = TokenUtil.getTokenName(detailAst.getType());
         indexAmongSiblings = parent.getChildren().size();
+        setDepth(parent.getDepth() + 1);
         createTextAttribute();
         createChildren();
+    }
+
+    /**
+     * Compares current object with specified for order.
+     * @param other another {@code NodeInfo} object
+     * @return number representing order of current object to specified one
+     */
+    @Override
+    public int compareOrder(NodeInfo other) {
+        int result = 0;
+        if (other instanceof AbstractNode) {
+            result = getDepth() - ((AbstractNode) other).getDepth();
+            if (result == 0) {
+                final ElementNode[] children = getCommonAncestorChildren(other);
+                result = children[0].indexAmongSiblings - children[1].indexAmongSiblings;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Finds the ancestors of the children whose parent is their common ancestor.
+     * @param other another {@code NodeInfo} object
+     * @return {@code ElementNode} immediate children(also ancestors of the given children) of the
+     *         common ancestor
+     */
+    private ElementNode[] getCommonAncestorChildren(NodeInfo other) {
+        NodeInfo child1 = this;
+        NodeInfo child2 = other;
+        while (!child1.getParent().equals(child2.getParent())) {
+            child1 = child1.getParent();
+            child2 = child2.getParent();
+        }
+        return new ElementNode[] {(ElementNode) child1, (ElementNode) child2};
     }
 
     /**
@@ -97,6 +132,7 @@ public class ElementNode extends AbstractNode {
     /**
      * Returns attribute value. Throws {@code UnsupportedOperationException} in case,
      * when name of the attribute is not equal to 'text'.
+     *
      * @param namespace namespace
      * @param localPart actual name of the attribute
      * @return attribute value
@@ -120,6 +156,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns local part.
+     *
      * @return local part
      */
     @Override
@@ -129,6 +166,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns type of the node.
+     *
      * @return node kind
      */
     @Override
@@ -138,6 +176,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns parent.
+     *
      * @return parent
      */
     @Override
@@ -147,6 +186,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns root.
+     *
      * @return root
      */
     @Override
@@ -242,6 +282,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns line number.
+     *
      * @return line number
      */
     @Override
@@ -251,6 +292,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns column number.
+     *
      * @return column number
      */
     @Override
@@ -260,6 +302,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Getter method for token type.
+     *
      * @return token type
      */
     @Override
@@ -269,6 +312,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns underlying node.
+     *
      * @return underlying node
      */
     @Override
@@ -278,6 +322,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns preceding sibling axis iterator.
+     *
      * @return iterator
      */
     private AxisIterator getPrecedingSiblingsIterator() {
@@ -296,6 +341,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns following sibling axis iterator.
+     *
      * @return iterator
      */
     private AxisIterator getFollowingSiblingsIterator() {
@@ -314,6 +360,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns following siblings of the current node.
+     *
      * @return siblings
      */
     private List<AbstractNode> getFollowingSiblings() {
@@ -323,6 +370,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns preceding siblings of the current node.
+     *
      * @return siblings
      */
     private List<AbstractNode> getPrecedingSiblings() {
@@ -346,6 +394,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Returns UnsupportedOperationException exception.
+     *
      * @return UnsupportedOperationException exception
      */
     private static UnsupportedOperationException throwUnsupportedOperationException() {
@@ -363,6 +412,7 @@ public class ElementNode extends AbstractNode {
 
         /**
          * Create an iterator over the "following" axis.
+         *
          * @param start the initial context node.
          */
         /* package */ FollowingEnumeration(NodeInfo start) {
@@ -371,6 +421,7 @@ public class ElementNode extends AbstractNode {
 
         /**
          * Get the next item in the sequence.
+         *
          * @return the next Item. If there are no more nodes, return null.
          */
         @Override

@@ -52,7 +52,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
  * POST_DEC</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ELLIPSIS">
- * ELLIPSIS</a>.
+ * ELLIPSIS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LABELED_STAT">
+ * LABELED_STAT</a>.
  * </li>
  * </ul>
  * <p>
@@ -76,6 +78,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Lists.charactersOf("foo").listIterator()
  *        .forEachRemaining(System.out::print)
  *        ; // violation, whitespace before ';' is not allowed
+ *   {
+ *     label1 : // violation, whitespace before ':' is not allowed
+ *     for (int i = 0; i &lt; 10; i++) {}
+ *   }
+ *
+ *   {
+ *     label2: // OK
+ *     while (true) {}
+ *   }
  * </pre>
  * <p>To configure the check to allow linebreaks before default tokens:</p>
  * <pre>
@@ -157,6 +168,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.POST_INC,
             TokenTypes.POST_DEC,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LABELED_STAT,
         };
     }
 
@@ -171,6 +183,7 @@ public class NoWhitespaceBeforeCheck
             TokenTypes.GENERIC_START,
             TokenTypes.GENERIC_END,
             TokenTypes.ELLIPSIS,
+            TokenTypes.LABELED_STAT,
             TokenTypes.METHOD_REF,
         };
     }
@@ -203,6 +216,7 @@ public class NoWhitespaceBeforeCheck
 
     /**
      * Checks that semicolon is in empty for initializer or condition.
+     *
      * @param semicolonAst DetailAST of semicolon.
      * @return true if semicolon is in empty for initializer or condition.
      */
@@ -220,6 +234,7 @@ public class NoWhitespaceBeforeCheck
 
     /**
      * Setter to control whether whitespace is allowed if the token is at a linebreak.
+     *
      * @param allowLineBreaks whether whitespace should be
      *     flagged at line breaks.
      */

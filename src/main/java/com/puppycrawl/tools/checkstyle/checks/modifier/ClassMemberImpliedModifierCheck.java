@@ -94,6 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ *
  * @since 8.16
  */
 @StatelessCheck
@@ -123,6 +124,7 @@ public class ClassMemberImpliedModifierCheck
     /**
      * Setter to control whether to enforce that {@code static} is explicitly coded
      * on nested enums in classes.
+     *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
      */
@@ -133,6 +135,7 @@ public class ClassMemberImpliedModifierCheck
     /**
      * Setter to control whether to enforce that {@code static} is explicitly coded
      * on nested interfaces in classes.
+     *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
      */

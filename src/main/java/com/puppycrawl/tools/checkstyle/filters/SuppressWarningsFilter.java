@@ -46,6 +46,10 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  * any dotted prefix or "Check" suffix removed.
  * </p>
  * <p>
+ * SuppressWarningsFilter can suppress Checks that have Treewalker or
+ * Checker as parent module.
+ * </p>
+ * <p>
  * To configure the check that makes tha annotations available to the filter.
  * </p>
  * <pre>

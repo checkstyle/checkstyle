@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Default implementation of the Configuration interface.
+ *
  * @noinspection SerializableHasSerializationMethods
  */
 public final class DefaultConfiguration implements Configuration {
@@ -57,6 +58,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Instantiates a DefaultConfiguration.
+     *
      * @param name the name for this DefaultConfiguration.
      */
     public DefaultConfiguration(String name) {
@@ -65,6 +67,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Instantiates a DefaultConfiguration.
+     *
      * @param name the name for this DefaultConfiguration.
      * @param threadModeSettings the thread mode configuration.
      */
@@ -102,6 +105,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Makes a configuration a child of this configuration.
+     *
      * @param configuration the child configuration.
      */
     public void addChild(Configuration configuration) {
@@ -110,6 +114,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Removes a child of this configuration.
+     *
      * @param configuration the child configuration to remove.
      */
     public void removeChild(final Configuration configuration) {
@@ -118,6 +123,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Adds an attribute to this configuration.
+     *
      * @param attributeName the name of the attribute.
      * @param value the value of the attribute.
      */
@@ -133,6 +139,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Adds a custom message to this configuration.
+     *
      * @param key the message key
      * @param value the custom message pattern
      */
@@ -143,6 +150,7 @@ public final class DefaultConfiguration implements Configuration {
     /**
      * Returns an unmodifiable map instance containing the custom messages
      * for this configuration.
+     *
      * @return unmodifiable map containing custom messages
      */
     @Override
@@ -152,6 +160,7 @@ public final class DefaultConfiguration implements Configuration {
 
     /**
      * Gets the thread mode configuration.
+     *
      * @return the thread mode configuration.
      */
     public ThreadModeSettings getThreadModeSettings() {

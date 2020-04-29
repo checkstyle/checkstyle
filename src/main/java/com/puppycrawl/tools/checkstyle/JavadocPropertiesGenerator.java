@@ -47,6 +47,7 @@ import picocli.CommandLine.ParseResult;
  * For IDE plugins (like the eclipse plugin) it would be useful to have
  * a programmatic access to the first sentence of the TokenType constants,
  * so they can use them in their configuration gui.
+ *
  * @noinspection UseOfSystemOutOrSystemErr, unused, ClassIndependentOfModule
  */
 public final class JavadocPropertiesGenerator {
@@ -69,6 +70,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * TokenTypes.properties generator entry point.
+     *
      * @param args the command line arguments
      * @throws CheckstyleException if parser or lexer failed or if there is an IO problem
      **/
@@ -92,6 +94,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * Creates the .properties file from a .java file.
+     *
      * @param options the user-specified options
      * @throws CheckstyleException if a javadoc comment can not be parsed
      */
@@ -114,6 +117,7 @@ public final class JavadocPropertiesGenerator {
     /**
      * Walks over the type members and push the first javadoc sentence of every
      * {@code public} {@code static} {@code int} field to the consumer.
+     *
      * @param objBlock the OBJBLOCK of a class to iterate over its members
      * @param consumer first javadoc sentence consumer
      * @throws CheckstyleException if failed to parse a javadoc comment
@@ -134,6 +138,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * Finds the class body of the first class in the DetailAST.
+     *
      * @param top AST to find the class body
      * @return OBJBLOCK token if found; {@code null} otherwise
      */
@@ -151,6 +156,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * Checks that the DetailAST is a {@code public} {@code static} {@code final} {@code int} field.
+     *
      * @param ast to process
      * @return {@code true} if matches; {@code false} otherwise
      */
@@ -171,6 +177,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * Extracts the name of an ast.
+     *
      * @param ast to extract the name
      * @return the text content of the inner {@code TokenTypes.IDENT} node
      */
@@ -183,6 +190,7 @@ public final class JavadocPropertiesGenerator {
      * The end of the sentence is determined by the symbol "period", "exclamation mark" or
      * "question mark", followed by a space or the end of the text. Inline tags @code and @literal
      * are converted to HTML code.
+     *
      * @param ast to extract the first sentence
      * @return the first sentence of the inner {@code TokenTypes.BLOCK_COMMENT_BEGIN} node
      *      or {@code null} if the first sentence is absent or malformed (does not end with period)
@@ -212,6 +220,7 @@ public final class JavadocPropertiesGenerator {
      * The end of the sentence is determined by the symbol "period", "exclamation mark" or
      * "question mark", followed by a space or the end of the text. Inline tags @code and @literal
      * are converted to HTML code.
+     *
      * @param tree to extract the first sentence
      * @return the first sentence of the node or {@code null} if the first sentence is absent or
      *      malformed (does not end with any of the end-of-sentence markers)
@@ -244,6 +253,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * Converts inline code tag into HTML form.
+     *
      * @param builder to append
      * @param inlineTag to format
      * @throws CheckstyleException if the inline javadoc tag is not a literal nor a code tag
@@ -280,6 +290,7 @@ public final class JavadocPropertiesGenerator {
 
     /**
      * Concatenates the HTML text from AST of a JavadocTokenTypes.HTML_ELEMENT.
+     *
      * @param builder to append
      * @param node to format
      */

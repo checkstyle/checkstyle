@@ -75,140 +75,6 @@ public final class FileContents implements CommentListener {
         this.text = new FileText(text);
     }
 
-    @Override
-    public void reportSingleLineComment(String type, int startLineNo,
-            int startColNo) {
-        reportSingleLineComment(startLineNo, startColNo);
-    }
-
-    /**
-     * Report the location of a single line comment.
-     * @param startLineNo the starting line number
-     * @param startColNo the starting column number
-     **/
-    public void reportSingleLineComment(int startLineNo, int startColNo) {
-        final String line = line(startLineNo - 1);
-        final String[] txt = {line.substring(startColNo)};
-        final Comment comment = new Comment(txt, startColNo, startLineNo,
-                line.length() - 1);
-        cppComments.put(startLineNo, comment);
-    }
-
-    @Override
-    public void reportBlockComment(String type, int startLineNo,
-            int startColNo, int endLineNo, int endColNo) {
-        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
-    }
-
-    /**
-     * Report the location of a block comment.
-     * @param startLineNo the starting line number
-     * @param startColNo the starting column number
-     * @param endLineNo the ending line number
-     * @param endColNo the ending column number
-     **/
-    public void reportBlockComment(int startLineNo, int startColNo,
-            int endLineNo, int endColNo) {
-        final String[] cComment = extractBlockComment(startLineNo, startColNo,
-                endLineNo, endColNo);
-        final Comment comment = new Comment(cComment, startColNo, endLineNo,
-                endColNo);
-
-        // save the comment
-        if (clangComments.containsKey(startLineNo)) {
-            final List<TextBlock> entries = clangComments.get(startLineNo);
-            entries.add(comment);
-        }
-        else {
-            final List<TextBlock> entries = new ArrayList<>();
-            entries.add(comment);
-            clangComments.put(startLineNo, entries);
-        }
-
-        // Remember if possible Javadoc comment
-        final String firstLine = line(startLineNo - 1);
-        if (firstLine.contains("/**") && !firstLine.contains("/**/")) {
-            javadocComments.put(endLineNo - 1, comment);
-        }
-    }
-
-    /**
-     * Returns a map of all the single line comments. The key is a line number,
-     * the value is the comment {@link TextBlock} at the line.
-     * @return the Map of comments
-     */
-    public Map<Integer, TextBlock> getSingleLineComments() {
-        return Collections.unmodifiableMap(cppComments);
-    }
-
-    /**
-     * Returns a map of all block comments. The key is the line number, the
-     * value is a {@link List} of block comment {@link TextBlock}s
-     * that start at that line.
-     * @return the map of comments
-     */
-    public Map<Integer, List<TextBlock>> getBlockComments() {
-        return Collections.unmodifiableMap(clangComments);
-    }
-
-    /**
-     * Returns the specified block comment as a String array.
-     * @param startLineNo the starting line number
-     * @param startColNo the starting column number
-     * @param endLineNo the ending line number
-     * @param endColNo the ending column number
-     * @return block comment as an array
-     **/
-    private String[] extractBlockComment(int startLineNo, int startColNo,
-            int endLineNo, int endColNo) {
-        final String[] returnValue;
-        if (startLineNo == endLineNo) {
-            returnValue = new String[1];
-            returnValue[0] = line(startLineNo - 1).substring(startColNo,
-                    endColNo + 1);
-        }
-        else {
-            returnValue = new String[endLineNo - startLineNo + 1];
-            returnValue[0] = line(startLineNo - 1).substring(startColNo);
-            for (int i = startLineNo; i < endLineNo; i++) {
-                returnValue[i - startLineNo + 1] = line(i);
-            }
-            returnValue[returnValue.length - 1] = line(endLineNo - 1).substring(0,
-                    endColNo + 1);
-        }
-        return returnValue;
-    }
-
-    /**
-     * Returns the Javadoc comment before the specified line.
-     * A return value of {@code null} means there is no such comment.
-     * @param lineNoBefore the line number to check before
-     * @return the Javadoc comment, or {@code null} if none
-     **/
-    public TextBlock getJavadocBefore(int lineNoBefore) {
-        // Lines start at 1 to the callers perspective, so need to take off 2
-        int lineNo = lineNoBefore - 2;
-
-        // skip blank lines
-        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
-            lineNo--;
-        }
-
-        return javadocComments.get(lineNo);
-    }
-
-    /**
-     * Get a single line.
-     * For internal use only, as getText().get(lineNo) is just as
-     * suitable for external use and avoids method duplication.
-     * @param lineNo the number of the line to get
-     * @return the corresponding line, without terminator
-     * @throws IndexOutOfBoundsException if lineNo is invalid
-     */
-    private String line(int lineNo) {
-        return text.get(lineNo);
-    }
-
     /**
      * Get the full text of the file.
      * @return an object containing the full text of the file
@@ -242,8 +108,128 @@ public final class FileContents implements CommentListener {
         return fileName;
     }
 
+    @Override
+    public void reportSingleLineComment(String type, int startLineNo,
+            int startColNo) {
+        reportSingleLineComment(startLineNo, startColNo);
+    }
+
+    /**
+     * Report the location of a single line comment.
+     *
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     **/
+    public void reportSingleLineComment(int startLineNo, int startColNo) {
+        final String line = line(startLineNo - 1);
+        final String[] txt = {line.substring(startColNo)};
+        final Comment comment = new Comment(txt, startColNo, startLineNo,
+                line.length() - 1);
+        cppComments.put(startLineNo, comment);
+    }
+
+    @Override
+    public void reportBlockComment(String type, int startLineNo,
+            int startColNo, int endLineNo, int endColNo) {
+        reportBlockComment(startLineNo, startColNo, endLineNo, endColNo);
+    }
+
+    /**
+     * Report the location of a block comment.
+     *
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     **/
+    public void reportBlockComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        final String[] cComment = extractBlockComment(startLineNo, startColNo,
+                endLineNo, endColNo);
+        final Comment comment = new Comment(cComment, startColNo, endLineNo,
+                endColNo);
+
+        // save the comment
+        if (clangComments.containsKey(startLineNo)) {
+            final List<TextBlock> entries = clangComments.get(startLineNo);
+            entries.add(comment);
+        }
+        else {
+            final List<TextBlock> entries = new ArrayList<>();
+            entries.add(comment);
+            clangComments.put(startLineNo, entries);
+        }
+
+        // Remember if possible Javadoc comment
+        final String firstLine = line(startLineNo - 1);
+        if (firstLine.contains("/**") && !firstLine.contains("/**/")) {
+            javadocComments.put(endLineNo - 1, comment);
+        }
+    }
+
+    /**
+     * Returns the specified block comment as a String array.
+     *
+     * @param startLineNo the starting line number
+     * @param startColNo the starting column number
+     * @param endLineNo the ending line number
+     * @param endColNo the ending column number
+     * @return block comment as an array
+     **/
+    private String[] extractBlockComment(int startLineNo, int startColNo,
+            int endLineNo, int endColNo) {
+        final String[] returnValue;
+        if (startLineNo == endLineNo) {
+            returnValue = new String[1];
+            returnValue[0] = line(startLineNo - 1).substring(startColNo,
+                    endColNo + 1);
+        }
+        else {
+            returnValue = new String[endLineNo - startLineNo + 1];
+            returnValue[0] = line(startLineNo - 1).substring(startColNo);
+            for (int i = startLineNo; i < endLineNo; i++) {
+                returnValue[i - startLineNo + 1] = line(i);
+            }
+            returnValue[returnValue.length - 1] = line(endLineNo - 1).substring(0,
+                    endColNo + 1);
+        }
+        return returnValue;
+    }
+
+    /**
+     * Get a single line.
+     * For internal use only, as getText().get(lineNo) is just as
+     * suitable for external use and avoids method duplication.
+     * @param lineNo the number of the line to get
+     * @return the corresponding line, without terminator
+     * @throws IndexOutOfBoundsException if lineNo is invalid
+     */
+    private String line(int lineNo) {
+        return text.get(lineNo);
+    }
+
+    /**
+     * Returns the Javadoc comment before the specified line.
+     * A return value of {@code null} means there is no such comment.
+     *
+     * @param lineNoBefore the line number to check before
+     * @return the Javadoc comment, or {@code null} if none
+     **/
+    public TextBlock getJavadocBefore(int lineNoBefore) {
+        // Lines start at 1 to the callers perspective, so need to take off 2
+        int lineNo = lineNoBefore - 2;
+
+        // skip blank lines
+        while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
+            lineNo--;
+        }
+
+        return javadocComments.get(lineNo);
+    }
+
     /**
      * Checks if the specified line is blank.
+     *
      * @param lineNo the line number to check
      * @return if the specified line consists only of tabs and spaces.
      **/
@@ -253,6 +239,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Checks if the specified line is a single-line comment without code.
+     *
      * @param lineNo  the line number to check
      * @return if the specified line consists of only a single line comment
      *         without code.
@@ -263,6 +250,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Checks if the specified position intersects with a comment.
+     *
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
@@ -277,15 +265,8 @@ public final class FileContents implements CommentListener {
     }
 
     /**
-     * Checks if the current file is a package-info.java file.
-     * @return true if the package file.
-     */
-    public boolean inPackageInfo() {
-        return fileName.endsWith("package-info.java");
-    }
-
-    /**
      * Checks if the specified position intersects with a block comment.
+     *
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
@@ -313,6 +294,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Checks if the specified position intersects with a single line comment.
+     *
      * @param startLineNo the starting line number
      * @param startColNo the starting column number
      * @param endLineNo the ending line number
@@ -333,6 +315,33 @@ public final class FileContents implements CommentListener {
             }
         }
         return hasIntersection;
+    }
+
+    /**
+     * Returns a map of all the single line comments. The key is a line number,
+     * the value is the comment {@link TextBlock} at the line.
+     * @return the Map of comments
+     */
+    public Map<Integer, TextBlock> getSingleLineComments() {
+        return Collections.unmodifiableMap(cppComments);
+    }
+
+    /**
+     * Returns a map of all block comments. The key is the line number, the
+     * value is a {@link List} of block comment {@link TextBlock}s
+     * that start at that line.
+     * @return the map of comments
+     */
+    public Map<Integer, List<TextBlock>> getBlockComments() {
+        return Collections.unmodifiableMap(clangComments);
+    }
+
+    /**
+     * Checks if the current file is a package-info.java file.
+     * @return true if the package file.
+     */
+    public boolean inPackageInfo() {
+        return fileName.endsWith("package-info.java");
     }
 
 }

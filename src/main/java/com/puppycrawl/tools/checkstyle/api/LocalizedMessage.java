@@ -286,6 +286,99 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the line number.
+     *
+     * @return the line number
+     */
+    public int getLineNo() {
+        return lineNo;
+    }
+
+    /**
+     * Gets the column number.
+     *
+     * @return the column number
+     */
+    public int getColumnNo() {
+        return columnNo;
+    }
+
+    /**
+     * Gets the column char index.
+     *
+     * @return the column char index
+     */
+    public int getColumnCharIndex() {
+        return columnCharIndex;
+    }
+
+    /**
+     * Gets the token type.
+     *
+     * @return the token type
+     */
+    public int getTokenType() {
+        return tokenType;
+    }
+
+    /**
+     * Gets the severity level.
+     *
+     * @return the severity level
+     */
+    public SeverityLevel getSeverityLevel() {
+        return severityLevel;
+    }
+
+    /**
+     * Returns id of module.
+     *
+     * @return the module identifier.
+     */
+    public String getModuleId() {
+        return moduleId;
+    }
+
+    /**
+     * Returns the message key to locate the translation, can also be used
+     * in IDE plugins to map audit event messages to corrective actions.
+     *
+     * @return the message key
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * Gets the name of the source for this LocalizedMessage.
+     *
+     * @return the name of the source for this LocalizedMessage
+     */
+    public String getSourceName() {
+        return sourceClass.getName();
+    }
+
+    /**
+     * Sets a locale to use for localization.
+     *
+     * @param locale the locale to use for localization
+     */
+    public static void setLocale(Locale locale) {
+        clearCache();
+        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
+            sLocale = Locale.ROOT;
+        }
+        else {
+            sLocale = locale;
+        }
+    }
+
+    /** Clears the cache. */
+    public static void clearCache() {
+        BUNDLE_CACHE.clear();
+    }
+
+    /**
      * Indicates whether some other object is "equal to" this one.
      * Suppression on enumeration is needed so code stays consistent.
      * @noinspection EqualsCalledOnEnumConstant
@@ -319,9 +412,37 @@ public final class LocalizedMessage
                 key, bundle, sourceClass, customMessage, Arrays.hashCode(args));
     }
 
-    /** Clears the cache. */
-    public static void clearCache() {
-        BUNDLE_CACHE.clear();
+    ////////////////////////////////////////////////////////////////////////////
+    // Interface Comparable methods
+    ////////////////////////////////////////////////////////////////////////////
+
+    @Override
+    public int compareTo(LocalizedMessage other) {
+        final int result;
+
+        if (lineNo == other.lineNo) {
+            if (columnNo == other.columnNo) {
+                if (Objects.equals(moduleId, other.moduleId)) {
+                    result = getMessage().compareTo(other.getMessage());
+                }
+                else if (moduleId == null) {
+                    result = -1;
+                }
+                else if (other.moduleId == null) {
+                    result = 1;
+                }
+                else {
+                    result = moduleId.compareTo(other.moduleId);
+                }
+            }
+            else {
+                result = Integer.compare(columnNo, other.columnNo);
+            }
+        }
+        else {
+            result = Integer.compare(lineNo, other.lineNo);
+        }
+        return result;
     }
 
     /**
@@ -379,119 +500,6 @@ public final class LocalizedMessage
             return ResourceBundle.getBundle(
                 name, sLocale, sourceClass.getClassLoader(), new Utf8Control());
         });
-    }
-
-    /**
-     * Gets the line number.
-     * @return the line number
-     */
-    public int getLineNo() {
-        return lineNo;
-    }
-
-    /**
-     * Gets the column number.
-     * @return the column number
-     */
-    public int getColumnNo() {
-        return columnNo;
-    }
-
-    /**
-     * Gets the column char index.
-     * @return the column char index
-     */
-    public int getColumnCharIndex() {
-        return columnCharIndex;
-    }
-
-    /**
-     * Gets the token type.
-     * @return the token type
-     */
-    public int getTokenType() {
-        return tokenType;
-    }
-
-    /**
-     * Gets the severity level.
-     * @return the severity level
-     */
-    public SeverityLevel getSeverityLevel() {
-        return severityLevel;
-    }
-
-    /**
-     * Returns id of module.
-     * @return the module identifier.
-     */
-    public String getModuleId() {
-        return moduleId;
-    }
-
-    /**
-     * Returns the message key to locate the translation, can also be used
-     * in IDE plugins to map audit event messages to corrective actions.
-     *
-     * @return the message key
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
-     * Gets the name of the source for this LocalizedMessage.
-     * @return the name of the source for this LocalizedMessage
-     */
-    public String getSourceName() {
-        return sourceClass.getName();
-    }
-
-    /**
-     * Sets a locale to use for localization.
-     * @param locale the locale to use for localization
-     */
-    public static void setLocale(Locale locale) {
-        clearCache();
-        if (Locale.ENGLISH.getLanguage().equals(locale.getLanguage())) {
-            sLocale = Locale.ROOT;
-        }
-        else {
-            sLocale = locale;
-        }
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // Interface Comparable methods
-    ////////////////////////////////////////////////////////////////////////////
-
-    @Override
-    public int compareTo(LocalizedMessage other) {
-        final int result;
-
-        if (lineNo == other.lineNo) {
-            if (columnNo == other.columnNo) {
-                if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getMessage().compareTo(other.getMessage());
-                }
-                else if (moduleId == null) {
-                    result = -1;
-                }
-                else if (other.moduleId == null) {
-                    result = 1;
-                }
-                else {
-                    result = moduleId.compareTo(other.moduleId);
-                }
-            }
-            else {
-                result = Integer.compare(columnNo, other.columnNo);
-            }
-        }
-        else {
-            result = Integer.compare(lineNo, other.lineNo);
-        }
-        return result;
     }
 
     /**

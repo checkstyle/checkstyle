@@ -183,6 +183,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   public void bar2() {} // violation
  * }
  * </pre>
+ *
  * @since 6.0
  */
 @StatelessCheck

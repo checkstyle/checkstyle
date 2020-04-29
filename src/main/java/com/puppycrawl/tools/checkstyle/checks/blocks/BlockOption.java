@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 /**
  * Represents the policy for checking block statements.
+ *
  * @see EmptyBlockCheck
  */
 public enum BlockOption {

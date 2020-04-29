@@ -151,6 +151,7 @@ public class SuppressWarningsCheck extends AbstractCheck {
     /**
      * Setter to specify the RegExp to match against warnings. Any warning
      * being suppressed matching this pattern will be flagged.
+     *
      * @param pattern the new pattern
      */
     public final void setFormat(Pattern pattern) {

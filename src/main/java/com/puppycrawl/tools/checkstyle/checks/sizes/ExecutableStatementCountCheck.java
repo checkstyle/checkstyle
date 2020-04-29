@@ -172,6 +172,7 @@ public final class ExecutableStatementCountCheck
 
     /**
      * Process the start of the member definition.
+     *
      * @param ast the token representing the member definition.
      */
     private void visitMemberDef(DetailAST ast) {
@@ -229,6 +230,7 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Creates new member context.
+         *
          * @param ast member AST node.
          */
         /* package */ Context(DetailAST ast) {
@@ -238,6 +240,7 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Increase count.
+         *
          * @param addition the count increment.
          */
         public void addCount(int addition) {
@@ -246,6 +249,7 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Gets the member AST node.
+         *
          * @return the member AST node.
          */
         public DetailAST getAST() {
@@ -254,6 +258,7 @@ public final class ExecutableStatementCountCheck
 
         /**
          * Gets the count.
+         *
          * @return the count.
          */
         public int getCount() {

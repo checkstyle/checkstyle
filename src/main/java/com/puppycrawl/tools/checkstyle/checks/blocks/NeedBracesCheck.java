@@ -169,6 +169,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Setter to allow single-line statements without braces.
+     *
      * @param allowSingleLineStatement Check's option for skipping single-line statements
      */
     public void setAllowSingleLineStatement(boolean allowSingleLineStatement) {
@@ -177,6 +178,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Setter to allow loops with empty bodies.
+     *
      * @param allowEmptyLoopBody Check's option for allowing loops with empty body.
      */
     public void setAllowEmptyLoopBody(boolean allowEmptyLoopBody) {
@@ -232,6 +234,7 @@ public class NeedBracesCheck extends AbstractCheck {
      *     <li>{@link TokenTypes#LITERAL_ELSE}</li>
      * </ul>
      * For all others default value {@code true} is returned.
+     *
      * @param ast token to check
      * @return result of additional checks for specific token types,
      * {@code true} if there is no additional checks for token
@@ -259,6 +262,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current loop has empty body and can be skipped by this check.
+     *
      * @param ast for, while statements.
      * @return true if current loop can be skipped by check.
      */
@@ -268,6 +272,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if switch member (case, default statements) has statements without curly braces.
+     *
      * @param ast case, default statements.
      * @return true if switch member has unbraced statements, false otherwise.
      */
@@ -280,6 +285,7 @@ public class NeedBracesCheck extends AbstractCheck {
 
     /**
      * Checks if current statement can be skipped by "need braces" warning.
+     *
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement can be skipped by Check.
      */
@@ -299,6 +305,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * while (obj.isValid()) return true;
      * }
      * </p>
+     *
      * @param statement if, for, while, do-while, lambda, else, case, default statements.
      * @return true if current statement is single-line statement.
      */
@@ -340,6 +347,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * while (obj.isValid()) return true;
      * }
      * </p>
+     *
      * @param literalWhile {@link TokenTypes#LITERAL_WHILE while statement}.
      * @return true if current while statement is single-line statement.
      */
@@ -359,6 +367,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * do this.notify(); while (o != null);
      * }
      * </p>
+     *
      * @param literalDo {@link TokenTypes#LITERAL_DO do-while statement}.
      * @return true if current do-while statement is single-line statement.
      */
@@ -378,6 +387,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * for (int i = 0; ; ) this.notify();
      * }
      * </p>
+     *
      * @param literalFor {@link TokenTypes#LITERAL_FOR for statement}.
      * @return true if current for statement is single-line statement.
      */
@@ -399,6 +409,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * if (obj.isValid()) return true;
      * }
      * </p>
+     *
      * @param literalIf {@link TokenTypes#LITERAL_IF if statement}.
      * @return true if current if statement is single-line statement.
      */
@@ -426,6 +437,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * Runnable r = () -> System.out.println("Hello, world!");
      * }
      * </p>
+     *
      * @param lambda {@link TokenTypes#LAMBDA lambda statement}.
      * @return true if current lambda statement is single-line statement.
      */
@@ -458,6 +470,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * default: doSomeStuff();break;
      * }
      * </p>
+     *
      * @param ast {@link TokenTypes#LITERAL_CASE case statement} or
      * {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current switch member is single-line statement.
@@ -477,6 +490,7 @@ public class NeedBracesCheck extends AbstractCheck {
      * else doSomeStuff();
      * }
      * </p>
+     *
      * @param literalElse {@link TokenTypes#LITERAL_ELSE else statement}.
      * @return true if current else statement is single-line statement.
      */

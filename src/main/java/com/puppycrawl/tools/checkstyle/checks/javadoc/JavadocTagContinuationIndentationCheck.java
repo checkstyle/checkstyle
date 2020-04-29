@@ -51,12 +51,57 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * &lt;module name="JavadocTagContinuationIndentation"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * @tag comment
+ *  *  Indentation spacing is 1. Line with violation
+ *  *   Indentation spacing is 2. Line with violation
+ *  *     Indentation spacing is 4. OK
+ *  *&#47;
+ * public class Test {
+ * }
+ * </pre>
+ * <p>
  * To configure the check with two spaces indentation:
  * </p>
  * <pre>
  * &lt;module name="JavadocTagContinuationIndentation"&gt;
  *   &lt;property name="offset" value="2"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * @tag comment
+ *  * Indentation spacing is 0. Line with violation
+ *  *   Indentation spacing is 2. OK
+ *  *  Indentation spacing is 1. Line with violation
+ *  *&#47;
+ * public class Test {
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to show violations for Tight-HTML Rules:
+ * </p>
+ * <pre>
+ * &lt;module name="JavadocTagContinuationIndentation"&gt;
+ *   &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ *  * &lt;p&gt; 'p' tag is unclosed. Line with violation, this html tag needs closing tag.
+ *  * &lt;p&gt; 'p' tag is closed&lt;/p&gt;. OK
+ *  *&#47;
+ * public class Test {
+ * }
  * </pre>
  *
  * @since 6.0
@@ -119,6 +164,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     /**
      * Finds and collects all NEWLINE nodes inside DESCRIPTION node.
+     *
      * @param descriptionNode DESCRIPTION node.
      * @return List with NEWLINE nodes.
      */
@@ -136,6 +182,7 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
 
     /**
      * Checks, if description node is a description of in-line tag.
+     *
      * @param description DESCRIPTION node.
      * @return true, if description node is a description of in-line tag.
      */

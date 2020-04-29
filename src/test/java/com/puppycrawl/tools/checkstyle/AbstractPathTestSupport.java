@@ -38,12 +38,14 @@ public abstract class AbstractPathTestSupport {
 
     /**
      * Returns the exact location for the package where the file is present.
+     *
      * @return path for the package name for the file.
      */
     protected abstract String getPackageLocation();
 
     /**
      * Retrieves the name of the folder location for resources.
+     *
      * @return The name of the folder.
      */
     protected String getResourceLocation() {
@@ -55,6 +57,7 @@ public abstract class AbstractPathTestSupport {
      * The path is formed base on the root location.
      * This implementation uses 'src/test/resources/'
      * as a root location.
+     *
      * @param filename file name.
      * @return canonical path for the file name.
      * @throws IOException if I/O exception occurs while forming the path.
@@ -82,6 +85,7 @@ public abstract class AbstractPathTestSupport {
 
     /**
      * Join given strings with {@link #EOL} delimiter and add EOL at the end.
+     *
      * @param strings strings to join
      * @return joined strings
      */

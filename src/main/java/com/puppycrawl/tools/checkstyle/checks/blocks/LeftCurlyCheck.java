@@ -152,6 +152,7 @@ public class LeftCurlyCheck
 
     /**
      * Setter to specify the policy on placement of a left curly brace (<code>'{'</code>).
+     *
      * @param optionStr string to decode option from
      * @throws IllegalArgumentException if unable to decode
      */
@@ -161,6 +162,7 @@ public class LeftCurlyCheck
 
     /**
      * Setter to allow to ignore enums when left curly brace policy is EOL.
+     *
      * @param ignoreEnums check's option for ignoring enums.
      */
     public void setIgnoreEnums(boolean ignoreEnums) {
@@ -269,6 +271,7 @@ public class LeftCurlyCheck
 
     /**
      * Gets a SLIST if it is the first child of the AST.
+     *
      * @param ast {@code DetailAST}.
      * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
      *     {@code null} otherwise.
@@ -286,6 +289,7 @@ public class LeftCurlyCheck
 
     /**
      * Skip all {@code TokenTypes.ANNOTATION}s to the first non-annotation.
+     *
      * @param ast {@code DetailAST}.
      * @return {@code DetailAST}.
      */
@@ -311,6 +315,7 @@ public class LeftCurlyCheck
     /**
      * Find the last token of type {@code TokenTypes.ANNOTATION}
      * under the given set of modifiers.
+     *
      * @param modifiers {@code DetailAST}.
      * @return {@code DetailAST} or null if there are no annotations.
      */
@@ -326,6 +331,7 @@ public class LeftCurlyCheck
     /**
      * Verifies that a specified left curly brace is placed correctly
      * according to policy.
+     *
      * @param brace token for left curly brace
      * @param startToken token for start of expression
      */
@@ -352,6 +358,7 @@ public class LeftCurlyCheck
 
     /**
      * Validate EOL case.
+     *
      * @param brace brace AST
      * @param braceLine line content
      */
@@ -366,6 +373,7 @@ public class LeftCurlyCheck
 
     /**
      * Validate token on new Line position.
+     *
      * @param brace brace AST
      * @param startToken start Token
      * @param braceLine content of line with Brace
@@ -387,6 +395,7 @@ public class LeftCurlyCheck
 
     /**
      * Checks if left curly has line break after.
+     *
      * @param leftCurly
      *        Left curly token.
      * @return

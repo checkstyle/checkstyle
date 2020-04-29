@@ -129,6 +129,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *
  * }
  * </pre>
+ *
  * @since 3.2
  */
 @StatelessCheck
@@ -192,6 +193,7 @@ public final class IllegalCatchCheck extends AbstractCheck {
     /**
      * Finds all exception types in current catch.
      * We need it till we can have few different exception types into one catch.
+     *
      * @param parentToken - parent node for types (TYPE or BOR)
      * @return list, that contains all exception types in current catch
      */

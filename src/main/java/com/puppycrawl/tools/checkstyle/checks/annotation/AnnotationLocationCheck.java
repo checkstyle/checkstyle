@@ -235,6 +235,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     /**
      * Setter to allow single parameterless annotation to be located on the same line as
      * target element.
+     *
      * @param allow User's value of allowSamelineSingleParameterlessAnnotation.
      */
     public final void setAllowSamelineSingleParameterlessAnnotation(boolean allow) {
@@ -244,6 +245,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     /**
      * Setter to allow one and only parameterized annotation to be located on the same line as
      * target element.
+     *
      * @param allow User's value of allowSamelineParameterizedAnnotation.
      */
     public final void setAllowSamelineParameterizedAnnotation(boolean allow) {
@@ -253,6 +255,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     /**
      * Setter to allow annotation(s) to be located on the same line as
      * target element.
+     *
      * @param allow User's value of allowSamelineMultipleAnnotations.
      */
     public final void setAllowSamelineMultipleAnnotations(boolean allow) {
@@ -310,6 +313,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
     /**
      * Returns an expected annotation indentation.
      * The expected indentation should be the same as the indentation of the target node.
+     *
      * @param node modifiers or annotations node.
      * @return the annotation indentation.
      */
@@ -321,6 +325,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * Checks annotations positions in code:
      * 1) Checks whether the annotations locations are correct.
      * 2) Checks whether the annotations have the valid indentation level.
+     *
      * @param modifierNode modifiers node.
      * @param correctIndentation correct indentation of the annotation.
      */
@@ -344,6 +349,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation has parameters.
+     *
      * @param annotation annotation node.
      * @return true if the annotation has parameters.
      */
@@ -356,6 +362,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Returns the name of the given annotation.
+     *
      * @param annotation annotation node.
      * @return annotation name.
      */
@@ -377,6 +384,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
      * 2) checks parameterless annotation location considering
      * the value of {@link AnnotationLocationCheck#allowSamelineSingleParameterlessAnnotation};
      * 3) checks annotation location;
+     *
      * @param annotation annotation node.
      * @param hasParams whether an annotation has parameters.
      * @return true if the annotation has a correct location.
@@ -397,6 +405,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation node has any node before on the same line.
+     *
      * @param annotation annotation node.
      * @return true if an annotation node has any node before on the same line.
      */
@@ -409,6 +418,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation node has any node before or after on the same line.
+     *
      * @param annotation annotation node.
      * @return true if an annotation node has any node before or after on the same line.
      */
@@ -418,6 +428,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
     /**
      * Checks whether an annotation node has any node after on the same line.
+     *
      * @param annotation annotation node.
      * @return true if an annotation node has any node after on the same line.
      */

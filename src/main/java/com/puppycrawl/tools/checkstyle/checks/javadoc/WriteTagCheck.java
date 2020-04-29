@@ -191,6 +191,7 @@ public class WriteTagCheck
 
     /**
      * Verifies that a type definition has a required tag.
+     *
      * @param lineNo the line number for the type definition.
      * @param comment the Javadoc comment for the type definition.
      */

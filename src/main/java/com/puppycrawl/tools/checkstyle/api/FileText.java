@@ -86,6 +86,7 @@ public final class FileText {
      * The full text contents of the file.
      *
      * <p>Field is not final to ease reaching full test coverage.
+     *
      * @noinspection FieldMayBeFinal
      */
     private String fullText;
@@ -94,6 +95,46 @@ public final class FileText {
      * The first position of each line within the full text.
      */
     private int[] lineBreaks;
+
+    /**
+     * Copy constructor.
+     * @param fileText to make copy of
+     */
+    public FileText(FileText fileText) {
+        file = fileText.file;
+        charset = fileText.charset;
+        fullText = fileText.fullText;
+        lines = fileText.lines.clone();
+        if (fileText.lineBreaks == null) {
+            lineBreaks = null;
+        }
+        else {
+            lineBreaks = fileText.lineBreaks.clone();
+        }
+    }
+
+    /**
+     * Compatibility constructor.
+     *
+     * <p>This constructor reconstructs the text of the file by joining
+     * lines with linefeed characters. This process does not restore
+     * the original line terminators and should therefore be avoided.
+     *
+     * @param file the name of the file
+     * @param lines the lines of the text, without terminators
+     * @throws NullPointerException if the lines array is null
+     */
+    public FileText(File file, List<String> lines) {
+        final StringBuilder buf = new StringBuilder(1024);
+        for (final String line : lines) {
+            buf.append(line).append('\n');
+        }
+
+        this.file = file;
+        charset = null;
+        fullText = buf.toString();
+        this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+    }
 
     /**
      * Creates a new file text representation.
@@ -143,47 +184,8 @@ public final class FileText {
     }
 
     /**
-     * Copy constructor.
-     * @param fileText to make copy of
-     */
-    public FileText(FileText fileText) {
-        file = fileText.file;
-        charset = fileText.charset;
-        fullText = fileText.fullText;
-        lines = fileText.lines.clone();
-        if (fileText.lineBreaks == null) {
-            lineBreaks = null;
-        }
-        else {
-            lineBreaks = fileText.lineBreaks.clone();
-        }
-    }
-
-    /**
-     * Compatibility constructor.
-     *
-     * <p>This constructor reconstructs the text of the file by joining
-     * lines with linefeed characters. This process does not restore
-     * the original line terminators and should therefore be avoided.
-     *
-     * @param file the name of the file
-     * @param lines the lines of the text, without terminators
-     * @throws NullPointerException if the lines array is null
-     */
-    public FileText(File file, List<String> lines) {
-        final StringBuilder buf = new StringBuilder(1024);
-        for (final String line : lines) {
-            buf.append(line).append('\n');
-        }
-
-        this.file = file;
-        charset = null;
-        fullText = buf.toString();
-        this.lines = lines.toArray(CommonUtil.EMPTY_STRING_ARRAY);
-    }
-
-    /**
      * Reads file using specific decoder and returns all its content as a String.
+     *
      * @param inputFile File to read
      * @param decoder Charset decoder
      * @return File's text
@@ -211,7 +213,18 @@ public final class FileText {
     }
 
     /**
+     * Retrieves a line of the text by its number.
+     * The returned line will not contain a trailing terminator.
+     * @param lineNo the number of the line to get, starting at zero
+     * @return the line with the given number
+     */
+    public String get(final int lineNo) {
+        return lines[lineNo];
+    }
+
+    /**
      * Get the name of the file.
+     *
      * @return an object containing the name of the file
      */
     public File getFile() {
@@ -221,6 +234,7 @@ public final class FileText {
     /**
      * Get the character set which was used to read the file.
      * Will be {@code null} for a file reconstructed from its lines.
+     *
      * @return the charset used when the file was read
      */
     public Charset getCharset() {
@@ -229,6 +243,7 @@ public final class FileText {
 
     /**
      * Retrieve the full text of the file.
+     *
      * @return the full text of the file
      */
     public CharSequence getFullText() {
@@ -239,10 +254,31 @@ public final class FileText {
      * Returns an array of all lines.
      * {@code text.toLinesArray()} is equivalent to
      * {@code text.toArray(new String[text.size()])}.
+     *
      * @return an array of all lines of the text
      */
     public String[] toLinesArray() {
         return lines.clone();
+    }
+
+    /**
+     * Determine line and column numbers in full text.
+     *
+     * @param pos the character position in the full text
+     * @return the line and column numbers of this character
+     */
+    public LineColumn lineColumn(int pos) {
+        final int[] lineBreakPositions = findLineBreaks();
+        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
+        if (lineNo < 0) {
+            // we have: lineNo = -(insertion point) - 1
+            // we want: lineNo =  (insertion point) - 1
+            lineNo = -lineNo - 2;
+        }
+        final int startOfLine = lineBreakPositions[lineNo];
+        final int columnNo = pos - startOfLine;
+        // now we have lineNo and columnNo, both starting at zero.
+        return new LineColumn(lineNo + 1, columnNo);
     }
 
     /**
@@ -268,36 +304,8 @@ public final class FileText {
     }
 
     /**
-     * Determine line and column numbers in full text.
-     * @param pos the character position in the full text
-     * @return the line and column numbers of this character
-     */
-    public LineColumn lineColumn(int pos) {
-        final int[] lineBreakPositions = findLineBreaks();
-        int lineNo = Arrays.binarySearch(lineBreakPositions, pos);
-        if (lineNo < 0) {
-            // we have: lineNo = -(insertion point) - 1
-            // we want: lineNo =  (insertion point) - 1
-            lineNo = -lineNo - 2;
-        }
-        final int startOfLine = lineBreakPositions[lineNo];
-        final int columnNo = pos - startOfLine;
-        // now we have lineNo and columnNo, both starting at zero.
-        return new LineColumn(lineNo + 1, columnNo);
-    }
-
-    /**
-     * Retrieves a line of the text by its number.
-     * The returned line will not contain a trailing terminator.
-     * @param lineNo the number of the line to get, starting at zero
-     * @return the line with the given number
-     */
-    public String get(final int lineNo) {
-        return lines[lineNo];
-    }
-
-    /**
      * Counts the lines of the text.
+     *
      * @return the number of lines in the text
      */
     public int size() {

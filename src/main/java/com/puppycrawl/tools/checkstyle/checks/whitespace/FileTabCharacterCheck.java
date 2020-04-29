@@ -111,6 +111,7 @@ public class FileTabCharacterCheck extends AbstractFileSetCheck {
     /**
      * Setter to control whether to report on each line containing a tab, or just the first
      * instance.
+     *
      * @param eachLine Whether report on each line containing a tab.
      */
     public void setEachLine(boolean eachLine) {

@@ -215,6 +215,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
      * Setter to allow private methods to be ignored.
+     *
      * @param ignorePrivateMethods whether private methods must be ignored.
      */
     public void setIgnorePrivateMethods(boolean ignorePrivateMethods) {
@@ -223,6 +224,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
      * Setter to specify maximum allowed number of throws statements.
+     *
      * @param max maximum allowed throws statements.
      */
     public void setMax(int max) {
@@ -241,6 +243,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
      * Checks number of throws statements.
+     *
      * @param ast throws for check.
      */
     private void visitLiteralThrows(DetailAST ast) {
@@ -256,6 +259,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
      * Check if a method has annotation @Override.
+     *
      * @param ast throws, which is being checked.
      * @return true, if a method has annotation @Override.
      */
@@ -276,6 +280,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
      * Gets name of an annotation.
+     *
      * @param annotation to get name of.
      * @return name of an annotation.
      */
@@ -293,6 +298,7 @@ public final class ThrowsCountCheck extends AbstractCheck {
 
     /**
      * Checks if method, which throws an exception is private.
+     *
      * @param ast throws, which is being checked.
      * @return true, if method, which throws an exception is private.
      */

@@ -174,8 +174,8 @@ assembly-run-all-jar)
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
   mkdir -p .ci-temp
-  FOLDER=src/it/resources/com/google/checkstyle/test/chapter4formatting/rule413emptyblocks
-  FILE=InputRightCurlyAloneOrEmptyNoViolations.java
+  FOLDER=src/it/resources/com/google/checkstyle/test/chapter3filestructure/rule333orderingandspacing
+  FILE=InputCustomImportOrderNoImports.java
   java -jar target/checkstyle-$CS_POM_VERSION-all.jar -c /google_checks.xml \
         $FOLDER/$FILE > .ci-temp/output.log
   if grep -vE '(Starting audit)|(warning)|(Audit done.)' .ci-temp/output.log ; then exit 1; fi

@@ -101,18 +101,87 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;ParenPad&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Foo {
+ *
+ *   int n;
+ *
+ *   public void fun() {  // OK
+ *     bar( 1);  // violation, space after left parenthesis
+ *   }
+ *
+ *   public void bar(int k ) {  // violation, space before right parenthesis
+ *     while (k &gt; 0) {  // OK
+ *     }
+ *
+ *     Test obj = new Test(k);  // OK
+ *   }
+ *
+ *   public void fun2() {  // OK
+ *     switch( n) {  // violation, space after left parenthesis
+ *       case 2:
+ *         bar(n);  // OK
+ *       default:
+ *         break;
+ *     }
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check to require spaces for the
  * parentheses of constructor, method, and super constructor calls:
  * </p>
  * <pre>
  * &lt;module name=&quot;ParenPad&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_CALL, METHOD_CALL,
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_FOR, LITERAL_CATCH,
  *     SUPER_CTOR_CALL&quot;/&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * The following cases not checked:
+ * Example:
+ * </p>
+ * <pre>
+ * class Foo {
+ *
+ *   int x;
+ *
+ *   public Foo(int n) {
+ *   }
+ *
+ *   public void fun() {
+ *     try {
+ *       System.out.println(x);
+ *     } catch( IOException e) {  // violation, no space before right parenthesis
+ *     } catch( Exception e ) {  // OK
+ *     }
+ *
+ *     for ( int i = 0; i &lt; x; i++ ) {  // OK
+ *     }
+ *   }
+ *
+ * }
+ *
+ * class Bar extends Foo {
+ *
+ *   public Bar() {
+ *     super(1 );  // violation, no space after left parenthesis
+ *   }
+ *
+ *   public Bar(int k) {
+ *     super( k ); // OK
+ *
+ *     for ( int i = 0; i &lt; k; i++) {  // violation, no space before right parenthesis
+ *     }
+ *   }
+ *
+ * }
+ * </pre>
+ * <p>
+ * The following cases are not checked:
  * </p>
  * <pre>
  * for ( ; i &lt; j; i++, j--) // no check after left parenthesis
@@ -188,6 +257,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * {@link TokenTypes#ENUM_CONSTANT_DEF}, {@link TokenTypes#ANNOTATION}
      * {@link TokenTypes#LITERAL_SYNCHRONIZED}, {@link TokenTypes#LITERAL_NEW} and
      * {@link TokenTypes#LAMBDA}.
+     *
      * @param ast the token to check.
      */
     private void visitTokenWithOptionalParentheses(DetailAST ast) {
@@ -200,6 +270,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks parens in {@link TokenTypes#RESOURCE_SPECIFICATION}.
+     *
      * @param ast the token to check.
      */
     private void visitResourceSpecification(DetailAST ast) {
@@ -212,6 +283,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token is preceded by a semi-colon.
+     *
      * @param ast the token to check
      * @return whether a token is preceded by a semi-colon
      */
@@ -221,6 +293,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks parens in {@link TokenTypes#LITERAL_FOR}.
+     *
      * @param ast the token to check.
      */
     private void visitLiteralFor(DetailAST ast) {
@@ -237,6 +310,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     /**
      * Checks parens inside {@link TokenTypes#EXPR}, {@link TokenTypes#QUESTION}
      * and {@link TokenTypes#METHOD_CALL}.
+     *
      * @param ast the token to check.
      */
     private void processExpression(DetailAST ast) {
@@ -259,6 +333,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks whether AcceptableTokens contains the given ast.
+     *
      * @param ast the token to check.
      * @return true if the ast is in AcceptableTokens.
      */
@@ -272,6 +347,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Returns array of acceptable tokens.
+     *
      * @return acceptableTokens.
      */
     private static int[] makeAcceptableTokens() {
@@ -302,6 +378,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
     /**
      * Checks whether {@link TokenTypes#RPAREN} is a closing paren
      * of a {@link TokenTypes#TYPECAST}.
+     *
      * @param ast of a {@link TokenTypes#RPAREN} to check.
      * @return true if ast is a closing paren of a {@link TokenTypes#TYPECAST}.
      */
@@ -319,6 +396,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token follows an empty for iterator.
+     *
      * @param ast the token to check
      * @return whether a token follows an empty for iterator
      */
@@ -336,6 +414,7 @@ public class ParenPadCheck extends AbstractParenPadCheck {
 
     /**
      * Checks that a token precedes an empty for initializer.
+     *
      * @param ast the token to check
      * @return whether a token precedes an empty for initializer
      */

@@ -230,6 +230,7 @@ public final class MethodCountCheck extends AbstractCheck {
     /**
      * Checks if there is a scope definition to check and that the method is found inside that scope
      * (class, enum, etc.).
+     *
      * @param methodDef
      *        The method to analyze.
      * @return {@code true} if the method is part of the latest scope definition and should be
@@ -249,6 +250,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
     /**
      * Determine the visibility modifier and raise the corresponding counter.
+     *
      * @param method
      *            The method-subtree from the AbstractSyntaxTree.
      */
@@ -261,6 +263,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
     /**
      * Check the counters and report violations.
+     *
      * @param counter the method counters to check
      * @param ast to report violations against.
      */
@@ -278,6 +281,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
     /**
      * Utility for reporting if a maximum has been exceeded.
+     *
      * @param max the maximum allowed value
      * @param value the actual value
      * @param msg the message to log. Takes two arguments of value and maximum.
@@ -355,6 +359,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
         /**
          * Creates an interface.
+         *
          * @param scopeDefinition
          *        The surrounding scope definition (class, enum, etc.) which to count all methods
          *        for.
@@ -366,6 +371,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
         /**
          * Increments to counter by one for the supplied scope.
+         *
          * @param scope the scope counter to increment.
          */
         private void increment(Scope scope) {
@@ -380,6 +386,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
         /**
          * Gets the value of a scope counter.
+         *
          * @param scope the scope counter to get the value of
          * @return the value of a scope counter
          */
@@ -397,6 +404,7 @@ public final class MethodCountCheck extends AbstractCheck {
 
         /**
          * Fetches total number of methods.
+         *
          * @return the total number of methods.
          */
         private int getTotal() {

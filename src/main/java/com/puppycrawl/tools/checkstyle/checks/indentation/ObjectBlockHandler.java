@@ -95,6 +95,7 @@ public class ObjectBlockHandler extends BlockParentHandler {
 
     /**
      * A shortcut for {@code IndentationCheck} property.
+     *
      * @return value of lineWrappingIndentation property
      *         of {@code IndentationCheck}
      */

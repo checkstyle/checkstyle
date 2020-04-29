@@ -74,6 +74,7 @@ public class PropertyCacheFilePowerTest extends AbstractPathTestSupport {
     /**
      * This SuppressWarning("unchecked") required to suppress
      * "Unchecked generics array creation for varargs parameter" during mock.
+     *
      * @throws IOException when smth wrong with file creation or cache.load
      */
     @Test

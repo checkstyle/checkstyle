@@ -31,6 +31,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      * The path is formed base on the non-compilable resources location.
      * This implementation uses 'src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/'
      * as a non-compilable resource location.
+     *
      * @param filename file name.
      * @return canonical path for the file with the given file name.
      * @throws IOException if I/O exception occurs while forming the path.
@@ -42,6 +43,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
 
     /**
      * Performs verification of the given text ast tree representation.
+     *
      * @param expectedTextPrintFileName expected text ast tree representation.
      * @param actualJavaFileName actual text ast tree representation.
      * @param withComments whether to perform verification of comment nodes in tree.
@@ -64,6 +66,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
      * This implementation uses
      * {@link AbstractTreeTestSupport#verifyAst(String, String, JavaParser.Options)}
      * method inside.
+     *
      * @param expectedTextPrintFileName expected text ast tree representation.
      * @param actualJavaFileName actual text ast tree representation.
      * @throws Exception if exception occurs during verification.
@@ -77,6 +80,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
     /**
      * Verifies the java and javadoc AST generated for the supplied java file against
      * the expected AST in supplied text file.
+     *
      * @param expectedTextPrintFilename name of the file having the expected ast.
      * @param actualJavaFilename name of the java file.
      * @throws Exception if exception occurs during verification.
@@ -95,6 +99,7 @@ public abstract class AbstractTreeTestSupport extends AbstractPathTestSupport {
     /**
      * Verifies the javadoc tree generated for the supplied javadoc file against the expected tree
      * in the supplied text file.
+     *
      * @param expectedTextPrintFilename name of the text file having the expected tree.
      * @param actualJavadocFilename name of the file containing the javadoc.
      * @throws Exception if exception occurs during verification.

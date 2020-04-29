@@ -492,6 +492,7 @@ public class VisibilityModifierCheck
     /**
      * Setter to specify the list of annotations canonical names which ignore variables
      * in consideration.
+     *
      * @param annotationNames array of ignore annotations canonical names.
      */
     public void setIgnoreAnnotationCanonicalNames(String... annotationNames) {
@@ -500,6 +501,7 @@ public class VisibilityModifierCheck
 
     /**
      * Setter to control whether protected members are allowed.
+     *
      * @param protectedAllowed whether protected members are allowed
      */
     public void setProtectedAllowed(boolean protectedAllowed) {
@@ -508,6 +510,7 @@ public class VisibilityModifierCheck
 
     /**
      * Setter to control whether package visible members are allowed.
+     *
      * @param packageAllowed whether package visible members are allowed
      */
     public void setPackageAllowed(boolean packageAllowed) {
@@ -516,6 +519,7 @@ public class VisibilityModifierCheck
 
     /**
      * Setter to specify pattern for public members that should be ignored.
+     *
      * @param pattern
      *        pattern for public members to ignore.
      */
@@ -525,6 +529,7 @@ public class VisibilityModifierCheck
 
     /**
      * Setter to allow immutable fields to be declared as public if defined in final class.
+     *
      * @param allow user's value.
      */
     public void setAllowPublicImmutableFields(boolean allow) {
@@ -533,6 +538,7 @@ public class VisibilityModifierCheck
 
     /**
      * Setter to allow final fields to be declared as public.
+     *
      * @param allow user's value.
      */
     public void setAllowPublicFinalFields(boolean allow) {
@@ -541,6 +547,7 @@ public class VisibilityModifierCheck
 
     /**
      * Setter to specify immutable classes canonical names.
+     *
      * @param classNames array of immutable types canonical names.
      */
     public void setImmutableClassCanonicalNames(String... classNames) {
@@ -597,6 +604,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks if current variable definition is definition of an anonymous class.
+     *
      * @param variableDef {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}
      * @return true if current variable definition is definition of an anonymous class.
      */
@@ -607,6 +615,7 @@ public class VisibilityModifierCheck
     /**
      * Checks access modifier of given variable.
      * If it is not proper according to Check - puts violation on it.
+     *
      * @param variableDef variable to check.
      */
     private void visitVariableDef(DetailAST variableDef) {
@@ -625,6 +634,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks if variable def has ignore annotation.
+     *
      * @param variableDef {@link TokenTypes#VARIABLE_DEF VARIABLE_DEF}
      * @return true if variable def has ignore annotation.
      */
@@ -638,6 +648,7 @@ public class VisibilityModifierCheck
      * Checks imported type. If type's canonical name was not specified in
      * <b>immutableClassCanonicalNames</b>, but it's short name collides with one from
      * <b>immutableClassShortNames</b> - removes it from the last one.
+     *
      * @param importAst {@link TokenTypes#IMPORT Import}
      */
     private void visitImport(DetailAST importAst) {
@@ -665,6 +676,7 @@ public class VisibilityModifierCheck
      * import java.util.*;
      * }
      * </p>
+     *
      * @param importAst {@link TokenTypes#IMPORT Import}
      * @return true if it is star import
      */
@@ -683,6 +695,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks if current variable has proper access modifier according to Check's options.
+     *
      * @param variableDef Variable definition node.
      * @param variableName Variable's name.
      * @return true if variable has proper access modifier.
@@ -706,6 +719,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks whether variable has static final modifiers.
+     *
      * @param variableDef Variable definition node.
      * @return true of variable has static final modifiers.
      */
@@ -717,6 +731,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks whether variable belongs to public members that should be ignored.
+     *
      * @param variableName Variable's name.
      * @param variableScope Variable's scope.
      * @return true if variable belongs to public members that should be ignored.
@@ -728,6 +743,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks whether the variable satisfies the public field check.
+     *
      * @param variableDef Variable definition node.
      * @return true if allowed.
      */
@@ -738,6 +754,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks whether immutable field is defined in final class.
+     *
      * @param variableDef Variable definition node.
      * @return true if immutable field is defined in final class.
      */
@@ -750,6 +767,7 @@ public class VisibilityModifierCheck
 
     /**
      * Returns the set of modifier Strings for a VARIABLE_DEF or CLASS_DEF AST.
+     *
      * @param defAST AST for a variable or class definition.
      * @return the set of modifier Strings for defAST.
      */
@@ -768,6 +786,7 @@ public class VisibilityModifierCheck
 
     /**
      * Returns the visibility scope for the variable.
+     *
      * @param variableDef Variable definition node.
      * @return one of "public", "private", "protected", "package"
      */
@@ -789,6 +808,7 @@ public class VisibilityModifierCheck
      * known to be immutable (such as String, ImmutableCollection from Guava and etc).
      * Classes known to be immutable are listed in
      * {@link VisibilityModifierCheck#immutableClassCanonicalNames}
+     *
      * @param variableDef Field in consideration.
      * @return true if field is immutable.
      */
@@ -819,6 +839,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks whether type definition is in canonical form.
+     *
      * @param type type definition token.
      * @return true if type definition is in canonical form.
      */
@@ -828,6 +849,7 @@ public class VisibilityModifierCheck
 
     /**
      * Returns generic type arguments token.
+     *
      * @param type type token.
      * @param isCanonicalName whether type name is in canonical form.
      * @return generic type arguments token.
@@ -846,6 +868,7 @@ public class VisibilityModifierCheck
 
     /**
      * Returns a list of type parameters class names.
+     *
      * @param typeArgs type arguments token.
      * @return a list of type parameters class names.
      */
@@ -870,6 +893,7 @@ public class VisibilityModifierCheck
      * Checks whether all of generic type arguments are immutable.
      * If at least one argument is mutable, we assume that the whole list of type arguments
      * is mutable.
+     *
      * @param typeArgsClassNames type arguments class names.
      * @return true if all of generic type arguments are immutable.
      */
@@ -883,6 +907,7 @@ public class VisibilityModifierCheck
 
     /**
      * Checks whether current field is final.
+     *
      * @param variableDef field in consideration.
      * @return true if current field is final.
      */
@@ -895,6 +920,7 @@ public class VisibilityModifierCheck
      * Gets the name of type from given ast {@link TokenTypes#TYPE TYPE} node.
      * If type is specified via its canonical name - canonical name will be returned,
      * else - short type's name.
+     *
      * @param type {@link TokenTypes#TYPE TYPE} node.
      * @param isCanonicalName is given name canonical.
      * @return String representation of given type's name.
@@ -916,6 +942,7 @@ public class VisibilityModifierCheck
      * LITERAL_INT, LITERAL_BOOLEAN, etc.
      * So, if type's identifier differs from {@link TokenTypes#IDENT IDENT} token - it's a
      * primitive type.
+     *
      * @param type Ast {@link TokenTypes#TYPE TYPE} node.
      * @return true if current type is primitive type.
      */
@@ -925,6 +952,7 @@ public class VisibilityModifierCheck
 
     /**
      * Gets canonical type's name from given {@link TokenTypes#TYPE TYPE} node.
+     *
      * @param type DetailAST {@link TokenTypes#TYPE TYPE} node.
      * @return canonical type's name
      */
@@ -951,6 +979,7 @@ public class VisibilityModifierCheck
     /**
      * Gets the next node of a syntactical tree (child of a current node or
      * sibling of a current node, or sibling of a parent of a current node).
+     *
      * @param currentNodeAst Current node in considering
      * @param subTreeRootAst SubTree root
      * @return Current node after bypassing, if current node reached the root of a subtree
@@ -973,6 +1002,7 @@ public class VisibilityModifierCheck
     /**
      * Gets the list with short names classes.
      * These names are taken from array of classes canonical names.
+     *
      * @param canonicalClassNames canonical class names.
      * @return the list of short names of classes.
      */
@@ -988,6 +1018,7 @@ public class VisibilityModifierCheck
 
     /**
      * Gets the short class name from given canonical name.
+     *
      * @param canonicalClassName canonical class name.
      * @return short name of class.
      */

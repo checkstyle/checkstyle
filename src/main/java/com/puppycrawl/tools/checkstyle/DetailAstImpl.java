@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * The implementation of {@link DetailAST}. This should only be directly used to
  * create custom AST nodes.
+ *
  * @noinspection FieldNotUsedInToString, SerializableHasSerializationMethods
  */
 public final class DetailAstImpl extends CommonASTWithHiddenTokens implements DetailAST {
@@ -103,6 +104,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Add previous sibling.
+     *
      * @param ast
      *        DetailAST object.
      */
@@ -129,6 +131,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Add next sibling.
+     *
      * @param ast
      *        DetailAST object.
      */
@@ -190,6 +193,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Set the parent token.
+     *
      * @param parent the parent token
      */
     private void setParent(DetailAstImpl parent) {
@@ -227,6 +231,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Set line number.
+     *
      * @param lineNo
      *        line number.
      */
@@ -255,6 +260,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Set column number.
+     *
      * @param columnNo
      *        column number.
      */
@@ -317,6 +323,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Returns token type with branch.
+     *
      * @return the token types that occur in the branch as a sorted set.
      */
     private BitSet getBranchTokenTypes() {
@@ -381,6 +388,7 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
 
     /**
      * Clears the child count for the ast instance.
+     *
      * @param ast The ast to clear.
      */
     private static void clearChildCountCache(DetailAstImpl ast) {

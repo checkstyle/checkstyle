@@ -49,6 +49,7 @@ class TreeTableCellRenderer extends JTree implements
 
     /**
      * Creates a new instance.
+     *
      * @param treeTable tree table to render.
      * @param model Tree model.
      */
@@ -113,6 +114,7 @@ class TreeTableCellRenderer extends JTree implements
 
     /**
      * TreeCellRenderer method. Overridden to update the visible row.
+     *
      * @see TableCellRenderer
      */
     @Override

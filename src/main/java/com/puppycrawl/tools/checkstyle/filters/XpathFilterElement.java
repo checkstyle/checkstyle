@@ -71,6 +71,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     /**
      * Creates a {@code XpathElement} instance.
+     *
      * @param files regular expression for names of filtered files
      * @param checks regular expression for filtered check classes
      * @param message regular expression for messages.
@@ -118,6 +119,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     /**
      * Creates a {@code XpathElement} instance.
+     *
      * @param files regular expression for names of filtered files
      * @param checks regular expression for filtered check classes
      * @param message regular expression for messages.
@@ -175,6 +177,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     /**
      * Is matching by file name, module id and Check name.
+     *
      * @param event event
      * @return true if it is matching
      */
@@ -188,6 +191,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     /**
      * Is matching by message.
+     *
      * @param event event
      * @return true if it is matching or not set.
      */
@@ -197,6 +201,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     /**
      * Is matching by xpath query.
+     *
      * @param event event
      * @return true if it is matching or not set.
      */
@@ -223,6 +228,7 @@ public class XpathFilterElement implements TreeWalkerFilter {
 
     /**
      * Returns list of nodes matching xpath expression given event.
+     *
      * @param event {@code TreeWalkerAuditEvent} object
      * @return list of nodes matching xpath expression given event
      */

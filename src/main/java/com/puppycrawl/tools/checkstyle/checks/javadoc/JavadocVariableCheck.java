@@ -174,6 +174,7 @@ public class JavadocVariableCheck
 
     /**
      * Decides whether the variable name of an AST is in the ignore list.
+     *
      * @param ast the AST to check
      * @return true if the variable name of ast is in the ignore list.
      */
@@ -185,6 +186,7 @@ public class JavadocVariableCheck
 
     /**
      * Whether we should check this node.
+     *
      * @param ast a given node.
      * @return whether we should check a given node.
      */

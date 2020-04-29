@@ -383,6 +383,7 @@ public class IllegalImportCheck
     /**
      * Checks if an import matches one of the regular expressions
      * for illegal packages or illegal class names.
+     *
      * @param importText the argument of the import keyword
      * @return if {@code importText} matches one of the regular expressions
      *         for illegal packages or illegal class names
@@ -408,6 +409,7 @@ public class IllegalImportCheck
 
     /**
      * Checks if an import is from a package or class name that must not be used.
+     *
      * @param importText the argument of the import keyword
      * @return if {@code importText} contains an illegal package prefix or equals illegal class name
      */
@@ -432,6 +434,7 @@ public class IllegalImportCheck
 
     /**
      * Checks if an import is from a package or class name that must not be used.
+     *
      * @param importText the argument of the import keyword
      * @return if {@code importText} is illegal import
      */

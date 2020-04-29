@@ -67,6 +67,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Return the header lines to check against.
+     *
      * @return the header lines to check against.
      */
     protected List<String> getHeaderLines() {
@@ -106,6 +107,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Load the header from a file.
+     *
      * @throws CheckstyleException if the file cannot be loaded
      */
     private void loadHeaderFile() throws CheckstyleException {
@@ -122,6 +124,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Called before initializing the header.
+     *
      * @throws IllegalArgumentException if header has already been set
      */
     private void checkHeaderNotInitialized() {
@@ -135,6 +138,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
     /**
      * Set the header to check against. Individual lines in the header
      * must be separated by '\n' characters.
+     *
      * @param header header content to check against.
      * @throws IllegalArgumentException if the header cannot be interpreted
      */
@@ -156,6 +160,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
 
     /**
      * Load header to check against from a Reader into readerLines.
+     *
      * @param headerReader delivers the header to check against
      * @throws IOException if
      */

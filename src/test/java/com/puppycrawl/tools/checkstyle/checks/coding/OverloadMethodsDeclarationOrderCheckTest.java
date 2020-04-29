@@ -41,10 +41,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
             createModuleConfig(OverloadMethodsDeclarationOrderCheck.class);
 
         final String[] expected = {
-            "28: " + getCheckMessage(MSG_KEY, 17),
-            "56: " + getCheckMessage(MSG_KEY, 45),
-            "68: " + getCheckMessage(MSG_KEY, 66),
-            "111: " + getCheckMessage(MSG_KEY, 100),
+            "28:5: " + getCheckMessage(MSG_KEY, 17),
+            "56:9: " + getCheckMessage(MSG_KEY, 45),
+            "68:5: " + getCheckMessage(MSG_KEY, 66),
+            "111:5: " + getCheckMessage(MSG_KEY, 100),
         };
         verify(checkConfig, getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
     }

@@ -103,6 +103,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *     }
  * }
  * </pre>
+ *
  * @since 3.0
  */
 @FileStatefulCheck
@@ -196,6 +197,7 @@ public class EqualsHashCodeCheck
 
     /**
      * Determines if an AST is a formal param of type Object.
+     *
      * @param paramNode the AST to check
      * @return true if firstChild is a parameter of an Object type.
      */

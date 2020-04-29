@@ -112,6 +112,29 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="MissingJavadocMethod"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   public Test() {} // violation, missing javadoc for constructor
+ *   public void test() {} // violation, missing javadoc for method
+ *   &#47;**
+ *    * Some description here.
+ *    *&#47;
+ *   public void test2() {} // OK
+ *
+ *   &#64;Override
+ *   public String toString() { // OK
+ *     return "Some string";
+ *   }
+ *
+ *   private void test1() {} // OK
+ *   protected void test2() {} // OK
+ *   void test3() {} // OK
+ * }
+ * </pre>
+ *
+ * <p>
  * To configure the check for {@code private} scope:
  * </p>
  * <pre>
@@ -119,6 +142,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="scope" value="private"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private void test1() {} // violation, the private method is missing javadoc
+ * }
+ * </pre>
+ *
  * <p>
  * To configure the check for methods which are in {@code private}, but not in {@code protected}
  * scope:
@@ -129,6 +159,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="excludeScope" value="protected"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private void test1() {} // violation, the private method is missing javadoc
+ *   &#47;**
+ *    * Some description here
+ *    *&#47;
+ *   private void test1() {} // OK
+ *   protected void test2() {} // OK
+ * }
+ * </pre>
+ *
  * <p>
  * To configure the check for ignoring methods named {@code foo(),foo1(),foo2()}, etc.:
  * </p>
@@ -137,6 +179,60 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="ignoreMethodNamesRegex" value="^foo.*$"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void test1() {} // violation, method is missing javadoc
+ *   public void foo() {} // OK
+ *   public void foobar() {} // OK
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure the check for ignoring missing javadoc for accessor methods:
+ * </p>
+ * <pre>
+ * &lt;module name="MissingJavadocMethod"&gt;
+ *   &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private String text;
+ *
+ *   public void test() {} // violation, method is missing javadoc
+ *   public String getText() { return text; } // OK
+ *   public void setText(String text) { this.text = text; } // OK
+ * }
+ * </pre>
+ *
+ * <p>
+ * To configure the check with annotations that allow missed documentation:
+ * </p>
+ * <pre>
+ * &lt;module name="MissingJavadocMethod"&gt;
+ *   &lt;property name="allowedAnnotations" value="Override,Deprecated"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   public void test() {} // violation, method is missing javadoc
+ *   &#64;Override
+ *   public void test1() {} // OK
+ *   &#64;Deprecated
+ *   public void test2() {} // OK
+ *   &#64;SuppressWarnings
+ *   public void test3() {} // violation, method is missing javadoc
+ *   &#47;**
+ *    * Some description here.
+ *    *&#47;
+ *   &#64;SuppressWarnings
+ *   public void test4() {} // OK
+ * }
+ * </pre>
+ *
  * @since 8.21
  */
 @FileStatefulCheck
@@ -174,6 +270,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Setter to configure the list of annotations that allow missed documentation.
+     *
      * @param userAnnotations user's value.
      */
     public void setAllowedAnnotations(String... userAnnotations) {
@@ -182,6 +279,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Setter to ignore method whose names are matching specified regex.
+     *
      * @param pattern a pattern.
      */
     public void setIgnoreMethodNamesRegex(Pattern pattern) {
@@ -190,6 +288,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Setter to control the minimal amount of lines in method to allow no documentation.
+     *
      * @param value user's value.
      */
     public void setMinLineCount(int value) {
@@ -258,6 +357,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Some javadoc.
+     *
      * @param methodDef Some javadoc.
      * @return Some javadoc.
      */
@@ -277,6 +377,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
 
     /**
      * Checks if a missing Javadoc is allowed by the check's configuration.
+     *
      * @param ast the tree node for the method or constructor.
      * @return True if this method or constructor doesn't need Javadoc.
      */
@@ -303,6 +404,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     /**
      * Checks if the given method name matches the regex. In that case
      * we skip enforcement of javadoc for this method
+     *
      * @param methodDef {@link TokenTypes#METHOD_DEF METHOD_DEF}
      * @return true if given method name matches the regex.
      */

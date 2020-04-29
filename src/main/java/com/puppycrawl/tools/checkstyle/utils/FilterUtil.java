@@ -36,6 +36,7 @@ public final class FilterUtil {
 
     /**
      * Checks if suppression source with given fileName exists.
+     *
      * @param fileName name of the suppressions file.
      * @return true if suppression file exists, otherwise false
      */

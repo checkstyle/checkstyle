@@ -626,6 +626,7 @@ public class RegexpCheck extends AbstractCheck {
 
     /**
      * Check if we can stop validation.
+     *
      * @param ignore flag
      * @return true is we can continue
      */
@@ -636,6 +637,7 @@ public class RegexpCheck extends AbstractCheck {
 
     /**
      * Detect ignore situation.
+     *
      * @param startLine position of line
      * @param text file text
      * @param start line column
@@ -663,6 +665,7 @@ public class RegexpCheck extends AbstractCheck {
 
     /**
      * Displays the right message.
+     *
      * @param lineNumber the line number the message relates to.
      */
     private void logMessage(int lineNumber) {

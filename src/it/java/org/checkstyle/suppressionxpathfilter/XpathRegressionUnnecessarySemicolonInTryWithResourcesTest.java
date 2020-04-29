@@ -40,7 +40,7 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(
                 getPath("SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources.java"));
         final DefaultConfiguration moduleConfig =
@@ -56,6 +56,30 @@ public class XpathRegressionUnnecessarySemicolonInTryWithResourcesTest
                         + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResources']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='m']]/SLIST/LITERAL_TRY"
                         + "/RESOURCE_SPECIFICATION/SEMI"
+        );
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
+    @Test
+    public void testAllowWhenNoBraceAfterSemicolon() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace.java"
+        ));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
+        moduleConfig.addAttribute("allowWhenNoBraceAfterSemicolon", "false");
+
+        final String[] expectedViolation = {
+            "8:44: " + getCheckMessage(UnnecessarySemicolonInTryWithResourcesCheck.class,
+                UnnecessarySemicolonInTryWithResourcesCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text="
+                    + "'SuppressionXpathRegressionUnnecessarySemicolonInTryWithResourcesNoBrace']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/LITERAL_TRY/RESOURCE_SPECIFICATION/SEMI"
         );
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }

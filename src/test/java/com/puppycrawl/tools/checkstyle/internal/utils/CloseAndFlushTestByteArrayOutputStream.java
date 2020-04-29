@@ -24,6 +24,7 @@ import java.io.IOException;
 
 /**
  * CloseAndFlushTestByteArrayOutputStream.
+ *
  * @noinspection ClassOnlyUsedInOnePackage
  */
 public final class CloseAndFlushTestByteArrayOutputStream extends ByteArrayOutputStream {

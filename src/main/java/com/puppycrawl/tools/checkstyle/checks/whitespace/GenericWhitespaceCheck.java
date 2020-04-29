@@ -167,6 +167,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Checks the token for the end of Generics.
+     *
      * @param ast the token to check
      */
     private void processEnd(DetailAST ast) {
@@ -193,6 +194,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Process Nested generics.
+     *
      * @param ast token
      * @param line line content
      * @param after position after
@@ -223,6 +225,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Process Single-generic.
+     *
      * @param ast token
      * @param line line content
      * @param after position after
@@ -241,6 +244,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Checks if generic is before constructor invocation.
+     *
      * @param ast ast
      * @return true if generic before a constructor invocation
      */
@@ -253,6 +257,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Is generic before method reference.
+     *
      * @param ast ast
      * @return true if generic before a method ref
      */
@@ -265,6 +270,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
     /**
      * Checks if current generic end ('>') is located after
      * {@link TokenTypes#METHOD_REF method reference operator}.
+     *
      * @param genericEnd {@link TokenTypes#GENERIC_END}
      * @return true if '>' follows after method reference.
      */
@@ -274,6 +280,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Checks the token for the start of Generics.
+     *
      * @param ast the token to check
      */
     private void processStart(DetailAST ast) {
@@ -346,6 +353,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     /**
      * Checks whether given character is valid to be right after generic ends.
+     *
      * @param charAfter character to check
      * @return checks if given character is valid
      */

@@ -137,6 +137,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
  * @since 8.20
  */
 @StatelessCheck
@@ -161,6 +162,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Setter to specify the visibility scope where Javadoc comments are checked.
+     *
      * @param scope a scope.
      */
     public void setScope(Scope scope) {
@@ -169,6 +171,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Setter to specify the visibility scope where Javadoc comments are not checked.
+     *
      * @param excludeScope a scope.
      */
     public void setExcludeScope(Scope excludeScope) {
@@ -178,6 +181,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
     /**
      * Setter to specify the list of annotations that allow missed documentation.
      * Only short names are allowed, e.g. {@code Generated}.
+     *
      * @param userAnnotations user's value.
      */
     public void setSkipAnnotations(String... userAnnotations) {
@@ -218,6 +222,7 @@ public class MissingJavadocTypeCheck extends AbstractCheck {
 
     /**
      * Whether we should check this node.
+     *
      * @param ast a given node.
      * @return whether we should check a given node.
      */

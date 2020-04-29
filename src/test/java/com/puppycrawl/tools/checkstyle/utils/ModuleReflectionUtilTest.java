@@ -167,6 +167,7 @@ public class ModuleReflectionUtilTest {
 
     /**
      * AbstractInvalidClass.
+     *
      * @noinspection AbstractClassNeverImplemented
      */
     private abstract static class AbstractInvalidClass extends AutomaticBean {

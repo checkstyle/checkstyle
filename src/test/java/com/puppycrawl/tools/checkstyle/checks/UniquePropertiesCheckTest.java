@@ -83,6 +83,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
     /**
      * Tests the {@link UniquePropertiesCheck#getLineNumber(FileText, String)}
      * method return value.
+     *
      * @noinspection JavadocReference Test javadocs should explain all.
      */
     @Test
@@ -164,6 +165,7 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
 
     /**
      * Method generates NoSuchFileException details. It tries to a open file that does not exist.
+     *
      * @param file to be opened
      * @return localized detail message of {@link NoSuchFileException}
      */

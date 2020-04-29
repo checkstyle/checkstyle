@@ -115,6 +115,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new {@code PackageObjectFactory} instance.
+     *
      * @param packageNames the list of package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
@@ -125,6 +126,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new {@code PackageObjectFactory} instance.
+     *
      * @param packageNames the list of package names to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
@@ -148,6 +150,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new {@code PackageObjectFactory} instance.
+     *
      * @param packageName The package name to use
      * @param moduleClassLoader class loader used to load Checkstyle
      *          core and custom modules
@@ -171,6 +174,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * a class name, creates an instance of the named class. Otherwise, creates
      * an instance of a class name obtained by concatenating the given name
      * to a package name from a given list of package names.
+     *
      * @param name the name of a class.
      * @return the {@code Object} created by loader.
      * @throws CheckstyleException if an error occurs.
@@ -215,6 +219,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Create object from one of Checkstyle module names.
+     *
      * @param name name of module.
      * @return instance of module.
      * @throws CheckstyleException if the class fails to instantiate or there are ambiguous classes.
@@ -237,6 +242,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Create object with the help of the supplied map.
+     *
      * @param name name of module.
      * @param map the supplied map.
      * @return instance of module if it is found in modules map and no ambiguous classes exist.
@@ -262,6 +268,7 @@ public class PackageObjectFactory implements ModuleFactory {
      * Create Object from optional full module names.
      * In most case, there should be only one element in {@code fullModuleName}, otherwise
      * an exception would be thrown.
+     *
      * @param name name of module
      * @param fullModuleNames the supplied full module names set
      * @return instance of module if there is only one element in {@code fullModuleName}
@@ -289,6 +296,7 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Generate the map of third party Checkstyle module names to the set of their fully qualified
      * names.
+     *
      * @param loader the class loader used to load Checkstyle package names
      * @return the map of third party Checkstyle module names to the set of their fully qualified
      *      names
@@ -308,6 +316,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Returns simple check name from full modules names map.
+     *
      * @param fullName name of the class for joining.
      * @return simple check name.
      */
@@ -323,6 +332,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a string by joining package names with a class name.
+     *
      * @param className name of the class for joining.
      * @param packages packages names.
      * @return a string which is obtained by joining package names with a class name.
@@ -335,6 +345,7 @@ public class PackageObjectFactory implements ModuleFactory {
 
     /**
      * Creates a new instance of a named class.
+     *
      * @param className the name of the class to instantiate.
      * @return the {@code Object} created by loader or null.
      * @throws CheckstyleException if the class fails to instantiate.
@@ -366,6 +377,7 @@ public class PackageObjectFactory implements ModuleFactory {
     /**
      * Searching to class with given name (or name concatenated with &quot;Check&quot;) in existing
      * packages. Returns instance if class found or, otherwise, null.
+     *
      * @param name the name of a class.
      * @return the {@code Object} created by loader.
      * @throws CheckstyleException if an error occurs.

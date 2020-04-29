@@ -133,6 +133,7 @@ public class SlistHandler extends BlockParentHandler {
 
     /**
      * Checks if SLIST node is placed at the same line as CASE_GROUP node.
+     *
      * @return true, if SLIST node is places at the same line as CASE_GROUP node.
      */
     private boolean isSameLineCaseGroup() {

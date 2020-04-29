@@ -44,6 +44,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Initialise pModel.
+     *
      * @param parseTree DetailAST parse tree.
      */
     public ParseTreeTableModel(DetailAST parseTree) {
@@ -53,6 +54,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Sets parse tree.
+     *
      * @param parseTree DetailAST parse tree.
      */
     protected final void setParseTree(DetailAST parseTree) {
@@ -65,6 +67,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Set parse mode.
+     *
      * @param mode ParseMode enum
      */
     protected void setParseMode(ParseMode mode) {
@@ -73,6 +76,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns number of available column.
+     *
      * @return the number of available column.
      */
     public int getColumnCount() {
@@ -81,6 +85,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns column name of specified column number.
+     *
      * @param column the column number
      * @return the name for column number {@code column}.
      */
@@ -90,6 +95,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns type of specified column number.
+     *
      * @param column the column number
      * @return the type for column number {@code column}.
      */
@@ -101,6 +107,7 @@ public class ParseTreeTableModel implements TreeModel {
 
     /**
      * Returns the value to be displayed for node at column number.
+     *
      * @param node the node
      * @param column the column number
      * @return the value to be displayed for node {@code node},
@@ -156,6 +163,7 @@ public class ParseTreeTableModel implements TreeModel {
      * 'tree structure changed' event.  The event instance
      * is lazily created using the parameters passed into
      * the fire method.
+     *
      * @param source The Object responsible for generating the event.
      * @param path An array of Object identifying the path to the parent of the modified items.
      * @param childIndices An array of int that specifies the index values of the removed items.

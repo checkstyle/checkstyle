@@ -8,7 +8,7 @@ curl -X POST -u admin:admin \
 mvn -e sonar:sonar -P sonar -Dsonar.language=java -Dsonar.profile=checkstyle-profile
 
 # Uncomment following to get HTML report.
-# mvn sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true \
+# mvn -e sonar:sonar -Dsonar.analysis.mode=preview -Dsonar.issuesReport.html.enable=true \
 #        -Dsonar.language=java -Dsonar.profile=checkstyle-profile
 
 

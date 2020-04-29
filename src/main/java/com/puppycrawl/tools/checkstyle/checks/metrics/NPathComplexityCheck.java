@@ -215,6 +215,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public abstract void print(String str);
  * }
  * </pre>
+ *
  * @since 3.4
  */
 // -@cs[AbbreviationAsWordInName] Can't change check name
@@ -396,6 +397,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /**
      * Visits if, while, do-while, for and switch tokens - all of them have expression in
      * parentheses which is used for calculation.
+     *
      * @param ast visited token.
      * @param basicBranchingFactor default number of branches added.
      */
@@ -414,6 +416,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /**
      * Visits ternary operator (?:) and return tokens. They differ from those processed by
      * visitConditional method in that their expression isn't bracketed.
+     *
      * @param ast visited token.
      * @param basicBranchingFactor number of branches inherently added by this token.
      */
@@ -474,6 +477,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
      * Process the end of a method definition.
+     *
      * @param ast the token type representing the method definition
      */
     private void leaveMethodDef(DetailAST ast) {
@@ -493,6 +497,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
     /**
      * Pushes the current range value on the range value stack. Pushes this token expression value
      * on the expression value stack.
+     *
      * @param expressionValue value of expression calculated for current token.
      */
     private void pushValue(Integer expressionValue) {
@@ -503,6 +508,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
      * Pops values from both stack of expression values and stack of range values.
+     *
      * @return pair of head values from both of the stacks.
      */
     private Values popValue() {
@@ -518,6 +524,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
      * Calculates number of conditional operators, including inline ternary operator, for a token.
+     *
      * @param ast inspected token.
      * @return number of conditional operators.
      * @see <a href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">
@@ -545,6 +552,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
      * Finds a leaf, which is the most distant from the root.
+     *
      * @param ast the root of tree.
      * @return the leaf.
      */
@@ -562,6 +570,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
     /**
      * Counts number of case tokens subject to a case group token.
+     *
      * @param ast case group token.
      * @return number of case tokens.
      */
@@ -590,6 +599,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
         /**
          * Sets end coordinates from given token.
+         *
          * @param endToken token.
          */
         public void setToken(DetailAST endToken) {
@@ -607,6 +617,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
         /**
          * Checks if saved coordinates located after given token.
+         *
          * @param ast given token.
          * @return true, if saved coordinates located after given token.
          */
@@ -637,6 +648,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
         /**
          * Constructor that assigns all of class fields.
+         *
          * @param valueOfRange NP value for range
          * @param valueOfExpression NP value for expression
          */
@@ -647,6 +659,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
         /**
          * Returns NP value for range.
+         *
          * @return NP value for range
          */
         public BigInteger getRangeValue() {
@@ -655,6 +668,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
 
         /**
          * Returns NP value for expression.
+         *
          * @return NP value for expression
          */
         public BigInteger getExpressionValue() {

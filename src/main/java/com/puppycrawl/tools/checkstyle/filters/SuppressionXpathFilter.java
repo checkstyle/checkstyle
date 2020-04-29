@@ -44,12 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul id="SuppressionXpathFilter_IncompatibleChecks">
  * <li>
- * AvoidEscapedUnicodeCharacters
- * </li>
- * <li>
- * CommentsIndentation
- * </li>
- * <li>
  * CustomImportOrder
  * </li>
  * <li>
@@ -59,28 +53,18 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Indentation
  * </li>
  * <li>
- * InterfaceMemberImpliedModifier
- * </li>
- * <li>
  * JavadocMethod
- * </li>
- * <li>
- * JavadocType
  * </li>
  * <li>
  * MissingJavadocType
  * </li>
  * <li>
- * OverloadMethodsDeclarationOrder
+ * Regexp (reason is at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
  * <li>
- * PackageDeclaration
- * </li>
- * <li>
- * Regexp
- * </li>
- * <li>
- * RegexpSinglelineJava
+ * RegexpSinglelineJava (reason is at
+ * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
  * <li>
  * TodoComment
@@ -93,6 +77,15 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * VariableDeclarationUsageDistance
+ * </li>
+ * </ul>
+ * <p>
+ * Certain Checks are partially supported by the filter:
+ * </p>
+ * <ul>
+ * <li>
+ * PackageDeclaration (until
+ * <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110</a>)
  * </li>
  * </ul>
  * <p>
@@ -116,6 +109,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocTagContinuationIndentation
+ * </li>
+ * <li>
+ * JavadocType
  * </li>
  * <li>
  * MissingDeprecated
@@ -201,6 +197,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * if no file found, then passed to the {@code ClassLoader.getResource()} method.
  * </li>
  * </ol>
+ * <p>
+ * SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+ * </p>
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.
@@ -545,6 +544,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
 
     /**
      * Setter to specify the location of the <em>suppressions XML document</em> file.
+     *
      * @param fileName name of the suppressions file.
      */
     public void setFile(String fileName) {
@@ -556,6 +556,7 @@ public class SuppressionXpathFilter extends AutomaticBean implements
      * If optional is set to false the file must exist, or else it ends with error.
      * On the other hand if optional is true and file is not found,
      * the filter accepts all audit events.
+     *
      * @param optional tells if config file existence is optional.
      */
     public void setOptional(boolean optional) {
