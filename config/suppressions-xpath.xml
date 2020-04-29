@@ -14,7 +14,7 @@
     <suppress-xpath checks="CyclomaticComplexity"
                     query="/CLASS_DEF[./IDENT[@text='XdocsPagesTest']]//METHOD_DEF"/>
 
-    <!-- Suppressions from PMD configuration-->
+    <!-- Suppressions from PMD configuration -->
     <!-- JavadocMethodCheck, JavadocStyleCheck, JavadocUtil.getJavadocTags() - deprecated -->
     <suppress-xpath checks="CyclomaticComplexity"
                     query="/CLASS_DEF[./IDENT[@text='JavadocMethodCheck'

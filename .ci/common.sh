@@ -10,8 +10,8 @@ DEBUG=true
 function should_run_job {
     local SKIP_JOB_BY_FILES=$1
     local SKIP_FILES=$2
-    ## OUT is needed to display the result of the commands for debugging
-    ## because some CIs don't like them being executed directly
+    # OUT is needed to display the result of the commands for debugging
+    # because some CIs don't like them being executed directly
     local OUT=""
 
     echo "Initial value of SKIP_JOB_BY_FILES: $SKIP_JOB_BY_FILES"
@@ -27,18 +27,18 @@ function should_run_job {
               echo "origin/master log: $OUT"
          fi
 
-         ## Travis merges the PR commit into origin/master
-         ## This identifies the PR's original commit
-         ## if it notices a merge commit
+         # Travis merges the PR commit into origin/master
+         # This identifies the PR's original commit
+         # if it notices a merge commit
          local HEAD=`git rev-parse HEAD`
 
          if git show --summary HEAD | grep ^Merge: ; then
               HEAD=`git log -n 1 --no-merges --pretty=format:"%H"`
          fi
 
-         ## Identify previous commit to know how much to examine
-         ## Script assumes we are only working with 1 commit if we are in master
-         ## Otherwise, it looks for the common ancestor with master
+         # Identify previous commit to know how much to examine
+         # Script assumes we are only working with 1 commit if we are in master
+         # Otherwise, it looks for the common ancestor with master
          local PREVIOUS_COMMIT=`git rev-parse HEAD~1`
 
          if [[ $DEBUG == "true" ]]; then
