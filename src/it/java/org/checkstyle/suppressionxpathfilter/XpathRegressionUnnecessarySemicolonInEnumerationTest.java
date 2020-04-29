@@ -58,4 +58,25 @@ public class XpathRegressionUnnecessarySemicolonInEnumerationTest
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testTwo() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "SuppressionXpathRegressionUnnecessarySemicolonInEnumerationAll.java"
+        ));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
+
+        final String[] expectedViolation = {
+            "4:52: " + getCheckMessage(UnnecessarySemicolonInEnumerationCheck.class,
+                UnnecessarySemicolonInEnumerationCheck.MSG_SEMI),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/ENUM_DEF[./IDENT[@text='All']]/OBJBLOCK/SEMI"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
