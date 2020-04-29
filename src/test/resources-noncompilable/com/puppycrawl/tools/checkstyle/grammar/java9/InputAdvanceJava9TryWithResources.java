@@ -7,36 +7,36 @@ package com.puppycrawl.tools.checkstyle.grammar.java9;
 public class InputAdvanceJava9TryWithResources implements AutoCloseable
 {
     //Constructor
-    public InputJava9TryWithResources(boolean throwException) {
+    public InputAdvanceJava9TryWithResources(boolean throwException) {
         if (throwException)
             throw new RuntimeException("Initialization exception");
     }
 
     //Constructor
-    public InputJava9TryWithResources() {
+    public InputAdvanceJava9TryWithResources() {
         this(false);
     }
 
     //Main method
     public static void main(String[] args) throws Exception {
-        InputJava9TryWithResources v = new InputJava9TryWithResources();
+        InputAdvanceJava9TryWithResources v = new InputAdvanceJava9TryWithResources();
 
         try (v.finalWrapper.finalField) {
         }
 
-        try (new InputJava9TryWithResources() { }.finalWrapper.finalField) {
+        try (new InputAdvanceJava9TryWithResources() { }.finalWrapper.finalField) {
         }
 
-        try ((args.length > 0 ? v : new InputJava9TryWithResources()).finalWrapper.finalField) {
+        try ((args.length > 0 ? v : new InputAdvanceJava9TryWithResources()).finalWrapper.finalField) {
         }
 
         //More than one resource
-        InputJava9TryWithResources i1 = new InputJava9TryWithResources();
-        try (i1; InputJava9TryWithResources i2 = new InputJava9TryWithResources(true)) {
+        InputAdvanceJava9TryWithResources i1 = new InputAdvanceJava9TryWithResources();
+        try (i1; InputAdvanceJava9TryWithResources i2 = new InputAdvanceJava9TryWithResources(true)) {
         }
 
-        InputJava9TryWithResources m1 = new InputJava9TryWithResources();
-        try (m1; InputJava9TryWithResources m2 = m1; InputJava9TryWithResources m3 = m2;) {
+        InputAdvanceJava9TryWithResources m1 = new InputAdvanceJava9TryWithResources();
+        try (m1; InputAdvanceJava9TryWithResources m2 = m1; InputAdvanceJava9TryWithResources m3 = m2;) {
         }
 
         // Nested try
@@ -46,7 +46,7 @@ public class InputAdvanceJava9TryWithResources implements AutoCloseable
             }
         }
         // null test cases
-        InputJava9TryWithResources n = null;
+        InputAdvanceJava9TryWithResources n = null;
         try (n) {
         }
 
