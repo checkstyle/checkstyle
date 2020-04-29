@@ -21,7 +21,8 @@
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
       <!-- It is ok to use print stack trace in CLI class. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[
+        @SimpleName='Main']"/>
     </properties>
   </rule>
   <rule ref="category/java/bestpractices.xml/JUnitAssertionsShouldIncludeMessage">
@@ -29,7 +30,7 @@
       <!-- The PMD check accepts only a string constant as the assert message.
            This check uses a method call. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='JavadocCatchCheck']
+                value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocCatchCheck']
                            //MethodDeclaration[@Name='visitJavadocToken']"/>
     </properties>
   </rule>
@@ -38,8 +39,8 @@
       <!-- it is ok to use println in CLI class. -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration
-                       [@Image='Main' or @Image='Main$CliOptions'
-                       or @Image='JavadocPropertiesGenerator']"/>
+                       [@SimpleName='Main' or @SimpleName='Main$CliOptions'
+                       or @SimpleName='JavadocPropertiesGenerator']"/>
     </properties>
   </rule>
 
@@ -52,7 +53,7 @@
     <properties>
       <!-- RequireThisCheck$AbstractFrame is a private class, no comment is required. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='RequireThisCheck']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='RequireThisCheck']"/>
     </properties>
   </rule>
 
@@ -93,11 +94,11 @@
           JavadocTokenTypes and TokenTypes aren't utility classes. They are
             token definition classes. Also, they are part of the API. -->
      <property name="violationSuppressXPath"
-               value="//ClassOrInterfaceDeclaration[@Image='Definitions'
-                           or @Image='LoadExternalDtdFeatureProvider'
-                           or @Image='JavadocTokenTypes'
-                           or @Image='TokenTypes'
-                           or @Image='AutomaticBean']
+               value="//ClassOrInterfaceDeclaration[@SimpleName='Definitions'
+                           or @SimpleName='LoadExternalDtdFeatureProvider'
+                           or @SimpleName='JavadocTokenTypes'
+                           or @SimpleName='TokenTypes'
+                           or @SimpleName='AutomaticBean']
                    "/>
     </properties>
   </rule>
@@ -105,15 +106,15 @@
     <properties>
       <!-- False positives on IF_ELSE-IF-ELSE-IF. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='XMLLogger']
+                value="//ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']
                            //MethodDeclaration[@Name='isReference']
-      | //ClassOrInterfaceDeclaration[@Image='DetailAstImpl']
+      | //ClassOrInterfaceDeclaration[@SimpleName='DetailAstImpl']
               //MethodDeclaration[@Name='addPreviousSibling']
-      | //ClassOrInterfaceDeclaration[@Image='AnnotationLocationCheck']
+      | //ClassOrInterfaceDeclaration[@SimpleName='AnnotationLocationCheck']
               //MethodDeclaration[@Name='checkAnnotations']
-      | //ClassOrInterfaceDeclaration[@Image='AbstractImportControl']
+      | //ClassOrInterfaceDeclaration[@SimpleName='AbstractImportControl']
               //MethodDeclaration[@Name='checkAccess']
-      | //ClassOrInterfaceDeclaration[@Image='HandlerFactory']
+      | //ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']
               //MethodDeclaration[@Name='getHandler']"/>
     </properties>
   </rule>
@@ -121,9 +122,10 @@
     <properties>
       <!-- Can not change the API. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='AbstractFileSetCheck'
-        or @Image='AbstractCheck' or @Image='AbstractJavadocCheck' or @Image='AbstractNode'
-        or @Image='AbstractViolationReporter']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='AbstractFileSetCheck'
+        or @SimpleName='AbstractCheck' or @SimpleName='AbstractJavadocCheck'
+        or @SimpleName='AbstractNode'
+        or @SimpleName='AbstractViolationReporter']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/UseUnderscoresInNumericLiterals">
@@ -144,7 +146,7 @@
       <!-- Main is a good name for the class containing the main method.
            Tag as inner class name is fine. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Main' or @Image='Tag']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Main' or @SimpleName='Tag']"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/CommentDefaultAccessModifier">
@@ -194,7 +196,8 @@
     <properties>
       <!-- There is no alternative to using System.exit in the CLI class
            to report the return code. -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Main']"/>
     </properties>
   </rule>
 
@@ -222,11 +225,11 @@
            a runtime exception.
            JavadocMethodCheck: Exception type is not predictable. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']
-                      |//ClassOrInterfaceDeclaration[@Image='TranslationCheck']
+                      |//ClassOrInterfaceDeclaration[@SimpleName='TranslationCheck']
                              //MethodDeclaration[@Name='getTranslationKeys']
-                      |//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']
+                      |//ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']
                              //MethodDeclaration[@Name='resolveClass']"/>
     </properties>
   </rule>
@@ -236,7 +239,7 @@
            some extra IFs. -->
       <property name="problemDepth" value="4"/>
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='ClassResolver']
+                value="//ClassOrInterfaceDeclaration[@SimpleName='ClassResolver']
                              //MethodDeclaration[@Name='resolve']"/>
     </properties>
   </rule>
@@ -245,7 +248,7 @@
       <!-- There is no other way to deliver the filename that was under processing.
            See https://github.com/checkstyle/checkstyle/issues/2285 -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
                              //MethodDeclaration[@Name='processFiles']"/>
     </properties>
   </rule>
@@ -253,7 +256,7 @@
     <properties>
       <!-- I do not see any problem, looks like a false positive. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='HandlerFactory']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='HandlerFactory']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/NcssCount">
@@ -268,23 +271,25 @@
              NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
              they has to be monolithic.
            SuppressFilterElement is a single constructor and can't be split easily -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='PackageObjectFactory' or @Image='RequireThisCheck'
-        or @Image='VariableDeclarationUsageDistanceCheck'
-        or @Image='HandlerFactory']
-      | //ClassOrInterfaceDeclaration[@Image='XMLLogger']//MethodDeclaration[@Name='encode']
-      | //ClassOrInterfaceDeclaration[@Image='LeftCurlyCheck' or @Image='FinalLocalVariableCheck'
-        or @Image='NPathComplexityCheck']
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
+        or @SimpleName='PackageObjectFactory' or @SimpleName='RequireThisCheck'
+        or @SimpleName='VariableDeclarationUsageDistanceCheck'
+        or @SimpleName='HandlerFactory']
+      | //ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
+      | //ClassOrInterfaceDeclaration[@SimpleName='LeftCurlyCheck'
+        or @SimpleName='FinalLocalVariableCheck'
+        or @SimpleName='NPathComplexityCheck']
              //MethodDeclaration[@Name='visitToken']
-      | //ClassOrInterfaceDeclaration[@Image='FallThroughCheck']
+      | //ClassOrInterfaceDeclaration[@SimpleName='FallThroughCheck']
              //MethodDeclaration[@Name='isTerminated']
-      | //ClassOrInterfaceDeclaration[@Image='ModifiedControlVariableCheck'
-        or @Image='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
-      | //ClassOrInterfaceDeclaration[@Image='NoWhitespaceAfterCheck']
+      | //ClassOrInterfaceDeclaration[@SimpleName='ModifiedControlVariableCheck'
+        or @SimpleName='NPathComplexityCheck']//MethodDeclaration[@Name='leaveToken']
+      | //ClassOrInterfaceDeclaration[@SimpleName='NoWhitespaceAfterCheck']
              //MethodDeclaration[@Name='getArrayDeclaratorPreviousElement']
-      | //ClassOrInterfaceDeclaration[@Image='ElementNode' or @Image='RootNode']
+      | //ClassOrInterfaceDeclaration[@SimpleName='ElementNode' or @SimpleName='RootNode']
              //MethodDeclaration[@Name='iterateAxis']
-      | //ClassOrInterfaceDeclaration[@Image='SuppressFilterElement']
+      | //ClassOrInterfaceDeclaration[@SimpleName='SuppressFilterElement']
              //ConstructorDeclaration
       "/>
     </properties>
@@ -294,8 +299,8 @@
       <!-- Unable to split fields out of the class. -->
       <!-- Main has an annotated field for each command line option. This is by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Checker']
-    | //ClassOrInterfaceDeclaration[@Image='Main']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Checker']
+    | //ClassOrInterfaceDeclaration[@SimpleName='Main']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ImmutableField">
@@ -303,7 +308,7 @@
       <!-- Main has annotated fields whose value is injected by picocli.
         These fields should not be marked final. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='Main']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Main']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/TooManyMethods">
@@ -312,8 +317,8 @@
       <!-- The class PackageObjectFactory has many boilerplate methods.
            JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='PackageObjectFactory']
-          |//ClassOrInterfaceDeclaration[@Image='JavadocMethodCheck']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='PackageObjectFactory']
+          | //ClassOrInterfaceDeclaration[@SimpleName='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveClassLength">
@@ -322,15 +327,16 @@
            RequireThisCheck has to work with and identify many frames.
            JavadocMethodCheck is in the process of being rewritten. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypes'
-        or @Image='TokenTypes' or @Image='RequireThisCheck' or @Image='JavadocMethodCheck']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypes'
+        or @SimpleName='TokenTypes' or @SimpleName='RequireThisCheck'
+        or @SimpleName='JavadocMethodCheck']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
       <!-- The class LocalizedMessage has a constructor with many parameters by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@Image='LocalizedMessage']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='LocalizedMessage']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">
@@ -339,8 +345,9 @@
            Checker collects external resource locations and sets up the configuration.
            CheckstyleAntTask integrates Checkstyle with Ant.
             -->
-      <property name="violationSuppressXPath" value="//ClassOrInterfaceDeclaration[@Image='Main'
-        or @Image='Checker' or @Image='CheckstyleAntTask']"/>
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
+        or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask']"/>
     </properties>
   </rule>
 
@@ -354,8 +361,8 @@
       overloads a synchronized method, so it should have synchronized
       modifier. -->
       <property name="violationSuppressXPath"
-        value="//ClassOrInterfaceDeclaration[@Image='UniqueProperties'
-          or @Image='SequencedProperties']//MethodDeclaration[@Name='keys' or @Name='put']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='UniqueProperties'
+          or @SimpleName='SequencedProperties']//MethodDeclaration[@Name='keys' or @Name='put']"/>
     </properties>
   </rule>
 
