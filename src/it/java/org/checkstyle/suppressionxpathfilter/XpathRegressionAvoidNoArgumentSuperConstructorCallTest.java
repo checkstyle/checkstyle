@@ -40,7 +40,7 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
     }
 
     @Test
-    public void testOne() throws Exception {
+    public void testDefault() throws Exception {
         final File fileToProcess = new File(getPath(
             "SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall.java"));
 
@@ -58,6 +58,32 @@ public class XpathRegressionAvoidNoArgumentSuperConstructorCallTest
                     + "/OBJBLOCK/CTOR_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCall']]"
                     + "/SLIST/SUPER_CTOR_CALL"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
+
+    @Test
+    public void testWithComments() throws Exception {
+        final File fileToProcess = new File(getPath(
+            "SuppressionXpathRegressionAvoidNoArgumentSuperConstructorCallWithComments.java"
+        ));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(CLASS);
+
+        final String[] expectedViolation = {
+            "5:9: " + getCheckMessage(CLASS,
+                AvoidNoArgumentSuperConstructorCallCheck.MSG_CTOR),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructor"
+                    + "CallWithComments']]"
+                + "/OBJBLOCK/CTOR_DEF[."
+                + "/IDENT[@text='SuppressionXpathRegressionAvoidNoArgumentSuperConstructor"
+                    + "CallWithComments']]"
+                + "/SLIST/SUPER_CTOR_CALL"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
