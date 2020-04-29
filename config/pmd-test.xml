@@ -66,15 +66,15 @@
                    different checks.
                  IndentationCheckTest has a lot of cases. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                                  //MethodDeclaration[@Name='testTokenValues']
-            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                   //MethodDeclaration[@Name='testTokenNumbering']
-            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                   //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
-            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                   //MethodDeclaration[@Name='testTokenNumbers']
-            | //ClassOrInterfaceDeclaration[@Image='IndentationCheckTest']"/>
+            | //ClassOrInterfaceDeclaration[@SimpleName='IndentationCheckTest']"/>
         </properties>
     </rule>
 
@@ -90,17 +90,17 @@
                  XdocsPagesTest.getModulePropertyExpectedTypeName is a complicated list of
                    different checks. -->
             <property name="violationSuppressXPath" value="
-            //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']
+            //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
                 //MethodDeclaration[@Name='testTokenNumbering']
-            | //ClassOrInterfaceDeclaration[@Image='ParenPadCheckTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='ParenPadCheckTest']
                 //MethodDeclaration[@Name='testNospaceWithComplexInput']
-            | //ClassOrInterfaceDeclaration[@Image='ParenPadTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='ParenPadTest']
                 //MethodDeclaration[@Name='testMethodParen']
-            | //ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                 //MethodDeclaration[@Name='testTokenValues']
-            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                 //MethodDeclaration[@Name='getModulePropertyExpectedTypeName']
-            | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
                 //MethodDeclaration[@Name='testTokenNumbers']"/>
         </properties>
     </rule>
@@ -120,16 +120,16 @@
                  All test classes which starts with XpathRegression have asserts inside parent's
                  method. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='AllChecksTest'
-              or @Image='AstRegressionTest'
-              or @Image='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
-            | //ClassOrInterfaceDeclaration[@Image='MainTest']
-                  //PrimaryPrefix//Name[starts-with(@Image, 'assert')]
-            | //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
+              or @SimpleName='AstRegressionTest'
+              or @SimpleName='ImportControlCheckTest']//PrimaryPrefix/Name[@Image='verify']
+            | //ClassOrInterfaceDeclaration[@SimpleName='MainTest']
+                  //PrimaryPrefix//Name[starts-with(@SimpleName, 'assert')]
+            | //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
                   //MethodDeclaration[@Name='testAllChecksPresentOnAvailableChecksPage']
-            | //ClassOrInterfaceDeclaration[@Image='XdocsJavaDocsTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='XdocsJavaDocsTest']
                   //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
-            | //ClassOrInterfaceDeclaration[starts-with(@Image,'XpathRegression')]
+            | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
                   //MethodDeclaration
             "/>
         </properties>
@@ -139,7 +139,7 @@
         <properties>
             <!-- A false positive. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='CommitValidationTest']"/>
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']"/>
         </properties>
     </rule>
     <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts">
@@ -151,12 +151,12 @@
                  JavadocTokenTypes.testTokenValues contains several asserts as it checks each
                    token explicitly. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='JavadocTokenTypesTest']
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='JavadocTokenTypesTest']
                                  //MethodDeclaration[@Name='testTokenValues']
-                        | //ClassOrInterfaceDeclaration[@Image='GeneratedJavaTokenTypesTest']
-                              //MethodDeclaration[@Name='testTokenNumbering']
-                        | //ClassOrInterfaceDeclaration[@Image='GeneratedJavadocTokenTypesTest']
-                              //MethodDeclaration[@Name='testTokenNumbers']"/>
+                | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavaTokenTypesTest']
+                      //MethodDeclaration[@Name='testTokenNumbering']
+                | //ClassOrInterfaceDeclaration[@SimpleName='GeneratedJavadocTokenTypesTest']
+                      //MethodDeclaration[@Name='testTokenNumbers']"/>
         </properties>
     </rule>
 
@@ -165,7 +165,7 @@
             <!-- A false positive: commit validation is a sequence of checks, if we shuffle them
                    it would be broken. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='CommitValidationTest']
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='CommitValidationTest']
                                 //MethodDeclaration[@Name='validateCommitMessage']"/>
         </properties>
     </rule>
@@ -174,7 +174,7 @@
         <properties>
             <!-- This inherited from GeneratedJavaLexer. -->
             <property name="violationSuppressXPath"
-                      value="//ClassOrInterfaceDeclaration[@Image='AssertGeneratedJavaLexer']
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='AssertGeneratedJavaLexer']
                   //MethodDeclaration[@Name='LA']"/>
         </properties>
     </rule>
@@ -187,9 +187,9 @@
                  Suppress the false-positives. -->
             <property name="violationSuppressXPath"
                       value="//ClassOrInterfaceDeclaration[
-                      @Image='SuppressionXpathSingleFilterTest']
+                      @SimpleName='SuppressionXpathSingleFilterTest']
                   //MethodDeclaration[@Name='createSuppressionXpathSingleFilter']
-                  | //ClassOrInterfaceDeclaration[ @Image='XdocsPagesTest']
+                  | //ClassOrInterfaceDeclaration[ @SimpleName='XdocsPagesTest']
                         //MethodDeclaration[@Name='validateRuleNameOrder']"/>
         </properties>
     </rule>
@@ -198,18 +198,18 @@
             <!-- we do close streams in special methods -->
             <property name="violationSuppressXPath"
                       value="
-                      //ClassOrInterfaceDeclaration[@Image='XdocsPagesTest']
-                                 //MethodDeclaration[@Name='getModulePropertyExpectedValue']
-                      |//ClassOrInterfaceDeclaration[@Image='DefaultLoggerPowerTest']
-                                 //MethodDeclaration[@Name='testNewCtor']
-                      |//ClassOrInterfaceDeclaration[@Image='ImportControlLoaderPowerTest']
-                                 //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
-                      |//ClassOrInterfaceDeclaration[@Image='ImportControlLoaderPowerTest']
-                                 //MethodDeclaration[@Name='testInputStreamFailsOnRead']
-                      |//ClassOrInterfaceDeclaration[@Image='XpathFileGeneratorAuditListenerTest']
-                                 //MethodDeclaration[@Name='verifyOutput']
-                      |//ClassOrInterfaceDeclaration[@Image='CommonUtilTest']
-                                 //MethodDeclaration[@Name='testClose']
+              //ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                         //MethodDeclaration[@Name='getModulePropertyExpectedValue']
+              |//ClassOrInterfaceDeclaration[@SimpleName='DefaultLoggerPowerTest']
+                         //MethodDeclaration[@Name='testNewCtor']
+              |//ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                         //MethodDeclaration[@Name='testInputStreamThatFailsOnClose']
+              |//ClassOrInterfaceDeclaration[@SimpleName='ImportControlLoaderPowerTest']
+                         //MethodDeclaration[@Name='testInputStreamFailsOnRead']
+              |//ClassOrInterfaceDeclaration[@SimpleName='XpathFileGeneratorAuditListenerTest']
+                         //MethodDeclaration[@Name='verifyOutput']
+              |//ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
+                         //MethodDeclaration[@Name='testClose']
                       "/>
         </properties>
     </rule>
