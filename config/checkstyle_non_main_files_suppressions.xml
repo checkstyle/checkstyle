@@ -23,7 +23,7 @@
     <!-- Javadoc files should not have new line by design (on purpose). -->
      <suppress checks="NewlineAtEndOfFile" files="[\\/]test[\\/].*\.javadoc"/>
 
-    <!--Empty file cannot have any new line at the end. -->
+    <!-- Empty file cannot have any new line at the end. -->
     <suppress checks="NewlineAtEndOfFile"
               files="[\\/]test[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/]InputNewlineAtEndOfFileEmptyFile\.txt"/>
     <suppress checks="NewlineAtEndOfFile"

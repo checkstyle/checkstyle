@@ -15,7 +15,7 @@
     <inspection_tool class="AbstractClassNeverImplemented" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
     <!-- we are not limited in resources
-         and we a library so there are more usages outside of our code-->
+         and we a library so there are more usages outside of our code -->
     <inspection_tool class="AbstractClassWithOnlyOneDirectInheritor" enabled="false" level="ERROR"
                      enabled_by_default="true"/>
     <inspection_tool class="AbstractClassWithoutAbstractMethods" enabled="true" level="ERROR"
@@ -1768,7 +1768,7 @@
     bunch of libraries throw Error instead of Exception -->
     <inspection_tool class="ErrorRethrown" enabled="false" level="ERROR"
                      enabled_by_default="false"/>
-    <!--we do not use this tool-->
+    <!-- we do not use this tool -->
     <inspection_tool class="Eslint" enabled="false" level="WARNING" enabled_by_default="false"/>
     <inspection_tool class="ExceptionCaughtLocallyJS" enabled="true" level="ERROR"
                      enabled_by_default="true"/>
@@ -4385,7 +4385,7 @@
                 <option value="unchecked"/>
                 <option value="rawtypes"/>
                 <!-- There is no other way to deliver filename that was under processing.
-                     See https://github.com/checkstyle/checkstyle/issues/2285-->
+                     See https://github.com/checkstyle/checkstyle/issues/2285 -->
                 <option value="ProhibitedExceptionThrown"/>
                 <option value="MismatchedQueryAndUpdateOfCollection"/>
                 <!-- No way to split apart huge if/else branches in test. -->
@@ -4945,9 +4945,9 @@
          it is checked by RequireThisCheck -->
     <inspection_tool class="UnqualifiedMethodAccess" enabled="false" level="ERROR"
                      enabled_by_default="false"/>
-    <!--inspection does not have option to skip cases of usage
+    <!-- inspection does not have option to skip cases of usage
         static field/method that is declared
-        in the same class, as result there are a lot of want-fix cases.-->
+        in the same class, as result there are a lot of want-fix cases. -->
     <inspection_tool class="UnqualifiedStaticUsage" enabled="false" level="ERROR"
                      enabled_by_default="false"/>
     <inspection_tool class="UnreachableCodeJS" enabled="true" level="ERROR"
