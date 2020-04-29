@@ -27,7 +27,7 @@
         You can find information about development environment preparation here:
         <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki/Prepare-Development-Environment-in-Ubuntu-12.04">
         Prepare development environment in Ubuntu</a>.<br/>
-        2. Fork your copy from Checkstyle main project. As it is described
+        2. Fork Checkstyle upstream project. As it is described
         <a href="https://help.github.com/articles/fork-a-repo/"> here</a><br/>
         3. Checkout the current source code from: https://github.com/you_user_name/checkstyle/<br/>
         by running
@@ -53,7 +53,7 @@
       </p>
       <div class="wrap-content">
         <source>
-          git remote add main https://github.com/checkstyle/checkstyle
+          git remote add upstream https://github.com/checkstyle/checkstyle
         </source>
       </div>
       <p>
@@ -99,7 +99,8 @@
       </p>
       <div class="wrap-content">
         <source>
-          git pull main master
+          git checkout master
+          git pull upstream master
           git push origin master
         </source>
       </div>
@@ -108,6 +109,7 @@
       </p>
       <div class="wrap-content">
         <source>
+          git checkout my-new-check
           git rebase master
         </source>
       </div>
