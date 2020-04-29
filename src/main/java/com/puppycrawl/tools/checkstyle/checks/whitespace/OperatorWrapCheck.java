@@ -300,13 +300,32 @@ public class OperatorWrapCheck
                     && !text.equals(currentLine.trim())
                     && (CommonUtil.isBlank(currentLineSubstring)
                     || currentLineSubstring.trim().indexOf("//") == 0
-                    || currentLineSubstring.trim().indexOf("/*") == 0)) {
+                    || checkCodeForMultilineComment(currentLineSubstring))) {
                 log(ast, MSG_LINE_NEW, text);
-            }
-            else if (option == WrapOption.EOL
+            } else if (option == WrapOption.EOL
                     && CommonUtil.hasWhitespaceBefore(colNo - 1, currentLine)) {
                 log(ast, MSG_LINE_PREVIOUS, text);
             }
         }
     }
+
+    /**
+    * If the multiline Comment starts : Check for the end.
+    * If it doesn't end on the same line return true.
+    * If it ends and there is no code after the end, return true.
+    * */
+    private boolean checkCodeForMultilineComment(String currentLineSubstring) {
+        boolean result = false;
+        int indexOfMultilineCommentEnd = currentLineSubstring.trim().indexOf("*/");
+        if (currentLineSubstring.trim().indexOf("/*") == 0) {
+            if (indexOfMultilineCommentEnd == -1) { // doesn't end.
+                result = true;
+            } else if (CommonUtil.isBlank(currentLineSubstring.trim()
+                    .substring(indexOfMultilineCommentEnd + 2))) {
+                result = true;
+            }
+        }
+        return result;
+    }
 }
+

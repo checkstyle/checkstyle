@@ -79,11 +79,12 @@ class Switch {
         }
         for (int k : new int[]{1,2,3}) {}
         String s = "Hello" + //warn
-                "WOrld";
+                "World";
         String s1 = "Hello" + /*warn*/
-                "WOrld";
+                "World";
         String s2 = "Hello" + /*
         warn*/
-                "WOrld";
+                "World";
+        String s3 = "Hello" + /*(ok)*/  "World";
     }
 }
