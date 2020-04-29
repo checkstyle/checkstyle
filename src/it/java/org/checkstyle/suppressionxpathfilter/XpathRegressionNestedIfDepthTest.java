@@ -59,4 +59,32 @@ public class XpathRegressionNestedIfDepthTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testMax() throws Exception {
+        final File fileToProcess =
+            new File(getPath("SuppressionXpathRegressionNestedIfDepthMax.java"));
+
+        final DefaultConfiguration moduleConfig =
+            createModuleConfig(NestedIfDepthCheck.class);
+        moduleConfig.addAttribute("max", "3");
+
+        final String[] expectedViolation = {
+            "12:25: " + getCheckMessage(NestedIfDepthCheck.class,
+                NestedIfDepthCheck.MSG_KEY, 4, 3),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNestedIfDepthMax']]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
+                + "/SLIST/LITERAL_IF/"
+                + "SLIST/LITERAL_IF/"
+                + "SLIST/LITERAL_IF/"
+                + "SLIST/LITERAL_IF/"
+                + "SLIST/LITERAL_IF"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
 }

@@ -38,7 +38,7 @@ int[] a = new int[]
         </source>
 
         <p>
-          The check demands a comma at the end if neither left nor right curly braces
+          By default, the check demands a comma at the end if neither left nor right curly braces
           are on the same line as the last element of the array.
         </p>
         <source>
@@ -93,6 +93,30 @@ return new int[] {
         </source>
       </subsection>
 
+      <subsection name="Properties" id="ArrayTrailingComma_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>alwaysDemandTrailingComma</td>
+              <td>
+                  Control whether to always check for a trailing comma, even when an array is
+                  inline.
+              </td>
+              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.33</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
       <subsection name="Examples" id="ArrayTrailingComma_Examples">
           <p>
           To configure the check:
@@ -135,6 +159,47 @@ int[] a2 = new int[]{
   1,
   2
   ,};        // no violation
+          </source>
+
+          <p>To configure check to always validate trailing comma:</p>
+          <source>
+&lt;module name="ArrayTrailingComma"&gt;
+    &lt;property name="alwaysDemandTrailingComma" value="true"/&gt;
+&lt;/module&gt;
+          </source>
+          <p>Example:</p>
+          <source>
+int[] numbers = {1, 2, 3}; // violation
+boolean[] bools = {
+true,
+true,
+false // violation
+};
+
+String[][] text = {{},{},}; // OK
+
+double[][] decimals = {
+{0.5, 2.3, 1.1,}, // OK
+{1.7, 1.9, 0.6}, // violation
+{0.8, 7.4, 6.5} // violation
+}; // violation, previous line misses a comma
+
+char[] chars = {'a', 'b', 'c'  // violation
+  };
+
+String[] letters = {
+  "a", "b", "c"}; // violation
+
+int[] a1 = new int[]{
+  1,
+  2
+  ,
+}; // OK
+
+int[] a2 = new int[]{
+  1,
+  2
+  ,}; // OK
           </source>
       </subsection>
 
@@ -3324,6 +3389,27 @@ class TestHashCode {
         <source>
 &lt;module name=&quot;MissingCtor&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class ExampleOk { // OK
+  private int a;
+  ExampleOk(int a) {
+    this.a = a;
+  }
+}
+class ExampleDefaultCtor { // OK
+  private String s;
+  ExampleDefaultCtor() {
+    s = "foobar";
+  }
+}
+class InvalidExample { // violation, class must have a constructor.
+  public void test() {}
+}
+abstract class AbstractExample { // OK
+  public abstract void test() {}
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
@@ -4754,13 +4840,6 @@ public void foo(String s, int i) {}
           the form of directory levels to provide physical grouping to your classes.
           These directories are added to the classpath so that your classes
           are visible to JVM when it runs the code.
-        </p>
-        <p>
-          <b>Note:</b>
-          This Check is partially supported by Xpath Suppression Filters. In case of testing empty
-          java files, Xpath Suppression Filters are not supported for this Check. (until
-          <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110
-          </a>)
         </p>
       </subsection>
 

@@ -44,9 +44,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul id="SuppressionXpathFilter_IncompatibleChecks">
  * <li>
- * CommentsIndentation
- * </li>
- * <li>
  * CustomImportOrder
  * </li>
  * <li>
@@ -80,15 +77,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * VariableDeclarationUsageDistance
- * </li>
- * </ul>
- * <p>
- * Certain Checks are partially supported by the filter:
- * </p>
- * <ul>
- * <li>
- * PackageDeclaration (until
- * <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110</a>)
  * </li>
  * </ul>
  * <p>

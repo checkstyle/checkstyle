@@ -277,7 +277,7 @@
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <version>0.5.6</version>
+      <version>0.6.0</version>
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
@@ -1395,7 +1395,7 @@
       <plugin>
         <groupId>de.thetaphi</groupId>
         <artifactId>forbiddenapis</artifactId>
-        <version>2.7</version>
+        <version>3.0</version>
         <configuration>
           <targetVersion>${java.version}</targetVersion>
           <failOnUnsupportedJava>false</failOnUnsupportedJava>
