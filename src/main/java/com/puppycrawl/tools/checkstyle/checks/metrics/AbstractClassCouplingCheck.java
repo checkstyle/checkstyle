@@ -160,6 +160,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * should end with a period, so it also appends a dot to a package name.
      *
      * @param excludedPackages the list of packages to ignore.
+     * @throws IllegalArgumentException if there are invalid identifiers among the packages.
      */
     public final void setExcludedPackages(String... excludedPackages) {
         final List<String> invalidIdentifiers = Arrays.stream(excludedPackages)
