@@ -128,8 +128,6 @@
 
     <!-- Until https://github.com/checkstyle/checkstyle/issues/8151 -->
     <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAvoidDoubleBraceInitializationTest.java"/>
-    <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAvoidNoArgumentSuperConstructorCallTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
@@ -148,4 +146,22 @@
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionUpperEllTest.java"/>
 
+
+    <!-- Empty files that are used as input for UT -->
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/].*"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile\.java"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
+    <suppress checks="RegexpMultiline"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
 </suppressions>

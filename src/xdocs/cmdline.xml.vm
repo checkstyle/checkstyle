@@ -39,9 +39,11 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
      [-f &lt;format&gt;] [-p &lt;propertiesFile&gt;] [-o &lt;file&gt;] \
-     [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [--tabWidth &lt;length&gt;] \
+     [-s &lt;line:column&gt;] [-g | --generate-xpath-suppression] [-w | --tabWidth &lt;length&gt;] \
      [-t | --tree] [-T | --treeWithComments] [-J | --treeWithJavadoc] [-j | --javadocTree] \
-     [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] file...
+     [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
+     [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
+     [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \ file...
       </source>
       </p>
 
@@ -52,9 +54,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         checks to apply. Command line options are:
       </p>
 
-      <ul>
+      <ul id="CLI_Options">
         <li>
-          <code>-c configurationFile</code> - specifies the location of the
+          <code>-c configurationFile</code> - Specifies the location of the
           file that defines the configuration modules. The location can either
           be a filesystem location, or a
           <a href=
@@ -63,26 +65,24 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           passed to the ClassLoader.getResource() method.
         </li>
         <li>
-          <code>-f format</code> - specify the output
-          format. Options are <code> "plain"</code> for the <a
-          href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
-          and <code>"xml"</code> for the <a
-          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>.
-          Defaults to <code>"plain"</code>.
+          <code>-f format</code> - Specifies the output
+          format. Valid values: <code>xml</code>, <code>plain</code> for <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
+          and <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger
+          .html">DefaultLogger</a> respectively.
+          Defaults to <code>plain</code>.
         </li>
         <li>
-          <code>-p propertiesFile</code> - specify a
-          properties file to use.
+          <code>-p propertiesFile</code> - Sets the property files to load.
         </li>
         <li>
-          <code>-o file</code> - specify the file to output
-          to.
+          <code>-o file</code> - Sets the output file. Defaults to stdout.
         </li>
         <li>
-          <code>-s line:column</code> - print xpath suppressions at the file's line and column
-          position. Line and column numbers are integer values separated by a <code>:</code>,
-          specify
-          location in the file the suppression should be generated for. The option cannot be used
+          <code>-s line:column</code> - Prints xpath suppressions at the file's line and column
+          position.
+          Argument is the line and column number (separated by a <code>:</code> ) in the file
+          that the suppression should be generated for. The option cannot be used
           with other options and requires exactly one file to run on to be specified.
           ATTENTION: generated result will have few queries, joined by pipe(<code>|</code>).
           Together they will match all AST nodes on specified line
@@ -90,49 +90,40 @@ java -D&lt;property&gt;=&lt;value&gt;  \
           also ok, but might result in undesirable matching and suppress other issues.
         </li>
         <li>
-          <code>-g,--generate-xpath-suppression</code> - generate to output a suppression xml to
-          use to suppress all violations from user's config. Instead of printing every violation,
+          <code>-g,--generate-xpath-suppression</code> - Generates to output a suppression xml
+          to use to suppress all violations from user's config. Instead of printing every violation,
           all violations will be catched and single suppressions xml file will be printed out.
           Used only
           with <code>-c</code> option. Output location can be specified with <code>-o</code> option.
         </li>
         <li>
-          <code>--tabWidth length</code> - set the length of the tab character. Used only with
-          <code>-s</code> and <code>-gxs</code> options. Default value is 8.
+          <code>-w, --tabWidth length</code> - Sets the length of the tab character. Used only with
+          <code>-s</code> option. Default value is 8.
         </li>
         <li>
-          <code>-t, --tree</code> - print Abstract Syntax Tree(AST) of the checked file. The option
+          <code>-t, --tree</code> - Prints Abstract Syntax Tree(AST) of the checked file. The option
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>
-          <code>-T, --treeWithComments</code> - print Abstract Syntax Tree(AST) with comment nodes
+          <code>-T, --treeWithComments</code> - Prints Abstract Syntax Tree(AST) with comment nodes
           of the checked file. The option cannot be used with other options and requires exactly
           one file to run on to be specified.
         </li>
         <li>
-          <code>-J, --treeWithJavadoc</code> - print Abstract Syntax Tree(AST) with Javadoc nodes
+          <code>-J, --treeWithJavadoc</code> - Prints Abstract Syntax Tree(AST) with Javadoc nodes
           and comment nodes of the checked file. Attention that line number and columns will not be
           the same as it is a file due to the fact that each javadoc comment is parsed separately
           from java file. The option cannot be used with other options and requires exactly one
           file to run on to be specified.
         </li>
         <li>
-          <code>-j, --javadocTree</code> - print Parse Tree of the Javadoc comment.
+          <code>-j, --javadocTree</code> - Prints Parse Tree of the Javadoc comment.
           The file have to contain <b>only Javadoc comment content</b> without including '/**' and
-          '*/' at the beginning and at the end respectively.
-          For example:
-          MyTestFile.javadoc
-          <source>
-
-           * Test method.
-           * @return true
-
-          </source>
-          The option
+          '*/' at the beginning and at the end respectively. The option
           cannot be used other options and requires exactly one file to run on to be specified.
         </li>
         <li>
-          <code>-d, --debug</code> - Print all debug logging of CheckStyle utility.
+          <code>-d, --debug</code> - Prints all debug logging of CheckStyle utility.
         </li>
         <li>
           <code>-e, --exclude excludedPath</code> - Directory/file to exclude from
@@ -148,13 +139,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </li>
         <li>
           <code>-b, --branch-matching-xpath xpathQuery</code>
-           - Show Abstract Syntax Tree(AST) branches that match given XPath query.
+           - Shows Abstract Syntax Tree(AST) branches that match given XPath query.
         </li>
         <li>
           <code>-h, --help</code> - print usage help message and exit. Any other option is ignored.
         </li>
         <li>
-          <code>--executeIgnoredModules</code> - Allows ignored modules to be run.
+          <code>-E, --executeIgnoredModules</code> - Allows ignored modules to be run.
         </li>
       </ul>
 
