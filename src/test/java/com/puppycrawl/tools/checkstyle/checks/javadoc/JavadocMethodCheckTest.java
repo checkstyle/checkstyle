@@ -552,43 +552,6 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClassAliasToString() throws Exception {
-        final Class<?> tokenType = Class.forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
-                + "JavadocMethodCheck$Token");
-
-        final Class<?> regularClassType = Class
-                .forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
-                        + "JavadocMethodCheck$RegularClass");
-        final Constructor<?> regularClassConstructor = regularClassType.getDeclaredConstructor(
-                tokenType, String.class, JavadocMethodCheck.class);
-        regularClassConstructor.setAccessible(true);
-
-        final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
-                int.class, int.class);
-        final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
-
-        final Object regularClass = regularClassConstructor.newInstance(token, "sur",
-                new JavadocMethodCheck());
-
-        final Class<?> classAliasType = Class.forName(
-                "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck$ClassAlias");
-        final Class<?> abstractTypeInfoType = Class
-                .forName("com.puppycrawl.tools.checkstyle.checks.javadoc."
-                        + "JavadocMethodCheck$ClassInfo");
-
-        final Constructor<?> classAliasConstructor = classAliasType
-                .getDeclaredConstructor(tokenType, abstractTypeInfoType);
-        classAliasConstructor.setAccessible(true);
-
-        final Object classAlias = classAliasConstructor.newInstance(token, regularClass);
-        final Method toString = classAlias.getClass().getDeclaredMethod("toString");
-        toString.setAccessible(true);
-        final String result = (String) toString.invoke(classAlias);
-        assertEquals("ClassAlias[alias Token[blablabla(1x1)] for Token[blablabla(1x1)]]", result,
-                "Invalid toString result");
-    }
-
-    @Test
     public void testWithoutLogErrors() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         verify(config, getPath("InputJavadocMethodLoadErrors.java"),
