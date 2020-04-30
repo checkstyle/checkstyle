@@ -10,44 +10,45 @@
     <exclude-pattern>.*/src/main/.*</exclude-pattern>
 
     <rule ref="config/pmd.xml">
-        <!--We do throws Exception, as any exception that in not caught in test should fail
+        <!-- We do throws Exception, as any exception that in not caught in test should fail
             a test that is expected behavior and we like it as it follow fail-fast and helps
-            to avoid extra catch blocks-->
+            to avoid extra catch blocks -->
         <exclude name="SignatureDeclareThrowsException"/>
-        <!--it madness to move all string values to common variables,
-            it will be hard to read test code-->
+        <!-- it madness to move all string values to common variables,
+            it will be hard to read test code -->
         <exclude name="AvoidDuplicateLiterals"/>
-        <!--we do not need javadoc on test code-->
+        <!-- we do not need javadoc on test code -->
         <exclude name="CommentRequired"/>
-        <!--we like static imports in UTs as them minimize the code and we know that most of
-            such methods are from UT+moks frameworks-->
+        <!-- we like static imports in UTs as them minimize the code and we know that most of
+            such methods are from UT+moks frameworks -->
         <exclude name="TooManyStaticImports"/>
-        <!--we try to keep all testing for class in one place/class/file to ease navigation
-            between target class and it's test-->
+        <!-- we try to keep all testing for class in one place/class/file to ease navigation
+            between target class and it's test -->
         <exclude name="TooManyMethods"/>
-        <!--we have too much UTs for each main class, it is better to keep all tests in one
-            file to ease navigation and search for tes-->
+        <!-- we have too much UTs for each main class, it is better to keep all tests in one
+            file to ease navigation and search for tes -->
         <exclude name="CouplingBetweenObjects"/>
-        <!--we have too much UTs for each main class, it is better to keep all tests in one
-            file to ease navigation and search for test-->
+        <!-- we have too much UTs for each main class, it is better to keep all tests in one
+            file to ease navigation and search for test -->
         <exclude name="ExcessiveImports"/>
-        <!--test should be named as their main class-->
+        <!-- test should be named as their main class -->
         <exclude name="ClassNamingConventions"/>
-        <!--checkstyle do not use IP in configuration, so all values in tests are ok to use,
-            they just another test string data-->
+        <!-- checkstyle do not use IP in configuration, so all values in tests are ok to use,
+            they just another test string data -->
         <exclude name="AvoidUsingHardCodedIP"/>
-        <!--UTests are required to be public by design-->
+        <!-- UTests are required to be public by design -->
         <exclude name="ExcessivePublicCount"/>
-        <!--we have too much UTs for each main class, it is better to keep all tests in one
-            file to ease navigation and search for test-->
+        <!-- we have too much UTs for each main class, it is better to keep all tests in one
+            file to ease navigation and search for test -->
         <exclude name="ExcessiveClassLength"/>
-        <!--we want to avoid wide throws signature, it is just test-->
+        <!-- we want to avoid wide throws signature, it is just test -->
         <exclude name="AvoidCatchingGenericException"/>
-        <!--we do not want invest extra time to make logic ideal in test method, may be later...-->
+        <!-- we do not want invest extra time to make logic ideal
+             in test method, may be later... -->
         <exclude name="NPathComplexity"/>
-        <!--conflicts with checkstyle rule-->
+        <!-- conflicts with checkstyle rule -->
         <exclude name="JUnitUseExpected"/>
-        <!--will be addressed in https://github.com/checkstyle/checkstyle/projects/5-->
+        <!-- will be addressed in https://github.com/checkstyle/checkstyle/projects/5 -->
         <exclude name="NonThreadSafeSingleton"/>
     </rule>
 
