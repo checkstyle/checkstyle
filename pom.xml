@@ -224,6 +224,18 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit-junit5</artifactId>
+      <version>0.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.github.java-diff-utils</groupId>
+      <artifactId>java-diff-utils</artifactId>
+      <version>4.5</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
       <version>4.2.0</version>
@@ -1351,6 +1363,7 @@
                 <exclude>java_regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
+                <exclude>archunit_suppressions.txt</exclude>
               </excludes>
             </validationSet>
             <validationSet>
