@@ -63,6 +63,25 @@ public class ElseHandler extends BlockParentHandler {
     }
 
     @Override
+    protected void checkNonListChild() {
+        if (!isParentOfIf()
+            && getNonListChild().getLineNo() != getMainAst().getLineNo()) {
+            final IndentLevel expected = new IndentLevel(getIndent(), getBasicOffset());
+            checkExpressionSubtree(getNonListChild(), expected, true, false);
+        }
+    }
+
+    /**
+     * If "if" is the first child of else.
+     *
+     * @return returns true only if the "else" is not having curly braces and thus first child is an
+     *     "if" statement
+     */
+    private boolean isParentOfIf() {
+        return getMainAst().getFirstChild().getType() == TokenTypes.LITERAL_IF;
+    }
+
+    @Override
     protected DetailAST getNonListChild() {
         return getMainAst().getFirstChild();
     }
