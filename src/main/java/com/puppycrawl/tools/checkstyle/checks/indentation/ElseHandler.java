@@ -63,6 +63,14 @@ public class ElseHandler extends BlockParentHandler {
     }
 
     @Override
+    protected void checkNonListChild() {
+        if (getNonListChild().getLineNo() != getMainAst().getLineNo()) {
+            final IndentLevel expected = new IndentLevel(getIndent(), getBasicOffset());
+            checkExpressionSubtree(getNonListChild(), expected, true, false);
+        }
+    }
+
+    @Override
     protected DetailAST getNonListChild() {
         return getMainAst().getFirstChild();
     }
