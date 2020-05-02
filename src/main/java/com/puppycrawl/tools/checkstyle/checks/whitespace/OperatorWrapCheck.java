@@ -298,9 +298,7 @@ public class OperatorWrapCheck
             final String currentLineSubstring = currentLine.substring(colNo + text.length());
             if (option == WrapOption.NL
                     && !text.equals(currentLine.trim())
-                    && (CommonUtil.isBlank(currentLineSubstring)
-                    || currentLineSubstring.trim().indexOf("//") == 0
-                    || checkCodeForMultilineComment(currentLineSubstring))) {
+                    && checkForNoCode(currentLineSubstring.trim())) {
                 log(ast, MSG_LINE_NEW, text);
             }
             else if (option == WrapOption.EOL
@@ -311,25 +309,37 @@ public class OperatorWrapCheck
     }
 
     /**
-     * Checks for multiline comment start and end. Also checks if there is ant code after comment.
+     * Checks for multiline comment start and end. Also checks if there is any code after the
+     * Multiline comment.
      *
-     * @param currentLineSubstring A string to check.
-     * @return true If it ends and there is no code after the end,
-     *     If it doesn't end on the same line
+     * @param subString A string to check.
+     * @return true
+     *      If substring is blank,
+     *      If starts with // comment,
+     *      If starts with \* and ends with *\/ and there is no code after the end
+     *      If it doesn't end on the same line
      * */
-    private static boolean checkCodeForMultilineComment(String currentLineSubstring) {
+    private static boolean checkForNoCode(String subString) {
         boolean result = false;
-        if (currentLineSubstring.trim().indexOf("/*") == 0) {
-            final int indexOfMultilineCommentEnd = currentLineSubstring.trim().indexOf("*/");
-            if (indexOfMultilineCommentEnd == -1) { // doesn't end.
+        if (subString.isEmpty()) {
+            result = true;
+        }
+        else if (subString.indexOf("//") == 0) {
+            result = true;
+        }
+        else if (subString.indexOf("/*") == 0) {
+            final int indexOfMultilineCommentEnd = subString.indexOf("*/");
+            if (indexOfMultilineCommentEnd == -1) { // doesn't end on the same line.
                 result = true;
             }
-            else if (CommonUtil.isBlank(currentLineSubstring.trim()
-                    .substring(indexOfMultilineCommentEnd + 2))) {
+            else if (subString
+                    .substring(indexOfMultilineCommentEnd + 2)
+                    .isEmpty()) {
                 result = true;
             }
         }
         return result;
     }
+
 }
 
