@@ -203,4 +203,68 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
                 expectedXpathQueries);
     }
+
+    @Test
+    public void testIfWithNoCurlies() throws Exception {
+        final File fileToProcess =
+            new File(getPath("SuppressionXpathRegressionIndentationIfWithoutCurly.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IndentationCheck.class);
+
+        moduleConfig.addAttribute("arrayInitIndent", "4");
+        moduleConfig.addAttribute("basicOffset", "4");
+        moduleConfig.addAttribute("braceAdjustment", "0");
+        moduleConfig.addAttribute("caseIndent", "4");
+        moduleConfig.addAttribute("forceStrictCondition", "false");
+        moduleConfig.addAttribute("lineWrappingIndentation", "4");
+        moduleConfig.addAttribute("tabWidth", "4");
+        moduleConfig.addAttribute("throwsIndent", "4");
+
+        final String[] expectedViolation = {
+            "8:9: " + getCheckMessage(IndentationCheck.class,
+                IndentationCheck.MSG_CHILD_ERROR, "if", 8, 12),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationIfWithoutCurly']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/EXPR/"
+                    + "METHOD_CALL/IDENT[@text='e']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
+
+    @Test
+    public void testElseWithNoCurlies() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionIndentationElseWithoutCurly.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IndentationCheck.class);
+
+        moduleConfig.addAttribute("arrayInitIndent", "4");
+        moduleConfig.addAttribute("basicOffset", "4");
+        moduleConfig.addAttribute("braceAdjustment", "0");
+        moduleConfig.addAttribute("caseIndent", "4");
+        moduleConfig.addAttribute("forceStrictCondition", "false");
+        moduleConfig.addAttribute("lineWrappingIndentation", "4");
+        moduleConfig.addAttribute("tabWidth", "4");
+        moduleConfig.addAttribute("throwsIndent", "4");
+
+        final String[] expectedViolation = {
+            "12:9: " + getCheckMessage(IndentationCheck.class,
+                IndentationCheck.MSG_CHILD_ERROR, "else", 8, 12),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationElseWithoutCurly']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_IF/LITERAL_ELSE"
+                    + "/EXPR/METHOD_CALL/IDENT[@text='exp']"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+            expectedXpathQueries);
+    }
 }
