@@ -399,7 +399,7 @@ public abstract class AbstractExpressionHandler {
         final DetailAstSet subtreeAst = new DetailAstSet(indentCheck);
         final int firstLine = getFirstLine(tree);
         if (firstLineMatches && !allowNesting) {
-            final DetailAST firstAst = getFirstAst(tree, tree);
+            final DetailAST firstAst = getFirstAstNode(tree);
             subtreeAst.addAst(firstAst);
         }
         findSubtreeAst(subtreeAst, tree, allowNesting);
@@ -414,7 +414,18 @@ public abstract class AbstractExpressionHandler {
      * @return          the first line of expression
      */
     protected static int getFirstLine(DetailAST tree) {
-        return getFirstAst(tree, tree).getLineNo();
+        return getFirstAstNode(tree).getLineNo();
+    }
+
+    /**
+     * Get the first ast for given expression.
+     *
+     * @param ast         the abstract syntax tree for which the starting ast is to be found
+     *
+     * @return            the first ast of the expression
+     */
+    protected static DetailAST getFirstAstNode(DetailAST ast) {
+        return getFirstAst(ast, ast);
     }
 
     /**
@@ -425,7 +436,7 @@ public abstract class AbstractExpressionHandler {
      *
      * @return the first ast of the expression
      */
-    protected static DetailAST getFirstAst(DetailAST ast, DetailAST tree) {
+    private static DetailAST getFirstAst(DetailAST ast, DetailAST tree) {
         DetailAST realStart = ast;
 
         if (tree.getLineNo() < realStart.getLineNo()
