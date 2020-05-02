@@ -112,13 +112,13 @@ public class InputIndentationInvalidIfIndent { //indent:0 exp:0
         boolean test = false; //indent:8 exp:8
         // no braces if //indent:8 exp:8
         if (test) //indent:8 exp:8
-              System.getProperty("blah"); //indent:14 exp:>=12
+              System.getProperty("blah"); //indent:14 exp:12 warn
 
         // no braces if/else //indent:8 exp:8
         if (test) //indent:8 exp:8
-            System.getProperty("blah"); //indent:12 exp:>=12
+            System.getProperty("blah"); //indent:12 exp:12
         else //indent:8 exp:8
-            System.getProperty("blah"); //indent:12 exp:>=12
+            System.getProperty("blah"); //indent:12 exp:12
 
 
         // lcurly on same line, and stmt //indent:8 exp:8
@@ -213,7 +213,7 @@ System.getProperty("blah"); //indent:0 exp:12 warn
         if (test) //indent:8 exp:8
             System.getProperty("blah");  //indent:12 exp:12
         else if (7 < 8) //indent:8 exp:8
-          System.getProperty("blah");  //indent:10 exp:10
+          System.getProperty("blah");  //indent:10 exp:12 warn
         else if (8 < 9) //indent:8 exp:8
             System.getProperty("blah");  //indent:12 exp:12
 
@@ -258,9 +258,9 @@ if (test  //indent:0 exp:8 warn
 System.getProperty("blah");  //indent:0 exp:12 warn
 }  //indent:0 exp:8 warn
 if (test) //indent:0 exp:8 warn
-System.getProperty("blah"); //indent:0 exp:0
+System.getProperty("blah"); //indent:0 exp:12 warn
 else //indent:0 exp:8 warn
-System.getProperty("blah"); //indent:0 exp:0
+System.getProperty("blah"); //indent:0 exp:12 warn
 
     } //indent:4 exp:4
 
