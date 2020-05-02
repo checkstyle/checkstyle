@@ -309,8 +309,7 @@ public class OperatorWrapCheck
     }
 
     /**
-     * Checks for multiline comment start and end. Also checks if there is any code after the
-     * Multiline comment.
+     * Checks if there is any code after an operator.
      *
      * @param subString A string to check.
      * @return true
