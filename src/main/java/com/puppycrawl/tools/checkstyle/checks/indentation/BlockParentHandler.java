@@ -189,7 +189,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     /**
      * Check the indentation level of a child that is not a list of statements.
      */
-    private void checkNonListChild() {
+    protected void checkNonListChild() {
         final DetailAST nonList = getNonListChild();
         if (nonList != null) {
             final IndentLevel expected = new IndentLevel(getIndent(), getBasicOffset());
