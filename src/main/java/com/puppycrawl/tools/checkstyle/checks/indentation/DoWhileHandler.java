@@ -62,6 +62,11 @@ public class DoWhileHandler extends BlockParentHandler {
     }
 
     @Override
+    protected DetailAST getNonListChild() {
+        return getMainAst().getFirstChild();
+    }
+
+    @Override
     public void checkIndentation() {
         super.checkIndentation();
         checkWhileExpr();
