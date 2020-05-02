@@ -268,7 +268,7 @@ public class XdocsPagesTest {
 
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
-            if ("config_reporting.xml".equals(fileName)
+            if ("config_system_properties.xml".equals(fileName)
                     || "config_filefilters.xml".equals(fileName)
                     || "config_filters.xml".equals(fileName)) {
                 continue;
@@ -478,7 +478,7 @@ public class XdocsPagesTest {
         for (Path path : XdocUtil.getXdocsConfigFilePaths(XdocUtil.getXdocsFilePaths())) {
             final String fileName = path.getFileName().toString();
 
-            if ("config_reporting.xml".equals(fileName)) {
+            if ("config_system_properties.xml".equals(fileName)) {
                 continue;
             }
 

@@ -3389,6 +3389,27 @@ class TestHashCode {
         <source>
 &lt;module name=&quot;MissingCtor&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class ExampleOk { // OK
+  private int a;
+  ExampleOk(int a) {
+    this.a = a;
+  }
+}
+class ExampleDefaultCtor { // OK
+  private String s;
+  ExampleDefaultCtor() {
+    s = "foobar";
+  }
+}
+class InvalidExample { // violation, class must have a constructor.
+  public void test() {}
+}
+abstract class AbstractExample { // OK
+  public abstract void test() {}
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MissingCtor_Example_of_Usage">
@@ -4819,13 +4840,6 @@ public void foo(String s, int i) {}
           the form of directory levels to provide physical grouping to your classes.
           These directories are added to the classpath so that your classes
           are visible to JVM when it runs the code.
-        </p>
-        <p>
-          <b>Note:</b>
-          This Check is partially supported by Xpath Suppression Filters. In case of testing empty
-          java files, Xpath Suppression Filters are not supported for this Check. (until
-          <a href="https://github.com/checkstyle/checkstyle/pull/8110">#8110
-          </a>)
         </p>
       </subsection>
 
