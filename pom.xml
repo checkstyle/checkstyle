@@ -825,12 +825,6 @@
             </goals>
             <configuration>
               <excludes>
-                <!-- Parser related classes -->
-                <exclude>com/puppycrawl/tools/checkstyle/grammar/*.class</exclude>
-                <exclude>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.class</exclude>
-                <exclude>
-                  com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser$JavadocParserErrorStrategy.class
-                </exclude>
                 <!-- Swing related classes -->
                 <exclude>com/puppycrawl/tools/checkstyle/gui/*.class</exclude>
               </excludes>
@@ -939,12 +933,12 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.54</minimum>
+                      <minimum>0.57</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.44</minimum>
+                      <minimum>0.48</minimum>
                     </limit>
                   </limits>
                 </rule>
