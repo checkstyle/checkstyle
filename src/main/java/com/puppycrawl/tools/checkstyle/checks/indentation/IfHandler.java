@@ -98,6 +98,19 @@ public class IfHandler extends BlockParentHandler {
     }
 
     @Override
+    protected void checkNonListChild() {
+        super.checkNonListChild();
+        final DetailAST ifChild = getIfStatementRightParen(getMainAst())
+            .getNextSibling();
+        if (ifChild.getType() == TokenTypes.EXPR
+            && ifChild.getLineNo() != getMainAst().getLineNo()) {
+            final IndentLevel expected =
+                new IndentLevel(getIndent(), getBasicOffset());
+            checkExpressionSubtree(ifChild, expected, true, false);
+        }
+    }
+
+    @Override
     public void checkIndentation() {
         super.checkIndentation();
         checkCondExpr();
