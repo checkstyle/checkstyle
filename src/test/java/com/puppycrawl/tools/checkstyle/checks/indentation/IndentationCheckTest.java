@@ -748,6 +748,31 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIfElseWithNoCurly()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationIfElseWithNoCurly.java");
+        final String[] expected = {
+            "20:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "25:5: " + getCheckMessage(MSG_ERROR, "if", 4, 8),
+            "26:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "37:13: " + getCheckMessage(MSG_ERROR, "else", 12, 8),
+            "39:9: " + getCheckMessage(MSG_ERROR, "if", 8, 12),
+            "43:9: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 16),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testValidSwitchWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -1118,6 +1143,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "207:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
             "209:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
 
+            "216:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
             "225:11: " + getCheckMessage(MSG_ERROR, "if", 10, 12),
             "229:19: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 20),
             "240:11: " + getCheckMessage(MSG_ERROR, "if rparen", 10, 8),
@@ -1129,7 +1155,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "258:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "259:1: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
             "260:1: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
+            "261:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "262:1: " + getCheckMessage(MSG_ERROR, "else", 0, 8),
+            "263:1: " + getCheckMessage(MSG_CHILD_ERROR, "else", 0, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
