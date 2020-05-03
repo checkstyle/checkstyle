@@ -39,7 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * and
  *
- * <a href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html">
+ * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html">
  * how to write</a>.
  * </p>
  *
