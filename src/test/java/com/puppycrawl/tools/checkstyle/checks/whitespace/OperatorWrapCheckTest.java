@@ -103,6 +103,42 @@ public class OperatorWrapCheckTest
     }
 
     @Test
+    public void testEol() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
+        checkConfig.addAttribute("tokens", "ASSIGN");
+        checkConfig.addAttribute("tokens", "COLON");
+        checkConfig.addAttribute("tokens", "STAR");
+        checkConfig.addAttribute("tokens", "QUESTION");
+        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        final String[] expected = {
+            "17:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "18:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
+            "29:18: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "33:25: " + getCheckMessage(MSG_LINE_PREVIOUS, "?"),
+            "34:25: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
+            "35:17: " + getCheckMessage(MSG_LINE_PREVIOUS, ":"),
+        };
+        verify(checkConfig, getPath("InputOperatorWrapEol.java"), expected);
+    }
+
+    @Test
+    public void testNl() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
+        checkConfig.addAttribute("tokens", "ASSIGN");
+        checkConfig.addAttribute("tokens", "COLON");
+        checkConfig.addAttribute("tokens", "STAR");
+        checkConfig.addAttribute("tokens", "QUESTION");
+        checkConfig.addAttribute("option", WrapOption.NL.toString());
+        final String[] expected = {
+            "16:16: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "17:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
+            "28:23: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "31:25: " + getCheckMessage(MSG_LINE_NEW, "?"),
+        };
+        verify(checkConfig, getPath("InputOperatorWrapNl.java"), expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
