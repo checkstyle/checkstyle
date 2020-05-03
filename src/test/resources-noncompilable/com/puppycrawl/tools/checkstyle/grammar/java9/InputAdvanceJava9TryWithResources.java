@@ -29,12 +29,6 @@ public class InputAdvanceJava9TryWithResources implements AutoCloseable
         try (m1; InputAdvanceJava9TryWithResources m2 = m1;
                 InputAdvanceJava9TryWithResources m3 = m2;) {
         }
-
-        try {
-        } catch (Exception ex) {
-            try (v) {
-            }
-        }
     }
 
     final static FinalWrapper finalWrapper = new FinalWrapper();
