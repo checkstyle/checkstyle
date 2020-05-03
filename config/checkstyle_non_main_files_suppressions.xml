@@ -128,15 +128,9 @@
 
     <!-- Until https://github.com/checkstyle/checkstyle/issues/8151 -->
     <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionAvoidNoArgumentSuperConstructorCallTest.java"/>
-    <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionJavadocStyleTest.java"/>
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNestedForDepthTest.java"/>
-    <suppress  id="numberOfTestCasesInXpath"
-               files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionNestedTryDepthTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"
                files="src[\\/]it[\\/]java[\\/]org[\\/]checkstyle[\\/]suppressionxpathfilter[\\/]XpathRegressionOneTopLevelClassTest.java"/>
     <suppress  id="numberOfTestCasesInXpath"

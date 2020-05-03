@@ -62,6 +62,7 @@
         <item name="Property Types" href="property_types.html"/>
         <item name="Filters" href="config_filters.html"/>
         <item name="File Filters" href="config_filefilters.html"/>
+        <item name="System Properties" href="config_system_properties.html"/>
       </item>
 
       <item name="Running" href="running.html">

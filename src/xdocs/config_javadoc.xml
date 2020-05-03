@@ -1679,7 +1679,11 @@ public class Test {
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="JavadocTagContinuationIndentation_Description">
         <p>
-          Checks the indentation of the continuation lines in at-clauses.
+          Checks the indentation of the continuation lines in at-clauses. That is whether the
+          continued description of at clauses should be indented or not. If the text is not properly
+          indented it throws a violation. A continuation line is when the description starts/spans
+          past the line with the tag. Default indentation required is at least 4, but this can be
+          changed with the help of properties below.
         </p>
       </subsection>
 
@@ -3016,7 +3020,7 @@ class DatabaseConfiguration {}
      <subsection name="Description" id="SummaryJavadoc_Description">
         <p>
           Checks that
-          <a href="https://www.oracle.com/technetwork/java/javase/documentation/index-137868.html#firstsentence">
+          <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
           Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
           violate Javadoc that does not contain first sentence.
