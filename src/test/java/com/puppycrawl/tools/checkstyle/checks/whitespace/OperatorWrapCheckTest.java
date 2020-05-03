@@ -103,6 +103,34 @@ public class OperatorWrapCheckTest
     }
 
     @Test
+    public void testEol() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
+        checkConfig.addAttribute("tokens", "ASSIGN");
+        checkConfig.addAttribute("tokens", "STAR");
+        checkConfig.addAttribute("option", WrapOption.EOL.toString());
+        final String[] expected = {
+            "21:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+            "22:17: " + getCheckMessage(MSG_LINE_PREVIOUS, "*"),
+            "33:18: " + getCheckMessage(MSG_LINE_PREVIOUS, "="),
+        };
+        verify(checkConfig, getPath("InputOperatorWrapEol.java"), expected);
+    }
+
+    @Test
+    public void testNl() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
+        checkConfig.addAttribute("tokens", "ASSIGN");
+        checkConfig.addAttribute("tokens", "STAR");
+        checkConfig.addAttribute("option", WrapOption.NL.toString());
+        final String[] expected = {
+            "20:16: " + getCheckMessage(MSG_LINE_NEW, "="),
+            "21:19: " + getCheckMessage(MSG_LINE_NEW, "*"),
+            "32:23: " + getCheckMessage(MSG_LINE_NEW, "="),
+        };
+        verify(checkConfig, getPath("InputOperatorWrapNl.java"), expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OperatorWrapCheck.class);
         checkConfig.addAttribute("option", "invalid_option");
