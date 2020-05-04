@@ -1621,7 +1621,7 @@
             <!-- Excluded due to Maven Release Plugin's issue #919:
                  https://issues.apache.org/jira/browse/MRELEASE-919 -->
             <excludedLink>http://maven.apache.org/plugins/maven-release-plugin/</excludedLink>
-            <!-- permanent java.net.UnknownHostException :-->
+            <!-- permanent java.net.UnknownHostException : -->
             <excludedLink>http://jacoco-maven-plugin/</excludedLink>
             <!-- Excluded till https://issues.sonatype.org/browse/NEXUS-9643 -->
             <excludedLink>
@@ -1999,7 +1999,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <!-- result in 115 extra survived items, too much to keep in ignore list -->
-                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
+                <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2184,7 +2184,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <!-- result in 53 extra survived items, too much to keep in ignore list -->
-                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
+                <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2230,7 +2230,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <!-- result in 64 extra survived items, too much to keep in ignore list -->
-                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
+                <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
@@ -2737,11 +2737,11 @@
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoaderTest</param>
               </targetTests>
               <excludedMethods>
-                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
+                <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <param>setFeaturesBySystemProperty</param>
               </excludedMethods>
               <avoidCallsTo>
-                <!--cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
+                <!-- cause of https://github.com/checkstyle/checkstyle/issues/3605 -->
                 <avoidCallsTo>
                   com.puppycrawl.tools.checkstyle.XmlLoader$LoadExternalDtdFeatureProvider
                 </avoidCallsTo>
@@ -3014,7 +3014,7 @@
                 <mutator>MATH</mutator>
                 <mutator>NEGATE_CONDITIONALS</mutator>
                 <!-- result in 58 extra survived items, too much to keep in ignore list -->
-                <!--<mutator>REMOVE_CONDITIONALS</mutator>-->
+                <!-- <mutator>REMOVE_CONDITIONALS</mutator> -->
                 <mutator>RETURN_VALS</mutator>
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>

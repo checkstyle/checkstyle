@@ -2454,25 +2454,25 @@
         New features:
       </p>
       <ul>
-        <!--(Feature request 498879)-->
+        <!-- (Feature request 498879) -->
         <li>added check for whitespace around '()'</li>
-        <!--(Feature request 500122)-->
+        <!-- (Feature request 500122) -->
         <li>added support for JDK 1.4 assert statements</li>
-        <!--(Feature request 515787)-->
+        <!-- (Feature request 515787) -->
         <li>added column number to error messages for better Emacs integration</li>
-        <!--(Feature request 524650)-->
+        <!-- (Feature request 524650) -->
         <li>added possibility to disable line-length checking by means of regular expressions</li>
-        <!--(Feature request 531229)-->
+        <!-- (Feature request 531229) -->
         <li>added possibility to disallow import of package hierarchies, e.g. sun.*</li>
-        <!--(Feature request 534038)-->
+        <!-- (Feature request 534038) -->
         <li>added failureProperty to ANT task</li>
-        <!--(Feature request 537107)-->
+        <!-- (Feature request 537107) -->
         <li>added check for 'public' modifier in interface method declarations, following the
         recommendation in chapter 9.4 of the Java Language Specification</li>
-        <!--(Feature request 545128)-->
+        <!-- (Feature request 545128) -->
         <li>added -r "dir" option to the commandline frontend, checkstyle will find all Java files
         contained in the specified directory</li>
-        <!--(Patch 531230 + enhancements)-->
+        <!-- (Patch 531230 + enhancements) -->
         <li>incorporated patch from Warner Onstine to configure the ANT task by means of a property
         file</li>
         <li>added 'contrib' directory, contains XSL stylesheets for formatting checkstyle's XML
