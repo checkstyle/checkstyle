@@ -942,6 +942,7 @@ npe
 npm
 nts
 nullanalysis
+nullbeforeinstanceof
 NULLCHECK
 nullness
 numberperline
