@@ -719,6 +719,7 @@
       <property name="tokens" value="METHOD_REF"/>
       <property name="allowLineBreaks" value="true"/>
     </module>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="OperatorWrap">
       <property name="tokens" value="QUESTION"/>
       <property name="tokens" value="COLON"/>
