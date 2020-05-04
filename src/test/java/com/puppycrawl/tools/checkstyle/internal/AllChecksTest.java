@@ -239,8 +239,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "COLON", "TYPE_EXTENSION_AND").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // google uses GenericWhitespace for this behavior
-                // whitespace is necessary Between a type annotation and ELLIPSIS
-                // according latest google style
+                // whitespace is necessary between a type annotation and ELLIPSIS
+                // according '4.6.2 Horizontal whitespace point 9'
                 "GENERIC_START", "GENERIC_END", "ELLIPSIS").collect(Collectors.toSet()));
     }
 
