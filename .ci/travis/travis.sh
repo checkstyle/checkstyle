@@ -6,6 +6,19 @@ removeFolderWithProtectedFiles() {
   find $1 -delete
 }
 
+function validateTempDirectoryEmpty() {
+  fail=0
+  if [ -z "$(ls -A .ci-temp)" ]; then
+    echo "Empty .ci-temp/ validation did not find any warnings."
+  else
+    echo "Directory .ci-temp/ is not empty. Verification failed."
+    echo "Contents of .ci-temp/:"
+    fail=1
+  fi
+  ls -A .ci-temp --color=auto
+  exit $fail
+}
+
 case $1 in
 
 checkstyle-and-sevntu)
@@ -253,6 +266,10 @@ no-error-test-sbe)
     "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
     build.gradle
   ./gradlew build --stacktrace
+  cd ..
+  removeFolderWithProtectedFiles simple-binary-encoding
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-checkstyle-sevntu-checkstyle)
@@ -272,6 +289,10 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-guava)
@@ -288,8 +309,12 @@ no-exception-test-guava)
   mvn -e clean install -Pno-validations
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-guava-with-google-checks)
@@ -310,6 +335,11 @@ no-exception-test-guava-with-google-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  rm google_checks.*
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-guava-with-sun-checks)
@@ -330,6 +360,11 @@ no-exception-test-guava-with-sun-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  rm sun_checks.*
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-hibernate)
@@ -348,6 +383,10 @@ no-exception-test-hibernate)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-spotbugs)
@@ -366,6 +405,10 @@ no-exception-test-spotbugs)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-spring-framework)
@@ -384,6 +427,10 @@ no-exception-test-spring-framework)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-hbase)
@@ -402,6 +449,10 @@ no-exception-test-hbase)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-Pmd-elasticsearch-lombok-ast)
@@ -422,6 +473,10 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 no-exception-test-alot-of-project1)
@@ -445,6 +500,10 @@ no-exception-test-alot-of-project1)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 
@@ -459,6 +518,8 @@ no-error-pmd)
   mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles pmd
+  cd ..
+  validateTempDirectoryEmpty
   ;;
 
 check-missing-pitests)
