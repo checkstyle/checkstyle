@@ -180,8 +180,15 @@ assembly-run-all-jar)
   FILE=InputCustomImportOrderNoImports.java
   java -jar target/checkstyle-$CS_POM_VERSION-all.jar -c /google_checks.xml \
         $FOLDER/$FILE > .ci-temp/output.log
-  if grep -vE '(Starting audit)|(warning)|(Audit done.)' .ci-temp/output.log ; then exit 1; fi
-  if grep 'warning' .ci-temp/output.log ; then exit 1; fi
+  fail=0
+  if grep -vE '(Starting audit)|(warning)|(Audit done.)' .ci-temp/output.log ; then
+    fail=1;
+  elif grep 'warning' .ci-temp/output.log ; then
+    fail=1;
+  fi
+  rm .ci-temp/output.log
+  sleep 5
+  exit $fail
   ;;
 
 release-dry-run)
@@ -259,6 +266,8 @@ no-error-test-sbe)
     "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
     build.gradle
   ./gradlew build --stacktrace
+  cd ..
+  removeFolderWithProtectedFiles simple-binary-encoding
   ;;
 
 no-exception-test-checkstyle-sevntu-checkstyle)
@@ -278,6 +287,8 @@ no-exception-test-checkstyle-sevntu-checkstyle)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-guava)
@@ -296,6 +307,8 @@ no-exception-test-guava)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-guava-with-google-checks)
@@ -316,6 +329,9 @@ no-exception-test-guava-with-google-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  rm google_checks.*
   ;;
 
 no-exception-test-guava-with-sun-checks)
@@ -336,6 +352,9 @@ no-exception-test-guava-with-sun-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
+  rm sun_checks.*
   ;;
 
 no-exception-test-hibernate)
@@ -354,6 +373,8 @@ no-exception-test-hibernate)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-spotbugs)
@@ -372,6 +393,8 @@ no-exception-test-spotbugs)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-spring-framework)
@@ -390,6 +413,8 @@ no-exception-test-spring-framework)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-hbase)
@@ -408,6 +433,8 @@ no-exception-test-hbase)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-Pmd-elasticsearch-lombok-ast)
@@ -428,6 +455,8 @@ no-exception-test-Pmd-elasticsearch-lombok-ast)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 no-exception-test-alot-of-project1)
@@ -451,6 +480,8 @@ no-exception-test-alot-of-project1)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
       --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
+  cd ../..
+  removeFolderWithProtectedFiles contribution
   ;;
 
 
@@ -487,7 +518,8 @@ no-violation-test-josm)
   RESULT=$(cat errors.log | wc -l)
   cat errors.log
   echo 'Size of output:'$RESULT
-  cd ../..
+  cd ..
+  removeFolderWithProtectedFiles josm
   if [[ $RESULT != 0 ]]; then false; fi
   ;;
 
@@ -533,24 +565,26 @@ check-missing-pitests)
   ;;
 
 verify-no-exception-configs)
-  mkdir -p .ci-temp
+  mkdir -p .ci-temp/verify-no-exception-configs
+  working_dir=.ci-temp/verify-no-exception-configs
   wget -q \
-    --directory-prefix .ci-temp \
+    --directory-prefix $working_dir \
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-nonjavadoc-error.xml
   wget -q \
-    --directory-prefix .ci-temp \
+    --directory-prefix $working_dir \
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
   xmlstarlet sel --net --template -m .//module -v "@name" \
-    -n .ci-temp/checks-nonjavadoc-error.xml -n .ci-temp/checks-only-javadoc-error.xml \
+    -n $working_dir/checks-nonjavadoc-error.xml -n $working_dir/checks-only-javadoc-error.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
-    | sort | uniq | sed "s/Check$//" > .ci-temp/web.txt
+    | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
   xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_checks.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
-    | sort | uniq | sed "s/Check$//" > .ci-temp/file.txt
-  DIFF_TEXT=$(diff -u .ci-temp/web.txt .ci-temp/file.txt | cat)
+    | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
+  DIFF_TEXT=$(diff -u $working_dir/web.txt $working_dir/file.txt | cat)
+  fail=0
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
     if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]+)$ ]]; then
@@ -561,25 +595,26 @@ verify-no-exception-configs)
       echo 'PR Description grepped:'${PR_DESC:0:180}
       if [[ -z $PR_DESC ]]; then
         echo 'You introduce new Check'
-        diff -u .ci-temp/web.txt .ci-temp/file.txt | cat
+        diff -u $working_dir/web.txt $working_dir/file.txt | cat
         echo 'Please create PR to repository https://github.com/checkstyle/contribution'
         echo 'and add your new Check '
         echo '   to file checkstyle-tester/checks-nonjavadoc-error.xml'
         echo 'or to file checkstyle-tester/checks-only-javadoc-error.xml'
         echo 'PR for contribution repository will be merged right after this PR.'
-        sleep 5s
-        false;
+        fail=1;
       fi
     else
-      diff -u .ci-temp/web.txt .ci-temp/file.txt | cat
+      diff -u $working_dir/web.txt $working_dir/file.txt | cat
       echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
       echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
       echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
-      sleep 5s
-      false;
+      fail=1;
     fi
   fi
+  removeFolderWithProtectedFiles .ci-temp/verify-no-exception-configs
+  sleep 5
+  exit $fail
   ;;
 
 check-since-version)
