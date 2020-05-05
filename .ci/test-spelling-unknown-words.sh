@@ -71,6 +71,7 @@ diff_output=$(diff -U1 "$whitelist_path" "$run_output" |grep -v "$spellchecker" 
 
 if [ -z "$diff_output" ]; then
   echo "No new words and misspellings found."
+  rm $dict
   exit 0
 fi
 
@@ -83,6 +84,7 @@ if [ -z "$new_output" ]; then
   echo "patch '$whitelist_path' <<EOF"
   echo "$diff_output"
   echo "EOF"
+  rm $dict
   sleep 5
   exit 1
 fi
@@ -92,5 +94,6 @@ printDetails
 echo "patch $whitelist_path <<EOF"
 echo "$diff_output"
 echo "EOF"
+rm $dict
 sleep 5
 exit 1
