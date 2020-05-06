@@ -81,6 +81,7 @@
                     LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF,
                     LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, METHOD_DEF,
                     OBJBLOCK, STATIC_INIT"/>
+
         </module>
         <module name="RightCurly">
             <property name="id" value="RightCurlySame"/>
@@ -256,7 +257,7 @@
         </module>
         <module name="NoWhitespaceBefore">
             <property name="tokens"
-             value="COMMA, SEMI, POST_INC, POST_DEC, DOT, ELLIPSIS,
+             value="COMMA, SEMI, POST_INC, POST_DEC, DOT,
                     LABELED_STAT, METHOD_REF"/>
             <property name="allowLineBreaks" value="true"/>
         </module>
