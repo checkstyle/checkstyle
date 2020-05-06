@@ -717,6 +717,51 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIfElseWithNoCurly()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationIfElseWithNoCurly.java");
+        final String[] expected = {
+            "20: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "24: " + getCheckMessage(MSG_CHILD_ERROR, "if", 16, 12),
+            "25: " + getCheckMessage(MSG_ERROR, "if", 4, 8),
+            "26: " + getCheckMessage(MSG_CHILD_ERROR, "if", 8, 12),
+            "35: " + getCheckMessage(MSG_CHILD_ERROR, "else", 4, 12),
+            "37: " + getCheckMessage(MSG_ERROR, "else", 12, 8),
+            "39: " + getCheckMessage(MSG_ERROR, "if", 8, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testNonListChild()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationNonListChild.java");
+        final String[] expected = {
+            "22: " + getCheckMessage(MSG_CHILD_ERROR, "for", 0, 12),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+    @Test
     public void testValidSwitchWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -1056,6 +1101,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "105: " + getCheckMessage(MSG_ERROR, "else", 5, 8),
             "106: " + getCheckMessage(MSG_ERROR, "else rcurly", 11, 8),
 
+            "115: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
             "126: " + getCheckMessage(MSG_CHILD_ERROR, "if", 14, 12),
             "131: " + getCheckMessage(MSG_ERROR, "if lcurly", 10, 8),
             "132: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
@@ -1088,6 +1134,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "207: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
             "209: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
 
+            "216: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
             "225: " + getCheckMessage(MSG_ERROR, "if", 10, 12),
             "229: " + getCheckMessage(MSG_CHILD_ERROR, "if", 18, 20),
             "240: " + getCheckMessage(MSG_ERROR, "if rparen", 10, 8),
@@ -1099,7 +1146,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "258: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "259: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
             "260: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
+            "261: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "262: " + getCheckMessage(MSG_ERROR, "else", 0, 8),
+            "263: " + getCheckMessage(MSG_CHILD_ERROR, "else", 0, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
