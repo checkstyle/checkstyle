@@ -28,7 +28,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -73,9 +72,8 @@ public class XdocsUrlTest {
     private static Map<String, ArrayList<String>> getXdocsMap() throws IOException {
         final Map<String, ArrayList<String>> checksNamesMap = new HashMap<>();
         final Set<Class<?>> checkSet = CheckUtil.getCheckstyleModules();
-        final Iterator<Class<?>> iterator = checkSet.iterator();
-        while (iterator.hasNext()) {
-            final String[] splitArray = iterator.next().getName().split("\\.");
+        for (Class<?> check : checkSet) {
+            final String[] splitArray = check.getName().split("\\.");
             String subPackage = splitArray[splitArray.length - 2];
             if (!subPackage.equals(CHECKSTYLE)
                     && !subPackage.equals(FILTERS)
@@ -127,7 +125,7 @@ public class XdocsUrlTest {
                 assertWithMessage(checkNameModuleErrorMsg).that(moduleName).matches(ANNOTATION);
             }
             else {
-                final ArrayList<String> moduleFileNames = checksNamesMap.get(moduleName);
+                final Iterable<String> moduleFileNames = checksNamesMap.get(moduleName);
                 final String moduleNameErrorMsg = String.format(Locale.ROOT,
                         "module name: '%s' is not exist in '%s'", moduleName, PACKAGE_NAME);
                 assertWithMessage(moduleNameErrorMsg).that(moduleFileNames).isNotNull();
