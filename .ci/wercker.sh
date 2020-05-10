@@ -460,6 +460,15 @@ validate-ci-temp-empty)
   exit $fail
   ;;
 
+git-status)
+  if [ "$(git status --porcelain=v1 --untracked-files=normal)" ]; then
+    echo "There are non empty git status after build, please clean up or update .gitattributes file"
+    git status --porcelain=v1 --untracked-files=normal
+    sleep 5s
+    false
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
