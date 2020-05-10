@@ -460,6 +460,14 @@ validate-ci-temp-empty)
   exit $fail
   ;;
 
+git-status)
+  if [ $(git status | grep "Changes not staged for commit" | wc -l) -gt 0 ]; then
+    echo "There are changes in files after clone, recheck .gitattributes file"
+    sleep 5s
+    false
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
