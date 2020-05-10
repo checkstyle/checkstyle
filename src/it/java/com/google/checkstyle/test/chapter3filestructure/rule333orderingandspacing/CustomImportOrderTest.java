@@ -48,17 +48,17 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testCustomImport1() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
+            "4:1: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
                 "java.io.File.createTempFile"),
-            "6: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Button"),
-            "8: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Dialog", "java.awt.Frame"),
-            "12: " + getCheckMessage(clazz, MSG_LEX, "java.io.File", "javax.swing.JTable"),
-            "13: " + getCheckMessage(clazz, MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
-            "14: " + getCheckMessage(clazz, MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
-            "15: " + getCheckMessage(clazz, MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
-            "17: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "6:1: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Button"),
+            "8:1: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Dialog", "java.awt.Frame"),
+            "12:1: " + getCheckMessage(clazz, MSG_LEX, "java.io.File", "javax.swing.JTable"),
+            "13:1: " + getCheckMessage(clazz, MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
+            "14:1: " + getCheckMessage(clazz, MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
+            "15:1: " + getCheckMessage(clazz, MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
+            "17:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "com.google.common.base.Ascii"),
-            "17: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.base.Ascii",
+            "17:1: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.base.Ascii",
                 "javax.swing.JTable"),
         };
 
@@ -72,22 +72,22 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testCustomImport2() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
+            "4:1: " + getCheckMessage(clazz, MSG_LEX, "java.awt.Button.ABORT",
                 "java.io.File.createTempFile"),
-            "9: " + getCheckMessage(clazz, MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
-            "11: " + getCheckMessage(clazz, MSG_LEX, "java.util.concurrent.*",
+            "9:1: " + getCheckMessage(clazz, MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
+            "11:1: " + getCheckMessage(clazz, MSG_LEX, "java.util.concurrent.*",
                 "java.util.concurrent.AbstractExecutorService"),
-            "13: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "13:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "com.google.checkstyle.test.chapter2filebasic.rule21filename.*"),
-            "13: " + getCheckMessage(clazz, MSG_LEX,
+            "13:1: " + getCheckMessage(clazz, MSG_LEX,
                 "com.google.checkstyle.test.chapter2filebasic.rule21filename.*",
                 "java.util.concurrent.AbstractExecutorService"),
-            "14: " + getCheckMessage(clazz, MSG_LEX,
+            "14:1: " + getCheckMessage(clazz, MSG_LEX,
                 "com.google.checkstyle.test.chapter3filestructure.rule3sourcefile.*",
                 "java.util.concurrent.AbstractExecutorService"),
-            "16: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "16:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "com.google.common.reflect.*"),
-            "16: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.reflect.*",
+            "16:1: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.reflect.*",
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
@@ -101,22 +101,22 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testCustomImport3() throws Exception {
         final String[] expected = {
-            "4: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Dialog"),
-            "5: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
+            "4:1: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR, "java.awt.Dialog"),
+            "5:1: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
                 "javax.swing.WindowConstants.*"),
-            "7: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "7:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "com.google.checkstyle.test.chapter2filebasic.rule21filename.*"),
-            "7: " + getCheckMessage(clazz, MSG_LEX,
+            "7:1: " + getCheckMessage(clazz, MSG_LEX,
                 "com.google.checkstyle.test.chapter2filebasic.rule21filename.*", "java.awt.Dialog"),
-            "8: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.reflect.*",
+            "8:1: " + getCheckMessage(clazz, MSG_LEX, "com.google.common.reflect.*",
                 "java.awt.Dialog"),
-            "9: " + getCheckMessage(clazz, MSG_LEX,
+            "9:1: " + getCheckMessage(clazz, MSG_LEX,
                 "com.google.checkstyle.test.chapter3filestructure.rule3sourcefile.*",
                 "java.awt.Dialog"),
-            "11: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
+            "11:1: " + getCheckMessage(clazz, MSG_NONGROUP_EXPECTED, STATIC,
                 "java.io.File.createTempFile"),
-            "13: " + getCheckMessage(clazz, MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
-            "15: " + getCheckMessage(clazz, MSG_LEX, "java.util.concurrent.*",
+            "13:1: " + getCheckMessage(clazz, MSG_LEX, "java.util.*", "java.util.StringTokenizer"),
+            "15:1: " + getCheckMessage(clazz, MSG_LEX, "java.util.concurrent.*",
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
@@ -130,11 +130,11 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testCustomImport4() throws Exception {
         final String[] expected = {
-            "7: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "7:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "javax.swing.WindowConstants.*"),
-            "15: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "15:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "java.util.StringTokenizer"),
-            "17: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "17:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
@@ -148,15 +148,15 @@ public class CustomImportOrderTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testCustomImport5() throws Exception {
         final String[] expected = {
-            "9: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "9:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "javax.swing.WindowConstants.*"),
-            "13: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR,
+            "13:1: " + getCheckMessage(clazz, MSG_LINE_SEPARATOR,
                 "com.google.checkstyle.test.chapter2filebasic.rule21filename.*"),
-            "17: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "17:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "com.google.common.reflect.*"),
-            "21: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "21:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "java.util.StringTokenizer"),
-            "25: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
+            "25:1: " + getCheckMessage(clazz, MSG_SEPARATED_IN_GROUP,
                 "java.util.concurrent.AbstractExecutorService"),
         };
 
