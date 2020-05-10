@@ -460,6 +460,15 @@ validate-ci-temp-empty)
   exit $fail
   ;;
 
+git-status)
+  if [ $(git status | grep "Untracked files" | wc -l) -gt 0 ]; then
+    echo "There are non empty git status after build, please clean up or update .gitattributes file"
+    git status
+    sleep 5s
+    false
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
