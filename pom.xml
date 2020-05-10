@@ -1667,6 +1667,8 @@
             <excludedLink>https://api.bountysource.com/*</excludedLink>
             <!-- This URL become to require to login first to see content -->
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
+            <!-- link works but plugin's request always result in 404 -->
+            <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
