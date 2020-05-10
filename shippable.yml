@@ -60,3 +60,4 @@ build:
       fi
   post-ci:
     - CMD="./.ci/shippable.sh validate-ci-temp-empty"
+    - CMD="./.ci/shippable.sh git-status"
