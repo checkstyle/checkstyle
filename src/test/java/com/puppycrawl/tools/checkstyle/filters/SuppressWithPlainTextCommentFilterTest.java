@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -367,7 +368,9 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final EqualsVerifierReport ev = EqualsVerifier
                 .forClass(suppressionClass).usingGetClass()
                 .report();
-        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
+        assertWithMessage("Error: " + ev.getMessage())
+                .that(ev.isSuccessful())
+                .isTrue();
     }
 
     @Test
