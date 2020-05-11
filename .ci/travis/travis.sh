@@ -555,6 +555,7 @@ verify-no-exception-configs)
 git-status)
   if [ $(git status | grep "Changes not staged for commit" | wc -l) -gt 0 ]; then
     echo "There are changes in files after clone, recheck .gitattributes file"
+    git status
     sleep 5s
     false
   fi
