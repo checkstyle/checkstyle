@@ -317,6 +317,13 @@ jobs:
           - USE_MAVEN_REPO="true"
           - CMD="./.ci/travis/travis.sh no-error-pmd"
 
+    # No violation testing - josm (ant task)
+    - jdk: openjdk11
+      env:
+          - DESC="no error test on josm"
+          - USE_MAVEN_REPO="true"
+          - CMD="./.ci/travis/travis.sh no-violation-test-josm"
+
 script:
   - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
