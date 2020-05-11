@@ -452,13 +452,14 @@ no-error-pmd)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
+  touch test.file
   mkdir -p .ci-temp/
   cd .ci-temp/
   git clone https://github.com/pmd/pmd.git
   cd pmd
   mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
-  removeFolderWithProtectedFiles pmd
+  #removeFolderWithProtectedFiles pmd
   ;;
 
 check-missing-pitests)
