@@ -452,13 +452,13 @@ no-error-pmd)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  mkdir -p .ci-temp/
-  cd .ci-temp/
+  #mkdir -p .ci-temp/
+  #cd .ci-temp/
   git clone https://github.com/pmd/pmd.git
   cd pmd
   mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
-  removeFolderWithProtectedFiles pmd
+  #removeFolderWithProtectedFiles pmd
   ;;
 
 check-missing-pitests)
@@ -549,14 +549,6 @@ verify-no-exception-configs)
       sleep 5s
       false;
     fi
-  fi
-  ;;
-
-git-status)
-  if [ $(git status | grep "Changes not staged for commit" | wc -l) -gt 0 ]; then
-    echo "There are changes in files after clone, recheck .gitattributes file"
-    sleep 5s
-    false
   fi
   ;;
 
