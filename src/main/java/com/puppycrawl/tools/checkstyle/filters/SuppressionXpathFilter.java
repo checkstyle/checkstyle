@@ -59,6 +59,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * MissingJavadocType
  * </li>
  * <li>
+ * NoCodeInFile
+ * </li>
+ * <li>
  * Regexp (reason is at
  * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
