@@ -249,4 +249,16 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
     }
 
+    @Test
+    public void testInnerInterfacesAndClasses() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "5:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "7:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks."
+                    + "imports.unusedimports.InputUnusedImportsInner"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsInner.java"), expected);
+    }
 }
