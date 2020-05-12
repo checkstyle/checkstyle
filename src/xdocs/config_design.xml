@@ -163,6 +163,15 @@ public abstract class Plant {
               <td><code>After, AfterClass, Before, BeforeClass, Test</code></td>
               <td>7.2</td>
             </tr>
+            <tr>
+              <td>requiredJavadocPhrase</td>
+              <td>
+                Specify the comment text pattern which qualifies as a valid javadoc for methods.
+              </td>
+              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><code>&quot;.*&quot;</code></td>
+              <td>8.33</td>
+            </tr>
           </table>
         </div>
         </subsection>

@@ -23,6 +23,8 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -158,6 +160,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * skip the method from validation.
  * Default value is {@code After, AfterClass, Before, BeforeClass, Test}.
  * </li>
+ * <li>
+ * Property {@code requiredJavadocPhrase} - Specify the comment text pattern which qualifies as a
+ * valid javadoc for methods.
+ * Default value is {@code ".*"}.
+ * </li>
  * </ul>
  * <p>
  * To configure the check:
@@ -225,12 +232,26 @@ public class DesignForExtensionCheck extends AbstractCheck {
         "BeforeClass", "AfterClass", }).collect(Collectors.toSet());
 
     /**
+     * Specify the comment text pattern which qualifies as a valid javadoc for methods.
+     */
+    private Pattern requiredJavadocPhrase = Pattern.compile(".*");
+
+    /**
      * Setter to specify annotations which allow the check to skip the method from validation.
      *
      * @param ignoredAnnotations method annotations.
      */
     public void setIgnoredAnnotations(String... ignoredAnnotations) {
         this.ignoredAnnotations = Arrays.stream(ignoredAnnotations).collect(Collectors.toSet());
+    }
+
+    /**
+     * Setter to specify the comment text pattern which qualifies as a valid javadoc for methods.
+     *
+     * @param requiredJavadocPhrase method annotations.
+     */
+    public void setRequiredJavadocPhrase(Pattern requiredJavadocPhrase) {
+        this.requiredJavadocPhrase = requiredJavadocPhrase;
     }
 
     @Override
@@ -258,7 +279,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (!hasJavadocComment(ast)
+        if (!hasJavadocComment(ast, requiredJavadocPhrase)
                 && canBeOverridden(ast)
                 && (isNativeMethod(ast)
                     || !hasEmptyImplementation(ast))
@@ -276,11 +297,12 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * Checks whether a method has a javadoc comment.
      *
      * @param methodDef method definition token.
+     * @param requiredJavadocPhrase required javadoc comment pattern.
      * @return true if a method has a javadoc comment.
      */
-    private static boolean hasJavadocComment(DetailAST methodDef) {
-        return hasJavadocCommentOnToken(methodDef, TokenTypes.MODIFIERS)
-                || hasJavadocCommentOnToken(methodDef, TokenTypes.TYPE);
+    private static boolean hasJavadocComment(DetailAST methodDef, Pattern requiredJavadocPhrase) {
+        return hasJavadocCommentOnToken(methodDef, TokenTypes.MODIFIERS, requiredJavadocPhrase)
+                || hasJavadocCommentOnToken(methodDef, TokenTypes.TYPE, requiredJavadocPhrase);
     }
 
     /**
@@ -288,20 +310,24 @@ public class DesignForExtensionCheck extends AbstractCheck {
      *
      * @param methodDef method definition token.
      * @param tokenType token type.
+     * @param requiredJavadocPhrase required javadoc comment pattern.
      * @return true if a token has a javadoc comment.
      */
-    private static boolean hasJavadocCommentOnToken(DetailAST methodDef, int tokenType) {
+    private static boolean hasJavadocCommentOnToken(DetailAST methodDef, int tokenType,
+                                                    Pattern requiredJavadocPhrase) {
         final DetailAST token = methodDef.findFirstToken(tokenType);
-        return branchContainsJavadocComment(token);
+        return branchContainsJavadocComment(token, requiredJavadocPhrase);
     }
 
     /**
      * Checks whether a javadoc comment exists under the token.
      *
      * @param token tree token.
+     * @param requiredJavadocPhrase required javadoc comment pattern.
      * @return true if a javadoc comment exists under the token.
      */
-    private static boolean branchContainsJavadocComment(DetailAST token) {
+    private static boolean branchContainsJavadocComment(DetailAST token,
+                                                        Pattern requiredJavadocPhrase) {
         boolean result = false;
         DetailAST curNode = token;
         while (curNode != null) {
@@ -322,8 +348,33 @@ public class DesignForExtensionCheck extends AbstractCheck {
             }
             curNode = toVisit;
         }
-
+        if (curNode != null) {
+            result = isValidJavadocComment(curNode, requiredJavadocPhrase);
+        }
         return result;
+    }
+
+    /**
+     * Checks whether a javadoc follows the specified comment pattern.
+     *
+     * @param token tree token
+     * @param requiredJavadocPhrase required javadoc comment pattern
+     * @return true if the javadoc comment of the specified token follows the given pattern
+     */
+    private static boolean isValidJavadocComment(DetailAST token, Pattern requiredJavadocPhrase) {
+        final Pattern javadocStars = Pattern.compile("\\*\\s*");
+        final Pattern javadocWhiteSpaces = Pattern.compile("\\s+");
+        String javadoc = javadocWhiteSpaces
+                .matcher(javadocStars.matcher(JavadocUtil.getBlockCommentContent(token))
+                .replaceAll(""))
+                .replaceAll(" ");
+
+        final int firstTagIndex = javadoc.indexOf('@');
+        if (firstTagIndex != -1) {
+            javadoc = javadoc.substring(0, firstTagIndex);
+        }
+        final Matcher matcher = requiredJavadocPhrase.matcher(javadoc.trim());
+        return matcher.find();
     }
 
     /**
