@@ -231,12 +231,24 @@ public class UnusedImportsCheck extends AbstractCheck {
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-        if (parentType != TokenTypes.DOT
+        if ((parentType != TokenTypes.DOT
             && parentType != TokenTypes.METHOD_DEF
             || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null) {
+                && ast.getNextSibling() != null)
+                && !isInnerInterfaceOrClass(parentType)) {
             referenced.add(ast.getText());
         }
+    }
+
+    /**
+     * Checks whether the given parentType of the AST is an inner interface or inner class.
+     *
+     * @param parentType The token type
+     * @return true if the token type is INTERFACE_DEF or CLASS_DEF
+     */
+    private static boolean isInnerInterfaceOrClass(int parentType) {
+        return parentType == TokenTypes.INTERFACE_DEF
+                || parentType == TokenTypes.CLASS_DEF;
     }
 
     /**
