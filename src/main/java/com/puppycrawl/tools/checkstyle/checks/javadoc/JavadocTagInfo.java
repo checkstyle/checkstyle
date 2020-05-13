@@ -388,9 +388,9 @@ public enum JavadocTagInfo {
     private static final Map<String, JavadocTagInfo> NAME_TO_TAG;
 
     static {
-        TEXT_TO_TAG = Collections.unmodifiableMap(Arrays.stream(JavadocTagInfo.values())
+        TEXT_TO_TAG = Collections.unmodifiableMap(Arrays.stream(values())
             .collect(Collectors.toMap(JavadocTagInfo::getText, tagText -> tagText)));
-        NAME_TO_TAG = Collections.unmodifiableMap(Arrays.stream(JavadocTagInfo.values())
+        NAME_TO_TAG = Collections.unmodifiableMap(Arrays.stream(values())
             .collect(Collectors.toMap(JavadocTagInfo::getName, tagName -> tagName)));
 
         // Arrays sorting for binary search
