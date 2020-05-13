@@ -122,16 +122,17 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         else {
             final int expectedWarning = Integer.parseInt(comment.getExpectedWarning());
 
+            final boolean test;
             if (comment.isExpectedNonStrict()) {
                 // non-strict
-                final boolean test = indent >= expectedWarning;
-                result = test != comment.isWarning();
+                test = indent >= expectedWarning;
             }
             else {
                 // single
-                final boolean test = expectedWarning == indent;
-                result = test != comment.isWarning();
+                test = expectedWarning == indent;
             }
+            result = test != comment.isWarning();
+
         }
         return result;
     }
