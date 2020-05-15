@@ -103,8 +103,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             throws Exception {
         JavadocPropertiesGenerator.main("--nonexistent-argument");
 
-        final String expected = String.format(Locale.ROOT, "Missing required options "
-                + "[--destfile=<outputFile>, params[0]=<inputFile>]%n")
+        final String expected = String.format(Locale.ROOT,
+                "Missing required options and parameters: "
+                + "'--destfile=<outputFile>', '<inputFile>'%n")
                 + USAGE;
         assertEquals(expected, systemErr.getCapturedData(), "Unexpected error log");
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
@@ -116,7 +117,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         JavadocPropertiesGenerator.main(getPath("InputMain.java"));
 
         final String expected = String.format(Locale.ROOT,
-                "Missing required option '--destfile=<outputFile>'%n") + USAGE;
+                "Missing required option: '--destfile=<outputFile>'%n") + USAGE;
         assertEquals(expected, systemErr.getCapturedData(), "Unexpected error log");
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
     }
@@ -127,7 +128,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         JavadocPropertiesGenerator.main("--destfile", DESTFILE.getAbsolutePath());
 
         final String expected = String.format(Locale.ROOT,
-                "Missing required parameter: <inputFile>%n") + USAGE;
+                "Missing required parameter: '<inputFile>'%n") + USAGE;
         assertEquals(expected, systemErr.getCapturedData(), "Unexpected error log");
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
     }

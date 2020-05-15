@@ -60,7 +60,7 @@ public class MainPowerTest {
      */
     @Test
     public void testJacocoWorkaround() throws Exception {
-        final String expected = "Missing required parameter: <files>" + EOL + SHORT_USAGE;
+        final String expected = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
         mockStatic(System.class);
         Main.main();
         assertEquals("Unexpected output log", "", systemOut.getLog());
