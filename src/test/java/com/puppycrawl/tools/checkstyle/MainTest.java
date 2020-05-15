@@ -283,7 +283,7 @@ public class MainTest {
         assertExitWithStatus(-1, () -> invokeMain("-q"));
         // files is defined as a required positional param;
         // picocli verifies required parameters before checking unknown options
-        final String usage = "Missing required parameter: <files>" + EOL + SHORT_USAGE;
+        final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
         assertEquals(usage, systemErr.getCapturedData(), "Unexpected system error log");
     }
@@ -1495,7 +1495,7 @@ public class MainTest {
     @Test
     public void testMissingFiles(@SysErr Capturable systemErr, @SysOut Capturable systemOut) {
         assertExitWithStatus(-1, MainTest::invokeMain);
-        final String usage = "Missing required parameter: <files>" + EOL + SHORT_USAGE;
+        final String usage = "Missing required parameter: '<files>'" + EOL + SHORT_USAGE;
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
         assertEquals(usage, systemErr.getCapturedData(), "Unexpected system error log");
     }
