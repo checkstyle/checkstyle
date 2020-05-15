@@ -131,6 +131,12 @@ public class UnusedImportsCheck extends AbstractCheck {
     /** Set of references - possibly to imports or other things. */
     private final Set<String> referenced = new HashSet<>();
 
+    /** Set of enum declarations. */
+    private final Set<String> enums = new HashSet<>();
+
+    /** Set of annotation declarations. */
+    private final Set<String> annotations = new HashSet<>();
+
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
     /** Control whether to process Javadoc comments. */
@@ -150,6 +156,8 @@ public class UnusedImportsCheck extends AbstractCheck {
         collect = false;
         imports.clear();
         referenced.clear();
+        annotations.clear();
+        enums.clear();
     }
 
     @Override
@@ -231,12 +239,67 @@ public class UnusedImportsCheck extends AbstractCheck {
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-        if (parentType != TokenTypes.DOT
+        if ((parentType != TokenTypes.DOT
             && parentType != TokenTypes.METHOD_DEF
             || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null) {
+                && ast.getNextSibling() != null)
+                && !isEnumDefinitionOrType(ast)
+                && !isAnnotation(ast)
+                && !isInnerInterfaceOrClass(parentType)) {
             referenced.add(ast.getText());
         }
+    }
+
+    /**
+     * Checks whether the given parentType of the AST is an inner interface or inner class.
+     *
+     * @param parentType The token type
+     * @return true if the token type is INTERFACE_DEF or CLASS_DEF
+     */
+    private static boolean isInnerInterfaceOrClass(int parentType) {
+        return parentType == TokenTypes.INTERFACE_DEF
+                || parentType == TokenTypes.CLASS_DEF;
+    }
+
+    /**
+     * Checks whether the given AST is an enum.
+     *
+     * @param ast the IDENT node to process
+     * @return true if the AST is an enum
+     */
+    private boolean isEnumDefinitionOrType(DetailAST ast) {
+        boolean result = false;
+        if (ast.getParent().getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            result = true;
+        }
+        else if (ast.getParent().getType() == TokenTypes.ENUM_DEF) {
+            result = true;
+            enums.add(ast.getText());
+        }
+        else {
+            if (enums.contains(ast.getText())) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Checks whether the given AST is an annotation.
+     *
+     * @param ast The IDENT node to process
+     * @return true if the AST is an annotation
+     */
+    private boolean isAnnotation(DetailAST ast) {
+        boolean result = false;
+        if (ast.getParent().getType() == TokenTypes.ANNOTATION_DEF) {
+            result = true;
+            annotations.add(ast.getText());
+        }
+        if (annotations.contains(ast.getText())) {
+            result = true;
+        }
+        return result;
     }
 
     /**

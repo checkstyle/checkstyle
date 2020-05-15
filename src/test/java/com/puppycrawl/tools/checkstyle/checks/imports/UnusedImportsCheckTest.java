@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,54 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
                 "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
                 "5:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
+        );
+        final File[] inputsWithWarningsFirst =
+            {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+        final File[] inputsWithoutWarningFirst =
+            {new File(inputWithoutWarnings), new File(inputWithWarnings)};
+
+        verify(createChecker(checkConfig), inputsWithWarningsFirst, ImmutableMap.of(
+                inputWithoutWarnings, expectedFirstInput,
+                inputWithWarnings, expectedSecondInput));
+        verify(createChecker(checkConfig), inputsWithoutWarningFirst, ImmutableMap.of(
+                inputWithoutWarnings, expectedFirstInput,
+                inputWithWarnings, expectedSecondInput));
+    }
+
+    @Test
+    public void testEnumStateIsCleared() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String inputWithoutWarnings = getPath("InputUnusedImportsWithoutWarningsEnum"
+                + ".java");
+        final String inputWithWarnings = getPath("InputUnusedImportsCheckClearStateEnum"
+                + ".java");
+        final List<String> expectedFirstInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = Collections.singletonList(
+                "3:8: " + getCheckMessage(MSG_KEY, "net.sf.saxon.type.Type")
+        );
+        final File[] inputsWithWarningsFirst =
+            {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+        final File[] inputsWithoutWarningFirst =
+            {new File(inputWithoutWarnings), new File(inputWithWarnings)};
+
+        verify(createChecker(checkConfig), inputsWithWarningsFirst, ImmutableMap.of(
+                inputWithoutWarnings, expectedFirstInput,
+                inputWithWarnings, expectedSecondInput));
+        verify(createChecker(checkConfig), inputsWithoutWarningFirst, ImmutableMap.of(
+                inputWithoutWarnings, expectedFirstInput,
+                inputWithWarnings, expectedSecondInput));
+    }
+
+    @Test
+    public void testAnnotationStateIsCleared() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String inputWithoutWarnings = getPath("InputUnusedImportsWithoutWarningsAnnotation"
+                + ".java");
+        final String inputWithWarnings = getPath("InputUnusedImportsCheckClearStateAnnotation"
+                + ".java");
+        final List<String> expectedFirstInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
+        final List<String> expectedSecondInput = Collections.singletonList(
+                "3:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.StatelessCheck")
         );
         final File[] inputsWithWarningsFirst =
             {new File(inputWithWarnings), new File(inputWithoutWarnings)};
@@ -247,6 +296,47 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
         };
         verify(checkConfig, getPath("InputUnusedImportsJavadocQualifiedName.java"), expected);
+    }
+
+    @Test
+    public void testInnerInterfacesAndClasses() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "4:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsInner.java"), expected);
+    }
+
+    @Test
+    public void testInnerClassInInterface() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "4:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsInnerClassInInterface.java"), expected);
+    }
+
+    @Test
+    public void testTopLevelClass() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks."
+                    + "imports.unusedimports.InputUnusedImportsTopLevel"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsTopLevel.java"), expected);
+    }
+
+    @Test
+    public void testEnumAndAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "3:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "4:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "5:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsEnumAndAnnotation.java"), expected);
     }
 
 }
