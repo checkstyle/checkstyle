@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -237,7 +238,9 @@ public class SuppressFilterElementTest {
                         "lineFilter")
                 .suppress(Warning.NONFINAL_FIELDS)
                 .report();
-        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
+        assertWithMessage("Error: " + ev.getMessage())
+                .that(ev.isSuccessful())
+                .isTrue();
     }
 
 }
