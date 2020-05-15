@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -42,7 +43,9 @@ public class IntMatchFilterElementTest {
     public void testEqualsAndHashCode() {
         final EqualsVerifierReport ev = EqualsVerifier.forClass(IntMatchFilterElement.class)
                 .report();
-        assertEquals(EqualsVerifierReport.SUCCESS, ev, "Error: " + ev.getMessage());
+        assertWithMessage("Error: " + ev.getMessage())
+                .that(ev.isSuccessful())
+                .isTrue();
     }
 
     @Test
