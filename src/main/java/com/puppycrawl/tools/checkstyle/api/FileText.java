@@ -146,6 +146,7 @@ public final class FileText {
      * @param file the name of the file
      * @param charsetName the encoding to use when reading the file
      * @throws NullPointerException if the text is null
+     * @throws IllegalStateException if the charset is not supported.
      * @throws IOException if the file could not be read
      */
     public FileText(File file, String charsetName) throws IOException {
