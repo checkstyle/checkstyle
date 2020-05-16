@@ -552,14 +552,6 @@ verify-no-exception-configs)
   fi
   ;;
 
-git-status)
-  if [ $(git status | grep "Changes not staged for commit" | wc -l) -gt 0 ]; then
-    echo "There are changes in files after clone, recheck .gitattributes file"
-    sleep 5s
-    false
-  fi
-  ;;
-
 check-since-version)
   ## Travis merges the PR commit into origin/master
   ## This identifies the PR's original commit
