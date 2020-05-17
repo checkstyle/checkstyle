@@ -354,6 +354,20 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             checkCommentInModifiers(ast);
         }
         DetailAST nextToken = ast.getNextSibling();
+        if (nextToken != null && nextToken.getType() == TokenTypes.SEMI) {
+            final DetailAST parent = nextToken.getParent();
+            final int parentType = parent.getType();
+            final DetailAST nextSibling = parent.getNextSibling();
+
+            if (parentType == TokenTypes.VARIABLES
+                    && nextSibling.getFirstChild() != null) {
+                nextToken = nextSibling.getFirstChild();
+            }
+            else if (parentType == TokenTypes.VARIABLES
+                    && parent.getNextSibling() != null) {
+                nextToken = parent.getNextSibling();
+            }
+        }
         while (nextToken != null && isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
@@ -369,27 +383,33 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next sibling of the token
      */
     private void checkToken(DetailAST ast, DetailAST nextToken) {
+        DetailAST token = nextToken;
         final int astType = ast.getType();
         switch (astType) {
             case TokenTypes.VARIABLE_DEF:
-                processVariableDef(ast, nextToken);
+                final DetailAST parent = ast.getParent();
+                if (parent.getType() == TokenTypes.VARIABLES
+                        && parent.getNextSibling().getFirstChild() != null) {
+                    token = parent.getNextSibling().getFirstChild();
+                }
+                processVariableDef(ast, token);
                 break;
             case TokenTypes.IMPORT:
             case TokenTypes.STATIC_IMPORT:
-                processImport(ast, nextToken);
+                processImport(ast, token);
                 break;
             case TokenTypes.PACKAGE_DEF:
-                processPackage(ast, nextToken);
+                processPackage(ast, token);
                 break;
             default:
-                if (nextToken.getType() == TokenTypes.RCURLY) {
-                    if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
+                if (token.getType() == TokenTypes.RCURLY) {
+                    if (hasNotAllowedTwoEmptyLinesBefore(token)) {
                         log(ast.getLineNo(), MSG_MULTIPLE_LINES_AFTER, ast.getText());
                     }
                 }
                 else if (!hasEmptyLineAfter(ast)) {
-                    log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
-                        nextToken.getText());
+                    log(token.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                        token.getText());
                 }
         }
     }
@@ -654,6 +674,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             lastToken = token.getLastChild();
         }
         DetailAST nextToken = token.getNextSibling();
+        DetailAST parent = token.getParent();
+
+        if (parent != null
+                && parent.getType() == TokenTypes.VARIABLES
+                && parent.getNextSibling().getFirstChild() != null) {
+            lastToken =  parent.getLastChild();
+            nextToken = parent.getNextSibling().getFirstChild();
+        }
+
         if (isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
@@ -769,7 +798,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true variable definition is a type field.
      */
     private static boolean isTypeField(DetailAST variableDef) {
-        final int parentType = variableDef.getParent().getParent().getType();
+        int parentType = variableDef.getParent().getParent().getType();
+        if (variableDef.getParent().getType() == TokenTypes.VARIABLES) {
+            parentType = variableDef.getParent().getParent().getParent().getType();
+        }
         return parentType == TokenTypes.CLASS_DEF;
     }
 

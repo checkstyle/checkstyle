@@ -99,8 +99,9 @@ public class XpathUtilTest {
             "`--OBJBLOCK -> OBJBLOCK [1:11]",
             "    |--METHOD_DEF -> METHOD_DEF [1:13]",
             "    |   `--SLIST -> { [1:34]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
-            "    |       |   |--IDENT -> a [1:39]");
+            "    |       |--VARIABLES -> VARIABLES [1:35]",
+            "    |       |   `--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
+            "    |       |       |--IDENT -> a [1:39]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
         assertThat("Branch string is different", result, is(expected));
@@ -127,18 +128,20 @@ public class XpathUtilTest {
         Files.write(file.toPath(), fileContent.getBytes(StandardCharsets.UTF_8));
         final String expected = addEndOfLine(
             "CLASS_DEF -> CLASS_DEF [1:0]",
-            "`--OBJBLOCK -> OBJBLOCK [1:11]",
-            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "    |   `--SLIST -> { [1:34]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
-            "    |       |   |--IDENT -> a [1:39]",
-            "---------",
-            "CLASS_DEF -> CLASS_DEF [1:0]",
-            "`--OBJBLOCK -> OBJBLOCK [1:11]",
-            "    |--METHOD_DEF -> METHOD_DEF [1:13]",
-            "    |   `--SLIST -> { [1:34]",
-            "    |       |--VARIABLE_DEF -> VARIABLE_DEF [1:46]",
-            "    |       |   |--IDENT -> b [1:50]");
+                    "`--OBJBLOCK -> OBJBLOCK [1:11]",
+                    "    |--METHOD_DEF -> METHOD_DEF [1:13]",
+                    "    |   `--SLIST -> { [1:34]",
+                    "    |       |--VARIABLES -> VARIABLES [1:35]",
+                    "    |       |   `--VARIABLE_DEF -> VARIABLE_DEF [1:35]",
+                    "    |       |       |--IDENT -> a [1:39]",
+                    "---------",
+                    "CLASS_DEF -> CLASS_DEF [1:0]",
+                    "`--OBJBLOCK -> OBJBLOCK [1:11]",
+                    "    |--METHOD_DEF -> METHOD_DEF [1:13]",
+                    "    |   `--SLIST -> { [1:34]",
+                    "    |       |--VARIABLES -> VARIABLES [1:46]",
+                    "    |       |   `--VARIABLE_DEF -> VARIABLE_DEF [1:46]",
+                    "    |       |       |--IDENT -> b [1:50]");
         final String result = XpathUtil.printXpathBranch(
             "//CLASS_DEF//METHOD_DEF//VARIABLE_DEF//IDENT", file);
         assertThat("Branch string is different", result, is(expected));

@@ -255,7 +255,10 @@ public final class ScopeUtil {
         // variable declaration?
         if (node.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = node.getParent();
-            final int type = parent.getType();
+            int type = parent.getType();
+            if(type == TokenTypes.VARIABLES) {
+                type = parent.getParent().getType();
+            }
             localVariableDef = type == TokenTypes.SLIST
                     || type == TokenTypes.FOR_INIT
                     || type == TokenTypes.FOR_EACH_CLAUSE;

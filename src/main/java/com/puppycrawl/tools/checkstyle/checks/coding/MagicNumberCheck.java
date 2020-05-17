@@ -499,7 +499,8 @@ public class MagicNumberCheck extends AbstractCheck {
         // contains variable declaration
         // and it is directly inside class declaration
         return varDefAST != null
-                && varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF;
+                && varDefAST.getParent().getParent()
+                .getParent().getType() == TokenTypes.CLASS_DEF;
     }
 
     /**

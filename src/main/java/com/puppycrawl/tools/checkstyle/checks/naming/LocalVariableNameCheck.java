@@ -261,7 +261,10 @@ public class LocalVariableNameCheck
      * @return true if a variable is the loop's one.
      */
     private static boolean isForLoopVariable(DetailAST variableDef) {
-        final int parentType = variableDef.getParent().getType();
+        int parentType = variableDef.getParent().getType();
+        if(parentType == TokenTypes.VARIABLES) {
+            parentType = variableDef.getParent().getParent().getType();
+        }
         return parentType == TokenTypes.FOR_INIT
                 || parentType == TokenTypes.FOR_EACH_CLAUSE;
     }

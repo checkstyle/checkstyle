@@ -7,7 +7,7 @@
          files="InputMainViolationsForGoogle.java"
          checks="MemberNameCheck"
          query="/CLASS_DEF[./IDENT[@text='InputMainViolationsForGoogle']]/
-                  OBJBLOCK/VARIABLE_DEF/IDENT[@text='m_field']"
+                  OBJBLOCK/VARIABLES/VARIABLE_DEF/IDENT[@text='m_field']"
   />
   <suppress-xpath
          files="InputMainViolationsForGoogle.java"
