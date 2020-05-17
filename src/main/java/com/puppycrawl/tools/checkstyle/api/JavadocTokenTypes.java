@@ -1176,11 +1176,6 @@ public final class JavadocTokenTypes {
      */
     public static final int HTML_COMMENT_END = JavadocParser.HTML_COMMENT_END;
 
-    /**
-     * &lt;&#33;[CDATA[&#46;&#46;&#46;]]&gt; block.
-     */
-    public static final int CDATA = JavadocParser.CDATA;
-
     // ------------------------------------------------------------------------------------------ //
     // -----------------        OTHER          -------------------------------------------------- //
     // ------------------------------------------------------------------------------------------ //
