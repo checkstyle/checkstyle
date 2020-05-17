@@ -461,6 +461,30 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-violation-test-josm)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  echo CS_version: ${CS_POM_VERSION}
+  mkdir -p .ci-temp
+  cd .ci-temp
+  TESTED=16391
+  # Uncomment to test current tested version instead of hardcoded version
+  #TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
+  echo "JOSM revision: $TESTED"
+  svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r $TESTED --native-eol LF josm
+  cd josm
+  sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
+   tools/ivy.xml
+  ant -v checkstyle
+  grep '<error' checkstyle-josm.xml | cat > errors.log
+  echo "Checkstyle Errors:"
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
+  echo 'Size of output:'$RESULT
+  cd ../..
+  if [[ $RESULT != 0 ]]; then false; fi
+  ;;
+
 check-missing-pitests)
   fail=0
   mkdir -p target
