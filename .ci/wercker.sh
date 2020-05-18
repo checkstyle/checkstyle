@@ -460,6 +460,15 @@ validate-ci-temp-empty)
   exit $fail
   ;;
 
+git-status)
+  if [ "$(git status)" ]; then
+    printf "Please clean up or update .gitattributes file.\nGit status output:\n"
+    git status
+    sleep 5s
+    false
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
