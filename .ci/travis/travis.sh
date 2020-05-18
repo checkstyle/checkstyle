@@ -141,11 +141,13 @@ jdk14-verify-limited)
 
 nondex)
   mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
-  cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > output.txt
-  RESULT=$(cat output.txt | wc -c)
-  cat output.txt
+  mkdir -p .ci-temp
+  cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > .ci-temp/output.txt
+  RESULT=$(cat .ci-temp/output.txt | wc -c)
+  cat .ci-temp/output.txt
   echo 'Size of output:'$RESULT
   if [[ $RESULT != 0 ]]; then sleep 5s; false; fi
+  rm .ci-temp/output.txt
   ;;
 
 versions)
@@ -187,6 +189,7 @@ release-dry-run)
     mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
       -Djacoco.skip=true -Dpmd.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
       -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
+    mvn -e release:clean
   fi
   ;;
 
@@ -227,17 +230,20 @@ check-chmod)
   ;;
 
 all-sevntu-checks)
+  mkdir -p .ci-temp/all-sevntu-checks
+  working_dir=".ci-temp/all-sevntu-checks"
   xmlstarlet sel --net --template -m .//module -v "@name" -n config/checkstyle_sevntu_checks.xml \
     | grep -vE "Checker|TreeWalker|Filter|Holder" | grep -v "^$" \
     | sed "s/com\.github\.sevntu\.checkstyle\.checks\..*\.//" \
-    | sort | uniq | sed "s/Check$//" > file.txt
+    | sort | uniq | sed "s/Check$//" > $working_dir/file.txt
   wget -q http://sevntu-checkstyle.github.io/sevntu.checkstyle/apidocs/allclasses-frame.html -O - \
     | grep "<li>" | cut -d '>' -f 3 | sed "s/<\/a//" \
     | grep -E "Check$" \
-    | sort | uniq | sed "s/Check$//" > web.txt
+    | sort | uniq | sed "s/Check$//" > $working_dir/web.txt
   # temporal ignore list
   # sed -i.backup '/Jsr305Annotations/d' web.txt
-  diff -u web.txt file.txt
+  diff -u $working_dir/web.txt $working_dir/file.txt
+  removeFolderWithProtectedFiles $working_dir
   ;;
 
 no-error-test-sbe)
