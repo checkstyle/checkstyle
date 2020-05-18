@@ -195,4 +195,18 @@ class ClassWithStaticInitializers
         public Thread newThread(final Runnable r) {
             return new Thread(r);
         }}; // violation
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); }
+
+    interface Interface2
+    { int i = 1; public void meth1(); }
+
+    interface Interface3 {
+        void display();
+        interface Interface4 {
+            void myMethod();
+        }}
 }
