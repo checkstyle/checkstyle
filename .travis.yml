@@ -396,3 +396,17 @@ after_success:
         echo "deploy to maven snapshot repository is finished";
     fi
     sleep 5s
+  - |
+    set -e
+    fail=0
+    mkdir -p .ci-temp
+    if [ -z "$(ls -A .ci-temp)" ]; then
+        echo "Empty .ci-temp/ validation did not find any warnings."
+    else
+        echo "Directory .ci-temp/ is not empty. Verification failed."
+        echo "Contents of .ci-temp/:"
+        fail=1
+    fi
+    ls -A .ci-temp --color=auto
+    sleep 5s
+    exit $fail
