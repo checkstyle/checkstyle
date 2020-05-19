@@ -199,9 +199,9 @@ pr-description)
   ;;
 
 pr-age)
-  ## Travis merges the PR commit into origin/master
-  ## This command undoes that to work with the original branch
-  ## if it notices a merge commit
+  # Travis merges the PR commit into origin/master
+  # This command undoes that to work with the original branch
+  # if it notices a merge commit
   if git show --summary HEAD | grep ^Merge: ;
   then
     git reset --hard `git log -n 1 --no-merges --pretty=format:"%h"`
@@ -469,7 +469,7 @@ no-violation-test-josm)
   cd .ci-temp
   TESTED=16391
   # Uncomment to test current tested version instead of hardcoded version
-  #TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
+  # TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
   echo "JOSM revision: $TESTED"
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r $TESTED --native-eol LF josm
   cd josm
@@ -585,17 +585,17 @@ git-status)
   ;;
 
 check-since-version)
-  ## Travis merges the PR commit into origin/master
-  ## This identifies the PR's original commit
-  ## if it notices a merge commit
+  # Travis merges the PR commit into origin/master
+  # This identifies the PR's original commit
+  # if it notices a merge commit
   HEAD=`git rev-parse HEAD`
   if git show --summary HEAD | grep ^Merge: ; then
       echo "Merge detected."
       HEAD=`git log -n 1 --no-merges --pretty=format:"%H"`
   fi
-  ## Identify previous commit to know how much to examine
-  ## Script assumes we are only working with 1 commit if we are in master
-  ## Otherwise, it looks for the common ancestor with master
+  # Identify previous commit to know how much to examine
+  # Script assumes we are only working with 1 commit if we are in master
+  # Otherwise, it looks for the common ancestor with master
   COMMIT=`git rev-parse $HEAD`
   echo "PR commit: $COMMIT"
 

@@ -2,10 +2,10 @@
   # Codeship does not support PR from fork, it supports only builds of branches
   # so to keep running validation at least from main repo branches we should not define tag
   # Codeship does not support multiline commands.
-  #tag: master
+  # tag: master
   service: system
   steps:
-    #-  command: ./.ci/travis/travis.sh site
-    #-  command: ./.ci/travis/travis.sh nondex
+    # -  command: ./.ci/travis/travis.sh site
+    # -  command: ./.ci/travis/travis.sh nondex
     -  command: ls -la
     -  command: .ci/run-link-check-plugin.sh
