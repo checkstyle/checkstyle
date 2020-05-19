@@ -73,3 +73,7 @@ class InputEmptyBlock {
         }
     };
 }
+
+interface InterfaceEndingWithSemiColon2 {
+    public void fooEmpty();
+}; // ok until #7541
