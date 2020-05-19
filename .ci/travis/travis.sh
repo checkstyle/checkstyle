@@ -469,7 +469,7 @@ no-violation-test-josm)
   cd .ci-temp
   TESTED=16391
   # Uncomment to test current tested version instead of hardcoded version
-  #TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
+  # TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
   echo "JOSM revision: $TESTED"
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r $TESTED --native-eol LF josm
   cd josm
