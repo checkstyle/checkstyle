@@ -298,7 +298,7 @@ no-exception-test-guava)
   mvn -e clean install -Pno-validations
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
      --config checks-nonjavadoc-error.xml --checkstyleVersion $CS_POM_VERSION
   cd ../..
   removeFolderWithProtectedFiles contribution
