@@ -358,3 +358,12 @@ build:
         echo "------"
         du -hs * | sort -h
 
+  - script:
+      name: git-status
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh git-status"
+          ./.ci/wercker.sh git-status
+        else
+          echo "build is skipped ..."
+        fi
