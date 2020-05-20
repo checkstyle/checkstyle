@@ -935,6 +935,7 @@ NOTNULL
 nowarn
 nowhitespaceafter
 nowhitespacebefore
+nowhitespacebeforecasedefaultcolon
 nowildcard
 nowrap
 npath
