@@ -35,7 +35,7 @@
     <!--
         If you set the basedir property below, then all reported file
         names will be relative to the specified directory. See
-        https://checkstyle.org/5.x/config.html#Checker
+        https://checkstyle.org/config.html#Checker
 
         <property name="basedir" value="${basedir}"/>
     -->
@@ -119,7 +119,7 @@
         <module name="TypeName"/>
 
         <!-- Checks for imports                              -->
-        <!-- See https://checkstyle.org/config_import.html -->
+        <!-- See https://checkstyle.org/config_imports.html -->
         <module name="AvoidStarImport"/>
         <module name="IllegalImport"/> <!-- defaults to sun.* packages -->
         <module name="RedundantImport"/>
