@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -38,6 +39,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import javax.swing.filechooser.FileFilter;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -60,6 +62,8 @@ public class MainFrame extends JFrame {
     private final ReloadAction reloadAction = new ReloadAction();
     /** Code text area. */
     private JTextArea textArea;
+    /** Xpath text area. */
+    private JTextArea xpathTextArea;
     /** Tree table. */
     private TreeTable treeTable;
 
@@ -75,18 +79,33 @@ public class MainFrame extends JFrame {
         textArea = new JTextArea(20, 15);
         textArea.setEditable(false);
         final JScrollPane textAreaScrollPane = new JScrollPane(textArea);
+        final JPanel textAreaPanel = new JPanel();
+        textAreaPanel.setLayout(new BorderLayout());
+        textAreaPanel.add(textAreaScrollPane);
+        textAreaPanel.add(createButtonsPanel(), BorderLayout.PAGE_END);
 
         treeTable = new TreeTable(model.getParseTreeTableModel());
         treeTable.setEditor(textArea);
         treeTable.setLinePositionMap(model.getLinesToPosition());
         final JScrollPane treeTableScrollPane = new JScrollPane(treeTable);
 
-        final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, treeTableScrollPane,
-            textAreaScrollPane);
+        final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+            treeTableScrollPane, textAreaPanel);
+
         add(splitPane, BorderLayout.CENTER);
         splitPane.setResizeWeight(0.7);
 
-        add(createButtonsPanel(), BorderLayout.PAGE_END);
+        xpathTextArea = new JTextArea("Currently Not Supported", 7, 0);
+        xpathTextArea.setVisible(false);
+        final JPanel xpathAreaPanel = new JPanel();
+        xpathAreaPanel.setLayout(new BorderLayout());
+        xpathAreaPanel.add(xpathTextArea);
+        xpathAreaPanel.add(createXpathButtonsPanel(), BorderLayout.PAGE_END);
+
+        final Border title = BorderFactory.createTitledBorder("Xpath Query");
+        xpathAreaPanel.setBorder(title);
+
+        add(xpathAreaPanel, BorderLayout.PAGE_END);
 
         pack();
     }
@@ -130,6 +149,30 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(buttonPanel);
         mainPanel.add(modesPanel, BorderLayout.LINE_END);
+
+        return mainPanel;
+    }
+
+    /**
+     * Create xpath buttons panel.
+     *
+     * @return xpath buttons panel.
+     */
+    private JPanel createXpathButtonsPanel() {
+        final JButton expandButton = new JButton(new ExpandCollapseAction());
+        expandButton.setText("Expand/Collapse");
+
+        final JButton runButton = new JButton();
+        runButton.setText("Run");
+
+        final JPanel xpathButtonsPanel = new JPanel();
+        xpathButtonsPanel.setLayout(new FlowLayout());
+        xpathButtonsPanel.add(expandButton);
+        xpathButtonsPanel.add(runButton);
+
+        final JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(xpathButtonsPanel, BorderLayout.LINE_START);
 
         return mainPanel;
     }
@@ -184,6 +227,20 @@ public class MainFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent event) {
             openFile(model.getCurrentFile());
+        }
+
+    }
+
+    /**
+     * Handler for Expand and Collapse events.
+     */
+    private class ExpandCollapseAction extends AbstractAction {
+
+        private static final long serialVersionUID = -890320994114628011L;
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            xpathTextArea.setVisible(!xpathTextArea.isVisible());
         }
 
     }
