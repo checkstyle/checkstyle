@@ -51,8 +51,9 @@ public class FileTextTest extends AbstractPathTestSupport {
     public void testUnsupportedCharset() throws IOException {
         // just to make UT coverage 100%
         final String charsetName = "STRANGE_CHARSET";
+        final File file = new File("any name");
         try {
-            final Object test = new FileText(new File("any name"), charsetName);
+            final Object test = new FileText(file, charsetName);
             fail("UnsupportedEncodingException is expected but got " + test);
         }
         catch (IllegalStateException ex) {
@@ -64,8 +65,9 @@ public class FileTextTest extends AbstractPathTestSupport {
     @Test
     public void testFileNotFound() throws IOException {
         final String charsetName = StandardCharsets.ISO_8859_1.name();
+        final File file = new File("any name");
         try {
-            final Object test = new FileText(new File("any name"), charsetName);
+            final Object test = new FileText(file, charsetName);
             fail("FileNotFoundException is expected but got " + test);
         }
         catch (FileNotFoundException ex) {
