@@ -610,6 +610,12 @@
             Object class.</td>
           </tr>
           <tr>
+            <td><a href="config_misc.html#NoCodeInFile">NoCodeInFile</a></td>
+            <td>
+              Checks whether file contains code.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#NoFinalizer">NoFinalizer</a></td>
             <td>Checks that there is no method <code>finalize</code> with zero parameters.</td>
           </tr>
