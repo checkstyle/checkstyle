@@ -68,8 +68,8 @@ public class PropertyCacheFileTest extends AbstractPathTestSupport {
         catch (IllegalArgumentException ex) {
             assertEquals("config can not be null", ex.getMessage(), "Invalid exception message");
         }
+        final Configuration config = new DefaultConfiguration("myName");
         try {
-            final Configuration config = new DefaultConfiguration("myName");
             final Object test = new PropertyCacheFile(config, null);
             fail("exception expected but got " + test);
         }

@@ -439,14 +439,15 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public final void testSimultaneousConfiguration() throws IOException {
         final File file = new File(getPath(CONFIG_FILE));
         final URL url = file.toURI().toURL();
-        final String expected = "Attribute 'config' has already been set";
+
+        final CheckstyleAntTask antTask = new CheckstyleAntTask();
+        antTask.setConfig(url.toString());
         try {
-            final CheckstyleAntTask antTask = new CheckstyleAntTask();
-            antTask.setConfig(url.toString());
             antTask.setConfig(file.toString());
             fail("Exception is expected");
         }
         catch (BuildException ex) {
+            final String expected = "Attribute 'config' has already been set";
             assertEquals(expected, ex.getMessage(), "Error message is unexpected");
         }
     }
@@ -647,10 +648,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setClasspath(new Path(project, "firstPath"));
         antTask.setClasspathRef(new Reference(project, "idXX"));
 
+        assertNotNull(Whitebox.getInternalState(antTask, "classpath"),
+                "Classpath should not be null");
+        final Path classpath = Whitebox.getInternalState(antTask, "classpath");
         try {
-            assertNotNull(Whitebox.getInternalState(antTask, "classpath"),
-                    "Classpath should not be null");
-            final Path classpath = Whitebox.getInternalState(antTask, "classpath");
             classpath.list();
             fail("Exception is expected");
         }
