@@ -255,9 +255,11 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
         checkConfig.addAttribute("javadocTokens", "RETURN_LITERAL");
+
+        final String path = getPath("InputAbstractJavadocMain.java");
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-            verify(checkConfig, getPath("InputAbstractJavadocMain.java"), expected);
+            verify(checkConfig, path, expected);
             fail("CheckstyleException is expected");
         }
         catch (IllegalStateException ex) {
