@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.gui;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -75,18 +76,31 @@ public class MainFrame extends JFrame {
         textArea = new JTextArea(20, 15);
         textArea.setEditable(false);
         final JScrollPane textAreaScrollPane = new JScrollPane(textArea);
+        final JPanel textAreaPanel = new JPanel();
+        textAreaPanel.setLayout(new BorderLayout());
+        textAreaPanel.add(textAreaScrollPane);
+        textAreaPanel.add(createButtonsPanel(), BorderLayout.PAGE_END);
 
         treeTable = new TreeTable(model.getParseTreeTableModel());
         treeTable.setEditor(textArea);
         treeTable.setLinePositionMap(model.getLinesToPosition());
         final JScrollPane treeTableScrollPane = new JScrollPane(treeTable);
 
-        final JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, treeTableScrollPane,
-            textAreaScrollPane);
-        add(splitPane, BorderLayout.CENTER);
+        final JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,
+            treeTableScrollPane, textAreaPanel);
         splitPane.setResizeWeight(0.7);
 
-        add(createButtonsPanel(), BorderLayout.PAGE_END);
+        final JTextArea xpathArea = new JTextArea("Xpath", 7, 0);
+        final JPanel xpathAreaPanel = new JPanel();
+        xpathAreaPanel.setLayout(new BorderLayout());
+        xpathAreaPanel.add(xpathArea);
+        xpathAreaPanel.add(createXpathButtonsPanel(), BorderLayout.PAGE_END);
+
+        final JSplitPane splitPaneXpath = new JSplitPane(JSplitPane.VERTICAL_SPLIT,
+            splitPane, xpathAreaPanel);
+
+        add(splitPaneXpath, BorderLayout.CENTER);
+        splitPaneXpath.setResizeWeight(0.7);
 
         pack();
     }
@@ -130,6 +144,46 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(buttonPanel);
         mainPanel.add(modesPanel, BorderLayout.LINE_END);
+
+        return mainPanel;
+    }
+
+    /**
+     * Create xpath buttons panel.
+     *
+     * @return xpath buttons panel.
+     */
+    private static JPanel createXpathButtonsPanel() {
+        final JButton andButton = new JButton();
+        andButton.setText("AND");
+
+        final JButton orButton = new JButton();
+        orButton.setText("OR");
+
+        final JButton notButton = new JButton();
+        notButton.setText("NOT");
+
+        final JPanel buttonsPanelOne = new JPanel();
+        buttonsPanelOne.setLayout(new FlowLayout());
+        buttonsPanelOne.add(andButton);
+        buttonsPanelOne.add(orButton);
+        buttonsPanelOne.add(notButton);
+
+        final JButton runButton = new JButton();
+        runButton.setText("Run");
+
+        final JButton resetButton = new JButton();
+        resetButton.setText("Reset");
+
+        final JPanel buttonsPanelTwo = new JPanel();
+        buttonsPanelTwo.setLayout(new FlowLayout());
+        buttonsPanelTwo.add(runButton);
+        buttonsPanelTwo.add(resetButton);
+
+        final JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(buttonsPanelOne, BorderLayout.WEST);
+        mainPanel.add(buttonsPanelTwo, BorderLayout.EAST);
 
         return mainPanel;
     }
