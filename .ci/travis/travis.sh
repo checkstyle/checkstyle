@@ -573,8 +573,8 @@ verify-no-exception-configs)
     else
       diff -u .ci-temp/web.txt .ci-temp/file.txt | cat
       echo 'file config/checkstyle_checks.xml contains Check that is not present at:'
-      echo 'https://github.com/checkstyle/contribution/checkstyle-tester/checks-nonjavadoc-error.xml'
-      echo 'https://github.com/checkstyle/contribution/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-nonjavadoc-error.xml'
+      echo 'https://github.com/checkstyle/contribution/blob/master/checkstyle-tester/checks-only-javadoc-error.xml'
       echo 'Please add new Check to one of such files to let Check participate in auto testing'
       sleep 5s
       false;
