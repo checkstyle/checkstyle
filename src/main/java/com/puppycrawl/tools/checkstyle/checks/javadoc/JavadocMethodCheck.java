@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -821,22 +822,19 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     public static List<DetailAST> findTokensInAstByType(DetailAST root, int astType) {
         final List<DetailAST> result = new ArrayList<>();
-        DetailAST curNode = root;
-        while (curNode != null) {
-            DetailAST toVisit = curNode.getFirstChild();
-            while (curNode != null && toVisit == null) {
-                toVisit = curNode.getNextSibling();
-                curNode = curNode.getParent();
-                if (curNode == root) {
-                    toVisit = null;
-                    break;
+        // preorder depth-first search
+        new Consumer<DetailAST>() {
+            @Override
+            public void accept(DetailAST curNode) {
+                if (curNode != null) {
+                    if (curNode.getType() == astType) {
+                        result.add(curNode);
+                    }
+                    accept(curNode.getFirstChild());
+                    accept(curNode.getNextSibling());
                 }
             }
-            curNode = toVisit;
-            if (curNode != null && curNode.getType() == astType) {
-                result.add(curNode);
-            }
-        }
+        }.accept(root);
         return result;
     }
 
