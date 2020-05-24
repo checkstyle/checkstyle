@@ -238,9 +238,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testJavadocParseError() throws Exception {
         final String path = getPath("InputJavadocPropertiesGeneratorJavadocParseError.java");
+        final String destPath = DESTFILE.getAbsolutePath();
         try {
-            JavadocPropertiesGenerator.main(path,
-                "--destfile", DESTFILE.getAbsolutePath());
+            JavadocPropertiesGenerator.main(path, "--destfile", destPath);
             fail("Exception was expected");
         }
         catch (IllegalArgumentException ex) {
@@ -255,9 +255,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testNotImplementedTag() throws Exception {
         final String path = getPath("InputJavadocPropertiesGeneratorNotImplementedTag.java");
+        final String destPath = DESTFILE.getAbsolutePath();
         try {
-            JavadocPropertiesGenerator.main(path,
-                "--destfile", DESTFILE.getAbsolutePath());
+            JavadocPropertiesGenerator.main(path, "--destfile", destPath);
             fail("Exception was expected");
         }
         catch (CheckstyleException ex) {
@@ -271,9 +271,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
     @Test
     public void testParseError() throws Exception {
         final String path = getNonCompilablePath("InputJavadocPropertiesGeneratorParseError.java");
+        final String destPath = DESTFILE.getAbsolutePath();
         try {
-            JavadocPropertiesGenerator.main(path,
-                "--destfile", DESTFILE.getAbsolutePath());
+            JavadocPropertiesGenerator.main(path, "--destfile", destPath);
             fail("Exception was expected");
         }
         catch (CheckstyleException ex) {
