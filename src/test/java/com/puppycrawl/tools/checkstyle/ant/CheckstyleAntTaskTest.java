@@ -443,7 +443,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setConfig(url.toString());
         try {
-            antTask.setConfig(file.toString());
+            antTask.setConfig("Any string value");
             fail("Exception is expected");
         }
         catch (BuildException ex) {
