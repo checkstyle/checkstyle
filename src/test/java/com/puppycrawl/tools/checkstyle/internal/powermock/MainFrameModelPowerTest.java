@@ -96,8 +96,8 @@ public class MainFrameModelPowerTest extends AbstractModuleTestSupport {
                     ParseMode.PLAIN_JAVA, ParseMode.JAVA_WITH_COMMENTS,
                     ParseMode.JAVA_WITH_JAVADOC_AND_COMMENTS, unknownParseMode, });
 
+        model.setParseMode(unknownParseMode);
         try {
-            model.setParseMode(unknownParseMode);
             model.openFile(testData);
 
             fail("Expected IllegalArgumentException is not thrown.");

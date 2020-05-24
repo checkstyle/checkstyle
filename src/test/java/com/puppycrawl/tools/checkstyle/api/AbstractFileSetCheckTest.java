@@ -106,8 +106,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         check.setFileExtensions("tmp");
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
 
+        final FileText fileText = new FileText(firstFile, Collections.emptyList());
         try {
-            check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
+            check.process(firstFile, fileText);
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -121,8 +122,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         // again to prove only 1 violation exists
         final File secondFile = new File("inputAbstractFileSetCheck.tmp");
+        final FileText fileText2 = new FileText(secondFile, Collections.emptyList());
         try {
-            check.process(secondFile, new FileText(secondFile, Collections.emptyList()));
+            check.process(secondFile, fileText2);
             fail("Exception is expected");
         }
         catch (IllegalArgumentException ex) {
