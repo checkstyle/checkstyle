@@ -176,8 +176,11 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testCreateFullTypeOfArray() throws Exception {
-        final DetailAST arrayTypeNode = getNodeFromFile(TokenTypes.VARIABLE_DEF)
-                .getNextSibling().getFirstChild().getNextSibling();
+        final DetailAST arrayTypeNode = getNodeFromFile(TokenTypes.VARIABLES)
+                .getNextSibling()
+                .getFirstChild()
+                .getFirstChild()
+                .getNextSibling();
 
         assertEquals("int[14x14]", CheckUtil.createFullType(arrayTypeNode).toString(),
                 "Invalid full type");
@@ -270,22 +273,25 @@ public class CheckUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetAccessModifierFromModifiersToken() throws Exception {
-        final DetailAST privateVariable = getNodeFromFile(TokenTypes.VARIABLE_DEF);
+        final DetailAST privateVariable = getNodeFromFile(TokenTypes.VARIABLES).getFirstChild();
         final AccessModifier modifierPrivate =
                 CheckUtil.getAccessModifierFromModifiersToken(privateVariable.getFirstChild());
         assertEquals(AccessModifier.PRIVATE, modifierPrivate, "Invalid access modifier");
 
-        final DetailAST protectedVariable = privateVariable.getNextSibling();
+        final DetailAST protectedVariable =
+                privateVariable.getParent().getNextSibling().getFirstChild();
         final AccessModifier modifierProtected =
                 CheckUtil.getAccessModifierFromModifiersToken(protectedVariable.getFirstChild());
         assertEquals(AccessModifier.PROTECTED, modifierProtected, "Invalid access modifier");
 
-        final DetailAST publicVariable = protectedVariable.getNextSibling();
+        final DetailAST publicVariable =
+                protectedVariable.getParent().getNextSibling().getFirstChild();
         final AccessModifier modifierPublic =
                 CheckUtil.getAccessModifierFromModifiersToken(publicVariable.getFirstChild());
         assertEquals(AccessModifier.PUBLIC, modifierPublic, "Invalid access modifier");
 
-        final DetailAST packageVariable = publicVariable.getNextSibling();
+        final DetailAST packageVariable =
+                publicVariable.getParent().getNextSibling().getFirstChild();
         final AccessModifier modifierPackage =
                 CheckUtil.getAccessModifierFromModifiersToken(packageVariable.getFirstChild());
         assertEquals(AccessModifier.PACKAGE, modifierPackage, "Invalid access modifier");

@@ -244,6 +244,7 @@ public final class TokenTypes {
      * assignment statement.
      *
      * @see #MODIFIERS
+     * @see #VARIABLES
      * @see #TYPE
      * @see #IDENT
      * @see #ASSIGN
@@ -3539,6 +3540,28 @@ public final class TokenTypes {
      */
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
+
+    /**
+     * Variable Declarator List.
+     *
+     * <pre>
+     * +--VARIABLES
+     *         |
+     *         +--VARIABLE_DEF
+     *         |
+     *         +--COMMA
+     *         |
+     *         +--VARIABLE_DEF
+     * </pre>
+     *
+     * <pre>
+     * +--VARIABLES
+     *         |
+     *         +--VARIABLE_DEF
+     * </pre>
+     */
+    public static final int VARIABLES =
+            GeneratedJavaTokenTypes.VARIABLES;
 
     /** Prevent instantiation. */
     private TokenTypes() {

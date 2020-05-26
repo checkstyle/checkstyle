@@ -113,20 +113,18 @@ public class XpathRegressionMissingOverrideTest extends AbstractXpathTestSupport
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT"
-                        + "[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
-                        + "LITERAL_NEW[./IDENT[@text='Runnable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
-                        + "LITERAL_NEW[./IDENT[@text='Runnable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS",
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
+                        + "LITERAL_NEW[./IDENT[@text='Runnable']]/OBJBLOCK/METHOD_DEF"
+                        + "[./IDENT[@text='run']]",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
-                        + "LITERAL_NEW[./IDENT[@text='Runnable']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='run']]/MODIFIERS/LITERAL_PUBLIC"
-
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
+                        + "LITERAL_NEW[./IDENT[@text='Runnable']]/OBJBLOCK/METHOD_DEF[./"
+                        + "IDENT[@text='run']]/MODIFIERS",
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMissingOverrideAnonymous']]"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='r']]/ASSIGN/EXPR/"
+                        + "LITERAL_NEW[./IDENT[@text='Runnable']]/OBJBLOCK/METHOD_DEF[./IDENT"
+                        + "[@text='run']]/MODIFIERS/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

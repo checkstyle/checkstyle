@@ -343,21 +343,31 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        checkComments(ast);
-        if (hasMultipleLinesBefore(ast)) {
-            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+        DetailAST detailAST = ast;
+        checkComments(detailAST);
+        if (hasMultipleLinesBefore(detailAST)) {
+            log(detailAST.getLineNo(), MSG_MULTIPLE_LINES, detailAST.getText());
         }
         if (!allowMultipleEmptyLinesInsideClassMembers) {
-            processMultipleLinesInside(ast);
+            processMultipleLinesInside(detailAST);
         }
-        if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            checkCommentInModifiers(ast);
+        if (detailAST.getType() == TokenTypes.PACKAGE_DEF) {
+            checkCommentInModifiers(detailAST);
         }
-        DetailAST nextToken = ast.getNextSibling();
+        final DetailAST parent = detailAST.getParent();
+        if (parent != null && parent.getType() == TokenTypes.VARIABLES) {
+            detailAST = parent;
+        }
+        DetailAST nextToken = detailAST.getNextSibling();
+
         while (nextToken != null && isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
+
         if (nextToken != null) {
+            if (nextToken.getType() == TokenTypes.VARIABLES) {
+                nextToken = nextToken.getFirstChild();
+            }
             checkToken(ast, nextToken);
         }
     }
@@ -557,7 +567,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
                 && (!allowNoEmptyLineBetweenFields
-                    || detailAST.getType() != TokenTypes.VARIABLE_DEF);
+                    || detailAST.getType() != TokenTypes.VARIABLE_DEF
+                    && detailAST.getType() != TokenTypes.VARIABLES);
     }
 
     /**
@@ -654,6 +665,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             lastToken = token.getLastChild();
         }
         DetailAST nextToken = token.getNextSibling();
+        DetailAST parent = token.getParent();
+
+        if (parent != null
+                && parent.getType() == TokenTypes.VARIABLES
+                && parent.getNextSibling().getFirstChild() != null) {
+            lastToken =  parent.getLastChild();
+            nextToken = parent.getNextSibling().getFirstChild();
+        }
+
         if (isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
@@ -769,7 +789,10 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true variable definition is a type field.
      */
     private static boolean isTypeField(DetailAST variableDef) {
-        final int parentType = variableDef.getParent().getParent().getType();
+        int parentType = variableDef.getParent().getParent().getType();
+        if (variableDef.getParent().getType() == TokenTypes.VARIABLES) {
+            parentType = variableDef.getParent().getParent().getParent().getType();
+        }
         return parentType == TokenTypes.CLASS_DEF;
     }
 

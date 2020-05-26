@@ -110,6 +110,15 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    //Needed to add these here to preserve order of tokens
+    SINGLE_LINE_COMMENT_CONTENT; BLOCK_COMMENT_CONTENT; STD_ESC;
+    BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
+    FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
+    SIGNED_INTEGER; BINARY_EXPONENT;
+
+    //Variable Declarator List
+    VARIABLES;
 }
 
 {
@@ -822,11 +831,12 @@ implementsClause
                                         tc,
                                         s2,
                                         s5);}
-                       |    v:variableDefinitions[#mods,#t] (s6:SEMI)?
-                           {
-                               #field = #v;
-                               #v.addChild(#s6);
-                           }
+
+                     |   v:variableDefinitions[#mods,#t] (s6:SEMI)?
+                     ({
+                         #field = #v;
+                         #field.addChild(#s6);
+                     })
                        )
                    )
                )
@@ -886,6 +896,7 @@ variableDefinitions[AST mods, AST t]
                                //dupList as this also copies siblings (like TYPE_ARGUMENTS)
                                (AST) getASTFactory().dupList(t)]
         )*
+        {#variableDefinitions = #(#[VARIABLES, "VARIABLES"], #variableDefinitions);}
     ;
 
 /** Declaration of a variable.  This can be a class/instance variable,

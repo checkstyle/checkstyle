@@ -145,7 +145,7 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/CLASS_DEF[./IDENT["
                     + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameField']]"
-                    + "/OBJBLOCK/VARIABLE_DEF/IDENT[@text='FIELD']"
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF/IDENT[@text='FIELD']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -236,10 +236,10 @@ public class XpathRegressionAbbreviationAsWordInNameTest extends AbstractXpathTe
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-                "/CLASS_DEF[./IDENT["
-                    + "@text='SuppressionXpathRegressionAbbreviationAsWordInNameVariable']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]"
-                    + "/SLIST/VARIABLE_DEF/IDENT[@text='VARIABLE']"
+                "/CLASS_DEF[./IDENT[@text='"
+                        + "SuppressionXpathRegressionAbbreviationAsWordInNameVariable']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='method']]/SLIST/VARIABLES/"
+                        + "VARIABLE_DEF/IDENT[@text='VARIABLE']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

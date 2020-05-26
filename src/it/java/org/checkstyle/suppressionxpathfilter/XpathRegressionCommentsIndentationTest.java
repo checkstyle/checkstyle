@@ -78,7 +78,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationBlock']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='f']]/TYPE/BLOCK_COMMENT_BEGIN"
+                + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='f']]/TYPE/BLOCK_COMMENT_BEGIN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -224,7 +224,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationWithinBlockStatement']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLES/VARIABLE_DEF"
                 + "[./IDENT[@text='s']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='O']]"
                 + "/SINGLE_LINE_COMMENT"
         );

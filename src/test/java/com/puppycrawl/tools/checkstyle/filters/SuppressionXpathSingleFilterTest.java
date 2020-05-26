@@ -102,9 +102,10 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testComplexQuery() throws Exception {
-        final String xpath = "//VARIABLE_DEF[./IDENT[@text='pi'] and "
-                + "../../IDENT[@text='countTokens']] "
-                + "| //VARIABLE_DEF[./IDENT[@text='someVariable'] and ../../IDENT[@text='sum']]";
+        final String xpath = "//VARIABLES/VARIABLE_DEF[./IDENT[@text='pi'] and "
+                + "../../../IDENT[@text='countTokens']] "
+                + "| //VARIABLES/VARIABLE_DEF[./IDENT[@text='someVariable']"
+                + " and ../../../IDENT[@text='sum']]";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, null, xpath);

@@ -53,7 +53,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionWhitespaceAroundNotPreceded']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
+                + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -76,7 +76,7 @@ public class XpathRegressionWhitespaceAroundTest extends AbstractXpathTestSuppor
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT["
                 + "@text='SuppressionXpathRegressionWhitespaceAroundNotFollowed']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
+                + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

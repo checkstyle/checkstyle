@@ -489,13 +489,19 @@ public class RedundantModifierCheck
      */
     private static boolean isInterfaceOrAnnotationMember(DetailAST ast) {
         DetailAST parentTypeDef = ast.getParent();
+        boolean result = false;
+        int depthCounter = 3;
 
-        if (parentTypeDef != null) {
+        while(parentTypeDef != null && depthCounter > 0) {
+            if(parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
+                    || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF) {
+                result = true;
+            }
             parentTypeDef = parentTypeDef.getParent();
+            depthCounter--;
         }
-        return parentTypeDef != null
-                && (parentTypeDef.getType() == TokenTypes.INTERFACE_DEF
-                    || parentTypeDef.getType() == TokenTypes.ANNOTATION_DEF);
+
+        return result;
     }
 
     /**

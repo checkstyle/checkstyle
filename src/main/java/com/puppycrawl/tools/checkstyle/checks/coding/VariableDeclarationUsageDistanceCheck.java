@@ -283,15 +283,19 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int parentType = ast.getParent().getType();
+        final int ancestorType = ast.getParent().getParent().getType();
+
         final DetailAST modifiers = ast.getFirstChild();
 
-        if (parentType != TokenTypes.OBJBLOCK
+        if (ancestorType != TokenTypes.OBJBLOCK
                 && (!ignoreFinal || modifiers.findFirstToken(TokenTypes.FINAL) == null)) {
             final DetailAST variable = ast.findFirstToken(TokenTypes.IDENT);
 
             if (!isVariableMatchesIgnorePattern(variable.getText())) {
-                final DetailAST semicolonAst = ast.getNextSibling();
+                DetailAST semicolonAst = ast.getNextSibling();
+                if (ast.getParent().getType() == TokenTypes.VARIABLES) {
+                    semicolonAst = ast.getParent().getNextSibling();
+                }
                 final Entry<DetailAST, Integer> entry;
                 if (validateBetweenScopes) {
                     entry = calculateDistanceBetweenScopes(semicolonAst, variable);
@@ -355,6 +359,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         while (result
                 && !isUsedVariableDeclarationFound
                 && currentSiblingAst != null) {
+
+            // Check VARIABLES subtree for possible VARIABLE_DEF usage
+            if (currentSiblingAst.getType() == TokenTypes.VARIABLES) {
+                currentSiblingAst = currentSiblingAst.getFirstChild();
+            }
+            // Need to know for later if we need return to parent token
+            final boolean hasVariablesAsParent
+                    = currentSiblingAst.getParent().getType() == TokenTypes.VARIABLES;
             switch (currentSiblingAst.getType()) {
                 case TokenTypes.EXPR:
                     final DetailAST methodCallAst = currentSiblingAst.getFirstChild();
@@ -395,6 +407,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     result = false;
             }
 
+            // Need to return to VARIABLES token to traverse previous siblings
+            if (hasVariablesAsParent && currentSiblingAst.getPreviousSibling() == null) {
+                currentSiblingAst = currentSiblingAst.getParent();
+            }
             currentSiblingAst = currentSiblingAst.getPreviousSibling();
         }
 
@@ -421,6 +437,11 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
         while (!firstUsageFound && currentAst != null
                 && currentAst.getType() != TokenTypes.RCURLY) {
+            if (currentAst.getType() == TokenTypes.VARIABLES) {
+                currentAst = currentAst.getFirstChild();
+            }
+            final boolean hasVariablesAsParent
+                    = currentAst.getParent().getType() == TokenTypes.VARIABLES;
             if (currentAst.getFirstChild() != null) {
                 if (isChild(currentAst, variableIdentAst)) {
                     dist = getDistToVariableUsageInChildNode(currentAst, variableIdentAst, dist);
@@ -430,6 +451,9 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 else if (currentAst.getType() != TokenTypes.VARIABLE_DEF) {
                     dist++;
                 }
+            }
+            if(hasVariablesAsParent) {
+                currentAst = currentAst.getParent();
             }
             currentAst = currentAst.getNextSibling();
         }
@@ -586,6 +610,14 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         DetailAST currentStatementAst = statementAst;
         while (currentStatementAst != null
                 && currentStatementAst.getType() != TokenTypes.RCURLY) {
+            // Need to grab VARIABLES token, if it exists, to return to after traversal of subtree
+            final DetailAST firstStatementAst = currentStatementAst;
+            if (firstStatementAst.getType() == TokenTypes.VARIABLES) {
+                currentStatementAst = currentStatementAst.getFirstChild();
+            }
+            final boolean hasVariablesAsParent
+                    = currentStatementAst.getParent().getType() == TokenTypes.VARIABLES;
+
             if (currentStatementAst.getFirstChild() != null) {
                 if (isChild(currentStatementAst, variableAst)) {
                     variableUsageExpressions.add(currentStatementAst);
@@ -597,10 +629,15 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                     distance++;
                 }
             }
+            if (hasVariablesAsParent) {
+                currentStatementAst = firstStatementAst;
+            }
             currentStatementAst = currentStatementAst.getNextSibling();
+
         }
-        return new SimpleEntry<>(variableUsageExpressions, distance);
+            return new SimpleEntry<>(variableUsageExpressions, distance);
     }
+
 
     /**
      * Gets first Ast node inside FOR, WHILE or DO-WHILE blocks if variable

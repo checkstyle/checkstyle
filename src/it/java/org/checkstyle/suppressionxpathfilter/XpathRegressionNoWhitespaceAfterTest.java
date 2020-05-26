@@ -53,9 +53,9 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfter']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR",
+                + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR",
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfter']]/OBJBLOCK"
-                + "/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/UNARY_MINUS["
+                + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/UNARY_MINUS["
                 + "./NUM_INT[@text='1']]"
         );
 
@@ -104,19 +104,19 @@ public class XpathRegressionNoWhitespaceAfterTest extends AbstractXpathTestSuppo
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]",
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES",
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]"
-                + "/MODIFIERS",
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/VARIABLE_DEF"
+                    + "[./IDENT[@text='s']]",
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]/TYPE",
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/VARIABLE_DEF"
+                    + "[./IDENT[@text='s']]/MODIFIERS",
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='s']]"
-                + "/TYPE/DOT[./IDENT[@text='String']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/VARIABLE_DEF"
+                    + "[./IDENT[@text='s']]/TYPE",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNoWhitespaceAfterLineBreaks']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/VARIABLE_DEF"
+                    + "[./IDENT[@text='s']]/TYPE/DOT[./IDENT[@text='String']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

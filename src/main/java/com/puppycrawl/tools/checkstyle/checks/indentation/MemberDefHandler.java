@@ -104,8 +104,9 @@ public class MemberDefHandler extends AbstractExpressionHandler {
      */
     private static DetailAST getVarDefStatementSemicolon(DetailAST variableDef) {
         DetailAST lastNode = variableDef.getLastChild();
-        if (lastNode.getType() != TokenTypes.SEMI) {
-            lastNode = variableDef.getNextSibling();
+        if (lastNode.getType()
+                != TokenTypes.SEMI && variableDef.getParent().getNextSibling() != null) {
+            lastNode = variableDef.getParent().getNextSibling();
         }
         return lastNode;
     }

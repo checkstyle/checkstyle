@@ -55,8 +55,8 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName1']]"
-                       + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
-                       + "./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/IDENT[@text='S']"
+                       + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/"
+                       + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/IDENT[@text='S']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -81,26 +81,26 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS",
 
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF[./IDENT[@text='s']]",
 
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES"
                         + "/VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF[./IDENT[@text='s']]/MODIFIERS",
 
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF[./IDENT[@text='s']]/TYPE",
 
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionLambdaParameterName2']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLES/"
                         + "VARIABLE_DEF[./IDENT[@text='trimmer']]/ASSIGN/LAMBDA/PARAMETERS"
                         + "/PARAMETER_DEF/IDENT[@text='s']"
         );

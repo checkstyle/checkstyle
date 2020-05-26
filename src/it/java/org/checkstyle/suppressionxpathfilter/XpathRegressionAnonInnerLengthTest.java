@@ -53,11 +53,11 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         final List<String> expectedXpathQueries = Arrays.asList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLengthDefault']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='runnable']]"
+                + "/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='runnable']]"
                 + "/ASSIGN/EXPR",
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLengthDefault']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]"
-                + "/SLIST/VARIABLE_DEF[./IDENT[@text='runnable']]"
+                + "/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='runnable']]"
                 + "/ASSIGN/EXPR/LITERAL_NEW[./IDENT[@text='Runnable']]"
         );
 
@@ -83,10 +83,10 @@ public class XpathRegressionAnonInnerLengthTest extends AbstractXpathTestSupport
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLength']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
+                        + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnonInnerLength']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='compare']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
+                        + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='comp']]/ASSIGN/EXPR"
                         + "/LITERAL_NEW[./IDENT[@text='Comparator']]"
         );
 

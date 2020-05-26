@@ -238,7 +238,7 @@ public class MyClass extends SuperClass { // OK, camel case
         <p>Configuration:</p>
         <source>
 &lt;module name="AbbreviationAsWordInName"&gt;
-  &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
+  &lt;property name="tokens" value="CLASS_DEF"/&gt;
   &lt;property name="ignoreStatic" value="false"/&gt;
   &lt;property name="allowedAbbreviationLength" value="0"/&gt;
   &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;

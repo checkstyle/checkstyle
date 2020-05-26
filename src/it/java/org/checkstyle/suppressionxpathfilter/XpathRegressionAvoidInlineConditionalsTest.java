@@ -50,14 +50,14 @@ public class XpathRegressionAvoidInlineConditionalsTest extends AbstractXpathTes
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR",
-                "/CLASS_DEF[./IDENT[@text='"
-                        + "SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST"
-                        + "/VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
+                "/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST/VARIABLES/"
+                        + "VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR",
+                "/CLASS_DEF[./IDENT"
+                        + "[@text='SuppressionXpathRegressionAvoidInlineConditionalsVariableDef']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='substring']]/SLIST/VARIABLES/"
+                        + "VARIABLE_DEF[./IDENT[@text='b']]/ASSIGN/EXPR/QUESTION"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

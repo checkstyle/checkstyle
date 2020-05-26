@@ -100,18 +100,22 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
-                + "./IDENT[@text='callSomeMethod']]/SLIST/LITERAL_FOR/SLIST"
-                + "/VARIABLE_DEF[./IDENT[@text='d']]",
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
-                + "./IDENT[@text='callSomeMethod']]/SLIST/LITERAL_FOR/SLIST"
-                + "/VARIABLE_DEF[./IDENT[@text='d']]/MODIFIERS",
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
-                + "./IDENT[@text='callSomeMethod']]/SLIST/LITERAL_FOR/SLIST"
-                + "/VARIABLE_DEF[./IDENT[@text='d']]/TYPE",
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
-                + "./IDENT[@text='callSomeMethod']]/SLIST/LITERAL_FOR/SLIST"
-                + "/VARIABLE_DEF[./IDENT[@text='d']]/TYPE/LITERAL_SHORT");
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/LITERAL_FOR/SLIST/VARIABLES[./VARIABLE_DEF/IDENT[@text='d']]",
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/LITERAL_FOR/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='d']]",
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/LITERAL_FOR/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='d']]/MODIFIERS",
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/LITERAL_FOR/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='d']]/TYPE",
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/LITERAL_FOR/SLIST/VARIABLES/VARIABLE_DEF[./IDENT[@text='d']]"
+                    + "/TYPE/LITERAL_SHORT");
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
@@ -149,9 +153,9 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/VARIABLE_DEF["
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/VARIABLES/VARIABLE_DEF["
                 + "./IDENT[@text='mUse4']]/ASSIGN/EXPR",
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/VARIABLE_DEF["
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/VARIABLES/VARIABLE_DEF["
                 + "./IDENT[@text='mUse4']]/ASSIGN/EXPR/DOT");
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
@@ -263,12 +267,14 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
                 columnNumber, fileText, DEFAULT_TAB_WIDTH);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Arrays.asList(
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
-                + "./IDENT[@text='callSomeMethod']]/SLIST/VARIABLE_DEF[./IDENT[@text='another']]"
-                + "/ASSIGN/EXPR[./STRING_LITERAL[@text='HelloWorld']]",
-            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK/METHOD_DEF["
-                + "./IDENT[@text='callSomeMethod']]/SLIST/VARIABLE_DEF[./IDENT[@text='another']]"
-                + "/ASSIGN/EXPR/STRING_LITERAL[@text='HelloWorld']");
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='another']]"
+                    + "/ASSIGN/EXPR[./STRING_LITERAL[@text='HelloWorld']]",
+            "/CLASS_DEF[./IDENT[@text='InputXpathQueryGenerator']]/OBJBLOCK"
+                    + "/METHOD_DEF[./IDENT[@text='callSomeMethod']]/SLIST"
+                    + "/VARIABLES/VARIABLE_DEF[./IDENT[@text='another']]"
+                    + "/ASSIGN/EXPR/STRING_LITERAL[@text='HelloWorld']");
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
@@ -425,8 +431,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
                 columnNumber, testFileText, tabWidth);
         final List<String> actual = queryGenerator.generate();
         final List<String> expected = Collections.singletonList(
-                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTabWidth']]/OBJBLOCK"
-                        + "/VARIABLE_DEF[./IDENT[@text='endLineTab']]/SEMI");
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTabWidth']]"
+                    + "/OBJBLOCK/VARIABLES/SEMI");
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
