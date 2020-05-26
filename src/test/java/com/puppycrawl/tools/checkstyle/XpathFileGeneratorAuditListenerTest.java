@@ -222,7 +222,7 @@ public class XpathFileGeneratorAuditListenerTest {
                 + "       files=\"InputXpathFileGeneratorAuditListener.java\"" + EOL
                 + "       id=\"JavadocModuleId\"" + EOL
                 + "       query=\"/CLASS_DEF[./IDENT[@text='InputXpathFileGeneratorAuditListener']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='isValid']]\"/>" + EOL
+                + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='isValid']]\"/>" + EOL
                 + "</suppressions>" + EOL;
 
         verifyOutput(expected, event1, event2, event3);

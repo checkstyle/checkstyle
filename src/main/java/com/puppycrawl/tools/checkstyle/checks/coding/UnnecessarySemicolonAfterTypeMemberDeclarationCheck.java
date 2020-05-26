@@ -189,8 +189,10 @@ public final class UnnecessarySemicolonAfterTypeMemberDeclarationCheck extends A
      * @param variableDef variable definition
      */
     private void checkVariableDefinition(DetailAST variableDef) {
-        if (isSemicolon(variableDef.getLastChild()) && isSemicolon(variableDef.getNextSibling())) {
-            log(variableDef.getNextSibling(), MSG_SEMI);
+        final DetailAST parent = variableDef.getParent();
+        if (isSemicolon(parent.getLastChild())
+                && isSemicolon(parent.getNextSibling())) {
+            log(parent.getNextSibling(), MSG_SEMI);
         }
     }
 

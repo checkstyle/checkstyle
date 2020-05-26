@@ -151,11 +151,10 @@ public class XpathRegressionGenericWhitespaceTest extends AbstractXpathTestSuppo
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT["
-                + "@text='SuppressionXpathRegressionGenericWhitespaceSingleGenericOne']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/METHOD_CALL"
-                + "/DOT[./IDENT[@text='Collections']]"
-                + "/TYPE_ARGUMENTS/GENERIC_END"
+            "/CLASS_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionGenericWhitespaceSingleGenericOne']]"
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='bad']]/ASSIGN/EXPR/"
+                    + "METHOD_CALL/DOT[./IDENT[@text='Collections']]/TYPE_ARGUMENTS/GENERIC_END"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

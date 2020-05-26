@@ -52,7 +52,7 @@ public class XpathRegressionSingleSpaceSeparatorTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionSingleSpaceSeparator']]/OBJBLOCK"
-                + "/VARIABLE_DEF/IDENT[@text='bad']"
+                + "/VARIABLES/VARIABLE_DEF/IDENT[@text='bad']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

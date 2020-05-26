@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
+
 /**
  * <p>
  * Checks that each variable declaration is in its own statement
@@ -79,13 +80,37 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         DetailAST nextNode = ast.getNextSibling();
+        final DetailAST parent = ast.getParent();
 
+        if (nextNode == null && parent.getType() == TokenTypes.VARIABLES
+                && parent.getNextSibling() != null) {
+            if(parent.getNextSibling().getType() == TokenTypes.SEMI){
+                nextNode = parent.getNextSibling();
+            }
+        }
         if (nextNode != null) {
             final boolean isCommaSeparated = nextNode.getType() == TokenTypes.COMMA;
 
             if (isCommaSeparated
                 || nextNode.getType() == TokenTypes.SEMI) {
                 nextNode = nextNode.getNextSibling();
+            }
+            if (nextNode == null
+                    && parent.getType() == TokenTypes.VARIABLES
+                    && parent.getNextSibling() != null) {
+                final DetailAST nextSibling = parent.getNextSibling();
+                final int siblingType = nextSibling.getType();
+
+                if (siblingType == TokenTypes.SEMI) {
+                    nextNode = parent.getNextSibling();
+                }
+                else if (siblingType == TokenTypes.VARIABLES) {
+                    nextNode = parent.getNextSibling().getFirstChild();
+                }
+            }
+
+            if (nextNode != null && nextNode.getType() == TokenTypes.VARIABLES) {
+                nextNode = nextNode.getFirstChild();
             }
 
             if (nextNode != null
@@ -98,7 +123,8 @@ public class MultipleVariableDeclarationsCheck extends AbstractCheck {
                     // a for loop initializer is a good way to minimize
                     // variable scope. Refer Feature Request Id - 2895985
                     // for more details
-                    if (ast.getParent().getType() != TokenTypes.FOR_INIT) {
+                    if (ast.getParent().getParent().getType() != TokenTypes.FOR_INIT
+                            && ast.getParent().getType() != TokenTypes.FOR_INIT) {
                         log(firstNode, MSG_MULTIPLE_COMMA);
                     }
                 }

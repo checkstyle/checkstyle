@@ -176,7 +176,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>Configuration:</p>
  * <pre>
  * &lt;module name="AbbreviationAsWordInName"&gt;
- *   &lt;property name="tokens" value="VARIABLE_DEF,CLASS_DEF"/&gt;
+ *   &lt;property name="tokens" value="CLASS_DEF"/&gt;
  *   &lt;property name="ignoreStatic" value="false"/&gt;
  *   &lt;property name="allowedAbbreviationLength" value="0"/&gt;
  *   &lt;property name="allowedAbbreviations" value="XML,URL"/&gt;
@@ -487,7 +487,7 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
      */
     private static boolean isInterfaceDeclaration(DetailAST variableDefAst) {
         boolean result = false;
-        final DetailAST astBlock = variableDefAst.getParent();
+        final DetailAST astBlock = variableDefAst.getParent().getParent();
         final DetailAST astParent2 = astBlock.getParent();
 
         if (astParent2.getType() == TokenTypes.INTERFACE_DEF

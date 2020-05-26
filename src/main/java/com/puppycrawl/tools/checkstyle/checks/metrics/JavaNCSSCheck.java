@@ -386,15 +386,18 @@ public class JavaNCSSCheck extends AbstractCheck {
         final int parentType = ast.getParent().getType();
 
         if (parentType == TokenTypes.SLIST
-            || parentType == TokenTypes.OBJBLOCK) {
+            || parentType == TokenTypes.OBJBLOCK
+            || parentType == TokenTypes.VARIABLES) {
+            final DetailAST parent = ast.getParent();
             final DetailAST prevSibling = ast.getPreviousSibling();
 
             // is countable if no previous sibling is found or
             // the sibling is no COMMA.
             // This is done because multiple assignment on one line are counted
             // as 1
-            countable = prevSibling == null
-                    || prevSibling.getType() != TokenTypes.COMMA;
+            countable = (prevSibling == null
+                    || prevSibling.getType() != TokenTypes.COMMA)
+                    && parent.getParent().getType() != TokenTypes.FOR_INIT;
         }
 
         return countable;

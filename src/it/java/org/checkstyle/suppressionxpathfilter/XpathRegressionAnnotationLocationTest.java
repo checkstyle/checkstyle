@@ -172,15 +172,17 @@ public class XpathRegressionAnnotationLocationTest extends AbstractXpathTestSupp
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
-                        + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
-                        + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
-                        + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS/"
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]"
+                        + "/OBJBLOCK/VARIABLES",
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='b']]",
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS",
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='VariableAnnotation']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]/"
-                        + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS/"
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationLocationVariable']]"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='b']]/MODIFIERS/"
                         + "ANNOTATION[./IDENT[@text='VariableAnnotation']]/AT"
         );
 

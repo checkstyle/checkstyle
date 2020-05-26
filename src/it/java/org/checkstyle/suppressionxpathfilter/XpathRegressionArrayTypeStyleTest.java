@@ -48,15 +48,21 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
         };
 
         final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleVariable']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='strings']]/TYPE"
-                        + "/ARRAY_DECLARATOR[./IDENT[@text='String']]"
+            "/CLASS_DEF[./IDENT[@text='"
+                    + "SuppressionXpathRegressionArrayTypeStyleVariable']]/OBJBLOCK/VARIABLES",
+            "/CLASS_DEF[./IDENT[@text='"
+                    + "SuppressionXpathRegressionArrayTypeStyleVariable']]/OBJBLOCK/VARIABLES/"
+                    + "VARIABLE_DEF[./IDENT[@text='strings']]",
+            "/CLASS_DEF[./IDENT[@text='"
+                    + "SuppressionXpathRegressionArrayTypeStyleVariable']]/OBJBLOCK/VARIABLES/"
+                    + "VARIABLE_DEF[./IDENT[@text='strings']]/MODIFIERS",
+            "/CLASS_DEF[./IDENT[@text='"
+                    + "SuppressionXpathRegressionArrayTypeStyleVariable']]/OBJBLOCK/VARIABLES/"
+                    + "VARIABLE_DEF[./IDENT[@text='strings']]/TYPE",
+            "/CLASS_DEF[./IDENT[@text='"
+                    + "SuppressionXpathRegressionArrayTypeStyleVariable']]/OBJBLOCK/VARIABLES/"
+                    + "VARIABLE_DEF[./IDENT[@text='strings']]/TYPE/ARRAY_DECLARATOR"
+                    + "[./IDENT[@text='String']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

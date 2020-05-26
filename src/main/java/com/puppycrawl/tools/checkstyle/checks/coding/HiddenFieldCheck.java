@@ -324,6 +324,20 @@ public class HiddenFieldCheck
                         newFrame.addStaticField(name);
                     }
                 }
+                else if(child.getType() == TokenTypes.VARIABLES) {
+                    child = child.getFirstChild();
+                    final String name =
+                            child.findFirstToken(TokenTypes.IDENT).getText();
+                    final DetailAST mods =
+                            child.findFirstToken(TokenTypes.MODIFIERS);
+                    if (mods.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                        newFrame.addInstanceField(name);
+                    }
+                    else {
+                        newFrame.addStaticField(name);
+                    }
+                    child = child.getParent();
+                }
                 child = child.getNextSibling();
             }
         }

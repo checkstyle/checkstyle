@@ -273,7 +273,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.VARIABLE_DEF:
-                if (ast.getParent().getType() != TokenTypes.OBJBLOCK
+                if (ast.getParent().getParent().getType() != TokenTypes.OBJBLOCK
                         && ast.findFirstToken(TokenTypes.MODIFIERS)
                             .findFirstToken(TokenTypes.FINAL) == null
                         && !isVariableInForInit(ast)
@@ -530,7 +530,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
         return validateEnhancedForLoopVariable
-                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE
+                || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE
+                && ast.getParent().getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
     }
 
     /**
@@ -690,7 +692,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
      */
     private static boolean isVariableInForInit(DetailAST variableDef) {
-        return variableDef.getParent().getType() == TokenTypes.FOR_INIT;
+        return variableDef.getParent().getType() == TokenTypes.FOR_INIT
+                || variableDef.getParent().getParent().getType() == TokenTypes.FOR_INIT;
     }
 
     /**

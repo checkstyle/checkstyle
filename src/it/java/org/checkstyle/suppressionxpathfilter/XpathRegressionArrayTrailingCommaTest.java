@@ -53,10 +53,10 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTrailingCommaOne']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a2']]/ASSIGN/EXPR/LITERAL_NEW"
+                + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='a2']]/ASSIGN/EXPR/LITERAL_NEW"
                 + "/ARRAY_INIT/EXPR[./NUM_INT[@text='3']]",
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTrailingCommaOne']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='a2']]/ASSIGN/EXPR/LITERAL_NEW"
+                + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='a2']]/ASSIGN/EXPR/LITERAL_NEW"
                 + "/ARRAY_INIT/EXPR/NUM_INT[@text='3']"
         );
 
@@ -79,7 +79,7 @@ public class XpathRegressionArrayTrailingCommaTest extends AbstractXpathTestSupp
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTrailingCommaTwo']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='d2']]/ASSIGN/EXPR/LITERAL_NEW"
+                + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='d2']]/ASSIGN/EXPR/LITERAL_NEW"
                 + "/ARRAY_INIT/ARRAY_INIT[./EXPR/NUM_INT[@text='5']]"
         );
 

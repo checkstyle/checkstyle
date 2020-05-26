@@ -56,6 +56,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         TokenTypes.LITERAL_CONTINUE,
         TokenTypes.CTOR_CALL,
         TokenTypes.SUPER_CTOR_CALL,
+        TokenTypes.VARIABLES,
     };
 
     /**

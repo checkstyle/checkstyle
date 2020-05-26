@@ -51,18 +51,18 @@ public class XpathRegressionInterfaceMemberImpliedModifierTest extends AbstractX
 
         final List<String> expectedXpathQueries = Arrays.asList(
             "/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]",
-
+                    + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                    + "/OBJBLOCK/VARIABLES",
             "/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]"
-                + "/MODIFIERS",
-
+                    + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='str']]",
             "/INTERFACE_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='str']]"
-                + "/MODIFIERS/LITERAL_PUBLIC"
+                    + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='str']]/MODIFIERS",
+            "/INTERFACE_DEF[./IDENT"
+                    + "[@text='SuppressionXpathRegressionInterfaceMemberImpliedModifier1']]"
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='str']]/MODIFIERS"
+                    + "/LITERAL_PUBLIC"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);

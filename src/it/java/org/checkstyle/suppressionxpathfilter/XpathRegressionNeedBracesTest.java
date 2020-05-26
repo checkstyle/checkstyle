@@ -97,7 +97,7 @@ public class XpathRegressionNeedBracesTest extends AbstractXpathTestSupport {
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionNeedBracesSingleLineLambda']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='r3']]/ASSIGN/LAMBDA"
+                    + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='r3']]/ASSIGN/LAMBDA"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

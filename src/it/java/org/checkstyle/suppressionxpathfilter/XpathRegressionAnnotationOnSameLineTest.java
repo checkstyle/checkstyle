@@ -92,15 +92,17 @@ public class XpathRegressionAnnotationOnSameLineTest extends AbstractXpathTestSu
 
         final List<String> expectedXpathQueries = Arrays.asList(
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]",
+                        + "/OBJBLOCK/VARIABLES",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS",
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='names']]",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS"
-                        + "/ANNOTATION[./IDENT[@text='Deprecated']]",
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS",
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
-                        + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS"
-                        + "/ANNOTATION[./IDENT[@text='Deprecated']]/AT"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS/"
+                        + "ANNOTATION[./IDENT[@text='Deprecated']]",
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionAnnotationOnSameLineTwo']]"
+                        + "/OBJBLOCK/VARIABLES/VARIABLE_DEF[./IDENT[@text='names']]/MODIFIERS/"
+                        + "ANNOTATION[./IDENT[@text='Deprecated']]/AT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

@@ -299,12 +299,18 @@ public class SuppressWarningsHolder
                 // get text range of target
                 final int firstLine = targetAST.getLineNo();
                 final int firstColumn = targetAST.getColumnNo();
-                final DetailAST nextAST = targetAST.getNextSibling();
                 final int lastLine;
                 final int lastColumn;
+                final DetailAST nextAST = targetAST.getNextSibling();
                 if (nextAST == null) {
                     lastLine = Integer.MAX_VALUE;
                     lastColumn = Integer.MAX_VALUE;
+                }
+                else if (nextAST.getType() == TokenTypes.SEMI
+                        && nextAST.getParent().getNextSibling() != null) {
+                    final DetailAST nextSibling = nextAST.getParent().getNextSibling();
+                    lastLine = nextSibling.getLineNo();
+                    lastColumn = nextSibling.getColumnNo() -1;
                 }
                 else {
                     lastLine = nextAST.getLineNo();

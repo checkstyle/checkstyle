@@ -371,10 +371,14 @@ public final class ModifiedControlVariableCheck extends AbstractCheck {
      * @return set of variables initialized in for loop
      */
     private static Set<String> getForInitVariables(DetailAST ast) {
-        final Set<String> initializedVariables = new HashSet<>();
-        final DetailAST forInitAST = ast.findFirstToken(TokenTypes.FOR_INIT);
+        DetailAST forInitVariablesAST = ast.findFirstToken(TokenTypes.FOR_INIT);
+        if(forInitVariablesAST.findFirstToken(TokenTypes.VARIABLES) != null) {
+            forInitVariablesAST = forInitVariablesAST.findFirstToken(TokenTypes.VARIABLES);
+        }
 
-        for (DetailAST parameterDefAST = forInitAST.findFirstToken(TokenTypes.VARIABLE_DEF);
+        final Set<String> initializedVariables = new HashSet<>();
+        for (DetailAST parameterDefAST =
+             forInitVariablesAST.findFirstToken(TokenTypes.VARIABLE_DEF);
              parameterDefAST != null;
              parameterDefAST = parameterDefAST.getNextSibling()) {
             if (parameterDefAST.getType() == TokenTypes.VARIABLE_DEF) {

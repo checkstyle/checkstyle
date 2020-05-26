@@ -91,6 +91,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
         final DetailAST arrayDeclarator = packageDefinitionNode.getNextSibling()
                 .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.VARIABLES)
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .findFirstToken(TokenTypes.TYPE)
                 .getFirstChild();
