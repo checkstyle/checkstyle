@@ -73,9 +73,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * TrailingComment
  * </li>
  * <li>
- * UnnecessaryParentheses
- * </li>
- * <li>
  * VariableDeclarationUsageDistance
  * </li>
  * </ul>
