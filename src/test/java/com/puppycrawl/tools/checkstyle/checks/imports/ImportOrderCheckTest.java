@@ -72,6 +72,23 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWrongSequenceInNonStaticImports() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("useContainerOrderingForStatic", "false");
+        checkConfig.addAttribute("sortStaticImportsAlphabetically", "false");
+        checkConfig.addAttribute("option", "bottom");
+
+        final String[] expected = {
+            "4:1: " + getCheckMessage(MSG_ORDERING,
+                    "java.util.HashMap"),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputImportOrderNonStaticWrongSequence.java"), expected);
+    }
+
+    @Test
     public void testMultilineImport() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
