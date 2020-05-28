@@ -271,6 +271,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INSTANCE_INIT,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
         };
     }
 
@@ -482,6 +483,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.INTERFACE_DEF,
         };
 
         /** Right curly. */
