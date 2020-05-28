@@ -1,5 +1,7 @@
 package com.google.checkstyle.test.chapter4formatting.rule462horizontalwhitespace;
 
+import java.util.ArrayList;
+
 /**
  * Class for testing whitespace issues.
  * violation missing author tag
@@ -234,6 +236,12 @@ class SpecialCasesInForLoop
     int[] getSomeInts() {
         int i = (int) ( 2 / 3 );
         return null;
+    }
+
+    void forColon() {
+        ArrayList<Integer> ll = new ArrayList<Integer>();
+        for (int x:ll) {} // warn
+        for (int x : ll) {} // ok
     }
 }
 
