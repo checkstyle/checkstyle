@@ -615,7 +615,7 @@ public class RegexpCheck extends AbstractCheck {
                     logMessage(startLine);
                 }
             }
-            if (canContinueValidation(ignore)) {
+            if (canContinueValidation()) {
                 findMatch();
             }
         }
@@ -627,12 +627,10 @@ public class RegexpCheck extends AbstractCheck {
     /**
      * Check if we can stop validation.
      *
-     * @param ignore flag
      * @return true is we can continue
      */
-    private boolean canContinueValidation(boolean ignore) {
-        return errorCount <= errorLimit - 1
-                && (ignore || illegalPattern || checkForDuplicates);
+    private boolean canContinueValidation() {
+        return errorCount <= errorLimit - 1;
     }
 
     /**
