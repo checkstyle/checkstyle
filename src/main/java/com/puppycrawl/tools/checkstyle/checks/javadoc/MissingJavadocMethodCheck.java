@@ -450,12 +450,18 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
     private static Scope calculateScope(final DetailAST ast) {
         final Scope scope;
 
-        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+        if (ScopeUtil.isInAnnotationBlock(ast)) {
             scope = Scope.PUBLIC;
         }
         else {
             final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-            scope = ScopeUtil.getScopeFromMods(mods);
+            final Scope modifiersScope = ScopeUtil.getScopeFromMods(mods);
+            if (modifiersScope == Scope.PACKAGE && ScopeUtil.isInInterfaceBlock(ast)) {
+                scope = Scope.PUBLIC;
+            }
+            else {
+                scope = modifiersScope;
+            }
         }
         return scope;
     }
