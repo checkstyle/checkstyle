@@ -80,3 +80,5 @@ cd checkstyle/src/xdocs
 echo
 echo "releasenotes.xml after commit:"
 head -n 100 releasenotes.xml
+cd ../../..
+find . -delete
