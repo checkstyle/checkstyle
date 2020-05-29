@@ -463,4 +463,14 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputMissingJavadocMethodConstructor.java"), expected);
     }
+
+    @Test
+    public void testNotPublicInterfaceMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+                MissingJavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", "public");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath(
+            "InputMissingJavadocMethodInterfacePrivateMethod.java"), expected);
+    }
 }
