@@ -463,4 +463,29 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputMissingJavadocMethodConstructor.java"), expected);
     }
+
+    @Test
+    public void testNotPublicInterfaceMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+                MissingJavadocMethodCheck.class);
+        checkConfig.addAttribute("scope", "public");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath(
+            "InputMissingJavadocMethodInterfacePrivateMethod.java"), expected);
+    }
+
+    @Test
+    public void testPublicMethods() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+                MissingJavadocMethodCheck.class);
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "22:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(checkConfig, getPath("InputMissingJavadocMethodPublicMethods.java"), expected);
+
+    }
 }
