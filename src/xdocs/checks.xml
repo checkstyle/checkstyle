@@ -649,6 +649,11 @@
             <td>Checks the NPATH complexity against a specified limit.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#NullBeforeInstanceOf">
+              NullBeforeInstanceOf</a></td>
+            <td>Checks if unnecessary null check is used before instanceof expression.</td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#OneStatementPerLine">OneStatementPerLine</a></td>
             <td>Checks that there is only one statement per line.</td>
           </tr>
