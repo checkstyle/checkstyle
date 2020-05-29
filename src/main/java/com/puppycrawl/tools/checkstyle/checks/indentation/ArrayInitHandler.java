@@ -99,7 +99,7 @@ public class ArrayInitHandler extends BlockParentHandler {
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
-        if (firstChildPos >= 0) {
+        if (firstChildPos > -1) {
             expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
                     + getLineWrappingIndentation());
         }
