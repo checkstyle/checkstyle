@@ -245,4 +245,9 @@
         <Method name="getTranslationKeys"/>
         <Bug pattern="REC_CATCH_EXCEPTION"/>
     </Match>
+    <Match>
+        <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/issues/8262 -->
+        <Field name="$jacocoData"/>
+        <Bug pattern="SE_TRANSIENT_FIELD_NOT_RESTORED"/>
+    </Match>
 </FindBugsFilter>

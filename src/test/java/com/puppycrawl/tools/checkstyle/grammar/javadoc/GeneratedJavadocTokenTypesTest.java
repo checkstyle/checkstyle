@@ -47,7 +47,7 @@ public class GeneratedJavadocTokenTypesTest {
     public void testTokenNumbers() {
         assertEquals(1, JavadocParser.LEADING_ASTERISK, MSG);
         assertEquals(2, JavadocParser.HTML_COMMENT_START, MSG);
-        assertEquals(3, JavadocParser.CDATA, MSG);
+        assertEquals(3, JavadocParser.DEPRECATED_CDATA_DO_NOT_USE, MSG);
         assertEquals(4, JavadocParser.WS, MSG);
         assertEquals(5, JavadocParser.START, MSG);
         assertEquals(6, JavadocParser.NEWLINE, MSG);
