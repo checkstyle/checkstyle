@@ -405,9 +405,9 @@ after_success:
     fail=0
     mkdir -p .ci-temp
     if [ -z "$(ls -A .ci-temp)" ]; then
-        echo "Empty .ci-temp/ validation did not find any warnings."
+        echo "Folder .ci-temp/ is empty."
     else
-        echo "Directory .ci-temp/ is not empty. Verification failed."
+        echo "Folder .ci-temp/ is not empty. Verification failed."
         echo "Contents of .ci-temp/:"
         fail=1
     fi
