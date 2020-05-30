@@ -49,6 +49,8 @@ sonarqube)
   checkout_from https://github.com/viesure/blog-sonar-build-breaker.git
   sed -i'' "s|our.sonar.server|sonarcloud.io|" \
     .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
+  sed -i'' "s|curl |curl -k |" \
+    .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
   export SONAR_API_TOKEN=$SONAR_TOKEN
   .ci-temp/blog-sonar-build-breaker/sonar_break_build.sh
   removeFolderWithProtectedFiles .ci-temp/blog-sonar-build-breaker
