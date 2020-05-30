@@ -179,35 +179,35 @@ public class InputRightCurlyAloneOrSingleline {
 
     void foo30() {
         if (true) {
-            getClass();} // violation
+            getClass();} //violation
 
         for (int i = 0; i == 0; i++) {
-            getClass();} // violation
+            getClass();} //violation
 
         while (true) {
-            getClass();} // violation
+            getClass();} //violation
     }
 
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // violation
+        } catch (RuntimeException e) { //violation
             new Object();
-        } catch (Exception e) { // violation
+        } catch (Exception e) { //violation
             // comment
-        } catch (Throwable e) { // violation
-        } finally { // violation
+        } catch (Throwable e) { //violation
+        } finally { //violation
             // comment
         }
 
         do {
-        } while (true); // violation
+        } while (true); //violation
     }
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // violation
-        for (int i = 0; i < 1; i++) { new Object(); }; // violation
+        }; //violation
+        for (int i = 0; i < 1; i++) { new Object(); }; //violation
     }
 
     public @interface TestAnnotation {}
@@ -223,4 +223,12 @@ public class InputRightCurlyAloneOrSingleline {
 
     public @interface TestAnnottation4 { String value();
     }
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); } //violation
+
+    interface Interface2
+    { int i = 1; public void meth1(); }
 }
