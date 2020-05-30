@@ -26,8 +26,10 @@ case $1 in
 
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
-  # executon on local:
-  # SONAR_TOKEN=xxxxxx PR=xxxxxx WERCKER_GIT_BRANCH=xxxxxx ./.ci/travis/travis.sh sonarqube
+  # executon on local for master:
+  # SONAR_TOKEN=xxxxxx ./.ci/wercker.sh sonarqube
+  # executon on local for non-master:
+  # SONAR_TOKEN=xxxxxx PR=xxxxxx WERCKER_GIT_BRANCH=xxxxxx ./.ci/wercker.sh sonarqube
   if [[ $PR && $PR =~ ^([0-9]*)$ ]]; then
       SONAR_PR_VARIABLES="-Dsonar.pullrequest.key=$PR"
       SONAR_PR_VARIABLES+=" -Dsonar.pullrequest.branch=$WERCKER_GIT_BRANCH"
