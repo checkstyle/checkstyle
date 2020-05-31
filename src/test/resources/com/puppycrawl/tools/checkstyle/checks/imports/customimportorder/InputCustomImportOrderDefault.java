@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import com.puppycrawl.tools.*;
+import com.puppycrawl.tools.checkstyle.*;
 
 import com.google.common.collect.*;
 import org.junit.*;

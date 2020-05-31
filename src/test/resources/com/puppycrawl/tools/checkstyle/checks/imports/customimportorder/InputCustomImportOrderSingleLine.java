@@ -6,7 +6,7 @@ import org.junit.runner.*;
 import org.junit.validator.*;
 
 
-import com.puppycrawl.tools.*;
+import com.puppycrawl.tools.checkstyle.*;
 
 
 

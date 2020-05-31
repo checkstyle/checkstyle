@@ -36,7 +36,7 @@ class WithoutTryCatchFinalizer {
 }
 
 // public finalizer
-class PublicFinalizer {
+class InputPublicFinalizer {
 
     public static void doStuff() {
         // This method do some stuff
@@ -52,7 +52,7 @@ class PublicFinalizer {
 }
 
 // unless (or worse) finalizer
-class SuperFinalizer {
+class InputSuperFinalizer {
 
     protected void finalize() throws Throwable { //warn
         super.finalize();
@@ -60,7 +60,7 @@ class SuperFinalizer {
 }
 
 // public finalizer
-class StaticFinalizer {
+class InputStaticFinalizer {
 
     public static void doStuff() {
         // This method do some stuff

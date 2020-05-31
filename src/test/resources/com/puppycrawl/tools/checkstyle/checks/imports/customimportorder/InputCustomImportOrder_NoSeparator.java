@@ -4,8 +4,8 @@ import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
 import java.util.*;
 import java.util.StringTokenizer;
-import com.puppycrawl.tools.*;
-import com.*;
+import com.puppycrawl.tools.checkstyle.checks.*;
+import com.puppycrawl.tools.checkstyle.*;
 import org.apache.commons.beanutils.*;
 
 public class InputCustomImportOrder_NoSeparator {
