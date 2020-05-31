@@ -15,6 +15,249 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.33">
+      <div class="releaseDate">31.05.2020</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Drop CDATA support in javadoc grammar .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/4937">#4937</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            new Check: NoCodeInFile.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8132">#8132</a>
+          </li>
+          <li>
+            Allow to configure if ArrayTrailingComma should ignore single-line arrays.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/3201">#3201</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Space betwee type annoation and [] or ... not verifiable for Google Style.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/6707">#6707</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - CustomImportOrder.
+            Author: hembhagat
+            <a href="https://github.com/checkstyle/checkstyle/issues/7728">#7728</a>
+          </li>
+          <li>
+            Java9: try-with-resources should accept fields.
+            Author: Harsh Kukreja
+            <a href="https://github.com/checkstyle/checkstyle/issues/6332">#6332</a>
+          </li>
+          <li>
+            JavadocTagContinuationIndentation doesn&#39;t report some lines.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/2813">#2813</a>
+          </li>
+          <li>
+            Remove from PackageDeclaration validation for empty files.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/8110">#8110</a>
+          </li>
+          <li>
+            JavadocMethod: false positive with validateThrows if catched inside the method.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7473">#7473</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - CommentsIndentation.
+            Author: Shrey Kumar Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7727">#7727</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Sonar API Token has no access rights.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8279">#8279</a>
+          </li>
+          <li>
+            Spotbugs should validate tests.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8275">#8275</a>
+          </li>
+          <li>
+            Suppress Spotbugs violation for internal JaCoCo field.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8262">#8262</a>
+          </li>
+          <li>
+            code cleanup: minimize future xdoc changes .
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/3946">#3946</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - ImportOrderCheck (5).
+            Author: yajna pandith
+            <a href="https://github.com/checkstyle/checkstyle/issues/7876">#7876</a>
+          </li>
+          <li>
+            Cleanup .ci-temp folder after release notes generation.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/8268">#8268</a>
+          </li>
+          <li>
+            resolve FileTabCharacter violations in test resources.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8019">#8019</a>
+          </li>
+          <li>
+            Add default config example for AbstractClassName.
+            Author: Praveen Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/7565">#7565</a>
+          </li>
+          <li>
+            update doc for ClassDataAbstractionCoupling.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7690">#7690</a>
+          </li>
+          <li>
+            Improve clean up of .ci-temp directory.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/7892">#7892</a>
+          </li>
+          <li>
+            Sonar violations: Refactor the body of this try/catch to have only
+            one invocation throwing an exception.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8249">#8249</a>
+          </li>
+          <li>
+            Checkstyle verification in printed as WARNING during build.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8256">#8256</a>
+          </li>
+          <li>
+            spelling: Fix broken links in sun_checks.xml.
+            Author: tosi29
+          </li>
+          <li>
+            Making regex to validate missed space in comments in non main files.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/8169">#8169</a>
+          </li>
+          <li>
+            Broken link - AvoidDoubleBraceInitialization.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7889">#7889</a>
+          </li>
+          <li>
+            Update CIs to validate empty outpu of &#39;git status&#39; after execution.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/8228">#8228</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - JavadocMethodCheck (8).
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7980">#7980</a>
+          </li>
+          <li>
+            Use JOSM in our CI.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/3786">#3786</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - UnusedImportsCheck.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7921">#7921</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - CustomImportOrderCheck (3).
+            Author: kaustubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7804">#7804</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - ImportOrderCheck (2).
+            Author: kaustubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7873">#7873</a>
+          </li>
+          <li>
+            Update doc for NoFinalizer.
+            Author: Omar Shawky
+            <a href="https://github.com/checkstyle/checkstyle/issues/7671">#7671</a>
+          </li>
+          <li>
+            update test inputs to avoid long lines that violate 100 limit.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/8036">#8036</a>
+          </li>
+          <li>
+            doc: update link to moved javadoc-tool page.
+            Author: pbludov
+          </li>
+          <li>
+            Resolve PMD warning deprecated attribute &#39;ClassOrInterfaceDeclaration/@Image&#39; .
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/8206">#8206</a>
+          </li>
+          <li>
+            Jacoco coverage report should have grammar classes.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8219">#8219</a>
+          </li>
+          <li>
+            Update Xpath unit tests to have at least two test methods.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/8151">#8151</a>
+          </li>
+          <li>
+            Page that explains system properties is not accesible from main page.
+            Author: Shrey Kumar Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/6475">#6475</a>
+          </li>
+          <li>
+            Unclear beginning development instructions .
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8198">#8198</a>
+          </li>
+          <li>
+            sync content of cli tool in xdoc and cli tool help output .
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/6216">#6216</a>
+          </li>
+          <li>
+            Add default config example for CatchParameterName.
+            Author: kaustubh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7563">#7563</a>
+          </li>
+          <li>
+            Update doc for MissingCtor.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7667">#7667</a>
+          </li>
+          <li>
+            Create code of conduct.
+            Author: Akhil singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7833">#7833</a>
+          </li>
+          <li>
+            Update doc for AvoidInlineConditionals.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/7664">#7664</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - JavadocMethodCheck (7).
+            Author: Harsh Kukreja
+            <a href="https://github.com/checkstyle/checkstyle/issues/7979">#7979</a>
+          </li>
+          <li>
+            doc: repo1.maven.org demands https.
+            Author: Roman Ivanov
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.32">
       <div class="releaseDate">26.04.2020</div>
       <p>Breaking backward compatibility:</p>
