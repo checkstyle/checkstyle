@@ -12,7 +12,7 @@ site)
   ;;
 
 verify)
-  mvn -e clean verify
+  mvn -Djava.version=${JDK} -e clean verify
   ;;
 
 test-de)
