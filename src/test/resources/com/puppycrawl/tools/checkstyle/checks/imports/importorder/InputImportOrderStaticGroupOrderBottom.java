@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import org.*;
+import org.antlr.v4.runtime.*;
 
 import java.util.Set;
 
