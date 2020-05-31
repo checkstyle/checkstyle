@@ -67,7 +67,7 @@ class InputCovariant4
     }
 }
 
-class AnonymousIC
+class InputAnonymousIC
 {
     Comparable comp = new Comparable()
         {

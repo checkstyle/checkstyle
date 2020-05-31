@@ -20,7 +20,7 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocTag; // (J_T
 //import com.puppycrawl.tools.checkstyle.checks.javadoc.TagParser; // (__T)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.WriteTagCheck; //warn, should be on STANDARD (_CT)
 
-import com.puppycrawl.tools.*;
+import com.puppycrawl.tools.checkstyle.*;
 //import com.puppycrawl.tools.checkstyle.checks.javadoc.HtmlTag; //warn, should be on SPECIAL (__T)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag; //warn, should be on SPECIAL (J_T)
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck; //warn, should be on STANDARD  (JC_)
