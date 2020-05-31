@@ -10,8 +10,8 @@ import java.util.*; //warn, LEXIC, should be before javax.swing.WindowConstants.
 import java.util.concurrent.AbstractExecutorService; //warn, LEXIC, should be before javax.swing.WindowConstants.*
 import java.util.concurrent.*; //warn, LEXIC, should be before javax.swing.WindowConstants.*
 
-import com.puppycrawl.tools.*;
-import com.*; //warn, LEXIC, should be before com.puppycrawl.tools.*
+import com.puppycrawl.tools.checkstyle.checks.*;
+import com.puppycrawl.tools.checkstyle.*; //warn, LEXIC, should be before com.puppycrawl.tools.checkstyle.checks.*
 
 import com.google.common.base.*; //warn, SEPARATED_IN_GROUP, LEXIC, should be before com.puppycrawl.tools.*
 import org.junit.*;
