@@ -277,6 +277,29 @@ public class FooTest {
         <source>
 &lt;module name=&quot;FinalClass&quot;/&gt;
         </source>
+          Examples :
+<source>          
+class Parent{
+  Parent(){
+          }
+  }
+class Test{
+  public static void main(String args[]){
+  Parent s = new Parent(); // ok
+  }
+ } 
+          
+class Parent{
+  private Parent(){
+  }
+}
+class Test{
+  public static void main(String args[]){
+  Parent s = new Parent(); // violation
+  }
+ } 
+          </source>
+      
       </subsection>
 
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
@@ -291,7 +314,7 @@ public class FooTest {
           </li>
         </ul>
       </subsection>
-
+      
       <subsection name="Violation Messages" id="FinalClass_Violation_Messages">
         <ul>
           <li>
