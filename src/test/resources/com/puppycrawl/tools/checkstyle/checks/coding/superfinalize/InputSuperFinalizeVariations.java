@@ -29,7 +29,7 @@ class NoSuperFinalize
     }
 }
 
-class InnerFinalize
+class InputInnerFinalize
 {
     public void finalize()
     {
@@ -56,7 +56,7 @@ class TestNative {
     public native void finalize();
 }
 
-class OneMore {
+class InputOneMore {
 
     public void doSmt() throws Throwable {
         {

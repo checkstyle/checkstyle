@@ -133,7 +133,7 @@ class ComplexAndFlagged
     };
 }
 
-class ComplexButNotFlagged
+class InputComplexButNotFlagged
 {
     // according to user feedback this is typical code that should not be flagged
     public final double SpecialSum = 2 + 1e10, SpecialDifference = 4 - java.lang.Math.PI;
