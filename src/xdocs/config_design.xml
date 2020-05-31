@@ -277,26 +277,29 @@ public class FooTest {
         <source>
 &lt;module name=&quot;FinalClass&quot;/&gt;
         </source>
-        <p>
           Examples :
+<source>          
+class Parent{
+  Parent(){
+          }
+  }
+class Test{
+  public static void main(String args[]){
+  Parent s = new Parent(); // ok
+  }
+ } 
           
 class Parent{
-Parent(){
-}}
-class Test {
-public static void main(String args[]){
-Parent s = new Parent();
-}} // ok
-          
-class Parent{
-private Parent() {
-}}
-class Test {
-public static void main(String args[]){
-Parent s = new Parent();
-}} // violation
-          
-      </p>
+  private Parent(){
+  }
+}
+class Test{
+  public static void main(String args[]){
+  Parent s = new Parent(); // violation
+  }
+ } 
+          </source>
+      
       </subsection>
 
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
