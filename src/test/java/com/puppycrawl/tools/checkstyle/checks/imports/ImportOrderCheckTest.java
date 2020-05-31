@@ -395,7 +395,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
+            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "8:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
         };
 
@@ -409,7 +409,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
+            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "8:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
         };
         verify(checkConfig, getPath("InputImportOrderStaticGroupOrder.java"), expected);
@@ -553,7 +553,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("option", "top");
         checkConfig.addAttribute("groups", "org, java");
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
+            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "8:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "9:1: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
         };
@@ -568,7 +568,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("groups", "org, java");
         checkConfig.addAttribute("sortStaticImportsAlphabetically", "true");
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.*"),
+            "6:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "org.antlr.v4.runtime.*"),
             "8:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.Set"),
             "9:1: " + getCheckMessage(MSG_ORDERING, "org.junit.Test"),
         };

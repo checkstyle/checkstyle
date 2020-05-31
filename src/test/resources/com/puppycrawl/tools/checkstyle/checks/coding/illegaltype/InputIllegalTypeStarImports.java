@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
-import java.*;
+import java.net.*;
 import java.util.*;
 import org.antlr.v4.runtime.*;
-import com.*;
+import com.puppycrawl.tools.checkstyle.*;
 //configuration "illegalClassNames": List
 public class InputIllegalTypeStarImports
 {

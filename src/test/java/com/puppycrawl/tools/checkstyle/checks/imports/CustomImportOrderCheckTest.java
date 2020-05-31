@@ -122,7 +122,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "18:1: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
             "22:1: " + getCheckMessage(MSG_LEX, "com.google.common.collect.*",
-                "com.puppycrawl.tools.*"),
+                "com.puppycrawl.tools.checkstyle.*"),
         };
 
         verify(checkConfig, getPath("InputCustomImportOrderDefault.java"), expected);
@@ -149,7 +149,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "16:1: " + getCheckMessage(MSG_LEX, "java.io.IOException", "javax.swing.JTable"),
             "17:1: " + getCheckMessage(MSG_LEX, "java.io.InputStream", "javax.swing.JTable"),
             "18:1: " + getCheckMessage(MSG_LEX, "java.io.Reader", "javax.swing.JTable"),
-            "20:1: " + getCheckMessage(MSG_ORDER, SAME, THIRD, "com.puppycrawl.tools.*"),
+            "20:1: " + getCheckMessage(MSG_ORDER, SAME, THIRD, "com.puppycrawl.tools.checkstyle.*"),
             "22:1: " + getCheckMessage(MSG_NONGROUP_IMPORT, "com.google.common.collect.*"),
             "23:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.junit.*"),
         };
@@ -189,10 +189,11 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
                 "javax.swing.WindowConstants.*"),
             "11:1: " + getCheckMessage(MSG_LEX, "java.util.concurrent.*",
                 "javax.swing.WindowConstants.*"),
-            "14:1: " + getCheckMessage(MSG_LEX, "com.*", "com.puppycrawl.tools.*"),
+            "14:1: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.checkstyle.*",
+                "com.puppycrawl.tools.checkstyle.checks.*"),
             "16:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.base.*"),
             "16:1: " + getCheckMessage(MSG_LEX, "com.google.common.base.*",
-                "com.puppycrawl.tools.*"),
+                "com.puppycrawl.tools.checkstyle.checks.*"),
         };
 
         verify(checkConfig, getPath("InputCustomImportOrderDefault2.java"), expected);
@@ -264,7 +265,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "4:1: " + getCheckMessage(MSG_LEX, "java.io.File.createTempFile",
                 "javax.swing.WindowConstants.*"),
-            "8:1: " + getCheckMessage(MSG_LEX, "com.*", "com.puppycrawl.tools.*"),
+            "8:1: " + getCheckMessage(MSG_LEX, "com.puppycrawl.tools.checkstyle.*",
+                "com.puppycrawl.tools.checkstyle.checks.*"),
         };
 
         verify(checkConfig, getPath("InputCustomImportOrder_NoSeparator.java"), expected);
@@ -658,7 +660,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
         createChecker(checkConfig);
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.awt.Button"),
-            "20:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.puppycrawl.tools.*"),
+            "20:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.puppycrawl.tools.checkstyle.*"),
             "22:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "com.google.common.collect.*"),
         };
         verify(checkConfig, getPath("InputCustomImportOrderDefault.java"), expected);
@@ -840,7 +842,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "2:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "com.google.common.annotations.Beta"),
             "9:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
-                "com.puppycrawl.tools.*"),
+                "com.puppycrawl.tools.checkstyle.*"),
             "13:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "antlr.*"),
         };
