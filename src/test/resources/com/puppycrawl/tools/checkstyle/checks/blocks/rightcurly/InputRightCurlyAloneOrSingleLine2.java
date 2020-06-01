@@ -61,4 +61,18 @@ public class InputRightCurlyAloneOrSingleLine2 {
     class TestClass4 { }
 
     class TestClass5 { } { } //violation
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); } // violation
+
+    interface Interface2
+    { int i = 1; public void meth1(); }
+
+    interface Interface3 {
+        void display();
+        interface Interface4 {
+            void myMethod();
+        }} // violation - for both of the right curly braces
 }

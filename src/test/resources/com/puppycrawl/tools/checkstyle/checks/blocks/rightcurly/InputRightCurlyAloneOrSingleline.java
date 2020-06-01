@@ -206,7 +206,7 @@ public class InputRightCurlyAloneOrSingleline {
 
     public void codeAfterLastRightCurly() {
         while (new Object().equals(new Object())) {
-        }; // violation
+        }; //violation
         for (int i = 0; i < 1; i++) { new Object(); }; // violation
     }
 
@@ -223,4 +223,12 @@ public class InputRightCurlyAloneOrSingleline {
 
     public @interface TestAnnottation4 { String value();
     }
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); } // violation
+
+    interface Interface2
+    { int i = 1; public void meth1(); }
 }
