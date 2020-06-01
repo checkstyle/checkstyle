@@ -223,4 +223,12 @@ public class InputRightCurlyAloneOrSingleline {
 
     public @interface TestAnnottation4 { String value();
     }
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); } // violation
+
+    interface Interface2
+    { int i = 1; public void meth1(); }
 }

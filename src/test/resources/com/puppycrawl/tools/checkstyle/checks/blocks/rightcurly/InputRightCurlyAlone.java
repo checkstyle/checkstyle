@@ -80,4 +80,18 @@ public class InputRightCurlyAlone {
 
     public @interface TestAnnottation4 { String value();
     }
+
+    interface Interface1
+    {
+        int i = 1;
+        public void meth1(); } // violation
+
+    interface Interface2
+    { int i = 1; public void meth1(); } // violation
+
+    interface Interface3 {
+        void display();
+        interface Interface4 {
+            void myMethod();
+        }} // violation - for both of the right curly braces
 }
