@@ -39,10 +39,10 @@ public class VariableDeclarationUsageDistanceTest extends AbstractGoogleModuleTe
                 VariableDeclarationUsageDistanceCheck.class;
 
         final String[] expected = {
-            "71: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
-            "219: " + getCheckMessage(clazz, msgExt, "t", 5, 3),
-            "483: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
-            "495: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
+            "71:9: " + getCheckMessage(clazz, msgExt, "count", 4, 3),
+            "219:9: " + getCheckMessage(clazz, msgExt, "t", 5, 3),
+            "483:9: " + getCheckMessage(clazz, msgExt, "myOption", 7, 3),
+            "495:9: " + getCheckMessage(clazz, msgExt, "myOption", 6, 3),
         };
 
         final Configuration checkConfig =

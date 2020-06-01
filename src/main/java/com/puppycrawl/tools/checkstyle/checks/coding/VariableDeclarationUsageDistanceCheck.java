@@ -304,12 +304,10 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
                 if (dist > allowedDistance
                         && !isInitializationSequence(variableUsageAst, variable.getText())) {
                     if (ignoreFinal) {
-                        log(variable.getLineNo(),
-                                MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
+                        log(ast, MSG_KEY_EXT, variable.getText(), dist, allowedDistance);
                     }
                     else {
-                        log(variable.getLineNo(),
-                                MSG_KEY, variable.getText(), dist, allowedDistance);
+                        log(ast, MSG_KEY, variable.getText(), dist, allowedDistance);
                     }
                 }
             }

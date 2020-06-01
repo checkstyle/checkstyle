@@ -72,9 +72,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <li>
  * TrailingComment
  * </li>
- * <li>
- * VariableDeclarationUsageDistance
- * </li>
  * </ul>
  * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
