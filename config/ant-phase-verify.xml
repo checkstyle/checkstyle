@@ -148,6 +148,9 @@
          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
          <exclude name="**/InputJavaParser.java"/>
+
+
+         <exclude name="**/InputJava14InstanceofWithPatternMatching.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
