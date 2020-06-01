@@ -394,6 +394,7 @@
       <property name="severity" value="ignore"/>
     </module>
     <module name="NoFinalizer"/>
+    <module name="NullTestAroundInstanceOf"/>
     <module name="OneStatementPerLine"/>
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="PackageDeclaration"/>
