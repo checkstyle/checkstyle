@@ -110,6 +110,15 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    //Need to add these here to preserve order of tokens
+    SINGLE_LINE_COMMENT_CONTENT; BLOCK_COMMENT_CONTENT; STD_ESC;
+    BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
+    FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
+    SIGNED_INTEGER; BINARY_EXPONENT;
+
+
+    PATTERN_DEF;
 }
 
 {
@@ -1372,7 +1381,10 @@ equalityExpression
 
 // boolean relational expressions (level 5)
 relationalExpression
-    :    shiftExpression ( "instanceof"^ typeSpec[true])?
+    :   shiftExpression ( "instanceof"^  (
+            (   typeSpec[true] IDENT)=> patternDefinition
+            |   instanceofTypeSpec  )
+            )?
         (    (options{warnWhenFollowAmbig=false;} :     (    LT^
                 |    GT^
                 |    LE^
@@ -1384,6 +1396,15 @@ relationalExpression
         )
     ;
 
+instanceofTypeSpec!
+    :   t:typeSpec[true]
+        {#instanceofTypeSpec = #t;}
+    ;
+
+patternDefinition!
+    :       t: typeSpec[false] v:variableDefinitions[#null,#t]
+            {#patternDefinition = #(#[PATTERN_DEF,"PATTERN_DEF"], v);}
+    ;
 
 // bit shift expressions (level 4)
 shiftExpression
