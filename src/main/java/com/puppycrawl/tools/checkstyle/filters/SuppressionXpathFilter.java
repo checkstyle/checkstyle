@@ -75,9 +75,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <li>
  * UnnecessaryParentheses
  * </li>
- * <li>
- * VariableDeclarationUsageDistance
- * </li>
  * </ul>
  * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:

@@ -929,7 +929,6 @@ public class UserService {
           <li>TodoComment</li>
           <li>TrailingComment</li>
           <li>UnnecessaryParentheses</li>
-          <li>VariableDeclarationUsageDistance</li>
         </ul>
         <p>
           Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
