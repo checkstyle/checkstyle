@@ -58,7 +58,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "EmptyLineSeparator",
             "Indentation",
             "JavadocMethod",
-            "MissingJavadocType",
             "NoCodeInFile (reason is that AST is not generated for a file not containing code)",
             "Regexp (reason is at  #7759)",
             "RegexpSinglelineJava (reason is at  #7759)",

@@ -53,9 +53,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocMethod
  * </li>
  * <li>
- * MissingJavadocType
- * </li>
- * <li>
  * NoCodeInFile (reason is that AST is not generated for a file not containing code)
  * </li>
  * <li>
