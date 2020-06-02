@@ -20,11 +20,14 @@
 package com.puppycrawl.tools.checkstyle.internal;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.methods;
+import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices;
 
+import com.tngtech.archunit.library.freeze.FreezingArchRule;
 import org.junit.jupiter.api.Test;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.domain.JavaModifier;
+
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.core.importer.ImportOption;
 import com.tngtech.archunit.lang.ArchRule;
@@ -64,5 +67,23 @@ public class ArchUnitTest {
                 .should().notBeProtected();
 
         checkMethodsShouldNotBeProtectedRule.check(importedClasses);
+    }
+
+    /**
+     * Test contains asserts in callstack, but idea does not see them.
+     *
+     * @noinspection JUnitTestMethodWithNoAssertions
+     */
+    @Test
+    public void packageCyclicDependencyTest() {
+        final JavaClasses importedClasses = new ClassFileImporter()
+                .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
+                .importPackages("com.puppycrawl.tools.checkstyle");
+
+        final ArchRule cyclicPackageRule = FreezingArchRule.freeze(slices()
+                .matching("com.puppycrawl.tools.checkstyle.(**)..")
+            .should().beFreeOfCycles());
+
+        cyclicPackageRule.check(importedClasses);
     }
 }
