@@ -50,9 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Indentation
  * </li>
  * <li>
- * JavadocMethod
- * </li>
- * <li>
  * NoCodeInFile (reason is that AST is not generated for a file not containing code)
  * </li>
  * <li>
@@ -76,6 +73,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocBlockTagLocation
+ * </li>
+ * <li>
+ * JavadocMethod
  * </li>
  * <li>
  * JavadocMissingWhitespaceAfterAsterisk
