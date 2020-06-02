@@ -46,6 +46,18 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * is required at its end (for example for CLASS_DEF it is after '}').
  * Also, trailing comments are skipped.
  * </p>
+ * <p>
+ * ATTENTION: violations from multiple empty lines cannot be suppressed via XPath (#8179).
+ * Example:
+ * </p>
+ * <pre>
+ * class Test {
+ *     private int k;
+ *
+ *                                  // violation, multiple empty lines
+ *     private static void foo() {}
+ * }
+ * </pre>
  * <ul>
  * <li>
  * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
@@ -345,7 +357,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         checkComments(ast);
         if (hasMultipleLinesBefore(ast)) {
-            log(ast.getLineNo(), MSG_MULTIPLE_LINES, ast.getText());
+            log(ast, MSG_MULTIPLE_LINES, ast.getText());
         }
         if (!allowMultipleEmptyLinesInsideClassMembers) {
             processMultipleLinesInside(ast);
@@ -384,11 +396,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             default:
                 if (nextToken.getType() == TokenTypes.RCURLY) {
                     if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
-                        log(ast.getLineNo(), MSG_MULTIPLE_LINES_AFTER, ast.getText());
+                        log(ast, MSG_MULTIPLE_LINES_AFTER, ast.getText());
                     }
                 }
                 else if (!hasEmptyLineAfter(ast)) {
-                    log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+                    log(nextToken, MSG_SHOULD_BE_SEPARATED,
                         nextToken.getText());
                 }
         }
@@ -402,7 +414,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private void checkCommentInModifiers(DetailAST packageDef) {
         final Optional<DetailAST> comment = findCommentUnder(packageDef);
         if (comment.isPresent()) {
-            log(comment.get().getLineNo(), MSG_SHOULD_BE_SEPARATED, comment.get().getText());
+            log(comment.get(), MSG_SHOULD_BE_SEPARATED, comment.get().getText());
         }
     }
 
@@ -509,15 +521,15 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
             if (getFileContents().getFileName().endsWith("package-info.java")) {
                 if (!ast.getFirstChild().hasChildren() && !isPrecededByJavadoc(ast)) {
-                    log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                    log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
                 }
             }
             else {
-                log(ast.getLineNo(), MSG_SHOULD_BE_SEPARATED, ast.getText());
+                log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
             }
         }
         if (!hasEmptyLineAfter(ast)) {
-            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
 
@@ -530,7 +542,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private void processImport(DetailAST ast, DetailAST nextToken) {
         if (nextToken.getType() != TokenTypes.IMPORT
                 && nextToken.getType() != TokenTypes.STATIC_IMPORT && !hasEmptyLineAfter(ast)) {
-            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED, nextToken.getText());
+            log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
 
@@ -543,7 +555,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private void processVariableDef(DetailAST ast, DetailAST nextToken) {
         if (isTypeField(ast) && !hasEmptyLineAfter(ast)
                 && isViolatingEmptyLineBetweenFieldsPolicy(nextToken)) {
-            log(nextToken.getLineNo(), MSG_SHOULD_BE_SEPARATED,
+            log(nextToken, MSG_SHOULD_BE_SEPARATED,
                     nextToken.getText());
         }
     }
