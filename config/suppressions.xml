@@ -10,6 +10,8 @@
     <!-- don't validate generated files -->
     <suppress checks="RegexpSingleline" files="releasenotes\.xml"/>
 
+    <suppress checks="RegexpMultiline" files="config_whitespace\.xml" lines="244"/>
+
     <suppress checks="FileLength"
               files="TokenTypes.java|IndentationCheckTest.java"
               lines="1"/>
