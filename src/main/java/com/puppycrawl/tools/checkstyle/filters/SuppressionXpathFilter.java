@@ -64,9 +64,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
  * <li>
- * TodoComment
- * </li>
- * <li>
  * TrailingComment
  * </li>
  * <li>
