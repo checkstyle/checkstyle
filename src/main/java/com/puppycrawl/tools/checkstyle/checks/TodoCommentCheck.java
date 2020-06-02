@@ -125,9 +125,9 @@ public class TodoCommentCheck
     public void visitToken(DetailAST ast) {
         final String[] lines = ast.getText().split("\n");
 
-        for (int i = 0; i < lines.length; i++) {
-            if (format.matcher(lines[i]).find()) {
-                log(ast.getLineNo() + i, MSG_KEY, format.pattern());
+        for (String line : lines) {
+            if (format.matcher(line).find()) {
+                log(ast, MSG_KEY, format.pattern());
             }
         }
     }
