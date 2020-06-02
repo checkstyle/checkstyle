@@ -235,6 +235,10 @@ for (Iterator foo = very.long.line.iterator();
           is required at its end (for example for CLASS_DEF it is after '}').
           Also, trailing comments are skipped.
         </p>
+        <p>
+            ATTENTION: violations from multiple empty lines cannot be suppressed via XPath:
+            <a href="https://github.com/checkstyle/checkstyle/issues/8179">#8179</a>.
+        </p>
       </subsection>
 
       <subsection name="Properties" id="EmptyLineSeparator_Properties">
@@ -457,6 +461,25 @@ class Foo {
 
     System.out.println(1); // violation since method has 2 empty lines subsequently
   }
+}
+      </source>
+      <p>
+          To disallow multiple empty lines between class members:
+      </p>
+      <source>
+&lt;module name="EmptyLineSeparator"&gt;
+  &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
+&lt;/module&gt;
+      </source>
+      <p>Example:</p>
+      <source>
+package com.puppycrawl.tools.checkstyle.whitespace;
+
+class Test {
+    private int k;&#10;
+
+    private static void foo() {} // violation, before this like there two empty lines
+
 }
       </source>
       </subsection>
