@@ -50,9 +50,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Indentation
  * </li>
  * <li>
- * JavadocMethod
- * </li>
- * <li>
  * MissingJavadocType
  * </li>
  * <li>
@@ -88,6 +85,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * <li>
  * JavadocBlockTagLocation
+ * </li>
+ * <li>
+ * JavadocMethod
  * </li>
  * <li>
  * JavadocMissingWhitespaceAfterAsterisk
