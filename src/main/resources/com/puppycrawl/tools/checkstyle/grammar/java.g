@@ -110,6 +110,15 @@ tokens {
 
     //Support of java comments has been extended
     BLOCK_COMMENT_END;COMMENT_CONTENT;
+
+    //Need to add these here to preserve order of tokens
+    SINGLE_LINE_COMMENT_CONTENT; BLOCK_COMMENT_CONTENT; STD_ESC;
+    BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
+    FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
+    SIGNED_INTEGER; BINARY_EXPONENT;
+
+    //Start Java14 syntax here
+    RECORD_DEF; LITERAL_record="record"; RECORD_CTOR_DEF;
 }
 
 {
@@ -248,6 +257,7 @@ typeDefinitionInternal[AST modifiers]
     | interfaceDefinition[#modifiers]
     | enumDefinition[#modifiers]
     | annotationDefinition[#modifiers]
+    | recordDeclaration[#modifiers]
     ;
 
 // A type specification is a type name with possible brackets afterwards
@@ -536,6 +546,42 @@ annotationExpression
     :   conditionalExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
     ;
+
+
+recordDeclaration![AST modifiers]
+    :   r:"record" IDENT
+        (tp:typeParameters)?
+        recordComponents
+        (implementsClause)?
+        recordBodyDeclaration
+        {#recordDeclaration = #(#[RECORD_DEF, "RECORD_DEF"],
+                              modifiers, r, IDENT);}
+    ;
+
+recordComponents!
+    :   LPAREN recordComponent (COMMA recordComponent)* RPAREN
+    ;
+
+recordComponent!
+    : (annotations)? typeSpec[false] IDENT
+    ;
+
+recordBodyDeclaration!
+    :   LCURLY
+        (   (modifiers IDENT LCURLY)=> recordContstructorDeclaration
+        |   field
+        |   SEMI
+        )*
+        RCURLY
+    ;
+
+recordContstructorDeclaration!
+    :   (AT)? modifiers (typeParameters)? IDENT
+        (LPAREN parameterDeclarationList RPAREN)? (throwsClause)?
+        constructorBody
+    ;
+
+
 
 // Definition of a Java class
 classDefinition![AST modifiers]
@@ -1058,8 +1104,8 @@ traditionalStatement
         // side-effects.
         |    ({LA(2) != COLON}? expression (SEMI)?)=> {LA(2) != COLON}? expression (SEMI)?
 
-        // class definition
-        |    m:modifiers! classDefinition[#m]
+        // class or record definition
+        |    m:modifiers! (classDefinition[#m] | recordDeclaration[#m])
 
         // Attach a label to the front of a statement
         |    IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
