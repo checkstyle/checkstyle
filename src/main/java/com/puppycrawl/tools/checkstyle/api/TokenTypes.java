@@ -3539,6 +3539,29 @@ public final class TokenTypes {
      */
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
+    /**
+     * The {@code record} keyword.  This element appears
+     * as part of an enum declaration.
+     **/
+    public static final int RECORD =
+            GeneratedJavaTokenTypes.RECORD;
+
+    /**
+     * A record declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord (String myString, String myOtherString) {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--RECORD_DEF
+     * </pre>
+     */
+    public static final int RECORD_DEF =
+            GeneratedJavaTokenTypes.RECORD_DEF;
 
     /** Prevent instantiation. */
     private TokenTypes() {
