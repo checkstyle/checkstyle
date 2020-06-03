@@ -63,8 +63,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "Regexp (reason is at  #7759)",
             "RegexpSinglelineJava (reason is at  #7759)",
             "TodoComment",
-            "TrailingComment",
-            "VariableDeclarationUsageDistance"
+            "TrailingComment"
     )));
 
     // Javadoc checks are not compatible with SuppressionXpathFilter
