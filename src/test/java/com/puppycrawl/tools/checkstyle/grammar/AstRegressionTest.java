@@ -198,6 +198,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava14Records() throws Exception {
+        verifyAst(getPath("java14/InputJava14Records.txt"),
+                getNonCompilablePath("java14/InputJava14Records.java"));
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);
