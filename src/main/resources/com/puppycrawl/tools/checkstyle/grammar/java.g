@@ -116,6 +116,9 @@ tokens {
     BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
+
+    //Start Java14 syntax here
+    RECORD_DEF; RECORD;
 }
 
 {
@@ -254,6 +257,7 @@ typeDefinitionInternal[AST modifiers]
     | interfaceDefinition[#modifiers]
     | enumDefinition[#modifiers]
     | annotationDefinition[#modifiers]
+    | recordDeclaration[#modifiers]
     ;
 
 // A type specification is a type name with possible brackets afterwards
@@ -542,6 +546,43 @@ annotationExpression
     :   conditionalExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
     ;
+
+
+recordDeclaration![AST modifiers]
+    :   r:RECORD IDENT
+        (tp:typeParameters)?
+        recordComponents
+        (implementsClause)?
+        recordBodyDeclaration
+        {#recordDeclaration = #(#[RECORD_DEF, "RECORD_DEF"],
+                              modifiers, IDENT);}
+    ;
+
+// Build no AST for below rules until full records support
+recordComponents!
+    :   LPAREN recordComponent (COMMA recordComponent)* RPAREN
+    ;
+
+recordComponent!
+    : annotations typeSpec[false] IDENT
+    ;
+
+recordBodyDeclaration!
+    :   LCURLY
+        (   (modifiers IDENT LCURLY)=> recordConstructorDeclaration
+        |   field
+        |   SEMI
+        )*
+        RCURLY
+    ;
+
+recordConstructorDeclaration!
+    :   (AT)? modifiers (typeParameters)? IDENT
+        (LPAREN parameterDeclarationList RPAREN)? (throwsClause)?
+        constructorBody
+    ;
+
+
 
 // Definition of a Java class
 classDefinition![AST modifiers]
@@ -1064,8 +1105,8 @@ traditionalStatement
         // side-effects.
         |    ({LA(2) != COLON}? expression (SEMI)?)=> {LA(2) != COLON}? expression (SEMI)?
 
-        // class definition
-        |    m:modifiers! classDefinition[#m]
+        // class or record definition
+        |    m:modifiers! ( recordDeclaration[#m] |  classDefinition[#m] )
 
         // Attach a label to the front of a statement
         |    IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
@@ -1694,6 +1735,13 @@ options {
         mTreatEnumAsKeyword = aTreatAsKeyword;
     }
 
+    private boolean mTreatRecordAsKeyword = true;
+
+    public void setTreatRecordAsKeyword(boolean aTreatAsKeyword)
+    {
+        mTreatRecordAsKeyword = aTreatAsKeyword;
+    }
+
 }
 
 
@@ -1965,6 +2013,16 @@ IDENT
             }
             if (mTreatEnumAsKeyword && "enum".equals($getText)) {
                 $setType(ENUM);
+            }
+            // records must not be in literal list, else legacy usage of records
+            // i.e. "Logrecord record = log();" as a variable and method name
+            // cause false positives. The 'keyword as identifier' problem.
+            if (mTreatRecordAsKeyword
+                && "record".equals($getText)
+                && LA(2) != '=' && LA(1) != ';'
+                && LA(1) != ')' && LA(1) != '.'
+                && LA(1) != ',') {
+                $setType(RECORD);
             }
         }
     ;
