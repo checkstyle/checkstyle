@@ -200,7 +200,7 @@ public class TokenUtilTest {
     public void testGetTokenTypesTotalNumber() {
         final int tokenTypesTotalNumber = TokenUtil.getTokenTypesTotalNumber();
 
-        assertEquals(169, tokenTypesTotalNumber, "Invalid token total number");
+        assertEquals(171, tokenTypesTotalNumber, "Invalid token total number");
     }
 
     @Test
@@ -208,8 +208,8 @@ public class TokenUtilTest {
         final int[] allTokenIds = TokenUtil.getAllTokenIds();
         final int sum = Arrays.stream(allTokenIds).sum();
 
-        assertEquals(169, allTokenIds.length, "Invalid token length");
-        assertEquals(15662, sum, "invalid sum");
+        assertEquals(171, allTokenIds.length, "Invalid token length");
+        assertEquals(16059, sum, "invalid sum");
     }
 
     @Test
