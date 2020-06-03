@@ -3539,6 +3539,30 @@ public final class TokenTypes {
      */
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
+    /**
+     * A record declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord (String myString, String myOtherString) {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--RECORD_DEF
+     * </pre>
+     */
+    public static final int RECORD_DEF =
+            GeneratedJavaTokenTypes.RECORD_DEF;
+    /**
+     * The {@code record} keyword. This token appears in
+     * record definition.
+     *
+     * @see #RECORD_DEF
+     **/
+    public static final int LITERAL_RECORD =
+            GeneratedJavaTokenTypes.LITERAL_record;
 
     /** Prevent instantiation. */
     private TokenTypes() {
