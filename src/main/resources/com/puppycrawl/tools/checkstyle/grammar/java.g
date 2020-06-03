@@ -549,11 +549,11 @@ annotationExpression
 
 
 recordDeclaration![AST modifiers]
-    :   r:"record" id:id
-        (tp:typeParameters)?
+    :   "record" id:id
+        (typeParameters)?
         recordComponents
-        (implementsClause)?
-        recordBodyDeclaration
+        implementsClause
+        classBlock
         {#recordDeclaration = #(#[RECORD_DEF, "RECORD_DEF"],
                               modifiers, id);}
     ;
@@ -564,25 +564,14 @@ recordComponents!
     ;
 
 recordComponent!
-    : annotations typeSpec[false] id
+    :   annotations typeSpec[false] id
     ;
 
-recordBodyDeclaration!
-    :   LCURLY
-        (   (modifiers id LCURLY)=> recordConstructorDeclaration
-        |   field
-        |   SEMI
-        )*
-        RCURLY
-    ;
-
-recordConstructorDeclaration!
-    :   (AT)? modifiers (typeParameters)? id
-        (LPAREN parameterDeclarationList RPAREN)? (throwsClause)?
+compactConstructorDeclaration!
+    :   annotations modifiers id
         constructorBody
     ;
-
-
+//
 
 // Definition of a Java class
 classDefinition![AST modifiers]
@@ -805,7 +794,9 @@ enumConstantField!
 // That's about it (until you see what a field is...)
 classBlock
     :    LCURLY
-            ( field | SEMI )*
+            (   (compactConstructorDeclaration)=> compactConstructorDeclaration
+            |   field
+            |   SEMI )*
         RCURLY
         {#classBlock = #([OBJBLOCK, "OBJBLOCK"], #classBlock);}
     ;
