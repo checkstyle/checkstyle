@@ -2958,20 +2958,20 @@ public final class TokenTypes {
      *    |   |--VARIABLE_DEF
      *    |   |   |--MODIFIERS
      *    |   |   |--TYPE
-     *    |   |   |   `--LITERAL_INT (int)
-     *    |   |   `--IDENT (value)
+     *    |   |   |   +--LITERAL_INT (int)
+     *    |   |   +--IDENT (value)
      *    |   |--COLON (:)
-     *    |   `--EXPR
-     *    |       `--IDENT (values
+     *    |   +--EXPR
+     *    |       +--IDENT (values
      *    |--RPAREN ())
-     *    `--SLIST ({)
+     *    +--SLIST ({)
      *        |--EXPR
-     *        |   `--METHOD_CALL (()
+     *        |   +--METHOD_CALL (()
      *        |       |--IDENT (doSmth)
      *        |       |--ELIST
-     *        |       `--RPAREN ())
+     *        |       +--RPAREN ())
      *        |--SEMI (;)
-     *        `--RCURLY (})
+     *        +--RCURLY (})
      *
      * </pre>
      *
@@ -3539,6 +3539,73 @@ public final class TokenTypes {
      */
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
+
+    /**
+     * Java 14 Pattern definition.
+     *
+     * <p>For example:</p>
+     * if (o instanceof String s) {
+     * 		System.out.println(s.toLowerCase(s));
+     *        }
+     * <pre>
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--LITERAL_IF (if)
+     *     |
+     *     +--LPAREN (()
+     *     +--EXPR
+     *         |
+     *         +--LITERAL_INSTANCEOF (instanceof)
+     *             |
+     *             +--IDENT (o)
+     *             +--PATTERN_DEF
+     *                 |
+     *                 +--VARIABLE_DEF
+     *                     |
+     *                     +--TYPE
+     *                         |
+     *                         +--IDENT (String)
+     *                     +--IDENT (s)
+     *     +--RPAREN ())
+     *     +--SLIST ({)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--METHOD_CALL (()
+     *                 |
+     *                 +--DOT (.)
+     *                     |
+     *                     +--DOT (.)
+     *                         |
+     *                         +--IDENT (System)
+     *                         +--IDENT (out)
+     *                     +--IDENT (println)
+     *                 +--ELIST
+     *                     |
+     *                     +--EXPR
+     *                         |
+     *                         +--METHOD_CALL (()
+     *                             |
+     *                             +--DOT (.)
+     *                                 |
+     *                                 +--IDENT (s)
+     *                                 +--IDENT (toLowerCase)
+     *                             +--ELIST
+     *                                 |
+     *                                 +--EXPR
+     *                                     |
+     *                                     +--IDENT (s)
+     *                             +--RPAREN ())
+     *                 +--RPAREN ())
+     *         +--SEMI (;)
+     *         +--RCURLY ())
+     * +--RCURLY ())
+     * </pre>
+     * @see #LITERAL_INSTANCEOF
+     */
+    public static final int PATTERN_DEF =
+            GeneratedJavaTokenTypes.PATTERN_DEF;
 
     /** Prevent instantiation. */
     private TokenTypes() {
