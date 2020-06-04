@@ -47,9 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * EmptyLineSeparator
  * </li>
  * <li>
- * Indentation
- * </li>
- * <li>
  * JavadocMethod
  * </li>
  * <li>
@@ -112,8 +109,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Note, that support for these Checks will be available after resolving issues
  * <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a> and
  * <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>.
- * Support for Indentation check will be available after resolving issue
- * <a href="https://github.com/checkstyle/checkstyle/issues/7734">#7734</a>.
  * </p>
  * <p>
  * Currently, filter supports the following xpath axes:
