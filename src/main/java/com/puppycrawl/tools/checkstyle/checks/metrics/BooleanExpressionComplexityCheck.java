@@ -51,11 +51,13 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum number of boolean operations
+ * Datatype - {@code Integer}
  * allowed in one expression.
  * Default value is {@code 3}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check Default value is:
+ * Datatype - {@code Set of Tokens}
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
  * LAND</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BAND">
@@ -138,7 +140,17 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *    }
  *  }
  * </pre>
- *
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code booleanExpressionComplexity}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */
