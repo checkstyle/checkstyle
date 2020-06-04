@@ -235,6 +235,18 @@ for (Iterator foo = very.long.line.iterator();
           is required at its end (for example for CLASS_DEF it is after '}').
           Also, trailing comments are skipped.
         </p>
+        <p>
+            ATTENTION: violations from multiple empty lines cannot be suppressed via XPath (#8179).
+            Example:
+        </p>
+          <source>
+class Test {
+    private int k;
+
+                                 // violation, multiple empty lines
+    private static void foo() {}
+}
+          </source>
       </subsection>
 
       <subsection name="Properties" id="EmptyLineSeparator_Properties">
