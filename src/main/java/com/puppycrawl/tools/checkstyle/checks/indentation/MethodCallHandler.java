@@ -40,7 +40,10 @@ public class MethodCallHandler extends AbstractExpressionHandler {
     public MethodCallHandler(IndentationCheck indentCheck,
         DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "method call", ast, parent);
+        this.indentCheck = indentCheck;
     }
+
+    private final IndentationCheck indentCheck;
 
     @Override
     protected IndentLevel getIndentImpl() {
@@ -68,9 +71,9 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         else {
             // if our expression isn't first on the line, just use the start
             // of the line
-            final LineSet lines = new LineSet();
-            findSubtreeLines(lines, getMainAst().getFirstChild(), true);
-            final int firstCol = lines.firstLineCol();
+            final DetailAstSet astSet = new DetailAstSet(indentCheck);
+            findSubtreeAst(astSet, getMainAst().getFirstChild(), true);
+            final int firstCol = expandedTabsColumnNo(astSet.firstLine());
             final int lineStart = getLineStart(getFirstAst(getMainAst()));
             if (lineStart == firstCol) {
                 indentLevel = super.getIndentImpl();
