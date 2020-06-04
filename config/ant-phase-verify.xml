@@ -148,6 +148,8 @@
          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
          <exclude name="**/InputJavaParser.java"/>
+         <!-- until https://github.com/checkstyle/checkstyle/issues/7290 -->
+         <exclude name="**/InputJava14InstanceofWithPatternMatching.java"/>
          <!-- Cannot parse until Java 14 support -->
          <exclude name="**/InputJava14Records.java"/>
         </fileset>
