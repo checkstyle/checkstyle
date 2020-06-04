@@ -56,7 +56,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     public static final Set<String> INCOMPATIBLE_CHECK_NAMES =
         Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
             "EmptyLineSeparator",
-            "Indentation",
             "JavadocMethod",
             "NoCodeInFile (reason is that AST is not generated for a file not containing code)",
             "Regexp (reason is at  #7759)",
