@@ -61,8 +61,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "NoCodeInFile (reason is that AST is not generated for a file not containing code)",
             "Regexp (reason is at  #7759)",
             "RegexpSinglelineJava (reason is at  #7759)",
-            "TrailingComment",
-            "VariableDeclarationUsageDistance"
+            "TrailingComment"
     )));
 
     // Javadoc checks are not compatible with SuppressionXpathFilter
