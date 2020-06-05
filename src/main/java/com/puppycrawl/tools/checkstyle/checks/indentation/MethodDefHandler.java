@@ -85,7 +85,7 @@ public class MethodDefHandler extends BlockParentHandler {
         // check if there is a type before the indent
         final DetailAST typeNode = mainAst.findFirstToken(TokenTypes.TYPE);
         if (typeNode != null) {
-            lineStart = getFirstLine(lineStart, typeNode);
+            lineStart = getFirstLine(typeNode);
         }
 
         // check if there is a modifier before the type
