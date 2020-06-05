@@ -13,9 +13,11 @@ import org.w3c.dom.Node;
  */
 public class InputJava14Records
 {
+    private Object Assert;
+
     // Simple Annotated Record components
     public @interface NonNull1 {}
-    public record AnnotatedBinaryNode(@NonNull1 Node left, @NonNull1 Node right) { }
+    public record AnnotatedBinaryNode(@Native@NonNull1 Node left, @NonNull1 Node right) { }
 
     public interface Coords {
         public double x();
@@ -24,15 +26,15 @@ public class InputJava14Records
 
     //Implements interface
     public record Polar(double r, double theta) implements Coords {
-        @Override
-        public double x() {
-            return r * Math.cos(theta);
-        }
+    @Override
+    public double x() {
+        return r * Math.cos(theta);
+    }
 
-        @Override
-        public double y() {
-            return r * Math.sin(theta);
-        }
+    @Override
+    public double y() {
+        return r * Math.sin(theta);
+    }
 }
 
     // Generic record
@@ -62,6 +64,8 @@ public class InputJava14Records
             this.address = address;
         }
     }
+
+    public record Tricky(int record) {}
 
     // Records with static variable member
     public record UnknownRecord(String known, String unknown) {
@@ -95,12 +99,23 @@ public class InputJava14Records
             }
         }
     }
+    public boolean isLoggable(LogRecord record) {
+        String packageName = null;
+        return record.getLoggerName().startsWith(packageName);
+    }
+
+    private static void assertEquals(Level info, Level level) {
+    }
 
     public static void main (String... args) {
+        String recordString = "record";
+        int record = 2;
+        recordString = recordString.substring(record, 5);
         Car sedan = new Car("rec", "sedan");
         String s = UnknownRecord.UNKNOWN;
         Person.unnamed("100 Linda Ln.");
         LogRecord record;
         record = new LogRecord(Level.ALL, "abc");
+        assertEquals(Level.INFO, record.getLevel());
     }
 }
