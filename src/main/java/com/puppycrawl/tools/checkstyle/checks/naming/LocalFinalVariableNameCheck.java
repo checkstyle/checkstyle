@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers. Default value is
  * {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Datatype - {@code Regular Expression}
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check Default value is:
@@ -43,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * PARAMETER_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RESOURCE">
  * RESOURCE</a>.
+ * Datatype - {@code subset of tokens}
  * </li>
  * </ul>
  * <p>
@@ -100,6 +102,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
