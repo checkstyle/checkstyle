@@ -30,22 +30,27 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers. Default value is
  * {@code "^[A-Z][a-zA-Z0-9]*$"}.
+ * Datatype - {@code Regular Expression}
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
  * Default value is {@code true}.
+ * Datatype - {@code Boolean}
  * </li>
  * <li>
  * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
  * Default value is {@code true}.
+ * Datatype - {@code Boolean}
  * </li>
  * <li>
  * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
  * Default value is {@code true}.
+ * Datatype - {@code Boolean}
  * </li>
  * <li>
  * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
  * Default value is {@code true}.
+ * Datatype - {@code Boolean}
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check Default value is:
@@ -57,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * ENUM_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>.
+ * Datatype - {@code subset of tokens}
  * </li>
  * </ul>
  * <p>
@@ -111,6 +117,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * interface SecondName {} // violation, name 'SecondName'
  *                         // must match pattern '^I_[a-zA-Z0-9]*$'
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

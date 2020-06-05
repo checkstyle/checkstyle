@@ -53,6 +53,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * Property {@code max} - Specify the maximum number of boolean operations
  * allowed in one expression.
  * Default value is {@code 3}.
+ * Datatype - {@code Integer}
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check Default value is:
@@ -66,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * BOR</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BXOR">
  * BXOR</a>.
+ * Datatype - {@code subset of tokens}
  * </li>
  * </ul>
  * <p>
@@ -138,7 +140,17 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *    }
  *  }
  * </pre>
- *
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code booleanExpressionComplexity}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */

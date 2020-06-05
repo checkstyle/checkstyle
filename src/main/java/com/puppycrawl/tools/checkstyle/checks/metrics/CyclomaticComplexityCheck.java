@@ -61,11 +61,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code max} - Specify the maximum threshold allowed.
  * Default value is {@code 10}.
+ * Datatype - {@code Integer}
  * </li>
  * <li>
  * Property {@code switchBlockAsSingleDecisionPoint} - Control whether to treat
  * the whole switch block as a single decision point.
  * Default value is {@code false}.
+ * Datatype - {@code Boolean}
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
@@ -90,6 +92,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * LAND</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LOR">
  * LOR</a>.
+ * Datatype - {@code subset of tokens}
  * </li>
  * </ul>
  * <p>
@@ -220,6 +223,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code cyclomaticComplexity}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
