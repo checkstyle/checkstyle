@@ -57,16 +57,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Property {@code methodMaximum} - Specify the maximum allowed number of
  * non commenting lines in a method.
  * Default value is {@code 50}.
+ * Type - {@code integer}
  * </li>
  * <li>
  * Property {@code classMaximum} - Specify the maximum allowed number of
  * non commenting lines in a class.
  * Default value is {@code 1500}.
+ * Type - {@code integer}
  * </li>
  * <li>
  * Property {@code fileMaximum} - Specify the maximum allowed number of
  * non commenting lines in a file including all top level and nested classes.
  * Default value is {@code 2000}.
+ * Type - {@code integer}
  * </li>
  * </ul>
  * <p>
@@ -159,6 +162,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ncss.class}
+ * </li>
+ * <li>
+ * {@code ncss.file}
+ * </li>
+ * <li>
+ * {@code ncss.method}
+ * </li>
+ * </ul>
  *
  * @since 3.5
  */
