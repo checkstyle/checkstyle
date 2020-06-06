@@ -725,8 +725,10 @@ public class JavadocMethodCheck extends AbstractCheck {
             while (child != null) {
                 if (child.getType() == TokenTypes.IDENT
                         || child.getType() == TokenTypes.DOT) {
-                    final FullIdent ident = FullIdent.createFullIdent(child);
-                    final ExceptionInfo exceptionInfo = new ExceptionInfo(
+                    DetailAST exception = child;
+                    final FullIdent ident = FullIdent.createFullIdent(exception);
+                    exception = getFirstClassNameNode(exception);
+                    final ExceptionInfo exceptionInfo = new ExceptionInfo(exception,
                             new ClassInfo(new Token(ident)));
                     returnValue.add(exceptionInfo);
                 }
@@ -752,8 +754,10 @@ public class JavadocMethodCheck extends AbstractCheck {
                 if (!isInIgnoreBlock(blockAst, throwAst)) {
                     final DetailAST newAst = throwAst.getFirstChild().getFirstChild();
                     if (newAst.getType() == TokenTypes.LITERAL_NEW) {
-                        final FullIdent ident = FullIdent.createFullIdent(newAst.getFirstChild());
-                        final ExceptionInfo exceptionInfo = new ExceptionInfo(
+                        DetailAST child = newAst.getFirstChild();
+                        final FullIdent ident = FullIdent.createFullIdent(child);
+                        child = getFirstClassNameNode(child);
+                        final ExceptionInfo exceptionInfo = new ExceptionInfo(child,
                                 new ClassInfo(new Token(ident)));
                         returnValue.add(exceptionInfo);
                     }
@@ -761,6 +765,20 @@ public class JavadocMethodCheck extends AbstractCheck {
             }
         }
         return returnValue;
+    }
+
+    /**
+     * Get exception node where class name starts.
+     *
+     * @param ast DetailAST object where to find exceptions node;
+     * @return exception node where class name starts
+     */
+    private static DetailAST getFirstClassNameNode(DetailAST ast) {
+        DetailAST startNode = ast;
+        while (startNode.getType() == TokenTypes.DOT) {
+            startNode = startNode.getFirstChild();
+        }
+        return startNode;
     }
 
     /**
@@ -1013,7 +1031,7 @@ public class JavadocMethodCheck extends AbstractCheck {
             throwsList.stream().filter(exceptionInfo -> !exceptionInfo.isFound())
                 .forEach(exceptionInfo -> {
                     final Token token = exceptionInfo.getName();
-                    log(token.getLineNo(), token.getColumnNo(),
+                    log(exceptionInfo.getAst(),
                         MSG_EXPECTED_TAG,
                         JavadocTagInfo.THROWS.getText(), token.getText());
                 });
@@ -1163,24 +1181,6 @@ public class JavadocMethodCheck extends AbstractCheck {
         }
 
         /**
-         * Gets line number of the token.
-         *
-         * @return line number of the token
-         */
-        public int getLineNo() {
-            return lineNo;
-        }
-
-        /**
-         * Gets column number of the token.
-         *
-         * @return column number of the token
-         */
-        public int getColumnNo() {
-            return columnNo;
-        }
-
-        /**
          * Gets text of the token.
          *
          * @return text of the token
@@ -1200,6 +1200,9 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Stores useful information about declared exception. */
     private static class ExceptionInfo {
 
+        /** AST node representing this exception. */
+        private final DetailAST ast;
+
         /** Class information associated with this exception. */
         private final ClassInfo classInfo;
         /** Does the exception have throws tag associated with. */
@@ -1208,10 +1211,21 @@ public class JavadocMethodCheck extends AbstractCheck {
         /**
          * Creates new instance for {@code FullIdent}.
          *
+         * @param ast AST node representing this exception
          * @param classInfo class info
          */
-        /* package */ ExceptionInfo(ClassInfo classInfo) {
+        /* package */ ExceptionInfo(DetailAST ast, ClassInfo classInfo) {
+            this.ast = ast;
             this.classInfo = classInfo;
+        }
+
+        /**
+         * Gets the AST node representing this exception.
+         *
+         * @return the AST node representing this exception
+         */
+        private DetailAST getAst() {
+            return ast;
         }
 
         /** Mark that the exception has associated throws tag. */
