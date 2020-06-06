@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code format} - Specifies valid identifiers. Default value is {@code "^[A-Z]$"}.
+ * Datatype - {@code regexp}
  * </li>
  * </ul>
  * <p>
@@ -58,6 +59,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
  *                                         // match pattern '^[a-zA-Z]$'
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */
