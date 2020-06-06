@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code max} - Specify the maximum threshold allowed.
  * Default value is {@code 20}.
+ * Type - {@code integer}
  * </li>
  * <li>
  * Property {@code excludedClasses} - Specify user-configured class names to ignore.
@@ -60,16 +61,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * SortedMap, SortedSet, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
  * TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double,
  * float, int, long, short, void}.
+ * Type - {@code stringSet}
  * </li>
  * <li>
  * Property {@code excludeClassesRegexps} - Specify user-configured regular
  * expressions to ignore classes.
  * Default value is {@code ^$}.
+ * Type - {@code regexp}
  * </li>
  * <li>
  * Property {@code excludedPackages} - Specify user-configured packages to ignore.
  * All excluded packages should end with a period, so it also appends a dot to a package name.
  * Default value is {@code {}}.
+ * Type - {@code stringSet}
  * </li>
  * </ul>
  * <p>
@@ -318,6 +322,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * since the {@code a.b.c} was not added to the {@code excludedPackages}.
  * The {@code data} and {@code foo} members will be counted, as they are inside same file.
  * </p>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code classFanOutComplexity}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */
