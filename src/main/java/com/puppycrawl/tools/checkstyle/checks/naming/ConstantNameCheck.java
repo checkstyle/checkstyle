@@ -35,22 +35,27 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code format} - Specifies valid identifiers. Default value is
  * {@code "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"}.
+ * Type - {@code regexp}
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
  * Default value is {@code true}.
+ * Type - {@code boolean}
  * </li>
  * <li>
  * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
  * Default value is {@code true}.
+ * Type - {@code boolean}
  * </li>
  * <li>
  * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
  * Default value is {@code true}.
+ * Type - {@code boolean}
  * </li>
  * <li>
  * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
  * Default value is {@code true}.
+ * Type - {@code boolean}
  * </li>
  * </ul>
  * <p>
@@ -105,6 +110,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
  * }
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
