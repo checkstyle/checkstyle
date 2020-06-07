@@ -28,9 +28,13 @@ import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -42,6 +46,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -60,6 +65,35 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
+    // Files which have modified Javadoc required for Metadata Generation Project, for eventual
+    // migration
+    private static final Set<String> MODIFIED_JAVADOC_FILES =
+        Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+                "NoCodeInFile",
+                "BooleanExpressionComplexity",
+                "ClassFanOutComplexity",
+                "CyclomaticComplexity",
+                "JavaNCSS",
+                "NPathComplexity",
+                "ConstantName",
+                "InterfaceTypeParameterName",
+                "LocalFinalVariableName",
+                "TypeName",
+                "RightCurly"
+        )));
+    private static final Map<String, String> ENUM_TYPE_NAMES =
+            ImmutableMap.<String, String>builder()
+            .put("lineSeparator", "LineSeparatorOption")
+            .put("parenPad", "PadOption")
+            .put("wrapOp", "WrapOption")
+            .put("block", "BlockOption")
+            .put("lcurly", "LeftCurlyOption")
+            .put("rcurly", "RightCurlyOption")
+            .put("importOrder", "ImportOrderOption")
+            .put("elementStyle", "ElementStyle")
+            .put("closingParens", "ClosingParens ")
+            .put("trailingArrayComma", "TrailingArrayComma")
+            .put("javadocContentLocation", "JavadocContentLocationOption").build();
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
@@ -168,12 +202,44 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 CHECK_TEXT.put(subSectionName, createPropertiesText());
                 break;
             case "Example of Usage":
-            case "Error Messages":
+            case "Violation Messages":
+                CHECK_TEXT.put(subSectionName,
+                        createViolationMessagesText(getViolationMessages(subSection)));
+                break;
             case "Package":
             case "Parent Module":
+                CHECK_TEXT.put(subSectionName, createParentText(subSection));
+                break;
             default:
                 break;
         }
+    }
+
+    private static List<String> getViolationMessages(Node subsection) {
+        final Node child = XmlUtil.getFirstChildElement(subsection);
+        final List<String> violationMessages = new ArrayList<>();
+        for (Node row : XmlUtil.getChildrenElements(child)) {
+            violationMessages.add(row.getTextContent().trim());
+        }
+        return violationMessages;
+    }
+
+    private static String createViolationMessagesText(List<String> violationMessages) {
+        final StringBuilder result = new StringBuilder(100);
+        result.append("\n<p>\nViolation Message Keys:\n</p>\n<ul>");
+
+        for (String msg : violationMessages) {
+            result.append("\n<li>\n{@code ").append(msg).append("}\n</li>");
+        }
+
+        result.append("\n</ul>");
+        return result.toString();
+    }
+
+    private static String createParentText(Node subsection) {
+        return "\n<p>"
+                + "\nParent - {@code " + XmlUtil.getFirstChildElement(subsection)
+                .getTextContent().trim() + "}\n</p>";
     }
 
     private static void populateProperties(Node subSection) {
@@ -213,6 +279,25 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
             result.append(temp);
             CHECK_PROPERTY_DOC.put(propertyName, temp);
+
+            if (MODIFIED_JAVADOC_FILES.contains(checkName)) {
+                String typeText = "subsetOfTokenTypes";
+                if (!property.get(2).getTextContent().contains("subset of tokens")) {
+                    String datatypeText = property.get(2).getFirstChild().getAttributes()
+                            .getNamedItem("href").toString();
+                    datatypeText = datatypeText.substring(datatypeText.indexOf('#') + 1,
+                            datatypeText.length() - 1);
+                    if (ENUM_TYPE_NAMES.containsKey(datatypeText)) {
+                        typeText = ENUM_TYPE_NAMES.get(datatypeText);
+                    }
+                    else {
+                        typeText = Character.toUpperCase(datatypeText.charAt(0))
+                                + datatypeText.substring(1);
+                    }
+                }
+                result.append(" Type is {@code ").append(typeText).append("}.");
+
+            }
 
             if (propertyName.endsWith("token") || propertyName.endsWith("tokens")) {
                 result.append(" Default value is: ");
@@ -463,12 +548,21 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static void visitClass(DetailAST node) {
+            String parentText = "";
+            String violationMessagesText = "";
+            if (MODIFIED_JAVADOC_FILES.contains(checkName)) {
+                parentText = CHECK_TEXT.get("Parent Module");
+                violationMessagesText = CHECK_TEXT.get("Violation Messages");
+            }
+
             if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
                 assertEquals(CHECK_TEXT.get("Description")
                         + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
-                        + CHECK_TEXT.get("Examples") + " @since "
+                        + CHECK_TEXT.get("Examples")
+                        + parentText
+                        + violationMessagesText + " @since "
                         + CHECK_TEXT.get("since"), getJavaDocText(node),
                         checkName + "'s class-level JavaDoc");
             }

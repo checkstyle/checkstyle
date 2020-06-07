@@ -47,10 +47,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code option} - Specify the policy on placement of a right curly brace
  * (<code>'}'</code>).
+ * Type is {@code RightCurlyOption}.
  * Default value is {@code same}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code subsetOfTokenTypes}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_TRY">
  * LITERAL_TRY</a>,
@@ -203,6 +205,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public void violate() { bar(); } // OK , because singleline
  * }
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code line.alone}
+ * </li>
+ * <li>
+ * {@code line.break.before}
+ * </li>
+ * <li>
+ * {@code line.same}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
