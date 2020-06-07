@@ -295,7 +295,7 @@ public class Test
             <tr>
               <td>excludedClasses</td>
               <td>Specify user-configured class names to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">String Set</a></td>
               <td><code>
                 ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
                 Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
@@ -319,7 +319,7 @@ public class Test
             <tr>
               <td>excludedPackages</td>
               <td>Specify user-configured packages to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">String Set</a></td>
               <td><code>{}</code></td>
               <td>7.7</td>
             </tr>
@@ -679,7 +679,7 @@ class Foo {
             <tr>
               <td>excludedClasses</td>
               <td>Specify user-configured class names to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">String Collection</a></td>
               <td><code>
                 ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
                 Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
@@ -706,7 +706,7 @@ class Foo {
                 Specify user-configured packages to ignore. All excluded packages
                 should end with a period, so it also appends a dot to a package name.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">String Collection</a></td>
               <td><code>{}</code></td>
               <td>7.7</td>
             </tr>
