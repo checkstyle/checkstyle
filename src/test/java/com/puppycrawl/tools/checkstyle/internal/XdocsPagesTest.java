@@ -243,6 +243,21 @@ public class XdocsPagesTest {
     private static final Set<String> GOOGLE_MODULES = Collections.unmodifiableSet(
         new HashSet<>(CheckUtil.getConfigGoogleStyleModules()));
 
+    private static final Set<String> MODIFIED_JAVADOC_FILES =
+        Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+                "NoCodeInFile",
+                "BooleanExpressionComplexity",
+                "ClassFanOutComplexity",
+                "CyclomaticComplexity",
+                "JavaNCSS",
+                "NPathComplexity",
+                "ConstantName",
+                "InterfaceTypeParameterName",
+                "LocalFinalVariableName",
+                "TypeName",
+                "RightCurly"
+        )));
+
     @Test
     public void testAllChecksPresentOnAvailableChecksPage() throws Exception {
         final String availableChecks = new String(Files.readAllBytes(AVAILABLE_CHECKS_PATH), UTF_8);
@@ -1016,7 +1031,12 @@ public class XdocsPagesTest {
                 result = "subset of tokens TokenTypes";
             }
             else {
-                result = "String Set";
+                if (MODIFIED_JAVADOC_FILES.contains(sectionName)) {
+                    result = "String Collection";
+                }
+                else {
+                    result = "String Set";
+                }
             }
         }
         else if (fieldClass == URI.class) {
