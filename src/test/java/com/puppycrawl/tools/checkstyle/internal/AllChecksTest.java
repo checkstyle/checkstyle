@@ -155,7 +155,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 .collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceAfter", Stream.of(
                 // whitespace after is preferred
-                "TYPECAST", "LITERAL_SYNCHRONIZED").collect(Collectors.toSet()));
+                "TYPECAST", "LITERAL_CATCH", "LITERAL_FOR", "LITERAL_IF",
+                "LITERAL_SYNCHRONIZED", "LITERAL_WHILE", "DO_WHILE").collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
                 // needs context to decide what type of parentheses should be separated or not
                 // which this check does not provide
