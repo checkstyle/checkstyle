@@ -181,6 +181,36 @@ public class NoWhitespaceAfterCheckTest
     }
 
     @Test
+    public void testCatch() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_CATCH");
+        final String[] expected = {
+            "21:11: " + getCheckMessage(MSG_KEY, "catch"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterCatch.java"), expected);
+    }
+
+    @Test
+    public void testFor() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_FOR");
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_KEY, "for"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterFor.java"), expected);
+    }
+
+    @Test
+    public void testIf() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_IF");
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY, "if"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterIf.java"), expected);
+    }
+
+    @Test
     public void testSynchronized() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_SYNCHRONIZED");
@@ -188,6 +218,26 @@ public class NoWhitespaceAfterCheckTest
             "14:9: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfterSynchronized.java"), expected);
+    }
+
+    @Test
+    public void testWhile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "LITERAL_WHILE");
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_KEY, "while"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterWhile.java"), expected);
+    }
+
+    @Test
+    public void testDoWhile() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "DO_WHILE");
+        final String[] expected = {
+            "21:11: " + getCheckMessage(MSG_KEY, "while"),
+        };
+        verify(checkConfig, getPath("InputNoWhitespaceAfterDoWhile.java"), expected);
     }
 
     @Test
