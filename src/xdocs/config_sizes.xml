@@ -255,7 +255,7 @@
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -347,7 +347,7 @@
             <tr>
               <td>fileExtensions</td>
               <td>Specify file extensions that are accepted.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>8.24</td>
             </tr>

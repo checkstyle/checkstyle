@@ -87,7 +87,7 @@
                <td>allowedAbbreviations</td>
                <td>Specify list of abbreviations that must be skipped for checking.
                Abbreviations should be separated by comma.</td>
-               <td><a href="property_types.html#stringSet">String Set</a></td>
+               <td><a href="property_types.html#stringCollection">stringCollection</a></td>
                <td><code>{}</code></td>
                <td>5.8</td>
              </tr>
