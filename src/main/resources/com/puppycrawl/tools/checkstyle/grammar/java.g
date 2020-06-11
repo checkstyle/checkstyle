@@ -551,38 +551,36 @@ annotationExpression
 recordDeclaration![AST modifiers]
     :   r:"record" id:id
         (tp:typeParameters)?
-        recordComponents
-        (implementsClause)?
-        recordBodyDeclaration
+        rc:recordComponents
+        ic:implementsClause
+        rb:recordBodyDeclaration
         {#recordDeclaration = #(#[RECORD_DEF, "RECORD_DEF"],
-                              modifiers, id);}
+                              modifiers, r, id, rc);}
     ;
 
 // Build no AST for below rules until full records support
 recordComponents!
-    :   LPAREN recordComponent (COMMA recordComponent)* RPAREN
+    :   LPAREN (recordComponent)? (COMMA recordComponent)* RPAREN
     ;
 
 recordComponent!
-    : annotations typeSpec[false] id
+    :   annotations typeSpec[false] id
     ;
 
 recordBodyDeclaration!
     :   LCURLY
-        (   (modifiers id LCURLY)=> recordConstructorDeclaration
+        (   (compactConstructorDeclaration)=> compactConstructorDeclaration
         |   field
         |   SEMI
         )*
         RCURLY
     ;
 
-recordConstructorDeclaration!
-    :   (AT)? modifiers (typeParameters)? id
-        (LPAREN parameterDeclarationList RPAREN)? (throwsClause)?
-        constructorBody
+compactConstructorDeclaration!
+    :    annotations modifiers id
+            constructorBody
     ;
-
-
+//
 
 // Definition of a Java class
 classDefinition![AST modifiers]
