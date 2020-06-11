@@ -59,7 +59,7 @@
       <p>Anything else will map to <code>false</code>.</p>
     </section>
 
-    <section name="stringSet">
+    <section name="stringCollection">
       <p>
         This type represents a set of strings. The string representation
         is parsed as a set of comma (',') separated strings.
