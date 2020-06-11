@@ -80,7 +80,7 @@
             <tr>
               <td>tagOrder</td>
               <td>Specify the order by tags.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>&#64;author, &#64;deprecated, &#64;exception, &#64;param,
                 &#64;return, &#64;see, &#64;serial, &#64;serialData, &#64;serialField,
                 &#64;since, &#64;throws, &#64;version</code></td>
@@ -283,7 +283,7 @@ public class TestClass {
             <tr>
               <td>tags</td>
               <td>Specify the javadoc tags to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>author, deprecated, exception, hidden, param, provides, return,
                 see, serial, serialData, serialField, since, throws, uses, version</code></td>
               <td>8.24</td>
@@ -663,7 +663,7 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td>allowedAnnotations</td>
               <td>Specify the list of annotations that allow missed documentation.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>Override</code></td>
               <td>6.0</td>
             </tr>
@@ -1073,7 +1073,7 @@ class TestClass {
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>.java</code></td>
               <td>5.0</td>
             </tr>
@@ -1921,7 +1921,7 @@ public class Test {
                 Specify the list of annotations that allow missed documentation.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>Generated</code></td>
               <td>8.15</td>
             </tr>
@@ -2280,7 +2280,7 @@ public boolean isSomething()
             <tr>
               <td>allowedAnnotations</td>
               <td>Configure the list of annotations that allow missed documentation.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>Override</code></td>
               <td>8.21</td>
             </tr>
@@ -2630,7 +2630,7 @@ package com.checkstyle.api; // violation
                 specify the list of annotations that allow missed documentation.
                 Only short names are allowed, e.g. <code>Generated</code>.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>Generated</code></td>
               <td>8.20</td>
             </tr>
@@ -2944,7 +2944,7 @@ class DatabaseConfiguration {}
             <tr>
               <td>ignoredTags</td>
               <td>Specify at-clauses which are ignored by the check.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>{}</code></td>
               <td>6.8</td>
             </tr>

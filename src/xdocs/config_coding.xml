@@ -1963,7 +1963,7 @@ class SomeClass
             <tr>
               <td>illegalClassNames</td>
               <td>Specify exception class names to reject.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error,
                 java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
               <td>3.2</td>
@@ -2141,7 +2141,7 @@ try {
             <tr>
               <td>classes</td>
               <td>Specify fully qualified class names that should not be instantiated.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>{}</code></td>
               <td>3.0</td>
             </tr>
@@ -2241,7 +2241,7 @@ try {
             <tr>
               <td>illegalClassNames</td>
               <td>Specify throw class names to reject.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>Error, RuntimeException, Throwable, java.lang.Error,
                 java.lang.RuntimeException, java.lang.Throwable</code>
               </td>
@@ -2250,7 +2250,7 @@ try {
             <tr>
               <td>ignoredMethodNames</td>
               <td>Specify names of methods to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>finalize</code></td>
               <td>5.4</td>
             </tr>
@@ -2657,7 +2657,7 @@ public void myTest() {
               <td>illegalClassNames</td>
               <td>Specify classes that should not be used as types in variable
               declarations, return values or parameters.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet,
                 java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
                 java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet</code></td>
@@ -2666,14 +2666,14 @@ public void myTest() {
             <tr>
             <td>legalAbstractClassNames</td>
             <td>Define abstract classes that may be used as types. </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><a href="property_types.html#stringCollection">stringCollection</a></td>
             <td><code>{}</code></td>
             <td>4.2</td>
           </tr>
           <tr>
               <td>ignoredMethodNames</td>
               <td>Specify methods that should not be checked.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>getEnvironment, getInitialContext</code></td>
               <td>3.2</td>
             </tr>

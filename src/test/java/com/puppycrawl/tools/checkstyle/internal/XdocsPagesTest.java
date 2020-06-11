@@ -1016,7 +1016,7 @@ public class XdocsPagesTest {
                 result = "subset of tokens TokenTypes";
             }
             else {
-                result = "String Set";
+                result = "stringCollection";
             }
         }
         else if (fieldClass == URI.class) {

@@ -87,14 +87,14 @@
                <td>allowedAbbreviations</td>
                <td>Specify list of abbreviations that must be skipped for checking.
                Abbreviations should be separated by comma.</td>
-               <td><a href="property_types.html#stringSet">String Set</a></td>
+               <td><a href="property_types.html#stringCollection">stringCollection</a></td>
                <td><code>{}</code></td>
                <td>5.8</td>
              </tr>
              <tr>
                <td>ignoreFinal</td>
                <td>Allow to skip variables with <code>final</code> modifier.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">String</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
