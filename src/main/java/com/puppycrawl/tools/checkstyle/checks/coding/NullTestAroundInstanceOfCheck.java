@@ -94,7 +94,7 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST landNode = getExprChildNode(ast, TokenTypes.LAND);
         if (landNode == null) {
-            if (checkOnNextLine(ast)) {
+            if (checkOuterNotEqual(ast) || checkOuterInstanceOf(ast)) {
                 log(ast, MSG_KEY);
             }
         }
@@ -103,14 +103,15 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
             final DetailAST instanceOfNode =
                     landNode.findFirstToken(TokenTypes.LITERAL_INSTANCEOF);
             if (instanceOfNode != null && isNullTest(notEqualNode)
-                    && getFullText(notEqualNode).equals(getFullText(instanceOfNode))) {
+                    && isTextEqual(instanceOfNode, notEqualNode)) {
                 log(ast, MSG_KEY);
             }
         }
     }
 
     /**
-     * To get instanceOfNode or notEqualNode's full ident text.
+     * To get {@link TokenTypes#LITERAL_INSTANCEOF} Node or
+     * {@link TokenTypes#NOT_EQUAL}'s full ident text.
      *
      * @param ast DetailAST
      * @return string ident node's text
@@ -126,19 +127,6 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
             fullText = fullIdent.getText();
         }
         return fullText;
-    }
-
-    /**
-     * Check if there is a unnecessary 'null' check before 'instanceof' expression when
-     * 'instanceof' expression is on next line of 'null' check and vice versa.
-     *
-     * @param ast DetailAST
-     * @return error boolean
-     */
-    private static boolean checkOnNextLine(DetailAST ast) {
-        final boolean error1 = checkOuterNotEqual(ast);
-        final boolean error2 = checkOuterInstanceOf(ast);
-        return error1 || error2;
     }
 
     private static boolean checkOuterNotEqual(DetailAST ast) {
@@ -175,7 +163,7 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * To get specific Node that is child of EXPR Node.
+     * To get specific Node that is child of {@link TokenTypes#EXPR} Node.
      *
      * @param ast DetailAST
      * @param token int
@@ -187,7 +175,7 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Judge whether this is a null test.
+     * True if nodes have a {@link TokenTypes#LITERAL_NULL}, false otherwise.
      *
      * @param ast DetailAST
      * @return boolean
@@ -198,7 +186,7 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * To get LITERAL_IF Node that is nested.
+     * Gets nested {@link TokenTypes#LITERAL_IF} node.
      *
      * @param ast DetailAST
      * @return nestedIfNode DetailAST
@@ -216,17 +204,13 @@ public class NullTestAroundInstanceOfCheck extends AbstractCheck {
     }
 
     /**
-     * Judge whether the text of the two nodes is the same.
+     * True if nodes have same texts, false otherwise.
      *
      * @param instanceOfNode DetailAST
      * @param notEqualNode DetailAST
      * @return error boolean
      */
     private static boolean isTextEqual(DetailAST instanceOfNode, DetailAST notEqualNode) {
-        boolean error = false;
-        if (getFullText(instanceOfNode).equals(getFullText(notEqualNode))) {
-            error = true;
-        }
-        return error;
+        return getFullText(instanceOfNode).equals(getFullText(notEqualNode));
     }
 }
