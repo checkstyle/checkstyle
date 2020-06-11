@@ -758,7 +758,7 @@ enumConstant!
             r:RPAREN
         )?
         ( b:enumConstantBlock )?
-        {#enumConstant = #([ENUM_CONSTANT_DEF, "ENUM_CONSTANT_DEF"], an, id, l, args, r, b);}
+        {#enumConstant = #([ENUM_CONSTANT_DEF, "ENUM_CONSTANT_DEF"], an, i, l, args, r, b);}
     ;
 
 //The class-like body of an enum constant
