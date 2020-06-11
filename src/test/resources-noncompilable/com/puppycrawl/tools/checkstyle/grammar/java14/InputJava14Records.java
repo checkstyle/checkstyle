@@ -1,6 +1,7 @@
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
+import java.lang.annotation.Native;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -13,9 +14,19 @@ import org.w3c.dom.Node;
  */
 public class InputJava14Records
 {
+    private Object Assert;
+
+    public static int getRecord() {
+        return record;
+    }
+
+    public static void setRecord(int record) {
+        InputJava14Records.record = record;
+    }
+
     // Simple Annotated Record components
     public @interface NonNull1 {}
-    public record AnnotatedBinaryNode(@NonNull1 Node left, @NonNull1 Node right) { }
+    public record AnnotatedBinaryNode(@Native @NonNull1 Node left, @NonNull1 Node right) { }
 
     public interface Coords {
         public double x();
@@ -38,12 +49,37 @@ public class InputJava14Records
     // Generic record
     public record Holder<T>(T t) { }
 
+    public record HolderG<G>(G g) {
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            HolderG<?> holderG = (HolderG<?>) o;
+            return Objects.equals(g, holderG.g);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(g);
+        }
+}
+
+
     // Basic Record declaration
     public record Car(String color, String model) {}
 
     // Record declaration with body and no-arg constructor
     public record Thing(String name1, String name2) {
         public Thing {
+            Objects.requireNonNull(name1);
+            Objects.requireNonNull(name2);
+        }
+    }
+
+    public record ThingAnnotatedConstructor(String name1, String name2) {
+        @NonNull1
+        public ThingAnnotatedConstructor {
             Objects.requireNonNull(name1);
             Objects.requireNonNull(name2);
         }
@@ -62,6 +98,8 @@ public class InputJava14Records
             this.address = address;
         }
     }
+
+    public record Tricky(int record) {}
 
     // Records with static variable member
     public record UnknownRecord(String known, String unknown) {
@@ -95,12 +133,39 @@ public class InputJava14Records
             }
         }
     }
+    public boolean isLoggable(LogRecord record) {
+        String packageName = null;
+        return record.getLoggerName().startsWith(packageName);
+    }
+
+    private static void assertEquals(Level info, Level level) {
+    }
+
+    private static void record(LogRecord... logArray) {
+        for (LogRecord record : logArray) {
+            record.getLevel();
+        }
+    }
+
+    private static void checkRecord() {
+        LogRecord record;
+        record = new LogRecord(Level.ALL, "abc");
+        assertEquals(Level.INFO, record.getLevel());
+    }
+
+    record NoComps() {}
+
+    private static int record = 2;
+
+    private static void recordArray(int [] record) {
+        record[2] = InputJava14Records.record;
+    }
 
     public static void main (String... args) {
+        String recordString = "record";
+        recordString = recordString.substring(record, 5);
         Car sedan = new Car("rec", "sedan");
         String s = UnknownRecord.UNKNOWN;
         Person.unnamed("100 Linda Ln.");
-        LogRecord record;
-        record = new LogRecord(Level.ALL, "abc");
     }
 }
