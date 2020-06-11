@@ -352,7 +352,7 @@
             <tr>
               <td>fileExtensions</td>
               <td>file extensions that are accepted</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>6.3</td>
             </tr>
@@ -537,7 +537,7 @@
               property is typically only required if your Java source code
               is preprocessed before compilation and the original files do
               not have the extension <code>.java</code></td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>.java</code></td>
               <td>3.0</td>
             </tr>

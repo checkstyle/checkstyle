@@ -1424,7 +1424,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of the files to check.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>3.1</td>
             </tr>
@@ -1662,7 +1662,7 @@ This is a sample text file. // ok, this file is not specified in the config.
             <tr>
               <td>fileExtensions</td>
               <td>Specify file type extension of the files to check.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>.properties</code></td>
               <td>8.22</td>
             </tr>
@@ -2168,7 +2168,7 @@ messages.properties: Key 'ok' missing.
                 translation files are preprocessed and the original files
                 do not have the extension <code>.properties</code>
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>.properties</code></td>
               <td>3.0</td>
             </tr>
@@ -2187,7 +2187,7 @@ messages.properties: Key 'ok' missing.
               <td>
                 Specify language codes of required translations which must exist in project.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>{}</code></td>
               <td>6.11</td>
             </tr>
@@ -2452,7 +2452,7 @@ public class Start {
             <tr>
               <td>fileExtensions</td>
               <td>Specify file type extension of the files to check.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>.properties</code></td>
               <td>5.7</td>
             </tr>
