@@ -563,7 +563,7 @@ public static final int A_SETPOINT = 1;
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -772,7 +772,7 @@ void method() {
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process. If this is specified, then
               only files that match these types are examined with the other patterns.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>6.15</td>
             </tr>
@@ -1018,7 +1018,7 @@ src/main/main_class.java  //violation, file names should be in Camel Case
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#stringCollection">stringCollection</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
