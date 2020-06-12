@@ -116,6 +116,9 @@ tokens {
     BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
+
+    //Start Java14 syntax here
+    RECORD_DEF; LITERAL_record="record";
 }
 
 {
@@ -254,6 +257,7 @@ typeDefinitionInternal[AST modifiers]
     | interfaceDefinition[#modifiers]
     | enumDefinition[#modifiers]
     | annotationDefinition[#modifiers]
+    | recordDeclaration[#modifiers]
     ;
 
 // A type specification is a type name with possible brackets afterwards
@@ -291,14 +295,14 @@ classTypeSpec[boolean addImagNode]
 classOrInterfaceType[boolean addImagNode]
     :   ({LA(1) == AT}? annotations
              | )
-            IDENT
+            id
             (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
 
             (options{greedy=true; }: // match as many as possible
                 DOT^
                 ({LA(1) == AT}? annotations
                     | )
-                    IDENT
+                    id
                     (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
             )*
      ;
@@ -428,15 +432,15 @@ builtInType
     |    "double"
     ;
 
-// A (possibly-qualified) java identifier.  We start with the first IDENT
-//   and expand its name by adding dots and following IDENTS
+// A (possibly-qualified) java identifier.  We start with the first id
+//   and expand its name by adding dots and following id's
 identifier
-    :    IDENT  (options{warnWhenFollowAmbig=false;}: DOT^ IDENT )*
+    :    id  (options{warnWhenFollowAmbig=false;}: DOT^ id )*
     ;
 
 identifierStar
-    :    IDENT
-        ( DOT^ IDENT )*
+    :    id
+        ( DOT^ id )*
         ( DOT^ STAR  )?
     ;
 
@@ -501,9 +505,9 @@ annotationMemberValuePairs
     ;
 
 annotationMemberValuePair!
-    :   i:IDENT a:ASSIGN v:annotationMemberValueInitializer
+    :   id:id a:ASSIGN v:annotationMemberValueInitializer
         {#annotationMemberValuePair =
-            #(#[ANNOTATION_MEMBER_VALUE_PAIR,"ANNOTATION_MEMBER_VALUE_PAIR"], i, a, v);}
+            #(#[ANNOTATION_MEMBER_VALUE_PAIR,"ANNOTATION_MEMBER_VALUE_PAIR"], id, a, v);}
     ;
 
 annotationMemberValueInitializer
@@ -543,9 +547,44 @@ annotationExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
     ;
 
+
+recordDeclaration![AST modifiers]
+    :   r:"record" id:id
+        (tp:typeParameters)?
+        rc:recordComponents
+        ic:implementsClause
+        rb:recordBodyDeclaration
+        {#recordDeclaration = #(#[RECORD_DEF, "RECORD_DEF"],
+                              modifiers, r, id, rc);}
+    ;
+
+// Build no AST for below rules until full records support
+recordComponents!
+    :   LPAREN (recordComponent)? (COMMA recordComponent)* RPAREN
+    ;
+
+recordComponent!
+    :   annotations typeSpec[false] id
+    ;
+
+recordBodyDeclaration!
+    :   LCURLY
+        (   (compactConstructorDeclaration)=> compactConstructorDeclaration
+        |   field
+        |   SEMI
+        )*
+        RCURLY
+    ;
+
+compactConstructorDeclaration!
+    :    annotations modifiers id
+            constructorBody
+    ;
+//
+
 // Definition of a Java class
 classDefinition![AST modifiers]
-    :    c:"class" IDENT
+    :    c:"class" id:id
         // it _might_ have type parameters
         (tp:typeParameters)?
         // it _might_ have a superclass...
@@ -555,7 +594,7 @@ classDefinition![AST modifiers]
         // now parse the body of the class
         cb:classBlock
         {#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
-                               modifiers, c, IDENT, tp, sc, ic, cb);}
+                               modifiers, c, id, tp, sc, ic, cb);}
     ;
 
 superClassClause
@@ -565,7 +604,7 @@ superClassClause
 
 // Definition of a Java Interface
 interfaceDefinition![AST modifiers]
-    :    i:"interface" IDENT
+    :    i:"interface" id:id
         // it _might_ have type parameters
         (tp:typeParameters)?
         // it might extend some other interfaces
@@ -573,25 +612,25 @@ interfaceDefinition![AST modifiers]
         // now parse the body of the interface (looks like a class...)
         cb:classBlock
         {#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
-                                    modifiers, i, IDENT,tp,ie,cb);}
+                                    modifiers, i, id,tp,ie,cb);}
     ;
 
 enumDefinition![AST modifiers]
-    :    e:ENUM IDENT
+    :    e:ENUM id:id
         // it might implement some interfaces...
         ic:implementsClause
         // now parse the body of the enum
         eb:enumBlock
         {#enumDefinition = #(#[ENUM_DEF,"ENUM_DEF"],
-                               modifiers, e, IDENT, ic, eb);}
+                               modifiers, e, id, ic, eb);}
     ;
 
 annotationDefinition![AST modifiers]
-    :    a:AT i:"interface" IDENT
+    :    a:AT i:"interface" id:id
         // now parse the body of the annotation
         ab:annotationBlock
         {#annotationDefinition = #(#[ANNOTATION_DEF,"ANNOTATION_DEF"],
-                                    modifiers, a, i, IDENT, ab);}
+                                    modifiers, a, i, id, ab);}
     ;
 
 typeParameters
@@ -622,7 +661,7 @@ typeParameter
     :
         // I'm pretty sure Antlr generates the right thing here:
         ({LA(1) == AT}? annotations | )
-        (id:IDENT) ( options{generateAmbigWarnings=false;}: typeParameterBounds )?
+        (id:id) ( options{generateAmbigWarnings=false;}: typeParameterBounds )?
         {#typeParameter = #(#[TYPE_PARAMETER,"TYPE_PARAMETER"], #typeParameter);}
     ;
 
@@ -649,7 +688,7 @@ annotationField!
             {#annotationField = #td;}
 
         |   t:typeSpec[false]               // annotation field
-            (    i:IDENT  // the name of the field
+            (    i:id  // the name of the field
 
                 LPAREN RPAREN
 
@@ -696,13 +735,13 @@ enumBlock
 //a body
 enumConstant!
     :   an:annotations
-        i:IDENT
+        id:id
         (    l:LPAREN
             args:argList
             r:RPAREN
         )?
         ( b:enumConstantBlock )?
-        {#enumConstant = #([ENUM_CONSTANT_DEF, "ENUM_CONSTANT_DEF"], an, i, l, args, r, b);}
+        {#enumConstant = #([ENUM_CONSTANT_DEF, "ENUM_CONSTANT_DEF"], an, id, l, args, r, b);}
     ;
 
 //The class-like body of an enum constant
@@ -724,7 +763,7 @@ enumConstantField!
             // This is not allowed for variable definitions, but this production
             // allows it, a semantic check could be used if you wanted.
             (tp:typeParameters)? t:typeSpec[false]  // method or variable declaration(s)
-            (    IDENT  // the name of the method
+            (    id:id  // the name of the method
 
                 // parse the formal parameter declarations.
                 LPAREN param:parameterDeclarationList RPAREN
@@ -740,7 +779,7 @@ enumConstantField!
                              mods,
                              tp,
                              #(#[TYPE,"TYPE"],rt),
-                             IDENT,
+                             id,
                              LPAREN,
                              param,
                              RPAREN,
@@ -805,7 +844,7 @@ implementsClause
 
                        |
                        t:typeSpec[false]  // method or variable declaration(s)
-                       (    IDENT  // the name of the method
+                       (    id:id  // the name of the method
 
                            // parse the formal parameter declarations.
                            LPAREN param:parameterDeclarationList RPAREN
@@ -821,7 +860,7 @@ implementsClause
                                         mods,
                                         tp,
                                         #(#[TYPE,"TYPE"],rt),
-                                        IDENT,
+                                        id,
                                         LPAREN,
                                         param,
                                         RPAREN,
@@ -903,7 +942,7 @@ variableDefinitions[AST mods, AST t]
  * It can also include possible initialization.
  */
 variableDeclarator![AST mods, AST t]
-    :    id:IDENT d:declaratorBrackets[t] v:varInitializer
+    :    id:id d:declaratorBrackets[t] v:varInitializer
         {#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
     ;
 
@@ -950,7 +989,7 @@ initializer
 //   for the method.
 //   This also watches for a list of exception classes in a "throws" clause.
 ctorHead
-    :    IDENT  // the name of the method
+    :    id  // the name of the method
 
         // parse the formal parameter declarations.
         LPAREN parameterDeclarationList RPAREN
@@ -985,10 +1024,10 @@ parameterDeclarationList
     ;
 
 variableLengthParameterDeclaration!
-    :    pm:parameterModifier t:variableLengthParameterTypeSpec td:ELLIPSIS IDENT
+    :    pm:parameterModifier t:variableLengthParameterTypeSpec td:ELLIPSIS id:id
         pd:declaratorBrackets[#t]
         {#variableLengthParameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
-                                                pm, #([TYPE,"TYPE"],pd), td, IDENT);}
+                                                pm, #([TYPE,"TYPE"],pd), td, id);}
     ;
 
 parameterModifier
@@ -1008,12 +1047,12 @@ parameterDeclaration!
     ;
 
 parameterIdent
-    :    LITERAL_this | (IDENT (DOT^ LITERAL_this)?)
+    :    LITERAL_this | (id (DOT^ LITERAL_this)?)
     ;
 
 //Added for support Java7's "multi-catch", several types separated by '|'
 catchParameterDeclaration!
-    :   pm:parameterModifier mct:multiCatchTypes id:IDENT
+    :   pm:parameterModifier mct:multiCatchTypes id:id
             {#catchParameterDeclaration =
                 #(#[PARAMETER_DEF,"PARAMETER_DEF"], pm, #([TYPE,"TYPE"],mct), id);}
     ;
@@ -1068,7 +1107,7 @@ traditionalStatement
         |    m:modifiers! classDefinition[#m]
 
         // Attach a label to the front of a statement
-        |    IDENT c:COLON^ {#c.setType(LABELED_STAT);} statement
+        |    id c:COLON^ {#c.setType(LABELED_STAT);} statement
 
         // If-else statement
         |    "if"^ LPAREN expression RPAREN statement
@@ -1093,10 +1132,10 @@ traditionalStatement
         |    "do"^ statement w:"while" {#w.setType(DO_WHILE);} LPAREN expression RPAREN SEMI
 
         // get out of a loop (or switch)
-        |    "break"^ (IDENT)? SEMI
+        |    "break"^ (id)? SEMI
 
         // do next iteration of a loop
-        |    "continue"^ (IDENT)? SEMI
+        |    "continue"^ (id)? SEMI
 
         // Return an expression
         |    "return"^ (expression)? SEMI
@@ -1143,7 +1182,7 @@ forEachClause
     ;
 
 forEachDeclarator!
-    :    m:modifiers t:typeSpec[false] id:IDENT d:declaratorBrackets[#t]
+    :    m:modifiers t:typeSpec[false] id:id d:declaratorBrackets[#t]
         {#forEachDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], m, #(#[TYPE,"TYPE"],d), id);}
     ;
 
@@ -1231,12 +1270,12 @@ resources
 
 resource
     : (tryResourceDeclaration)=>  tryResourceDeclaration
-    | (primaryExpression DOT^)* IDENT
+    | (primaryExpression DOT^)* id
     {#resource = #([RESOURCE, "RESOURCE"], #resource);}
 ;
 
 tryResourceDeclarator![AST mods, AST t]
-    :    id:IDENT d:declaratorBrackets[t] v:varInitializer
+    :    id:id d:declaratorBrackets[t] v:varInitializer
         {#tryResourceDeclarator = #(#[RESOURCE, "RESOURCE"], mods, #(#[TYPE,"TYPE"],d), id, v);}
 ;
 
@@ -1458,7 +1497,7 @@ postfixExpression
         (options{warnWhenFollowAmbig=false;} :    // qualified id (id.id.id.id...) -- build the name
             DOT^
             ( (typeArguments[false])?
-              ( IDENT
+              ( id
               | "this"
               | "super" // ClassName.super.field
               )
@@ -1473,7 +1512,7 @@ postfixExpression
             dc:DOUBLE_COLON^ {#dc.setType(METHOD_REF);}
             (
                 (typeArguments[false])?
-                    (IDENT
+                    (id
                 | LITERAL_new)
             )
 
@@ -1513,7 +1552,7 @@ postfixExpression
 // the basic element of an expression
 primaryExpression
     :   (typeSpec[false] DOUBLE_COLON) => typeSpec[false]
-    |    IDENT
+    |    id
     |    constant
     |    "true"
     |    "false"
@@ -1637,7 +1676,7 @@ lambdaExpression
     ;
 
 lambdaParameters
-    :    IDENT
+    :    id
     |    LPAREN (parameterDeclarationList)? RPAREN
     ;
 
@@ -1646,6 +1685,11 @@ lambdaBody
     |    statement)
     ;
 
+// This rule was created to remedy the "keyword as identifier" problem
+// See: https://github.com/checkstyle/checkstyle/issues/8308
+id: IDENT | recordKey ;
+
+recordKey: "record" {#recordKey.setType(IDENT);};
 
 //----------------------------------------------------------------------------
 // The Java scanner
@@ -1693,7 +1737,6 @@ options {
     {
         mTreatEnumAsKeyword = aTreatAsKeyword;
     }
-
 }
 
 
