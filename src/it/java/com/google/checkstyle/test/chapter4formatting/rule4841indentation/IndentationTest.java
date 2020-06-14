@@ -127,10 +127,11 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     @Test
     public void testWarnChained() throws Exception {
         final String[] expected = {
-            "18: " + getCheckMessage(IndentationCheck.class, MSG_CHILD_ERROR, "method call", 4, 8),
-            "23: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
-            "24: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
-            "27: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, "new", 4, 8),
+            "18:5: " + getCheckMessage(IndentationCheck.class,
+                    MSG_CHILD_ERROR, "method call", 4, 8),
+            "23:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
+            "24:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
+            "27:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, "new", 4, 8),
         };
 
         final Configuration checkConfig = getModuleConfig("Indentation");

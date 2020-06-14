@@ -1212,6 +1212,75 @@ public class MainTest {
     }
 
     @Test
+    public void testGenerateXpathSuppressionOptionIndentation(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) throws IOException {
+        final String expected = addEndOfLine(
+            "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "<!DOCTYPE suppressions PUBLIC",
+            "    \"-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN\"",
+            "    \"https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd\">",
+            "<suppressions>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/"
+                + "OBJBLOCK/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/MODIFIERS\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/"
+                + "OBJBLOCK/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/"
+                + "VARIABLE_DEF[./IDENT[@text='a']]\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/"
+                + "OBJBLOCK/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/"
+                + "LITERAL_FOR\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/"
+                + "OBJBLOCK/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/"
+                + "LITERAL_FOR/SLIST/EXPR/PLUS_ASSIGN/IDENT[@text='i']\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/"
+                + "OBJBLOCK/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/"
+                + "LITERAL_FOR/SLIST/RCURLY\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/LITERAL_IF\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/LITERAL_IF/SLIST/"
+                + "LITERAL_RETURN\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/LITERAL_IF/SLIST/"
+                + "RCURLY\"/>",
+            "<suppress-xpath",
+            "       files=\"InputMainGenerateXpathIndentation.java\"",
+            "       checks=\"IndentationCheck\"",
+            "       query=\"/CLASS_DEF[./IDENT[@text='InputMainGenerateXpathIndentation']]/OBJBLOCK"
+                + "/METHOD_DEF[./IDENT[@text='generateIndentationXpath']]/SLIST/RCURLY\"/>",
+            "</suppressions>"
+        );
+
+        Main.main("-c", "/google_checks.xml", "--generate-xpath-suppression",
+                getPath("InputMainGenerateXpathIndentation.java"));
+        assertEquals(expected, systemOut.getCapturedData(), "Unexpected output log");
+        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+    }
+
+    @Test
     public void testGenerateXpathSuppressionOptionEmptyConfig(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         final String expected = "";
