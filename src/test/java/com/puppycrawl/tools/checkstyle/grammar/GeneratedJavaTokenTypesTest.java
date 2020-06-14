@@ -253,8 +253,15 @@ public class GeneratedJavaTokenTypesTest {
         assertEquals(195, GeneratedJavaTokenTypes.HEX_DOUBLE_LITERAL, message);
         assertEquals(196, GeneratedJavaTokenTypes.SIGNED_INTEGER, message);
         assertEquals(197, GeneratedJavaTokenTypes.BINARY_EXPONENT, message);
+        assertEquals(198, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN, message);
+        assertEquals(199, GeneratedJavaTokenTypes.ONE_DOUBLE_QUOTE, message);
+        assertEquals(200, GeneratedJavaTokenTypes.TWO_DOUBLE_QUOTES, message);
+        assertEquals(201, GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT, message);
+        assertEquals(202, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END, message);
+
+
         // Read JavaDoc before changing
-        assertEquals(196, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
+        assertEquals(201, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
                 "all tokens must be added to list in"
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change");
