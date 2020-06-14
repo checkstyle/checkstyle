@@ -116,6 +116,11 @@ tokens {
     BINARY_DIGIT; ID_START; ID_PART; INT_LITERAL; LONG_LITERAL;
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
+
+    //Java 14 features
+    TEXT_BLOCK_LITERAL_BEGIN; TWO_DOUBLE_QUOTES;
+    ONE_DOUBLE_QUOTE; TEXT_BLOCK_CONTENT;
+    TEXT_BLOCK_LITERAL_END;
 }
 
 {
@@ -1630,6 +1635,7 @@ constant
     |   NUM_DOUBLE
     |    CHAR_LITERAL
     |    STRING_LITERAL
+    |   textBlock
     ;
 
 lambdaExpression
@@ -1646,7 +1652,21 @@ lambdaBody
     |    statement)
     ;
 
+textBlock
+    :   tbBegin:TEXT_BLOCK_LITERAL_BEGIN
+        !tbEnd:TEXT_BLOCK_LITERAL_END
 
+        {
+            AST tb_AST = astFactory.dup(#tbBegin);
+            #tb_AST.setText(#tbEnd.getText());
+            #tb_AST.setType(TEXT_BLOCK_CONTENT);
+            #tbEnd.setText("\"\"\"");
+            #textBlock = #(
+                        #tbBegin,#tb_AST,#tbEnd
+            );
+        }
+
+    ;
 //----------------------------------------------------------------------------
 // The Java scanner
 //----------------------------------------------------------------------------
@@ -1673,6 +1693,8 @@ options {
         setColumn( getColumn() + 1 );
     }
 
+    private boolean inTextBlock = false;
+
     private CommentListener mCommentListener = null;
 
     public void setCommentListener(CommentListener aCommentListener)
@@ -1693,7 +1715,6 @@ options {
     {
         mTreatEnumAsKeyword = aTreatAsKeyword;
     }
-
 }
 
 
@@ -1819,6 +1840,51 @@ BLOCK_COMMENT_CONTENT
         )*
     ;
 
+protected
+TWO_DOUBLE_QUOTES
+  :  '"''"' ~'"'
+  ;
+protected
+ONE_DOUBLE_QUOTE
+  :  '"' ~'"'
+  ;
+
+TEXT_BLOCK_LITERAL_BEGIN
+    :    "\"\"\""
+        {this.inTextBlock=true;}
+    ;
+
+protected
+TEXT_BLOCK_CONTENT
+    :
+        (
+            '\r' '\n'       {newline();}
+        |   '\r'            {newline();}
+        |   '\n'            {newline();}
+        | ESC
+        | TWO_DOUBLE_QUOTES
+        | ONE_DOUBLE_QUOTE
+        | ~'"'
+        | '\\'
+        )*
+    ;
+
+
+TEXT_BLOCK_LITERAL_END
+    : {this.inTextBlock}?
+       content:TEXT_BLOCK_CONTENT
+       "\"\"\""
+       {
+            _ttype = TEXT_BLOCK_LITERAL_END;
+            _token = makeToken(_ttype);
+            _token.setLine(getLine());
+            _token.setColumn(getColumn());
+            _token.setText(content.getText());
+             this.inTextBlock=false;
+       }
+    ;
+
+
 // character literals
 CHAR_LITERAL
     :    '\'' ( ESC | ~'\'' ) '\''
@@ -1861,6 +1927,7 @@ protected
 STD_ESC
     :    'n'
     |    'r'
+    |    's'
     |    't'
     |    'b'
     |    'f'
