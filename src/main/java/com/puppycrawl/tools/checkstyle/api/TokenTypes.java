@@ -3540,6 +3540,24 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * A Java 14 Text Block. This is a sequence of (possibly escaped)
+     * characters enclosed in three double quotes.
+     *
+     * <pre>
+     *
+     *
+     * </pre>
+     *
+     *
+     */
+    public static final int TEXT_BLOCK_LITERAL_BEGIN =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
+    public static final int TEXT_BLOCK_CONTENT =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT;
+    public static final int TEXT_BLOCK_LITERAL_END =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
