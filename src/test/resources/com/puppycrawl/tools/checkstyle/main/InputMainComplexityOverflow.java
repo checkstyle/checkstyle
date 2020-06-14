@@ -6,167 +6,167 @@ package com.puppycrawl.tools.checkstyle.main;
  */
 public class InputMainComplexityOverflow {
 
-    public void provokeNpathIntegerOverflow()
-    {
+  public void provokeNpathIntegerOverflow()
+  {
+    if (true) {
+      if (true) {
         if (true) {
+          if (true) {
             if (true) {
+              if (true) {
                 if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
+                  if (true) {
+                  }
                 }
+              }
             }
+          }
         }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        if (true) {
-            if (true) {
-                if (true) {
-                    if (true) {
-                        if (true) {
-                            if (true) {
-                                if (true) {
-                                    if (true) {
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+      }
     }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    if (true) {
+      if (true) {
+        if (true) {
+          if (true) {
+            if (true) {
+              if (true) {
+                if (true) {
+                  if (true) {
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
