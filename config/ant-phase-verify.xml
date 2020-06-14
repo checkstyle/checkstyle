@@ -152,6 +152,8 @@
          <exclude name="**/InputJava14InstanceofWithPatternMatching.java"/>
          <!-- Cannot parse until Java 14 support -->
          <exclude name="**/InputJava14Records.java"/>
+         <!-- until https://github.com/checkstyle/checkstyle/issues/7103 -->
+         <exclude name="**/InputJava14TextBlocks.java"/>
         </fileset>
       </path>
       <formatter type="plain"/>
