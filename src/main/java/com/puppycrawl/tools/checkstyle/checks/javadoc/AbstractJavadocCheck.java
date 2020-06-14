@@ -185,10 +185,10 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
                     Arrays.stream(getDefaultJavadocTokens()).boxed().collect(Collectors.toList()));
         }
         else {
-            final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
-            Arrays.sort(acceptableJavadocTokens);
+            final Set<Integer> acceptableJavadocTokens = Arrays.stream(getAcceptableJavadocTokens())
+                    .boxed().collect(Collectors.toSet());
             for (Integer javadocTokenId : javadocTokens) {
-                if (Arrays.binarySearch(acceptableJavadocTokens, javadocTokenId) < 0) {
+                if (!acceptableJavadocTokens.contains(javadocTokenId)) {
                     final String message = String.format(Locale.ROOT, "Javadoc Token \"%s\" was "
                             + "not found in Acceptable javadoc tokens list in check %s",
                             JavadocUtil.getTokenName(javadocTokenId), getClass().getName());
