@@ -3540,6 +3540,25 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * Java 14 Pattern definition.
+     *
+     * <pre>
+     * +--LITERAL_INSTANCEOF
+     *      |
+     *      +--IDENT
+     *      +--PATTERN_DEF
+     *          |
+     *          +VARIABLE_DEF
+     *              +--TYPE
+     *              |    +--IDENT
+     *              +--IDENT
+     * </pre>
+     * @see #LITERAL_INSTANCEOF
+     */
+    public static final int PATTERN_DEF =
+            GeneratedJavaTokenTypes.PATTERN_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
