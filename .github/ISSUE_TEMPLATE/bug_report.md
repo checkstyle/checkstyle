@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
 Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
 
 ```
@@ -24,7 +33,7 @@ in place of the last 2 commands above.
 
 ---------------
 
-Describe what you expect in detail.
+**Describe what you expect in detail.**
 
 --------------
 
