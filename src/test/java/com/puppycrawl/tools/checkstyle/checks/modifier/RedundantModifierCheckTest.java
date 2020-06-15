@@ -262,4 +262,14 @@ public class RedundantModifierCheckTest
                 expected);
     }
 
+    @Test
+    public void testTryWithResourcesBlock() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RedundantModifierCheck.class);
+        final String[] expected = {
+            "10:19: " + getCheckMessage(MSG_KEY, "final"),
+        };
+        verify(checkConfig, getNonCompilablePath("InputRedundantModifierTryWithResources.java"),
+                expected);
+    }
+
 }
