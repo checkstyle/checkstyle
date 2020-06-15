@@ -64,4 +64,14 @@
                       "/>
         </properties>
     </rule>
+    <rule ref="category/java/design.xml/AvoidCatchingGenericException">
+        <properties>
+            <!-- it is ok to catch all exceptions in UI as we do not have
+            proper logging system there and it only way to show problem -->
+            <property name="violationSuppressXPath"
+                      value="//ClassOrInterfaceDeclaration[@SimpleName='TreeTable']
+                                 //MethodDeclaration[@Name='generateXpath']
+                      "/>
+        </properties>
+    </rule>
 </ruleset>
