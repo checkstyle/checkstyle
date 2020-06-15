@@ -95,12 +95,14 @@ public class MainFrame extends JFrame {
         add(splitPane, BorderLayout.CENTER);
         splitPane.setResizeWeight(0.7);
 
-        xpathTextArea = new JTextArea("Currently Not Supported", 7, 0);
+        xpathTextArea = new JTextArea("Xpath", 7, 0);
         xpathTextArea.setVisible(false);
         final JPanel xpathAreaPanel = new JPanel();
         xpathAreaPanel.setLayout(new BorderLayout());
         xpathAreaPanel.add(xpathTextArea);
         xpathAreaPanel.add(createXpathButtonsPanel(), BorderLayout.PAGE_END);
+
+        treeTable.setXpathEditor(xpathTextArea);
 
         final Border title = BorderFactory.createTitledBorder("Xpath Query");
         xpathAreaPanel.setBorder(title);
@@ -189,6 +191,7 @@ public class MainFrame extends JFrame {
             reloadAction.setEnabled(model.isReloadActionEnabled());
             textArea.setText(model.getText());
             treeTable.setLinePositionMap(model.getLinesToPosition());
+            treeTable.setFile(sourceFile);
         }
         catch (final CheckstyleException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
