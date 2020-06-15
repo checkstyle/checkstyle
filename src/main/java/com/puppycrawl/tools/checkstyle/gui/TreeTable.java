@@ -25,6 +25,8 @@ import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
@@ -38,6 +40,10 @@ import javax.swing.KeyStroke;
 import javax.swing.LookAndFeel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.tree.TreePath;
+
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
 /**
  * This example shows how to create a simple TreeTable component,
@@ -57,8 +63,12 @@ public final class TreeTable extends JTable {
     private final TreeTableCellRenderer tree;
     /** JTextArea editor. */
     private JTextArea editor;
+    /** JTextArea xpathEditor. */
+    private JTextArea xpathEditor;
     /** Line position map. */
     private List<Integer> linePositionMap;
+    /** File to process. */
+    private File file;
 
     /**
      * Creates TreeTable base on TreeTableModel.
@@ -126,6 +136,7 @@ public final class TreeTable extends JTable {
     private void expandSelectedNode() {
         final TreePath selected = tree.getSelectionPath();
         makeCodeSelection();
+        generateXpath();
 
         if (tree.isExpanded(selected)) {
             tree.collapsePath(selected);
@@ -141,6 +152,33 @@ public final class TreeTable extends JTable {
      */
     private void makeCodeSelection() {
         new CodeSelector(tree.getLastSelectedPathComponent(), editor, linePositionMap).select();
+    }
+
+    /**
+     * Generate Xpath.
+     */
+    private void generateXpath() {
+        if (tree.getLastSelectedPathComponent() instanceof DetailAST) {
+            try {
+                final FileText fileText = new FileText(file, StandardCharsets.UTF_8.name());
+                final DetailAST rootAST = (DetailAST) tree.getModel().getRoot();
+                final DetailAST ast = (DetailAST) tree.getLastSelectedPathComponent();
+                final int defaultTabWidth = 4;
+
+                final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(rootAST,
+                    ast.getLineNo(), ast.getColumnNo(),
+                    fileText, defaultTabWidth);
+
+                xpathEditor.setText(queryGenerator.generateXpathQuery(ast));
+            }
+			// -@cs[IllegalCatchExtended] no proper logging ability so we print all to UI textarea
+            catch (Exception ex) {
+                xpathEditor.setText(ex.getMessage());
+            }
+        }
+        else {
+            xpathEditor.setText("Xpath is not supported yet for javadoc nodes");
+        }
     }
 
     /**
@@ -227,6 +265,24 @@ public final class TreeTable extends JTable {
      */
     public void setEditor(JTextArea textArea) {
         editor = textArea;
+    }
+
+    /**
+     * Sets text area xpathEditor.
+     *
+     * @param xpathTextArea JTextArea component.
+     */
+    public void setXpathEditor(JTextArea xpathTextArea) {
+        xpathEditor = xpathTextArea;
+    }
+
+    /**
+     * Sets text area xpathEditor.
+     *
+     * @param file File.
+     */
+    public void setFile(File file) {
+        this.file = file;
     }
 
     /**
