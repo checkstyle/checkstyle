@@ -1,0 +1,29 @@
+--- Origin.java	2020-06-11 11:06:21.000000000 +0800
++++ Update.java	2020-06-11 10:59:48.000000000 +0800
+@@ -1,9 +1,17 @@
+ package checkstyle_demo.PatchSuppression.MultiChangeInOneFile;
+ 
+-public class Origin {
++public class Update {
+     public void test1() {
+ 
+     }
++
++    public void test2() {
++
++    }
++
++    public void test3() {
++
++    }
+ }
+ 
+ class Test {
+@@ -16,5 +24,7 @@
+ class Test2 {
+     public void test1() {
+         System.out.println();
++        System.out.println();
++        System.out.println();
+     }
+ }
