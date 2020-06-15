@@ -361,6 +361,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>io.github.java-diff-utils</groupId>
+      <artifactId>java-diff-utils</artifactId>
+      <version>4.5</version>
+    </dependency>
   </dependencies>
 
   <!-- that repositories are required for testing plugin's snapshot version -->

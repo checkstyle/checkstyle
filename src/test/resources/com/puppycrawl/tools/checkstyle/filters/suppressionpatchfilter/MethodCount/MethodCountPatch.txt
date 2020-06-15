@@ -1,0 +1,20 @@
+--- MethodCountOrigin.java	2020-06-08 17:33:00.000000000 +0800
++++ MethodCountUpdate.java	2020-06-08 17:33:00.000000000 +0800
+@@ -1,10 +1,15 @@
+ package com.github.checkstyle.patchfilter;
+ 
+-public class MethodCountOrigin {
++public class MethodCountUpdate {
+     public void test1() {
+ 
+     }
+-}
+ 
++    public void test2() {
++
++    }
+ 
++    public void test3() {
+ 
++    }
++}
