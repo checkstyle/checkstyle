@@ -270,27 +270,9 @@ public class RedundantModifierCheck
      */
     private void checkEnumConstructorModifiers(DetailAST ast) {
         final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        final DetailAST modifier = getFirstModifierAst(modifiers);
-
-        if (modifier != null) {
-            log(modifier, MSG_KEY, modifier.getText());
-        }
-    }
-
-    /**
-     * Retrieves the first modifier that is not an annotation.
-     *
-     * @param modifiers The ast to examine.
-     * @return The first modifier or {@code null} if none found.
-     */
-    private static DetailAST getFirstModifierAst(DetailAST modifiers) {
-        DetailAST modifier = modifiers.getFirstChild();
-
-        while (modifier != null && modifier.getType() == TokenTypes.ANNOTATION) {
-            modifier = modifier.getNextSibling();
-        }
-
-        return modifier;
+        TokenUtil.findFirstTokenByPredicate(
+            modifiers, mod -> mod.getType() != TokenTypes.ANNOTATION
+        ).ifPresent(modifier -> log(modifier, MSG_KEY, modifier.getText()));
     }
 
     /**
@@ -385,13 +367,9 @@ public class RedundantModifierCheck
      */
     private void processAbstractMethodParameters(DetailAST ast) {
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
-
-        for (DetailAST child = parameters.getFirstChild(); child != null; child = child
-                .getNextSibling()) {
-            if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                checkForRedundantModifier(child, TokenTypes.FINAL);
-            }
-        }
+        TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, paramDef -> {
+            checkForRedundantModifier(paramDef, TokenTypes.FINAL);
+        });
     }
 
     /**
@@ -526,13 +504,7 @@ public class RedundantModifierCheck
     private static List<DetailAST> getMethodAnnotationsList(DetailAST methodDef) {
         final List<DetailAST> annotationsList = new ArrayList<>();
         final DetailAST modifiers = methodDef.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST modifier = modifiers.getFirstChild();
-        while (modifier != null) {
-            if (modifier.getType() == TokenTypes.ANNOTATION) {
-                annotationsList.add(modifier);
-            }
-            modifier = modifier.getNextSibling();
-        }
+        TokenUtil.forEachChild(modifiers, TokenTypes.ANNOTATION, annotationsList::add);
         return annotationsList;
     }
 
