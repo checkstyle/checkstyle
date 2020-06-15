@@ -21,12 +21,14 @@ package com.puppycrawl.tools.checkstyle.checks.modifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -420,15 +422,12 @@ public class RedundantModifierCheck
      * @param modifierType The modifier to check for.
      */
     private void checkForRedundantModifier(DetailAST ast, int modifierType) {
-        final DetailAST astModifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
-        DetailAST astModifier = astModifiers.getFirstChild();
-        while (astModifier != null) {
-            if (astModifier.getType() == modifierType) {
-                log(astModifier, MSG_KEY, astModifier.getText());
-            }
-
-            astModifier = astModifier.getNextSibling();
-        }
+        Optional.ofNullable(ast.findFirstToken(TokenTypes.MODIFIERS))
+            .ifPresent(modifiers -> {
+                TokenUtil.forEachChild(modifiers, modifierType, modifier -> {
+                    log(modifier, MSG_KEY, modifier.getText());
+                });
+            });
     }
 
     /**
