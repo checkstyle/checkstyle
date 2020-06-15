@@ -179,7 +179,7 @@ public class XpathQueryGenerator {
      * @param ast {@code DetailAST} ast element
      * @return full xpath query for given ast element
      */
-    private static String generateXpathQuery(DetailAST ast) {
+    public static String generateXpathQuery(DetailAST ast) {
         final StringBuilder xpathQueryBuilder = new StringBuilder(getXpathQuery(null, ast));
         if (!isXpathQueryForNodeIsAccurateEnough(ast)) {
             xpathQueryBuilder.append('[');
