@@ -114,6 +114,12 @@
           <!-- Do not validate possible source code remnants after regression testing -->
           <exclude name=".ci-temp/**/*"/>
 
+          <!-- line length must exceed 100 chars to compare printed AST -->
+          <exclude name="**/InputJava14TextBlocks.txt"/>
+
+          <!-- line length must be over 100 chars to properly supress warnings -->
+          <exclude name="**/intellij-idea-inspections.xml"/>
+
         </fileset>
       </path>
       <formatter type="plain"/>
