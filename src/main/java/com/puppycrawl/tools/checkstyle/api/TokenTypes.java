@@ -3541,22 +3541,62 @@ public final class TokenTypes {
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
     /**
-     * A Java 14 Text Block. This is a sequence of (possibly escaped)
-     * characters enclosed in three double quotes.
+     * Beginning of a Java 14 Text Block literal,
+     * delimited by three double quotes.
      *
      * <pre>
-     *
-     *
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
      * </pre>
-     *
-     *
      */
     public static final int TEXT_BLOCK_LITERAL_BEGIN =
             GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
+
+    /**
+     * Content (text) of a Java 14 text block. This is a
+     * sequence of (possibly escaped) characters.
+     *
+     * <pre>
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
+     * </pre>
+     */
     public static final int TEXT_BLOCK_CONTENT =
             GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT;
+
+    /**
+     * End of a Java 14 text block literal, delimited by three
+     * double quotes.
+     *
+     * <pre>
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
+     * </pre>
+     */
     public static final int TEXT_BLOCK_LITERAL_END =
             GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END;
+
+    /**
+     * Newline in Java 14 text block content.
+     *
+     * <pre>
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--NEWLINE
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
+     * </pre>
+     *
+     */
+    public static final int NEWLINE =
+            GeneratedJavaTokenTypes.NEWLINE;
 
     /** Prevent instantiation. */
     private TokenTypes() {
