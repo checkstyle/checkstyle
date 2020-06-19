@@ -1107,7 +1107,7 @@
           <sourceDirectory>
             ${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammar
           </sourceDirectory>
-          <grammars>java.g</grammars>
+          <grammars>java*.g</grammars>
         </configuration>
         <executions>
           <execution>
