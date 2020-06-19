@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.Reader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -169,6 +170,15 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testUnusedConstructors4() throws Exception {
+        final Class<?> clss = GeneratedJava14TextBlockLexer.class;
+        final Constructor<?> constructor = clss.getDeclaredConstructor(Reader.class);
+
+        assertNotNull(constructor.newInstance(new Object[] {null}),
+                "Reader should not be null");
+    }
+
+    @Test
     public void testCustomAstTree() throws Exception {
         verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\t");
         verifyAstRaw(getPath("InputRegressionEmptyAst.txt"), "\r\n");
@@ -252,6 +262,30 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
                 '4', '4', '.', '4', 'P', '4', 'D', ';');
     }
 
+    @Test
+    public void testImpossibleExceptionsJava14TextBlockLexer() throws Exception {
+        AssertGeneratedJava14TextBlockLexer.verifyFail("mSTD_ESC", '\\', '*', (char) 0xFFFF);
+        AssertGeneratedJava14TextBlockLexer.verifyFail("mONE_DOUBLE_QUOTE", '"', '"');
+        AssertGeneratedJava14TextBlockLexer.verifyFail("mNEWLINE", '*');
+        AssertGeneratedJava14TextBlockLexer.verifyFail("mTEXT_BLOCK_CONTENT", (char) 0xFFFF);
+    }
+
+    @Test
+    public void testImpossibleValidJava14TextBlockLexer() throws Exception {
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mSTD_ESC", '\\', '\\', 'n');
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mNEWLINE", '\r', '\n');
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mNEWLINE", '\r', '1');
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mTEXT_BLOCK_CONTENT", '\\', (char) 0xFFFF);
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mTEXT_BLOCK_CONTENT", '\r', (char) 0xFFFF);
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mONE_DOUBLE_QUOTE", '"', 'a');
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mTWO_DOUBLE_QUOTES", '"', '"', 'a');
+        AssertGeneratedJava14TextBlockLexer.verifyPass("mONE_DOUBLE_QUOTE", '"', '\r', '\r');
+        AssertGeneratedJava14TextBlockLexer
+                .verifyPass("mTWO_DOUBLE_QUOTES", '"', '"', '\r', '\r');
+        AssertGeneratedJava14TextBlockLexer
+                .verifyPass("mTEXT_BLOCK_LITERAL_END", '"', '"', '"', (char) 0xFFFF);
+    }
+
     private static void verifyAstRaw(String expectedTextPrintFileName, String actualJava)
             throws Exception {
         verifyAstRaw(expectedTextPrintFileName, actualJava, JavaParser.Options.WITHOUT_COMMENTS);
@@ -271,6 +305,80 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
 
         assertEquals(expectedContents, actualContents,
                 "Generated AST from Java code should match pre-defined AST");
+    }
+
+    private static final class AssertGeneratedJava14TextBlockLexer
+            extends GeneratedJava14TextBlockLexer {
+
+        private int laPosition;
+        private char[] laResults;
+
+        private AssertGeneratedJava14TextBlockLexer() {
+            super((InputStream) null);
+        }
+
+        public static void verifyPass(String methodName, char... laResults) throws Exception {
+            verify(methodName, true, 1, laResults);
+        }
+
+        public static void verifyFail(String methodName, char... laResults) throws Exception {
+            verify(methodName, false, 1, laResults);
+        }
+
+        private static void verify(String methodName, boolean expectPass, int guessing,
+                                   char... laResults) throws Exception {
+            final AssertGeneratedJava14TextBlockLexer instance =
+                    new AssertGeneratedJava14TextBlockLexer();
+            instance.laPosition = 0;
+            instance.laResults = laResults.clone();
+            instance.inputState.guessing = guessing;
+
+            final Method method = GeneratedJava14TextBlockLexer.class.getDeclaredMethod(methodName,
+                    boolean.class);
+            boolean exception;
+
+            try {
+                method.invoke(instance, true);
+                exception = false;
+            }
+            catch (InvocationTargetException ex) {
+                if (expectPass) {
+                    throw ex;
+                }
+
+                final Class<?> clss = ex.getTargetException().getClass();
+                if (clss != NoViableAltForCharException.class
+                        && clss != SemanticException.class) {
+                    throw ex;
+                }
+                exception = true;
+            }
+
+            if (expectPass) {
+                assertFalse(exception, "Call to GeneratedJava14TextBlockLexer." + methodName
+                        + " resulted in an exception");
+            }
+            else {
+                assertTrue(exception, "Call to GeneratedJava14TextBlockLexer." + methodName
+                        + " did not result in an exception");
+            }
+        }
+
+        @Override
+        public char LA(int i) {
+            return laResults[laPosition + i - 1];
+        }
+
+        @Override
+        public void consume() {
+            laPosition++;
+        }
+
+        @Override
+        public int mark() {
+            return 1;
+        }
+
     }
 
     private static final class AssertGeneratedJavaLexer extends GeneratedJavaLexer {

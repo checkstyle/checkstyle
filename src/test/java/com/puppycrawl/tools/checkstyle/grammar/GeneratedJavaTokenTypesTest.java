@@ -257,7 +257,6 @@ public class GeneratedJavaTokenTypesTest {
         assertEquals(199, GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT, message);
         assertEquals(200, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END, message);
 
-
         // Read JavaDoc before changing
         assertEquals(199, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
                 "all tokens must be added to list in"
