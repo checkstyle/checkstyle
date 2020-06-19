@@ -72,6 +72,7 @@ public class InputJava14TextBlocks
             """.formatted(parameter);
     }
 
+    //This example will throw line numbers off, but AST is correct
     public String getIgnoredNewLines() {
         return """
             This is a long test which looks to \
