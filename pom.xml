@@ -1679,6 +1679,8 @@
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
             <!-- link works but plugin's request always result in 404 -->
             <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
+            <!-- permanent 403, but it works fine out of plugin execution -->
+            <excludedLink>https://opencollective.com/*</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
