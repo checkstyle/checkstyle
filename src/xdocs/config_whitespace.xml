@@ -51,7 +51,7 @@ for (
             <tr>
               <td>option</td>
               <td>Specify policy on how to pad an empty for iterator.</td>
-              <td><a href="property_types.html#parenPad">Pad Policy</a></td>
+              <td><a href="property_types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.4</td>
             </tr>
@@ -148,7 +148,7 @@ for (Iterator foo = very.long.line.iterator();
            <tr>
              <td>option</td>
              <td>Specify policy on how to pad an empty for iterator.</td>
-             <td><a href="property_types.html#parenPad">Pad Policy</a></td>
+             <td><a href="property_types.html#PadOption">PadOption</a></td>
              <td><code>nospace</code></td>
              <td>3.0</td>
            </tr>
@@ -823,7 +823,7 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
               <td>option</td>
               <td>Specify policy on how to pad method parameter.</td>
               <td>
-                <a href="property_types.html#parenPad">Pad Policy</a>
+                <a href="property_types.html#PadOption">PadOption</a>
               </td>
               <td><code>nospace</code></td>
               <td>3.4</td>
@@ -1567,7 +1567,7 @@ Lists.charactersOf("foo")
               <td>option</td>
               <td>Specify policy on how to wrap lines.</td>
               <td>
-                <a href="property_types.html#wrapOp">Wrap Operator Policy</a>
+                <a href="property_types.html#WrapOption">WrapOption</a>
               </td>
               <td><code>nl</code></td>
               <td>3.0</td>
@@ -1882,7 +1882,7 @@ class Test {
             <tr>
               <td>option</td>
               <td>Specify policy on how to pad parentheses.</td>
-              <td><a href="property_types.html#parenPad">Pad Policy</a></td>
+              <td><a href="property_types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.0</td>
             </tr>
@@ -2163,7 +2163,7 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
               <td>option</td>
               <td>Specify policy on how to wrap lines.</td>
               <td>
-                <a href="property_types.html#wrapOp">Wrap Operator Policy</a>
+                <a href="property_types.html#WrapOption">WrapOption</a>
               </td>
               <td><code>eol</code></td>
               <td>5.8</td>
@@ -2508,7 +2508,7 @@ float f1; // OK, 1 whitespace
             <tr>
               <td>option</td>
               <td>Specify policy on how to pad parentheses.</td>
-              <td><a href="property_types.html#parenPad">Pad Policy</a></td>
+              <td><a href="property_types.html#PadOption">PadOption</a></td>
               <td><code>nospace</code></td>
               <td>3.2</td>
             </tr>
