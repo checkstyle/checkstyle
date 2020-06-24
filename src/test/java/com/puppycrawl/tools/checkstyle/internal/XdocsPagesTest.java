@@ -84,9 +84,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ClosingParens;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ElementStyle;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.TrailingArrayComma;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ClosingParensOption;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ElementStyleOption;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.TrailingArrayCommaOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
@@ -1034,13 +1034,13 @@ public class XdocsPagesTest {
         else if (fieldClass == Scope.class) {
             result = "Scope";
         }
-        else if (fieldClass == ElementStyle.class) {
+        else if (fieldClass == ElementStyleOption.class) {
             result = "Element Style";
         }
-        else if (fieldClass == ClosingParens.class) {
+        else if (fieldClass == ClosingParensOption.class) {
             result = "Closing Parens";
         }
-        else if (fieldClass == TrailingArrayComma.class) {
+        else if (fieldClass == TrailingArrayCommaOption.class) {
             result = "Trailing Comma";
         }
         else if (fieldClass == PadOption.class) {
