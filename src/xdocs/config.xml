@@ -359,7 +359,7 @@
             <tr>
               <td>severity</td>
               <td>the default severity level of all violations</td>
-              <td><a href="property_types.html#severity">Severity</a></td>
+              <td><a href="property_types.html#severityLevel">Severity Level</a></td>
               <td><code>error</code></td>
               <td>3.1</td>
             </tr>
@@ -713,7 +713,7 @@
     <section name="Severity">
       <p>
         Each module has a <a
-        href="property_types.html#severity">severity</a> property that a
+        href="property_types.html#severityLevel">severity</a> property that a
         Checkstyle audit assigns to all violations of the check. The
         default severity level of a check is <code>error</code>.
       </p>
