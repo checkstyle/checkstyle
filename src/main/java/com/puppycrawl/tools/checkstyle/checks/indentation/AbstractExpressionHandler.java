@@ -19,11 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
-import java.util.Arrays;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
+import java.util.Arrays;
 
 /**
  * Abstract base class for all handlers.
@@ -428,11 +428,10 @@ public abstract class AbstractExpressionHandler {
     protected static DetailAST getFirstAst(DetailAST ast, DetailAST tree) {
         DetailAST realStart = ast;
 
-        if (tree.getLineNo() < realStart.getLineNo()) {
-            realStart = tree;
-        }
-        else if (tree.getLineNo() == realStart.getLineNo()
-                && tree.getColumnNo() < realStart.getColumnNo()) {
+        if (tree.getLineNo() < realStart.getLineNo()
+            || tree.getLineNo() == realStart.getLineNo()
+            && tree.getColumnNo() < realStart.getColumnNo()
+        ) {
             realStart = tree;
         }
 
