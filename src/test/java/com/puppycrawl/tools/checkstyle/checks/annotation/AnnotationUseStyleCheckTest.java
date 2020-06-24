@@ -48,10 +48,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testElementStyleValueOf() {
-        final AnnotationUseStyleCheck.ElementStyle option =
-            AnnotationUseStyleCheck.ElementStyle.valueOf("COMPACT");
-        assertEquals(AnnotationUseStyleCheck.ElementStyle.COMPACT, option,
+    public void testElementStyleOptionValueOf() {
+        final AnnotationUseStyleCheck.ElementStyleOption option =
+            AnnotationUseStyleCheck.ElementStyleOption.valueOf("COMPACT");
+        assertEquals(AnnotationUseStyleCheck.ElementStyleOption.COMPACT, option,
                 "Invalid valueOf result");
     }
 
@@ -60,10 +60,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testTrailingArrayCommaValueOf() {
-        final AnnotationUseStyleCheck.TrailingArrayComma option =
-            AnnotationUseStyleCheck.TrailingArrayComma.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.TrailingArrayComma.ALWAYS, option,
+    public void testTrailingArrayCommaOptionValueOf() {
+        final AnnotationUseStyleCheck.TrailingArrayCommaOption option =
+            AnnotationUseStyleCheck.TrailingArrayCommaOption.valueOf("ALWAYS");
+        assertEquals(AnnotationUseStyleCheck.TrailingArrayCommaOption.ALWAYS, option,
                 "Invalid valueOf result");
     }
 
@@ -72,10 +72,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testClosingParensValueOf() {
-        final AnnotationUseStyleCheck.ClosingParens option =
-            AnnotationUseStyleCheck.ClosingParens.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.ClosingParens.ALWAYS, option,
+    public void testClosingParensOptionValueOf() {
+        final AnnotationUseStyleCheck.ClosingParensOption option =
+            AnnotationUseStyleCheck.ClosingParensOption.valueOf("ALWAYS");
+        assertEquals(AnnotationUseStyleCheck.ClosingParensOption.ALWAYS, option,
                 "Invalid valueOf result");
     }
 
@@ -108,9 +108,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testParensAlways() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ALWAYS");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "ALWAYS");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
             "18:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_MISSING),
@@ -130,9 +130,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testParensNever() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "NEVER");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "NEVER");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
             "30:1: " + getCheckMessage(MSG_KEY_ANNOTATION_PARENS_PRESENT),
@@ -147,9 +147,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStyleExpanded() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "EXPANDED");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "EXPANDED");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = {
             "5:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
             "12:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "EXPANDED"),
@@ -169,9 +169,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStyleCompact() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "COMPACT");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "COMPACT");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = {
             "43:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
             "47:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT"),
@@ -186,9 +186,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStyleCompactNoArray() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "COMPACT_NO_ARRAY");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = {
             "4:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "5:1: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
@@ -207,9 +207,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaAlwaysViolations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ALWAYS");
         final String[] expected = {
             "3:20: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "6:30: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
@@ -232,9 +232,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaAlwaysViolationsNonCompilable() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ALWAYS");
         final String[] expected = {
             "6:37: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
             "6:65: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_MISSING),
@@ -247,9 +247,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaAlwaysNoViolations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ALWAYS");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleWithTrailingComma.java"), expected);
@@ -258,9 +258,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaAlwaysNoViolationsNonCompilable() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ALWAYS");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ALWAYS");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig,
@@ -273,7 +273,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTrailingArrayIgnore() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
             "16:13: " + getCheckMessage(MSG_KEY_ANNOTATION_INCORRECT_STYLE, "COMPACT_NO_ARRAY"),
@@ -287,9 +287,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaNeverViolations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "NEVER");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "NEVER");
         final String[] expected = {
             "9:32: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
             "13:42: " + getCheckMessage(MSG_KEY_ANNOTATION_TRAILING_COMMA_PRESENT),
@@ -307,9 +307,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCommaNeverNoViolations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "NEVER");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "NEVER");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleNoTrailingComma.java"), expected);
@@ -318,9 +318,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEverythingMixed() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "ignore");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "ignore");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleDifferentStyles.java"), expected);
@@ -329,7 +329,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationsWithoutDefaultValues() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "NEVER");
+        checkConfig.addAttribute("closingParensOption", "NEVER");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyleParams.java"), expected);
@@ -347,7 +347,7 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     public void testGetOption() {
         final AnnotationUseStyleCheck check = new AnnotationUseStyleCheck();
         try {
-            check.setElementStyle("SHOULD_PRODUCE_ERROR");
+            check.setElementStyleOption("SHOULD_PRODUCE_ERROR");
             fail("ConversionException is expected");
         }
         catch (IllegalArgumentException ex) {
@@ -361,9 +361,9 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testStyleNotInList() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationUseStyleCheck.class);
-        checkConfig.addAttribute("closingParens", "ignore");
-        checkConfig.addAttribute("elementStyle", "COMPACT_NO_ARRAY");
-        checkConfig.addAttribute("trailingArrayComma", "ignore");
+        checkConfig.addAttribute("closingParensOption", "ignore");
+        checkConfig.addAttribute("elementStyleOption", "COMPACT_NO_ARRAY");
+        checkConfig.addAttribute("trailingArrayCommaOption", "ignore");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputAnnotationUseStyle.java"), expected);
