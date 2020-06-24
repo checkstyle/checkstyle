@@ -201,7 +201,7 @@ switch (a) {
             <tr>
               <td>option</td>
               <td>specify the policy on block contents.</td>
-              <td><a href="property_types.html#block">Block Policy</a></td>
+              <td><a href="property_types.html#BlockOption">BlockOption</a></td>
               <td><code>statement</code></td>
               <td>3.0</td>
             </tr>
@@ -543,7 +543,7 @@ try {
             <tr>
               <td>option</td>
               <td>Specify the policy on placement of a left curly brace (<code>'{'</code>).</td>
-              <td><a href="property_types.html#lcurly">Left Curly Brace Policy</a></td>
+              <td><a href="property_types.html>SeverityLevel">LeftCurlyOption</a></td>
               <td><code>eol</code></td>
               <td>3.0</td>
             </tr>
@@ -968,7 +968,7 @@ allowedFuture.addCallback(result -> {
             <tr>
               <td>option</td>
               <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
-              <td><a href="property_types.html#rcurly">Right Curly Brace Policy</a></td>
+              <td><a href="property_types.html#RcurlyOption">RightCurlyOption</a></td>
               <td><code>same</code></td>
               <td>3.0</td>
             </tr>

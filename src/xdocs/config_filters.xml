@@ -49,7 +49,7 @@
             <tr>
               <td>severity</td>
               <td>Specify the severity level of this filter.</td>
-              <td><a href="property_types.html#severity">Severity</a></td>
+              <td><a href="property_types.html#SeverityLevel">SeverityLevel</a></td>
               <td><code>error</code></td>
               <td>3.2</td>
             </tr>
