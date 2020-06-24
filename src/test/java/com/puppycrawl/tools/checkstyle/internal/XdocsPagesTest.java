@@ -84,9 +84,9 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ClosingParens;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ElementStyle;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.TrailingArrayComma;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ClosingParensOption;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ElementStyleOption;
+import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.TrailingArrayCommaOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
@@ -1029,46 +1029,46 @@ public class XdocsPagesTest {
             result = "Regular Expressions";
         }
         else if (fieldClass == SeverityLevel.class) {
-            result = "Severity";
+            result = "SeverityLevel";
         }
         else if (fieldClass == Scope.class) {
             result = "Scope";
         }
-        else if (fieldClass == ElementStyle.class) {
-            result = "Element Style";
+        else if (fieldClass == ElementStyleOption.class) {
+            result = "ElementStyleOption";
         }
-        else if (fieldClass == ClosingParens.class) {
-            result = "Closing Parens";
+        else if (fieldClass == ClosingParensOption.class) {
+            result = "ClosingParensOption";
         }
-        else if (fieldClass == TrailingArrayComma.class) {
-            result = "Trailing Comma";
+        else if (fieldClass == TrailingArrayCommaOption.class) {
+            result = "TrailingArrayCommaOption";
         }
         else if (fieldClass == PadOption.class) {
-            result = "Pad Policy";
+            result = "PadOption";
         }
         else if (fieldClass == WrapOption.class) {
-            result = "Wrap Operator Policy";
+            result = "WrapOption";
         }
         else if (fieldClass == BlockOption.class) {
-            result = "Block Policy";
+            result = "BlockOption";
         }
         else if (fieldClass == LeftCurlyOption.class) {
-            result = "Left Curly Brace Policy";
+            result = "LeftCurlyOption";
         }
         else if (fieldClass == RightCurlyOption.class) {
-            result = "Right Curly Brace Policy";
+            result = "RightCurlyOption";
         }
         else if (fieldClass == LineSeparatorOption.class) {
-            result = "Line Separator Policy";
+            result = "LineSeparatorOption";
         }
         else if (fieldClass == ImportOrderOption.class) {
-            result = "Import Order Policy";
+            result = "ImportOrderOption";
         }
         else if (fieldClass == AccessModifier[].class) {
             result = "Access Modifier Set";
         }
         else if (fieldClass == JavadocContentLocationOption.class) {
-            result = "Javadoc Content Location";
+            result = "JavadocContentLocationOption";
         }
         else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
             result = "File";

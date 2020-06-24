@@ -1417,7 +1417,7 @@ StaticMethodCandidateCheck.name = Static Method Candidate
             <tr>
               <td>lineSeparator</td>
               <td>Specify the type of line separator.</td>
-              <td><a href="property_types.html#lineSeparator">Line Separator Policy</a></td>
+              <td><a href="property_types.html#LineSeparatorOption">LineSeparatorOption</a></td>
               <td><code>lf_cr_crlf</code></td>
               <td>3.1</td>
             </tr>
