@@ -199,7 +199,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.8-1</antlr4.version>
-    <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
+    <maven.site.plugin.version>3.9.0</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.0.4</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.13.0</maven.pmd.plugin.version>
     <pmd.version>6.24.0</pmd.version>
