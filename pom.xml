@@ -1681,6 +1681,8 @@
             <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
             <!-- permanent 403, but it works fine out of plugin execution -->
             <excludedLink>https://opencollective.com/*</excludedLink>
+            <!-- 405 Not Allowed, link present in generated website only -->
+            <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
