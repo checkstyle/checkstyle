@@ -48,10 +48,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testElementStyleValueOf() {
-        final AnnotationUseStyleCheck.ElementStyle option =
-            AnnotationUseStyleCheck.ElementStyle.valueOf("COMPACT");
-        assertEquals(AnnotationUseStyleCheck.ElementStyle.COMPACT, option,
+    public void testElementStyleOptionValueOf() {
+        final AnnotationUseStyleCheck.ElementStyleOption option =
+            AnnotationUseStyleCheck.ElementStyleOption.valueOf("COMPACT");
+        assertEquals(AnnotationUseStyleCheck.ElementStyleOption.COMPACT, option,
                 "Invalid valueOf result");
     }
 
@@ -60,10 +60,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testTrailingArrayCommaValueOf() {
-        final AnnotationUseStyleCheck.TrailingArrayComma option =
-            AnnotationUseStyleCheck.TrailingArrayComma.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.TrailingArrayComma.ALWAYS, option,
+    public void testTrailingArrayCommaOptionValueOf() {
+        final AnnotationUseStyleCheck.TrailingArrayCommaOption option =
+            AnnotationUseStyleCheck.TrailingArrayCommaOption.valueOf("ALWAYS");
+        assertEquals(AnnotationUseStyleCheck.TrailingArrayCommaOption.ALWAYS, option,
                 "Invalid valueOf result");
     }
 
@@ -72,10 +72,10 @@ public class AnnotationUseStyleCheckTest extends AbstractModuleTestSupport {
      * valueOf() is uncovered.
      */
     @Test
-    public void testClosingParensValueOf() {
-        final AnnotationUseStyleCheck.ClosingParens option =
-            AnnotationUseStyleCheck.ClosingParens.valueOf("ALWAYS");
-        assertEquals(AnnotationUseStyleCheck.ClosingParens.ALWAYS, option,
+    public void testClosingParensOptionValueOf() {
+        final AnnotationUseStyleCheck.ClosingParensOption option =
+            AnnotationUseStyleCheck.ClosingParensOption.valueOf("ALWAYS");
+        assertEquals(AnnotationUseStyleCheck.ClosingParensOption.ALWAYS, option,
                 "Invalid valueOf result");
     }
 
