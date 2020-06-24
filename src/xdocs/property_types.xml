@@ -126,7 +126,7 @@
       </p>
     </section>
 
-    <section name="lineSeparator">
+    <section name="lineSeparatorOption">
       <p>
         This type represents the policy for line returns. The
         following table describes the valid options:
@@ -162,7 +162,7 @@
       </div>
     </section>
 
-    <section name="parenPad">
+    <section name="padOption">
       <p>
         This type represents the policy for padding with white space. The
         following table describes the valid options:
@@ -191,7 +191,7 @@
       </div>
     </section>
 
-    <section name="wrapOp">
+    <section name="wrapOption">
       <p>
         This type represents the policy for wrapping lines.
         The following table describes the valid options:
@@ -231,7 +231,7 @@
       </div>
     </section>
 
-    <section name="block">
+    <section name="blockOption">
       <p>
         This type represents the policy for checking block statements. The
         following table describes the valid options:
@@ -273,7 +273,7 @@
       </div>
     </section>
 
-    <section name="lcurly">
+    <section name="lcurlyOption">
       <p>
         This type represents the policy for checking the placement of a
         left curly brace (<code>'{'</code>). The following table
@@ -343,7 +343,7 @@
       </div>
     </section>
 
-    <section name="rcurly">
+    <section name="rcurlyOption">
       <p>
         This type represents the policy for checking the placement of a
         right curly brace (<code>'}'</code>) in blocks but not blocks of expressions.
@@ -506,7 +506,7 @@
       </ul>
     </section>
 
-    <section name="severity">
+    <section name="severityLevel">
       <p>
         This type represents the severity level of a check violation. The
         valid options are:
@@ -520,7 +520,7 @@
       </ul>
     </section>
 
-    <section name="importOrder">
+    <section name="importOrderOption">
       <p>
         This type represents the policy for checking imports order.
         The following table describes the valid options:
@@ -613,7 +613,7 @@
       </div>
     </section>
 
-    <section name="elementStyle">
+    <section name="elementStyleOption">
       <p>
         This type represents the policy for the styles for defining
         elements in an annotation. The following table
@@ -621,7 +621,7 @@
       </p>
 
       <div class="wrapper">
-        <table summary="elementStyle options">
+        <table summary="elementStyleOption options">
           <tr>
             <td>Option</td>
             <td>Definition</td>
@@ -699,14 +699,14 @@
       </div>
     </section>
 
-    <section name="closingParens">
+    <section name="closingParensOption">
       <p>
         This type represents the policy for the styles for the ending
         parenthesis. The following table describes the valid options:
       </p>
 
       <div class="wrapper">
-        <table summary="closingParens options">
+        <table summary="closingParensOption options">
           <tr>
             <td>Option</td>
             <td>Definition</td>
@@ -742,14 +742,14 @@
       </div>
     </section>
 
-    <section name="trailingArrayComma">
+    <section name="trailingArrayCommaOption">
       <p>
         This type represents the policy for the styles for the trailing
         array comma. The following table describes the valid options:
       </p>
 
         <div class="wrapper">
-        <table summary="trailingArrayComma options">
+        <table summary="trailingArrayCommaOption options">
           <tr>
             <td>Option</td>
             <td>Definition</td>
@@ -785,14 +785,14 @@
       </div>
     </section>
 
-    <section name="javadocContentLocation">
+    <section name="javadocContentLocationOption">
       <p>
         This type represents policy on placement of the Javadoc content.
         The following table describes the valid options:
       </p>
 
       <div class="wrapper">
-        <table summary="javadocContentLocation options">
+        <table summary="javadocContentLocationOption options">
           <tr>
             <td>Option</td>
             <td>Definition</td>

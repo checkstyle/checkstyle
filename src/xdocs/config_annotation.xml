@@ -478,49 +478,50 @@ class Bar implements Foo {
           Annotations have three element styles starting with the least verbose.
         </p>
         <ul>
-          <li><code>ElementStyle.COMPACT_NO_ARRAY</code></li>
-          <li><code>ElementStyle.COMPACT</code></li>
-          <li><code>ElementStyle.EXPANDED</code></li>
+          <li><code>ElementStyleOption.COMPACT_NO_ARRAY</code></li>
+          <li><code>ElementStyleOption.COMPACT</code></li>
+          <li><code>ElementStyleOption.EXPANDED</code></li>
         </ul>
         <p>
-          To not enforce an element style a <code>ElementStyle.IGNORE</code> type is provided.
-          The desired style can be set through the <code>elementStyle</code> property.
+          To not enforce an element style a <code>ElementStyleOption.IGNORE</code> type is provided.
+          The desired style can be set through the <code>elementStyleOption</code> property.
         </p>
         <p>
-          Using the <code>ElementStyle.EXPANDED</code> style is more verbose.
+          Using the <code>ElementStyleOption.EXPANDED</code> style is more verbose.
           The expanded version is sometimes referred to as "named parameters" in other languages.
         </p>
         <p>
-          Using the <code>ElementStyle.COMPACT</code> style is less verbose.
+          Using the <code>ElementStyleOption.COMPACT</code> style is less verbose.
           This style can only be used when there is an element called 'value' which is either
           the sole element or all other elements have default values.
         </p>
         <p>
-          Using the <code>ElementStyle.COMPACT_NO_ARRAY</code> style is less verbose.
-          It is similar to the <code>ElementStyle.COMPACT</code> style but single value arrays
+          Using the <code>ElementStyleOption.COMPACT_NO_ARRAY</code> style is less verbose.
+          It is similar to the <code>ElementStyleOption.COMPACT</code> style but single value arrays
           are flagged.
           With annotations a single value array does not need to be placed in an array initializer.
         </p>
         <p>
           The ending parenthesis are optional when using annotations with no elements.
-          To always require ending parenthesis use the <code>ClosingParens.ALWAYS</code> type.
-          To never have ending parenthesis use the <code>ClosingParens.NEVER</code> type.
-          To not enforce a closing parenthesis preference a <code>ClosingParens.IGNORE</code>
-          type is provided. Set this through the <code>closingParens</code> property.
+          To always require ending parenthesis use the <code>ClosingParensOption.ALWAYS</code> type.
+          To never have ending parenthesis use the <code>ClosingParensOption.NEVER</code> type.
+          To not enforce a closing parenthesis preference a <code>ClosingParensOption.IGNORE</code>
+          type is provided. Set this through the <code>closingParensOption</code> property.
         </p>
         <p>
           Annotations also allow you to specify arrays of elements in a standard format.
           As with normal arrays, a trailing comma is optional.
-          To always require a trailing comma use the <code>TrailingArrayComma.ALWAYS</code> type.
-          To never have a trailing comma use the <code>TrailingArrayComma.NEVER</code> type.
-          To not enforce a trailing array comma preference a <code>TrailingArrayComma.IGNORE</code>
-          type is provided.
-          Set this through the <code>trailingArrayComma</code> property.
+          To always require a trailing comma use the <code>TrailingArrayCommaOption.ALWAYS</code>
+          type.
+          To never have a trailing comma use the <code>TrailingArrayCommaOption.NEVER</code> type.
+          To not enforce a trailing array comma preference a
+          <code>TrailingArrayCommaOption.IGNORE</code> type is provided.
+          Set this through the <code>trailingArrayCommaOption</code> property.
         </p>
         <p>
-          By default the <code>ElementStyle</code> is set to <code>COMPACT_NO_ARRAY</code>,
-          the <code>TrailingArrayComma</code> is set to <code>NEVER</code>,
-          and the <code>ClosingParens</code> is set to <code>NEVER</code>.
+          By default the <code>ElementStyleOption</code> is set to <code>COMPACT_NO_ARRAY</code>,
+          the <code>TrailingArrayCommaOption</code> is set to <code>NEVER</code>,
+          and the <code>ClosingParensOption</code> is set to <code>NEVER</code>.
         </p>
         <p>
           According to the JLS, it is legal to include a trailing comma
@@ -546,12 +547,12 @@ class Bar implements Foo {
               <th>since</th>
             </tr>
             <tr>
-              <td>elementStyle</td>
+              <td>elementStyleOption</td>
               <td>
                 Define the annotation element styles.
               </td>
               <td>
-                <a href="property_types.html#elementStyle">Element Style</a>
+                <a href="property_types.html#elementStyleOption">Element Style Option</a>
               </td>
               <td>
                 <code>compact_no_array</code>
@@ -559,12 +560,12 @@ class Bar implements Foo {
               <td>5.0</td>
             </tr>
             <tr>
-              <td>closingParens</td>
+              <td>closingParensOption</td>
               <td>
                 Define the policy for ending parenthesis.
               </td>
               <td>
-                <a href="property_types.html#closingParens">Closing Parens</a>
+                <a href="property_types.html#closingParensOption">Closing Parens Option</a>
               </td>
               <td>
                 <code>never</code>
@@ -572,12 +573,13 @@ class Bar implements Foo {
               <td>5.0</td>
             </tr>
             <tr>
-              <td>trailingArrayComma</td>
+              <td>trailingArrayCommaOption</td>
               <td>
                 Define the policy for trailing comma in arrays.
               </td>
               <td>
-                <a href="property_types.html#trailingArrayComma">Trailing Comma</a>
+                <a href="property_types.html#trailingArrayCommaOption">Trailing Array Comma
+                    Option</a>
               </td>
               <td>
                 <code>never</code>
@@ -600,9 +602,9 @@ class Bar implements Foo {
         </p>
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;&gt;
-  &lt;property name=&quot;elementStyle&quot; value=&quot;expanded&quot;/&gt;
-  &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
-  &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
+  &lt;property name=&quot;elementStyleOption&quot; value=&quot;expanded&quot;/&gt;
+  &lt;property name=&quot;trailingArrayCommaOption&quot; value=&quot;never&quot;/&gt;
+  &lt;property name=&quot;closingParensOption&quot; value=&quot;always&quot;/&gt;
 &lt;/module&gt;
         </source>
       </subsection>

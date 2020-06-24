@@ -71,9 +71,9 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationUseStyleCheck.class);
 
-        moduleConfig.addAttribute("closingParens", "ALWAYS");
-        moduleConfig.addAttribute("elementStyle", "ignore");
-        moduleConfig.addAttribute("trailingArrayComma", "ignore");
+        moduleConfig.addAttribute("closingParensOption", "ALWAYS");
+        moduleConfig.addAttribute("elementStyleOption", "ignore");
+        moduleConfig.addAttribute("trailingArrayCommaOption", "ignore");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
@@ -102,7 +102,7 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationUseStyleCheck.class);
 
-        moduleConfig.addAttribute("trailingArrayComma", "ignore");
+        moduleConfig.addAttribute("trailingArrayCommaOption", "ignore");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(AnnotationUseStyleCheck.class,
@@ -135,9 +135,9 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationUseStyleCheck.class);
 
-        moduleConfig.addAttribute("closingParens", "ignore");
-        moduleConfig.addAttribute("elementStyle", "ignore");
-        moduleConfig.addAttribute("trailingArrayComma", "ALWAYS");
+        moduleConfig.addAttribute("closingParensOption", "ignore");
+        moduleConfig.addAttribute("elementStyleOption", "ignore");
+        moduleConfig.addAttribute("trailingArrayCommaOption", "ALWAYS");
 
         final String[] expectedViolation = {
             "3:20: " + getCheckMessage(AnnotationUseStyleCheck.class,
@@ -162,9 +162,9 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationUseStyleCheck.class);
 
-        moduleConfig.addAttribute("closingParens", "ignore");
-        moduleConfig.addAttribute("elementStyle", "COMPACT");
-        moduleConfig.addAttribute("trailingArrayComma", "ignore");
+        moduleConfig.addAttribute("closingParensOption", "ignore");
+        moduleConfig.addAttribute("elementStyleOption", "COMPACT");
+        moduleConfig.addAttribute("trailingArrayCommaOption", "ignore");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
@@ -194,9 +194,9 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationUseStyleCheck.class);
 
-        moduleConfig.addAttribute("closingParens", "ignore");
-        moduleConfig.addAttribute("elementStyle", "EXPANDED");
-        moduleConfig.addAttribute("trailingArrayComma", "ignore");
+        moduleConfig.addAttribute("closingParensOption", "ignore");
+        moduleConfig.addAttribute("elementStyleOption", "EXPANDED");
+        moduleConfig.addAttribute("trailingArrayCommaOption", "ignore");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(AnnotationUseStyleCheck.class,
@@ -251,9 +251,9 @@ public class XpathRegressionAnnotationUseStyleTest extends AbstractXpathTestSupp
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AnnotationUseStyleCheck.class);
 
-        moduleConfig.addAttribute("closingParens", "ignore");
-        moduleConfig.addAttribute("elementStyle", "ignore");
-        moduleConfig.addAttribute("trailingArrayComma", "NEVER");
+        moduleConfig.addAttribute("closingParensOption", "ignore");
+        moduleConfig.addAttribute("elementStyleOption", "ignore");
+        moduleConfig.addAttribute("trailingArrayCommaOption", "NEVER");
 
         final String[] expectedViolation = {
             "3:31: " + getCheckMessage(AnnotationUseStyleCheck.class,

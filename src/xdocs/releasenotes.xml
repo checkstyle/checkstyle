@@ -8718,7 +8718,7 @@ used in the MT mode.
           InnerTypeLast within methods. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/6">#6</a>
         </li>
         <li>
-          AnnotationUseStyle closingParens check failed. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/131">#131</a>
+          AnnotationUseStyle closingParensOption check failed. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/131">#131</a>
         </li>
         <li>
           RequireThis triggers when try-with-resources defines resource with same name as method. Author: Yuriy Chulovskyy <a href="https://github.com/checkstyle/checkstyle/issues/257">#257</a>
