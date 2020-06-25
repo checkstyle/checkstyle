@@ -70,7 +70,7 @@ public final class Person {
               <td>
                 Control whether to enforce that <code>static</code> is explicitly coded
                 on nested enums in classes.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.16</td>
             </tr>
@@ -79,7 +79,7 @@ public final class Person {
               <td>
                 Control whether to enforce that <code>static</code> is explicitly coded
                 on nested interfaces in classes.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.16</td>
             </tr>
@@ -243,7 +243,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>public</code> is explicitly coded
                 on interface fields.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -252,7 +252,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>static</code> is explicitly coded
                 on interface fields.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -261,7 +261,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>final</code> is explicitly coded
                 on interface fields.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -270,7 +270,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>public</code> is explicitly coded
                 on interface methods.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -279,7 +279,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>abstract</code> is explicitly coded
                 on interface methods.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -288,7 +288,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>public</code> is explicitly coded
                 on interface nested types.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>
@@ -297,7 +297,7 @@ public interface AddressFactory {
               <td>
                 Control whether to enforce that <code>static</code> is explicitly coded
                 on interface nested types.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.12</td>
             </tr>

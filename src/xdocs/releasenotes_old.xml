@@ -274,8 +274,8 @@
         </li>
         <li>
           Enhanced the property types
-          <a href="property_types.html#stringSet">stringSet</a> and
-          <a href="property_types.html#intSet">intSet</a> to support being
+          <a href="property_types.html#String.5B.5D">String[]</a> and
+          <a href="property_types.html#int.5B.5D">int[]</a> to support being
           supplied multiple times to construct the equivalent of a comma
           separated list.
         </li>
