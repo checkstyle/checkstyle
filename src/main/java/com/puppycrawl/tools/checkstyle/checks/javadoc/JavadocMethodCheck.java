@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks the Javadoc of a method or constructor.
  * The scope to verify is specified using the {@code Scope} class and defaults
  * to {@code Scope.PRIVATE}. To verify another scope, set property scope to
- * a different <a href="https://checkstyle.org/property_types.html#scope">scope</a>.
+ * a different <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
  * </p>
  * <p>
  * Violates parameters and type parameters for which no param tags are present can
