@@ -27,7 +27,7 @@ import java.util.Locale;
  * https://docs.oracle.com/javase/specs/jls/se8/html/jls-6.html#jls-6.6
  *
  */
-public enum AccessModifier {
+public enum AccessModifierOption {
 
     /** Public access modifier. */
     PUBLIC,
@@ -52,13 +52,13 @@ public enum AccessModifier {
      * given access modifier name represented as a {@link String}.
      * The access modifier name can be formatted both as lower case or upper case string.
      * For example, passing PACKAGE or package as a modifier name
-     * will return {@link AccessModifier#PACKAGE}.
+     * will return {@link AccessModifierOption#PACKAGE}.
      *
      * @param modifierName access modifier name represented as a {@link String}.
      * @return the AccessModifier associated with given access modifier name.
      */
-    public static AccessModifier getInstance(String modifierName) {
-        return valueOf(AccessModifier.class, modifierName.trim().toUpperCase(Locale.ENGLISH));
+    public static AccessModifierOption getInstance(String modifierName) {
+        return valueOf(AccessModifierOption.class, modifierName.trim().toUpperCase(Locale.ENGLISH));
     }
 
 }
