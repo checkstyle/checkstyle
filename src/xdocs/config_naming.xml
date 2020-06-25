@@ -79,7 +79,7 @@
                <td>Indicate the number of consecutive capital letters allowed in targeted
                 identifiers (abbreviations in the classes, interfaces, variables and methods
                 names, ... ).</td>
-               <td><a href="property_types.html#integer">Integer</a></td>
+               <td><a href="property_types.html#int">int</a></td>
                <td><code>3</code></td>
                <td>5.8</td>
              </tr>
@@ -87,21 +87,21 @@
                <td>allowedAbbreviations</td>
                <td>Specify list of abbreviations that must be skipped for checking.
                Abbreviations should be separated by comma.</td>
-               <td><a href="property_types.html#stringSet">String Set</a></td>
+               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
                <td><code>{}</code></td>
                <td>5.8</td>
              </tr>
              <tr>
                <td>ignoreFinal</td>
                <td>Allow to skip variables with <code>final</code> modifier.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
              <tr>
                <td>ignoreStatic</td>
                <td>Allow to skip variables with <code>static</code> modifier.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
@@ -109,7 +109,7 @@
                <td>ignoreStaticFinal</td>
                <td>Allow to skip variables with both <code>static</code>
                  and <code>final</code> modifiers.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>8.32</td>
              </tr>
@@ -117,7 +117,7 @@
                <td>ignoreOverriddenMethods</td>
                <td>Allow to ignore methods tagged with <code>@Override</code> annotation
                (that usually mean inherited name).</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
@@ -413,7 +413,7 @@ public class MyClass {
                 <code>abstract</code> modifier on classes that match the
                 name.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
@@ -424,7 +424,7 @@ public class MyClass {
                 only useful if using the check to identify that match name
                 and do not have the <code>abstract</code> modifier.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
@@ -805,14 +805,14 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -821,14 +821,14 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -1323,7 +1323,7 @@ for (Object O : list) { // OK
                 </pre>
                   </div>
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -1507,14 +1507,14 @@ class MyClass {
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
@@ -1523,14 +1523,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
@@ -1703,21 +1703,21 @@ class MyClass {
                 </pre>
               </div>
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
@@ -1726,14 +1726,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
@@ -2136,7 +2136,7 @@ public boolean equals(Object o) {
                   </pre>
                 </div>
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
             </tr>
@@ -2320,14 +2320,14 @@ class MyClass {
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -2336,14 +2336,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -2472,14 +2472,14 @@ class MyClass {
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -2488,14 +2488,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
