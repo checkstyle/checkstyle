@@ -62,6 +62,7 @@ public class RootNode extends AbstractNode {
     /**
      * Compares current object with specified for order.
      * Throws {@code UnsupportedOperationException} because functionality not required here.
+     *
      * @param nodeInfo another {@code NodeInfo} object
      * @return number representing order of current object to specified one
      */
