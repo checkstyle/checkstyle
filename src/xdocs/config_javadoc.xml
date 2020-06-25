@@ -577,7 +577,7 @@ public void method();
           to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PRIVATE</code>. To verify another
           scope, set property scope to a different
-          <a href="property_types.html#scope">scope</a>.
+          <a href="property_types.html#Scope">scope</a>.
         </p>
 
         <p>
@@ -677,14 +677,14 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
@@ -1384,14 +1384,14 @@ public class TestClass {
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
@@ -1409,7 +1409,7 @@ public class TestClass {
               <td>
                 Specify the format for matching the end of a sentence.
               </td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
               <td>5.0</td>
             </tr>
@@ -1875,28 +1875,28 @@ public class Test {
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>authorFormat</td>
               <td>Specify the pattern for <code>@author</code> tag.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>versionFormat</td>
               <td>Specify the pattern for <code>@version</code> tag.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
@@ -2098,21 +2098,21 @@ class DatabaseConfiguration {}
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
             <tr>
                 <td>ignoreNamePattern</td>
                 <td>Specify the regexp to define variable names to ignore.</td>
-                <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                <td><a href="property_types.html#Pattern">Pattern</a></td>
                 <td><code>null</code></td>
                 <td>5.8</td>
             </tr>
@@ -2223,7 +2223,7 @@ class DatabaseConfiguration {}
           The scope to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PUBLIC</code>. To verify another
           scope, set property scope to a different
-          <a href="property_types.html#scope">scope</a>.
+          <a href="property_types.html#Scope">scope</a>.
         </p>
 
         <p>
@@ -2287,14 +2287,14 @@ public boolean isSomething()
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
@@ -2311,7 +2311,7 @@ public boolean isSomething()
             <tr>
               <td>ignoreMethodNamesRegex</td>
               <td>ignore method whose names are matching specified regex.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
@@ -2613,14 +2613,14 @@ package com.checkstyle.api; // violation
             <tr>
               <td>scope</td>
               <td>specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.20</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.20</td>
             </tr>
@@ -3064,7 +3064,7 @@ class DatabaseConfiguration {}
             <tr>
               <td>forbiddenSummaryFragments</td>
               <td>Specify the regexp for forbidden summary fragments.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^$" (empty)</code></td>
               <td>6.0</td>
             </tr>
@@ -3234,7 +3234,7 @@ public class TestClass {
             <tr>
               <td>tagFormat</td>
               <td>Specify the regexp to match tag content.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>

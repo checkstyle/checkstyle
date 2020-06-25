@@ -979,7 +979,7 @@ public class XdocsPagesTest {
                     || "RegexpSinglelineJava".equals(sectionName))
                     && "format".equals(propertyName)) {
             // dynamic custom expression
-            result = "Regular Expression";
+            result = "Pattern";
         }
         else if (fieldClass == boolean.class) {
             result = "Boolean";
@@ -1023,10 +1023,10 @@ public class XdocsPagesTest {
             result = "URI";
         }
         else if (fieldClass == Pattern.class) {
-            result = "Regular Expression";
+            result = "Pattern";
         }
         else if (fieldClass == Pattern[].class) {
-            result = "Regular Expressions";
+            result = "Patterns";
         }
         else if (fieldClass == SeverityLevel.class) {
             result = "Severity";

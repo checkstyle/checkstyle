@@ -100,7 +100,7 @@
       </source>
     </section>
 
-    <section name="regexp">
+    <section name="Pattern">
       <p>
         This type represents a regular expression. The string representation is parsed using
         <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
@@ -108,7 +108,7 @@
       </p>
     </section>
 
-    <section name="uri">
+    <section name="Uri">
       <p>
         This type represents a URI. The string representation is parsed using a custom
         routine to analyze what type of URI the string is.
@@ -118,9 +118,9 @@
       </p>
     </section>
 
-    <section name="file">
+    <section name="File">
       <p>
-        This type represents a local file. Unlike the <a href="#uri">uri</a> type,
+        This type represents a local file. Unlike the <a href="#Uri">uri</a> type,
         which implies read only and not modifiable access to the resource,
         a property of this type indicates files whose contents can be modified by Checkstyle.
       </p>
@@ -472,7 +472,7 @@
       </div>
     </section>
 
-    <section name="scope">
+    <section name="Scope">
       <p>This type represents a Java scope. Checks use this to determine which
       methods/fields/classes will be examined by it's logic. The valid options are:</p>
 
