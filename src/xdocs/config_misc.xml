@@ -1852,7 +1852,7 @@ enum Foo { // violation
             <tr>
               <td>format</td>
               <td>Specify pattern to match comments against.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"TODO:"</code></td>
               <td>3.0</td>
             </tr>
@@ -2019,7 +2019,7 @@ d = e / f;        // Another comment for this line
             <tr>
               <td>format</td>
               <td>Specify pattern for strings allowed before the comment.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[\s});]*$"</code></td>
               <td>3.4</td>
             </tr>
@@ -2028,7 +2028,7 @@ d = e / f;        // Another comment for this line
               <td>Define pattern for text allowed in trailing comments. (This
                   pattern will not be applied to multiline comments and the text of the
                   comment will be trimmed before matching.)</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
@@ -2178,7 +2178,7 @@ messages.properties: Key 'ok' missing.
                 <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
                 Base name</a> of resource bundles which contain message resources. It helps
                 the check to distinguish config and localization resources.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^messages.*$"</code></td>
               <td>6.17</td>
             </tr>
@@ -2327,7 +2327,7 @@ messages_home_fr_CA_UNIX.properties
               <td>excludedClasses</td>
               <td>Specify pattern for qualified names of classes which are allowed
               to have a <code>main</code> method.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^$" (empty)</code></td>
               <td>3.2</td>
             </tr>
