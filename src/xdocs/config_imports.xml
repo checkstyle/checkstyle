@@ -59,7 +59,7 @@
               <td>
                 Specify packages where star imports are allowed.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>{}</code></td>
               <td>3.2</td>
             </tr>
@@ -69,7 +69,7 @@
                 Control whether to allow starred class imports like
                 <code>import java.util.*;</code>.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
@@ -79,7 +79,7 @@
                 Control whether to allow starred static member imports like
                 <code>import static org.junit.Assert.*;</code>.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
@@ -248,7 +248,7 @@ import java.net.*;                // violation
                 members to be excluded like <code>java.lang.System.out</code> for a variable or
                 <code>java.lang.Math.random</code> for a method. See notes section for details.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>{}</code></td>
               <td>5.0</td>
             </tr>
@@ -426,7 +426,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <tr>
               <td>customImportOrderRules</td>
               <td>Specify format of order declaration customizing by user.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>""</code></td>
               <td>5.8</td>
             </tr>
@@ -454,7 +454,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <tr>
               <td>separateLineBetweenGroups</td>
               <td>Force empty line separator between import groups.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>
@@ -463,7 +463,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
               <td>Force grouping alphabetically, in
                   <a href="https://en.wikipedia.org/wiki/ASCII#Order">
                      ASCII sort order</a>.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -722,7 +722,7 @@ import android.*;
                 is the part of package. If <b>regexp</b> property is set, then list of packages will
                 be interpreted as regular expressions. Note, all properties for match will be used.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>sun</code></td>
               <td>3.0</td>
             </tr>
@@ -732,7 +732,7 @@ import android.*;
                 import equals class name. If <b>regexp</b> property is set, then list of class names
                 will be interpreted as regular expressions. Note, all properties for match will be
                 used.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.8</td>
             </tr>
@@ -742,7 +742,7 @@ import android.*;
                 Control whether the <code>illegalPkgs</code> and <code>illegalClasses</code>
                 should be interpreted as regular expressions.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
             </tr>
@@ -1508,7 +1508,7 @@ import java.util.stream.IntStream;
               <td>ordered</td>
               <td>control whether type imports within each group should be sorted.
                 It doesn't affect sorting for static imports.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td>true</td>
               <td>3.2</td>
             </tr>
@@ -1519,7 +1519,7 @@ import java.util.stream.IntStream;
                 blank line or comment and aren't separated internally.
                 It doesn't affect separations for static imports.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td>false</td>
               <td>3.2</td>
             </tr>
@@ -1531,7 +1531,7 @@ import java.util.stream.IntStream;
                 This property has effect only when the property <code>option</code>
                 is is set to <code>top</code> or <code>bottom</code>.
                 </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td>false</td>
               <td>8.12</td>
             </tr>
@@ -1542,7 +1542,7 @@ import java.util.stream.IntStream;
                 <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
                 It affects both type imports and static imports.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td>true</td>
               <td>3.3</td>
             </tr>
@@ -1568,7 +1568,7 @@ import java.util.stream.IntStream;
                   control whether <b>static imports</b> located at <b>top</b> or
                   <b>bottom</b> are sorted within the group.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td>false</td>
               <td>6.5</td>
             </tr>
@@ -1577,7 +1577,7 @@ import java.util.stream.IntStream;
               <td>
                   control whether to use container ordering (Eclipse IDE term) for static
                   imports or not.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td>false</td>
               <td>7.1</td>
             </tr>
@@ -2017,7 +2017,7 @@ class FooBar {
             <tr>
               <td>processJavadoc</td>
               <td>Control whether to process Javadoc comments.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>5.4</td>
             </tr>

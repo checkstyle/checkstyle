@@ -109,7 +109,7 @@ return new int[] {
                   Control whether to always check for a trailing comma, even when an array is
                   inline.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>8.33</td>
             </tr>
@@ -684,14 +684,14 @@ public class A {
             <tr>
               <td>ignoreConstructors</td>
               <td>control whether to ignore constructors.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
             <tr>
               <td>ignoreModifiers</td>
               <td>control whether to ignore modifiers (fields, ...).</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.2</td>
             </tr>
@@ -818,7 +818,7 @@ class K {
                 Control whether to allow <code>default</code> along with
                 <code>case</code> if they are not last.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>7.7</td>
             </tr>
@@ -1051,7 +1051,7 @@ String nullString = null;
               <td>
                 Control whether to ignore <code>String.equalsIgnoreCase(String)</code> invocations.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.4</td>
             </tr>
@@ -1266,7 +1266,7 @@ public static class Example6 {
               <td>onlyObjectReferences</td>
               <td>control whether only explicit initializations made to
                   null for objects should be checked.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>7.8</td>
             </tr>
@@ -1439,7 +1439,7 @@ case 6:
               <td>
                 Control whether the last case group must be checked.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
@@ -1552,7 +1552,7 @@ case 6:
                 enhanced for-loop</a> variable.</td>
               <td>
                 <a
-                href="property_types.html#boolean">Boolean</a>
+                href="property_types.html#Boolean">Boolean</a>
               </td>
               <td>
                <code>
@@ -1752,7 +1752,7 @@ class PageBuilder {
             <tr>
               <td>ignoreConstructorParameter</td>
               <td>Control whether to ignore constructor parameters.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
@@ -1762,7 +1762,7 @@ class PageBuilder {
               <td>
                 Allow to ignore the parameter of a property setter method.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
@@ -1773,7 +1773,7 @@ class PageBuilder {
                 Allow to expand the definition of a setter method
                 to include methods that return the class' instance.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>6.3</td>
             </tr>
@@ -1781,7 +1781,7 @@ class PageBuilder {
             <tr>
               <td>ignoreAbstractMethods</td>
               <td>Control whether to ignore parameters of abstract methods.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
@@ -1963,7 +1963,7 @@ class SomeClass
             <tr>
               <td>illegalClassNames</td>
               <td>Specify exception class names to reject.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>Error, Exception, RuntimeException, Throwable, java.lang.Error,
                 java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable</code></td>
               <td>3.2</td>
@@ -2141,7 +2141,7 @@ try {
             <tr>
               <td>classes</td>
               <td>Specify fully qualified class names that should not be instantiated.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>{}</code></td>
               <td>3.0</td>
             </tr>
@@ -2241,7 +2241,7 @@ try {
             <tr>
               <td>illegalClassNames</td>
               <td>Specify throw class names to reject.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>Error, RuntimeException, Throwable, java.lang.Error,
                 java.lang.RuntimeException, java.lang.Throwable</code>
               </td>
@@ -2250,7 +2250,7 @@ try {
             <tr>
               <td>ignoredMethodNames</td>
               <td>Specify names of methods to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>finalize</code></td>
               <td>5.4</td>
             </tr>
@@ -2260,7 +2260,7 @@ try {
                 allow to ignore checking overridden methods (marked with <code>Override</code>
                 or <code>java.lang.Override</code> annotation).
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>6.4</td>
             </tr>
@@ -2479,7 +2479,7 @@ public native void myTest(); // violation
             <tr>
               <td>ignoreCase</td>
               <td>Control whether to ignore case when matching.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
@@ -2487,7 +2487,7 @@ public native void myTest(); // violation
               <td>message</td>
               <td>Define the message which is used to notify about violations;
               if empty then the default message is used.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>&quot;&quot;</code></td>
               <td>3.2</td>
             </tr>
@@ -2649,7 +2649,7 @@ public void myTest() {
             <tr>
               <td>validateAbstractClassNames</td>
               <td>Control whether to validate abstract class names.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>6.10</td>
             </tr>
@@ -2657,7 +2657,7 @@ public void myTest() {
               <td>illegalClassNames</td>
               <td>Specify classes that should not be used as types in variable
               declarations, return values or parameters.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet,
                 java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
                 java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet</code></td>
@@ -2666,14 +2666,14 @@ public void myTest() {
             <tr>
             <td>legalAbstractClassNames</td>
             <td>Define abstract classes that may be used as types. </td>
-            <td><a href="property_types.html#stringSet">String Set</a></td>
+            <td><a href="property_types.html#String[]">String[]</a></td>
             <td><code>{}</code></td>
             <td>4.2</td>
           </tr>
           <tr>
               <td>ignoredMethodNames</td>
               <td>Specify methods that should not be checked.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>getEnvironment, getInitialContext</code></td>
               <td>3.2</td>
             </tr>
@@ -3121,35 +3121,35 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
             <tr>
               <td>ignoreNumbers</td>
               <td>Specify non-magic numbers.</td>
-              <td><a href="property_types.html#intSet">Number Set</a></td>
+              <td><a href="property_types.html#double[]">double[]</a></td>
               <td><code>-1, 0, 1, 2</code></td>
               <td>3.1</td>
             </tr>
             <tr>
               <td>ignoreHashCodeMethod</td>
               <td>Ignore magic numbers in hashCode methods.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td>ignoreAnnotation</td>
               <td>Ignore magic numbers in annotation declarations.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
                 <td><code>false</code></td>
               <td>5.4</td>
             </tr>
             <tr>
                 <td>ignoreFieldDeclaration</td>
                 <td>Ignore magic numbers in field declarations.</td>
-                <td><a href="property_types.html#boolean">Boolean</a></td>
+                <td><a href="property_types.html#Boolean">Boolean</a></td>
                 <td><code>false</code></td>
                 <td>6.6</td>
             </tr>
             <tr>
               <td>ignoreAnnotationElementDefaults</td>
               <td>Ignore magic numbers in annotation elements defaults.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>8.23</td>
             </tr>
@@ -3592,7 +3592,7 @@ for (int i = 0; i &lt; 10;) {
                  enhanced for-loop</a> variable.</td>
              <td>
                <a
-                   href="property_types.html#boolean">Boolean</a>
+                   href="property_types.html#Boolean">Boolean</a>
              </td>
              <td>
                <code>
@@ -3703,7 +3703,7 @@ for (String line: lines) {
                 Specify the maximum number of occurrences to allow without generating a
                 warning.
               </td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1</code></td>
               <td>3.5</td>
             </tr>
@@ -3902,7 +3902,7 @@ for (String line: lines) {
             <tr>
               <td>max</td>
               <td>Specify maximum allowed nesting depth.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1</code></td>
               <td>5.3</td>
             </tr>
@@ -3982,7 +3982,7 @@ for (String line: lines) {
             <tr>
               <td>max</td>
               <td>Specify maximum allowed nesting depth.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1</code></td>
               <td>3.2</td>
             </tr>
@@ -4062,7 +4062,7 @@ for (String line: lines) {
             <tr>
               <td>max</td>
               <td>Specify maximum allowed nesting depth.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1</code></td>
               <td>3.2</td>
             </tr>
@@ -4669,7 +4669,7 @@ public class Test {
             <tr>
               <td>treatTryResourcesAsStatement</td>
               <td>Enable resources processing.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>8.23</td>
             </tr>
@@ -4877,7 +4877,7 @@ public void foo(String s, int i) {}
             <tr>
               <td>matchDirectoryStructure</td>
               <td>Control whether to check for directory and package name match.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>7.6.1</td>
             </tr>
@@ -5069,21 +5069,21 @@ public class AnnotationLocationCheck extends AbstractCheck {
             <tr>
               <td>checkFields</td>
               <td>Control whether to check references to fields.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>checkMethods</td>
               <td>Control whether to check references to methods.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>validateOnlyOverlapping</td>
               <td>Control whether to check only overlapping by variables or arguments.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>6.17</td>
             </tr>
@@ -5305,7 +5305,7 @@ class C {
               <td>
                 Specify maximum allowed number of return statements in non-void methods/lambdas.
               </td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>2</code></td>
               <td>3.2</td>
             </tr>
@@ -5313,7 +5313,7 @@ class C {
               <td>maxForVoid</td>
               <td>Specify maximum allowed number of return statements in void
                   methods/constructors/lambdas.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1</code></td>
               <td>6.19</td>
             </tr>
@@ -6572,7 +6572,7 @@ enum NoSemicolon {
             <tr>
               <td>allowWhenNoBraceAfterSemicolon</td>
               <td>Allow unnecessary semicolon if closing paren is not on the same line.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>8.22</td>
             </tr>
@@ -6687,7 +6687,7 @@ class A {
               <td>allowedDistance</td>
               <td>Specify distance between declaration of variable and its first usage.
                   Values should be greater than 0.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>3</code></td>
               <td>5.8</td>
             </tr>
@@ -6706,7 +6706,7 @@ class A {
               <td>validateBetweenScopes</td>
               <td>Allow to calculate the distance between declaration of variable and its
                   first usage in the different scopes.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -6714,7 +6714,7 @@ class A {
             <tr>
               <td>ignoreFinal</td>
               <td>Allow to ignore variables with a 'final' modifier.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>5.8</td>
             </tr>

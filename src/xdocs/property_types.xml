@@ -30,21 +30,28 @@
     </p>
     </section>
 
-    <section name="integer">
+    <section name="Integer">
       <p>
         This type represents an integer. The string representation is
         parsed using the <code>java.lang.Integer</code> class.
       </p>
     </section>
 
-    <section name="string">
+    <section name="Double">
+      <p>
+        This type represents an integer. The string representation is
+        parsed using the <code>java.lang.Double</code> class.
+      </p>
+    </section>
+
+    <section name="String">
       <p>
         This type represents a string. The literal string representation
         is used.
       </p>
     </section>
 
-    <section name="boolean">
+    <section name="Boolean">
       <p>
         This type represents a boolean. The default value is <code>false</code>.
         The following string representations will map to <code>true</code>:
@@ -79,7 +86,7 @@
       </source>
     </section>
 
-    <section name="intSet">
+    <section name="int[]">
       <p>
         This type represents a set of integers. The string representation
         is parsed as a set of comma (',') separated integers that are parsed
@@ -97,6 +104,27 @@
       <source>
 &lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
 &lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
+      </source>
+    </section>
+
+    <section name="double[]">
+      <p>
+        This type represents a set of integers. The string representation
+        is parsed as a set of comma (',') separated integers that are parsed
+        using the <code>java.lang.Double</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated integers. For example, the
+        following:
+      </p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;0.42,0.666&quot;/&gt;
+      </source>
+      <p>can instead be expressed as:</p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;0.42&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;0.666&quot;/&gt;
       </source>
     </section>
 

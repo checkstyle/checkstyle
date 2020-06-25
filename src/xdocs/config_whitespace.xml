@@ -254,21 +254,21 @@ for (Iterator foo = very.long.line.iterator();
             <tr>
               <td>allowNoEmptyLineBetweenFields</td>
               <td>Allow no empty line between fields.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>allowMultipleEmptyLines</td>
               <td>Allow multiple empty lines between class members.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>6.3</td>
             </tr>
             <tr>
               <td>allowMultipleEmptyLinesInsideClassMembers</td>
               <td>Allow multiple empty lines inside class members.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>6.18</td>
             </tr>
@@ -575,14 +575,14 @@ class Test {
               <td>
                 Control whether to report on each line containing a tab, or just the first instance.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
               <td>Specify file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -815,7 +815,7 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
               <td>
                 Allow a line break between the identifier and left parenthesis.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.4</td>
             </tr>
@@ -1193,7 +1193,7 @@ import static java.math.BigInteger.ZERO;
               <td>
                 Control whether whitespace is allowed if the token is at a linebreak.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>3.0</td>
             </tr>
@@ -1358,7 +1358,7 @@ public void foo(final char @NotNull [] param) {} // No violation
               <td>
                 Control whether whitespace is allowed if the token is at a linebreak.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
@@ -2394,7 +2394,7 @@ public long toMicros(long d) { return d / (C1 / C0); }
             <tr>
               <td>validateComments</td>
               <td>Control whether to validate whitespaces surrounding comments.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>6.19</td>
             </tr>
@@ -2866,42 +2866,42 @@ try {
             <tr>
               <td>allowEmptyConstructors</td>
               <td>Allow empty constructor bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>allowEmptyMethods</td>
               <td>Allow empty method bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>allowEmptyTypes</td>
               <td>Allow empty class, interface and enum bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>allowEmptyLoops</td>
               <td>Allow empty loop bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>allowEmptyLambdas</td>
               <td>Allow empty lambda bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>6.14</td>
             </tr>
             <tr>
               <td>allowEmptyCatches</td>
               <td>Allow empty catch bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>7.6</td>
             </tr>
@@ -2910,7 +2910,7 @@ try {
               <td>Ignore whitespace around colon in
                 <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
                   enhanced for</a> loop.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>5.5</td>
             </tr>
