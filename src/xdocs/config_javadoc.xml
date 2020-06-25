@@ -578,7 +578,7 @@ public void method();
           to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PRIVATE</code>. To verify another
           scope, set property scope to a different
-          <a href="property_types.html#scope">scope</a>.
+          <a href="property_types.html#Scope">scope</a>.
         </p>
 
         <p>
@@ -678,14 +678,14 @@ public int checkReturnTag(final int aTagIndex,
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
@@ -1385,14 +1385,14 @@ public class TestClass {
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
@@ -1876,14 +1876,14 @@ public class Test {
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
@@ -2099,14 +2099,14 @@ class DatabaseConfiguration {}
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>private</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>3.4</td>
             </tr>
@@ -2224,7 +2224,7 @@ class DatabaseConfiguration {}
           The scope to verify is specified using the <code>Scope</code> class and
           defaults to <code>Scope.PUBLIC</code>. To verify another
           scope, set property scope to a different
-          <a href="property_types.html#scope">scope</a>.
+          <a href="property_types.html#Scope">scope</a>.
         </p>
 
         <p>
@@ -2288,14 +2288,14 @@ public boolean isSomething()
             <tr>
               <td>scope</td>
               <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.21</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
@@ -2614,14 +2614,14 @@ package com.checkstyle.api; // violation
             <tr>
               <td>scope</td>
               <td>specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>public</code></td>
               <td>8.20</td>
             </tr>
             <tr>
               <td>excludeScope</td>
               <td>specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#scope">Scope</a></td>
+              <td><a href="property_types.html#Scope">Scope</a></td>
               <td><code>null</code></td>
               <td>8.20</td>
             </tr>
