@@ -142,7 +142,7 @@ public class ParameterNameCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNameCheck.class);
         checkConfig.addAttribute("format", "^h$");
-        checkConfig.addAttribute("accessModifiers", AccessModifier.PUBLIC.toString());
+        checkConfig.addAttribute("accessModifiers", AccessModifierOption.PUBLIC.toString());
 
         final String pattern = "^h$";
 

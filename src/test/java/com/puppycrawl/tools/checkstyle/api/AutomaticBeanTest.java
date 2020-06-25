@@ -39,7 +39,7 @@ import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultContext;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 public class AutomaticBeanTest {
 
@@ -182,7 +182,7 @@ public class AutomaticBeanTest {
         bean.setSeverityLevel(null);
         bean.setScope(null);
         bean.setUri(null);
-        bean.setAccessModifiers(AccessModifier.PACKAGE);
+        bean.setAccessModifiers(AccessModifierOption.PACKAGE);
 
         final DefaultConfiguration config = new DefaultConfiguration("bean");
         config.addAttribute("strings", "a, b, c");
@@ -198,9 +198,9 @@ public class AutomaticBeanTest {
         assertEquals(SeverityLevel.ERROR, bean.severityLevel, "invalid result");
         assertEquals(Scope.PUBLIC, bean.scope, "invalid result");
         assertEquals(new URI("http://github.com"), bean.uri, "invalid result");
-        assertArrayEquals(
-                new AccessModifier[] {AccessModifier.PUBLIC, AccessModifier.PRIVATE},
-                bean.accessModifiers, "invalid result");
+        assertArrayEquals(new AccessModifierOption[] {AccessModifierOption.PUBLIC,
+            AccessModifierOption.PRIVATE}, bean.accessModifiers,
+                "invalid result");
     }
 
     @Test
@@ -288,7 +288,7 @@ public class AutomaticBeanTest {
         private SeverityLevel severityLevel;
         private Scope scope;
         private URI uri;
-        private AccessModifier[] accessModifiers;
+        private AccessModifierOption[] accessModifiers;
 
         /**
          * Setter for strings.
@@ -340,8 +340,9 @@ public class AutomaticBeanTest {
          *
          * @param accessModifiers access modifiers.
          */
-        public void setAccessModifiers(AccessModifier... accessModifiers) {
-            this.accessModifiers = Arrays.copyOf(accessModifiers, accessModifiers.length);
+        public void setAccessModifiers(AccessModifierOption... accessModifiers) {
+            this.accessModifiers = Arrays.copyOf(accessModifiers,
+                    accessModifiers.length);
         }
 
         @Override
