@@ -69,7 +69,7 @@ public String getNameIfPresent() { ... }
             <tr>
               <td>allowSamelineMultipleAnnotations</td>
               <td>Allow annotation(s) to be located on the same line as target element.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
              <td><code>false</code></td>
               <td>6.0</td>
             </tr>
@@ -77,7 +77,7 @@ public String getNameIfPresent() { ... }
               <td>allowSamelineSingleParameterlessAnnotation</td>
               <td>Allow single parameterless annotation to be located on the same line as
                   target element.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.1</td>
             </tr>
@@ -85,7 +85,7 @@ public String getNameIfPresent() { ... }
               <td>allowSamelineParameterizedAnnotation</td>
               <td>Allow one and only parameterized annotation to be located on the same line as
                   target element.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.4</td>
             </tr>
@@ -709,7 +709,7 @@ class Bar implements Foo {
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
                 <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
             </tr>
@@ -828,7 +828,7 @@ public static final int COUNTER = 10; // violation
                 Enable java 5 compatibility mode.
               </td>
               <td>
-                <a href="property_types.html#boolean">Boolean</a>
+                <a href="property_types.html#boolean">boolean</a>
               </td>
               <td>
                 <code>false</code>
@@ -1234,7 +1234,7 @@ package com.example.annotations.packageannotation; //ok
               <td>aliasList</td>
               <td>Specify aliases for check names that can be used in code within
                   <code>SuppressWarnings</code>.</td>
-              <td><a href="property_types.html#stringSet">String Set</a>
+              <td><a href="property_types.html#String[]">String[]</a>
                   in a format of comma separated attribute=value entries.
               The attribute is the fully qualified name of the Check and value is its alias.</td>
               <td><code>null</code></td>

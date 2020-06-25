@@ -103,7 +103,7 @@ switch (a)
             <tr>
               <td>allowInSwitchCase</td>
               <td>Allow nested blocks if they are the only child of a switch case.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
@@ -550,7 +550,7 @@ try {
             <tr>
               <td>ignoreEnums</td>
               <td>Allow to ignore enums when left curly brace policy is EOL.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.9</td>
             </tr>
@@ -749,14 +749,14 @@ try {
             <tr>
               <td>allowSingleLineStatement</td>
               <td>allow single-line statements without braces.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.5</td>
             </tr>
             <tr>
               <td>allowEmptyLoopBody</td>
               <td>allow loops with empty bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
             </tr>
