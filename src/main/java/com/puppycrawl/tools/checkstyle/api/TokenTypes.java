@@ -3540,6 +3540,48 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * Beginning of a Java 14 Text Block literal,
+     * delimited by three double quotes.
+     *
+     * <pre>
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
+     * </pre>
+     */
+    public static final int TEXT_BLOCK_LITERAL_BEGIN =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
+
+    /**
+     * Content (text) of a Java 14 text block. This is a
+     * sequence of (possibly escaped) characters.
+     *
+     * <pre>
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
+     * </pre>
+     */
+    public static final int TEXT_BLOCK_CONTENT =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT;
+
+    /**
+     * End of a Java 14 text block literal, delimited by three
+     * double quotes.
+     *
+     * <pre>
+     * +--TEXT_BLOCK_LITERAL_BEGIN
+     *         |
+     *         +--TEXT_BLOCK_CONTENT
+     *         +--TEXT_BLOCK_LITERAL_END
+     * </pre>
+     */
+    public static final int TEXT_BLOCK_LITERAL_END =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
