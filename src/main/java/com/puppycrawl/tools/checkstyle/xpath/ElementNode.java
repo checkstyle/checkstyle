@@ -84,6 +84,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Compares current object with specified for order.
+     *
      * @param other another {@code NodeInfo} object
      * @return number representing order of current object to specified one
      */
@@ -102,6 +103,7 @@ public class ElementNode extends AbstractNode {
 
     /**
      * Finds the ancestors of the children whose parent is their common ancestor.
+     *
      * @param other another {@code NodeInfo} object
      * @return {@code ElementNode} immediate children(also ancestors of the given children) of the
      *         common ancestor
