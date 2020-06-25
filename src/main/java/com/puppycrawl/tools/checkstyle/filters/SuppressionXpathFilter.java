@@ -215,12 +215,12 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * Optional as long as {@code checks} or {@code id} is specified.
  * </li>
  * <li>
- * {@code id} - a <a href="https://checkstyle.org/property_types.html#string">string</a> matched against
+ * {@code id} - a <a href="https://checkstyle.org/property_types.html#String">String</a> matched against
  * the ID of the check associated with an audit event.
  * Optional as long as {@code checks} or {@code message} is specified.
  * </li>
  * <li>
- * {@code query} - a <a href="https://checkstyle.org/property_types.html#string">string</a> xpath query. It is optional.
+ * {@code query} - a <a href="https://checkstyle.org/property_types.html#String">String</a> xpath query. It is optional.
  * </li>
  * </ul>
  * <p>
