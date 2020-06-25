@@ -77,6 +77,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Get the full text of the file.
+     *
      * @return an object containing the full text of the file
      */
     public FileText getText() {
@@ -85,6 +86,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Gets the lines in the file.
+     *
      * @return the lines in the file
      */
     public String[] getLines() {
@@ -93,6 +95,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Get the line from text of the file.
+     *
      * @param index index of the line
      * @return line from text of the file
      */
@@ -102,6 +105,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Gets the name of the file.
+     *
      * @return the name of the file
      */
     public String getFileName() {
@@ -200,6 +204,7 @@ public final class FileContents implements CommentListener {
      * Get a single line.
      * For internal use only, as getText().get(lineNo) is just as
      * suitable for external use and avoids method duplication.
+     *
      * @param lineNo the number of the line to get
      * @return the corresponding line, without terminator
      * @throws IndexOutOfBoundsException if lineNo is invalid
@@ -320,6 +325,7 @@ public final class FileContents implements CommentListener {
     /**
      * Returns a map of all the single line comments. The key is a line number,
      * the value is the comment {@link TextBlock} at the line.
+     *
      * @return the Map of comments
      */
     public Map<Integer, TextBlock> getSingleLineComments() {
@@ -330,6 +336,7 @@ public final class FileContents implements CommentListener {
      * Returns a map of all block comments. The key is the line number, the
      * value is a {@link List} of block comment {@link TextBlock}s
      * that start at that line.
+     *
      * @return the map of comments
      */
     public Map<Integer, List<TextBlock>> getBlockComments() {
@@ -338,6 +345,7 @@ public final class FileContents implements CommentListener {
 
     /**
      * Checks if the current file is a package-info.java file.
+     *
      * @return true if the package file.
      */
     public boolean inPackageInfo() {
