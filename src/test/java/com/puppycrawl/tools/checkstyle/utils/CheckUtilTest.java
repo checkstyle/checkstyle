@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 public class CheckUtilTest extends AbstractPathTestSupport {
 
@@ -271,24 +271,24 @@ public class CheckUtilTest extends AbstractPathTestSupport {
     @Test
     public void testGetAccessModifierFromModifiersToken() throws Exception {
         final DetailAST privateVariable = getNodeFromFile(TokenTypes.VARIABLE_DEF);
-        final AccessModifier modifierPrivate =
+        final AccessModifierOption modifierPrivate =
                 CheckUtil.getAccessModifierFromModifiersToken(privateVariable.getFirstChild());
-        assertEquals(AccessModifier.PRIVATE, modifierPrivate, "Invalid access modifier");
+        assertEquals(AccessModifierOption.PRIVATE, modifierPrivate, "Invalid access modifier");
 
         final DetailAST protectedVariable = privateVariable.getNextSibling();
-        final AccessModifier modifierProtected =
+        final AccessModifierOption modifierProtected =
                 CheckUtil.getAccessModifierFromModifiersToken(protectedVariable.getFirstChild());
-        assertEquals(AccessModifier.PROTECTED, modifierProtected, "Invalid access modifier");
+        assertEquals(AccessModifierOption.PROTECTED, modifierProtected, "Invalid access modifier");
 
         final DetailAST publicVariable = protectedVariable.getNextSibling();
-        final AccessModifier modifierPublic =
+        final AccessModifierOption modifierPublic =
                 CheckUtil.getAccessModifierFromModifiersToken(publicVariable.getFirstChild());
-        assertEquals(AccessModifier.PUBLIC, modifierPublic, "Invalid access modifier");
+        assertEquals(AccessModifierOption.PUBLIC, modifierPublic, "Invalid access modifier");
 
         final DetailAST packageVariable = publicVariable.getNextSibling();
-        final AccessModifier modifierPackage =
+        final AccessModifierOption modifierPackage =
                 CheckUtil.getAccessModifierFromModifiersToken(packageVariable.getFirstChild());
-        assertEquals(AccessModifier.PACKAGE, modifierPackage, "Invalid access modifier");
+        assertEquals(AccessModifierOption.PACKAGE, modifierPackage, "Invalid access modifier");
     }
 
     @Test

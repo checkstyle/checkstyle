@@ -495,7 +495,7 @@
       </p>
     </section>
 
-    <section name="access_modifiers">
+    <section name="AccessModifierOption[]">
       <p>This type represents Java access modifiers.</p>
 
       <ul>

@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 
 /**
  * Contains utility methods for the checks.
@@ -433,34 +433,35 @@ public final class CheckUtil {
     }
 
     /**
-     * Returns {@link AccessModifier} based on the information about access modifier
+     * Returns {@link AccessModifierOption} based on the information about access modifier
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
      *
      * @param modifiersToken token of type {@link TokenTypes#MODIFIERS}.
-     * @return {@link AccessModifier}.
+     * @return {@link AccessModifierOption}.
      * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'
      */
-    public static AccessModifier getAccessModifierFromModifiersToken(DetailAST modifiersToken) {
+    public static AccessModifierOption
+        getAccessModifierFromModifiersToken(DetailAST modifiersToken) {
         if (modifiersToken == null || modifiersToken.getType() != TokenTypes.MODIFIERS) {
             throw new IllegalArgumentException("expected non-null AST-token with type 'MODIFIERS'");
         }
 
         // default access modifier
-        AccessModifier accessModifier = AccessModifier.PACKAGE;
+        AccessModifierOption accessModifierOption = AccessModifierOption.PACKAGE;
         for (DetailAST token = modifiersToken.getFirstChild(); token != null;
              token = token.getNextSibling()) {
             final int tokenType = token.getType();
             if (tokenType == TokenTypes.LITERAL_PUBLIC) {
-                accessModifier = AccessModifier.PUBLIC;
+                accessModifierOption = AccessModifierOption.PUBLIC;
             }
             else if (tokenType == TokenTypes.LITERAL_PROTECTED) {
-                accessModifier = AccessModifier.PROTECTED;
+                accessModifierOption = AccessModifierOption.PROTECTED;
             }
             else if (tokenType == TokenTypes.LITERAL_PRIVATE) {
-                accessModifier = AccessModifier.PRIVATE;
+                accessModifierOption = AccessModifierOption.PRIVATE;
             }
         }
-        return accessModifier;
+        return accessModifierOption;
     }
 
     /**

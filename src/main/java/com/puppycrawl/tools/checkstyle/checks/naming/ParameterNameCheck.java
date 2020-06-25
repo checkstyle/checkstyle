@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 /**
  * <p>
  * Checks that method parameter names conform to a specified pattern.
- * By using {@code accessModifiers} property it is possible
+ * By using {@code accessModifierOptions} property it is possible
  * to specify different formats for methods at different visibility levels.
  * </p>
  * <p>
@@ -59,7 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code accessModifiers} - Access modifiers of methods where parameters are checked.
+ * Property {@code accessModifierOptions} - Access modifiers of methods where parameters are
+ * checked.
  * Default value is {@code public, protected, package, private}.
  * </li>
  * </ul>
@@ -137,14 +138,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;ParameterName&quot;&gt;
  *   &lt;property name=&quot;format&quot; value=&quot;^[a-z]([a-z0-9][a-zA-Z0-9]*)?$&quot;/&gt;
- *   &lt;property name=&quot;accessModifiers&quot;
+ *   &lt;property name=&quot;accessModifierOptions&quot;
  *     value=&quot;protected, package, private&quot;/&gt;
  *   &lt;message key=&quot;name.invalidPattern&quot;
  *     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
  * &lt;/module&gt;
  * &lt;module name=&quot;ParameterName&quot;&gt;
  *   &lt;property name=&quot;format&quot; value=&quot;^[a-z][a-z0-9][a-zA-Z0-9]*$&quot;/&gt;
- *   &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
+ *   &lt;property name=&quot;accessModifierOptions&quot; value=&quot;public&quot;/&gt;
  *   &lt;message key=&quot;name.invalidPattern&quot;
  *     value=&quot;Parameter name ''{0}'' must match pattern ''{1}''&quot;/&gt;
  * &lt;/module&gt;
@@ -178,11 +179,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
     private boolean ignoreOverridden;
 
     /** Access modifiers of methods where parameters are checked. */
-    private AccessModifier[] accessModifiers = {
-        AccessModifier.PUBLIC,
-        AccessModifier.PROTECTED,
-        AccessModifier.PACKAGE,
-        AccessModifier.PRIVATE,
+    private AccessModifierOption[] accessModifierOptions = {
+        AccessModifierOption.PUBLIC,
+        AccessModifierOption.PROTECTED,
+        AccessModifierOption.PACKAGE,
+        AccessModifierOption.PRIVATE,
     };
 
     /**
@@ -211,11 +212,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
     /**
      * Setter to access modifiers of methods where parameters are checked.
      *
-     * @param accessModifiers access modifiers of methods which should be checked.
+     * @param accessModifierOptions access modifiers of methods which should be checked.
      */
-    public void setAccessModifiers(AccessModifier... accessModifiers) {
-        this.accessModifiers =
-            Arrays.copyOf(accessModifiers, accessModifiers.length);
+    public void setAccessModifierOptions(AccessModifierOption... accessModifierOptions) {
+        this.accessModifierOptions =
+            Arrays.copyOf(accessModifierOptions, accessModifierOptions.length);
     }
 
     @Override
@@ -254,30 +255,31 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @param ast the token of the method/constructor.
      * @return the access modifier of the method/constructor.
      */
-    private static AccessModifier getAccessModifier(final DetailAST ast) {
-        final AccessModifier accessModifier;
+    private static AccessModifierOption getAccessModifier(final DetailAST ast) {
+        final AccessModifierOption accessModifierOption;
 
         if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            accessModifier = AccessModifier.PUBLIC;
+            accessModifierOption = AccessModifierOption.PUBLIC;
         }
         else {
             final DetailAST params = ast.getParent();
             final DetailAST meth = params.getParent();
             final DetailAST modsToken = meth.findFirstToken(TokenTypes.MODIFIERS);
-            accessModifier = CheckUtil.getAccessModifierFromModifiersToken(modsToken);
+            accessModifierOption = CheckUtil.getAccessModifierFromModifiersToken(modsToken);
         }
 
-        return accessModifier;
+        return accessModifierOption;
     }
 
     /**
      * Checks whether a method has the correct access modifier to be checked.
      *
-     * @param accessModifier the access modifier of the method.
+     * @param accessModifierOption the access modifier of the method.
      * @return whether the method matches the expected access modifier.
      */
-    private boolean matchAccessModifiers(final AccessModifier accessModifier) {
-        return Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
+    private boolean matchAccessModifiers(final AccessModifierOption accessModifierOption) {
+        return Arrays.stream(accessModifierOptions)
+                .anyMatch(modifier -> modifier == accessModifierOption);
     }
 
     /**

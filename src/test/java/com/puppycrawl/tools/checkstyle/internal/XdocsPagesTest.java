@@ -93,7 +93,7 @@ import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
@@ -1064,8 +1064,8 @@ public class XdocsPagesTest {
         else if (fieldClass == ImportOrderOption.class) {
             result = "Import Order Policy";
         }
-        else if (fieldClass == AccessModifier[].class) {
-            result = "Access Modifier Set";
+        else if (fieldClass == AccessModifierOption[].class) {
+            result = "AccessModifierOption[]";
         }
         else if (fieldClass == JavadocContentLocationOption.class) {
             result = "Javadoc Content Location";
@@ -1284,7 +1284,7 @@ public class XdocsPagesTest {
                     result = value.toString().toLowerCase(Locale.ENGLISH);
                 }
             }
-            else if (fieldClass == AccessModifier[].class) {
+            else if (fieldClass == AccessModifierOption[].class) {
                 result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
             }
             else {
