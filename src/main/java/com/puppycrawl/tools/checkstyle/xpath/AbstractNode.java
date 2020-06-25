@@ -77,6 +77,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Getter method for node depth.
+     *
      * @return depth
      */
     public int getDepth() {
@@ -85,6 +86,7 @@ public abstract class AbstractNode implements NodeInfo {
 
     /**
      * Setter method for node depth.
+     *
      * @param depth depth of node
      */
     public final void setDepth(int depth) {

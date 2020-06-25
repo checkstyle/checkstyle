@@ -43,6 +43,7 @@ public class DetailAstSet {
 
     /**
      * Construct an instance of this class with {@code IndentationCheck} parameters.
+     *
      * @param indentCheck IndentationCheck parameters
      */
     public DetailAstSet(IndentationCheck indentCheck) {
