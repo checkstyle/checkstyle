@@ -1060,7 +1060,7 @@ public class InputIllegalImport { }
                 It can be a regular file, URL or resource path. It will try loading
                 the path as a URL first, then as a file, and finally as a resource.
               </td>
-              <td><a href="property_types.html#uri">URI</a></td>
+              <td><a href="property_types.html#Uri">URI</a></td>
               <td><code>null</code></td>
               <td>4.0</td>
             </tr>

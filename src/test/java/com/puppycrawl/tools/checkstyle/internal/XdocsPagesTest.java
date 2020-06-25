@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
@@ -1019,8 +1019,8 @@ public class XdocsPagesTest {
         else if (fieldClass == Scope.class) {
             result = "Scope";
         }
-        else if (fieldClass == AccessModifier[].class) {
-            result = "Access Modifier Set";
+        else if (fieldClass == AccessModifierOption[].class) {
+            result = "AccessModifierOption[]";
         }
         else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
             result = "File";
@@ -1239,7 +1239,7 @@ public class XdocsPagesTest {
                     result = value.toString().toLowerCase(Locale.ENGLISH);
                 }
             }
-            else if (fieldClass == AccessModifier[].class) {
+            else if (fieldClass == AccessModifierOption[].class) {
                 result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
             }
             else {

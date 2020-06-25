@@ -45,7 +45,7 @@ import org.apache.commons.beanutils.converters.IntegerConverter;
 import org.apache.commons.beanutils.converters.LongConverter;
 import org.apache.commons.beanutils.converters.ShortConverter;
 
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -165,7 +165,7 @@ public abstract class AutomaticBean
         cub.register(new SeverityLevelConverter(), SeverityLevel.class);
         cub.register(new ScopeConverter(), Scope.class);
         cub.register(new UriConverter(), URI.class);
-        cub.register(new RelaxedAccessModifierArrayConverter(), AccessModifier[].class);
+        cub.register(new RelaxedAccessModifierArrayConverter(), AccessModifierOption[].class);
     }
 
     /**
@@ -376,14 +376,15 @@ public abstract class AutomaticBean
     }
 
     /**
-     * A converter that converts strings to {@link AccessModifier}.
+     * A converter that converts strings to {@link AccessModifierOption}.
      * This implementation does not care whether the array elements contain characters like '_'.
      * The normal {@link ArrayConverter} class has problems with this character.
      */
     private static class RelaxedAccessModifierArrayConverter implements Converter {
 
         /** Constant for optimization. */
-        private static final AccessModifier[] EMPTY_MODIFIER_ARRAY = new AccessModifier[0];
+        private static final AccessModifierOption[] EMPTY_MODIFIER_ARRAY =
+                new AccessModifierOption[0];
 
         @SuppressWarnings("unchecked")
         @Override
@@ -391,11 +392,11 @@ public abstract class AutomaticBean
             // Converts to a String and trims it for the tokenizer.
             final StringTokenizer tokenizer = new StringTokenizer(
                 value.toString().trim(), COMMA_SEPARATOR);
-            final List<AccessModifier> result = new ArrayList<>();
+            final List<AccessModifierOption> result = new ArrayList<>();
 
             while (tokenizer.hasMoreTokens()) {
                 final String token = tokenizer.nextToken();
-                result.add(AccessModifier.getInstance(token.trim()));
+                result.add(AccessModifierOption.getInstance(token.trim()));
             }
 
             return result.toArray(EMPTY_MODIFIER_ARRAY);

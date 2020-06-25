@@ -76,7 +76,7 @@ line 5: ////////////////////////////////////////////////////////////////////
             <tr>
               <td>headerFile</td>
               <td>Specify the name of the file containing the required header.</td>
-              <td><a href="property_types.html#uri">URI</a></td>
+              <td><a href="property_types.html#Uri">URI</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
@@ -291,7 +291,7 @@ line 6: ^\W*$
             <tr>
               <td>headerFile</td>
               <td>Specify the name of the file containing the required header.</td>
-              <td><a href="property_types.html#uri">URI</a></td>
+              <td><a href="property_types.html#Uri">URI</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>

@@ -322,7 +322,7 @@
               <td>cacheFile</td>
               <td>caches information about files that have checked OK; used
                   to avoid repeated checks of the same files</td>
-              <td><a href="property_types.html#file">File</a></td>
+              <td><a href="property_types.html#File">File</a></td>
               <td><code>null</code> (no cache file)</td>
               <td>6.16</td>
             </tr>
