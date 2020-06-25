@@ -66,7 +66,7 @@
                 Specify the maximum number of boolean operations allowed in one
                 expression.
               </td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>3</code></td>
               <td>3.4</td>
             </tr>
@@ -288,14 +288,14 @@ public class Test
             <tr>
               <td>max</td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>7</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>excludedClasses</td>
               <td>Specify user-configured class names to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>
                 ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
                 Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
@@ -319,7 +319,7 @@ public class Test
             <tr>
               <td>excludedPackages</td>
               <td>Specify user-configured packages to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.7</td>
             </tr>
@@ -672,14 +672,14 @@ class Foo {
             <tr>
               <td>max</td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>20</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>excludedClasses</td>
               <td>Specify user-configured class names to ignore.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>
                 ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character,
                 Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface,
@@ -706,7 +706,7 @@ class Foo {
                 Specify user-configured packages to ignore. All excluded packages
                 should end with a period, so it also appends a dot to a package name.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>{}</code></td>
               <td>7.7</td>
             </tr>
@@ -1065,14 +1065,14 @@ class Foo {
             <tr>
               <td>max</td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>10</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>switchBlockAsSingleDecisionPoint</td>
               <td>Control whether to treat the whole switch block as a single decision point.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>6.11</td>
             </tr>
@@ -1352,7 +1352,7 @@ class CyclomaticComplexity {
                 Specify the maximum allowed number of non commenting lines in a
                 method.
               </td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>50</code></td>
               <td>3.5</td>
             </tr>
@@ -1362,7 +1362,7 @@ class CyclomaticComplexity {
                 Specify the maximum allowed number of non commenting lines in a
                 class.
               </td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1500</code></td>
               <td>3.5</td>
             </tr>
@@ -1372,7 +1372,7 @@ class CyclomaticComplexity {
                 Specify the maximum allowed number of non commenting lines in a
                 file including all top level and nested classes.
               </td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>2000</code></td>
               <td>3.5</td>
             </tr>
@@ -1626,7 +1626,7 @@ class Test2 {
             <tr>
               <td>max</td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>200</code></td>
               <td>3.4</td>
             </tr>
