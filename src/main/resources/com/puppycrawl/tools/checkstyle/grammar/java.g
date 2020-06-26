@@ -117,7 +117,6 @@ tokens {
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
 
-    //Start Java14 syntax here
     RECORD_DEF; LITERAL_record="record";
 }
 
@@ -547,13 +546,14 @@ annotationExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
     ;
 
-
+// Java 14 record definition. We will not completely build this AST
+// until https://github.com/checkstyle/checkstyle/issues/8267
 recordDefinition![AST modifiers]
-    :   r:"record" id:id
-        (tp:typeParameters)?
+    :   r:LITERAL_record id:id
+        (tp:typeParameters)?        //until #8267
         rc:recordComponentsList
-        ic:implementsClause
-        rb:recordBodyDeclaration
+        ic:implementsClause         //until #8267
+        rb:recordBodyDeclaration    //until #8267
         {#recordDefinition = #(#[RECORD_DEF, "RECORD_DEF"],
                               modifiers, r, id, rc);}
     ;
