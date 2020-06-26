@@ -992,11 +992,11 @@ public class XdocsPagesTest {
                 result = "subset of tokens TokenTypes";
             }
             else {
-                result = "Integer Set";
+                result = "int[]";
             }
         }
         else if (fieldClass == double[].class) {
-            result = "Number Set";
+            result = "double[]";
         }
         else if (fieldClass == String.class) {
             result = "String";
@@ -1016,7 +1016,7 @@ public class XdocsPagesTest {
                 result = "subset of tokens TokenTypes";
             }
             else {
-                result = "String Set";
+                result = "String[]";
             }
         }
         else if (fieldClass == URI.class) {

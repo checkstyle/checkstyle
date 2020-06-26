@@ -51,7 +51,7 @@
             <tr>
               <td>max</td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>20</code></td>
               <td>3.2</td>
             </tr>
@@ -130,7 +130,7 @@
             <tr>
               <td>max</td>
               <td>Specify the maximum threshold allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>30</code></td>
               <td>3.2</td>
             </tr>
@@ -248,14 +248,14 @@
             <tr>
               <td>max</td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>2000</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -347,7 +347,7 @@
             <tr>
               <td>fileExtensions</td>
               <td>Specify file extensions that are accepted.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String[]">String[]</a></td>
               <td><code>all files</code></td>
               <td>8.24</td>
             </tr>
@@ -361,7 +361,7 @@
             <tr>
               <td>max</td>
               <td>Specify the maximum line length allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>80</code></td>
               <td>3.0</td>
             </tr>
@@ -537,35 +537,35 @@ public class ExampleClass {
             <tr>
               <td>maxTotal</td>
               <td>Specify the maximum number of methods allowed at all scope levels.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td>maxPrivate</td>
               <td>Specify the maximum number of <code>private</code> methods allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td>maxPackage</td>
               <td>Specify the maximum number of <code>package</code> methods allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
               <td>maxProtected</td>
               <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td>100</td>
               <td>5.3</td>
             </tr>
             <tr>
               <td>maxPublic</td>
               <td>Specify the maximum number of <code>public</code> methods allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>100</code></td>
               <td>5.3</td>
             </tr>
@@ -716,7 +716,7 @@ public class ExampleClass {
             <tr>
               <td>max</td>
               <td>Specify the maximum number of lines allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>150</code></td>
               <td>3.0</td>
             </tr>
@@ -726,7 +726,7 @@ public class ExampleClass {
                 Control whether to count empty lines and single line comments of the
                 form <code>//</code>.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
             </tr>
@@ -854,7 +854,7 @@ public class ExampleClass {
             <tr>
               <td>max</td>
               <td>Specify the maximum number of outer types allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>1</code></td>
               <td>5.0</td>
             </tr>
@@ -937,7 +937,7 @@ public class ExampleClass {
             <tr>
               <td>max</td>
               <td>Specify the maximum number of parameters allowed.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#Integer">Integer</a></td>
               <td><code>7</code></td>
               <td>3.0</td>
             </tr>
@@ -946,7 +946,7 @@ public class ExampleClass {
               <td>
                 Ignore number of parameters for methods with <code>@Override</code> annotation.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#Boolean">Boolean</a></td>
               <td><code>false</code></td>
               <td>6.2</td>
             </tr>
