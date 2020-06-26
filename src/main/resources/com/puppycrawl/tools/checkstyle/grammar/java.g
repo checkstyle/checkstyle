@@ -117,7 +117,6 @@ tokens {
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
 
-    //Start Java14 syntax here
     RECORD_DEF; LITERAL_record="record";
 }
 
@@ -549,7 +548,7 @@ annotationExpression
 
 
 recordDefinition![AST modifiers]
-    :   r:"record" id:id
+    :   r:LITERAL_record id:id
         (tp:typeParameters)?
         rc:recordComponentsList
         ic:implementsClause
