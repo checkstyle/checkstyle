@@ -1,8 +1,13 @@
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.grammar.java14;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.lang.annotation.Native;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.LogRecord;
 
@@ -13,9 +18,17 @@ import org.w3c.dom.Node;
  */
 public class InputJava14Records
 {
+    public static int getRecord() {
+        return record;
+    }
+
+    public static void setRecord(int record) {
+        InputJava14Records.record = record;
+    }
+
     // Simple Annotated Record components
     public @interface NonNull1 {}
-    public record AnnotatedBinaryNode(@NonNull1 Node left, @NonNull1 Node right) { }
+    public record AnnotatedBinaryNode(@Native @NonNull1 Node left, @NonNull1 Node right) { }
 
     public interface Coords {
         public double x();
@@ -33,10 +46,27 @@ public class InputJava14Records
         public double y() {
             return r * Math.sin(theta);
         }
-}
+    }
 
     // Generic record
     public record Holder<T>(T t) { }
+
+    public record HolderG<G>(G g) {
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HolderG<?> holderG = (HolderG<?>) o;
+        return Objects.equals(g, holderG.g);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(g);
+    }
+}
+
 
     // Basic Record declaration
     public record Car(String color, String model) {}
@@ -44,6 +74,14 @@ public class InputJava14Records
     // Record declaration with body and no-arg constructor
     public record Thing(String name1, String name2) {
         public Thing {
+            Objects.requireNonNull(name1);
+            Objects.requireNonNull(name2);
+        }
+    }
+
+    public record ThingAnnotatedConstructor(String name1, String name2) {
+        @NonNull1
+        public ThingAnnotatedConstructor {
             Objects.requireNonNull(name1);
             Objects.requireNonNull(name2);
         }
@@ -62,6 +100,8 @@ public class InputJava14Records
             this.address = address;
         }
     }
+
+    public record Tricky(int record) {}
 
     // Records with static variable member
     public record UnknownRecord(String known, String unknown) {
@@ -95,12 +135,84 @@ public class InputJava14Records
             }
         }
     }
+    public boolean isLoggable(LogRecord record) {
+        String packageName = null;
+        return record.getLoggerName().startsWith(packageName);
+    }
+
+    private static void assertEquals(Level info, Level level) {
+    }
+
+    private static void record(LogRecord... logArray) {
+        for (LogRecord record : logArray) {
+            record.getLevel();
+        }
+    }
+
+    private static void checkRecord() {
+        LogRecord record;
+        record = new LogRecord(Level.ALL, "abc");
+        assertEquals(Level.INFO, record.getLevel());
+    }
+
+    record NoComps() {}
+    record Record(Record record) {}
+
+    record R5(String... args) {}
+    record R6(long l, String... args) implements java.io.Serializable {}
+    record R7(String s1, String s2, String... args) {}
+
+    record RI(int... xs) { }
+    record RII(int x, int... xs) { }
+    record RX(int[] xs) { }
+
+    private static int record = 2;
+
+    public Class<Record[]> getRecordType() {
+        return Record[].class;
+    }
+
+    class LocalRecordHelper {
+        Class<?> m(int x) {
+            record R76 (int x) { }
+            return R.class;
+        }
+
+        private class R {
+            public R(int x) {
+            }
+        }
+    }
+
+    record R1 () implements Serializable {
+        private static final TimeUnit Path = null;
+        private static final long serialVersionUID = -2911897846173867769L;
+
+        public R1 {
+
+        }
+    }
+
+    record RR3 (String... args) implements Serializable {
+        private static final boolean firstDataSetCreated = false;
+        private static final long serialVersionUID = -5626758281412733319L;
+
+        public RR3 {
+            if (firstDataSetCreated) {
+                ProcessHandle.current();
+            }
+        }
+    }
+
+    private static void recordArray(int [] record) {
+        record[2] = InputJava14Records.record;
+    }
 
     public static void main (String... args) {
+        String recordString = "record";
+        recordString = recordString.substring(record, 5);
         Car sedan = new Car("rec", "sedan");
         String s = UnknownRecord.UNKNOWN;
         Person.unnamed("100 Linda Ln.");
-        LogRecord record;
-        record = new LogRecord(Level.ALL, "abc");
     }
 }
