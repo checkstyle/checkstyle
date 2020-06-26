@@ -49,17 +49,17 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * </p>
  * <ul>
  * <li>
- * Property {@code files} - Define a Regular Expression matched against the file
+ * Property {@code files} - Define a Pattern matched against the file
  * name associated with an audit event.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code checks} - Define a Regular Expression matched against the name
+ * Property {@code checks} - Define a Pattern matched against the name
  * of the check associated with an audit event.
  * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code message} - Define a Regular Expression matched against the message
+ * Property {@code message} - Define a Pattern matched against the message
  * of the check associated with an audit event.
  * Default value is {@code null}.
  * </li>
@@ -408,16 +408,16 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
      */
     private XpathFilterElement xpathFilter;
     /**
-     * Define a Regular Expression matched against the file name associated with an audit event.
+     * Define a Pattern matched against the file name associated with an audit event.
      */
     private Pattern files;
     /**
-     * Define a Regular Expression matched against the name of the check associated
+     * Define a Pattern matched against the name of the check associated
      * with an audit event.
      */
     private Pattern checks;
     /**
-     * Define a Regular Expression matched against the message of the check
+     * Define a Pattern matched against the message of the check
      * associated with an audit event.
      */
     private Pattern message;
@@ -431,7 +431,7 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
     private String query;
 
     /**
-     * Setter to define a Regular Expression matched against the file name
+     * Setter to define a Pattern matched against the file name
      * associated with an audit event.
      *
      * @param files the name of the file
@@ -446,7 +446,7 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
     }
 
     /**
-     * Setter to define a Regular Expression matched against the name of the check
+     * Setter to define a Pattern matched against the name of the check
      * associated with an audit event.
      *
      * @param checks the name of the check
@@ -461,7 +461,7 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
     }
 
     /**
-     * Setter to define a Regular Expression matched against the message of
+     * Setter to define a Pattern matched against the message of
      * the check associated with an audit event.
      *
      * @param message the message of the check

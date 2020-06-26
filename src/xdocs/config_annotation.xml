@@ -1086,7 +1086,7 @@ package com.example.annotations.packageannotation; //ok
                  being suppressed matching this pattern will be flagged.
               </td>
               <td>
-                <a href="property_types.html#regexp">Regular Expression</a>
+                <a href="property_types.html#Pattern">Pattern</a>
               </td>
               <td>
                 <code>"^\s*+$"</code>
