@@ -70,10 +70,9 @@ public final class ScopeUtil {
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.ENUM_DEF) {
+            if (TokenUtil.isOfType(type, TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF, TokenTypes.ANNOTATION_DEF,
+                TokenTypes.ENUM_DEF)) {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = getScopeFromMods(mods);
@@ -135,15 +134,12 @@ public final class ScopeUtil {
         for (DetailAST token = node.getParent();
              token != null && !returnValue;
              token = token.getParent()) {
-            final int type = token.getType();
-            if (type == tokenType) {
+            if (token.getType() == tokenType) {
                 returnValue = true;
             }
-            else if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.LITERAL_NEW) {
+            else if (TokenUtil.isOfType(token, TokenTypes.CLASS_DEF,
+                TokenTypes.ENUM_DEF, TokenTypes.INTERFACE_DEF,
+                TokenTypes.ANNOTATION_DEF, TokenTypes.LITERAL_NEW)) {
                 break;
             }
         }
@@ -176,14 +172,12 @@ public final class ScopeUtil {
         for (DetailAST token = node.getParent();
              token != null && !returnValue;
              token = token.getParent()) {
-            final int type = token.getType();
-            if (type == TokenTypes.ENUM_DEF) {
+            if (token.getType() == TokenTypes.ENUM_DEF) {
                 returnValue = true;
             }
-            else if (type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.LITERAL_NEW) {
+            else if (TokenUtil.isOfType(token, TokenTypes.INTERFACE_DEF,
+                TokenTypes.ANNOTATION_DEF, TokenTypes.CLASS_DEF,
+                TokenTypes.LITERAL_NEW)) {
                 break;
             }
         }
@@ -205,12 +199,9 @@ public final class ScopeUtil {
         for (DetailAST token = node.getParent();
              token != null;
              token = token.getParent()) {
-            final int type = token.getType();
-            if (type == TokenTypes.METHOD_DEF
-                    || type == TokenTypes.CTOR_DEF
-                    || type == TokenTypes.INSTANCE_INIT
-                    || type == TokenTypes.STATIC_INIT
-                    || type == TokenTypes.LAMBDA) {
+            if (TokenUtil.isOfType(token, TokenTypes.METHOD_DEF,
+                    TokenTypes.CTOR_DEF, TokenTypes.INSTANCE_INIT,
+                    TokenTypes.STATIC_INIT, TokenTypes.LAMBDA)) {
                 returnValue = true;
                 break;
             }
@@ -230,10 +221,9 @@ public final class ScopeUtil {
         for (DetailAST parent = node.getParent();
              parent != null;
              parent = parent.getParent()) {
-            if (parent.getType() == TokenTypes.CLASS_DEF
-                || parent.getType() == TokenTypes.INTERFACE_DEF
-                || parent.getType() == TokenTypes.ANNOTATION_DEF
-                || parent.getType() == TokenTypes.ENUM_DEF) {
+            if (TokenUtil.isOfType(parent, TokenTypes.CLASS_DEF,
+                TokenTypes.INTERFACE_DEF, TokenTypes.ANNOTATION_DEF,
+                TokenTypes.ENUM_DEF)) {
                 returnValue = false;
                 break;
             }
@@ -255,10 +245,8 @@ public final class ScopeUtil {
         // variable declaration?
         if (node.getType() == TokenTypes.VARIABLE_DEF) {
             final DetailAST parent = node.getParent();
-            final int type = parent.getType();
-            localVariableDef = type == TokenTypes.SLIST
-                    || type == TokenTypes.FOR_INIT
-                    || type == TokenTypes.FOR_EACH_CLAUSE;
+            localVariableDef = TokenUtil.isOfType(parent, TokenTypes.SLIST,
+                                TokenTypes.FOR_INIT, TokenTypes.FOR_EACH_CLAUSE);
         }
         // catch parameter?
         if (node.getType() == TokenTypes.PARAMETER_DEF) {
@@ -281,7 +269,8 @@ public final class ScopeUtil {
      * @return whether a node is a class field definition.
      */
     public static boolean isClassFieldDef(DetailAST node) {
-        return node.getType() == TokenTypes.VARIABLE_DEF && !isLocalVariableDef(node);
+        return node.getType() == TokenTypes.VARIABLE_DEF
+                && !isLocalVariableDef(node);
     }
 
     /**
