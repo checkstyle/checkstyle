@@ -46,7 +46,7 @@
 
     <section name="boolean">
       <p>
-        This type represents a boolean. The default value is <code>false</code>.
+        This type represents a boolean.
         The following string representations will map to <code>true</code>:
       </p>
 
