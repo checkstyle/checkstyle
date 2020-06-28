@@ -15,6 +15,119 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.34">
+      <div class="releaseDate">28.06.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            INTERFACE_DEF token support in RightCurlyCheck.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7175">#7175</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            MissingJavadocMethod flagging private methods even target scope is
+            public methods only.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8266">#8266</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - Indentation.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/7734">#7734</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - JavadocMethod.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7739">#7739</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - EmptyLineSeparator.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7730">#7730</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - VariableDeclarationUsageDistance.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7766">#7766</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - TodoComment.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7762">#7762</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - MissingJavadocType.
+            Author: HuGanghui
+            <a href="https://github.com/checkstyle/checkstyle/issues/7747">#7747</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - UnnecessaryParentheses.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7765">#7765</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Add input file for Java14 records #8290
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/8290">#8290</a>
+          </li>
+          <li>
+            doc: add example of how to run GUI from snapshot jar.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Java Grammar: need to introduce &quot;id&quot; rule to solve keyword as
+            identifier problem.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/8308">#8308</a>
+          </li>
+          <li>
+            Extend Checkstyle GUI tool to work with Xpath.
+            Author: hembhagat
+            <a href="https://github.com/checkstyle/checkstyle/issues/4944">#4944</a>
+          </li>
+          <li>
+            Use JDK11 for wercker.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8325">#8325</a>
+          </li>
+          <li>
+            Update issue template to new format.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7834">#7834</a>
+          </li>
+          <li>
+            Pitest Issue: Indentation.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/8270">#8270</a>
+          </li>
+          <li>
+            Update java.g to allow new tokens to be added.
+            Author: nmancus1
+            <a href="https://github.com/checkstyle/checkstyle/issues/8274">#8274</a>
+          </li>
+          <li>
+            Remove rss and sourceforge banners from website.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8286">#8286</a>
+          </li>
+          <li>
+            Make test inputs compatible with Java 10+.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8283">#8283</a>
+          </li>
+          <li>
+            Use archunit library to control source code .
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/7469">#7469</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.33">
       <div class="releaseDate">31.05.2020</div>
       <p>Breaking backward compatibility:</p>
