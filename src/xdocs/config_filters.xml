@@ -1409,7 +1409,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
             </tr>
             <tr>
               <td>files</td>
-              <td>Define a Regular Expression matched against the file name associated
+              <td>Define a Regular Expression  matched against the file name associated
                   with an audit event.</td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>null</code></td>
@@ -1417,7 +1417,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
             </tr>
             <tr>
               <td>checks</td>
-              <td>Define a Regular Expression matched against the name of the check
+              <td>Define a Regular Expression  matched against the name of the check
                   associated with an audit event.</td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>null</code></td>
@@ -1425,7 +1425,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
             </tr>
             <tr>
               <td>message</td>
-              <td>Define a Regular Expression matched against the message of the check associated
+              <td>Define a Regular Expression  matched against the message of the check associated
                   with an audit event.</td>
               <td><a href="property_types.html#regexp">Regular Expression</a></td>
               <td><code>null</code></td>
