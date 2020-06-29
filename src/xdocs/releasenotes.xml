@@ -73,7 +73,7 @@
         <ul>
           <li>
             Add input file for Java14 records #8290
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/8290">#8290</a>
           </li>
           <li>
@@ -83,7 +83,7 @@
           <li>
             Java Grammar: need to introduce &quot;id&quot; rule to solve keyword as
             identifier problem.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/8308">#8308</a>
           </li>
           <li>
@@ -108,7 +108,7 @@
           </li>
           <li>
             Update java.g to allow new tokens to be added.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/8274">#8274</a>
           </li>
           <li>
@@ -218,7 +218,7 @@
           </li>
           <li>
             Cleanup .ci-temp folder after release notes generation.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/8268">#8268</a>
           </li>
           <li>
@@ -238,7 +238,7 @@
           </li>
           <li>
             Improve clean up of .ci-temp directory.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7892">#7892</a>
           </li>
           <li>
@@ -268,7 +268,7 @@
           </li>
           <li>
             Update CIs to validate empty outpu of &#39;git status&#39; after execution.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/8228">#8228</a>
           </li>
           <li>
@@ -377,7 +377,7 @@
         <ul>
           <li>
             Checker should use UTF-8 encoding by default.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/6204">#6204</a>
           </li>
         </ul>
@@ -443,7 +443,7 @@
           </li>
           <li>
             Update AbstractChecks to log DetailAST - OverloadMethodsDeclarationOrder.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7756">#7756</a>
           </li>
           <li>
@@ -491,7 +491,7 @@
           </li>
           <li>
             Improve clean up of .ci-temp directory.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7892">#7892</a>
           </li>
           <li>
@@ -715,7 +715,7 @@
           </li>
           <li>
             Resolve Pitest Issues - ImportOrderCheck (3).
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7874">#7874</a>
           </li>
           <li>
@@ -741,7 +741,7 @@
         <ul>
           <li>
             Remove all deprecated setClassLoader methods from Checker and TreeWalker.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7190">#7190</a>
           </li>
         </ul>
@@ -807,7 +807,7 @@
           </li>
           <li>
             NPE in MissingDeprecatedCheck.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7534">#7534</a>
           </li>
           <li>
@@ -1190,7 +1190,7 @@
           </li>
           <li>
             Update doc for WhitespaceAfter.
-            Author: nmancus1
+            Author: Nick Mancuso
             <a href="https://github.com/checkstyle/checkstyle/issues/7631">#7631</a>
           </li>
           <li>
