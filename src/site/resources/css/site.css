@@ -72,6 +72,35 @@ section {
   position: relative;
 }
 
+p, td, table.bodyTable td, th, table.bodyTable th, li, pre, #breadcrumbs span, #navcolumn h5,
+#navcolumn li, #footer, div.tip b, .releaseDate, .xright {
+  font-size: 15px;
+}
+
+#navcolumn li.expanded, #navcolumn li.collapsed {
+  background-size: 7px;
+}
+
+#navcolumn {
+  padding: 8px 4px 0 12px;
+}
+
+#bodyColumn h2, h2 {
+  font-size: 24px;
+}
+
+#navcolumn li {
+  margin: 3px 0;
+}
+
+#bodyColumn {
+  margin-left: 297px;
+}
+
+#leftColumn {
+  width: 270px;
+}
+
 .releaseDate {
   position: absolute;
   top: 2px;
