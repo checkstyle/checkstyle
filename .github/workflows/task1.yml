@@ -1,0 +1,11 @@
+name: Task1-GitHubActions
+
+on: [pull_request, push, pull_request_review_comment]
+
+jobs:
+  first_job:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Step One
+        run : echo "Hello GitHub Actions"
