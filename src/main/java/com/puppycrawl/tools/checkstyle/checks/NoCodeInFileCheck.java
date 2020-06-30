@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *  block comment
  * *&#47;
  * </pre>
+ *
  * @since 8.33
  */
 @StatelessCheck

@@ -82,20 +82,8 @@ import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
-import com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ClosingParens;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.ElementStyle;
-import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck.TrailingArrayComma;
-import com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption;
-import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption;
-import com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption;
-import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption;
-import com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
@@ -1028,50 +1016,17 @@ public class XdocsPagesTest {
         else if (fieldClass == Pattern[].class) {
             result = "Regular Expressions";
         }
-        else if (fieldClass == SeverityLevel.class) {
-            result = "Severity";
-        }
         else if (fieldClass == Scope.class) {
             result = "Scope";
-        }
-        else if (fieldClass == ElementStyle.class) {
-            result = "Element Style";
-        }
-        else if (fieldClass == ClosingParens.class) {
-            result = "Closing Parens";
-        }
-        else if (fieldClass == TrailingArrayComma.class) {
-            result = "Trailing Comma";
-        }
-        else if (fieldClass == PadOption.class) {
-            result = "Pad Policy";
-        }
-        else if (fieldClass == WrapOption.class) {
-            result = "Wrap Operator Policy";
-        }
-        else if (fieldClass == BlockOption.class) {
-            result = "Block Policy";
-        }
-        else if (fieldClass == LeftCurlyOption.class) {
-            result = "Left Curly Brace Policy";
-        }
-        else if (fieldClass == RightCurlyOption.class) {
-            result = "Right Curly Brace Policy";
-        }
-        else if (fieldClass == LineSeparatorOption.class) {
-            result = "Line Separator Policy";
-        }
-        else if (fieldClass == ImportOrderOption.class) {
-            result = "Import Order Policy";
         }
         else if (fieldClass == AccessModifier[].class) {
             result = "Access Modifier Set";
         }
-        else if (fieldClass == JavadocContentLocationOption.class) {
-            result = "Javadoc Content Location";
-        }
         else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
             result = "File";
+        }
+        else if (fieldClass.isEnum()) {
+            result = fieldClass.getSimpleName();
         }
         else {
             fail("Unknown property type: " + fieldClass.getSimpleName());

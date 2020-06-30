@@ -1469,7 +1469,7 @@ import java.util.stream.IntStream;
           <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a></li>
           <li>arrange static imports: ensures the relative order between
           type imports and static imports (see
-          <a href="property_types.html#importOrder">import orders</a>)</li>
+          <a href="property_types.html#ImportOrderOption">ImportOrderOption</a>)</li>
         </ul>
       </subsection>
 
@@ -1486,7 +1486,7 @@ import java.util.stream.IntStream;
             <tr>
               <td>option</td>
               <td>specify policy on the relative order between type imports and static imports.</td>
-              <td><a href="property_types.html#importOrder">Import Order Policy</a></td>
+              <td><a href="property_types.html#ImportOrderOption">ImportOrderOption</a></td>
               <td><code>under</code></td>
               <td>5.0</td>
             </tr>

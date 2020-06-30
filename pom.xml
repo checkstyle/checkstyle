@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.34-SNAPSHOT</version>
+  <version>8.35-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -199,10 +199,10 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.8-1</antlr4.version>
-    <maven.site.plugin.version>3.8.2</maven.site.plugin.version>
-    <maven.spotbugs.plugin.version>4.0.0</maven.spotbugs.plugin.version>
+    <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
+    <maven.spotbugs.plugin.version>4.0.4</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.13.0</maven.pmd.plugin.version>
-    <pmd.version>6.24.0</pmd.version>
+    <pmd.version>6.25.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.5</maven.jacoco.plugin.version>
     <powermock.version>2.0.7</powermock.version>
     <saxon.version>9.9.1-7</saxon.version>
@@ -309,7 +309,7 @@
     <dependency>
       <groupId>nl.jqno.equalsverifier</groupId>
       <artifactId>equalsverifier</artifactId>
-      <version>3.3</version>
+      <version>3.4.1</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -334,7 +334,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.7.0.202003110725-r</version>
+      <version>5.8.0.202006091008-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -1144,7 +1144,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.0</version>
         <executions>
           <execution>
             <id>add-source</id>
@@ -1679,6 +1679,10 @@
             <excludedLink>https://bitbucket.org/atlassian/bamboo-checkstyle-plugin</excludedLink>
             <!-- link works but plugin's request always result in 404 -->
             <excludedLink>https://www.manning.com/books/java-development-with-ant</excludedLink>
+            <!-- permanent 403, but it works fine out of plugin execution -->
+            <excludedLink>https://opencollective.com/*</excludedLink>
+            <!-- 405 Not Allowed, link present in generated website only -->
+            <excludedLink>https://oss.sonatype.org/service/local/staging/deploy/maven2/</excludedLink>
           </excludedLinks>
         </configuration>
       </plugin>
@@ -3125,7 +3129,7 @@
         <dependency>
             <groupId>org.eclipse.jdt</groupId>
             <artifactId>org.eclipse.jdt.annotation</artifactId>
-            <version>2.2.400</version>
+            <version>2.2.600</version>
         </dependency>
       </dependencies>
       <build>

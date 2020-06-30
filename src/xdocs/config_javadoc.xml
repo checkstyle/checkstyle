@@ -478,7 +478,8 @@ public void method();
               <td>location</td>
               <td>Specify the policy on placement of the Javadoc content.</td>
               <td>
-                <a href="property_types.html#javadocContentLocation">Javadoc Content Location</a>
+                <a href="property_types.html#JavadocContentLocationOption">
+                    JavadocContentLocationOption</a>
               </td>
               <td><code>second_line</code></td>
               <td>8.27</td>
@@ -3241,7 +3242,7 @@ public class TestClass {
             <tr>
               <td>tagSeverity</td>
               <td>Specify the severity level when tag is found and printed.</td>
-              <td><a href="property_types.html#severity">Severity</a></td>
+              <td><a href="property_types.html#SeverityLevel">SeverityLevel</a></td>
               <td><code>info</code></td>
               <td>4.2</td>
             </tr>

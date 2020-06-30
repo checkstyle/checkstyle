@@ -46,7 +46,7 @@
 
     <section name="boolean">
       <p>
-        This type represents a boolean. The default value is <code>false</code>.
+        This type represents a boolean.
         The following string representations will map to <code>true</code>:
       </p>
 
@@ -126,7 +126,7 @@
       </p>
     </section>
 
-    <section name="lineSeparator">
+    <section name="LineSeparatorOption">
       <p>
         This type represents the policy for line returns. The
         following table describes the valid options:
@@ -162,7 +162,7 @@
       </div>
     </section>
 
-    <section name="parenPad">
+    <section name="PadOption">
       <p>
         This type represents the policy for padding with white space. The
         following table describes the valid options:
@@ -191,7 +191,7 @@
       </div>
     </section>
 
-    <section name="wrapOp">
+    <section name="WrapOption">
       <p>
         This type represents the policy for wrapping lines.
         The following table describes the valid options:
@@ -231,7 +231,7 @@
       </div>
     </section>
 
-    <section name="block">
+    <section name="BlockOption">
       <p>
         This type represents the policy for checking block statements. The
         following table describes the valid options:
@@ -273,7 +273,7 @@
       </div>
     </section>
 
-    <section name="lcurly">
+    <section name="LcurlyOption">
       <p>
         This type represents the policy for checking the placement of a
         left curly brace (<code>'{'</code>). The following table
@@ -343,7 +343,7 @@
       </div>
     </section>
 
-    <section name="rcurly">
+    <section name="RcurlyOption">
       <p>
         This type represents the policy for checking the placement of a
         right curly brace (<code>'}'</code>) in blocks but not blocks of expressions.
@@ -506,7 +506,7 @@
       </ul>
     </section>
 
-    <section name="severity">
+    <section name="SeverityLevel">
       <p>
         This type represents the severity level of a check violation. The
         valid options are:
@@ -520,14 +520,14 @@
       </ul>
     </section>
 
-    <section name="importOrder">
+    <section name="ImportOrderOption">
       <p>
         This type represents the policy for checking imports order.
         The following table describes the valid options:
       </p>
 
       <div class="wrapper">
-        <table summary="import order options">
+        <table summary="ImportOrderOptions">
           <tr>
             <td>Option</td>
             <td>Definition</td>
@@ -613,7 +613,7 @@
       </div>
     </section>
 
-    <section name="elementStyle">
+    <section name="ElementStyleOption">
       <p>
         This type represents the policy for the styles for defining
         elements in an annotation. The following table
@@ -699,7 +699,7 @@
       </div>
     </section>
 
-    <section name="closingParens">
+    <section name="ClosingParensOption">
       <p>
         This type represents the policy for the styles for the ending
         parenthesis. The following table describes the valid options:
@@ -742,7 +742,7 @@
       </div>
     </section>
 
-    <section name="trailingArrayComma">
+    <section name="TrailingArrayCommaOption">
       <p>
         This type represents the policy for the styles for the trailing
         array comma. The following table describes the valid options:
@@ -785,14 +785,14 @@
       </div>
     </section>
 
-    <section name="javadocContentLocation">
+    <section name="JavadocContentLocationOption">
       <p>
         This type represents policy on placement of the Javadoc content.
         The following table describes the valid options:
       </p>
 
       <div class="wrapper">
-        <table summary="javadocContentLocation options">
+        <table summary="JavadocContentLocationOption options">
           <tr>
             <td>Option</td>
             <td>Definition</td>

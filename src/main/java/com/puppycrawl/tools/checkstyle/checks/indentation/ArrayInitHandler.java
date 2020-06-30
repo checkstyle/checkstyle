@@ -29,6 +29,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class ArrayInitHandler extends BlockParentHandler {
 
     /**
+     * Constant to define that the required character does not exist at any position.
+     */
+    private static final int NOT_EXIST = -1;
+
+    /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
@@ -95,11 +100,12 @@ public class ArrayInitHandler extends BlockParentHandler {
             new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
 
-        final int firstLine = getFirstLine(Integer.MAX_VALUE, getListChild());
+        final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
-        if (firstChildPos >= 0) {
+
+        if (firstChildPos != NOT_EXIST) {
             expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
                     + getLineWrappingIndentation());
         }
@@ -108,14 +114,14 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     /**
      * Returns column number of first non-blank char after
-     * specified column on specified line or -1 if
+     * specified column on specified line or {@code NOT_EXIST} if
      * such char doesn't exist.
      *
      * @param lineNo   number of line on which we search
      * @param columnNo number of column after which we search
      *
      * @return column number of first non-blank char after
-     *         specified column on specified line or -1 if
+     *         specified column on specified line or {@code NOT_EXIST} if
      *         such char doesn't exist.
      */
     private int getNextFirstNonBlankOnLineAfter(int lineNo, int columnNo) {
@@ -128,7 +134,7 @@ public class ArrayInitHandler extends BlockParentHandler {
         }
 
         if (realColumnNo == lineLength) {
-            realColumnNo = -1;
+            realColumnNo = NOT_EXIST;
         }
         return realColumnNo;
     }
