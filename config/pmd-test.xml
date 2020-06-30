@@ -134,7 +134,7 @@
                   //MethodDeclaration[@Name='testAllCheckSectionJavaDocs']
             | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
                   //MethodDeclaration
-            | //ClassOrInterfaceDeclaration[@Image='ArchUnitTest']
+            | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
                   //MethodDeclaration
             "/>
         </properties>
