@@ -59,7 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code accessModifiers} - Access modifiers of methods where parameters are checked.
+ * Property {@code accessModifiers} - Access modifiers of methods where parameters are
+ * checked.
  * Default value is {@code public, protected, package, private}.
  * </li>
  * </ul>
@@ -178,11 +179,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
     private boolean ignoreOverridden;
 
     /** Access modifiers of methods where parameters are checked. */
-    private AccessModifier[] accessModifiers = {
-        AccessModifier.PUBLIC,
-        AccessModifier.PROTECTED,
-        AccessModifier.PACKAGE,
-        AccessModifier.PRIVATE,
+    private AccessModifierOption[] accessModifiers = {
+        AccessModifierOption.PUBLIC,
+        AccessModifierOption.PROTECTED,
+        AccessModifierOption.PACKAGE,
+        AccessModifierOption.PRIVATE,
     };
 
     /**
@@ -213,7 +214,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      *
      * @param accessModifiers access modifiers of methods which should be checked.
      */
-    public void setAccessModifiers(AccessModifier... accessModifiers) {
+    public void setAccessModifiers(AccessModifierOption... accessModifiers) {
         this.accessModifiers =
             Arrays.copyOf(accessModifiers, accessModifiers.length);
     }
@@ -254,11 +255,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @param ast the token of the method/constructor.
      * @return the access modifier of the method/constructor.
      */
-    private static AccessModifier getAccessModifier(final DetailAST ast) {
-        final AccessModifier accessModifier;
+    private static AccessModifierOption getAccessModifier(final DetailAST ast) {
+        final AccessModifierOption accessModifier;
 
         if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            accessModifier = AccessModifier.PUBLIC;
+            accessModifier = AccessModifierOption.PUBLIC;
         }
         else {
             final DetailAST params = ast.getParent();
@@ -276,8 +277,9 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @param accessModifier the access modifier of the method.
      * @return whether the method matches the expected access modifier.
      */
-    private boolean matchAccessModifiers(final AccessModifier accessModifier) {
-        return Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
+    private boolean matchAccessModifiers(final AccessModifierOption accessModifier) {
+        return Arrays.stream(accessModifiers)
+                .anyMatch(modifier -> modifier == accessModifier);
     }
 
     /**
