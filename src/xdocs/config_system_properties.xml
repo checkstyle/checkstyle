@@ -28,7 +28,7 @@
         specifies the name of a file that can be used to cache details
         of files that pass Checkstyle. This can <i>significantly</i>
         increase the speed of checkstyle on successive runs. The
-        property type is <a href="property_types.html#string">string</a>
+        property type is <a href="property_types.html#String">String</a>
         and defaults to an empty string (which means no caching is done).
       </p>
     </section>
@@ -44,7 +44,7 @@
       <p>
         The property <code>checkstyle.locale.language</code> specifies the
         language to use in localising the output messages. The property
-        type is <a href="property_types.html#string">string</a> and
+        type is <a href="property_types.html#String">String</a> and
         defaults to the default system locale language.
       </p>
 
@@ -52,7 +52,7 @@
         The property <code>checkstyle.locale.country</code>
         specifies the country to use in localising the output
         messages. The property type is <a
-        href="property_types.html#string">string</a> and defaults to the
+        href="property_types.html#String">String</a> and defaults to the
         default system locale country.
       </p>
     </section>
@@ -65,7 +65,7 @@
         <code>c:\projects\checkstyle</code>, then a violation
         in the file <code>c:\projects\checkstyle\src\dir\subdir\File.java</code>
         will be reported as <code>src\dir\subdir\File.java</code>. The property type
-        is <a href="property_types.html#string">string</a> and defaults
+        is <a href="property_types.html#String">String</a> and defaults
         to an empty string.
       </p>
     </section>

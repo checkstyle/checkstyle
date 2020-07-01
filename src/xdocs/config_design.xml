@@ -159,7 +159,7 @@ public abstract class Plant {
               <td>
                 Specify annotations which allow the check to skip the method from validation.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>After, AfterClass, Before, BeforeClass, Test</code></td>
               <td>7.2</td>
             </tr>
@@ -543,7 +543,7 @@ class Test2 {
                 Control whether marker interfaces like Serializable are
                 allowed.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.1</td>
             </tr>
@@ -878,14 +878,14 @@ public class Foo { // OK, only one top-level class
             <tr>
               <td>max</td>
               <td>Specify maximum allowed number of throws statements.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>4</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>ignorePrivateMethods</td>
               <td>Allow private methods to be ignored.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.7</td>
             </tr>
@@ -1126,14 +1126,14 @@ class Test {
             <tr>
               <td>packageAllowed</td>
               <td>Control whether package visible members are allowed.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>protectedAllowed</td>
               <td>Control whether protected members are allowed.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.0</td>
             </tr>
@@ -1147,21 +1147,21 @@ class Test {
             <tr>
               <td>allowPublicFinalFields</td>
               <td>Allow final fields to be declared as public.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>7.0</td>
             </tr>
             <tr>
               <td>allowPublicImmutableFields</td>
               <td>Allow immutable fields to be declared as public if defined in final class.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.4</td>
             </tr>
             <tr>
               <td>immutableClassCanonicalNames</td>
               <td>Specify immutable classes canonical names.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>java.io.File, java.lang.Boolean, java.lang.Byte, java.lang.Character,
                 java.lang.Double, java.lang.Float, java.lang.Integer, java.lang.Long,
                 java.lang.Short, java.lang.StackTraceElement, java.lang.String,
@@ -1176,7 +1176,7 @@ class Test {
                 Specify the list of annotations canonical names which ignore variables in
                 consideration.
               </td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>com.google.common.annotations.VisibleForTesting,
                 org.junit.ClassRule, org.junit.Rule</code></td>
               <td>6.5</td>
