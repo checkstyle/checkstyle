@@ -3543,9 +3543,9 @@ public final class TokenTypes {
     /**
      * Java 14 Pattern definition.
      *
+     * <pre>
      * <p>For example:</p>
      * if (obj instanceof String str) { }
-     * <pre>
      * </pre>
      * <p>parses as:</p>
      * <pre>
