@@ -3540,6 +3540,35 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * A variable declared in a pattern definition; when conditionally matched,
+     * the variable is assigned to the defined type.
+     *
+     * <pre>
+     * <p>For example:</p>
+     * if (obj instanceof String str) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF (if)
+     *  |--LPAREN (()
+     *  |--EXPR
+     *  |   `--LITERAL_INSTANCEOF (instanceof)
+     *  |       |--IDENT (obj)
+     *  |       `--PATTERN_DEF
+     *  |           `--VARIABLE_DEF
+     *  |               |--TYPE
+     *  |               |   `--IDENT (String)
+     *  |               `--IDENT (str)
+     *  |--RPAREN ())
+     *  `--SLIST ({)
+     *      `--RCURLY (})
+     * </pre>
+     * @see #LITERAL_INSTANCEOF
+     */
+    public static final int PATTERN_DEF =
+            GeneratedJavaTokenTypes.PATTERN_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
