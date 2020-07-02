@@ -84,6 +84,17 @@ public class StaticVariableNameCheckTest
     }
 
     @Test
+    public void testStaticVariableNameJava14EnhancedInstanceof()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(StaticVariableNameCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath(
+                "InputStaticVariableNameJava14EnhancedInstanceof.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final StaticVariableNameCheck staticVariableNameCheckObj = new StaticVariableNameCheck();
         final int[] actual = staticVariableNameCheckObj.getAcceptableTokens();
