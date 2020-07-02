@@ -237,6 +237,21 @@ public class MemberNameCheckTest
     }
 
     @Test
+    public void testInputMemberNameJava14EnhancedInstanceof() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MemberNameCheck.class);
+        checkConfig.addAttribute("format", "^m[A-Z][a-zA-Z0-9]*$");
+
+        final String pattern = "^m[A-Z][a-zA-Z0-9]*$";
+        final String[] expected = {
+            "5:12: " + getCheckMessage(MSG_INVALID_PATTERN, "obj", pattern),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputMemberNameJava14EnhancedInstanceof.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final MemberNameCheck memberNameCheckObj = new MemberNameCheck();
         final int[] actual = memberNameCheckObj.getAcceptableTokens();

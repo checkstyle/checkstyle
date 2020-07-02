@@ -150,12 +150,13 @@ public class MemberNameCheck
 
     @Override
     protected final boolean mustCheckName(DetailAST ast) {
-        final DetailAST modifiersAST =
-            ast.findFirstToken(TokenTypes.MODIFIERS);
-        final boolean isStatic = modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
+        final DetailAST modifiersAST = ast.findFirstToken(TokenTypes.MODIFIERS);
+        final boolean isStatic = modifiersAST != null
+                && modifiersAST.findFirstToken(TokenTypes.LITERAL_STATIC) != null;
 
-        return !isStatic && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
-            && !ScopeUtil.isLocalVariableDef(ast)
+        return modifiersAST != null && !isStatic
+                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
+                && !ScopeUtil.isLocalVariableDef(ast)
                 && shouldCheckInScope(modifiersAST);
     }
 
