@@ -246,6 +246,23 @@ public class ScopeUtilTest {
                 "Should return false when node is not in interface or annotation block");
     }
 
+    @Test
+    public void testIsInPatternDefinition() {
+        assertTrue(ScopeUtil.isInPatternDefinition(
+                getNode(TokenTypes.PATTERN_DEF, TokenTypes.VARIABLE_DEF)),
+                "Should return true when node is in pattern definition.");
+        assertFalse(ScopeUtil.isInPatternDefinition(
+                getNode(TokenTypes.OBJBLOCK, TokenTypes.VARIABLE_DEF)),
+                "Should return false when node is not in a pattern definition.");
+        assertFalse(ScopeUtil.isInPatternDefinition(
+                getNode(TokenTypes.PATTERN_DEF, TokenTypes.OBJBLOCK)),
+                "Should return false when node in pattern definition is not a "
+                        + "variable definition.");
+        assertFalse(ScopeUtil.isInPatternDefinition(
+                getNode(TokenTypes.OBJBLOCK, TokenTypes.VARIABLE_DEF)),
+                "Should return false when node is not in a pattern definition.");
+    }
+
     private static DetailAstImpl getNode(int... nodeTypes) {
         DetailAstImpl ast = new DetailAstImpl();
         ast.setType(nodeTypes[0]);

@@ -296,4 +296,16 @@ public final class ScopeUtil {
         return surroundingScopeOfAstToken == scope;
     }
 
+    /**
+     * Determines whether a variable is a binding variable.
+     * I.e. if a variable is part of a pattern definition.
+     *
+     * @param node the node to check
+     * @return whether a node part of a pattern definition
+     */
+    public static boolean isInPatternDefinition(DetailAST node) {
+        return node.getType() == TokenTypes.VARIABLE_DEF
+                && node.getParent().getType() == TokenTypes.PATTERN_DEF;
+    }
+
 }
