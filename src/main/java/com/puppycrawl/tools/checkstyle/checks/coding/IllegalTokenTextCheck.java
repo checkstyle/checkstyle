@@ -151,6 +151,7 @@ public class IllegalTokenTextCheck
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
         };
     }
 
