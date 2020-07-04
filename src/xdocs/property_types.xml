@@ -30,6 +30,101 @@
     </p>
     </section>
 
+    <section name="byte">
+      <p>
+        This type represents a byte. The string representation is
+        parsed using the <code>java.lang.Byte</code> class.
+      </p>
+    </section>
+
+    <section name="byte[]">
+      <p>
+        This type represents a set of bytes. The string representation
+        is parsed as a set of comma (',') separated bytes that are parsed
+        using the <code>java.lang.Byte</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated byte values.
+      </p>
+    </section>
+
+    <section name="char">
+      <p>
+        This type represents a char. The string representation is
+        parsed using the <code>java.lang.Character</code> class.
+      </p>
+    </section>
+
+    <section name="char[]">
+      <p>
+        This type represents a set of chars. The string representation
+        is parsed as a set of comma (',') separated chars that are parsed
+        using the <code>java.lang.Char</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated byte values.
+      </p>
+    </section>
+
+    <section name="float" >
+      <p>
+        This type represents a float. The string representation is
+        parsed using the <code>java.lang.Float</code> class.
+      </p>
+    </section>
+
+    <section name="float[]">
+      <p>
+        This type represents a set of floats. The string representation
+        is parsed as a set of comma (',') separated floats that are parsed
+        using the <code>java.lang.Float</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated byte values.
+      </p>
+    </section>
+
+    <section name="long">
+      <p>
+        This type represents a long. The string representation is
+        parsed using the <code>java.lang.Long</code> class.
+      </p>
+    </section>
+
+    <section name="long[]">
+      <p>
+        This type represents a set of longs. The string representation
+        is parsed as a set of comma (',') separated longs that are parsed
+        using the <code>java.lang.Long</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated byte values.
+      </p>
+    </section>
+
+    <section name="short">
+      <p>
+        This type represents a short. The string representation is
+        parsed using the <code>java.lang.Short</code> class.
+      </p>
+    </section>
+
+    <section name="short[]">
+      <p>
+        This type represents a set of shorts. The string representation
+        is parsed as a set of comma (',') separated shorts that are parsed
+        using the <code>java.lang.Short</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated byte values.
+      </p>
+    </section>
+
     <section name="int">
       <p>
         This type represents an integer. The string representation is
