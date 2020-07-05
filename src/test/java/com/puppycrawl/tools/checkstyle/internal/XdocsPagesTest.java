@@ -954,7 +954,7 @@ public class XdocsPagesTest {
             Object instance, String propertyName) {
         final String instanceName = instance.getClass().getSimpleName();
         String result = null;
-
+        final String checkProperty = sectionName + ":" + propertyName;
         if (("SuppressionCommentFilter".equals(sectionName)
                 || "SuppressWithNearbyCommentFilter".equals(sectionName)
                 || "SuppressWithPlainTextCommentFilter".equals(sectionName))
@@ -1011,10 +1011,27 @@ public class XdocsPagesTest {
             result = "URI";
         }
         else if (fieldClass == Pattern.class) {
-            result = "Regular Expression";
+            if ("SuppressionSingleFilter:checks".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:files".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:message".equals(checkProperty)
+                || "IllegalTokenText:format".equals(checkProperty)) {
+                result = "Regular Expression";
+            }
+            else {
+                result = "Pattern";
+            }
         }
         else if (fieldClass == Pattern[].class) {
-            result = "Regular Expressions";
+            if ("ImportOrder:groups".equals(checkProperty)
+                || "ImportOrder:staticGroups".equals(checkProperty)
+                || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
+                || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
+                result = "Regular Expressions";
+            }
+            else {
+                result = "Pattern[]";
+            }
         }
         else if (fieldClass == Scope.class) {
             result = "Scope";
