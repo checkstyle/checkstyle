@@ -672,14 +672,14 @@ public interface Test2 { // violation
             <tr>
               <td>format</td>
               <td>Specify pattern for exception class names.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
               <td>3.2</td>
             </tr>
             <tr>
               <td>extendedClassNameFormat</td>
               <td>Specify pattern for extended class names.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^.*Exception$|^.*Error$|^.*Throwable$"</code></td>
               <td>6.2</td>
             </tr>
@@ -1140,7 +1140,7 @@ class Test {
             <tr>
               <td>publicMemberPattern</td>
               <td>Specify pattern for public members that should be ignored.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^serialVersionUID$"</code></td>
               <td>3.0</td>
             </tr>

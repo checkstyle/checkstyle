@@ -433,21 +433,21 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
             <tr>
               <td>standardPackageRegExp</td>
               <td>Specify RegExp for STANDARD_JAVA_PACKAGE group imports.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^(java|javax)\."</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>thirdPartyPackageRegExp</td>
               <td>Specify RegExp for THIRD_PARTY_PACKAGE group imports.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>".*"</code></td>
               <td>5.8</td>
             </tr>
             <tr>
               <td>specialImportsRegExp</td>
               <td>Specify RegExp for SPECIAL_IMPORTS group imports.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^$" (empty)</code></td>
               <td>5.8</td>
             </tr>
@@ -1071,7 +1071,7 @@ public class InputIllegalImport { }
                 that don't match the pattern will not be checked. The pattern will be matched
                 against the full absolute file path.
               </td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>".*"</code></td>
               <td>7.5</td>
             </tr>

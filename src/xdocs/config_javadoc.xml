@@ -1410,7 +1410,7 @@ public class TestClass {
               <td>
                 Specify the format for matching the end of a sentence.
               </td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"([.?!][ \t\n\r\f&lt;])|([.?!]$)"</code></td>
               <td>5.0</td>
             </tr>
@@ -1890,14 +1890,14 @@ public class Test {
             <tr>
               <td>authorFormat</td>
               <td>Specify the pattern for <code>@author</code> tag.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>versionFormat</td>
               <td>Specify the pattern for <code>@version</code> tag.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>3.0</td>
             </tr>
@@ -2113,7 +2113,7 @@ class DatabaseConfiguration {}
             <tr>
                 <td>ignoreNamePattern</td>
                 <td>Specify the regexp to define variable names to ignore.</td>
-                <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                <td><a href="property_types.html#Pattern">Pattern</a></td>
                 <td><code>null</code></td>
                 <td>5.8</td>
             </tr>
@@ -2312,7 +2312,7 @@ public boolean isSomething()
             <tr>
               <td>ignoreMethodNamesRegex</td>
               <td>ignore method whose names are matching specified regex.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.21</td>
             </tr>
@@ -3065,7 +3065,7 @@ class DatabaseConfiguration {}
             <tr>
               <td>forbiddenSummaryFragments</td>
               <td>Specify the regexp for forbidden summary fragments.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^$" (empty)</code></td>
               <td>6.0</td>
             </tr>
@@ -3235,7 +3235,7 @@ public class TestClass {
             <tr>
               <td>tagFormat</td>
               <td>Specify the regexp to match tag content.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>4.2</td>
             </tr>
