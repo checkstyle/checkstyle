@@ -30,6 +30,21 @@
     </p>
     </section>
 
+    <section name="boolean">
+      <p>
+        This type represents a boolean.
+        The following string representations will map to <code>true</code>:
+      </p>
+
+      <ul>
+        <li><code>yes</code></li>
+        <li><code>true</code></li>
+        <li><code>on</code></li>
+      </ul>
+
+      <p>Anything else will map to <code>false</code>.</p>
+    </section>
+
     <section name="byte">
       <p>
         This type represents a byte. The string representation is
@@ -68,138 +83,11 @@
       </p>
     </section>
 
-    <section name="float" >
-      <p>
-        This type represents a float. The string representation is
-        parsed using the <code>java.lang.Float</code> class.
-      </p>
-    </section>
-
-    <section name="float[]">
-      <p>
-        This type represents a set of floats. The string representation
-        is parsed as a set of comma (',') separated floats that are parsed
-        using the <code>java.lang.Float</code> class.
-      </p>
-      <p>
-        Alternatively, a property of this type can be supplied multiple times which
-        is equivalent to a set of comma separated float values.
-      </p>
-    </section>
-
-    <section name="long">
-      <p>
-        This type represents a long. The string representation is
-        parsed using the <code>java.lang.Long</code> class.
-      </p>
-    </section>
-
-    <section name="long[]">
-      <p>
-        This type represents a set of longs. The string representation
-        is parsed as a set of comma (',') separated longs that are parsed
-        using the <code>java.lang.Long</code> class.
-      </p>
-      <p>
-        Alternatively, a property of this type can be supplied multiple times which
-        is equivalent to a set of comma separated long values.
-      </p>
-    </section>
-
-    <section name="short">
-      <p>
-        This type represents a short. The string representation is
-        parsed using the <code>java.lang.Short</code> class.
-      </p>
-    </section>
-
-    <section name="short[]">
-      <p>
-        This type represents a set of shorts. The string representation
-        is parsed as a set of comma (',') separated shorts that are parsed
-        using the <code>java.lang.Short</code> class.
-      </p>
-      <p>
-        Alternatively, a property of this type can be supplied multiple times which
-        is equivalent to a set of comma separated short values.
-      </p>
-    </section>
-
-    <section name="int">
-      <p>
-        This type represents an integer. The string representation is
-        parsed using the <code>java.lang.Integer</code> class.
-      </p>
-    </section>
-
     <section name="double">
       <p>
         This type represents a double. The string representation is
         parsed using the <code>java.lang.Double</code> class.
       </p>
-    </section>
-
-    <section name="String">
-      <p>
-        This type represents a string. The literal string representation
-        is used.
-      </p>
-    </section>
-
-    <section name="boolean">
-      <p>
-        This type represents a boolean.
-        The following string representations will map to <code>true</code>:
-      </p>
-
-      <ul>
-        <li><code>yes</code></li>
-        <li><code>true</code></li>
-        <li><code>on</code></li>
-      </ul>
-
-      <p>Anything else will map to <code>false</code>.</p>
-    </section>
-
-    <section name="String[]">
-      <p>
-        This type represents a set of strings. The string representation
-        is parsed as a set of comma (',') separated strings.
-      </p>
-      <p>
-        Alternatively, a property of this type can be supplied multiple times which
-        is equivalent to a set of comma separated strings. For example, the
-        following:
-      </p>
-      <source>
-&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN,PLUS_ASSIGN&quot;/&gt;
-      </source>
-      <p>can instead be expressed as:</p>
-      <source>
-&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
-&lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
-      </source>
-    </section>
-
-    <section name="int[]">
-      <p>
-        This type represents a set of integers. The string representation
-        is parsed as a set of comma (',') separated integers that are parsed
-        using the <code>java.lang.Integer</code> class.
-      </p>
-      <p>
-        Alternatively, a property of this type can be supplied multiple times which
-        is equivalent to a set of comma separated integers. For example, the
-        following:
-      </p>
-      <source>
-&lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
-      </source>
-      <p>can instead be expressed as:</p>
-      <source>
-&lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
-&lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
-      </source>
     </section>
 
     <section name="double[]">
@@ -223,6 +111,72 @@
       </source>
     </section>
 
+    <section name="float" >
+      <p>
+        This type represents a float. The string representation is
+        parsed using the <code>java.lang.Float</code> class.
+      </p>
+    </section>
+
+    <section name="float[]">
+      <p>
+        This type represents a set of floats. The string representation
+        is parsed as a set of comma (',') separated floats that are parsed
+        using the <code>java.lang.Float</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated float values.
+      </p>
+    </section>
+
+    <section name="int">
+      <p>
+        This type represents an integer. The string representation is
+        parsed using the <code>java.lang.Integer</code> class.
+      </p>
+    </section>
+
+    <section name="int[]">
+      <p>
+        This type represents a set of integers. The string representation
+        is parsed as a set of comma (',') separated integers that are parsed
+        using the <code>java.lang.Integer</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated integers. For example, the
+        following:
+      </p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;42,666&quot;/&gt;
+      </source>
+      <p>can instead be expressed as:</p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;42&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;666&quot;/&gt;
+      </source>
+    </section>
+
+    <section name="long">
+      <p>
+        This type represents a long. The string representation is
+        parsed using the <code>java.lang.Long</code> class.
+      </p>
+    </section>
+
+    <section name="long[]">
+      <p>
+        This type represents a set of longs. The string representation
+        is parsed as a set of comma (',') separated longs that are parsed
+        using the <code>java.lang.Long</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated long values.
+      </p>
+    </section>
+
     <section name="regexp">
       <p>
         This type represents a regular expression. The string representation is parsed using
@@ -231,127 +185,34 @@
       </p>
     </section>
 
-    <section name="Uri">
+    <section name="short">
       <p>
-        This type represents a URI. The string representation is parsed using a custom
-        routine to analyze what type of URI the string is.
-        It can be a URL, regular file, or a resource path. It will try loading the path as
-        a URL first, then as a file that must exist, and then finally as a resource on the
-        classpath.
+        This type represents a short. The string representation is
+        parsed using the <code>java.lang.Short</code> class.
       </p>
     </section>
 
-    <section name="File">
+    <section name="short[]">
       <p>
-        This type represents a local file. Unlike the <a href="#Uri">uri</a> type,
-        which implies read only and not modifiable access to the resource,
-        a property of this type indicates files whose contents can be modified by Checkstyle.
+        This type represents a set of shorts. The string representation
+        is parsed as a set of comma (',') separated shorts that are parsed
+        using the <code>java.lang.Short</code> class.
+      </p>
+      <p>
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated short values.
       </p>
     </section>
 
-    <section name="LineSeparatorOption">
-      <p>
-        This type represents the policy for line returns. The
-        following table describes the valid options:
-      </p>
+    <section name="AccessModifierOption[]">
+      <p>This type represents Java access modifiers.</p>
 
-      <div class="wrapper">
-        <table summary="line separator options">
-          <tr>
-            <td>Option</td>
-            <td>Definition</td>
-          </tr>
-          <tr>
-            <td><code>crlf</code></td>
-            <td>Windows-style</td>
-          </tr>
-          <tr>
-            <td><code>cr</code></td>
-            <td>Mac-style</td>
-          </tr>
-          <tr>
-            <td><code>lf</code></td>
-            <td>Unix-style</td>
-          </tr>
-          <tr>
-            <td><code>lf_cr_crlf</code></td>
-            <td>lf, cr or crlf</td>
-          </tr>
-          <tr>
-            <td><code>system</code></td>
-            <td>system default</td>
-          </tr>
-        </table>
-      </div>
-    </section>
-
-    <section name="PadOption">
-      <p>
-        This type represents the policy for padding with white space. The
-        following table describes the valid options:
-      </p>
-
-      <div class="wrapper">
-        <table summary="padding options">
-          <tr>
-            <td>Option</td>
-            <td>Definition</td>
-          </tr>
-          <tr>
-            <td><code>nospace</code></td>
-            <td>
-              Do not pad. For example, <code>method(a, b);</code>
-            </td>
-          </tr>
-          <tr>
-            <td><code>space</code></td>
-            <td>
-              Ensure padding. For example,
-              <code>method( a, b );</code>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </section>
-
-    <section name="WrapOption">
-      <p>
-        This type represents the policy for wrapping lines.
-        The following table describes the valid options:
-      </p>
-
-      <div class="wrapper">
-        <table summary="wrap options">
-          <tr>
-            <td>Option</td>
-            <td>Definition</td>
-          </tr>
-          <tr>
-            <td><code>nl</code></td>
-            <td>
-              The token must be on a new line. For example:
-              <div class="wrapper">
-                <pre>
-    someVariable = aBigVariableNameToMakeThings + "this may work"
-                   + lookVeryInteresting;
-                </pre>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td><code>eol</code></td>
-            <td>
-              The token must be at the end of the line. For example:
-              <div class="wrapper">
-                <pre>
-    someVariable = aBigVariableNameToMakeThings + "this may work" +
-                   lookVeryInteresting;
-                </pre>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
+      <ul>
+        <li><code>public</code></li>
+        <li><code>protected</code></li>
+        <li><code>package</code></li>
+        <li><code>private</code></li>
+      </ul>
     </section>
 
     <section name="BlockOption">
@@ -392,6 +253,290 @@
               </div>
             </td>
           </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="ClosingParensOption">
+      <p>
+        This type represents the policy for the styles for the ending
+        parenthesis. The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="closingParens options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>always</code></td>
+            <td>
+              Example:
+              <div class="wrapper">
+                <pre>@Deprecated()</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>never</code></td>
+            <td>
+              Example:
+              <div class="wrapper">
+                <pre>@Deprecated</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>ignore</code></td>
+            <td>
+              Anything goes.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="ElementStyleOption">
+      <p>
+        This type represents the policy for the styles for defining
+        elements in an annotation. The following table
+        describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="elementStyle options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>expanded</code></td>
+            <td>
+              The expanded version is sometimes referred to as "named parameters"
+              in other languages.
+              Example:
+              <div class="wrapper">
+                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
+              </div>
+              Example of violation:
+              <div class="wrapper">
+                <pre>@SuppressWarnings({"unchecked","unused",})</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>compact</code></td>
+            <td>
+              This style can only be used when there is an element called 'value'
+              which is either the sole element or all other elements have default
+              values.
+              Example:
+              <div class="wrapper">
+                <pre>
+                @SuppressWarnings({"unchecked","unused",})
+                @SuppressWarnings("unchecked")
+                </pre>
+              </div>
+              Example of violation:
+              <div class="wrapper">
+                <pre>
+                @SuppressWarnings(value = {"unchecked","unused",})
+                @SuppressWarnings(value = "unchecked")
+                </pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>compact_no_array</code></td>
+            <td>
+              It is similar to the <code>compact</code> style but
+              single value arrays are flagged. With annotations a single value
+              array does not need to be placed in an array initializer.
+              Example:
+              <div class="wrapper">
+                <pre>
+              @SuppressWarnings("unchecked")
+              @MyAnnotation(someArray = "some value")
+                </pre>
+              </div>
+              Example of violation:
+              <div class="wrapper">
+                <pre>
+              @SuppressWarnings({"unchecked"})
+              @MyAnnotation(someArray = {"some value"})
+                </pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>ignore</code></td>
+            <td>
+              Anything goes.
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="File">
+      <p>
+        This type represents a local file. Unlike the <a href="#Uri">uri</a> type,
+        which implies read only and not modifiable access to the resource,
+        a property of this type indicates files whose contents can be modified by Checkstyle.
+      </p>
+    </section>
+
+    <section name="ImportOrderOption">
+      <p>
+        This type represents the policy for checking imports order.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="ImportOrderOptions">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>top</code></td>
+            <td>All static imports are at the top.
+                Groups for static import are defined by the property 'staticGroups'.
+                The blank line between groups is driven by the property 'separatedStaticGroups'.
+                For example:
+              <div class="wrapper">
+                <pre>
+    import static a.b.C.*;
+    import static x.y.Z.*;
+
+    import a.b.D;
+    import x.y.Z;</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>above</code></td>
+            <td>All static imports are above the local group. For example:
+              <div class="wrapper">
+                <pre>
+    import static a.b.C.*;
+    import a.b.D;
+
+    import static x.y.Z.*;
+    import x.y.Z;</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>inflow</code></td>
+            <td>All static imports are processed like non static
+                imports. For example:
+              <div class="wrapper">
+                <pre>
+    import static a.b.C.*;
+    import a.b.D;
+
+    import x.y.Z;
+    import static x.y.Z.*;</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>under</code></td>
+            <td>All static imports are under the local group. For example:
+              <div class="wrapper">
+                <pre>
+    import a.b.D;
+    import static a.b.C.*;
+
+    import x.y.Z;
+    import static x.y.Z.*;</pre>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>bottom</code></td>
+            <td>All static imports are at the bottom.
+                Groups for static import are defined by the property 'staticGroups'.
+                The blank line between groups is driven by the property 'separatedStaticGroups'.
+                For example:
+              <div class="wrapper">
+                <pre>
+    import a.b.D;
+    import x.y.Z;
+
+    import static a.b.C.*;
+    import static x.y.Z.*;</pre>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="JavadocContentLocationOption">
+      <p>
+        This type represents policy on placement of the Javadoc content.
+        The following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="JavadocContentLocationOption options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+
+          <tr>
+            <td><code>FIRST_LINE</code></td>
+            <td>
+              Represents the policy for Javadoc content starts from the same line
+              as <code>/**</code>.
+              Example:
+              <div class="wrapper">
+                <pre>
+            &#47;** Summary text.
+              * More details.
+              *&#47;
+            public void method();
+                </pre>
+              </div>
+              This style is also known as "scala" style.
+            </td>
+          </tr>
+
+          <tr>
+            <td><code>SECOND_LINE</code></td>
+            <td>
+              Represents the policy for Javadoc content starts from the next line
+              after <code>/**</code>.
+              Example:
+              <div class="wrapper">
+                <pre>
+              &#47;**
+              * Summary text.
+              * More details.
+              *&#47;
+              public void method();
+                </pre>
+              </div>
+              This style is common to java projects.
+            </td>
+          </tr>
+
         </table>
       </div>
     </section>
@@ -464,6 +609,86 @@
           </tr>
         </table>
       </div>
+    </section>
+
+    <section name="LineSeparatorOption">
+      <p>
+        This type represents the policy for line returns. The
+        following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="line separator options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>crlf</code></td>
+            <td>Windows-style</td>
+          </tr>
+          <tr>
+            <td><code>cr</code></td>
+            <td>Mac-style</td>
+          </tr>
+          <tr>
+            <td><code>lf</code></td>
+            <td>Unix-style</td>
+          </tr>
+          <tr>
+            <td><code>lf_cr_crlf</code></td>
+            <td>lf, cr or crlf</td>
+          </tr>
+          <tr>
+            <td><code>system</code></td>
+            <td>system default</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="PadOption">
+      <p>
+        This type represents the policy for padding with white space. The
+        following table describes the valid options:
+      </p>
+
+      <div class="wrapper">
+        <table summary="padding options">
+          <tr>
+            <td>Option</td>
+            <td>Definition</td>
+          </tr>
+          <tr>
+            <td><code>nospace</code></td>
+            <td>
+              Do not pad. For example, <code>method(a, b);</code>
+            </td>
+          </tr>
+          <tr>
+            <td><code>space</code></td>
+            <td>
+              Ensure padding. For example,
+              <code>method( a, b );</code>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section name="Pattern">
+      <p>
+        This type represents a regular expression. The string representation is parsed using
+        <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
+        java.util.regex package</a>.
+      </p>
+    </section>
+
+    <section name="Pattern[]">
+      <p>
+        This type represents a set of patterns. The string representation
+        is parsed as a set of forward slash ('/') separated patterns.
+      </p>
     </section>
 
     <section name="RcurlyOption">
@@ -618,17 +843,6 @@
       </p>
     </section>
 
-    <section name="AccessModifierOption[]">
-      <p>This type represents Java access modifiers.</p>
-
-      <ul>
-        <li><code>public</code></li>
-        <li><code>protected</code></li>
-        <li><code>package</code></li>
-        <li><code>private</code></li>
-      </ul>
-    </section>
-
     <section name="SeverityLevel">
       <p>
         This type represents the severity level of a check violation. The
@@ -643,226 +857,31 @@
       </ul>
     </section>
 
-    <section name="ImportOrderOption">
+    <section name="String">
       <p>
-        This type represents the policy for checking imports order.
-        The following table describes the valid options:
+        This type represents a string. The literal string representation
+        is used.
       </p>
-
-      <div class="wrapper">
-        <table summary="ImportOrderOptions">
-          <tr>
-            <td>Option</td>
-            <td>Definition</td>
-          </tr>
-
-          <tr>
-            <td><code>top</code></td>
-            <td>All static imports are at the top.
-                Groups for static import are defined by the property 'staticGroups'.
-                The blank line between groups is driven by the property 'separatedStaticGroups'.
-                For example:
-              <div class="wrapper">
-                <pre>
-    import static a.b.C.*;
-    import static x.y.Z.*;
-
-    import a.b.D;
-    import x.y.Z;</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>above</code></td>
-            <td>All static imports are above the local group. For example:
-              <div class="wrapper">
-                <pre>
-    import static a.b.C.*;
-    import a.b.D;
-
-    import static x.y.Z.*;
-    import x.y.Z;</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>inflow</code></td>
-            <td>All static imports are processed like non static
-                imports. For example:
-              <div class="wrapper">
-                <pre>
-    import static a.b.C.*;
-    import a.b.D;
-
-    import x.y.Z;
-    import static x.y.Z.*;</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>under</code></td>
-            <td>All static imports are under the local group. For example:
-              <div class="wrapper">
-                <pre>
-    import a.b.D;
-    import static a.b.C.*;
-
-    import x.y.Z;
-    import static x.y.Z.*;</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>bottom</code></td>
-            <td>All static imports are at the bottom.
-                Groups for static import are defined by the property 'staticGroups'.
-                The blank line between groups is driven by the property 'separatedStaticGroups'.
-                For example:
-              <div class="wrapper">
-                <pre>
-    import a.b.D;
-    import x.y.Z;
-
-    import static a.b.C.*;
-    import static x.y.Z.*;</pre>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
     </section>
 
-    <section name="ElementStyleOption">
+    <section name="String[]">
       <p>
-        This type represents the policy for the styles for defining
-        elements in an annotation. The following table
-        describes the valid options:
+        This type represents a set of strings. The string representation
+        is parsed as a set of comma (',') separated strings.
       </p>
-
-      <div class="wrapper">
-        <table summary="elementStyle options">
-          <tr>
-            <td>Option</td>
-            <td>Definition</td>
-          </tr>
-
-          <tr>
-            <td><code>expanded</code></td>
-            <td>
-              The expanded version is sometimes referred to as "named parameters"
-              in other languages.
-              Example:
-              <div class="wrapper">
-                <pre>@SuppressWarnings(value={"unchecked","unused",})</pre>
-              </div>
-              Example of violation:
-              <div class="wrapper">
-                <pre>@SuppressWarnings({"unchecked","unused",})</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>compact</code></td>
-            <td>
-              This style can only be used when there is an element called 'value'
-              which is either the sole element or all other elements have default
-              values.
-              Example:
-              <div class="wrapper">
-                <pre>
-                @SuppressWarnings({"unchecked","unused",})
-                @SuppressWarnings("unchecked")
-                </pre>
-              </div>
-              Example of violation:
-              <div class="wrapper">
-                <pre>
-                @SuppressWarnings(value = {"unchecked","unused",})
-                @SuppressWarnings(value = "unchecked")
-                </pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>compact_no_array</code></td>
-            <td>
-              It is similar to the <code>compact</code> style but
-              single value arrays are flagged. With annotations a single value
-              array does not need to be placed in an array initializer.
-              Example:
-              <div class="wrapper">
-                <pre>
-              @SuppressWarnings("unchecked")
-              @MyAnnotation(someArray = "some value")
-                </pre>
-              </div>
-              Example of violation:
-              <div class="wrapper">
-                <pre>
-              @SuppressWarnings({"unchecked"})
-              @MyAnnotation(someArray = {"some value"})
-                </pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>ignore</code></td>
-            <td>
-              Anything goes.
-            </td>
-          </tr>
-        </table>
-      </div>
-    </section>
-
-    <section name="ClosingParensOption">
       <p>
-        This type represents the policy for the styles for the ending
-        parenthesis. The following table describes the valid options:
+        Alternatively, a property of this type can be supplied multiple times which
+        is equivalent to a set of comma separated strings. For example, the
+        following:
       </p>
-
-      <div class="wrapper">
-        <table summary="closingParens options">
-          <tr>
-            <td>Option</td>
-            <td>Definition</td>
-          </tr>
-
-          <tr>
-            <td><code>always</code></td>
-            <td>
-              Example:
-              <div class="wrapper">
-                <pre>@Deprecated()</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>never</code></td>
-            <td>
-              Example:
-              <div class="wrapper">
-                <pre>@Deprecated</pre>
-              </div>
-            </td>
-          </tr>
-
-          <tr>
-            <td><code>ignore</code></td>
-            <td>
-              Anything goes.
-            </td>
-          </tr>
-        </table>
-      </div>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN,PLUS_ASSIGN&quot;/&gt;
+      </source>
+      <p>can instead be expressed as:</p>
+      <source>
+&lt;property name=&quot;tokens&quot; value=&quot;DIV_ASSIGN&quot;/&gt;
+&lt;property name=&quot;tokens&quot; value=&quot;PLUS_ASSIGN&quot;/&gt;
+      </source>
     </section>
 
     <section name="TrailingArrayCommaOption">
@@ -908,56 +927,52 @@
       </div>
     </section>
 
-    <section name="JavadocContentLocationOption">
+    <section name="Uri">
       <p>
-        This type represents policy on placement of the Javadoc content.
+        This type represents a URI. The string representation is parsed using a custom
+        routine to analyze what type of URI the string is.
+        It can be a URL, regular file, or a resource path. It will try loading the path as
+        a URL first, then as a file that must exist, and then finally as a resource on the
+        classpath.
+      </p>
+    </section>
+
+    <section name="WrapOption">
+      <p>
+        This type represents the policy for wrapping lines.
         The following table describes the valid options:
       </p>
 
       <div class="wrapper">
-        <table summary="JavadocContentLocationOption options">
+        <table summary="wrap options">
           <tr>
             <td>Option</td>
             <td>Definition</td>
           </tr>
-
           <tr>
-            <td><code>FIRST_LINE</code></td>
+            <td><code>nl</code></td>
             <td>
-              Represents the policy for Javadoc content starts from the same line
-              as <code>/**</code>.
-              Example:
+              The token must be on a new line. For example:
               <div class="wrapper">
                 <pre>
-            &#47;** Summary text.
-              * More details.
-              *&#47;
-            public void method();
+    someVariable = aBigVariableNameToMakeThings + "this may work"
+                   + lookVeryInteresting;
                 </pre>
               </div>
-              This style is also known as "scala" style.
             </td>
           </tr>
-
           <tr>
-            <td><code>SECOND_LINE</code></td>
+            <td><code>eol</code></td>
             <td>
-              Represents the policy for Javadoc content starts from the next line
-              after <code>/**</code>.
-              Example:
+              The token must be at the end of the line. For example:
               <div class="wrapper">
                 <pre>
-              &#47;**
-              * Summary text.
-              * More details.
-              *&#47;
-              public void method();
+    someVariable = aBigVariableNameToMakeThings + "this may work" +
+                   lookVeryInteresting;
                 </pre>
               </div>
-              This style is common to java projects.
             </td>
           </tr>
-
         </table>
       </div>
     </section>
