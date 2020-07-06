@@ -144,6 +144,8 @@
                    METHOD_DEF</a>
                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
                    ENUM_CONSTANT_DEF</a>
+                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                   PATTERN_VARIABLE_DEF</a>
                    .
                </td>
                <td>
@@ -163,6 +165,8 @@
                    VARIABLE_DEF</a>
                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
                    METHOD_DEF</a>
+                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                   PATTERN_VARIABLE_DEF</a>
                    .
                </td>
                <td>5.8</td>
