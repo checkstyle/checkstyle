@@ -113,7 +113,7 @@ public class InputRegressionJava14SwitchExpression {
         };
     }
 
-    int usedOnBothSidesOfAriphmeticExpression(Day day) {
+    int usedOnBothSidesOfArithmeticExpression(Day day) {
         return switch (day) {
             case MON, TUE -> 0;
             case WED -> 1;
