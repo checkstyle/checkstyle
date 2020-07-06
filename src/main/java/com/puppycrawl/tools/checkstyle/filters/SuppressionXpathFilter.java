@@ -201,16 +201,16 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </p>
  * <ul>
  * <li>
- * {@code files} - a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
+ * {@code files} - a <a href="https://checkstyle.org/property_types.html#Pattern">Pattern</a>
  * matched against the file name associated with an audit event. It is optional.
  * </li>
  * <li>
- * {@code checks} - a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
+ * {@code checks} - a <a href="https://checkstyle.org/property_types.html#Pattern">Pattern</a>
  * matched against the name of the check associated with an audit event.
  * Optional as long as {@code id} or {@code message} is specified.
  * </li>
  * <li>
- * {@code message} - a <a href="https://checkstyle.org/property_types.html#regexp">Regular Expression</a>
+ * {@code message} - a <a href="https://checkstyle.org/property_types.html#Pattern">Pattern</a>
  * matched against the message of the check associated with an audit event.
  * Optional as long as {@code checks} or {@code id} is specified.
  * </li>
