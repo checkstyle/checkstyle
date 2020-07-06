@@ -51,7 +51,7 @@
       <p>
         The <code>BeforeExecutionFileFilter</code> that we demonstrate here rejects
         file uris whose name matches a <a
-        href="property_types.html#regexp">regular expression</a>.  In order to
+        href="property_types.html#Pattern">regular expression</a>.  In order to
         enable the specification of the file name pattern as a property in a
         configuration file, the <code>BeforeExecutionFileFilter</code> is an <a
         href="apidocs/com/puppycrawl/tools/checkstyle/api/AutomaticBean.html">AutomaticBean</a>
