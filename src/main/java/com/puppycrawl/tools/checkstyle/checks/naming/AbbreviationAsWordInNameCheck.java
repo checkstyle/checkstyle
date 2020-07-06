@@ -101,7 +101,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
  * VARIABLE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
- * METHOD_DEF</a>.
+ * METHOD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+ * PATTERN_VARIABLE_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -396,6 +398,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             TokenTypes.PARAMETER_DEF,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+
         };
     }
 
@@ -411,6 +415,8 @@ public class AbbreviationAsWordInNameCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
+
         };
     }
 
