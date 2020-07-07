@@ -57,6 +57,8 @@
     <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]comments[\\/].*"/>
     <suppress id="lineLength"
+              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionJava14SwitchExpressionAst\.txt"/>
+    <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
     <suppress id="lineLength"
               files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
