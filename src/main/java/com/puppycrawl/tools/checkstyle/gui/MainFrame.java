@@ -95,12 +95,14 @@ public class MainFrame extends JFrame {
         add(splitPane, BorderLayout.CENTER);
         splitPane.setResizeWeight(0.7);
 
-        xpathTextArea = new JTextArea("Currently Not Supported", 7, 0);
+        xpathTextArea = new JTextArea("Xpath", 7, 0);
         xpathTextArea.setVisible(false);
         final JPanel xpathAreaPanel = new JPanel();
         xpathAreaPanel.setLayout(new BorderLayout());
         xpathAreaPanel.add(xpathTextArea);
         xpathAreaPanel.add(createXpathButtonsPanel(), BorderLayout.PAGE_END);
+
+        treeTable.setXpathEditor(xpathTextArea);
 
         final Border title = BorderFactory.createTitledBorder("Xpath Query");
         xpathAreaPanel.setBorder(title);
@@ -162,13 +164,13 @@ public class MainFrame extends JFrame {
         final JButton expandButton = new JButton(new ExpandCollapseAction());
         expandButton.setText("Expand/Collapse");
 
-        final JButton runButton = new JButton();
-        runButton.setText("Run");
+        final JButton findNodeButton = new JButton();
+        findNodeButton.setText("Find node by Xpath");
 
         final JPanel xpathButtonsPanel = new JPanel();
         xpathButtonsPanel.setLayout(new FlowLayout());
         xpathButtonsPanel.add(expandButton);
-        xpathButtonsPanel.add(runButton);
+        xpathButtonsPanel.add(findNodeButton);
 
         final JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
