@@ -412,6 +412,20 @@ public class HiddenFieldCheckTest
         verify(checkConfig, getPath("InputHiddenFieldReceiver.java"), expected);
     }
 
+    @Test
+    public void testHiddenFieldEnhancedInstanceof() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(HiddenFieldCheck.class);
+        checkConfig.addAttribute("tokens", "PATTERN_VARIABLE_DEF");
+
+        final String[] expected = {
+            "22:39: " + getCheckMessage(MSG_KEY, "price"),
+            "33:35: " + getCheckMessage(MSG_KEY, "hiddenStaticField"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputHiddenFieldEnhancedInstanceof.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
