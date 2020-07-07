@@ -103,6 +103,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * VARIABLE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
  * PARAMETER_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+ * PATTERN_VARIABLE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>.
  * </li>
@@ -226,6 +228,7 @@ public class HiddenFieldCheck
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.LAMBDA,
         };
     }
@@ -250,6 +253,7 @@ public class HiddenFieldCheck
         switch (type) {
             case TokenTypes.VARIABLE_DEF:
             case TokenTypes.PARAMETER_DEF:
+            case TokenTypes.PATTERN_VARIABLE_DEF:
                 processVariable(ast);
                 break;
             case TokenTypes.LAMBDA:
@@ -352,7 +356,8 @@ public class HiddenFieldCheck
         if (!ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
             && !CheckUtil.isReceiverParameter(ast)
             && (ScopeUtil.isLocalVariableDef(ast)
-                || ast.getType() == TokenTypes.PARAMETER_DEF)) {
+                || ast.getType() == TokenTypes.PARAMETER_DEF
+                || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
             // local variable or parameter. Does it shadow a field?
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
