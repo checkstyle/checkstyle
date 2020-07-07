@@ -177,14 +177,6 @@
       </p>
     </section>
 
-    <section name="regexp">
-      <p>
-        This type represents a regular expression. The string representation is parsed using
-        <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
-        java.util.regex package</a>.
-      </p>
-    </section>
-
     <section name="short">
       <p>
         This type represents a short. The string representation is
@@ -818,6 +810,14 @@
 
         </table>
       </div>
+    </section>
+
+    <section name="RegularExpression">
+      <p>
+        This type represents a regular expression. The string representation is parsed using
+        <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
+        java.util.regex package</a>.
+      </p>
     </section>
 
     <section name="Scope">

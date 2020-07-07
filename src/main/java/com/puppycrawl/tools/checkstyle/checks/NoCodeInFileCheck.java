@@ -59,6 +59,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *  block comment
  * *&#47;
  * </pre>
+ * <p>
+ * Parent - {@code TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code nocode.in.file}
+ * </li>
+ * </ul>
  *
  * @since 8.33
  */
