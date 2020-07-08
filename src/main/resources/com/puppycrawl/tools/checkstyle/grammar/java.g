@@ -117,7 +117,7 @@ tokens {
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
 
-    PATTERN_VARIABLE_DEF;
+    PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
 }
 
 {
@@ -256,6 +256,7 @@ typeDefinitionInternal[AST modifiers]
     | interfaceDefinition[#modifiers]
     | enumDefinition[#modifiers]
     | annotationDefinition[#modifiers]
+    | recordDefinition[#modifiers]
     ;
 
 // A type specification is a type name with possible brackets afterwards
@@ -544,6 +545,59 @@ annotationExpression
     :   conditionalExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
     ;
+
+// Java 14 record definition. We will not completely build this AST
+// until https://github.com/checkstyle/checkstyle/issues/8267
+recordDefinition![AST modifiers]
+    :   r:LITERAL_record id:id
+        (tp:typeParameters)?        // until #8267
+        rc:recordComponentsList
+        ic:implementsClause         // until #8267
+        rb:recordBodyDeclaration    // until #8267
+        {#recordDefinition = #(#[RECORD_DEF, "RECORD_DEF"],
+                              modifiers, r, id, rc);}
+    ;
+
+// Build no AST for other record rules until
+// https://github.com/checkstyle/checkstyle/issues/8267
+recordComponentsList!
+    :   LPAREN recordComponents RPAREN
+    ;
+
+recordComponents!
+    // Taken from parameterDeclarationList
+    :   (   ( recordComponent )=> recordComponent
+            ( options {warnWhenFollowAmbig=false;} :
+                ( COMMA recordComponent ) => COMMA recordComponent )*
+            ( COMMA recordComponentVariableLength )?
+        |
+            recordComponentVariableLength
+        )?
+    ;
+
+recordComponentVariableLength!
+    :   parameterModifier t:variableLengthParameterTypeSpec ELLIPSIS id
+        declaratorBrackets[#t]
+    ;
+
+recordComponent!
+    :   annotations typeSpec[false] id
+    ;
+
+recordBodyDeclaration!
+    :   LCURLY
+        (   (compactConstructorDeclaration)=> compactConstructorDeclaration
+        |   field
+        |   SEMI
+        )*
+        RCURLY
+    ;
+
+compactConstructorDeclaration!
+    :    annotations modifiers id
+            constructorBody
+    ;
+
 
 // Definition of a Java class
 classDefinition![AST modifiers]
@@ -1060,6 +1114,9 @@ traditionalStatement
         // predicate to test symbol table to see what the type was coming
         // up, but that's pretty hard without a symbol table ;)
         |    (declaration)=> declaration SEMI
+
+        // record declaration, note that you cannot have modifiers in this case
+        |   recordDefinition[#null]
 
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
@@ -1668,7 +1725,9 @@ lambdaBody
 
 // This rule was created to remedy the "keyword as identifier" problem
 // See: https://github.com/checkstyle/checkstyle/issues/8308
-id: IDENT;
+id: IDENT | recordKey ;
+
+recordKey: "record" {#recordKey.setType(IDENT);};
 
 //----------------------------------------------------------------------------
 // The Java scanner
