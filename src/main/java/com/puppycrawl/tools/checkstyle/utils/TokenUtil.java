@@ -269,4 +269,19 @@ public final class TokenUtil {
         return ast1.getLineNo() == ast2.getLineNo();
     }
 
+    /**
+     * Is type declaration token type (CLASS_DEF, INTERFACE_DEF,
+     * ANNOTATION_DEF, ENUM_DEF, RECORD_DEF).
+     *
+     * @param type
+     *        token type.
+     * @return true if type is type declaration token type.
+     */
+    public static boolean isTypeDeclaration(int type) {
+        return type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.ENUM_DEF
+                || type == TokenTypes.RECORD_DEF;
+    }
 }
