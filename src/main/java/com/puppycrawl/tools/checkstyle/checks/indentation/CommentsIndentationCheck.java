@@ -429,11 +429,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
      * @return true if the statement is a kind of definition.
      */
     private static boolean isDefinition(DetailAST previousSibling) {
-        return previousSibling.getType() == TokenTypes.METHOD_DEF
-            || previousSibling.getType() == TokenTypes.CLASS_DEF
-            || previousSibling.getType() == TokenTypes.INTERFACE_DEF
-            || previousSibling.getType() == TokenTypes.ENUM_DEF
-            || previousSibling.getType() == TokenTypes.ANNOTATION_DEF;
+        return TokenUtil.isTypeDeclaration(previousSibling.getType())
+            || previousSibling.getType() == TokenTypes.METHOD_DEF;
     }
 
     /**
