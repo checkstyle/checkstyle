@@ -88,6 +88,18 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInnerTypeBeforeCtor() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(InnerTypeLastCheck.class);
+        final String[] expected = {
+            "8:5: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "26:5: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputInnerTypeLastClassCtorsInitBlocks.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final InnerTypeLastCheck obj = new InnerTypeLastCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
