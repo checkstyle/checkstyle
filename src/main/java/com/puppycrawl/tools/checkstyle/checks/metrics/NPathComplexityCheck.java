@@ -109,6 +109,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum threshold allowed.
+ * Type is {@code int}.
  * Default value is {@code 200}.
  * </li>
  * </ul>
@@ -215,6 +216,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public abstract void print(String str);
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code npathComplexity}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */

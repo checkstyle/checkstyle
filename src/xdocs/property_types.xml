@@ -177,14 +177,6 @@
       </p>
     </section>
 
-    <section name="regexp">
-      <p>
-        This type represents a regular expression. The string representation is parsed using
-        <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
-        java.util.regex package</a>.
-      </p>
-    </section>
-
     <section name="short">
       <p>
         This type represents a short. The string representation is
@@ -541,7 +533,7 @@
       </div>
     </section>
 
-    <section name="LcurlyOption">
+    <section name="LeftCurlyOption">
       <p>
         This type represents the policy for checking the placement of a
         left curly brace (<code>'{'</code>). The following table
@@ -679,7 +671,7 @@
     <section name="Pattern">
       <p>
         This type represents a regular expression. The string representation is parsed using
-        <a href="https://docs.oracle.com/javase/7/docs/api/index.html?java/util/regex/package-summary.html">
+        <a href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/regex/package-summary.html">
         java.util.regex package</a>.
       </p>
     </section>
@@ -691,7 +683,15 @@
       </p>
     </section>
 
-    <section name="RcurlyOption">
+    <section name="RegularExpression">
+      <p>
+        This type represents a regular expression. The string representation is parsed using
+        <a href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/regex/package-summary.html">
+        java.util.regex package</a>.
+      </p>
+    </section>
+
+    <section name="RightCurlyOption">
       <p>
         This type represents the policy for checking the placement of a
         right curly brace (<code>'}'</code>) in blocks but not blocks of expressions.
