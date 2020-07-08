@@ -118,6 +118,7 @@ tokens {
     SIGNED_INTEGER; BINARY_EXPONENT;
 
     PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
+    RECORD_COMPONENTS; RECORD_COMPONENT; COMPACT_CTOR_DEF;
 }
 
 {
@@ -546,25 +547,21 @@ annotationExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
     ;
 
-// Java 14 record definition. We will not completely build this AST
-// until https://github.com/checkstyle/checkstyle/issues/8267
 recordDefinition![AST modifiers]
     :   r:LITERAL_record id:id
-        (tp:typeParameters)?        // until #8267
+        (tp:typeParameters)?
         rc:recordComponentsList
-        ic:implementsClause         // until #8267
-        rb:recordBodyDeclaration    // until #8267
+        ic:implementsClause
+        rb:recordBodyDeclaration
         {#recordDefinition = #(#[RECORD_DEF, "RECORD_DEF"],
-                              modifiers, r, id, rc);}
+                              modifiers, r, id, tp, ic, rc, rb);}
     ;
 
-// Build no AST for other record rules until
-// https://github.com/checkstyle/checkstyle/issues/8267
-recordComponentsList!
+recordComponentsList
     :   LPAREN recordComponents RPAREN
     ;
 
-recordComponents!
+recordComponents
     // Taken from parameterDeclarationList
     :   (   ( recordComponent )=> recordComponent
             ( options {warnWhenFollowAmbig=false;} :
@@ -573,31 +570,37 @@ recordComponents!
         |
             recordComponentVariableLength
         )?
+        {## = #(#[RECORD_COMPONENTS,"RECORD_COMPONENTS"], ##);}
     ;
 
 recordComponentVariableLength!
-    :   parameterModifier t:variableLengthParameterTypeSpec ELLIPSIS id
-        declaratorBrackets[#t]
+    :   a:annotations t:variableLengthParameterTypeSpec e:ELLIPSIS i:id
+        d:declaratorBrackets[#t]
+        {## = #(#[RECORD_COMPONENT,"RECORD_COMPONENT"], a,
+             #([TYPE,"TYPE"],d), e, i);}
     ;
 
 recordComponent!
-    :   annotations typeSpec[false] id
+    :   a:annotations t:typeSpec[false] i:id
+        d:declaratorBrackets[#t]
+        {## = #(#[RECORD_COMPONENT,"RECORD_COMPONENT"], a,
+            #([TYPE,"TYPE"],d), i);}
     ;
 
-recordBodyDeclaration!
+recordBodyDeclaration
     :   LCURLY
         (   (compactConstructorDeclaration)=> compactConstructorDeclaration
         |   field
         |   SEMI
         )*
         RCURLY
+        {## = #([OBJBLOCK, "OBJBLOCK"], ##);}
     ;
 
 compactConstructorDeclaration!
-    :    annotations modifiers id
-            constructorBody
+    :    annotations m:modifiers i:id c:constructorBody
+         {## = #(#[COMPACT_CTOR_DEF,"COMPACT_CTOR_DEF"], m, i, c);}
     ;
-
 
 // Definition of a Java class
 classDefinition![AST modifiers]
