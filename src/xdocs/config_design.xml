@@ -441,7 +441,8 @@ class UtilityClass { // violation, class only has a static field
       <subsection name="Description" id="InnerTypeLast_Description">
         <p>
           Checks nested (internal) classes/interfaces are declared at the bottom of the
-          primary (top-level) class after all method and field declarations.
+          primary (top-level) class after all init and static init blocks,
+          method, constructor and field declarations.
         </p>
       </subsection>
 
@@ -461,6 +462,12 @@ class Test {
 }
 
 class Test2 {
+    static {}; // OK
+    class InnerTest1 {}
+    public Test2() {} // violation, constructor should be declared before inner types.
+}
+
+class Test3 {
     private String s; // OK
     public void test() {} // OK
     class InnerTest1 {}
