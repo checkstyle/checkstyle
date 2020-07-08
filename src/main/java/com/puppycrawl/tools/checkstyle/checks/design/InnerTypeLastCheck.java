@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import java.util.Arrays;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -28,7 +31,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 /**
  * <p>
  * Checks nested (internal) classes/interfaces are declared at the bottom of the
- * primary (top-level) class after all method and field declarations.
+ * primary (top-level) class after all init and static init blocks,
+ * method, constructor and field declarations.
  * </p>
  * <p>
  * To configure the check:
@@ -45,6 +49,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * }
  *
  * class Test2 {
+ *     static {}; // OK
+ *     class InnerTest1 {}
+ *     public Test2() {} // violation, constructor should be declared before inner types.
+ * }
+ *
+ * class Test3 {
  *     private String s; // OK
  *     public void test() {} // OK
  *     class InnerTest1 {}
@@ -61,6 +71,15 @@ public class InnerTypeLastCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "arrangement.members.before.inner";
+
+    /** List of class member tokens. */
+    private static final List<Integer> CLASS_MEMBER_TOKENS = Arrays.asList(
+            TokenTypes.VARIABLE_DEF,
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT
+    );
 
     /** Meet a root class. */
     private boolean rootClass = true;
@@ -95,8 +114,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
             DetailAST nextSibling = ast.getNextSibling();
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
-                    && (nextSibling.getType() == TokenTypes.VARIABLE_DEF
-                        || nextSibling.getType() == TokenTypes.METHOD_DEF)) {
+                    && CLASS_MEMBER_TOKENS.contains(nextSibling.getType())) {
                     log(nextSibling, MSG_KEY);
                 }
                 nextSibling = nextSibling.getNextSibling();
