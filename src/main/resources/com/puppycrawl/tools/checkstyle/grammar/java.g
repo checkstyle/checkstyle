@@ -117,7 +117,8 @@ tokens {
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
 
-    PATTERN_VARIABLE_DEF;
+    PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
+    RECORD_COMPONENTS; RECORD_COMPONENT; COMPACT_CTOR_DEF;
 }
 
 {
@@ -256,6 +257,7 @@ typeDefinitionInternal[AST modifiers]
     | interfaceDefinition[#modifiers]
     | enumDefinition[#modifiers]
     | annotationDefinition[#modifiers]
+    | recordDefinition[#modifiers]
     ;
 
 // A type specification is a type name with possible brackets afterwards
@@ -543,6 +545,61 @@ annotationMemberArrayValueInitializer
 annotationExpression
     :   conditionalExpression
         {#annotationExpression = #(#[EXPR,"EXPR"],#annotationExpression);}
+    ;
+
+recordDefinition![AST modifiers]
+    :   r:LITERAL_record id:id
+        (tp:typeParameters)?
+        rc:recordComponentsList
+        ic:implementsClause
+        rb:recordBodyDeclaration
+        {#recordDefinition = #(#[RECORD_DEF, "RECORD_DEF"],
+                              modifiers, r, id, tp, ic, rc, rb);}
+    ;
+
+recordComponentsList
+    :   LPAREN recordComponents RPAREN
+    ;
+
+recordComponents
+    // Taken from parameterDeclarationList
+    :   (   ( recordComponent )=> recordComponent
+            ( options {warnWhenFollowAmbig=false;} :
+                ( COMMA recordComponent ) => COMMA recordComponent )*
+            ( COMMA recordComponentVariableLength )?
+        |
+            recordComponentVariableLength
+        )?
+        {## = #(#[RECORD_COMPONENTS,"RECORD_COMPONENTS"], ##);}
+    ;
+
+recordComponentVariableLength!
+    :   a:annotations t:variableLengthParameterTypeSpec e:ELLIPSIS i:id
+        d:declaratorBrackets[#t]
+        {## = #(#[RECORD_COMPONENT,"RECORD_COMPONENT"], a,
+             #([TYPE,"TYPE"],d), e, i);}
+    ;
+
+recordComponent!
+    :   a:annotations t:typeSpec[false] i:id
+        d:declaratorBrackets[#t]
+        {## = #(#[RECORD_COMPONENT,"RECORD_COMPONENT"], a,
+            #([TYPE,"TYPE"],d), i);}
+    ;
+
+recordBodyDeclaration
+    :   LCURLY
+        (   (compactConstructorDeclaration)=> compactConstructorDeclaration
+        |   field
+        |   SEMI
+        )*
+        RCURLY
+        {## = #([OBJBLOCK, "OBJBLOCK"], ##);}
+    ;
+
+compactConstructorDeclaration!
+    :    annotations m:modifiers i:id c:constructorBody
+         {## = #(#[COMPACT_CTOR_DEF,"COMPACT_CTOR_DEF"], m, i, c);}
     ;
 
 // Definition of a Java class
@@ -1060,6 +1117,9 @@ traditionalStatement
         // predicate to test symbol table to see what the type was coming
         // up, but that's pretty hard without a symbol table ;)
         |    (declaration)=> declaration SEMI
+
+        // record declaration, note that you cannot have modifiers in this case
+        |   recordDefinition[#null]
 
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
@@ -1668,7 +1728,9 @@ lambdaBody
 
 // This rule was created to remedy the "keyword as identifier" problem
 // See: https://github.com/checkstyle/checkstyle/issues/8308
-id: IDENT;
+id: IDENT | recordKey ;
+
+recordKey: "record" {#recordKey.setType(IDENT);};
 
 //----------------------------------------------------------------------------
 // The Java scanner
