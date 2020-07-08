@@ -41,8 +41,19 @@ public class SuperFinalizeCheckTest
         final String[] expected = {
             "27:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
             "34:17: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+            "76:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
         };
         verify(checkConfig, getPath("InputSuperFinalizeVariations.java"), expected);
+    }
+
+    @Test
+    public void testMethodReference() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(SuperFinalizeCheck.class);
+        final String[] expected = {
+            "17:20: " + getCheckMessage(MSG_KEY, "finalize", "super.finalize"),
+        };
+        verify(checkConfig, getPath("InputSuperFinalizeMethodReference.java"), expected);
     }
 
 }
