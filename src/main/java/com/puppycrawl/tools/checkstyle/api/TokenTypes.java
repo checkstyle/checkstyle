@@ -3568,6 +3568,150 @@ public final class TokenTypes {
     public static final int PATTERN_VARIABLE_DEF =
             GeneratedJavaTokenTypes.PATTERN_VARIABLE_DEF;
 
+    /**
+     * The {@code record} keyword.  This element appears
+     * as part of a record declaration.
+     **/
+    public static final int LITERAL_RECORD =
+            GeneratedJavaTokenTypes.LITERAL_record;
+
+    /**
+     * A declaration of a record specifies a name, a header, and a body.
+     * The header lists the components of the record, which are the variables
+     * that make up its state.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord () {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF
+     * |--MODIFIERS
+     * |   `--LITERAL_PUBLIC (public)
+     * |--LITERAL_RECORD (record)
+     * |--IDENT (myRecord)
+     * |--LPAREN (()
+     * |--RECORD_COMPONENTS
+     * |--RPAREN ())
+     * `--OBJBLOCK
+     *     |--LCURLY ({)
+     *      `--RCURLY (})
+     * </pre>
+     */
+    public static final int RECORD_DEF =
+            GeneratedJavaTokenTypes.RECORD_DEF;
+
+    /**
+     * Record components are a (possibly empty) list containing the components of a record, which
+     * are the variables that make up its state.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord (Comp x, Comp y) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF
+     * |--MODIFIERS
+     * |   `--LITERAL_PUBLIC (public)
+     * |--LITERAL_RECORD (record)
+     * |--IDENT (myRecord)
+     * |--LPAREN (()
+     * |--RECORD_COMPONENTS
+     * |   |--RECORD_COMPONENT_DEF
+     * |   |   |--ANNOTATIONS
+     * |   |   |--TYPE
+     * |   |   |   `--IDENT (Comp)
+     * |   |   `--IDENT (x)
+     * |   |--COMMA (,)
+     * |   `--RECORD_COMPONENT_DEF
+     * |       |--ANNOTATIONS
+     * |       |--TYPE
+     * |       |   `--IDENT (Comp)
+     * |       `--IDENT (y)
+     * |--RPAREN ())
+     * `--OBJBLOCK
+     *      |--LCURLY ({)
+     *       `--RCURLY (})
+     * </pre>
+     */
+    public static final int RECORD_COMPONENTS =
+            GeneratedJavaTokenTypes.RECORD_COMPONENTS;
+
+    /**
+     * A record component is a variable that comprises the state of a record.  Record components
+     * have annotations (possibly), a type definition, and an identifier.  They can also be of
+     * variable arity ('...').
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord (Comp x, Comp... comps) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF
+     * |--MODIFIERS
+     * |   `--LITERAL_PUBLIC (public)
+     * |--LITERAL_RECORD (record)
+     * |--IDENT (myRecord)
+     * |--LPAREN (()
+     * |--RECORD_COMPONENTS
+     * |   |--RECORD_COMPONENT_DEF
+     * |   |   |--ANNOTATIONS
+     * |   |   |--TYPE
+     * |   |   |   `--IDENT (Comp)
+     * |   |   `--IDENT (x)
+     * |   |--COMMA (,)
+     * |   `--RECORD_COMPONENT_DEF
+     * |       |--ANNOTATIONS
+     * |       |--TYPE
+     * |       |   `--IDENT (Comp)
+     * |       |--ELLIPSIS (...)
+     * |       `--IDENT (comps)
+     * |--RPAREN ())
+     * `--OBJBLOCK
+     *      |--LCURLY ({)
+     *       `--RCURLY (})
+     * </pre>
+     */
+    public static final int RECORD_COMPONENT_DEF =
+            GeneratedJavaTokenTypes.RECORD_COMPONENT_DEF;
+
+    /**
+     * A compact canonical constructor eliminates the list of formal parameters; they are
+     * declared implicitly.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord () {
+     *     public myRecord{}
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF
+     * |--MODIFIERS
+     * |   `--LITERAL_PUBLIC (public)
+     * |--LITERAL_RECORD (record)
+     * |--IDENT (myRecord)
+     * |--LPAREN (()
+     * |--RECORD_COMPONENTS
+     * |--RPAREN ())
+     * `--OBJBLOCK
+     *     |--LCURLY ({)
+     *     |--COMPACT_CTOR_DEF
+     *     |   |--MODIFIERS
+     *     |   |   `--LITERAL_PUBLIC (public)
+     *     |   |--IDENT (myRecord)
+     *     |   `--SLIST ({)
+     *     |       `--RCURLY (})
+     *     `--RCURLY (})
+     * </pre>
+     */
+    public static final int COMPACT_CTOR_DEF =
+            GeneratedJavaTokenTypes.COMPACT_CTOR_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
