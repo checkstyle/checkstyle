@@ -968,7 +968,7 @@ allowedFuture.addCallback(result -> {
             <tr>
               <td>option</td>
               <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
-              <td><a href="property_types.html#RcurlyOption">RightCurlyOption</a></td>
+              <td><a href="property_types.html#RightCurlyOption">RightCurlyOption</a></td>
               <td><code>same</code></td>
               <td>3.0</td>
             </tr>
