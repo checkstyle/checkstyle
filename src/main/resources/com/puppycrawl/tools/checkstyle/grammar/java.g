@@ -570,8 +570,7 @@ recordComponents
         |
             recordComponentVariableLength
         )?
-        {## = #(#[RECORD_COMPONENTS,"RECORD_COMPONENTS"],
-                                    #recordComponents);}
+        {## = #(#[RECORD_COMPONENTS,"RECORD_COMPONENTS"], ##);}
     ;
 
 recordComponentVariableLength!
@@ -595,7 +594,7 @@ recordBodyDeclaration
         |   SEMI
         )*
         RCURLY
-        {## = #([OBJBLOCK, "OBJBLOCK"], #recordBodyDeclaration);}
+        {## = #([OBJBLOCK, "OBJBLOCK"], ##);}
     ;
 
 compactConstructorDeclaration!
