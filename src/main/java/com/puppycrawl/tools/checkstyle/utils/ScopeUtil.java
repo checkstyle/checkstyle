@@ -70,10 +70,7 @@ public final class ScopeUtil {
              token != null;
              token = token.getParent()) {
             final int type = token.getType();
-            if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.ENUM_DEF) {
+            if (TokenUtil.isTypeDeclaration(type)) {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = getScopeFromMods(mods);
@@ -139,11 +136,7 @@ public final class ScopeUtil {
             if (type == tokenType) {
                 returnValue = true;
             }
-            else if (type == TokenTypes.CLASS_DEF
-                || type == TokenTypes.ENUM_DEF
-                || type == TokenTypes.INTERFACE_DEF
-                || type == TokenTypes.ANNOTATION_DEF
-                || type == TokenTypes.LITERAL_NEW) {
+            else if (type == TokenTypes.LITERAL_NEW || TokenUtil.isTypeDeclaration(type)) {
                 break;
             }
         }
