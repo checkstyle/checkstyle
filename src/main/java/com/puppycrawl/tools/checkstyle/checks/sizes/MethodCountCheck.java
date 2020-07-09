@@ -75,26 +75,33 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>
  * Property {@code maxTotal} - Specify the maximum number of methods allowed at all scope levels.
+ * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
  * <li>
  * Property {@code maxPrivate} - Specify the maximum number of {@code private} methods allowed.
+ * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
  * <li>
  * Property {@code maxPackage} - Specify the maximum number of {@code package} methods allowed.
+ * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
  * <li>
  * Property {@code maxProtected} - Specify the maximum number of {@code protected} methods allowed.
+ * Type is {@code int}.
  * Default value is 100.
  * </li>
  * <li>
  * Property {@code maxPublic} - Specify the maximum number of {@code public} methods allowed.
+ * Type is {@code int}.
  * Default value is {@code 100}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
@@ -131,6 +138,29 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="maxTotal" value="40"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code too.many.methods}
+ * </li>
+ * <li>
+ * {@code too.many.packageMethods}
+ * </li>
+ * <li>
+ * {@code too.many.privateMethods}
+ * </li>
+ * <li>
+ * {@code too.many.protectedMethods}
+ * </li>
+ * <li>
+ * {@code too.many.publicMethods}
+ * </li>
+ * </ul>
  *
  * @since 5.3
  */

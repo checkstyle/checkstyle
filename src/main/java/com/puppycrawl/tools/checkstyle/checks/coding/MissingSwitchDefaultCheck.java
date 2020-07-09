@@ -63,6 +63,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    break;
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code missing.switch.default}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */

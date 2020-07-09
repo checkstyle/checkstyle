@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum number of outer types allowed.
+ * Type is {@code int}.
  * Default value is {@code 1}.
  * </li>
  * </ul>
@@ -51,6 +52,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="max" value="2"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code maxOuterTypes}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
