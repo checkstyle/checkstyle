@@ -42,8 +42,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers. Default value is
- * {@code "^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"}.
+ * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"}.
  * </li>
  * </ul>
  * <p>
@@ -85,6 +86,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' must match
  *                                  // pattern '^[a-z]+(\.[a-z][a-z0-9]*)*$'
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

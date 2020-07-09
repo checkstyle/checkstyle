@@ -43,37 +43,45 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code limitedTokens} - Specify set of tokens with limited occurrences as descendants.
+ * Type is {@code int[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code minimumDepth} - Specify the minimum depth for descendant counts.
+ * Type is {@code int}.
  * Default value is {@code 0}.
  * </li>
  * <li>
  * Property {@code maximumDepth} - Specify the maximum depth for descendant counts.
+ * Type is {@code int}.
  * Default value is {@code java.lang.Integer.MAX_VALUE}.
  * </li>
  * <li>
  * Property {@code minimumNumber} - Specify a minimum count for descendants.
+ * Type is {@code int}.
  * Default value is {@code 0}.
  * </li>
  * <li>
  * Property {@code maximumNumber} - Specify a maximum count for descendants.
+ * Type is {@code int}.
  * Default value is {@code java.lang.Integer.MAX_VALUE}.
  * </li>
  * <li>
  * Property {@code sumTokenCounts} - Control whether the number of tokens found
  * should be calculated from the sum of the individual token counts.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code minimumMessage} - Define the violation message
  * when the minimum count is not reached.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code maximumMessage} - Define the violation message
  * when the maximum count is exceeded.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * </ul>
@@ -267,6 +275,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;maximumNumber&quot; value=&quot;10&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code descendant.token.max}
+ * </li>
+ * <li>
+ * {@code descendant.token.min}
+ * </li>
+ * <li>
+ * {@code descendant.token.sum.max}
+ * </li>
+ * <li>
+ * {@code descendant.token.sum.min}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */

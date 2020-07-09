@@ -35,14 +35,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code allowSingleLineStatement} - allow single-line statements without braces.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowEmptyLoopBody} - allow loops with empty bodies.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_DO">
  * LITERAL_DO</a>,
@@ -145,6 +148,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   }, // OK
  *   ex -&gt; fail(ex.getMessage()));
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code needBraces}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
