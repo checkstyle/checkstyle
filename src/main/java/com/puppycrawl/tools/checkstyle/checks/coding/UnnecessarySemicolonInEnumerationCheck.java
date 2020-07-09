@@ -71,6 +71,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     A, B // only enum constants, no semicolon required
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code unnecessary.semicolon}
+ * </li>
+ * </ul>
  *
  * @since 8.22
  */

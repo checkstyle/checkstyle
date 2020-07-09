@@ -56,6 +56,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   public abstract void test() {}
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code missing.ctor}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */

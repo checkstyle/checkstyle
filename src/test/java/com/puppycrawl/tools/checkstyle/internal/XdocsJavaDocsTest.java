@@ -120,7 +120,37 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "LineLength",
                 "OuterTypeNumber",
                 "FileLength",
-                "MethodCount"
+                "MethodCount",
+//                "ExecutableStatementCount",
+//                "MethodLength",
+//                "RegexpHeader",
+//                "Header",
+//                "ExplicitInitialization",
+//                "InnerAssignment",
+//                "UnnecessarySemicolonAfterTypeMemberDeclaration",
+//                "UnnecessarySemicolonInTryWithResources",
+//                "FinalLocalVariable",
+//                "MissingSwitchDefault"
+//                "UnnecessaryParentheses",
+//                "MultipleStringLiterals",
+//                "MultipleVariableDeclarations",
+//                "AvoidDoubleBraceInitialization",
+//                "ReturnCount",
+//                "CovariantEquals",
+//                "EqualsAvoidNull",
+//                "HiddenField",
+//                "NoClone",
+//                "IllegalInstantiation"
+                "MagicNumber",
+                "MissingCtor",
+                "ParameterAssignment",
+                "DefaultComesLast",
+                "NestedTryDepth",
+                "SimplifyBooleanExpression",
+                "RequireThis",
+                "UnnecessarySemicolonInEnumeration",
+                "AvoidInlineConditionals",
+                "OverloadMethodsDeclarationOrder"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =

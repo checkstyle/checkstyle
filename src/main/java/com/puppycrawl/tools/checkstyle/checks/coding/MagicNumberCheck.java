@@ -53,28 +53,34 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code ignoreNumbers} - Specify non-magic numbers.
+ * Type is {@code double[]}.
  * Default value is {@code -1, 0, 1, 2}.
  * </li>
  * <li>
  * Property {@code ignoreHashCodeMethod} - Ignore magic numbers in hashCode methods.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreAnnotation} - Ignore magic numbers in annotation declarations.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreFieldDeclaration} - Ignore magic numbers in field declarations.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreAnnotationElementDefaults} -
  * Ignore magic numbers in annotation elements defaults.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code constantWaiverParentToken} - Specify tokens that are allowed in the AST path
  * from the number literal to the enclosing constant definition.
+ * Type is {@code int[]}.
  * Default value is
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TYPECAST">
  * TYPECAST</a>,
@@ -105,6 +111,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NUM_DOUBLE">
  * NUM_DOUBLE</a>,
@@ -234,6 +241,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code magic.number}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */
