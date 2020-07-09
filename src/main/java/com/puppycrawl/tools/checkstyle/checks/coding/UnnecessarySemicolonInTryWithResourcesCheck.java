@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code allowWhenNoBraceAfterSemicolon} -
  * Allow unnecessary semicolon if closing paren is not on the same line.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -80,6 +81,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code unnecessary.semicolon}
+ * </li>
+ * </ul>
  *
  * @since 8.22
  */

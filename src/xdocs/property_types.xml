@@ -380,7 +380,7 @@
 
     <section name="File">
       <p>
-        This type represents a local file. Unlike the <a href="#Uri">uri</a> type,
+        This type represents a local file. Unlike the <a href="#URI">uri</a> type,
         which implies read only and not modifiable access to the resource,
         a property of this type indicates files whose contents can be modified by Checkstyle.
       </p>
@@ -927,7 +927,7 @@
       </div>
     </section>
 
-    <section name="Uri">
+    <section name="URI">
       <p>
         This type represents a URI. The string representation is parsed using a custom
         routine to analyze what type of URI the string is.
