@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code excludedClasses} - Specify pattern for qualified names of
  * classes which are allowed to have a {@code main} method.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$" (empty)}.
  * </li>
  * </ul>
@@ -96,6 +97,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *    public void main(){}                       // OK
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code uncommented.main}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
