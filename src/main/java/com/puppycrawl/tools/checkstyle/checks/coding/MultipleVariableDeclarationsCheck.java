@@ -43,6 +43,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="MultipleVariableDeclarations"/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code multiple.variable.declarations}
+ * </li>
+ * <li>
+ * {@code multiple.variable.declarations.comma}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */
