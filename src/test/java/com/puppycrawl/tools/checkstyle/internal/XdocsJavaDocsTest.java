@@ -108,10 +108,19 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "LeftCurly",
                 "NeedBraces",
                 "EmptyBlock",
-                "RightCurly",
                 "DescendantToken",
                 "UniqueProperties",
-                "UncommentedMain"
+                "UncommentedMain",
+                "Translation",
+                "NewlineAtEndOfFile",
+                "FinalParameters",
+                "TodoComment",
+                "AnonInnerLength",
+                "ParameterNumber",
+                "LineLength",
+                "OuterTypeNumber",
+                "FileLength",
+                "MethodCount"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
