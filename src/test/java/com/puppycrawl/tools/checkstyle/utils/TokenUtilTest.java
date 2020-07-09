@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -275,6 +276,22 @@ public class TokenUtilTest {
 
         assertEquals(1, children.size(), "Must be one match");
         assertEquals(secondSibling, firstChild, "Mismatched child node");
+    }
+
+    @Test
+    public void testIsTypeDeclaration() {
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.INTERFACE_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.ANNOTATION_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.ENUM_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.RECORD_DEF),
+                "Should return true when valid type passed");
+        assertFalse(TokenUtil.isTypeDeclaration(TokenTypes.BLOCK_COMMENT_BEGIN),
+                "Should return true when valid type passed");
     }
 
 }
