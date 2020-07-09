@@ -50,6 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code treatTryResourcesAsStatement} - Enable resources processing.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -107,6 +108,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * try (Reader r = new PipedReader(); s2; Reader s3 = new PipedReader() // violation
  * ) {}
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code multiple.statements.line}
+ * </li>
+ * </ul>
  *
  * @since 5.3
  */

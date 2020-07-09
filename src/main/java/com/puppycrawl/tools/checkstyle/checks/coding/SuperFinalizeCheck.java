@@ -39,6 +39,17 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
  * <pre>
  * &lt;module name=&quot;SuperFinalize&quot;/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code missing.super.call}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
