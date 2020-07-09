@@ -44,16 +44,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code allowedDuplicates} - Specify the maximum number of occurrences
  * to allow without generating a warning.
+ * Type is {@code int}.
  * Default value is {@code 1}.
  * </li>
  * <li>
  * Property {@code ignoreStringsRegexp} - Specify RegExp for ignored strings (with quotation marks).
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^""$"}.
  * </li>
  * <li>
  * Property {@code ignoreOccurrenceContext} - Specify token type names where duplicate
  * strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  * exclude syntactical contexts like annotations or static initializers from the check.
+ * Type is {@code int[]}.
  * Default value is {@code ANNOTATION}.
  * </li>
  * </ul>
@@ -89,6 +92,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreOccurrenceContext&quot; value=&quot;&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code multiple.string.literal}
+ * </li>
+ * </ul>
  *
  * @since 3.5
  */

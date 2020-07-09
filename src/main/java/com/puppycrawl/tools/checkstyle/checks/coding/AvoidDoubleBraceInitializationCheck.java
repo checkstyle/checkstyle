@@ -90,6 +90,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     };
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code avoid.double.brace.init}
+ * </li>
+ * </ul>
  *
  * @since 8.30
  */
