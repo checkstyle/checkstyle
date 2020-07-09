@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code matchDirectoryStructure} - Control whether to check for
  * directory and package name match.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -82,6 +83,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   //...
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code mismatch.package.directory}
+ * </li>
+ * <li>
+ * {@code missing.package.declaration}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
