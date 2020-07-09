@@ -62,30 +62,42 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code allowedAbbreviationLength} - Indicate the number of consecutive capital
  * letters allowed in targeted identifiers (abbreviations in the classes, interfaces, variables
- * and methods names, ... ). Default value is {@code 3}.
+ * and methods names, ... ).
+ * Type is {@code int}.
+ * Default value is {@code 3}.
  * </li>
  * <li>
  * Property {@code allowedAbbreviations} - Specify list of abbreviations that must be skipped for
- * checking. Abbreviations should be separated by comma. Default value is {@code {}}.
+ * checking. Abbreviations should be separated by comma.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code {}}.
  * </li>
  * <li>
- * Property {@code ignoreFinal} - Allow to skip variables with {@code final} modifier. Default
- * value is {@code true}.
+ * Property {@code ignoreFinal} - Allow to skip variables with {@code final} modifier.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code ignoreStatic} - Allow to skip variables with {@code static} modifier. Default
- * value is {@code true}.
+ * Property {@code ignoreStatic} - Allow to skip variables with {@code static} modifier.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoreStaticFinal} - Allow to skip variables with both {@code static} and
- * {@code final} modifiers. Default value is {@code true}.
+ * {@code final} modifiers.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code ignoreOverriddenMethods} - Allow to ignore methods tagged with {@code @Override}
- * annotation (that usually mean inherited name). Default value is {@code true}.
+ * annotation (that usually mean inherited name).
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
@@ -273,6 +285,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     public static final int MAX_ALLOWED = 4;  // violation
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code abbreviation.as.word}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */

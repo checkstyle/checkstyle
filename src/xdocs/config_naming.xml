@@ -566,9 +566,7 @@ class FourthClass {} // OK, no "abstract" modifier
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td>
-                <a href="property_types.html#Pattern">Pattern</a>
-              </td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td>
                 <code>"^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"</code>
               </td>
