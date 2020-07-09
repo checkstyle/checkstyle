@@ -107,18 +107,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code fileExtensions} - Specify file type extension to identify
  * translation files. Setting this property is typically only required if your
  * translation files are preprocessed and the original files do not have
- * the extension {@code .properties} Default value is {@code .properties}.
+ * the extension {@code .properties}
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code .properties}.
  * </li>
  * <li>
  * Property {@code baseName} - Specify
  * <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ResourceBundle.html">
  * Base name</a> of resource bundles which contain message resources.
  * It helps the check to distinguish config and localization resources.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^messages.*$"}.
  * </li>
  * <li>
  * Property {@code requiredTranslations} - Specify language codes of required
  * translations which must exist in project.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * </ul>
@@ -176,6 +180,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Than the check will rise the following violation: "0: Properties file
  * 'messages_home_de.properties' is missing."
  * </p>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code translation.missingKey}
+ * </li>
+ * <li>
+ * {@code translation.missingTranslationFile}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
