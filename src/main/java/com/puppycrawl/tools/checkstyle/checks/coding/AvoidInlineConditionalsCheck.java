@@ -59,6 +59,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * b = (a != null &amp;&amp; a.length() &gt;= 1) ? a.substring(1) : null; // violation
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code inline.conditional.avoid}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */

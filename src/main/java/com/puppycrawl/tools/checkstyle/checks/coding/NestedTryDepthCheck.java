@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code max} - Specify maximum allowed nesting depth.
+ * Type is {@code int}.
  * Default value is {@code 1}.
  * </li>
  * </ul>
@@ -128,6 +129,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * } catch (Exception e) {
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code nested.try.depth}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
