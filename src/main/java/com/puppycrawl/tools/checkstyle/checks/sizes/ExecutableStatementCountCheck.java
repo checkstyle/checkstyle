@@ -34,10 +34,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum threshold allowed.
+ * Type is {@code int}.
  * Default value is {@code 30}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
  * CTOR_DEF</a>,
@@ -64,6 +66,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="tokens" value="CTOR_DEF,METHOD_DEF"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code executableStatementCount}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
