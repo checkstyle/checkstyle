@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * </ul>
@@ -71,6 +72,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }
  *
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 8.11
  */

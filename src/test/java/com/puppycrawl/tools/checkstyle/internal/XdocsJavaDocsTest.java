@@ -91,7 +91,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "InterfaceTypeParameterName",
                 "LocalFinalVariableName",
                 "TypeName",
-                "RightCurly"
+                "RightCurly",
+                "ClassTypeParameterName",
+                "StaticVariableName",
+                "LocalVariableName",
+                "MethodTypeParameterName",
+                "AbbreviationAsWordInName",
+                "MethodName",
+                "ParameterName",
+                "MemberName",
+                "CatchParameterName",
+                "LambdaParameterName"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
@@ -313,7 +323,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 String typeText = "int[]";
                 if (!property.get(2).getTextContent().contains("subset of tokens")) {
                     final String typeName =
-                            property.get(2).getFirstChild().getFirstChild().getTextContent();
+                            property.get(2).getFirstChild().getFirstChild().getTextContent().trim();
                     typeText = FULLY_QUALIFIED_CLASS_NAMES.get(typeName).getTypeName();
                 }
                 result.append(" Type is {@code ").append(typeText).append("}.");
