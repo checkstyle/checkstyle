@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <li>
  * Property {@code ignoreEqualsIgnoreCase} - Control whether to ignore
  * {@code String.equalsIgnoreCase(String)} invocations.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -68,6 +69,20 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * &lt;module name=&quot;EqualsAvoidNull&quot;/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code equals.avoid.null}
+ * </li>
+ * <li>
+ * {@code equalsIgnoreCase.avoid.null}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
