@@ -57,10 +57,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code classes} - Specify fully qualified class names that should not be instantiated.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>.
@@ -74,6 +76,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code instantiation.avoid}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

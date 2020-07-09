@@ -52,6 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EXPR">
  * EXPR</a>,
@@ -126,6 +127,35 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
  *   .forEach(System.out::println);
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code unnecessary.paren.assign}
+ * </li>
+ * <li>
+ * {@code unnecessary.paren.expr}
+ * </li>
+ * <li>
+ * {@code unnecessary.paren.ident}
+ * </li>
+ * <li>
+ * {@code unnecessary.paren.lambda}
+ * </li>
+ * <li>
+ * {@code unnecessary.paren.literal}
+ * </li>
+ * <li>
+ * {@code unnecessary.paren.return}
+ * </li>
+ * <li>
+ * {@code unnecessary.paren.string}
+ * </li>
+ * </ul>
  *
  * @since 3.4
  */
