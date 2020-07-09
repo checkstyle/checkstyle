@@ -75,10 +75,12 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <ul>
  * <li>
  * Property {@code lineSeparator} - Specify the type of line separator.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption}.
  * Default value is {@code lf_cr_crlf}.
  * </li>
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of the files to check.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code all files}.
  * </li>
  * </ul>
@@ -142,6 +144,23 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * // Any txt file
  * This is a sample text file. // ok, this file is not specified in the config.
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code noNewlineAtEOF}
+ * </li>
+ * <li>
+ * {@code unable.open}
+ * </li>
+ * <li>
+ * {@code wrong.line.end}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */

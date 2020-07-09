@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code format} - Specify pattern to match comments against.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "TODO:"}.
  * </li>
  * </ul>
@@ -73,6 +74,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * i=i/x; // FIXME: handle x = 0 case         // violation
  * i=i/x; // FIX :  handle x = 0 case         // OK
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code todo.match}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

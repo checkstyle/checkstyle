@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum number of lines allowed.
+ * Type is {@code int}.
  * Default value is {@code 20}.
  * </li>
  * </ul>
@@ -55,6 +56,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name="max" value="60"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code maxLen.anonInner}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */

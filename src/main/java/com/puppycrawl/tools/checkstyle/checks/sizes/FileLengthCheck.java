@@ -37,10 +37,12 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <ul>
  * <li>
  * Property {@code max} - Specify the maximum number of lines allowed.
+ * Type is {@code int}.
  * Default value is {@code 2000}.
  * </li>
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of files to process.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code all files}.
  * </li>
  * </ul>
@@ -58,6 +60,17 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   &lt;property name="max" value="1500"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code maxLen.file}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
