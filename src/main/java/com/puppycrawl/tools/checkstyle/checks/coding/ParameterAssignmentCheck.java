@@ -49,6 +49,17 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * &lt;module name=&quot;ParameterAssignment&quot;/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code parameter.assignment}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
