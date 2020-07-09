@@ -36,14 +36,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code option} - Specify the policy on placement of a left curly brace
  * (<code>'{'</code>).
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyOption}.
  * Default value is {@code eol}.
  * </li>
  * <li>
  * Property {@code ignoreEnums} - Allow to ignore enums when left curly brace policy is EOL.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>,
@@ -114,6 +117,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreEnums&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code line.break.after}
+ * </li>
+ * <li>
+ * {@code line.new}
+ * </li>
+ * <li>
+ * {@code line.previous}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

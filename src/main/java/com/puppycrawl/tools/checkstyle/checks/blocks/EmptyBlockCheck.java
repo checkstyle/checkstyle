@@ -67,10 +67,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code option} - specify the policy on block contents.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption}.
  * Default value is {@code statement}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_WHILE">
  * LITERAL_WHILE</a>,
@@ -111,6 +113,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code block.empty}
+ * </li>
+ * <li>
+ * {@code block.noStatement}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
