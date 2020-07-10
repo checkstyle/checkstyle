@@ -18,6 +18,8 @@
               location="config/checkstyle_non_main_files_checks.xml"/>
     <property name="check.config_resources"
               location="config/checkstyle_resources_checks.xml"/>
+    <property name="check.config_input"
+              location="config/checkstyle_input_checks.xml"/>
 
     <tstamp>
       <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa" />
@@ -170,5 +172,49 @@
     <fail if="checkstyle.failure.property"
           message="Checkstyle failed: ${checkstyle.failure.property}"
           />
+
+    <tstamp>
+      <format property="STARTED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle started (checkstyle_input_checks.xml): ${STARTED}</echo>
+
+    <checkstyle config="${check.config_input}"
+                failOnViolation="true"
+                failureProperty="checkstyle.failure.property"
+                executeIgnoredModules="true"
+    >
+      <path>
+        <fileset dir="src"
+                 includes="test/resources/**/*.java,test/resources-noncompilable/**/*.java">
+          <!-- bad syntax, permanent exclude -->
+          <exclude name="**/InputAstTreeStringPrinter.java" />
+          <exclude name="**/InputSuppressionsStringPrinter.java"/>
+          <exclude name="**/InputMainIncorrectClass.java"/>
+          <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
+          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
+          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
+          <exclude name="**/InputJavaParser.java"/>
+          <!-- This check does not apply to grammar input files -->
+          <exclude name="**/grammar/**/*"/>
+          <!-- until https://github.com/checkstyle/checkstyle/issues/8023 -->
+          <exclude name="**/InputJava14Records.java"/>
+          <!-- until https://github.com/checkstyle/checkstyle/issues/7103 -->
+          <exclude name="**/InputJava14TextBlocks.java"/>
+
+        </fileset>
+      </path>
+      <formatter type="plain"/>
+      <formatter type="xml" toFile="${mvn.project.build.directory}/cs_input_errors.xml"/>
+      <classpath path="${mvn.runtime_classpath}"/>
+    </checkstyle>
+
+    <tstamp>
+      <format property="FINISHED" pattern="dd/MM/yyyy hh:mm:ss aa"/>
+    </tstamp>
+    <echo level="info">Checkstyle finished (checkstyle_input_checks.xml): ${FINISHED}</echo>
+
+    <fail if="checkstyle.failure.property"
+          message="Checkstyle failed: ${checkstyle.failure.property}"
+    />
   </target>
 </project>
