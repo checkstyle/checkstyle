@@ -428,7 +428,7 @@ public class InputJava14SwitchExpression {
             case 1 -> () -> "1" + j; //capture local variable
             default -> {
                 String k = "D";
-                yield () -> k; //capture local from the switch expr.
+                yield() ->k; //capture local from the switch expr.
             }
         };
     }
