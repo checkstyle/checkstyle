@@ -70,6 +70,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * if (name == getName()) {}
  * // OK, limitation that check cannot tell runtime type returned from method call
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code string.literal.equality}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  * @noinspection HtmlTagCanBeJavadocTag
