@@ -88,6 +88,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Map&lt;Integer, String&gt;m; // violation, "&gt;" not followed by whitespace
  * Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.followed}
+ * </li>
+ * <li>
+ * {@code ws.illegalFollow}
+ * </li>
+ * <li>
+ * {@code ws.notPreceded}
+ * </li>
+ * <li>
+ * {@code ws.preceded}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
