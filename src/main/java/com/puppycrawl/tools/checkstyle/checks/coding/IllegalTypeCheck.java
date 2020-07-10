@@ -80,36 +80,43 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code validateAbstractClassNames} - Control whether to validate abstract class names.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code illegalClassNames} - Specify classes that should not be used
  * as types in variable declarations, return values or parameters.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap,
  * TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
  * java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet}.
  * </li>
  * <li>
  * Property {@code legalAbstractClassNames} - Define abstract classes that may be used as types.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code ignoredMethodNames} - Specify methods that should not be checked.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code getEnvironment, getInitialContext}.
  * </li>
  * <li>
  * Property {@code illegalAbstractClassNameFormat} - Specify RegExp for illegal abstract class
  * names.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^(.*[.])?Abstract.*$"}.
  * </li>
  * <li>
  * Property {@code memberModifiers} - Control whether to check only methods and fields with any
  * of the specified modifiers.
  * This property does not affect method calls nor method references.
+ * Type is {@code int[]}.
  * Default value is no tokens.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
  * ANNOTATION_FIELD_DEF</a>,
@@ -272,6 +279,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code illegal.type}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  *
