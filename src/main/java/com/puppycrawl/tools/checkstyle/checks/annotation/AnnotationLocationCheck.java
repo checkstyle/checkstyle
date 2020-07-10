@@ -61,20 +61,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code allowSamelineMultipleAnnotations} - Allow annotation(s) to be located on
  * the same line as target element.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowSamelineSingleParameterlessAnnotation} - Allow single parameterless
  * annotation to be located on the same line as target element.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code allowSamelineParameterizedAnnotation} - Allow one and only parameterized
  * annotation to be located on the same line as target element.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
@@ -196,6 +200,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &#64;SuppressWarnings("deprecation") public int foo() { return 1; } //violation
  * &#64;NotNull &#64;Mock DataLoader loader; //ok
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.location}
+ * </li>
+ * <li>
+ * {@code annotation.location.alone}
+ * </li>
+ * </ul>
  *
  * @since 6.0
  */
