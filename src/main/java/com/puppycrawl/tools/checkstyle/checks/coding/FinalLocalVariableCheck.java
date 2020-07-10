@@ -48,10 +48,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Property {@code validateEnhancedForLoopVariable} - Control whether to check
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  * enhanced for-loop</a> variable.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
  * VARIABLE_DEF</a>.
@@ -121,6 +123,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code final.variable}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */

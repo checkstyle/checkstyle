@@ -120,7 +120,27 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "LineLength",
                 "OuterTypeNumber",
                 "FileLength",
-                "MethodCount"
+                "MethodCount",
+                "ExecutableStatementCount",
+                "MethodLength",
+                "RegexpHeader",
+                "Header",
+                "ExplicitInitialization",
+                "InnerAssignment",
+                "UnnecessarySemicolonAfterTypeMemberDeclaration",
+                "UnnecessarySemicolonInTryWithResources",
+                "FinalLocalVariable",
+                "MissingSwitchDefault",
+                "UnnecessaryParentheses",
+                "MultipleStringLiterals",
+                "MultipleVariableDeclarations",
+                "AvoidDoubleBraceInitialization",
+                "ReturnCount",
+                "CovariantEquals",
+                "EqualsAvoidNull",
+                "HiddenField",
+                "NoClone",
+                "IllegalInstantiation"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
@@ -150,7 +170,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("Scope", Scope.class)
             .put("SeverityLevel", SeverityLevel.class)
             .put("TrailingArrayCommaOption", AnnotationUseStyleCheck.TrailingArrayCommaOption.class)
-            .put("Uri", URI.class)
+            .put("URI", URI.class)
             .put("WrapOption", WrapOption.class).build();
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
