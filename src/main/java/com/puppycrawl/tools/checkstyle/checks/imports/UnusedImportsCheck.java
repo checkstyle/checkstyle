@@ -87,6 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <ul>
  * <li>
  * Property {@code processJavadoc} - Control whether to process Javadoc comments.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -96,6 +97,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <pre>
  * &lt;module name="UnusedImports"/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.unused}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

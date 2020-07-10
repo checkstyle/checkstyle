@@ -63,6 +63,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code javaFiveCompatibility} - Enable java 5 compatibility mode.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -148,6 +149,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     };
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.missing.override}
+ * </li>
+ * <li>
+ * {@code tag.not.valid.on}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
