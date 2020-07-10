@@ -103,6 +103,20 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *     }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code equals.noEquals}
+ * </li>
+ * <li>
+ * {@code equals.noHashCode}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
