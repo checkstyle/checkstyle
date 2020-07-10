@@ -70,30 +70,37 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * <li>
  * Property {@code basicOffset} - Specify how far new indentation level should be
  * indented when on the next line.
+ * Type is {@code int}.
  * Default value is {@code 4}.
  * </li>
  * <li>
  * Property {@code braceAdjustment} - Specify how far a braces should be indented
  * when on the next line.
+ * Type is {@code int}.
  * Default value is {@code 0}.
  * </li>
  * <li>
  * Property {@code caseIndent} - Specify how far a case label should be indented
  * when on next line.
+ * Type is {@code int}.
  * Default value is {@code 4}.
  * </li>
  * <li>
  * Property {@code throwsIndent} - Specify how far a throws clause should be
  * indented when on next line.
+ * Type is {@code int}.
  * Default value is {@code 4}.
  * </li>
  * <li>
  * Property {@code arrayInitIndent} - Specify how far an array initialisation
- * should be indented when on next line. Default value is {@code 4}.
+ * should be indented when on next line.
+ * Type is {@code int}.
+ * Default value is {@code 4}.
  * </li>
  * <li>
  * Property {@code lineWrappingIndentation} - Specify how far continuation line
  * should be indented when line-wrapping is present.
+ * Type is {@code int}.
  * Default value is {@code 4}.
  * </li>
  * <li>
@@ -101,6 +108,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * wrapping case. If value is true, line wrap indent have to be same as
  * lineWrappingIndentation parameter. If value is false, line wrap indent
  * could be bigger on any value user would like.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -216,6 +224,26 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * }
  * </pre>
  *
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code indentation.child.error}
+ * </li>
+ * <li>
+ * {@code indentation.child.error.multi}
+ * </li>
+ * <li>
+ * {@code indentation.error}
+ * </li>
+ * <li>
+ * {@code indentation.error.multi}
+ * </li>
+ * </ul>
  * @noinspection ThisEscapedInObjectConstruction
  * @since 3.1
  */
