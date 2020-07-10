@@ -1455,6 +1455,7 @@ xmlvalidate
 Xms
 Xmx
 xpath
+xpathfilegenerator
 xpathfilegeneratorastfilter
 xpathfilegeneratorauditlistener
 xpathfilter
