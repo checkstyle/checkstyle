@@ -66,3 +66,14 @@ class InputOneMore {
         }
     }
 }
+
+class FinalizeWithArgs {
+    public void finalize(Object a) {};
+}
+
+class OverrideClass extends FinalizeWithArgs {
+    @Override
+    protected void finalize() throws Throwable { // violation
+        super.finalize(new Object());
+    }
+}

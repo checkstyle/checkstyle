@@ -98,13 +98,12 @@ public abstract class AbstractSuperCheck
     private boolean isSuperCall(DetailAST literalSuperAst) {
         boolean superCall = false;
 
-        if (literalSuperAst.getType() == TokenTypes.LITERAL_SUPER) {
-            // dot operator?
-            final DetailAST dotAst = literalSuperAst.getParent();
-
-            if (!isSameNameMethod(literalSuperAst)
-                && !hasArguments(dotAst)) {
-                superCall = isSuperCallInOverridingMethod(dotAst);
+        if (literalSuperAst.getType() == TokenTypes.LITERAL_SUPER
+            && !isSameNameMethod(literalSuperAst)) {
+            final DetailAST parent = literalSuperAst.getParent();
+            if (parent.getType() == TokenTypes.METHOD_REF
+                || !hasArguments(parent)) {
+                superCall = isSuperCallInOverridingMethod(parent);
             }
         }
         return superCall;
