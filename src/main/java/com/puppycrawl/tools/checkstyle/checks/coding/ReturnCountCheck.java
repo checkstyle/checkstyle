@@ -53,19 +53,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code max} - Specify maximum allowed number of return statements
  * in non-void methods/lambdas.
+ * Type is {@code int}.
  * Default value is {@code 2}.
  * </li>
  * <li>
  * Property {@code maxForVoid} - Specify maximum allowed number of return statements
  * in void methods/constructors/lambdas.
+ * Type is {@code int}.
  * Default value is {@code 1}.
  * </li>
  * <li>
  * Property {@code format} - Specify method names to ignore.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^equals$"}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
  * CTOR_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -130,6 +135,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code return.count}
+ * </li>
+ * <li>
+ * {@code return.countVoid}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
