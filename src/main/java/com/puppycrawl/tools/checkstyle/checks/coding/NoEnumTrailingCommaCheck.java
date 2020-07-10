@@ -88,6 +88,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * enum Foo9 { FOO, BAR; } // OK
  * enum Foo10 { FOO, BAR } // OK
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code no.enum.trailing.comma}
+ * </li>
+ * </ul>
  *
  * @since 8.29
  */

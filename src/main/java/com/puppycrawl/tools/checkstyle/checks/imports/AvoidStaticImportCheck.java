@@ -51,6 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * a star notation to be excluded such as {@code java.lang.Math.*} or specific
  * static members to be excluded like {@code java.lang.System.out} for a variable
  * or {@code java.lang.Math.random} for a method. See notes section for details.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * </ul>
@@ -69,6 +70,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.avoidStatic}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
