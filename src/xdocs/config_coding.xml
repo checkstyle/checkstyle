@@ -1795,6 +1795,8 @@ class PageBuilder {
                   VARIABLE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
                   PARAMETER_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                  PATTERN_VARIABLE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
                   .
@@ -1805,6 +1807,8 @@ class PageBuilder {
                   VARIABLE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
                   PARAMETER_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                  PATTERN_VARIABLE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
                   .
