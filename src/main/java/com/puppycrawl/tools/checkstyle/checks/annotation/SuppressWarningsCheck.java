@@ -70,10 +70,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Specify the RegExp to match against warnings. Any warning
  * being suppressed matching this pattern will be flagged.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^\s*+$"}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
@@ -119,6 +121,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     &quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code suppressed.warning.not.allowed}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */
