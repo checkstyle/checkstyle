@@ -136,28 +136,35 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code customImportOrderRules} - Specify format of order declaration
- * customizing by user. Default value is {@code ""}.
+ * customizing by user.
+ * Type is {@code java.lang.String}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code standardPackageRegExp} - Specify RegExp for STANDARD_JAVA_PACKAGE group imports.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^(java|javax)\."}.
  * </li>
  * <li>
  * Property {@code thirdPartyPackageRegExp} - Specify RegExp for THIRD_PARTY_PACKAGE group imports.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code ".*"}.
  * </li>
  * <li>
  * Property {@code specialImportsRegExp} - Specify RegExp for SPECIAL_IMPORTS group imports.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$" (empty)}.
  * </li>
  * <li>
  * Property {@code separateLineBetweenGroups} - Force empty line separator between
  * import groups.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code sortImportsInGroupAlphabetically} - Force grouping alphabetically,
  * in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -347,6 +354,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^android\.&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code custom.import.order}
+ * </li>
+ * <li>
+ * {@code custom.import.order.lex}
+ * </li>
+ * <li>
+ * {@code custom.import.order.line.separator}
+ * </li>
+ * <li>
+ * {@code custom.import.order.nonGroup.expected}
+ * </li>
+ * <li>
+ * {@code custom.import.order.nonGroup.import}
+ * </li>
+ * <li>
+ * {@code custom.import.order.separated.internally}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */

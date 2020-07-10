@@ -109,12 +109,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Property {@code file} - Specify the location of the file containing the
  * import control configuration. It can be a regular file, URL or resource path.
  * It will try loading the path as a URL first, then as a file, and finally as a resource.
+ * Type is {@code java.net.URI}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code path} - Specify the regular expression of file paths to which
  * this check should apply. Files that don't match the pattern will not be checked.
  * The pattern will be matched against the full absolute file path.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code ".*"}.
  * </li>
  * </ul>
@@ -424,6 +426,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;allow class="java.util.Map.*" regex="true" /&gt;
  * &lt;/import-control&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.control.disallowed}
+ * </li>
+ * <li>
+ * {@code import.control.missing.file}
+ * </li>
+ * <li>
+ * {@code import.control.unknown.pkg}
+ * </li>
+ * </ul>
  *
  * @since 4.0
  */
