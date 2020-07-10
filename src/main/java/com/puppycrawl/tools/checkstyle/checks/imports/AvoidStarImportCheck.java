@@ -45,16 +45,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code excludes} - Specify packages where star imports are allowed.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code allowClassImports} - Control whether to allow starred class
  * imports like {@code import java.util.*;}.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowStaticMemberImports} - Control whether to allow starred
  * static member imports like {@code import static org.junit.Assert.*;}.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -122,6 +125,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * import java.util.*;               // violation
  * import java.net.*;                // violation
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.avoidStar}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

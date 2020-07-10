@@ -67,6 +67,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * };
  * String[] foo4 = { "FOO", "BAR" }; // OK
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code no.array.trailing.comma}
+ * </li>
+ * </ul>
  *
  * @since 8.28
  */
