@@ -47,6 +47,23 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="RedundantImport"/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.duplicate}
+ * </li>
+ * <li>
+ * {@code import.lang}
+ * </li>
+ * <li>
+ * {@code import.same}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
