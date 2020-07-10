@@ -1,11 +1,33 @@
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.grammar;
 
+import static java.time.Instant.*;
+
+import java.time.Instant;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 
 public class InputJava14SwitchExpression {
+
+    class HardToParse {
+        void foo() {
+            Instant Ascii;
+            byte[] decodabet = new byte[1];
+            Arrays.fill(decodabet, (byte) -1);
+            char[] chars = {'c','h','a','r','s'};
+            for (
+                    int i = 0;
+                    i < chars.length; i++) {
+                char c = chars[i];
+                decodabet[c] = (byte) i;
+            }
+        }
+        IntConsumer consumer = (IntConsumer) i -> {
+        };
+    }
 
     enum Day {
         MON,
@@ -428,7 +450,7 @@ public class InputJava14SwitchExpression {
             case 1 -> () -> "1" + j; //capture local variable
             default -> {
                 String k = "D";
-                yield () -> k; //capture local from the switch expr.
+                yield() ->k; //capture local from the switch expr.
             }
         };
     }
