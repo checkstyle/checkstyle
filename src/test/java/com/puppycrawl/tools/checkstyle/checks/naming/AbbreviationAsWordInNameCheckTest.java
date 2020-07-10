@@ -534,10 +534,10 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         final int expectedCapitalCount = 4;
 
         final String[] expected = {
-            "11:36: " + getWarningMessage("STRING", expectedCapitalCount),
-            "11:70: " + getWarningMessage("INTEGER", expectedCapitalCount),
-            "20:41: " + getWarningMessage("ssSTRING", expectedCapitalCount),
-            "24:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
+            "13:36: " + getWarningMessage("STRING", expectedCapitalCount),
+            "14:43: " + getWarningMessage("INTEGER", expectedCapitalCount),
+            "23:41: " + getWarningMessage("ssSTRING", expectedCapitalCount),
+            "27:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
         };
 
         verify(checkConfig,
@@ -547,7 +547,7 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
     }
 
     @Test
-    public void testAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXml()
+    public void testAbbreviationAsWordInNameCheckEnhancedInstanceofAllowXmlLength1()
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AbbreviationAsWordInNameCheck.class);
@@ -557,16 +557,17 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
         final int expectedCapitalCount = 2;
 
         final String[] expected = {
-            "11:36: " + getWarningMessage("STRING", expectedCapitalCount),
-            "11:70: " + getWarningMessage("INTEGER", expectedCapitalCount),
-            "19:39: " + getWarningMessage("aTXT", expectedCapitalCount),
-            "20:41: " + getWarningMessage("ssSTRING", expectedCapitalCount),
-            "24:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
+            "14:36: " + getWarningMessage("STRING", expectedCapitalCount),
+            "15:43: " + getWarningMessage("INTEGER", expectedCapitalCount),
+            "23:39: " + getWarningMessage("aTXT", expectedCapitalCount),
+            "24:41: " + getWarningMessage("ssSTRING", expectedCapitalCount),
+            "28:35: " + getWarningMessage("XMLHTTP", expectedCapitalCount),
         };
 
         verify(checkConfig,
                 getNonCompilablePath(
-                        "InputAbbreviationAsWordInNameCheckEnhancedInstanceof.java"),
+                        "InputAbbreviationAsWordInNameCheckEnhanced"
+                                + "InstanceofAllowXmlLength1.java"),
                 expected);
     }
 
