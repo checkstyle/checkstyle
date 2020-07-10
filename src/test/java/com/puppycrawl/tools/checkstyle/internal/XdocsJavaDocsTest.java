@@ -130,7 +130,27 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "UnnecessarySemicolonAfterTypeMemberDeclaration",
                 "UnnecessarySemicolonInTryWithResources",
                 "FinalLocalVariable",
-                "MissingSwitchDefault"
+                "MissingSwitchDefault",
+                //                "UnnecessaryParentheses",
+                //                "MultipleStringLiterals",
+                //                "MultipleVariableDeclarations",
+                //                "AvoidDoubleBraceInitialization",
+                //                "ReturnCount",
+                //                "CovariantEquals",
+                //                "EqualsAvoidNull",
+                //                "HiddenField",
+                //                "NoClone",
+                //                "IllegalInstantiation",
+                "MagicNumber",
+                "MissingCtor",
+                "ParameterAssignment",
+                "DefaultComesLast",
+                "NestedTryDepth",
+                "SimplifyBooleanExpression",
+                "RequireThis",
+                "UnnecessarySemicolonInEnumeration",
+                "AvoidInlineConditionals",
+                "OverloadMethodsDeclarationOrder"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
