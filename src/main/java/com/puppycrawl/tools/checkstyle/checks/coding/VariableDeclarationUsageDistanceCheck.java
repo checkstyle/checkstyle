@@ -88,20 +88,24 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code allowedDistance} - Specify distance between declaration
  * of variable and its first usage. Values should be greater than 0.
+ * Type is {@code int}.
  * Default value is {@code 3}.
  * </li>
  * <li>
  * Property {@code ignoreVariablePattern} - Define RegExp to ignore distance calculation
  * for variables listed in this pattern.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code validateBetweenScopes} - Allow to calculate the distance between
  * declaration of variable and its first usage in the different scopes.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreFinal} - Allow to ignore variables with a 'final' modifier.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -180,6 +184,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code variable.declaration.usage.distance}
+ * </li>
+ * <li>
+ * {@code variable.declaration.usage.distance.extend}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */
