@@ -47,6 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * property is not set, checks if import is the part of package. If <b>regexp</b>
  * property is set, then list of packages will be interpreted as regular expressions.
  * Note, all properties for match will be used.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code sun}.
  * </li>
  * <li>
@@ -54,11 +55,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * property is not set, checks if import equals class name. If <b>regexp</b>
  * property is set, then list of class names will be interpreted as regular expressions.
  * Note, all properties for match will be used.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code regexp} - Control whether the {@code illegalPkgs} and
  * {@code illegalClasses} should be interpreted as regular expressions.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -258,6 +261,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class InputIllegalImport { }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.illegal}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
