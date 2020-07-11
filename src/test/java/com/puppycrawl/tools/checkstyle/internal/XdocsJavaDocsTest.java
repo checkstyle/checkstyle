@@ -180,7 +180,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "UnnecessarySemicolonAfterOuterTypeDeclaration",
                 "IllegalType",
                 "SimplifyBooleanReturn",
-                "DeclarationOrder"
+                "DeclarationOrder",
+                "ArrayTrailingComma",
+                "NoEnumTrailingComma",
+                "IllegalCatch",
+                "AvoidNoArgumentSuperConstructorCall",
+                "NoArrayTrailingComma",
+                "ImportOrder",
+                "CustomImportOrder",
+                "AvoidStaticImport",
+                "ImportControl",
+                "AvoidStarImport"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
