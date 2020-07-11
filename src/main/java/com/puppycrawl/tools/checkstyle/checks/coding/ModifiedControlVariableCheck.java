@@ -62,6 +62,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Property {@code skipEnhancedForLoopVariable} - Control whether to check
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  * enhanced for-loop</a> variable.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -95,6 +96,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   line = line.trim();   // it will skip this violation
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code modified.control.variable}
+ * </li>
+ * </ul>
  *
  * @since 3.5
  */
