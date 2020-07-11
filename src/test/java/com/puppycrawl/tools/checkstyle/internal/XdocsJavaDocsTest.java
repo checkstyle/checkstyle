@@ -160,7 +160,17 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "RequireThis",
                 "UnnecessarySemicolonInEnumeration",
                 "AvoidInlineConditionals",
-                "OverloadMethodsDeclarationOrder"
+                "OverloadMethodsDeclarationOrder",
+                "IllegalTokenText",
+                "NestedForDepth",
+                "OneStatementPerLine",
+                "SuperFinalize",
+                "EmptyStatement",
+                "IllegalToken",
+                "IllegalThrows",
+                "NoFinalizer",
+                "VariableDeclarationUsageDistance",
+                "PackageDeclaration"
         )));
 
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
