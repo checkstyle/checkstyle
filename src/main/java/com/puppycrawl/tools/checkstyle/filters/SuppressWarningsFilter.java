@@ -113,6 +113,9 @@ import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
  *   System.out.println("Debug info."); // should NOT fail RegexpSinglelineJava
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
  *
  * @since 5.7
  */
