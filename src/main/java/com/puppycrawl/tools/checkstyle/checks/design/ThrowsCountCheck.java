@@ -54,10 +54,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code max} - Specify maximum allowed number of throws statements.
+ * Type is {@code int}.
  * Default value is {@code 4}.
  * </li>
  * <li>
  * Property {@code ignorePrivateMethods} - Allow private methods to be ignored.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -170,6 +172,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code throws.count}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
