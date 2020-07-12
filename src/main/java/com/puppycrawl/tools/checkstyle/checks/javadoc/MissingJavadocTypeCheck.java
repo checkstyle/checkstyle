@@ -44,19 +44,25 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>
  * Property {@code scope} - specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code public}.
  * </li>
  * <li>
  * Property {@code excludeScope} - specify the visibility scope where Javadoc comments are not
- * checked. Default value is {@code null}.
+ * checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code skipAnnotations} - specify the list of annotations that allow missed
- * documentation. Only short names are allowed, e.g. {@code Generated}. Default value is
- * {@code Generated}.
+ * documentation. Only short names are allowed, e.g. {@code Generated}.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code Generated}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
  * INTERFACE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
@@ -137,6 +143,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="skipAnnotations" value="SpringBootApplication,Configuration"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missing}
+ * </li>
+ * </ul>
  *
  * @since 8.20
  */
