@@ -72,30 +72,37 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code offCommentFormat} - Specify comment pattern to
  * trigger filter to begin suppression.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "CHECKSTYLE:OFF"}.
  * </li>
  * <li>
  * Property {@code onCommentFormat} - Specify comment pattern to trigger filter to end suppression.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "CHECKSTYLE:ON"}.
  * </li>
  * <li>
  * Property {@code checkFormat} - Specify check pattern to suppress.
+ * Type is {@code java.lang.String}.
  * Default value is {@code ".*"}.
  * </li>
  * <li>
  * Property {@code messageFormat} - Specify message pattern to suppress.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code checkCPP} - Control whether to check C++ style comments ({@code //}).
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code checkC} - Control whether to check C style comments ({@code &#47;* ... *&#47;}).
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -313,6 +320,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   private int value = 10022; // no violations from MagicNumber here
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
  *
  * @since 3.5
  */

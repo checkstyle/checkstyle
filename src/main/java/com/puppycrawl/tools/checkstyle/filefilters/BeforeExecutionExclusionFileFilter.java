@@ -48,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * <ul>
  * <li>
  * Property {@code fileNamePattern} - Define regular expression to match the file name against.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.</li>
  * </ul>
  *
@@ -60,6 +61,9 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
  *
  * @since 7.2
  */

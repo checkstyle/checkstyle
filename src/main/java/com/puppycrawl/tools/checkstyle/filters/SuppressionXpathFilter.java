@@ -174,12 +174,14 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code optional} - Control what to do when the file is not existing.
  * If optional is set to false the file must exist, or else it ends with error.
  * On the other hand if optional is true and file is not found, the filter accepts all audit events.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -494,6 +496,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * &lt;suppress-xpath checks="." query="//METHOD_DEF[.//ANNOTATION[
  *             ./IDENT[@text='Generated'] and ./EXPR/STRING_LITERAL[@text='second']]]"/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
  *
  * @since 8.6
  * @noinspection NonFinalFieldReferenceInEquals, NonFinalFieldReferencedInHashCode
