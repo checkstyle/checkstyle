@@ -48,6 +48,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   long var3 = 508987L; // OK
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code upperEll}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
