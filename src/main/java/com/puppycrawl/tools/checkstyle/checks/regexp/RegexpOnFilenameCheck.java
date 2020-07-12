@@ -73,25 +73,32 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code folderPattern} - Specify the regular expression to match the folder path against.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.</li>
  *
  * <li>
  * Property {@code fileNamePattern} - Specify the regular expression to match the file name against.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.</li>
  *
  * <li>
  * Property {@code match} - Control whether to look for a match or mis-match on the file name, if
  * the fileNamePattern is supplied, otherwise it is applied on the folderPattern.
+ * Type is {@code boolean}.
  * Default value is {@code true}.</li>
  *
  * <li>
  * Property {@code ignoreFileNameExtensions} - Control whether to ignore the file extension for
- * the file name match. Default value is {@code false}.</li>
+ * the file name match.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.</li>
  *
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of files to process. If this is
  * specified, then only files that match these types are examined with the other
- * patterns. Default value is {@code all files}.</li>
+ * patterns.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code all files}.</li>
  * </ul>
  *
  * <p>
@@ -236,6 +243,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * src/main/java/java_class.java  //violation, file names should be in Camel Case
  * src/main/main_class.java  //violation, file names should be in Camel Case
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code regexp.filename.match}
+ * </li>
+ * <li>
+ * {@code regexp.filename.mismatch}
+ * </li>
+ * </ul>
  *
  * @since 6.15
  */

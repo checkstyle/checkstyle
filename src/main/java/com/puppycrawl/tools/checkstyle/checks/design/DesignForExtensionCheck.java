@@ -156,6 +156,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code ignoredAnnotations} - Specify annotations which allow the check to
  * skip the method from validation.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code After, AfterClass, Before, BeforeClass, Test}.
  * </li>
  * </ul>
@@ -206,6 +207,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public int foo4() {return 4;} // violation
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code design.forExtension}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */
