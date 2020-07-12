@@ -106,27 +106,33 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>
  * Property {@code packageAllowed} - Control whether package visible members are allowed.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code protectedAllowed} - Control whether protected members are allowed.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code publicMemberPattern} - Specify pattern for public members that should be ignored.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^serialVersionUID$"}.
  * </li>
  * <li>
  * Property {@code allowPublicFinalFields} - Allow final fields to be declared as public.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowPublicImmutableFields} - Allow immutable fields to be
  * declared as public if defined in final class.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code immutableClassCanonicalNames} - Specify immutable classes canonical names.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code java.io.File, java.lang.Boolean, java.lang.Byte,
  * java.lang.Character, java.lang.Double, java.lang.Float, java.lang.Integer,
  * java.lang.Long, java.lang.Short, java.lang.StackTraceElement, java.lang.String,
@@ -136,6 +142,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code ignoreAnnotationCanonicalNames} - Specify the list of annotations canonical
  * names which ignore variables in consideration.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code com.google.common.annotations.VisibleForTesting,
  * org.junit.ClassRule, org.junit.Rule}.
  * </li>
@@ -383,6 +390,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code variable.notPrivate}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

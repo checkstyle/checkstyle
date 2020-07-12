@@ -37,27 +37,33 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code format} - Specify the format of the regular expression to match.
+ * Type is {@code java.lang.String}.
  * Default value is {@code "$."}.
  * </li>
  * <li>
  * Property {@code message} - Specify the message which is used to notify about
  * violations, if empty then default (hard-coded) message is used.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code ignoreCase} - Control whether to ignore case when searching.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code minimum} - Specify the minimum number of matches required in each file.
+ * Type is {@code int}.
  * Default value is {@code 0}.
  * </li>
  * <li>
  * Property {@code maximum} - Specify the maximum number of matches required in each file.
+ * Type is {@code int}.
  * Default value is {@code 0}.
  * </li>
  * <li>
  * Property {@code ignoreComments} - Control whether to ignore text in comments when searching.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -183,6 +189,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   public void bar2() {} // violation
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code regexp.exceeded}
+ * </li>
+ * <li>
+ * {@code regexp.minimum}
+ * </li>
+ * </ul>
  *
  * @since 6.0
  */
