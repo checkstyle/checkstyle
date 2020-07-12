@@ -81,6 +81,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
     // migration
     private static final Set<String> MODIFIED_JAVADOC_FILES =
         Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
+                "FileTabCharacter",
+                "NoWhitespaceBefore",
+                "NoLineWrap",
+                "EmptyLineSeparator",
+                "OperatorWrap",
+                "ParenPad",
+                "NoWhitespaceAfter",
+                "EmptyForInitializerPad",
+                "WhitespaceAfter",
+                "SingleSpaceSeparator",
                 "NoCodeInFile",
                 "BooleanExpressionComplexity",
                 "ClassFanOutComplexity",
