@@ -44,14 +44,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$" (empty)}.
  * </li>
  * <li>
  * Property {@code period} - Specify the period symbol at the end of first javadoc sentence.
+ * Type is {@code java.lang.String}.
  * Default value is {@code "."}.
  * </li>
  * </ul>
@@ -117,6 +120,32 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.wrong.singleton.html.tag}
+ * </li>
+ * <li>
+ * {@code summary.first.sentence}
+ * </li>
+ * <li>
+ * {@code summary.javaDoc}
+ * </li>
+ * <li>
+ * {@code summary.javaDoc.missing}
+ * </li>
+ * </ul>
  *
  * @since 6.0
  */

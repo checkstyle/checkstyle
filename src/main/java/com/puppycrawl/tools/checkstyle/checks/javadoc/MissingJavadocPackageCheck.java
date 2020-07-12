@@ -56,6 +56,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * *&#47;
  * package com.checkstyle.api; // violation
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code package.javadoc.missing}
+ * </li>
+ * </ul>
  *
  * @since 8.22
  */

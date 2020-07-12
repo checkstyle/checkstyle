@@ -40,18 +40,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code tag} - Specify the name of tag.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code tagFormat} - Specify the regexp to match tag content.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code tagSeverity} - Specify the severity level when tag is found and printed.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.SeverityLevel}.
  * Default value is {@code info}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
  * INTERFACE_DEF</a>,
@@ -84,6 +88,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="tagSeverity" value="warning"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.writeTag}
+ * </li>
+ * <li>
+ * {@code type.missingTag}
+ * </li>
+ * <li>
+ * {@code type.tagFormat}
+ * </li>
+ * </ul>
  *
  * @since 4.2
  */
