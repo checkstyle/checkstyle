@@ -51,10 +51,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code format} - Specify pattern for exception class names.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
  * </li>
  * <li>
  * Property {@code extendedClassNameFormat} - Specify pattern for extended class names.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^.*Exception$|^.*Error$|^.*Throwable$"}.
  * </li>
  * </ul>
@@ -64,6 +66,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name=&quot;MutableException&quot;/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code mutable.exception}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
