@@ -91,34 +91,42 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>
  * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code private}.
  * </li>
  * <li>
  * Property {@code excludeScope} - Specify the visibility scope where
  * Javadoc comments are not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code checkFirstSentence} - Control whether to check the first
  * sentence for proper end of sentence.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code endOfSentenceFormat} - Specify the format for matching
  * the end of a sentence.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "([.?!][ \t\n\r\f&lt;])|([.?!]$)"}.
  * </li>
  * <li>
  * Property {@code checkEmptyJavadoc} - Control whether to check if the Javadoc
  * is missing a describing text.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code checkHtml} - Control whether to check for incomplete HTML tags.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
  * ANNOTATION_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
@@ -262,6 +270,32 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *     private void test1() {}
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.empty}
+ * </li>
+ * <li>
+ * {@code javadoc.extraHtml}
+ * </li>
+ * <li>
+ * {@code javadoc.incompleteTag}
+ * </li>
+ * <li>
+ * {@code javadoc.missing}
+ * </li>
+ * <li>
+ * {@code javadoc.noPeriod}
+ * </li>
+ * <li>
+ * {@code javadoc.unclosedHtml}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */

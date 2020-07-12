@@ -41,10 +41,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code offset} - Specify how many spaces to use for new indentation level.
+ * Type is {@code int}.
  * Default value is {@code 4}.
  * </li>
  * </ul>
@@ -107,6 +109,26 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class Test {
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.wrong.singleton.html.tag}
+ * </li>
+ * <li>
+ * {@code tag.continuation.indent}
+ * </li>
+ * </ul>
  *
  * @since 6.0
  *
