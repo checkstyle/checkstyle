@@ -43,6 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code aliasList} - Specify aliases for check names that can be used in code
  * within {@code SuppressWarnings}.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code null}.
  * </li>
  * </ul>
@@ -98,6 +99,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   //...
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
  *
  * @since 5.7
  */

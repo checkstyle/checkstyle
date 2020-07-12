@@ -51,25 +51,30 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * <li>
  * Property {@code files} - Define a Regular Expression matched against the file
  * name associated with an audit event.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code checks} - Define a Regular Expression matched against the name
  * of the check associated with an audit event.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code message} - Define a Regular Expression matched against the message
  * of the check associated with an audit event.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code id} - Define a string matched against the ID of the check
  * associated with an audit event.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code query} - Define a string xpath query.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * </ul>
@@ -398,6 +403,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  *   &lt;property name=&quot;checks&quot; value=&quot;[a-zA-Z0-9]*&quot;&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
  *
  * @since 8.18
  */

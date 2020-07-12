@@ -110,6 +110,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <ul>
  * <li>
  * Property {@code file} - Specify the location of the <em>suppressions XML document</em> file.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
@@ -117,6 +118,7 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * If {@code optional} is set to {@code false} the file must exist, or else it
  * ends with error. On the other hand if optional is {@code true} and file is
  * not found, the filter accept all audit events.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -211,6 +213,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <pre>
  * &lt;suppress message=&quot;Name 'log' must match pattern&quot;/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
  *
  * @since 3.2
  */

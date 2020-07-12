@@ -29,13 +29,9 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -77,185 +73,6 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
-    // Files which have modified Javadoc required for Metadata Generation Project, for eventual
-    // migration
-    private static final Set<String> MODIFIED_JAVADOC_FILES =
-        Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-                "FileTabCharacter",
-                "NoWhitespaceBefore",
-                "NoLineWrap",
-                "EmptyLineSeparator",
-                "OperatorWrap",
-                "ParenPad",
-                "NoWhitespaceAfter",
-                "EmptyForInitializerPad",
-                "WhitespaceAfter",
-                "SingleSpaceSeparator",
-                "NoCodeInFile",
-                "BooleanExpressionComplexity",
-                "ClassFanOutComplexity",
-                "UnusedImports",
-                "IllegalImport",
-                "RedundantImport",
-                "Indentation",
-                "CommentsIndentation",
-                "MissingOverride",
-                "AnnotationUseStyle",
-                "AnnotationLocation",
-                "PackageAnnotation",
-                "MissingDeprecated",
-                "CyclomaticComplexity",
-                "InterfaceMemberImpliedModifier",
-                "ClassMemberImpliedModifier",
-                "ModifierOrder",
-                "RedundantModifier",
-                "JavadocTagContinuationIndentation",
-                "JavadocStyle",
-                "JavadocVariable",
-                "AtclauseOrder",
-                "JavadocParagraph",
-                "MissingJavadocMethod",
-                "JavaNCSS",
-                "NPathComplexity",
-                "ConstantName",
-                "InterfaceTypeParameterName",
-                "LocalFinalVariableName",
-                "TypeName",
-                "RightCurly",
-                "ClassTypeParameterName",
-                "StaticVariableName",
-                "LocalVariableName",
-                "MethodTypeParameterName",
-                "AbbreviationAsWordInName",
-                "MethodName",
-                "ParameterName",
-                "MemberName",
-                "CatchParameterName",
-                "LambdaParameterName",
-                "PackageName",
-                "EmptyCatchBlock",
-                "AvoidNestedBlocks",
-                "LeftCurly",
-                "NeedBraces",
-                "EmptyBlock",
-                "DescendantToken",
-                "UniqueProperties",
-                "UncommentedMain",
-                "Translation",
-                "NewlineAtEndOfFile",
-                "SingleLineJavadoc",
-                "NonEmptyAtclauseDescription",
-                "JavadocMissingWhitespaceAfterAsterisk",
-                "JavadocPackage",
-                "MissingJavadocPackage",
-                "JavadocType",
-                "SummaryJavadoc",
-                "JavadocContentLocation",
-                "WriteTag",
-                "InvalidJavadocPosition",
-                "FinalParameters",
-                "TodoComment",
-                "AnonInnerLength",
-                "ParameterNumber",
-                "LineLength",
-                "OuterTypeNumber",
-                "FileLength",
-                "MethodCount",
-                "ExecutableStatementCount",
-                "MethodLength",
-                "RegexpHeader",
-                "Header",
-                "ExplicitInitialization",
-                "InnerAssignment",
-                "UnnecessarySemicolonAfterTypeMemberDeclaration",
-                "MissingJavadocType",
-                "JavadocMethod",
-                "JavadocBlockTagLocation",
-                "OrderedProperties",
-                "UpperEll",
-                "FinalClass",
-                "HideUtilityClassConstructor",
-                "InterfaceIsType",
-                "OneTopLevelClass",
-                "MutableException",
-                "UnnecessarySemicolonInTryWithResources",
-                "FinalLocalVariable",
-                "MissingSwitchDefault",
-                "UnnecessaryParentheses",
-                "MultipleStringLiterals",
-                "MultipleVariableDeclarations",
-                "AvoidDoubleBraceInitialization",
-                "ReturnCount",
-                "CovariantEquals",
-                "EqualsAvoidNull",
-                "HiddenField",
-                "NoClone",
-                "IllegalInstantiation",
-                "SuppressWarnings",
-                "AnnotationOnSameLine",
-                "ArrayTypeStyle",
-                "AvoidEscapedUnicodeCharacters",
-                "SeparatorWrap",
-                "GenericWhitespace",
-                "EmptyForIteratorPad",
-                "WhitespaceAround",
-                "MethodParamPad",
-                "TypecastParenPad",
-                "MagicNumber",
-                "MissingCtor",
-                "ParameterAssignment",
-                "DefaultComesLast",
-                "NestedTryDepth",
-                "SimplifyBooleanExpression",
-                "RequireThis",
-                "UnnecessarySemicolonInEnumeration",
-                "AvoidInlineConditionals",
-                "OverloadMethodsDeclarationOrder",
-                "IllegalTokenText",
-                "NestedForDepth",
-                "OneStatementPerLine",
-                "SuperFinalize",
-                "EmptyStatement",
-                "IllegalToken",
-                "IllegalThrows",
-                "NoFinalizer",
-                "VariableDeclarationUsageDistance",
-                "PackageDeclaration",
-                "ModifiedControlVariable",
-                "FallThrough",
-                "SuperClone",
-                "EqualsHashCode",
-                "StringLiteralEquality",
-                "VisibilityModifier",
-                "InnerTypeLast",
-                "DesignForExtension",
-                "ThrowsCount",
-                "OuterTypeFilename",
-                "TrailingComment",
-                "RegexpMultiline",
-                "RegexpSinglelineJava",
-                "Regexp",
-                "RegexpSingleline",
-                "RegexpOnFilename",
-                "NestedIfDepth",
-                "UnnecessarySemicolonAfterOuterTypeDeclaration",
-                "IllegalType",
-                "SimplifyBooleanReturn",
-                "DeclarationOrder",
-                "ArrayTrailingComma",
-                "NoEnumTrailingComma",
-                "IllegalCatch",
-                "ClassDataAbstractionCoupling",
-                "AvoidNoArgumentSuperConstructorCall",
-                "NoArrayTrailingComma",
-                "ImportOrder",
-                "CustomImportOrder",
-                "AvoidStaticImport",
-                "AbstractClassName",
-                "ImportControl",
-                "AvoidStarImport"
-        )));
-
     private static final Map<String, Class<?>> FULLY_QUALIFIED_CLASS_NAMES =
             ImmutableMap.<String, Class<?>>builder()
             .put("int", int.class)
@@ -472,22 +289,19 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             result.append(temp);
             CHECK_PROPERTY_DOC.put(propertyName, temp);
 
-            if (MODIFIED_JAVADOC_FILES.contains(checkName)) {
-                String typeText = "int[]";
-                if (!property.get(2).getTextContent().contains("subset of tokens")) {
-                    final Node typeNode;
-                    if (property.get(2).getFirstChild().getFirstChild() == null) {
-                        typeNode = property.get(2).getFirstChild().getNextSibling();
-                    }
-                    else {
-                        typeNode = property.get(2).getFirstChild().getFirstChild();
-                    }
-                    final String typeName = typeNode.getTextContent().trim();
-                    typeText = FULLY_QUALIFIED_CLASS_NAMES.get(typeName).getTypeName();
+            String typeText = "int[]";
+            if (!property.get(2).getTextContent().contains("subset of tokens")) {
+                final Node typeNode;
+                if (property.get(2).getFirstChild().getFirstChild() == null) {
+                    typeNode = property.get(2).getFirstChild().getNextSibling();
                 }
-                result.append(" Type is {@code ").append(typeText).append("}.");
-
+                else {
+                    typeNode = property.get(2).getFirstChild().getFirstChild();
+                }
+                final String typeName = typeNode.getTextContent().trim();
+                typeText = FULLY_QUALIFIED_CLASS_NAMES.get(typeName).getTypeName();
             }
+            result.append(" Type is {@code ").append(typeText).append("}.");
 
             if (propertyName.endsWith("token") || propertyName.endsWith("tokens")) {
                 result.append(" Default value is: ");
@@ -738,11 +552,10 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static void visitClass(DetailAST node) {
-            String parentText = "";
-            String violationMessagesText = "";
-            if (MODIFIED_JAVADOC_FILES.contains(checkName)) {
-                parentText = CHECK_TEXT.get("Parent Module");
-                violationMessagesText = CHECK_TEXT.get("Violation Messages");
+            String violationMessagesText = CHECK_TEXT.get("Violation Messages");
+
+            if (checkName.endsWith("Filter") || "SuppressWarningsHolder".equals(checkName)) {
+                violationMessagesText = "";
             }
 
             if (ScopeUtil.isInScope(node, Scope.PUBLIC)) {
@@ -751,7 +564,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
                         + CHECK_TEXT.get("Examples")
-                        + parentText
+                        + CHECK_TEXT.get("Parent Module")
                         + violationMessagesText + " @since "
                         + CHECK_TEXT.get("since"), getJavaDocText(node),
                         checkName + "'s class-level JavaDoc");
