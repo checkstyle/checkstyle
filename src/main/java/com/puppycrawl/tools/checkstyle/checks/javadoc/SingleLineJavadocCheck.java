@@ -41,14 +41,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoredTags} - Specify at-clauses which are ignored by the check.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code ignoreInlineTags} - Control whether inline tags must be ignored.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -68,6 +71,26 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.wrong.singleton.html.tag}
+ * </li>
+ * <li>
+ * {@code singleline.javadoc}
+ * </li>
+ * </ul>
  *
  * @since 6.0
  */

@@ -54,6 +54,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class TestClass {
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code invalid.position}
+ * </li>
+ * </ul>
  *
  * @since 8.23
  */

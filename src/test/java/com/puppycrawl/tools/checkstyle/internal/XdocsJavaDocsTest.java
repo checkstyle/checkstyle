@@ -133,6 +133,16 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 "UncommentedMain",
                 "Translation",
                 "NewlineAtEndOfFile",
+                "SingleLineJavadoc",
+                "NonEmptyAtclauseDescription",
+                "JavadocMissingWhitespaceAfterAsterisk",
+                "JavadocPackage",
+                "MissingJavadocPackage",
+                "JavadocType",
+                "SummaryJavadoc",
+                "JavadocContentLocation",
+                "WriteTag",
+                "InvalidJavadocPosition",
                 "FinalParameters",
                 "TodoComment",
                 "AnonInnerLength",
@@ -241,7 +251,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("SeverityLevel", SeverityLevel.class)
             .put("TrailingArrayCommaOption", AnnotationUseStyleCheck.TrailingArrayCommaOption.class)
             .put("URI", URI.class)
-            .put("WrapOption", WrapOption.class).build();
+            .put("WrapOption", WrapOption.class)
+            .put("PARAM_LITERAL", int[].class).build();
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
