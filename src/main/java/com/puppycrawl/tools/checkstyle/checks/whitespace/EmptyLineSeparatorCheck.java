@@ -53,19 +53,23 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <ul>
  * <li>
  * Property {@code allowNoEmptyLineBetweenFields} - Allow no empty line between fields.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowMultipleEmptyLines} - Allow multiple empty lines between class members.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code allowMultipleEmptyLinesInsideClassMembers} - Allow multiple
  * empty lines inside class members.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
  * PACKAGE_DEF</a>,
@@ -259,6 +263,26 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code empty.line.separator}
+ * </li>
+ * <li>
+ * {@code empty.line.separator.multiple.lines}
+ * </li>
+ * <li>
+ * {@code empty.line.separator.multiple.lines.after}
+ * </li>
+ * <li>
+ * {@code empty.line.separator.multiple.lines.inside}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */
