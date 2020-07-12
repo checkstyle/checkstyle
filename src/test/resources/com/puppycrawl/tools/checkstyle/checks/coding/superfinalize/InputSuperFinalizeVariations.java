@@ -1,4 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.superfinalize;
+
+/** Config = default */
 public class InputSuperFinalizeVariations
 {
     public InputSuperFinalizeVariations() throws Throwable
@@ -24,14 +26,14 @@ public class InputSuperFinalizeVariations
 
 class NoSuperFinalize
 {
-    public void finalize()
+    public void finalize() // violation
     {
     }
 }
 
 class InputInnerFinalize
 {
-    public void finalize()
+    public void finalize() // violation
     {
         class Inner
         {
@@ -64,5 +66,16 @@ class InputOneMore {
                 super.finalize();
             }
         }
+    }
+}
+
+class FinalizeWithArgs {
+    public void finalize(Object a) {};
+}
+
+class OverrideClass extends FinalizeWithArgs {
+    @Override
+    protected void finalize() throws Throwable { // violation
+        super.finalize(new Object());
     }
 }
