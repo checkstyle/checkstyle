@@ -34,10 +34,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to wrap lines.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption}.
  * Default value is {@code nl}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#QUESTION">
  * QUESTION</a>,
@@ -175,6 +177,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code line.new}
+ * </li>
+ * <li>
+ * {@code line.previous}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

@@ -34,6 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
  * PACKAGE_DEF</a>,
@@ -150,6 +151,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
  * import static java.math.BigInteger.ZERO;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code no.line.wrap}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */

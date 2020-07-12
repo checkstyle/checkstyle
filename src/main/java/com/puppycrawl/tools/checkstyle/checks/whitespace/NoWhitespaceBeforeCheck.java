@@ -38,10 +38,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
  * if the token is at a linebreak.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
  * COMMA</a>,
@@ -144,6 +146,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *        .listIterator()
  *        .forEachRemaining(System.out::print); // OK
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.preceded}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
