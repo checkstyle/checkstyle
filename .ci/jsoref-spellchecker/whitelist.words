@@ -28,6 +28,7 @@ Aleksey
 allchecks
 allclasses
 alot
+amazonaws
 ambig
 Amessages
 androidx
@@ -96,6 +97,7 @@ avoidnestedblocks
 avoidnoargumentsuperconstructorcall
 avoidstarimport
 avoidstaticimport
+aws
 awt
 backend
 backport
@@ -738,6 +740,7 @@ junitpioneer
 jvm
 jxr
 kailasam
+kate
 kazgroup
 kbd
 kclee
@@ -1064,6 +1067,7 @@ println
 priva
 programpractice
 Proguard
+proj
 propertycachefile
 propertyfile
 prot
@@ -1415,7 +1419,7 @@ woff
 wontfix
 wordpress
 workaround
-workflows
+workflow
 writetag
 writingchecks
 writingdoccomments
