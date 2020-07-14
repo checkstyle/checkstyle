@@ -117,7 +117,7 @@ tokens {
     FLOAT_LITERAL; DOUBLE_LITERAL; HEX_FLOAT_LITERAL; HEX_DOUBLE_LITERAL;
     SIGNED_INTEGER; BINARY_EXPONENT;
 
-    PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
+    PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record"; LITERAL_yield="yield";
 }
 
 {
@@ -1118,6 +1118,12 @@ traditionalStatement
         // record declaration, note that you cannot have modifiers in this case
         |   recordDefinition[#null]
 
+        // switch/case statement
+        |  switchExpression
+
+        // Yield statement, must be in a switchBlock
+        |  yieldStatement
+
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
         // side-effects.
@@ -1160,22 +1166,21 @@ traditionalStatement
         // Return an expression
         |    "return"^ (expression)? SEMI
 
-        // switch/case statement
-        |    "switch"^ LPAREN expression RPAREN LCURLY
-                ( casesGroup )*
-            RCURLY
-
         // exception try-catch block
         |    tryBlock
 
         // throw an exception
-        |    "throw"^ expression SEMI
+        |    throwStatement
 
         // synchronize a statement
         |    "synchronized"^ LPAREN expression RPAREN compoundStatement
 
         // empty statement
         |    s:SEMI {#s.setType(EMPTY_STAT);}
+    ;
+
+yieldStatement!
+    :  l:LITERAL_yield e:expression s:(SEMI)? {## = #(l,e,s);}
     ;
 
 forStatement
@@ -1210,6 +1215,10 @@ elseStatement
     : "else"^ statement
     ;
 
+switchBlock
+    : LCURLY ( casesGroup )* RCURLY
+    ;
+
 casesGroup
     :    (    // CONFLICT: to which case group do the statements bind?
             //           ANTLR generates proper code: it groups the
@@ -1226,7 +1235,12 @@ casesGroup
     ;
 
 aCase
-    :    ("case"^ expression | "default"^) COLON
+    :    ("case"^ exprConditionalExpression (COMMA exprConditionalExpression )* | "default"^)
+         ( COLON | (LAMBDA switchRule)=>(LAMBDA switchRule))
+    ;
+
+exprConditionalExpression
+    :   conditionalExpression {## = #(#[EXPR,"EXPR"],##);}
     ;
 
 caseSList
@@ -1242,6 +1256,10 @@ caseSList
                 statement
         )+
         {#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
+    ;
+
+switchRule
+    :   ( expression SEMI | compoundStatement | throwStatement )
     ;
 
 // The initializer for a for loop
@@ -1275,6 +1293,10 @@ tryBlock
         compoundStatement
         (handler)*
         ( finallyHandler )?
+    ;
+
+throwStatement
+    : "throw"^ expression SEMI
     ;
 
 resourceSpecification
@@ -1497,31 +1519,35 @@ unaryExpression
 unaryExpressionNotPlusMinus
     :    BNOT^ unaryExpression
     |    LNOT^ unaryExpression
+    |   (switchExpression)=>switchExpression
+    |    (castExpression)=>castExpression
+    ;
 
-    |    (    // subrule allows option to shut off warnings
-            options {
-                // "(int" ambig with postfixExpr due to lack of sequence
-                // info in linear approximate LL(k).  It's ok.  Shut up.
-                generateAmbigWarnings=false;
-            }
-        :    // If typecast is built in type, must be numeric operand
-            // Also, no reason to backtrack if type keyword like int, float...
-            (LPAREN builtInTypeSpec[true] RPAREN unaryExpression) =>
-            lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
-            unaryExpression
+castExpression
+    :  (   // subrule allows option to shut off warnings
+                    options {
+                        // "(int" ambig with postfixExpr due to lack of sequence
+                        // info in linear approximate LL(k).  It's ok.  Shut up.
+                        generateAmbigWarnings=false;
+                    }
+                :   // If typecast is built in type, must be numeric operand
+                    // Also, no reason to backtrack if type keyword like int, float...
+                    (LPAREN builtInTypeSpec[true] RPAREN unaryExpression) =>
+                    lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
+                    castExpression
 
-            // Have to backtrack to see if operator follows.  If no operator
-            // follows, it's a typecast.  No semantic checking needed to parse.
-            // if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
-        |    (LPAREN typeCastParameters RPAREN unaryExpressionNotPlusMinus)=>
-            lp:LPAREN^ {#lp.setType(TYPECAST);} typeCastParameters RPAREN
-            unaryExpressionNotPlusMinus
+                    // Have to backtrack to see if operator follows.  If no operator
+                    // follows, it's a typecast.  No semantic checking needed to parse.
+                    // if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
+                |    (LPAREN typeCastParameters RPAREN unaryExpressionNotPlusMinus)=>
+                    lp:LPAREN^ {#lp.setType(TYPECAST);} typeCastParameters RPAREN
+                    castExpression
 
-        |   (LPAREN typeCastParameters RPAREN lambdaExpression) =>
-                lpl:LPAREN^ {#lpl.setType(TYPECAST);} typeCastParameters RPAREN
-                lambdaExpression
+                |   (LPAREN typeCastParameters RPAREN lambdaExpression) =>
+                      lpl:LPAREN^ {#lpl.setType(TYPECAST);}
+                      typeCastParameters RPAREN lambdaExpression
 
-        |    postfixExpression
+                |  postfixExpression
         )
     ;
 
@@ -1585,6 +1611,11 @@ postfixExpression
          |    de:DEC^ {#de.setType(POST_DEC);}
         |    // nothing
         )
+    ;
+
+switchExpression
+    :
+    "switch"^ LPAREN expression RPAREN switchBlock
     ;
 
 // the basic element of an expression
@@ -1715,7 +1746,8 @@ lambdaExpression
 
 lambdaParameters
     :    id
-    |    LPAREN (parameterDeclarationList)? RPAREN
+    |    l:LPAREN (parameterDeclarationList)? RPAREN
+            (id {#l.setType(TYPECAST);})?
     ;
 
 lambdaBody
@@ -1725,9 +1757,11 @@ lambdaBody
 
 // This rule was created to remedy the "keyword as identifier" problem
 // See: https://github.com/checkstyle/checkstyle/issues/8308
-id: IDENT | recordKey ;
+id: IDENT | recordKey | yieldKey;
 
 recordKey: "record" {#recordKey.setType(IDENT);};
+yieldKey: "yield" {#yieldKey.setType(IDENT);};
+
 
 //----------------------------------------------------------------------------
 // The Java scanner

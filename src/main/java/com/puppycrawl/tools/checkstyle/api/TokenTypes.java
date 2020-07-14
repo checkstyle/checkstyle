@@ -3595,6 +3595,13 @@ public final class TokenTypes {
     public static final int RECORD_DEF =
             GeneratedJavaTokenTypes.RECORD_DEF;
 
+    /**
+     * The {@code yield} keyword.  This element appears
+     * as part of a yield statement.
+     **/
+    public static final int LITERAL_YIELD =
+            GeneratedJavaTokenTypes.LITERAL_yield;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
