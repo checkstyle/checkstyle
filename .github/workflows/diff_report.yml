@@ -108,9 +108,10 @@ jobs:
        run: |
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
+         REPO="../../checkstyle"
          cd contribution/checkstyle-tester
          sudo apt install groovy
-         groovy diff.groovy -r ../../checkstyle -b master -p $REF -c config.xml -l project.properties
+         groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
         
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
@@ -134,7 +135,7 @@ jobs:
        run: echo ::set-output name=message::$(cat message)   
       
      - name: Comment PR
-       uses: kate2513/javascript-test-action@master 
+       uses:  kate2513/javascript-test-action@master 
        with:
         message: ${{steps.out.outputs.message}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
