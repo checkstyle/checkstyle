@@ -2,8 +2,7 @@
 # Github Action to generate Checkstyle report.
 # 
 # Workflow starts when:
-# 1) pull request  - opened, reopened, synchronized, edited
-# 2) issue comment - created
+# 1) issue comment - created
 #
 # Requirements:
 # 1) secrets.AWS_ACCESS_KEY_ID - access key for AWS S3 service user
@@ -16,16 +15,15 @@ name: Diff-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
-on: 
-  pull_request:
-    types: [opened, reopened, synchronize, edited]
+on:
   issue_comment:
     types: [created]
 
 jobs:
 # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: github.event_name == 'pull_request' || github.event.comment.body == 'report'
+    if: github.event.comment.body == 'diff report' ||
+      github.event.comment.body == 'single report'
     runs-on: ubuntu-latest
     outputs:
       project_link: ${{ steps.parse.outputs.project_link }}
@@ -42,13 +40,6 @@ jobs:
         echo "${{github.event.issue.user.login}}" > user
         wget -q "${{github.event.issue.pull_request.url}}" -O info.json
         jq .head.ref info.json > branch
-       
-     - name: Parsing PR description
-       if: github.event_name == 'pull_request'
-       run: |
-        echo "${{github.event.pull_request.body}}" > text
-        echo "${{github.event.pull_request.user.login}}" > user
-        echo "${{github.event.pull_request.head.ref}}" > branch
         
      - name: Parsing content of PR comment/description
        id: parse
@@ -65,7 +56,7 @@ jobs:
        run: |
         echo ::set-output name=user::$(cat user)
         echo ::set-output name=ref::$(cat branch)
-        
+
      
   make_report:
     runs-on: ubuntu-latest
@@ -78,7 +69,7 @@ jobs:
         wget -q "${{needs.parse_body.outputs.project_link}}" -O project.properties
         wget -q "${{needs.parse_body.outputs.config_link}}" -O config.xml
         
-     # fetch-depth - number of commits to fetch. 
+     # fetch-depth - number of commits to fetch.
      # 0 indicates all history for all branches and tags.
      # 0, because we need access to all branches to create a report.
      # ref - branch to checkout.
@@ -98,19 +89,31 @@ jobs:
         repository: checkstyle/contribution
         ref: master
         path: contribution
-         
+
      - name: Relocate .xml and .properties 
        run: |
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
          
-     - name: Generate report
+     - name: Generate basic difference report
+       if: github.event.comment.body == 'diff report'
        run: |
+         sudo apt install groovy
+         cd contribution/checkstyle-tester
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
-         cd contribution/checkstyle-tester
+         REPO="../../checkstyle"
+         groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
+            
+     - name: Generate basic single report
+       if: github.event.comment.body == 'single report'
+       run: |
          sudo apt install groovy
-         groovy diff.groovy -r ../../checkstyle -b master -p $REF -c config.xml -l project.properties
+         cd contribution/checkstyle-tester
+         bash
+         REF="origin/${{needs.parse_body.outputs.branch}}"
+         REPO="../../checkstyle"
+         groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single
         
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
@@ -134,7 +137,7 @@ jobs:
        run: echo ::set-output name=message::$(cat message)   
       
      - name: Comment PR
-       uses: kate2513/javascript-test-action@master 
+       uses: ./contribution/comment-action/
        with:
         message: ${{steps.out.outputs.message}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
