@@ -118,6 +118,10 @@
 
           <!-- Exclude because printed AST has line length > 100 characters -->
           <exclude name="**/InputJava14InstanceofWithPatternMatchingAST.txt"/>
+          <exclude name="**/InputJava14TextBlocks.txt"/>
+
+          <!-- line length must be over 100 chars to properly suppress warnings -->
+          <exclude name="**/intellij-idea-inspections.xml"/>
 
         </fileset>
       </path>

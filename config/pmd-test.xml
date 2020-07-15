@@ -180,7 +180,10 @@
             <!-- This inherited from GeneratedJavaLexer. -->
             <property name="violationSuppressXPath"
                       value="//ClassOrInterfaceDeclaration[@SimpleName='AssertGeneratedJavaLexer']
-                  //MethodDeclaration[@Name='LA']"/>
+                                 //MethodDeclaration[@Name='LA']
+               | //ClassOrInterfaceDeclaration[@SimpleName='AssertGeneratedTextBlockLexer']
+                     //MethodDeclaration[@Name='LA']"/>
+
         </properties>
     </rule>
 

@@ -23,6 +23,7 @@ package com.puppycrawl.tools.checkstyle.grammar;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import java.text.MessageFormat;
 import antlr.CommonHiddenStreamToken;
+import antlr.TokenStreamSelector;
 }
 
 /** Java 1.5 Recognizer
@@ -118,6 +119,8 @@ tokens {
     SIGNED_INTEGER; BINARY_EXPONENT;
 
     PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
+    TEXT_BLOCK_LITERAL_BEGIN; TEXT_BLOCK_CONTENT;
+    TEXT_BLOCK_LITERAL_END;
 }
 
 {
@@ -1707,6 +1710,7 @@ constant
     |   NUM_DOUBLE
     |    CHAR_LITERAL
     |    STRING_LITERAL
+    |   textBlock
     ;
 
 lambdaExpression
@@ -1721,6 +1725,14 @@ lambdaParameters
 lambdaBody
     :    (options{generateAmbigWarnings=false;}: expression
     |    statement)
+    ;
+
+textBlock
+    :   !c:TEXT_BLOCK_CONTENT
+        TEXT_BLOCK_LITERAL_END
+        TEXT_BLOCK_LITERAL_BEGIN
+        {#textBlock=#( TEXT_BLOCK_LITERAL_BEGIN,
+            c,TEXT_BLOCK_LITERAL_END);}
     ;
 
 // This rule was created to remedy the "keyword as identifier" problem
@@ -1754,6 +1766,8 @@ options {
     {
         setColumn( getColumn() + 1 );
     }
+
+    public TokenStreamSelector selector;
 
     private CommentListener mCommentListener = null;
 
@@ -1899,6 +1913,10 @@ BLOCK_COMMENT_CONTENT
         |   '\n'            {newline();}
         |   ~('*'|'\n'|'\r')
         )*
+    ;
+
+TEXT_BLOCK_LITERAL_BEGIN
+    :   "\"\"\"" {selector.push("textBlockLexer");}
     ;
 
 // character literals
