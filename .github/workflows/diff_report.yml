@@ -22,7 +22,7 @@ on:
 jobs:
 # Parse PR Body, search pro, xml links
   parse_body:
-    if: github.event_name == 'pull_request' || github.event.comment.body == 'report'
+    if: github.event.comment.body == 'report'
     runs-on: ubuntu-latest
     outputs:
       proj_link: ${{ steps.parse.outputs.proj_link }}
@@ -33,19 +33,11 @@ jobs:
     steps:
     
      - name: Issue comment action
-       if: github.event_name == 'issue_comment'
        run: |
         echo "${{github.event.issue.body}}" > text
         echo "${{github.event.issue.user.login}}" > user
         wget -q ${{github.event.issue.pull_request.url}} -O info.json
         jq .head.ref info.json > branch
-       
-     - name: PR action
-       if: github.event_name == 'pull_request'
-       run: |
-        echo "${{github.event.pull_request.body}}" > text
-        echo ${{github.event.pull_request.user.login}} > user
-        echo ${{github.event.pull_request.head.ref}} > branch
         
      - name: Parse body
        id: parse
