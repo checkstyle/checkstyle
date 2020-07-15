@@ -2,8 +2,7 @@
 # Github Action to generate Checkstyle report.
 # 
 # Workflow starts when:
-# 1) pull request  - opened, reopened, synchronized, edited
-# 2) issue comment - created
+# 1) issue comment - created
 #
 # Requirements:
 # 1) secrets.AWS_ACCESS_KEY_ID - access key for AWS S3 service user
@@ -17,8 +16,6 @@ env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
 on: 
-  pull_request:
-    types: [opened, reopened, synchronize, edited]
   issue_comment:
     types: [created]
 
