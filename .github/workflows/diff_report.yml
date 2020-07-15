@@ -15,7 +15,6 @@ name: Diff-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
-  COMMENT: github.event.comment.body
 on:
   issue_comment:
     types: [created]
@@ -23,7 +22,8 @@ on:
 jobs:
 # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: ${{env.COMMENT}} == 'diff report' || ${{env.COMMENT}} == 'single report'
+    if: github.event.comment.body == 'diff report' ||
+      github.event.comment.body == 'single report'
     runs-on: ubuntu-latest
     outputs:
       project_link: ${{ steps.parse.outputs.project_link }}
@@ -96,7 +96,7 @@ jobs:
          mv project.properties ./contribution/checkstyle-tester/
          
      - name: Generate basic difference report
-       if: ${{env.COMMENT}} == 'diff report'
+       if: github.event.comment.body == 'diff report'
        run: |
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
@@ -106,7 +106,7 @@ jobs:
          groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
        
      - name: Generate basic single report
-       if: ${{env.COMMENT}} == 'single report'
+       if: github.event.comment.body == 'single report'
        run: |
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
