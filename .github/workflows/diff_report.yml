@@ -95,24 +95,22 @@ jobs:
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
          
-     - name: Generate basic difference report
-       if: github.event.comment.body == 'diff report'
+     - name: Prepare to generate report
        run: |
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
          REPO="../../checkstyle"
          cd contribution/checkstyle-tester
          sudo apt install groovy
+         
+     - name: Generate basic difference report
+       if: github.event.comment.body == 'diff report'
+       run: |
          groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
        
      - name: Generate basic single report
        if: github.event.comment.body == 'single report'
        run: |
-         bash
-         REF="origin/${{needs.parse_body.outputs.branch}}"
-         REPO="../../checkstyle"
-         cd contribution/checkstyle-tester
-         sudo apt install groovy
          groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single
        
      - name: Configure AWS Credentials
