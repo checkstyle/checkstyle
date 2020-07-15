@@ -15,6 +15,7 @@ name: Diff-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
+  COMMENT: github.event.comment.body
 on:
   issue_comment:
     types: [created]
@@ -22,7 +23,7 @@ on:
 jobs:
 # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: github.event.comment.body == 'report'
+    if: ${{env.COMMENT}} == 'diff report' || ${{env.COMMENT}} == 'single report'
     runs-on: ubuntu-latest
     outputs:
       project_link: ${{ steps.parse.outputs.project_link }}
@@ -94,7 +95,8 @@ jobs:
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
          
-     - name: Generate report
+     - name: Generate basic difference report
+       if: ${{env.COMMENT}} == 'diff report'
        run: |
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
@@ -102,7 +104,17 @@ jobs:
          cd contribution/checkstyle-tester
          sudo apt install groovy
          groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
-        
+       
+     - name: Generate basic single report
+       if: ${{env.COMMENT}} == 'single report'
+       run: |
+         bash
+         REF="origin/${{needs.parse_body.outputs.branch}}"
+         REPO="../../checkstyle"
+         cd contribution/checkstyle-tester
+         sudo apt install groovy
+         groovy diff.groovy -r $REPO -p i111-my-fix -pc config.xml -l project.properties -m single
+       
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
