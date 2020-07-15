@@ -2515,6 +2515,8 @@ public native void myTest(); // violation
                 STRING_LITERAL</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
                 CHAR_LITERAL</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
+                TEXT_BLOCK_CONTENT</a>
                 .
               </td>
               <td>empty</td>

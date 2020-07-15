@@ -130,13 +130,15 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         "NUM_INT", "ANNOTATION_DEF", "METHOD_REF", "TYPE_ARGUMENTS",
                         "DOUBLE_COLON", "IDENT", "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL",
                         "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE",
-                        "PATTERN_VARIABLE_DEF", "RECORD_DEF", "LITERAL_RECORD").collect(
+                        "PATTERN_VARIABLE_DEF", "RECORD_DEF", "LITERAL_RECORD",
+                        "TEXT_BLOCK_LITERAL_BEGIN", "TEXT_BLOCK_CONTENT",
+                        "TEXT_BLOCK_LITERAL_END").collect(
                         Collectors.toSet()));
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
                 Stream.of("NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL")
-                    .collect(Collectors.toSet()));
+                    "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL",
+                    "TEXT_BLOCK_CONTENT").collect(Collectors.toSet()));
         // we do not use this check as it is deprecated
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
                 Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF", "ANNOTATION_FIELD_DEF")
@@ -227,8 +229,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText", Stream.of(
                 // all other java tokens and text are allowed
                 "NUM_DOUBLE", "NUM_FLOAT", "NUM_INT", "NUM_LONG", "IDENT",
-                "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL")
-                .collect(Collectors.toSet()));
+                "COMMENT_CONTENT", "STRING_LITERAL", "CHAR_LITERAL",
+                "TEXT_BLOCK_CONTENT").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("OperatorWrap", Stream.of(
                 // specifically allowed via '4.5.1 Where to break' because the following are
                 // assignment operators and they are allowed to break before or after the symbol
