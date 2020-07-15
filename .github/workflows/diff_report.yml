@@ -113,7 +113,7 @@ jobs:
          REPO="../../checkstyle"
          cd contribution/checkstyle-tester
          sudo apt install groovy
-         groovy diff.groovy -r $REPO -p i111-my-fix -pc config.xml -l project.properties -m single
+         groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single
        
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
