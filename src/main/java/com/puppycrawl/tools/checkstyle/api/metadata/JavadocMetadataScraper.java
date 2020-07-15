@@ -1,12 +1,14 @@
 package com.puppycrawl.tools.checkstyle.api.metadata;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
@@ -15,10 +17,14 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 
 public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static final Pattern TAGS_TO_IGNORE = Pattern.compile("([A-Z]+_*)+[A-Z]+");
+    private static final Pattern PROPERTY_TAG = Pattern.compile("\\s*Property\\s*");
+    private static final Pattern DEFAULT_VALUE_TAG = Pattern.compile("\\s*Default value is\\s*");
+    private static final Pattern DESC_CLEAN = Pattern.compile("-", Pattern.LITERAL);
     private ModuleDetails moduleDetails;
+
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {
+        return new int[]{
                 JavadocTokenTypes.PARAGRAPH,
                 JavadocTokenTypes.LI
         };
@@ -31,7 +37,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        String res = constructSubTreeText(ast);
+        String res = constructSubTreeText(ast, 0, ast.getChildren().length - 1);
         final int parentType = getParentType(getBlockCommentAst()); // fix class level javadoc
         // detection
         moduleDetails = new ModuleDetails();
@@ -41,41 +47,88 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     }
 
     public void scrapeContent(DetailNode ast) {
-
-        boolean descriptionDone;
+        // create enum Status for booleans
+        boolean descriptionDone = false;
         boolean propertiesDone;
-        boolean violationMessagesDone;
-        for (DetailNode node : ast.getChildren()) {
-            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+        boolean violationOngoing = false;
+        boolean propertyCreationOngoing = false;
+        String descriptionText = "";
+        if (ast.getType() == JavadocTokenTypes.PARAGRAPH && !descriptionDone) {
+            descriptionText += constructSubTreeText(ast, 0, ast.getChildren().length - 1);
+        } else if (ast.getType() == JavadocTokenTypes.LI && isPropertyList(ast)) {
+            descriptionDone = true;
+            propertyCreationOngoing = true;
 
+            List<ModulePropertyDetails> modulePropertyDetailsList = new ArrayList<>();
+            modulePropertyDetailsList.add(createProperties(ast));
+            // construct list
+        } else if (ast.getType() == JavadocTokenTypes.PARAGRAPH && propertyCreationOngoing) {
+            propertyCreationOngoing = false;
+            // if Violation Messages violationOngoing = true
+        }
+        else if (ast.getType() == JavadocTokenTypes.LI && violationOngoing) {
+            // create violation messages
+        }
+    }
+
+    private ModulePropertyDetails createProperties(DetailNode nodeLi) {
+        ModulePropertyDetails modulePropertyDetails = new ModulePropertyDetails();
+        DetailNode propertyNameTag = getFirstChildOfType(nodeLi,
+                JavadocTokenTypes.JAVADOC_INLINE_TAG, 0);
+
+        DetailNode typeChild = null;
+        for (DetailNode child : nodeLi.getChildren()) {
+            if (child.getText().matches("\\s.*Type is\\s.*")) {
+                typeChild = child;
+                break;
             }
-            // if type is <p> and desc not found -> fillDesc
-            // if type is <ul> and it contains properties -> stop fillDesc and start fillProp
-            // if type is </ul> stop fillProp
-            // if type is <p> and contains parent -> start fillParent and stop at next </p>
-            // then do fillViolationMessgages
-
         }
+
+        String propertyDesc = DESC_CLEAN.matcher(constructSubTreeText(nodeLi, propertyNameTag.getIndex() + 1,
+                typeChild.getIndex() - 1)).replaceAll(Matcher.quoteReplacement(""));
+        DetailNode propertyTypeTag = getFirstChildOfType(nodeLi,
+                JavadocTokenTypes.JAVADOC_INLINE_TAG, propertyNameTag.getIndex() + 1);
+
+        DetailNode propertyDefaultValueTag = getFirstChildOfType(nodeLi,
+                JavadocTokenTypes.JAVADOC_INLINE_TAG, propertyTypeTag.getIndex() + 1);
+        if (propertyDefaultValueTag == null) {
+            int defaultValueTokensIdx = propertyTypeTag.getIndex();
+            DetailNode candidate = nodeLi.getChildren()[defaultValueTokensIdx];
+            while (!DEFAULT_VALUE_TAG.matcher(candidate.getText()).matches()) {
+                candidate = nodeLi.getChildren()[defaultValueTokensIdx];
+                defaultValueTokensIdx++;
+            }
+            final String tokenText = constructSubTreeText(nodeLi,
+                    defaultValueTokensIdx, nodeLi.getChildren().length);
+            modulePropertyDetails.setDefaultValue(cleanDefaultTokensText(tokenText));
+        }
+        else {
+            modulePropertyDetails.setDefaultValue(getTextFromTag(propertyDefaultValueTag));
+        }
+
+        modulePropertyDetails.setName(getTextFromTag(propertyNameTag));
+        modulePropertyDetails.setDescription(propertyDesc.trim());
+        modulePropertyDetails.setType(getTextFromTag(propertyTypeTag));
+        return modulePropertyDetails;
+
     }
 
-//    private String getDescription(DetailNode descriptionNode) {
-//
-//    }
-
-    private DetailNode getHtmlElementType(DetailNode htmlElement) {
-        DetailNode resultNode = null;
-        final DetailNode childNode = htmlElement.getChildren()[0];
-        if (childNode.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-            resultNode = childNode;
+    private static String cleanDefaultTokensText(String initialText) {
+        Set<String> tokens = new HashSet<>();
+        Matcher matcher = Pattern.compile("([A-Z]+_*)+[A-Z]+").matcher(initialText);
+        while (matcher.find()) {
+            tokens.add(matcher.group(0));
         }
-//        else if (childNode.getType() == JavadocTokenTypes.HTML_TAG) {
-//            resultNode = childNode.getChildren()[0];
-//        }
-        return resultNode;
+        return String.join(",", tokens);
     }
 
-    private String constructSubTreeText(DetailNode node) {
+    private String getTextFromTag(DetailNode nodeTag) {
+        return getFirstChildOfType(nodeTag, JavadocTokenTypes.TEXT, 0).getText().trim();
+    }
+
+    private static String constructSubTreeText(DetailNode node, int childLeftLimit, int childRightLimit){
         DetailNode detailNode = node;
+        DetailNode treeRootNode = node;
         Deque<DetailNode> stack = new ArrayDeque<>();
         stack.addFirst(detailNode);
         Set<DetailNode> visited = new HashSet<>();
@@ -94,18 +147,32 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             }
 
             for (DetailNode child : detailNode.getChildren()) {
+                if (child.getParent().equals(treeRootNode)
+                        && (child.getIndex() < childLeftLimit
+                        || child.getIndex() > childRightLimit)) {
+                    continue;
+                }
                 if (!visited.contains(child)) {
-                    stack.addFirst(child);
+                        stack.addFirst(child);
                 }
             }
         }
-        return result.toString();
+        return result.toString().trim();
+    }
+
+    private boolean isPropertyList (DetailNode nodeLi){
+        final DetailNode firstTextChildToken = getFirstChildOfType(nodeLi, JavadocTokenTypes.TEXT
+                , 0);
+        return firstTextChildToken != null
+                && PROPERTY_TAG.matcher(firstTextChildToken.getText()).matches();
     }
 
     // add javadoc
-    private DetailNode findChildOfType(DetailNode node, int tokenType) {
-        return (DetailNode) Arrays.stream(node.getChildren())
-                .filter(child -> child.getType() == tokenType);
+    private DetailNode getFirstChildOfType (DetailNode node, int tokenType, int offset){
+        return Arrays.stream(node.getChildren())
+                .filter(child -> child.getIndex() >= offset && child.getType() == tokenType)
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -114,7 +181,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @param commentBlock child node.
      * @return parent type.
      */
-    private static int getParentType(DetailAST commentBlock) {
+    private static int getParentType (DetailAST commentBlock){
         final DetailAST parentNode = commentBlock.getParent();
         int result = 0;
         if (parentNode != null) {
