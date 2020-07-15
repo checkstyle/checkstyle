@@ -135,7 +135,7 @@ jobs:
        run: echo ::set-output name=message::$(cat message)   
       
      - name: Comment PR
-       uses:  kate2513/javascript-test-action@master 
+       uses: ./contribution/comment-action/ 
        with:
         message: ${{steps.out.outputs.message}}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
