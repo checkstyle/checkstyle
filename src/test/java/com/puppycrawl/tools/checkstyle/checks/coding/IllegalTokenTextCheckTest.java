@@ -157,7 +157,8 @@ public class IllegalTokenTextCheckTest
             TokenTypes.IDENT,
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
-            TokenTypes.CHAR_LITERAL
+            TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT
         );
         for (int tokenType : allowedTokens) {
             assertTrue(tokenTypesWithMutableText.contains(tokenType),
