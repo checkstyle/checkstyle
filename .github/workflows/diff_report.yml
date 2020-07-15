@@ -97,11 +97,11 @@ jobs:
          
      - name: Prepare to generate report
        run: |
+         sudo apt install groovy
+         cd contribution/checkstyle-tester
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
          REPO="../../checkstyle"
-         cd contribution/checkstyle-tester
-         sudo apt install groovy
          
      - name: Generate basic difference report
        if: github.event.comment.body == 'diff report'
