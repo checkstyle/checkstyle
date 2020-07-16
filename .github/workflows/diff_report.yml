@@ -17,7 +17,7 @@ env:
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
 on:
   issue_comment:
-    types: [created]
+    types: [created, edited]
 
 jobs:
 # Parse PR Body, search for links to .properties and .xml files
