@@ -4,6 +4,9 @@
 # Workflow starts when:
 # 1) issue comment - created
 #
+# Issue comment "diff report" will start generating basic difference report,
+# comment "single report" - basic single report.
+#
 # Requirements:
 # 1) secrets.AWS_ACCESS_KEY_ID - access key for AWS S3 service user
 # 2) secrets.AWS_SECRET_ACCESS_KEY - security access key for AWS S3 service user
@@ -22,7 +25,8 @@ on:
 jobs:
 # Parse PR Body, search for links to .properties and .xml files
   parse_body:
-    if: github.event.comment.body == 'report'
+    if: github.event.comment.body == 'diff report' ||
+        github.event.comment.body == 'single report'
     runs-on: ubuntu-latest
     outputs:
       project_link: ${{ steps.parse.outputs.project_link }}
@@ -89,19 +93,29 @@ jobs:
         ref: master
         path: contribution
 
-     - name: Relocate .xml and .properties 
+     - name: Prepare environment 
        run: |
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
+         sudo apt install groovy
          
-     - name: Generate report
+     - name: Generate basic difference report
+       if: github.event.comment.body == 'diff report'
        run: |
+         sudo apt install groovy
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
          REPO="../../checkstyle"
-         cd contribution/checkstyle-tester
-         sudo apt install groovy
          groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
+         
+     - name: Generate basic single report
+       if: github.event.comment.body == 'single report'
+       run: |
+         sudo apt install groovy
+         bash
+         REF="origin/${{needs.parse_body.outputs.branch}}"
+         REPO="../../checkstyle"
+         groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single
         
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
