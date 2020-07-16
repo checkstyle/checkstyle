@@ -93,10 +93,11 @@ jobs:
         ref: master
         path: contribution
 
-     - name: Relocate .xml and .properties 
+     - name: Prepare environment 
        run: |
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
+         sudo apt install groovy
          
      - name: Generate basic difference report
        if: github.event.comment.body == 'diff report'
