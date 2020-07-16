@@ -23,7 +23,7 @@ jobs:
 # Parse PR Body, search for links to .properties and .xml files
   parse_body:
     if: github.event.comment.body == 'diff report' ||
-      github.event.comment.body == 'single report'
+        github.event.comment.body == 'single report'
     runs-on: ubuntu-latest
     outputs:
       project_link: ${{ steps.parse.outputs.project_link }}
@@ -90,15 +90,15 @@ jobs:
         ref: master
         path: contribution
 
-     - name: Relocate .xml and .properties 
+     - name: Prepare environment 
        run: |
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
+         sudo apt install groovy
          
      - name: Generate basic difference report
        if: github.event.comment.body == 'diff report'
        run: |
-         sudo apt install groovy
          cd contribution/checkstyle-tester
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
@@ -108,7 +108,6 @@ jobs:
      - name: Generate basic single report
        if: github.event.comment.body == 'single report'
        run: |
-         sudo apt install groovy
          cd contribution/checkstyle-tester
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
