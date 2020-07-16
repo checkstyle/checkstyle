@@ -4,6 +4,9 @@
 # Workflow starts when:
 # 1) issue comment - created
 #
+# Issue comment "diff report" will start generating basic difference report,
+# comment "single report" - basic single report.
+#
 # Requirements:
 # 1) secrets.AWS_ACCESS_KEY_ID - access key for AWS S3 service user
 # 2) secrets.AWS_SECRET_ACCESS_KEY - security access key for AWS S3 service user
