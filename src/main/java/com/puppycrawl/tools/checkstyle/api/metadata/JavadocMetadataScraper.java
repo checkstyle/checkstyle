@@ -1,11 +1,9 @@
 package com.puppycrawl.tools.checkstyle.api.metadata;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,13 +18,23 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static final Pattern PROPERTY_TAG = Pattern.compile("\\s*Property\\s*");
     private static final Pattern DEFAULT_VALUE_TAG = Pattern.compile("\\s*Default value is\\s*");
     private static final Pattern DESC_CLEAN = Pattern.compile("-", Pattern.LITERAL);
-    private ModuleDetails moduleDetails;
+    private static final Pattern PARENT_TAG = Pattern.compile("\\s*Parent is\\s*");
+    private static final Pattern VIOLATION_MESSAGES_TAG =
+            Pattern.compile("\\s*Violation Message Keys:\\s*");
+    private static final Pattern TYPE_TAG = Pattern.compile("\\s.*Type is\\s.*");
+    private final ModuleDetails moduleDetails = new ModuleDetails();
+    private ScrapeStatus currentStatus = ScrapeStatus.DESCRIPTION;
+    private boolean toScan;
+    private String descriptionText = "";
 
     @Override
     public int[] getDefaultJavadocTokens() {
         return new int[]{
+                JavadocTokenTypes.PACKAGE_CLASS,
+                JavadocTokenTypes.JAVADOC,
                 JavadocTokenTypes.PARAGRAPH,
-                JavadocTokenTypes.LI
+                JavadocTokenTypes.LI,
+                JavadocTokenTypes.SINCE_LITERAL
         };
     }
 
@@ -37,48 +45,83 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        String res = constructSubTreeText(ast, 0, ast.getChildren().length - 1);
-        final int parentType = getParentType(getBlockCommentAst()); // fix class level javadoc
-        // detection
-        moduleDetails = new ModuleDetails();
-        scrapeContent(ast);
-        // xmlwriter.write(moduleDetails);
+        if (toScan) {
+            scrapeContent(ast);
+        }
 
+        if (ast.getType() == JavadocTokenTypes.JAVADOC
+            && getParentType(getBlockCommentAst()) == TokenTypes.CLASS_DEF) {
+            toScan = true;
+        }
+        else if (ast.getType() == JavadocTokenTypes.SINCE_LITERAL) {
+            toScan = false;
+        }
+    }
+
+    @Override
+    public void finishJavadocTree(DetailNode rootAst) {
+        // xmlwriter.write(moduleDetails);
+        System.out.println("breakpoint test");
     }
 
     public void scrapeContent(DetailNode ast) {
-        // create enum Status for booleans
-        boolean descriptionDone = false;
-        boolean propertiesDone;
-        boolean violationOngoing = false;
-        boolean propertyCreationOngoing = false;
-        String descriptionText = "";
-        if (ast.getType() == JavadocTokenTypes.PARAGRAPH && !descriptionDone) {
-            descriptionText += constructSubTreeText(ast, 0, ast.getChildren().length - 1);
-        } else if (ast.getType() == JavadocTokenTypes.LI && isPropertyList(ast)) {
-            descriptionDone = true;
-            propertyCreationOngoing = true;
+        if (ast.getType() == JavadocTokenTypes.PARAGRAPH) {
+            if (currentStatus == ScrapeStatus.DESCRIPTION) {
+                descriptionText += constructSubTreeText(ast, 0, ast.getChildren().length - 1);
+            }
+            else if (currentStatus == ScrapeStatus.PROPERTY) {
+                currentStatus = ScrapeStatus.VIOLATION_MESSAGES;
+            }
+            else if (getParentText(ast) != null) {
+                moduleDetails.setParent(getParentText(ast));
+            }
+            else if (isViolationMessagesText(ast)) {
+                currentStatus = ScrapeStatus.VIOLATION_MESSAGES;
+            }
+        }
+        else if (ast.getType() == JavadocTokenTypes.LI){
+            if (isPropertyList(ast)) {
+                currentStatus = ScrapeStatus.PROPERTY;
 
-            List<ModulePropertyDetails> modulePropertyDetailsList = new ArrayList<>();
-            modulePropertyDetailsList.add(createProperties(ast));
-            // construct list
-        } else if (ast.getType() == JavadocTokenTypes.PARAGRAPH && propertyCreationOngoing) {
-            propertyCreationOngoing = false;
-            // if Violation Messages violationOngoing = true
+                moduleDetails.setDescription(descriptionText);
+                moduleDetails.addToProperties(createProperties(ast));
+            }
+            else if (currentStatus == ScrapeStatus.VIOLATION_MESSAGES) {
+                moduleDetails.addToViolationMessages(getViolationMessages(ast));
+            }
         }
-        else if (ast.getType() == JavadocTokenTypes.LI && violationOngoing) {
-            // create violation messages
-        }
+
     }
 
-    private ModulePropertyDetails createProperties(DetailNode nodeLi) {
+    private static String getViolationMessages(DetailNode nodeLi) {
+        return getTextFromTag(getFirstChildOfType(nodeLi, JavadocTokenTypes.JAVADOC_INLINE_TAG, 0));
+    }
+
+    private static boolean isViolationMessagesText(DetailNode nodePararaph) {
+        boolean result = false;
+        if (VIOLATION_MESSAGES_TAG.matcher(getFirstChildOfType(nodePararaph, JavadocTokenTypes.TEXT, 0).getText()).matches()) {
+            result = true;
+        }
+        return result;
+    }
+
+    private static String getParentText(DetailNode nodeParagraph) {
+        String result = null;
+        if (PARENT_TAG.matcher(getFirstChildOfType(nodeParagraph, JavadocTokenTypes.TEXT, 0).getText()).matches()) {
+            result = getTextFromTag(getFirstChildOfType(nodeParagraph,
+                    JavadocTokenTypes.JAVADOC_INLINE_TAG, 0));
+        }
+        return result;
+    }
+
+    private static ModulePropertyDetails createProperties(DetailNode nodeLi) {
         ModulePropertyDetails modulePropertyDetails = new ModulePropertyDetails();
         DetailNode propertyNameTag = getFirstChildOfType(nodeLi,
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, 0);
 
         DetailNode typeChild = null;
         for (DetailNode child : nodeLi.getChildren()) {
-            if (child.getText().matches("\\s.*Type is\\s.*")) {
+            if (TYPE_TAG.matcher(child.getText()).matches()) {
                 typeChild = child;
                 break;
             }
@@ -122,7 +165,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return String.join(",", tokens);
     }
 
-    private String getTextFromTag(DetailNode nodeTag) {
+    private static String getTextFromTag(DetailNode nodeTag) {
         return getFirstChildOfType(nodeTag, JavadocTokenTypes.TEXT, 0).getText().trim();
     }
 
@@ -160,7 +203,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return result.toString().trim();
     }
 
-    private boolean isPropertyList (DetailNode nodeLi){
+    private static boolean isPropertyList(DetailNode nodeLi){
         final DetailNode firstTextChildToken = getFirstChildOfType(nodeLi, JavadocTokenTypes.TEXT
                 , 0);
         return firstTextChildToken != null
@@ -168,7 +211,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     }
 
     // add javadoc
-    private DetailNode getFirstChildOfType (DetailNode node, int tokenType, int offset){
+    private static DetailNode getFirstChildOfType(DetailNode node, int tokenType, int offset){
         return Arrays.stream(node.getChildren())
                 .filter(child -> child.getIndex() >= offset && child.getType() == tokenType)
                 .findFirst()
@@ -186,10 +229,19 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         int result = 0;
         if (parentNode != null) {
             result = parentNode.getType();
-            if (result == TokenTypes.TYPE || result == TokenTypes.MODIFIERS) {
+            if (result == TokenTypes.ANNOTATION) {
+                result = parentNode.getParent().getParent().getType();
+            }
+            else if (result == TokenTypes.MODIFIERS) {
                 result = parentNode.getParent().getType();
             }
         }
         return result;
+    }
+
+    private enum ScrapeStatus {
+        DESCRIPTION,
+        PROPERTY,
+        VIOLATION_MESSAGES
     }
 }

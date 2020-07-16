@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.api.metadata;
+package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 

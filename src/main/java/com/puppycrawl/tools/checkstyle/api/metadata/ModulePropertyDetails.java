@@ -60,7 +60,4 @@ public class ModulePropertyDetails {
         return Collections.unmodifiableList(values);
     }
 
-    public void setValues(List<String> values) {
-        this.values = values;
-    }
 }
