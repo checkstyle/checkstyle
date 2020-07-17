@@ -34,7 +34,6 @@ jobs:
     steps:
     
      - name: Parsing PR description
-       if: github.event_name == 'issue_comment'
        run: |
         echo "${{github.event.issue.body}}" > text
         echo "${{github.event.issue.user.login}}" > user
