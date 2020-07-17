@@ -2717,6 +2717,8 @@ public void myTest() {
                   PARAMETER_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                  PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>
@@ -2736,6 +2738,8 @@ public void myTest() {
                   PARAMETER_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                  PATTERN_VARIABLE_DEF</a>
                   .
               </td>
               <td>3.2</td>

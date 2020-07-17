@@ -310,6 +310,21 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIllegalTypeEnhancedInstanceof() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        final String[] expected = {
+            "23:9: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "26:28: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "30:35: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "36:32: " + getCheckMessage(MSG_KEY, "TreeSet"),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputIllegalTypeEnhancedInstanceof.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
