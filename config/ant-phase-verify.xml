@@ -118,6 +118,8 @@
 
           <!-- Exclude because printed AST has line length > 100 characters -->
           <exclude name="**/InputJava14InstanceofWithPatternMatchingAST.txt"/>
+          <exclude name="**/InputJava14SwitchExpression.txt"/>
+
 
         </fileset>
       </path>
@@ -157,6 +159,7 @@
          <exclude name="**/InputJava14Records.java"/>
          <!-- until https://github.com/checkstyle/checkstyle/issues/7103 -->
          <exclude name="**/InputJava14TextBlocks.java"/>
+
         </fileset>
       </path>
       <formatter type="plain"/>
