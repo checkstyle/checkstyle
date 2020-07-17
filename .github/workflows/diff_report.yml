@@ -61,6 +61,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: parse_body
     if: needs.parse_body.outputs.project_link != '' && needs.parse_body.outputs.config_link != ''
+    outputs:
+      message: ${{ steps.out.outputs.message}}
     steps: 
        
      - name: Download files
@@ -134,8 +136,38 @@ jobs:
        id: out
        run: echo ::set-output name=message::$(cat message)   
       
-     - name: Comment PR
-       uses: ./contribution/comment-action/
-       with:
-        message: ${{steps.out.outputs.message}}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #should be always last step
+  send_message:
+    runs-on: ubuntu-latest
+    needs: [parse_body, make_report]
+    if: failure() || success()
+    steps:
+
+      - name: Success message
+        if: needs.make_report.outputs.message != ''
+        run: echo "${{needs.make_report.outputs.message}}" > message
+      
+      - name: Failure message
+        if: needs.make_report.outputs.message == ''
+        run: |
+         bash
+         JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
+         API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/\
+         ${{github.run_id}}/jobs"
+         wget $API_LINK -O info.json
+         jq '.jobs' info.json > jobs
+         jq '.[] | select(.conclusion == "failure") | .name' jobs > job_name
+         jq '.[] | select(.conclusion == "failure") | .steps' jobs > steps
+         jq '.[] | select(.conclusion == "failure") | .name' steps > step_name
+         echo "Report generation job failed on phase $(cat job_name), \
+         step $(cat step_name).<br>Link: $JOBS_LINK" > message
+     
+      - name: Set message
+        id: out
+        run: echo ::set-output name=message::$(cat message)   
+      
+      - name: Comment PR
+        uses: checkstyle/contribution/comment-action@master
+        with:
+         message: ${{steps.out.outputs.message}}
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
