@@ -57,6 +57,13 @@ jobs:
         - SKIP_JOB_BY_FILES="false"
         - USE_MAVEN_REPO="true"
 
+    # No error testing - pmd
+    - jdk: openjdk11
+      env:
+        - DESC="no error test on pmd"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/travis/travis.sh no-error-pmd"
+
     # jacoco and codecov (openjdk8)
     - jdk: openjdk8
       env:
@@ -305,13 +312,6 @@ jobs:
     - env:
         - DESC="validate since javadoc tag if new module is created"
         - CMD="./.ci/travis/travis.sh check-since-version"
-
-    # No error testing - pmd
-    - jdk: openjdk11
-      env:
-          - DESC="no error test on pmd"
-          - USE_MAVEN_REPO="true"
-          - CMD="./.ci/travis/travis.sh no-error-pmd"
 
     # No violation testing - josm (ant task)
     - jdk: openjdk11
