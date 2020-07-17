@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
  * COMMA</a>,
@@ -98,6 +99,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *         for(;;) {} // OK
  *     }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.notFollowed}
+ * </li>
+ * <li>
+ * {@code ws.typeCast}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

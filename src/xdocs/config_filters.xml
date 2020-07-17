@@ -63,7 +63,7 @@
                  accepts an audit event if and only if there is not a match
                  between the event's severity level and property severity.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.2</td>
             </tr>
@@ -152,49 +152,49 @@
               <tr>
                   <td>offCommentFormat</td>
                   <td>Specify comment pattern to trigger filter to begin suppression.</td>
-                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><a href="property_types.html#Pattern">Pattern</a></td>
                   <td><code>"CHECKSTYLE:OFF"</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>onCommentFormat</td>
                   <td>Specify comment pattern to trigger filter to end suppression.</td>
-                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><a href="property_types.html#Pattern">Pattern</a></td>
                   <td><code>"CHECKSTYLE:ON"</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>checkFormat</td>
                   <td>Specify check pattern to suppress.</td>
-                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                   <td><code>".*"</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>messageFormat</td>
                   <td>Specify message pattern to suppress.</td>
-                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                   <td><code>null</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>idFormat</td>
                   <td>Specify check ID pattern to suppress.</td>
-                  <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                  <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                   <td><code>null</code></td>
                   <td>8.24</td>
               </tr>
               <tr>
                   <td>checkCPP</td>
                   <td>Control whether to check C++ style comments (<code>//</code>).</td>
-                  <td><a href="property_types.html#boolean">Boolean</a></td>
+                  <td><a href="property_types.html#boolean">boolean</a></td>
                   <td><code>true</code></td>
                   <td>3.5</td>
               </tr>
               <tr>
                   <td>checkC</td>
                   <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
-                  <td><a href="property_types.html#boolean">Boolean</a></td>
+                  <td><a href="property_types.html#boolean">boolean</a></td>
                   <td><code>true</code></td>
                   <td>3.5</td>
               </tr>
@@ -466,7 +466,7 @@ public class UserService {
               <td>
                 Specify the location of the <em>suppressions XML document</em> file.
               </td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
@@ -479,7 +479,7 @@ public class UserService {
                 <code>true</code> and file is not found, the filter accept all
                 audit events.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.15</td>
             </tr>
@@ -495,25 +495,25 @@ public class UserService {
         <ul>
           <li>
             <code>files</code> -
-            a <a href="property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#Pattern">Pattern</a>
             matched against the file name associated with an audit
             event. It is optional.
           </li>
           <li>
             <code>checks</code> -
-            a <a href="property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#Pattern">Pattern</a>
             matched against the name of the check associated with an audit
             event. Optional as long as <code>id</code> or <code>message</code> is specified.
           </li>
           <li>
             <code>message</code> -
-            a <a href="property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#Pattern">Pattern</a>
             matched against the message of the check associated with an audit
             event. Optional as long as <code>checks</code> or <code>id</code> is specified.
           </li>
           <li>
             <code>id</code> -
-            a <a href="property_types.html#string">string</a>
+            a <a href="property_types.html#String">String</a>
             matched against the <a href="config.html#Id">check id</a> associated with an audit
             event. Optional as long as <code>checks</code> or <code>message</code>
             is specified.
@@ -521,13 +521,13 @@ public class UserService {
           <li>
             <code>lines</code> - a comma-separated list of
             values, where each value is
-            an <a href="property_types.html#integer">integer</a> or a
+            an <a href="property_types.html#int">int</a> or a
             range of integers denoted by integer-integer. It is optional.
           </li>
           <li>
             <code>columns</code> - a comma-separated list of
             values, where each value is
-            an <a href="property_types.html#integer">integer</a> or a
+            an <a href="property_types.html#int">int</a> or a
             range of integers denoted by integer-integer. It is optional.
           </li>
         </ul>
@@ -731,7 +731,7 @@ public class UserService {
               <td>files</td>
               <td>Define the RegExp for matching against the file name associated
                   with an audit event.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -739,7 +739,7 @@ public class UserService {
               <td>checks</td>
               <td>Define the RegExp for matching against the name of the check
                   associated with an audit event.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -747,7 +747,7 @@ public class UserService {
               <td>message</td>
               <td>Define the RegExp for matching against the message of the check associated
                   with an audit event.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -755,7 +755,7 @@ public class UserService {
               <td>id</td>
               <td>Specify a string matched against the ID of the check associated with an audit
                   event.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -763,7 +763,7 @@ public class UserService {
               <td>lines</td>
               <td>Specify a comma-separated list of values, where each value is an integer or a
                 range of integers denoted by integer-integer.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -771,7 +771,7 @@ public class UserService {
               <td>columns</td>
               <td>Specify a comma-separated list of values, where each value is an integer or a
                 range of integers denoted by integer-integer.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.23</td>
             </tr>
@@ -1008,7 +1008,7 @@ public class UserService {
               <td>
                 Specify the location of the <em>suppressions XML document</em> file.
               </td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.6</td>
             </tr>
@@ -1021,7 +1021,7 @@ public class UserService {
                 true and file is not found, the filter accepts all
                 audit events.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.6</td>
             </tr>
@@ -1051,31 +1051,31 @@ public class UserService {
         <ul>
           <li>
             <code>files</code> -
-            a <a href="property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#Pattern">Pattern</a>
             matched against the file name associated with an audit
             event. It is optional.
           </li>
           <li>
             <code>checks</code> -
-            a <a href="property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#Pattern">Pattern</a>
             matched against the name of the check associated with an audit
             event. Optional as long as <code>id</code> or <code>message</code> is specified.
           </li>
           <li>
             <code>message</code> -
-            a <a href="property_types.html#regexp">Regular Expression</a>
+            a <a href="property_types.html#Pattern">Pattern</a>
             matched against the message of the check associated with an audit
             event. Optional as long as <code>checks</code> or <code>id</code> is specified.
           </li>
           <li>
             <code>id</code> -
-            a <a href="property_types.html#string">string</a>
+            a <a href="property_types.html#String">String</a>
             matched against the ID of the check associated with an audit
             event. Optional as long as <code>checks</code> or <code>message</code> is specified.
           </li>
           <li>
             <code>query</code> -
-            a <a href="property_types.html#string">string</a>
+            a <a href="property_types.html#String">String</a>
             xpath query. It is optional.
           </li>
         </ul>
@@ -1411,7 +1411,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>files</td>
               <td>Define a Regular Expression matched against the file name associated
                   with an audit event.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1419,7 +1419,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>checks</td>
               <td>Define a Regular Expression matched against the name of the check
                   associated with an audit event.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1427,7 +1427,7 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>message</td>
               <td>Define a Regular Expression matched against the message of the check associated
                   with an audit event.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1435,14 +1435,14 @@ CLASS_DEF -> CLASS_DEF [1:0]
               <td>id</td>
               <td>Define a string matched against the ID of the check associated with an audit
                   event.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
             <tr>
               <td>query</td>
               <td>Define a string xpath query.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>8.18</td>
             </tr>
@@ -1988,28 +1988,28 @@ public static void foo() {
                 <tr>
                     <td>commentFormat</td>
                     <td>Specify comment pattern to trigger filter to begin suppression.</td>
-                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><a href="property_types.html#Pattern">Pattern</a></td>
                     <td><code>"SUPPRESS CHECKSTYLE (\w+)"</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkFormat</td>
                     <td>Specify check pattern to suppress.</td>
-                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                     <td><code>".*"</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>messageFormat</td>
                     <td>Define message pattern to suppress.</td>
-                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                     <td><code>null</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>idFormat</td>
                     <td>Specify check ID pattern to suppress.</td>
-                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                     <td><code>null</code></td>
                     <td>8.24</td>
                 </tr>
@@ -2017,21 +2017,21 @@ public static void foo() {
                     <td>influenceFormat</td>
                     <td>Specify negative/zero/positive value that defines the number of
                         lines preceding/at/following the suppression comment.</td>
-                    <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                    <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
                     <td><code>"0"</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkCPP</td>
                     <td>Control whether to check C++ style comments (<code>//</code>).</td>
-                    <td><a href="property_types.html#boolean">Boolean</a></td>
+                    <td><a href="property_types.html#boolean">boolean</a></td>
                     <td><code>true</code></td>
                     <td>5.0</td>
                 </tr>
                 <tr>
                     <td>checkC</td>
                     <td>Control whether to check C style comments (<code>/* ... */</code>).</td>
-                    <td><a href="property_types.html#boolean">Boolean</a></td>
+                    <td><a href="property_types.html#boolean">boolean</a></td>
                     <td><code>true</code></td>
                     <td>5.0</td>
                 </tr>
@@ -2263,35 +2263,38 @@ public class UserService {
                   <tr>
                       <td>offCommentFormat</td>
                       <td>Specify comment pattern to trigger filter to begin suppression.</td>
-                      <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                      <td><a href="property_types.html#Pattern">Pattern</a></td>
                       <td><code>"// CHECKSTYLE:OFF"</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>onCommentFormat</td>
                       <td>Specify comment pattern to trigger filter to end suppression.</td>
-                      <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                      <td><a href="property_types.html#Pattern">Pattern</a></td>
                       <td><code>"// CHECKSTYLE:ON"</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>checkFormat</td>
                       <td>Specify check pattern to suppress.</td>
-                      <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                      <td><a href="property_types.html#RegularExpression">
+                          Regular Expression</a></td>
                       <td><code>".*"</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>messageFormat</td>
                       <td>Specify message pattern to suppress.</td>
-                      <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                      <td><a href="property_types.html#RegularExpression">
+                          Regular Expression</a></td>
                       <td><code>null</code></td>
                       <td>8.6</td>
                   </tr>
                   <tr>
                       <td>idFormat</td>
                       <td>Specify check ID pattern to suppress.</td>
-                      <td><a href="property_types.html#regexp">Regular Expression</a></td>
+                      <td><a href="property_types.html#RegularExpression">
+                          Regular Expression</a></td>
                       <td><code>null</code></td>
                       <td>8.24</td>
                   </tr>

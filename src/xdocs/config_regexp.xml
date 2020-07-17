@@ -85,7 +85,7 @@
             <tr>
               <td>format</td>
               <td>Specify the pattern to match against.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^$"</code> (empty)</td>
               <td>4.0</td>
             </tr>
@@ -93,14 +93,14 @@
               <td>message</td>
               <td>Specify message which is used to notify about violations,
                 if empty then the default (hard-coded) message is used.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>illegalPattern</td>
               <td>Control whether the pattern is required or illegal.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
@@ -110,21 +110,21 @@
                 any negative value means no checking for duplicates, any positive
                 value is used as the maximum number of allowed duplicates, if the
                 limit is exceeded violations will be logged.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>errorLimit</td>
               <td>Specify the maximum number of violations before the check will abort.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>100</code></td>
               <td>4.0</td>
             </tr>
             <tr>
               <td>ignoreComments</td>
               <td>Control whether to ignore matches found within comments.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>4.0</td>
             </tr>
@@ -520,7 +520,7 @@ public static final int A_SETPOINT = 1;
             <tr>
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>&quot;$.&quot;</code></td>
               <td>5.0</td>
             </tr>
@@ -528,42 +528,42 @@ public static final int A_SETPOINT = 1;
               <td>message</td>
               <td>Specify the message which is used to notify about violations,
               if empty then default (hard-coded) message is used.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>ignoreCase</td>
               <td>Control whether to ignore case when searching.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>minimum</td>
               <td>Specify the minimum number of matches required in each file.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>maximum</td>
               <td>Specify the maximum number of matches required in each file.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>matchAcrossLines</td>
               <td>Control whether to match expressions across multiple lines.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.25</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -742,14 +742,14 @@ void method() {
             <tr>
               <td>folderPattern</td>
               <td>Specify the regular expression to match the folder path against.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>6.15</td>
             </tr>
             <tr>
               <td>fileNamePattern</td>
               <td>Specify the regular expression to match the file name against.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>null</code></td>
               <td>6.15</td>
             </tr>
@@ -757,14 +757,14 @@ void method() {
               <td>match</td>
               <td>Control whether to look for a match or mis-match on the file name, if the
               fileNamePattern is supplied, otherwise it is applied on the folderPattern.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.15</td>
             </tr>
             <tr>
               <td>ignoreFileNameExtensions</td>
               <td>Control whether to ignore the file extension for the file name match.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.15</td>
             </tr>
@@ -772,7 +772,7 @@ void method() {
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process. If this is specified, then
               only files that match these types are examined with the other patterns.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>6.15</td>
             </tr>
@@ -982,7 +982,7 @@ src/main/main_class.java  //violation, file names should be in Camel Case
             <tr>
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>&quot;$.&quot;</code></td>
               <td>5.0</td>
             </tr>
@@ -990,35 +990,35 @@ src/main/main_class.java  //violation, file names should be in Camel Case
               <td>message</td>
               <td>Specify the message which is used to notify about violations,
               if empty then default (hard-coded) message is used.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>ignoreCase</td>
               <td>Control whether to ignore case when searching.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>minimum</td>
               <td>Specify the minimum number of matches required in each file.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>maximum</td>
               <td>Specify the maximum number of matches required in each file.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>fileExtensions</td>
               <td>Specify the file type extension of files to process.</td>
-              <td><a href="property_types.html#stringSet">String Set</a></td>
+              <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>all files</code></td>
               <td>5.0</td>
             </tr>
@@ -1155,8 +1155,6 @@ CREATE DATABASE MyDB;
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
             regexp.exceeded</a>
           </li>
-        </ul>
-        <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
             regexp.minimum</a>
@@ -1208,7 +1206,7 @@ CREATE DATABASE MyDB;
             <tr>
               <td>format</td>
               <td>Specify the format of the regular expression to match.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
               <td><code>&quot;$.&quot;</code></td>
               <td>5.0</td>
             </tr>
@@ -1216,35 +1214,35 @@ CREATE DATABASE MyDB;
               <td>message</td>
               <td>Specify the message which is used to notify about violations,
               if empty then default (hard-coded) message is used.</td>
-              <td><a href="property_types.html#string">String</a></td>
+              <td><a href="property_types.html#String">String</a></td>
               <td><code>null</code></td>
               <td>6.0</td>
             </tr>
             <tr>
               <td>ignoreCase</td>
               <td>Control whether to ignore case when searching.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>minimum</td>
               <td>Specify the minimum number of matches required in each file.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>maximum</td>
               <td>Specify the maximum number of matches required in each file.</td>
-              <td><a href="property_types.html#integer">Integer</a></td>
+              <td><a href="property_types.html#int">int</a></td>
               <td><code>0</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>ignoreComments</td>
               <td>Control whether to ignore text in comments when searching.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
@@ -1393,8 +1391,6 @@ class Foo{
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.exceeded%22">
             regexp.exceeded</a>
           </li>
-        </ul>
-        <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fregexp+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22regexp.minimum%22">
             regexp.minimum</a>

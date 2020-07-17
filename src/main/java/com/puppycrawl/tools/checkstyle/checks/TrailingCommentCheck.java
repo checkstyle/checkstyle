@@ -87,12 +87,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code format} - Specify pattern for strings allowed before the comment.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is <code>"^[\s});]*$"</code>.
  * </li>
  * <li>
  * Property {@code legalComment} - Define pattern for text allowed in trailing comments.
  * (This pattern will not be applied to multiline comments and the text of
  * the comment will be trimmed before matching.)
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * </ul>
@@ -111,6 +113,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code trailing.comments}
+ * </li>
+ * </ul>
  * @noinspection HtmlTagCanBeJavadocTag
  * @since 3.4
  */

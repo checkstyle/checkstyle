@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
-import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
@@ -954,7 +954,7 @@ public class XdocsPagesTest {
             Object instance, String propertyName) {
         final String instanceName = instance.getClass().getSimpleName();
         String result = null;
-
+        final String checkProperty = sectionName + ":" + propertyName;
         if (("SuppressionCommentFilter".equals(sectionName)
                 || "SuppressWithNearbyCommentFilter".equals(sectionName)
                 || "SuppressWithPlainTextCommentFilter".equals(sectionName))
@@ -970,21 +970,21 @@ public class XdocsPagesTest {
             result = "Regular Expression";
         }
         else if (fieldClass == boolean.class) {
-            result = "Boolean";
+            result = "boolean";
         }
         else if (fieldClass == int.class) {
-            result = "Integer";
+            result = "int";
         }
         else if (fieldClass == int[].class) {
             if (isPropertyTokenType(sectionName, propertyName)) {
                 result = "subset of tokens TokenTypes";
             }
             else {
-                result = "Integer Set";
+                result = "int[]";
             }
         }
         else if (fieldClass == double[].class) {
-            result = "Number Set";
+            result = "double[]";
         }
         else if (fieldClass == String.class) {
             result = "String";
@@ -1004,23 +1004,40 @@ public class XdocsPagesTest {
                 result = "subset of tokens TokenTypes";
             }
             else {
-                result = "String Set";
+                result = "String[]";
             }
         }
         else if (fieldClass == URI.class) {
             result = "URI";
         }
         else if (fieldClass == Pattern.class) {
-            result = "Regular Expression";
+            if ("SuppressionSingleFilter:checks".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:files".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:message".equals(checkProperty)
+                || "IllegalTokenText:format".equals(checkProperty)) {
+                result = "Regular Expression";
+            }
+            else {
+                result = "Pattern";
+            }
         }
         else if (fieldClass == Pattern[].class) {
-            result = "Regular Expressions";
+            if ("ImportOrder:groups".equals(checkProperty)
+                || "ImportOrder:staticGroups".equals(checkProperty)
+                || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
+                || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
+                result = "Regular Expressions";
+            }
+            else {
+                result = "Pattern[]";
+            }
         }
         else if (fieldClass == Scope.class) {
             result = "Scope";
         }
-        else if (fieldClass == AccessModifier[].class) {
-            result = "Access Modifier Set";
+        else if (fieldClass == AccessModifierOption[].class) {
+            result = "AccessModifierOption[]";
         }
         else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
             result = "File";
@@ -1239,7 +1256,7 @@ public class XdocsPagesTest {
                     result = value.toString().toLowerCase(Locale.ENGLISH);
                 }
             }
-            else if (fieldClass == AccessModifier[].class) {
+            else if (fieldClass == AccessModifierOption[].class) {
                 result = Arrays.toString((Object[]) value).replace("[", "").replace("]", "");
             }
             else {

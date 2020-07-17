@@ -76,6 +76,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   // methods
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code one.top.level.class}
+ * </li>
+ * </ul>
  *
  * @since 5.8
  */

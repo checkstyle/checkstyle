@@ -51,10 +51,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code allowLineBreaks} - Control whether whitespace is allowed
  * if the token is at a linebreak.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_INIT">
  * ARRAY_INIT</a>,
@@ -100,6 +102,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * public void foo(final char @NotNull [] param) {} // No violation
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.followed}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

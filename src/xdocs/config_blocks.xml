@@ -103,7 +103,7 @@ switch (a)
             <tr>
               <td>allowInSwitchCase</td>
               <td>Allow nested blocks if they are the only child of a switch case.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>3.2</td>
             </tr>
@@ -367,7 +367,7 @@ switch (a) {
                 Specify the RegExp for the name of the variable associated with exception.
                 If check meets variable name matching specified value - empty block is suppressed.
               </td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;^$&quot; (empty)</code></td>
               <td>6.4</td>
             </tr>
@@ -378,7 +378,7 @@ switch (a) {
                 If check meets comment inside empty catch block matching specified format - empty
                 block is suppressed. If it is multi-line comment - only its first line is analyzed.
               </td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>6.4</td>
             </tr>
@@ -550,7 +550,7 @@ try {
             <tr>
               <td>ignoreEnums</td>
               <td>Allow to ignore enums when left curly brace policy is EOL.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.9</td>
             </tr>
@@ -749,14 +749,14 @@ try {
             <tr>
               <td>allowSingleLineStatement</td>
               <td>allow single-line statements without braces.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.5</td>
             </tr>
             <tr>
               <td>allowEmptyLoopBody</td>
               <td>allow loops with empty bodies.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
             </tr>
@@ -968,7 +968,7 @@ allowedFuture.addCallback(result -> {
             <tr>
               <td>option</td>
               <td>Specify the policy on placement of a right curly brace (<code>'}'</code>).</td>
-              <td><a href="property_types.html#RcurlyOption">RightCurlyOption</a></td>
+              <td><a href="property_types.html#RightCurlyOption">RightCurlyOption</a></td>
               <td><code>same</code></td>
               <td>3.0</td>
             </tr>

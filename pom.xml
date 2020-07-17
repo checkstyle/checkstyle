@@ -232,7 +232,7 @@
     <dependency>
       <groupId>info.picocli</groupId>
       <artifactId>picocli</artifactId>
-      <version>4.3.2</version>
+      <version>4.4.0</version>
     </dependency>
     <dependency>
       <groupId>antlr</groupId>
@@ -906,7 +906,7 @@
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.73</minimum>
+                      <minimum>0.72</minimum>
                     </limit>
                   </limits>
                 </rule>

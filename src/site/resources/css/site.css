@@ -120,7 +120,7 @@ span.wrapper.inline {
   display: inline;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 823px) {
   #leftColumn {
     float: none;
     width: auto;

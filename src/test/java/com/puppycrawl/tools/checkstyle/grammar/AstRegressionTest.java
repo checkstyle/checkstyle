@@ -135,6 +135,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava14InstanceofWithPatternMatching() throws Exception {
+        verifyAst(getPath("java14/InputJava14InstanceofWithPatternMatchingAST.txt"),
+                getNonCompilablePath("java14/InputJava14InstanceofWithPatternMatching.java"));
+    }
+
+    @Test
     public void testCharLiteralSurrogatePair() throws Exception {
         verifyAst(getPath("InputCharLiteralSurrogatePair.txt"),
                 getPath("InputCharLiteralSurrogatePair.java"));
@@ -195,6 +201,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
         verifyAst(getPath("InputNewlineCrAtEndOfFileAst.txt"),
                 getPath("InputAstRegressionNewlineCrAtEndOfFile.java"),
                 JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testJava14Records() throws Exception {
+        verifyAst(getPath("java14/InputJava14Records.txt"),
+                getNonCompilablePath("java14/InputJava14Records.java"));
     }
 
     @Test

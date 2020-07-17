@@ -57,6 +57,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code validateComments} - Control whether to validate whitespaces
  * surrounding comments.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -106,6 +107,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * * OK, 1 white space after the doc comment ends
  * *&#47; float f2;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code single.space.separator}
+ * </li>
+ * </ul>
  *
  * @since 6.19
  */

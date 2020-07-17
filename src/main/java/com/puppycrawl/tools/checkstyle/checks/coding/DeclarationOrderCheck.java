@@ -74,10 +74,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>
  * Property {@code ignoreConstructors} - control whether to ignore constructors.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreModifiers} - control whether to ignore modifiers (fields, ...).
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -119,6 +121,26 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code declaration.order.access}
+ * </li>
+ * <li>
+ * {@code declaration.order.constructor}
+ * </li>
+ * <li>
+ * {@code declaration.order.instance}
+ * </li>
+ * <li>
+ * {@code declaration.order.static}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */

@@ -79,7 +79,7 @@
                <td>Indicate the number of consecutive capital letters allowed in targeted
                 identifiers (abbreviations in the classes, interfaces, variables and methods
                 names, ... ).</td>
-               <td><a href="property_types.html#integer">Integer</a></td>
+               <td><a href="property_types.html#int">int</a></td>
                <td><code>3</code></td>
                <td>5.8</td>
              </tr>
@@ -87,21 +87,21 @@
                <td>allowedAbbreviations</td>
                <td>Specify list of abbreviations that must be skipped for checking.
                Abbreviations should be separated by comma.</td>
-               <td><a href="property_types.html#stringSet">String Set</a></td>
+               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
                <td><code>{}</code></td>
                <td>5.8</td>
              </tr>
              <tr>
                <td>ignoreFinal</td>
                <td>Allow to skip variables with <code>final</code> modifier.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
              <tr>
                <td>ignoreStatic</td>
                <td>Allow to skip variables with <code>static</code> modifier.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
@@ -109,7 +109,7 @@
                <td>ignoreStaticFinal</td>
                <td>Allow to skip variables with both <code>static</code>
                  and <code>final</code> modifiers.</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>8.32</td>
              </tr>
@@ -117,7 +117,7 @@
                <td>ignoreOverriddenMethods</td>
                <td>Allow to ignore methods tagged with <code>@Override</code> annotation
                (that usually mean inherited name).</td>
-               <td><a href="property_types.html#boolean">Boolean</a></td>
+               <td><a href="property_types.html#boolean">boolean</a></td>
                <td><code>true</code></td>
                <td>5.8</td>
              </tr>
@@ -144,6 +144,8 @@
                    METHOD_DEF</a>
                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_CONSTANT_DEF">
                    ENUM_CONSTANT_DEF</a>
+                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                   PATTERN_VARIABLE_DEF</a>
                    .
                </td>
                <td>
@@ -163,6 +165,8 @@
                    VARIABLE_DEF</a>
                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
                    METHOD_DEF</a>
+                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+                   PATTERN_VARIABLE_DEF</a>
                    .
                </td>
                <td>5.8</td>
@@ -402,7 +406,7 @@ public class MyClass {
             <tr>
               <td>format</td>
               <td>Specify valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^Abstract.+$"</code></td>
               <td>3.2</td>
             </tr>
@@ -413,7 +417,7 @@ public class MyClass {
                 <code>abstract</code> modifier on classes that match the
                 name.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
@@ -424,7 +428,7 @@ public class MyClass {
                 only useful if using the check to identify that match name
                 and do not have the <code>abstract</code> modifier.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.3</td>
             </tr>
@@ -566,9 +570,7 @@ class FourthClass {} // OK, no "abstract" modifier
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td>
-                <a href="property_types.html#regexp">Regular Expression</a>
-              </td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td>
                 <code>"^(e|t|ex|[a-z][a-z][a-zA-Z]+)$"</code>
               </td>
@@ -706,7 +708,7 @@ public class MyTest {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[A-Z]$"</code></td>
               <td>5.0</td>
             </tr>
@@ -798,21 +800,21 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -821,14 +823,14 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -948,7 +950,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[A-Z]$"</code></td>
               <td>5.8</td>
             </tr>
@@ -1042,7 +1044,7 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>8.11</td>
             </tr>
@@ -1147,7 +1149,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
@@ -1294,7 +1296,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
@@ -1323,7 +1325,7 @@ for (Object O : list) { // OK
                 </pre>
                   </div>
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.8</td>
             </tr>
@@ -1500,21 +1502,21 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
@@ -1523,14 +1525,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>3.4</td>
             </tr>
@@ -1682,7 +1684,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
@@ -1703,21 +1705,21 @@ class MyClass {
                 </pre>
               </div>
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
@@ -1726,14 +1728,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.1</td>
             </tr>
@@ -1888,7 +1890,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[A-Z]$"</code></td>
               <td>5.0</td>
             </tr>
@@ -1997,7 +1999,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$"</code></td>
               <td>3.0</td>
             </tr>
@@ -2117,7 +2119,7 @@ package com._checkstyle.checks_; // violation, name 'com._checkstyle.checks_' mu
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
@@ -2136,14 +2138,16 @@ public boolean equals(Object o) {
                   </pre>
                 </div>
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>6.12.1</td>
             </tr>
             <tr>
               <td>accessModifiers</td>
               <td>Access modifiers of methods where parameters are checked.</td>
-              <td><a href="property_types.html#access_modifiers">Access Modifier Set</a></td>
+              <td><a href="property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]
+                </a>
+              </td>
               <td><code>public, protected, package, private</code></td>
               <td>7.5</td>
             </tr>
@@ -2313,21 +2317,21 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -2336,14 +2340,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -2465,21 +2469,21 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Regular Expression</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[A-Z][a-zA-Z0-9]*$"</code></td>
               <td>3.0</td>
             </tr>
             <tr>
               <td>applyToPublic</td>
               <td>Controls whether to apply the check to public member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToProtected</td>
               <td>Controls whether to apply the check to protected member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
@@ -2488,14 +2492,14 @@ class MyClass {
               <td>
                 Controls whether to apply the check to package-private member.
               </td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>
             <tr>
               <td>applyToPrivate</td>
               <td>Controls whether to apply the check to private member.</td>
-              <td><a href="property_types.html#boolean">Boolean</a></td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.0</td>
             </tr>

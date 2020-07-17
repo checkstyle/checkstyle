@@ -59,6 +59,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * <ul>
  * <li>
  * Property {@code tags} - Specify the javadoc tags to process.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code author, deprecated, exception, hidden, param, provides,
  * return, see, serial, serialData, serialField, since, throws, uses, version}.
  * </li>
@@ -66,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * Property {@code violateExecutionOnNonTightHtml} - Control when to print violations
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * </ul>
@@ -118,6 +120,26 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  *   &lt;property name="tags" value="noinspection"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.blockTagLocation}
+ * </li>
+ * <li>
+ * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.wrong.singleton.html.tag}
+ * </li>
+ * </ul>
  *
  * @since 8.24
  */

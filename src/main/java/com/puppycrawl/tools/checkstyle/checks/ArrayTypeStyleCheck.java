@@ -41,6 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code javaStyle} - Control whether to enforce Java style (true) or C style (false).
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -92,6 +93,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   }
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code array.type.style}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */

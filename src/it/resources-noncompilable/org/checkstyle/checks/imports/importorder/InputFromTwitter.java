@@ -2,7 +2,7 @@
 package org.checkstyle.checks.importorder;
 /**
  * This test-input is intended to be checked using following configuration:
- *
+ * Config
  * caseSensitive = true
  * groups = {android,com.twitter,com,junit,net,org,java,javax}
  * option = bottom

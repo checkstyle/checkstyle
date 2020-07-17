@@ -31,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <ul>
  * <li>
  * Property {@code option} - Specify policy on how to pad parentheses.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption}.
  * Default value is {@code nospace}.
  * </li>
  * </ul>
@@ -88,6 +89,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code ws.followed}
+ * </li>
+ * <li>
+ * {@code ws.notFollowed}
+ * </li>
+ * <li>
+ * {@code ws.notPreceded}
+ * </li>
+ * <li>
+ * {@code ws.preceded}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */

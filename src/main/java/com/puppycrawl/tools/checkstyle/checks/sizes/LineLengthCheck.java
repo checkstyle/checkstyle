@@ -53,14 +53,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <ul>
  * <li>
  * Property {@code fileExtensions} - Specify file extensions that are accepted.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code all files}.
  * </li>
  * <li>
  * Property {@code ignorePattern} - Specify pattern for lines to ignore.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$" (empty)}.
  * </li>
  * <li>
  * Property {@code max} - Specify the maximum line length allowed.
+ * Type is {@code int}.
  * Default value is {@code 80}.
  * </li>
  * </ul>
@@ -101,6 +104,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="fileExtensions" value="xml, properties"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code maxLineLen}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

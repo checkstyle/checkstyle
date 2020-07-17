@@ -44,11 +44,13 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
  * Tight-HTML Rules</a>.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowNewlineParagraph} - Control whether the &lt;p&gt; tag
  * should be placed immediately before the first word.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -106,6 +108,35 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * public class TestClass {
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missed.html.close}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.line.before}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.misplaced.tag}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.redundant.paragraph}
+ * </li>
+ * <li>
+ * {@code javadoc.paragraph.tag.after}
+ * </li>
+ * <li>
+ * {@code javadoc.parse.rule.error}
+ * </li>
+ * <li>
+ * {@code javadoc.wrong.singleton.html.tag}
+ * </li>
+ * </ul>
  *
  * @since 6.0
  */

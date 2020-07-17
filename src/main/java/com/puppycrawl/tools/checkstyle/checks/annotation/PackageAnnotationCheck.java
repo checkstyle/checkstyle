@@ -62,6 +62,17 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * &#64;Deprecated
  * package com.example.annotations.packageannotation; //ok
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.package.location}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */

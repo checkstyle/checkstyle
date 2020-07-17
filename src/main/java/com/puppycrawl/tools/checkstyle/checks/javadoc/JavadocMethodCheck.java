@@ -48,7 +48,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks the Javadoc of a method or constructor.
  * The scope to verify is specified using the {@code Scope} class and defaults
  * to {@code Scope.PRIVATE}. To verify another scope, set property scope to
- * a different <a href="https://checkstyle.org/property_types.html#scope">scope</a>.
+ * a different <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
  * </p>
  * <p>
  * Violates parameters and type parameters for which no param tags are present can
@@ -107,33 +107,41 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code allowedAnnotations} - Specify the list of annotations
  * that allow missed documentation.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code Override}.
  * </li>
  * <li>
  * Property {@code validateThrows} - Control whether to validate {@code throws} tags.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code private}.
  * </li>
  * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments
  * are not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code allowMissingParamTags} - Control whether to ignore violations
  * when a method has parameters but does not have matching {@code param} tags in the javadoc.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code allowMissingReturnTag} - Control whether to ignore violations
  * when a method returns non-void type and does not have a {@code return} tag in the javadoc.
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
  * METHOD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
@@ -253,6 +261,35 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *     };
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.classInfo}
+ * </li>
+ * <li>
+ * {@code javadoc.duplicateTag}
+ * </li>
+ * <li>
+ * {@code javadoc.expectedTag}
+ * </li>
+ * <li>
+ * {@code javadoc.invalidInheritDoc}
+ * </li>
+ * <li>
+ * {@code javadoc.return.expected}
+ * </li>
+ * <li>
+ * {@code javadoc.unusedTag}
+ * </li>
+ * <li>
+ * {@code javadoc.unusedTagGeneral}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

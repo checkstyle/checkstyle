@@ -43,8 +43,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code format} - Specifies valid identifiers. Default value is
- * {@code "^[a-z][a-zA-Z0-9]*$"}.
+ * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * <li>
  * Property {@code ignoreOverridden} - Allows to skip methods with Override annotation from
@@ -56,10 +57,13 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   return super.equals(o);
  * }
  * </pre>
+ * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code accessModifiers} - Access modifiers of methods where parameters are checked.
+ * Property {@code accessModifiers} - Access modifiers of methods where parameters are
+ * checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
  * Default value is {@code public, protected, package, private}.
  * </li>
  * </ul>
@@ -160,6 +164,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *                            // must match pattern '^[a-z][a-z0-9][a-zA-Z0-9]*$'
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */
@@ -178,11 +193,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
     private boolean ignoreOverridden;
 
     /** Access modifiers of methods where parameters are checked. */
-    private AccessModifier[] accessModifiers = {
-        AccessModifier.PUBLIC,
-        AccessModifier.PROTECTED,
-        AccessModifier.PACKAGE,
-        AccessModifier.PRIVATE,
+    private AccessModifierOption[] accessModifiers = {
+        AccessModifierOption.PUBLIC,
+        AccessModifierOption.PROTECTED,
+        AccessModifierOption.PACKAGE,
+        AccessModifierOption.PRIVATE,
     };
 
     /**
@@ -213,7 +228,7 @@ public class ParameterNameCheck extends AbstractNameCheck {
      *
      * @param accessModifiers access modifiers of methods which should be checked.
      */
-    public void setAccessModifiers(AccessModifier... accessModifiers) {
+    public void setAccessModifiers(AccessModifierOption... accessModifiers) {
         this.accessModifiers =
             Arrays.copyOf(accessModifiers, accessModifiers.length);
     }
@@ -254,11 +269,11 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @param ast the token of the method/constructor.
      * @return the access modifier of the method/constructor.
      */
-    private static AccessModifier getAccessModifier(final DetailAST ast) {
-        final AccessModifier accessModifier;
+    private static AccessModifierOption getAccessModifier(final DetailAST ast) {
+        final AccessModifierOption accessModifier;
 
         if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            accessModifier = AccessModifier.PUBLIC;
+            accessModifier = AccessModifierOption.PUBLIC;
         }
         else {
             final DetailAST params = ast.getParent();
@@ -276,8 +291,9 @@ public class ParameterNameCheck extends AbstractNameCheck {
      * @param accessModifier the access modifier of the method.
      * @return whether the method matches the expected access modifier.
      */
-    private boolean matchAccessModifiers(final AccessModifier accessModifier) {
-        return Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
+    private boolean matchAccessModifiers(final AccessModifierOption accessModifier) {
+        return Arrays.stream(accessModifiers)
+                .anyMatch(modifier -> modifier == accessModifier);
     }
 
     /**

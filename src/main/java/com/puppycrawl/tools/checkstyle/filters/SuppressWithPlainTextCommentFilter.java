@@ -76,23 +76,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code offCommentFormat} - Specify comment pattern to trigger filter
  * to begin suppression.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "// CHECKSTYLE:OFF"}.
  * </li>
  * <li>
  * Property {@code onCommentFormat} - Specify comment pattern to trigger filter
  * to end suppression.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "// CHECKSTYLE:ON"}.
  * </li>
  * <li>
  * Property {@code checkFormat} - Specify check pattern to suppress.
+ * Type is {@code java.lang.String}.
  * Default value is {@code ".*"}.
  * </li>
  * <li>
  * Property {@code messageFormat} - Specify message pattern to suppress.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code idFormat} - Specify check ID pattern to suppress.
+ * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
  * </ul>
@@ -302,6 +307,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   LAT_N REAL,
  *   LONG_W REAL);
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
+ * </p>
  *
  * @since 8.6
  */

@@ -69,6 +69,20 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="ModifierOrder"/&gt;
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code annotation.order}
+ * </li>
+ * <li>
+ * {@code mod.order}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

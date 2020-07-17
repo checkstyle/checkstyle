@@ -102,7 +102,7 @@
            local-only="true"/>
     <!-- AccessModifier is in util package (should be moved to api package) to disallow
     its usage by API clients till https://github.com/checkstyle/checkstyle/issues/3511 -->
-    <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifier"
+    <allow class="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption"
            local-only="true"/>
 
     <allow class="com.puppycrawl.tools.checkstyle.Checker" local-only="true"/>
@@ -159,6 +159,9 @@
     <!-- until https://github.com/checkstyle/checkstyle/issues/3095 -->
     <allow pkg="antlr"/>
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+    <allow class="java.nio.charset.StandardCharsets" />
+    <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" />
+
 
     <allow pkg="java.awt"/>
     <allow pkg="java.io"/>

@@ -147,6 +147,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code avoid.clone.method}
+ * </li>
+ * </ul>
  *
  * @since 5.0
  */

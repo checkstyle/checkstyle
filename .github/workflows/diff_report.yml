@@ -1,0 +1,141 @@
+#------------------------------------------------------------------------------------
+# Github Action to generate Checkstyle report.
+# 
+# Workflow starts when:
+# 1) issue comment - created
+#
+# Requirements:
+# 1) secrets.AWS_ACCESS_KEY_ID - access key for AWS S3 service user
+# 2) secrets.AWS_SECRET_ACCESS_KEY - security access key for AWS S3 service user
+#
+# If you need to change bucket name or region, change AWS_REGION and AWS_BUCKET_NAME variables.
+# For another bucket, you will need to change the secrets.
+#------------------------------------------------------------------------------------
+name: Diff-Report
+env:
+  AWS_REGION: us-east-2
+  AWS_BUCKET_NAME: "checkstyle-diff-reports"
+on:
+  issue_comment:
+    types: [created, edited]
+
+jobs:
+# Parse PR Body, search for links to .properties and .xml files
+  parse_body:
+    if: github.event.comment.body == 'diff report' ||
+        github.event.comment.body == 'single report'
+    runs-on: ubuntu-latest
+    outputs:
+      project_link: ${{ steps.parse.outputs.project_link }}
+      config_link: ${{ steps.parse.outputs.config_link }}
+      user: ${{ steps.branch.outputs.user }}
+      branch: ${{ steps.branch.outputs.ref }}
+      
+    steps:
+    
+     - name: Parsing PR description
+       run: |
+        echo "${{github.event.issue.body}}" > text
+        echo "${{github.event.issue.user.login}}" > user
+        wget -q "${{github.event.issue.pull_request.url}}" -O info.json
+        jq .head.ref info.json > branch
+        
+     - name: Parsing content of PR description
+       id: parse
+       run: |
+        grep "^Diff Regression projects:" text > temp || echo "" > temp
+        sed 's/Diff Regression projects: //' temp > project
+        echo ::set-output name=project_link::$(cat project)
+        grep "^Diff Regression config:" text > temp || echo "" > temp
+        sed 's/Diff Regression config: //' temp > config
+        echo ::set-output name=config_link::$(cat config)
+        
+     - name: Set branch and username
+       id: branch
+       run: |
+        echo ::set-output name=user::$(cat user)
+        echo ::set-output name=ref::$(cat branch)
+
+     
+  make_report:
+    runs-on: ubuntu-latest
+    needs: parse_body
+    if: needs.parse_body.outputs.project_link != '' && needs.parse_body.outputs.config_link != ''
+    steps: 
+       
+     - name: Download files
+       run: |
+        wget -q "${{needs.parse_body.outputs.project_link}}" -O project.properties
+        wget -q "${{needs.parse_body.outputs.config_link}}" -O config.xml
+        
+     # fetch-depth - number of commits to fetch.
+     # 0 indicates all history for all branches and tags.
+     # 0, because we need access to all branches to create a report.
+     # ref - branch to checkout.
+     - name: Download checkstyle
+       uses: actions/checkout@v2
+       with:
+        repository: ${{needs.parse_body.outputs.user}}/checkstyle
+        ref: master
+        path: checkstyle
+        fetch-depth: 0
+     
+     # fetch-depth default: 1
+     # Don't need history for all branches and tags here.
+     - name: Download contribution
+       uses: actions/checkout@v2
+       with:
+        repository: checkstyle/contribution
+        ref: master
+        path: contribution
+
+     - name: Prepare environment
+       run: |
+         mv config.xml ./contribution/checkstyle-tester/
+         mv project.properties ./contribution/checkstyle-tester/
+         sudo apt install groovy
+         
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}    
+         
+     - name: Generate basic difference report
+       if: github.event.comment.body == 'diff report'
+       run: |
+         cd contribution/checkstyle-tester
+         bash
+         REF="origin/${{needs.parse_body.outputs.branch}}"
+         REPO="../../checkstyle"
+         groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
+         
+     - name: Generate basic single report
+       if: github.event.comment.body == 'single report'
+       run: |
+         cd contribution/checkstyle-tester
+         bash
+         REF="origin/${{needs.parse_body.outputs.branch}}"
+         REPO="../../checkstyle"
+         groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single       
+       
+     - name: Copy Report to AWS S3 Bucket
+       run: |
+        bash
+        TIME=`date +%Y%H%M%S`
+        FOLDER="${{needs.parse_body.outputs.branch}}_$TIME"
+        DIFF="./contribution/checkstyle-tester/reports/diff"
+        LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
+        aws s3 cp $DIFF s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/ --recursive
+        echo $LINK/$FOLDER/reports/diff/index.html > message
+        
+     - name: Set output
+       id: out
+       run: echo ::set-output name=message::$(cat message)   
+      
+     - name: Comment PR
+       uses: ./contribution/comment-action/
+       with:
+        message: ${{steps.out.outputs.message}}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

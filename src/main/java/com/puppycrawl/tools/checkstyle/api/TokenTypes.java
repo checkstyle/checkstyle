@@ -3540,6 +3540,61 @@ public final class TokenTypes {
     public static final int COMMENT_CONTENT =
             GeneratedJavaTokenTypes.COMMENT_CONTENT;
 
+    /**
+     * A pattern variable definition; when conditionally matched,
+     * this variable is assigned with the defined type.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * if (obj instanceof String str) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF (if)
+     *  |--LPAREN (()
+     *  |--EXPR
+     *  |   `--LITERAL_INSTANCEOF (instanceof)
+     *  |       |--IDENT (obj)
+     *  |       `--PATTERN_VARIABLE_DEF
+     *  |            |--TYPE
+     *  |            |   `--IDENT (String)
+     *  |            `--IDENT (str)
+     *  |--RPAREN ())
+     *  `--SLIST ({)
+     *      `--RCURLY (})
+     * </pre>
+     * @see #LITERAL_INSTANCEOF
+     */
+    public static final int PATTERN_VARIABLE_DEF =
+            GeneratedJavaTokenTypes.PATTERN_VARIABLE_DEF;
+
+    /**
+     * The {@code record} keyword.  This element appears
+     * as part of a record declaration.
+     **/
+    public static final int LITERAL_RECORD =
+            GeneratedJavaTokenTypes.LITERAL_record;
+
+    /**
+     * A record declaration, this implementation is just to avoid parse errors,
+     * full support will be at https://github.com/checkstyle/checkstyle/issues/8267 .
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record myRecord () {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF
+     * |--MODIFIERS
+     * |   `--LITERAL_PUBLIC (public)
+     * |--LITERAL_RECORD (record)
+     *  `--IDENT (myRecord)
+     * </pre>
+     */
+    public static final int RECORD_DEF =
+            GeneratedJavaTokenTypes.RECORD_DEF;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }

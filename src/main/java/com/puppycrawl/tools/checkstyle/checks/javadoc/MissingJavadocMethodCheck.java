@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Checks for missing Javadoc comments for a method or constructor. The scope to verify is
  * specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
  * another scope, set property scope to a different
- * <a href="https://checkstyle.org/property_types.html#scope">scope</a>.
+ * <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
  * </p>
  * <p>
  * Javadoc is not required on a method that is tagged with the {@code @Override} annotation.
@@ -73,30 +73,43 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <ul>
  * <li>
  * Property {@code minLineCount} - Control the minimal amount of lines in method to allow no
- * documentation. Default value is {@code -1}.
+ * documentation.
+ * Type is {@code int}.
+ * Default value is {@code -1}.
  * </li>
  * <li>
  * Property {@code allowedAnnotations} - Configure the list of annotations that allow missed
- * documentation. Default value is {@code Override}.
+ * documentation.
+ * Type is {@code java.lang.String[]}.
+ * Default value is {@code Override}.
  * </li>
  * <li>
  * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
  * Default value is {@code public}.
  * </li>
  * <li>
  * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments are
- * not checked. Default value is {@code null}.
+ * not checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
+ * Default value is {@code null}.
  * </li>
  * <li>
  * Property {@code allowMissingPropertyJavadoc} - Control whether to allow missing Javadoc on
- * accessor methods for properties (setters and getters). Default value is {@code false}.
+ * accessor methods for properties (setters and getters).
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code ignoreMethodNamesRegex} - ignore method whose names are matching specified
- * regex. Default value is {@code null}.
+ * regex.
+ * Type is {@code java.util.regex.Pattern}.
+ * Default value is {@code null}.
  * </li>
  * <li>
- * Property {@code tokens} - tokens to check Default value is:
+ * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
+ * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
  * METHOD_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
@@ -232,6 +245,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   public void test4() {} // OK
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code javadoc.missing}
+ * </li>
+ * </ul>
  *
  * @since 8.21
  */

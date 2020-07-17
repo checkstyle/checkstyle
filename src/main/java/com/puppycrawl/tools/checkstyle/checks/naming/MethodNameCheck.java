@@ -39,6 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <ul>
  * <li>
  * Property {@code format} - Specifies valid identifiers.
+ * Type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^[a-z][a-zA-Z0-9]*$"}.
  * </li>
  * <li>
@@ -50,22 +51,28 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *     public void MyClass() {} //this is a method
  *     public MyClass() {} //this is a constructor
  * }
- * </pre> Default value is {@code false}.
+ * </pre>
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code applyToPublic} - Controls whether to apply the check to public member.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code applyToProtected} - Controls whether to apply the check to protected member.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code applyToPackage} - Controls whether to apply the check to package-private member.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code applyToPrivate} - Controls whether to apply the check to private member.
+ * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
@@ -150,6 +157,20 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *                          // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code method.name.equals.class.name}
+ * </li>
+ * <li>
+ * {@code name.invalidPattern}
+ * </li>
+ * </ul>
  *
  * @since 3.0
  */

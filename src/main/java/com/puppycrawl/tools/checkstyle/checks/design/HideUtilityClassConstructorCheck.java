@@ -91,6 +91,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   static float f;
  * }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code hide.utility.class}
+ * </li>
+ * </ul>
  *
  * @since 3.1
  */

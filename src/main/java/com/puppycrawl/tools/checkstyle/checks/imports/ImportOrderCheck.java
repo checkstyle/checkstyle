@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code option} - specify policy on the relative order between type imports and static
  * imports.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderOption}.
  * Default value is {@code under}.
  * </li>
  * <li>
@@ -72,18 +73,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * (e.g. {@code /regexp/}). All type imports, which does not match any group, falls into an
  * additional group, located at the end.
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code ordered} - control whether type imports within each group should be
  * sorted.
  * It doesn't affect sorting for static imports.
+ * Type is {@code boolean}.
  * Default value is true.
  * </li>
  * <li>
  * Property {@code separated} - control whether type import groups should be separated
  * by, at least, one blank line or comment and aren't separated internally.
  * It doesn't affect separations for static imports.
+ * Type is {@code boolean}.
  * Default value is false.
  * </li>
  * <li>
@@ -91,6 +95,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * be separated by, at least, one blank line or comment and aren't separated internally.
  * This property has effect only when the property {@code option} is is set to {@code top}
  * or {@code bottom}.
+ * Type is {@code boolean}.
  * Default value is false.
  * </li>
  * <li>
@@ -98,6 +103,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * sensitive or not. Case sensitive sorting is in
  * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
  * It affects both type imports and static imports.
+ * Type is {@code boolean}.
  * Default value is true.
  * </li>
  * <li>
@@ -107,20 +113,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * an additional group, located at the end. Thus, the empty list of static groups (the default
  * value) means one group for all static imports. This property has effect only when the property
  * {@code option} is set to {@code top} or {@code bottom}.
+ * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code sortStaticImportsAlphabetically} - control whether
  * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
+ * Type is {@code boolean}.
  * Default value is false.
  * </li>
  * <li>
  * Property {@code useContainerOrderingForStatic} - control whether to use container
  * ordering (Eclipse IDE term) for static imports or not.
+ * Type is {@code boolean}.
  * Default value is false.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
+ * Type is {@code int[]}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
  * STATIC_IMPORT</a>.
@@ -366,6 +376,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class InputEclipseStaticImportsOrder { }
  * </pre>
+ * <p>
+ * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
+ * </p>
+ * <p>
+ * Violation Message Keys:
+ * </p>
+ * <ul>
+ * <li>
+ * {@code import.groups.separated.internally}
+ * </li>
+ * <li>
+ * {@code import.ordering}
+ * </li>
+ * <li>
+ * {@code import.separation}
+ * </li>
+ * </ul>
  *
  * @since 3.2
  */
