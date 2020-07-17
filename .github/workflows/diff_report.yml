@@ -33,7 +33,7 @@ jobs:
       
     steps:
     
-     - name: Parsing issue comment
+     - name: Parsing PR description
        if: github.event_name == 'issue_comment'
        run: |
         echo "${{github.event.issue.body}}" > text
@@ -41,7 +41,7 @@ jobs:
         wget -q "${{github.event.issue.pull_request.url}}" -O info.json
         jq .head.ref info.json > branch
         
-     - name: Parsing content of PR comment/description
+     - name: Parsing content of PR description
        id: parse
        run: |
         grep "^Diff Regression projects:" text > temp || echo "" > temp
@@ -51,7 +51,7 @@ jobs:
         sed 's/Diff Regression config: //' temp > config
         echo ::set-output name=config_link::$(cat config)
         
-     - name: Set branch and head_label
+     - name: Set branch and username
        id: branch
        run: |
         echo ::set-output name=user::$(cat user)
@@ -96,6 +96,13 @@ jobs:
          mv project.properties ./contribution/checkstyle-tester/
          sudo apt install groovy
          
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}    
+         
      - name: Generate basic difference report
        if: github.event.comment.body == 'diff report'
        run: |
@@ -112,14 +119,7 @@ jobs:
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
          REPO="../../checkstyle"
-         groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single
-        
-     - name: Configure AWS Credentials
-       uses: aws-actions/configure-aws-credentials@v1
-       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ env.AWS_REGION }}
+         groovy diff.groovy -r $REPO -p $REF -pc config.xml -l project.properties -m single       
        
      - name: Copy Report to AWS S3 Bucket
        run: |
