@@ -28,12 +28,13 @@ jobs:
     outputs:
       project_link: ${{ steps.parse.outputs.project_link }}
       config_link: ${{ steps.parse.outputs.config_link }}
+      patch_config: ${{ steps.parse.outputs.patch_config }}
       user: ${{ steps.branch.outputs.user }}
       branch: ${{ steps.branch.outputs.ref }}
       
     steps:
     
-     - name: Parsing PR description
+     - name: Getting PR description
        run: |
         echo "${{github.event.issue.body}}" > text
         echo "${{github.event.issue.user.login}}" > user
@@ -49,6 +50,9 @@ jobs:
         grep "^Diff Regression config:" text > temp || echo "" > temp
         sed 's/Diff Regression config: //' temp > config
         echo ::set-output name=config_link::$(cat config)
+        grep "^Diff Regression patch config:" text > temp || echo "" > temp
+        sed 's/Diff Regression patch config: //' temp > patch_config
+        echo ::set-output name=patch_config::$(cat patch_config)
         
      - name: Set branch and username
        id: branch
@@ -69,6 +73,9 @@ jobs:
        run: |
         wget -q "${{needs.parse_body.outputs.project_link}}" -O project.properties
         wget -q "${{needs.parse_body.outputs.config_link}}" -O config.xml
+        if [ ! -z  "${{needs.parse_body.outputs.patch_config}}" ]; then
+         wget -q "${{needs.parse_body.outputs.patch_config}}" -O patch_config.xml
+        fi
         
      # fetch-depth - number of commits to fetch.
      # 0 indicates all history for all branches and tags.
@@ -95,6 +102,9 @@ jobs:
        run: |
          mv config.xml ./contribution/checkstyle-tester/
          mv project.properties ./contribution/checkstyle-tester/
+         if [ -f patch_config.xml ]; then
+          mv patch_config.xml ./contribution/checkstyle-tester/
+         fi
          sudo apt install groovy
          
      - name: Configure AWS Credentials
@@ -111,7 +121,12 @@ jobs:
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
          REPO="../../checkstyle"
-         groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
+         if [ -f patch_config.xml ]; then
+          groovy diff.groovy -r $REPO -b master -p $REF -bc config.xml -pc patch_config.xml\
+          -l project.properties
+         else
+          groovy diff.groovy -r $REPO -b master -p $REF -c config.xml -l project.properties
+         fi
          
      - name: Generate basic single report
        if: github.event.comment.body == 'single report'
