@@ -88,10 +88,10 @@
     <property name="message" value="Unnecessary consecutive lines"/>
   </module>
   <module name="RegexpMultiline">
-      <property name="format" value="/\*\*\W+\* +\p{javaLowerCase}"/>
-      <property name="fileExtensions" value="java"/>
-      <property name="message"
-                value="First sentence in a comment should start with a capital letter"/>
+    <property name="format" value="/\*\*\W+\* +\p{javaLowerCase}"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message"
+              value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpMultiline">
     <property name="format" value="^\s*$" />
@@ -104,9 +104,9 @@
     <property name="maximum" value="0"/>
   </module>
   <module name="RegexpSingleline">
-      <property name="format" value="/\*\* +\p{javaLowerCase}"/>
-      <property name="fileExtensions" value="java"/>
-      <property name="message"
+    <property name="format" value="/\*\* +\p{javaLowerCase}"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="message"
                 value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpSingleline">
@@ -152,26 +152,26 @@
   </module>
   <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">
-      <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
-      <property name="fileNamePattern" value="\.java$"/>
-      <property name="match" value="false"/>
-      <message key="regexp.filepath.mismatch"
-               value="Only java files should be located in the ''src/*/java'' folders."/>
+    <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
+    <property name="fileNamePattern" value="\.java$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filepath.mismatch"
+             value="Only java files should be located in the ''src/*/java'' folders."/>
   </module>
   <module name="RegexpOnFilename">
-      <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
-      <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
-      <property name="match" value="false"/>
-      <message key="regexp.filepath.mismatch"
-        value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
+    <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
+    <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filepath.mismatch"
+      value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
   </module>
   <module name="RegexpOnFilename">
-      <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
-      <property name="fileNamePattern" value="^((\w+Test)|(\w+TestSupport)|(Abstract\w+))\.java$"/>
-      <property name="match" value="false"/>
-      <message key="regexp.filepath.mismatch"
-               value="All files in the ''src/it/java'' folder
-                      should be named ''*Test.java'' or ''Abstract*.java''."/>
+    <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
+    <property name="fileNamePattern" value="^((\w+Test)|(\w+TestSupport)|(Abstract\w+))\.java$"/>
+    <property name="match" value="false"/>
+    <message key="regexp.filepath.mismatch"
+             value="All files in the ''src/it/java'' folder
+                    should be named ''*Test.java'' or ''Abstract*.java''."/>
   </module>
 
   <!-- Size Violations -->
@@ -225,14 +225,14 @@
     <module name="MissingOverride"/>
     <module name="PackageAnnotation"/>
     <module name="SuppressWarnings">
-        <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource).)*$"/>
-        <message key="suppressed.warning.not.allowed"
-             value="The warning ''{0}'' cannot be suppressed at this location.
-             Only few javac warnings are allowed to suppress.
-             If try to suppress checkstyle/pmd/..... violation please do this in their config file.
-             If you try to suppress IntelliJ IDEA inspection,
-             please use javadoc block tag @noinspection"
-             />
+      <property name="format" value="^((?!unchecked|deprecation|rawtypes|resource).)*$"/>
+      <message key="suppressed.warning.not.allowed"
+           value="The warning ''{0}'' cannot be suppressed at this location.
+           Only few javac warnings are allowed to suppress.
+           If try to suppress checkstyle/pmd/..... violation please do this in their config file.
+           If you try to suppress IntelliJ IDEA inspection,
+           please use javadoc block tag @noinspection"
+           />
     </module>
     <module name="SuppressWarningsHolder"/>
 
@@ -327,32 +327,32 @@
     <module name="FallThrough"/>
     <module name="FinalLocalVariable"/>
     <module name="HiddenField">
-        <property name="ignoreConstructorParameter" value="true"/>
-        <property name="ignoreSetter" value="true"/>
-        <property name="setterCanReturnItsClass" value="true"/>
+      <property name="ignoreConstructorParameter" value="true"/>
+      <property name="ignoreSetter" value="true"/>
+      <property name="setterCanReturnItsClass" value="true"/>
     </module>
     <module name="IllegalCatch">
-        <property name="illegalClassNames"
-                  value="java.lang.Exception,
-                         java.lang.Throwable,
-                         java.lang.RuntimeException,
-                         java.lang.NullPointerException"/>
+      <property name="illegalClassNames"
+                value="java.lang.Exception,
+                       java.lang.Throwable,
+                       java.lang.RuntimeException,
+                       java.lang.NullPointerException"/>
     </module>
     <module name="IllegalInstantiation">
-        <property name="classes"
-                  value="org.xml.sax.SAXException, org.xml.sax.SAXParseException,
-                         org.apache.commons.beanutils.ConversionException,
-                         org.antlr.v4.runtime.misc.ParseCancellationException,
-                         antlr.RecognitionException, antlr.TokenStreamException,
-                         antlr.TokenStreamRecognitionException, antlr.ANTLRException,
-                         java.lang.StringBuffer"/>
+      <property name="classes"
+                value="org.xml.sax.SAXException, org.xml.sax.SAXParseException,
+                       org.apache.commons.beanutils.ConversionException,
+                       org.antlr.v4.runtime.misc.ParseCancellationException,
+                       antlr.RecognitionException, antlr.TokenStreamException,
+                       antlr.TokenStreamRecognitionException, antlr.ANTLRException,
+                       java.lang.StringBuffer"/>
     </module>
     <module name="IllegalThrows"/>
     <module name="IllegalToken">
-        <property name="tokens" value="LABELED_STAT"/>
-        <property name="tokens" value="LITERAL_NATIVE"/>
-        <property name="tokens" value="LITERAL_VOLATILE"/>
-        <property name="tokens" value="LITERAL_ASSERT"/>
+      <property name="tokens" value="LABELED_STAT"/>
+      <property name="tokens" value="LITERAL_NATIVE"/>
+      <property name="tokens" value="LITERAL_VOLATILE"/>
+      <property name="tokens" value="LITERAL_ASSERT"/>
     </module>
     <module name="IllegalTokenText">
       <property name="tokens" value="STRING_LITERAL"/>
@@ -551,38 +551,38 @@
       <property name="max" value="7"/>
     </module>
     <module name="ClassDataAbstractionCoupling">
-        <!-- Default classes are also listed -->
-        <property name="excludedClasses"
-                  value="boolean, byte, char, double, float, int, long, short, void,
-                         Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void,
-                         Object, Class, String, StringBuffer, StringBuilder,
-                         ArrayIndexOutOfBoundsException, Exception, RuntimeException,
-                         IllegalArgumentException, IllegalStateException,
-                         IndexOutOfBoundsException, NullPointerException, Throwable,
-                         SecurityException, UnsupportedOperationException, List, ArrayList,
-                         Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
-                         HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
-                         UnsupportedEncodingException, BuildException, ConversionException,
-                         FileNotFoundException, TestException"/>
+      <!-- Default classes are also listed -->
+      <property name="excludedClasses"
+                value="boolean, byte, char, double, float, int, long, short, void,
+                       Boolean, Byte, Character, Double, Float, Integer, Long, Short, Void,
+                       Object, Class, String, StringBuffer, StringBuilder,
+                       ArrayIndexOutOfBoundsException, Exception, RuntimeException,
+                       IllegalArgumentException, IllegalStateException,
+                       IndexOutOfBoundsException, NullPointerException, Throwable,
+                       SecurityException, UnsupportedOperationException, List, ArrayList,
+                       Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
+                       HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
+                       UnsupportedEncodingException, BuildException, ConversionException,
+                       FileNotFoundException, TestException"/>
     </module>
     <module name="ClassFanOutComplexity">
-        <property name="max" value="25"/>
-        <!-- Default classes are also listed -->
-        <property name="excludedClasses"
-                  value="boolean, byte, char, double, float, int, long, short,
-                         void, Boolean, Byte, Character, Double, Float, Integer,
-                         Long, Short, Void, Object, Class, String, StringBuffer,
-                         StringBuilder, ArrayIndexOutOfBoundsException, Exception,
-                         RuntimeException, IllegalArgumentException, IllegalStateException,
-                         IndexOutOfBoundsException, NullPointerException, Throwable,
-                         SecurityException, UnsupportedOperationException, List, ArrayList,
-                         Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
-                         HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
-                         UnsupportedEncodingException, BuildException, ConversionException,
-                         FileNotFoundException, TestException, Log, Sets, Multimap,
-                         TokenStreamRecognitionException, RecognitionException,
-                         TokenStreamException, IOException, Override, Deprecated, SafeVarargs,
-                         SuppressWarnings, FunctionalInterface"/>
+      <property name="max" value="25"/>
+      <!-- Default classes are also listed -->
+      <property name="excludedClasses"
+                value="boolean, byte, char, double, float, int, long, short,
+                       void, Boolean, Byte, Character, Double, Float, Integer,
+                       Long, Short, Void, Object, Class, String, StringBuffer,
+                       StringBuilder, ArrayIndexOutOfBoundsException, Exception,
+                       RuntimeException, IllegalArgumentException, IllegalStateException,
+                       IndexOutOfBoundsException, NullPointerException, Throwable,
+                       SecurityException, UnsupportedOperationException, List, ArrayList,
+                       Deque, Queue, LinkedList, Set, HashSet, SortedSet, TreeSet, Map,
+                       HashMap, SortedMap, TreeMap, DetailsAST, CheckstyleException,
+                       UnsupportedEncodingException, BuildException, ConversionException,
+                       FileNotFoundException, TestException, Log, Sets, Multimap,
+                       TokenStreamRecognitionException, RecognitionException,
+                       TokenStreamException, IOException, Override, Deprecated, SafeVarargs,
+                       SuppressWarnings, FunctionalInterface"/>
     </module>
     <module name="CyclomaticComplexity">
       <property name="switchBlockAsSingleDecisionPoint" value="true"/>
@@ -686,7 +686,7 @@
     <!-- Size Violations -->
     <module name="AnonInnerLength"/>
     <module name="ExecutableStatementCount">
-        <property name="max" value="30"/>
+      <property name="max" value="30"/>
     </module>
     <module name="MethodCount">
       <property name="maxTotal" value="34"/>
