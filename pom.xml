@@ -1033,18 +1033,18 @@
       </plugin>
 
       <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
-          <extensions>true</extensions>
-          <configuration>
-              <!-- serverId is ID of a <server> section from Maven's settings.xml
-                   to pick authentication information from
-              -->
-              <serverId>sonatype-nexus-staging</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-          </configuration>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+        <extensions>true</extensions>
+        <configuration>
+          <!-- serverId is ID of a <server> section from Maven's settings.xml
+               to pick authentication information from
+          -->
+          <serverId>sonatype-nexus-staging</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
       </plugin>
 
       <plugin>
@@ -3127,9 +3127,9 @@
       <id>eclipse-compiler</id>
       <dependencies>
         <dependency>
-            <groupId>org.eclipse.jdt</groupId>
-            <artifactId>org.eclipse.jdt.annotation</artifactId>
-            <version>2.2.600</version>
+          <groupId>org.eclipse.jdt</groupId>
+          <artifactId>org.eclipse.jdt.annotation</artifactId>
+          <version>2.2.600</version>
         </dependency>
       </dependencies>
       <build>

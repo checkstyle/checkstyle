@@ -145,20 +145,20 @@
       <path>
         <fileset dir="src"
             includes="it/resources/**/*,test/resources/**/*,test/resources-noncompilable/**/*">
-         <!-- bad syntax, permanent exclude -->
-         <exclude name="**/InputAstTreeStringPrinter.java" />
-         <exclude name="**/InputSuppressionsStringPrinter.java"/>
-         <exclude name="**/InputMainIncorrectClass.java"/>
-         <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
-         <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
-         <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
-         <exclude name="**/InputJavaParser.java"/>
-         <!-- until https://github.com/checkstyle/checkstyle/issues/8023 -->
-         <exclude name="**/InputJava14Records.java"/>
-         <!-- until https://github.com/checkstyle/checkstyle/issues/7103 -->
-         <exclude name="**/InputJava14TextBlocks.java"/>
-         <!-- until https://github.com/checkstyle/checkstyle/issues/6615 -->
-         <exclude name="**/InputJava14SwitchExpression.java"/>
+          <!-- bad syntax, permanent exclude -->
+          <exclude name="**/InputAstTreeStringPrinter.java" />
+          <exclude name="**/InputSuppressionsStringPrinter.java"/>
+          <exclude name="**/InputMainIncorrectClass.java"/>
+          <exclude name="**/InputJavadocPropertiesGeneratorParseError.java"/>
+          <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
+          <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
+          <exclude name="**/InputJavaParser.java"/>
+          <!-- until https://github.com/checkstyle/checkstyle/issues/8023 -->
+          <exclude name="**/InputJava14Records.java"/>
+          <!-- until https://github.com/checkstyle/checkstyle/issues/7103 -->
+          <exclude name="**/InputJava14TextBlocks.java"/>
+          <!-- until https://github.com/checkstyle/checkstyle/issues/6615 -->
+          <exclude name="**/InputJava14SwitchExpression.java"/>
 
         </fileset>
       </path>
