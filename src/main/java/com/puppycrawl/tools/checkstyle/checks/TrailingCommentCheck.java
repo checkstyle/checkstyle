@@ -124,6 +124,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code trailing.comments}
  * </li>
  * </ul>
+ *
  * @noinspection HtmlTagCanBeJavadocTag
  * @since 3.4
  */
