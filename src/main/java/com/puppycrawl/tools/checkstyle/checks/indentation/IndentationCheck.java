@@ -244,6 +244,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * {@code indentation.error.multi}
  * </li>
  * </ul>
+ *
  * @noinspection ThisEscapedInObjectConstruction
  * @since 3.1
  */

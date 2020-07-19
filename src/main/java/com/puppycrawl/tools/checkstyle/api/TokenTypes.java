@@ -3563,6 +3563,7 @@ public final class TokenTypes {
      *  `--SLIST ({)
      *      `--RCURLY (})
      * </pre>
+     *
      * @see #LITERAL_INSTANCEOF
      */
     public static final int PATTERN_VARIABLE_DEF =
