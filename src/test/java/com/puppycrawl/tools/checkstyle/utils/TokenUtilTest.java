@@ -277,4 +277,18 @@ public class TokenUtilTest {
         assertEquals(secondSibling, firstChild, "Mismatched child node");
     }
 
+    @Test
+    public void testIsTypeDeclaration() {
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.CLASS_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.INTERFACE_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.ANNOTATION_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.ENUM_DEF),
+                "Should return true when valid type passed");
+        assertTrue(TokenUtil.isTypeDeclaration(TokenTypes.RECORD_DEF),
+                "Should return true when valid type passed");
+    }
+
 }

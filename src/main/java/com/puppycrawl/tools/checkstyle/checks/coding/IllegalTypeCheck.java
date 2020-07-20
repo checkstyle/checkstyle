@@ -133,7 +133,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PARAMETER_DEF">
  * PARAMETER_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
- * VARIABLE_DEF</a>.
+ * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
+ * PATTERN_VARIABLE_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -391,6 +393,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
             TokenTypes.METHOD_REF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.PATTERN_VARIABLE_DEF,
         };
     }
 
@@ -426,6 +429,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
                 break;
             case TokenTypes.VARIABLE_DEF:
             case TokenTypes.ANNOTATION_FIELD_DEF:
+            case TokenTypes.PATTERN_VARIABLE_DEF:
                 visitVariableDef(ast);
                 break;
             case TokenTypes.PARAMETER_DEF:

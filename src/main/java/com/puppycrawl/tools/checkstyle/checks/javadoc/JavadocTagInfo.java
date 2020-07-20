@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * This enum defines the various Javadoc tags and there properties.
@@ -75,10 +76,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return astType == TokenTypes.PACKAGE_DEF
-                || astType == TokenTypes.CLASS_DEF
-                || astType == TokenTypes.INTERFACE_DEF
-                || astType == TokenTypes.ENUM_DEF
-                || astType == TokenTypes.ANNOTATION_DEF;
+                || TokenUtil.isTypeDeclaration(astType);
         }
 
     },
@@ -349,10 +347,7 @@ public enum JavadocTagInfo {
         public boolean isValidOn(final DetailAST ast) {
             final int astType = ast.getType();
             return astType == TokenTypes.PACKAGE_DEF
-                || astType == TokenTypes.CLASS_DEF
-                || astType == TokenTypes.INTERFACE_DEF
-                || astType == TokenTypes.ENUM_DEF
-                || astType == TokenTypes.ANNOTATION_DEF;
+                || TokenUtil.isTypeDeclaration(astType);
         }
 
     };
