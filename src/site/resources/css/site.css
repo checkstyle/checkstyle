@@ -120,6 +120,19 @@ span.wrapper.inline {
   display: inline;
 }
 
+a[title="toTop"] {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border: 1px solid black;
+  background-color: #dddddd;
+  color: #990000;
+  padding: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 900;
+  z-index: 10;
+}
 @media screen and (max-width: 823px) {
   #leftColumn {
     float: none;
