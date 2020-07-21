@@ -11,6 +11,7 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
     <script type="text/javascript" src="js/anchors.js"/>
     <script type="text/javascript" src="js/google-analytics.js"/>
+    <script type="text/javascript" src="js/checkstyle.js"/>
     <link rel="icon" href="images/favicon.png" type="image/x-icon" />
     <link rel="shortcut icon" href="images/favicon.ico" type="image/ico" />
   </head>
@@ -28,7 +29,7 @@
         </p>
 
         <p>
-          <a href="http://checkstyle.sourceforge.io/reports/google-style/guava/">
+          <a href="https://checkstyle.org/reports/google-style/guava/">
             Checkstyle's html report for Guava library</a>
         </p>
         <p>
