@@ -1033,18 +1033,18 @@
       </plugin>
 
       <plugin>
-          <groupId>org.sonatype.plugins</groupId>
-          <artifactId>nexus-staging-maven-plugin</artifactId>
-          <version>1.6.8</version>
-          <extensions>true</extensions>
-          <configuration>
-              <!-- serverId is ID of a <server> section from Maven's settings.xml
-                   to pick authentication information from
-              -->
-              <serverId>sonatype-nexus-staging</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-          </configuration>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.8</version>
+        <extensions>true</extensions>
+        <configuration>
+          <!-- serverId is ID of a <server> section from Maven's settings.xml
+               to pick authentication information from
+          -->
+          <serverId>sonatype-nexus-staging</serverId>
+          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+        </configuration>
       </plugin>
 
       <plugin>
@@ -1343,6 +1343,55 @@
         </executions>
         <configuration>
           <catalogHandling>strict</catalogHandling>
+          <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
+          <formatFileSets>
+            <formatFileSet>
+              <directory>.</directory>
+              <includes>
+                <include>pom.xml</include>
+              </includes>
+            </formatFileSet>
+            <formatFileSet>
+              <directory>config</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+              <!-- till https://github.com/checkstyle/checkstyle/issues/8544 -->
+              <excludes>
+                <exclude>checkstyle_non_main_files_checks.xml</exclude>
+                <exclude>checkstyle_non_main_files_suppressions.xml</exclude>
+                <exclude>checkstyle_resources_checks.xml</exclude>
+                <exclude>checkstyle_sevntu_checks.xml</exclude>
+                <exclude>default_sonar_profile.xml</exclude>
+                <exclude>intellij-idea-inspection-scope.xml</exclude>
+                <exclude>intellij-idea-inspections.xml</exclude>
+                <exclude>pmd-main.xml</exclude>
+                <exclude>pmd-test.xml</exclude>
+                <exclude>sevntu_suppressions.xml</exclude>
+                <exclude>spotbugs-exclude.xml</exclude>
+                <exclude>suppressions-xpath.xml</exclude>
+                <exclude>suppressions.xml</exclude>
+                <exclude>version-number-rules.xml</exclude>
+              </excludes>
+            </formatFileSet>
+            <formatFileSet>
+              <directory>src/site</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </formatFileSet>
+            <formatFileSet>
+              <directory>src/test/resources</directory>
+              <includes>
+                <include>
+                  com/puppycrawl/tools/checkstyle/packagenamesloader/InputPackageNamesLoaderFile.xml
+                </include>
+                <include>
+                  com/puppycrawl/tools/checkstyle/treewalker/InputTreeWalkerNotJava.xml
+                </include>
+              </includes>
+            </formatFileSet>
+          </formatFileSets>
           <validationSets>
             <validationSet>
               <dir>config</dir>
@@ -3127,9 +3176,9 @@
       <id>eclipse-compiler</id>
       <dependencies>
         <dependency>
-            <groupId>org.eclipse.jdt</groupId>
-            <artifactId>org.eclipse.jdt.annotation</artifactId>
-            <version>2.2.600</version>
+          <groupId>org.eclipse.jdt</groupId>
+          <artifactId>org.eclipse.jdt.annotation</artifactId>
+          <version>2.2.600</version>
         </dependency>
       </dependencies>
       <build>
