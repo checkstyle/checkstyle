@@ -42,6 +42,10 @@
   </poweredBy>
 
   <body>
+    <links>
+      <item name="toTop"/>
+    </links>
+
     <menu name="About">
       <item name="Checkstyle" href="index.html"/>
       <item name="Release Notes" href="releasenotes.html"/>
