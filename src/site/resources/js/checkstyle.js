@@ -1,6 +1,6 @@
+/*jslint browser: true */
+/*jslint es6: true */
 /*jshint esversion: 6 */
-/*jslint browser: true*/
-/*jshint esversion: 6*/
 /*global window */
 let scrollButton;
 const scrollDistanceToButtonVisibility = 500;
