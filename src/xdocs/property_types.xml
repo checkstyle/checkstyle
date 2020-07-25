@@ -24,11 +24,11 @@
     </section>
 
     <section name="Overview">
-    <p>
-      Checkstyle is configured using properties, which are string
-      representations. This document describes how these string
-      representations are mapped to typed properties.
-    </p>
+      <p>
+        Checkstyle is configured using properties, which are string
+        representations. This document describes how these string
+        representations are mapped to typed properties.
+      </p>
     </section>
 
     <section name="boolean">
@@ -587,7 +587,7 @@
     if (condition) {
         ...
                 </pre>
-             </div>
+              </div>
               But for a statement spanning multiple lines, Checkstyle will
               enforce:
               <div class="wrapper">
@@ -714,12 +714,12 @@
               The brace must be alone on the line. For example:
               <div class="wrapper">
                 <pre>
-    try {
-        ...
-    <b>}</b>
-    finally {
-        ...
-    <b>}</b>
+                  try {
+                      ...
+                  <b>}</b>
+                  finally {
+                      ...
+                  <b>}</b>
                 </pre>
               </div>
             </td>
@@ -733,16 +733,16 @@
                     For example:
               <div class="wrapper">
                 <pre>
-    // Brace is alone on the line
-    try {
-        ...
-    <b>}</b>
-    finally {
-        ...
-    <b>}</b>
+                  // Brace is alone on the line
+                  try {
+                      ...
+                  <b>}</b>
+                  finally {
+                      ...
+                  <b>}</b>
 
-    // Single-line format of block
-    public long getId() { return id; <b>}</b>
+                  // Single-line format of block
+                  public long getId() { return id; <b>}</b>
                 </pre>
               </div>
             </td>
@@ -761,57 +761,63 @@
 
               <div class="wrapper">
                 <pre>
-    public long getId() {return id;<b>}</b> // this is OK, it is single line
+                  public long getId() {return id;<b>}</b> // this is OK, it is single line
 
-    // try-catch-finally blocks
-    try {
-        ...
-    <b>}</b> catch (Exception ex) { // this is OK
-        ...
-    <b>}</b> finally { // this is OK
-        ...
-    }
+                  // try-catch-finally blocks
+                  try {
+                      ...
+                  <b>}</b> catch (Exception ex) { // this is OK
+                      ...
+                  <b>}</b> finally { // this is OK
+                      ...
+                  }
 
-    try {
-        ...
-    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
-    catch (Exception ex) {
-          ...
-    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
-    finally {
-          ...
-    }
+                  try {
+                      ...
+                  <b>}</b> // this is NOT OK, not on the same line as the next part
+                    // of a multi-block statement
+                  catch (Exception ex) {
+                        ...
+                  <b>}</b> // this is NOT OK, not on the same line as the next part
+                    // of a multi-block statement
+                  finally {
+                        ...
+                  }
 
-    // if-else blocks
-    if (a &#62; 0) {
-       ...
-    <b>}</b> else { // this is OK
-       ...
-    }
+                  // if-else blocks
+                  if (a &#62; 0) {
+                     ...
+                  <b>}</b> else { // this is OK
+                     ...
+                  }
 
-    if (a &#62; 0) {
-       ...
-    <b>}</b> // this is NOT OK, not on the same line as the next part of a multi-block statement
-    else {
-       ...
-    }
+                  if (a &#62; 0) {
+                     ...
+                  <b>}</b> // this is NOT OK, not on the same line as the next part
+                    // of a multi-block statement
+                  else {
+                     ...
+                  }
 
-    if (a &#62; 0) {
-       ...
-    <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement, so should be alone
+                  if (a &#62; 0) {
+                     ...
+                  <b>}</b> int i = 5; // NOT OK, no next part of a multi-block statement,
+                               // so should be alone
 
-    Thread t = new Thread(new Runnable() {
-       @Override
-       public void run() {
-                  ...
-       <b>}</b> // this is OK, should be alone as next part of a multi-block statement is absent
-    <b>}</b>); // this case is out of scope of RightCurly Check (see issue #5945)
+                  Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                                ...
+                  <b>  }</b> // this is OK, should be alone as next part of a multi-block statement
+                  <b>}</b>); // is absent, this case is out of scope of RightCurly Check
+                      // (see issue #5945)
 
-    if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
-    if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line multi-block statement
-    if (a &#62; 0) {
-        ...
-    } else { ... <b>}</b> // OK, single-line multi-block statement
+                  if (a &#62; 0) { ... <b>}</b> // OK, single-line multi-block statement
+                  if (a &#62; 0) { ... } else { ... <b>}</b> // OK, single-line
+                                                  // multi-block statement
+                  if (a &#62; 0) {
+                      ...
+                  } else { ... <b>}</b> // OK, single-line multi-block statement
                 </pre>
               </div>
             </td>
@@ -891,7 +897,7 @@
         array comma. The following table describes the valid options:
       </p>
 
-        <div class="wrapper">
+      <div class="wrapper">
         <table summary="trailingArrayComma options">
           <tr>
             <td>Option</td>

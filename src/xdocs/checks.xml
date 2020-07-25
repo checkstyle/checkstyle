@@ -17,21 +17,21 @@
 
   <body>
     <section name="Standard Checks">
-    <p>
-      The Standard Checkstyle Checks are applicable to general Java coding style
-      and require no external libraries. The standard checks are included in
-      the base distribution.
-    </p>
+      <p>
+        The Standard Checkstyle Checks are applicable to general Java coding style
+        and require no external libraries. The standard checks are included in
+        the base distribution.
+      </p>
 
-    <p>
-      The site navigation menu lets you browse the individual checks by functionality.
-    </p>
+      <p>
+        The site navigation menu lets you browse the individual checks by functionality.
+      </p>
 
-    <p>
-      Checkstyle provides many checks that you can apply to your
-      source code. Below is an alphabetical reference, the site
-      navigation menu provides a reference organized by functionality.
-    </p>
+      <p>
+        Checkstyle provides many checks that you can apply to your
+        source code. Below is an alphabetical reference, the site
+        navigation menu provides a reference organized by functionality.
+      </p>
       <div class="wrapper">
         <table>
           <tr>
@@ -355,7 +355,8 @@
             <td><a href="config_coding.html#InnerAssignment">InnerAssignment</a></td>
             <td>
               Checks for assignments in subexpressions, such as in
-            <code>String s = Integer.toString(i = 2);</code>.</td>
+              <code>String s = Integer.toString(i = 2);</code>.
+            </td>
           </tr>
           <tr>
             <td><a href="config_design.html#InnerTypeLast">InnerTypeLast</a></td>
@@ -408,7 +409,8 @@
           </tr>
           <tr>
             <td>
-              <a href="config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a></td>
+              <a href="config_javadoc.html#JavadocMissingWhitespaceAfterAsterisk">JavadocMissingWhitespaceAfterAsterisk</a>
+            </td>
             <td>Checks that there is at least one whitespace after the leading asterisk.</td>
           </tr>
           <tr>
@@ -813,9 +815,12 @@
               conform to a specified pattern.</td>
           </tr>
           <tr>
-            <td><a href="config_coding.html#StringLiteralEquality">StringLiteralEquality</a></td>
+            <td>
+              <a href="config_coding.html#StringLiteralEquality">StringLiteralEquality</a>
+            </td>
             <td>Checks that string literals are not used with
-            <code>==</code> or <code>&#33;=</code>.</td>
+              <code>==</code> or <code>&#33;=</code>.
+            </td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a></td>
@@ -948,10 +953,10 @@
     </section>
 
     <section name="Holder Checks">
-    <p>
-      These checks aren't normal checks and are usually associated with a specialized filter
-      to gather information the filter can't get on it's own.
-    </p>
+      <p>
+        These checks aren't normal checks and are usually associated with a specialized filter
+        to gather information the filter can't get on it's own.
+      </p>
 
       <div class="wrapper">
         <table>
