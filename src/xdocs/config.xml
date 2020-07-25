@@ -221,7 +221,7 @@
         the following configuration document element gives property
         <code>headerFile</code> the value of command line
         property <code>checkstyle.header.file</code>:
-     </p>
+      </p>
 
       <source>
 &lt;module name=&quot;Header&quot;&gt;
@@ -480,7 +480,7 @@
   ...
 &lt;/module&gt;
         </source>
-          <p>OR</p>
+        <p>OR</p>
         <source>
 &lt;module name=&quot;Checker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;
@@ -601,7 +601,7 @@
   ...
 &lt;/module&gt;
         </source>
-          <p>OR</p>
+        <p>OR</p>
         <source>
 &lt;module name=&quot;TreeWalker&quot;&gt;
   &lt;property name=&quot;fileExtensions&quot; value=&quot;&quot;/&gt;

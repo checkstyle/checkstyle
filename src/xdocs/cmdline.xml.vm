@@ -35,7 +35,7 @@
     <section name="Command line usage">
       <p>
 
-      <source>
+        <source>
 java -D&lt;property&gt;=&lt;value&gt;  \
      com.puppycrawl.tools.checkstyle.Main \
      -c &lt;configurationFile&gt; \
@@ -45,7 +45,7 @@ java -D&lt;property&gt;=&lt;value&gt;  \
      [-V | --version] [-b | --branch-matching-xpath &lt;xpathQuery&gt;] [-h | --help] \
      [-e | --exclude &lt;excludedPath&gt;] [-E | --executeIgnoredModules] [-d | --debug] \
      [-x | --exclude-regexp &lt;excludedPathPattern&gt;] \ file...
-      </source>
+        </source>
       </p>
 
       <p>
@@ -175,12 +175,11 @@ java -D&lt;property&gt;=&lt;value&gt;  \
 
     <section name="Download and Run">
       <p>
-          It is possible to run Checkstyle directly from the JAR file using
-          the <code>-jar</code> option. Download latest
-          <a href=
-            "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
-          checkstyle-${projectVersion}-all.jar</a>.
-          An example of run would be:
+        It is possible to run Checkstyle directly from the JAR file using
+        the <code>-jar</code> option. Download latest
+        <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
+        checkstyle-${projectVersion}-all.jar</a>.
+        An example of run would be:
       </p>
       <div class="wrap-content">
         <source>
@@ -199,13 +198,12 @@ java -D&lt;property&gt;=&lt;value&gt;  \
             google_checks.xml</a>
       </p>
       <p>
-          To run <a href="writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
-          for AST tree directly from the JAR file using
-          the <code>-jar</code> option. Download latest
-          <a href=
-            "https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
-          checkstyle-${projectVersion}-all.jar</a>.
-          An example of run would be (path to java file is optional):
+        To run <a href="writingchecks.html#The_Checkstyle_SDK_Gui">Checkstyle UI viewer</a>
+        for AST tree directly from the JAR file using
+        the <code>-jar</code> option. Download latest
+        <a href="https://github.com/checkstyle/checkstyle/releases/download/checkstyle-${projectVersion}/checkstyle-${projectVersion}-all.jar">
+        checkstyle-${projectVersion}-all.jar</a>.
+        An example of run would be (path to java file is optional):
       </p>
       <div class="wrap-content">
         <source>
