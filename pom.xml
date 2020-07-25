@@ -1357,7 +1357,7 @@
               <!-- till https://github.com/checkstyle/checkstyle/issues/8544 -->
               <excludes>
                 <exclude>.ci/travis/decoration-1.0.0.xsd</exclude>
-                <exclude>src/xdocs/*</exclude>
+                <exclude>src/xdocs/config_*</exclude>
                 <exclude>src/main/resources/*</exclude>
                 <exclude>config/default_sonar_profile.xml</exclude>
                 <exclude>config/intellij-idea-inspection-scope.xml</exclude>
