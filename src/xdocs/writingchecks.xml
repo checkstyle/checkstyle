@@ -79,11 +79,13 @@
         and plug it into the Checkstyle framework.
       </p>
 
-      <p> This chapter is organized as a tour that takes you
-      through the process step by step and explains both the theoretical
-      foundations and the
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
-      API</a> along the way.  </p>
+      <p>
+        This chapter is organized as a tour that takes you
+        through the process step by step and explains both the theoretical
+        foundations and the
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/package-summary.html">Checkstyle
+          API</a> along the way.
+      </p>
 
     </section>
 
@@ -116,13 +118,13 @@
       </p>
 
     </section>
-      <section name="Tool to print Java tree structure">
-          <p>
-              Checkstyle can print Abstract Syntax Tree for Java trees. You need to run checkstyle
-              jar file with <b>-t</b> or <b>-T</b> argument, providing java file.
-          </p>
-          <p>For example, here is MyClass.java file:</p>
-          <source><![CDATA[
+    <section name="Tool to print Java tree structure">
+      <p>
+        Checkstyle can print Abstract Syntax Tree for Java trees. You need to run checkstyle
+        jar file with <b>-t</b> or <b>-T</b> argument, providing java file.
+      </p>
+      <p>For example, here is MyClass.java file:</p>
+      <source><![CDATA[
 /**
  * My <b>class</b>.
  * @see AbstractClass
@@ -131,24 +133,24 @@ public class MyClass {
 
 }
       ]]></source>
-        <div class="wrapper">
-          <table style="table-layout: fixed;">
-              <tr>
-                  <td>
-                      1) Using -t as parameter.
-                      <br />
-                      java -jar checkstyle-X.XX-all.jar -t MyClass.java
-                  </td>
-                  <td>
-                      2) Using -T as parameter.
-                      <br />
-                      java -jar checkstyle-X.XX-all.jar -T MyClass.java
-                  </td>
-              </tr>
+      <div class="wrapper">
+        <table style="table-layout: fixed;">
+          <tr>
+            <td>
+              1) Using -t as parameter.
+              <br />
+              java -jar checkstyle-X.XX-all.jar -t MyClass.java
+            </td>
+            <td>
+              2) Using -T as parameter.
+              <br />
+              java -jar checkstyle-X.XX-all.jar -T MyClass.java
+            </td>
+          </tr>
 
-              <tr>
-                  <td>
-                      <source><![CDATA[
+          <tr>
+            <td>
+              <source><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   `--LITERAL_PUBLIC -> public [5:0]
@@ -157,10 +159,11 @@ CLASS_DEF -> CLASS_DEF [5:0]
 `--OBJBLOCK -> OBJBLOCK [5:21]
     |--LCURLY -> { [5:21]
     `--RCURLY -> } [7:0]
-          ]]></source>
-                  </td>
-                  <td>
-                      <source><![CDATA[
+ ]]>
+              </source>
+            </td>
+            <td>
+              <source><![CDATA[
 CLASS_DEF -> CLASS_DEF [5:0]
 |--MODIFIERS -> MODIFIERS [5:0]
 |   |--BLOCK_COMMENT_BEGIN -> /* [1:0]
@@ -172,17 +175,18 @@ CLASS_DEF -> CLASS_DEF [5:0]
 `--OBJBLOCK -> OBJBLOCK [5:21]
     |--LCURLY -> { [5:21]
     `--RCURLY -> } [7:0]
-          ]]></source>
-                  </td>
-              </tr>
-          </table>
-        </div>
-          <p>
-            As you can see very small java file transforms to a huge Abstract Syntax Tree, because
-            that is the most detailed tree including all components of the java file: object block,
-            comments, modifiers, etc.
-          </p>
-      </section>
+]]>
+              </source>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>
+        As you can see very small java file transforms to a huge Abstract Syntax Tree, because
+        that is the most detailed tree including all components of the java file: object block,
+        comments, modifiers, etc.
+      </p>
+    </section>
 
     <section name="The Checkstyle SDK Gui">
 
@@ -209,28 +213,30 @@ CLASS_DEF -> CLASS_DEF [5:0]
         </span>
       </p>
 
-      <p> In the leftmost column you can open and close branches
-      of the tree, the remaining columns display information about each node
-      in the tree.  The second column displays a token type for each node. As
-      you navigate from the root of the tree to one of the leafs, you&#39;ll
-      notice that the token type denotes smaller and smaller units of your
-      source file, i.e. close to the root you might see the token type
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
-      (a node that represents a class definition) while you will see token
-      types like IDENT (an identifier) near the leaves of the tree.  </p>
+      <p>
+        In the leftmost column you can open and close branches
+        of the tree, the remaining columns display information about each node
+        in the tree.  The second column displays a token type for each node. As
+        you navigate from the root of the tree to one of the leafs, you&#39;ll
+        notice that the token type denotes smaller and smaller units of your
+        source file, i.e. close to the root you might see the token type
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">CLASS_DEF</a>
+        (a node that represents a class definition) while you will see token
+        types like IDENT (an identifier) near the leaves of the tree.
+      </p>
 
       <p>
-       In the bottom of frame you can find buttons "Open File", "Reload File"
-       and dropdown list with parse modes to choose. First one opens file
-       choose window. After choosing file tree that corresponds to java source
-       file builds in frame. Notice that only files with ".java" extension
-       can be opened. Second one reloads chosen file from file system and
-       rebuilds source code tree. Dropdown list allow to choose one of three
-       parse modes: "PLAIN JAVA", "JAVA WITH COMMENTS", "JAVA WITH JAVADOC AND COMMENTS".
-       "PLAIN JAVA" mode uses to show java source code without comments. In
-       "JAVA WITH COMMENTS" you can see also comments blocks on the tree. When
-       "JAVA WITH JAVADOC AND COMMENTS" chosen javadoc tree builds and attaches
-       for every comment block, that contains javadoc.
+        In the bottom of frame you can find buttons "Open File", "Reload File"
+        and dropdown list with parse modes to choose. First one opens file
+        choose window. After choosing file tree that corresponds to java source
+        file builds in frame. Notice that only files with ".java" extension
+        can be opened. Second one reloads chosen file from file system and
+        rebuilds source code tree. Dropdown list allow to choose one of three
+        parse modes: "PLAIN JAVA", "JAVA WITH COMMENTS", "JAVA WITH JAVADOC AND COMMENTS".
+        "PLAIN JAVA" mode uses to show java source code without comments. In
+        "JAVA WITH COMMENTS" you can see also comments blocks on the tree. When
+        "JAVA WITH JAVADOC AND COMMENTS" chosen javadoc tree builds and attaches
+        for every comment block, that contains javadoc.
       </p>
 
       <p>
@@ -273,41 +279,51 @@ CLASS_DEF -> CLASS_DEF [5:0]
         way to write plugins.
       </p>
 
-      <p> Hence Checkstyle&#39;s AST classes do not have any
-      methods that implement checking functionality. Instead,
-      Checkstyle&#39;s
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
-      takes a set of objects that conform to a
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
-      interface. OK, you&#39;re right - actually it&#39;s not an interface
-      but an abstract class to provide some helper methods. A Check provides
-      methods that take an AST as an argument and perform the checking process
-      for that AST, most prominently
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
-              <code>visitToken()</code></a>.  </p>
+      <p>
+        Hence Checkstyle&#39;s AST classes do not have any
+        methods that implement checking functionality. Instead,
+        Checkstyle&#39;s
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">TreeWalker</a>
+        takes a set of objects that conform to a
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html">AbstractCheck</a>
+        interface. OK, you&#39;re right - actually it&#39;s not an interface
+        but an abstract class to provide some helper methods. A Check provides
+        methods that take an AST as an argument and perform the checking process
+        for that AST, most prominently
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#visitToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+          <code>visitToken()</code>
+        </a>.
+      </p>
 
-      <p> It is important to understand that the individual
-      Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
-      Instead, the TreeWalker initiates
-      a recursive descend from the root of the AST to the leaf nodes and calls
-      the Check methods. The traversal is done using a
-      <a href="https://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
-      algorithm.  </p>
+      <p>
+        It is important to understand that the individual
+        Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
+        Instead, the TreeWalker initiates
+        a recursive descend from the root of the AST to the leaf nodes and calls
+        the Check methods. The traversal is done using a
+        <a href="https://en.wikipedia.org/wiki/Tree_traversal">tree traversal (depth-first)</a>
+        algorithm.
+      </p>
 
-      <p> Before any visitor method is called, the TreeWalker will call
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
-              <code>beginTree()</code></a> to give the Check a chance to do
-      some initialization. Then, when performing the recursive descend from
-      the root to the leaf nodes, the <code>visitToken()</code>
-      method is called. Unlike the basic examples in the pattern book, there
-      is a <code>visitToken()</code> counterpart called
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
-              <code>leaveToken()</code></a>. The TreeWalker will call that
-      method to signal that the subtree below the node has been processed and
-      the TreeWalker is backtracking from the node. After the root node has
-      been left, the TreeWalker will call
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
-              <code>finishTree()</code></a>.  </p>
+      <p>
+        Before any visitor method is called, the TreeWalker will call
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#beginTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+          <code>beginTree()</code>
+        </a> to give the Check a chance to do
+        some initialization. Then, when performing the recursive descend from
+        the root to the leaf nodes, the <code>visitToken()</code>
+        method is called. Unlike the basic examples in the pattern book, there
+        is a <code>visitToken()</code> counterpart called
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#leaveToken-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+          <code>leaveToken()</code>
+        </a>. The TreeWalker will call that
+        method to signal that the subtree below the node has been processed and
+        the TreeWalker is backtracking from the node. After the root node has
+        been left, the TreeWalker will call
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractCheck.html#finishTree-com.puppycrawl.tools.checkstyle.api.DetailAST-">
+          <code>finishTree()</code>
+        </a>.
+      </p>
 
     </section>
 
@@ -648,8 +664,9 @@ public class MethodLimitCheck extends AbstractCheck
       </p>
       <ul>
         <li>Java code should be written with
-        <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8
-        support.</li>
+          <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a> characters only, no UTF-8
+          support.
+        </li>
         <li>To get valid violations, code have to be compilable, in other case you can get not easy
         to understand parse errors.</li>
         <li>You cannot determine the type of an expression.
@@ -683,15 +700,15 @@ public class MethodLimitCheck extends AbstractCheck
       to get inner structure, or you are going to validate non "*.java" files.
       </p>
 
-      <p> Writing a FileSetCheck is pretty straightforward: Just
-      inherit from
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
-              AbstractFileSetCheck</a>
-      and override the abstract
-      <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-com.puppycrawl.tools.checkstyle.api.FileText-">
-              <code>processFiltered(java.io.File, java.util.List)</code></a> method and you&#39;re
-      done. A very simple example could fire a violation if the number of files
-      exceeds a certain limit. Here is a FileSetCheck that does just that:</p>
+      <p>
+        Writing a FileSetCheck is pretty straightforward: Just inherit from
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html">
+        AbstractFileSetCheck</a>and override the abstract
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.html#processFiltered-java.io.File-com.puppycrawl.tools.checkstyle.api.FileText-">
+          <code>processFiltered(java.io.File, java.util.List)</code>
+        </a> method and you&#39;re done. A very simple example could fire a violation if the number
+        of files exceeds a certain limit. Here is a FileSetCheck that does just that:
+      </p>
 
       <source>
 package com.mycompany.checks;
@@ -747,44 +764,44 @@ public class LimitImplementationFiles extends AbstractFileSetCheck
 
     </section>
 
-      <section name="Declare check's external resource locations">
-       <p>
-         Checkstyle can cache external configuration resources of any kind which are used by your
-         check. If you want to do such a thing, you should implement
-         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">
-             ExternalResourceHolder</a>
-         interface. Such module must declare external resource locations as a set of Strings
-         which will be returned from
-         <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
-           getExternalResourceLocations</a>
-         method. This will allow Checkstyle to invalidate (clear) cache when the content of at
-         least one external configuration resource of your check is changed.
-       </p>
-       <p>
-         ATTENTION!
-       </p>
-       <ul>
-         <li>
-           If
-           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
-             getExternalResourceLocations</a>
-           return null, there will be NullPointerException in
-           <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">
-             Checker</a>.
-           Such behaviour will signal that your module (check or filter) is designed incorrectly.
-         </li>
-         <li>
-           It makes sense to return an empty set from
-           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
-             getExternalResourceLocations</a>
-           only for composite modules like
-           <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">
-             TreeWalker</a>.
-         </li>
-       </ul>
-      </section>
+    <section name="Declare check's external resource locations">
+      <p>
+        Checkstyle can cache external configuration resources of any kind which are used by your
+        check. If you want to do such a thing, you should implement
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html">
+            ExternalResourceHolder</a>
+        interface. Such module must declare external resource locations as a set of Strings
+        which will be returned from
+        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+          getExternalResourceLocations</a>
+        method. This will allow Checkstyle to invalidate (clear) cache when the content of at
+        least one external configuration resource of your check is changed.
+      </p>
+      <p>
+        ATTENTION!
+      </p>
+      <ul>
+        <li>
+          If
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+            getExternalResourceLocations</a>
+          return null, there will be NullPointerException in
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/Checker.html">
+            Checker</a>.
+          Such behaviour will signal that your module (check or filter) is designed incorrectly.
+        </li>
+        <li>
+          It makes sense to return an empty set from
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/ExternalResourceHolder.html#getExternalResourceLocations--">
+            getExternalResourceLocations</a>
+          only for composite modules like
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/TreeWalker.html">
+            TreeWalker</a>.
+        </li>
+      </ul>
+    </section>
 
-      <section name="Huh? I can&#39;t figure it out!">
+    <section name="Huh? I can&#39;t figure it out!">
       <p>
         That&#39;s probably our fault, and it means that we have to provide
         better documentation. Please do not hesitate to ask questions on
