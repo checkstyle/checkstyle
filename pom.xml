@@ -1359,21 +1359,12 @@
                 <exclude>.ci/travis/decoration-1.0.0.xsd</exclude>
                 <exclude>src/xdocs/*</exclude>
                 <exclude>src/main/resources/*</exclude>
-                <exclude>config/checkstyle_input_checks.xml</exclude>
-                <exclude>config/checkstyle_input_suppressions.xml</exclude>
-                <exclude>config/checkstyle_non_main_files_checks.xml</exclude>
-                <exclude>config/checkstyle_non_main_files_suppressions.xml</exclude>
-                <exclude>config/checkstyle_resources_checks.xml</exclude>
-                <exclude>config/checkstyle_sevntu_checks.xml</exclude>
                 <exclude>config/default_sonar_profile.xml</exclude>
                 <exclude>config/intellij-idea-inspection-scope.xml</exclude>
                 <exclude>config/intellij-idea-inspections.xml</exclude>
                 <exclude>config/pmd-main.xml</exclude>
                 <exclude>config/pmd-test.xml</exclude>
-                <exclude>config/sevntu_suppressions.xml</exclude>
                 <exclude>config/spotbugs-exclude.xml</exclude>
-                <exclude>config/suppressions-xpath.xml</exclude>
-                <exclude>config/suppressions.xml</exclude>
                 <exclude>config/version-number-rules.xml</exclude>
                 <!-- Temporary files -->
                 <exclude>target/**</exclude>
