@@ -24,11 +24,11 @@
     </section>
 
     <section name="Overview">
-    <p>
-      Checkstyle is configured using properties, which are string
-      representations. This document describes how these string
-      representations are mapped to typed properties.
-    </p>
+      <p>
+        Checkstyle is configured using properties, which are string
+        representations. This document describes how these string
+        representations are mapped to typed properties.
+      </p>
     </section>
 
     <section name="boolean">
@@ -587,7 +587,7 @@
     if (condition) {
         ...
                 </pre>
-             </div>
+              </div>
               But for a statement spanning multiple lines, Checkstyle will
               enforce:
               <div class="wrapper">
@@ -891,7 +891,7 @@
         array comma. The following table describes the valid options:
       </p>
 
-        <div class="wrapper">
+      <div class="wrapper">
         <table summary="trailingArrayComma options">
           <tr>
             <td>Option</td>
