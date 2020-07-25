@@ -1360,8 +1360,6 @@
                 <exclude>src/xdocs/*</exclude>
                 <exclude>src/main/resources/*</exclude>
                 <exclude>config/default_sonar_profile.xml</exclude>
-                <exclude>config/intellij-idea-inspection-scope.xml</exclude>
-                <exclude>config/intellij-idea-inspections.xml</exclude>
                 <exclude>config/pmd-main.xml</exclude>
                 <exclude>config/pmd-test.xml</exclude>
                 <exclude>config/spotbugs-exclude.xml</exclude>
