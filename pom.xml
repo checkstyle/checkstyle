@@ -1360,7 +1360,6 @@
                 <exclude>src/xdocs/config_*</exclude>
                 <!-- Requires <b>{</b> indented more than the enclosing <pre> tag. -->
                 <exclude>src/xdocs/property_types.xml</exclude>
-                <exclude>src/main/resources/*</exclude>
                 <exclude>config/default_sonar_profile.xml</exclude>
                 <exclude>config/pmd-main.xml</exclude>
                 <exclude>config/pmd-test.xml</exclude>
