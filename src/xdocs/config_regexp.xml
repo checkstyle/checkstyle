@@ -1090,27 +1090,28 @@ class MyClass {
   &lt;property name=&quot;maximum&quot; value=&quot;10&quot;/&gt;
 &lt;/module&gt;
         </source>
-      <p>Example:</p>
-      <source>
+        <p>Example:</p>
+        <source>
 /**
 * This file is copyrighted under CC. // Ok, as the file contains a copyright statement.
 */
 class MyClass {
 
 }
-      </source>
-      <source>
+        </source>
+        <source>
 /** // violation, as the file doesn't contain a copyright statement.
 * MyClass as a configuration example.
 */
 class MyClass {
 
 }
-      </source>
-      <p>
-       An example of how to configure the check to make sure sql files contains the term 'license'.
-      </p>
-      <source>
+        </source>
+        <p>
+          An example of how to configure the check to make sure sql files contains the term
+          'license'.
+        </p>
+        <source>
 &lt;module name=&quot;RegexpSingleline&quot;&gt;
     &lt;property name=&quot;format&quot; value=&quot;license&quot;/&gt;
     &lt;property name=&quot;minimum&quot; value=&quot;1&quot;/&gt;
@@ -1122,20 +1123,20 @@ class MyClass {
     &lt;!--  Perform the Check only on files with java extension. --&gt;
     &lt;property name=&quot;fileExtensions&quot; value=&quot;sql&quot;/&gt;
 &lt;/module&gt;
-      </source>
-      <p>Example:</p>
-      <source>
+        </source>
+        <p>Example:</p>
+        <source>
 /*
  AP 2.0 License. // Ok, Check ignores the case of the term.
 */
 CREATE DATABASE MyDB;
-      </source>
-      <source>
+        </source>
+        <source>
 /* // violation, file doesn't contain the term.
  Example sql file.
 */
 CREATE DATABASE MyDB;
-      </source>
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="RegexpSingleline_Example_of_Usage">
         <ul>

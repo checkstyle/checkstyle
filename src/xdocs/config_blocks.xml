@@ -390,7 +390,7 @@ switch (a) {
       <subsection name="Examples" id="EmptyCatchBlock_Examples">
         <p>
           To configure the check to suppress empty catch block if exception's variable name is
-           <code>expected</code> or <code>ignore</code> or there's any comment inside:
+          <code>expected</code> or <code>ignore</code> or there's any comment inside:
         </p>
         <source>
 &lt;module name=&quot;EmptyCatchBlock&quot;&gt;

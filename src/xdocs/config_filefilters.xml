@@ -67,14 +67,14 @@
         </div>
       </subsection>
       <subsection name="Examples" id="BeforeExecutionExclusionFileFilter_Examples">
-          <p>
-            To configure the filter to exclude all 'module-info.java' files:
-          </p>
-          <source>
+        <p>
+          To configure the filter to exclude all 'module-info.java' files:
+        </p>
+        <source>
 &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
   &lt;property name=&quot;fileNamePattern&quot; value=&quot;module\-info\.java$&quot;/&gt;
 &lt;/module&gt;
-          </source>
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
         <ul>
