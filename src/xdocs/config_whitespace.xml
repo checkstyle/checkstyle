@@ -134,26 +134,26 @@ for (Iterator foo = very.long.line.iterator();
         </source>
       </subsection>
 
-     <subsection name="Properties" id="EmptyForIteratorPad_Properties">
-       <div class="wrapper">
-         <table>
-           <tr>
-             <th>name</th>
-             <th>description</th>
-             <th>type</th>
-             <th>default value</th>
-             <th>since</th>
-           </tr>
-           <tr>
-             <td>option</td>
-             <td>Specify policy on how to pad an empty for iterator.</td>
-             <td><a href="property_types.html#PadOption">PadOption</a></td>
-             <td><code>nospace</code></td>
-             <td>3.0</td>
-           </tr>
-         </table>
-       </div>
-     </subsection>
+      <subsection name="Properties" id="EmptyForIteratorPad_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>option</td>
+              <td>Specify policy on how to pad an empty for iterator.</td>
+              <td><a href="property_types.html#PadOption">PadOption</a></td>
+              <td><code>nospace</code></td>
+              <td>3.0</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
 
       <subsection name="Examples" id="EmptyForIteratorPad_Examples">
         <p>
@@ -233,8 +233,8 @@ for (Iterator foo = very.long.line.iterator();
           Also, trailing comments are skipped.
         </p>
         <p>
-            ATTENTION: violations from multiple empty lines cannot be suppressed via XPath:
-            <a href="https://github.com/checkstyle/checkstyle/issues/8179">#8179</a>.
+          ATTENTION: violations from multiple empty lines cannot be suppressed via XPath:
+          <a href="https://github.com/checkstyle/checkstyle/issues/8179">#8179</a>.
         </p>
       </subsection>
 
@@ -273,66 +273,66 @@ for (Iterator foo = very.long.line.iterator();
               <td>tokens</td>
               <td>tokens to check</td>
               <td>subset of tokens
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
                   PACKAGE_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                  IMPORT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                  STATIC_IMPORT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  STATIC_INIT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                  INSTANCE_INIT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                    IMPORT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                    STATIC_IMPORT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    STATIC_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                    INSTANCE_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
+                    .
+              </td>
+              <td>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                    PACKAGE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                    IMPORT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                    STATIC_IMPORT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+                    CLASS_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+                    INTERFACE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+                    ENUM_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    STATIC_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
+                    INSTANCE_INIT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                    METHOD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
+                    CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                    VARIABLE_DEF</a>
                   .
-            </td>
-            <td>
-              <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
-                  PACKAGE_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                  IMPORT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                  STATIC_IMPORT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
-                  CLASS_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
-                  INTERFACE_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
-                  ENUM_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  STATIC_INIT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INSTANCE_INIT">
-                  INSTANCE_INIT</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                  METHOD_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
-                  CTOR_DEF</a>
-              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                  VARIABLE_DEF</a>
-                .
-            </td>
-            <td>5.8</td>
+              </td>
+              <td>5.8</td>
             </tr>
           </table>
         </div>
       </subsection>
 
       <subsection name="Examples" id="EmptyLineSeparator_Examples">
-      <p>
-        Example of declarations without empty line separator:
-      </p>
-      <source>
+        <p>
+          Example of declarations without empty line separator:
+        </p>
+        <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -342,17 +342,18 @@ class Foo {
   public static final int FOO_CONST = 1;
   public void foo() {} //should be separated from previous statement.
 }
-      </source>
-      <p>
-        To configure the check with default parameters:
-      </p>
-      <source>
+        </source>
+        <p>
+          To configure the check with default parameters:
+        </p>
+        <source>
 &lt;module name="EmptyLineSeparator"/&gt;
-      </source>
-      <p>
-        Example of declarations with empty line separator that is expected by the Check by default:
-      </p>
-      <source>
+        </source>
+        <p>
+          Example of declarations with empty line separator that is expected by the Check by
+          default:
+        </p>
+        <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -366,32 +367,32 @@ class Foo {
 
   public void foo() {}
 }
-      </source>
-      <p>
-        To check empty line after
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
-                VARIABLE_DEF</a> and
-        <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
-                METHOD_DEF</a>:
-      </p>
-      <source>
+        </source>
+        <p>
+          To check empty line after
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
+                  VARIABLE_DEF</a> and
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+                  METHOD_DEF</a>:
+        </p>
+        <source>
 &lt;module name="EmptyLineSeparator"&gt;
   &lt;property name="tokens" value="VARIABLE_DEF, METHOD_DEF"/&gt;
 &lt;/module&gt;
-      </source>
-      <p>
-        To allow no empty line between fields:
-      </p>
-      <source>
+        </source>
+        <p>
+          To allow no empty line between fields:
+        </p>
+        <source>
 &lt;module name="EmptyLineSeparator"&gt;
   &lt;property name="allowNoEmptyLineBetweenFields" value="true"/&gt;
 &lt;/module&gt;
-      </source>
-      <p>
-        Example of declarations with multiple empty lines between class members
-        (allowed by default):
-      </p>
-      <source>
+        </source>
+        <p>
+          Example of declarations with multiple empty lines between class members
+          (allowed by default):
+        </p>
+        <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////&#10;
@@ -405,26 +406,26 @@ class Foo {
 
   public void foo() {} //should be separated from previous statement.
 }
-      </source>
-      <p>
-        To disallow multiple empty lines between class members:
-      </p>
-      <source>
+        </source>
+        <p>
+          To disallow multiple empty lines between class members:
+        </p>
+        <source>
 &lt;module name="EmptyLineSeparator"&gt;
   &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
 &lt;/module&gt;
-      </source>
-      <p>
-        To disallow multiple empty lines inside constructor,
-          initialization block and method:
-      </p>
-      <source>
+        </source>
+        <p>
+          To disallow multiple empty lines inside constructor,
+            initialization block and method:
+        </p>
+        <source>
 &lt;module name="EmptyLineSeparator"&gt;
   &lt;property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/&gt;
 &lt;/module&gt;
-      </source>
+        </source>
 
-      <p>
+        <p>
           The check is valid only for statements that have body:
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
                 CLASS_DEF</a>
@@ -441,11 +442,11 @@ class Foo {
           , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
                 CTOR_DEF</a>
           .
-      </p>
-      <p>
+        </p>
+        <p>
           Example of declarations with multiple empty lines inside method:
-      </p>
-      <source>
+        </p>
+        <source>
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
@@ -459,17 +460,17 @@ class Foo {
     System.out.println(1); // violation since method has 2 empty lines subsequently
   }
 }
-      </source>
-      <p>
+        </source>
+        <p>
           To disallow multiple empty lines between class members:
-      </p>
-      <source>
+        </p>
+        <source>
 &lt;module name="EmptyLineSeparator"&gt;
   &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
 &lt;/module&gt;
-      </source>
-      <p>Example:</p>
-      <source>
+        </source>
+        <p>Example:</p>
+        <source>
 package com.puppycrawl.tools.checkstyle.whitespace;
 
 class Test {
@@ -478,7 +479,7 @@ class Test {
     private static void foo() {} // violation, before this like there two empty lines
 
 }
-      </source>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="EmptyLineSeparator_Example_of_Usage">
@@ -983,13 +984,13 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
                   .
               </td>
               <td>
-                  <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
-                  PACKAGE_DEF</a>
-                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
-                  IMPORT</a>
-                  , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
-                  STATIC_IMPORT</a>
-                  .
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PACKAGE_DEF">
+                PACKAGE_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+                IMPORT</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
+                STATIC_IMPORT</a>
+                .
               </td>
               <td>5.8</td>
             </tr>
@@ -998,10 +999,10 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
       </subsection>
 
       <subsection name="Examples" id="NoLineWrap_Examples">
-      <p>
-        Examples of line-wrapped statements (bad case):
-      </p>
-      <source>
+        <p>
+          Examples of line-wrapped statements (bad case):
+        </p>
+        <source>
 package com.puppycrawl. // violation
     tools.checkstyle.checks;
 
@@ -1010,18 +1011,18 @@ import com.puppycrawl.tools. // violation
 
 import static java.math. // violation
     BigInteger.ZERO;
-      </source>
-      <p>
-        To configure the check to force no line-wrapping
-        in package and import statements (default values):
-      </p>
-      <source>
+        </source>
+        <p>
+          To configure the check to force no line-wrapping
+          in package and import statements (default values):
+        </p>
+        <source>
 &lt;module name=&quot;NoLineWrap&quot;/&gt;
-      </source>
-      <p>
-        Examples:
-      </p>
-      <source>
+        </source>
+        <p>
+          Examples:
+        </p>
+        <source>
 package com.puppycrawl.tools.checkstyle. // violation
   checks.whitespace;
 
@@ -1031,28 +1032,28 @@ import java.lang. // violation
 
 import static java.math. // violation
   BigInteger.TEN;
-      </source>
-      <source>
+        </source>
+        <source>
 package com.puppycrawl.tools.checkstyle.checks.coding; // OK
 
 import java.lang. // violation
   Boolean;
 
 import static java.math.BigInteger.ONE; // OK
-      </source>
-      <p>
-        To configure the check to force no line-wrapping only
-        in import statements:
-      </p>
-      <source>
+        </source>
+        <p>
+          To configure the check to force no line-wrapping only
+          in import statements:
+        </p>
+        <source>
 &lt;module name=&quot;NoLineWrap&quot;&gt;
   &lt;property name="tokens" value="IMPORT"/&gt;
 &lt;/module&gt;
-      </source>
-      <p>
-        Example:
-      </p>
-      <source>
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
 package com.puppycrawl. // OK
   tools.checkstyle.checks;
 
@@ -1062,20 +1063,20 @@ import java.lang. // violation
 
 import static java.math. // OK
   BigInteger.ZERO;
-      </source>
-      <p>
-        To configure the check to force no line-wrapping only
-        in class, method and constructor definitions:
-      </p>
-      <source>
+        </source>
+        <p>
+          To configure the check to force no line-wrapping only
+          in class, method and constructor definitions:
+        </p>
+        <source>
 &lt;module name=&quot;NoLineWrap&quot;&gt;
   &lt;property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF"/&gt;
 &lt;/module&gt;
-      </source>
-      <p>
-        Example:
-      </p>
-      <source>
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
 public class // violation, class definition not wrapped in a single line
   Foo {
 
@@ -1096,14 +1097,14 @@ public class Bar { // OK
   public int fun() { // OK
   }
 }
-      </source>
-      <p>
-        Examples of not line-wrapped statements (good case):
-      </p>
-      <source>
+        </source>
+        <p>
+          Examples of not line-wrapped statements (good case):
+        </p>
+        <source>
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import static java.math.BigInteger.ZERO;
-      </source>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="NoLineWrap_Example_of_Usage">
@@ -1172,7 +1173,7 @@ import static java.math.BigInteger.ZERO;
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP">
                 INDEX_OP</a>
           will be ignored.
-          </p>
+        </p>
       </subsection>
 
       <subsection name="Properties" id="NoWhitespaceAfter_Properties">
@@ -1463,32 +1464,32 @@ Lists.charactersOf("foo")
         <p>
         To Configure the check to restrict the use of whitespace before METHOD_REF and DOT tokens:
         </p>
-       <source>
+        <source>
 &lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
 &lt;/module&gt;
-       </source>
-       <p>Example:</p>
-       <source>
+        </source>
+        <p>Example:</p>
+        <source>
 Lists.charactersOf("foo").listIterator()
        .forEachRemaining(System.out::print); // violation, whitespace before '.' is not allowed
 Lists.charactersOf("foo").listIterator().forEachRemaining(System.out ::print); // violation,
                           // whitespace before '::' is not allowed  ^
 Lists.charactersOf("foo").listIterator().forEachRemaining(System.out::print); // OK
-       </source>
-       <p>
+        </source>
+        <p>
            To configure the check to allow linebreak before METHOD_REF and DOT tokens:
-       </p>
-       <source>
+        </p>
+        <source>
 &lt;module name=&quot;NoWhitespaceBefore&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_REF&quot;/&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
-       </source>
-       <p>Example:</p>
-       <source>
+        </source>
+        <p>Example:</p>
+        <source>
 Lists .charactersOf("foo") //violation, whitespace before '.' is not allowed
         .listIterator()
         .forEachRemaining(System.out ::print); // violation,
@@ -1496,7 +1497,7 @@ Lists .charactersOf("foo") //violation, whitespace before '.' is not allowed
 Lists.charactersOf("foo")
        .listIterator()
        .forEachRemaining(System.out::print); // OK
-       </source>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="NoWhitespaceBefore_Example_of_Usage">
@@ -2193,9 +2194,9 @@ try (Closeable resource = acquire(); ) // no check before right parenthesis
               </td>
 
               <td>
-               <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DOT">
                   DOT</a>
-               , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMMA">
                   COMMA</a>
                   .
               </td>
@@ -2702,9 +2703,9 @@ class Bar {
         <source>
 &lt;module name=&quot;WhitespaceAfter&quot;/&gt;
         </source>
-          <p>Example:</p>
-          <div class="wrapper">
-              <pre>
+        <p>Example:</p>
+        <div class="wrapper">
+          <pre>
 public void myTest() {
     if (foo) {              // OK
         //...
@@ -2718,8 +2719,8 @@ public void myTest() {
     for (;;){}               // OK
     for(;;){}                // violation, space after 'for' is required
 }
-              </pre>
-          </div>
+          </pre>
+        </div>
 
         <p>
           To configure the check for whitespace only after COMMA and SEMI
@@ -2730,9 +2731,9 @@ public void myTest() {
   &lt;property name=&quot;tokens&quot; value=&quot;COMMA, SEMI&quot;/&gt;
 &lt;/module&gt;
         </source>
-          <p>Example:</p>
-          <div class='wrapper'>
-                  <pre>
+        <p>Example:</p>
+        <div class='wrapper'>
+          <pre>
 public void myTest() {
     int a; int b;           // OK
     int a;int b;            // violation
@@ -2742,8 +2743,8 @@ public void myTest() {
 
     for(;;) {} // OK
 }
-                  </pre>
-          </div>
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAfter_Example_of_Usage">
@@ -2815,11 +2816,11 @@ public @interface Beta {} // empty annotation type
         </source>
 
         <p>
-        may optionally be exempted from the policy using the <code>
-        allowEmptyMethods</code>, <code>allowEmptyConstructors
-        </code>, <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>,
-        <code>allowEmptyLambdas</code> and <code>allowEmptyCatches</code>
-        properties.
+          may optionally be exempted from the policy using the <code>
+          allowEmptyMethods</code>, <code>allowEmptyConstructors</code>,
+          <code>allowEmptyTypes</code>, <code>allowEmptyLoops</code>,
+          <code>allowEmptyLambdas</code> and <code>allowEmptyCatches</code>
+          properties.
         </p>
         <p>This check does not flag as violation double brace initialization like:</p>
         <div class="wrapper">
@@ -2839,11 +2840,11 @@ try {
 } catch (ArithmeticException ex) {}
           </code></pre>
         </div>
-      <p>
-        With this property turned off, this raises violation because the beginning of the
-        catch block (left curly bracket) is not separated from the end of the catch
-        block (right curly bracket).
-      </p>
+        <p>
+          With this property turned off, this raises violation because the beginning of the
+          catch block (left curly bracket) is not separated from the end of the catch
+          block (right curly bracket).
+        </p>
       </subsection>
 
       <subsection name="Properties" id="WhitespaceAround_Properties">
@@ -2902,7 +2903,8 @@ try {
               <td>ignoreEnhancedForColon</td>
               <td>Ignore whitespace around colon in
                 <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
-                  enhanced for</a> loop.</td>
+                enhanced for</a> loop.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>5.5</td>
@@ -3344,8 +3346,8 @@ class Test {
   &lt;property name="ignoreEnhancedForColon" value="false" /&gt;
 &lt;/module&gt;
         </source>
-          <p>Example:</p>
-          <source>
+        <p>Example:</p>
+        <source>
 class Test {
     public static void main(String[] args) {
         int a=4; // 2 violations , '=' is not followed and preceded by whitespace.
@@ -3355,7 +3357,7 @@ class Test {
         }
     }
 }
-          </source>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">
