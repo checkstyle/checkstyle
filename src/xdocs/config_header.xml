@@ -85,8 +85,10 @@ line 5: ////////////////////////////////////////////////////////////////////
               <td>charset</td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="property_types.html#String">String</a></td>
-              <td>the charset property of the parent
-              <a href="config.html#Checker">Checker</a> module</td>
+              <td>
+                the charset property of the parent
+                <a href="config.html#Checker">Checker</a> module
+              </td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -119,14 +121,14 @@ line 5: ////////////////////////////////////////////////////////////////////
       </subsection>
 
       <subsection name="Examples" id="Header_Examples">
-          <p>
-              In default configuration the check does not rise any violations.
-              Default values of properties are used.
-          </p>
+        <p>
+          In default configuration the check does not rise any violations.
+          Default values of properties are used.
+        </p>
 
-          <source>
+        <source>
 &lt;module name=&quot;Header&quot;/&gt;
-          </source>
+        </source>
 
         <p>
           To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
@@ -300,8 +302,10 @@ line 6: ^\W*$
               <td>charset</td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="property_types.html#String">String</a></td>
-              <td>the charset property of the parent
-              <a href="config.html#Checker">Checker</a> module</td>
+              <td>
+                the charset property of the parent
+                <a href="config.html#Checker">Checker</a> module
+              </td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -336,13 +340,13 @@ line 6: ^\W*$
       </subsection>
 
       <subsection name="Examples" id="RegexpHeader_Examples">
-          <p>
-              In default configuration the check does not rise any violations.
-              Default values of properties are used.
-          </p>
-          <source>
+        <p>
+            In default configuration the check does not rise any violations.
+            Default values of properties are used.
+        </p>
+        <source>
 &lt;module name=&quot;RegexpHeader&quot;/&gt;
-          </source>
+        </source>
 
         <p>
           To configure the check to use header file <code>&quot;config/java.header&quot;</code> and
