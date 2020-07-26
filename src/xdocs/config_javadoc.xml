@@ -51,8 +51,10 @@
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a>
+              </td>
               <td><code>false</code></td>
               <td>8.3</td>
             </tr>
@@ -294,7 +296,8 @@ public class TestClass {
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
@@ -601,18 +604,18 @@ public void method();
           present by activation of property <code>validateThrows</code>.
           Note that <code>throw new</code> is not checked in the following places:
         </p>
-          <ul>
-            <li>
-              Inside a try block (with catch). It is not possible to determine if the thrown
-              exception can be caught by the catch block as there is no knowledge of the
-              inheritance hierarchy, so the try block is ignored entirely. However, catch
-              and finally blocks, as well as try blocks without catch, are still checked.
-            </li>
-            <li>
-              Local classes, anonymous classes and lambda expressions. It is not known when the
-              throw statements inside such classes are going to be evaluated, so they are ignored.
-            </li>
-          </ul>
+        <ul>
+          <li>
+            Inside a try block (with catch). It is not possible to determine if the thrown
+            exception can be caught by the catch block as there is no knowledge of the
+            inheritance hierarchy, so the try block is ignored entirely. However, catch
+            and finally blocks, as well as try blocks without catch, are still checked.
+          </li>
+          <li>
+            Local classes, anonymous classes and lambda expressions. It is not known when the
+            throw statements inside such classes are going to be evaluated, so they are ignored.
+          </li>
+        </ul>
 
         <p>
           ATTENTION: Checkstyle does not have information about hierarchy of exception types
@@ -948,7 +951,8 @@ public Runnable printLater(String s) {
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -1180,7 +1184,8 @@ class TestClass {
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -1620,7 +1625,7 @@ public class Test {
     private void test1() {}
 }
         </source>
-    </subsection>
+      </subsection>
 
       <subsection name="Example of Usage" id="JavadocStyle_Example_of_Usage">
         <ul>
@@ -1708,8 +1713,10 @@ public class Test {
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
-              <td><a href="property_types.html#boolean">boolean</a></td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
+              <td><a href="property_types.html#boolean">boolean</a>
+              </td>
               <td><code>false</code></td>
               <td>8.3</td>
             </tr>
@@ -2112,11 +2119,11 @@ class DatabaseConfiguration {}
               <td>3.4</td>
             </tr>
             <tr>
-                <td>ignoreNamePattern</td>
-                <td>Specify the regexp to define variable names to ignore.</td>
-                <td><a href="property_types.html#Pattern">Pattern</a></td>
-                <td><code>null</code></td>
-                <td>5.8</td>
+              <td>ignoreNamePattern</td>
+              <td>Specify the regexp to define variable names to ignore.</td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
+              <td><code>null</code></td>
+              <td>5.8</td>
             </tr>
             <tr>
               <td>tokens</td>
@@ -2167,8 +2174,8 @@ class DatabaseConfiguration {}
         </source>
 
         <p>
-            To ignore absence of Javadoc comments for variables with names <code>log</code> or
-            <code>logger</code>:
+          To ignore absence of Javadoc comments for variables with names <code>log</code> or
+          <code>logger</code>:
         </p>
 
         <source>
@@ -2438,7 +2445,7 @@ public class Test {
 &lt;module name="MissingJavadocMethod"&gt;
   &lt;property name="allowMissingPropertyJavadoc" value="true"/&gt;
 &lt;/module&gt;
-          </source>
+        </source>
         <p>Example:</p>
         <source>
 public class Test {
@@ -2803,7 +2810,8 @@ class DatabaseConfiguration {}
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -2938,7 +2946,8 @@ class DatabaseConfiguration {}
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -3031,9 +3040,9 @@ class DatabaseConfiguration {}
       </subsection>
     </section>
 
-   <section name="SummaryJavadoc">
-     <p>Since Checkstyle 6.0</p>
-     <subsection name="Description" id="SummaryJavadoc_Description">
+    <section name="SummaryJavadoc">
+      <p>Since Checkstyle 6.0</p>
+      <subsection name="Description" id="SummaryJavadoc_Description">
         <p>
           Checks that
           <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
@@ -3058,7 +3067,8 @@ class DatabaseConfiguration {}
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.3</td>
@@ -3146,8 +3156,8 @@ public class TestClass {
   }
 }
         </source>
-     </subsection>
-     <subsection name="Example of Usage" id="SummaryJavadoc_Example_of_Usage">
+      </subsection>
+      <subsection name="Example of Usage" id="SummaryJavadoc_Example_of_Usage">
         <ul>
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+SummaryJavadoc">
@@ -3230,8 +3240,8 @@ public class TestClass {
               <td>tag</td>
               <td>Specify the name of tag.</td>
               <td><a href="property_types.html#String">String</a></td>
-             <td><code>null</code></td>
-             <td>4.2</td>
+              <td><code>null</code></td>
+              <td>4.2</td>
             </tr>
             <tr>
               <td>tagFormat</td>

@@ -71,7 +71,7 @@ public String getNameIfPresent() { ... }
               <td>allowSamelineMultipleAnnotations</td>
               <td>Allow annotation(s) to be located on the same line as target element.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-             <td><code>false</code></td>
+              <td><code>false</code></td>
               <td>6.0</td>
             </tr>
             <tr>
@@ -710,7 +710,8 @@ class Bar implements Foo {
               <td>
                 Control when to print violations if the Javadoc being examined by this check
                 violates the tight html rules defined at
-                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.</td>
+                <a href="writingjavadocchecks.html#Tight-HTML_rules">Tight-HTML Rules</a>.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
               <td>8.24</td>
@@ -1044,15 +1045,15 @@ package com.example.annotations.packageannotation; //ok
         inside the @SuppressWarnings annotation.
         </p>
         <p>
-        For example:
-        <code>@SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")</code>.
-        According to the above example, the "unused" warning is being suppressed
-        not the "unchecked" or "foo" warnings.  All of these warnings will be
-        considered and matched against regardless of what the conditional
-        evaluates to.
-        The check also does not support code like <code>@SuppressWarnings("un" + "used")</code>,
-        <code>@SuppressWarnings((String) "unused")</code> or
-        <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
+          For example:
+          <code>@SuppressWarnings((false) ? (true) ? "unchecked" : "foo" : "unused")</code>.
+          According to the above example, the "unused" warning is being suppressed
+          not the "unchecked" or "foo" warnings.  All of these warnings will be
+          considered and matched against regardless of what the conditional
+          evaluates to.
+          The check also does not support code like <code>@SuppressWarnings("un" + "used")</code>,
+          <code>@SuppressWarnings((String) "unused")</code> or
+          <code>@SuppressWarnings({('u' + (char)'n') + (""+("used" + (String)"")),})</code>.
         </p>
         <p>
           By default, any warning specified will be disallowed on
@@ -1219,7 +1220,7 @@ package com.example.annotations.packageannotation; //ok
           that were annotated with <code>@SuppressWarnings</code> and
           using name of the check to be excluded. You can also define
           aliases for check names that need to be suppressed.
-         </p>
+        </p>
       </subsection>
 
       <subsection name="Properties" id="SuppressWarningsHolder_Properties">
@@ -1234,11 +1235,15 @@ package com.example.annotations.packageannotation; //ok
             </tr>
             <tr>
               <td>aliasList</td>
-              <td>Specify aliases for check names that can be used in code within
-                  <code>SuppressWarnings</code>.</td>
-              <td><a href="property_types.html#String.5B.5D">String[]</a>
-                  in a format of comma separated attribute=value entries.
-              The attribute is the fully qualified name of the Check and value is its alias.</td>
+              <td>
+                Specify aliases for check names that can be used in code within
+                <code>SuppressWarnings</code>.
+              </td>
+              <td>
+                <a href="property_types.html#String.5B.5D">String[]</a>
+                in a format of comma separated attribute=value entries.
+                The attribute is the fully qualified name of the Check and value is its alias.
+              </td>
               <td><code>null</code></td>
               <td>5.7</td>
             </tr>
@@ -1284,8 +1289,9 @@ public void needsLotsOfParameters(@SuppressWarnings("unused") int a,
 }
         </source>
 
-        <p>It is possible to suppress all the checkstyle warnings with the argument
-         <code>"all"</code>:
+        <p>
+          It is possible to suppress all the checkstyle warnings with the argument
+          <code>"all"</code>:
         </p>
         <source>
 @SuppressWarnings("all")

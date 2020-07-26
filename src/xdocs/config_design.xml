@@ -53,7 +53,7 @@
          ignoredAnnotations set as in a subclass the method which has the annotation can also be
          overridden in its subclass.
         </p>
-         <p>
+        <p>
           Problem is described at "Effective Java, 2nd Edition by Joshua Bloch" book, chapter
           "Item 17: Design and document for inheritance or else prohibit it".
         </p>
@@ -166,7 +166,7 @@ public abstract class Plant {
             </tr>
           </table>
         </div>
-        </subsection>
+      </subsection>
 
       <subsection name="Examples" id="DesignForExtension_Examples">
         <p>
