@@ -74,6 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * additional group, located at the end.
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
  * Type is {@code java.lang.String[]}.
+ * Validation type is {@code java.util.regex.Pattern}.
  * Default value is {@code {}}.
  * </li>
  * <li>
@@ -81,14 +82,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * sorted.
  * It doesn't affect sorting for static imports.
  * Type is {@code boolean}.
- * Default value is true.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code separated} - control whether type import groups should be separated
  * by, at least, one blank line or comment and aren't separated internally.
  * It doesn't affect separations for static imports.
  * Type is {@code boolean}.
- * Default value is false.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code separatedStaticGroups} - control whether static import groups should
@@ -96,7 +97,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * This property has effect only when the property {@code option} is is set to {@code top}
  * or {@code bottom}.
  * Type is {@code boolean}.
- * Default value is false.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code caseSensitive} - control whether string comparison should be case
@@ -104,7 +105,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.
  * It affects both type imports and static imports.
  * Type is {@code boolean}.
- * Default value is true.
+ * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code staticGroups} - specify list of <b>static</b> import groups (every group
@@ -114,23 +115,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * value) means one group for all static imports. This property has effect only when the property
  * {@code option} is set to {@code top} or {@code bottom}.
  * Type is {@code java.lang.String[]}.
+ * Validation type is {@code java.util.regex.Pattern}.
  * Default value is {@code {}}.
  * </li>
  * <li>
  * Property {@code sortStaticImportsAlphabetically} - control whether
  * <b>static imports</b> located at <b>top</b> or <b>bottom</b> are sorted within the group.
  * Type is {@code boolean}.
- * Default value is false.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code useContainerOrderingForStatic} - control whether to use container
  * ordering (Eclipse IDE term) for static imports or not.
  * Type is {@code boolean}.
- * Default value is false.
+ * Default value is {@code false}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
- * Type is {@code int[]}.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_IMPORT">
  * STATIC_IMPORT</a>.

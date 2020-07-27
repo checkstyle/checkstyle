@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Define the RegExp for illegal pattern.
  * Type is {@code java.lang.String}.
+ * Validation type is {@code java.util.regex.Pattern}.
  * Default value is {@code "^$" (empty)}.
  * </li>
  * <li>
@@ -51,7 +52,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
- * Type is {@code int[]}.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
  * Default value is: empty.
  * </li>
  * </ul>

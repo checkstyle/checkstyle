@@ -67,6 +67,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Property {@code excludeClassesRegexps} - Specify user-configured regular
  * expressions to ignore classes.
  * Type is {@code java.lang.String[]}.
+ * Validation type is {@code java.util.regex.Pattern}.
  * Default value is {@code ^$}.
  * </li>
  * <li>
