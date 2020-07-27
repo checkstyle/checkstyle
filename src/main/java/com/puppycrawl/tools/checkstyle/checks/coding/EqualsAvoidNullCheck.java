@@ -146,6 +146,9 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             TokenTypes.LITERAL_NEW,
             TokenTypes.LAMBDA,
             TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.RECORD_COMPONENT_DEF,
         };
     }
 
@@ -170,6 +173,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             case TokenTypes.VARIABLE_DEF:
             case TokenTypes.PARAMETER_DEF:
             case TokenTypes.PATTERN_VARIABLE_DEF:
+            case TokenTypes.RECORD_COMPONENT_DEF:
                 currentFrame.addField(ast);
                 break;
             case TokenTypes.METHOD_CALL:
@@ -183,7 +187,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
                 break;
             case TokenTypes.OBJBLOCK:
                 final int parentType = ast.getParent().getType();
-                if (parentType != TokenTypes.CLASS_DEF && parentType != TokenTypes.ENUM_DEF) {
+                if (!astTypeIsClassOrEnumOrRecordDef(parentType)) {
                     processFrame(ast);
                 }
                 break;
@@ -194,24 +198,28 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
 
     @Override
     public void leaveToken(DetailAST ast) {
-        final int astType = ast.getType();
-        if (astType == TokenTypes.SLIST) {
-            leaveSlist(ast);
-        }
-        else if (astType == TokenTypes.LITERAL_NEW) {
-            leaveLiteralNew(ast);
-        }
-        else if (astType == TokenTypes.OBJBLOCK) {
-            final int parentType = ast.getParent().getType();
-            if (parentType != TokenTypes.CLASS_DEF && parentType != TokenTypes.ENUM_DEF) {
+        switch (ast.getType()) {
+            case TokenTypes.SLIST:
+                leaveSlist(ast);
+                break;
+            case TokenTypes.LITERAL_NEW:
+                leaveLiteralNew(ast);
+                break;
+            case TokenTypes.OBJBLOCK:
+                final int parentType = ast.getParent().getType();
+                if (!astTypeIsClassOrEnumOrRecordDef(parentType)) {
+                    currentFrame = currentFrame.getParent();
+                }
+                break;
+            case TokenTypes.VARIABLE_DEF:
+            case TokenTypes.PARAMETER_DEF:
+            case TokenTypes.RECORD_COMPONENT_DEF:
+            case TokenTypes.METHOD_CALL:
+            case TokenTypes.PATTERN_VARIABLE_DEF:
+                break;
+            default:
                 currentFrame = currentFrame.getParent();
-            }
-        }
-        else if (astType != TokenTypes.VARIABLE_DEF
-                && astType != TokenTypes.PARAMETER_DEF
-                && astType != TokenTypes.METHOD_CALL
-                && astType != TokenTypes.PATTERN_VARIABLE_DEF) {
-            currentFrame = currentFrame.getParent();
+                break;
         }
     }
 
@@ -254,9 +262,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     private void processFrame(DetailAST ast) {
         final FieldFrame frame = new FieldFrame(currentFrame);
         final int astType = ast.getType();
-        if (astType == TokenTypes.CLASS_DEF
-                || astType == TokenTypes.ENUM_DEF) {
-            frame.setClassOrEnumOrEnumConstDef(true);
+        if (astTypeIsClassOrEnumOrRecordDef(astType)) {
+            frame.setClassOrEnumOrRecordDef(true);
             frame.setFrameName(ast.findFirstToken(TokenTypes.IDENT).getText());
         }
         currentFrame.addChild(frame);
@@ -436,7 +443,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         while (frame != null) {
             final DetailAST field = frame.findField(name);
             if (field != null
-                    && (frame.isClassOrEnumOrEnumConstDef()
+                    && (frame.isClassOrEnumOrRecordDef()
                             || checkLineNo(field, objCalledOn))) {
                 result = STRING.equals(getFieldType(field));
                 break;
@@ -489,7 +496,7 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
      */
     private static FieldFrame getObjectFrame(FieldFrame frame) {
         FieldFrame objectFrame = frame;
-        while (objectFrame != null && !objectFrame.isClassOrEnumOrEnumConstDef()) {
+        while (objectFrame != null && !objectFrame.isClassOrEnumOrRecordDef()) {
             objectFrame = objectFrame.getParent();
         }
         return objectFrame;
@@ -528,6 +535,18 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
     }
 
     /**
+     * Verify that a token is either CLASS_DEF, RECORD_DEF, or ENUM_DEF.
+     *
+     * @param tokenType the type of token
+     * @return true if token is of specified type.
+     */
+    private static boolean astTypeIsClassOrEnumOrRecordDef(int tokenType) {
+        return tokenType == TokenTypes.CLASS_DEF
+                || tokenType == TokenTypes.RECORD_DEF
+                || tokenType == TokenTypes.ENUM_DEF;
+    }
+
+    /**
      * Holds the names of fields of a type.
      */
     private static class FieldFrame {
@@ -547,8 +566,8 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         /** Name of the class, enum or enum constant declaration. */
         private String frameName;
 
-        /** Whether the frame is CLASS_DEF, ENUM_DEF or ENUM_CONST_DEF. */
-        private boolean classOrEnumOrEnumConstDef;
+        /** Whether the frame is CLASS_DEF, ENUM_DEF, ENUM_CONST_DEF, or RECORD_DEF. */
+        private boolean classOrEnumOrRecordDef;
 
         /**
          * Creates new frame.
@@ -616,21 +635,21 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
         }
 
         /**
-         * Sets isClassOrEnum.
+         * Sets isClassOrEnumOrRecordDef.
          *
          * @param value value to set.
          */
-        public void setClassOrEnumOrEnumConstDef(boolean value) {
-            classOrEnumOrEnumConstDef = value;
+        public void setClassOrEnumOrRecordDef(boolean value) {
+            classOrEnumOrRecordDef = value;
         }
 
         /**
-         * Getter for classOrEnumOrEnumConstDef.
+         * Getter for classOrEnumOrRecordDef.
          *
-         * @return classOrEnumOrEnumConstDef.
+         * @return classOrEnumOrRecordDef.
          */
-        public boolean isClassOrEnumOrEnumConstDef() {
-            return classOrEnumOrEnumConstDef;
+        public boolean isClassOrEnumOrRecordDef() {
+            return classOrEnumOrRecordDef;
         }
 
         /**
