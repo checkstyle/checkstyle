@@ -53,19 +53,19 @@ public class InputJava14Records
 
     public record HolderG<G>(G g) {
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        HolderG<?> holderG = (HolderG<?>) o;
-        return Objects.equals(g, holderG.g);
-    }
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            HolderG<?> holderG = (HolderG<?>) o;
+            return Objects.equals(g, holderG.g);
+        }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(g);
+        @Override
+        public int hashCode() {
+            return Objects.hash(g);
+        }
     }
-}
 
 
     // Basic Record declaration
