@@ -214,6 +214,22 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(EqualsAvoidNullCheck.class);
+
+        final String[] expected = {
+            "11:23: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "18:34: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "30:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            "37:33: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputEqualsAvoidNullRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
