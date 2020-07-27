@@ -125,6 +125,26 @@ public class MethodParamPadCheckTest
     }
 
     @Test
+    public void testMethodParamPadRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
+        checkConfig.addAttribute("allowLineBreaks", "true");
+        final String[] expected = {
+            "14:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "15:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "26:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "27:23: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "32:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "33:33: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "39:26: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "40:18: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "46:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+            "52:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputMethodParamPadRecords.java"), expected);
+    }
+
+    @Test
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
@@ -144,6 +164,7 @@ public class MethodParamPadCheckTest
             TokenTypes.METHOD_DEF,
             TokenTypes.SUPER_CTOR_CALL,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
