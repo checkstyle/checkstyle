@@ -1354,16 +1354,10 @@
                 <include>**/*.xsd</include>
                 <include>**/*.xml.vm</include>
               </includes>
-              <!-- till https://github.com/checkstyle/checkstyle/issues/8544 -->
               <excludes>
-                <exclude>.ci/travis/decoration-1.0.0.xsd</exclude>
-                <!-- Requires <b>{</b> indented more than the enclosing <pre> tag. -->
+                <!-- The <b>{</b> tag requires more indentation than the enclosing <pre> tag,
+                     which results in too much indentation to the right -->
                 <exclude>src/xdocs/property_types.xml</exclude>
-                <exclude>config/default_sonar_profile.xml</exclude>
-                <exclude>config/pmd-main.xml</exclude>
-                <exclude>config/pmd-test.xml</exclude>
-                <exclude>config/spotbugs-exclude.xml</exclude>
-                <exclude>config/version-number-rules.xml</exclude>
                 <!-- Temporary files -->
                 <exclude>target/**</exclude>
                 <!-- Specially crafted test files -->
