@@ -3565,6 +3565,7 @@ public final class TokenTypes {
      * </pre>
      *
      * @see #LITERAL_INSTANCEOF
+     * @since 8.35
      */
     public static final int PATTERN_VARIABLE_DEF =
             GeneratedJavaTokenTypes.PATTERN_VARIABLE_DEF;
