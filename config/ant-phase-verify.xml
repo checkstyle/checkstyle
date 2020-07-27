@@ -118,6 +118,7 @@
 
           <!-- Exclude because printed AST has line length > 100 characters -->
           <exclude name="**/InputJava14InstanceofWithPatternMatchingAST.txt"/>
+          <exclude name="**/InputJava14Records.txt"/>
 
         </fileset>
       </path>
