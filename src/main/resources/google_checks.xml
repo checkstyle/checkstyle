@@ -258,7 +258,7 @@
     <module name="MethodParamPad">
       <property name="tokens"
                value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF,
-                    SUPER_CTOR_CALL, ENUM_CONSTANT_DEF"/>
+                    SUPER_CTOR_CALL, ENUM_CONSTANT_DEF, RECORD_DEF"/>
     </module>
     <module name="NoWhitespaceBefore">
       <property name="tokens"
