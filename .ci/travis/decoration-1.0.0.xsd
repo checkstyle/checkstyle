@@ -107,7 +107,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The full name of the project.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -223,7 +223,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The name to display for the link.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="href" type="xs:string">
@@ -231,7 +231,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The href to use for the link.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -257,7 +257,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The name to display for the menu.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="inherit" type="xs:string">
@@ -266,7 +266,7 @@
         <xs:documentation source="description">
             The way in which the menu is inherited. Can be one of
             : &lt;code&gt;top&lt;/code&gt;, &lt;code&gt;bottom&lt;/code&gt;.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="inheritAsRef" type="xs:boolean" default="false">
@@ -277,7 +277,7 @@
             means that it will be populated
             in the project, whereas if it is false,
             it is populated in the parent and then inherited.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="ref" type="xs:string">
@@ -287,7 +287,7 @@
             A reference to a pre-defined menu, such as a
             &lt;code&gt;reports&lt;/code&gt;, &lt;code&gt;modules&lt;/code&gt;
             or &lt;code&gt;parentProject&lt;/code&gt;.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="img" type="xs:string">
@@ -295,7 +295,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The location of an image.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -327,7 +327,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
            Whether to collapse children elements of an item menu (by default).
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="ref" type="xs:string">
@@ -336,7 +336,7 @@
         <xs:documentation source="description">
             A reference to a pre-defined menu item, such as a report (specified by the report goal
             name). Any elements explicitly given override those from the pre-defined reference.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="name" type="xs:string">
@@ -344,7 +344,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The name to display for the link.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="href" type="xs:string">
@@ -352,7 +352,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The href to use for the link.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -403,7 +403,7 @@
         <xs:documentation source="description">
             Where to place the version published
             (left, right, navigation-top, navigation-bottom, bottom).
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -420,7 +420,7 @@
         <xs:documentation source="description">
             Where to place the date published
             (left, right, navigation-top, navigation-bottom, bottom).
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="format" type="xs:string">
@@ -428,7 +428,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             Date format to use. The default is MM/dd/yyyy.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
@@ -444,7 +444,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The href of a link to be used for the power by image.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="name" type="xs:string">
@@ -452,7 +452,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The name to display for the link.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="href" type="xs:string">
@@ -460,7 +460,7 @@
         <xs:documentation source="version">1.0.0</xs:documentation>
         <xs:documentation source="description">
             The href to use for the link.
-          </xs:documentation>
+        </xs:documentation>
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
