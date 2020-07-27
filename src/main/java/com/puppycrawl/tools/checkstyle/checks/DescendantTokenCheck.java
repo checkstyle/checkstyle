@@ -43,7 +43,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <ul>
  * <li>
  * Property {@code limitedTokens} - Specify set of tokens with limited occurrences as descendants.
- * Type is {@code int[]}.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
  * Default value is {@code {}}.
  * </li>
  * <li>

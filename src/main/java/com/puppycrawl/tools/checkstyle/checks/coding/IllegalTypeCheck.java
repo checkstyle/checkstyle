@@ -111,12 +111,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Property {@code memberModifiers} - Control whether to check only methods and fields with any
  * of the specified modifiers.
  * This property does not affect method calls nor method references.
- * Type is {@code int[]}.
- * Default value is no tokens.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
+ * Default value is {@code no tokens}.
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
- * Type is {@code int[]}.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
  * ANNOTATION_FIELD_DEF</a>,

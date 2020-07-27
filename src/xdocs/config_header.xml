@@ -85,10 +85,8 @@ line 5: ////////////////////////////////////////////////////////////////////
               <td>charset</td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="property_types.html#String">String</a></td>
-              <td>
-                the charset property of the parent
-                <a href="config.html#Checker">Checker</a> module
-              </td>
+              <td><code>the charset property of the parent<a href="config.html#Checker"> Checker</a>
+                  module</code></td>
               <td>5.0</td>
             </tr>
             <tr>
@@ -302,10 +300,8 @@ line 6: ^\W*$
               <td>charset</td>
               <td>Specify the character encoding to use when reading the headerFile.</td>
               <td><a href="property_types.html#String">String</a></td>
-              <td>
-                the charset property of the parent
-                <a href="config.html#Checker">Checker</a> module
-              </td>
+              <td><code>the charset property of the parent<a href="config.html#Checker"> Checker</a>
+                  module</code></td>
               <td>5.0</td>
             </tr>
             <tr>

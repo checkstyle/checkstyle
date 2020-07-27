@@ -58,6 +58,7 @@ import com.puppycrawl.tools.checkstyle.api.Filter;
  * Property {@code checks} - Define the RegExp for matching against the name of the check
  * associated with an audit event.
  * Type is {@code java.lang.String}.
+ * Validation type is {@code java.util.regex.Pattern}.
  * Default value is {@code null}.
  * </li>
  * <li>
