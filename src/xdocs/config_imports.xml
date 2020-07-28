@@ -1530,7 +1530,7 @@ import java.util.stream.IntStream;
               <td>control whether type imports within each group should be sorted.
                 It doesn't affect sorting for static imports.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-              <td>true</td>
+              <td><code>true</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -1541,7 +1541,7 @@ import java.util.stream.IntStream;
                 It doesn't affect separations for static imports.
               </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-              <td>false</td>
+              <td><code>false</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -1553,7 +1553,7 @@ import java.util.stream.IntStream;
                 is is set to <code>top</code> or <code>bottom</code>.
               </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-              <td>false</td>
+              <td><code>false</code></td>
               <td>8.12</td>
             </tr>
             <tr>
@@ -1564,7 +1564,7 @@ import java.util.stream.IntStream;
                 It affects both type imports and static imports.
               </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-              <td>true</td>
+              <td><code>true</code></td>
               <td>3.3</td>
             </tr>
             <tr>
@@ -1590,7 +1590,7 @@ import java.util.stream.IntStream;
                 <b>bottom</b> are sorted within the group.
               </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-              <td>false</td>
+              <td><code>false</code></td>
               <td>6.5</td>
             </tr>
             <tr>
@@ -1599,7 +1599,7 @@ import java.util.stream.IntStream;
                 control whether to use container ordering (Eclipse IDE term) for static
                 imports or not.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
-              <td>false</td>
+              <td><code>false</code></td>
               <td>7.1</td>
             </tr>
 
