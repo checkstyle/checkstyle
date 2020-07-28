@@ -137,7 +137,12 @@ public class CovariantEqualsCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.LITERAL_NEW, TokenTypes.ENUM_DEF, };
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
+        };
     }
 
     @Override

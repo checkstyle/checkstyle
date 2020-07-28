@@ -52,6 +52,19 @@ public class CovariantEqualsCheckTest
     }
 
     @Test
+    public void testCovariantEqualsRecords()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CovariantEqualsCheck.class);
+        final String[] expected = {
+            "9:24: " + getCheckMessage(MSG_KEY),
+            "25:28: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputCovariantEqualsRecords.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final CovariantEqualsCheck check = new CovariantEqualsCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
