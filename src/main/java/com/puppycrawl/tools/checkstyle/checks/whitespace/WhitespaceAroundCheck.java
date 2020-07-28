@@ -897,7 +897,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      */
     private boolean isEmptyCtorBlock(DetailAST ast, int parentType) {
         return allowEmptyConstructors
-                && isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF);
+                && (isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF)
+                    || isEmptyBlock(ast, parentType, TokenTypes.COMPACT_CTOR_DEF));
     }
 
     /**
