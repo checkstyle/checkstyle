@@ -984,6 +984,7 @@ public final class TokenTypes {
      * @see #LITERAL_CASE
      * @see #LITERAL_DEFAULT
      * @see #LITERAL_SWITCH
+     * @see #LITERAL_YIELD
      **/
     public static final int CASE_GROUP = GeneratedJavaTokenTypes.CASE_GROUP;
     /**
@@ -3723,6 +3724,22 @@ public final class TokenTypes {
      */
     public static final int COMPACT_CTOR_DEF =
             GeneratedJavaTokenTypes.COMPACT_CTOR_DEF;
+
+    /**
+     * The {@code yield} keyword.  This element appears
+     * as part of a yield statement.
+     *
+     * @see #LITERAL_SWITCH
+     * @see #CASE_GROUP
+     * @see #SLIST
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se13/preview/switch-expressions.html">
+     * Java Language Specification, &sect;14.21</a>
+     *
+     * @since 8.36
+     **/
+    public static final int LITERAL_YIELD =
+            GeneratedJavaTokenTypes.LITERAL_yield;
 
     /** Prevent instantiation. */
     private TokenTypes() {
