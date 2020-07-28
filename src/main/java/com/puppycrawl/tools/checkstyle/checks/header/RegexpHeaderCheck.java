@@ -104,8 +104,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code charset} - Specify the character encoding to use when reading the headerFile.
  * Type is {@code java.lang.String}.
- * Default value is the charset property of the parent
- * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module.
+ * Default value is {@code the charset property of the parent
+ * <a href="https://checkstyle.org/config.html#Checker">Checker</a> module}.
  * </li>
  * <li>
  * Property {@code header} - Define the required header specified inline.
