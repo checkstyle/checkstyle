@@ -29,10 +29,14 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -103,6 +107,19 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             .put("URI", URI.class)
             .put("WrapOption", WrapOption.class)
             .put("PARAM_LITERAL", int[].class).build();
+
+    private static final Set<String> PATTERN_EXCEPTIONS = Collections.unmodifiableSet(
+        Arrays.stream(new String[] {
+            "ClassDataAbstractionCoupling - excludeClassesRegexps",
+            "ClassFanOutComplexity - excludeClassesRegexps",
+            "IllegalTokenText - format",
+            "ImportOrder - groups",
+            "ImportOrder - staticGroups",
+            "SuppressionSingleFilter - checks",
+            "SuppressionXpathSingleFilter - files",
+            "SuppressionXpathSingleFilter - checks",
+            "SuppressionXpathSingleFilter - message",
+        }).collect(Collectors.toSet()));
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
@@ -289,8 +306,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             result.append(temp);
             CHECK_PROPERTY_DOC.put(propertyName, temp);
 
-            String typeText = "int[]";
-            if (!property.get(2).getTextContent().contains("subset of tokens")) {
+            String typeText = "java.lang.String[]";
+            final String propertyType = property.get(2).getTextContent();
+            final boolean isPropertyTokenType = propertyType.contains("subset of tokens")
+                    || propertyType.contains("subset of javadoc tokens");
+            if (!isPropertyTokenType) {
                 final Node typeNode;
                 if (property.get(2).getFirstChild().getFirstChild() == null) {
                     typeNode = property.get(2).getFirstChild().getNextSibling();
@@ -302,6 +322,13 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 typeText = FULLY_QUALIFIED_CLASS_NAMES.get(typeName).getTypeName();
             }
             result.append(" Type is {@code ").append(typeText).append("}.");
+
+            if (isPropertyTokenType) {
+                result.append(" Validation type is {@code tokenSet}.");
+            }
+            else if (PATTERN_EXCEPTIONS.contains(checkName + " - " + propertyName)) {
+                result.append(" Validation type is {@code java.util.regex.Pattern}.");
+            }
 
             if (propertyName.endsWith("token") || propertyName.endsWith("tokens")) {
                 result.append(" Default value is: ");

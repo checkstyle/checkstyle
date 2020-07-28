@@ -57,7 +57,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </li>
  * <li>
  * Property {@code tokens} - tokens to check
- * Type is {@code int[]}.
+ * Type is {@code java.lang.String[]}.
+ * Validation type is {@code tokenSet}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
  * LAND</a>,
