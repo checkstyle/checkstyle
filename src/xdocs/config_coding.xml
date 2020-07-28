@@ -499,7 +499,7 @@ class MyClass extends SomeOtherClass {
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="CovariantEquals_Description">
         <p>
-          Checks that classes which define a covariant <code>equals()</code> method
+          Checks that classes and records which define a covariant <code>equals()</code> method
           also override method <code>equals(Object)</code>.
         </p>
         <p>
@@ -520,7 +520,7 @@ class MyClass extends SomeOtherClass {
         </p>
 
         <p>
-          Java classes may override the <code>equals(Object)</code> method to define
+          Java classes and records may override the <code>equals(Object)</code> method to define
           a predicate for object equality. This method is used by many of the Java runtime
           library classes; for example, to implement generic containers.
         </p>
@@ -580,6 +580,30 @@ class Test {
   public boolean equals(Object i) {
     return false;
   }
+}
+        </source>
+        <p>
+          Another example:
+        </p>
+        <source>
+record Test(String str) {
+    public boolean equals(Test r) {  // violation
+        return false;
+    }
+}
+        </source>
+        <p>
+          The same record without violations:
+        </p>
+        <source>
+record Test(String str) {
+    public boolean equals(Test r) {  // no violation
+        return false;
+    }
+
+    public boolean equals(Object r) {
+        return false;
+    }
 }
         </source>
       </subsection>
