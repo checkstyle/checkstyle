@@ -459,6 +459,76 @@ public class WhitespaceAroundCheckTest
     }
 
     @Test
+    public void testWhitespaceAroundRecords()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
+        final String[] expected = {
+            "21:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "21:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "29:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "29:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "30:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "30:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "31:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "31:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "36:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "38:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "39:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "39:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "48:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "49:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "49:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "57:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "58:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "58:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "65:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "69:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "69:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputWhitespaceAroundRecords.java"), expected);
+    }
+
+    @Test
+    public void testWhitespaceAroundAllowEmptyCompactCtors()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
+        checkConfig.addAttribute("allowEmptyConstructors", "true");
+        final String[] expected = {
+            "21:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "21:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "29:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "29:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "30:23: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "30:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "31:28: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "31:29: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "36:23: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "38:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "39:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "39:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "48:18: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "49:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
+            "49:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "62:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputWhitespaceAroundAllowEmptyCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testWhitespaceAroundRecordsAllowEmptyTypes()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
+        checkConfig.addAttribute("allowEmptyTypes", "true");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getNonCompilablePath("InputWhitespaceAroundRecordsAllowEmptyTypes.java"),
+                expected);
+    }
+
+    @Test
     public void testWhitespaceAroundAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
         checkConfig.addAttribute("tokens", "ASSIGN, ARRAY_INIT, BAND, BAND_ASSIGN, BOR, "
