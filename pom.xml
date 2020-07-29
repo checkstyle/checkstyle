@@ -852,6 +852,9 @@
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer</exclude>
                     <exclude>
+                      com.puppycrawl.tools.checkstyle.grammar.GeneratedTextBlockLexer
+                    </exclude>
+                    <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser*
                     </exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocLexer</exclude>
@@ -925,6 +928,24 @@
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.79</minimum>
+                    </limit>
+                  </limits>
+                </rule>
+                <rule>
+                  <element>CLASS</element>
+                  <includes>
+                    <include>com.puppycrawl.tools.checkstyle.grammar.GeneratedTextBlockLexer</include>
+                  </includes>
+                  <limits>
+                    <limit>
+                      <counter>LINE</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.95</minimum>
+                    </limit>
+                    <limit>
+                      <counter>BRANCH</counter>
+                      <value>COVEREDRATIO</value>
+                      <minimum>0.78</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1107,7 +1128,7 @@
           <sourceDirectory>
             ${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammar
           </sourceDirectory>
-          <grammars>java.g</grammars>
+          <grammars>java*.g</grammars>
         </configuration>
         <executions>
           <execution>
@@ -1439,6 +1460,7 @@
             <exclude>**/JavadocPropertiesGenerator.class</exclude>
             <!-- generated classes, unfortunately use problematic api -->
             <exclude>**/GeneratedJavaLexer.class</exclude>
+            <exclude>**/GeneratedTextBlockLexer.class</exclude>
             <exclude>**/JavadocParser.class</exclude>
             <exclude>**/Input*</exclude>
             <!-- tests need forbidden apis to test the main code fully -->

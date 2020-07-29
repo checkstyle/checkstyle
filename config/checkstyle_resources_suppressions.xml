@@ -158,4 +158,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputParenPadWhitespace\.java"/>
 
+  <!-- This file must not have a package statement, for testing purposes -->
+  <suppress checks="PackageDeclarationCheck"
+            files="[\\/]InputAstTreeStringPrinterTextBlocksEscapesAreOneChar\.java"/>
+
 </suppressions>
