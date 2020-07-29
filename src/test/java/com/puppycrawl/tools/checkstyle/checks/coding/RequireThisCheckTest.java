@@ -404,6 +404,43 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("checkFields", "false");
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "16:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
+            "17:13: " + getCheckMessage(MSG_METHOD, "method3", ""),
+            "27:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "53:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "54:13: " + getCheckMessage(MSG_METHOD, "method2", ""),
+            "55:13: " + getCheckMessage(MSG_METHOD, "method3", ""),
+            "65:13: " + getCheckMessage(MSG_METHOD, "method1", ""),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputRequireThisRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
+    public void testRecordsAsTopLevel() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        checkConfig.addAttribute("checkFields", "false");
+        checkConfig.addAttribute("validateOnlyOverlapping", "false");
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "15:9: " + getCheckMessage(MSG_METHOD, "method2", ""),
+            "16:9: " + getCheckMessage(MSG_METHOD, "method3", ""),
+            "21:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+            "39:9: " + getCheckMessage(MSG_METHOD, "method1", ""),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputRequireThisRecordAsTopLevel.java"),
+                expected);
+    }
+
+    @Test
     public void testUnusedMethod() throws Exception {
         final DetailAstImpl ident = new DetailAstImpl();
         ident.setText("testName");

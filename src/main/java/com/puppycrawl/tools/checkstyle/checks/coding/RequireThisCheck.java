@@ -255,6 +255,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.TYPE_ARGUMENT,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.RECORD_DEF,
         }).collect(Collectors.toSet()));
     /** Set of all assign tokens. */
     private static final Set<Integer> ASSIGN_TOKENS = Collections.unmodifiableSet(
@@ -341,6 +343,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.LITERAL_FOR,
             TokenTypes.SLIST,
             TokenTypes.IDENT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -516,6 +520,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.INTERFACE_DEF:
             case TokenTypes.ENUM_DEF:
             case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.RECORD_DEF:
                 final DetailAST classFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ClassFrame(frame, classFrameNameIdent));
                 break;
@@ -534,6 +539,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
                 break;
             case TokenTypes.CTOR_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 final DetailAST ctorFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ConstructorFrame(frame, ctorFrameNameIdent));
                 break;
@@ -603,6 +609,8 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.LITERAL_CATCH:
             case TokenTypes.LITERAL_FOR:
+            case TokenTypes.RECORD_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 frames.put(ast, frameStack.poll());
                 break;
             case TokenTypes.LITERAL_NEW:
