@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_CLASS;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_FILE;
 import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_METHOD;
+import static com.puppycrawl.tools.checkstyle.checks.metrics.JavaNCSSCheck.MSG_RECORD;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -94,6 +95,36 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavaNCSSCheck.class);
+
+        checkConfig.addAttribute("methodMaximum", "7");
+        checkConfig.addAttribute("classMaximum", "3");
+        checkConfig.addAttribute("fileMaximum", "2");
+        checkConfig.addAttribute("recordMaximum", "4");
+
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_FILE, 89, 2),
+            "12:1: " + getCheckMessage(MSG_CLASS, 87, 3),
+            "14:5: " + getCheckMessage(MSG_CLASS, 7, 3),
+            "32:5: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "41:5: " + getCheckMessage(MSG_RECORD, 15, 4),
+            "52:9: " + getCheckMessage(MSG_METHOD, 8, 7),
+            "71:5: " + getCheckMessage(MSG_RECORD, 6, 4),
+            "105:5: " + getCheckMessage(MSG_RECORD, 8, 4),
+            "126:5: " + getCheckMessage(MSG_CLASS, 11, 3),
+            "147:5: " + getCheckMessage(MSG_RECORD, 12, 4),
+            "148:9: " + getCheckMessage(MSG_METHOD, 11, 7),
+            "162:5: " + getCheckMessage(MSG_CLASS, 12, 3),
+            "163:9: " + getCheckMessage(MSG_METHOD, 11, 7),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputJavaNCSSRecordsAndCompactCtors.java"),
+                expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final JavaNCSSCheck javaNcssCheckObj = new JavaNCSSCheck();
         final int[] actual = javaNcssCheckObj.getAcceptableTokens();
@@ -126,6 +157,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LABELED_STAT,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertNotNull(actual, "Acceptable tokens should not be null");
         assertArrayEquals(expected, actual, "Invalid acceptable tokens");
@@ -164,6 +197,8 @@ public class JavaNCSSCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LABELED_STAT,
             TokenTypes.LITERAL_CASE,
             TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertNotNull(actual, "Required tokens should not be null");
         assertArrayEquals(expected, actual, "Invalid required tokens");
