@@ -119,6 +119,7 @@
           <!-- Exclude because printed AST has line length > 100 characters -->
           <exclude name="**/InputJava14InstanceofWithPatternMatchingAST.txt"/>
           <exclude name="**/InputJava14Records.txt"/>
+          <exclude name="**/InputJava14TextBlocks.txt"/>
 
         </fileset>
       </path>
@@ -156,8 +157,6 @@
           <exclude name="**/InputJavaParser.java"/>
           <!-- until https://github.com/checkstyle/checkstyle/issues/8023 -->
           <exclude name="**/InputJava14Records.java"/>
-          <!-- until https://github.com/checkstyle/checkstyle/issues/7103 -->
-          <exclude name="**/InputJava14TextBlocks.java"/>
           <!-- until https://github.com/checkstyle/checkstyle/issues/6615 -->
           <exclude name="**/InputJava14SwitchExpression.java"/>
 
@@ -218,6 +217,8 @@
           <exclude name="**/api/**/*"/>
           <!-- No need to check ant files -->
           <exclude name="**/ant/**/*"/>
+          <!-- No need to check ast String Printer input files -->
+          <exclude name="**/asttreestringprinter/**/*"/>
 
         </fileset>
       </path>

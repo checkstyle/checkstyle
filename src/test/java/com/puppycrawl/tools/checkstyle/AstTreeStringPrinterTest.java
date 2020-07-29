@@ -38,6 +38,7 @@ import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
 
@@ -152,6 +153,30 @@ public class AstTreeStringPrinterTest extends AbstractTreeTestSupport {
         verifyAst(getPath("ExpectedAstTreeStringPrinterFullOfSinglelineComments.txt"),
                 getPath("InputAstTreeStringPrinterFullOfSinglelineComments.java"),
                 JavaParser.Options.WITH_COMMENTS);
+    }
+
+    @Test
+    public void testTextBlocksEscapesAreOneChar() throws Exception {
+        final String inputFilename = "InputAstTreeStringPrinterTextBlocksEscapesAreOneChar.java";
+        final DetailAST ast = JavaParser.parseFile(
+                new File(getNonCompilablePath(inputFilename)), JavaParser.Options.WITHOUT_COMMENTS);
+
+        final DetailAST objectBlockNode = ast.findFirstToken(TokenTypes.OBJBLOCK);
+        final DetailAST variableDefNode = objectBlockNode.findFirstToken(TokenTypes.VARIABLE_DEF);
+        final DetailAST textBlockContentNode =
+                variableDefNode.findFirstToken(TokenTypes.ASSIGN)
+                        .findFirstToken(TokenTypes.EXPR)
+                        .getFirstChild()
+                        .findFirstToken(TokenTypes.TEXT_BLOCK_CONTENT);
+
+        final String textBlockContent = textBlockContentNode.getText();
+
+        assertThat("Text block content contains \"\\n\" as substring",
+                textBlockContent.contains("\\n"), is(false));
+        assertThat("Text block content line terminator is counted as one character",
+                textBlockContent.length(), is(1));
+        assertThat("Text block content contains only a line terminator",
+                textBlockContent.matches("\n"), is(true));
     }
 
 }
