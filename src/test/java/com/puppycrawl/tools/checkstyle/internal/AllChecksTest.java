@@ -131,7 +131,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                         "DOUBLE_COLON", "IDENT", "MOD_ASSIGN", "LITERAL_FOR", "SUPER_CTOR_CALL",
                         "STRING_LITERAL", "ARRAY_DECLARATOR", "LITERAL_CASE",
                         "PATTERN_VARIABLE_DEF", "RECORD_DEF", "LITERAL_RECORD",
-                        "RECORD_COMPONENTS", "RECORD_COMPONENT_DEF", "COMPACT_CTOR_DEF").collect(
+                        "RECORD_COMPONENTS", "RECORD_COMPONENT_DEF", "COMPACT_CTOR_DEF",
+                        "TEXT_BLOCK_LITERAL_BEGIN", "TEXT_BLOCK_CONTENT",
+                        "TEXT_BLOCK_LITERAL_END").collect(
                         Collectors.toSet()));
         // we have no need to block specific token text
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("IllegalTokenText",
