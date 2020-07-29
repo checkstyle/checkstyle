@@ -130,6 +130,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
  *   }
  * }
+ *
+ * public static record C(int x) {
+ *     void getTwoX(int x) {
+ *         // Overlapping by method argument.
+ *         return x += x; // violation: Reference to instance variable "x" needs "this".
+ *     }
+ * }
  * </pre>
  * <p>
  * Please, be aware of the following logic, which is implemented in the check:
@@ -210,6 +217,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     s2 += s2; // Violation. Overlapping. Reference to instance variable 's2' needs "this.".
  *   }
  * }
+ *
+ * public static record D(int x) {
+ *     public D {
+ *         x = x; // violation: Reference to instance variable "x" needs "this".
+ *     }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -255,6 +268,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.PARAMETER_DEF,
             TokenTypes.TYPE_ARGUMENT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.RECORD_COMPONENT_DEF,
         }).collect(Collectors.toSet()));
     /** Set of all assign tokens. */
     private static final Set<Integer> ASSIGN_TOKENS = Collections.unmodifiableSet(
@@ -341,6 +356,8 @@ public class RequireThisCheck extends AbstractCheck {
             TokenTypes.LITERAL_FOR,
             TokenTypes.SLIST,
             TokenTypes.IDENT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -384,6 +401,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF:
             case TokenTypes.CTOR_DEF:
             case TokenTypes.LITERAL_FOR:
+            case TokenTypes.RECORD_DEF:
                 current.push(frames.get(ast));
                 break;
             default:
@@ -402,6 +420,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF:
             case TokenTypes.CTOR_DEF:
             case TokenTypes.LITERAL_FOR:
+            case TokenTypes.RECORD_DEF:
                 current.pop();
                 break;
             default:
@@ -504,6 +523,10 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.VARIABLE_DEF:
                 collectVariableDeclarations(ast, frame);
                 break;
+            case TokenTypes.RECORD_COMPONENT_DEF:
+                final DetailAST componentIdent = ast.findFirstToken(TokenTypes.IDENT);
+                ((ClassFrame) frame).addInstanceMember(componentIdent);
+                break;
             case TokenTypes.PARAMETER_DEF:
                 if (!CheckUtil.isReceiverParameter(ast)
                         && !isLambdaParameter(ast)
@@ -516,6 +539,7 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.INTERFACE_DEF:
             case TokenTypes.ENUM_DEF:
             case TokenTypes.ANNOTATION_DEF:
+            case TokenTypes.RECORD_DEF:
                 final DetailAST classFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ClassFrame(frame, classFrameNameIdent));
                 break;
@@ -534,6 +558,7 @@ public class RequireThisCheck extends AbstractCheck {
                 frameStack.addFirst(new MethodFrame(frame, methodFrameNameIdent));
                 break;
             case TokenTypes.CTOR_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 final DetailAST ctorFrameNameIdent = ast.findFirstToken(TokenTypes.IDENT);
                 frameStack.addFirst(new ConstructorFrame(frame, ctorFrameNameIdent));
                 break;
@@ -603,6 +628,8 @@ public class RequireThisCheck extends AbstractCheck {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.LITERAL_CATCH:
             case TokenTypes.LITERAL_FOR:
+            case TokenTypes.RECORD_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 frames.put(ast, frameStack.poll());
                 break;
             case TokenTypes.LITERAL_NEW:
