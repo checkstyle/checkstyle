@@ -571,6 +571,38 @@ public class AbbreviationAsWordInNameCheckTest extends AbstractModuleTestSupport
                 expected);
     }
 
+    @Test
+    public void testAbbreviationAsWordInNameCheckRecords()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(AbbreviationAsWordInNameCheck.class);
+
+        final int expectedCapitalCount = 4;
+
+        final String[] expected = {
+            "19:11: " + getWarningMessage("TestASDFClass", expectedCapitalCount),
+            "20:13: " + getWarningMessage("ASDFG", expectedCapitalCount),
+            "21:14: " + getWarningMessage("FOOFOO", expectedCapitalCount),
+            "23:37: " + getWarningMessage("STRING", expectedCapitalCount),
+            "24:17: " + getWarningMessage("ZXCVG", expectedCapitalCount),
+            "30:12: " + getWarningMessage("MyASDFRecord1", expectedCapitalCount),
+            "30:33: " + getWarningMessage("STRING", expectedCapitalCount),
+            "32:14: " + getWarningMessage("FOOFOO", expectedCapitalCount),
+            "37:17: " + getWarningMessage("ZXCVG", expectedCapitalCount),
+            "42:12: " + getWarningMessage("MyASDFRecord2", expectedCapitalCount),
+            "47:17: " + getWarningMessage("ASDFG", expectedCapitalCount),
+            "51:12: " + getWarningMessage("MyASDFRecord3", expectedCapitalCount),
+            "51:33: " + getWarningMessage("MYSTRING", expectedCapitalCount),
+            "51:47: " + getWarningMessage("MYINT", expectedCapitalCount),
+            "51:59: " + getWarningMessage("MYNODE", expectedCapitalCount),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath(
+                        "InputAbbreviationAsWordInNameCheckRecords.java"),
+                expected);
+    }
+
     private String getWarningMessage(String typeName, int expectedCapitalCount) {
         return getCheckMessage(MSG_KEY, typeName, expectedCapitalCount);
     }
