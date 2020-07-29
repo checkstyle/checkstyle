@@ -131,7 +131,7 @@
           <tr>
             <td><a href="config_modifier.html#ClassMemberImpliedModifier">
               ClassMemberImpliedModifier</a></td>
-            <td>Checks for implicit modifiers on nested types in classes.</td>
+            <td>Checks for implicit modifiers on nested types in classes and records.</td>
           </tr>
           <tr>
             <td><a href="config_naming.html#ClassTypeParameterName">ClassTypeParameterName</a></td>
