@@ -1377,6 +1377,16 @@ class CyclomaticComplexity {
               <td><code>2000</code></td>
               <td>3.5</td>
             </tr>
+            <tr>
+              <td>recordMaximum</td>
+              <td>
+                  Specify the maximum allowed number of non commenting lines in a
+                  record.
+              </td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>150</code></td>
+              <td>8.36</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -1500,6 +1510,10 @@ class Test2 {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.method%22">
             ncss.method</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fmetrics+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ncss.record%22">
+            ncss.record</a>
           </li>
         </ul>
         <p>
