@@ -469,6 +469,40 @@ public class MagicNumberCheckTest
     }
 
     @Test
+    public void testMagicNumberRecordsDefault()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MagicNumberCheck.class);
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_KEY, "6"),
+            "16:36: " + getCheckMessage(MSG_KEY, "7"),
+            "20:29: " + getCheckMessage(MSG_KEY, "8"),
+            "24:29: " + getCheckMessage(MSG_KEY, "8"),
+            "28:20: " + getCheckMessage(MSG_KEY, "10"),
+
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputMagicNumberRecordsDefault.java"), expected);
+    }
+
+    @Test
+    public void testMagicNumberIgnoreFieldDeclarationRecords()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MagicNumberCheck.class);
+        checkConfig.addAttribute("ignoreFieldDeclaration", "true");
+        final String[] expected = {
+            "14:11: " + getCheckMessage(MSG_KEY, "6"),
+            "20:29: " + getCheckMessage(MSG_KEY, "8"),
+            "24:29: " + getCheckMessage(MSG_KEY, "8"),
+            "28:20: " + getCheckMessage(MSG_KEY, "10"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputMagicNumberIgnoreFieldDeclarationRecords.java"),
+                expected);
+    }
+
+    @Test
     public void testIgnoreInAnnotationElementDefault() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MagicNumberCheck.class);
