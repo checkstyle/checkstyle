@@ -179,6 +179,27 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check so that it ignores magic numbers in field declarations:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;MagicNumber&quot;&gt;
+ *   &lt;property name=&quot;ignoreFieldDeclaration&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * results in the following violations:
+ * </p>
+ * <pre>
+ * public record MyRecord() {
+ *     private static int myInt = 7; // ok, field declaration
+ *
+ *     void foo() {
+ *         int i = myInt + 1; // no violation, 1 is defined as non-magic
+ *         int j = myInt + 8; // violation
+ *     }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to check annotation element defaults:
  * </p>
  * <pre>
@@ -517,9 +538,10 @@ public class MagicNumberCheck extends AbstractCheck {
         }
 
         // contains variable declaration
-        // and it is directly inside class declaration
+        // and it is directly inside class or record declaration
         return varDefAST != null
-                && varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF;
+                && (varDefAST.getParent().getParent().getType() == TokenTypes.CLASS_DEF
+                || varDefAST.getParent().getParent().getType() == TokenTypes.RECORD_DEF);
     }
 
     /**
