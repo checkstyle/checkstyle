@@ -5172,6 +5172,13 @@ public static class B {
     return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
   }
 }
+
+public static record C(int x) {
+    public C (int x){
+        // Overlapping by constructor argument.
+        x = x; // violation: Reference to instance variable "x" needs "this".
+    }
+}
         </source>
         <p>
           Please, be aware of the following logic, which is implemented in the check:
@@ -5251,6 +5258,12 @@ class C {
     s2 = "bar2"; // No violation. Local var allowed.
     s2 += s2; // Violation. Overlapping. Reference to instance variable 's2' needs "this.".
   }
+}
+
+public static record D(int x) {
+    public D{
+        x = x; // violation: Reference to instance variable "x" needs "this".
+    }
 }
         </source>
       </subsection>
