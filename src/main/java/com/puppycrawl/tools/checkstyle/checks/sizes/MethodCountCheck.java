@@ -91,7 +91,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <li>
  * Property {@code maxProtected} - Specify the maximum number of {@code protected} methods allowed.
  * Type is {@code int}.
- * Default value is 100.
+ * Default value is {@code 100}.
  * </li>
  * <li>
  * Property {@code maxPublic} - Specify the maximum number of {@code public} methods allowed.
