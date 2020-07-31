@@ -1786,6 +1786,12 @@ enum Foo { // violation
 
 }
         </source>
+        <p>Example of record Foo in a file named Test.java</p>
+        <source>
+record Foo { // violation
+
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="OuterTypeFilename_Example_of_Usage">
