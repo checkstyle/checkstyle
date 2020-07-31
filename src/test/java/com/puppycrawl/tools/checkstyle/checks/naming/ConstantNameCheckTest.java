@@ -145,6 +145,16 @@ public class ConstantNameCheckTest
     }
 
     @Test
+    public void testIntoInterfaceExcludePublic() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ConstantNameCheck.class);
+        checkConfig.addAttribute("applyToPublic", "false");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputConstantNameInterfaceIgnorePublic.java"), expected);
+    }
+
+    @Test
     public void testStaticMethodInInterface()
             throws Exception {
         final DefaultConfiguration checkConfig =
