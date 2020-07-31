@@ -170,6 +170,22 @@ public class MethodNameCheckTest
     }
 
     @Test
+    public void testInterfacesExcludePublic() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MethodNameCheck.class);
+        checkConfig.addAttribute("applyToPublic", "false");
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "11:18: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod", pattern),
+            "14:25: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod2", pattern),
+        };
+
+        verify(checkConfig, getNonCompilablePath("InputMethodNameMethodsInInterfaces.java"),
+            expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final MethodNameCheck methodNameCheckObj = new MethodNameCheck();
         final int[] actual = methodNameCheckObj.getAcceptableTokens();
