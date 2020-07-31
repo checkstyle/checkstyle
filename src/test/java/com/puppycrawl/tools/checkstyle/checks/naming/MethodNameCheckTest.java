@@ -170,6 +170,40 @@ public class MethodNameCheckTest
     }
 
     @Test
+    public void testInterfacesExcludePublic() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MethodNameCheck.class);
+        checkConfig.addAttribute("applyToPublic", "false");
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "10:18: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod", pattern),
+            "12:25: " + getCheckMessage(MSG_INVALID_PATTERN, "PrivateMethod2", pattern),
+        };
+
+        verify(checkConfig, getNonCompilablePath("InputMethodNamePublicMethodsInInterfaces.java"),
+            expected);
+    }
+
+    @Test
+    public void testInterfacesExcludePrivate() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MethodNameCheck.class);
+        checkConfig.addAttribute("applyToPrivate", "false");
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "14:18: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod", pattern),
+            "17:25: " + getCheckMessage(MSG_INVALID_PATTERN, "DefaultMethod2", pattern),
+            "20:10: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod", pattern),
+            "22:17: " + getCheckMessage(MSG_INVALID_PATTERN, "PublicMethod2", pattern),
+        };
+
+        verify(checkConfig, getNonCompilablePath("InputMethodNamePrivateMethodsInInterfaces.java"),
+            expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final MethodNameCheck methodNameCheckObj = new MethodNameCheck();
         final int[] actual = methodNameCheckObj.getAcceptableTokens();
