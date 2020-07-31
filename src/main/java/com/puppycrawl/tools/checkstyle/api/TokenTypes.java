@@ -3724,6 +3724,97 @@ public final class TokenTypes {
     public static final int COMPACT_CTOR_DEF =
             GeneratedJavaTokenTypes.COMPACT_CTOR_DEF;
 
+    /**
+     * Beginning of a Java 14 Text Block literal,
+     * delimited by three double quotes.
+     *
+     * <p>For example:</p>
+     * <pre>
+     *         String hello = """
+     *                 Hello, world!
+     *                 """;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF
+     * |   |--MODIFIERS
+     * |   |--TYPE
+     * |   |   `--IDENT (String)
+     * |   |--IDENT (hello)
+     * |   |--ASSIGN (=)
+     * |   |   `--EXPR
+     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
+     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
+     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
+     * |   `--SEMI (;)
+     * </pre>
+     *
+     * @since 8.36
+     */
+    public static final int TEXT_BLOCK_LITERAL_BEGIN =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
+
+    /**
+     * Content of a Java 14 text block. This is a
+     * sequence of characters, possibly escaped with '\'. Actual line terminators
+     * are represented by '\n'.
+     *
+     * <p>For example:</p>
+     * <pre>
+     *         String hello = """
+     *                 Hello, world!
+     *                 """;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF
+     * |   |--MODIFIERS
+     * |   |--TYPE
+     * |   |   `--IDENT (String)
+     * |   |--IDENT (hello)
+     * |   |--ASSIGN (=)
+     * |   |   `--EXPR
+     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
+     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
+     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
+     * |   `--SEMI (;)
+     * </pre>
+     *
+     * @since 8.36
+     */
+    public static final int TEXT_BLOCK_CONTENT =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT;
+
+    /**
+     * End of a Java 14 text block literal, delimited by three
+     * double quotes.
+     *
+     * <p>For example:</p>
+     * <pre>
+     *         String hello = """
+     *                 Hello, world!
+     *                 """;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF
+     * |   |--MODIFIERS
+     * |   |--TYPE
+     * |   |   `--IDENT (String)
+     * |   |--IDENT (hello)
+     * |   |--ASSIGN (=)
+     * |   |   `--EXPR
+     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
+     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
+     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
+     * |   `--SEMI (;)
+     * </pre>
+     *
+     * @since 8.36
+     */
+    public static final int TEXT_BLOCK_LITERAL_END =
+            GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }

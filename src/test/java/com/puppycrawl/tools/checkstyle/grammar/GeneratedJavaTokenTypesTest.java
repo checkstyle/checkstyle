@@ -259,9 +259,11 @@ public class GeneratedJavaTokenTypesTest {
         assertEquals(201, GeneratedJavaTokenTypes.RECORD_COMPONENTS, message);
         assertEquals(202, GeneratedJavaTokenTypes.RECORD_COMPONENT_DEF, message);
         assertEquals(203, GeneratedJavaTokenTypes.COMPACT_CTOR_DEF, message);
-
+        assertEquals(204, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN, message);
+        assertEquals(205, GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT, message);
+        assertEquals(206, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END, message);
         // Read JavaDoc before changing
-        assertEquals(202, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
+        assertEquals(205, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
                 "all tokens must be added to list in"
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change");

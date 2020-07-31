@@ -32,6 +32,7 @@ import antlr.RecognitionException;
 import antlr.Token;
 import antlr.TokenStreamException;
 import antlr.TokenStreamHiddenTokenFilter;
+import antlr.TokenStreamSelector;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer;
+import com.puppycrawl.tools.checkstyle.grammar.GeneratedTextBlockLexer;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -82,13 +84,26 @@ public final class JavaParser {
         final Reader reader = new StringReader(fullText);
         final GeneratedJavaLexer lexer = new GeneratedJavaLexer(reader);
         lexer.setCommentListener(contents);
-        lexer.setTokenObjectClass("antlr.CommonHiddenStreamToken");
+
+        final GeneratedTextBlockLexer textBlockLexer =
+                new GeneratedTextBlockLexer(lexer.getInputState());
+
+        final String tokenObjectClass = "antlr.CommonHiddenStreamToken";
+        lexer.setTokenObjectClass(tokenObjectClass);
+        textBlockLexer.setTokenObjectClass(tokenObjectClass);
 
         final TokenStreamHiddenTokenFilter filter = new TokenStreamHiddenTokenFilter(lexer);
         filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
         filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
 
-        final GeneratedJavaRecognizer parser = new GeneratedJavaRecognizer(filter) {
+        final TokenStreamSelector selector = new TokenStreamSelector();
+        lexer.selector = selector;
+        textBlockLexer.selector = selector;
+        selector.addInputStream(filter, "filter");
+        selector.addInputStream(textBlockLexer, "textBlockLexer");
+        selector.select(filter);
+
+        final GeneratedJavaRecognizer parser = new GeneratedJavaRecognizer(selector) {
             @Override
             public void reportError(RecognitionException ex) {
                 throw new IllegalStateException(ex);
