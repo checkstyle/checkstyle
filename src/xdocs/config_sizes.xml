@@ -560,7 +560,7 @@ public class ExampleClass {
               <td>maxProtected</td>
               <td>Specify the maximum number of <code>protected</code> methods allowed.</td>
               <td><a href="property_types.html#int">int</a></td>
-              <td>100</td>
+              <td><code>100</code></td>
               <td>5.3</td>
             </tr>
             <tr>
