@@ -1758,6 +1758,12 @@
                   </span>
                   <a href="config_naming.html#InterfaceTypeParameterName">
                     InterfaceTypeParameterName</a>
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="config_naming.html#RecordTypeParameterName">
+                    RecordTypeParameterName</a>
+                  <br/>
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+MethodTypeParameterName">
@@ -1777,6 +1783,12 @@
                   <br />
                   <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/InterfaceTypeParameterNameTest.java">
                     test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordTypeParameterName">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter5naming/rule528typevariablenames/RecordTypeParameterNameTest.java">
+                    test</a>
+                  <br />
                 </td>
               </tr>
               <tr>
