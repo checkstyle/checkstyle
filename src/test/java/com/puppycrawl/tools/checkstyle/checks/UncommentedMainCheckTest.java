@@ -126,4 +126,19 @@ public class UncommentedMainCheckTest
         }
     }
 
+    @Test
+    public void testRecords()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
+
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_KEY),
+            "17:9: " + getCheckMessage(MSG_KEY),
+            "22:13: " + getCheckMessage(MSG_KEY),
+        };
+
+        verify(checkConfig, getNonCompilablePath(
+                "InputUncommentedMainRecords.java"), expected);
+    }
+
 }

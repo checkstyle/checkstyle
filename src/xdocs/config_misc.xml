@@ -2367,6 +2367,14 @@ public class Launch {
 public class Start {
    public void main(){}                       // OK
 }
+
+public record MyRecord1 {
+    public void main(){}                       // violation
+}
+
+public record MyRecord2 {
+    //public void main(){}                     // OK
+}
         </source>
         <p>
           To configure the check to allow the <code>main</code> method for all classes
@@ -2394,6 +2402,11 @@ public class Launch {
 public class Start {
    public void main(){}                       // OK
 }
+
+public record MyRecord1 {
+    public void main(){}                      // OK
+}
+
         </source>
       </subsection>
 
