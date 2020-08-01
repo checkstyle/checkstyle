@@ -44,6 +44,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
@@ -56,8 +57,10 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
         final int[] actual = outerTypeNumberObj.getAcceptableTokens();
         final int[] expected = {
             TokenTypes.CLASS_DEF,
-            TokenTypes.INTERFACE_DEF, TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -89,6 +92,22 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("max", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeNumberEmptyInner.java"), expected);
+    }
+
+    @Test
+    public void testWithRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(OuterTypeNumberCheck.class);
+        checkConfig.addAttribute("max", "1");
+
+        final int max = 1;
+
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_KEY, 2, max),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputOuterTypeNumberRecords.java"), expected);
     }
 
 }
