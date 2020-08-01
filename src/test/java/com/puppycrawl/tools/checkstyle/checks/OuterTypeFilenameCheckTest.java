@@ -44,6 +44,7 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Required tokens array differs from expected");
@@ -74,6 +75,7 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, actual, "Acceptable tokens array differs from expected");
     }
@@ -140,6 +142,17 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getNonCompilablePath("package-info.java"), expected);
+    }
+
+    @Test
+    public void testOuterTypeFilenameRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
+
+        final String[] expected = {
+            "6:1: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputOuterTypeFilenameRecord.java"), expected);
     }
 
 }
