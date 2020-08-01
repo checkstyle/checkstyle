@@ -939,6 +939,7 @@ nonvalidating
 noparentfile
 noscript
 nospace
+notfoo
 Nothin
 notjava
 NOTNULL
@@ -1105,6 +1106,7 @@ README
 Readonly
 rebased
 rebasing
+recordtypeparametername
 redundantimport
 redundantmodifier
 refactor
