@@ -647,6 +647,7 @@
     </module>
     <module name="AbstractClassName"/>
     <module name="ClassTypeParameterName"/>
+    <module name="RecordTypeParameterName"/>
     <module name="ConstantName"/>
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>
