@@ -70,6 +70,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public class Start {
  *    public void main(){}                       // OK
  * }
+ *
+ * public record MyRecord1 {
+ *    public void main(){}                       // violation
+ * }
+ *
+ * public record MyRecord2 {
+ *    //public void main(){}                       // OK
+ * }
+ *
  * </pre>
  * <p>
  * To configure the check to allow the {@code main} method for all classes with "Main" name:
@@ -96,6 +105,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * public class Start {
  *    public void main(){}                       // OK
  * }
+ *
+ * public record MyRecord1 {
+ *    public void main(){}                       // OK
+ * }
+ *
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -159,6 +173,7 @@ public class UncommentedMainCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.CLASS_DEF,
             TokenTypes.PACKAGE_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
@@ -182,8 +197,9 @@ public class UncommentedMainCheck
             case TokenTypes.PACKAGE_DEF:
                 visitPackageDef(ast);
                 break;
+            case TokenTypes.RECORD_DEF:
             case TokenTypes.CLASS_DEF:
-                visitClassDef(ast);
+                visitClassOrRecordDef(ast);
                 break;
             case TokenTypes.METHOD_DEF:
                 visitMethodDef(ast);
@@ -206,13 +222,13 @@ public class UncommentedMainCheck
     /**
      * If not inner class then change current class name.
      *
-     * @param classDef node for class definition
+     * @param classOrRecordDef node for class or record definition
      */
-    private void visitClassDef(DetailAST classDef) {
+    private void visitClassOrRecordDef(DetailAST classOrRecordDef) {
         // we are not use inner classes because they can not
         // have static methods
         if (classDepth == 0) {
-            final DetailAST ident = classDef.findFirstToken(TokenTypes.IDENT);
+            final DetailAST ident = classOrRecordDef.findFirstToken(TokenTypes.IDENT);
             currentClass = packageName.getText() + "." + ident.getText();
             classDepth++;
         }
