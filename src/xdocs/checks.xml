@@ -730,6 +730,14 @@
             </td>
           </tr>
           <tr>
+            <td>
+              <a href="config_naming.html#RecordTypeParameterName">RecordTypeParameterName</a>
+            </td>
+            <td>
+              Checks that record type parameter names conform to a specified pattern.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_imports.html#RedundantImport">RedundantImport</a></td>
             <td>Checks for redundant import statements.</td>
           </tr>
