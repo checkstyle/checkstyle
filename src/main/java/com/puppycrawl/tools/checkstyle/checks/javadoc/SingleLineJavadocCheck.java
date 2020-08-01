@@ -33,8 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks that a Javadoc block can fit in a single line and doesn't contain at-clauses.
- * Javadoc comment that contains at least one at-clause should be formatted in a few lines.
+ * Checks that a Javadoc block can fit in a single line and doesn't contain.
+ * Javadoc comment that contains at least one should be formatted in a few lines.
  * </p>
  * <ul>
  * <li>
@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code ignoredTags} - Specify at-clauses which are ignored by the check.
+ * Property {@code ignoredTags} - Specify which are ignored by the check.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code {}}.
  * </li>
@@ -62,8 +62,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
  * </pre>
  * <p>
- * To configure the check with a list of ignored at-clauses
- * and make inline at-clauses not ignored:
+ * To configure the check with a list of ignored
+ * and make inline not ignored:
  * </p>
  * <pre>
  * &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
@@ -104,7 +104,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     public static final String MSG_KEY = "singleline.javadoc";
 
     /**
-     * Specify at-clauses which are ignored by the check.
+     * Specify which are ignored by the check.
      */
     private List<String> ignoredTags = new ArrayList<>();
 
@@ -112,7 +112,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
     private boolean ignoreInlineTags = true;
 
     /**
-     * Setter to specify at-clauses which are ignored by the check.
+     * Setter to specify which are ignored by the check.
      *
      * @param tags to be ignored by check.
      */
