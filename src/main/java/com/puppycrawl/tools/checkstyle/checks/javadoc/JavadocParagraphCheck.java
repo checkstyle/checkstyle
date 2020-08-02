@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </p>
  * <ul>
  * <li>There is one blank line between each of two paragraphs
- * and one blank line before the at-clauses block if it is present.</li>
+ * and one blank line before the block if it is present.</li>
  * <li>Each paragraph but the first has &lt;p&gt; immediately
  * before the first word, with no space after.</li>
  * </ul>
