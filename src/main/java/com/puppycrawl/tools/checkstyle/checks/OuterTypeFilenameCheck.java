@@ -62,6 +62,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  * }
  * </pre>
+ * <p>Example of record Foo in a file named Test.java</p>
+ * <pre>
+ * record Foo { // violation
+ *
+ * }
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
@@ -117,6 +123,7 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 

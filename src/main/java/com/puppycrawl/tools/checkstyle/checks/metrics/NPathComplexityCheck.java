@@ -310,6 +310,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
             TokenTypes.QUESTION,
             TokenTypes.LITERAL_RETURN,
             TokenTypes.LITERAL_DEFAULT,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -360,6 +361,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF:
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 pushValue(0);
                 break;
             default:
@@ -399,6 +401,7 @@ public final class NPathComplexityCheck extends AbstractCheck {
             case TokenTypes.METHOD_DEF:
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 leaveMethodDef(ast);
                 break;
             default:

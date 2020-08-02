@@ -150,7 +150,7 @@
           <tr>
             <td><a href="config_coding.html#CovariantEquals">CovariantEquals</a></td>
             <td>
-              Checks that classes which define a covariant <code>equals()</code>
+              Checks that classes and records which define a covariant <code>equals()</code>
               method also override method <code>equals(Object)</code>.
             </td>
           </tr>

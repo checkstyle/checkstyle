@@ -499,7 +499,7 @@ class MyClass extends SomeOtherClass {
       <p>Since Checkstyle 3.2</p>
       <subsection name="Description" id="CovariantEquals_Description">
         <p>
-          Checks that classes which define a covariant <code>equals()</code> method
+          Checks that classes and records which define a covariant <code>equals()</code> method
           also override method <code>equals(Object)</code>.
         </p>
         <p>
@@ -520,7 +520,7 @@ class MyClass extends SomeOtherClass {
         </p>
 
         <p>
-          Java classes may override the <code>equals(Object)</code> method to define
+          Java classes and records may override the <code>equals(Object)</code> method to define
           a predicate for object equality. This method is used by many of the Java runtime
           library classes; for example, to implement generic containers.
         </p>
@@ -580,6 +580,30 @@ class Test {
   public boolean equals(Object i) {
     return false;
   }
+}
+        </source>
+        <p>
+          Another example:
+        </p>
+        <source>
+record Test(String str) {
+    public boolean equals(Test r) {  // violation
+        return false;
+    }
+}
+        </source>
+        <p>
+          The same record without violations:
+        </p>
+        <source>
+record Test(String str) {
+    public boolean equals(Test r) {  // no violation
+        return false;
+    }
+
+    public boolean equals(Object r) {
+        return false;
+    }
 }
         </source>
       </subsection>
@@ -3285,6 +3309,27 @@ class MyClass {
 }
         </source>
         <p>
+          To configure the check so that it ignores magic numbers in field declarations:
+        </p>
+        <source>
+&lt;module name=&quot;MagicNumber&quot;&gt;
+    &lt;property name=&quot;ignoreFieldDeclaration&quot; value=&quot;false&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          results in the following violations:
+        </p>
+        <source>
+public record MyRecord() {
+    private static int myInt = 7; // ok, field declaration
+
+    void foo() {
+        int i = myInt + 1; // no violation, 1 is defined as non-magic
+        int j = myInt + 8; // violation
+    }
+}
+        </source>
+        <p>
         To configure the check to check annotation element defaults:
         </p>
         <source>
@@ -5148,6 +5193,13 @@ public static class B {
     return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
   }
 }
+
+public static record C(int x) {
+    void getTwoX(int x) {
+        // Overlapping by method argument.
+        return x += x; // violation: Reference to instance variable "x" needs "this".
+    }
+}
         </source>
         <p>
           Please, be aware of the following logic, which is implemented in the check:
@@ -5227,6 +5279,12 @@ class C {
     s2 = "bar2"; // No violation. Local var allowed.
     s2 += s2; // Violation. Overlapping. Reference to instance variable 's2' needs "this.".
   }
+}
+
+public static record D(int x) {
+    public D {
+        x = x; // violation: Reference to instance variable "x" needs "this".
+    }
 }
         </source>
       </subsection>
