@@ -32,7 +32,7 @@
             javadoc block-tags or javadoc tags</a>.
         </p>
         <p>
-          Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
+          Note: Google used the term "" for block tags in their guide till 2017-02-28.
         </p>
       </subsection>
 
@@ -60,7 +60,7 @@
             </tr>
             <tr>
               <td>target</td>
-              <td>Specify the list of targets to check at-clauses.</td>
+              <td>Specify the list of targets to check.</td>
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
@@ -1159,8 +1159,8 @@ class TestClass {
         </p>
         <ul>
           <li>
-            There is one blank line between each of two paragraphs and one blank line before the
-            at-clauses block if it is present.
+            There is one blank line between each of two paragraphs and one blank line before the 
+            block if it is present.
           </li>
           <li>
             Each paragraph but the first has &lt;p&gt; immediately before the first word, with
@@ -1690,7 +1690,7 @@ public class Test {
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="JavadocTagContinuationIndentation_Description">
         <p>
-          Checks the indentation of the continuation lines in at-clauses. That is whether the
+          Checks the indentation of the continuation lines in. That is whether the
           continued description of at clauses should be indented or not. If the text is not properly
           indented it throws a violation. A continuation line is when the description starts/spans
           past the line with the tag. Default indentation required is at least 4, but this can be
@@ -2791,7 +2791,7 @@ class DatabaseConfiguration {}
       <p>Since Checkstyle 6.0</p>
       <subsection name="Description" id="NonEmptyAtclauseDescription_Description">
         <p>
-          Checks that the at-clause tag is followed by description.
+          Checks that the tag is followed by description.
         </p>
       </subsection>
 
@@ -2926,7 +2926,7 @@ class DatabaseConfiguration {}
       <subsection name="Description" id="SingleLineJavadoc_Description">
         <p>
            Checks that a Javadoc block can fit in a single line and doesn't
-           contain at-clauses. Javadoc comment that contains at least one at-clause
+           contain. Javadoc comment that contains at least one 
            should be formatted in a few lines.
         </p>
       </subsection>
@@ -2954,7 +2954,7 @@ class DatabaseConfiguration {}
             </tr>
             <tr>
               <td>ignoredTags</td>
-              <td>Specify at-clauses which are ignored by the check.</td>
+              <td>Specify which are ignored by the check.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>6.8</td>
@@ -2978,8 +2978,8 @@ class DatabaseConfiguration {}
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
         </source>
         <p>
-          To configure the check with a list of ignored at-clauses and make
-          inline at-clauses not ignored:
+          To configure the check with a list of ignored and make
+          inline not ignored:
         </p>
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;&gt;

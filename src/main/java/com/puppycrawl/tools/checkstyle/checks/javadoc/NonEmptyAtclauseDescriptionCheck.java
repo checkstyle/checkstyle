@@ -26,7 +26,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
- * Checks that the at-clause tag is followed by description.
+ * Checks that the tag is followed by description.
  * </p>
  * <ul>
  * <li>
@@ -119,10 +119,10 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Tests if at-clause tag is empty.
+     * Tests if tag is empty.
      *
-     * @param tagNode at-clause tag.
-     * @return true, if at-clause tag is empty.
+     * @param tagNode tag.
+     * @return true, if tag is empty.
      */
     private static boolean isEmptyTag(DetailNode tagNode) {
         final DetailNode tagDescription =
