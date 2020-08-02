@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
+import java.util.Stack;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -188,6 +189,63 @@ public final class TreeTable extends JTable {
                 fontMetrics.stringWidth("XXXXXXXXXXXXXXXXXXXXXXXXXXXX");
         final int preferredTypeColumnWidth = widthOfTwentyEightCharacterString + padding;
         getColumn("Type").setPreferredWidth(preferredTypeColumnWidth);
+    }
+
+    /**
+     * Search node by Xpath.
+     * 
+     * @param root {@code DetailAST} root ast element
+     * @param xpath {@code String} xpath query
+     * @param nodes {@code Stack<DetailAST>} stack of nodes in selection path
+     * @return {@code boolean} node found or not
+     */
+    private boolean search(DetailAST root, String xpath, Stack<DetailAST> nodes) {
+        if(xpath.equals(XpathQueryGenerator.generateXpathQuery(root))) {
+                nodes.push(root);
+                return true;
+        }
+        
+        if(root.hasChildren()) {
+            DetailAST child = root.getFirstChild();    
+            while(child!=null)
+            {
+                if(search(child, xpath, nodes)) {
+                    nodes.push(root);
+                    return true;
+                }
+                child = child.getNextSibling();
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Select Node by Xpath.
+     */
+    public void selectNodeByXpath() {
+        final DetailAST rootAST = (DetailAST) tree.getModel().getRoot();
+        if (rootAST.hasChildren()) {
+            String xpath = "/EOF" + xpathEditor.getText();
+            Stack<DetailAST> nodes = new Stack<>();
+            if(search(rootAST, xpath, nodes)) {
+                TreePath path = new TreePath(nodes.pop());
+                while(!nodes.isEmpty()) {
+                    path = path.pathByAddingChild(nodes.pop());
+                    if(!tree.isExpanded(path)) {
+                        tree.expandPath(path);
+                    }
+                    tree.setSelectionPath(path);
+                    makeCodeSelection();
+                }
+            }
+            else {
+                xpathEditor.setText(xpathEditor.getText() + "- wrong xpath query");
+            }
+        }
+        else {
+            xpathEditor.setText("No file Opened");
+        }
     }
 
     /**
