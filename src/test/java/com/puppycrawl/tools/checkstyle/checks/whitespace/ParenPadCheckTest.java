@@ -466,6 +466,52 @@ public class ParenPadCheckTest
         verify(checkConfig, getPath("InputParenPadTryWithResources.java"), expected);
     }
 
+    @Test
+    public void testParenPadCheckRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
+
+        final String[] expected = {
+            "17:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "17:23: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "19:18: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "19:26: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "22:16: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "28:16: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "31:31: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "37:19: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "48:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "49:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "49:51: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+            "50:21: " + getCheckMessage(MSG_WS_FOLLOWED, "("),
+            "51:52: " + getCheckMessage(MSG_WS_PRECEDED, ")"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputParenPadCheckRecords.java"), expected);
+    }
+
+    @Test
+    public void testParenPadCheckRecordsWithSpace() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
+        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+
+        final String[] expected = {
+            "22:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "28:19: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "31:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "32:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "32:25: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "37:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "39:24: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "39:26: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "48:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "50:38: " + getCheckMessage(MSG_WS_NOT_PRECEDED, ")"),
+            "51:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+            "52:21: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "("),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputParenPadCheckRecordsSpace.java"), expected);
+    }
+
     /**
      * Pitest requires us to specify more concrete lower bound for condition for
      * ParenPadCheck#isAcceptableToken as nodes of first several types like CTOR_DEF,
