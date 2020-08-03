@@ -174,19 +174,6 @@ switch (a) {
           So, if tokens=LITERAL_DEFAULT, following code will not trigger any violation,
           as the empty block belongs to LITERAL_CASE:
         </p>
-        <p> Configuration: </p>
-        <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p> Result: </p>
-        <source>
-switch (a) {
-  default:        // no violation for "default:" as empty block belong to "case 1:"
-  case 1: { }
-}
-        </source>
       </subsection>
 
       <subsection name="Properties" id="EmptyBlock_Properties">
@@ -276,6 +263,18 @@ switch (a) {
 
       <subsection name="Examples" id="EmptyBlock_Examples">
         <p> To configure the check: </p>
+        <source>
+&lt;module name=&quot;EmptyBlock&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Result: </p>
+        <source>
+switch (a) {
+  default:        // no violation for "default:" as empty block belong to "case 1:"
+  case 1: { }
+}
+        </source>
         <source>
 &lt;module name=&quot;EmptyBlock&quot;/&gt;
         </source>
