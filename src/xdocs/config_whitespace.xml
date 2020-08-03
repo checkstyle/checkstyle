@@ -1934,6 +1934,8 @@ class Test {
                   SUPER_CTOR_CALL</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
+                , <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
                   .
               </td>
 
@@ -1980,6 +1982,8 @@ class Test {
                   SUPER_CTOR_CALL</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
+                , <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
                   .
               </td>
               <td>3.0</td>
