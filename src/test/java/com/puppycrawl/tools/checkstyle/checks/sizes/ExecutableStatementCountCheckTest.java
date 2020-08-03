@@ -188,4 +188,26 @@ public class ExecutableStatementCountCheckTest
         verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
     }
 
+    @Test
+    public void testExecutableStatementCountRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ExecutableStatementCountCheck.class);
+        checkConfig.addAttribute("max", "1");
+
+        final int max = 1;
+
+        final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "20:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "29:9: " + getCheckMessage(MSG_KEY, 3, max),
+            "37:9: " + getCheckMessage(MSG_KEY, 4, max),
+            "47:9: " + getCheckMessage(MSG_KEY, 6, max),
+            "61:17: " + getCheckMessage(MSG_KEY, 6, max),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputExecutableStatementCountRecords.java"),
+                expected);
+    }
+
 }
