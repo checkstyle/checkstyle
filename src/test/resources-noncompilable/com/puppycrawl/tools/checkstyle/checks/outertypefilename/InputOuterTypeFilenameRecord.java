@@ -4,5 +4,10 @@ package com.puppycrawl.tools.checkstyle.checks.outertypefilename;
  * default
  */
 public record IncorrectName(int x, int y, String str) { // violation
-
+    class LocalRecordHelper {
+        Class<?> m(int x) {
+            record R76 (int x) { }
+            return R76.class;
+        }
+    }
 }
