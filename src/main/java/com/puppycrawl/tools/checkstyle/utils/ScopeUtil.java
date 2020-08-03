@@ -42,17 +42,19 @@ public final class ScopeUtil {
     public static Scope getScopeFromMods(DetailAST aMods) {
         // default scope
         Scope returnValue = Scope.PACKAGE;
-        for (DetailAST token = aMods.getFirstChild(); token != null
-                && returnValue == Scope.PACKAGE;
-                token = token.getNextSibling()) {
-            if ("public".equals(token.getText())) {
-                returnValue = Scope.PUBLIC;
-            }
-            else if ("protected".equals(token.getText())) {
-                returnValue = Scope.PROTECTED;
-            }
-            else if ("private".equals(token.getText())) {
-                returnValue = Scope.PRIVATE;
+        if (aMods.getFirstChild() != null) {
+            for (DetailAST token = aMods.getFirstChild(); token != null
+                    && returnValue == Scope.PACKAGE;
+                 token = token.getNextSibling()) {
+                if ("public".equals(token.getText())) {
+                    returnValue = Scope.PUBLIC;
+                }
+                else if ("protected".equals(token.getText())) {
+                    returnValue = Scope.PROTECTED;
+                }
+                else if ("private".equals(token.getText())) {
+                    returnValue = Scope.PRIVATE;
+                }
             }
         }
         return returnValue;

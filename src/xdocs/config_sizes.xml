@@ -1059,5 +1059,160 @@ public void needsLotsOfParameters(int a,
       </subsection>
     </section>
 
+    <section name="RecordComponentNumber">
+      <p>Since Checkstyle 8.36</p>
+      <subsection name="Description" id="RecordComponentNumber_Description">
+        <p>
+          Checks the number of record components in the header of a record definition.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="RecordComponentNumber_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>maxPrivate</td>
+              <td>Specify the maximum number of <code>private</code> components allowed.</td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>8</code></td>
+              <td>8.36</td>
+            </tr>
+            <tr>
+              <td>maxPackage</td>
+              <td>Specify the maximum number of <code>package</code> components allowed.</td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>8</code></td>
+              <td>8.36</td>
+            </tr>
+            <tr>
+              <td>maxProtected</td>
+              <td>Specify the maximum number of <code>protected</code> components allowed.</td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>8</code></td>
+              <td>8.36</td>
+            </tr>
+            <tr>
+              <td>maxPublic</td>
+              <td>Specify the maximum number of <code>public</code> components allowed.</td>
+              <td><a href="property_types.html#int">int</a></td>
+              <td><code>8</code></td>
+              <td>8.36</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="RecordComponentNumber_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name="RecordComponentNumber"/&gt;
+        </source>
+        <p>
+          To configure the check to allow 5 record components at all scope levels
+          for a record definition:
+        </p>
+        <source>
+&lt;module name="RecordComponentNumber"&gt;
+  &lt;property name="maxPrivate" value="5"/&gt;
+  &lt;property name="maxPublic" value="5"/&gt;
+  &lt;property name="maxPackage" value="5"/&gt;
+  &lt;property name="maxProtected" value="5"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Java code example:
+        </p>
+        <source>
+ public record MyRecord1(int x, int y, String str) { // ok, 3 components
+     ...
+ }
+
+ public record MyRecord2(int x, int y, String str,
+                           Node node, Order order, Data data) { // violation, 6 components
+     ...
+ }
+
+        </source>
+        <p>
+          To configure the check to allow 10 record components for a public record definition,
+          but 3 for private record definitions:
+        </p>
+        <source>
+ &lt;module name="RecordComponentNumber"&gt;
+   &lt;property name="maxPrivate" value="3"/&gt;
+   &lt;property name="maxPublic" value="10"/&gt;
+ &lt;/module&gt;
+        </source>
+        <p>
+          Java code example:
+        </p>
+        <source>
+ public record MyRecord1(int x, int y, String str) { // ok, public record definition allowed 10
+     ...
+ }
+
+ private record MyRecord2(int x, int y, String str, Node node) { // violation
+     ...                                // private record definition allowed 3 components
+ }
+
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="RecordComponentNumber_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+RecordComponentNumber">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="RecordComponentNumber_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.packageComponents%22">
+              too.many.packageComponents</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.privateComponents%22">
+              too.many.privateComponents</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.protectedComponents%22">
+              too.many.protectedComponents</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fsizes+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22too.many.publicComponents%22">
+              too.many.publicComponents</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="RecordComponentNumber_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.sizes
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="RecordComponentNumber_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>
