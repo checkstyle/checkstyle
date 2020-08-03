@@ -191,6 +191,8 @@ public class NoLineWrapCheck extends AbstractCheck {
             TokenTypes.CTOR_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
