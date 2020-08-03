@@ -587,6 +587,8 @@ public class ExampleClass {
                   INTERFACE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
                   ANNOTATION_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
                 .
               </td>
 
@@ -601,6 +603,8 @@ public class ExampleClass {
                   INTERFACE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
                   ANNOTATION_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
                 .
               </td>
               <td>5.3</td>
