@@ -47,23 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * So, if tokens=LITERAL_DEFAULT, following code will not trigger any violation,
  * as the empty block belongs to LITERAL_CASE:
  * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyBlock&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Result:
- * </p>
- * <pre>
- * switch (a) {
- *   default:        // no violation for "default:" as empty block belong to "case 1:"
- *   case 1: { }
- * }
- * </pre>
  * <ul>
  * <li>
  * Property {@code option} - specify the policy on block contents.
@@ -113,6 +96,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure the check for default in switch block:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyBlock&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Result:
+ * </p>
+ * <pre>
+ * switch (a) {
+ *   default:        // no violation for "default:" as empty block belong to "case 1:"
+ *   case 1: { }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
