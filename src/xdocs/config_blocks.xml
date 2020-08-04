@@ -170,23 +170,9 @@ switch (a) {
         </source>
 
         <p>
-          This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
-          So, if tokens=LITERAL_DEFAULT, following code will not trigger any violation,
-          as the empty block belongs to LITERAL_CASE:
+          NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
+          Verification empty block is done for single most nearest {@code case} or {@code default}.
         </p>
-        <p> Configuration: </p>
-        <source>
-&lt;module name=&quot;EmptyBlock&quot;&gt;
-  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
-&lt;/module&gt;
-        </source>
-        <p> Result: </p>
-        <source>
-switch (a) {
-  default:        // no violation for "default:" as empty block belong to "case 1:"
-  case 1: { }
-}
-        </source>
       </subsection>
 
       <subsection name="Properties" id="EmptyBlock_Properties">
@@ -289,6 +275,27 @@ switch (a) {
   &lt;property name=&quot;option&quot; value=&quot;text&quot;/&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          To configure the check for default in switch block:
+        </p>
+        <source>
+&lt;module name=&quot;EmptyBlock&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p> Result: </p>
+        <source>
+switch (a) {
+  default:        // no violation for "default:" as empty block belong to "case 1:"
+  case 1: { }
+}
+        </source>
+        <source>
+switch (a) {
+  case 1:
+  default: { } // violation
+}
         </source>
       </subsection>
 
