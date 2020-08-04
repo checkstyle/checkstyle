@@ -984,6 +984,7 @@ public final class TokenTypes {
      * @see #LITERAL_CASE
      * @see #LITERAL_DEFAULT
      * @see #LITERAL_SWITCH
+     * @see #LITERAL_YIELD
      **/
     public static final int CASE_GROUP = GeneratedJavaTokenTypes.CASE_GROUP;
     /**
@@ -1861,6 +1862,7 @@ public final class TokenTypes {
      * @see #CASE_GROUP
      * @see #RCURLY
      * @see #SLIST
+     * @see #SWITCH_RULE
      **/
     public static final int LITERAL_SWITCH =
         GeneratedJavaTokenTypes.LITERAL_switch;
@@ -1906,6 +1908,7 @@ public final class TokenTypes {
      *
      * @see #CASE_GROUP
      * @see #MODIFIERS
+     * @see #SWITCH_RULE
      **/
     public static final int LITERAL_DEFAULT =
         GeneratedJavaTokenTypes.LITERAL_default;
@@ -3814,6 +3817,76 @@ public final class TokenTypes {
      */
     public static final int TEXT_BLOCK_LITERAL_END =
             GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END;
+
+    /**
+     * The {@code yield} keyword.  This element appears
+     * as part of a yield statement.
+     *
+     * @see #LITERAL_SWITCH
+     * @see #CASE_GROUP
+     * @see #SLIST
+     * @see #SWITCH_RULE
+     *
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se13/preview/switch-expressions.html">
+     * Java Language Specification, &sect;14.21</a>
+     *
+     * @since 8.36
+     **/
+    public static final int LITERAL_YIELD =
+            GeneratedJavaTokenTypes.LITERAL_yield;
+
+    /**
+     * A switch labeled rule has a switch label and either an expression,
+     * block, or throw statement. A switch labeled statement group has one
+     * or more switch labels and zero or more block statements. A switch label
+     * is either a case or default label.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * switch (day) {
+     *     case SAT, SUN -> "Weekend";
+     *     default -> "Working day";
+     * };
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_SWITCH -> (switch)
+     * |--LPAREN -> (()
+     * |--EXPR
+     * |   `--IDENT -> (day)
+     * |--RPAREN -> ())
+     * |--LCURLY -> ({ )
+     * |--SWITCH_RULE
+     * |   |--LITERAL_CASE -> (case)
+     * |   |   |--EXPR
+     * |   |   |   `--IDENT -> (SAT)
+     * |   |   |--COMMA -> (,)
+     * |   |   `--EXPR
+     * |   |       `--IDENT -> (SUN)
+     * |   |--LAMBDA -> (->)
+     * |   |--EXPR
+     * |   |   `--STRING_LITERAL -> ("Weekend" )
+     * |   `--SEMI -> (;)
+     * |--SWITCH_RULE
+     * |   |--LITERAL_DEFAULT -> (default)
+     * |   |--LAMBDA -> (->)
+     * |   |--EXPR
+     * |   |   `--STRING_LITERAL -> ("Working day")
+     * |   `--SEMI -> (;)
+     * `--RCURLY ->(})
+     * </pre>
+     *
+     * @see #LITERAL_CASE
+     * @see #LITERAL_DEFAULT
+     * @see #LITERAL_SWITCH
+     * @see #LITERAL_YIELD
+     * @see <a href="https://docs.oracle.com/javase/specs/jls/se13/preview/switch-expressions.html">
+     * Java Language Specification, &sect;14.21</a>
+     *
+     * @since 8.36
+     **/
+    public static final int SWITCH_RULE =
+            GeneratedJavaTokenTypes.SWITCH_RULE;
 
     /** Prevent instantiation. */
     private TokenTypes() {
