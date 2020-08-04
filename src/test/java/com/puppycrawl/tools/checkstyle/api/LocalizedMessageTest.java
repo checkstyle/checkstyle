@@ -296,6 +296,13 @@ public class LocalizedMessageTest {
         assertEquals("empty.statement", localizedMessage.getKey(), "Invalid message key");
     }
 
+    @Test
+    public void testGetSourceClass() {
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        assertEquals(LocalizedMessage.class, localizedMessage.getSourceClass(),
+                "Invalid sourceClass");
+    }
+
     @DefaultLocale("fr")
     @Test
     public void testCleatBundleCache() {
