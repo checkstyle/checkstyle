@@ -36,4 +36,7 @@
   so static Loggers are okay there. -->
   <suppress checks="AvoidModifiersForTypesCheck"
              files="Main\.java|MainTest\.java"/>
+
+  <suppress checks="ForbidWildcardAsReturnTypeCheck"
+            files="LocalizedMessage\.java"/>
 </suppressions>
