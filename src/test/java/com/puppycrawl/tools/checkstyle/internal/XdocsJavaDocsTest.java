@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -120,6 +121,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             "SuppressionXpathSingleFilter - checks",
             "SuppressionXpathSingleFilter - message",
         }).collect(Collectors.toSet()));
+
+    private static final Set<String> MODIFIED_JAVADOC_FILES =
+        Collections.unmodifiableSet(new HashSet<>(Collections.singletonList(
+                "EmptyBlock"
+        )));
 
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
@@ -579,6 +585,11 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         }
 
         private static void visitClass(DetailAST node) {
+            String exampleSectionText = "";
+            if (MODIFIED_JAVADOC_FILES.contains(checkName)) {
+                exampleSectionText = "\n<p>\nExamples:\n</p>";
+            }
+
             String violationMessagesText = CHECK_TEXT.get("Violation Messages");
 
             if (checkName.endsWith("Filter") || "SuppressWarningsHolder".equals(checkName)) {
@@ -590,6 +601,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                         + CHECK_TEXT.computeIfAbsent("Rule Description", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Notes", unused -> "")
                         + CHECK_TEXT.computeIfAbsent("Properties", unused -> "")
+                        + exampleSectionText
                         + CHECK_TEXT.get("Examples")
                         + CHECK_TEXT.get("Parent Module")
                         + violationMessagesText + " @since "

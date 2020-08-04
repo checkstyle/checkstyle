@@ -47,23 +47,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * So, if tokens=LITERAL_DEFAULT, following code will not trigger any violation,
  * as the empty block belongs to LITERAL_CASE:
  * </p>
- * <p>
- * Configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;EmptyBlock&quot;&gt;
- *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>
- * Result:
- * </p>
- * <pre>
- * switch (a) {
- *   default:        // no violation for "default:" as empty block belong to "case 1:"
- *   case 1: { }
- * }
- * </pre>
  * <ul>
  * <li>
  * Property {@code option} - specify the policy on block contents.
@@ -100,8 +83,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * Examples:
+ * </p>
+ * <p>
  * To configure the check:
  * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyBlock&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Result:
+ * </p>
+ * <pre>
+ * switch (a) {
+ *   default:        // no violation for "default:" as empty block belong to "case 1:"
+ *   case 1: { }
+ * }
+ * </pre>
  * <pre>
  * &lt;module name="EmptyBlock"/&gt;
  * </pre>
