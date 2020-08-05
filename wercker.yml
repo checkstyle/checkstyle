@@ -131,15 +131,16 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: NoErrorTest - Spring Integration
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-spring-integration"
-          ./.ci/wercker.sh no-error-spring-integration
-        else
-          echo "build is skipped ..."
-        fi
+  # disabled as build is unstable for long time
+  # - script:
+  #     name: NoErrorTest - Spring Integration
+  #     code: |
+  #       if [[ $RUN_JOB == 1 ]]; then
+  #         echo "Command: ./.ci/wercker.sh no-error-spring-integration"
+  #         ./.ci/wercker.sh no-error-spring-integration
+  #       else
+  #         echo "build is skipped ..."
+  #       fi
 
   # Disabled as it result in "svn: E175002: Unexpected HTTP status 429 'Too Many Requests'"
   # even for "svn checkout -r 14923 ...."
