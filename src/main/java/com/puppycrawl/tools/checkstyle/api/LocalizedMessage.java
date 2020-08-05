@@ -421,27 +421,32 @@ public final class LocalizedMessage
     public int compareTo(LocalizedMessage other) {
         final int result;
 
-        if (lineNo == other.lineNo) {
-            if (columnNo == other.columnNo) {
-                if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getMessage().compareTo(other.getMessage());
-                }
-                else if (moduleId == null) {
-                    result = -1;
-                }
-                else if (other.moduleId == null) {
-                    result = 1;
+        if (severityLevel == other.severityLevel) {
+            if (lineNo == other.lineNo) {
+                if (columnNo == other.columnNo) {
+                    if (Objects.equals(moduleId, other.moduleId)) {
+                        result = getMessage().compareTo(other.getMessage());
+                    }
+                    else if (moduleId == null) {
+                        result = -1;
+                    }
+                    else if (other.moduleId == null) {
+                        result = 1;
+                    }
+                    else {
+                        result = moduleId.compareTo(other.moduleId);
+                    }
                 }
                 else {
-                    result = moduleId.compareTo(other.moduleId);
+                    result = Integer.compare(columnNo, other.columnNo);
                 }
             }
             else {
-                result = Integer.compare(columnNo, other.columnNo);
+                result = Integer.compare(lineNo, other.lineNo);
             }
         }
         else {
-            result = Integer.compare(lineNo, other.lineNo);
+            result = severityLevel.compareTo(other.severityLevel);
         }
         return result;
     }
