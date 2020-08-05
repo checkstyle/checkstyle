@@ -231,6 +231,7 @@ no-error-spring-integration)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/spring-projects/spring-integration.git
   cd .ci-temp/spring-integration
+  git checkout v5.3.2.RELEASE
   PROP_MAVEN_LOCAL="mavenLocal"
   PROP_CS_VERSION="checkstyleVersion"
   ./gradlew clean check --parallel -x test -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION}
