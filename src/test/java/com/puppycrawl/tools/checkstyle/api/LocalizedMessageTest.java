@@ -371,6 +371,26 @@ public class LocalizedMessageTest {
         assertEquals(0, actual, "Invalid comparing result");
     }
 
+    /* Guarantee that error messages are always sorted at the bottom of the list.  Info
+       messages should ALL before any Error, and all Errors at the end of the list. */
+    @Test
+    public void testCompareToWithDifferentSeverity() {
+        final LocalizedMessage message1 = new LocalizedMessage(1, column,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, SeverityLevel.ERROR);
+        final LocalizedMessage message1a = new LocalizedMessage(1, column,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, SeverityLevel.ERROR);
+        final LocalizedMessage message2 = new LocalizedMessage(1, column,
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
+                EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, SeverityLevel.INFO);
+
+        assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
+        assertTrue(message2.compareTo(message1) > 0, "Invalid comparing result");
+        final int actual = message1.compareTo(message1a);
+        assertEquals(0, actual, "Invalid comparing result");
+    }
+
     private static LocalizedMessage createSampleLocalizedMessage() {
         return createSampleLocalizedMessageWithId("module");
     }
