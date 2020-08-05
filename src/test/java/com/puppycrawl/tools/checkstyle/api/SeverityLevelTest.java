@@ -84,44 +84,44 @@ public class SeverityLevelTest {
         assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "),
                 "Invalid getInstance result");
     }
-    
+
     @Test
     public void testCompare() {
-    	assertEquals(0, SeverityLevel.IGNORE.compareTo(SeverityLevel.IGNORE), 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.IGNORE.compareTo(SeverityLevel.INFO) < 0, 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.IGNORE.compareTo(SeverityLevel.WARNING) < 0, 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.IGNORE.compareTo(SeverityLevel.ERROR) < 0, 
-    			"invalid comparison order");
+        assertEquals(0, SeverityLevel.IGNORE.compareTo(SeverityLevel.IGNORE),
+                "invalid comparison order");
+        assertTrue(SeverityLevel.IGNORE.compareTo(SeverityLevel.INFO) < 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.IGNORE.compareTo(SeverityLevel.WARNING) < 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.IGNORE.compareTo(SeverityLevel.ERROR) < 0,
+                "invalid comparison order");
 
-    	assertTrue( SeverityLevel.INFO.compareTo(SeverityLevel.IGNORE) > 0, 
-    			"invalid comparison order");
-    	assertEquals(0, SeverityLevel.INFO.compareTo(SeverityLevel.INFO), 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.INFO.compareTo(SeverityLevel.WARNING) < 0, 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.INFO.compareTo(SeverityLevel.ERROR) < 0, 
-    			"invalid comparison order");
+        assertTrue(SeverityLevel.INFO.compareTo(SeverityLevel.IGNORE) > 0,
+                "invalid comparison order");
+        assertEquals(0, SeverityLevel.INFO.compareTo(SeverityLevel.INFO),
+                "invalid comparison order");
+        assertTrue(SeverityLevel.INFO.compareTo(SeverityLevel.WARNING) < 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.INFO.compareTo(SeverityLevel.ERROR) < 0,
+                "invalid comparison order");
 
-    	assertTrue( SeverityLevel.WARNING.compareTo(SeverityLevel.IGNORE) > 0, 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.WARNING.compareTo(SeverityLevel.INFO) > 0, 
-    			"invalid comparison order");
-    	assertEquals(0, SeverityLevel.WARNING.compareTo(SeverityLevel.WARNING), 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.WARNING.compareTo(SeverityLevel.ERROR) < 0, 
-    			"invalid comparison order");
+        assertTrue(SeverityLevel.WARNING.compareTo(SeverityLevel.IGNORE) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.WARNING.compareTo(SeverityLevel.INFO) > 0,
+                "invalid comparison order");
+        assertEquals(0, SeverityLevel.WARNING.compareTo(SeverityLevel.WARNING),
+                "invalid comparison order");
+        assertTrue(SeverityLevel.WARNING.compareTo(SeverityLevel.ERROR) < 0,
+                "invalid comparison order");
 
-    	assertTrue( SeverityLevel.ERROR.compareTo(SeverityLevel.IGNORE) > 0, 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.ERROR.compareTo(SeverityLevel.INFO) > 0, 
-    			"invalid comparison order");
-    	assertTrue( SeverityLevel.ERROR.compareTo(SeverityLevel.WARNING) > 0, 
-    			"invalid comparison order");
-    	assertEquals(0, SeverityLevel.ERROR.compareTo(SeverityLevel.ERROR), 
-    			"invalid comparison order");
+        assertTrue(SeverityLevel.ERROR.compareTo(SeverityLevel.IGNORE) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.ERROR.compareTo(SeverityLevel.INFO) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.ERROR.compareTo(SeverityLevel.WARNING) > 0,
+                "invalid comparison order");
+        assertEquals(0, SeverityLevel.ERROR.compareTo(SeverityLevel.ERROR),
+                "invalid comparison order");
     }
 
 }
