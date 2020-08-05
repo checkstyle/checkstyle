@@ -1382,6 +1382,7 @@
                 <exclude>src/xdocs/property_types.xml</exclude>
                 <!-- Temporary files -->
                 <exclude>target/**</exclude>
+                <exclude>.ci-temp/**</exclude>
                 <!-- Specially crafted test files -->
                 <exclude>src/test/resources/**</exclude>
                 <!-- Generated files -->
