@@ -149,7 +149,18 @@ public class OuterTypeFilenameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
 
         final String[] expected = {
-            "6:1: " + getCheckMessage(MSG_KEY),
+            "7:1: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputOuterTypeFilenameRecord.java"), expected);
+    }
+
+    @Test
+    public void testOuterTypeFilenameRecordsMethodRecordDef() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(OuterTypeFilenameCheck.class);
+
+        final String[] expected = {
+            "7:1: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputOuterTypeFilenameRecord.java"), expected);

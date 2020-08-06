@@ -1121,8 +1121,8 @@ traditionalStatement
         // up, but that's pretty hard without a symbol table ;)
         |    (declaration)=> declaration SEMI
 
-        // record declaration, note that you cannot have modifiers in this case
-        |   recordDefinition[#null]
+        // we create an empty modifiers AST as we do for classes without modifiers
+        |   recordDefinition[(AST) getASTFactory().create(MODIFIERS,"MODIFIERS")]
 
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
