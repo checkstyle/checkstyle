@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -82,6 +83,48 @@ public class SeverityLevelTest {
                 "Invalid getInstance result");
         assertEquals(SeverityLevel.ERROR, SeverityLevel.getInstance("    ERROR "),
                 "Invalid getInstance result");
+    }
+
+    @Test
+    public void testCompareIgnore() {
+        assertTrue(SeverityLevel.IGNORE.compareTo(SeverityLevel.INFO) < 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.IGNORE.compareTo(SeverityLevel.WARNING) < 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.IGNORE.compareTo(SeverityLevel.ERROR) < 0,
+                "invalid comparison order");
+    }
+
+    @Test
+    public void testCompareInfo() {
+
+        assertTrue(SeverityLevel.INFO.compareTo(SeverityLevel.IGNORE) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.INFO.compareTo(SeverityLevel.WARNING) < 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.INFO.compareTo(SeverityLevel.ERROR) < 0,
+                "invalid comparison order");
+    }
+
+    @Test
+    public void testCompareWarning() {
+
+        assertTrue(SeverityLevel.WARNING.compareTo(SeverityLevel.IGNORE) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.WARNING.compareTo(SeverityLevel.INFO) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.WARNING.compareTo(SeverityLevel.ERROR) < 0,
+                "invalid comparison order");
+    }
+
+    @Test
+    public void testCompareError() {
+        assertTrue(SeverityLevel.ERROR.compareTo(SeverityLevel.IGNORE) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.ERROR.compareTo(SeverityLevel.INFO) > 0,
+                "invalid comparison order");
+        assertTrue(SeverityLevel.ERROR.compareTo(SeverityLevel.WARNING) > 0,
+                "invalid comparison order");
     }
 
 }
