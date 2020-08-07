@@ -123,7 +123,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code requiredTranslations} - Specify language codes of required
  * translations which must exist in project.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  * <p>

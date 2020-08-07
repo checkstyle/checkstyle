@@ -74,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <li>
  * Property {@code ignoreLines} - Specify the line numbers to ignore.
  * Type is {@code int[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of files to process.
