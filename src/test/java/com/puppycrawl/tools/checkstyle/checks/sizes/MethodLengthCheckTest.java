@@ -51,6 +51,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final int[] expected = {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -95,6 +96,29 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MethodLengthCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodLengthModifier.java"), expected);
+    }
+
+    @Test
+    public void testRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MethodLengthCheck.class);
+        checkConfig.addAttribute("max", "2");
+        checkConfig.addAttribute("tokens",
+                "METHOD_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
+
+        final int max = 2;
+
+        final String[] expected = {
+            "21:9: " + getCheckMessage(MSG_KEY, 6, max),
+            "30:9: " + getCheckMessage(MSG_KEY, 5, max),
+            "38:9: " + getCheckMessage(MSG_KEY, 7, max),
+            "59:9: " + getCheckMessage(MSG_KEY, 15, max),
+            "62:17: " + getCheckMessage(MSG_KEY, 8, max),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputMethodLengthRecordsAndCompactCtors.java"),
+                expected);
     }
 
 }
