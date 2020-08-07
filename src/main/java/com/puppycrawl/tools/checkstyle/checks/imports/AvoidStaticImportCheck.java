@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * static members to be excluded like {@code java.lang.System.out} for a variable
  * or {@code java.lang.Math.random} for a method. See notes section for details.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  * <p>

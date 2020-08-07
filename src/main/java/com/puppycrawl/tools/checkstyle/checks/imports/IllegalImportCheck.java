@@ -56,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * property is set, then list of class names will be interpreted as regular expressions.
  * Note, all properties for match will be used.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code regexp} - Control whether the {@code illegalPkgs} and
