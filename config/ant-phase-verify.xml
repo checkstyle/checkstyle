@@ -155,8 +155,6 @@
           <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
           <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
           <exclude name="**/InputJavaParser.java"/>
-          <!-- until https://github.com/checkstyle/checkstyle/issues/8023 -->
-          <exclude name="**/InputJava14Records.java"/>
           <!-- until https://github.com/checkstyle/checkstyle/issues/6615 -->
           <exclude name="**/InputJava14SwitchExpression.java"/>
 
