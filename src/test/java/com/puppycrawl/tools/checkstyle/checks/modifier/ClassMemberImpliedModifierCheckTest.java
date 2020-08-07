@@ -63,6 +63,7 @@ public class ClassMemberImpliedModifierCheckTest
         final int[] expected = {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, actual, "Required tokens are invalid");
     }
@@ -120,6 +121,40 @@ public class ClassMemberImpliedModifierCheckTest
         };
         verify(checkConfig, getPath("InputClassMemberImpliedModifierOnInterface.java"),
             expected);
+    }
+
+    @Test
+    public void testClassMemberImpliedModifierRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ClassMemberImpliedModifierCheck.class);
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, "static"),
+            "15:5: " + getCheckMessage(MSG_KEY, "static"),
+            "19:5: " + getCheckMessage(MSG_KEY, "static"),
+            "24:9: " + getCheckMessage(MSG_KEY, "static"),
+            "28:9: " + getCheckMessage(MSG_KEY, "static"),
+            "32:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputClassMemberImpliedModifierRecords.java"),
+                expected);
+    }
+
+    @Test
+    public void testClassMemberImpliedModifierNoViolationRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ClassMemberImpliedModifierCheck.class);
+        checkConfig.addAttribute("violateImpliedStaticOnNestedRecord", "false");
+        final String[] expected = {
+            "11:5: " + getCheckMessage(MSG_KEY, "static"),
+            "15:5: " + getCheckMessage(MSG_KEY, "static"),
+            "28:9: " + getCheckMessage(MSG_KEY, "static"),
+            "32:9: " + getCheckMessage(MSG_KEY, "static"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath(
+                        "InputClassMemberImpliedModifierNoViolationRecords.java"),
+                expected);
     }
 
     @Test
