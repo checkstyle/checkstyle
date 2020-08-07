@@ -359,6 +359,15 @@ public final class LocalizedMessage
     }
 
     /**
+     * Gets the sourceClass for this LocalizedMessage.
+     *
+     * @return the sourceClass for this LocalizedMessage
+     */
+    public Class<?> getSourceClass() {
+        return sourceClass;
+    }
+
+    /**
      * Sets a locale to use for localization.
      *
      * @param locale the locale to use for localization

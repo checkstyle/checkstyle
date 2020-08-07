@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -294,6 +295,13 @@ public class LocalizedMessageTest {
         final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
 
         assertEquals("empty.statement", localizedMessage.getKey(), "Invalid message key");
+    }
+
+    @Test
+    public void testGetSourceClass() {
+        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        assertSame(LocalizedMessage.class, localizedMessage.getSourceClass(),
+                "Invalid sourceClass");
     }
 
     @DefaultLocale("fr")
