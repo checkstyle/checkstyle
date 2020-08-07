@@ -44,7 +44,7 @@ public final class ScopeUtil {
         Scope returnValue = Scope.PACKAGE;
         for (DetailAST token = aMods.getFirstChild(); token != null
                 && returnValue == Scope.PACKAGE;
-                token = token.getNextSibling()) {
+             token = token.getNextSibling()) {
             if ("public".equals(token.getText())) {
                 returnValue = Scope.PUBLIC;
             }
