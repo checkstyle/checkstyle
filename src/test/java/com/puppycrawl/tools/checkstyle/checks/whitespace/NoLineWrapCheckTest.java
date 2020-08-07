@@ -69,4 +69,27 @@ public class NoLineWrapCheckTest
         verify(checkConfig, getPath("InputNoLineWrapBad.java"), expected);
     }
 
+    @Test
+    public void testNoLineWrapRecordsAndCompactCtors()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
+        checkConfig.addAttribute(
+                "tokens", "RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
+
+        final String[] expected = {
+            "6:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "12:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "21:9: " + getCheckMessage(MSG_KEY, "CTOR_DEF"),
+            "27:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "29:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "33:5: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "35:9: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+            "40:9: " + getCheckMessage(MSG_KEY, "RECORD_DEF"),
+            "42:13: " + getCheckMessage(MSG_KEY, "COMPACT_CTOR_DEF"),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputNoLineWrapRecordsAndCompactCtors.java"),
+                expected);
+    }
+
 }

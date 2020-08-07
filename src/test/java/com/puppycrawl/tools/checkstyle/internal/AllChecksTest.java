@@ -150,12 +150,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 Stream.of("CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
                         "METHOD_DEF", "VARIABLE_DEF").collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
-                // method declaration could be long due to "parameters/exceptions", it is ok to
-                // be not strict there
-                "METHOD_DEF", "CTOR_DEF",
+                // method/constructor declaration could be long due to "parameters/exceptions", it
+                // is ok to be not strict there
+                "METHOD_DEF", "CTOR_DEF", "COMPACT_CTOR_DEF",
                 // type declaration could be long due to "extends/implements", it is ok to
                 // be not strict there
-                "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
+                "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF", "RECORD_DEF")
                 .collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceAfter", Stream.of(
                 // whitespace after is preferred
@@ -190,7 +190,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method declaration could be long due to "parameters/exceptions", it is ok to
                 // be not strict there
-                "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF")
+                "METHOD_DEF", "CTOR_DEF", "CLASS_DEF", "ENUM_DEF", "INTERFACE_DEF", "RECORD_DEF",
+                "COMPACT_CTOR_DEF")
                 .collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("SeparatorWrap", Stream.of(
                 // location could be any to allow writing expressions for indexes evaluation
