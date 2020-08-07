@@ -60,6 +60,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.RECORD_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -172,6 +173,24 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig, getPath("InputMethodCount7.java"), expected);
+    }
+
+    @Test
+    public void testMethodCountRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
+        checkConfig.addAttribute("maxTotal", "2");
+        final int max = 2;
+
+        final String[] expected = {
+            "12:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "44:13: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "62:5: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "72:9: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+            "81:13: " + getCheckMessage(MSG_MANY_METHODS, 4, max),
+            "93:21: " + getCheckMessage(MSG_MANY_METHODS, 3, max),
+        };
+
+        verify(checkConfig, getNonCompilablePath("InputMethodCountRecords.java"), expected);
     }
 
 }

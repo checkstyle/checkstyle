@@ -112,7 +112,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
  * INTERFACE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
- * ANNOTATION_DEF</a>.
+ * ANNOTATION_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -229,6 +231,7 @@ public final class MethodCountCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.METHOD_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
