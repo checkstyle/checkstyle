@@ -27,34 +27,6 @@ function checkPitestReport() {
   sleep 5s
   exit $fail
 }
-# until https://github.com/checkstyle/checkstyle/issues/8604, diff in in "grep -v" lines
-function checkPitestReport_Common2() {
-  ignored=("$@")
-  fail=0
-  SEARCH_REGEXP="(span  class='survived'|class='uncovered'><pre>)"
-  grep -irE "$SEARCH_REGEXP" target/pit-reports \
-     | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' \
-     | grep -v "selector.addInputStream" | cat \
-     | grep -v "textBlockLexer.setTokenObjectClass" | cat \
-     | LC_ALL=C sort > target/actual.txt
-  printf "%s\n" "${ignored[@]}" | sed '/^$/d' | LC_ALL=C sort > target/ignored.txt
-  if [ "$(diff --unified -w target/ignored.txt target/actual.txt)" != "" ] ; then
-      fail=1
-      echo "Actual:" ;
-      grep -irE "$SEARCH_REGEXP" target/pit-reports \
-         | sed -E 's/.*\/([A-Za-z]+.java.html)/\1/' | sort
-      echo "Ignore:" ;
-      printf '%s\n' "${ignored[@]}"
-      echo "Diff:"
-      diff --unified -w target/ignored.txt target/actual.txt | cat
-  fi;
-  if [ "$fail" -ne "0" ]; then
-    echo "Difference between 'Actual' and 'Ignore' lists is detected, lists should be equal."
-    echo "build will be failed."
-  fi
-  sleep 5s
-  exit $fail
-}
 ###############################
 
 case $1 in
@@ -64,20 +36,13 @@ pitest-annotation|pitest-design \
 |pitest-sizes|pitest-whitespace \
 |pitest-api|pitest-blocks \
 |pitest-packagenamesloader \
-|pitest-misc|pitest-xpath \
+|pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
 |pitest-main \
 |pitest-coding)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-# until https://github.com/checkstyle/checkstyle/issues/8604
-pitest-common-2)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=();
-  checkPitestReport_Common2 "${ignoredItems[@]}"
   ;;
 
 pitest-regexp)

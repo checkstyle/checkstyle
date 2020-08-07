@@ -99,7 +99,6 @@ public final class JavaParser {
         final TokenStreamSelector selector = new TokenStreamSelector();
         lexer.selector = selector;
         textBlockLexer.selector = selector;
-        selector.addInputStream(filter, "filter");
         selector.addInputStream(textBlockLexer, "textBlockLexer");
         selector.select(filter);
 
