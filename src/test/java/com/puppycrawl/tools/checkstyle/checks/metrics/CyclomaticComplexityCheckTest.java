@@ -100,6 +100,27 @@ public class CyclomaticComplexityCheckTest
     }
 
     @Test
+    public void testCyclomaticComplexityRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(CyclomaticComplexityCheck.class);
+
+        checkConfig.addAttribute("max", "0");
+
+        final int max = 0;
+
+        final String[] expected = {
+            "14:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "45:9: " + getCheckMessage(MSG_KEY, 11, max),
+            "80:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "112:5: " + getCheckMessage(MSG_KEY, 11, max),
+            "145:5: " + getCheckMessage(MSG_KEY, 11, max),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath("InputCyclomaticComplexityRecords.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final CyclomaticComplexityCheck cyclomaticComplexityCheckObj =
             new CyclomaticComplexityCheck();
@@ -119,6 +140,7 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.QUESTION,
             TokenTypes.LAND,
             TokenTypes.LOR,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertArrayEquals(expected, actual, "Invalid acceptable tokens");
     }
@@ -133,6 +155,7 @@ public class CyclomaticComplexityCheckTest
             TokenTypes.METHOD_DEF,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertArrayEquals(expected, actual, "Invalid required tokens");
     }

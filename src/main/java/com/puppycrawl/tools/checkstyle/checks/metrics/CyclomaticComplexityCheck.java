@@ -302,6 +302,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.QUESTION,
             TokenTypes.LAND,
             TokenTypes.LOR,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -322,6 +323,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.QUESTION,
             TokenTypes.LAND,
             TokenTypes.LOR,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -332,6 +334,7 @@ public class CyclomaticComplexityCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.INSTANCE_INIT,
             TokenTypes.STATIC_INIT,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -342,6 +345,7 @@ public class CyclomaticComplexityCheck
             case TokenTypes.METHOD_DEF:
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 visitMethodDef();
                 break;
             default:
@@ -356,6 +360,7 @@ public class CyclomaticComplexityCheck
             case TokenTypes.METHOD_DEF:
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 leaveMethodDef(ast);
                 break;
             default:
