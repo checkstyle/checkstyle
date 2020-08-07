@@ -120,7 +120,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code multiLines} - Specify the line numbers to repeat (zero or more times).
  * Type is {@code int[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of files to process.

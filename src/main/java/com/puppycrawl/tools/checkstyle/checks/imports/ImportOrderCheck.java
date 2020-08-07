@@ -75,7 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Thus, the empty list of type groups (the default value) means one group for all type imports.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code java.util.regex.Pattern}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code ordered} - control whether type imports within each group should be
@@ -116,7 +116,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * {@code option} is set to {@code top} or {@code bottom}.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code java.util.regex.Pattern}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code sortStaticImportsAlphabetically} - control whether
