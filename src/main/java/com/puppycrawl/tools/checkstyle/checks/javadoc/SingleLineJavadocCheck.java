@@ -47,7 +47,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code ignoredTags} - Specify at-clauses which are ignored by the check.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code ignoreInlineTags} - Control whether inline tags must be ignored.

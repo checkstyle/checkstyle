@@ -337,7 +337,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                 result.append(" Default value is ");
             }
 
-            result.append(getNodeText(property.get(3)));
+            result.append(emptyStringArrayDefaultValue(property.get(3)));
 
             if (result.charAt(result.length() - 1) != '.') {
                 result.append('.');
@@ -349,6 +349,14 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         result.append("\n</ul>");
 
         return result.toString();
+    }
+
+    private static String emptyStringArrayDefaultValue(Node defaultValueNode) {
+        String defaultValueText = getNodeText(defaultValueNode);
+        if ("{@code {}}".equals(defaultValueText)) {
+            defaultValueText = "{@code \"\"}";
+        }
+        return defaultValueText;
     }
 
     private static String getNodeText(Node node) {
