@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code legalAbstractClassNames} - Define abstract classes that may be used as types.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code ignoredMethodNames} - Specify methods that should not be checked.

@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * Property {@code excludes} - Specify packages where star imports are allowed.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code allowClassImports} - Control whether to allow starred class

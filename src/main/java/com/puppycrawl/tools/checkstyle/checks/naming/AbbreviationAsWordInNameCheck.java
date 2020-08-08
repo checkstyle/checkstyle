@@ -70,7 +70,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code allowedAbbreviations} - Specify list of abbreviations that must be skipped for
  * checking. Abbreviations should be separated by comma.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code {}}.
+ * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code ignoreFinal} - Allow to skip variables with {@code final} modifier.
