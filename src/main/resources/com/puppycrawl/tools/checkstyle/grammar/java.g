@@ -120,8 +120,7 @@ tokens {
 
     PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
     RECORD_COMPONENTS; RECORD_COMPONENT_DEF; COMPACT_CTOR_DEF;
-    TEXT_BLOCK_LITERAL_BEGIN; TEXT_BLOCK_CONTENT;
-    TEXT_BLOCK_LITERAL_END;
+    TEXT_BLOCK_LITERAL_BEGIN; TEXT_BLOCK_CONTENT; TEXT_BLOCK_LITERAL_END;
 }
 
 {
@@ -1503,31 +1502,38 @@ unaryExpression
 unaryExpressionNotPlusMinus
     :    BNOT^ unaryExpression
     |    LNOT^ unaryExpression
+    |    castExpression
+    ;
 
-    |    (    // subrule allows option to shut off warnings
-            options {
-                // "(int" ambig with postfixExpr due to lack of sequence
-                // info in linear approximate LL(k).  It's ok.  Shut up.
-                generateAmbigWarnings=false;
-            }
-        :    // If typecast is built in type, must be numeric operand
-            // Also, no reason to backtrack if type keyword like int, float...
-            (LPAREN builtInTypeSpec[true] RPAREN unaryExpression) =>
-            lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
-            unaryExpression
+castExpression
+    :  (   // subrule allows option to shut off warnings
+                    options {
+                        // "(int" ambig with postfixExpr due to lack of sequence
+                        // info in linear approximate LL(k).  It's ok.  Shut up.
+                        generateAmbigWarnings=false;
+                    }
+                :   // If typecast is built in type, must be numeric operand
+                    // Also, no reason to backtrack if type keyword like int, float...
+                    (LPAREN builtInTypeSpec[true] RPAREN unaryExpression) =>
+                    lpb:LPAREN^ {#lpb.setType(TYPECAST);} builtInTypeSpec[true] RPAREN
+                    unaryExpression
 
-            // Have to backtrack to see if operator follows.  If no operator
-            // follows, it's a typecast.  No semantic checking needed to parse.
-            // if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
-        |    (LPAREN typeCastParameters RPAREN unaryExpressionNotPlusMinus)=>
-            lp:LPAREN^ {#lp.setType(TYPECAST);} typeCastParameters RPAREN
-            unaryExpressionNotPlusMinus
+                    // This lambda/castExpression must stay above the unaryExpressionNotPlusMinus
+                    // typecast rule below, or typecasting w/ lambdas breaks because IDENT is
+                    // misidentified as a postfixExpression and not as part of the lambdaExpression.
+                    // See https://github.com/checkstyle/checkstyle/pull/8449#issuecomment-658278145
+                |   (LPAREN typeCastParameters RPAREN lambdaExpression) =>
+                      lpl:LPAREN^ {#lpl.setType(TYPECAST);}
+                      typeCastParameters RPAREN lambdaExpression
 
-        |   (LPAREN typeCastParameters RPAREN lambdaExpression) =>
-                lpl:LPAREN^ {#lpl.setType(TYPECAST);} typeCastParameters RPAREN
-                lambdaExpression
+                    // Have to backtrack to see if operator follows.  If no operator
+                    // follows, it's a typecast.  No semantic checking needed to parse.
+                    // if it _looks_ like a cast, it _is_ a cast; else it's a "(expr)"
+                |    (LPAREN typeCastParameters RPAREN unaryExpressionNotPlusMinus)=>
+                    lp:LPAREN^ {#lp.setType(TYPECAST);} typeCastParameters RPAREN
+                    unaryExpressionNotPlusMinus
 
-        |    postfixExpression
+                |   postfixExpression
         )
     ;
 
