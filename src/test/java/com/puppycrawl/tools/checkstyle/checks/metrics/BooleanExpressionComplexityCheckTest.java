@@ -104,4 +104,25 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         verify(checkConfig, getPath("InputBooleanExpressionComplexitySmall.java"), expected);
     }
 
+    @Test
+    public void testBooleanExpressionComplexityRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(BooleanExpressionComplexityCheck.class);
+        checkConfig.addAttribute("max", "3");
+
+        final int max = 3;
+
+        final String[] expected = {
+            "13:12: " + getCheckMessage(MSG_KEY, 4, max),
+            "21:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "32:23: " + getCheckMessage(MSG_KEY, 4, max),
+            "42:27: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+
+        verify(checkConfig,
+                getNonCompilablePath(
+                        "InputBooleanExpressionComplexityRecordsAndCompactCtors.java"),
+                expected);
+    }
+
 }
