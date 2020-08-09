@@ -262,8 +262,11 @@ public class GeneratedJavaTokenTypesTest {
         assertEquals(204, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_BEGIN, message);
         assertEquals(205, GeneratedJavaTokenTypes.TEXT_BLOCK_CONTENT, message);
         assertEquals(206, GeneratedJavaTokenTypes.TEXT_BLOCK_LITERAL_END, message);
+        assertEquals(207, GeneratedJavaTokenTypes.LITERAL_yield, message);
+        assertEquals(208, GeneratedJavaTokenTypes.SWITCH_RULE, message);
+
         // Read JavaDoc before changing
-        assertEquals(205, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
+        assertEquals(207, GeneratedJavaTokenTypes.class.getDeclaredFields().length,
                 "all tokens must be added to list in"
                         + " 'GeneratedJavaTokenTypesTest' and verified"
                         + " that their old numbering didn't change");
