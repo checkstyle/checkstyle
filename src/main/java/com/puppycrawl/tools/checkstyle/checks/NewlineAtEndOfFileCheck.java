@@ -81,7 +81,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <li>
  * Property {@code fileExtensions} - Specify the file type extension of the files to check.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code all files}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  * <p>
