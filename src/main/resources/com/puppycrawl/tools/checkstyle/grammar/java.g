@@ -121,6 +121,7 @@ tokens {
     PATTERN_VARIABLE_DEF; RECORD_DEF; LITERAL_record="record";
     RECORD_COMPONENTS; RECORD_COMPONENT_DEF; COMPACT_CTOR_DEF;
     TEXT_BLOCK_LITERAL_BEGIN; TEXT_BLOCK_CONTENT; TEXT_BLOCK_LITERAL_END;
+    LITERAL_yield="yield"; SWITCH_RULE;
 }
 
 {
@@ -209,6 +210,15 @@ tokens {
     {
         return ((currentLtLevel != 0) || ltCounter == currentLtLevel);
     }
+
+    /**
+    * This int value tracks the depth of a switch expression. Along with the
+    * IDENT to id rule at the end of the parser, this value helps us
+    * to know if the "yield" we are parsing is an IDENT, method call, class,
+    * field, etc. or if it is a java 13+ yield statement. Positive values
+    * indicate that we are within a (possibly nested) switch expression.
+    */
+    private int switchBlockDepth = 0;
 }
 
 // Compilation Unit: In Java, this is a single file.  This is the start
@@ -1114,6 +1124,9 @@ traditionalStatement
     // A list of statements in curly braces -- start a new scope!
     :    compoundStatement
 
+        // Yield statement, must be in a switchRule to use
+        |  {this.switchBlockDepth>0}? yieldStatement
+
         // declarations are ambiguous with "ID DOT" relative to expression
         // statements.  Must backtrack to be sure.  Could use a semantic
         // predicate to test symbol table to see what the type was coming
@@ -1122,6 +1135,9 @@ traditionalStatement
 
         // we create an empty modifiers AST as we do for classes without modifiers
         |   recordDefinition[(AST) getASTFactory().create(MODIFIERS,"MODIFIERS")]
+
+        // switch/case statement
+        |  switchExpression
 
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
@@ -1165,9 +1181,6 @@ traditionalStatement
         // Return an expression
         |    "return"^ (expression)? SEMI
 
-        // switch/case statement
-        |  switchExpression
-
         // exception try-catch block
         |    tryBlock
 
@@ -1179,6 +1192,10 @@ traditionalStatement
 
         // empty statement
         |    s:SEMI {#s.setType(EMPTY_STAT);}
+    ;
+
+yieldStatement!
+    :  l:LITERAL_yield e:expression s:SEMI {## = #(l,e,s);}
     ;
 
 forStatement
@@ -1213,6 +1230,16 @@ elseStatement
     : "else"^ statement
     ;
 
+switchBlock
+    :   ({switchBlockDepth++;}: // inc counter since we are in a switch expression
+            LCURLY)
+                (   ( ( switchRule )+)=>( ( switchRule )+ )
+                |   ( ( casesGroup )*)=>( ( casesGroup )* )
+                )
+        ({switchBlockDepth--;}: // dec counter since we are leaving a switch expression
+            RCURLY)
+    ;
+
 casesGroup
     :    (    // CONFLICT: to which case group do the statements bind?
             //           ANTLR generates proper code: it groups the
@@ -1222,14 +1249,10 @@ casesGroup
                 warnWhenFollowAmbig = false;
             }
             :
-            aCase
+            switchLabel
         )+
         (caseSList)?
         {#casesGroup = #([CASE_GROUP, "CASE_GROUP"], #casesGroup);}
-    ;
-
-aCase
-    :    ("case"^ expression | "default"^) COLON
     ;
 
 caseSList
@@ -1245,6 +1268,37 @@ caseSList
                 statement
         )+
         {#caseSList = #(#[SLIST,"SLIST"],#caseSList);}
+    ;
+
+switchRule
+    :   (       (switchLabeledExpression)=>  se:switchLabeledExpression
+        |       (switchLabeledBlock)=>       sb:switchLabeledBlock
+        |       (switchLabeledThrow)=>       st:switchLabeledThrow
+        )
+        {## = #(#[SWITCH_RULE, "SWITCH_RULE"], se, sb, st);}
+    ;
+
+switchLabeledExpression
+    :   switchLabel LAMBDA expression SEMI
+    ;
+
+switchLabeledBlock
+    :   switchLabel LAMBDA compoundStatement
+    ;
+
+switchLabeledThrow
+    :   switchLabel LAMBDA throwStatement
+    ;
+
+switchLabel
+    :   ( LITERAL_case^ caseConstant (COMMA caseConstant)*
+        | LITERAL_default^
+        )
+        (COLON)?
+    ;
+
+caseConstant
+    :   conditionalExpression {## = #(#[EXPR,"EXPR"],##);}
     ;
 
 // The initializer for a for loop
@@ -1505,6 +1559,7 @@ unaryExpressionNotPlusMinus
     :    BNOT^ unaryExpression
     |    LNOT^ unaryExpression
     |    castExpression
+    |    switchExpression
     ;
 
 castExpression
@@ -1540,9 +1595,7 @@ castExpression
     ;
 
  switchExpression
-    :   "switch"^ LPAREN expression RPAREN LCURLY
-            ( casesGroup )*
-        RCURLY
+    :   "switch"^ LPAREN expression RPAREN switchBlock
     ;
 
 typeCastParameters
@@ -1754,9 +1807,11 @@ textBlock
 
 // This rule was created to remedy the "keyword as identifier" problem
 // See: https://github.com/checkstyle/checkstyle/issues/8308
-id: IDENT | recordKey ;
+id: IDENT | recordKey | yieldKey;
 
 recordKey: "record" {#recordKey.setType(IDENT);};
+yieldKey:  "yield" {#yieldKey.setType(IDENT);};
+
 
 //----------------------------------------------------------------------------
 // The Java scanner
