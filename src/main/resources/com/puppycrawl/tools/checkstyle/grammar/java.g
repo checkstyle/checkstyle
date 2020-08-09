@@ -1166,15 +1166,13 @@ traditionalStatement
         |    "return"^ (expression)? SEMI
 
         // switch/case statement
-        |    "switch"^ LPAREN expression RPAREN LCURLY
-                ( casesGroup )*
-            RCURLY
+        |  switchExpression
 
         // exception try-catch block
         |    tryBlock
 
         // throw an exception
-        |    "throw"^ expression SEMI
+        |    throwStatement
 
         // synchronize a statement
         |    "synchronized"^ LPAREN expression RPAREN compoundStatement
@@ -1280,6 +1278,10 @@ tryBlock
         compoundStatement
         (handler)*
         ( finallyHandler )?
+    ;
+
+throwStatement
+    : "throw"^ expression SEMI
     ;
 
 resourceSpecification
@@ -1535,6 +1537,12 @@ castExpression
 
                 |   postfixExpression
         )
+    ;
+
+ switchExpression
+    :   "switch"^ LPAREN expression RPAREN LCURLY
+            ( casesGroup )*
+        RCURLY
     ;
 
 typeCastParameters
