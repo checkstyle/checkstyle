@@ -353,7 +353,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
     private static String emptyStringArrayDefaultValue(Node defaultValueNode) {
         String defaultValueText = getNodeText(defaultValueNode);
-        if ("{@code {}}".equals(defaultValueText)) {
+        if ("{@code {}}".equals(defaultValueText)
+            || "{@code all files}".equals(defaultValueText)) {
             defaultValueText = "{@code \"\"}";
         }
         return defaultValueText;

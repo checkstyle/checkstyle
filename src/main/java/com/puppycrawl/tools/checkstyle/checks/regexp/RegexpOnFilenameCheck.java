@@ -98,7 +98,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * specified, then only files that match these types are examined with the other
  * patterns.
  * Type is {@code java.lang.String[]}.
- * Default value is {@code all files}.</li>
+ * Default value is {@code ""}.</li>
  * </ul>
  *
  * <p>
