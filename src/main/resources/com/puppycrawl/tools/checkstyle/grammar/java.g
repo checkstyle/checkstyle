@@ -1123,6 +1123,9 @@ traditionalStatement
         // we create an empty modifiers AST as we do for classes without modifiers
         |   recordDefinition[(AST) getASTFactory().create(MODIFIERS,"MODIFIERS")]
 
+        // switch/case statement
+        |  switchExpression
+
         // An expression statement.  This could be a method call,
         // assignment statement, or any other expression evaluated for
         // side-effects.
@@ -1174,7 +1177,7 @@ traditionalStatement
         |    tryBlock
 
         // throw an exception
-        |    "throw"^ expression SEMI
+        |    throwStatement
 
         // synchronize a statement
         |    "synchronized"^ LPAREN expression RPAREN compoundStatement
@@ -1280,6 +1283,10 @@ tryBlock
         compoundStatement
         (handler)*
         ( finallyHandler )?
+    ;
+
+throwStatement
+    : "throw"^ expression SEMI
     ;
 
 resourceSpecification
@@ -1535,6 +1542,12 @@ castExpression
 
                 |   postfixExpression
         )
+    ;
+
+ switchExpression
+    :   "switch"^ LPAREN expression RPAREN LCURLY
+            ( casesGroup )*
+        RCURLY
     ;
 
 typeCastParameters
