@@ -75,7 +75,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * Default configuration
+ * To configure the default check:
  * </p>
  * <pre>
  * &lt;module name=&quot;AtclauseOrder&quot;&gt;

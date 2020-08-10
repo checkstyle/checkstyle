@@ -59,7 +59,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
- * By default Check validate that first sentence is not empty and first sentence is not missing:
+ * To configure the default check to validate that first sentence is not empty and first
+ * sentence is not missing:
  * </p>
  * <pre>
  * &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
