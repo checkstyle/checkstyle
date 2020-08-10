@@ -95,6 +95,9 @@
 
       <subsection name="Examples" id="AtclauseOrder_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           Default configuration
         </p>
         <source>
@@ -308,6 +311,9 @@ public class TestClass {
 
       <subsection name="Examples" id="JavadocBlockTagLocation_Examples">
         <p>
+          To configure the check:
+        </p>
+        <p>
           To configure the default check:
         </p>
         <source>
@@ -493,6 +499,9 @@ public void method();
       </subsection>
 
       <subsection name="Examples" id="JavadocContentLocation_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           By default Check validate that the Javadoc content starts from the second line:
         </p>
@@ -740,6 +749,9 @@ public int checkReturnTag(final int aTagIndex,
 
       <subsection name="Examples" id="JavadocMethod_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the default check:
         </p>
         <source>
@@ -962,6 +974,9 @@ public Runnable printLater(String s) {
       </subsection>
 
       <subsection name="Examples" id="JavadocMissingWhitespaceAfterAsterisk_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the default check:
         </p>
@@ -1205,6 +1220,9 @@ class TestClass {
       </subsection>
 
       <subsection name="Examples" id="JavadocParagraph_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the default check:
         </p>
@@ -1493,6 +1511,9 @@ public class TestClass {
 
       <subsection name="Examples" id="JavadocStyle_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the default check:
         </p>
 
@@ -1733,6 +1754,9 @@ public class Test {
 
       <subsection name="Examples" id="JavadocTagContinuationIndentation_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the default check:
         </p>
         <source>
@@ -1968,6 +1992,9 @@ public class Test {
 
       <subsection name="Examples" id="JavadocType_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the default check:
         </p>
         <source>
@@ -2143,6 +2170,9 @@ class DatabaseConfiguration {}
       </subsection>
 
       <subsection name="Examples" id="JavadocVariable_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the default check:
         </p>
@@ -2354,6 +2384,9 @@ public boolean isSomething()
       </subsection>
 
       <subsection name="Examples" id="MissingJavadocMethod_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the default check:
         </p>
@@ -2677,6 +2710,9 @@ package com.checkstyle.api; // violation
 
       <subsection name="Examples" id="MissingJavadocType_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the default check to make sure all public class, enum, interface, and
           annotation interface, definitions have javadocs:
         </p>
@@ -2852,6 +2888,9 @@ class DatabaseConfiguration {}
       </subsection>
 
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           Default configuration that will check <code>@param</code>, <code>@return</code>,
           <code>@throws</code>, <code>@deprecated</code>:
@@ -3093,6 +3132,9 @@ class DatabaseConfiguration {}
 
       <subsection name="Examples" id="SummaryJavadoc_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           By default Check validate that first sentence is not empty and first sentence is not
           missing:
         </p>
@@ -3297,6 +3339,9 @@ public class TestClass {
       </subsection>
 
       <subsection name="Examples" id="WriteTag_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
         To configure the check for printing author name:
         </p>

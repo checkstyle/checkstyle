@@ -75,6 +75,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the default check to make sure all public class, enum, interface, and annotation
  * interface, definitions have javadocs:
  * </p>
