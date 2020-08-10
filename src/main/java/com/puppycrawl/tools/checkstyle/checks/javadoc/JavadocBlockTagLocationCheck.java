@@ -72,6 +72,9 @@ import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the default check:
  * </p>
  * <pre>
