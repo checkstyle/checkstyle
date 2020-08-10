@@ -143,6 +143,9 @@ public String getNameIfPresent() { ... }
 
       <subsection name="Examples" id="AnnotationLocation_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           Default configuration, to allow one single parameterless annotation on the same line:
         </p>
         <source>
