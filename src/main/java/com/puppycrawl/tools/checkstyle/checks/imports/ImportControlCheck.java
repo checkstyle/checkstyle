@@ -121,6 +121,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check using an import control file called "config/import-control.xml",
  * then have the following:
  * </p>
