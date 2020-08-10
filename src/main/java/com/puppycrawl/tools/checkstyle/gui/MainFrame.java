@@ -164,9 +164,8 @@ public class MainFrame extends JFrame {
         final JButton expandButton = new JButton(new ExpandCollapseAction());
         expandButton.setText("Expand/Collapse");
 
-        final JButton findNodeButton = new JButton();
+        final JButton findNodeButton = new JButton(new FindNodeByXpathAction());
         findNodeButton.setText("Find node by Xpath");
-        findNodeButton.setVisible(false);
 
         final JPanel xpathButtonsPanel = new JPanel();
         xpathButtonsPanel.setLayout(new FlowLayout());
@@ -244,6 +243,20 @@ public class MainFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent event) {
             xpathTextArea.setVisible(!xpathTextArea.isVisible());
+        }
+
+    }
+
+    /**
+     * Handler for Find Node by Xpath Event.
+     */
+    private class FindNodeByXpathAction extends AbstractAction {
+
+        private static final long serialVersionUID = -890320994114628011L;
+
+        @Override
+        public void actionPerformed(ActionEvent event) {
+            treeTable.selectNodeByXpath();
         }
 
     }
