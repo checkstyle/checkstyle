@@ -826,6 +826,7 @@
   <suppress checks="Regexp" files="nocodeinfile[\\/]InputNoCodeInFile3.java"/>
   <suppress checks="Regexp" files="nocodeinfile[\\/]InputNoCodeInFile4.java"/>
   <suppress checks="Regexp" files="nocodeinfile[\\/]InputNoCodeInFile5.java"/>
+  <suppress checks="Regexp" files="nulltestaroundinstanceof[\\/]InputNullTestAroundInstanceOf.java"/>
   <suppress checks="Regexp" files="outertypefilename[\\/]InputOuterTypeFilename15Extensions.java"/>
   <suppress checks="Regexp" files="outertypefilename[\\/]InputOuterTypeFilename1a.java"/>
   <suppress checks="Regexp" files="outertypefilename[\\/]InputOuterTypeFilename1.java"/>
