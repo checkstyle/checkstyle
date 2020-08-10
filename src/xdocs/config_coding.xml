@@ -2198,6 +2198,9 @@ try {
 
       <subsection name="Examples" id="IllegalInstantiation_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the check to find instantiations of <code>java.lang.Boolean</code>:
         </p>
         <source>
@@ -2550,6 +2553,9 @@ public native void myTest(); // violation
 
       <subsection name="Examples" id="IllegalTokenText_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the check to forbid String literals containing
           <code>&quot;a href&quot;</code>:
         </p>
@@ -2813,6 +2819,9 @@ List list; //No violation here
       </subsection>
 
       <subsection name="Examples" id="IllegalType_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           Default Configuration:
         </p>
@@ -3254,6 +3263,9 @@ static final Integer ANSWER_TO_THE_ULTIMATE_QUESTION_OF_LIFE = new Integer(42);
       </subsection>
 
       <subsection name="Examples" id="MagicNumber_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the check with default configuration:
         </p>
@@ -4731,7 +4743,7 @@ public class Test {
 
       <subsection name="Examples" id="OneStatementPerLine_Examples">
         <p>
-          An example of how to configure this Check:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
@@ -5145,7 +5157,7 @@ public class AnnotationLocationCheck extends AbstractCheck {
 
       <subsection name="Examples" id="RequireThis_Examples">
         <p>
-          To configure the default check:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;RequireThis&quot;/&gt;
@@ -5418,6 +5430,9 @@ public static record D(int x) {
       </subsection>
 
       <subsection name="Examples" id="ReturnCount_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the check so that it doesn't allow more than three
           return statements per method (ignoring the <code>equals()</code>
@@ -6788,6 +6803,9 @@ class A {
       </subsection>
 
       <subsection name="Examples" id="VariableDeclarationUsageDistance_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           Example #1:
         </p>
