@@ -66,7 +66,7 @@
 
       <subsection name="Examples" id="ArrayTypeStyle_Examples">
         <p>
-          To configure the check to enforce Java style:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;ArrayTypeStyle&quot;/&gt;
@@ -217,6 +217,9 @@ public class MyClass {
       </subsection>
 
       <subsection name="Examples" id="AvoidEscapedUnicodeCharacters_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           Examples of using Unicode:
         </p>
@@ -676,7 +679,9 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       </subsection>
 
       <subsection name="Examples" id="DescendantToken_Examples">
-
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the check to produce a violation on a switch statement
           with no default case:
@@ -1186,7 +1191,7 @@ if ((condition1 &amp;&amp; condition2)
 
       <subsection name="Examples" id="Indentation_Examples">
         <p>
-          To configure the check for default behavior:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;Indentation&quot;/&gt;
@@ -2204,6 +2209,9 @@ messages.properties: Key 'ok' missing.
       </subsection>
 
       <subsection name="Examples" id="Translation_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the check to check only files which have '.properties' and '.translations'
           extensions:
