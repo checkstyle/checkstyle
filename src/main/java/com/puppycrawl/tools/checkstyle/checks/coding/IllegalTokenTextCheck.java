@@ -58,6 +58,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to forbid String literals containing {@code "a href"}:
  * </p>
  * <pre>

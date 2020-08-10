@@ -141,6 +141,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * Default Configuration:
  * </p>
  * <pre>

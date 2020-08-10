@@ -81,6 +81,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check so that it doesn't allow more than three return statements per method
  * (ignoring the {@code equals()} method):
  * </p>
