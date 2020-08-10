@@ -120,6 +120,10 @@
           <exclude name="**/InputJava14InstanceofWithPatternMatchingAST.txt"/>
           <exclude name="**/InputJava14Records.txt"/>
           <exclude name="**/InputJava14TextBlocks.txt"/>
+          <exclude name="**/InputJava14SwitchExpression.txt"/>
+
+          <!-- Exclude list of files for openjdk checkstyle run in Travis -->
+          <exclude name="**/jdk14-test-files.list"/>
 
         </fileset>
       </path>
@@ -155,8 +159,6 @@
           <exclude name="**/InputMainFrameModelIncorrectClass.java"/>
           <exclude name="**/InputBeforeExecutionExclusionFileFilterIncorrectClass.java"/>
           <exclude name="**/InputJavaParser.java"/>
-          <!-- until https://github.com/checkstyle/checkstyle/issues/6615 -->
-          <exclude name="**/InputJava14SwitchExpression.java"/>
 
         </fileset>
       </path>
