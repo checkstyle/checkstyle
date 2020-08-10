@@ -137,6 +137,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * This example checks that all implicit modifiers on methods, fields and nested
  * types are explicitly specified in interfaces.
  * </p>
