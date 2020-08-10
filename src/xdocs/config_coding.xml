@@ -2814,7 +2814,7 @@ List list; //No violation here
 
       <subsection name="Examples" id="IllegalType_Examples">
         <p>
-          Default Configuration:
+            To configure the default check:
         </p>
         <source>
 &lt;module name=&quot;IllegalType&quot;/&gt;
@@ -4731,7 +4731,7 @@ public class Test {
 
       <subsection name="Examples" id="OneStatementPerLine_Examples">
         <p>
-          An example of how to configure this Check:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
@@ -6788,6 +6788,9 @@ class A {
       </subsection>
 
       <subsection name="Examples" id="VariableDeclarationUsageDistance_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           Example #1:
         </p>
