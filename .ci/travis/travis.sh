@@ -655,6 +655,39 @@ check-since-version)
   fi
   ;;
 
+cli-run-openjdk14)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                 --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CHECKSTYLE_DIR=$(pwd)
+  TRAVIS_DIR="${CHECKSTYLE_DIR}/.ci/travis"
+  NUMBER_OF_FILES=$(grep -c -v "#" "${TRAVIS_DIR}/openjdk14-test/jdk14-test-files.list")
+  CHECKSTYLE_JAR="${CHECKSTYLE_DIR}/target/checkstyle-${CS_POM_VERSION}-all.jar"
+  CHECKSTYLE_CONFIG="${CHECKSTYLE_DIR}/.ci/travis/openjdk14-test/single-module-config.xml"
+  LIST_OF_FILES="${CHECKSTYLE_DIR}/.ci/travis/openjdk14-test/jdk14-test-files.list"
+
+  mvn -e -P assembly package
+  mkdir -p .ci-temp/
+  cd .ci-temp/
+  echo "Cloning openjdk 14 source from https://github.com/openjdk/jdk14..."
+  git clone --depth 1 https://github.com/openjdk/jdk14
+  cd jdk14/
+
+  CMD="java -jar ${CHECKSTYLE_JAR} -c ${CHECKSTYLE_CONFIG} @${LIST_OF_FILES}"
+
+  echo "Running Checkstyle on ${NUMBER_OF_FILES} files..."
+  RESULT=1
+  if $CMD; then
+    echo "Checkstyle successfully parsed all jkd14 test files."
+    RESULT=0
+  else
+    echo "Checkstyle did not successfully parse all jdk14 test files."
+  fi
+
+  cd ..
+  removeFolderWithProtectedFiles jdk14
+  exit $RESULT
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
