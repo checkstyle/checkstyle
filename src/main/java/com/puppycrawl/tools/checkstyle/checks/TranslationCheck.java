@@ -127,6 +127,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to check only files which have '.properties' and
  * '.translations' extensions:
  * </p>
