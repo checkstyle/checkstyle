@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
- * To configure the check to enforce Java style:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="ArrayTypeStyle"/&gt;
