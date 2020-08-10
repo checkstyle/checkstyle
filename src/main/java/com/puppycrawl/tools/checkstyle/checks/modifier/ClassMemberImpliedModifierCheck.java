@@ -67,6 +67,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * This example checks that all implicit modifiers on nested interfaces and enums are
  * explicitly specified in classes.
  * </p>
