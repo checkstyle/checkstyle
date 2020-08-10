@@ -141,7 +141,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * Default Configuration:
+ * To configure the default check:
  * </p>
  * <pre>
  * &lt;module name=&quot;IllegalType&quot;/&gt;
