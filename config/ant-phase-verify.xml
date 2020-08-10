@@ -122,6 +122,9 @@
           <exclude name="**/InputJava14TextBlocks.txt"/>
           <exclude name="**/InputJava14SwitchExpression.txt"/>
 
+          <!-- Exclude list of files for openjdk checkstyle run in Travis -->
+          <exclude name="**/jdk14-test-files.list"/>
+
         </fileset>
       </path>
       <formatter type="plain"/>
