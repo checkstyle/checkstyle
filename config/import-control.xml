@@ -159,7 +159,6 @@
     <!-- until https://github.com/checkstyle/checkstyle/issues/3095 -->
     <allow pkg="antlr"/>
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
-    <allow class="java.nio.charset.StandardCharsets" />
     <allow class="com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator" />
 
 
