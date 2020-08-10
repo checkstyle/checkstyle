@@ -120,6 +120,9 @@ line 5: ////////////////////////////////////////////////////////////////////
 
       <subsection name="Examples" id="Header_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           In default configuration the check does not rise any violations.
           Default values of properties are used.
         </p>
@@ -336,6 +339,9 @@ line 6: ^\W*$
       </subsection>
 
       <subsection name="Examples" id="RegexpHeader_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
             In default configuration the check does not rise any violations.
             Default values of properties are used.
