@@ -619,7 +619,7 @@ public class ExampleClass {
 
       <subsection name="Examples" id="MethodCount_Examples">
         <p>
-          To configure the check with defaults:
+          To configure the default check:
         </p>
         <source>
 &lt;module name="MethodCount"/&gt;
