@@ -45,6 +45,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * STATIC_IMPORT</a>.
  * </li>
  * </ul>
+ * <p>
+ * To configure the check to force no line-wrapping
+ * in package and import statements (default values):
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NoLineWrap&quot;/&gt;
+ * </pre>
  * <p>Examples of line-wrapped statements (bad case):
  * </p>
  * <pre>
@@ -58,13 +65,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     BigInteger.ZERO;
  * </pre>
  *
- * <p>
- * To configure the check to force no line-wrapping
- * in package and import statements (default values):
- * </p>
- * <pre>
- * &lt;module name=&quot;NoLineWrap&quot;/&gt;
- * </pre>
  * <p>
  * Examples:
  * </p>

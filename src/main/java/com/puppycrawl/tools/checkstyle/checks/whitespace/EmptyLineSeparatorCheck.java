@@ -101,6 +101,12 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the default check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyLineSeparator&quot;/&gt;
+ * </pre>
+ * <p>
  * Example of declarations without empty line separator:
  * </p>
  *
@@ -114,14 +120,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *   public static final int FOO_CONST = 1;
  *   public void foo() {} //should be separated from previous statement.
  * }
- * </pre>
- *
- * <p>
- * To configure the check with default parameters:
- * </p>
- *
- * <pre>
- * &lt;module name=&quot;EmptyLineSeparator&quot;/&gt;
  * </pre>
  *
  * <p>
