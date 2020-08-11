@@ -1,0 +1,38 @@
+
+## This file contains all compilable files from
+## https://download.java.net/openjdk/testresults/14/archives/36/langtools-36-summary.txt
+## that Checkstyle cannot parse. When adding new files to exclude, make sure to create an issue
+## and link to it in this file so that we can track it. Once the issue is resolved, please remove
+## the file from this list to prove that Checkstyle can parse it.
+
+## https://github.com/checkstyle/checkstyle/issues/8650 ##
+jdk14/test/langtools/tools/javac/MethodParameters/UncommonParamNames.java
+
+## https://github.com/checkstyle/checkstyle/issues/8651 ##
+jdk14/test/langtools/tools/javac/TextBlockLang.java
+
+## https://github.com/checkstyle/checkstyle/issues/8652 ##
+jdk14/test/langtools/tools/javac/annotations/typeAnnotations/8013180/QualifiedName.java
+jdk14/test/langtools/tools/javac/parser/SingleCommaAnnotationValue.java
+jdk14/test/langtools/tools/javac/annotations/typeAnnotations/failures/CheckErrorsForSource7.java
+jdk14/test/langtools/tools/javac/annotations/typeAnnotations/failures/T8011722.java
+jdk14/test/langtools/tools/javac/annotations/typeAnnotations/newlocations/AllLocations.java
+jdk14/test/langtools/tools/javac/annotations/typeAnnotations/newlocations/NestedTypes.java
+jdk14/test/langtools/tools/javac/treeannotests/AnnoTreeTests.java
+
+## https://github.com/checkstyle/checkstyle/issues/8653 ##
+jdk14/test/langtools/tools/javac/enum/TrailingComma.java
+
+## Related to https://github.com/checkstyle/checkstyle/issues/8291 ##
+jdk14/test/langtools/tools/javac/lambda/speculative/NestedLambdaGenerics.java
+jdk14/test/langtools/tools/javac/lambda/speculative/NestedLambdaNoGenerics.java
+
+## https://github.com/checkstyle/checkstyle/issues/8654 ##
+jdk14/test/langtools/tools/javac/unicode/SupplementaryJavaID1.java
+jdk14/test/langtools/tools/javac/unicode/SupplementaryJavaID6.java
+
+## https://github.com/checkstyle/checkstyle/issues/8655 ##
+jdk14/test/langtools/tools/javac/unicode/UnicodeAtEOL.java
+
+## https://github.com/checkstyle/checkstyle/issues/8656 ##
+jdk14/test/langtools/tools/javac/unicode/UnicodeCommentDelimiter.java
