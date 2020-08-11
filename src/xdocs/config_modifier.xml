@@ -90,6 +90,9 @@ public final class Person {
 
       <subsection name="Examples" id="ClassMemberImpliedModifier_Examples">
         <p>
+          To configure the check:
+        </p>
+        <p>
           This example checks that all implicit modifiers on nested interfaces and enums
           are explicitly specified in classes.
         </p>
@@ -307,6 +310,9 @@ public interface AddressFactory {
       </subsection>
 
       <subsection name="Examples" id="InterfaceMemberImpliedModifier_Examples">
+        <p>
+          To configure the check:
+        </p>
         <p>
           This example checks that all implicit modifiers on methods, fields and nested
           types are explicitly specified in interfaces.
