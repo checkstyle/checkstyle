@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * An example of how to configure this Check:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name=&quot;OneStatementPerLine&quot;/&gt;
