@@ -57,7 +57,9 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * Type is {@code java.lang.String[]}.
  * Default value is {@code .properties}.
  * </li></ul>
- * <p>To configure the check:</p>
+ * <p>
+ * To configure the check:
+ * </p>
  * <pre>&lt;module name="OrderedProperties"/&gt;</pre>
  * <p>Example properties file:</p>
  * <pre>
