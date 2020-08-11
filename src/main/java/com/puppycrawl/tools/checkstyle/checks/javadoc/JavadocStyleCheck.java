@@ -151,6 +151,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the default check:
  * </p>
  * <pre>

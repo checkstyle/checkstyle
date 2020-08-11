@@ -54,6 +54,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * Default configuration that will check {@code @param}, {@code @return},
  * {@code @throws}, {@code @deprecated}:
  * </p>
