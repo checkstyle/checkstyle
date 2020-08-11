@@ -39,6 +39,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to accept 1 outer type per file:
  * </p>
  * <pre>
