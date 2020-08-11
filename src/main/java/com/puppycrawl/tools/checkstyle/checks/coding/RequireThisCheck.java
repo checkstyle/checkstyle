@@ -84,7 +84,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the default check:
+ * To configure the check:
  * </p>
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;/&gt;
