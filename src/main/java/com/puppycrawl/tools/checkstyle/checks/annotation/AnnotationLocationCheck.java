@@ -100,6 +100,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * Default configuration, to allow one single parameterless annotation on the same line:
  * </p>
  * <pre>
