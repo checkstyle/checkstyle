@@ -87,6 +87,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to produce a violation on a switch statement with no default case:
  * </p>
  * <pre>
