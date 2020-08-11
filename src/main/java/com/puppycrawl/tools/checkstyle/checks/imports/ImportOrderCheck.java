@@ -140,6 +140,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Kepler and Luna releases):
  * </p>

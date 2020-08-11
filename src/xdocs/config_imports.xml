@@ -474,6 +474,9 @@ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
       </subsection>
 
       <subsection name="Examples" id="CustomImportOrder_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>To configure the check so that it matches default Eclipse formatter configuration
            (tested on Kepler and Luna releases):</p>
         <ul>
@@ -1098,6 +1101,9 @@ public class InputIllegalImport { }
 
       <subsection name="Examples" id="ImportControl_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the check using an import control file called
           &quot;config/import-control.xml&quot;, then have the following:
         </p>
@@ -1626,6 +1632,9 @@ import java.util.stream.IntStream;
       </subsection>
 
       <subsection name="Examples" id="ImportOrder_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>To configure the check so that it matches default Eclipse formatter configuration
            (tested on Kepler and Luna releases):</p>
         <ul>
