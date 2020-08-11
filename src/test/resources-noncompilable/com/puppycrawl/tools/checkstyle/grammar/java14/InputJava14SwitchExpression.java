@@ -1,11 +1,44 @@
 //non-compiled with javac: Compilable with Java14
-package com.puppycrawl.tools.checkstyle.grammar;
+package com.puppycrawl.tools.checkstyle.grammar.java14;
 
+import static java.time.Instant.*;
+
+import java.time.Instant;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
+import java.util.function.IntConsumer;
 import java.util.function.Supplier;
 
 public class InputJava14SwitchExpression {
+
+    static class HardToParse {
+        void foo() {
+            Instant Ascii;
+            byte[] decodabet = new byte[1];
+            Arrays.fill(decodabet, (byte) -1);
+            char[] chars = {'c','h','a','r','s'};
+            for (
+                    int i = 0;
+                    i < chars.length; i++) {
+                char c = chars[i];
+                decodabet[c] = (byte) i;
+            }
+        }
+        IntConsumer consumer = (IntConsumer) i -> {
+        };
+
+        static String yield = "yield";
+
+        class yieldClass{
+            int yield = 6;
+
+            public void yield(){
+
+            }
+        }
+
+    }
 
     enum Day {
         MON,
@@ -448,5 +481,26 @@ public class InputJava14SwitchExpression {
         if (i != 1) {
             throw new IllegalStateException("Side effects missing.");
         }
+    }
+
+    private static int getValueViaYield(String mode) {
+        int yield = 0;
+        return switch (mode) {
+            case "a", "b":
+                int x = yield + 2;
+                yield x;
+            default:
+                yield - 1;
+        };
+    }
+
+    private static int getValueViaYield2(String mode) {
+        return switch (mode) {
+            case "a", "b":
+                int yield = 42;
+                yield yield;
+            default:
+                yield - 1;
+        };
     }
 }
