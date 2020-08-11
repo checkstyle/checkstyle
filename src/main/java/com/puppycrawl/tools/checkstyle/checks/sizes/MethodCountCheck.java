@@ -118,7 +118,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check with defaults:
+ * To configure the default check:
  * </p>
  * <pre>
  * &lt;module name="MethodCount"/&gt;
