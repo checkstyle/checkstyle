@@ -68,7 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- *   To configure the check with default values:
+ *   To configure the default check:
  * </p>
  * <pre>
  * &lt;module name="RegexpSingleline" /&gt;
