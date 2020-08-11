@@ -100,7 +100,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.</li>
  * </ul>
- *
  * <p>
  * To configure the check to report file names that contain a space:
  * </p>
