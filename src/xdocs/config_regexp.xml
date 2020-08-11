@@ -135,6 +135,9 @@
 
       <subsection name="Examples" id="Regexp_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           The following examples are mainly copied from the other 3 checks
           mentioned above, to show how the same results can be achieved using
           this check in place of them.
@@ -574,6 +577,9 @@ public static final int A_SETPOINT = 1;
 
       <subsection name="Examples" id="RegexpMultiline_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           To configure the check to find calls to print to the console:
         </p>
         <source>
@@ -782,6 +788,9 @@ void method() {
       </subsection>
 
       <subsection name="Examples" id="RegexpOnFilename_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the check to report file names that contain a space:
         </p>
@@ -1029,6 +1038,9 @@ src/main/main_class.java  //violation, file names should be in Camel Case
 
       <subsection name="Examples" id="RegexpSingleline_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
         To configure the check with default values:
         </p>
         <source>
@@ -1253,6 +1265,9 @@ CREATE DATABASE MyDB;
       </subsection>
 
       <subsection name="Examples" id="RegexpSinglelineJava_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           To configure the check with default values:
         </p>
