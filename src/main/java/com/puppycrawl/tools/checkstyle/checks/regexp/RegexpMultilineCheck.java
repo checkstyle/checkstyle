@@ -73,6 +73,9 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to find calls to print to the console:
  * </p>
  * <pre>
