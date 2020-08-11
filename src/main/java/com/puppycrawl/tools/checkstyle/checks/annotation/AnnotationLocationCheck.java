@@ -100,7 +100,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * Default configuration, to allow one single parameterless annotation on the same line:
+ * To configure the default check to allow one single parameterless annotation on the same line:
  * </p>
  * <pre>
  * &lt;module name=&quot;AnnotationLocation&quot;/&gt;
