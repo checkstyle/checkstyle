@@ -591,7 +591,7 @@ class FourthClass {} // OK, no "abstract" modifier
 
       <subsection name="Examples" id="CatchParameterName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;CatchParameterName&quot;/&gt;
@@ -727,7 +727,7 @@ public class MyTest {
 
       <subsection name="Examples" id="ClassTypeParameterName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;ClassTypeParameterName&quot;/&gt;
@@ -849,7 +849,7 @@ class MyClass3&lt;abc&gt; {} // violation, the class type parameter
 
       <subsection name="Examples" id="ConstantName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
 
         <source>
@@ -969,7 +969,7 @@ class MyClass {
 
       <subsection name="Examples" id="InterfaceTypeParameterName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;InterfaceTypeParameterName&quot;/&gt;
@@ -1063,7 +1063,7 @@ interface ThirdInterface&lt;type&gt; {} // violation, name 'type' must
 
       <subsection name="Examples" id="LambdaParameterName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name="LambdaParameterName"/&gt;
@@ -1192,7 +1192,7 @@ class MyClass {
 
       <subsection name="Examples" id="LocalFinalVariableName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;LocalFinalVariableName&quot;/&gt;
@@ -1344,7 +1344,7 @@ for (Object O : list) { // OK
 
       <subsection name="Examples" id="LocalVariableName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
 
         <source>
@@ -1551,7 +1551,7 @@ class MyClass {
 
       <subsection name="Examples" id="MemberName_Examples">
         <p>
-         An example of how to configure the check is:
+         To configure the check:
         </p>
         <source>
 &lt;module name=&quot;MemberName&quot;/&gt;
@@ -1754,7 +1754,7 @@ class MyClass {
 
       <subsection name="Examples" id="MethodName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;MethodName&quot;/&gt;
@@ -1909,7 +1909,7 @@ class MyClass {
 
       <subsection name="Examples" id="MethodTypeParameterName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;MethodTypeParameterName&quot;/&gt;
@@ -2018,7 +2018,7 @@ class MyClass {
 
       <subsection name="Examples" id="PackageName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name="PackageName"/&gt;
@@ -2166,7 +2166,7 @@ public boolean equals(Object o) {
 
       <subsection name="Examples" id="ParameterName_Examples">
         <p>
-          An example of how to configure the check:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;ParameterName&quot;/&gt;
@@ -2335,7 +2335,7 @@ class MyClass {
 
       <subsection name="Examples" id="PatternVariableName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
 
         <source>
@@ -2499,7 +2499,7 @@ class MyClass {
 
       <subsection name="Examples" id="StaticVariableName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;StaticVariableName&quot;/&gt;
@@ -2679,7 +2679,7 @@ class MyClass {
 
       <subsection name="Examples" id="TypeName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
 
         <source>
