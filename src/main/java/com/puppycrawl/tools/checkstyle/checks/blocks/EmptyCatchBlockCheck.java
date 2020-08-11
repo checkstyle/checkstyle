@@ -53,6 +53,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to suppress empty catch block if exception's variable name is
  * {@code expected} or {@code ignore} or there's any comment inside:
  * </p>
