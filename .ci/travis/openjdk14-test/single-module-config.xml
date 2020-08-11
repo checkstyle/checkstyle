@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+        "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+        "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+
+  <!-- We will not run checks on -info.java files -->
+  <module name="BeforeExecutionExclusionFileFilter">
+    <property name="fileNamePattern" value="module\-info\.java$"/>
+  </module>
+
+  <!-- This allows us to exit with 0 if successful -->
+  <property name="severity" value="ignore"/>
+
+  <module name="TreeWalker">
+    <!-- Here we use simple module to prove that we can parse files -->
+    <module name="ClassTypeParameterName"/>
+  </module>
+</module>
