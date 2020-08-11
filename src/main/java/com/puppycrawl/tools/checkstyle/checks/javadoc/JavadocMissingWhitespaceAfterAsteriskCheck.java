@@ -41,6 +41,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the default check:
  * </p>
  * <pre>
