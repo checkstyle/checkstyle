@@ -43,6 +43,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <p>
  * To configure the check to accept anonymous classes with up to 20 lines:
  * </p>
  * <pre>
