@@ -62,6 +62,9 @@
 
       <subsection name="Examples" id="AnonInnerLength_Examples">
         <p>
+          To configure the check:
+        </p>
+        <p>
           To configure the check to accept anonymous classes with up to 20 lines:
         </p>
         <source>
@@ -376,6 +379,9 @@
 
       <subsection name="Examples" id="LineLength_Examples">
         <p>
+          To configure the check:
+        </p>
+        <p>
           To configure the check to accept lines up to 80 characters long:
         </p>
         <source>
@@ -618,6 +624,9 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Examples" id="MethodCount_Examples">
+        <p>
+          To configure the check:
+        </p>
         <p>
           To configure the check with defaults:
         </p>
@@ -876,6 +885,9 @@ public class ExampleClass {
       </subsection>
 
       <subsection name="Examples" id="OuterTypeNumber_Examples">
+        <p>
+          To configure the check:
+        </p>
         <p>
           To configure the check to accept 1 outer type per file:
         </p>
