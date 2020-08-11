@@ -45,6 +45,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * STATIC_IMPORT</a>.
  * </li>
  * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
  * <p>Examples of line-wrapped statements (bad case):
  * </p>
  * <pre>
