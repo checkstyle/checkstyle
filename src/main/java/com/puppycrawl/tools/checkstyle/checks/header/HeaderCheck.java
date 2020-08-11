@@ -83,7 +83,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- * In default configuration the check does not rise any violations.
+ * To configure the check such that no violations arise.
  * Default values of properties are used.
  * </p>
  * <pre>
