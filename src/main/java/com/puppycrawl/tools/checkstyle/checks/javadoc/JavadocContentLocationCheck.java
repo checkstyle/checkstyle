@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * By default Check validate that the Javadoc content starts from the second line:
+ * To configure the default check to validate that the Javadoc content starts from the second line:
  * </p>
  * <pre>
  * &lt;module name="JavadocContentLocationCheck"/&gt;
