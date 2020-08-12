@@ -68,16 +68,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidEscapedUnicodeCharacters"/&gt;
+ * </pre>
+ * <p>
  * Examples of using Unicode:</p>
  * <pre>
  * String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
  * String unitAbbrev = "&#92;u03bcs"; // Poor: the reader has no idea what this is.
- * </pre>
- * <p>
- * An example of how to configure the check is:
- * </p>
- * <pre>
- * &lt;module name="AvoidEscapedUnicodeCharacters"/&gt;
  * </pre>
  * <p>
  * An example of non-printable, control characters.
