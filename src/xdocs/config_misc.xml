@@ -218,17 +218,17 @@ public class MyClass {
 
       <subsection name="Examples" id="AvoidEscapedUnicodeCharacters_Examples">
         <p>
+            To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
+        </source>
+        <p>
           Examples of using Unicode:
         </p>
         <source>
 String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
 String unitAbbrev = "\u03bcs"; // Poor: the reader has no idea what this is.
-        </source>
-        <p>
-          An example of how to configure the check is:
-        </p>
-        <source>
-&lt;module name=&quot;AvoidEscapedUnicodeCharacters&quot;/&gt;
         </source>
         <p>
           An example of non-printable, control characters.
@@ -676,7 +676,6 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
       </subsection>
 
       <subsection name="Examples" id="DescendantToken_Examples">
-
         <p>
           To configure the check to produce a violation on a switch statement
           with no default case:
@@ -1186,7 +1185,7 @@ if ((condition1 &amp;&amp; condition2)
 
       <subsection name="Examples" id="Indentation_Examples">
         <p>
-          To configure the check for default behavior:
+          To configure the default check:
         </p>
         <source>
 &lt;module name=&quot;Indentation&quot;/&gt;

@@ -113,7 +113,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
  * </li>
  * </ul>
  * <p>
- * To configure the check for default behavior:
+ * To configure the default check:
  * </p>
  * <pre>
  * &lt;module name="Indentation"/&gt;
