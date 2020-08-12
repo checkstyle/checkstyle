@@ -95,7 +95,7 @@
 
       <subsection name="Examples" id="AtclauseOrder_Examples">
         <p>
-          Default configuration
+            To configure the default check:
         </p>
         <source>
 &lt;module name=&quot;AtclauseOrder&quot;&gt;
@@ -494,7 +494,8 @@ public void method();
 
       <subsection name="Examples" id="JavadocContentLocation_Examples">
         <p>
-          By default Check validate that the Javadoc content starts from the second line:
+          To configure the default check to validate that the Javadoc content starts from the
+          second line:
         </p>
         <source>
 &lt;module name=&quot;JavadocContentLocationCheck&quot;/&gt;
@@ -2853,8 +2854,8 @@ class DatabaseConfiguration {}
 
       <subsection name="Examples" id="NonEmptyAtclauseDescription_Examples">
         <p>
-          Default configuration that will check <code>@param</code>, <code>@return</code>,
-          <code>@throws</code>, <code>@deprecated</code>:
+          To configure the default check that will check <code>@param</code>,
+          <code>@return</code>,<code>@throws</code>, <code>@deprecated</code>:
         </p>
         <source>
 &lt;module name=&quot;NonEmptyAtclauseDescription&quot;/&gt;
@@ -3093,8 +3094,8 @@ class DatabaseConfiguration {}
 
       <subsection name="Examples" id="SummaryJavadoc_Examples">
         <p>
-          By default Check validate that first sentence is not empty and first sentence is not
-          missing:
+          To configure the default check to validate that first sentence is not empty and first
+          sentence is not missing:
         </p>
         <source>
 &lt;module name=&quot;SummaryJavadocCheck&quot;/&gt;
