@@ -428,7 +428,7 @@
           <tr>
             <td><a href="config_javadoc.html#JavadocTagContinuationIndentation">
               JavadocTagContinuationIndentation</a></td>
-            <td>Checks the indentation of the continuation lines in at-clauses.</td>
+            <td>Checks the indentation of the continuation lines in.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocType">JavadocType</a></td>
@@ -632,7 +632,7 @@
             <td><a href="config_javadoc.html#NonEmptyAtclauseDescription">
               NonEmptyAtclauseDescription</a></td>
             <td>
-            Checks that the at-clause tag is followed by description.</td>
+            Checks that the tag is followed by description.</td>
           </tr>
           <tr>
             <td><a href="config_coding.html#NoEnumTrailingComma">NoEnumTrailingComma</a></td>
@@ -805,8 +805,7 @@
           <tr>
             <td><a href="config_javadoc.html#SingleLineJavadoc">SingleLineJavadoc</a></td>
             <td>
-              Checks that a Javadoc block can fit in a single line and doesn't contain
-              at-clauses.</td>
+              Checks that a Javadoc block can fit in a single line and doesn't contain.</td>
           </tr>
           <tr>
             <td><a href="config_whitespace.html#SingleSpaceSeparator">SingleSpaceSeparator</a></td>

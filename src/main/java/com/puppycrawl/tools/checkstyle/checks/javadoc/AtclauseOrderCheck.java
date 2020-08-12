@@ -38,7 +38,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * javadoc block-tags or javadoc tags</a>.
  * </p>
  * <p>
- * Note: Google used the term "at-clauses" for block tags in their guide till 2017-02-28.
+ * Note: Google used the term "" for block tags in their guide till 2017-02-28.
  * </p>
  *
  * <ul>
@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code target} - Specify the list of targets to check at-clauses.
+ * Property {@code target} - Specify the list of targets to check.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
  * Default value is
@@ -131,7 +131,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     };
 
     /**
-     * Specify the list of targets to check at-clauses.
+     * Specify the list of targets to check.
      */
     private List<Integer> target = Arrays.asList(
         TokenTypes.CLASS_DEF,
@@ -148,7 +148,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     private List<String> tagOrder = Arrays.asList(DEFAULT_ORDER);
 
     /**
-     * Setter to specify the list of targets to check at-clauses.
+     * Setter to specify the list of targets to check.
      *
      * @param targets user's targets.
      */
