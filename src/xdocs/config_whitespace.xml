@@ -338,6 +338,9 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Examples" id="EmptyLineSeparator_Examples">
         <p>
+            To configure the check:
+        </p>
+        <p>
           Example of declarations without empty line separator:
         </p>
         <source>
@@ -1015,6 +1018,9 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
       </subsection>
 
       <subsection name="Examples" id="NoLineWrap_Examples">
+        <p>
+            To configure the check:
+        </p>
         <p>
           Examples of line-wrapped statements (bad case):
         </p>
