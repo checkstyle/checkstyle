@@ -338,6 +338,12 @@ for (Iterator foo = very.long.line.iterator();
 
       <subsection name="Examples" id="EmptyLineSeparator_Examples">
         <p>
+            To configure the default check:
+        </p>
+        <source>
+&lt;module name="EmptyLineSeparator"/&gt;
+        </source>
+        <p>
           Example of declarations without empty line separator:
         </p>
         <source>
@@ -350,12 +356,6 @@ class Foo {
   public static final int FOO_CONST = 1;
   public void foo() {} //should be separated from previous statement.
 }
-        </source>
-        <p>
-          To configure the check with default parameters:
-        </p>
-        <source>
-&lt;module name="EmptyLineSeparator"/&gt;
         </source>
         <p>
           Example of declarations with empty line separator that is expected by the Check by
@@ -1016,6 +1016,13 @@ Pair&lt;Integer, Integer &gt; p; // violation, "&gt;" preceded with whitespace
 
       <subsection name="Examples" id="NoLineWrap_Examples">
         <p>
+          To configure the check to force no line-wrapping
+          in package and import statements (default values):
+        </p>
+        <source>
+&lt;module name=&quot;NoLineWrap&quot;/&gt;
+        </source>
+        <p>
           Examples of line-wrapped statements (bad case):
         </p>
         <source>
@@ -1027,13 +1034,6 @@ import com.puppycrawl.tools. // violation
 
 import static java.math. // violation
     BigInteger.ZERO;
-        </source>
-        <p>
-          To configure the check to force no line-wrapping
-          in package and import statements (default values):
-        </p>
-        <source>
-&lt;module name=&quot;NoLineWrap&quot;/&gt;
         </source>
         <p>
           Examples:
