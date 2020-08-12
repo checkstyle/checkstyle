@@ -655,6 +655,61 @@ check-since-version)
   fi
   ;;
 
+checkstyle-cli-run-openjdk14)
+  # Set up environment
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                   --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  CHECKSTYLE_DIR=$(pwd)
+  TRAVIS_DIR="${CHECKSTYLE_DIR}/.ci/travis"
+  CHECKSTYLE_CONFIG="${CHECKSTYLE_DIR}/.ci/travis/openjdk14-test/single-module-config.xml"
+  FILTER_FILE="${CHECKSTYLE_DIR}/.ci/travis/openjdk14-test/jdk14-test-excluded-files.list"
+  OUTPUT_FILE="$(mktemp)"
+
+  # Build Checkstyle
+  mvn -e -P assembly package
+  CHECKSTYLE_JAR="${CHECKSTYLE_DIR}/target/checkstyle-${CS_POM_VERSION}-all.jar"
+
+  # Set up input file for Checkstyle run
+  echo "Downloading list of openjdk14 test files..."
+  mkdir -p .ci-temp/checkstyle-cli-run-openjdk14
+  cd .ci-temp/checkstyle-cli-run-openjdk14
+  # Below link is our copy of jdk14 test input file list, in case of download.java.net failure
+  # wget https://raw.githubusercontent.com/checkstyle/contribution/master/misc/jdk14-test-files.list
+  wget https://download.java.net/openjdk/testresults/14/archives/36/langtools-36-summary.txt
+  INPUT_FILE="langtools-36-summary.txt"
+
+  # Modify the list of files in place for Checkstyle run
+  echo "Removing non-compilable files from input list..."
+  sed -i '/failed as expected/d' ${INPUT_FILE} # remove non-compilable
+  sed -i '/.sh/d' ${INPUT_FILE} # remove script files
+  sed -r -i 's/\.java(.)*/.java/g' ${INPUT_FILE} # remove test information at end of line
+  sed -i 's/^/jdk14\/test\/langtools\//g' ${INPUT_FILE} # prepend each filename with full path
+
+  # Remove files from jdk14-test-files.list that match excludes
+  echo "Removing excluded files from input list..."
+  comm -23 <(sort ${INPUT_FILE}) <(sort "${FILTER_FILE}") > "${OUTPUT_FILE}"
+  NUMBER_OF_FILES=$(cat ${OUTPUT_FILE} | wc -w)
+
+  # Clone openjdk14
+  echo "Cloning openjdk 14 source from https://github.com/openjdk/jdk14..."
+  git clone --depth 1 https://github.com/openjdk/jdk14
+
+  CMD="java -jar ${CHECKSTYLE_JAR} -c ${CHECKSTYLE_CONFIG} @${OUTPUT_FILE}"
+
+  echo "Running Checkstyle on ${NUMBER_OF_FILES} files..."
+  RESULT=1
+  if $CMD; then
+    echo "Checkstyle successfully parsed all jdk14 test files."
+    RESULT=0
+  else
+    echo "Checkstyle did not successfully parse all jdk14 test files."
+  fi
+
+  cd ..
+  removeFolderWithProtectedFiles checkstyle-cli-run-openjdk14
+  exit $RESULT
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
