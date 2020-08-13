@@ -113,10 +113,11 @@ public class LambdaParameterNameCheck extends AbstractNameCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parametersNode = ast.findFirstToken(TokenTypes.PARAMETERS);
-        if (parametersNode == null) {
+        if (parametersNode == null
+                && ast.getParent().getType() != TokenTypes.SWITCH_RULE) {
             super.visitToken(ast);
         }
-        else {
+        else if (parametersNode != null) {
             for (DetailAST parameterDef = parametersNode.getFirstChild();
                  parameterDef != null;
                  parameterDef = parameterDef.getNextSibling()) {
