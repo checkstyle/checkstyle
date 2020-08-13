@@ -77,6 +77,7 @@ public class HandlerFactory {
         register(TokenTypes.LAMBDA, LambdaHandler.class);
         register(TokenTypes.ANNOTATION_DEF, ClassDefHandler.class);
         register(TokenTypes.ANNOTATION_FIELD_DEF, MethodDefHandler.class);
+        register(TokenTypes.SWITCH_RULE, SwitchRuleHandler.class);
     }
 
     /**
