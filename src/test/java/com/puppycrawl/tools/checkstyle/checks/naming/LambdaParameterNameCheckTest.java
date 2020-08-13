@@ -76,4 +76,24 @@ public class LambdaParameterNameCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputLambdaParameterName.java"), expected);
     }
 
+    @Test
+    public void testLambdaParameterNameSwitchExpression() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(LambdaParameterNameCheck.class);
+
+        final String pattern = "^[a-z][a-zA-Z0-9]*$";
+
+        final String[] expected = {
+            "13:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "25:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "30:31: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "40:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            "51:35: " + getCheckMessage(MSG_INVALID_PATTERN, "Word", pattern),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputLambdaParameterNameSwitchExpression.java"),
+            expected);
+    }
+
 }
