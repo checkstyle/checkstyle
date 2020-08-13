@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Handler for lambda expressions.
@@ -78,7 +79,9 @@ public class LambdaHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         // If the argument list is the first element on the line
         final DetailAST firstChild = getMainAst().getFirstChild();
-        if (getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+        final DetailAST parent = getMainAst().getParent();
+        if (parent.getType() != TokenTypes.SWITCH_RULE
+                && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final IndentLevel level = getIndent();
             if (!level.isAcceptable(expandedTabsColumnNo(firstChild))) {
                 logError(firstChild, "arguments", expandedTabsColumnNo(firstChild), level);
