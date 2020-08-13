@@ -2470,7 +2470,7 @@ class MyClass {
 
       <subsection name="Examples" id="RecordTypeParameterName_Examples">
         <p>
-          An example of how to configure the check is:
+          To configure the check:
         </p>
         <source>
 &lt;module name=&quot;RecordTypeParameterName&quot;/&gt;
