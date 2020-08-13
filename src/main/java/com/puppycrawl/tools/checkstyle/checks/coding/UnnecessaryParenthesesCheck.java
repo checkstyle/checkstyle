@@ -423,7 +423,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean isLambdaSingleParameterSurrounded(DetailAST ast) {
         final DetailAST firstChild = ast.getFirstChild();
         boolean result = false;
-        if (firstChild.getType() == TokenTypes.LPAREN) {
+        if (firstChild != null && firstChild.getType() == TokenTypes.LPAREN) {
             final DetailAST parameters = firstChild.getNextSibling();
             if (parameters.getChildCount(TokenTypes.PARAMETER_DEF) == 1
                     && !parameters.getFirstChild().findFirstToken(TokenTypes.TYPE).hasChildren()) {
