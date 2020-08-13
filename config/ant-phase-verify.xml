@@ -219,6 +219,8 @@
           <exclude name="**/ant/**/*"/>
           <!-- No need to check ast String Printer input files -->
           <exclude name="**/asttreestringprinter/**/*"/>
+          <!-- Indentation checks use "warn" -->
+          <exclude name="**/resources-noncompilable/**/checks/indentation/**/*"/>
 
         </fileset>
       </path>
