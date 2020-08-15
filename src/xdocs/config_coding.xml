@@ -923,6 +923,13 @@ switch (i) {
   case 2:
     break;
 }
+
+// Switch rules are not subject to fall through, so this is still a violation:
+switch (i) {
+case 1 -&gt; x = 9;
+default -&gt; x = 10; // violation
+case 2 -&gt; x = 32;
+}
         </source>
       </subsection>
 

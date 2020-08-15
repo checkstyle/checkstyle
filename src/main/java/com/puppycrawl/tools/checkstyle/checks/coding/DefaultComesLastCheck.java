@@ -109,6 +109,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   case 2:
  *     break;
  * }
+ *
+ * // Switch rules are not subject to fall through, so this is still a violation:
+ * switch (i) {
+ *   case 1 -&gt; x = 9;
+ *   default -&gt; x = 10; // violation
+ *   case 2 -&gt; x = 32;
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -176,7 +183,11 @@ public class DefaultComesLastCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST defaultGroupAST = ast.getParent();
-        if (skipIfLastAndSharedWithCase) {
+
+        // Switch rules are not subject to fall through.
+        final boolean isSwitchRule = defaultGroupAST.getType() == TokenTypes.SWITCH_RULE;
+
+        if (skipIfLastAndSharedWithCase && !isSwitchRule) {
             if (Objects.nonNull(findNextSibling(ast, TokenTypes.LITERAL_CASE))) {
                 log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
             }
@@ -187,7 +198,9 @@ public class DefaultComesLastCheck extends AbstractCheck {
             }
         }
         else if (Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                 TokenTypes.CASE_GROUP))) {
+                                            TokenTypes.CASE_GROUP))
+                    || Objects.nonNull(findNextSibling(defaultGroupAST,
+                                            TokenTypes.SWITCH_RULE))) {
             log(ast, MSG_KEY);
         }
     }
