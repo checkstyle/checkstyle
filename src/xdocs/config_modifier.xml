@@ -27,18 +27,18 @@
       <p>Since Checkstyle 8.16</p>
       <subsection name="Description" id="ClassMemberImpliedModifier_Description">
         <p>
-          Checks for implicit modifiers on nested types in classes.
+          Checks for implicit modifiers on nested types in classes and records.
         </p>
         <p>
           This check is effectively the opposite of
           <a href="config_modifier.html#RedundantModifier">RedundantModifier</a>.
-          It checks the modifiers on nested types in classes, ensuring that certain
+          It checks the modifiers on nested types in classes and records, ensuring that certain
           modifiers are explicitly specified even though they are actually redundant.
         </p>
         <p>
-          Nested enums and interfaces within a class are always <code>static</code> and as such the
-          compiler does not require the <code>static</code> modifier. This check provides the
-          ability to enforce that the <code>static</code> modifier is explicitly coded and not
+          Nested enums, interfaces, and records within a class are always <code>static</code> and as
+          such the compiler does not require the <code>static</code> modifier. This check provides
+          the ability to enforce that the <code>static</code> modifier is explicitly coded and not
           implicitly added by the compiler.
         </p>
         <source>
@@ -50,9 +50,9 @@ public final class Person {
         </source>
         <p>
           Rationale for this check:
-          Nested enums and interfaces are treated differently from nested classes as they are
-          only allowed to be <code>static</code>. Developers should not need to remember this rule,
-          and this check provides the means to enforce that the modifier is coded explicitly.
+          Nested enums, interfaces, and records are treated differently from nested classes as they
+          are only allowed to be <code>static</code>. Developers should not need to remember this
+          rule, and this check provides the means to enforce that the modifier is coded explicitly.
         </p>
       </subsection>
 
@@ -70,7 +70,7 @@ public final class Person {
               <td>violateImpliedStaticOnNestedEnum</td>
               <td>
                 Control whether to enforce that <code>static</code> is explicitly coded
-                on nested enums in classes.</td>
+                on nested enums in classes and records.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.16</td>
@@ -79,10 +79,19 @@ public final class Person {
               <td>violateImpliedStaticOnNestedInterface</td>
               <td>
                 Control whether to enforce that <code>static</code> is explicitly coded
-                on nested interfaces in classes.</td>
+                on nested interfaces in classes and records.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>8.16</td>
+            </tr>
+            <tr>
+              <td>violateImpliedStaticOnNestedRecord</td>
+              <td>
+                Control whether to enforce that <code>static</code> is explicitly coded
+                on nested records in classes and records.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>true</code></td>
+              <td>8.36</td>
             </tr>
           </table>
         </div>
@@ -90,8 +99,8 @@ public final class Person {
 
       <subsection name="Examples" id="ClassMemberImpliedModifier_Examples">
         <p>
-          To configure the check so that it checks that all implicit modifiers on nested interfaces
-          and enums are explicitly specified in classes.
+          To configure the check so that it checks that all implicit modifiers on nested interfaces,
+          enums, and records are explicitly specified in classes and records.
         </p>
         <p>
           Configuration:
@@ -116,6 +125,14 @@ public final class Person {
 
   enum Age2 {  // violation
     CHILD, ADULT
+  }
+
+  public static record GoodRecord() {} // valid
+  public record BadRecord() {} // violation
+
+  public static record OuterRecord() {
+    static record InnerRecord1(){} // valid
+    record InnerRecord2(){} // violation
   }
 }
         </source>
