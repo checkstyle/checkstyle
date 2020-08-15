@@ -27,18 +27,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks for implicit modifiers on nested types in classes.
+ * Checks for implicit modifiers on nested types in classes and records.
  * </p>
  * <p>
  * This check is effectively the opposite of
  * <a href="https://checkstyle.org/config_modifier.html#RedundantModifier">RedundantModifier</a>.
- * It checks the modifiers on nested types in classes, ensuring that certain modifiers are
- * explicitly specified even though they are actually redundant.
+ * It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
+ * are explicitly specified even though they are actually redundant.
  * </p>
  * <p>
- * Nested enums and interfaces within a class are always {@code static} and as such the compiler
- * does not require the {@code static} modifier. This check provides the ability to enforce that
- * the {@code static} modifier is explicitly coded and not implicitly added by the compiler.
+ * Nested enums, interfaces, and records within a class are always {@code static} and as such the
+ * compiler does not require the {@code static} modifier. This check provides the ability to enforce
+ * that the {@code static} modifier is explicitly coded and not implicitly added by the compiler.
  * </p>
  * <pre>
  * public final class Person {
@@ -48,28 +48,34 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * }
  * </pre>
  * <p>
- * Rationale for this check: Nested enums and interfaces are treated differently from nested
- * classes as they are only allowed to be {@code static}. Developers should not need to remember
- * this rule, and this check provides the means to enforce that the modifier is coded explicitly.
+ * Rationale for this check: Nested enums, interfaces, and records are treated differently from
+ * nested classes as they are only allowed to be {@code static}. Developers should not need to
+ * remember this rule, and this check provides the means to enforce that the modifier is coded
+ * explicitly.
  * </p>
  * <ul>
  * <li>
  * Property {@code violateImpliedStaticOnNestedEnum} - Control whether to enforce that
- * {@code static} is explicitly coded on nested enums in classes.
+ * {@code static} is explicitly coded on nested enums in classes and records.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * <li>
  * Property {@code violateImpliedStaticOnNestedInterface} - Control whether to enforce that
- * {@code static} is explicitly coded on nested interfaces in classes.
+ * {@code static} is explicitly coded on nested interfaces in classes and records.
+ * Type is {@code boolean}.
+ * Default value is {@code true}.
+ * </li>
+ * <li>
+ * Property {@code violateImpliedStaticOnNestedRecord} - Control whether to enforce that
+ * {@code static} is explicitly coded on nested records in classes and records.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
  * </ul>
  * <p>
- * To configure the check so that it checks that all implicit modifiers on nested
- * interfaces and enums are
- * explicitly specified in classes.
+ * To configure the check so that it checks that all implicit modifiers on nested interfaces, enums,
+ * and records are explicitly specified in classes and records.
  * </p>
  * <p>
  * Configuration:
@@ -94,6 +100,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  *   enum Age2 {  // violation
  *     CHILD, ADULT
+ *   }
+ *
+ *   public static record GoodRecord() {} // valid
+ *   public record BadRecord() {} // violation
+ *
+ *   public static record OuterRecord() {
+ *     static record InnerRecord1(){} // valid
+ *     record InnerRecord2(){} // violation
  *   }
  * }
  * </pre>
@@ -125,19 +139,25 @@ public class ClassMemberImpliedModifierCheck
 
     /**
      * Control whether to enforce that {@code static} is explicitly coded
-     * on nested enums in classes.
+     * on nested enums in classes and records.
      */
     private boolean violateImpliedStaticOnNestedEnum = true;
 
     /**
      * Control whether to enforce that {@code static} is explicitly coded
-     * on nested interfaces in classes.
+     * on nested interfaces in classes and records.
      */
     private boolean violateImpliedStaticOnNestedInterface = true;
 
     /**
+     * Control whether to enforce that {@code static} is explicitly coded
+     * on nested records in classes and records.
+     */
+    private boolean violateImpliedStaticOnNestedRecord = true;
+
+    /**
      * Setter to control whether to enforce that {@code static} is explicitly coded
-     * on nested enums in classes.
+     * on nested enums in classes and records.
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
@@ -148,13 +168,24 @@ public class ClassMemberImpliedModifierCheck
 
     /**
      * Setter to control whether to enforce that {@code static} is explicitly coded
-     * on nested interfaces in classes.
+     * on nested interfaces in classes and records.
      *
      * @param violateImplied
      *        True to perform the check, false to turn the check off.
      */
     public void setViolateImpliedStaticOnNestedInterface(boolean violateImplied) {
         violateImpliedStaticOnNestedInterface = violateImplied;
+    }
+
+    /**
+     * Setter to control whether to enforce that {@code static} is explicitly coded
+     * on nested records in classes and records.
+     *
+     * @param violateImplied
+     *        True to perform the check, false to turn the check off.
+     */
+    public void setViolateImpliedStaticOnNestedRecord(boolean violateImplied) {
+        violateImpliedStaticOnNestedRecord = violateImplied;
     }
 
     @Override
@@ -172,12 +203,13 @@ public class ClassMemberImpliedModifierCheck
         return new int[] {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ScopeUtil.isInClassBlock(ast) || ScopeUtil.isInEnumBlock(ast)) {
+        if (isInTypeBlock(ast)) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             switch (ast.getType()) {
                 case TokenTypes.ENUM_DEF:
@@ -192,10 +224,28 @@ public class ClassMemberImpliedModifierCheck
                         log(ast, MSG_KEY, STATIC_KEYWORD);
                     }
                     break;
+                case TokenTypes.RECORD_DEF:
+                    if (violateImpliedStaticOnNestedRecord
+                            && modifiers.findFirstToken(TokenTypes.LITERAL_STATIC) == null) {
+                        log(ast, MSG_KEY, STATIC_KEYWORD);
+                    }
+                    break;
                 default:
                     throw new IllegalStateException(ast.toString());
             }
         }
+    }
+
+    /**
+     * Checks if ast is in a class, enum, or record block.
+     *
+     * @param ast the current ast
+     * @return true if ast is in a class, enum, or record
+     */
+    private static boolean isInTypeBlock(DetailAST ast) {
+        return ScopeUtil.isInClassBlock(ast)
+                || ScopeUtil.isInEnumBlock(ast)
+                || ScopeUtil.isInRecordBlock(ast);
     }
 
 }
