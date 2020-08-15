@@ -90,6 +90,33 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDefaultComesLastSwitchExpressions() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
+        final String[] expected = {
+            "13:13: " + getCheckMessage(MSG_KEY),
+            "29:13: " + getCheckMessage(MSG_KEY),
+            "43:13: " + getCheckMessage(MSG_KEY),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+            expected);
+    }
+
+    @Test
+    public void testDefaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
+        checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
+
+        final String[] expected = {
+            "29:13: " + getCheckMessage(MSG_KEY),
+            "43:13: " + getCheckMessage(MSG_KEY),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final DefaultComesLastCheck check = new DefaultComesLastCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
