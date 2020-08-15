@@ -272,7 +272,7 @@ public class LeftCurlyCheck
             case TokenTypes.LITERAL_CASE:
             case TokenTypes.LITERAL_DEFAULT:
                 startToken = ast;
-                brace = getBraceAsFirstChild(ast.getNextSibling());
+                brace = getBraceFromSwitchMember(ast);
                 break;
             default:
                 // ATTENTION! We have default here, but we expect case TokenTypes.METHOD_DEF,
@@ -288,6 +288,25 @@ public class LeftCurlyCheck
         if (brace != null) {
             verifyBrace(brace, startToken);
         }
+    }
+
+    /**
+     * Gets the brace of a switch statement/ expression member.
+     *
+     * @param ast {@code DetailAST}.
+     * @return {@code DetailAST} if the first child is {@code TokenTypes.SLIST},
+     * {@code null} otherwise.
+     */
+    private static DetailAST getBraceFromSwitchMember(DetailAST ast) {
+        final DetailAST brace;
+        final DetailAST parent = ast.getParent();
+        if (parent.getType() == TokenTypes.SWITCH_RULE) {
+            brace = parent.findFirstToken(TokenTypes.SLIST);
+        }
+        else {
+            brace = getBraceAsFirstChild(ast.getNextSibling());
+        }
+        return brace;
     }
 
     /**
