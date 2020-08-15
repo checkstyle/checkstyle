@@ -233,4 +233,17 @@ public class EmptyBlockCheckTest
         verify(checkConfig, path, expected);
     }
 
+    @Test
+    public void testEmptyBlockSwitchExpressions() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
+        checkConfig.addAttribute("tokens",
+            "LITERAL_DEFAULT, LITERAL_CASE, LITERAL_SWITCH");
+
+        final String[] expected = {
+            "17:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputEmptyBlockSwitchExpressions.java"), expected);
+    }
+
 }

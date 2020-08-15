@@ -215,7 +215,9 @@ public class EmptyBlockCheck
             if (option == BlockOption.STATEMENT) {
                 final boolean emptyBlock;
                 if (leftCurly.getType() == TokenTypes.LCURLY) {
-                    emptyBlock = leftCurly.getNextSibling().getType() != TokenTypes.CASE_GROUP;
+                    final DetailAST nextSibling = leftCurly.getNextSibling();
+                    emptyBlock = nextSibling.getType() != TokenTypes.CASE_GROUP
+                            && nextSibling.getType() != TokenTypes.SWITCH_RULE;
                 }
                 else {
                     emptyBlock = leftCurly.getChildCount() <= 1;
