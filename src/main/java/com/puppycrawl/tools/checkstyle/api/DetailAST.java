@@ -87,6 +87,13 @@ public interface DetailAST {
     DetailAST getLastChild();
 
     /**
+     * Gets the last sibling node.
+     *
+     * @return the last sibling node
+     */
+    DetailAST getLastSibling();
+
+    /**
      * Checks if this branch of the parse tree contains a token
      * of the provided type.
      *

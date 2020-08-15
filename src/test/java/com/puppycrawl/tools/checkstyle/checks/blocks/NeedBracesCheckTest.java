@@ -258,4 +258,63 @@ public class NeedBracesCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputNeedBracesEmptyDefault.java"), expected);
     }
 
+    @Test
+    public void testNeedBracesSwitchExpressionNoSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens",
+            "LITERAL_CASE, LITERAL_DEFAULT, LAMBDA");
+        checkConfig.addAttribute("allowSingleLineStatement", "false");
+
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "14:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "19:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "22:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "29:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "32:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "35:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "38:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "45:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "46:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "49:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "52:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "69:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "76:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputNeedBracesCheckSwitchExpressionNoSingleLine.java"),
+            expected);
+    }
+
+    @Test
+    public void testNeedBracesSwitchExpression() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NeedBracesCheck.class);
+        checkConfig.addAttribute("tokens",
+            "LITERAL_CASE, LITERAL_DEFAULT, LAMBDA");
+        checkConfig.addAttribute("allowSingleLineStatement", "true");
+
+        final String[] expected = {
+            "12:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "14:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "16:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "19:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "22:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "29:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "32:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "35:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "38:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "45:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "46:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            "49:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "52:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "case"),
+            "55:13: " + getCheckMessage(MSG_KEY_NEED_BRACES, "default"),
+            "69:47: " + getCheckMessage(MSG_KEY_NEED_BRACES, "->"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputNeedBracesCheckSwitchExpression.java"),
+            expected);
+    }
+
 }

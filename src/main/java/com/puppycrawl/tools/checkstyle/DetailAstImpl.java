@@ -277,6 +277,15 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
         return ast;
     }
 
+    @Override
+    public DetailAST getLastSibling() {
+        DetailAST ast = getNextSibling();
+        while (ast != null && ast.getNextSibling() != null) {
+            ast = ast.getNextSibling();
+        }
+        return ast;
+    }
+
     /**
      * Finds column number in the first non-comment node.
      *
