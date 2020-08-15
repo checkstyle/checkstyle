@@ -365,6 +365,43 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testLeftCurlySwitchExpressions() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "19:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "24:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "29:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "33:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "42:17: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 17),
+            "44:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "48:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "52:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+            "56:21: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 21),
+
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputLeftCurlyCheckSwitchExpressions.java"), expected);
+    }
+
+    @Test
+    public void testLeftCurlySwitchExpressionsNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NL.toString());
+
+        final String[] expected = {
+            "14:58: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 58),
+            "15:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
+            "40:25: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 25),
+            "51:23: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 23),
+
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputLeftCurlyCheckSwitchExpressionsNewLine.java"),
+            expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final LeftCurlyCheck check = new LeftCurlyCheck();
         final int[] actual = check.getAcceptableTokens();
