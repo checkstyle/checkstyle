@@ -223,6 +223,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.OBJBLOCK,
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
+            TokenTypes.EXPR,
         };
     }
 
@@ -237,6 +238,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_BREAK,
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.EXPR,
         };
     }
 
@@ -252,6 +254,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             TokenTypes.LITERAL_FOR,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PARAMETER_DEF,
+            TokenTypes.EXPR,
         };
     }
 
@@ -309,6 +312,14 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.LITERAL_BREAK:
                 scopeStack.peek().containsBreak = true;
                 break;
+            case TokenTypes.EXPR:
+                // Switch labeled expression has no slist
+                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE
+                    && ast.getParent().getParent().findFirstToken(TokenTypes.SWITCH_RULE)
+                        == ast.getParent()) {
+                    storePrevScopeUninitializedVariableData();
+                }
+                break;
             default:
                 throw new IllegalStateException("Incorrect token type");
         }
@@ -317,6 +328,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     @Override
     public void leaveToken(DetailAST ast) {
         Map<String, FinalVariableCandidate> scope = null;
+        final Deque<DetailAST> prevScopeUninitializedVariableData;
         switch (ast.getType()) {
             case TokenTypes.OBJBLOCK:
             case TokenTypes.CTOR_DEF:
@@ -324,11 +336,17 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.LITERAL_FOR:
                 scope = scopeStack.pop().scope;
                 break;
+            case TokenTypes.EXPR:
+                // Switch labeled expression has no slist
+                if (ast.getParent().getType() == TokenTypes.SWITCH_RULE) {
+                    prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
+                    if (shouldUpdateUninitializedVariables(ast.getParent())) {
+                        updateAllUninitializedVariables(prevScopeUninitializedVariableData);
+                    }
+                }
+                break;
             case TokenTypes.SLIST:
-                // -@cs[MoveVariableInsideIf] assignment value is modified later so it can't be
-                // moved
-                final Deque<DetailAST> prevScopeUninitializedVariableData =
-                    prevScopeUninitializedVariables.peek();
+                prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
                 boolean containsBreak = false;
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
                     || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
@@ -377,8 +395,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     private static void determineAssignmentConditions(DetailAST ident,
                                                       FinalVariableCandidate candidate) {
         if (candidate.assigned) {
-            if (!isInSpecificCodeBlock(ident, TokenTypes.LITERAL_ELSE)
-                    && !isInSpecificCodeBlock(ident, TokenTypes.CASE_GROUP)) {
+            final int[] blockTypes = {
+                TokenTypes.LITERAL_ELSE,
+                TokenTypes.CASE_GROUP,
+                TokenTypes.SWITCH_RULE,
+            };
+            if (!isInSpecificCodeBlocks(ident, blockTypes)) {
                 candidate.alreadyAssigned = true;
             }
         }
@@ -388,19 +410,21 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * Checks whether the scope of a node is restricted to a specific code block.
+     * Checks whether the scope of a node is restricted to a specific code blocks.
      *
      * @param node node.
-     * @param blockType block type.
-     * @return true if the scope of a node is restricted to a specific code block.
+     * @param blockTypes int array of all block types to check.
+     * @return true if the scope of a node is restricted to specific code block types.
      */
-    private static boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
+    private static boolean isInSpecificCodeBlocks(DetailAST node, int... blockTypes) {
         boolean returnValue = false;
-        for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
-            final int type = token.getType();
-            if (type == blockType) {
-                returnValue = true;
-                break;
+        for (int blockType : blockTypes) {
+            for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+                final int type = token.getType();
+                if (type == blockType) {
+                    returnValue = true;
+                    break;
+                }
             }
         }
         return returnValue;
@@ -481,8 +505,9 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * If token is LITERAL_IF and there is an {@code else} following or token is CASE_GROUP and
-     * there is another {@code case} following, then update the uninitialized variables.
+     * If token is LITERAL_IF and there is an {@code else} following or token is CASE_GROUP or
+     * SWITCH_RULE and there is another {@code case} following, then update the
+     * uninitialized variables.
      *
      * @param ast token to be checked
      * @return true if should be updated, else false
@@ -503,15 +528,22 @@ public class FinalLocalVariableCheck extends AbstractCheck {
     }
 
     /**
-     * If token is CASE_GROUP and there is another {@code case} following.
+     * If token is CASE_GROUP or SWITCH_RULE and there is another {@code case} following.
      *
      * @param ast token to be checked
-     * @return true if token is CASE_GROUP and there is another {@code case} following, else false
+     * @return true if token is CASE_GROUP or SWITCH_RULE and there is another {@code case}
+     *     following, else false
      */
     private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
-        return ast.getType() == TokenTypes.CASE_GROUP
-                && findLastChildWhichContainsSpecifiedToken(
-                        ast.getParent(), TokenTypes.CASE_GROUP, TokenTypes.SLIST) != ast;
+        boolean result = false;
+        if (ast.getType() == TokenTypes.CASE_GROUP) {
+            result = findLastChildWhichContainsSpecifiedToken(
+                    ast.getParent(), TokenTypes.CASE_GROUP, TokenTypes.SLIST) != ast;
+        }
+        else if (ast.getType() == TokenTypes.SWITCH_RULE) {
+            result = ast.getNextSibling().getType() == TokenTypes.SWITCH_RULE;
+        }
+        return result;
     }
 
     /**
