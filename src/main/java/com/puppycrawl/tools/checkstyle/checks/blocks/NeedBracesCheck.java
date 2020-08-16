@@ -247,6 +247,7 @@ public class NeedBracesCheck extends AbstractCheck {
      *     <li>{@link TokenTypes#LITERAL_CASE}</li>
      *     <li>{@link TokenTypes#LITERAL_DEFAULT}</li>
      *     <li>{@link TokenTypes#LITERAL_ELSE}</li>
+     *     <li>{@link TokenTypes#LAMBDA}</li>
      * </ul>
      * For all others default value {@code true} is returned.
      *
@@ -263,10 +264,14 @@ public class NeedBracesCheck extends AbstractCheck {
                 break;
             case TokenTypes.LITERAL_CASE:
             case TokenTypes.LITERAL_DEFAULT:
-                result = hasUnbracedStatements(ast);
+                result = hasUnbracedStatements(ast)
+                    && !isSwitchLabeledExpression(ast);
                 break;
             case TokenTypes.LITERAL_ELSE:
                 result = ast.findFirstToken(TokenTypes.LITERAL_IF) == null;
+                break;
+            case TokenTypes.LAMBDA:
+                result = !isInSwitchRule(ast);
                 break;
             default:
                 result = true;
@@ -293,9 +298,18 @@ public class NeedBracesCheck extends AbstractCheck {
      */
     private static boolean hasUnbracedStatements(DetailAST ast) {
         final DetailAST nextSibling = ast.getNextSibling();
-        return nextSibling != null
+        boolean result = false;
+
+        if (isInSwitchRule(ast)) {
+            final DetailAST parent = ast.getParent();
+            result = parent.getLastChild().getType() != TokenTypes.SLIST;
+        }
+        else if (nextSibling != null
             && nextSibling.getType() == TokenTypes.SLIST
-            && nextSibling.getFirstChild().getType() != TokenTypes.SLIST;
+            && nextSibling.getFirstChild().getType() != TokenTypes.SLIST) {
+            result = true;
+        }
+        return result;
     }
 
     /**
@@ -341,7 +355,8 @@ public class NeedBracesCheck extends AbstractCheck {
                 result = isSingleLineWhile(statement);
                 break;
             case TokenTypes.LAMBDA:
-                result = isSingleLineLambda(statement);
+                result = !isInSwitchRule(statement)
+                    && isSingleLineLambda(statement);
                 break;
             case TokenTypes.LITERAL_CASE:
             case TokenTypes.LITERAL_DEFAULT:
@@ -476,26 +491,111 @@ public class NeedBracesCheck extends AbstractCheck {
     }
 
     /**
-     * Checks if switch member (case or default statement) is single-line statement, e.g.:
+     * Checks if current ast's parent is a switch rule, e.g.:
      * <p>
      * {@code
-     * case 1: doSomeStuff(); break;
-     * case 2: doSomeStuff(); break;
-     * case 3: ;
-     * default: doSomeStuff();break;
+     * case 1 ->  monthString = "January";
      * }
      * </p>
+     *
+     * @param ast the ast to check.
+     * @return true if current ast belongs to a switch rule.
+     */
+    private static boolean isInSwitchRule(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.SWITCH_RULE;
+    }
+
+    /**
+     * Checks if current expression is a switch labeled expression. If so,
+     * braces are not allowed e.g.:
+     * <p>
+     * {@code
+     * case 1 -> 4;
+     * }
+     * </p>
+     *
+     * @param ast the ast to check
+     * @return true if current expression is a switch labeled expression.
+     */
+    private static boolean isSwitchLabeledExpression(DetailAST ast) {
+        final DetailAST parent = ast.getParent();
+        return switchRuleHasSingleExpression(parent);
+    }
+
+    /**
+     * Checks if current switch labeled expression contains only a single expression.
+     *
+     * @param switchRule {@link TokenTypes#SWITCH_RULE}.
+     * @return true if current switch rule has a single expression.
+     */
+    private static boolean switchRuleHasSingleExpression(DetailAST switchRule) {
+        final DetailAST possibleExpression = switchRule.findFirstToken(TokenTypes.EXPR);
+        return possibleExpression != null
+                && possibleExpression.getFirstChild().getFirstChild() == null;
+    }
+
+    /**
+     * Checks if switch member (case or default statement) in a switch rule or
+     * case group is on a single line.
+     *
+     * @param statement {@link TokenTypes#LITERAL_CASE case statement} or
+     * {@link TokenTypes#LITERAL_DEFAULT default statement}.
+     * @return true if current switch member is single-line statement.
+     */
+    private static boolean isSingleLineSwitchMember(DetailAST statement) {
+        final boolean result;
+        if (isInSwitchRule(statement)) {
+            result = isSingleLineSwitchRule(statement);
+        }
+        else {
+            result = isSingleLineCaseGroup(statement);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if switch member in case group (case or default statement)
+     * is single-line statement, e.g.:
+     * <p>
+     * {@code
+     * case 1: System.out.println("case one"); break;
+     * case 2: System.out.println("case two"); break;
+     * case 3: ;
+     * default: System.out.println("default"); break;
+     * }
+     * </p>
+     *
      *
      * @param ast {@link TokenTypes#LITERAL_CASE case statement} or
      * {@link TokenTypes#LITERAL_DEFAULT default statement}.
      * @return true if current switch member is single-line statement.
      */
-    private static boolean isSingleLineSwitchMember(DetailAST ast) {
+    private static boolean isSingleLineCaseGroup(DetailAST ast) {
         return Optional.of(ast)
-                .map(DetailAST::getNextSibling)
-                .map(DetailAST::getLastChild)
-                .map(lastToken -> TokenUtil.areOnSameLine(ast, lastToken))
-                .orElse(true);
+            .map(DetailAST::getNextSibling)
+            .map(DetailAST::getLastChild)
+            .map(lastToken -> TokenUtil.areOnSameLine(ast, lastToken))
+            .orElse(true);
+    }
+
+    /**
+     * Checks if switch member in switch rule (case or default statement) is
+     * single-line statement, e.g.:
+     * <p>
+     * {@code
+     * case 1 -> System.out.println("case one");
+     * case 2 -> System.out.println("case two");
+     * default -> System.out.println("default");
+     * }
+     * </p>
+     *
+     * @param ast {@link TokenTypes#LITERAL_CASE case statement} or
+     *            {@link TokenTypes#LITERAL_DEFAULT default statement}.
+     * @return true if current switch label is single-line statement.
+     */
+    private static boolean isSingleLineSwitchRule(DetailAST ast) {
+        final DetailAST lastSibling = ast.getParent().getLastChild();
+        return TokenUtil.areOnSameLine(ast, lastSibling);
     }
 
     /**
