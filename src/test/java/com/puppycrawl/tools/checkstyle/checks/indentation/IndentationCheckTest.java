@@ -2084,6 +2084,40 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig, getPath(fileName), expected);
     }
 
+    @Test
+    public void testIndentationSwitchExpression() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "17:1: " + getCheckMessage(MSG_CHILD_ERROR, "case", 0, 12),
+            "18:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 16),
+            "21:25: " + getCheckMessage(MSG_CHILD_ERROR, "case", 24, 12),
+            "22:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 16),
+            "27:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 20),
+            "29:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
+            "34:5: " + getCheckMessage(MSG_CHILD_ERROR, "block", 4, 20),
+            "44:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
+            "46:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 12),
+            "47:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
+            "51:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 20),
+            "56:33: " + getCheckMessage(MSG_CHILD_ERROR, "block", 32, 20),
+        };
+
+        verifyWarns(checkConfig,
+                getNonCompilablePath("InputIndentationCheckSwitchExpression.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationSwitchExpressionCorrect() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationCheckSwitchExpressionCorrect.java"),
+            expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
