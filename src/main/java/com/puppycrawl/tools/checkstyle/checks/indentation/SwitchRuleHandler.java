@@ -34,7 +34,7 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
         TokenTypes.LITERAL_CASE,
         TokenTypes.LITERAL_DEFAULT,
         TokenTypes.LAMBDA,
-        };
+    };
 
     /**
      * Construct an instance of this handler with the given indentation check,
