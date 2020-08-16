@@ -103,9 +103,9 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST firstCaseGroupAst = ast.findFirstToken(TokenTypes.CASE_GROUP);
+        final DetailAST firstSwitchMemberAst = findFirstSwitchMember(ast);
 
-        if (!containsDefaultSwitch(firstCaseGroupAst)) {
+        if (!containsDefaultSwitch(firstSwitchMemberAst)) {
             log(ast, MSG_KEY);
         }
     }
@@ -130,6 +130,20 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
         }
 
         return found;
+    }
+
+    /**
+     * Returns first CASE_GROUP or SWITCH_RULE ast.
+     *
+     * @param parent the switch statement we are checking
+     * @return ast of first switch member.
+     */
+    private static DetailAST findFirstSwitchMember(DetailAST parent) {
+        DetailAST switchMember = parent.findFirstToken(TokenTypes.CASE_GROUP);
+        if (switchMember == null) {
+            switchMember = parent.findFirstToken(TokenTypes.SWITCH_RULE);
+        }
+        return switchMember;
     }
 
 }
