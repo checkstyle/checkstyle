@@ -282,4 +282,18 @@ public class FinalLocalVariableCheckTest
         verify(checkConfig, getPath("InputFinalLocalVariableReceiverParameter.java"), expected);
     }
 
+    @Test
+    public void testFinalLocalVariableSwitchExpressions() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "12:19: " + getCheckMessage(MSG_KEY, "e"),
+            "50:19: " + getCheckMessage(MSG_KEY, "e"),
+            "88:19: " + getCheckMessage(MSG_KEY, "e"),
+            "122:19: " + getCheckMessage(MSG_KEY, "e"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+            expected);
+    }
+
 }
