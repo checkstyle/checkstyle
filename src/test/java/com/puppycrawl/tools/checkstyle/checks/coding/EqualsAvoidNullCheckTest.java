@@ -230,6 +230,23 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEqualsAvoidNullTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(EqualsAvoidNullCheck.class);
+
+        final String[] expected = {
+            "10:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "12:28: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "19:25: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),
+            "29:39: " + getCheckMessage(MSG_EQUALS_IGNORE_CASE_AVOID_NULL),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputEqualsAvoidNullTextBlocks.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final EqualsAvoidNullCheck check = new EqualsAvoidNullCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
