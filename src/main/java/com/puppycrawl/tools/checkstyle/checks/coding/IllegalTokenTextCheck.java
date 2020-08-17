@@ -92,6 +92,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to forbid string literal text blocks containing {@code """}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalTokenText&quot;&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;TEXT_BLOCK_CONTENT&quot;/&gt;
+ *   &lt;property name=&quot;format&quot; value='&quot;'/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public void myTest() {
+ *     final String quote = """
+ *                \""""; // violation
+ * }
+ * </pre>
+ * <p>
  * To configure the check to forbid leading zeros in an integer literal,
  * other than zero and a hex literal:
  * </p>
@@ -168,6 +184,7 @@ public class IllegalTokenTextCheck
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
         };
     }
 
