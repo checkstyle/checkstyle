@@ -161,6 +161,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         final int[] expected = {
             TokenTypes.STRING_LITERAL,
             TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
         };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Required tokens differ from expected");
@@ -341,10 +342,56 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testAvoidEscapedUnicodeCharactersTextBlocksAllowByComment() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+        checkConfig.addAttribute("allowByTailComment", "true");
+        final String[] expected = {
+            "15:30: " + getCheckMessage(MSG_KEY),
+            "17:30: " + getCheckMessage(MSG_KEY),
+            "19:30: " + getCheckMessage(MSG_KEY),
+            "22:39: " + getCheckMessage(MSG_KEY),
+            "27:33: " + getCheckMessage(MSG_KEY),
+            "30:33: " + getCheckMessage(MSG_KEY),
+            "33:33: " + getCheckMessage(MSG_KEY),
+            "38:42: " + getCheckMessage(MSG_KEY),
+
+            };
+        verify(checkConfig,
+            getNonCompilablePath(
+                "InputAvoidEscapedUnicodeCharactersTextBlocksAllowByComment.java"),
+            expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+        final String[] expected = {
+            "14:30: " + getCheckMessage(MSG_KEY),
+            "15:30: " + getCheckMessage(MSG_KEY),
+            "16:30: " + getCheckMessage(MSG_KEY),
+            "17:39: " + getCheckMessage(MSG_KEY),
+            "21:33: " + getCheckMessage(MSG_KEY),
+            "23:33: " + getCheckMessage(MSG_KEY),
+            "25:33: " + getCheckMessage(MSG_KEY),
+            "27:42: " + getCheckMessage(MSG_KEY),
+
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputAvoidEscapedUnicodeCharactersTextBlocks.java"),
+            expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
-        final int[] expected = {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL };
+        final int[] expected = {
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
+        };
         assertArrayEquals(expected, actual, "Acceptable tokens differ from expected");
     }
 
