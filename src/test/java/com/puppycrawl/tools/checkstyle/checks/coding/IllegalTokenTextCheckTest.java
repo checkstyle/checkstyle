@@ -104,6 +104,44 @@ public class IllegalTokenTextCheckTest
     }
 
     @Test
+    public void testIllegalTokenTextTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IllegalTokenTextCheck.class);
+        checkConfig.addAttribute("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
+        checkConfig.addAttribute("format", "a href");
+
+        final String[] expected = {
+            "13:28: " + getCheckMessage(MSG_KEY, "a href"),
+            "16:32: " + getCheckMessage(MSG_KEY, "a href"),
+            "28:37: " + getCheckMessage(MSG_KEY, "a href"),
+            "33:37: " + getCheckMessage(MSG_KEY, "a href"),
+            "39:54: " + getCheckMessage(MSG_KEY, "a href"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputIllegalTokenTextTextBlocks.java"), expected);
+    }
+
+    @Test
+    public void testIllegalTokenTextTextBlocksQuotes() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IllegalTokenTextCheck.class);
+        checkConfig.addAttribute("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
+        checkConfig.addAttribute("format", "\"");
+
+        final String[] expected = {
+            "13:28: " + getCheckMessage(MSG_KEY, "\""),
+            "14:33: " + getCheckMessage(MSG_KEY, "\""),
+            "16:32: " + getCheckMessage(MSG_KEY, "\""),
+            "18:36: " + getCheckMessage(MSG_KEY, "\""),
+            "28:37: " + getCheckMessage(MSG_KEY, "\""),
+            "33:37: " + getCheckMessage(MSG_KEY, "\""),
+            "39:42: " + getCheckMessage(MSG_KEY, "\""),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputIllegalTokenTextTextBlocksQuotes.java"), expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalTokenTextCheck check = new IllegalTokenTextCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
@@ -157,7 +195,8 @@ public class IllegalTokenTextCheckTest
             TokenTypes.IDENT,
             TokenTypes.COMMENT_CONTENT,
             TokenTypes.STRING_LITERAL,
-            TokenTypes.CHAR_LITERAL
+            TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT
         );
         for (int tokenType : allowedTokens) {
             assertTrue(tokenTypesWithMutableText.contains(tokenType),
