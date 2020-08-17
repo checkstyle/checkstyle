@@ -2546,6 +2546,8 @@ public native void myTest(); // violation
                 STRING_LITERAL</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CHAR_LITERAL">
                 CHAR_LITERAL</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_CONTENT">
+                TEXT_BLOCK_CONTENT</a>
                 .
               </td>
               <td>empty</td>
@@ -2589,6 +2591,23 @@ public void myTest() {
 public void myTest() {
     String test = "a href"; // violation
     String test2 = "A href"; // violation, case is ignored
+}
+        </source>
+        <p>
+          To configure the check to forbid string literal text blocks containing
+          <code>&quot;&quot;&quot;</code>:
+        </p>
+        <source>
+&lt;module name=&quot;IllegalTokenText&quot;&gt;
+    &lt;property name=&quot;tokens&quot; value=&quot;TEXT_BLOCK_CONTENT&quot;/&gt;
+    &lt;property name=&quot;format&quot; value=&apos;&quot;&apos;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public void myTest() {
+    final String quote = """
+               \""""; // violation
 }
         </source>
         <p>
