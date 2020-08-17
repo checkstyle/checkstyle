@@ -48,6 +48,21 @@ public class StringLiteralEqualityCheckTest
     }
 
     @Test
+    public void testStringLiteralEqualityTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(StringLiteralEqualityCheck.class);
+        final String[] expected = {
+            "12:34: " + getCheckMessage(MSG_KEY, "=="),
+            "20:21: " + getCheckMessage(MSG_KEY, "=="),
+            "23:24: " + getCheckMessage(MSG_KEY, "!="),
+            "26:34: " + getCheckMessage(MSG_KEY, "=="),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputStringLiteralEqualityCheckTextBlocks.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final StringLiteralEqualityCheck check = new StringLiteralEqualityCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");

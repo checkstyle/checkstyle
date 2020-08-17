@@ -111,12 +111,11 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        // no need to check for nulls here, == and != always have two children
-        final DetailAST firstChild = ast.getFirstChild();
-        final DetailAST secondChild = firstChild.getNextSibling();
+        final boolean hasStringLiteralChild =
+            ast.findFirstToken(TokenTypes.STRING_LITERAL) != null
+                || ast.findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) != null;
 
-        if (firstChild.getType() == TokenTypes.STRING_LITERAL
-                || secondChild.getType() == TokenTypes.STRING_LITERAL) {
+        if (hasStringLiteralChild) {
             log(ast, MSG_KEY, ast.getText());
         }
     }
