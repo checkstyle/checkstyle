@@ -378,12 +378,14 @@ public class EqualsAvoidNullCheck extends AbstractCheck {
             while (child != null
                     && !argIsNotNull) {
                 argIsNotNull = child.getType() == TokenTypes.STRING_LITERAL
+                        || child.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN
                         || child.getType() == TokenTypes.IDENT;
                 child = child.getNextSibling();
             }
         }
         else {
-            argIsNotNull = arg.getType() == TokenTypes.STRING_LITERAL;
+            argIsNotNull = arg.getType() == TokenTypes.STRING_LITERAL
+                    || arg.getType() == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN;
         }
 
         return argIsNotNull;
