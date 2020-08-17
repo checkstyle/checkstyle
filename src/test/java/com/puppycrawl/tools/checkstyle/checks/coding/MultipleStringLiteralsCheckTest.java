@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
 import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY;
+import static com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck.MSG_KEY_TEXT_BLOCK;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.io.File;
@@ -165,6 +166,40 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         createChecker(checkConfig);
         verify(checkConfig,
             getPath("InputMultipleStringLiterals.java"),
+            expected);
+    }
+
+    @Test
+    public void testMultiplestringLiteralsTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MultipleStringLiteralsCheck.class);
+        checkConfig.addAttribute("ignoreStringsRegexp", null);
+        checkConfig.addAttribute("ignoreOccurrenceContext", "ANNOTATION");
+
+        final String[] expected = {
+            "11:22: " + getCheckMessage(MSG_KEY, "\"string\"", 2),
+            "14:25: " + getCheckMessage(MSG_KEY_TEXT_BLOCK, "\\n    "
+                + "        other string", 2),
+            "18:25: " + getCheckMessage(MSG_KEY_TEXT_BLOCK, "\\n    "
+                + "        other string\\n            ", 2),
+            "25:25: " + getCheckMessage(MSG_KEY_TEXT_BLOCK, "\\n    "
+                + "        <html>\\u000D\\u000A\\n\\n                <body>"
+                + "\\u000D\\u000A\\n\\n                    <p>Hello, world<"
+                + "/p>\\u000D\\u000A\\n\\n                </body>\\u000D\\u"
+                + "000A\\n\\n            </html>\\u000D\\u000A\\n            ", 2),
+            "32:34: " + getCheckMessage(MSG_KEY_TEXT_BLOCK, "\\n     "
+                + "       fun with\\n\\n            whitespace\\t\\r\\n   "
+                + "         and other escapes \\\"\"\"\\n            ", 2),
+            "37:34: " + getCheckMessage(MSG_KEY_TEXT_BLOCK, "\\n     "
+                + "       \\b \\f \\\\ \\0 \\1 \\2 \\r \\r\\n \\\\r\\\\n \\"
+                + "\\''\\n            \\\\11 \\\\57 \\n\\\\n\\n\\\\\\n\\n \\"
+                + "\\ \"\"a \"a\\n            \\\\uffff \\\\' \\\\\\' \\'\\n "
+                + "           ", 2),
+            };
+
+        createChecker(checkConfig);
+        verify(checkConfig,
+            getNonCompilablePath("InputMultipleStringLiteralsTextBlocks.java"),
             expected);
     }
 
