@@ -103,6 +103,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * {@code multiple.string.literal}
  * </li>
+ * <li>
+ * {@code multiple.string.literal.text.block}
+ * </li>
  * </ul>
  *
  * @since 3.5
@@ -115,6 +118,17 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
      * file.
      */
     public static final String MSG_KEY = "multiple.string.literal";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties"
+     * file.
+     */
+    public static final String MSG_KEY_TEXT_BLOCK = "multiple.string.literal.text.block";
+
+    /**
+     * Compiled pattern used to match newline control characters, for replacement.
+     */
+    private static final Pattern NEWLINE = Pattern.compile("\n");
 
     /**
      * The found strings and their tokens.
@@ -198,7 +212,10 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL};
+        return new int[] {
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
+        };
     }
 
     @Override
@@ -244,7 +261,18 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
             final List<DetailAST> hits = stringListEntry.getValue();
             if (hits.size() > allowedDuplicates) {
                 final DetailAST firstFinding = hits.get(0);
-                log(firstFinding, MSG_KEY, stringListEntry.getKey(), hits.size());
+                if (firstFinding.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+                    // We want to strip away real line endings so that error messages adhere to the
+                    // one-line checkstyle error message standard, and to reflect the representation
+                    // of text block content in the printed ast.
+                    log(firstFinding, MSG_KEY_TEXT_BLOCK,
+                        NEWLINE.matcher(
+                            stringListEntry.getKey()).replaceAll("\\\\n"), hits.size());
+                }
+                else {
+                    log(firstFinding, MSG_KEY, stringListEntry.getKey(), hits.size());
+
+                }
             }
         }
     }
