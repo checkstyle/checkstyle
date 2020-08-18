@@ -499,21 +499,16 @@ public final class CheckUtil {
      * @return string consistent with javac representation.
      */
     public static String stripIndentAndInitialNewLineFromTextBlock(String textBlockContent) {
-        final String contentWithInitialnewlineRemoved =
+        final String contentWithInitialNewLineRemoved =
             ALL_NEW_LINES.matcher(textBlockContent).replaceFirst("");
-        String returnString = "";
-        if (!contentWithInitialnewlineRemoved.isEmpty()) {
-            final List<String> lines =
-                Arrays.asList(ALL_NEW_LINES.split(contentWithInitialnewlineRemoved));
+        final List<String> lines =
+            Arrays.asList(ALL_NEW_LINES.split(contentWithInitialNewLineRemoved));
+        final int indent = getSmallestIndent(lines);
+        final String suffix = "";
 
-            final int indent = getSmallestIndent(lines);
-            final String suffix = "";
-
-            returnString = lines.stream()
+        return lines.stream()
                 .map(line -> stripIndentFromLine(line, indent))
                 .collect(Collectors.joining(System.lineSeparator(), "", suffix));
-        }
-        return returnString;
     }
 
     /**
@@ -524,7 +519,7 @@ public final class CheckUtil {
      * @param indent the amount of indent to remove
      * @return modified string with removed indent, or empty string.
      */
-    public static String stripIndentFromLine(String line, int indent) {
+    private static String stripIndentFromLine(String line, int indent) {
         final int firstNonWhitespace = indexOfNonWhitespace(line);
         final int lastNonWhitespace = line.length();
         final int incidentalWhitespace = Math.min(indent, firstNonWhitespace);
@@ -556,15 +551,15 @@ public final class CheckUtil {
      * @param line the string to find the first index of a non-whitespace character for.
      * @return the index of the first non-whitespace character.
      */
-    public static int indexOfNonWhitespace(String line) {
+    private static int indexOfNonWhitespace(String line) {
         final int length = line.length();
         int left = 0;
         while (left < length) {
-            final int codepoint = line.codePointAt(left);
-            if (!Character.isWhitespace(codepoint)) {
+            final int codePointAt = line.codePointAt(left);
+            if (!Character.isWhitespace(codePointAt)) {
                 break;
             }
-            left += Character.charCount(codepoint);
+            left += Character.charCount(codePointAt);
         }
         return left;
     }
