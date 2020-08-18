@@ -6089,6 +6089,8 @@ class C {
                   STAR_ASSIGN</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
+                TEXT_BLOCK_LITERAL_BEGIN</a>
                   .
               </td>
               <td>
@@ -6138,6 +6140,8 @@ class C {
                   STAR_ASSIGN</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
+                  TEXT_BLOCK_LITERAL_BEGIN</a>
                   .
               </td>
               <td>3.4</td>
