@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -66,6 +68,9 @@ public final class CheckUtil {
 
     /** Pattern matching names of getter methods. */
     private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
+
+    /** Compiled pattern for all system newlines. */
+    private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
 
     /** Prevent instances. */
     private CheckUtil() {
@@ -484,4 +489,83 @@ public final class CheckUtil {
         return illegalClassNames;
     }
 
+    /**
+     * Strip initial newline and preceding whitespace on each line from text block content.
+     * In order to be consistent with how javac handles this task, we have modeled this
+     * implementation after the code from:
+     * github.com/openjdk/jdk14u/blob/master/src/java.base/share/classes/java/lang/String.java
+     *
+     * @param textBlockContent the actual content of the text block.
+     * @return string consistent with javac representation.
+     */
+    public static String stripIndentAndInitialNewLineFromTextBlock(String textBlockContent) {
+        final String contentWithInitialnewlineRemoved =
+            ALL_NEW_LINES.matcher(textBlockContent).replaceFirst("");
+        String returnString = "";
+        if (!contentWithInitialnewlineRemoved.isEmpty()) {
+            final List<String> lines =
+                Arrays.asList(ALL_NEW_LINES.split(contentWithInitialnewlineRemoved));
+
+            final int indent = getSmallestIndent(lines);
+            final String suffix = "";
+
+            returnString = lines.stream()
+                .map(line -> stripIndentFromLine(line, indent))
+                .collect(Collectors.joining(System.lineSeparator(), "", suffix));
+        }
+        return returnString;
+    }
+
+    /**
+     * Helper method for stripIndentAndInitialNewLineFromTextBlock, strips correct indent
+     * from string, or returns empty string if no text.
+     *
+     * @param line the string to strip indent from
+     * @param indent the amount of indent to remove
+     * @return modified string with removed indent, or empty string.
+     */
+    public static String stripIndentFromLine(String line, int indent) {
+        final int firstNonWhitespace = indexOfNonWhitespace(line);
+        final int lastNonWhitespace = line.length();
+        final int incidentalWhitespace = Math.min(indent, firstNonWhitespace);
+
+        return line.substring(incidentalWhitespace, lastNonWhitespace);
+    }
+
+    /**
+     * Helper method for stripIndentAndInitialNewLineFromTextBlock, to determine the smallest
+     * indent in a text block string literal.
+     *
+     * @param lines list of actual text block content, split by line.
+     * @return number of spaces representing the smallest indent in this text block.
+     */
+    private static int getSmallestIndent(List<String> lines) {
+        int indent = Integer.MAX_VALUE;
+        for (String line : lines) {
+            final int leadingWhitespace = indexOfNonWhitespace(line);
+            if (leadingWhitespace != line.length()) {
+                indent = Integer.min(indent, leadingWhitespace);
+            }
+        }
+        return indent;
+    }
+
+    /**
+     * Helper method to find the index of the first non-whitespace character in a string.
+     *
+     * @param line the string to find the first index of a non-whitespace character for.
+     * @return the index of the first non-whitespace character.
+     */
+    public static int indexOfNonWhitespace(String line) {
+        final int length = line.length();
+        int left = 0;
+        while (left < length) {
+            final int codepoint = line.codePointAt(left);
+            if (!Character.isWhitespace(codepoint)) {
+                break;
+            }
+            left += Character.charCount(codepoint);
+        }
+        return left;
+    }
 }
