@@ -99,6 +99,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s"
+ * String textBlockUnitAbbrev = """
+ *          &#92;u03bcs"""; // Greek letter mu, "s"
  * </pre>
  * <p>An example of how to configure the check to allow using escapes
  * if trail comment is present:
@@ -327,7 +329,11 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL};
+        return new int[] {
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.CHAR_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
+        };
     }
 
     @Override
@@ -384,8 +390,14 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @return true if trail comment is present after ast token.
      */
     private boolean hasTrailComment(DetailAST ast) {
+        int lineNo = ast.getLineNo();
+
+        // Since the trailing comment in the case of text blocks must follow the """ delimiter,
+        // we need to look for it after TEXT_BLOCK_LITERAL_END.
+        if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+            lineNo = ast.getNextSibling().getLineNo();
+        }
         boolean result = false;
-        final int lineNo = ast.getLineNo();
         if (singlelineComments.containsKey(lineNo)) {
             result = true;
         }

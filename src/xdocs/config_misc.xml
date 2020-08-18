@@ -250,6 +250,8 @@ return '\ufeff' + content; // byte order mark
         </p>
         <source>
 String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
+String textBlockUnitAbbrev = """
+          &#92;u03bcs"""; // Greek letter mu, "s"
         </source>
         <p>
           An example of how to configure the check to allow using escapes
