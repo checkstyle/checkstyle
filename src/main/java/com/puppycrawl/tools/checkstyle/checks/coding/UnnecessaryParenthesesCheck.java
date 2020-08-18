@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.coding;
 
+import java.util.regex.Pattern;
+
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -100,7 +102,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STAR_ASSIGN">
  * STAR_ASSIGN</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
- * LAMBDA</a>.
+ * LAMBDA</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
+ * TEXT_BLOCK_LITERAL_BEGIN</a>.
  * </li>
  * </ul>
  * <p>
@@ -205,6 +209,16 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     public static final String MSG_LAMBDA = "unnecessary.paren.lambda";
 
+    /**
+     * Compiled pattern used to match newline control characters, for replacement.
+     */
+    private static final Pattern NEWLINE = Pattern.compile("\\R");
+
+    /**
+     * String used to amend TEXT_BLOCK_CONTENT so that it matches STRING_LITERAL.
+     */
+    private static final String QUOTE = "\"";
+
     /** The maximum string length before we chop the string. */
     private static final int MAX_QUOTED_LENGTH = 25;
 
@@ -218,6 +232,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.LITERAL_NULL,
         TokenTypes.LITERAL_FALSE,
         TokenTypes.LITERAL_TRUE,
+        TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
     };
 
     /** Token types for assignment operations. */
@@ -270,6 +285,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.SR_ASSIGN,
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
+            TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
         };
     }
 
@@ -299,6 +315,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.SR_ASSIGN,
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
+            TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
         };
     }
 
@@ -331,6 +348,15 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 if (type == TokenTypes.STRING_LITERAL) {
                     log(ast, MSG_STRING,
                         chopString(ast.getText()));
+                }
+                else if (type == TokenTypes.TEXT_BLOCK_LITERAL_BEGIN) {
+                    // Strip newline control characters to keep message as single line, add
+                    // quotes to make string consistent with STRING_LITERAL
+                    final String logString = QUOTE
+                        + NEWLINE.matcher(
+                            ast.getFirstChild().getText()).replaceAll("\\\\n")
+                        + QUOTE;
+                    log(ast, MSG_STRING, chopString(logString));
                 }
                 else {
                     log(ast, MSG_LITERAL, ast.getText());
