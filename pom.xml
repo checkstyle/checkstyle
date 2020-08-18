@@ -3115,6 +3115,9 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest
                 </param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
+                </param>
               </targetTests>
               <excludedTestClasses>
                 <param>*.Input*</param>

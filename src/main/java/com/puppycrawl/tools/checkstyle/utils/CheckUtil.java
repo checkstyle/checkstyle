@@ -20,10 +20,12 @@
 package com.puppycrawl.tools.checkstyle.utils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
@@ -66,6 +68,9 @@ public final class CheckUtil {
 
     /** Pattern matching names of getter methods. */
     private static final Pattern GETTER_PATTERN = Pattern.compile("^(is|get)[A-Z].*");
+
+    /** Compiled pattern for all system newlines. */
+    private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
 
     /** Prevent instances. */
     private CheckUtil() {
@@ -484,4 +489,72 @@ public final class CheckUtil {
         return illegalClassNames;
     }
 
+    /**
+     * Strip initial newline and preceding whitespace on each line from text block content.
+     * In order to be consistent with how javac handles this task, we have modeled this
+     * implementation after the code from:
+     * github.com/openjdk/jdk14u/blob/master/src/java.base/share/classes/java/lang/String.java
+     *
+     * @param textBlockContent the actual content of the text block.
+     * @return string consistent with javac representation.
+     */
+    public static String stripIndentAndInitialNewLineFromTextBlock(String textBlockContent) {
+        final String contentWithInitialNewLineRemoved =
+            ALL_NEW_LINES.matcher(textBlockContent).replaceFirst("");
+        final List<String> lines =
+            Arrays.asList(ALL_NEW_LINES.split(contentWithInitialNewLineRemoved));
+        final int indent = getSmallestIndent(lines);
+        final String suffix = "";
+
+        return lines.stream()
+                .map(line -> stripIndentAndTrailingWhitespaceFromLine(line, indent))
+                .collect(Collectors.joining(System.lineSeparator(), suffix, suffix));
+    }
+
+    /**
+     * Helper method for stripIndentAndInitialNewLineFromTextBlock, strips correct indent
+     * from string, and trailing whitespace, or returns empty string if no text.
+     *
+     * @param line the string to strip indent and trailing whitespace from
+     * @param indent the amount of indent to remove
+     * @return modified string with removed indent and trailing whitespace, or empty string.
+     */
+    private static String stripIndentAndTrailingWhitespaceFromLine(String line, int indent) {
+        final int lastNonWhitespace = lastIndexOfNonWhitespace(line);
+        String returnString = "";
+        if (lastNonWhitespace > 0) {
+            returnString = line.substring(indent, lastNonWhitespace);
+        }
+        return returnString;
+    }
+
+    /**
+     * Helper method for stripIndentAndInitialNewLineFromTextBlock, to determine the smallest
+     * indent in a text block string literal.
+     *
+     * @param lines list of actual text block content, split by line.
+     * @return number of spaces representing the smallest indent in this text block.
+     */
+    private static int getSmallestIndent(List<String> lines) {
+        return lines.stream()
+            .mapToInt(CommonUtil::indexOfNonWhitespace)
+            .min()
+            .orElse(0);
+    }
+
+    /**
+     * Helper method to find the index of the last non-whitespace character in a string.
+     *
+     * @param line the string to find the last index of a non-whitespace character for.
+     * @return the index of the last non-whitespace character.
+     */
+    private static int lastIndexOfNonWhitespace(String line) {
+        int length;
+        for (length = line.length(); length > 0; length--) {
+            if (!Character.isWhitespace(line.charAt(length - 1))) {
+                break;
+            }
+        }
+        return length;
+    }
 }
