@@ -507,7 +507,7 @@ public final class CheckUtil {
         final String suffix = "";
 
         return lines.stream()
-                .map(line -> stripIndentAndOutdentFromLine(line, indent))
+                .map(line -> stripIndentAndTrailingWhitespaceFromLine(line, indent))
                 .collect(Collectors.joining(System.lineSeparator(), "", suffix));
     }
 
@@ -515,11 +515,11 @@ public final class CheckUtil {
      * Helper method for stripIndentAndInitialNewLineFromTextBlock, strips correct indent
      * from string, and trailing whitespace, or returns empty string if no text.
      *
-     * @param line the string to strip indent and outdent from
+     * @param line the string to strip indent and trailing whitespace from
      * @param indent the amount of indent to remove
-     * @return modified string with removed indent and outdent, or empty string.
+     * @return modified string with removed indent and trailing whitespace, or empty string.
      */
-    private static String stripIndentAndOutdentFromLine(String line, int indent) {
+    private static String stripIndentAndTrailingWhitespaceFromLine(String line, int indent) {
         final int lastNonWhitespace = lastIndexOfNonWhitespace(line);
         String returnString = "";
 
