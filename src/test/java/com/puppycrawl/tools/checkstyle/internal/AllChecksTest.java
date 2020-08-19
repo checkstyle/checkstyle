@@ -46,6 +46,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.ModuleFactory;
@@ -79,6 +80,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
             new HashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
             new HashMap<>();
+    private static final Set<String> INTERNAL_MODULES;
 
     static {
         // checkstyle
@@ -251,6 +253,12 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 // whitespace is necessary between a type annotation and ellipsis
                 // according '4.6.2 Horizontal whitespace point 9'
                 "ELLIPSIS").collect(Collectors.toSet()));
+        INTERNAL_MODULES = Definitions.INTERNAL_MODULES.stream()
+                .map(moduleName -> {
+                    final String[] packageTokens = moduleName.split("\\.");
+                    return packageTokens[packageTokens.length - 1];
+                })
+                .collect(Collectors.toSet());
     }
 
     @Override
@@ -359,6 +367,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
+        moduleNames.removeAll(INTERNAL_MODULES);
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
@@ -472,7 +481,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // these are documented on non-'config_' pages
         checkstyleModulesNames.remove("TreeWalker");
         checkstyleModulesNames.remove("Checker");
-
+        // temporarily hosted in test folder
+        checkstyleModulesNames.removeAll(INTERNAL_MODULES);
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
             .forEach(moduleName -> {
@@ -487,7 +497,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
-
+        moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
             assertTrue(configChecks.contains(moduleName),
                     "checkstyle_checks.xml is missing module: " + moduleName);
@@ -526,7 +536,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     message.setAccessible(true);
                 }
 
-                verifyCheckstyleMessage(usedMessages, module, message);
+                if (!INTERNAL_MODULES.contains(module.getSimpleName())) {
+                    verifyCheckstyleMessage(usedMessages, module, message);
+                }
             }
         }
 

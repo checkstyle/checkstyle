@@ -343,7 +343,10 @@ public class PackageObjectFactoryTest {
         final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
 
         final Optional<Class<?>> optional1 = classes.stream()
-                .filter(clazz -> !canonicalNames.contains(clazz.getCanonicalName())).findFirst();
+                .filter(clazz -> {
+                    return !canonicalNames.contains(clazz.getCanonicalName())
+                            && !Definitions.INTERNAL_MODULES.contains(clazz.getName());
+                }).findFirst();
         if (optional1.isPresent()) {
             fail("Invalid canonical name: " + optional1.get());
         }

@@ -108,4 +108,6 @@
   <suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
+  <suppress checks="ThrowsCount" files="[\\/]XmlMetaReader.java$"/>
+
 </suppressions>
