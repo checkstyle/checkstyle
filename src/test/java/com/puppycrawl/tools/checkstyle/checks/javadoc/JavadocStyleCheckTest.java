@@ -61,6 +61,8 @@ public class JavadocStyleCheckTest
             TokenTypes.METHOD_DEF,
             TokenTypes.PACKAGE_DEF,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -416,6 +418,34 @@ public class JavadocStyleCheckTest
             "418: " + getCheckMessage(MSG_NO_PERIOD),
         };
         verify(checkConfig, getPath("InputJavadocStyle.java"), expected);
+    }
+
+    @Test
+    public void testJavadocStyleRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocStyleCheck.class);
+        final String[] expected = {
+
+            "19: " + getCheckMessage(MSG_NO_PERIOD),
+            "39: " + getCheckMessage(MSG_NO_PERIOD),
+            "49:16: " + getCheckMessage(MSG_UNCLOSED_HTML,
+                "<b>This guy is missing end of bold tag // violation"),
+            "52:12: " + getCheckMessage(MSG_EXTRA_HTML, "</td>Extra tag "
+                + "shouldn't be here // violation"),
+            "53:54: " + getCheckMessage(MSG_EXTRA_HTML, "</style> // violation"),
+            "55:24: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code>dummy. // violation"),
+            "67: " + getCheckMessage(MSG_NO_PERIOD),
+            "69:36: " + getCheckMessage(MSG_EXTRA_HTML, "</code> // violation and"
+                + " line below, too"),
+            "70: " + getCheckMessage(MSG_INCOMPLETE_TAG, "         * should fail <"),
+            "85:37: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
+            "92: " + getCheckMessage(MSG_NO_PERIOD),
+            "100: " + getCheckMessage(MSG_NO_PERIOD),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputJavadocStyleRecordsAndCompactCtors.java"),
+            expected);
     }
 
     @Test
