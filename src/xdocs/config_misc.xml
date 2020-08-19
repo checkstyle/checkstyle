@@ -632,7 +632,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
               <td>maximumDepth</td>
               <td>Specify the maximum depth for descendant counts.</td>
               <td><a href="property_types.html#int">int</a></td>
-              <td><code>java.lang.Integer.MAX_VALUE</code></td>
+              <td><code>2147483647</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -646,7 +646,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
               <td>maximumNumber</td>
               <td>Specify a maximum count for descendants.</td>
               <td><a href="property_types.html#int">int</a></td>
-              <td><code>java.lang.Integer.MAX_VALUE</code></td>
+              <td><code>2147483647</code></td>
               <td>3.2</td>
             </tr>
             <tr>
@@ -2337,7 +2337,7 @@ messages_home_fr_CA_UNIX.properties
               <td>Specify pattern for qualified names of classes which are allowed
               to have a <code>main</code> method.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$" (empty)</code></td>
+              <td><code>"^$"</code></td>
               <td>3.2</td>
             </tr>
           </table>

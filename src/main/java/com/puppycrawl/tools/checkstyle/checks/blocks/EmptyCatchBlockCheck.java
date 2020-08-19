@@ -42,7 +42,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * associated with exception. If check meets variable name matching specified value - empty
  * block is suppressed.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$" (empty)}.
+ * Default value is {@code "^$"}.
  * </li>
  * <li>
  * Property {@code commentFormat} - Specify the RegExp for the first comment inside empty
