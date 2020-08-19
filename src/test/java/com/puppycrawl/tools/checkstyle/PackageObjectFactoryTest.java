@@ -59,6 +59,11 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
  */
 public class PackageObjectFactoryTest {
 
+    private static final Set<String> INTERNAL_MODULES = Collections.unmodifiableSet(
+            new HashSet<>(Collections.singletonList(
+            "com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper"
+    )));
+
     private final PackageObjectFactory factory = new PackageObjectFactory(
             BASE_PACKAGE, Thread.currentThread().getContextClassLoader());
 
@@ -343,7 +348,10 @@ public class PackageObjectFactoryTest {
         final Collection<String> canonicalNames = ((Map<String, String>) field.get(null)).values();
 
         final Optional<Class<?>> optional1 = classes.stream()
-                .filter(clazz -> !canonicalNames.contains(clazz.getCanonicalName())).findFirst();
+                .filter(clazz -> {
+                    return !canonicalNames.contains(clazz.getCanonicalName())
+                            && !INTERNAL_MODULES.contains(clazz.getName());
+                }).findFirst();
         if (optional1.isPresent()) {
             fail("Invalid canonical name: " + optional1.get());
         }
