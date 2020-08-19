@@ -187,6 +187,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_NEW,
             TokenTypes.LITERAL_THROWS,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertNotNull(actual, "Acceptable tokens should not be null");
         assertArrayEquals(expected, actual, "Invalid acceptable tokens");
@@ -286,6 +287,19 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig,
                 getPath("InputClassFanOutComplexityAnnotations.java"), expected);
+    }
+
+    @Test
+    public void testClassFanOutComplexityRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ClassFanOutComplexityCheck.class);
+        checkConfig.addAttribute("max", "2");
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_KEY, 4, 2),
+            "46:1: " + getCheckMessage(MSG_KEY, 4, 2),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputClassFanOutComplexityRecords.java"), expected);
     }
 
     /**
