@@ -212,6 +212,7 @@ checkouting
 checkstyle
 checkstyleanttask
 checkstylecompilation
+checkstylemeta
 checkutil
 chmod
 chr
@@ -452,6 +453,7 @@ fieldset
 filebasic
 filechooser
 filefilters
+filefilter
 filelength
 filepath
 fileset
@@ -570,6 +572,7 @@ HTMLJS
 htmlunit
 http
 hurz
+hyperlinks
 iae
 ibs
 ico
