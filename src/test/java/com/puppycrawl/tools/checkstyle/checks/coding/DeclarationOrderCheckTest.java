@@ -191,6 +191,21 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
+    public void testDeclarationOrderRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
+        final String[] expected = {
+            "17:9: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "20:9: " + getCheckMessage(MSG_STATIC),
+            "29:9: " + getCheckMessage(MSG_CONSTRUCTOR),
+            "32:9: " + getCheckMessage(MSG_STATIC),
+            "39:9: " + getCheckMessage(MSG_STATIC),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputDeclarationOrderRecordsAndCompactCtors.java"),
+            expected);
+    }
+
+    @Test
     public void testVariableAccess() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
