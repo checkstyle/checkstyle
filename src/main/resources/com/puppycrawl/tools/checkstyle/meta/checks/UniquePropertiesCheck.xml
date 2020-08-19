@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"
+             name="UniqueProperties"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Detects duplicated keys in properties files.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Multiple property keys usually appear after merge or rebase of
+ several branches. While there are no problems in runtime, there can be a confusion
+ due to having different values for the duplicated properties.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value=".properties"
+                      name="fileExtensions"
+                      type="java.lang.String[]">
+               <description>Specify file type extension of the files to check.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="properties.duplicate.property"/>
+            <message-key key="unable.open.cause"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

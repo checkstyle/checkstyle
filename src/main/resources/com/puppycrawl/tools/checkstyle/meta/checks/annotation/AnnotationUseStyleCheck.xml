@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck"
+             name="AnnotationUseStyle"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the style of elements in annotations.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Annotations have three element styles starting with the least verbose.
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ {@code ElementStyleOption.COMPACT_NO_ARRAY}
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code ElementStyleOption.COMPACT}
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code ElementStyleOption.EXPANDED}
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ To not enforce an element style a {@code ElementStyleOption.IGNORE} type is provided.
+ The desired style can be set through the {@code elementStyle} property.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Using the {@code ElementStyleOption.EXPANDED} style is more verbose.
+ The expanded version is sometimes referred to as "named parameters" in other languages.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Using the {@code ElementStyleOption.COMPACT} style is less verbose.
+ This style can only be used when there is an element called 'value' which is either
+ the sole element or all other elements have default values.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Using the {@code ElementStyleOption.COMPACT_NO_ARRAY} style is less verbose.
+ It is similar to the {@code ElementStyleOption.COMPACT} style but single value arrays are
+ flagged.
+ With annotations a single value array does not need to be placed in an array initializer.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The ending parenthesis are optional when using annotations with no elements.
+ To always require ending parenthesis use the {@code ClosingParensOption.ALWAYS} type.
+ To never have ending parenthesis use the {@code ClosingParensOption.NEVER} type.
+ To not enforce a closing parenthesis preference a {@code ClosingParensOption.IGNORE} type is
+ provided.
+ Set this through the {@code closingParens} property.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Annotations also allow you to specify arrays of elements in a standard format.
+ As with normal arrays, a trailing comma is optional.
+ To always require a trailing comma use the {@code TrailingArrayCommaOption.ALWAYS} type.
+ To never have a trailing comma use the {@code TrailingArrayCommaOption.NEVER} type.
+ To not enforce a trailing array comma preference a {@code TrailingArrayCommaOption.IGNORE} type
+ is provided. Set this through the {@code trailingArrayComma} property.
+ &lt;/p&gt;
+ &lt;p&gt;
+ By default the {@code ElementStyleOption} is set to {@code },
+ the {@code TrailingArrayCommaOption} is set to {@code },
+ and the {@code ClosingParensOption} is set to {@code }.
+ &lt;/p&gt;
+ &lt;p&gt;
+ According to the JLS, it is legal to include a trailing comma
+ in arrays used in annotations but Sun's Java 5 &amp;amp; 6 compilers will not
+ compile with this syntax. This may in be a bug in Sun's compilers
+ since eclipse 3.4's built-in compiler does allow this syntax as
+ defined in the JLS. Note: this was tested with compilers included with
+ JDK versions 1.5.0.17 and 1.6.0.11 and the compiler included with eclipse 3.4.1.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html#jls-9.7"&gt;
+ Java Language specification, &amp;#167;9.7&lt;/a&gt;.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="compact_no_array"
+                      name="elementStyle"
+                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ElementStyleOption">
+               <description>Define the annotation element styles.</description>
+            </property>
+            <property default-value="never"
+                      name="closingParens"
+                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$ClosingParensOption">
+               <description>Define the policy for ending parenthesis.</description>
+            </property>
+            <property default-value="never"
+                      name="trailingArrayComma"
+                      type="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationUseStyleCheck$TrailingArrayCommaOption">
+               <description>Define the policy for trailing comma in arrays.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotation.incorrect.style"/>
+            <message-key key="annotation.parens.missing"/>
+            <message-key key="annotation.parens.present"/>
+            <message-key key="annotation.trailing.comma.missing"/>
+            <message-key key="annotation.trailing.comma.present"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

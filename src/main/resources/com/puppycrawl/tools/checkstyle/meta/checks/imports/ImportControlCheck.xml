@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.ImportControlCheck"
+             name="ImportControl"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Controls what can be imported in each package and file. Useful for ensuring
+ that application layering rules are not violated, especially on large projects.
+ &lt;/p&gt;
+ &lt;p&gt;
+ You can control imports based on the a package name or based on the file name.
+ When controlling packages, all files and sub-packages in the declared package
+ will be controlled by this check. To specify differences between a main package
+ and a sub-package, you must define the sub-package inside the main package.
+ When controlling file, only the file name is considered and only files processed by
+ &lt;a href="https://checkstyle.org/config.html#TreeWalker"&gt;TreeWalker&lt;/a&gt;.
+ The file's extension is ignored.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Short description of the behaviour:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ Check starts checking from the longest matching subpackage (later 'current subpackage') or
+ the first file name match described inside import control file to package defined in class file.
+ &lt;ul&gt;
+ &lt;li&gt;
+ The longest matching subpackage is found by starting with the root package and
+ examining if the any of the sub-packages or file definitions match the current
+ class' package or file name.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If a file name is matched first, that is considered the longest match and becomes
+ the current file/subpackage.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If another subpackage is matched, then it's subpackages and file names are examined
+ for the next longest match and the process repeats recursively.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If no subpackages or file names are matched, the current subpackage is then used.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ Order of rules in the same subpackage/root are defined by the order of declaration
+ in the XML file, which is from top (first) to bottom (last).
+ &lt;/li&gt;
+ &lt;li&gt;
+ If there is matching allow/disallow rule inside the current file/subpackage
+ then the Check returns the first "allowed" or "disallowed" message.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If there is no matching allow/disallow rule inside the current file/subpackage
+ then it continues checking in the parent subpackage.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If there is no matching allow/disallow rule in any of the files/subpackages,
+ including the root level (import-control), then the import is disallowed by default.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ The DTD for a import control XML document is at
+ &lt;a href="https://checkstyle.org/dtds/import_control_1_4.dtd"&gt;
+ https://checkstyle.org/dtds/import_control_1_4.dtd&lt;/a&gt;.
+ It contains documentation on each of the elements and attributes.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The check validates a XML document when it loads the document. To validate against
+ the above DTD, include the following document type declaration in your XML document:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ &amp;lt;!DOCTYPE import-control PUBLIC
+     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
+     "https://checkstyle.org/dtds/import_control_1_4.dtd"&amp;gt;
+ &lt;/pre&gt;</description>
+         <properties>
+            <property name="file" type="java.net.URI">
+               <description>Specify the location of the file containing the
+ import control configuration. It can be a regular file, URL or resource path.
+ It will try loading the path as a URL first, then as a file, and finally as a resource.</description>
+            </property>
+            <property default-value=".*" name="path" type="java.util.regex.Pattern">
+               <description>Specify the regular expression of file paths to which
+ this check should apply. Files that don't match the pattern will not be checked.
+ The pattern will be matched against the full absolute file path.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="import.control.disallowed"/>
+            <message-key key="import.control.missing.file"/>
+            <message-key key="import.control.unknown.pkg"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
