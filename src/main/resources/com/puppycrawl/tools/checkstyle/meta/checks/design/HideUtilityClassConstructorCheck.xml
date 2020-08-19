@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.HideUtilityClassConstructorCheck"
+             name="HideUtilityClassConstructor"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Makes sure that utility classes (classes that contain only static methods or fields in their API)
+ do not have a public constructor.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Instantiating utility classes does not make sense.
+ Hence the constructors should either be private or (if you want to allow subclassing) protected.
+ A common mistake is forgetting to hide the default constructor.
+ &lt;/p&gt;
+ &lt;p&gt;
+ If you make the constructor protected you may want to consider the following constructor
+ implementation technique to disallow instantiating subclasses:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public class StringUtils // not final to allow subclassing
+ {
+   protected StringUtils() {
+     // prevents calls from subclass
+     throw new UnsupportedOperationException();
+   }
+
+   public static int count(char c, String s) {
+     // ...
+   }
+ }
+ &lt;/pre&gt;</description>
+         <message-keys>
+            <message-key key="hide.utility.class"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+             name="JavadocMethod"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the Javadoc of a method or constructor.
+ The scope to verify is specified using the {@code Scope} class and defaults
+ to {@code Scope.PRIVATE}. To verify another scope, set property scope to
+ a different &lt;a href="https://checkstyle.org/property_types.html#Scope"&gt;scope&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Violates parameters and type parameters for which no param tags are present can
+ be suppressed by defining property {@code allowMissingParamTags}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Violates methods which return non-void but for which no return tag is present can
+ be suppressed by defining property {@code allowMissingReturnTag}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Violates exceptions which are declared to be thrown (by {@code throws} in the method
+ signature or by {@code throw new} in the method body), but for which no throws tag is
+ present by activation of property {@code validateThrows}.
+ Note that {@code throw new} is not checked in the following places:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ Inside a try block (with catch). It is not possible to determine if the thrown
+ exception can be caught by the catch block as there is no knowledge of the
+ inheritance hierarchy, so the try block is ignored entirely. However, catch
+ and finally blocks, as well as try blocks without catch, are still checked.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Local classes, anonymous classes and lambda expressions. It is not known when the
+ throw statements inside such classes are going to be evaluated, so they are ignored.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ ATTENTION: Checkstyle does not have information about hierarchy of exception types
+ so usage of base class is considered as separate exception type.
+ As workaround you need to specify both types in javadoc (parent and exact type).
+ &lt;/p&gt;
+ &lt;p&gt;
+ Javadoc is not required on a method that is tagged with the {@code @Override}
+ annotation. However under Java 5 it is not possible to mark a method required
+ for an interface (this was &lt;i&gt;corrected&lt;/i&gt; under Java 6). Hence Checkstyle
+ supports using the convention of using a single {@code {@inheritDoc}} tag
+ instead of all the other tags.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Note that only inheritable items will allow the {@code {@inheritDoc}}
+ tag to be used in place of comments. Static methods at all visibilities,
+ private non-static methods and constructors are not inheritable.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For example, if the following method is implementing a method required by
+ an interface, then the Javadoc could be done as:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ &amp;#47;** {&amp;#64;inheritDoc} *&amp;#47;
+ public int checkReturnTag(final int aTagIndex,
+                           JavadocTag[] aTags,
+                           int aLineNo)
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="Override"
+                      name="allowedAnnotations"
+                      type="java.lang.String[]">
+               <description>Specify the list of annotations
+ that allow missed documentation.</description>
+            </property>
+            <property default-value="false" name="validateThrows" type="boolean">
+               <description>Control whether to validate {@code throws} tags.</description>
+            </property>
+            <property default-value="private"
+                      name="scope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments are checked.</description>
+            </property>
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments
+ are not checked.</description>
+            </property>
+            <property default-value="false" name="allowMissingParamTags" type="boolean">
+               <description>Control whether to ignore violations
+ when a method has parameters but does not have matching {@code param} tags in the javadoc.</description>
+            </property>
+            <property default-value="false" name="allowMissingReturnTag" type="boolean">
+               <description>Control whether to ignore violations
+ when a method returns non-void type and does not have a {@code return} tag in the javadoc.</description>
+            </property>
+            <property default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF,COMPACT_CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.classInfo"/>
+            <message-key key="javadoc.duplicateTag"/>
+            <message-key key="javadoc.expectedTag"/>
+            <message-key key="javadoc.invalidInheritDoc"/>
+            <message-key key="javadoc.return.expected"/>
+            <message-key key="javadoc.unusedTag"/>
+            <message-key key="javadoc.unusedTagGeneral"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

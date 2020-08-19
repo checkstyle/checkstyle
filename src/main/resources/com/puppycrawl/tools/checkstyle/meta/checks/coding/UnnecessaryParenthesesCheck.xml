@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessaryParenthesesCheck"
+             name="UnnecessaryParentheses"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks if unnecessary parentheses are used in a statement or expression.
+ The check will flag the following with warnings:
+ &lt;/p&gt;
+ &lt;pre&gt;
+     return (x);          // parens around identifier
+     return (x + 1);      // parens around return value
+     int x = (y / 2 + 1); // parens around assignment rhs
+     for (int i = (0); i &amp;lt; 10; i++) {  // parens around literal
+     t -= (z + 1);        // parens around assignment rhs&lt;/pre&gt;
+ &lt;p&gt;
+ The check is not "type aware", that is to say, it can't tell if parentheses
+ are unnecessary based on the types in an expression.  It also doesn't know
+ about operator precedence and associativity; therefore it won't catch
+ something like
+ &lt;/p&gt;
+ &lt;pre&gt;
+     int x = (a + b) + c;&lt;/pre&gt;
+ &lt;p&gt;
+ In the above case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
+ all {@code int} variables, the parentheses around {@code a + b}
+ are not needed.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="unnecessary.paren.assign"/>
+            <message-key key="unnecessary.paren.expr"/>
+            <message-key key="unnecessary.paren.ident"/>
+            <message-key key="unnecessary.paren.lambda"/>
+            <message-key key="unnecessary.paren.literal"/>
+            <message-key key="unnecessary.paren.return"/>
+            <message-key key="unnecessary.paren.string"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.FinalClassCheck"
+             name="FinalClass"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that a class which has only private constructors
+ is declared as final. Doesn't check for classes nested in interfaces
+ or annotations, as they are always {@code final} there.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="final.class"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
