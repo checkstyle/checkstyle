@@ -92,7 +92,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
  * OBJBLOCK</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
- * STATIC_INIT</a>.
+ * STATIC_INIT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -220,6 +224,8 @@ public class LeftCurlyCheck
             TokenTypes.METHOD_DEF,
             TokenTypes.OBJBLOCK,
             TokenTypes.STATIC_INIT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -236,6 +242,7 @@ public class LeftCurlyCheck
         switch (ast.getType()) {
             case TokenTypes.CTOR_DEF:
             case TokenTypes.METHOD_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 startToken = skipModifierAnnotations(ast);
                 brace = ast.findFirstToken(TokenTypes.SLIST);
                 break;
@@ -244,6 +251,7 @@ public class LeftCurlyCheck
             case TokenTypes.ANNOTATION_DEF:
             case TokenTypes.ENUM_DEF:
             case TokenTypes.ENUM_CONSTANT_DEF:
+            case TokenTypes.RECORD_DEF:
                 startToken = skipModifierAnnotations(ast);
                 final DetailAST objBlock = ast.findFirstToken(TokenTypes.OBJBLOCK);
                 brace = objBlock;
