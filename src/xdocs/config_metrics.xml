@@ -634,7 +634,7 @@ class Foo {
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="ClassFanOutComplexity_Description">
         <p>
-          Checks the number of other classes a given class relies on. Also the
+          Checks the number of other classes a given class or record relies on. Also the
           square of this has been shown to indicate the amount of
           maintenance required in functional programs (on a file basis)
           at least.
