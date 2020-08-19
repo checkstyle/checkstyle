@@ -428,6 +428,8 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             TokenTypes.METHOD_DEF,
             TokenTypes.OBJBLOCK,
             TokenTypes.STATIC_INIT,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
@@ -456,6 +458,22 @@ public class LeftCurlyCheckTest extends AbstractModuleTestSupport {
             "72:18: " + getCheckMessage(MSG_KEY_LINE_NEW, "{", 18),
         };
         verify(checkConfig, getPath("InputLeftCurlyCoverageIncrease.java"), expected);
+    }
+
+    @Test
+    public void testLeftCurlyRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
+        checkConfig.addAttribute("option", LeftCurlyOption.NLOW.toString());
+        final String[] expected = {
+            "18:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "20:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "30:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "32:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            "39:9: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 9),
+            "52:5: " + getCheckMessage(MSG_KEY_LINE_PREVIOUS, "{", 5),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputLeftCurlyRecordsAndCompactCtors.java"), expected);
     }
 
     @Test
