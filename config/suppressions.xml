@@ -108,4 +108,7 @@
   <suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
+  <!-- there are 3 thrown and all of them could be caused by xml parsing -->
+  <suppress checks="ThrowsCount" files="[\\/]XmlMetaReader.java$"/>
+
 </suppressions>
