@@ -357,6 +357,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
+        // JavadocMetadataScraper shouldn't be checked.
+        moduleNames.remove("JavadocMetadataScraper");
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
@@ -470,7 +472,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // these are documented on non-'config_' pages
         checkstyleModulesNames.remove("TreeWalker");
         checkstyleModulesNames.remove("Checker");
-
+        // temporarily hosted in test folder
+        checkstyleModulesNames.remove("JavadocMetadataScraper");
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
             .forEach(moduleName -> {
@@ -485,7 +488,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
-
+        // JavadocMetadataScraper shouldn't be checked.
+        moduleNames.remove("JavadocMetadataScraper");
         for (String moduleName : moduleNames) {
             assertTrue(configChecks.contains(moduleName),
                     "checkstyle_checks.xml is missing module: " + moduleName);
@@ -524,7 +528,11 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     message.setAccessible(true);
                 }
 
-                verifyCheckstyleMessage(usedMessages, module, message);
+                // JavadocMetadataScraper doesn't contain any messages
+                if (!module.getName().equals("com.puppycrawl.tools.checkstyle.meta"
+                        + ".JavadocMetadataScraper")) {
+                    verifyCheckstyleMessage(usedMessages, module, message);
+                }
             }
         }
 
