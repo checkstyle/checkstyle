@@ -236,6 +236,8 @@ public class XdocsPagesTest {
         final String availableChecks = new String(Files.readAllBytes(AVAILABLE_CHECKS_PATH), UTF_8);
 
         CheckUtil.getSimpleNames(CheckUtil.getCheckstyleChecks())
+            .stream()
+            .filter(checkName -> !"JavadocMetadataScraper".equals(checkName))
             .forEach(checkName -> {
                 if (!isPresent(availableChecks, checkName)) {
                     fail(checkName + " is not correctly listed on Available Checks page"
@@ -660,10 +662,11 @@ public class XdocsPagesTest {
             "Incompatible check list should match XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES")
             .that(getListById(subSection, "SuppressionXpathFilter_IncompatibleChecks"))
             .isEqualTo(XpathRegressionTest.INCOMPATIBLE_CHECK_NAMES);
-
+        final Set<String> suppressionXpathFilterJavadocChecks = getListById(subSection,
+                "SuppressionXpathFilter_JavadocChecks");
         assertWithMessage(
             "Javadoc check list should match XpathRegressionTest.INCOMPATIBLE_JAVADOC_CHECK_NAMES")
-            .that(getListById(subSection, "SuppressionXpathFilter_JavadocChecks"))
+            .that(suppressionXpathFilterJavadocChecks)
             .isEqualTo(XpathRegressionTest.INCOMPATIBLE_JAVADOC_CHECK_NAMES);
     }
 
