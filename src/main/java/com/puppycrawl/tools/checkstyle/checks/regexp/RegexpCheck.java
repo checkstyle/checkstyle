@@ -88,7 +88,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code format} - Specify the pattern to match against.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$"}(empty).
+ * Default value is {@code "^$"}.
  * </li>
  * <li>
  * Property {@code message} - Specify message which is used to notify about

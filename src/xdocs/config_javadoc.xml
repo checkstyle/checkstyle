@@ -3078,7 +3078,7 @@ class DatabaseConfiguration {}
               <td>forbiddenSummaryFragments</td>
               <td>Specify the regexp for forbidden summary fragments.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$" (empty)</code></td>
+              <td><code>"^$"</code></td>
               <td>6.0</td>
             </tr>
             <tr>

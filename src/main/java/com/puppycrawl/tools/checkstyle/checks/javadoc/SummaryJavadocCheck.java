@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <li>
  * Property {@code forbiddenSummaryFragments} - Specify the regexp for forbidden summary fragments.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$" (empty)}.
+ * Default value is {@code "^$"}.
  * </li>
  * <li>
  * Property {@code period} - Specify the period symbol at the end of first javadoc sentence.
