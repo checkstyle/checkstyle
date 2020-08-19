@@ -2508,7 +2508,7 @@ public native void myTest(); // violation
               <td>format</td>
               <td>Define the RegExp for illegal pattern.</td>
               <td><a href="property_types.html#RegularExpression">Regular Expression</a></td>
-              <td><code>&quot;^$&quot; (empty)</code></td>
+              <td><code>&quot;^$&quot;</code></td>
               <td>3.2</td>
             </tr>
             <tr>

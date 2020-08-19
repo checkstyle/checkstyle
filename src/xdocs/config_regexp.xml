@@ -87,7 +87,7 @@
               <td>format</td>
               <td>Specify the pattern to match against.</td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>"^$"</code> (empty)</td>
+              <td><code>"^$"</code></td>
               <td>4.0</td>
             </tr>
             <tr>

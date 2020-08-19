@@ -376,7 +376,7 @@ switch (a) {
                 If check meets variable name matching specified value - empty block is suppressed.
               </td>
               <td><a href="property_types.html#Pattern">Pattern</a></td>
-              <td><code>&quot;^$&quot; (empty)</code></td>
+              <td><code>&quot;^$&quot;</code></td>
               <td>6.4</td>
             </tr>
             <tr>
