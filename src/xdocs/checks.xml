@@ -126,7 +126,8 @@
           </tr>
           <tr>
             <td><a href="config_metrics.html#ClassFanOutComplexity">ClassFanOutComplexity</a></td>
-            <td>Checks the number of other classes a given class relies on.</td>
+            <td>Checks the number of other types a given class/record/interface/enum/annotation
+              relies on.</td>
           </tr>
           <tr>
             <td><a href="config_modifier.html#ClassMemberImpliedModifier">
