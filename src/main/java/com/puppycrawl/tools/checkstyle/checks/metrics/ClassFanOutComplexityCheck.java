@@ -23,9 +23,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * <p>
- * Checks the number of other classes a given class relies on. Also the square
- * of this has been shown to indicate the amount of maintenance required
- * in functional programs (on a file basis) at least.
+ * Checks the number of other types a given class/record/interface/enum/annotation
+ * relies on. Also the square of this has been shown to indicate the amount
+ * of maintenance required in functional programs (on a file basis) at least.
  * </p>
  * <p>
  * This check processes files in the following way:
@@ -368,6 +368,7 @@ public final class ClassFanOutComplexityCheck extends AbstractClassCouplingCheck
             TokenTypes.LITERAL_NEW,
             TokenTypes.LITERAL_THROWS,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
     }
 
