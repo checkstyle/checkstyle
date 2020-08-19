@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
- * Checks that the parts of a class or interface declaration appear in the order
+ * Checks that the parts of a class, record, or interface declaration appear in the order
  * suggested by the
  * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852">
  * Code Conventions for the Java Programming Language</a>.
@@ -215,6 +215,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
             TokenTypes.VARIABLE_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -239,6 +240,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
                 }
                 break;
             case TokenTypes.CTOR_DEF:
+            case TokenTypes.COMPACT_CTOR_DEF:
                 if (parentType == TokenTypes.OBJBLOCK) {
                     processConstructor(ast);
                 }
