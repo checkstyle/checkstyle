@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Property {@code excludedClasses} - Specify pattern for qualified names of
  * classes which are allowed to have a {@code main} method.
  * Type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$" (empty)}.
+ * Default value is {@code "^$"}.
  * </li>
  * </ul>
  * <p>

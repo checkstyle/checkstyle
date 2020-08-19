@@ -55,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code maximumDepth} - Specify the maximum depth for descendant counts.
  * Type is {@code int}.
- * Default value is {@code java.lang.Integer.MAX_VALUE}.
+ * Default value is {@code 2147483647}.
  * </li>
  * <li>
  * Property {@code minimumNumber} - Specify a minimum count for descendants.
@@ -65,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code maximumNumber} - Specify a maximum count for descendants.
  * Type is {@code int}.
- * Default value is {@code java.lang.Integer.MAX_VALUE}.
+ * Default value is {@code 2147483647}.
  * </li>
  * <li>
  * Property {@code sumTokenCounts} - Control whether the number of tokens found
