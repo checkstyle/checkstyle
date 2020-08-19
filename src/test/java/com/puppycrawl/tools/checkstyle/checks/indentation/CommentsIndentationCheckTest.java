@@ -276,4 +276,19 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath(testInputFile), expected);
     }
 
+    @Test
+    public void testCommentsAfterRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "12:17: " + getCheckMessage(MSG_KEY_SINGLE, 13, 16, 20),
+            "25:1: " + getCheckMessage(MSG_KEY_SINGLE, 26, 0, 4),
+            "28:9: " + getCheckMessage(MSG_KEY_SINGLE, 29, 8, 4),
+            "34:9: " + getCheckMessage(MSG_KEY_SINGLE, 37, 8, 5),
+            "39:9: " + getCheckMessage(MSG_KEY_SINGLE, 37, 8, 5),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputCommentsIndentationRecordsAndCompactCtors.java"),
+            expected);
+    }
+
 }
