@@ -212,6 +212,7 @@ checkouting
 checkstyle
 checkstyleanttask
 checkstylecompilation
+checkstylemeta
 checkutil
 chmod
 chr
@@ -451,7 +452,7 @@ fht
 fieldset
 filebasic
 filechooser
-filefilters
+filefilter
 filelength
 filepath
 fileset
@@ -570,6 +571,7 @@ HTMLJS
 htmlunit
 http
 hurz
+hyperlinks
 iae
 ibs
 ico
@@ -1481,7 +1483,7 @@ xsd
 Xshow
 xsi
 xsl
-Xslt
+xslt
 xsltproc
 XSO
 Xss
