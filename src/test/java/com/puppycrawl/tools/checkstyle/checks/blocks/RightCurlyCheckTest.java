@@ -645,4 +645,23 @@ public class RightCurlyCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputRightCurlySameNewTokens.java"), expected);
     }
 
+    @Test
+    public void testRightCurlyRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RightCurlyCheck.class);
+        checkConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        checkConfig.addAttribute("tokens", "RECORD_DEF, COMPACT_CTOR_DEF,"
+            + " CTOR_DEF, METHOD_DEF");
+
+        final String[] expected = {
+            "20:9: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 9),
+            "20:11: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 11),
+            "24:21: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 21),
+            "29:23: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 23),
+            "31:43: " + getCheckMessage(MSG_KEY_LINE_BREAK_BEFORE, "}", 43),
+            "38:68: " + getCheckMessage(MSG_KEY_LINE_ALONE, "}", 68),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputRightCurlyRecordsAndCompactCtors.java"), expected);
+    }
+
 }
