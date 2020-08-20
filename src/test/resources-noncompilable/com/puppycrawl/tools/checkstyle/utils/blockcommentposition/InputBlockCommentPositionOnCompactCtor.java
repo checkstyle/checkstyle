@@ -5,7 +5,7 @@ public record InputBlockCommentPositionOnCompactCtor() {
     /**
      * I'm a javadoc
      */
-    public InputBlockCommentPositionOnRecord{}
+    public InputBlockCommentPositionOnCompactCtor{}
 }
 
 

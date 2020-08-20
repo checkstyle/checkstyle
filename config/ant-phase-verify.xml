@@ -221,6 +221,8 @@
           <exclude name="**/asttreestringprinter/**/*"/>
           <!-- Indentation checks use "warn" -->
           <exclude name="**/resources-noncompilable/**/checks/indentation/**/*"/>
+          <!-- BlockComment test files do not need 'ok', 'violation, or 'Config:' comments -->
+          <exclude name="**/utils/blockcommentposition/**/*"/>
 
         </fileset>
       </path>
