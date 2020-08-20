@@ -122,7 +122,8 @@
           <tr>
             <td><a href="config_metrics.html#ClassDataAbstractionCoupling">
               ClassDataAbstractionCoupling</a></td>
-            <td>Measures the number of instantiations of other classes within the given class.</td>
+            <td>Measures the number of instantiations of other classes within the given class
+              or record.</td>
           </tr>
           <tr>
             <td><a href="config_metrics.html#ClassFanOutComplexity">ClassFanOutComplexity</a></td>
