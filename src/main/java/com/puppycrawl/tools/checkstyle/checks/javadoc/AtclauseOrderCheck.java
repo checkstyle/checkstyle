@@ -65,7 +65,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
  * CTOR_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
- * VARIABLE_DEF</a>.
+ * VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>.
  * </li>
  * <li>
  * Property {@code tagOrder} - Specify the order by tags.
@@ -139,7 +143,9 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
         TokenTypes.ENUM_DEF,
         TokenTypes.METHOD_DEF,
         TokenTypes.CTOR_DEF,
-        TokenTypes.VARIABLE_DEF
+        TokenTypes.VARIABLE_DEF,
+        TokenTypes.RECORD_DEF,
+        TokenTypes.COMPACT_CTOR_DEF
     );
 
     /**
