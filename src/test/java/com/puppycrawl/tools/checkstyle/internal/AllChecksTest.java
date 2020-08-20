@@ -142,8 +142,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     .collect(Collectors.toSet()));
         // we do not use this check as it is deprecated
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("WriteTag",
-                Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF", "ANNOTATION_FIELD_DEF")
-                        .collect(Collectors.toSet()));
+                Stream.of("ENUM_CONSTANT_DEF", "METHOD_DEF", "CTOR_DEF",
+                    "ANNOTATION_FIELD_DEF", "RECORD_DEF", "COMPACT_CTOR_DEF")
+                    .collect(Collectors.toSet()));
         // state of the configuration when test was made until reason found in
         // https://github.com/checkstyle/checkstyle/issues/3730
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
