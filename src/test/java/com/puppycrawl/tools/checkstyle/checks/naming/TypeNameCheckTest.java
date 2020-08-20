@@ -118,4 +118,20 @@ public class TypeNameCheckTest
         verify(checkConfig, getPath("InputTypeName.java"), expected);
     }
 
+    @Test
+    public void testTypeNameRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(TypeNameCheck.class);
+
+        final String[] expected = {
+            "20:10: " + getCheckMessage(MSG_INVALID_PATTERN, "Third_Name", DEFAULT_PATTERN),
+            "22:11: " + getCheckMessage(MSG_INVALID_PATTERN, "FourthName_", DEFAULT_PATTERN),
+            "25:12: " + getCheckMessage(MSG_INVALID_PATTERN, "My_Record", DEFAULT_PATTERN),
+            "26:16: " + getCheckMessage(MSG_INVALID_PATTERN, "Inner__Record", DEFAULT_PATTERN),
+            "31:12: " + getCheckMessage(MSG_INVALID_PATTERN, "MyRecord__", DEFAULT_PATTERN),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputTypeNameRecords.java"), expected);
+    }
+
 }
