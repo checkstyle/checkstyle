@@ -168,4 +168,38 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testMultipleStringLiteralsTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MultipleStringLiteralsCheck.class);
+        checkConfig.addAttribute("ignoreStringsRegexp", null);
+        checkConfig.addAttribute("ignoreOccurrenceContext", "ANNOTATION");
+
+        final String[] expected = {
+            "11:22: " + getCheckMessage(MSG_KEY, "\"string\"", 3),
+            "16:25: " + getCheckMessage(MSG_KEY, "\"other string\"", 2),
+            "20:25: " + getCheckMessage(MSG_KEY, "\"other string\\n\"", 2),
+            "27:25: " + getCheckMessage(MSG_KEY, "\"<html>\\u000D\\u000A\\n\\u2000\\n "
+                + "   <body>\\u000D\\u000A\\n\\u2000\\n        <p>Hello, world</p>\\u000D\\"
+                + "u000A\\n\\u2000\\n    </body>\\u000D\\u000A\\n\\u2000\\n</html>\\u000D\\"
+                + "u000A\\u2000\\n\"", 2),
+            "34:34: " + getCheckMessage(MSG_KEY, "\"fun with\\n\\n whitespace\\t"
+                + "\\r\\n and other escapes \\\"\"\"\\n\"", 2),
+            "39:34: " + getCheckMessage(MSG_KEY, "\"\\b \\f \\\\ \\0 \\1 \\2 "
+                + "\\r \\r\\n \\\\r\\\\n \\\\''\\n\\\\11 \\\\57 \\n\\\\n\\n\\\\\\n\\n \\\\ \"\"a "
+                + "\"a\\n\\\\' \\\\\\' \\'\\n\"", 2),
+            "62:20: " + getCheckMessage(MSG_KEY, "\"foo\"", 4),
+            "70:19: " + getCheckMessage(MSG_KEY, "\"another test\"", 2),
+            "74:20: " + getCheckMessage(MSG_KEY, "\"\"", 6),
+            "85:23: " + getCheckMessage(MSG_KEY, "\"        .\\n         .\\n.\\n\"", 2),
+            "101:24: " + getCheckMessage(MSG_KEY, "\"             foo\\n\\n\\n "
+                + "       bar\"", 2),
+            };
+
+        createChecker(checkConfig);
+        verify(checkConfig,
+            getNonCompilablePath("InputMultipleStringLiteralsTextBlocks.java"),
+            expected);
+    }
+
 }
