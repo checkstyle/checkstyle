@@ -23,6 +23,7 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -740,21 +742,18 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
      */
     private static DetailAST getFirstNodeInsideSwitchBlock(
             DetailAST block, DetailAST variable) {
-        DetailAST currentNode = block
-                .findFirstToken(TokenTypes.CASE_GROUP);
+        final DetailAST currentNode = getFirstCaseGroupOrSwitchRule(block);
         final List<DetailAST> variableUsageExpressions =
                 new ArrayList<>();
 
-        // Checking variable usage inside all CASE blocks.
-        while (currentNode.getType() == TokenTypes.CASE_GROUP) {
+        // Checking variable usage inside all CASE_GROUP and SWITCH_RULE ast's.
+        TokenUtil.forEachChild(block, currentNode.getType(), node -> {
             final DetailAST lastNodeInCaseGroup =
-                    currentNode.getLastChild();
-
+                node.getLastChild();
             if (isChild(lastNodeInCaseGroup, variable)) {
                 variableUsageExpressions.add(lastNodeInCaseGroup);
             }
-            currentNode = currentNode.getNextSibling();
-        }
+        });
 
         // If variable usage exists in several related blocks, then
         // firstNodeInsideBlock = null, otherwise if variable usage exists
@@ -766,6 +765,18 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
         }
 
         return firstNodeInsideBlock;
+    }
+
+    /**
+     * Helper method for getFirstNodeInsideSwitchBlock to return the first CASE_GROUP or
+     * SWITCH_RULE ast.
+     *
+     * @param block the switch block to check.
+     * @return DetailAST of the first CASE_GROUP or SWITCH_RULE.
+     */
+    private static DetailAST getFirstCaseGroupOrSwitchRule(DetailAST block) {
+        return Optional.ofNullable(block.findFirstToken(TokenTypes.CASE_GROUP))
+            .orElse(block.findFirstToken(TokenTypes.SWITCH_RULE));
     }
 
     /**
