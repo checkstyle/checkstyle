@@ -39,22 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Property {@code allowOneCharVarInForLoop} - Allow one character variable name in
  * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
  * initialization expressions</a>
- * in FOR loop if one char variable name is prohibited by {@code format} regexp. For example:
- * <pre>
- * for (int i = 1; i &lt; 10; i++) { // OK
- *     int j = 1; // violation
- * }
- * for (int K = 1; K &lt; 10; K++) { // OK
- *     int j = 1; // violation
- * }
- * List list = new ArrayList();
- * for (Object o : list) { // OK
- *     int j = 1; // violation
- * }
- * for (Object O : list) { // OK
- *     int j = 1; // violation
- * }
- * </pre>
+ * in FOR loop if one char variable name is prohibited by {@code format} regexp.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -184,22 +169,7 @@ public class LocalVariableNameCheck
      * Allow one character variable name in
      * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
      * initialization expressions</a>
-     * in FOR loop if one char variable name is prohibited by {@code format} regexp. For example:
-     * <pre>
-     * for (int i = 1; i &lt; 10; i++) { // OK
-     *     int j = 1; // violation
-     * }
-     * for (int K = 1; K &lt; 10; K++) { // OK
-     *     int j = 1; // violation
-     * }
-     * List list = new ArrayList();
-     * for (Object o : list) { // OK
-     *     int j = 1; // violation
-     * }
-     * for (Object O : list) { // OK
-     *     int j = 1; // violation
-     * }
-     * </pre>
+     * in FOR loop if one char variable name is prohibited by {@code format} regexp.
      */
     private boolean allowOneCharVarInForLoop;
 
@@ -212,22 +182,7 @@ public class LocalVariableNameCheck
      * Setter to allow one character variable name in
      * <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/for.html">
      * initialization expressions</a>
-     * in FOR loop if one char variable name is prohibited by {@code format} regexp. For example:
-     * <pre>
-     * for (int i = 1; i &lt; 10; i++) { // OK
-     *     int j = 1; // violation
-     * }
-     * for (int K = 1; K &lt; 10; K++) { // OK
-     *     int j = 1; // violation
-     * }
-     * List list = new ArrayList();
-     * for (Object o : list) { // OK
-     *     int j = 1; // violation
-     * }
-     * for (Object O : list) { // OK
-     *     int j = 1; // violation
-     * }
-     * </pre>
+     * in FOR loop if one char variable name is prohibited by {@code format} regexp.
      *
      * @param allow Flag for allowing or not one character name in FOR loop.
      */
