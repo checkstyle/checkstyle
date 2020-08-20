@@ -217,4 +217,25 @@ public class ClassDataAbstractionCouplingCheckTest extends AbstractModuleTestSup
         verify(checkConfig, getPath("InputClassDataAbstractionCoupling.java"), expected);
     }
 
+    @Test
+    public void testClassDataAbstractionCouplingRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ClassDataAbstractionCouplingCheck.class);
+
+        checkConfig.addAttribute("max", "1");
+
+        final int maxAbstraction = 1;
+        final String[] expected = {
+            "25:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "30:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "40:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "49:1: " + getCheckMessage(MSG_KEY, 2, maxAbstraction, "[Date, Time]"),
+            "61:5: " + getCheckMessage(MSG_KEY, 3, maxAbstraction, "[Date, Place, Time]"),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputClassDataAbstractionCouplingRecords.java"),
+            expected);
+    }
+
 }
