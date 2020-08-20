@@ -1830,6 +1830,8 @@ class PageBuilder {
                   PATTERN_VARIABLE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+                  RECORD_COMPONENT_DEF</a>
                   .
               </td>
 
@@ -1842,6 +1844,8 @@ class PageBuilder {
                   PATTERN_VARIABLE_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
                   LAMBDA</a>
+                ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+                  RECORD_COMPONENT_DEF</a>
                   .
               </td>
               <td>3.0</td>
