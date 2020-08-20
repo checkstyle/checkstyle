@@ -154,6 +154,29 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testUnnecessaryParenthesesTextBlocks() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(UnnecessaryParenthesesCheck.class);
+        final String[] expected = {
+            "13:27: " + getCheckMessage(MSG_STRING, "\"this\""),
+            "13:38: " + getCheckMessage(MSG_STRING, "\"that\""),
+            "13:49: " + getCheckMessage(MSG_STRING, "\"other\""),
+            "14:27: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "           this\""),
+            "16:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "           that\""),
+            "18:20: " + getCheckMessage(MSG_STRING, "\"\\n     "
+                + "           other\""),
+            "20:27: " + getCheckMessage(MSG_STRING, "\"\\n                this i...\""),
+            "21:40: " + getCheckMessage(MSG_STRING, "\"\\n                and an...\""),
+            };
+        verify(checkConfig,
+            getNonCompilablePath(
+                "InputUnnecessaryParenthesesCheckTextBlocks.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final UnnecessaryParenthesesCheck check = new UnnecessaryParenthesesCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
