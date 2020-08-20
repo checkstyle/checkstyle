@@ -2345,6 +2345,8 @@ public boolean isSomething()
                   CTOR_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
                   ANNOTATION_FIELD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>
@@ -2354,6 +2356,8 @@ public boolean isSomething()
                   CTOR_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
                   ANNOTATION_FIELD_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+                  COMPACT_CTOR_DEF</a>
                   .
               </td>
               <td>8.21</td>

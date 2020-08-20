@@ -116,7 +116,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CTOR_DEF">
  * CTOR_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
- * ANNOTATION_FIELD_DEF</a>.
+ * ANNOTATION_FIELD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
+ * COMPACT_CTOR_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -364,6 +366,7 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
     }
 
@@ -421,7 +424,9 @@ public class MissingJavadocMethodCheck extends AbstractCheck {
      * @return True if this method or constructor doesn't need Javadoc.
      */
     private boolean isContentsAllowMissingJavadoc(DetailAST ast) {
-        return (ast.getType() == TokenTypes.METHOD_DEF || ast.getType() == TokenTypes.CTOR_DEF)
+        return (ast.getType() == TokenTypes.METHOD_DEF
+                || ast.getType() == TokenTypes.CTOR_DEF
+                || ast.getType() == TokenTypes.COMPACT_CTOR_DEF)
                 && (getMethodsNumberOfLine(ast) <= minLineCount
                     || AnnotationUtil.containsAnnotation(ast, allowedAnnotations));
     }
