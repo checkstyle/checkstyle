@@ -278,4 +278,29 @@ public class VariableDeclarationUsageDistanceCheckTest extends
         verify(checkConfig, getPath("InputVariableDeclarationUsageDistanceLabels.java"), expected);
     }
 
+    @Test
+    public void testVariableDeclarationUsageDistanceSwitchExpressions() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(VariableDeclarationUsageDistanceCheck.class);
+        checkConfig.addAttribute("allowedDistance", "1");
+        checkConfig.addAttribute("ignoreVariablePattern", "");
+        checkConfig.addAttribute("validateBetweenScopes", "true");
+        checkConfig.addAttribute("ignoreFinal", "false");
+
+        final int maxDistance = 1;
+        final String[] expected = {
+            "32:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
+            "77:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
+            "78:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
+            "110:17: " + getCheckMessage(MSG_KEY, "arg", 2, maxDistance),
+            "152:17: " + getCheckMessage(MSG_KEY, "m", 3, maxDistance),
+            "153:17: " + getCheckMessage(MSG_KEY, "n", 2, maxDistance),
+            "174:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
+            "194:17: " + getCheckMessage(MSG_KEY, "count", 3, maxDistance),
+            };
+
+        final String filename = "InputVariableDeclarationUsageDistanceCheckSwitchExpressions.java";
+        verify(checkConfig, getNonCompilablePath(filename), expected);
+    }
+
 }
