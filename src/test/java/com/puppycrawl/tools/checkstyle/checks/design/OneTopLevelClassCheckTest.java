@@ -213,4 +213,15 @@ public class OneTopLevelClassCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputOneTopLevelClassIndentation.java"), expected);
     }
 
+    @Test
+    public void testOneTopLevelClassRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(OneTopLevelClassCheck.class);
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_KEY, "TestRecord1"),
+            "15:1: " + getCheckMessage(MSG_KEY, "TestRecord2"),
+            };
+        verify(checkConfig, getNonCompilablePath("InputOneTopLevelClassRecords.java"), expected);
+    }
+
 }
