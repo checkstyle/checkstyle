@@ -46,6 +46,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -487,5 +488,34 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig, getPath("InputMissingJavadocMethodPublicMethods.java"), expected);
 
+    }
+
+    @Test
+    public void testMissingJavadocMethodRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+            MissingJavadocMethodCheck.class);
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "35:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "41:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "45:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtors.java"), expected);
+    }
+
+    @Test
+    public void testMissingJavadocMethodRecordsAndCompactCtorsMinLineCount() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+            MissingJavadocMethodCheck.class);
+        checkConfig.addAttribute("minLineCount", "2");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"),
+            expected);
     }
 }
