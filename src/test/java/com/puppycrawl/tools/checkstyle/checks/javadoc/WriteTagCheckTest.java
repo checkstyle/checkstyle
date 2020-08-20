@@ -213,6 +213,33 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("InputWriteTag3.java"), expected);
     }
 
+    @Test
+    public void testWriteTagRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
+        checkConfig.addAttribute("tag", "@incomplete");
+        checkConfig.addAttribute("tagSeverity", "error");
+        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addAttribute("tokens",
+            "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
+                + " COMPACT_CTOR_DEF, CTOR_DEF");
+
+        final String[] expected = {
+            "12: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "14: " + getCheckMessage(MSG_TAG_FORMAT, "@incomplete", "\\S"),
+            "20: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", ".// violation"),
+            "26: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "29: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "35: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "38: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+            "45: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "46: " + getCheckMessage(MSG_MISSING_TAG, "@incomplete"),
+            "49: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete", "// violation"),
+
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputWriteTagRecordsAndCompactCtors.java"), expected);
+    }
+
     @Override
     protected void verify(Checker checker,
                           File[] processedFiles,
