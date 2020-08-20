@@ -1096,7 +1096,7 @@ public class XdocsPagesTest {
             }
             else if (fieldClass == int.class) {
                 if (value.equals(Integer.MAX_VALUE)) {
-                    result = "java.lang.Integer.MAX_VALUE";
+                    result = "2147483647";
                 }
                 else {
                     result = value.toString();
@@ -1211,10 +1211,6 @@ public class XdocsPagesTest {
                 if (value != null) {
                     result = '"' + value.toString().replace("\n", "\\n").replace("\t", "\\t")
                             .replace("\r", "\\r").replace("\f", "\\f") + '"';
-
-                    if ("\"^$\"".equals(result)) {
-                        result += " (empty)";
-                    }
                 }
             }
             else if (fieldClass == Pattern[].class) {

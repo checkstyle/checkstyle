@@ -37,7 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Property {@code format} - Define the RegExp for illegal pattern.
  * Type is {@code java.lang.String}.
  * Validation type is {@code java.util.regex.Pattern}.
- * Default value is {@code "^$" (empty)}.
+ * Default value is {@code "^$"}.
  * </li>
  * <li>
  * Property {@code ignoreCase} - Control whether to ignore case when matching.
