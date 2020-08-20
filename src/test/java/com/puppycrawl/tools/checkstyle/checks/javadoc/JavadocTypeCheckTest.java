@@ -57,6 +57,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -396,5 +397,20 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("authorFormat", "ABC");
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "31:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "40:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "53:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            };
+        verify(checkConfig, getNonCompilablePath("InputJavadocTypeRecords.java"), expected);
     }
 }
