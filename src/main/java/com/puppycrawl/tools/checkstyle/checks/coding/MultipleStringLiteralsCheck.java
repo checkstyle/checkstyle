@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -117,6 +118,16 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
     public static final String MSG_KEY = "multiple.string.literal";
 
     /**
+     * Compiled pattern for all system newlines.
+     */
+    private static final Pattern ALL_NEW_LINES = Pattern.compile("\\R");
+
+    /**
+     * String used to amend TEXT_BLOCK_CONTENT so that it matches STRING_LITERAL.
+     */
+    private static final String QUOTE = "\"";
+
+    /**
      * The found strings and their tokens.
      */
     private final Map<String, List<DetailAST>> stringMap = new HashMap<>();
@@ -198,14 +209,27 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.STRING_LITERAL};
+        return new int[] {
+            TokenTypes.STRING_LITERAL,
+            TokenTypes.TEXT_BLOCK_CONTENT,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
         if (!isInIgnoreOccurrenceContext(ast)) {
-            final String currentString = ast.getText();
-            if (ignoreStringsRegexp == null || !ignoreStringsRegexp.matcher(currentString).find()) {
+            final String currentString;
+            if (ast.getType() == TokenTypes.TEXT_BLOCK_CONTENT) {
+                final String strippedString =
+                    CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
+                // We need to add quotes here to be consistent with STRING_LITERAL text.
+                currentString = QUOTE + strippedString + QUOTE;
+            }
+            else {
+                currentString = ast.getText();
+            }
+            if (ignoreStringsRegexp == null
+                    || !ignoreStringsRegexp.matcher(currentString).find()) {
                 stringMap.computeIfAbsent(currentString, key -> new ArrayList<>()).add(ast);
             }
         }
@@ -244,9 +268,12 @@ public class MultipleStringLiteralsCheck extends AbstractCheck {
             final List<DetailAST> hits = stringListEntry.getValue();
             if (hits.size() > allowedDuplicates) {
                 final DetailAST firstFinding = hits.get(0);
-                log(firstFinding, MSG_KEY, stringListEntry.getKey(), hits.size());
+                final String recurringString =
+                    ALL_NEW_LINES.matcher(
+                        stringListEntry.getKey()).replaceAll("\\\\n");
+                log(firstFinding, MSG_KEY, recurringString, hits.size());
             }
         }
     }
-
 }
+
