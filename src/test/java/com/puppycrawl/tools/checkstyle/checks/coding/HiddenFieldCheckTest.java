@@ -451,6 +451,26 @@ public class HiddenFieldCheckTest
                 getNonCompilablePath("InputHiddenFieldSwitchExpression.java"), expected);
     }
 
+    @Test
+    public void testHiddenFieldRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(HiddenFieldCheck.class);
+
+        final String[] expected = {
+            "20:17: " + getCheckMessage(MSG_KEY, "myHiddenInt"),
+            "25:17: " + getCheckMessage(MSG_KEY, "myHiddenInt"),
+            "33:17: " + getCheckMessage(MSG_KEY, "hiddenField"),
+            "41:39: " + getCheckMessage(MSG_KEY, "hiddenStaticField"),
+            "55:39: " + getCheckMessage(MSG_KEY, "price"),
+            "64:21: " + getCheckMessage(MSG_KEY, "x"),
+            "68:20: " + getCheckMessage(MSG_KEY, "string"),
+            "78:21: " + getCheckMessage(MSG_KEY, "x"),
+            "82:20: " + getCheckMessage(MSG_KEY, "string"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputHiddenFieldRecords.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation
