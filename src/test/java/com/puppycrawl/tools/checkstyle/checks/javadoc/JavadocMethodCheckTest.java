@@ -58,6 +58,8 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -485,11 +487,35 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testJavadocMethodRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("validateThrows", "true");
+        checkConfig.addAttribute("tokens", "METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF,"
+            + " COMPACT_CTOR_DEF, RECORD_DEF, CLASS_DEF");
+
+        final String[] expected = {
+            "26:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "39:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                "java.lang.IllegalArgumentException"),
+            "51: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "57:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "67: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+            "73:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
+            "83:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "properties"),
+            "86:35: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "myInt"),
+
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputJavadocMethodRecordsAndCompactCtors.java"), expected);
+    }
+
+    @Test
     public void testGetRequiredTokens() {
         final int[] expected = {
             TokenTypes.CLASS_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
+            TokenTypes.RECORD_DEF,
         };
         final JavadocMethodCheck check = new JavadocMethodCheck();
         final int[] actual = check.getRequiredTokens();
