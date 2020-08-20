@@ -222,7 +222,7 @@ public class Test
       <subsection name="Description" id="ClassDataAbstractionCoupling_Description">
         <p>
           Measures the number of instantiations of other
-          classes within the given class. This type of coupling is not
+          classes within the given class or record. This type of coupling is not
           caused by inheritance or the object oriented
           paradigm. Generally speaking, any data type with other data
           types as members or local variable that is an instantiation
@@ -259,6 +259,10 @@ public class Test
               <li>
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
               LITERAL_NEW</a>
+              </li>
+              <li>
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+              RECORD_DEF</a>
               </li>
             </ul>
           </li>
