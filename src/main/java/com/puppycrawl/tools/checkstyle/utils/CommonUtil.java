@@ -32,6 +32,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -649,16 +650,27 @@ public final class CommonUtil {
      * @return true if the arg is blank.
      */
     public static boolean isBlank(String value) {
-        boolean result = true;
-        if (value != null && !value.isEmpty()) {
-            for (int i = 0; i < value.length(); i++) {
-                if (!Character.isWhitespace(value.charAt(i))) {
-                    result = false;
-                    break;
-                }
+        return Objects.isNull(value)
+                || indexOfNonWhitespace(value) >= value.length();
+    }
+
+    /**
+     * Method to find the index of the first non-whitespace character in a string.
+     *
+     * @param value the string to find the first index of a non-whitespace character for.
+     * @return the index of the first non-whitespace character.
+     */
+    public static int indexOfNonWhitespace(String value) {
+        final int length = value.length();
+        int left = 0;
+        while (left < length) {
+            final int codePointAt = value.codePointAt(left);
+            if (!Character.isWhitespace(codePointAt)) {
+                break;
             }
+            left += Character.charCount(codePointAt);
         }
-        return result;
+        return left;
     }
 
     /**
