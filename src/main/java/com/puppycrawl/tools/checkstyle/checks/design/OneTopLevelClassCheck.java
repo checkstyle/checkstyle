@@ -56,6 +56,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * class Foo2 { // violation, second top-level class
  *   // methods
  * }
+ *
+ * record Foo3 { // violation, third top-level "class"
+ *     // methods
+ * }
  * </pre>
  * <p>
  * An example of code without public top-level type:
