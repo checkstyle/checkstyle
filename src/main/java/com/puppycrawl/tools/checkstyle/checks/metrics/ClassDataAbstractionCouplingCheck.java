@@ -24,7 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Measures the number of instantiations of other classes
- * within the given class. This type of coupling is not caused by inheritance or
+ * within the given class or record. This type of coupling is not caused by inheritance or
  * the object oriented paradigm. Generally speaking, any data type with other
  * data types as members or local variable that is an instantiation (object)
  * of another class has data abstraction coupling (DAC). The higher the DAC,
@@ -60,6 +60,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li>
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
  * LITERAL_NEW</a>
+ * </li>
+ * <li>
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>
  * </li>
  * </ul>
  * </li>
@@ -392,6 +396,7 @@ public final class ClassDataAbstractionCouplingCheck
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.LITERAL_NEW,
+            TokenTypes.RECORD_DEF,
         };
     }
 
