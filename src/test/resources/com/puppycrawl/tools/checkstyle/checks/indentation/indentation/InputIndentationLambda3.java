@@ -20,7 +20,7 @@ public class InputIndentationLambda3 { //indent:0 exp:0
 
 	public Consumer<Integer> returnFunctionOfLambda() { //indent:4 exp:4
 		return par( //indent:8 exp:8
-					(x) -> print(x * 1), //indent:20 exp:12,16 warn
+					(x) -> print(x * 1), //indent:20 exp:20
 				(x) -> print(x * 2) //indent:16 exp:16
 		); //indent:8 exp:8
 	} //indent:4 exp:4
@@ -40,7 +40,7 @@ public class InputIndentationLambda3 { //indent:0 exp:0
 		TwoParams t0 = new TwoParams( //indent:8 exp:8
 				intValueA //indent:16 exp:16
 						-> print(intValueA * 1), //indent:24 exp:24
-					(x) -> //indent:20 exp:16 warn
+					(x) -> //indent:20 exp:20
 						print(x * 2) //indent:24 exp:24
 		); //indent:8 exp:8
 
@@ -64,7 +64,7 @@ public class InputIndentationLambda3 { //indent:0 exp:0
 	String test2(String input) { //indent:4 exp:4
 			return Optional.ofNullable(input) //indent:12 exp:8 warn
 				.filter(in //indent:16 exp:16
-							-> //indent:28 exp:24 warn
+							-> //indent:28 exp:28
 					in.contains("e")) //indent:20 exp:20
 			.filter(inp -> inp.contains("e")) //indent:12 exp:12
 				// only 3 char parameter has violation //indent:16 exp:16

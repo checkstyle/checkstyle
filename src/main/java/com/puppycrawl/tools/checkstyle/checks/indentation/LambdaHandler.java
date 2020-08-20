@@ -27,6 +27,12 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  */
 public class LambdaHandler extends AbstractExpressionHandler {
+    /**
+     * Checks whether the lambda is correctly indented, this variable get its value from checking
+     * the lambda handler's indentation, and it is being used in aligning the lambda's children.
+     * A true value depicts lambda is correctly aligned without giving any errors.
+     */
+    private boolean isIdealIndent;
 
     /**
      * Construct an instance of this handler with the given indentation check,
@@ -36,14 +42,22 @@ public class LambdaHandler extends AbstractExpressionHandler {
      * @param ast the abstract syntax tree
      * @param parent the parent handler
      */
+
     public LambdaHandler(IndentationCheck indentCheck,
                          DetailAST ast, AbstractExpressionHandler parent) {
         super(indentCheck, "lambda", ast, parent);
+        isIdealIndent = true;
     }
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
-        return getIndent();
+        IndentLevel childIndent = getIndent();
+        if (isIdealIndent) {
+            childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()),
+                    getLineStart(getMainAst().getFirstChild()));
+        }
+
+        return childIndent;
     }
 
     /**
@@ -59,6 +73,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
         DetailAST parent = getMainAst().getParent();
         if (getParent() instanceof NewHandler) {
+            isIdealIndent = false;
             parent = parent.getParent();
         }
 
@@ -83,7 +98,8 @@ public class LambdaHandler extends AbstractExpressionHandler {
         if (parent.getType() != TokenTypes.SWITCH_RULE
                 && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final IndentLevel level = getIndent();
-            if (!level.isAcceptable(expandedTabsColumnNo(firstChild))) {
+            if (isAcceptableIndent(firstChild, level)) {
+                isIdealIndent = false;
                 logError(firstChild, "arguments", expandedTabsColumnNo(firstChild), level);
             }
         }
@@ -92,10 +108,17 @@ public class LambdaHandler extends AbstractExpressionHandler {
         if (getLineStart(getMainAst()) == expandedTabsColumnNo(getMainAst())) {
             final IndentLevel level =
                 new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
-            if (!level.isAcceptable(expandedTabsColumnNo(getMainAst()))) {
+            if (isAcceptableIndent(getMainAst(), level)) {
+                isIdealIndent = false;
                 logError(getMainAst(), "", expandedTabsColumnNo(getMainAst()), level);
             }
         }
+    }
+
+    private boolean isAcceptableIndent(DetailAST firstChild, IndentLevel level) {
+        return expandedTabsColumnNo(firstChild) < level.getFirstIndentLevel()
+            || getIndentCheck().isForceStrictCondition()
+               && !level.isAcceptable(expandedTabsColumnNo(firstChild));
     }
 
 }
