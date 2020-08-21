@@ -41,7 +41,11 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final InnerTypeLastCheck checkObj = new InnerTypeLastCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        final int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+        };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }
@@ -100,9 +104,30 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInnerTypeLastRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(InnerTypeLastCheck.class);
+
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_KEY),
+            "19:5: " + getCheckMessage(MSG_KEY),
+            "28:9: " + getCheckMessage(MSG_KEY),
+            "38:13: " + getCheckMessage(MSG_KEY),
+            "44:13: " + getCheckMessage(MSG_KEY),
+            "48:9: " + getCheckMessage(MSG_KEY),
+            "50:9: " + getCheckMessage(MSG_KEY),
+            };
+        verify(checkConfig, getNonCompilablePath("InputInnerTypeLastRecords.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final InnerTypeLastCheck obj = new InnerTypeLastCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        final int[] expected = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+        };
         assertArrayEquals(expected, obj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
