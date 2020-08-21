@@ -2657,6 +2657,8 @@ package com.checkstyle.api; // violation
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
                   ANNOTATION_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
                   .
               </td>
               <td>
@@ -2668,6 +2670,8 @@ package com.checkstyle.api; // violation
                   ENUM_DEF</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
                   ANNOTATION_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                  RECORD_DEF</a>
                   .
               </td>
               <td>8.20</td>
