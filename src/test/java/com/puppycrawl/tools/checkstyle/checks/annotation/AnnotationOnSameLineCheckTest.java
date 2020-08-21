@@ -63,6 +63,8 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             TokenTypes.LITERAL_NEW,
             TokenTypes.DOT,
             TokenTypes.ANNOTATION_FIELD_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
         };
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
@@ -133,6 +135,27 @@ public class AnnotationOnSameLineCheckTest extends AbstractModuleTestSupport {
             "56:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "Ann"),
         };
         verify(config, getPath("InputAnnotationOnSameLineCheckOnDifferentTokens.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationOnSameLineRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(AnnotationOnSameLineCheck.class);
+        config.addAttribute("tokens", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF,"
+            + " CTOR_DEF , VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
+
+        final String[] expected = {
+            "10:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "NonNull1"),
+            "14:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "19:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "24:9: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "29:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "32:27: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "41:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            "47:5: " + getCheckMessage(MSG_KEY_ANNOTATION_ON_SAME_LINE, "SuppressWarnings"),
+            };
+        verify(config,
+            getNonCompilablePath("InputAnnotationOnSameLineRecordsAndCompactCtors.java"),
+            expected);
     }
 
 }
