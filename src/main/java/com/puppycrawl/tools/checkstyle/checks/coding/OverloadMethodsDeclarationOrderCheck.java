@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -102,10 +103,16 @@ public class OverloadMethodsDeclarationOrderCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final int parentType = ast.getParent().getType();
-        if (parentType == TokenTypes.CLASS_DEF
-                || parentType == TokenTypes.ENUM_DEF
-                || parentType == TokenTypes.INTERFACE_DEF
-                || parentType == TokenTypes.LITERAL_NEW) {
+
+        final int[] tokenTypes = {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.ENUM_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.LITERAL_NEW,
+            TokenTypes.RECORD_DEF,
+        };
+
+        if (TokenUtil.isOfType(parentType, tokenTypes)) {
             checkOverloadMethodsGrouping(ast);
         }
     }
