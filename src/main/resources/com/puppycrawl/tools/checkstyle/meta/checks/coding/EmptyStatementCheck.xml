@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EmptyStatementCheck"
+             name="EmptyStatement"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Detects empty statements (standalone {@code ";"} semicolon).
+ Empty statements often introduce bugs that are hard to spot, such as in
+ &lt;/p&gt;
+ &lt;pre&gt;
+ if (someCondition);
+   doConditionalStuff();
+ doUnconditionalStuff();
+ &lt;/pre&gt;</description>
+         <message-keys>
+            <message-key key="empty.statement"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

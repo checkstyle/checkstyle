@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck"
+             name="ClassDataAbstractionCoupling"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Measures the number of instantiations of other classes
+ within the given class or record. This type of coupling is not caused by inheritance or
+ the object oriented paradigm. Generally speaking, any data type with other
+ data types as members or local variable that is an instantiation (object)
+ of another class has data abstraction coupling (DAC). The higher the DAC,
+ the more complex the structure of the class.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check processes files in the following way:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;
+ Iterates over the list of tokens (defined below) and counts all mentioned classes.
+ &lt;ul&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT"&gt;
+ PACKAGE_DEF&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT"&gt;
+ IMPORT&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF"&gt;
+ CLASS_DEF&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF"&gt;
+ INTERFACE_DEF&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF"&gt;
+ ENUM_DEF&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW"&gt;
+ LITERAL_NEW&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF"&gt;
+ RECORD_DEF&lt;/a&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ If a class was imported with direct import (i.e. {@code import java.math.BigDecimal}),
+ or the class was referenced with the package name (i.e. {@code java.math.BigDecimal value})
+ and the package was added to the {@code excludedPackages} parameter, the class
+ does not increase complexity.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If a class name was added to the {@code excludedClasses} parameter,
+ the class does not increase complexity.
+ &lt;/li&gt;
+ &lt;/ol&gt;</description>
+         <properties>
+            <property default-value="7" name="max" type="int">
+               <description>Specify the maximum threshold allowed.</description>
+            </property>
+            <property default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte,"
+                      name="excludedClasses"
+                      type="java.lang.String[]">
+               <description>Specify user-configured class names to ignore.</description>
+            </property>
+            <property default-value="^$"
+                      name="excludeClassesRegexps"
+                      type="java.lang.String[]"
+                      validation-type="java.util.regex.Pattern">
+               <description>Specify user-configured regular
+ expressions to ignore classes.</description>
+            </property>
+            <property default-value="" name="excludedPackages" type="java.lang.String[]">
+               <description>Specify user-configured packages to ignore.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="classDataAbstractionCoupling"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

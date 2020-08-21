@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck"
+             name="NoCodeInFile"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks whether file contains code. Files which are considered to have no code:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ File with no text
+ &lt;/li&gt;
+ &lt;li&gt;
+ File with single line comment(s)
+ &lt;/li&gt;
+ &lt;li&gt;
+ File with a multi line comment(s).
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="nocode.in.file"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
