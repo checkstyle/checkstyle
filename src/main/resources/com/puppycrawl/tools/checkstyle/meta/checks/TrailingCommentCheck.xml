@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck"
+             name="TrailingComment"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ The check to ensure that requires that comments be the only thing on a line.
+ For the case of {@code //} comments that means that the only thing that should precede
+ it is whitespace. It doesn't check comments if they do not end a line; for example,
+ it accepts the following: &lt;code&gt;Thread.sleep( 10 /*some comment here&amp;#42;/ );&lt;/code&gt;
+ Format property is intended to deal with the &lt;code&gt;} // while&lt;/code&gt; example.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Steve McConnell in &lt;cite&gt;Code Complete&lt;/cite&gt; suggests that endline
+ comments are a bad practice. An end line comment would be one that is on
+ the same line as actual code. For example:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ a = b + c;      // Some insightful comment
+ d = e / f;        // Another comment for this line
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Quoting &lt;cite&gt;Code Complete&lt;/cite&gt; for the justification:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ "The comments have to be aligned so that they do not interfere with the visual
+ structure of the code. If you don't align them neatly, they'll make your listing
+ look like it's been through a washing machine."
+ &lt;/li&gt;
+ &lt;li&gt;
+ "Endline comments tend to be hard to format...It takes time to align them.
+ Such time is not spent learning more about the code; it's dedicated solely
+ to the tedious task of pressing the spacebar or tab key."
+ &lt;/li&gt;
+ &lt;li&gt;
+ "Endline comments are also hard to maintain. If the code on any line containing
+ an endline comment grows, it bumps the comment farther out, and all the other
+ endline comments will have to bumped out to match. Styles that are hard to
+ maintain aren't maintained...."
+ &lt;/li&gt;
+ &lt;li&gt;
+ "Endline comments also tend to be cryptic. The right side of the line doesn't
+ offer much room and the desire to keep the comment on one line means the comment
+ must be short. Work then goes into making the line as short as possible instead
+ of as clear as possible. The comment usually ends up as cryptic as possible...."
+ &lt;/li&gt;
+ &lt;li&gt;
+ "A systemic problem with endline comments is that it's hard to write a meaningful
+ comment for one line of code. Most endline comments just repeat the line of code,
+ which hurts more than it helps."
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ McConnell's comments on being hard to maintain when the size of the line changes
+ are even more important in the age of automated refactorings.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="format" type="java.util.regex.Pattern">
+               <description>Specify pattern for strings allowed before the comment.</description>
+            </property>
+            <property name="legalComment" type="java.util.regex.Pattern">
+               <description>Define pattern for text allowed in trailing comments.
+ (This pattern will not be applied to multiline comments and the text of
+ the comment will be trimmed before matching.)</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="trailing.comments"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

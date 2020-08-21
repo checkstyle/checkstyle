@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck"
+             name="OrderedProperties"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;Detects if keys in properties files are in correct order.&lt;/p&gt;
+ &lt;p&gt;
+   Rationale: Sorted properties make it easy for people to find required properties by name
+   in file. It makes merges more easy. While there are no problems at runtime.
+   This check is valuable only on files with string resources where order of lines
+   does not matter at all, but this can be improved.
+   E.g.: checkstyle/src/main/resources/com/puppycrawl/tools/checkstyle/messages.properties
+   You may suppress warnings of this check for files that have an logical structure like
+   build files or log4j configuration files. See SuppressionFilter.
+   {@code
+   &amp;lt;suppress checks="OrderedProperties"
+     files="log4j.properties|ResourceBundle/Bug.*.properties|logging.properties"/&amp;gt;
+   }
+ &lt;/p&gt;
+ &lt;p&gt;Known limitation: The key should not contain a newline.
+ The string compare will work, but not the line number reporting.&lt;/p&gt;</description>
+         <properties>
+            <property default-value=".properties"
+                      name="fileExtensions"
+                      type="java.lang.String[]">
+               <description>Specify file type extension of the files to check.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="properties.notSorted.property"/>
+            <message-key key="unable.open.cause"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
