@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck"
+             name="AnnotationLocation"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks location of annotation on language elements.
+ By default, Check enforce to locate annotations immediately after
+ documentation block and before target element, annotation should be located
+ on separate line from target element. This check also verifies that the annotations
+ are on the same indenting level as the annotated element if they are not on the same line.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Attention: Elements that cannot have JavaDoc comments like local variables are not in the
+ scope of this check even though a token type like {@code } would match them.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Attention: Annotations among modifiers are ignored (looks like false-negative)
+ as there might be a problem with annotations for return types:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public @Nullable Long getStartTimeOrNull() { ... }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Such annotations are better to keep close to type.
+ Due to limitations, Checkstyle can not examine the target of an annotation.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Example:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ &amp;#64;Override
+ &amp;#64;Nullable
+ public String getNameIfPresent() { ... }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="allowSamelineMultipleAnnotations"
+                      type="boolean">
+               <description>Allow annotation(s) to be located on
+ the same line as target element.</description>
+            </property>
+            <property default-value="true"
+                      name="allowSamelineSingleParameterlessAnnotation"
+                      type="boolean">
+               <description>Allow single parameterless
+ annotation to be located on the same line as target element.</description>
+            </property>
+            <property default-value="false"
+                      name="allowSamelineParameterizedAnnotation"
+                      type="boolean">
+               <description>Allow one and only parameterized
+ annotation to be located on the same line as target element.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,PACKAGE_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,METHOD_DEF,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotation.location"/>
+            <message-key key="annotation.location.alone"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

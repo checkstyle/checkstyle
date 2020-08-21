@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck"
+             name="HiddenField"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that a local variable or a parameter does not shadow
+ a field that is defined in the same class.
+ &lt;/p&gt;
+ &lt;p&gt;
+ It is possible to configure the check to ignore all property setter methods.
+ &lt;/p&gt;
+ &lt;p&gt;
+ A method is recognized as a setter if it is in the following form
+ &lt;/p&gt;
+ &lt;pre&gt;
+ ${returnType} set${Name}(${anyType} ${name}) { ... }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ where ${anyType} is any primitive type, class or interface name;
+ ${name} is name of the variable that is being set and ${Name} its
+ capitalized form that appears in the method name. By default it is expected
+ that setter returns void, i.e. ${returnType} is 'void'. For example
+ &lt;/p&gt;
+ &lt;pre&gt;
+ void setTime(long time) { ... }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Any other return types will not let method match a setter pattern. However,
+ by setting &lt;em&gt;setterCanReturnItsClass&lt;/em&gt; property to &lt;em&gt;true&lt;/em&gt;
+ definition of a setter is expanded, so that setter return type can also be
+ a class in which setter is declared. For example
+ &lt;/p&gt;
+ &lt;pre&gt;
+ class PageBuilder {
+   PageBuilder setName(String name) { ... }
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Such methods are known as chain-setters and a common when Builder-pattern
+ is used. Property &lt;em&gt;setterCanReturnItsClass&lt;/em&gt; has effect only if
+ &lt;em&gt;ignoreSetter&lt;/em&gt; is set to true.
+ &lt;/p&gt;</description>
+         <properties>
+            <property name="ignoreFormat" type="java.util.regex.Pattern">
+               <description>Define the RegExp for names of variables
+ and parameters to ignore.</description>
+            </property>
+            <property default-value="false"
+                      name="ignoreConstructorParameter"
+                      type="boolean">
+               <description>Control whether to ignore constructor parameters.</description>
+            </property>
+            <property default-value="false" name="ignoreSetter" type="boolean">
+               <description>Allow to ignore the parameter of a property setter method.</description>
+            </property>
+            <property default-value="false" name="setterCanReturnItsClass" type="boolean">
+               <description>Allow to expand the definition of a setter method
+ to include methods that return the class' instance.</description>
+            </property>
+            <property default-value="false" name="ignoreAbstractMethods" type="boolean">
+               <description>Control whether to ignore parameters
+ of abstract methods.</description>
+            </property>
+            <property default-value="VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA,RECORD_COMPONENT_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="hidden.field"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
