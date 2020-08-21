@@ -6288,6 +6288,8 @@ myList.stream()
                 ENUM_DEF</a>
                 , <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
                 ANNOTATION_DEF</a>
+                , <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                RECORD_DEF</a>
                   .
               </td>
               <td>
@@ -6299,6 +6301,8 @@ myList.stream()
                     ENUM_DEF</a>
                 , <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_DEF">
                     ANNOTATION_DEF</a>
+                , <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+                    RECORD_DEF</a>
                   .
               </td>
               <td>8.31</td>
