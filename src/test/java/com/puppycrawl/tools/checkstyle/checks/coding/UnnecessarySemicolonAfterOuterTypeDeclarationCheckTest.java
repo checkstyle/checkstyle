@@ -55,6 +55,21 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
     }
 
     @Test
+    public void testUnnecessarySemicolonAfterOuterTypeDeclarationRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class);
+
+        final String[] expected = {
+            "14:2: " + getCheckMessage(MSG_SEMI),
+            "20:2: " + getCheckMessage(MSG_SEMI),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords.java"),
+            expected);
+    }
+
+    @Test
     public void testTokens() {
         final UnnecessarySemicolonAfterOuterTypeDeclarationCheck check =
             new UnnecessarySemicolonAfterOuterTypeDeclarationCheck();
@@ -63,6 +78,7 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             TokenTypes.INTERFACE_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, check.getAcceptableTokens(),
                 "Acceptable required tokens are invalid");
