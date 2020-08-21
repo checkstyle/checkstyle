@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ParameterAssignment" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ParameterAssignmentCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Disallows assignment of parameters.
+ </p>
+ <p>
+ Rationale:
+ Parameter assignment is often considered poor
+ programming practice. Forcing developers to declare
+ parameters as final is often onerous. Having a check
+ ensure that parameters are never assigned would give
+ the best of both worlds.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="parameter.assignment"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

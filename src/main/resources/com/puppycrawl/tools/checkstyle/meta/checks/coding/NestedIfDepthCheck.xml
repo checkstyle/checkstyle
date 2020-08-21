@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="NestedIfDepth" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NestedIfDepthCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Restricts nested if-else blocks to a specified depth.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="1">
+          <description><![CDATA[Specify maximum allowed nesting depth.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="nested.if.depth"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

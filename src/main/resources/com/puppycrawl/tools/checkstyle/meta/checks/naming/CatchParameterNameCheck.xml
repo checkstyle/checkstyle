@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="CatchParameterName" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.CatchParameterNameCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that {@code catch} parameter names conform to a specified pattern.
+ </p>
+ <p>
+ Default pattern has the following characteristic:
+ </p>
+ <ul>
+ <li>allows names beginning with two lowercase letters followed by at least one uppercase or
+ lowercase letter</li>
+ <li>allows {@code e} abbreviation (suitable for exceptions end errors)</li>
+ <li>allows {@code ex} abbreviation (suitable for exceptions)</li>
+ <li>allows {@code t} abbreviation (suitable for throwables)</li>
+ <li>prohibits numbered abbreviations like {@code e1} or {@code t2}</li>
+ <li>prohibits one letter prefixes like {@code pException}</li>
+ <li>prohibits two letter abbreviations like {@code ie} or {@code ee}</li>
+ <li>prohibits any other characters than letters</li>
+ </ul>]]></description>
+      <properties>
+        <property name="format" type="java.util.regex.Pattern" default-value="^(e|t|ex|[a-z][a-z][a-zA-Z]+)$">
+          <description><![CDATA[Specifies valid identifiers.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

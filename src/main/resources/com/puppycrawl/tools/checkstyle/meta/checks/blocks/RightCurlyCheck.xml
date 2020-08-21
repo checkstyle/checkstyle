@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="RightCurly" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
+ if-else, try-catch-finally blocks, while-loops, for-loops,
+ method definitions, class definitions, constructor definitions,
+ instance, static initialization blocks, annotation definitions and enum definitions.
+ For right curly brace of expression blocks of arrays, lambdas and class instances
+ please follow issue
+ <a href="https://github.com/checkstyle/checkstyle/issues/5945">#5945</a>.
+ For right curly brace of enum constant please follow issue
+ <a href="https://github.com/checkstyle/checkstyle/issues/7519">#7519</a>.
+ </p>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyOption" default-value="same">
+          <description><![CDATA[Specify the policy on placement of a right curly brace
+ (<code>'}'</code>).]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="LITERAL_TRY,LITERAL_CATCH,LITERAL_FINALLY,LITERAL_IF,LITERAL_ELSE" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.alone"/>
+        <message-key key="line.break.before"/>
+        <message-key key="line.same"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

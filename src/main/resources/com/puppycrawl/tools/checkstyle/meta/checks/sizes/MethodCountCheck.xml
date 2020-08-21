@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MethodCount" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the number of methods declared in each type declaration by access modifier
+ or total count.
+ </p>
+ <p>
+ This check can be configured to flag classes that define too many methods
+ to prevent the class from getting too complex. Counting can be customized
+ to prevent too many total methods in a type definition ({@code maxTotal}),
+ or to prevent too many methods of a specific access modifier ({@code private},
+ {@code package}, {@code protected} or {@code public}). Each count is completely
+ separated to customize how many methods of each you want to allow. For example,
+ specifying a {@code maxTotal} of 10, still means you can prevent more than 0
+ {@code maxPackage} methods. A violation won't appear for 8 public methods,
+ but one will appear if there is also 3 private methods or any package-private methods.
+ </p>
+ <p>
+ Methods defined in anonymous classes are not counted towards any totals.
+ Counts only go towards the main type declaration parent, and are kept separate
+ from it's children's inner types.
+ </p>
+ <pre>
+ public class ExampleClass {
+   public enum Colors {
+     RED, GREEN, YELLOW;
+
+     public String getRGB() { ... } // NOT counted towards ExampleClass
+   }
+
+   public void example() { // counted towards ExampleClass
+     Runnable r = (new Runnable() {
+       public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
+     });
+   }
+
+   public static class InnerExampleClass {
+     protected void example2() { ... } // NOT counted towards ExampleClass,
+                                    // but counted towards InnerExampleClass
+   }
+ }
+ </pre>]]></description>
+      <properties>
+        <property name="maxTotal" type="int" default-value="100">
+          <description><![CDATA[Specify the maximum number of methods allowed at all scope levels.]]></description>
+        </property>
+        <property name="maxPrivate" type="int" default-value="100">
+          <description><![CDATA[Specify the maximum number of {@code private} methods allowed.]]></description>
+        </property>
+        <property name="maxPackage" type="int" default-value="100">
+          <description><![CDATA[Specify the maximum number of {@code package} methods allowed.]]></description>
+        </property>
+        <property name="maxProtected" type="int" default-value="100">
+          <description><![CDATA[Specify the maximum number of {@code protected} methods allowed.]]></description>
+        </property>
+        <property name="maxPublic" type="int" default-value="100">
+          <description><![CDATA[Specify the maximum number of {@code public} methods allowed.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="CLASS_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,ANNOTATION_DEF,RECORD_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="too.many.methods"/>
+        <message-key key="too.many.packageMethods"/>
+        <message-key key="too.many.privateMethods"/>
+        <message-key key="too.many.protectedMethods"/>
+        <message-key key="too.many.publicMethods"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

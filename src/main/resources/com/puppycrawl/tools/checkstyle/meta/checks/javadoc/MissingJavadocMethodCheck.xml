@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MissingJavadocMethod" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocMethodCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for missing Javadoc comments for a method or constructor. The scope to verify is
+ specified using the {@code Scope} class and defaults to {@code Scope.PUBLIC}. To verify
+ another scope, set property scope to a different
+ <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
+ </p>
+ <p>
+ Javadoc is not required on a method that is tagged with the {@code @Override} annotation.
+ However under Java 5 it is not possible to mark a method required for an interface (this
+ was <i>corrected</i> under Java 6). Hence Checkstyle supports using the convention of using
+ a single {@code {@inheritDoc}} tag instead of all the other tags.
+ </p>
+ <p>
+ For getters and setters for the property {@code allowMissingPropertyJavadoc}, the methods must
+ match exactly the structures below.
+ </p>
+ <pre>
+ public void setNumber(final int number)
+ {
+     mNumber = number;
+ }
+
+ public int getNumber()
+ {
+     return mNumber;
+ }
+
+ public boolean isSomething()
+ {
+     return false;
+ }
+ </pre>]]></description>
+      <properties>
+        <property name="minLineCount" type="int" default-value="-1">
+          <description><![CDATA[Control the minimal amount of lines in method to allow no
+ documentation.]]></description>
+        </property>
+        <property name="allowedAnnotations" type="java.lang.String[]" default-value="Override">
+          <description><![CDATA[Configure the list of annotations that allow missed
+ documentation.]]></description>
+        </property>
+        <property name="scope" type="com.puppycrawl.tools.checkstyle.api.Scope" default-value="public">
+          <description><![CDATA[Specify the visibility scope where Javadoc comments are checked.]]></description>
+        </property>
+        <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+          <description><![CDATA[Specify the visibility scope where Javadoc comments are
+ not checked.]]></description>
+        </property>
+        <property name="allowMissingPropertyJavadoc" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to allow missing Javadoc on
+ accessor methods for properties (setters and getters).]]></description>
+        </property>
+        <property name="ignoreMethodNamesRegex" type="java.util.regex.Pattern">
+          <description><![CDATA[ignore method whose names are matching specified
+ regex.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="METHOD_DEF,CTOR_DEF,ANNOTATION_FIELD_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

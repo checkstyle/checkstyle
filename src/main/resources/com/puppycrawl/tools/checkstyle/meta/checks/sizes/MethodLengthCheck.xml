@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MethodLength" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodLengthCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for long methods and constructors.
+ </p>
+ <p>
+ Rationale: If a method becomes very long it is hard to understand.
+ Therefore long methods should usually be refactored into several
+ individual methods that focus on a specific task.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="150">
+          <description><![CDATA[Specify the maximum number of lines allowed.]]></description>
+        </property>
+        <property name="countEmpty" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to count empty lines and single
+ line comments of the form {@code //}.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxLen.method"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

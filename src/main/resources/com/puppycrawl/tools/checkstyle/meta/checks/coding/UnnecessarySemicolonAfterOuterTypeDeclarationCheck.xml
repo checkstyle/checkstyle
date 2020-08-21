@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="UnnecessarySemicolonAfterOuterTypeDeclaration" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterOuterTypeDeclarationCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks if unnecessary semicolon is used after type declaration.
+ </p>
+ <p>
+ This check is not applicable to nested type declarations,
+ <a
+ href="https://checkstyle.org/config_coding.html#UnnecessarySemicolonAfterTypeMemberDeclaration">
+ UnnecessarySemicolonAfterTypeMemberDeclaration</a> is responsible for it.
+ </p>]]></description>
+      <properties>
+        <property name="tokens" type="java.lang.String[]" default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="unnecessary.semicolon"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

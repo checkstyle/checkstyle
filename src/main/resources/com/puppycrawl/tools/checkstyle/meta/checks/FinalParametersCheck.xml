@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="FinalParameters" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.FinalParametersCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that parameters for methods, constructors, catch and for-each blocks are final.
+ Interface, abstract, and native methods are not checked: the final keyword
+ does not make sense for interface, abstract, and native method parameters as
+ there is no code that could modify the parameter.
+ </p>
+ <p>
+ Rationale: Changing the value of parameters during the execution of the method's
+ algorithm can be confusing and should be avoided. A great way to let the Java compiler
+ prevent this coding style is to declare parameters final.
+ </p>]]></description>
+      <properties>
+        <property name="ignorePrimitiveTypes" type="boolean" default-value="false">
+          <description><![CDATA[Ignore primitive types as parameters.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="METHOD_DEF,CTOR_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="final.parameter"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="OverloadMethodsDeclarationOrder" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OverloadMethodsDeclarationOrderCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that overloaded methods are grouped together. Overloaded methods have the same
+ name but different signatures where the signature can differ by the number of
+ input parameters or type of input parameters or both.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="overload.methods.declaration"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

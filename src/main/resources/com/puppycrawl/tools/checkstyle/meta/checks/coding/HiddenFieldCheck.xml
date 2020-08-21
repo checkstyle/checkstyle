@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="HiddenField" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that a local variable or a parameter does not shadow
+ a field that is defined in the same class.
+ </p>
+ <p>
+ It is possible to configure the check to ignore all property setter methods.
+ </p>
+ <p>
+ A method is recognized as a setter if it is in the following form
+ </p>
+ <pre>
+ ${returnType} set${Name}(${anyType} ${name}) { ... }
+ </pre>
+ <p>
+ where ${anyType} is any primitive type, class or interface name;
+ ${name} is name of the variable that is being set and ${Name} its
+ capitalized form that appears in the method name. By default it is expected
+ that setter returns void, i.e. ${returnType} is 'void'. For example
+ </p>
+ <pre>
+ void setTime(long time) { ... }
+ </pre>
+ <p>
+ Any other return types will not let method match a setter pattern. However,
+ by setting <em>setterCanReturnItsClass</em> property to <em>true</em>
+ definition of a setter is expanded, so that setter return type can also be
+ a class in which setter is declared. For example
+ </p>
+ <pre>
+ class PageBuilder {
+   PageBuilder setName(String name) { ... }
+ }
+ </pre>
+ <p>
+ Such methods are known as chain-setters and a common when Builder-pattern
+ is used. Property <em>setterCanReturnItsClass</em> has effect only if
+ <em>ignoreSetter</em> is set to true.
+ </p>]]></description>
+      <properties>
+        <property name="ignoreFormat" type="java.util.regex.Pattern">
+          <description><![CDATA[Define the RegExp for names of variables
+ and parameters to ignore.]]></description>
+        </property>
+        <property name="ignoreConstructorParameter" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to ignore constructor parameters.]]></description>
+        </property>
+        <property name="ignoreSetter" type="boolean" default-value="false">
+          <description><![CDATA[Allow to ignore the parameter of a property setter method.]]></description>
+        </property>
+        <property name="setterCanReturnItsClass" type="boolean" default-value="false">
+          <description><![CDATA[Allow to expand the definition of a setter method
+ to include methods that return the class' instance.]]></description>
+        </property>
+        <property name="ignoreAbstractMethods" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to ignore parameters
+ of abstract methods.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="VARIABLE_DEF,PARAMETER_DEF,PATTERN_VARIABLE_DEF,LAMBDA" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="hidden.field"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

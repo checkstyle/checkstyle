@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="LambdaParameterName" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.LambdaParameterNameCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks lambda parameter names.
+ </p>]]></description>
+      <properties>
+        <property name="format" type="java.util.regex.Pattern" default-value="^[a-z][a-zA-Z0-9]*$">
+          <description><![CDATA[Specifies valid identifiers.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

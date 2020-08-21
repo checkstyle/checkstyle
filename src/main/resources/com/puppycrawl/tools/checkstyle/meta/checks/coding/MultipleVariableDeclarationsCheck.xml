@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MultipleVariableDeclarations" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleVariableDeclarationsCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that each variable declaration is in its own statement
+ and on its own line.
+ </p>
+ <p>
+ Rationale: <a
+ href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
+ the Java code conventions chapter 6.1</a> recommends that
+ declarations should be one per line/statement.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="multiple.variable.declarations"/>
+        <message-key key="multiple.variable.declarations.comma"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

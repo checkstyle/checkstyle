@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="GenericWhitespace" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.GenericWhitespaceCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that the whitespace around the Generic tokens (angle brackets)
+ "&lt;" and "&gt;" are correct to the <i>typical</i> convention.
+ The convention is not configurable.
+ </p>
+ <p>
+ Left angle bracket ("&lt;"):
+ </p>
+ <ul>
+ <li> should be preceded with whitespace only
+   in generic methods definitions.</li>
+ <li> should not be preceded with whitespace
+   when it is precede method name or constructor.</li>
+ <li> should not be preceded with whitespace when following type name.</li>
+ <li> should not be followed with whitespace in all cases.</li>
+ </ul>
+ <p>
+ Right angle bracket ("&gt;"):
+ </p>
+ <ul>
+ <li> should not be preceded with whitespace in all cases.</li>
+ <li> should be followed with whitespace in almost all cases,
+   except diamond operators and when preceding method name or constructor.</li></ul>]]></description>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.illegalFollow"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

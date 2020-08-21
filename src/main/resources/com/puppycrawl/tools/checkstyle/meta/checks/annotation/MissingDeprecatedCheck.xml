@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MissingDeprecated" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingDeprecatedCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Verifies that the annotation {@code @Deprecated} and the Javadoc tag
+ {@code @deprecated} are both present when either of them is present.
+ </p>
+ <p>
+ Both ways of flagging deprecation serve their own purpose.
+ The &#64;Deprecated annotation is used for compilers and development tools.
+ The &#64;deprecated javadoc tag is used to document why something is deprecated
+ and what, if any, alternatives exist.
+ </p>
+ <p>
+ In order to properly mark something as deprecated both forms of
+ deprecation should be present.
+ </p>
+ <p>
+ Package deprecation is a exception to the rule of always using the
+ javadoc tag and annotation to deprecate.  It is not clear if the javadoc
+ tool will support it or not as newer versions keep flip flopping on if
+ it is supported or will cause an error. See
+ <a href="https://bugs.openjdk.java.net/browse/JDK-8160601">JDK-8160601</a>.
+ The deprecated javadoc tag is currently the only way to say why the package
+ is deprecated and what to use instead.  Until this is resolved, if you don't
+ want to print violations on package-info, you can use a
+ <a href="https://checkstyle.org/config_filters.html">filter</a> to ignore
+ these files until the javadoc tool faithfully supports it. An example config
+ using SuppressionSingleFilter is:
+ </p>
+ <pre>
+ &lt;!-- required till https://bugs.openjdk.java.net/browse/JDK-8160601 --&gt;
+ &lt;module name="SuppressionSingleFilter"&gt;
+     &lt;property name="checks" value="MissingDeprecatedCheck"/&gt;
+     &lt;property name="files" value="package-info\.java"/&gt;
+ &lt;/module&gt;
+ </pre>]]></description>
+      <properties>
+        <property name="violateExecutionOnNonTightHtml" type="boolean" default-value="false">
+          <description><![CDATA[Control when to
+ print violations if the Javadoc being examined by this check violates the
+ tight html rules defined at
+ <a href="https://checkstyle.org/writingjavadocchecks.html#TightHTML_rules">
+ TightHTML Rules</a>.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="annotation.missing.deprecated"/>
+        <message-key key="javadoc.duplicateTag"/>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>
