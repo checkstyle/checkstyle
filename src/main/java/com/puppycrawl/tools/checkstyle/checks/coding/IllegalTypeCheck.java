@@ -137,7 +137,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
  * VARIABLE_DEF</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#PATTERN_VARIABLE_DEF">
- * PATTERN_VARIABLE_DEF</a>.
+ * PATTERN_VARIABLE_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_DEF">
+ * RECORD_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#RECORD_COMPONENT_DEF">
+ * RECORD_COMPONENT_DEF</a>.
  * </li>
  * </ul>
  * <p>
@@ -396,6 +400,8 @@ public final class IllegalTypeCheck extends AbstractCheck {
             TokenTypes.PARAMETER_DEF,
             TokenTypes.VARIABLE_DEF,
             TokenTypes.PATTERN_VARIABLE_DEF,
+            TokenTypes.RECORD_DEF,
+            TokenTypes.RECORD_COMPONENT_DEF,
         };
     }
 
@@ -420,6 +426,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
         switch (ast.getType()) {
             case TokenTypes.CLASS_DEF:
             case TokenTypes.INTERFACE_DEF:
+            case TokenTypes.RECORD_DEF:
                 visitTypeDef(ast);
                 break;
             case TokenTypes.METHOD_CALL:
@@ -432,6 +439,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
             case TokenTypes.VARIABLE_DEF:
             case TokenTypes.ANNOTATION_FIELD_DEF:
             case TokenTypes.PATTERN_VARIABLE_DEF:
+            case TokenTypes.RECORD_COMPONENT_DEF:
                 visitVariableDef(ast);
                 break;
             case TokenTypes.PARAMETER_DEF:
