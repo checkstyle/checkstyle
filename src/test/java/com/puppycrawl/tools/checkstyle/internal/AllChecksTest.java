@@ -149,7 +149,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // https://github.com/checkstyle/checkstyle/issues/3730
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("AnnotationLocation",
                 Stream.of("CLASS_DEF", "CTOR_DEF", "ENUM_DEF", "INTERFACE_DEF",
-                        "METHOD_DEF", "VARIABLE_DEF").collect(Collectors.toSet()));
+                        "METHOD_DEF", "VARIABLE_DEF",
+                        "RECORD_DEF", "COMPACT_CTOR_DEF")
+                        .collect(Collectors.toSet()));
         CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoLineWrap", Stream.of(
                 // method/constructor declaration could be long due to "parameters/exceptions", it
                 // is ok to be not strict there
