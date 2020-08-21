@@ -65,6 +65,26 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
     }
 
     @Test
+    public void testUnnecessarySemicolonAfterTypeMemberDeclarationRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(UnnecessarySemicolonAfterTypeMemberDeclarationCheck.class);
+
+        final String[] expected = {
+            "9:5: " + getCheckMessage(MSG_SEMI),
+            "13:5: " + getCheckMessage(MSG_SEMI),
+            "17:5: " + getCheckMessage(MSG_SEMI),
+            "22:5: " + getCheckMessage(MSG_SEMI),
+            "28:5: " + getCheckMessage(MSG_SEMI),
+            "33:5: " + getCheckMessage(MSG_SEMI),
+            "35:5: " + getCheckMessage(MSG_SEMI),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords.java"),
+            expected);
+    }
+
+    @Test
     public void testTokens() {
         final UnnecessarySemicolonAfterTypeMemberDeclarationCheck check =
             new UnnecessarySemicolonAfterTypeMemberDeclarationCheck();
@@ -80,6 +100,8 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             TokenTypes.CTOR_DEF,
             TokenTypes.METHOD_DEF,
             TokenTypes.ENUM_CONSTANT_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.RECORD_DEF,
         };
         assertArrayEquals(expected, check.getAcceptableTokens(),
                 "Acceptable required tokens are invalid");
