@@ -54,6 +54,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
             TokenTypes.CLASS_DEF,
             TokenTypes.ENUM_DEF,
             TokenTypes.ANNOTATION_DEF,
+            TokenTypes.RECORD_DEF,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -309,6 +310,27 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         };
         verify(checkConfig,
             getPath("InputMissingJavadocTypeSkipAnnotations.java"),
+            expected);
+    }
+
+    @Test
+    public void testMissingJavadocTypeCheckRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(MissingJavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", "PRIVATE");
+        checkConfig.addAttribute("skipAnnotations", "NonNull1");
+
+        final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "20:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "38:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputMissingJavadocTypeRecords.java"),
             expected);
     }
 
