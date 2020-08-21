@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="OuterTypeNumber" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.OuterTypeNumberCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for the number of types declared at the <i>outer</i> (or <i>root</i>) level in a file.
+ </p>
+ <p>
+ Rationale: It is considered good practice to only define one outer type per file.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="1">
+          <description><![CDATA[Specify the maximum number of outer types allowed.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxOuterTypes"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

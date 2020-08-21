@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="IllegalThrows" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalThrowsCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that specified types are not declared to be thrown.
+ Declaring that a method throws {@code java.lang.Error} or
+ {@code java.lang.RuntimeException} is almost never acceptable.
+ </p>]]></description>
+      <properties>
+        <property name="illegalClassNames" type="java.lang.String[]" default-value="Error, RuntimeException, Throwable, java.lang.Error,">
+          <description><![CDATA[Specify throw class names to reject.]]></description>
+        </property>
+        <property name="ignoredMethodNames" type="java.lang.String[]" default-value="finalize">
+          <description><![CDATA[Specify names of methods to ignore.]]></description>
+        </property>
+        <property name="ignoreOverriddenMethods" type="boolean" default-value="true">
+          <description><![CDATA[allow to ignore checking overridden methods
+ (marked with {@code Override} or {@code java.lang.Override} annotation).]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.throw"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

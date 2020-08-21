@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="RequireThis" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that references to instance variables and methods of the present
+ object are explicitly of the form "this.varName" or "this.methodName(args)"
+ and that those references don't rely on the default behavior when "this." is absent.
+ </p>
+ <p>Warning: the Check is very controversial if 'validateOnlyOverlapping' option is set to 'false'
+ and not that actual nowadays.</p>
+ <p>Rationale:</p>
+ <ol>
+   <li>
+     The same notation/habit for C++ and Java (C++ have global methods, so having
+     &quot;this.&quot; do make sense in it to distinguish call of method of class
+     instead of global).
+   </li>
+   <li>
+     Non-IDE development (ease of refactoring, some clearness to distinguish
+     static and non-static methods).
+   </li>
+ </ol>
+ <p>Limitations: Nothing is currently done about static variables
+ or catch-blocks.  Static methods invoked on a class name seem to be OK;
+ both the class name and the method name have a DOT parent.
+ Non-static methods invoked on either this or a variable name seem to be
+ OK, likewise.
+ </p>]]></description>
+      <properties>
+        <property name="checkFields" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to check references to fields.]]></description>
+        </property>
+        <property name="checkMethods" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to check references to methods.]]></description>
+        </property>
+        <property name="validateOnlyOverlapping" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to check only
+ overlapping by variables or arguments.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="require.this.method"/>
+        <message-key key="require.this.variable"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

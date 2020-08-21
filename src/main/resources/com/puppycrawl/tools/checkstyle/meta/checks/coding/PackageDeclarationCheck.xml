@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="PackageDeclaration" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PackageDeclarationCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Ensures that a class has a package declaration, and (optionally) whether
+ the package name matches the directory name for the source file.
+ </p>
+ <p>
+ Rationale: Classes that live in the null package cannot be imported.
+ Many novice developers are not aware of this.
+ </p>
+ <p>
+ Packages provide logical namespace to classes and should be stored in
+ the form of directory levels to provide physical grouping to your classes.
+ These directories are added to the classpath so that your classes
+ are visible to JVM when it runs the code.
+ </p>]]></description>
+      <properties>
+        <property name="matchDirectoryStructure" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to check for
+ directory and package name match.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="mismatch.package.directory"/>
+        <message-key key="missing.package.declaration"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

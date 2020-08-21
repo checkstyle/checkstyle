@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="SimplifyBooleanReturn" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for over-complicated boolean return statements.
+ For example the following code
+ </p>
+ <pre>
+ if (valid())
+   return false;
+ else
+   return true;
+ </pre>
+ <p>
+ could be written as
+ </p>
+ <pre>
+ return !valid();
+ </pre>
+ <p>
+ The idea for this Check has been shamelessly stolen from the equivalent
+ <a href="https://pmd.github.io/"></a> rule.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="simplify.boolReturn"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

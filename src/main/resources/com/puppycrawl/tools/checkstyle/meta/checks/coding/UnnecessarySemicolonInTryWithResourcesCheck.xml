@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="UnnecessarySemicolonInTryWithResources" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonInTryWithResourcesCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks if unnecessary semicolon is used in last resource declaration.
+ </p>]]></description>
+      <properties>
+        <property name="allowWhenNoBraceAfterSemicolon" type="boolean" default-value="true">
+          <description><![CDATA[Allow unnecessary semicolon if closing paren is not on the same line.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="unnecessary.semicolon"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

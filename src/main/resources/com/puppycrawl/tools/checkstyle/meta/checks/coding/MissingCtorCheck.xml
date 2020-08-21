@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MissingCtor" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MissingCtorCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that classes (except abstract ones) define a constructor and don't rely
+ on the default one.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="missing.ctor"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="EmptyForIteratorPad" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyForIteratorPadCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the padding of an empty for iterator; that is whether a white
+ space is required at an empty for iterator, or such white space is
+ forbidden. No check occurs if there is a line wrap at the iterator, as in
+ </p>
+ <pre>
+ for (Iterator foo = very.long.line.iterator();
+     foo.hasNext();
+    )
+ </pre>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption" default-value="nospace">
+          <description><![CDATA[Specify policy on how to pad an empty for iterator.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.notFollowed"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

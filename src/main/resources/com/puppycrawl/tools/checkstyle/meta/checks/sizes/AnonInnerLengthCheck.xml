@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="AnonInnerLength" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.AnonInnerLengthCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for long anonymous inner classes.
+ </p>
+ <p>
+ Rationale: If an anonymous inner class becomes very long
+ it is hard to understand and to see the flow of the method
+ where the class is defined. Therefore long anonymous inner
+ classes should usually be refactored into a named inner class.
+ See also Bloch, Effective Java, p. 93.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="20">
+          <description><![CDATA[Specify the maximum number of lines allowed.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxLen.anonInner"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

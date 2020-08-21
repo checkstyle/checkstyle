@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="InvalidJavadocPosition" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.InvalidJavadocPositionCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that Javadocs are located at the correct position. As specified at
+ <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
+ Documentation Comment Specification for the Standard Doclet</a>, Javadocs are recognized
+ only when placed immediately before module, package, class, interface,
+ constructor, method, or field declarations. Any other position, like in the
+ body of a method, will be ignored by the javadoc tool and is considered
+ invalid by this check.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="invalid.position"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

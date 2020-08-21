@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ReturnCount" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ReturnCountCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Restricts the number of return statements in methods, constructors and lambda expressions.
+ Ignores specified methods ({@code equals} by default).
+ </p>
+ <p>
+ <b>max</b> property will only check returns in methods and lambdas that
+ return a specific value (Ex: 'return 1;').
+ </p>
+ <p>
+ <b>maxForVoid</b> property will only check returns in methods, constructors,
+ and lambdas that have no return type (IE 'return;'). It will only count
+ visible return statements. Return statements not normally written, but
+ implied, at the end of the method/constructor definition will not be taken
+ into account. To disallow "return;" in void return type methods, use a value
+ of 0.
+ </p>
+ <p>
+ Rationale: Too many return points can mean that code is
+ attempting to do too much or may be difficult to understand.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="2">
+          <description><![CDATA[Specify maximum allowed number of return statements
+ in nonvoid methods/lambdas.]]></description>
+        </property>
+        <property name="maxForVoid" type="int" default-value="1">
+          <description><![CDATA[Specify maximum allowed number of return statements
+ in void methods/constructors/lambdas.]]></description>
+        </property>
+        <property name="format" type="java.util.regex.Pattern" default-value="^equals$">
+          <description><![CDATA[Specify method names to ignore.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="CTOR_DEF,METHOD_DEF,LAMBDA" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="return.count"/>
+        <message-key key="return.countVoid"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

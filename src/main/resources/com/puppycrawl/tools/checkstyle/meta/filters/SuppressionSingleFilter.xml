@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <filter name="SuppressionSingleFilter" fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter" parent="com.puppycrawl.tools.checkstyle.Checker">
+      <description><![CDATA[<p>
+ Filter {@code SuppressionSingleFilter} suppresses audit events for Checks violations in the
+ specified file, class, checks, message, module id, lines, and columns.
+ </p>
+ <p>
+ Rationale: To allow users use suppressions configured in the same config with other modules.
+ SuppressionFilter and SuppressionXpathFilter are require separate file.
+ </p>
+ <p>
+ Advice: If checkstyle configuration is used for several projects, single suppressions on common
+ files/folders is better to put in checkstyle configuration as common rule. All suppression that
+ are for specific file names is better to keep in project specific config file.
+ </p>
+ <p>
+ Attention: This filter only supports single suppression, and will need multiple instances if
+ users wants to suppress multiple violations.
+ </p>
+ <p>
+ SuppressionSingleFilter can suppress Checks that have Treewalker or
+ Checker as parent module.
+ </p>]]></description>
+      <properties>
+        <property name="files" type="java.util.regex.Pattern">
+          <description><![CDATA[Define the RegExp for matching against the file name associated with
+ an audit event.]]></description>
+        </property>
+        <property name="checks" type="java.lang.String" validation-type="java.util.regex.Pattern">
+          <description><![CDATA[Define the RegExp for matching against the name of the check
+ associated with an audit event.]]></description>
+        </property>
+        <property name="message" type="java.util.regex.Pattern">
+          <description><![CDATA[Define the RegExp for matching against the message of the check
+ associated with an audit event.]]></description>
+        </property>
+        <property name="id" type="java.lang.String">
+          <description><![CDATA[Specify a string matched against the ID of the check associated with
+ an audit event.]]></description>
+        </property>
+        <property name="lines" type="java.lang.String">
+          <description><![CDATA[Specify a commaseparated list of values, where each value is an
+ integer or a range of integers denoted by integerinteger.]]></description>
+        </property>
+        <property name="columns" type="java.lang.String">
+          <description><![CDATA[Specify a commaseparated list of values, where each value is an
+ integer or a range of integers denoted by integerinteger.]]></description>
+        </property>
+      </properties>
+    </filter>
+  </module>
+</checkstyle-metadata>

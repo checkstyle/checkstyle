@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="WhitespaceAround" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that a token is surrounded by whitespace. Empty constructor,
+ method, class, enum, interface, loop bodies (blocks), lambdas of the form
+ </p>
+ <pre>
+ public MyClass() {}      // empty constructor
+ public void func() {}    // empty method
+ public interface Foo {} // empty interface
+ public class Foo {} // empty class
+ public enum Foo {} // empty enum
+ MyClass c = new MyClass() {}; // empty anonymous class
+ while (i = 1) {} // empty while loop
+ for (int i = 1; i &gt; 1; i++) {} // empty for loop
+ do {} while (i = 1); // empty do-while loop
+ Runnable noop = () -&gt; {}; // empty lambda
+ public @interface Beta {} // empty annotation type
+ </pre>
+ <p>
+ may optionally be exempted from the policy using the {@code allowEmptyMethods},
+ {@code allowEmptyConstructors}, {@code allowEmptyTypes}, {@code allowEmptyLoops},
+ {@code allowEmptyLambdas} and {@code allowEmptyCatches} properties.
+ </p>
+ <p>
+ This check does not flag as violation double brace initialization like:
+ </p>
+ <pre>
+ new Properties() {{
+     setProperty("key", "value");
+ }};
+ </pre>
+ <p>
+ Parameter allowEmptyCatches allows to suppress violations when token list
+ contains SLIST to check if beginning of block is surrounded by whitespace
+ and catch block is empty, for example:
+ </p>
+ <pre>
+ try {
+     k = 5 / i;
+ } catch (ArithmeticException ex) {}
+ </pre>
+ <p>
+ With this property turned off, this raises violation because the beginning
+ of the catch block (left curly bracket) is not separated from the end
+ of the catch block (right curly bracket).
+ </p>]]></description>
+      <properties>
+        <property name="allowEmptyConstructors" type="boolean" default-value="false">
+          <description><![CDATA[Allow empty constructor bodies.]]></description>
+        </property>
+        <property name="allowEmptyMethods" type="boolean" default-value="false">
+          <description><![CDATA[Allow empty method bodies.]]></description>
+        </property>
+        <property name="allowEmptyTypes" type="boolean" default-value="false">
+          <description><![CDATA[Allow empty class, interface and enum bodies.]]></description>
+        </property>
+        <property name="allowEmptyLoops" type="boolean" default-value="false">
+          <description><![CDATA[Allow empty loop bodies.]]></description>
+        </property>
+        <property name="allowEmptyLambdas" type="boolean" default-value="false">
+          <description><![CDATA[Allow empty lambda bodies.]]></description>
+        </property>
+        <property name="allowEmptyCatches" type="boolean" default-value="false">
+          <description><![CDATA[Allow empty catch bodies.]]></description>
+        </property>
+        <property name="ignoreEnhancedForColon" type="boolean" default-value="true">
+          <description><![CDATA[Ignore whitespace around colon in
+ <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls14.html#jls14.14.2">
+ enhanced for</a> loop.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="ASSIGN,BAND,BAND_ASSIGN,BOR,BOR_ASSIGN,BSR,BSR_ASSIGN,BXOR,BXOR_ASSIGN,COLON,DIV,DIV_ASSIGN,DO_WHILE,EQUAL,GE,GT,LAMBDA,LAND,LCURLY,LE,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE,LOR,LT,MINUS,MINUS_ASSIGN,MOD,MOD_ASSIGN,NOT_EQUAL,PLUS,PLUS_ASSIGN,QUESTION,RCURLY,SL,SLIST,SL_ASSIGN,SR,SR_ASSIGN,STAR,STAR_ASSIGN,LITERAL_ASSERT,TYPE_EXTENSION_AND" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.notPreceded"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

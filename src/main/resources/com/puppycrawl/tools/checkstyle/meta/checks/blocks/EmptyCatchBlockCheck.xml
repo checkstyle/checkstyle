@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="EmptyCatchBlock" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyCatchBlockCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for empty catch blocks.
+ By default check allows empty catch block with any comment inside.
+ </p>
+ <p>
+ There are two options to make validation more precise: <b>exceptionVariableName</b> and
+ <b>commentFormat</b>.
+ If both options are specified - they are applied by <b>any of them is matching</b>.
+ </p>]]></description>
+      <properties>
+        <property name="exceptionVariableName" type="java.util.regex.Pattern" default-value="^$">
+          <description><![CDATA[Specify the RegExp for the name of the variable
+ associated with exception. If check meets variable name matching specified value  empty
+ block is suppressed.]]></description>
+        </property>
+        <property name="commentFormat" type="java.util.regex.Pattern" default-value=".*">
+          <description><![CDATA[Specify the RegExp for the first comment inside empty
+ catch block. If check meets comment inside empty catch block matching specified format
+  empty block is suppressed. If it is multiline comment  only its first line is analyzed.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="catch.block.empty"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

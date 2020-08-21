@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="JavadocVariable" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that a variable has a Javadoc comment. Ignores {@code serialVersionUID} fields.
+ </p>]]></description>
+      <properties>
+        <property name="scope" type="com.puppycrawl.tools.checkstyle.api.Scope" default-value="private">
+          <description><![CDATA[Specify the visibility scope where Javadoc comments are checked.]]></description>
+        </property>
+        <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+          <description><![CDATA[Specify the visibility scope where Javadoc
+ comments are not checked.]]></description>
+        </property>
+        <property name="ignoreNamePattern" type="java.util.regex.Pattern">
+          <description><![CDATA[Specify the regexp to define variable names to ignore.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="ENUM_CONSTANT_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

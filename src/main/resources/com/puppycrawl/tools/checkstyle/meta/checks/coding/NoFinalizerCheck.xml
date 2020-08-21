@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="NoFinalizer" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoFinalizerCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that there is no method {@code finalize} with zero parameters.
+ </p>
+ <p>
+ See
+ <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#finalize()">
+ Object.finalize()</a>
+ </p>
+ <p>
+ Rationale: Finalizers are unpredictable, often dangerous, and generally unnecessary.
+ Their use can cause erratic behavior, poor performance, and portability problems.
+ For more information for the finalize method and its issues, see Effective Java:
+ Programming Language Guide Third Edition by Joshua Bloch, &#167;8.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="avoid.finalizer.method"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

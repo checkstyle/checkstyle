@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="IllegalToken" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for illegal tokens. By default labels are prohibited.
+ </p>
+ <p>
+ Rationale: Certain language features can harm readability, lead to
+ confusion or are not obvious to novice developers. Other features
+ may be discouraged in certain frameworks, such as not having
+ native methods in Enterprise JavaBeans components.
+ </p>]]></description>
+      <properties>
+        <property name="tokens" type="java.lang.String[]" default-value="LABELED_STAT" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="illegal.token"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

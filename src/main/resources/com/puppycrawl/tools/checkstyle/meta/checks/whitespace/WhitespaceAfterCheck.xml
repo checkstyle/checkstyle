@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="WhitespaceAfter" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAfterCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that a token is followed by whitespace, with the exception that it
+ does not check for whitespace after the semicolon of an empty for iterator.
+ Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+ EmptyForIteratorPad</a> to validate empty for iterators.
+ </p>]]></description>
+      <properties>
+        <property name="tokens" type="java.lang.String[]" default-value="COMMA,SEMI,TYPECAST,LITERAL_IF,LITERAL_ELSE,LITERAL_WHILE,LITERAL_DO,LITERAL_FOR,DO_WHILE" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.typeCast"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>
