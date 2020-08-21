@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ConstantName" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that constant names conform to a specified pattern.
+ A <em>constant</em> is a <strong>static</strong> and <strong>final</strong>
+ field or an interface/annotation field, except
+ <strong>serialVersionUID</strong> and <strong>serialPersistentFields
+ </strong>.
+ </p>]]></description>
+      <properties>
+        <property name="format" type="java.util.regex.Pattern" default-value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$">
+          <description><![CDATA[Specifies valid identifiers.]]></description>
+        </property>
+        <property name="applyToPublic" type="boolean" default-value="true">
+          <description><![CDATA[Controls whether to apply the check to public member.]]></description>
+        </property>
+        <property name="applyToProtected" type="boolean" default-value="true">
+          <description><![CDATA[Controls whether to apply the check to protected member.]]></description>
+        </property>
+        <property name="applyToPackage" type="boolean" default-value="true">
+          <description><![CDATA[Controls whether to apply the check to packageprivate member.]]></description>
+        </property>
+        <property name="applyToPrivate" type="boolean" default-value="true">
+          <description><![CDATA[Controls whether to apply the check to private member.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="name.invalidPattern"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

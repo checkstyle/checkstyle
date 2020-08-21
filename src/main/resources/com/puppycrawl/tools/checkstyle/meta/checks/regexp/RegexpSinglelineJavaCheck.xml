@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="RegexpSinglelineJava" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineJavaCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that a specified pattern matches a single line in Java files.
+ </p>
+ <p>
+ This class is variation on
+ <a href="https://checkstyle.org/config_regexp.html#RegexpSingleline">RegexpSingleline</a>
+ for detecting single lines that match a supplied regular expression in Java files.
+ It supports suppressing matches in Java comments.
+ </p>]]></description>
+      <properties>
+        <property name="format" type="java.lang.String" default-value="$.">
+          <description><![CDATA[Specify the format of the regular expression to match.]]></description>
+        </property>
+        <property name="message" type="java.lang.String">
+          <description><![CDATA[Specify the message which is used to notify about
+ violations, if empty then default (hardcoded) message is used.]]></description>
+        </property>
+        <property name="ignoreCase" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to ignore case when searching.]]></description>
+        </property>
+        <property name="minimum" type="int" default-value="0">
+          <description><![CDATA[Specify the minimum number of matches required in each file.]]></description>
+        </property>
+        <property name="maximum" type="int" default-value="0">
+          <description><![CDATA[Specify the maximum number of matches required in each file.]]></description>
+        </property>
+        <property name="ignoreComments" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to ignore text in comments when searching.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="regexp.exceeded"/>
+        <message-key key="regexp.minimum"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

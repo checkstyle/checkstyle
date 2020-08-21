@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="NeedBraces" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.NeedBracesCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for braces around code blocks.
+ </p>]]></description>
+      <properties>
+        <property name="allowSingleLineStatement" type="boolean" default-value="false">
+          <description><![CDATA[allow singleline statements without braces.]]></description>
+        </property>
+        <property name="allowEmptyLoopBody" type="boolean" default-value="false">
+          <description><![CDATA[allow loops with empty bodies.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="LITERAL_DO,LITERAL_ELSE,LITERAL_FOR,LITERAL_IF,LITERAL_WHILE" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="needBraces"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

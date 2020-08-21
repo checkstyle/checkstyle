@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="SeparatorWrap" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SeparatorWrapCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks line wrapping with separators.
+ </p>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption" default-value="eol">
+          <description><![CDATA[Specify policy on how to wrap lines.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="DOT,COMMA" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.new"/>
+        <message-key key="line.previous"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

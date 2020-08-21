@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ExecutableStatementCount" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.ExecutableStatementCountCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Restricts the number of executable statements to a specified limit.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="30">
+          <description><![CDATA[Specify the maximum threshold allowed.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,COMPACT_CTOR_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="executableStatementCount"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

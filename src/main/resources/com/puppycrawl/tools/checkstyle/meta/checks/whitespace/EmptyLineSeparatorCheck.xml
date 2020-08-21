@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="EmptyLineSeparator" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.EmptyLineSeparatorCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for empty line separators after header, package, all import declarations,
+ fields, constructors, methods, nested classes,
+ static initializers and instance initializers.
+ </p>
+ <p>
+ ATTENTION: empty line separator is required between token siblings,
+ not after line where token is found.
+ If token does not have same type sibling then empty line
+ is required at its end (for example for CLASS_DEF it is after '}').
+ Also, trailing comments are skipped.
+ </p>
+ <p>
+ ATTENTION: violations from multiple empty lines cannot be suppressed via XPath:
+ <a href="https://github.com/checkstyle/checkstyle/issues/8179">#8179</a>.
+ </p>]]></description>
+      <properties>
+        <property name="allowNoEmptyLineBetweenFields" type="boolean" default-value="false">
+          <description><![CDATA[Allow no empty line between fields.]]></description>
+        </property>
+        <property name="allowMultipleEmptyLines" type="boolean" default-value="true">
+          <description><![CDATA[Allow multiple empty lines between class members.]]></description>
+        </property>
+        <property name="allowMultipleEmptyLinesInsideClassMembers" type="boolean" default-value="true">
+          <description><![CDATA[Allow multiple
+ empty lines inside class members.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT,CLASS_DEF,INTERFACE_DEF,ENUM_DEF,METHOD_DEF,STATIC_INIT,INSTANCE_INIT,CTOR_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="empty.line.separator"/>
+        <message-key key="empty.line.separator.multiple.lines"/>
+        <message-key key="empty.line.separator.multiple.lines.after"/>
+        <message-key key="empty.line.separator.multiple.lines.inside"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

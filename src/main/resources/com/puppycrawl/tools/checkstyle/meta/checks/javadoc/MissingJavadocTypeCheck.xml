@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MissingJavadocType" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocTypeCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for missing Javadoc comments for class, enum, interface, and annotation interface
+ definitions. The scope to verify is specified using the {@code Scope} class and defaults
+ to {@code Scope.PUBLIC}. To verify another scope, set property scope to one of the
+ {@code Scope} constants.
+ </p>]]></description>
+      <properties>
+        <property name="scope" type="com.puppycrawl.tools.checkstyle.api.Scope" default-value="public">
+          <description><![CDATA[specify the visibility scope where Javadoc comments are checked.]]></description>
+        </property>
+        <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+          <description><![CDATA[specify the visibility scope where Javadoc comments are not
+ checked.]]></description>
+        </property>
+        <property name="skipAnnotations" type="java.lang.String[]" default-value="Generated">
+          <description><![CDATA[specify the list of annotations that allow missed
+ documentation. Only short names are allowed, e.g. {@code Generated}.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

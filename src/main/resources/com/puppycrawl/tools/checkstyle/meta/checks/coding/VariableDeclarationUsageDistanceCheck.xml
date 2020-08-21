@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="VariableDeclarationUsageDistance" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the distance between declaration of variable and its first usage.
+ </p>
+ <p>
+ ATTENTION!! (Not supported cases)
+ </p>
+ <pre>
+ Case #1:
+ {
+   int c;
+   int a = 3;
+   int b = 2;
+     {
+       a = a + b;
+       c = b;
+     }
+ }
+ </pre>
+ <p>
+ Distance for variable 'a' = 1;
+ Distance for variable 'b' = 1;
+ Distance for variable 'c' = 2.
+ </p>
+ <p>
+ As distance by default is 1 the Check doesn't raise warning for variables 'a'
+ and 'b' to move them into the block.
+ </p>
+ <p>
+ Case #2:
+ </p>
+ <pre>
+ int sum = 0;
+ for (int i = 0; i &lt; 20; i++) {
+   a++;
+   b--;
+   sum++;
+   if (sum &gt; 10) {
+     res = true;
+   }
+ }
+ </pre>
+ <p>
+ Distance for variable 'sum' = 3.
+ </p>
+ <p>
+ As the distance is more than the default one, the Check raises warning for variable
+ 'sum' to move it into the 'for(...)' block. But there is situation when
+ variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
+ warnings you can use Suppression Filter, provided by Checkstyle, for the
+ whole class.
+ </p>]]></description>
+      <properties>
+        <property name="allowedDistance" type="int" default-value="3">
+          <description><![CDATA[Specify distance between declaration
+ of variable and its first usage. Values should be greater than 0.]]></description>
+        </property>
+        <property name="ignoreVariablePattern" type="java.util.regex.Pattern" default-value="">
+          <description><![CDATA[Define RegExp to ignore distance calculation
+ for variables listed in this pattern.]]></description>
+        </property>
+        <property name="validateBetweenScopes" type="boolean" default-value="false">
+          <description><![CDATA[Allow to calculate the distance between
+ declaration of variable and its first usage in the different scopes.]]></description>
+        </property>
+        <property name="ignoreFinal" type="boolean" default-value="true">
+          <description><![CDATA[Allow to ignore variables with a 'final' modifier.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="variable.declaration.usage.distance"/>
+        <message-key key="variable.declaration.usage.distance.extend"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

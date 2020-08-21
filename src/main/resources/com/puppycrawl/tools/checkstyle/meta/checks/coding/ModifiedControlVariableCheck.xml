@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ModifiedControlVariable" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that for loop control variables are not modified
+ inside the for block. An example is:
+ </p>
+ <pre>
+ for (int i = 0; i &lt; 1; i++) {
+   i++; //violation
+ }
+ </pre>
+ <p>
+ Rationale: If the control variable is modified inside the loop
+ body, the program flow becomes more difficult to follow.
+ See <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14">
+ FOR statement</a> specification for more details.
+ </p>
+ <p>
+ Such loop would be suppressed:
+ </p>
+ <pre>
+ for (int i = 0; i &lt; 10;) {
+   i++;
+ }
+ </pre>]]></description>
+      <properties>
+        <property name="skipEnhancedForLoopVariable" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to check
+ <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls14.html#jls14.14.2">
+ enhanced forloop</a> variable.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="modified.control.variable"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

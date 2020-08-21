@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ArrayTypeStyle" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.ArrayTypeStyleCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the style of array type definitions.
+ Some like Java style: {@code public static void main(String[] args)}
+ and some like C style: {@code public static void main(String args[])}.
+ </p>
+ <p>
+ By default the Check enforces Java style.
+ </p>
+ <p>
+ This check strictly enforces only Java style for method return types regardless
+ of the value for 'javaStyle'. For example, {@code byte[] getData()}.
+ This is because C doesn't compile methods with array declarations on the name.
+ </p>]]></description>
+      <properties>
+        <property name="javaStyle" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to enforce Java style (true) or C style (false).]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="array.type.style"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

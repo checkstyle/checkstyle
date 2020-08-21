@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="JavadocContentLocation" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that the Javadoc content begins from the same position
+ for all Javadoc comments in the project. Any leading asterisks and spaces
+ are not counted as the beginning of the content and are therefore ignored.
+ </p>
+ <p>
+ It is possible to enforce two different styles:
+ </p>
+ <ul>
+ <li>
+ {@code first_line} - Javadoc content starts from the first line:
+ <pre>
+ &#47;** Summary text.
+   * More details.
+   *&#47;
+ public void method();
+ </pre>
+ </li>
+ <li>
+ {@code second_line} - Javadoc content starts from the second line:
+ <pre>
+ &#47;**
+   * Summary text.
+   * More details.
+   *&#47;
+ public void method();
+ </pre>
+ </li>
+ </ul>
+ <p>
+ This check does not validate the Javadoc summary itself nor its presence.
+ The check will not report any violations for missing or malformed javadoc summary.
+ To validate the Javadoc summary use
+ <a href="https://checkstyle.org/config_javadoc.html#SummaryJavadoc">SummaryJavadoc</a> check.
+ </p>
+ <p>
+ The <a href="https://docs.oracle.com/en/java/javase/11/docs/specs/doc-comment-spec.html">
+ Documentation Comment Specification</a> permits leading asterisks on the first line.
+ For these Javadoc comments:
+ </p>
+ <pre>
+ &#47;***
+   * Some text.
+   *&#47;
+ &#47;************
+   * Some text.
+   *&#47;
+ &#47;**           **
+   * Some text.
+   *&#47;
+ </pre>
+ <p>
+ The documentation generated will be just "Some text." without any asterisks.
+ Since these asterisks will not appear in the generated documentation,
+ they should not be considered as the beginning of the Javadoc content.
+ In such cases, the check assumes that the Javadoc content begins on the second line.
+ </p>]]></description>
+      <properties>
+        <property name="location" type="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocContentLocationOption" default-value="second_line">
+          <description><![CDATA[Specify the policy on placement of the Javadoc content.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.content.first.line"/>
+        <message-key key="javadoc.content.second.line"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

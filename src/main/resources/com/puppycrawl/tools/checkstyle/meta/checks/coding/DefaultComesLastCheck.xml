@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="DefaultComesLast" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DefaultComesLastCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Check that the {@code default} is after all the cases in a {@code switch} statement.
+ </p>
+ <p>
+ Rationale: Java allows {@code default} anywhere within the
+ {@code switch} statement. But it is more readable if it comes after the last {@code case}.
+ </p>]]></description>
+      <properties>
+        <property name="skipIfLastAndSharedWithCase" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to allow {@code default}
+ along with {@code case} if they are not last.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="default.comes.last"/>
+        <message-key key="default.comes.last.in.casegroup"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

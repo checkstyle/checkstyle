@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ModifierOrder" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that the order of modifiers conforms to the suggestions in the
+ <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html">
+ Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
+ <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
+ The correct order is:
+ </p>
+ <ol>
+ <li> {@code public} </li>
+ <li> {@code protected} </li>
+ <li> {@code private} </li>
+ <li> {@code abstract} </li>
+ <li> {@code default} </li>
+ <li> {@code static} </li>
+ <li> {@code final} </li>
+ <li> {@code transient} </li>
+ <li> {@code volatile} </li>
+ <li> {@code synchronized} </li>
+ <li> {@code native} </li>
+ <li> {@code strictfp} </li>
+ </ol>
+ <p>
+ In additional, modifiers are checked to ensure all annotations
+ are declared before all other modifiers.
+ </p>
+ <p>
+ Rationale: Code is easier to read if everybody follows
+ a standard.
+ </p>
+ <p>
+ ATTENTION: We skip
+ <a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html">
+ type annotations</a> from validation.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="annotation.order"/>
+        <message-key key="mod.order"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

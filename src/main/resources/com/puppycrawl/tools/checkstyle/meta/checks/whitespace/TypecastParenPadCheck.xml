@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="TypecastParenPad" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.TypecastParenPadCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the policy on the padding of parentheses for typecasts. That is, whether a space
+ is required after a left parenthesis and before a right parenthesis, or such
+ spaces are forbidden.
+ </p>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption" default-value="nospace">
+          <description><![CDATA[Specify policy on how to pad parentheses.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>
