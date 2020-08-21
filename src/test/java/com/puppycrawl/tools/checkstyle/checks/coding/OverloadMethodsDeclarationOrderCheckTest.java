@@ -50,6 +50,21 @@ public class OverloadMethodsDeclarationOrderCheckTest
     }
 
     @Test
+    public void testOverloadMethodsDeclarationOrderRecords() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(OverloadMethodsDeclarationOrderCheck.class);
+
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_KEY, 13),
+            "39:9: " + getCheckMessage(MSG_KEY, 33),
+            "55:9: " + getCheckMessage(MSG_KEY, 48),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final OverloadMethodsDeclarationOrderCheck check =
             new OverloadMethodsDeclarationOrderCheck();
