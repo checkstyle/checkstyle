@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="SummaryJavadoc" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that
+ <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
+ Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
+ Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
+ Check also violate Javadoc that does not contain first sentence.
+ </p>]]></description>
+      <properties>
+        <property name="violateExecutionOnNonTightHtml" type="boolean" default-value="false">
+          <description><![CDATA[Control when to print violations
+ if the Javadoc being examined by this check violates the tight html rules defined at
+ <a href="https://checkstyle.org/writingjavadocchecks.html#TightHTML_rules">TightHTML Rules</a>.]]></description>
+        </property>
+        <property name="forbiddenSummaryFragments" type="java.util.regex.Pattern" default-value="^$">
+          <description><![CDATA[Specify the regexp for forbidden summary fragments.]]></description>
+        </property>
+        <property name="period" type="java.lang.String" default-value=".">
+          <description><![CDATA[Specify the period symbol at the end of first javadoc sentence.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+        <message-key key="summary.first.sentence"/>
+        <message-key key="summary.javaDoc"/>
+        <message-key key="summary.javaDoc.missing"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

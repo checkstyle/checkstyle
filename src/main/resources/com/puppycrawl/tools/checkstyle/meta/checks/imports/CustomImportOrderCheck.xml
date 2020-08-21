@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="CustomImportOrder" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that the groups of import declarations appear in the order specified
+ by the user. If there is an import but its group is not specified in the
+ configuration such an import should be placed at the end of the import list.
+ </p>
+ <p>
+ The rule consists of:
+ </p>
+ <ol>
+ <li>
+ STATIC group. This group sets the ordering of static imports.
+ </li>
+ <li>
+ SAME_PACKAGE(n) group. This group sets the ordering of the same package imports.
+ Imports are considered on SAME_PACKAGE group if <b>n</b> first domains in package
+ name and import name are identical:
+ <pre>
+ package java.util.concurrent.locks;
+
+ import java.io.File;
+ import java.util.*; //#1
+ import java.util.List; //#2
+ import java.util.StringTokenizer; //#3
+ import java.util.concurrent.*; //#4
+ import java.util.concurrent.AbstractExecutorService; //#5
+ import java.util.concurrent.locks.LockSupport; //#6
+ import java.util.regex.Pattern; //#7
+ import java.util.regex.Matcher; //#8
+ </pre>
+ If we have SAME_PACKAGE(3) on configuration file, imports #4-6 will be considered as
+ a SAME_PACKAGE group (java.util.concurrent.*, java.util.concurrent.AbstractExecutorService,
+ java.util.concurrent.locks.LockSupport). SAME_PACKAGE(2) will include #1-8.
+ SAME_PACKAGE(4) will include only #6. SAME_PACKAGE(5) will result in no imports assigned
+ to SAME_PACKAGE group because actual package java.util.concurrent.locks has only 4 domains.
+ </li>
+ <li>
+ THIRD_PARTY_PACKAGE group. This group sets ordering of third party imports.
+ Third party imports are all imports except STATIC, SAME_PACKAGE(n), STANDARD_JAVA_PACKAGE and
+ SPECIAL_IMPORTS.
+ </li>
+ <li>
+ STANDARD_JAVA_PACKAGE group. By default this group sets ordering of standard java/javax imports.
+ </li>
+ <li>
+ SPECIAL_IMPORTS group. This group may contains some imports that have particular meaning for the
+ user.
+ </li>
+ </ol>
+ <p>
+ Use the separator '###' between rules.
+ </p>
+ <p>
+ To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
+ thirdPartyPackageRegExp and standardPackageRegExp options.
+ </p>
+ <p>
+ Pretty often one import can match more than one group. For example, static import from standard
+ package or regular expressions are configured to allow one import match multiple groups.
+ In this case, group will be assigned according to priorities:
+ </p>
+ <ol>
+ <li>
+ STATIC has top priority
+ </li>
+ <li>
+ SAME_PACKAGE has second priority
+ </li>
+ <li>
+ STANDARD_JAVA_PACKAGE and SPECIAL_IMPORTS will compete using "best match" rule: longer
+ matching substring wins; in case of the same length, lower position of matching substring
+ wins; if position is the same, order of rules in configuration solves the puzzle.
+ </li>
+ <li>
+ THIRD_PARTY has the least priority
+ </li>
+ </ol>
+ <p>
+ Few examples to illustrate "best match":
+ </p>
+ <p>
+ 1. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="ImportOrderCheck" and input file:
+ </p>
+ <pre>
+ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck;
+ import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck;
+ </pre>
+ <p>
+ Result: imports will be assigned to SPECIAL_IMPORTS, because matching substring length is 16.
+ Matching substring for STANDARD_JAVA_PACKAGE is 5.
+ </p>
+ <p>
+ 2. patterns STANDARD_JAVA_PACKAGE = "Check", SPECIAL_IMPORTS="Avoid" and file:
+ </p>
+ <pre>
+ import com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck;
+ </pre>
+ <p>
+ Result: import will be assigned to SPECIAL_IMPORTS. Matching substring length is 5 for both
+ patterns. However, "Avoid" position is lower than "Check" position.
+ </p>]]></description>
+      <properties>
+        <property name="customImportOrderRules" type="java.lang.String" default-value="">
+          <description><![CDATA[Specify format of order declaration
+ customizing by user.]]></description>
+        </property>
+        <property name="standardPackageRegExp" type="java.util.regex.Pattern" default-value="^(java|javax)\.">
+          <description><![CDATA[Specify RegExp for STANDARD_JAVA_PACKAGE group imports.]]></description>
+        </property>
+        <property name="thirdPartyPackageRegExp" type="java.util.regex.Pattern" default-value=".*">
+          <description><![CDATA[Specify RegExp for THIRD_PARTY_PACKAGE group imports.]]></description>
+        </property>
+        <property name="specialImportsRegExp" type="java.util.regex.Pattern" default-value="^$">
+          <description><![CDATA[Specify RegExp for SPECIAL_IMPORTS group imports.]]></description>
+        </property>
+        <property name="separateLineBetweenGroups" type="boolean" default-value="true">
+          <description><![CDATA[Force empty line separator between
+ import groups.]]></description>
+        </property>
+        <property name="sortImportsInGroupAlphabetically" type="boolean" default-value="false">
+          <description><![CDATA[Force grouping alphabetically,
+ in <a href="https://en.wikipedia.org/wiki/ASCII#Order">ASCII sort order</a>.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="custom.import.order"/>
+        <message-key key="custom.import.order.lex"/>
+        <message-key key="custom.import.order.line.separator"/>
+        <message-key key="custom.import.order.nonGroup.expected"/>
+        <message-key key="custom.import.order.nonGroup.import"/>
+        <message-key key="custom.import.order.separated.internally"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

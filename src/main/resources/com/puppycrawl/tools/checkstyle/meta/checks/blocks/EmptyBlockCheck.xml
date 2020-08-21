@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="EmptyBlock" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.blocks.EmptyBlockCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for empty blocks. This check does not validate sequential blocks.
+ </p>
+ <p>
+ Sequential blocks won't be checked. Also, no violations for fallthrough:
+ </p>
+ <pre>
+ switch (a) {
+   case 1:                          // no violation
+   case 2:                          // no violation
+   case 3: someMethod(); { }        // no violation
+   default: break;
+ }
+ </pre>
+ <p>
+ NOTE: This check processes LITERAL_CASE and LITERAL_DEFAULT separately.
+ Verification empty block is done for single most nearest {@code case} or {@code default}.
+ </p>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.blocks.BlockOption" default-value="statement">
+          <description><![CDATA[specify the policy on block contents.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="LITERAL_WHILE,LITERAL_TRY,LITERAL_FINALLY,LITERAL_DO,LITERAL_IF,LITERAL_ELSE,LITERAL_FOR,INSTANCE_INIT,STATIC_INIT,LITERAL_SWITCH,LITERAL_SYNCHRONIZED" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="block.empty"/>
+        <message-key key="block.noStatement"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

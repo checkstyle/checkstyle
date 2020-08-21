@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="NoLineWrap" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoLineWrapCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>Checks that chosen statements are not line-wrapped.
+ By default this Check restricts wrapping import and package statements,
+ but it's possible to check any statement.
+ </p>]]></description>
+      <properties>
+        <property name="tokens" type="java.lang.String[]" default-value="PACKAGE_DEF,IMPORT,STATIC_IMPORT" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="no.line.wrap"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

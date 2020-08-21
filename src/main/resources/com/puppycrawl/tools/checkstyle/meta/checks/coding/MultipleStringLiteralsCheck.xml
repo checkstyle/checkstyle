@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="MultipleStringLiterals" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for multiple occurrences of the same string literal within a single file.
+ </p>
+ <p>
+ Rationale: Code duplication makes maintenance more difficult, so it can be better
+ to replace the multiple occurrences with a constant.
+ </p>]]></description>
+      <properties>
+        <property name="allowedDuplicates" type="int" default-value="1">
+          <description><![CDATA[Specify the maximum number of occurrences
+ to allow without generating a warning.]]></description>
+        </property>
+        <property name="ignoreStringsRegexp" type="java.util.regex.Pattern" default-value="^$">
+          <description><![CDATA[Specify RegExp for ignored strings (with quotation marks).]]></description>
+        </property>
+        <property name="ignoreOccurrenceContext" type="java.lang.String[]" default-value="ANNOTATION" validation-type="tokenSet">
+          <description><![CDATA[Specify token type names where duplicate
+ strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
+ exclude syntactical contexts like annotations or static initializers from the check.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="multiple.string.literal"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

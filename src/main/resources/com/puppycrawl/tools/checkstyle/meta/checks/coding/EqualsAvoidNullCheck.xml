@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="EqualsAvoidNull" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that any combination of String literals
+ is on the left side of an {@code equals()} comparison.
+ Also checks for String literals assigned to some field
+ (such as {@code someString.equals(anotherString = "text")}).
+ </p>
+ <p>Rationale: Calling the {@code equals()} method on String literals
+ will avoid a potential {@code NullPointerException}. Also, it is
+ pretty common to see null checks right before equals comparisons,
+ which is not necessary in the example below.
+ </p>
+ <p>
+ For example, this code:
+ </p>
+ <pre>
+ String nullString = null;
+ nullString.equals(&quot;My_Sweet_String&quot;);
+ </pre>
+ <p>
+ should be refactored to:
+ </p>
+ <pre>
+ String nullString = null;
+ &quot;My_Sweet_String&quot;.equals(nullString);
+ </pre>]]></description>
+      <properties>
+        <property name="ignoreEqualsIgnoreCase" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to ignore
+ {@code String.equalsIgnoreCase(String)} invocations.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="equals.avoid.null"/>
+        <message-key key="equalsIgnoreCase.avoid.null"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

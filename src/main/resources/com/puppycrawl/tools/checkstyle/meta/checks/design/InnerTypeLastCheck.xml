@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="InnerTypeLast" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InnerTypeLastCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks nested (internal) classes/interfaces are declared at the bottom of the
+ primary (top-level) class after all init and static init blocks,
+ method, constructor and field declarations.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="arrangement.members.before.inner"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <filter name="SuppressionXpathFilter" fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionXpathFilter" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Filter {@code SuppressionXpathFilter} works as
+ <a href="https://checkstyle.org/config_filters.html#SuppressionFilter">SuppressionFilter</a>.
+ Additionally, filter processes {@code suppress-xpath} elements,
+ which contains xpath-expressions. Xpath-expressions are queries for
+ suppressed nodes inside the AST tree.
+ </p>
+ <p>
+ Currently, filter does not support the following checks:
+ </p>
+ <ul id="SuppressionXpathFilter_IncompatibleChecks">
+ <li>
+ NoCodeInFile (reason is that AST is not generated for a file not containing code)
+ </li>
+ <li>
+ Regexp (reason is at
+ <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
+ </li>
+ <li>
+ RegexpSinglelineJava (reason is at
+ <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
+ </li>
+ <li>
+ TrailingComment
+ </li>
+ </ul>
+ <p>
+ Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
+ </p>
+ <ul id="SuppressionXpathFilter_JavadocChecks">
+ <li>
+ AtclauseOrder
+ </li>
+ <li>
+ JavadocBlockTagLocation
+ </li>
+ <li>
+ JavadocMethod
+ </li>
+ <li>
+ JavadocMissingWhitespaceAfterAsterisk
+ </li>
+ <li>
+ JavadocParagraph
+ </li>
+ <li>
+ JavadocStyle
+ </li>
+ <li>
+ JavadocTagContinuationIndentation
+ </li>
+ <li>
+ JavadocType
+ </li>
+ <li>
+ MissingDeprecated
+ </li>
+ <li>
+ NonEmptyAtclauseDescription
+ </li>
+ <li>
+ SingleLineJavadoc
+ </li>
+ <li>
+ SummaryJavadoc
+ </li>
+ <li>
+ WriteTag
+ </li>
+ </ul>
+ <p>
+ Note, that support for these Checks will be available after resolving issues
+ <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a> and
+ <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>.
+ </p>
+ <p>
+ Currently, filter supports the following xpath axes:
+ </p>
+ <ul>
+ <li>
+ ancestor
+ </li>
+ <li>
+ ancestor-or-self
+ </li>
+ <li>
+ attribute
+ </li>
+ <li>
+ child
+ </li>
+ <li>
+ descendant
+ </li>
+ <li>
+ descendant-or-self
+ </li>
+ <li>
+ following
+ </li>
+ <li>
+ following-sibling
+ </li>
+ <li>
+ parent
+ </li>
+ <li>
+ preceding
+ </li>
+ <li>
+ preceding-sibling
+ </li>
+ <li>
+ self
+ </li>
+ </ul>
+ <p>
+ You can use the command line helper tool to generate xpath suppressions based on your
+ configuration file and input files. See <a href="https://checkstyle.org/cmdline.html">here</a>
+ for more details.
+ </p>
+ <p>
+ The suppression file location is checked in following order:
+ </p>
+ <ol>
+ <li>
+ as a filesystem location
+ </li>
+ <li>
+ if no file found, and the location starts with either {@code http://} or {@code https://},
+ then it is interpreted as a URL
+ </li>
+ <li>
+ if no file found, then passed to the {@code ClassLoader.getResource()} method.
+ </li>
+ </ol>
+ <p>
+ SuppressionXpathFilter can suppress Checks that have Treewalker as parent module.
+ </p>]]></description>
+      <properties>
+        <property name="file" type="java.lang.String">
+          <description><![CDATA[Specify the location of the <em>suppressions XML document</em> file.]]></description>
+        </property>
+        <property name="optional" type="boolean" default-value="false">
+          <description><![CDATA[Control what to do when the file is not existing.
+ If optional is set to false the file must exist, or else it ends with error.
+ On the other hand if optional is true and file is not found, the filter accepts all audit events.]]></description>
+        </property>
+      </properties>
+    </filter>
+  </module>
+</checkstyle-metadata>

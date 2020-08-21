@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ClassDataAbstractionCoupling" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.ClassDataAbstractionCouplingCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Measures the number of instantiations of other classes
+ within the given class. This type of coupling is not caused by inheritance or
+ the object oriented paradigm. Generally speaking, any data type with other
+ data types as members or local variable that is an instantiation (object)
+ of another class has data abstraction coupling (DAC). The higher the DAC,
+ the more complex the structure of the class.
+ </p>
+ <p>
+ This check processes files in the following way:
+ </p>
+ <ol>
+ <li>
+ Iterates over the list of tokens (defined below) and counts all mentioned classes.
+ <ul>
+ <li>
+ <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+ PACKAGE_DEF</a>
+ </li>
+ <li>
+ <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#IMPORT">
+ IMPORT</a>
+ </li>
+ <li>
+ <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
+ CLASS_DEF</a>
+ </li>
+ <li>
+ <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INTERFACE_DEF">
+ INTERFACE_DEF</a>
+ </li>
+ <li>
+ <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ENUM_DEF">
+ ENUM_DEF</a>
+ </li>
+ <li>
+ <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_NEW">
+ LITERAL_NEW</a>
+ </li>
+ </ul>
+ </li>
+ <li>
+ If a class was imported with direct import (i.e. {@code import java.math.BigDecimal}),
+ or the class was referenced with the package name (i.e. {@code java.math.BigDecimal value})
+ and the package was added to the {@code excludedPackages} parameter, the class
+ does not increase complexity.
+ </li>
+ <li>
+ If a class name was added to the {@code excludedClasses} parameter,
+ the class does not increase complexity.
+ </li>
+ </ol>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="7">
+          <description><![CDATA[Specify the maximum threshold allowed.]]></description>
+        </property>
+        <property name="excludedClasses" type="java.lang.String[]" default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte,">
+          <description><![CDATA[Specify userconfigured class names to ignore.]]></description>
+        </property>
+        <property name="excludeClassesRegexps" type="java.lang.String[]" default-value="^$" validation-type="java.util.regex.Pattern">
+          <description><![CDATA[Specify userconfigured regular
+ expressions to ignore classes.]]></description>
+        </property>
+        <property name="excludedPackages" type="java.lang.String[]" default-value="">
+          <description><![CDATA[Specify userconfigured packages to ignore.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="classDataAbstractionCoupling"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

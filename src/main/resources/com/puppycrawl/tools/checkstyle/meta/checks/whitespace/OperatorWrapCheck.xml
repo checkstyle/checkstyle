@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="OperatorWrap" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the policy on how to wrap lines on operators.
+ </p>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.whitespace.WrapOption" default-value="nl">
+          <description><![CDATA[Specify policy on how to wrap lines.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="QUESTION,COLON,EQUAL,NOT_EQUAL,DIV,PLUS,MINUS,STAR,MOD,SR,BSR,GE,GT,SL,LE,LT,BXOR,BOR,LOR,BAND,LAND,TYPE_EXTENSION_AND,LITERAL_INSTANCEOF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="line.new"/>
+        <message-key key="line.previous"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

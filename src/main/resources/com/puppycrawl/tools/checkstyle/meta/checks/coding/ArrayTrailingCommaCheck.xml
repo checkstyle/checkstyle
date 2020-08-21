@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ArrayTrailingComma" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ArrayTrailingCommaCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that array initialization contains a trailing comma.
+ </p>
+ <pre>
+ int[] a = new int[]
+ {
+   1,
+   2,
+   3,
+ };
+ </pre>
+ <p>
+ By default, the check demands a comma at the end if neither left nor right curly braces
+ are on the same line as the last element of the array.
+ </p>
+ <pre>
+ return new int[] { 0 };
+ return new int[] { 0
+   };
+ return new int[] {
+   0 };
+ </pre>
+ <p>
+ Rationale: Putting this comma in makes it easier to change the
+ order of the elements or add new elements on the end. Main benefit of a trailing
+ comma is that when you add new entry to an array, no surrounding lines are changed.
+ </p>
+ <pre>
+ {
+   100000000000000000000,
+   200000000000000000000, // OK
+ }
+
+ {
+   100000000000000000000,
+   200000000000000000000,
+   300000000000000000000,  // Just this line added, no other changes
+ }
+ </pre>
+ <p>
+ If closing brace is on the same line as trailing comma, this benefit is gone
+ (as the check does not demand a certain location of curly braces the following
+ two cases will not produce a violation):
+ </p>
+ <pre>
+ {100000000000000000000,
+  200000000000000000000,} // Trailing comma not needed, line needs to be modified anyway
+
+ {100000000000000000000,
+  200000000000000000000, // Modified line
+  300000000000000000000,} // Added line
+ </pre>
+ <p>
+ If opening brace is on the same line as trailing comma there's also (more arguable) problem:
+ </p>
+ <pre>
+ {100000000000000000000, // Line cannot be just duplicated to slightly modify entry
+ }
+
+ {100000000000000000000,
+  100000000000000000001, // More work needed to duplicate
+ }
+ </pre>]]></description>
+      <properties>
+        <property name="alwaysDemandTrailingComma" type="boolean" default-value="false">
+          <description><![CDATA[Control whether to always check for a trailing
+ comma, even when an array is inline.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="array.trailing.comma"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

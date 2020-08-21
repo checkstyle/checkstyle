@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="InterfaceIsType" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.InterfaceIsTypeCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Implements Joshua Bloch, Effective Java, Item 17 -
+ Use Interfaces only to define types.
+ </p>
+ <p>
+ According to Bloch, an interface should describe a <em>type</em>. It is therefore
+ inappropriate to define an interface that does not contain any methods
+ but only constants. The Standard interface
+ <a href="https://docs.oracle.com/javase/8/docs/api/javax/swing/SwingConstants.html">
+ javax.swing.SwingConstants</a> is an example of an interface that would be flagged by this check.
+ </p>
+ <p>
+ The check can be configured to also disallow marker interfaces like {@code java.io.Serializable},
+ that do not contain methods or constants at all.
+ </p>]]></description>
+      <properties>
+        <property name="allowMarkerInterfaces" type="boolean" default-value="true">
+          <description><![CDATA[Control whether marker interfaces
+ like Serializable are allowed.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="interface.type"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

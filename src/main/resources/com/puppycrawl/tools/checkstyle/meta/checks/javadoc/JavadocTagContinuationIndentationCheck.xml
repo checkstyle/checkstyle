@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="JavadocTagContinuationIndentation" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagContinuationIndentationCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the indentation of the continuation lines in at-clauses. That is whether the continued
+ description of at clauses should be indented or not. If the text is not properly indented it
+ throws a violation. A continuation line is when the description starts/spans past the line with
+ the tag. Default indentation required is at least 4, but this can be changed with the help of
+ properties below.
+ </p>]]></description>
+      <properties>
+        <property name="violateExecutionOnNonTightHtml" type="boolean" default-value="false">
+          <description><![CDATA[Control when to print violations
+ if the Javadoc being examined by this check violates the tight html rules defined at
+ <a href="https://checkstyle.org/writingjavadocchecks.html#TightHTML_rules">TightHTML Rules</a>.]]></description>
+        </property>
+        <property name="offset" type="int" default-value="4">
+          <description><![CDATA[Specify how many spaces to use for new indentation level.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="javadoc.missed.html.close"/>
+        <message-key key="javadoc.parse.rule.error"/>
+        <message-key key="javadoc.wrong.singleton.html.tag"/>
+        <message-key key="tag.continuation.indent"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

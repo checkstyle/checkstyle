@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="UnusedImports" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.UnusedImportsCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks for unused import statements. Checkstyle uses a simple but very
+ reliable algorithm to report on unused import statements. An import statement
+ is considered unused if:
+ </p>
+ <ul>
+ <li>
+ It is not referenced in the file. The algorithm does not support wild-card
+ imports like {@code import java.io.*;}. Most IDE's provide very sophisticated
+ checks for imports that handle wild-card imports.
+ </li>
+ <li>
+ It is a duplicate of another import. This is when a class is imported more
+ than once.
+ </li>
+ <li>
+ The class imported is from the {@code java.lang} package. For example
+ importing {@code java.lang.String}.
+ </li>
+ <li>
+ The class imported is from the same package.
+ </li>
+ <li>
+ <b>Optionally:</b> it is referenced in Javadoc comments. This check is on by
+ default, but it is considered bad practice to introduce a compile time
+ dependency for documentation purposes only. As an example, the import
+ {@code java.util.List} would be considered referenced with the Javadoc
+ comment {@code {@link List}}. The alternative to avoid introducing a compile
+ time dependency would be to write the Javadoc comment as {@code {&#64;link java.util.List}}.
+ </li>
+ </ul>
+ <p>
+ The main limitation of this check is handling the case where an imported type
+ has the same name as a declaration, such as a member variable.
+ </p>
+ <p>
+ For example, in the following case the import {@code java.awt.Component}
+ will not be flagged as unused:
+ </p>
+ <pre>
+ import java.awt.Component;
+ class FooBar {
+   private Object Component; // a bad practice in my opinion
+   ...
+ }
+ </pre>]]></description>
+      <properties>
+        <property name="processJavadoc" type="boolean" default-value="true">
+          <description><![CDATA[Control whether to process Javadoc comments.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="import.unused"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

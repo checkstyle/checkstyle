@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="ParenPad" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.ParenPadCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks the policy on the padding of parentheses; that is whether a space is required
+ after a left parenthesis and before a right parenthesis, or such spaces are
+ forbidden. No check occurs at the right parenthesis after an empty for
+ iterator, at the left parenthesis before an empty for initialization, or at
+ the right parenthesis of a try-with-resources resource specification where
+ the last resource variable has a trailing semi-colon.
+ Use Check <a href="https://checkstyle.org/config_whitespace.html#EmptyForIteratorPad">
+ EmptyForIteratorPad</a> to validate empty for iterators and
+ <a href="https://checkstyle.org/config_whitespace.html#EmptyForInitializerPad">
+ EmptyForInitializerPad</a> to validate empty for initializers.
+ Typecasts are also not checked, as there is
+ <a href="https://checkstyle.org/config_whitespace.html#TypecastParenPad">
+ TypecastParenPad</a> to validate them.
+ </p>]]></description>
+      <properties>
+        <property name="option" type="com.puppycrawl.tools.checkstyle.checks.whitespace.PadOption" default-value="nospace">
+          <description><![CDATA[Specify policy on how to pad parentheses.]]></description>
+        </property>
+        <property name="tokens" type="java.lang.String[]" default-value="ANNOTATION,ANNOTATION_FIELD_DEF,CTOR_CALL,CTOR_DEF,DOT,ENUM_CONSTANT_DEF,EXPR,LITERAL_CATCH,LITERAL_DO,LITERAL_FOR,LITERAL_IF,LITERAL_NEW,LITERAL_SWITCH,LITERAL_SYNCHRONIZED,LITERAL_WHILE,METHOD_CALL,METHOD_DEF,QUESTION,RESOURCE_SPECIFICATION,SUPER_CTOR_CALL,LAMBDA,RECORD_DEF" validation-type="tokenSet">
+          <description><![CDATA[tokens to check]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="ws.followed"/>
+        <message-key key="ws.notFollowed"/>
+        <message-key key="ws.notPreceded"/>
+        <message-key key="ws.preceded"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

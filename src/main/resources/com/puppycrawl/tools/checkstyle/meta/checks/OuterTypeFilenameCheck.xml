@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="OuterTypeFilename" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+      <description><![CDATA[<p>
+ Checks that the outer type name and the file name match.
+ For example, the class {@code Foo} must be in a file named {@code Foo.java}.
+ </p>]]></description>
+      <message-keys>
+        <message-key key="type.file.mismatch"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<checkstyle-metadata>
+  <module>
+    <check name="FileLength" fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.FileLengthCheck" parent="com.puppycrawl.tools.checkstyle.Checker">
+      <description><![CDATA[<p>
+ Checks for long source files.
+ </p>
+ <p>
+ Rationale: If a source file becomes very long it is hard to understand.
+ Therefore long classes should usually be refactored into several
+ individual classes that focus on a specific task.
+ </p>]]></description>
+      <properties>
+        <property name="max" type="int" default-value="2000">
+          <description><![CDATA[Specify the maximum number of lines allowed.]]></description>
+        </property>
+        <property name="fileExtensions" type="java.lang.String[]" default-value="">
+          <description><![CDATA[Specify the file type extension of files to process.]]></description>
+        </property>
+      </properties>
+      <message-keys>
+        <message-key key="maxLen.file"/>
+      </message-keys>
+    </check>
+  </module>
+</checkstyle-metadata>
