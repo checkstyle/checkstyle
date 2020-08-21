@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionFilter"
+              name="SuppressionFilter"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Filter {@code SuppressionFilter} rejects audit events for Check violations according to a
+ &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
+ in a file. If there is no configured suppressions file or the optional is set to true and
+ suppressions file was not found the Filter accepts all audit events.
+ &lt;/p&gt;
+ &lt;p&gt;
+ A &lt;a href="https://checkstyle.org/dtds/suppressions_1_2.dtd"&gt;suppressions XML document&lt;/a&gt;
+ contains a set of {@code suppress} elements, where each {@code suppress}
+ element can have the following attributes:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ {@code files} - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ Pattern&lt;/a&gt; matched against the file name associated with an audit event.
+ It is optional.
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code checks} - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ Pattern&lt;/a&gt; matched against the name of the check associated with an audit event.
+ Optional as long as {@code id} or {@code message} is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code message} - a &lt;a href="https://checkstyle.org/property_types.html#Pattern"&gt;
+ Pattern&lt;/a&gt; matched against the message of the check associated with an audit event.
+ Optional as long as {@code checks} or {@code id} is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code id} - a &lt;a href="https://checkstyle.org/property_types.html#String"&gt;String&lt;/a&gt;
+ matched against the &lt;a href="https://checkstyle.org/config.html#Id"&gt;check id&lt;/a&gt;
+ associated with an audit event.
+ Optional as long as {@code checks} or {@code message} is specified.
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code lines} - a comma-separated list of values, where each value is an
+ &lt;a href="https://checkstyle.org/property_types.html#int"&gt;int&lt;/a&gt;
+ or a range of integers denoted by integer-integer.
+ It is optional.
+ &lt;/li&gt;
+ &lt;li&gt;
+ {@code columns} - a comma-separated list of values, where each value is an
+ &lt;a href="https://checkstyle.org/property_types.html#int"&gt;int&lt;/a&gt;
+ or a range of integers denoted by integer-integer.
+ It is optional.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Each audit event is checked against each {@code suppress} element.
+ It is suppressed if all specified attributes match against the audit event.
+ &lt;/p&gt;
+ &lt;p&gt;
+ ATTENTION: filtering by message is dependant on runtime locale.
+ If project is running in different languages it is better to avoid filtering by message.
+ &lt;/p&gt;
+ &lt;p&gt;
+ You can download template of empty suppression filter
+ &lt;a href="https://checkstyle.org/files/suppressions_none.xml"&gt;here&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Location of the file defined in {@code file} property is checked in the following order:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;
+ as a filesystem location
+ &lt;/li&gt;
+ &lt;li&gt;
+ if no file found, and the location starts with either {@code http://} or {@code https://},
+ then it is interpreted as a URL
+ &lt;/li&gt;
+ &lt;li&gt;
+ if no file found, then passed to the {@code ClassLoader.getResource()} method.
+ &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;p&gt;
+ SuppressionFilter can suppress Checks that have Treewalker or Checker as parent module.
+ &lt;/p&gt;</description>
+         <properties>
+            <property name="file" type="java.lang.String">
+               <description>Specify the location of the &lt;em&gt;suppressions XML document&lt;/em&gt; file.</description>
+            </property>
+            <property default-value="false" name="optional" type="boolean">
+               <description>Control what to do when the file is not existing.
+ If {@code optional} is set to {@code false} the file must exist, or else it
+ ends with error. On the other hand if optional is {@code true} and file is
+ not found, the filter accept all audit events.</description>
+            </property>
+         </properties>
+      </filter>
+   </module>
+</checkstyle-metadata>

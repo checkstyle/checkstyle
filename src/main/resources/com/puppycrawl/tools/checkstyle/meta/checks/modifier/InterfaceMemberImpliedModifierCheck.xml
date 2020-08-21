@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.InterfaceMemberImpliedModifierCheck"
+             name="InterfaceMemberImpliedModifier"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for implicit modifiers on interface members and nested types.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check is effectively the opposite of
+ &lt;a href="https://checkstyle.org/config_modifier.html#RedundantModifier"&gt;RedundantModifier&lt;/a&gt;.
+ It checks the modifiers on interface members, ensuring that certain modifiers are explicitly
+ specified even though they are actually redundant.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Methods in interfaces are {@code public} by default, however from Java 9 they can also be
+ {@code private}. This check provides the ability to enforce that {@code public} is explicitly
+ coded and not implicitly added by the compiler.
+ &lt;/p&gt;
+ &lt;p&gt;
+ From Java 8, there are three types of methods in interfaces - static methods marked with
+ {@code static}, default methods marked with {@code default} and abstract methods which do not
+ have to be marked with anything. From Java 9, there are also private methods marked with
+ {@code private}. This check provides the ability to enforce that {@code abstract} is
+ explicitly coded and not implicitly added by the compiler.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Fields in interfaces are always {@code public static final} and as such the compiler does not
+ require these modifiers. This check provides the ability to enforce that these modifiers are
+ explicitly coded and not implicitly added by the compiler.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Nested types within an interface are always {@code public static} and as such the compiler
+ does not require the {@code public static} modifiers. This check provides the ability to
+ enforce that the {@code public} and {@code static} modifiers are explicitly coded and not
+ implicitly added by the compiler.
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public interface AddressFactory {
+   // check enforces code contains "public static final"
+   public static final String UNKNOWN = "Unknown";
+
+   String OTHER = "Other";  // violation
+
+   // check enforces code contains "public" or "private"
+   public static AddressFactory instance();
+
+   // check enforces code contains "public abstract"
+   public abstract Address createAddress(String addressLine, String city);
+
+   List&amp;lt;Address&amp;gt; findAddresses(String city);  // violation
+
+   // check enforces default methods are explicitly declared "public"
+   public default Address createAddress(String city) {
+     return createAddress(UNKNOWN, city);
+   }
+
+   default Address createOtherAddress() {  // violation
+     return createAddress(OTHER, OTHER);
+   }
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Rationale for this check: Methods, fields and nested types are treated differently
+ depending on whether they are part of an interface or part of a class. For example, by
+ default methods are package-scoped on classes, but public in interfaces. However, from
+ Java 8 onwards, interfaces have changed to be much more like abstract classes.
+ Interfaces now have static and instance methods with code. Developers should not have to
+ remember which modifiers are required and which are implied. This check allows the simpler
+ alternative approach to be adopted where the implied modifiers must always be coded explicitly.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true"
+                      name="violateImpliedPublicField"
+                      type="boolean">
+               <description>Control whether to enforce that {@code public}
+ is explicitly coded on interface fields.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedStaticField"
+                      type="boolean">
+               <description>Control whether to enforce that {@code static}
+ is explicitly coded on interface fields.</description>
+            </property>
+            <property default-value="true" name="violateImpliedFinalField" type="boolean">
+               <description>Control whether to enforce that {@code final}
+ is explicitly coded on interface fields.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedPublicMethod"
+                      type="boolean">
+               <description>Control whether to enforce that {@code public}
+ is explicitly coded on interface methods.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedAbstractMethod"
+                      type="boolean">
+               <description>Control whether to enforce that {@code abstract}
+ is explicitly coded on interface methods.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedPublicNested"
+                      type="boolean">
+               <description>Control whether to enforce that {@code public}
+ is explicitly coded on interface nested types.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedStaticNested"
+                      type="boolean">
+               <description>Control whether to enforce that {@code static}
+ is explicitly coded on interface nested types.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="interface.implied.modifier"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

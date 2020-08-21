@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.MissingJavadocPackageCheck"
+             name="MissingJavadocPackage"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for missing Javadoc comments in package-info.java files.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: description and other related documentation for a package can be written up
+ in the package-info.java file and it gets used in the production of the Javadocs.
+ See &lt;a
+ href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#packagecomment"
+ &gt;link&lt;/a&gt; for more info.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="package.javadoc.missing"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

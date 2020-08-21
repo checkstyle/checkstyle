@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.annotation.MissingOverrideCheck"
+             name="MissingOverride"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Verifies that the {@code @Override} annotation is present
+ when the {@code @inheritDoc} javadoc tag is present.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: The &amp;#64;Override annotation helps
+ compiler tools ensure that an override is actually occurring.  It is
+ quite easy to accidentally overload a method or hide a static method
+ and using the &amp;#64;Override annotation points out these problems.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check will log a violation if using the &amp;#64;inheritDoc tag on a method that
+ is not valid (ex: private, or static method).
+ &lt;/p&gt;
+ &lt;p&gt;
+ There is a slight difference between the &amp;#64;Override annotation in Java 5 versus
+ Java 6 and above. In Java 5, any method overridden from an interface cannot
+ be annotated with &amp;#64;Override. In Java 6 this behavior is allowed.
+ &lt;/p&gt;
+ &lt;p&gt;
+ As a result of the aforementioned difference between Java 5 and Java 6, a
+ property called {@code javaFiveCompatibility} is available. This
+ property will only check classes, interfaces, etc. that do not contain the
+ extends or implements keyword or are not anonymous classes. This means it
+ only checks methods overridden from {@code java.lang.Object}.
+ &lt;b&gt;Java 5 Compatibility mode severely limits this check. It is recommended to
+ only use it on Java 5 source.&lt;/b&gt;
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="javaFiveCompatibility" type="boolean">
+               <description>Enable java 5 compatibility mode.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="annotation.missing.override"/>
+            <message-key key="tag.not.valid.on"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
