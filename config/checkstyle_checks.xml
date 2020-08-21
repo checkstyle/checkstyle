@@ -219,6 +219,8 @@
       <property name="tokens" value="PARAMETER_DEF"/>
       <property name="tokens" value="IMPLEMENTS_CLAUSE"/>
       <property name="tokens" value="ANNOTATION_FIELD_DEF"/>
+      <property name="tokens" value="RECORD_DEF"/>
+      <property name="tokens" value="COMPACT_CTOR_DEF"/>
     </module>
     <module name="AnnotationUseStyle"/>
     <module name="MissingDeprecated"/>
