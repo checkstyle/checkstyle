@@ -325,6 +325,29 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIllegalTypeRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("illegalClassNames", "HashMap, HashSet, LinkedHashMap,"
+            + " LinkedHashSet, TreeMap, TreeSet, java.util.HashMap, java.util.HashSet,"
+            + " java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.TreeMap,"
+            + " java.util.TreeSet, Cloneable");
+
+        final String[] expected = {
+            "23:14: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "27:52: " + getCheckMessage(MSG_KEY, "Cloneable"),
+            "28:16: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            "31:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "35:38: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "36:18: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "44:13: " + getCheckMessage(MSG_KEY, "LinkedHashMap"),
+            };
+
+        verify(checkConfig,
+            getNonCompilablePath("InputIllegalTypeRecordsAndCompactCtors.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
