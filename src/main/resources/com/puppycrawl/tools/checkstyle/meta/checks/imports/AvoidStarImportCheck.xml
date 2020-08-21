@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"
+             name="AvoidStarImport"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that there are no import statements that use the {@code *} notation.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Importing all classes from a package or static
+ members from a class leads to tight coupling between packages
+ or classes and might lead to problems when a new version of a
+ library introduces name clashes.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Note that property {@code excludes} is not recursive, subpackages of excluded
+ packages are not automatically excluded.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="excludes" type="java.lang.String[]">
+               <description>Specify packages where star imports are allowed.</description>
+            </property>
+            <property default-value="false" name="allowClassImports" type="boolean">
+               <description>Control whether to allow starred class
+ imports like {@code import java.util.*;}.</description>
+            </property>
+            <property default-value="false"
+                      name="allowStaticMemberImports"
+                      type="boolean">
+               <description>Control whether to allow starred
+ static member imports like {@code import static org.junit.Assert.*;}.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="import.avoidStar"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ModifiedControlVariableCheck"
+             name="ModifiedControlVariable"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that for loop control variables are not modified
+ inside the for block. An example is:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ for (int i = 0; i &amp;lt; 1; i++) {
+   i++; //violation
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Rationale: If the control variable is modified inside the loop
+ body, the program flow becomes more difficult to follow.
+ See &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14"&gt;
+ FOR statement&lt;/a&gt; specification for more details.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Such loop would be suppressed:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ for (int i = 0; i &amp;lt; 10;) {
+   i++;
+ }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="skipEnhancedForLoopVariable"
+                      type="boolean">
+               <description>Control whether to check
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2"&gt;
+ enhanced for-loop&lt;/a&gt; variable.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="modified.control.variable"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
