@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck"
+             name="NoWhitespaceAfter"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that there is no whitespace after a token.
+ More specifically, it checks that it is not followed by whitespace,
+ or (if linebreaks are allowed) all characters on the line after are
+ whitespace. To forbid linebreaks after a token, set property
+ {@code allowLineBreaks} to {@code false}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The check processes
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR"&gt;
+ ARRAY_DECLARATOR&lt;/a&gt; and
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP"&gt;
+ INDEX_OP&lt;/a&gt; tokens specially from other tokens. Actually it is checked that
+ there is no whitespace before this tokens, not after them. Space after the
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATIONS"&gt;
+ ANNOTATIONS&lt;/a&gt; before
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ARRAY_DECLARATOR"&gt;
+ ARRAY_DECLARATOR&lt;/a&gt; and
+ &lt;a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INDEX_OP"&gt;
+ INDEX_OP&lt;/a&gt; will be ignored.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true" name="allowLineBreaks" type="boolean">
+               <description>Control whether whitespace is allowed
+ if the token is at a linebreak.</description>
+            </property>
+            <property default-value="ARRAY_INIT,AT,INC,DEC,UNARY_MINUS,UNARY_PLUS,BNOT,LNOT,DOT,ARRAY_DECLARATOR,INDEX_OP"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="ws.followed"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

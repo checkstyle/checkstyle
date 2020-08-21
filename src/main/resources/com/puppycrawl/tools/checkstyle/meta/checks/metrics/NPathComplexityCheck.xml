@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.metrics.NPathComplexityCheck"
+             name="NPathComplexity"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the NPATH complexity against a specified limit.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The NPATH metric computes the number of possible execution paths through a
+ function(method). It takes into account the nesting of conditional statements
+ and multi-part boolean expressions (A &amp;amp;&amp;amp; B, C || D, E ? F :G and
+ their combinations).
+ &lt;/p&gt;
+ &lt;p&gt;
+ The NPATH metric was designed base on Cyclomatic complexity to avoid problem
+ of Cyclomatic complexity metric like nesting level within a function(method).
+ &lt;/p&gt;
+ &lt;p&gt;
+ Metric was described at &lt;a href="http://dl.acm.org/citation.cfm?id=42379"&gt;
+ "NPATH: a measure of execution pathcomplexity and its applications"&lt;/a&gt;.
+ If you need detailed description of algorithm, please read that article,
+ it is well written and have number of examples and details.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Here is some quotes:
+ &lt;/p&gt;
+ &lt;blockquote&gt;
+ An NPATH threshold value of 200 has been established for a function.
+ The value 200 is based on studies done at AT&amp;amp;T Bell Laboratories [1988 year].
+ &lt;/blockquote&gt;
+ &lt;blockquote&gt;
+ Some of the most effective methods of reducing the NPATH value include:
+ &lt;ul&gt;
+ &lt;li&gt;
+ distributing functionality;
+ &lt;/li&gt;
+ &lt;li&gt;
+ implementing multiple if statements as a switch statement;
+ &lt;/li&gt;
+ &lt;li&gt;
+ creating a separate function for logical expressions with a high count of
+ variables and (&amp;amp;&amp;amp;) and or (||) operators.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;/blockquote&gt;
+ &lt;blockquote&gt;
+ Although strategies to reduce the NPATH complexity of functions are important,
+ care must be taken not to distort the logical clarity of the software by
+ applying a strategy to reduce the complexity of functions. That is, there is
+ a point of diminishing return beyond which a further attempt at reduction of
+ complexity distorts the logical clarity of the system structure.
+ &lt;/blockquote&gt;
+ &lt;table&gt;
+ &lt;caption&gt;Examples&lt;/caption&gt;
+ &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Structure&lt;/th&gt;&lt;th&gt;Complexity expression&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+ &lt;tr&gt;&lt;td&gt;if ([expr]) { [if-range] }&lt;/td&gt;&lt;td&gt;NP(if-range) + 1 + NP(expr)&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;if ([expr]) { [if-range] } else { [else-range] }&lt;/td&gt;
+ &lt;td&gt;NP(if-range)+ NP(else-range) + NP(expr)&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;while ([expr]) { [while-range] }&lt;/td&gt;&lt;td&gt;NP(while-range) + NP(expr) + 1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;do { [do-range] } while ([expr])&lt;/td&gt;&lt;td&gt;NP(do-range) + NP(expr) + 1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;for([expr1]; [expr2]; [expr3]) { [for-range] }&lt;/td&gt;
+ &lt;td&gt;NP(for-range) + NP(expr1)+ NP(expr2) + NP(expr3) + 1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;switch ([expr]) { case : [case-range] default: [default-range] }&lt;/td&gt;
+ &lt;td&gt;S(i=1:i=n)NP(case-range[i]) + NP(default-range) + NP(expr)&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;[expr1] ? [expr2] : [expr3]&lt;/td&gt;&lt;td&gt;NP(expr1) + NP(expr2) + NP(expr3) + 2&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;goto label&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;break&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Expressions&lt;/td&gt;
+ &lt;td&gt;Number of &amp;amp;&amp;amp; and || operators in expression. No operators - 0&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;continue&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;return&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Statement (even sequential statements)&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;
+ &lt;tr&gt;&lt;td&gt;Empty block {}&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function call&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;
+ &lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Function(Method) declaration or Block&lt;/td&gt;&lt;td&gt;P(i=1:i=N)NP(Statement[i])&lt;/td&gt;&lt;/tr&gt;
+ &lt;/table&gt;
+ &lt;p&gt;
+ &lt;b&gt;Rationale:&lt;/b&gt; Nejmeh says that his group had an informal NPATH limit of
+ 200 on individual routines; functions(methods) that exceeded this value were
+ candidates for further decomposition - or at least a closer look.
+ &lt;b&gt;Please do not be fanatic with limit 200&lt;/b&gt; - choose number that suites
+ your project style. Limit 200 is empirical number base on some sources of at
+ AT&amp;amp;T Bell Laboratories of 1988 year.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="200" name="max" type="int">
+               <description>Specify the maximum threshold allowed.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="npathComplexity"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

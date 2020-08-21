@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressionCommentFilter"
+              name="SuppressionCommentFilter"
+              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Filter {@code SuppressionCommentFilter} uses pairs of comments to suppress audit events.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale:
+ Sometimes there are legitimate reasons for violating a check. When
+ this is a matter of the code in question and not personal
+ preference, the best place to override the policy is in the code
+ itself. Semi-structured comments can be associated with the check.
+ This is sometimes superior to a separate suppressions file, which
+ must be kept up-to-date as the source file is edited.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Note that the suppression comment should be put before the violation.
+ You can use more than one suppression comment each on separate line.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Attention: This filter may only be specified within the TreeWalker module
+ ({@code &amp;lt;module name="TreeWalker"/&amp;gt;}) and only applies to checks which are also
+ defined within this module. To filter non-TreeWalker checks like {@code RegexpSingleline}, a
+ &lt;a href="https://checkstyle.org/config_filters.html#SuppressWithPlainTextCommentFilter"&gt;
+ SuppressWithPlainTextCommentFilter&lt;/a&gt; or similar filter must be used.
+ &lt;/p&gt;
+ &lt;p&gt;
+ {@code offCommentFormat} and {@code onCommentFormat} must have equal
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
+ paren counts&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ SuppressionCommentFilter can suppress Checks that have Treewalker as parent module.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="CHECKSTYLE:OFF"
+                      name="offCommentFormat"
+                      type="java.util.regex.Pattern">
+               <description>Specify comment pattern to
+ trigger filter to begin suppression.</description>
+            </property>
+            <property default-value="CHECKSTYLE:ON"
+                      name="onCommentFormat"
+                      type="java.util.regex.Pattern">
+               <description>Specify comment pattern to trigger filter to end suppression.</description>
+            </property>
+            <property default-value=".*" name="checkFormat" type="java.lang.String">
+               <description>Specify check pattern to suppress.</description>
+            </property>
+            <property name="messageFormat" type="java.lang.String">
+               <description>Specify message pattern to suppress.</description>
+            </property>
+            <property name="idFormat" type="java.lang.String">
+               <description>Specify check ID pattern to suppress.</description>
+            </property>
+            <property default-value="true" name="checkCPP" type="boolean">
+               <description>Control whether to check C++ style comments ({@code //}).</description>
+            </property>
+            <property default-value="true" name="checkC" type="boolean">
+               <description>Control whether to check C style comments ({@code &amp;#47;* ... *&amp;#47;}).</description>
+            </property>
+         </properties>
+      </filter>
+   </module>
+</checkstyle-metadata>
