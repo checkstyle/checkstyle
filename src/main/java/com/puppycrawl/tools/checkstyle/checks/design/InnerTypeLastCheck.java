@@ -89,7 +89,8 @@ public class InnerTypeLastCheck extends AbstractCheck {
             TokenTypes.METHOD_DEF,
             TokenTypes.CTOR_DEF,
             TokenTypes.INSTANCE_INIT,
-            TokenTypes.STATIC_INIT
+            TokenTypes.STATIC_INIT,
+            TokenTypes.COMPACT_CTOR_DEF
     );
 
     /** Meet a root class. */
@@ -107,7 +108,11 @@ public class InnerTypeLastCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.INTERFACE_DEF,
+            TokenTypes.RECORD_DEF,
+        };
     }
 
     @Override

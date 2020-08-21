@@ -201,14 +201,20 @@ public final class ScopeUtil {
      */
     public static boolean isInCodeBlock(DetailAST node) {
         boolean returnValue = false;
+        final int[] tokenTypes = {
+            TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.INSTANCE_INIT,
+            TokenTypes.STATIC_INIT,
+            TokenTypes.LAMBDA,
+            TokenTypes.COMPACT_CTOR_DEF,
+        };
 
         // Loop up looking for a containing code block
         for (DetailAST token = node.getParent();
              token != null;
              token = token.getParent()) {
-            if (TokenUtil.isOfType(token, TokenTypes.METHOD_DEF,
-                    TokenTypes.CTOR_DEF, TokenTypes.INSTANCE_INIT,
-                    TokenTypes.STATIC_INIT, TokenTypes.LAMBDA)) {
+            if (TokenUtil.isOfType(token, tokenTypes)) {
                 returnValue = true;
                 break;
             }
