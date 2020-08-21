@@ -134,7 +134,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.ANNOTATION_FIELD_DEF,
-            };
+            TokenTypes.RECORD_DEF,
+            TokenTypes.COMPACT_CTOR_DEF,
+        };
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }
 
@@ -312,6 +314,24 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
             "27:21: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
         };
         verify(checkConfig, getPath("InputAnnotationLocationSingleParameterless.java"), expected);
+    }
+
+    @Test
+    public void testAnnotationLocationRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "23:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "24:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "30:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "41:13: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+            "51:34: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "SuppressWarnings"),
+
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputAnnotationLocationRecordsAndCompactCtors.java"),
+            expected);
     }
 
 }
