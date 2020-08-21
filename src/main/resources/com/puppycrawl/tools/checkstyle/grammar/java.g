@@ -610,7 +610,7 @@ recordBodyDeclaration
     ;
 
 compactConstructorDeclaration!
-    :    annotations m:modifiers i:id c:constructorBody
+    :    m:modifiers i:id c:constructorBody
          {## = #(#[COMPACT_CTOR_DEF,"COMPACT_CTOR_DEF"], m, i, c);}
     ;
 
