@@ -131,6 +131,8 @@
                    | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
                    | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
+                       //MethodDeclaration
+                    | //ClassOrInterfaceDeclaration[@SimpleName='MetadataGeneratorTest']
                        //MethodDeclaration"/>
     </properties>
   </rule>
