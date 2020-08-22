@@ -2095,6 +2095,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "22:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 16),
             "27:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 20),
             "29:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
+            "30:1: " + getCheckMessage(MSG_ERROR, "yield", 0, 16),
             "34:5: " + getCheckMessage(MSG_CHILD_ERROR, "block", 4, 20),
             "44:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
             "46:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 12),
@@ -2106,6 +2107,24 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig,
                 getNonCompilablePath("InputIndentationCheckSwitchExpression.java"),
                 expected);
+    }
+
+    @Test
+    public void testIndentationYieldStatement() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "23:13: " + getCheckMessage(MSG_ERROR, "yield", 12, 16),
+            "28:9: " + getCheckMessage(MSG_CHILD_ERROR, "yield", 8, 16),
+            "40:5: " + getCheckMessage(MSG_ERROR, "yield", 4, 16),
+            "41:9: " + getCheckMessage(MSG_CHILD_ERROR, "yield", 8, 16),
+            "71:1: " + getCheckMessage(MSG_ERROR, "yield", 0, 16),
+            "74:37: " + getCheckMessage(MSG_ERROR, "yield", 36, 16),
+            };
+
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationYieldStatement.java"),
+            expected);
     }
 
     @Test
