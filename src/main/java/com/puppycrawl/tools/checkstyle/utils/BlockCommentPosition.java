@@ -44,7 +44,8 @@ public final class BlockCommentPosition {
         return isOnClass(blockComment)
                 || isOnInterface(blockComment)
                 || isOnEnum(blockComment)
-                || isOnAnnotationDef(blockComment);
+                || isOnAnnotationDef(blockComment)
+                || isOnRecord(blockComment);
     }
 
     /**
@@ -57,6 +58,18 @@ public final class BlockCommentPosition {
         return isOnPlainToken(blockComment, TokenTypes.CLASS_DEF, TokenTypes.LITERAL_CLASS)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.CLASS_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.CLASS_DEF);
+    }
+
+    /**
+     * Node is on record definition.
+     *
+     * @param blockComment DetailAST
+     * @return true if node is before class
+     */
+    public static boolean isOnRecord(DetailAST blockComment) {
+        return isOnPlainToken(blockComment, TokenTypes.RECORD_DEF, TokenTypes.LITERAL_RECORD)
+            || isOnTokenWithModifiers(blockComment, TokenTypes.RECORD_DEF)
+            || isOnTokenWithAnnotation(blockComment, TokenTypes.RECORD_DEF);
     }
 
     /**
@@ -130,7 +143,8 @@ public final class BlockCommentPosition {
                 || isOnField(blockComment)
                 || isOnConstructor(blockComment)
                 || isOnEnumConstant(blockComment)
-                || isOnAnnotationField(blockComment);
+                || isOnAnnotationField(blockComment)
+                || isOnCompactConstructor(blockComment);
     }
 
     /**
@@ -171,6 +185,18 @@ public final class BlockCommentPosition {
         return isOnPlainToken(blockComment, TokenTypes.CTOR_DEF, TokenTypes.IDENT)
                 || isOnTokenWithModifiers(blockComment, TokenTypes.CTOR_DEF)
                 || isOnTokenWithAnnotation(blockComment, TokenTypes.CTOR_DEF);
+    }
+
+    /**
+     * Node is on compact constructor, note that we don't need to check for a plain
+     * token here, since a compact constructor must be public.
+     *
+     * @param blockComment DetailAST
+     * @return true if node is before compact constructor
+     */
+    public static boolean isOnCompactConstructor(DetailAST blockComment) {
+        return isOnTokenWithModifiers(blockComment, TokenTypes.COMPACT_CTOR_DEF)
+                || isOnTokenWithAnnotation(blockComment, TokenTypes.COMPACT_CTOR_DEF);
     }
 
     /**
