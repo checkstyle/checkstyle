@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.AvoidDoubleBraceInitializationCheck"
+             name="AvoidDoubleBraceInitialization"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Detects double brace initialization.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Double brace initialization (set of
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se12/html/jls-8.html#jls-8.6"&gt;
+ Instance Initializers&lt;/a&gt; in class body) may look cool, but it is considered as anti-pattern
+ and should be avoided.
+ This is also can lead to a hard-to-detect memory leak, if the anonymous class instance is
+ returned outside and other object(s) hold reference to it.
+ Created anonymous class is not static, it holds an implicit reference to the outer class
+ instance.
+ See this
+ &lt;a href="https://blog.jooq.org/2014/12/08/dont-be-clever-the-double-curly-braces-anti-pattern/"&gt;
+ blog post&lt;/a&gt; and
+ &lt;a href="https://www.baeldung.com/java-double-brace-initialization"&gt;
+ article&lt;/a&gt; for more details.
+ Check ignores any comments and semicolons in class body.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="avoid.double.brace.init"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

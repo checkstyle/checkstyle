@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.whitespace.SingleSpaceSeparatorCheck"
+             name="SingleSpaceSeparator"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that non-whitespace characters are separated by no more than one
+ whitespace. Separating characters by tabs or multiple spaces will be
+ reported. Currently the check doesn't permit horizontal alignment. To inspect
+ whitespaces before and after comments, set the property
+ {@code validateComments} to true.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ Setting {@code validateComments} to false will ignore cases like:
+ &lt;/p&gt;
+
+ &lt;pre&gt;
+ int i;  &amp;#47;&amp;#47; Multiple whitespaces before comment tokens will be ignored.
+ private void foo(int  &amp;#47;* whitespaces before and after block-comments will be
+ ignored *&amp;#47;  i) {
+ &lt;/pre&gt;
+
+ &lt;p&gt;
+ Sometimes, users like to space similar items on different lines to the same
+ column position for easier reading. This feature isn't supported by this
+ check, so both braces in the following case will be reported as violations.
+ &lt;/p&gt;
+
+ &lt;pre&gt;
+ public long toNanos(long d)  { return d;             } &amp;#47;&amp;#47; 2 violations
+ public long toMicros(long d) { return d / (C1 / C0); }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="false" name="validateComments" type="boolean">
+               <description>Control whether to validate whitespaces
+ surrounding comments.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="single.space.separator"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
