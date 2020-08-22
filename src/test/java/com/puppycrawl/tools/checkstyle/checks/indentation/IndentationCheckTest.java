@@ -2095,6 +2095,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "22:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 16),
             "27:9: " + getCheckMessage(MSG_CHILD_ERROR, "block", 8, 20),
             "29:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
+            "30:1: " + getCheckMessage(MSG_ERROR, "yield", 0, 16),
             "34:5: " + getCheckMessage(MSG_CHILD_ERROR, "block", 4, 20),
             "44:1: " + getCheckMessage(MSG_CHILD_ERROR, "block", 0, 16),
             "46:21: " + getCheckMessage(MSG_CHILD_ERROR, "case", 20, 12),

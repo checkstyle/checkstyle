@@ -27,7 +27,7 @@ case 1 -> {                                                                   //
         return (a + b);                                                       //indent:8 exp:20 warn
                 };                                                                //indent:16 exp:16
 System.out.println("yield!");                                                 //indent:0 exp:16 warn
-yield case7; /** this is not correct **/                                            //indent:0 exp:0
+yield case7;                                                                  //indent:0 exp:16 warn
             }                                                                     //indent:12 exp:12
             default -> {                                                          //indent:12 exp:12
                 MathOperation2 case8 = (int x, int y) -> {                        //indent:16 exp:16
