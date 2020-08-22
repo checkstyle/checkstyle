@@ -9,6 +9,7 @@
   <suppress checks="RegexpSingleline" files="google_checks\.xml" lines="56,125"/>
   <!-- don't validate generated files -->
   <suppress checks="RegexpSingleline" files="releasenotes\.xml"/>
+  <suppress checks="RegexpSingleline" files="[\\/]meta[\\/]"/>
 
   <suppress checks="FileLength"
              files="TokenTypes.java|IndentationCheckTest.java"

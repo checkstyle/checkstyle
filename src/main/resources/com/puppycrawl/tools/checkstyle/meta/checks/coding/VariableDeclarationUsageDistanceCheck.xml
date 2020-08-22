@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.VariableDeclarationUsageDistanceCheck"
+             name="VariableDeclarationUsageDistance"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the distance between declaration of variable and its first usage.
+ &lt;/p&gt;
+ &lt;p&gt;
+ ATTENTION!! (Not supported cases)
+ &lt;/p&gt;
+ &lt;pre&gt;
+ Case #1:
+ {
+   int c;
+   int a = 3;
+   int b = 2;
+     {
+       a = a + b;
+       c = b;
+     }
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Distance for variable 'a' = 1;
+ Distance for variable 'b' = 1;
+ Distance for variable 'c' = 2.
+ &lt;/p&gt;
+ &lt;p&gt;
+ As distance by default is 1 the Check doesn't raise warning for variables 'a'
+ and 'b' to move them into the block.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Case #2:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ int sum = 0;
+ for (int i = 0; i &amp;lt; 20; i++) {
+   a++;
+   b--;
+   sum++;
+   if (sum &amp;gt; 10) {
+     res = true;
+   }
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Distance for variable 'sum' = 3.
+ &lt;/p&gt;
+ &lt;p&gt;
+ As the distance is more than the default one, the Check raises warning for variable
+ 'sum' to move it into the 'for(...)' block. But there is situation when
+ variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
+ warnings you can use Suppression Filter, provided by Checkstyle, for the
+ whole class.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="3" name="allowedDistance" type="int">
+               <description>Specify distance between declaration
+ of variable and its first usage. Values should be greater than 0.</description>
+            </property>
+            <property default-value=""
+                      name="ignoreVariablePattern"
+                      type="java.util.regex.Pattern">
+               <description>Define RegExp to ignore distance calculation
+ for variables listed in this pattern.</description>
+            </property>
+            <property default-value="false" name="validateBetweenScopes" type="boolean">
+               <description>Allow to calculate the distance between
+ declaration of variable and its first usage in the different scopes.</description>
+            </property>
+            <property default-value="true" name="ignoreFinal" type="boolean">
+               <description>Allow to ignore variables with a 'final' modifier.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="variable.declaration.usage.distance"/>
+            <message-key key="variable.declaration.usage.distance.extend"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

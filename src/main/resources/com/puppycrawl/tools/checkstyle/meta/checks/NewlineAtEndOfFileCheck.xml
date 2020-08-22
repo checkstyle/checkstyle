@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck"
+             name="NewlineAtEndOfFile"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Checks whether files end with a line separator.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Any source files and text files in general should end with a line
+ separator to let other easily add new content at the end of file and "diff"
+ command does not show previous lines as changed.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Example (line 36 should not be in diff):
+ &lt;/p&gt;
+ &lt;pre&gt;
+ &amp;#64;&amp;#64; -32,4 +32,5 &amp;#64;&amp;#64; ForbidWildcardAsReturnTypeCheck.returnTypeClassNamesIgnoreRegex
+ PublicReferenceToPrivateTypeCheck.name = Public Reference To Private Type
+
+ StaticMethodCandidateCheck.name = Static Method Candidate
+ -StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
+ \ No newline at end of file
+ +StaticMethodCandidateCheck.desc = Checks whether private methods should be declared as static.
+ +StaticMethodCandidateCheck.skippedMethods = Method names to skip during the check.
+ &lt;/pre&gt;
+ &lt;p&gt;
+ It can also trick the VCS to report the wrong owner for such lines.
+ An engineer who has added nothing but a newline character becomes the last
+ known author for the entire line. As a result, a mate can ask him a question
+ to which he will not give the correct answer.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Old Rationale: CVS source control management systems will even print
+ a warning when it encounters a file that doesn't end with a line separator.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Attention: property fileExtensions works with files that are passed by similar
+ property for at &lt;a href="https://checkstyle.org/config.html#Checker"&gt;Checker&lt;/a&gt;.
+ Please make sure required file extensions are mentioned at Checker's fileExtensions property.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This will check against the platform-specific default line separator.
+ &lt;/p&gt;
+ &lt;p&gt;
+ It is also possible to enforce the use of a specific line-separator across
+ platforms, with the {@code lineSeparator} property.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="lf_cr_crlf"
+                      name="lineSeparator"
+                      type="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption">
+               <description>Specify the type of line separator.</description>
+            </property>
+            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+               <description>Specify the file type extension of the files to check.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="noNewlineAtEOF"/>
+            <message-key key="unable.open"/>
+            <message-key key="wrong.line.end"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
