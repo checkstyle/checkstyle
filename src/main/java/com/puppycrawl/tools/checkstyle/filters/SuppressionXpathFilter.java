@@ -93,6 +93,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * NonEmptyAtclauseDescription
  * </li>
  * <li>
+ * RequireEmptyLineBeforeBlockTagGroup
+ * </li>
+ * <li>
  * SingleLineJavadoc
  * </li>
  * <li>
