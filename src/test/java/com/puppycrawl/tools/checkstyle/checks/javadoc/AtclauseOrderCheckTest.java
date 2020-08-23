@@ -133,4 +133,44 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("package-info.java"), expected);
     }
 
+    @Test
+    public void testAtclauseOrderRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
+        checkConfig.addAttribute("target", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF ,"
+            + " CTOR_DEF , VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
+
+        checkConfig.addAttribute("tagOrder", "@author, @version, @param, @return, @throws,"
+            + " @exception, @see, @since, @serial, @serialField, @serialData, @deprecated");
+
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception,"
+            + " @see, @since, @serial, @serialField, @serialData, @deprecated]";
+
+        final String[] expected = {
+            "33: " + getCheckMessage(MSG_KEY, tagOrder),
+            "34: " + getCheckMessage(MSG_KEY, tagOrder),
+            "35: " + getCheckMessage(MSG_KEY, tagOrder),
+            "45: " + getCheckMessage(MSG_KEY, tagOrder),
+            "46: " + getCheckMessage(MSG_KEY, tagOrder),
+            "55: " + getCheckMessage(MSG_KEY, tagOrder),
+            "74: " + getCheckMessage(MSG_KEY, tagOrder),
+            "89: " + getCheckMessage(MSG_KEY, tagOrder),
+
+            };
+        verify(checkConfig, getNonCompilablePath("InputAtclauseOrderRecords.java"), expected);
+    }
+
+    @Test
+    public void testAtclauseOrderLotsOfRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
+        checkConfig.addAttribute("target", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF ,"
+            + " CTOR_DEF , VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF");
+
+        checkConfig.addAttribute("tagOrder", "@author, @version, @param, @return, @throws,"
+            + " @exception, @see, @since, @serial, @serialField, @serialData, @deprecated");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getNonCompilablePath("InputAtclauseOrderLotsOfRecords.java"), expected);
+    }
+
 }
