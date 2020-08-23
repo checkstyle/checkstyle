@@ -38,7 +38,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * if the Javadoc being examined by this check violates the tight html rules defined at
  * <a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules">
  * Tight-HTML Rules</a>.
- * Type is {@code boolean}. Default value is {@code false}.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
  * </li>
  * </ul>
  * <p>
