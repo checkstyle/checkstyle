@@ -98,7 +98,7 @@ no-error-xwiki)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/xwiki/xwiki-commons.git
   cd .ci-temp/xwiki-commons
-  SHA_XWIKI="4fa""a8a49de3a70b""ba9c6c3849784e5d""fb642fa8d"
+  SHA_XWIKI="f9c1ee6235e8e02e66539f9e3dd88975c4748c71"
   git checkout $SHA_XWIKI
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
