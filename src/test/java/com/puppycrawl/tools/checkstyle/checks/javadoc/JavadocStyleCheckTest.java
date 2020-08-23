@@ -439,7 +439,6 @@ public class JavadocStyleCheckTest
                 + " line below, too"),
             "70: " + getCheckMessage(MSG_INCOMPLETE_TAG, "         * should fail <"),
             "85:37: " + getCheckMessage(MSG_UNCLOSED_HTML, "<code> // violation"),
-            "92: " + getCheckMessage(MSG_NO_PERIOD),
             "100: " + getCheckMessage(MSG_NO_PERIOD),
             };
 
