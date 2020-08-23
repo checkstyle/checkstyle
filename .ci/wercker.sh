@@ -96,10 +96,9 @@ no-error-xwiki)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/xwiki/xwiki-commons.git
+  checkout_from https://github.com/checkstyle/xwiki-commons.git
   cd .ci-temp/xwiki-commons
-  SHA_XWIKI="4fa""a8a49de3a70b""ba9c6c3849784e5d""fb642fa8d"
-  git checkout $SHA_XWIKI
+  git checkout reflection-exclude
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
