@@ -70,6 +70,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
                     "AtclauseOrder",
                     "JavadocBlockTagLocation",
+                    "JavadocMetadataScraper",
                     "JavadocMethod",
                     "JavadocMissingWhitespaceAfterAsterisk",
                     "JavadocParagraph",
@@ -156,8 +157,9 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
     ));
 
     // Modules that will never have xpath support ever because they not report violations
-    private static final Set<String> NO_VIOLATION_MODULES = new HashSet<>(Collections.singletonList(
-            "SuppressWarningsHolder"
+    private static final Set<String> NO_VIOLATION_MODULES = new HashSet<>(Arrays.asList(
+            "SuppressWarningsHolder",
+            "JavadocMetadataScraper"
     ));
 
     private static Set<String> simpleCheckNames;
