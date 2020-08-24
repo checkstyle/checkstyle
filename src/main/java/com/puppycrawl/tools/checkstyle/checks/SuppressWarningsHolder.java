@@ -25,12 +25,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 
 /**
  * <p>
@@ -136,6 +138,11 @@ public class SuppressWarningsHolder
      */
     private static final ThreadLocal<List<Entry>> ENTRIES =
             ThreadLocal.withInitial(LinkedList::new);
+
+    /**
+     * Compiled pattern used to match whitespace in text block content.
+     */
+    private static final Pattern WHITESPACE = Pattern.compile("\\s+");
 
     /**
      * Returns the default alias for the source name of a check, which is the
@@ -474,6 +481,10 @@ public class SuppressWarningsHolder
             case TokenTypes.DOT:
                 expr = firstChild.getLastChild().getText();
                 break;
+            case TokenTypes.TEXT_BLOCK_LITERAL_BEGIN:
+                final String textBlockContent = firstChild.getFirstChild().getText();
+                expr = getContentWithoutPrecedingWhitespace(textBlockContent);
+                break;
             default:
                 // annotations with complex expressions cannot suppress warnings
         }
@@ -520,6 +531,18 @@ public class SuppressWarningsHolder
             childAST = childAST.getNextSibling();
         }
         return valueList;
+    }
+
+    /**
+     * Remove preceding newline and whitespace from the content of a text block.
+     *
+     * @param textBlockContent the actual text in a text block.
+     * @return content of text block with preceding whitespace and newline removed.
+     */
+    private static String getContentWithoutPrecedingWhitespace(String textBlockContent) {
+        final String contentWithNoPrecedingNewline =
+            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(textBlockContent);
+        return WHITESPACE.matcher(contentWithNoPrecedingNewline).replaceAll("");
     }
 
     @Override
