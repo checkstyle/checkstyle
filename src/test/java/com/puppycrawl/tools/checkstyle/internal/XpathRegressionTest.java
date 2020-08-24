@@ -160,6 +160,11 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "SuppressWarningsHolder"
     ));
 
+    private static final Set<String> INTERNAL_MODULES = Collections.unmodifiableSet(
+            new HashSet<>(Collections.singletonList(
+                    "JavadocMetadataScraper"
+            )));
+
     private static Set<String> simpleCheckNames;
     private static Map<String, String> allowedDirectoryAndChecks;
 
@@ -200,9 +205,12 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
                 .collect(Collectors.toSet());
         // add the extra checks
         abstractJavadocCheckNames.addAll(REGEXP_JAVADOC_CHECKS);
+        final Set<String> abstractJavadocCheckSimpleNames =
+                CheckUtil.getSimpleNames(abstractJavadocCheckNames);
+        abstractJavadocCheckSimpleNames.removeAll(INTERNAL_MODULES);
         assertWithMessage("INCOMPATIBLE_JAVADOC_CHECK_NAMES should contains all descendants "
                     + "of AbstractJavadocCheck")
-            .that(CheckUtil.getSimpleNames(abstractJavadocCheckNames))
+            .that(abstractJavadocCheckSimpleNames)
             .isEqualTo(INCOMPATIBLE_JAVADOC_CHECK_NAMES);
     }
 
@@ -245,6 +253,7 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
         allChecks.removeAll(MISSING_CHECK_NAMES);
         allChecks.removeAll(NO_VIOLATION_MODULES);
         allChecks.removeAll(compatibleChecks);
+        allChecks.removeAll(INTERNAL_MODULES);
 
         assertTrue(allChecks.isEmpty(), "XpathRegressionTest is missing for ["
                 + String.join(", ", allChecks)

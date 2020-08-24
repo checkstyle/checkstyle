@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.RedundantModifierCheck"
+             name="RedundantModifier"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for redundant modifiers.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: The Java Language Specification strongly discourages the usage
+ of {@code public} and {@code abstract} for method declarations in interface
+ definitions as a matter of style.
+ &lt;/p&gt;
+ &lt;p&gt;The check validates:&lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;
+ Interface and annotation definitions.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Final modifier on methods of final and anonymous classes.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Inner {@code interface} declarations that are declared as {@code static}.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Class constructors.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Nested {@code enum} definitions that are declared as {@code static}.
+ &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;p&gt;
+ Interfaces by definition are abstract so the {@code abstract}
+ modifier on the interface is redundant.
+ &lt;/p&gt;
+ &lt;p&gt;Classes inside of interfaces by definition are public and static,
+ so the {@code public} and {@code static} modifiers
+ on the inner classes are redundant. On the other hand, classes
+ inside of interfaces can be abstract or non abstract.
+ So, {@code abstract} modifier is allowed.
+ &lt;/p&gt;
+ &lt;p&gt;Fields in interfaces and annotations are automatically
+ public, static and final, so these modifiers are redundant as
+ well.&lt;/p&gt;
+
+ &lt;p&gt;As annotations are a form of interface, their fields are also
+ automatically public, static and final just as their
+ annotation fields are automatically public and abstract.&lt;/p&gt;
+
+ &lt;p&gt;Enums by definition are static implicit subclasses of java.lang.Enum&amp;#60;E&amp;#62;.
+ So, the {@code static} modifier on the enums is redundant. In addition,
+ if enum is inside of interface, {@code public} modifier is also redundant.&lt;/p&gt;
+
+ &lt;p&gt;Enums can also contain abstract methods and methods which can be overridden by the declared
+ enumeration fields.
+ See the following example:&lt;/p&gt;
+ &lt;pre&gt;
+ public enum EnumClass {
+   FIELD_1,
+   FIELD_2 {
+     &amp;#64;Override
+     public final void method1() {} // violation expected
+   };
+
+   public void method1() {}
+   public final void method2() {} // no violation expected
+ }
+ &lt;/pre&gt;
+
+ &lt;p&gt;Since these methods can be overridden in these situations, the final methods are not
+ marked as redundant even though they can't be extended by other classes/enums.&lt;/p&gt;
+ &lt;p&gt;
+ Nested {@code enum} types are always static by default.
+ &lt;/p&gt;
+ &lt;p&gt;Final classes by definition cannot be extended so the {@code final}
+ modifier on the method of a final class is redundant.
+ &lt;/p&gt;
+ &lt;p&gt;Public modifier for constructors in non-public non-protected classes
+ is always obsolete: &lt;/p&gt;
+
+ &lt;pre&gt;
+ public class PublicClass {
+   public PublicClass() {} // OK
+ }
+
+ class PackagePrivateClass {
+   public PackagePrivateClass() {} // violation expected
+ }
+ &lt;/pre&gt;
+
+ &lt;p&gt;There is no violation in the following example,
+ because removing public modifier from ProtectedInnerClass
+ constructor will make this code not compiling: &lt;/p&gt;
+
+ &lt;pre&gt;
+ package a;
+ public class ClassExample {
+   protected class ProtectedInnerClass {
+     public ProtectedInnerClass () {}
+   }
+ }
+
+ package b;
+ import a.ClassExample;
+ public class ClassExtending extends ClassExample {
+   ProtectedInnerClass pc = new ProtectedInnerClass();
+ }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="METHOD_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,INTERFACE_DEF,CTOR_DEF,CLASS_DEF,ENUM_DEF,RESOURCE"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="redundantModifier"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.OneStatementPerLineCheck"
+             name="OneStatementPerLine"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that there is only one statement per line.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: It's very difficult to read multiple statements on one line.
+ &lt;/p&gt;
+ &lt;p&gt;
+ In the Java programming language, statements are the fundamental unit of
+ execution. All statements except blocks are terminated by a semicolon.
+ Blocks are denoted by open and close curly braces.
+ &lt;/p&gt;
+ &lt;p&gt;
+ OneStatementPerLineCheck checks the following types of statements:
+ variable declaration statements, empty statements, import statements,
+ assignment statements, expression statements, increment statements,
+ object creation statements, 'for loop' statements, 'break' statements,
+ 'continue' statements, 'return' statements, resources statements (optional).
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="treatTryResourcesAsStatement"
+                      type="boolean">
+               <description>Enable resources processing.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="multiple.statements.line"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

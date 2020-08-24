@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <filter fully-qualified-name="com.puppycrawl.tools.checkstyle.filters.SuppressWithPlainTextCommentFilter"
+              name="SuppressWithPlainTextCommentFilter"
+              parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Filter {@code SuppressWithPlainTextCommentFilter} uses plain text to suppress
+ audit events. The filter can be used only to suppress audit events received
+ from the checks which implement FileSetCheck interface. In other words, the
+ checks which have Checker as a parent module. The filter knows nothing about
+ AST, it treats only plain text comments and extracts the information required
+ for suppression from the plain text comments. Currently the filter supports
+ only single line comments.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Please, be aware of the fact that, it is not recommended to use the filter
+ for Java code anymore, however you still are able to use it to suppress audit
+ events received from the checks which implement FileSetCheck interface.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Sometimes there are legitimate reasons for violating a check.
+ When this is a matter of the code in question and not personal preference,
+ the best place to override the policy is in the code itself. Semi-structured
+ comments can be associated with the check. This is sometimes superior to
+ a separate suppressions file, which must be kept up-to-date as the source
+ file is edited.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Note that the suppression comment should be put before the violation.
+ You can use more than one suppression comment each on separate line.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Properties {@code offCommentFormat} and {@code onCommentFormat} must have equal
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/regex/Matcher.html#groupCount()"&gt;
+ paren counts&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ SuppressionWithPlainTextCommentFilter can suppress Checks that have Treewalker or
+ Checker as parent module.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="// CHECKSTYLE:OFF"
+                      name="offCommentFormat"
+                      type="java.util.regex.Pattern">
+               <description>Specify comment pattern to trigger filter
+ to begin suppression.</description>
+            </property>
+            <property default-value="// CHECKSTYLE:ON"
+                      name="onCommentFormat"
+                      type="java.util.regex.Pattern">
+               <description>Specify comment pattern to trigger filter
+ to end suppression.</description>
+            </property>
+            <property default-value=".*" name="checkFormat" type="java.lang.String">
+               <description>Specify check pattern to suppress.</description>
+            </property>
+            <property name="messageFormat" type="java.lang.String">
+               <description>Specify message pattern to suppress.</description>
+            </property>
+            <property name="idFormat" type="java.lang.String">
+               <description>Specify check ID pattern to suppress.</description>
+            </property>
+         </properties>
+      </filter>
+   </module>
+</checkstyle-metadata>
