@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck"
+             name="DeclarationOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that the parts of a class, record, or interface declaration appear in the order
+ suggested by the
+ &lt;a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"&gt;
+ Code Conventions for the Java Programming Language&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ According to
+ &lt;a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc2.html#a1852"&gt;
+ Code Conventions for the Java Programming Language&lt;/a&gt;, the parts of a class
+ or interface declaration should appear in the following order:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt;
+ Class (static) variables. First the public class variables, then
+ protected, then package level (no access modifier), and then private.
+ &lt;/li&gt;
+ &lt;li&gt; Instance variables. First the public class variables, then
+ protected, then package level (no access modifier), and then private.
+ &lt;/li&gt;
+ &lt;li&gt; Constructors &lt;/li&gt;
+ &lt;li&gt; Methods &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;p&gt;
+ Purpose of &lt;b&gt;ignore*&lt;/b&gt; option is to ignore related violations,
+ however it still impacts on other class members.
+ &lt;/p&gt;
+ &lt;p&gt;ATTENTION: the check skips class fields which have
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html#jls-8.3.3"&gt;
+ forward references &lt;/a&gt; from validation due to the fact that we have Checkstyle's limitations
+ to clearly detect user intention of fields location and grouping. For example:
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public class A {
+   private double x = 1.0;
+   private double y = 2.0;
+   public double slope = x / y; // will be skipped from validation due to forward reference
+ }
+ &lt;/pre&gt;</description>
+         <properties>
+            <property default-value="false" name="ignoreConstructors" type="boolean">
+               <description>control whether to ignore constructors.</description>
+            </property>
+            <property default-value="false" name="ignoreModifiers" type="boolean">
+               <description>control whether to ignore modifiers (fields, ...).</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="declaration.order.access"/>
+            <message-key key="declaration.order.constructor"/>
+            <message-key key="declaration.order.instance"/>
+            <message-key key="declaration.order.static"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

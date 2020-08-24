@@ -29,6 +29,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -62,6 +63,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 public class AllChecksTest extends AbstractModuleTestSupport {
+
+    private static final Set<String> INTERNAL_MODULES = Collections.unmodifiableSet(
+            new HashSet<>(Collections.singletonList(
+            "JavadocMetadataScraper"
+    )));
 
     private static final Locale[] ALL_LOCALES = {
         Locale.GERMAN,
@@ -359,6 +365,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         final Set<String> modulesReferencedInConfig = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
 
+        moduleNames.removeAll(INTERNAL_MODULES);
         moduleNames.stream().filter(check -> !modulesReferencedInConfig.contains(check))
             .forEach(check -> {
                 final String errorMessage = String.format(Locale.ROOT,
@@ -472,7 +479,8 @@ public class AllChecksTest extends AbstractModuleTestSupport {
         // these are documented on non-'config_' pages
         checkstyleModulesNames.remove("TreeWalker");
         checkstyleModulesNames.remove("Checker");
-
+        // temporarily hosted in test folder
+        checkstyleModulesNames.removeAll(INTERNAL_MODULES);
         checkstyleModulesNames.stream()
             .filter(moduleName -> !modulesNamesWhichHaveXdocs.contains(moduleName))
             .forEach(moduleName -> {
@@ -487,7 +495,7 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     public void testAllCheckstyleModulesInCheckstyleConfig() throws Exception {
         final Set<String> configChecks = CheckUtil.getConfigCheckStyleModules();
         final Set<String> moduleNames = CheckUtil.getSimpleNames(CheckUtil.getCheckstyleModules());
-
+        moduleNames.removeAll(INTERNAL_MODULES);
         for (String moduleName : moduleNames) {
             assertTrue(configChecks.contains(moduleName),
                     "checkstyle_checks.xml is missing module: " + moduleName);
@@ -526,7 +534,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     message.setAccessible(true);
                 }
 
-                verifyCheckstyleMessage(usedMessages, module, message);
+                if (!INTERNAL_MODULES.contains(module.getSimpleName())) {
+                    verifyCheckstyleMessage(usedMessages, module, message);
+                }
             }
         }
 

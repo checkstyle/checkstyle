@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTypeCheck"
+             name="JavadocType"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the Javadoc comments for annotation/enum/class/interface definitions. By default, does
+ not check for author or version tags. The scope to verify is specified using the {@code Scope}
+ class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
+ scope to one of the {@code Scope} constants. To define the format for an author
+ tag or a version tag, set property authorFormat or versionFormat respectively to a
+ &lt;a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html"&gt;
+ regular expression&lt;/a&gt;.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Does not perform checks for author and version tags for inner classes,
+ as they should be redundant because of outer class.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Error messages about type parameters for which no param tags are present
+ can be suppressed by defining property {@code allowMissingParamTags}.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="private"
+                      name="scope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments are checked.</description>
+            </property>
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc
+ comments are not checked.</description>
+            </property>
+            <property name="authorFormat" type="java.util.regex.Pattern">
+               <description>Specify the pattern for {@code @author} tag.</description>
+            </property>
+            <property name="versionFormat" type="java.util.regex.Pattern">
+               <description>Specify the pattern for {@code @version} tag.</description>
+            </property>
+            <property default-value="false" name="allowMissingParamTags" type="boolean">
+               <description>Control whether to ignore violations
+ when a class has type parameters but does not have matching param tags in the Javadoc.</description>
+            </property>
+            <property default-value="false" name="allowUnknownTags" type="boolean">
+               <description>Control whether to ignore violations when
+ a Javadoc tag is not recognised.</description>
+            </property>
+            <property default-value="Generated"
+                      name="allowedAnnotations"
+                      type="java.lang.String[]">
+               <description>Specify the list of annotations that allow
+ missed documentation. Only short names are allowed, e.g. {@code Generated}.</description>
+            </property>
+            <property default-value="INTERFACE_DEF,CLASS_DEF,ENUM_DEF,ANNOTATION_DEF,RECORD_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.unknownTag"/>
+            <message-key key="javadoc.unusedTag"/>
+            <message-key key="javadoc.unusedTagGeneral"/>
+            <message-key key="type.missingTag"/>
+            <message-key key="type.tagFormat"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
