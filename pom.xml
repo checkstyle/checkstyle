@@ -260,6 +260,11 @@
       <version>1.10.8</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>0.9.11</version>
+    </dependency>
 
     <!-- test scope stuff -->
     <dependency>
@@ -1388,6 +1393,7 @@
                 <!-- Generated files -->
                 <exclude>src/xdocs/releasenotes.xml</exclude>
                 <exclude>src/xdocs/releasenotes_old.xml</exclude>
+                <exclude>src/main/resources/com/puppycrawl/tools/checkstyle/meta/**</exclude>
               </excludes>
             </formatFileSet>
           </formatFileSets>
