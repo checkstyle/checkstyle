@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ModifierOrderCheck"
+             name="ModifierOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that the order of modifiers conforms to the suggestions in the
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html"&gt;
+ Java Language specification, &amp;#167; 8.1.1, 8.3.1, 8.4.3&lt;/a&gt; and
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html"&gt;9.4&lt;/a&gt;.
+ The correct order is:
+ &lt;/p&gt;
+ &lt;ol&gt;
+ &lt;li&gt; {@code public} &lt;/li&gt;
+ &lt;li&gt; {@code protected} &lt;/li&gt;
+ &lt;li&gt; {@code private} &lt;/li&gt;
+ &lt;li&gt; {@code abstract} &lt;/li&gt;
+ &lt;li&gt; {@code default} &lt;/li&gt;
+ &lt;li&gt; {@code static} &lt;/li&gt;
+ &lt;li&gt; {@code final} &lt;/li&gt;
+ &lt;li&gt; {@code transient} &lt;/li&gt;
+ &lt;li&gt; {@code volatile} &lt;/li&gt;
+ &lt;li&gt; {@code synchronized} &lt;/li&gt;
+ &lt;li&gt; {@code native} &lt;/li&gt;
+ &lt;li&gt; {@code strictfp} &lt;/li&gt;
+ &lt;/ol&gt;
+ &lt;p&gt;
+ In additional, modifiers are checked to ensure all annotations
+ are declared before all other modifiers.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Code is easier to read if everybody follows
+ a standard.
+ &lt;/p&gt;
+ &lt;p&gt;
+ ATTENTION: We skip
+ &lt;a href="https://www.oracle.com/technical-resources/articles/java/ma14-architect-annotations.html"&gt;
+ type annotations&lt;/a&gt; from validation.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="annotation.order"/>
+            <message-key key="mod.order"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

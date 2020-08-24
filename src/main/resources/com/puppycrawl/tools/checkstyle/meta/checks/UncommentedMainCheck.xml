@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.UncommentedMainCheck"
+             name="UncommentedMain"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Detects uncommented {@code main} methods.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: A {@code main} method is often used for debugging purposes.
+ When debugging is finished, developers often forget to remove the method,
+ which changes the API and increases the size of the resulting class or JAR file.
+ With the exception of the real program entry points, all {@code main} methods
+ should be removed or commented out of the sources.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^$"
+                      name="excludedClasses"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern for qualified names of
+ classes which are allowed to have a {@code main} method.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="uncommented.main"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.AbstractClassNameCheck"
+             name="AbstractClassName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Ensures that the names of abstract classes conforming to some regular
+ expression and check that {@code abstract} modifier exists.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Abstract classes are convenience base class implementations of
+ interfaces, not types as such. As such they should be named to indicate this.
+ Also if names of classes starts with 'Abstract' it's very convenient that
+ they will have abstract modifier.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^Abstract.+$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specify valid identifiers.</description>
+            </property>
+            <property default-value="false" name="ignoreModifier" type="boolean">
+               <description>Control whether to ignore checking for the
+ {@code abstract} modifier on classes that match the name.</description>
+            </property>
+            <property default-value="false" name="ignoreName" type="boolean">
+               <description>Control whether to ignore checking the name.
+ Realistically only useful if using the check to identify that match name and
+ do not have the {@code abstract} modifier.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="illegal.abstract.class.name"/>
+            <message-key key="no.abstract.class.modifier"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

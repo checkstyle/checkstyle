@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStaticImportCheck"
+             name="AvoidStaticImport"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that there are no static import statements.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Importing static members can lead to naming conflicts
+ between class' members. It may lead to poor code readability since it
+ may no longer be clear what class a member resides in (without looking
+ at the import statement).
+ &lt;/p&gt;
+ &lt;p&gt;
+ If you exclude a starred import on a class this automatically excludes
+ each member individually.
+ &lt;/p&gt;
+ &lt;p&gt;
+ For example: Excluding {@code java.lang.Math.*}. will allow the import
+ of each static member in the Math class individually like
+ {@code java.lang.Math.PI, java.lang.Math.cos, ...}.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="excludes" type="java.lang.String[]">
+               <description>Control whether to allow for certain classes via
+ a star notation to be excluded such as {@code java.lang.Math.*} or specific
+ static members to be excluded like {@code java.lang.System.out} for a variable
+ or {@code java.lang.Math.random} for a method. See notes section for details.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="import.avoidStatic"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

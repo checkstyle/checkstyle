@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.SimplifyBooleanReturnCheck"
+             name="SimplifyBooleanReturn"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for over-complicated boolean return statements.
+ For example the following code
+ &lt;/p&gt;
+ &lt;pre&gt;
+ if (valid())
+   return false;
+ else
+   return true;
+ &lt;/pre&gt;
+ &lt;p&gt;
+ could be written as
+ &lt;/p&gt;
+ &lt;pre&gt;
+ return !valid();
+ &lt;/pre&gt;
+ &lt;p&gt;
+ The idea for this Check has been shamelessly stolen from the equivalent
+ &lt;a href="https://pmd.github.io/"&gt;&lt;/a&gt; rule.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="simplify.boolReturn"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
