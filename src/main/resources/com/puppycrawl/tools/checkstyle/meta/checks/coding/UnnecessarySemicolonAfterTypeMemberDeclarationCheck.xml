@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.UnnecessarySemicolonAfterTypeMemberDeclarationCheck"
+             name="UnnecessarySemicolonAfterTypeMemberDeclaration"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks if unnecessary semicolon is used after type member declaration.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check is not applicable to empty statements (unnecessary semicolons inside methods or
+ init blocks),
+ &lt;a href="https://checkstyle.org/config_coding.html#EmptyStatement"&gt;EmptyStatement&lt;/a&gt;
+ is responsible for it.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,VARIABLE_DEF,ANNOTATION_FIELD_DEF,STATIC_INIT,INSTANCE_INIT,CTOR_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,COMPACT_CTOR_DEF,RECORD_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="unnecessary.semicolon"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

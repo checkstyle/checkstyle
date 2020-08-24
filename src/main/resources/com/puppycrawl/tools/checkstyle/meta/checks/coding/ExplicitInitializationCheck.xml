@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.ExplicitInitializationCheck"
+             name="ExplicitInitialization"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks if any class or object member is explicitly initialized
+ to default for its type value ({@code null} for object
+ references, zero for numeric types and {@code char}
+ and {@code false} for {@code boolean}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Each instance variable gets
+ initialized twice, to the same value. Java
+ initializes each instance variable to its default
+ value ({@code 0} or {@code null}) before performing any
+ initialization specified in the code.
+ So there is a minor inefficiency.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="onlyObjectReferences" type="boolean">
+               <description>control whether only explicit
+ initializations made to null for objects should be checked.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="explicit.init"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

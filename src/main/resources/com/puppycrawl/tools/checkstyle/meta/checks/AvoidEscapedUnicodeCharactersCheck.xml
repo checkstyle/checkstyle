@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck"
+             name="AvoidEscapedUnicodeCharacters"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Restricts using
+ &lt;a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-3.html#jls-3.3"&gt;
+ Unicode escapes&lt;/a&gt;
+ (such as &amp;#92;u221e). It is possible to allow using escapes for
+ &lt;a href="https://en.wiktionary.org/wiki/Appendix:Control_characters"&gt;
+ non-printable, control characters&lt;/a&gt;.
+ Also, this check can be configured to allow using escapes
+ if trail comment is present. By the option it is possible to
+ allow using escapes if literal contains only them.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="allowEscapesForControlCharacters"
+                      type="boolean">
+               <description>Allow use escapes for
+ non-printable, control characters.</description>
+            </property>
+            <property default-value="false" name="allowByTailComment" type="boolean">
+               <description>Allow use escapes if trail comment is present.</description>
+            </property>
+            <property default-value="false"
+                      name="allowIfAllCharactersEscaped"
+                      type="boolean">
+               <description>Allow if all characters in literal are escaped.</description>
+            </property>
+            <property default-value="false"
+                      name="allowNonPrintableEscapes"
+                      type="boolean">
+               <description>Allow use escapes for
+ non-printable, whitespace characters.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="forbid.escaped.unicode.char"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

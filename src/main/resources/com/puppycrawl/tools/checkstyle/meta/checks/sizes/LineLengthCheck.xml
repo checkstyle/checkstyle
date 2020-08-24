@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"
+             name="LineLength"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Checks for long lines.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Long lines are hard to read in printouts or if developers
+ have limited screen space for the source code, e.g. if the IDE displays
+ additional information like project tree, class hierarchy, etc.
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ The calculation of the length of a line takes into account the number of
+ expanded spaces for a tab character ({@code '\t'}). The default number of spaces is {@code 8}.
+ To specify a different number of spaces, the user can set
+ &lt;a href="https://checkstyle.org/config.html#TreeWalker"&gt;{@code TreeWalker}&lt;/a&gt;
+ property {@code tabWidth} which applies to all Checks, including {@code LineLength};
+ or can set property {@code tabWidth} for {@code LineLength} alone.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Package and import statements (lines matching pattern {@code ^(package|import) .*})
+ are not verified by this check.
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <properties>
+            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+               <description>Specify file extensions that are accepted.</description>
+            </property>
+            <property default-value="^$"
+                      name="ignorePattern"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern for lines to ignore.</description>
+            </property>
+            <property default-value="80" name="max" type="int">
+               <description>Specify the maximum line length allowed.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="maxLineLen"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
