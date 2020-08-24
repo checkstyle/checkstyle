@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheck"
+             name="JavadocStyle"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Validates Javadoc comments to help ensure they are well formed.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The following checks are performed:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ Ensures the first sentence ends with proper punctuation
+ (That is a period, question mark, or exclamation mark, by default).
+ Javadoc automatically places the first sentence in the method summary
+ table and index. Without proper punctuation the Javadoc may be malformed.
+ All items eligible for the {@code {@inheritDoc}} tag are exempt from this
+ requirement.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Check text for Javadoc statements that do not have any description.
+ This includes both completely empty Javadoc, and Javadoc with only tags
+ such as {@code @param} and {@code @return}.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Check text for incomplete HTML tags. Verifies that HTML tags have
+ corresponding end tags and issues an "Unclosed HTML tag found:" error if not.
+ An "Extra HTML tag found:" error is issued if an end tag is found without
+ a previous open tag.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Check that a package Javadoc comment is well-formed (as described above) and
+ NOT missing from any package-info.java files.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Check for allowed HTML tags. The list of allowed HTML tags is
+ "a", "abbr", "acronym", "address", "area", "b", "bdo", "big", "blockquote",
+ "br", "caption", "cite", "code", "colgroup", "dd", "del", "dfn", "div", "dl",
+ "dt", "em", "fieldset", "font", "h1", "h2", "h3", "h4", "h5", "h6", "hr",
+ "i", "img", "ins", "kbd", "li", "ol", "p", "pre", "q", "samp", "small",
+ "span", "strong", "sub", "sup", "table", "tbody", "td", "tfoot", "th",
+ "thead", "tr", "tt", "u", "ul", "var".
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ These checks were patterned after the checks made by the
+ &lt;a href="http://maven-doccheck.sourceforge.net/"&gt;DocCheck&lt;/a&gt; doclet
+ available from Sun. Note: Original Sun's DocCheck tool does not exist anymore.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="private"
+                      name="scope"
+                      type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where Javadoc comments are checked.</description>
+            </property>
+            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
+               <description>Specify the visibility scope where
+ Javadoc comments are not checked.</description>
+            </property>
+            <property default-value="true" name="checkFirstSentence" type="boolean">
+               <description>Control whether to check the first
+ sentence for proper end of sentence.</description>
+            </property>
+            <property default-value="([.?!][ \t\n\r\f&amp;lt;])|([.?!]$)"
+                      name="endOfSentenceFormat"
+                      type="java.util.regex.Pattern">
+               <description>Specify the format for matching
+ the end of a sentence.</description>
+            </property>
+            <property default-value="false" name="checkEmptyJavadoc" type="boolean">
+               <description>Control whether to check if the Javadoc
+ is missing a describing text.</description>
+            </property>
+            <property default-value="true" name="checkHtml" type="boolean">
+               <description>Control whether to check for incomplete HTML tags.</description>
+            </property>
+            <property default-value="ANNOTATION_DEF,ANNOTATION_FIELD_DEF,CLASS_DEF,CTOR_DEF,ENUM_CONSTANT_DEF,ENUM_DEF,INTERFACE_DEF,METHOD_DEF,PACKAGE_DEF,VARIABLE_DEF,RECORD_DEF,COMPACT_CTOR_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.empty"/>
+            <message-key key="javadoc.extraHtml"/>
+            <message-key key="javadoc.incompleteTag"/>
+            <message-key key="javadoc.missing"/>
+            <message-key key="javadoc.noPeriod"/>
+            <message-key key="javadoc.unclosedHtml"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
