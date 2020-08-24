@@ -793,6 +793,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.sizes.OuterTypeNumberCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterNumberCheck",
                 BASE_PACKAGE + ".checks.sizes.ParameterNumberCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RecordComponentNumberCheck",
+                BASE_PACKAGE + ".checks.sizes.RecordComponentNumberCheck");
     }
 
     /**
