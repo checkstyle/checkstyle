@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck"
+             name="MutableException"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Ensures that exception classes (classes with names conforming to some regular
+ expression and explicitly extending classes with names conforming to other
+ regular expression) are immutable, that is, that they have only final fields.
+ &lt;/p&gt;
+ &lt;p&gt;
+ The current algorithm is very simple: it checks that all members of exception are final.
+ The user can still mutate an exception's instance (e.g. Throwable has a method called
+ {@code setStackTrace} which changes the exception's stack trace). But, at least, all
+ information provided by this exception type is unchangeable.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: Exception instances should represent an error
+ condition. Having non final fields not only allows the state to be
+ modified by accident and therefore mask the original condition but
+ also allows developers to accidentally forget to set the initial state.
+ In both cases, code catching the exception could draw incorrect
+ conclusions based on the state.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern for exception class names.</description>
+            </property>
+            <property default-value="^.*Exception$|^.*Error$|^.*Throwable$"
+                      name="extendedClassNameFormat"
+                      type="java.util.regex.Pattern">
+               <description>Specify pattern for extended class names.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="mutable.exception"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

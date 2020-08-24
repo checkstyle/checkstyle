@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.modifier.ClassMemberImpliedModifierCheck"
+             name="ClassMemberImpliedModifier"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks for implicit modifiers on nested types in classes and records.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check is effectively the opposite of
+ &lt;a href="https://checkstyle.org/config_modifier.html#RedundantModifier"&gt;RedundantModifier&lt;/a&gt;.
+ It checks the modifiers on nested types in classes and records, ensuring that certain modifiers
+ are explicitly specified even though they are actually redundant.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Nested enums, interfaces, and records within a class are always {@code static} and as such the
+ compiler does not require the {@code static} modifier. This check provides the ability to enforce
+ that the {@code static} modifier is explicitly coded and not implicitly added by the compiler.
+ &lt;/p&gt;
+ &lt;pre&gt;
+ public final class Person {
+   enum Age {  // violation
+     CHILD, ADULT
+   }
+ }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Rationale for this check: Nested enums, interfaces, and records are treated differently from
+ nested classes as they are only allowed to be {@code static}. Developers should not need to
+ remember this rule, and this check provides the means to enforce that the modifier is coded
+ explicitly.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="true"
+                      name="violateImpliedStaticOnNestedEnum"
+                      type="boolean">
+               <description>Control whether to enforce that
+ {@code static} is explicitly coded on nested enums in classes and records.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedStaticOnNestedInterface"
+                      type="boolean">
+               <description>Control whether to enforce that
+ {@code static} is explicitly coded on nested interfaces in classes and records.</description>
+            </property>
+            <property default-value="true"
+                      name="violateImpliedStaticOnNestedRecord"
+                      type="boolean">
+               <description>Control whether to enforce that
+ {@code static} is explicitly coded on nested records in classes and records.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="class.implied.modifier"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

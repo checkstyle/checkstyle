@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpOnFilenameCheck"
+             name="RegexpOnFilename"
+             parent="com.puppycrawl.tools.checkstyle.Checker">
+         <description>&lt;p&gt;
+ Checks that a specified pattern matches based on file and/or folder path.
+ It can also be used to verify files
+ match specific naming patterns not covered by other checks (Ex: properties,
+ xml, etc.).
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ When customizing the check, the properties are applied in a specific order.
+ The fileExtensions property first picks only files that match any of the
+ specific extensions supplied. Once files are matched against the
+ fileExtensions, the match property is then used in conjunction with the
+ patterns to determine if the check is looking for a match or mis-match on
+ those files. If the fileNamePattern is supplied, the matching is only applied
+ to the fileNamePattern and not the folderPattern. If no fileNamePattern is
+ supplied, then matching is applied to the folderPattern only and will result
+ in all files in a folder to be reported on violations. If no folderPattern is
+ supplied, then all folders that checkstyle finds are examined for violations.
+ The ignoreFileNameExtensions property drops the file extension and applies
+ the fileNamePattern only to the rest of file name. For example, if the file
+ is named 'test.java' and this property is turned on, the pattern is only
+ applied to 'test'.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ If this check is configured with no properties, then the default behavior of
+ this check is to report file names with spaces in them. When at least one
+ pattern property is supplied, the entire check is under the user's control to
+ allow them to fully customize the behavior.
+ &lt;/p&gt;
+
+ &lt;p&gt;
+ It is recommended that if you create your own pattern, to also specify a
+ custom violation message. This allows the violation message printed to be clear what
+ the violation is, especially if multiple RegexpOnFilename checks are used.
+ Argument 0 for the message populates the check's folderPattern. Argument 1
+ for the message populates the check's fileNamePattern. The file name is not
+ passed as an argument since it is part of CheckStyle's default violation
+ messages.
+ &lt;/p&gt;</description>
+         <properties>
+            <property name="folderPattern" type="java.util.regex.Pattern">
+               <description>Specify the regular expression to match the folder path against.</description>
+            </property>
+            <property name="fileNamePattern" type="java.util.regex.Pattern">
+               <description>Specify the regular expression to match the file name against.</description>
+            </property>
+            <property default-value="true" name="match" type="boolean">
+               <description>Control whether to look for a match or mis-match on the file name, if
+ the fileNamePattern is supplied, otherwise it is applied on the folderPattern.</description>
+            </property>
+            <property default-value="false"
+                      name="ignoreFileNameExtensions"
+                      type="boolean">
+               <description>Control whether to ignore the file extension for
+ the file name match.</description>
+            </property>
+            <property default-value="" name="fileExtensions" type="java.lang.String[]">
+               <description>Specify the file type extension of files to process. If this is
+ specified, then only files that match these types are examined with the other
+ patterns.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="regexp.filename.match"/>
+            <message-key key="regexp.filename.mismatch"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

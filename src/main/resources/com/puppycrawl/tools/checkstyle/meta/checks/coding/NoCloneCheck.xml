@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NoCloneCheck"
+             name="NoClone"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that the clone method is not overridden from the
+ Object class.
+ &lt;/p&gt;
+ &lt;p&gt;
+ This check is almost exactly the same as the {@code NoFinalizerCheck}.
+ &lt;/p&gt;
+ &lt;p&gt;
+ See
+ &lt;a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Object.html#clone()"&gt;
+ Object.clone()&lt;/a&gt;
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: The clone method relies on strange, hard to follow rules that
+ are difficult to get right and do not work in all situations. In some cases,
+ either a copy constructor or a static factory method can be used instead of
+ the clone method to return copies of an object. For more information on rules
+ for the clone method and its issues, see Effective Java:
+ Programming Language Guide First Edition by Joshua Bloch pages 45-52.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Below are some of the rules/reasons why the clone method should be avoided.
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ Classes supporting the clone method should implement the Cloneable
+ interface but the Cloneable interface does not include the clone method.
+ As a result, it doesn't enforce the method override.
+ &lt;/li&gt;
+ &lt;li&gt;
+ The Cloneable interface forces the Object's clone method to work
+ correctly. Without implementing it, the Object's clone method will
+ throw a CloneNotSupportedException.
+ &lt;/li&gt;
+ &lt;li&gt;
+ Non-final classes must return the object returned from a call to
+ super.clone().
+ &lt;/li&gt;
+ &lt;li&gt;
+ Final classes can use a constructor to create a clone which is different
+ from non-final classes.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If a super class implements the clone method incorrectly all subclasses
+ calling super.clone() are doomed to failure.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If a class has references to mutable objects then those object
+ references must be replaced with copies in the clone method
+ after calling super.clone().
+ &lt;/li&gt;
+ &lt;li&gt;
+ The clone method does not work correctly with final mutable object
+ references because final references cannot be reassigned.
+ &lt;/li&gt;
+ &lt;li&gt;
+ If a super class overrides the clone method then all subclasses must
+ provide a correct clone implementation.
+ &lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;Two alternatives to the clone method, in some cases, is a copy constructor
+ or a static factory method to return copies of an object. Both of these
+ approaches are simpler and do not conflict with final fields. They do not
+ force the calling client to handle a CloneNotSupportedException.  They also
+ are typed therefore no casting is necessary. Finally, they are more
+ flexible since they can take interface types rather than concrete classes.
+ &lt;/p&gt;
+ &lt;p&gt;Sometimes a copy constructor or static factory is not an acceptable
+ alternative to the clone method.  The example below highlights the
+ limitation of a copy constructor (or static factory). Assume
+ Square is a subclass for Shape.
+ &lt;/p&gt;
+ &lt;pre&gt;
+ Shape s1 = new Square();
+ System.out.println(s1 instanceof Square); //true
+ &lt;/pre&gt;
+ &lt;p&gt;
+ ...assume at this point the code knows nothing of s1 being a Square
+    that's the beauty of polymorphism but the code wants to copy
+    the Square which is declared as a Shape, its super type...
+ &lt;/p&gt;
+ &lt;pre&gt;
+ Shape s2 = new Shape(s1); //using the copy constructor
+ System.out.println(s2 instanceof Square); //false
+ &lt;/pre&gt;
+ &lt;p&gt;
+ The working solution (without knowing about all subclasses and doing many
+ casts) is to do the following (assuming correct clone implementation).
+ &lt;/p&gt;
+ &lt;pre&gt;
+ Shape s2 = s1.clone();
+ System.out.println(s2 instanceof Square); //true
+ &lt;/pre&gt;
+ &lt;p&gt;
+ Just keep in mind if this type of polymorphic cloning is required
+ then a properly implemented clone method may be the best choice.
+ &lt;/p&gt;
+ &lt;p&gt;Much of this information was taken from Effective Java:
+ Programming Language Guide First Edition by Joshua Bloch
+ pages 45-52.  Give Bloch credit for writing an excellent book.
+ &lt;/p&gt;</description>
+         <message-keys>
+            <message-key key="avoid.clone.method"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
