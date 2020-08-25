@@ -1909,6 +1909,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck*</param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheck*
+                </param>
                 <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck*</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck*</param>
@@ -1928,6 +1931,9 @@
                 <param>com.puppycrawl.tools.checkstyle.checks.NoCodeInFileCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OrderedPropertiesCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheckTest</param>
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.sizes.RecordComponentNumberCheckTest
+                </param>
                 <param>com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TodoCommentCheckTest</param>
                 <param>com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheckTest</param>
