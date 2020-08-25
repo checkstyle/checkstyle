@@ -732,6 +732,10 @@
             </td>
           </tr>
           <tr>
+            <td><a href="config_sizes.html#RecordComponentNumber">RecordComponentNumber</a></td>
+            <td>Checks the number of record components in the header of a record definition.</td>
+          </tr>
+          <tr>
             <td>
               <a href="config_naming.html#RecordTypeParameterName">RecordTypeParameterName</a>
             </td>
