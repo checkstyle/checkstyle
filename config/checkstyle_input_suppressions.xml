@@ -886,15 +886,6 @@
   <suppress checks="Regexp" files="uncommentedmain[\\/]InputUncommentedMain5.java"/>
   <suppress checks="Regexp" files="uncommentedmain[\\/]InputUncommentedMain.java"/>
   <suppress checks="Regexp" files="upperell[\\/]InputUpperEllSemantic.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnAnnotationField.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnAnnotation.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnClass.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnConstructor.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnEnum.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnEnumMember.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnField.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnInterface.java"/>
-  <suppress checks="Regexp" files="utils[\\/]blockcommentposition[\\/]InputBlockCommentPositionOnMethod.java"/>
   <suppress checks="Regexp" files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
   <suppress checks="Regexp" files="whitespace[\\/]emptyforinitializerpad[\\/]InputEmptyForInitializerPadDefaultConfig.java"/>
   <suppress checks="Regexp" files="whitespace[\\/]emptyforinitializerpad[\\/]InputEmptyForInitializerPad.java"/>
