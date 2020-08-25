@@ -710,6 +710,23 @@ checkstyle-cli-run-openjdk14)
   exit $RESULT
   ;;
 
+spotbugs-and-pmd)
+  mkdir -p .ci-temp/spotbugs-and-pmd
+  CHECKSTYLE_DIR=$(pwd)
+  export MAVEN_OPTS='-Xmx2000m'
+  mvn -e clean test-compile pmd:check spotbugs:check
+  cd .ci-temp/spotbugs-and-pmd
+  grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
+  RESULT=$(cat errors.log | wc -l)
+  if [[ $RESULT != 0 ]]; then
+    echo "Errors are detected in target/site/pmd.html."
+    sleep 5s
+  fi
+  cd ..
+  removeFolderWithProtectedFiles spotbugs-and-pmd
+  exit "$RESULT"
+;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
