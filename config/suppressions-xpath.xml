@@ -17,4 +17,8 @@
   <suppress-xpath checks="CyclomaticComplexity"
                    query="/CLASS_DEF[./IDENT[@text='JavadocMethodCheck'
                      or @text='JavadocStyleCheck' or @text='CustomImportOrderCheck']]//METHOD_DEF"/>
+  <!-- there are 3 thrown and all of them could be caused by xml parsing -->
+  <suppress-xpath checks="ThrowsCount"
+                  query="/CLASS_DEF[./IDENT[@text='XmlMetaReader']]
+                        //METHOD_DEF[./IDENT[@text='read']]/LITERAL_THROWS"/>
 </suppressions>

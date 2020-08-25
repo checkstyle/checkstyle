@@ -1,0 +1,185 @@
+////////////////////////////////////////////////////////////////////////////////
+// checkstyle: Checks Java source code for adherence to a set of rules.
+// Copyright (C) 2001-2020 the original author or authors.
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+//
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+////////////////////////////////////////////////////////////////////////////////
+
+package com.puppycrawl.tools.checkstyle.meta;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.regex.Pattern;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.reflections.Reflections;
+import org.reflections.scanners.ResourcesScanner;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
+public final class XmlMetaReader {
+    /**
+     * Do no allow {@code XmlMetaReader} instances to be created.
+     */
+    private XmlMetaReader() {
+    }
+
+    public static List<ModuleDetails> readAllModulesIncludingThirdPartyIfAny(
+            String... thirdPartyPackages) {
+        final Set<String> standardModuleFileNames =
+                new Reflections("com.puppycrawl.tools.checkstyle.meta",
+                        new ResourcesScanner()).getResources(Pattern.compile(".*\\.xml"));
+        final Set<String> allMetadataSources = new HashSet<>(standardModuleFileNames);
+        for (String packageName : thirdPartyPackages) {
+            final Set<String> thirdPartyModuleFileNames =
+                    new Reflections(packageName, new ResourcesScanner())
+                            .getResources(Pattern.compile(".*checkstylemeta-.*\\.xml"));
+            allMetadataSources.addAll(thirdPartyModuleFileNames);
+        }
+
+        final List<ModuleDetails> result = new ArrayList<>();
+        for (String fileName : allMetadataSources) {
+            final ModuleType moduleType;
+            if (fileName.endsWith("FileFilter.xml")) {
+                moduleType = ModuleType.FILEFILTER;
+            }
+            else if (fileName.endsWith("Filter.xml")) {
+                moduleType = ModuleType.FILTER;
+            }
+            else {
+                moduleType = ModuleType.CHECK;
+            }
+            final ModuleDetails moduleDetails;
+            try {
+                moduleDetails = read(XmlMetaReader.class.getResourceAsStream("/" + fileName),
+                        moduleType);
+            }
+            catch (ParserConfigurationException | IOException | SAXException ex) {
+                throw new IllegalStateException("Problem to read all modules including third "
+                        + "party if any. Problem detected at file: " + fileName, ex);
+            }
+            result.add(moduleDetails);
+        }
+
+        return result;
+    }
+
+    public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
+            throws ParserConfigurationException, IOException, SAXException {
+        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        final Document document;
+        final DocumentBuilder builder = factory.newDocumentBuilder();
+        document = builder.parse(moduleMetadataStream);
+        final Element root = document.getDocumentElement();
+        final Element element = getDirectChildsByTag(root, "module").get(0);
+        Element module = null;
+        final ModuleDetails moduleDetails = new ModuleDetails();
+        if (moduleType == ModuleType.CHECK) {
+            module = getDirectChildsByTag(element, "check").get(0);
+            moduleDetails.setModuleType(ModuleType.CHECK);
+        }
+        else if (moduleType == ModuleType.FILTER) {
+            module = getDirectChildsByTag(element, "filter").get(0);
+            moduleDetails.setModuleType(ModuleType.FILTER);
+        }
+        else if (moduleType == ModuleType.FILEFILTER) {
+            module = getDirectChildsByTag(element, "file-filter").get(0);
+            moduleDetails.setModuleType(ModuleType.FILEFILTER);
+        }
+        return createModule(module, moduleDetails);
+    }
+
+    private static ModuleDetails createModule(Element mod, ModuleDetails moduleDetails) {
+        moduleDetails.setName(getAttributeValue(mod, "name"));
+        moduleDetails.setFullQualifiedName(getAttributeValue(mod, "fully-qualified-name"));
+        moduleDetails.setParent(getAttributeValue(mod, "parent"));
+        moduleDetails.setDescription(getDirectChildsByTag(mod, "description").get(0)
+                .getFirstChild().getNodeValue());
+        final List<Element> properties = getDirectChildsByTag(mod, "properties");
+        if (!properties.isEmpty()) {
+            final List<ModulePropertyDetails> modulePropertyDetailsList =
+                    createProperties(properties.get(0));
+            moduleDetails.addToProperties(modulePropertyDetailsList);
+        }
+        final List<String> messageKeys =
+                getListContentByAttribute(mod,
+                        "message-keys", "message-key", "key");
+        if (messageKeys != null) {
+            moduleDetails.addToViolationMessages(messageKeys);
+        }
+        return moduleDetails;
+    }
+
+    private static List<ModulePropertyDetails> createProperties(Element properties) {
+        final List<ModulePropertyDetails> result = new ArrayList<>();
+        final NodeList propertyList = properties.getElementsByTagName("property");
+        for (int i = 0; i < propertyList.getLength(); i++) {
+            final ModulePropertyDetails propertyDetails = new ModulePropertyDetails();
+            final Element prop = (Element) propertyList.item(i);
+            propertyDetails.setName(getAttributeValue(prop, "name"));
+            propertyDetails.setType(getAttributeValue(prop, "type"));
+            if (prop.hasAttribute("default-value")) {
+                propertyDetails.setDefaultValue(getAttributeValue(prop, "default-value"));
+            }
+            if (prop.hasAttribute("validation-type")) {
+                propertyDetails.setValidationType(getAttributeValue(prop, "validation-type"));
+            }
+            propertyDetails.setDescription(getDirectChildsByTag(prop, "description")
+                    .get(0).getFirstChild().getNodeValue());
+            result.add(propertyDetails);
+        }
+        return result;
+    }
+
+    private static List<String> getListContentByAttribute(Element element, String listParent,
+                                                         String listOption, String attribute) {
+        final List<Element> children = getDirectChildsByTag(element, listParent);
+        List<String> result = null;
+        if (!children.isEmpty()) {
+            final NodeList nodeList = children.get(0).getElementsByTagName(listOption);
+            final List<String> listContent = new ArrayList<>();
+            for (int j = 0; j < nodeList.getLength(); j++) {
+                listContent.add(getAttributeValue((Element) nodeList.item(j), attribute));
+            }
+            result = listContent;
+        }
+        return result;
+    }
+
+    private static List<Element> getDirectChildsByTag(Element element, String sTagName) {
+        final NodeList children = element.getElementsByTagName(sTagName);
+        final List<Element> res = new ArrayList<>();
+        for (int i = 0; i < children.getLength(); i++) {
+            if (children.item(i).getParentNode().equals(element)) {
+                res.add((Element) children.item(i));
+            }
+        }
+        return res;
+    }
+
+    private static String getAttributeValue(Element element, String attribute) {
+        return element.getAttributes().getNamedItem(attribute).getNodeValue();
+    }
+
+}
