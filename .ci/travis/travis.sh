@@ -710,6 +710,19 @@ checkstyle-cli-run-openjdk14)
   exit $RESULT
   ;;
 
+spotbugs-and-pmd)
+  export MAVEN_OPTS='-Xmx2000m'
+  mvn -e clean test-compile pmd:check spotbugs:check
+  grep "Processing_Errors" target/site/pmd.html | cat > errors.log
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
+  if [[ $RESULT != 0 ]]; then
+    echo "Errors are detected in target/site/pmd.html."
+    sleep 5s
+    false
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
