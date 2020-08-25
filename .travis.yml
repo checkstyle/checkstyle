@@ -69,7 +69,7 @@ jobs:
     - jdk: openjdk8
       env:
         - DESC="spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test-compile pmd:check spotbugs:check"
+        - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
         - USE_MAVEN_REPO="true"
 
     # spotbugs and pmd (openjdk11)
