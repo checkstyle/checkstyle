@@ -177,7 +177,7 @@
                value="//ClassOrInterfaceDeclaration[@SimpleName='AssertGeneratedJavaLexer']
                         //MethodDeclaration[@Name='LA']
                     | //ClassOrInterfaceDeclaration[@SimpleName='AssertGenTextBlockLexer']
-                     //MethodDeclaration[@Name='LA'"/>
+                     //MethodDeclaration[@Name='LA']"/>
     </properties>
   </rule>
 
