@@ -486,6 +486,7 @@ no-exception-test-alot-of-project1)
 
 
 no-error-pmd)
+  CHECKSTYLE_DIR=$(pwd)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
@@ -494,8 +495,13 @@ no-error-pmd)
   git clone https://github.com/pmd/pmd.git
   cd pmd
   mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  grep "Processing_Errors" $CHECKSTYLE_DIR/target/site/pmd.html | cat > errors.log
+  echo "PMD Processing Errors: "
+  RESULT=$(cat errors.log | wc -l)
+  cat errors.log
   cd ..
   removeFolderWithProtectedFiles pmd
+  if [[ $RESULT != 0 ]]; then false; fi
   ;;
 
 no-violation-test-josm)
