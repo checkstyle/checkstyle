@@ -69,21 +69,21 @@ jobs:
     - jdk: openjdk8
       env:
         - DESC="spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test-compile pmd:check spotbugs:check"
+        - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
         - USE_MAVEN_REPO="true"
 
     # spotbugs and pmd (openjdk11)
     - jdk: openjdk11
       env:
         - DESC="spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test-compile pmd:check spotbugs:check"
+        - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
         - USE_MAVEN_REPO="true"
 
     # spotbugs and pmd (openjdk14)
     - jdk: openjdk14
       env:
         - DESC="spotbugs,pmd"
-        - CMD="export MAVEN_OPTS='-Xmx2000m' && mvn -e clean test-compile pmd:check spotbugs:check"
+        - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
         - USE_MAVEN_REPO="true"
 
     # eclipse static analysis
