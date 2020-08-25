@@ -45,7 +45,7 @@
                <description>Specify the RegExp to match against warnings. Any warning
  being suppressed matching this pattern will be flagged.</description>
             </property>
-            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,CTOR_DEF"
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,ENUM_CONSTANT_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,CTOR_DEF,COMPACT_CTOR_DEF,RECORD_DEF"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
