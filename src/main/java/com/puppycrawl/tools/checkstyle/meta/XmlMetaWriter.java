@@ -37,8 +37,22 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
+/**
+ * Class to write module details object into an XML file.
+ */
 public final class XmlMetaWriter {
+
+    /** Compiled pattern for {@code .} used for generating file paths from package names. */
     private static final Pattern FILEPATH_CONVERSION = Pattern.compile("\\.");
+
+    /** Name tag of metadata XML files. */
+    private static final String XML_TAG_NAME = "name";
+
+    /** Description tag of metadata XML files. */
+    private static final String XML_TAG_DESCRIPTION = "description";
+
+    /** Default(UNIX) file separator. */
+    private static final String DEFAULT_FILE_SEPARATOR = "/";
 
     /**
      * Do no allow {@code XmlMetaWriter} instances to be created.
@@ -46,6 +60,13 @@ public final class XmlMetaWriter {
     private XmlMetaWriter() {
     }
 
+    /**
+     * Helper function to write module details to XML file.
+     *
+     * @param moduleDetails module details
+     * @throws TransformerException if a transformer exception occurs
+     * @throws ParserConfigurationException if a parser configuration exception occurs
+     */
     public static void write(ModuleDetails moduleDetails) throws TransformerException,
             ParserConfigurationException {
         final DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -61,12 +82,12 @@ public final class XmlMetaWriter {
         final Element checkModule = doc.createElement(moduleDetails.getModuleType().getLabel());
         rootChild.appendChild(checkModule);
 
-        checkModule.setAttribute("name", moduleDetails.getName());
+        checkModule.setAttribute(XML_TAG_NAME, moduleDetails.getName());
         checkModule.setAttribute("fully-qualified-name",
                 moduleDetails.getFullQualifiedName());
         checkModule.setAttribute("parent", moduleDetails.getParent());
 
-        final Element desc = doc.createElement("description");
+        final Element desc = doc.createElement(XML_TAG_DESCRIPTION);
         final Node cdataDesc = doc.createCDATASection(moduleDetails.getDescription());
         desc.appendChild(cdataDesc);
         checkModule.appendChild(desc);
@@ -84,6 +105,13 @@ public final class XmlMetaWriter {
         writeToFile(doc, moduleDetails);
     }
 
+    /**
+     * Create the property section of the module detail object.
+     *
+     * @param moduleDetails module details
+     * @param checkModule root doc element
+     * @param doc document object
+     */
     private static void createPropertySection(ModuleDetails moduleDetails, Element checkModule,
                                               Document doc) {
         if (!moduleDetails.getProperties().isEmpty()) {
@@ -92,7 +120,7 @@ public final class XmlMetaWriter {
             for (ModulePropertyDetails modulePropertyDetails : moduleDetails.getProperties()) {
                 final Element property = doc.createElement("property");
                 properties.appendChild(property);
-                property.setAttribute("name", modulePropertyDetails.getName());
+                property.setAttribute(XML_TAG_NAME, modulePropertyDetails.getName());
                 property.setAttribute("type", modulePropertyDetails.getType());
                 if (modulePropertyDetails.getDefaultValue() != null) {
                     property.setAttribute("default-value",
@@ -102,7 +130,7 @@ public final class XmlMetaWriter {
                     property.setAttribute("validation-type",
                             modulePropertyDetails.getValidationType());
                 }
-                final Element propertyDesc = doc.createElement("description");
+                final Element propertyDesc = doc.createElement(XML_TAG_DESCRIPTION);
                 propertyDesc.appendChild(doc.createCDATASection(
                         modulePropertyDetails.getDescription()));
                 property.appendChild(propertyDesc);
@@ -110,30 +138,40 @@ public final class XmlMetaWriter {
         }
     }
 
+    /**
+     * Function to write the prepared document object into an XML file.
+     *
+     * @param document document updated with all module metadata
+     * @param moduleDetails the corresponding module details object
+     * @throws TransformerException if a transformer exception occurs
+     */
     private static void writeToFile(Document document, ModuleDetails moduleDetails)
             throws TransformerException {
-        final String rootOutputPath = System.getProperty("user.dir") + "/src/main/resources";
-        String fileSeparator = "/";
+        String fileSeparator = DEFAULT_FILE_SEPARATOR;
         if (System.getProperty("os.name").toLowerCase(Locale.ENGLISH).contains("win")) {
             fileSeparator = "\\" + fileSeparator;
         }
         final String modifiedPath;
+        final String xmlExtension = ".xml";
+        final String rootOutputPath = System.getProperty("user.dir") + "/src/main/resources";
         if (moduleDetails.getFullQualifiedName().startsWith("com.puppycrawl.tools.checkstyle")) {
             final String moduleFilePath = FILEPATH_CONVERSION
                     .matcher(moduleDetails.getFullQualifiedName())
                     .replaceAll(fileSeparator);
+            final String checkstyleString = "checkstyle";
             final int indexOfCheckstyle =
-                    moduleFilePath.indexOf("checkstyle") + "checkstyle".length();
+                    moduleFilePath.indexOf(checkstyleString) + checkstyleString.length();
 
-            modifiedPath = rootOutputPath + "/" + moduleFilePath.substring(0, indexOfCheckstyle)
-                    + "/meta/" + moduleFilePath.substring(indexOfCheckstyle + 1) + ".xml";
+            modifiedPath = rootOutputPath + DEFAULT_FILE_SEPARATOR
+                    + moduleFilePath.substring(0, indexOfCheckstyle) + "/meta/"
+                    + moduleFilePath.substring(indexOfCheckstyle + 1) + xmlExtension;
         }
         else {
             String moduleName = moduleDetails.getName();
             if (moduleDetails.getModuleType() == ModuleType.CHECK) {
                 moduleName += "Check";
             }
-            modifiedPath = rootOutputPath + "/checkstylemeta-" + moduleName + ".xml";
+            modifiedPath = rootOutputPath + "/checkstylemeta-" + moduleName + xmlExtension;
         }
         if (!moduleDetails.getDescription().isEmpty()) {
             final TransformerFactory transformerFactory = TransformerFactory.newInstance();
