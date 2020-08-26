@@ -64,6 +64,7 @@ jobs:
               echo "./.ci/pitest.sh pitest-common"  >> commands.txt
               echo "./.ci/pitest.sh pitest-imports" >> commands.txt
               echo "./.ci/pitest.sh pitest-ant"     >> commands.txt
+              echo "./.ci/pitest.sh pitest-meta"   >> commands.txt
               CMD="$(circleci tests split commands.txt)"
               echo "Command: $CMD"
               eval $CMD
