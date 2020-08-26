@@ -38,13 +38,35 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+/**
+ * Class having utilities required to read module details from an XML metadata file of a module.
+ */
 public final class XmlMetaReader {
+
+    /** Name tag of metadata XML files. */
+    private static final String XML_TAG_NAME = "name";
+
+    /** Description tag of metadata XML files. */
+    private static final String XML_TAG_DESCRIPTION = "description";
+
     /**
      * Do no allow {@code XmlMetaReader} instances to be created.
      */
     private XmlMetaReader() {
     }
 
+    /**
+     * Utility to load all the metadata files present in the checkstyle JAR including third parties'
+     * module metadata files.
+     * checkstyle metadata files are grouped in a folder hierarchy similar to that of their
+     * corresponding source files.
+     * Third party(e.g. SevNTU Checks) metadata files are prefixed with {@code checkstylemeta-}
+     * to their file names.
+     *
+     * @param thirdPartyPackages list of fully qualified third party package names(can be only a
+     *                           hint, e.g. for SevNTU it can be com.github.sevntu / com.github)
+     * @return list of module details found in the classpath satisfying the above conditions
+     */
     public static List<ModuleDetails> readAllModulesIncludingThirdPartyIfAny(
             String... thirdPartyPackages) {
         final Set<String> standardModuleFileNames =
@@ -85,12 +107,21 @@ public final class XmlMetaReader {
         return result;
     }
 
+    /**
+     * Read the module details from the supplied input stream of the module's XML metadata file.
+     *
+     * @param moduleMetadataStream input stream object of a module's metadata file
+     * @param moduleType type of module
+     * @return module detail object extracted from the XML metadata file
+     * @throws ParserConfigurationException if a parser configuration exception occurs
+     * @throws IOException if a IO exception occurs
+     * @throws SAXException if a SAX exception occurs during parsing the XML file
+     */
     public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
             throws ParserConfigurationException, IOException, SAXException {
         final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        final Document document;
         final DocumentBuilder builder = factory.newDocumentBuilder();
-        document = builder.parse(moduleMetadataStream);
+        final Document document = builder.parse(moduleMetadataStream);
         final Element root = document.getDocumentElement();
         final Element element = getDirectChildsByTag(root, "module").get(0);
         Element module = null;
@@ -107,14 +138,25 @@ public final class XmlMetaReader {
             module = getDirectChildsByTag(element, "file-filter").get(0);
             moduleDetails.setModuleType(ModuleType.FILEFILTER);
         }
-        return createModule(module, moduleDetails);
+        ModuleDetails result = null;
+        if (module != null) {
+            result = createModule(module, moduleDetails);
+        }
+        return result;
     }
 
+    /**
+     * Create the module detail object from XML metadata.
+     *
+     * @param mod root XML document element
+     * @param moduleDetails module detail object, which is to be updated
+     * @return module detail object containing all metadata
+     */
     private static ModuleDetails createModule(Element mod, ModuleDetails moduleDetails) {
-        moduleDetails.setName(getAttributeValue(mod, "name"));
+        moduleDetails.setName(getAttributeValue(mod, XML_TAG_NAME));
         moduleDetails.setFullQualifiedName(getAttributeValue(mod, "fully-qualified-name"));
         moduleDetails.setParent(getAttributeValue(mod, "parent"));
-        moduleDetails.setDescription(getDirectChildsByTag(mod, "description").get(0)
+        moduleDetails.setDescription(getDirectChildsByTag(mod, XML_TAG_DESCRIPTION).get(0)
                 .getFirstChild().getNodeValue());
         final List<Element> properties = getDirectChildsByTag(mod, "properties");
         if (!properties.isEmpty()) {
@@ -131,27 +173,44 @@ public final class XmlMetaReader {
         return moduleDetails;
     }
 
+    /**
+     * Create module property details from the XML metadata.
+     *
+     * @param properties parent document element which contains property's metadata
+     * @return list of property details object created
+     */
     private static List<ModulePropertyDetails> createProperties(Element properties) {
         final List<ModulePropertyDetails> result = new ArrayList<>();
         final NodeList propertyList = properties.getElementsByTagName("property");
         for (int i = 0; i < propertyList.getLength(); i++) {
             final ModulePropertyDetails propertyDetails = new ModulePropertyDetails();
             final Element prop = (Element) propertyList.item(i);
-            propertyDetails.setName(getAttributeValue(prop, "name"));
+            propertyDetails.setName(getAttributeValue(prop, XML_TAG_NAME));
             propertyDetails.setType(getAttributeValue(prop, "type"));
-            if (prop.hasAttribute("default-value")) {
-                propertyDetails.setDefaultValue(getAttributeValue(prop, "default-value"));
+            final String defaultValueTag = "default-value";
+            if (prop.hasAttribute(defaultValueTag)) {
+                propertyDetails.setDefaultValue(getAttributeValue(prop, defaultValueTag));
             }
-            if (prop.hasAttribute("validation-type")) {
-                propertyDetails.setValidationType(getAttributeValue(prop, "validation-type"));
+            final String validationTypeTag = "validation-type";
+            if (prop.hasAttribute(validationTypeTag)) {
+                propertyDetails.setValidationType(getAttributeValue(prop, validationTypeTag));
             }
-            propertyDetails.setDescription(getDirectChildsByTag(prop, "description")
+            propertyDetails.setDescription(getDirectChildsByTag(prop, XML_TAG_DESCRIPTION)
                     .get(0).getFirstChild().getNodeValue());
             result.add(propertyDetails);
         }
         return result;
     }
 
+    /**
+     * Utility to get the list contents by the attribute specified.
+     *
+     * @param element doc element
+     * @param listParent parent element of list
+     * @param listOption child list element
+     * @param attribute attribute key
+     * @return list of strings containing the XML list data
+     */
     private static List<String> getListContentByAttribute(Element element, String listParent,
                                                          String listOption, String attribute) {
         final List<Element> children = getDirectChildsByTag(element, listParent);
@@ -167,6 +226,13 @@ public final class XmlMetaReader {
         return result;
     }
 
+    /**
+     * Utility to get the children of an element by tag name.
+     *
+     * @param element parent element
+     * @param sTagName tag name of children required
+     * @return list of elements retrieved
+     */
     private static List<Element> getDirectChildsByTag(Element element, String sTagName) {
         final NodeList children = element.getElementsByTagName(sTagName);
         final List<Element> res = new ArrayList<>();
@@ -178,6 +244,13 @@ public final class XmlMetaReader {
         return res;
     }
 
+    /**
+     * Utility to get attribute value of an element.
+     *
+     * @param element target element
+     * @param attribute attribute key
+     * @return attribute value
+     */
     private static String getAttributeValue(Element element, String attribute) {
         return element.getAttributes().getNamedItem(attribute).getNodeValue();
     }

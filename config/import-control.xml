@@ -182,6 +182,20 @@
     </file>
   </subpackage>
 
+  <subpackage name="meta">
+
+    <allow pkg="java.nio"/>
+    <allow pkg="javax.xml.transform"/>
+    <allow pkg="org.reflections"/>
+    <allow pkg="org.w3c.dom"/>
+
+    <allow class="com.puppycrawl.tools.checkstyle.Checker"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DefaultConfiguration"/>
+    <allow class="com.puppycrawl.tools.checkstyle.FileStatefulCheck"/>
+    <allow class="com.puppycrawl.tools.checkstyle.TreeWalker"/>
+    <allow class="com.puppycrawl.tools.checkstyle.utils.TokenUtil"/>
+  </subpackage>
+
   <subpackage name="xpath">
     <allow pkg="net.sf.saxon"/>
     <allow class="java.lang.reflect.Field"/>
