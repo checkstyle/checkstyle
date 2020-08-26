@@ -39,7 +39,8 @@ pitest-annotation|pitest-design \
 |pitest-common-2|pitest-misc|pitest-xpath \
 |pitest-filters \
 |pitest-main \
-|pitest-coding)
+|pitest-coding \
+|pitest-meta)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
