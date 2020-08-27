@@ -681,6 +681,7 @@
     </module>
     <module name="TypeName"/>
     <module name="PatternVariableName"/>
+    <module name="IllegalIdentifierName"/>
 
     <!-- Regexp -->
     <module name="Regexp"/>
