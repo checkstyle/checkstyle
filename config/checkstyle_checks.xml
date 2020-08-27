@@ -681,6 +681,9 @@
     </module>
     <module name="TypeName"/>
     <module name="PatternVariableName"/>
+    <module name="IllegalIdentifierName">
+      <property name="format" value="(?i)^(?!(record|yield|var|open|transitive|_)$).+$"/>
+    </module>
 
     <!-- Regexp -->
     <module name="Regexp"/>
