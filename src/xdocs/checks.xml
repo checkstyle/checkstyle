@@ -312,6 +312,15 @@
             <td>Checks that certain exception types do not appear in a catch statement.</td>
           </tr>
           <tr>
+            <td>
+              <a href="config_naming.html#IllegalIdentifierName">IllegalIdentifierName</a>
+            </td>
+            <td>
+              Checks identifiers with a regular expression for a set of illegal names, such as those
+              that are restricted or contextual keywords.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_imports.html#IllegalImport">IllegalImport</a></td>
             <td>
             Checks for imports from a set of illegal packages.</td>
