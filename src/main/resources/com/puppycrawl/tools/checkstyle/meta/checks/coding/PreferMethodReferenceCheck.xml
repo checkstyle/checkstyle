@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.PreferMethodReferenceCheck"
+             name="PreferMethodReference"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that lambda usage can be replaced with method reference.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Rationale: method/constructor references are commonly agreed to be, most of the time,
+ more compact and readable than using lambdas, and are therefore preferred.
+ Some lambdas are not semantically equal to method references, e.g. if method invocation
+ is performed on some expression. Such cases are not detected by default configuration,
+ additional property {@code detectForExpression} should be set to {@code true} to enable
+ detection for expressions.
+ See &lt;a href="https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html"&gt;link&lt;/a&gt;
+ for more info.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false" name="detectForExpression" type="boolean">
+               <description>Enable detection for cases when method in lambda is invoked on expression.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="method.reference"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

@@ -822,6 +822,7 @@ methodcount
 methodlength
 methodname
 methodparampad
+methodreferences
 methodtypeparametername
 MEZk
 Micha
@@ -1069,6 +1070,7 @@ powermock
 Ppitest
 prameterless
 prebuilts
+prefermethodreference
 preformatted
 printf
 println
