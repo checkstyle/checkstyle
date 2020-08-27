@@ -205,6 +205,7 @@ jobs:
             echo "RUN_JOB="$RUN_JOB
             if [[ $RUN_JOB == 1 ]]; then
               echo "./.ci/pitest.sh pitest-gui"   >> commands.txt
+              # echo "./.ci/pitest.sh pitest-meta"  >> commands.txt
               CMD="$(circleci tests split commands.txt)"
               echo "Command: $CMD"
               eval $CMD
