@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.naming.IllegalIdentifierNameCheck"
+             name="IllegalIdentifierName"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks identifiers with a regular expression for a set of illegal names, such as those
+ that are restricted or contextual keywords. Examples include "yield", "record", "_", and
+ "var". Please read more at
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se14/html/jls-3.html#jls-3.9"&gt;
+ Java Language Specification&lt;/a&gt; to get to know more about restricted keywords. Since this
+ check uses a regular expression to specify valid identifiers, users can also prohibit the usage
+ of certain symbols, such as "$", or any non-ascii character.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="(?i)^(?!(record|yield|var|permits|sealed|_)$).+$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specifies valid identifiers.</description>
+            </property>
+            <property default-value="CLASS_DEF,INTERFACE_DEF,ENUM_DEF,ANNOTATION_DEF,ANNOTATION_FIELD_DEF,PARAMETER_DEF,VARIABLE_DEF,METHOD_DEF,ENUM_CONSTANT_DEF,PATTERN_VARIABLE_DEF,RECORD_DEF,RECORD_COMPONENT_DEF"
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description>tokens to check</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="name.invalidPattern"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
