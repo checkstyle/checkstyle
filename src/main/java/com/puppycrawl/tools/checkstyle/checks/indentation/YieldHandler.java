@@ -54,10 +54,10 @@ public class YieldHandler extends AbstractExpressionHandler {
      * Check the indentation of the yield keyword.
      */
     private void checkYield() {
-        final DetailAST yield = getMainAst();
-        final int columnNo = expandedTabsColumnNo(yield);
-        if (isOnStartOfLine(yield) && !getIndent().isAcceptable(columnNo)) {
-            logError(yield, "", columnNo);
+        final DetailAST yieldKey = getMainAst();
+        final int columnNo = expandedTabsColumnNo(yieldKey);
+        if (isOnStartOfLine(yieldKey) && !getIndent().isAcceptable(columnNo)) {
+            logError(yieldKey, "", columnNo);
         }
     }
 }

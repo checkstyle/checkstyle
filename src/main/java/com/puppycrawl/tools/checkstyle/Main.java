@@ -580,14 +580,14 @@ public final class Main {
         private final String packageName = Main.class.getPackage().getName();
 
         /**
-         * Returns whether the specified record should be logged.
+         * Returns whether the specified logRecord should be logged.
          *
-         * @param record the record to log
+         * @param logRecord the logRecord to log
          * @return true if the logger name is in the package of this class or a subpackage
          */
         @Override
-        public boolean isLoggable(LogRecord record) {
-            return record.getLoggerName().startsWith(packageName);
+        public boolean isLoggable(LogRecord logRecord) {
+            return logRecord.getLoggerName().startsWith(packageName);
         }
     }
 
