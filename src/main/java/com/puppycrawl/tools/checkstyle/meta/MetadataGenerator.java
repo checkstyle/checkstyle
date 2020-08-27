@@ -36,6 +36,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
+/** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGenerator {
 
     private MetadataGenerator() {

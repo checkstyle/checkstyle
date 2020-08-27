@@ -531,6 +531,10 @@ check-missing-pitests)
     xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
     -t -v '//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param'))
 
+  #  Temporary skip for Metadata generator related files for
+  #  https://github.com/checkstyle/checkstyle/issues/8761
+  list=("com.puppycrawl.tools.checkstyle.meta.*" "${list[@]}")
+
   CMD="find src/main/java -type f ! -name 'package-info.java'"
 
   for item in ${list[@]}
