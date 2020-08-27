@@ -100,6 +100,12 @@
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
   <Match>
+    <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
+    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGenerator" />
+    <Method name="dumpMetadata" />
+    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
+  </Match>
+  <Match>
     <!-- have never been a case for years, Eclipse does not show any other classes
            inherited from CommonASTWithHiddenTokens -->
     <Class name="com.puppycrawl.tools.checkstyle.DetailAstImpl" />
