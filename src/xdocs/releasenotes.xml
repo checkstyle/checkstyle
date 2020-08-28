@@ -16,6 +16,510 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.36">
+      <div class="releaseDate">28.08.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Create new check IllegalIdentifierName.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8764">#8764</a>
+          </li>
+          <li>
+            Create New Check RecordComponentNumberCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8748">#8748</a>
+          </li>
+          <li>
+            JavadocParagraph should complain about missing blank line before at-clauses.
+            Author: Joseph Mate
+            <a href="https://github.com/checkstyle/checkstyle/issues/6192">#6192</a>
+          </li>
+          <li>
+            New check RecordTypeParameterNameCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8513">#8513</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: JavaNCSSCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8505">#8505</a>
+          </li>
+          <li>
+            Support for Java 14 switch/yield expression.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/6615">#6615</a>
+          </li>
+          <li>
+            java 13 text blocks syntax is not supported.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/7103">#7103</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: MethodParamPadCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8525">#8525</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: AbbreviationAsWordInNameCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8511">#8511</a>
+          </li>
+          <li>
+            Implement full records support.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8267">#8267</a>
+          </li>
+          <li>
+            new Check: PatternVariableName.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8407">#8407</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Java 14 Text Blocks Checks Support validation: SuppressWarningsHolder.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8619">#8619</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: OverloadMethodsDeclarationOrderCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8471">#8471</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: Indentation.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8691">#8691</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: SuppressWarningsCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8456">#8456</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: AtclauseOrderCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8490">#8490</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: AnnotationLocationCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8454">#8454</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: AnnotationOnSameLineCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8455">#8455</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: WriteTagCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8499">#8499</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation:
+            UnnecessarySemicolonAfterTypeMemberDeclarationCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8476">#8476</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation:
+            UnnecessarySemicolonAfterOuterTypeDeclarationCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8475">#8475</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: InnerTypeLastCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8482">#8482</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: IllegalTypeCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8468">#8468</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: OneTopLevelClassCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8485">#8485</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: TypeNameCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8515">#8515</a>
+          </li>
+          <li>
+            Compact Constructor AST is missing annotations.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8734">#8734</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: HiddenFieldCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8466">#8466</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: ClassDataAbstractionCouplingCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8502">#8502</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: CommentsIndentationCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8489">#8489</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: JavadocMethodCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8492">#8492</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: JavadocTypeCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8494">#8494</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: MissingJavadocMethodCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8497">#8497</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: MissingJavadocTypeCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8498">#8498</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: JavadocStyleCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8493">#8493</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: DeclarationOrderCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8463">#8463</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: LeftCurlyCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8457">#8457</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: RightCurlyCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8460">#8460</a>
+          </li>
+          <li>
+            Java 14 Text Blocks Checks Support validation: MultipleStringLiteralsCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8616">#8616</a>
+          </li>
+          <li>
+            LambdaParameterNameCheck throws NPE when parsing switch expressions.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8683">#8683</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: ClassFanOutComplexityCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8503">#8503</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: FinalLocalVariableCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8668">#8668</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: EmptyBlock.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8662">#8662</a>
+          </li>
+          <li>
+            VariableDeclarationUsageDistanceCheck throws a NPE on switch expression syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8676">#8676</a>
+          </li>
+          <li>
+            Java 14 Text Blocks Checks Support validation: UnnecessaryParenthesesCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8618">#8618</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: ClassMemberImpliedModifierCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8577">#8577</a>
+          </li>
+          <li>
+            Java 14 Text Blocks Checks Support validation: AvoidEscapedUnicodeCharacters.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8613">#8613</a>
+          </li>
+          <li>
+            Java 14 Text Blocks Checks Support validation: StringLiteralEqualityCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8617">#8617</a>
+          </li>
+          <li>
+            Java 14 Text Blocks Support Check validation: IllegalTokenText.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8576">#8576</a>
+          </li>
+          <li>
+            Java 14 Text Blocks Checks Support validation: EqualsAvoidNullCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8614">#8614</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: MissingSwitchDefaultCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8672">#8672</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: LeftCurlyCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8663">#8663</a>
+          </li>
+          <li>
+            NeedBracesCheck throws a NPE when parsing switch expression syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8664">#8664</a>
+          </li>
+          <li>
+            IndentationCheck throws a NPE on switch expression syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8661">#8661</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: DefaultComesLastCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8665">#8665</a>
+          </li>
+          <li>
+            Java 14 SwitchExpression Check Support validation: NPathComplexityCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8681">#8681</a>
+          </li>
+          <li>
+            HiddenFieldCheck throws a NPE on switch expression syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8659">#8659</a>
+          </li>
+          <li>
+            UnnecessaryParenthesesCheck throws a NPE on switch expression syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8660">#8660</a>
+          </li>
+          <li>
+            Change google_checks.xml to disallow abbreviations in identifiers
+            names in accordance with Google Style Guide.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/3812">#3812</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: EmptyLineSeparatorCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8523">#8523</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: MethodLengthCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8519">#8519</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: NoLineWrapCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8526">#8526</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: BooleanExpressionComplexityCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8501">#8501</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: CyclomaticComplexityCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8504">#8504</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: ExecutableStatementCountCheck .
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8517">#8517</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: MethodCountCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8518">#8518</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: OuterTypeNumberCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8520">#8520</a>
+          </li>
+          <li>
+            OuterTypeFileName throws NPE on record definition in method.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8598">#8598</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: ParenPadCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8527">#8527</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: UncommentedMainCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8522">#8522</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: EqualsAvoidNullCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8464">#8464</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: OuterTypeFilenameCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8516">#8516</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: RequireThisCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8473">#8473</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: MagicNumberCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8469">#8469</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: UnusedImportsCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8488">#8488</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: NPathComplexityCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8506">#8506</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            spelling: Correct French translations.
+            Author: olivier-maury
+          </li>
+          <li>
+            Move metadata generation code to main from test folder.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8761">#8761</a>
+          </li>
+          <li>
+            Introduction of modules metadata files generator.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8742">#8742</a>
+          </li>
+          <li>
+            PMD shows WARN during build .
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8754">#8754</a>
+          </li>
+          <li>
+            Remove BlockCommentPosition test input files from checkstyle_input_suppressions.xml.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8738">#8738</a>
+          </li>
+          <li>
+            doc: rectify RequireEmptyLineBeforeBlockTagGroupCheck javadoc.
+            Author: Gaurab Dasgupta
+          </li>
+          <li>
+            Removal of examples from property description.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8732">#8732</a>
+          </li>
+          <li>
+            Mofication of module property default values to reflect actual
+            working data.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8726">#8726</a>
+          </li>
+          <li>
+            doc: Modify PatternVariableNameCheck and RecordTypeParameterNameCheck
+            to adhere to new template for metadata scraping.
+            Author: Gaurab Dasgupta
+          </li>
+          <li>
+            Extend Checkstyle GUI tool to work with Xpath.
+            Author: hembhagat
+            <a href="https://github.com/checkstyle/checkstyle/issues/4944">#4944</a>
+          </li>
+          <li>
+            Modification of javadoc example markers to support metadata generation.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8657">#8657</a>
+          </li>
+          <li>
+            Proof of Java 14 syntax by new CI build item.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8631">#8631</a>
+          </li>
+          <li>
+            JavadocMethod: unclear message for incomplete tag.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/2408">#2408</a>
+          </li>
+          <li>
+            Extract logic for token type checking to separate method.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8048">#8048</a>
+          </li>
+          <li>
+            LineLengthCheck.fileExtensions default value and similar usages
+            should be changed to empty string.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8633">#8633</a>
+          </li>
+          <li>
+            Array default value should have no curly braces in Check javadoc documentation.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8630">#8630</a>
+          </li>
+          <li>
+            master build failure due to leaked pitest coverage.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8604">#8604</a>
+          </li>
+          <li>
+            xml-maven-plugin validation should not validate &#39;.ci-temp&#39; folder .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8606">#8606</a>
+          </li>
+          <li>
+            ci: disable spring integration project validation due to build problem.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Tests fail with German locale on Windows with default encoding.
+            Author: TB
+            <a href="https://github.com/checkstyle/checkstyle/issues/6560">#6560</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: CovariantEqualsCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8462">#8462</a>
+          </li>
+          <li>
+            Java14 Full Records Support Check Validation: WhitespaceAroundCheck.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8528">#8528</a>
+          </li>
+          <li>
+            Format xml sources.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8544">#8544</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.35">
       <div class="releaseDate">26.07.2020</div>
       <p>New:</p>
