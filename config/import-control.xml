@@ -185,7 +185,7 @@
   <subpackage name="meta">
 
     <allow pkg="java.nio"/>
-    <allow pkg="javax.xml.transform"/>
+    <allow pkg="javax.xml"/>
     <allow pkg="org.reflections"/>
     <allow pkg="org.w3c.dom"/>
 
