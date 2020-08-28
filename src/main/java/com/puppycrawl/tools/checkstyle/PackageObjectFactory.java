@@ -755,6 +755,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.TypeNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("PatternVariableNameCheck",
                 BASE_PACKAGE + ".checks.naming.PatternVariableNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("IllegalIdentifierNameCheck",
+            BASE_PACKAGE + ".checks.naming.IllegalIdentifierNameCheck");
     }
 
     /**
