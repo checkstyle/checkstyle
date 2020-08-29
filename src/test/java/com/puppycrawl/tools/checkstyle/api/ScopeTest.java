@@ -24,13 +24,19 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.parallel.Resources.LOCALE;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.junitpioneer.jupiter.DefaultLocale;
 
 /**
  * Test cases for {@link Scope} enumeration.
+ * This test should be run isolated as it changes the global state (locale settings).
  */
+@Isolated
+@ResourceLock(LOCALE)
 public class ScopeTest {
 
     /* Additional test for jacoco, since valueOf()
