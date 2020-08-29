@@ -20,6 +20,8 @@
 package com.puppycrawl.tools.checkstyle.internal.powermock;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.parallel.Resources.SYSTEM_ERR;
+import static org.junit.jupiter.api.parallel.Resources.SYSTEM_OUT;
 import static org.powermock.api.mockito.PowerMockito.mockStatic;
 
 import java.util.Locale;
@@ -28,6 +30,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -35,6 +39,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.puppycrawl.tools.checkstyle.Main;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@Isolated
+@ResourceLock(SYSTEM_ERR)
+@ResourceLock(SYSTEM_OUT)
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Main.class, CommonUtil.class})
 public class MainPowerTest {
