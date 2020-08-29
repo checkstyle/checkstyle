@@ -29,6 +29,7 @@ import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
@@ -37,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@Isolated
 public class DefaultLoggerPowerTest {
 
     @Test
