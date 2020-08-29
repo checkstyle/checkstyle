@@ -28,6 +28,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.contrib.java.lang.system.SystemErrRule;
 import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -35,6 +36,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.puppycrawl.tools.checkstyle.Main;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Main.class, CommonUtil.class})
 public class MainPowerTest {
