@@ -289,6 +289,22 @@
               <td/>
             </tr>
             <tr>
+              <td>
+                <a href="https://stickler-ci.com/">Stickler CI</a>
+              </td>
+              <td>Mark Story</td>
+              <td>
+                <a href="https://stickler-ci.com/docs#java">
+                  Built in
+                </a>
+              </td>
+              <td>
+                Provides analysis per pull request as GitHub
+                <a href="https://developer.github.com/v3/checks/runs/">Check Run</a>
+                annotations. Supports CheckStyle config files.
+              </td>
+            </tr>
+            <tr>
               <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
               Checkstyle plug-in</a></td>
               <td/>
