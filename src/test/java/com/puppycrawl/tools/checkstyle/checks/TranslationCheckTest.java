@@ -27,6 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.parallel.Resources.LOCALE;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,6 +44,8 @@ import java.util.TreeSet;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.parallel.ResourceLock;
 import org.powermock.reflect.Whitebox;
 
 import com.google.common.collect.ImmutableMap;
@@ -59,6 +62,11 @@ import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
+/**
+ * This test should be run isolated as it changes the global state (locale settings).
+ */
+@Isolated
+@ResourceLock(LOCALE)
 public class TranslationCheckTest extends AbstractXmlTestSupport {
 
     @TempDir

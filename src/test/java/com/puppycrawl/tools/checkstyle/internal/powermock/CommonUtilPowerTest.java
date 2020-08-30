@@ -30,6 +30,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtilTest;
 
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ CommonUtil.class, CommonUtilTest.class })
 public class CommonUtilPowerTest {
