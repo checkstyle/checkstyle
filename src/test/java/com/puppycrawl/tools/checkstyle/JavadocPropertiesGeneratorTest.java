@@ -22,6 +22,8 @@ package com.puppycrawl.tools.checkstyle;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.parallel.Resources.SYSTEM_ERR;
+import static org.junit.jupiter.api.parallel.Resources.SYSTEM_OUT;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,12 +40,21 @@ import org.itsallcode.junit.sysextensions.SystemOutGuard.SysOut;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.parallel.Isolated;
+import org.junit.jupiter.api.parallel.ResourceLock;
 
 import antlr.MismatchedTokenException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
+/**
+ * Test for CLI wrapper for the Checker.
+ * This test should be run isolated as it changes the global state (output handler).
+ */
 @ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
+@Isolated
+@ResourceLock(SYSTEM_ERR)
+@ResourceLock(SYSTEM_OUT)
 public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     private static final String EOL = System.lineSeparator();
