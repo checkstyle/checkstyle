@@ -31,6 +31,7 @@ import java.nio.charset.StandardCharsets;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -47,6 +48,10 @@ import com.puppycrawl.tools.checkstyle.checks.whitespace.MethodParamPadCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
+/**
+ * This test should be run isolated as it changes the global state (output handler).
+ */
+@Isolated
 public class XpathFileGeneratorAuditListenerTest {
 
     /** OS specific line separator. */
