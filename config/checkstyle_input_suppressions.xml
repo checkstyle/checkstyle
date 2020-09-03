@@ -432,6 +432,7 @@
   <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderNonStaticWrongSequence.java"/>
   <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderRepetition.java"/>
   <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderSortStaticImportsAlphabetically.java"/>
+  <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderSimilarGroupPattern.java"/>
   <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderStaticGroupOrderBottom.java"/>
   <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderStaticGroupOrderBottom_Negative2.java"/>
   <suppress checks="Regexp" files="imports[\\/]importorder[\\/]InputImportOrderStaticGroupOrderBottom_Negative.java"/>

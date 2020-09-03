@@ -224,6 +224,16 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSimilarGroupPattern() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
+        checkConfig.addAttribute("groups", "/java.util/,/java.io/");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getNonCompilablePath("InputImportOrderSimilarGroupPattern.java"),
+            expected);
+    }
+
+    @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ImportOrderCheck.class);
