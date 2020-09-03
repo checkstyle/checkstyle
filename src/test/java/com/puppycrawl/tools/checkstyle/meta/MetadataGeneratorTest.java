@@ -43,7 +43,7 @@ public final class MetadataGeneratorTest {
     );
 
     @Test
-    public void testBasic() throws Exception {
+    public void generateMetadataFiles() throws Exception {
         MetadataGenerator.generate(System.getProperty("user.dir")
                 + "/src/main/java/com/puppycrawl/tools/checkstyle");
         final Set<String> metaFiles;

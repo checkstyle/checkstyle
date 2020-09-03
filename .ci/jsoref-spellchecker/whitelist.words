@@ -651,6 +651,7 @@ javadoc
 javadocblocktaglocation
 javadoccontentlocation
 javadocdetailnodeparser
+javadocmetadatascraper
 javadocmethod
 javadocmissingwhitespaceafterasterisk
 javadocpackage
