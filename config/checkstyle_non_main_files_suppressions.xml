@@ -68,6 +68,8 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
+  <suppress id="lineLength"
+            files="src[\\/]test[\\/]resources[\\/].*[\\/]meta[\\/].*"/>
 
   <!-- content is generated -->
   <suppress id="lineLength"
