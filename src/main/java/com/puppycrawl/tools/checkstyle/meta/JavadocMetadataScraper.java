@@ -23,8 +23,10 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Deque;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -46,6 +48,10 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @FileStatefulCheck
 public class JavadocMetadataScraper extends AbstractJavadocCheck {
+
+    /** Module details store used for testing. */
+    private static final Map<String, ModuleDetails> MODULE_DETAILS_STORE = new HashMap<>();
+
     /** Regular expression for property location in class-level javadocs. */
     private static final Pattern PROPERTY_TAG = Pattern.compile("\\s*Property\\s*");
 
@@ -82,7 +88,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     /** Regular expression for quotes. */
     private static final Pattern QUOTE_PATTERN = Pattern.compile("\"");
-    
+
     /** Java file extension. */
     private static final String JAVA_FILE_EXTENSION = ".java";
 
@@ -190,12 +196,17 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     public void finishJavadocTree(DetailNode rootAst) {
         moduleDetails.setDescription(getDescriptionText());
         if (isTopLevelClassJavadoc()) {
-            try {
-                XmlMetaWriter.write(moduleDetails);
+            if (getFileContents().getFileName().contains("test")) {
+                MODULE_DETAILS_STORE.put(moduleDetails.getFullQualifiedName(), moduleDetails);
             }
-            catch (TransformerException | ParserConfigurationException ex) {
-                throw new IllegalStateException("Failed to write metadata into XML file for "
-                        + "module: " + getModuleSimpleName(), ex);
+            else {
+                try {
+                    XmlMetaWriter.write(moduleDetails);
+                }
+                catch (TransformerException | ParserConfigurationException ex) {
+                    throw new IllegalStateException("Failed to write metadata into XML file for "
+                            + "module: " + getModuleSimpleName(), ex);
+                }
             }
         }
     }
@@ -581,6 +592,15 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         final String fileName = result.removeLast();
         result.addLast(fileName.substring(0, fileName.length() - JAVA_FILE_EXTENSION.length()));
         return String.join(".", result);
+    }
+
+    /**
+     * Getter method for {@code moduleDetailsStore}.
+     *
+     * @return map containing module details of supplied checks.
+     */
+    public static Map<String, ModuleDetails> getModuleDetailsStore() {
+        return MODULE_DETAILS_STORE;
     }
 
     /**
