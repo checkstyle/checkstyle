@@ -180,7 +180,9 @@ public class AllTestsTest {
             // moved
             final String folderPath = packge;
             slash = packge.lastIndexOf(File.separatorChar);
-            packge = path.substring(0, slash);
+            if (slash != -1) {
+                packge = path.substring(0, slash);
+            }
             classes = allTests.get(packge);
 
             if (classes != null
@@ -191,9 +193,11 @@ public class AllTestsTest {
             }
         }
 
-        assertTrue(found, "Resource must be named after a Test like 'InputMyCustomCase.java' "
-                + "and be in the sub-package of the test like 'mycustom' "
-                + "for test 'MyCustomCheckTest': " + path);
+        if (!skipFileNaming) {
+            assertTrue(found, "Resource must be named after a Test like 'InputMyCustomCase.java' "
+                    + "and be in the sub-package of the test like 'mycustom' "
+                    + "for test 'MyCustomCheckTest': " + path);
+        }
     }
 
     private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
@@ -249,7 +253,8 @@ public class AllTestsTest {
                 // special directory for files that can't be renamed or are secondary inputs
                 || path.contains(File.separatorChar + "inputs" + File.separatorChar)
                 // all inputs must start with 'messages'
-                || path.contains(File.separatorChar + "translation" + File.separatorChar);
+                || path.contains(File.separatorChar + "translation" + File.separatorChar)
+                || ".DS_Store".equals(fileName);
     }
 
     private static String getSimplePath(String path) {
