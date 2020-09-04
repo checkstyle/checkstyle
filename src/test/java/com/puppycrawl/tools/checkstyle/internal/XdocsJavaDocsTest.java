@@ -121,6 +121,15 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             "SuppressionXpathSingleFilter - message",
         }).collect(Collectors.toSet()));
 
+    private static final Set<String> NON_BASE_TOKEN_PROPERTIES = Collections.unmodifiableSet(
+        Arrays.stream(new String[] {
+            "AtclauseOrder - target",
+            "DescendantToken - limitedTokens",
+            "IllegalType - tokens",
+            "MagicNumber - constantWaiverParentToken",
+            "MultipleStringLiterals - ignoreOccurrenceContext",
+        }).collect(Collectors.toSet()));
+
     private static final List<List<Node>> CHECK_PROPERTIES = new ArrayList<>();
     private static final Map<String, String> CHECK_PROPERTY_DOC = new HashMap<>();
     private static final Map<String, String> CHECK_TEXT = new HashMap<>();
@@ -323,11 +332,9 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
             }
             result.append(" Type is {@code ").append(typeText).append("}.");
 
-            if (isPropertyTokenType) {
-                result.append(" Validation type is {@code tokenSet}.");
-            }
-            else if (PATTERN_EXCEPTIONS.contains(checkName + " - " + propertyName)) {
-                result.append(" Validation type is {@code java.util.regex.Pattern}.");
+            final String validationType = getValidationType(isPropertyTokenType, propertyName);
+            if (validationType != null) {
+                result.append(validationType);
             }
 
             if (propertyName.endsWith("token") || propertyName.endsWith("tokens")) {
@@ -349,6 +356,20 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         result.append("\n</ul>");
 
         return result.toString();
+    }
+
+    private static String getValidationType(boolean isPropertyTokenType, String propertyName) {
+        String result = null;
+        if (NON_BASE_TOKEN_PROPERTIES.contains(checkName + " - " + propertyName)) {
+            result = " Validation type is {@code tokenTypesSet}.";
+        }
+        else if (PATTERN_EXCEPTIONS.contains(checkName + " - " + propertyName)) {
+            result = " Validation type is {@code java.util.regex.Pattern}.";
+        }
+        else if (isPropertyTokenType) {
+            result = " Validation type is {@code tokenSet}.";
+        }
+        return result;
     }
 
     private static String emptyStringArrayDefaultValue(Node defaultValueNode) {
