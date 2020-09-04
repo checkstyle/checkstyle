@@ -24,7 +24,7 @@
             <property default-value="ANNOTATION"
                       name="ignoreOccurrenceContext"
                       type="java.lang.String[]"
-                      validation-type="tokenSet">
+                      validation-type="tokenTypesSet">
                <description>Specify token type names where duplicate
  strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  exclude syntactical contexts like annotations or static initializers from the check.</description>

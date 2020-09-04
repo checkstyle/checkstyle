@@ -58,7 +58,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * strings are ignored even if they don't match ignoredStringsRegexp. This allows you to
  * exclude syntactical contexts like annotations or static initializers from the check.
  * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
+ * Validation type is {@code tokenTypesSet}.
  * Default value is {@code ANNOTATION}.
  * </li>
  * </ul>

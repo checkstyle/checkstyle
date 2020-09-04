@@ -44,7 +44,7 @@
             <property default-value="TYPECAST,METHOD_CALL,EXPR,ARRAY_INIT,UNARY_MINUS,UNARY_PLUS,ELIST,STAR,ASSIGN,PLUS,MINUS,DIV,LITERAL_NEW"
                       name="constantWaiverParentToken"
                       type="java.lang.String[]"
-                      validation-type="tokenSet">
+                      validation-type="tokenTypesSet">
                <description>Specify tokens that are allowed in the AST path
  from the number literal to the enclosing constant definition.</description>
             </property>

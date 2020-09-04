@@ -170,30 +170,32 @@ public class AllTestsTest {
 
     private static void verifyInputFile(Map<String, List<String>> allTests, boolean skipFileNaming,
             String path, String fileName) {
-        List<String> classes;
-        int slash = path.lastIndexOf(File.separatorChar);
-        String packge = path.substring(0, slash);
-        boolean found = false;
+        if (!skipFileNaming) {
+            List<String> classes;
+            int slash = path.lastIndexOf(File.separatorChar);
+            String packge = path.substring(0, slash);
+            boolean found = false;
 
-        for (int depth = 0; depth < 4; depth++) {
-            // -@cs[MoveVariableInsideIf] assignment value is modified later so it can't be
-            // moved
-            final String folderPath = packge;
-            slash = packge.lastIndexOf(File.separatorChar);
-            packge = path.substring(0, slash);
-            classes = allTests.get(packge);
+            for (int depth = 0; depth < 4; depth++) {
+                // -@cs[MoveVariableInsideIf] assignment value is modified later so it can't be
+                // moved
+                final String folderPath = packge;
+                slash = packge.lastIndexOf(File.separatorChar);
+                packge = path.substring(0, slash);
+                classes = allTests.get(packge);
 
-            if (classes != null
-                    && checkInputMatchCorrectFileStructure(classes, folderPath, skipFileNaming,
-                            fileName)) {
-                found = true;
-                break;
+                if (classes != null
+                        && checkInputMatchCorrectFileStructure(classes, folderPath, skipFileNaming,
+                        fileName)) {
+                    found = true;
+                    break;
+                }
             }
-        }
 
-        assertTrue(found, "Resource must be named after a Test like 'InputMyCustomCase.java' "
-                + "and be in the sub-package of the test like 'mycustom' "
-                + "for test 'MyCustomCheckTest': " + path);
+            assertTrue(found, "Resource must be named after a Test like 'InputMyCustomCase.java' "
+                    + "and be in the sub-package of the test like 'mycustom' "
+                    + "for test 'MyCustomCheckTest': " + path);
+        }
     }
 
     private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
@@ -249,7 +251,8 @@ public class AllTestsTest {
                 // special directory for files that can't be renamed or are secondary inputs
                 || path.contains(File.separatorChar + "inputs" + File.separatorChar)
                 // all inputs must start with 'messages'
-                || path.contains(File.separatorChar + "translation" + File.separatorChar);
+                || path.contains(File.separatorChar + "translation" + File.separatorChar)
+                || fileName.charAt(0) == '.';
     }
 
     private static String getSimplePath(String path) {
