@@ -19,7 +19,7 @@
             <property default-value=""
                       name="limitedTokens"
                       type="java.lang.String[]"
-                      validation-type="tokenSet">
+                      validation-type="tokenTypesSet">
                <description>Specify set of tokens with limited occurrences as descendants.</description>
             </property>
             <property default-value="0" name="minimumDepth" type="int">
