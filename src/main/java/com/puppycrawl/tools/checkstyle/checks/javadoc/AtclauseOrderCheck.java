@@ -52,7 +52,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code target} - Specify the list of targets to check at-clauses.
  * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
+ * Validation type is {@code tokenTypesSet}.
  * Default value is
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#CLASS_DEF">
  * CLASS_DEF</a>,
