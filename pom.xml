@@ -220,6 +220,8 @@
     <pitest.junit5.plugin.version>0.10</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.6.2</junit.version>
+    <skipTests>${maven.test.skip}</skipTests>
+    <jacoco.skip>${skipTests}</jacoco.skip>
   </properties>
 
   <dependencies>
