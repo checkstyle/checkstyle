@@ -35,8 +35,26 @@ public class BriefUtLogger extends DefaultLogger {
      * @param out output stream for info messages and errors.
      */
     public BriefUtLogger(OutputStream out) {
-        super(out, OutputStreamOptions.CLOSE, out,
-                OutputStreamOptions.NONE, new AuditEventUtFormatter());
+        this(out, OutputStreamOptions.CLOSE, out, OutputStreamOptions.NONE);
+    }
+
+    /**
+     * Creates BriefLogger object.
+     *
+     * @param infoStream
+     *            the {@code OutputStream} for info messages
+     * @param infoStreamOptions
+     *            if {@code CLOSE} info should be closed in auditFinished()
+     * @param errorStream
+     *            the {@code OutputStream} for error messages
+     * @param errorStreamOptions
+     *            if {@code CLOSE} error should be closed in auditFinished()
+     */
+    public BriefUtLogger(OutputStream infoStream,
+            OutputStreamOptions infoStreamOptions, OutputStream errorStream,
+            OutputStreamOptions errorStreamOptions) {
+        super(infoStream, infoStreamOptions, errorStream, errorStreamOptions,
+                new AuditEventUtFormatter());
     }
 
     @Override
