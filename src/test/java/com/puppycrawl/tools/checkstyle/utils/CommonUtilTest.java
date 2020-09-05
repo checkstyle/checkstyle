@@ -45,6 +45,7 @@ import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -443,6 +444,28 @@ public class CommonUtilTest extends AbstractPathTestSupport {
             "/" + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
         final URI uri = CommonUtil.getUriByFilename(filename);
         assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+    }
+
+    @Test
+    public void testGetUriByFilenameByClasspathPrefix() throws Exception {
+        final String filename =
+            "classpath:/" + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+    }
+
+    @Test
+    public void testGetUriByFilenameOnNotFound() throws Exception {
+        final String filename =
+            "xxxxx/InputCommonUtilTest_empty_checks.xml";
+        try {
+            CommonUtil.getUriByFilename(filename);
+            fail("CheckstyleException is expected");
+        }
+        catch (CheckstyleException expected) {
+            assertSame(CheckstyleException.class,
+                expected.getCause().getClass(), "Invalid exception cause");
+        }
     }
 
     @Test
