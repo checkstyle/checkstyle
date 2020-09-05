@@ -27,6 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -37,8 +38,10 @@ import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
@@ -83,6 +86,63 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             removeSuppressed(violationMessages, suppressed),
             filterCfg, checkCfg
         );
+    }
+
+    @Test
+    public void testCheckTwicebyIde() throws Exception {
+        final DefaultConfiguration filterCfg =
+                createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+
+        final DefaultConfiguration checkCfg =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkCfg.addAttribute("eachLine", "true");
+
+        final String[] suppressed = {
+            "5:7: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_FILE_CONTAINS_TAB),
+            "10:1: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_CONTAINS_TAB),
+        };
+
+        final String[] violationMessages = {
+            "5:7: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_FILE_CONTAINS_TAB),
+            "8:7: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_CONTAINS_TAB),
+            "10:1: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_CONTAINS_TAB),
+        };
+
+        verifySuppressedTwice(
+                "InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java",
+                removeSuppressed(violationMessages, suppressed), filterCfg,
+                checkCfg);
+    }
+
+    private void verifySuppressedTwice(String fileNameWithExtension,
+            String[] violationMessages, Configuration... childConfigs)
+            throws Exception {
+        final DefaultConfiguration checkerConfig = createRootConfig(null);
+
+        Arrays.stream(childConfigs).forEach(checkerConfig::addChild);
+
+        final String fileExtension =
+                CommonUtil.getFileExtension(fileNameWithExtension);
+        checkerConfig.addAttribute("fileExtensions", fileExtension);
+
+        verifyTwice(checkerConfig, getPath(fileNameWithExtension),
+                violationMessages);
+    }
+
+    private void verifyTwice(Configuration aConfig, String fileName,
+            String... expected) throws Exception {
+        setInfoStreamOptions(OutputStreamOptions.NONE);
+        final Checker checker = createChecker(aConfig);
+        verifyNoDestroy(checker, new File[] {new File(fileName)}, fileName,
+                expected);
+        verifyNoDestroy(checker, new File[] {new File(fileName)}, fileName,
+                expected);
+        checker.destroy();
     }
 
     @Test
@@ -581,6 +641,12 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             removeSuppressed(expectedViolationMessages, suppressedViolationMessages),
             filterCfg, regexpCheckCfg, fileTabCheckCfg
         );
+    }
+
+    @Test
+    public void testIsAuditListener() {
+        new SuppressWithPlainTextCommentFilter.SuppressionsCache()
+                .addException(null, null);
     }
 
     @Test
