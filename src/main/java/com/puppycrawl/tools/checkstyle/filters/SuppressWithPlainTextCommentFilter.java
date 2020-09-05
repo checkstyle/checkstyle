@@ -23,14 +23,20 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.WeakHashMap;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -339,6 +345,20 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Specify check ID pattern to suppress. */
     private String idFormat;
 
+    private final SuppressionsCache suppressionsCache = new SuppressionsCache();
+
+    private boolean listenerAdded;
+
+    private final Function<String, List<Suppression>> suppressionsForFileName =
+            fileName -> {
+                final FileText fileText = getFileText(fileName);
+                if (fileText != null) {
+                    return getSuppressions(fileText);
+                } else {
+                    return Collections.emptyList();
+                }
+            };
+
     /**
      * Setter to specify comment pattern to trigger filter to begin suppression.
      *
@@ -388,11 +408,24 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
         if (event.getLocalizedMessage() != null) {
-            final FileText fileText = getFileText(event.getFileName());
-            if (fileText != null) {
-                final List<Suppression> suppressions = getSuppressions(fileText);
-                accepted = getNearestSuppression(suppressions, event) == null;
+
+            final String fileName = event.getFileName();
+
+            final List<Suppression> suppressions;
+
+            if (event.getSource() instanceof Checker) {
+                Checker checker = (Checker) event.getSource();
+                if (!listenerAdded) {
+                    checker.addListener(suppressionsCache);
+                    listenerAdded = true;
+                }
+                suppressions = suppressionsCache.computeIfAbsent(fileName,
+                        suppressionsForFileName);
+            } else {
+                suppressions = suppressionsForFileName.apply(fileName);
             }
+
+            accepted = getNearestSuppression(suppressions, event) == null;
         }
         return accepted;
     }
@@ -482,6 +515,52 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
             .reduce((first, second) -> second)
             .filter(suppression -> suppression.suppressionType != SuppressionType.ON)
             .orElse(null);
+    }
+
+    public static class SuppressionsCache implements AuditListener {
+
+        List<Suppression> computeIfAbsent(String fileName,
+                Function<String, List<Suppression>> mappingFunction) {
+            // the only difference with Map.computeIfAbsent is that we call new
+            // String()
+            List<Suppression> suppressions =
+                    suppressionsByFileName.get(fileName);
+            if (suppressions == null) {
+                suppressions = mappingFunction.apply(fileName);
+                suppressionsByFileName.put(new String(fileName), suppressions);
+            }
+            return suppressions;
+        }
+
+        final Map<String, List<Suppression>> suppressionsByFileName =
+                new WeakHashMap<>();
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            suppressionsByFileName.remove(event.getFileName());
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            suppressionsByFileName.remove(event.getFileName());
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+        }
+
     }
 
     /** Enum which represents the type of the suppression. */
