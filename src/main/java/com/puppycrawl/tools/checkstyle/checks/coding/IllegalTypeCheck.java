@@ -118,7 +118,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
- * Validation type is {@code tokenSet}.
+ * Validation type is {@code tokenTypesSet}.
  * Default value is:
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#ANNOTATION_FIELD_DEF">
  * ANNOTATION_FIELD_DEF</a>,
