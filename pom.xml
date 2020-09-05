@@ -716,6 +716,12 @@
         <configuration>
           <source>${java.version}</source>
           <target>${java.version}</target>
+          <compilerArgs>
+            <!--always compile package-info.java for useIncrementalCompilation
+            ref: https://stackoverflow.com/questions/6770455/maven-compiling-package-info-java-to-package-info-class
+             -->
+            <compilerArg>-Xpkginfo:always</compilerArg>
+          </compilerArgs>
         </configuration>
         <!-- till https://github.com/checkstyle/checkstyle/issues/2160
         <executions>
