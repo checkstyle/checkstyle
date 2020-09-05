@@ -104,6 +104,8 @@ pitest-common)
   "PackageObjectFactory.java.html:<td class='covered'><pre><span  class='survived'>                if (thirdPartyNameToFullModuleNames == null) {</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='uncovered'><pre><span  class=''>            returnValue = Collections.emptyMap();</span></pre></td></tr>"
   "PackageObjectFactory.java.html:<td class='uncovered'><pre><span  class=''>        catch (IOException ignore) {</span></pre></td></tr>"
+  "PropertiesExpander.java.html:<td class='covered'><pre><span  class='survived'>                    if (varPv != null) {</span></pre></td></tr>"
+  "PropertiesExpander.java.html:<td class='covered'><pre><span  class='survived'>            if (val != null) {</span></pre></td></tr>"
   "PropertyCacheFile.java.html:<td class='covered'><pre><span  class='survived'>                if (!cachedHashSum.equals(contentHashSum)) {</span></pre></td></tr>"
   "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class=''>                    changed = true;</span></pre></td></tr>"
   "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class=''>        catch (final IOException | NoSuchAlgorithmException ex) {</span></pre></td></tr>"
