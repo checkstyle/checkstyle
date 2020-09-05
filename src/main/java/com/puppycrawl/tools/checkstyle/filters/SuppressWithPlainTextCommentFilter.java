@@ -23,14 +23,17 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
@@ -324,6 +327,30 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     /** Default check format to suppress. By default the filter suppress all checks. */
     private static final String DEFAULT_CHECK_FORMAT = ".*";
 
+    /**
+     * Mapper function for {@link SuppressionsCache#computeIfAbsent(String, Function)}.
+     */
+    private final Function<String, List<Suppression>> suppressionsForFileName =
+        fileName -> {
+            final FileText fileText = getFileText(fileName);
+            final List<Suppression> res;
+            if (fileText == null) {
+                res = Collections.emptyList();
+            }
+            else {
+                res = getSuppressions(fileText);
+            }
+            return res;
+        };
+
+    /** Cache of suppressions by file path. */
+    private final SuppressionsCache suppressionsCache = new SuppressionsCache();
+
+    /**
+     * True when {@link #suppressionsCache} already listens to Checker events.
+     */
+    private boolean listenerAdded;
+
     /** Specify comment pattern to trigger filter to begin suppression. */
     private Pattern offCommentFormat = CommonUtil.createPattern(DEFAULT_OFF_FORMAT);
 
@@ -388,11 +415,28 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
         if (event.getLocalizedMessage() != null) {
-            final FileText fileText = getFileText(event.getFileName());
-            if (fileText != null) {
-                final List<Suppression> suppressions = getSuppressions(fileText);
-                accepted = getNearestSuppression(suppressions, event) == null;
+
+            final String fileName = event.getFileName();
+
+            final List<Suppression> suppressions;
+
+            if (event
+                .getSource() instanceof com.puppycrawl.tools.checkstyle.Checker) {
+                if (!listenerAdded) {
+                    final com.puppycrawl.tools.checkstyle.Checker checker =
+                        (com.puppycrawl.tools.checkstyle.Checker) event
+                            .getSource();
+                    checker.addListener(suppressionsCache);
+                    listenerAdded = true;
+                }
+                suppressions = suppressionsCache.computeIfAbsent(fileName,
+                    suppressionsForFileName);
             }
+            else {
+                suppressions = suppressionsForFileName.apply(fileName);
+            }
+
+            accepted = getNearestSuppression(suppressions, event) == null;
         }
         return accepted;
     }
@@ -491,6 +535,58 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
         ON,
         /** Off suppression type. */
         OFF,
+
+    }
+
+    /** Suppressions cache. */
+    private static final class SuppressionsCache implements AuditListener {
+
+        /** Current filename. */
+        private String currentFileName;
+
+        /** Current suppressions. */
+        private List<Suppression> currentSuppressions;
+
+        private List<Suppression> computeIfAbsent(String fileName,
+            Function<String, List<Suppression>> mappingFunction) {
+            if (!fileName.equals(currentFileName)) {
+                currentSuppressions = mappingFunction.apply(fileName);
+                currentFileName = fileName;
+            }
+            return currentSuppressions;
+        }
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            currentFileName = null;
+            currentSuppressions = null;
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            currentFileName = null;
+            currentSuppressions = null;
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+            //
+        }
 
     }
 
