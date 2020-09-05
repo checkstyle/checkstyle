@@ -125,7 +125,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         Arrays.stream(new String[] {
             "AtclauseOrder - target",
             "DescendantToken - limitedTokens",
-            "IllegalType - tokens",
+            "IllegalType - memberModifiers",
             "MagicNumber - constantWaiverParentToken",
             "MultipleStringLiterals - ignoreOccurrenceContext",
         }).collect(Collectors.toSet()));
