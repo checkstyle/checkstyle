@@ -36,4 +36,8 @@
   so static Loggers are okay there. -->
   <suppress checks="AvoidModifiersForTypesCheck"
              files="Main\.java|MainTest\.java"/>
+
+  <!-- No other way to declare a getter for the member moduleDetailsStore. -->
+  <suppress checks="SimpleAccessorNameNotation"
+            files="JavadocMetadataScraper\.java"/>
 </suppressions>

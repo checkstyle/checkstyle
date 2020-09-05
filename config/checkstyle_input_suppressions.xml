@@ -9,6 +9,9 @@
   <!-- Suppress miscellaneous files -->
   <suppress checks="Regexp" files="package-info.java"/>
 
+  <!-- Suppress input files for JavadocMetadataScraper -->
+  <suppress checks="Regexp" files="meta[\\/].*"/>
+
   <!-- Suppress older check UT input files -->
 
   <suppress checks="Regexp" files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationAnnotation.java"/>
