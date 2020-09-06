@@ -66,7 +66,7 @@ public class MissingSwitchDefaultCheckTest
             "12:9: " + getCheckMessage(MSG_KEY, "default"),
             "21:16: " + getCheckMessage(MSG_KEY, "default"),
             "35:16: " + getCheckMessage(MSG_KEY, "default"),
-            };
+        };
         verify(
             checkConfig,
             getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressions.java"),
