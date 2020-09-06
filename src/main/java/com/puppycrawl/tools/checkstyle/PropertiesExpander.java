@@ -23,6 +23,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Resolves external properties from an
@@ -31,6 +33,8 @@ import java.util.Properties;
  */
 public final class PropertiesExpander
     implements PropertyResolver {
+    /** Var expression pattern, ie: ${config_loc}. */
+    private static final Pattern VAR_EXPR_PATTERN = Pattern.compile("\\$\\{([^\\s}]+)\\}");
 
     /** The underlying values. */
     private final Map<String, String> values;
@@ -49,7 +53,18 @@ public final class PropertiesExpander
         values = new HashMap<>(properties.size());
         for (Enumeration<?> e = properties.propertyNames(); e.hasMoreElements();) {
             final String name = (String) e.nextElement();
-            values.put(name, properties.getProperty(name));
+            String val = properties.getProperty(name);
+            if (val != null) {
+                final Matcher matcher = VAR_EXPR_PATTERN.matcher(val);
+                if (matcher.find()) {
+                    final String key = matcher.group(1);
+                    final String varPv = properties.getProperty(key);
+                    if (varPv != null) {
+                        val = matcher.replaceFirst(varPv);
+                    }
+                }
+            }
+            values.put(name, val);
         }
     }
 
