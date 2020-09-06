@@ -35,9 +35,7 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
-import net.sf.saxon.tree.iter.EmptyIterator;
 
 public class XpathMapperTest extends AbstractPathTestSupport {
 
@@ -475,17 +473,6 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK);
         final DetailAST[] expected = {expectedObjBlockNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
-    }
-
-    @Test
-    public void testRootWithNullDetailAst() {
-        final RootNode emptyRootNode = new RootNode(null);
-        assertThat("Empty node should not have children", emptyRootNode.hasChildNodes(),
-                equalTo(false));
-        assertThat("Invalid number of nodes", emptyRootNode.iterateAxis(AxisInfo.DESCENDANT),
-                equalTo(EmptyIterator.OfNodes.THE_INSTANCE));
-        assertThat("Invalid number of nodes", emptyRootNode.iterateAxis(AxisInfo.CHILD),
-                equalTo(EmptyIterator.OfNodes.THE_INSTANCE));
     }
 
     @Test
