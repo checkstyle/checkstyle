@@ -57,4 +57,15 @@ public class PropertiesExpanderTest {
                 "Invalid checkstyle property");
     }
 
+    @Test
+    public void testVarExpressionProperties() {
+        final Properties properties = new Properties();
+        properties.setProperty("var1", "v1");
+        properties.setProperty("test", "${var1}/checkstyle");
+        final PropertiesExpander expander = new PropertiesExpander(properties);
+        assertEquals(properties.get("var1"), expander.resolve("var1"),
+                "Invalid var1 property");
+        assertEquals(properties.get("var1") + "/checkstyle", expander.resolve("test"),
+                "Invalid var1 property");
+    }
 }
