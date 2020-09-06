@@ -71,4 +71,18 @@ public class MissingSwitchDefaultCheckTest
             expected);
     }
 
+    @Test
+    public void testMissingSwitchDefaultSwitchExpressionsTwo() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(MissingSwitchDefaultCheck.class);
+        final String[] expected = {
+            "12:9: " + getCheckMessage(MSG_KEY, "default"),
+            "24:9: " + getCheckMessage(MSG_KEY, "default"),
+        };
+        verify(
+                checkConfig,
+                getNonCompilablePath("InputMissingSwitchDefaultCheckSwitchExpressionsTwo.java"),
+                expected);
+    }
+
 }
