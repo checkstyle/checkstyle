@@ -143,9 +143,11 @@ public class RootNode extends AbstractNode {
      *
      * @param axisNumber element from {@code AxisInfo}
      * @return {@code AxisIterator} object
+     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
      */
     @Override
-    public AxisIterator iterateAxis(byte axisNumber) {
+    @SuppressWarnings("resource")
+    public AxisIterator iterateAxis(int axisNumber) {
         final AxisIterator result;
         switch (axisNumber) {
             case AxisInfo.ANCESTOR:
@@ -155,41 +157,31 @@ public class RootNode extends AbstractNode {
             case AxisInfo.FOLLOWING_SIBLING:
             case AxisInfo.PRECEDING:
             case AxisInfo.PRECEDING_SIBLING:
-                result = EmptyIterator.OfNodes.THE_INSTANCE;
+                result = EmptyIterator.ofNodes();
                 break;
             case AxisInfo.ANCESTOR_OR_SELF:
             case AxisInfo.SELF:
-                try (AxisIterator iterator = SingleNodeIterator.makeIterator(this)) {
-                    result = iterator;
-                }
+                result = SingleNodeIterator.makeIterator(this);
                 break;
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
-                    try (AxisIterator iterator = new ArrayIterator.OfNodes(
-                            getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY))) {
-                        result = iterator;
-                    }
+                    result = new ArrayIterator.OfNodes(
+                            getChildren().toArray(EMPTY_ABSTRACT_NODE_ARRAY));
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT:
                 if (hasChildNodes()) {
-                    try (AxisIterator iterator =
-                                 new Navigator.DescendantEnumeration(this, false, true)) {
-                        result = iterator;
-                    }
+                    result = new Navigator.DescendantEnumeration(this, false, true);
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
-                try (AxisIterator iterator =
-                             new Navigator.DescendantEnumeration(this, true, true)) {
-                    result = iterator;
-                }
+                result = new Navigator.DescendantEnumeration(this, true, true);
                 break;
             default:
                 throw throwUnsupportedOperationException();
