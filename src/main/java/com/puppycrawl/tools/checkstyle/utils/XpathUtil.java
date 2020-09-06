@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
+import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.sxpath.XPathDynamicContext;
 import net.sf.saxon.sxpath.XPathEvaluator;
@@ -143,14 +144,14 @@ public final class XpathUtil {
      */
     public static String printXpathBranch(String xpath, File file) throws CheckstyleException,
             IOException {
-        final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+        final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
         try {
             final RootNode rootNode = new RootNode(JavaParser.parseFile(file,
                 JavaParser.Options.WITH_COMMENTS));
             final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
             final XPathDynamicContext xpathDynamicContext =
                 xpathExpression.createDynamicContext(rootNode);
-            final List<Item<?>> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
+            final List<Item> matchingItems = xpathExpression.evaluate(xpathDynamicContext);
             return matchingItems.stream()
                 .map(item -> ((AbstractNode) item).getUnderlyingNode())
                 .map(AstTreeStringPrinter::printBranch)
