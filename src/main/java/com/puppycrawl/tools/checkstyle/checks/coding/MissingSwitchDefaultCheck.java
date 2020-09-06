@@ -35,7 +35,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * cases are covered, this should be expressed in the
  * default branch, e.g. by using an assertion. This way
  * the code is protected against later changes, e.g.
- * introduction of new types in an enumeration type.
+ * introduction of new types in an enumeration type. Note that
+ * the compiler requires switch expressions to be exhaustive,
+ * so this check does not enforce default branches on
+ * such expressions.
  * </p>
  * <p>
  * To configure the check:
@@ -105,7 +108,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST firstSwitchMemberAst = findFirstSwitchMember(ast);
 
-        if (!containsDefaultSwitch(firstSwitchMemberAst)) {
+        if (!containsDefaultSwitch(firstSwitchMemberAst) && !isSwitchExpression(ast)) {
             log(ast, MSG_KEY);
         }
     }
@@ -144,6 +147,16 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
             switchMember = parent.findFirstToken(TokenTypes.SWITCH_RULE);
         }
         return switchMember;
+    }
+
+    /**
+     * Checks if this LITERAL_SWITCH token is part of a switch expression.
+     *
+     * @param ast the switch statement we are checking
+     * @return true if part of a switch expression
+     */
+    private static boolean isSwitchExpression(DetailAST ast) {
+        return ast.getParent().getType() == TokenTypes.EXPR;
     }
 
 }

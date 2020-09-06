@@ -14,7 +14,10 @@
  cases are covered, this should be expressed in the
  default branch, e.g. by using an assertion. This way
  the code is protected against later changes, e.g.
- introduction of new types in an enumeration type.
+ introduction of new types in an enumeration type. Note that
+ the compiler requires switch expressions to be exhaustive,
+ so this check does not enforce default branches on
+ such expressions.
  &lt;/p&gt;</description>
          <message-keys>
             <message-key key="missing.switch.default"/>
