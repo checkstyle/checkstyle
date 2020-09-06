@@ -22,16 +22,17 @@ package com.puppycrawl.tools.checkstyle.xpath;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.event.Receiver;
-import net.sf.saxon.expr.parser.Location;
 import net.sf.saxon.om.AtomicSequence;
 import net.sf.saxon.om.NamespaceBinding;
+import net.sf.saxon.om.NamespaceMap;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.om.TreeInfo;
-import net.sf.saxon.pattern.NodeTest;
+import net.sf.saxon.s9api.Location;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.util.FastStringBuffer;
 import net.sf.saxon.tree.util.Navigator;
@@ -160,7 +161,7 @@ public abstract class AbstractNode implements NodeInfo {
      * @return {@code AxisIterator} object
      */
     @Override
-    public AxisIterator iterateAxis(byte axisNumber, NodeTest nodeTest) {
+    public AxisIterator iterateAxis(int axisNumber, Predicate<? super NodeInfo> nodeTest) {
         AxisIterator axisIterator = iterateAxis(axisNumber);
         if (nodeTest != null) {
             axisIterator = new Navigator.AxisFilter(axisIterator, nodeTest);
@@ -198,6 +199,17 @@ public abstract class AbstractNode implements NodeInfo {
      */
     @Override
     public final NamespaceBinding[] getDeclaredNamespaces(NamespaceBinding[] namespaceBindings) {
+        throw createUnsupportedOperationException();
+    }
+
+    /**
+     * Returns namespace array. Throws {@code UnsupportedOperationException}, because no child
+     * class implements it and this method is not used for querying.
+     *
+     * @return namespace map
+     */
+    @Override
+    public NamespaceMap getAllNamespaces() {
         throw createUnsupportedOperationException();
     }
 
