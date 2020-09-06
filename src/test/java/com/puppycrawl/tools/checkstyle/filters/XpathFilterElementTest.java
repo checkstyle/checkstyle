@@ -38,6 +38,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import net.sf.saxon.Configuration;
 import net.sf.saxon.sxpath.XPathEvaluator;
 import net.sf.saxon.sxpath.XPathExpression;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -302,7 +303,7 @@ public class XpathFilterElementTest extends AbstractModuleTestSupport {
 
     @Test
     public void testEqualsAndHashCode() throws Exception {
-        final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+        final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
         final EqualsVerifierReport ev = EqualsVerifier.forClass(XpathFilterElement.class)
             .withPrefabValues(XPathExpression.class,
                 xpathEvaluator.createExpression("//METHOD_DEF"),
