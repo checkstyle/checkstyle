@@ -103,27 +103,42 @@ public class RootNodeTest extends AbstractPathTestSupport {
     @Test
     public void testIterate() {
         try (AxisIterator following = rootNode.iterateAxis(AxisInfo.FOLLOWING)) {
-            assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, following,
+            assertEquals(EmptyIterator.ofNodes(), following,
                     "Result iterator does not match expected");
         }
         try (AxisIterator followingSibling = rootNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
-            assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, followingSibling,
+            assertEquals(EmptyIterator.ofNodes(), followingSibling,
                     "Result iterator does not match expected");
         }
         try (AxisIterator preceding = rootNode.iterateAxis(AxisInfo.PRECEDING)) {
-            assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, preceding,
+            assertEquals(EmptyIterator.ofNodes(), preceding,
                     "Result iterator does not match expected");
         }
         try (AxisIterator precedingSibling = rootNode.iterateAxis(AxisInfo.PRECEDING_SIBLING)) {
-            assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, precedingSibling,
+            assertEquals(EmptyIterator.ofNodes(), precedingSibling,
                     "Result iterator does not match expected");
         }
         try (AxisIterator parent = rootNode.iterateAxis(AxisInfo.PARENT)) {
-            assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, parent,
+            assertEquals(EmptyIterator.ofNodes(), parent,
                     "Result iterator does not match expected");
         }
         try (AxisIterator parentNull = rootNode.iterateAxis(AxisInfo.PARENT, null)) {
-            assertEquals(EmptyIterator.OfNodes.THE_INSTANCE, parentNull,
+            assertEquals(EmptyIterator.ofNodes(), parentNull,
+                    "Result iterator does not match expected");
+        }
+    }
+
+    @Test
+    public void testIterateWithNoChild() {
+        final RootNode rootNodeWithNoChild = new RootNode(null);
+        rootNodeWithNoChild.hasChildNodes();
+
+        try (AxisIterator following = rootNodeWithNoChild.iterateAxis(AxisInfo.CHILD)) {
+            assertEquals(EmptyIterator.ofNodes(), following,
+                    "Result iterator does not match expected");
+        }
+        try (AxisIterator followingSibling = rootNodeWithNoChild.iterateAxis(AxisInfo.DESCENDANT)) {
+            assertEquals(EmptyIterator.ofNodes(), followingSibling,
                     "Result iterator does not match expected");
         }
     }
@@ -382,11 +397,22 @@ public class RootNodeTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testGetAllNamespaces() {
+        try {
+            rootNode.getAllNamespaces();
+            fail("Exception is excepted");
+        }
+        catch (UnsupportedOperationException ex) {
+            assertEquals("Operation is not supported",
+                    ex.getMessage(), "Invalid exception message");
+        }
+    }
+
+    @Test
     public void testSameNodeInfo() {
         assertTrue(rootNode.isSameNodeInfo(rootNode),
                 "Should return true, because object is being compared to itself");
         assertFalse(rootNode.isSameNodeInfo(null),
                 "Should return false, because object does not equal null");
     }
-
 }

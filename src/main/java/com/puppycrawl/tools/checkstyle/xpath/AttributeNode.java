@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.function.Predicate;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -131,10 +133,11 @@ public class AttributeNode extends AbstractNode {
      * {@code UnsupportedOperationException}.
      *
      * @param axisNumber element from {@code AxisInfo}
+     * @param nodeTest filter for iterator
      * @return {@code AxisIterator} object
      */
     @Override
-    public AxisIterator iterateAxis(byte axisNumber) {
+    public AxisIterator iterateAxis(int axisNumber, Predicate<? super NodeInfo> nodeTest) {
         throw throwUnsupportedOperationException();
     }
 

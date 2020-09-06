@@ -149,4 +149,15 @@ public class AttributeNodeTest {
         }
     }
 
+    @Test
+    public void testGetAllNamespaces() {
+        try {
+            attributeNode.getAllNamespaces();
+            fail("Exception is excepted");
+        }
+        catch (UnsupportedOperationException ex) {
+            assertEquals("Operation is not supported",
+                    ex.getMessage(), "Invalid exception message");
+        }
+    }
 }
