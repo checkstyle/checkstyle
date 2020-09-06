@@ -37,6 +37,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -97,6 +98,22 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
     }
 
+    @Test
+    public final void testNonEnglishLocale() throws IOException {
+        TestRootModuleChecker.reset();
+        final CheckstyleAntTask antTask = getCheckstyleAntTask(CUSTOM_ROOT_CONFIG_FILE);
+        antTask.setFile(new File(getPath(WARNING_INPUT)));
+        final String language = "zh_CN";
+        antTask.setLocaleLanguage(language);
+        antTask.setMaxErrors(1);
+        antTask.execute();
+
+        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+
+        assertEquals(new Locale(language), Locale.getDefault());
+    }
+
+    
     @Test
     public final void testPathsOneFile() throws IOException {
         // given
