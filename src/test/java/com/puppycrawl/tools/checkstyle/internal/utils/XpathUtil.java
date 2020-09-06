@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import net.sf.saxon.Configuration;
 import net.sf.saxon.om.Item;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.sxpath.XPathDynamicContext;
@@ -49,11 +50,11 @@ public final class XpathUtil {
      */
     public static List<NodeInfo> getXpathItems(String xpath, AbstractNode rootNode)
             throws XPathException {
-        final XPathEvaluator xpathEvaluator = new XPathEvaluator();
+        final XPathEvaluator xpathEvaluator = new XPathEvaluator(Configuration.newConfiguration());
         final XPathExpression xpathExpression = xpathEvaluator.createExpression(xpath);
         final XPathDynamicContext xpathDynamicContext = xpathExpression
                 .createDynamicContext(rootNode);
-        final List<Item<?>> items = xpathExpression.evaluate(xpathDynamicContext);
+        final List<Item> items = xpathExpression.evaluate(xpathDynamicContext);
         return items.stream().map(item -> (NodeInfo) item).collect(Collectors.toList());
     }
 

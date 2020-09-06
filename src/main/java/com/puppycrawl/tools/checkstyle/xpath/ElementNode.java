@@ -204,7 +204,7 @@ public class ElementNode extends AbstractNode {
      * @return {@code AxisIterator} object
      */
     @Override
-    public AxisIterator iterateAxis(byte axisNumber) {
+    public AxisIterator iterateAxis(int axisNumber) {
         final AxisIterator result;
         switch (axisNumber) {
             case AxisInfo.ANCESTOR:
@@ -230,7 +230,7 @@ public class ElementNode extends AbstractNode {
                     }
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT:
@@ -241,7 +241,7 @@ public class ElementNode extends AbstractNode {
                     }
                 }
                 else {
-                    result = EmptyIterator.OfNodes.THE_INSTANCE;
+                    result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
@@ -279,6 +279,7 @@ public class ElementNode extends AbstractNode {
             default:
                 throw throwUnsupportedOperationException();
         }
+
         return result;
     }
 
@@ -330,7 +331,7 @@ public class ElementNode extends AbstractNode {
     private AxisIterator getPrecedingSiblingsIterator() {
         final AxisIterator result;
         if (indexAmongSiblings == 0) {
-            result = EmptyIterator.OfNodes.THE_INSTANCE;
+            result = EmptyIterator.ofNodes();
         }
         else {
             try (AxisIterator iterator = new ArrayIterator.OfNodes(
@@ -349,7 +350,7 @@ public class ElementNode extends AbstractNode {
     private AxisIterator getFollowingSiblingsIterator() {
         final AxisIterator result;
         if (indexAmongSiblings == parent.getChildren().size() - 1) {
-            result = EmptyIterator.OfNodes.THE_INSTANCE;
+            result = EmptyIterator.ofNodes();
         }
         else {
             try (AxisIterator iterator = new ArrayIterator.OfNodes(
