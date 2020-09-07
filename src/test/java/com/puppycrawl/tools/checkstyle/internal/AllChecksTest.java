@@ -61,6 +61,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 public class AllChecksTest extends AbstractModuleTestSupport {
 
@@ -416,6 +417,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
             if (instance instanceof AbstractCheck) {
                 final AbstractCheck check = (AbstractCheck) instance;
+                if (isAllTokensAcceptable(check)) {
+                    // we can not have in our config test for all tokens
+                    continue;
+                }
 
                 Set<String> configTokens = configCheckTokens.get(checkName);
 
@@ -458,6 +463,10 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                     "'" + entry.getKey() + "' should have all acceptable tokens from check in "
                     + configName + " config or specify an override to ignore the specific tokens");
         }
+    }
+
+    private static boolean isAllTokensAcceptable(AbstractCheck check) {
+        return Arrays.equals(check.getAcceptableTokens(), TokenUtil.getAllTokenIds());
     }
 
     private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
