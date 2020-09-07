@@ -35,6 +35,7 @@ import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGenerator {
@@ -96,5 +97,16 @@ public final class MetadataGenerator {
         }
 
         checker.process(validFiles);
+    }
+
+    /**
+     * Return all token types present in checkstyle.
+     *
+     * @return list of token type names
+     */
+    public static List<String> getAllTokens() {
+        return Arrays.stream(TokenUtil.getAllTokenIds()).asDoubleStream()
+                .mapToObj(tokenId -> TokenUtil.getTokenName((int) tokenId))
+                .collect(Collectors.toList());
     }
 }

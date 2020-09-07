@@ -18,6 +18,7 @@
   <module name="TreeWalker">
     <!-- Check to make sure check UT input files have config and trailing comments -->
     <module name="Regexp">
+      <property name="id" value="ConfigCommentOnTopInputs"/>
       <property name="format"
                value="(\* Config)"/>
       <message key="required.regexp"
@@ -26,6 +27,7 @@
                    produce the violations, that begins with &quot;/* Config:&quot;."/>
     </module>
     <module name="Regexp">
+      <property name="id" value="StyleValidationCommentInInputs"/>
       <property name="format"
                value="(\/\/ (ok|violation)\n)"/>
       <message key="required.regexp"
