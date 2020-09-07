@@ -4,31 +4,8 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.EqualsAvoidNullCheck"
              name="EqualsAvoidNull"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
- Checks that any combination of String literals
- is on the left side of an {@code equals()} comparison.
- Also checks for String literals assigned to some field
- (such as {@code someString.equals(anotherString = "text")}).
- &lt;/p&gt;
- &lt;p&gt;Rationale: Calling the {@code equals()} method on String literals
- will avoid a potential {@code NullPointerException}. Also, it is
- pretty common to see null checks right before equals comparisons,
- which is not necessary in the example below.
- &lt;/p&gt;
- &lt;p&gt;
- For example, this code:
- &lt;/p&gt;
- &lt;pre&gt;
- String nullString = null;
- nullString.equals(&amp;quot;My_Sweet_String&amp;quot;);
- &lt;/pre&gt;
- &lt;p&gt;
- should be refactored to:
- &lt;/p&gt;
- &lt;pre&gt;
- String nullString = null;
- &amp;quot;My_Sweet_String&amp;quot;.equals(nullString);
- &lt;/pre&gt;</description>
+         <description>Holds the names of fields of a type.
+     &lt;EOF&gt;</description>
          <properties>
             <property default-value="false" name="ignoreEqualsIgnoreCase" type="boolean">
                <description>Control whether to ignore
