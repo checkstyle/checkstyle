@@ -317,32 +317,28 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
 
             String typeText = "java.lang.String[]";
             final String propertyType = property.get(2).getTextContent();
-            final boolean isPropertyTokenType = propertyType.contains("subset of tokens")
+            final boolean isSpecialAllTokensType = propertyType.contains("all tokens");
+            final boolean isPropertyTokenType = isSpecialAllTokensType
+                    || propertyType.contains("subset of tokens")
                     || propertyType.contains("subset of javadoc tokens");
             if (!isPropertyTokenType) {
-                final Node typeNode;
-                if (property.get(2).getFirstChild().getFirstChild() == null) {
-                    typeNode = property.get(2).getFirstChild().getNextSibling();
-                }
-                else {
-                    typeNode = property.get(2).getFirstChild().getFirstChild();
-                }
-                final String typeName = typeNode.getTextContent().trim();
+                final String typeName =
+                        getCorrectNodeBasedOnPropertyType(property).getTextContent().trim();
                 typeText = FULLY_QUALIFIED_CLASS_NAMES.get(typeName).getTypeName();
+            }
+            if (isSpecialAllTokensType) {
+                typeText = "allTokenTypes";
             }
             result.append(" Type is {@code ").append(typeText).append("}.");
 
-            final String validationType = getValidationType(isPropertyTokenType, propertyName);
-            if (validationType != null) {
-                result.append(validationType);
+            if (!isSpecialAllTokensType) {
+                final String validationType = getValidationType(isPropertyTokenType, propertyName);
+                if (validationType != null) {
+                    result.append(validationType);
+                }
             }
 
-            if (propertyName.endsWith("token") || propertyName.endsWith("tokens")) {
-                result.append(" Default value is: ");
-            }
-            else {
-                result.append(" Default value is ");
-            }
+            result.append(getDefaultValueOfType(propertyName, isSpecialAllTokensType));
 
             result.append(emptyStringArrayDefaultValue(property.get(3)));
 
@@ -356,6 +352,31 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         result.append("\n</ul>");
 
         return result.toString();
+    }
+
+    private static Node getCorrectNodeBasedOnPropertyType(List<Node> property) {
+        final Node result;
+        if (property.get(2).getFirstChild().getFirstChild() == null) {
+            result = property.get(2).getFirstChild().getNextSibling();
+        }
+        else {
+            result = property.get(2).getFirstChild().getFirstChild();
+        }
+        return result;
+    }
+
+    private static String getDefaultValueOfType(String propertyName,
+                                                boolean isSpecialAllTokensType) {
+        final String result;
+        if (!isSpecialAllTokensType
+                && (propertyName.endsWith("token") || propertyName.endsWith(
+                "tokens"))) {
+            result = " Default value is: ";
+        }
+        else {
+            result = " Default value is ";
+        }
+        return result;
     }
 
     private static String getValidationType(boolean isPropertyTokenType, String propertyName) {
