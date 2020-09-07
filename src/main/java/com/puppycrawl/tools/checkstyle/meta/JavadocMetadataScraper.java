@@ -82,7 +82,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     /** Regular expression for quotes. */
     private static final Pattern QUOTE_PATTERN = Pattern.compile("\"");
-    
+
     /** Java file extension. */
     private static final String JAVA_FILE_EXTENSION = ".java";
 
