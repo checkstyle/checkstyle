@@ -68,6 +68,10 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]ant[\\/]checkstyleanttask[\\/]ExpectedCheckstyleAntTaskXmlOutput\.xml"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
+  <!-- we cannot suppress JavadocScraper test inputs' line lengths at will break code logic.
+       Module javadocs in main src do not have lineLegth violations -->
+  <suppress id="lineLength"
+            files="src[\\/]test[\\/]resources[\\/].*[\\/]meta[\\/].*"/>
 
   <!-- content is generated -->
   <suppress id="lineLength"
