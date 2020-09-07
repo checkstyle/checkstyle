@@ -673,6 +673,16 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
               <td><code>null</code></td>
               <td>3.2</td>
             </tr>
+            <tr>
+              <td>tokens</td>
+              <td>tokens to check</td>
+              <td>set of any supported
+                <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">
+                    tokens</a>
+              </td>
+              <td><code>empty</code></td>
+              <td>3.2</td>
+            </tr>
           </table>
         </div>
       </subsection>

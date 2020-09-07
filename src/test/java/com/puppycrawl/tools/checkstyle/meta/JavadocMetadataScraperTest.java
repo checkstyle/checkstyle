@@ -35,7 +35,7 @@ public class JavadocMetadataScraperTest {
 
     @BeforeAll
     public static void fillModuleDetailsStore() throws Exception {
-        MetadataGenerator.generate(System.getProperty("user.dir")
+        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                 + "/src/test/resources/com/puppycrawl/tools/checkstyle"
                 + "/meta/javadocmetadatascraper");
         moduleDetailsStore = JavadocMetadataScraper.getModuleDetailsStore();
