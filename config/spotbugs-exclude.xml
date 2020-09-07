@@ -101,7 +101,7 @@
   </Match>
   <Match>
     <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
-    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGenerator" />
+    <Class name="com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil" />
     <Method name="dumpMetadata" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
