@@ -185,7 +185,7 @@ public class AllTestsTest {
 
             if (classes != null
                     && checkInputMatchCorrectFileStructure(classes, folderPath, skipFileNaming,
-                            fileName)) {
+                        fileName)) {
                 found = true;
                 break;
             }
