@@ -4,46 +4,10 @@
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.sizes.MethodCountCheck"
              name="MethodCount"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
-         <description>&lt;p&gt;
- Checks the number of methods declared in each type declaration by access modifier
- or total count.
- &lt;/p&gt;
- &lt;p&gt;
- This check can be configured to flag classes that define too many methods
- to prevent the class from getting too complex. Counting can be customized
- to prevent too many total methods in a type definition ({@code maxTotal}),
- or to prevent too many methods of a specific access modifier ({@code private},
- {@code package}, {@code protected} or {@code public}). Each count is completely
- separated to customize how many methods of each you want to allow. For example,
- specifying a {@code maxTotal} of 10, still means you can prevent more than 0
- {@code maxPackage} methods. A violation won't appear for 8 public methods,
- but one will appear if there is also 3 private methods or any package-private methods.
- &lt;/p&gt;
- &lt;p&gt;
- Methods defined in anonymous classes are not counted towards any totals.
- Counts only go towards the main type declaration parent, and are kept separate
- from it's children's inner types.
- &lt;/p&gt;
- &lt;pre&gt;
- public class ExampleClass {
-   public enum Colors {
-     RED, GREEN, YELLOW;
-
-     public String getRGB() { ... } // NOT counted towards ExampleClass
-   }
-
-   public void example() { // counted towards ExampleClass
-     Runnable r = (new Runnable() {
-       public void run() { ... } // NOT counted towards ExampleClass, won't produce any violations
-     });
-   }
-
-   public static class InnerExampleClass {
-     protected void example2() { ... } // NOT counted towards ExampleClass,
-                                    // but counted towards InnerExampleClass
-   }
- }
- &lt;/pre&gt;</description>
+         <description>Marker class used to collect data about the number of methods per
+ class. Objects of this class are used on the Stack to count the
+ methods for each class and layer.
+     &lt;EOF&gt;</description>
          <properties>
             <property default-value="100" name="maxTotal" type="int">
                <description>Specify the maximum number of methods allowed at all scope levels.</description>
