@@ -85,6 +85,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Type is {@code java.lang.String}.
  * Default value is {@code null}.
  * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code allTokenTypes}.
+ * Default value is {@code ""}.
+ * </li>
  * </ul>
  * <p>
  * To configure the check to produce a violation on a switch statement with no default case:
