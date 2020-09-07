@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  */
 @FileStatefulCheck
 public class JavadocMetadataScraper extends AbstractJavadocCheck {
+
     /** Regular expression for property location in class-level javadocs. */
     private static final Pattern PROPERTY_TAG = Pattern.compile("\\s*Property\\s*");
 
@@ -82,7 +83,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
     /** Regular expression for quotes. */
     private static final Pattern QUOTE_PATTERN = Pattern.compile("\"");
-    
+
     /** Java file extension. */
     private static final String JAVA_FILE_EXTENSION = ".java";
 
@@ -167,6 +168,10 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             moduleDetails.setName(moduleName);
             moduleDetails.setFullQualifiedName(getPackageName(filePath));
             moduleDetails.setModuleType(getModuleType());
+            if (moduleDetails.getFullQualifiedName().equals("com.puppycrawl.tools.checkstyle" +
+                    ".filters.SuppressionCommentFilter")) {
+                System.out.println("pp");
+            }
         }
     }
 
