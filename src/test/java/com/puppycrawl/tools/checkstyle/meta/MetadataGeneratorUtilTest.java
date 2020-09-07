@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
-public final class MetadataGeneratorTest {
+public final class MetadataGeneratorUtilTest {
     private final List<String> modulesContainingNoMetadataFile = Arrays.asList(
             "Checker",
             "TreeWalker",
@@ -43,8 +43,8 @@ public final class MetadataGeneratorTest {
     );
 
     @Test
-    public void testBasic() throws Exception {
-        MetadataGenerator.generate(System.getProperty("user.dir")
+    public void generateMetadataFiles() throws Exception {
+        MetadataGeneratorUtil.generate(System.getProperty("user.dir")
                 + "/src/main/java/com/puppycrawl/tools/checkstyle");
         final Set<String> metaFiles;
 

@@ -745,7 +745,8 @@ public class XdocsPagesTest {
             Arrays.sort(requiredTokens);
 
             if (!Arrays.equals(acceptableTokens, defaultTokens)
-                    || !Arrays.equals(acceptableTokens, requiredTokens)) {
+                    || !Arrays.equals(acceptableTokens, requiredTokens)
+                    || "DescendantToken".equals(sectionName)) {
                 properties.add("tokens");
             }
         }
@@ -877,10 +878,13 @@ public class XdocsPagesTest {
                         + "' should have the basic token description");
 
         final String acceptableTokenText = columns.get(2).getTextContent().trim();
-        assertEquals("subset of tokens "
-                        + CheckUtil.getTokenText(check.getAcceptableTokens(),
-                check.getRequiredTokens()),
-                acceptableTokenText
+        String expectedAcceptableTokenText = "subset of tokens "
+                + CheckUtil.getTokenText(check.getAcceptableTokens(),
+                check.getRequiredTokens());
+        if ("DescendantToken".equals(sectionName)) {
+            expectedAcceptableTokenText = "set of any supported tokens";
+        }
+        assertEquals(expectedAcceptableTokenText, acceptableTokenText
                         .replaceAll("\\s+", " ")
                         .replaceAll("\\s,", ",")
                         .replaceAll("\\s\\.", "."),
@@ -891,9 +895,12 @@ public class XdocsPagesTest {
                         + "should have ',' & '.' at beginning of the next corresponding lines.");
 
         final String defaultTokenText = columns.get(3).getTextContent().trim();
-        assertEquals(CheckUtil.getTokenText(check.getDefaultTokens(),
-                check.getRequiredTokens()),
-                defaultTokenText
+        String expectedDefaultTokenText = CheckUtil.getTokenText(check.getDefaultTokens(),
+                check.getRequiredTokens());
+        if ("DescendantToken".equals(sectionName)) {
+            expectedDefaultTokenText = "{}";
+        }
+        assertEquals(expectedDefaultTokenText, defaultTokenText
                         .replaceAll("\\s+", " ")
                         .replaceAll("\\s,", ",")
                         .replaceAll("\\s\\.", "."),
