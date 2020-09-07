@@ -1067,7 +1067,7 @@
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.98</minimum>
+                      <minimum>0.97</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
@@ -1135,14 +1135,14 @@
                   <element>CLASS</element>
                   <includes>
                     <include>
-                       com.puppycrawl.tools.checkstyle.meta.MetadataGenerator
+                      com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil
                     </include>
                   </includes>
                   <limits>
                     <limit>
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.96</minimum>
+                      <minimum>0.87</minimum>
                     </limit>
                     <limit>
                       <counter>BRANCH</counter>
