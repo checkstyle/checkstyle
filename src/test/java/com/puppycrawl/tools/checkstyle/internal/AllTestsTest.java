@@ -185,7 +185,7 @@ public class AllTestsTest {
 
             if (classes != null
                     && checkInputMatchCorrectFileStructure(classes, folderPath, skipFileNaming,
-                            fileName)) {
+                    fileName)) {
                 found = true;
                 break;
             }
@@ -194,6 +194,7 @@ public class AllTestsTest {
         assertTrue(found, "Resource must be named after a Test like 'InputMyCustomCase.java' "
                 + "and be in the sub-package of the test like 'mycustom' "
                 + "for test 'MyCustomCheckTest': " + path);
+
     }
 
     private static void verifyHasProductionFile(Map<String, List<String>> allTests, File file) {
