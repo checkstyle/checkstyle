@@ -110,7 +110,9 @@ public class MethodDefHandler extends BlockParentHandler {
         checkModifiers();
         checkThrows();
 
-        checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+        if (getMethodDefParamRightParen(getMainAst()) != null) {
+            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+        }
         // abstract method def -- no body
         if (getLeftCurly() != null) {
             super.checkIndentation();
@@ -137,15 +139,23 @@ public class MethodDefHandler extends BlockParentHandler {
     private static String getHandlerName(DetailAST ast) {
         final String name;
 
-        if (ast.getType() == TokenTypes.CTOR_DEF) {
-            name = "ctor def";
+        switch (ast.getType()) {
+            case TokenTypes.CTOR_DEF:
+                name = "ctor def";
+                break;
+            case TokenTypes.ANNOTATION_FIELD_DEF:
+                name = "annotation field def";
+                break;
+            case TokenTypes.COMPACT_CTOR_DEF:
+                name = "compact ctor def";
+                break;
+            case TokenTypes.RECORD_DEF:
+                name = "record def";
+                break;
+            default:
+                name = "method def";
         }
-        else if (ast.getType() == TokenTypes.ANNOTATION_FIELD_DEF) {
-            name = "annotation field def";
-        }
-        else {
-            name = "method def";
-        }
+
         return name;
     }
 
