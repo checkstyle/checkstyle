@@ -2120,7 +2120,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "41:9: " + getCheckMessage(MSG_CHILD_ERROR, "yield", 8, 16),
             "71:1: " + getCheckMessage(MSG_ERROR, "yield", 0, 16),
             "74:37: " + getCheckMessage(MSG_ERROR, "yield", 36, 16),
-            };
+        };
 
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationYieldStatement.java"),
