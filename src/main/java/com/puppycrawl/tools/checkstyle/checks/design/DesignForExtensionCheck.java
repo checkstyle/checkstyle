@@ -274,7 +274,8 @@ public class DesignForExtensionCheck extends AbstractCheck {
                 && canBeOverridden(ast)
                 && (isNativeMethod(ast)
                     || !hasEmptyImplementation(ast))
-                && !hasIgnoredAnnotation(ast, ignoredAnnotations)) {
+                && !hasIgnoredAnnotation(ast, ignoredAnnotations)
+                && !ScopeUtil.isInRecordBlock(ast)) {
             final DetailAST classDef = getNearestClassOrEnumDefinition(ast);
             if (canBeSubclassed(classDef)) {
                 final String className = classDef.findFirstToken(TokenTypes.IDENT).getText();
