@@ -2120,7 +2120,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "41:9: " + getCheckMessage(MSG_CHILD_ERROR, "yield", 8, 16),
             "71:1: " + getCheckMessage(MSG_ERROR, "yield", 0, 16),
             "74:37: " + getCheckMessage(MSG_ERROR, "yield", 36, 16),
-            };
+        };
 
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationYieldStatement.java"),
@@ -2134,6 +2134,43 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationCheckSwitchExpressionCorrect.java"),
+            expected);
+    }
+
+    @Test
+    public void testIndentationRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationRecords.java"),
+            expected);
+    }
+
+    @Test
+    public void testIndentationRecordsAndCompactCtors() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "13:1: " + getCheckMessage(MSG_ERROR, "(", 0, 8),
+            "25:1: " + getCheckMessage(MSG_ERROR, "String", 0, 12),
+            "38:1: " + getCheckMessage(MSG_CHILD_ERROR, "compact ctor def", 0, 12),
+            "48:1: " + getCheckMessage(MSG_ERROR, "record def modifier", 0, 4),
+            "53:1: " + getCheckMessage(MSG_ERROR, "compact ctor def rcurly", 0, 8),
+            "61:1: " + getCheckMessage(MSG_ERROR, "ctor def rcurly", 0, 8),
+        };
+
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationRecordsAndCompactCtors.java"),
             expected);
     }
 
