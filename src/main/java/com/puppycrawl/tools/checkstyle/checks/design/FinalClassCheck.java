@@ -117,7 +117,7 @@ public class FinalClassCheck
                 break;
 
             case TokenTypes.CTOR_DEF:
-                if (!ScopeUtil.isInEnumBlock(ast)) {
+                if (!ScopeUtil.isInEnumBlock(ast) && !ScopeUtil.isInRecordBlock(ast)) {
                     final ClassDesc desc = classes.peek();
                     if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null) {
                         desc.registerNonPrivateCtor();
