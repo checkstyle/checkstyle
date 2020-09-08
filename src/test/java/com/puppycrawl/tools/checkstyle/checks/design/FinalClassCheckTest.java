@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class FinalClassCheckTest
     extends AbstractModuleTestSupport {
@@ -87,6 +88,18 @@ public class FinalClassCheckTest
                 getNonCompilablePath(
                 "InputFinalClassClassWithPrivateCtorWithNestedExtendingClassWithoutPackage.java"),
                 expected);
+    }
+
+    @Test
+    public void testFinalClassConstructorInRecord() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(FinalClassCheck.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputFinalClassConstructorInRecord.java"),
+            expected);
     }
 
     @Test
