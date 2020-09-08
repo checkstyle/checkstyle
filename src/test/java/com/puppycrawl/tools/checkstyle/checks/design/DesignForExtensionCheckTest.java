@@ -128,4 +128,14 @@ public class DesignForExtensionCheckTest
         verify(checkConfig, getPath("InputDesignForExtensionNativeMethods.java"), expected);
     }
 
+    @Test
+    public void testDesignForExtensionRecords() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputDesignForExtensionRecords.java"), expected);
+    }
+
 }
