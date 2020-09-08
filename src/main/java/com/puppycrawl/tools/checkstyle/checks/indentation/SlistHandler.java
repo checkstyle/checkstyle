@@ -47,6 +47,7 @@ public class SlistHandler extends BlockParentHandler {
         TokenTypes.LITERAL_TRY,
         TokenTypes.LITERAL_CATCH,
         TokenTypes.LITERAL_FINALLY,
+        TokenTypes.COMPACT_CTOR_DEF,
     };
 
     static {
