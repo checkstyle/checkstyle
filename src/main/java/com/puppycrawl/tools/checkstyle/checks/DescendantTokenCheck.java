@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Arrays;
-import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -84,6 +83,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * when the maximum count is exceeded.
  * Type is {@code java.lang.String}.
  * Default value is {@code null}.
+ * </li>
+ * <li>
+ * Property {@code tokens} - tokens to check
+ * Type is {@code anyTokenTypesSet}.
+ * Default value is {@code empty}.
  * </li>
  * </ul>
  * <p>
@@ -353,6 +357,11 @@ public class DescendantTokenCheck extends AbstractCheck {
     private int[] counts = CommonUtil.EMPTY_INT_ARRAY;
 
     @Override
+    public int[] getAcceptableTokens() {
+        return TokenUtil.getAllTokenIds();
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
     }
@@ -471,19 +480,6 @@ public class DescendantTokenCheck extends AbstractCheck {
                 child = child.getNextSibling();
             }
         }
-    }
-
-    @Override
-    public int[] getAcceptableTokens() {
-        // Any tokens set by property 'tokens' are acceptable
-        final Set<String> tokenNames = getTokenNames();
-        final int[] result = new int[tokenNames.size()];
-        int index = 0;
-        for (String name : tokenNames) {
-            result[index] = TokenUtil.getTokenId(name);
-            index++;
-        }
-        return result;
     }
 
     /**
