@@ -877,10 +877,13 @@ public class XdocsPagesTest {
                         + "' should have the basic token description");
 
         final String acceptableTokenText = columns.get(2).getTextContent().trim();
-        assertEquals("subset of tokens "
-                        + CheckUtil.getTokenText(check.getAcceptableTokens(),
-                check.getRequiredTokens()),
-                acceptableTokenText
+        String expectedAcceptableTokenText = "subset of tokens "
+                + CheckUtil.getTokenText(check.getAcceptableTokens(),
+                check.getRequiredTokens());
+        if (isAllTokensAcceptable(check)) {
+            expectedAcceptableTokenText = "set of any supported tokens";
+        }
+        assertEquals(expectedAcceptableTokenText, acceptableTokenText
                         .replaceAll("\\s+", " ")
                         .replaceAll("\\s,", ",")
                         .replaceAll("\\s\\.", "."),
@@ -891,9 +894,9 @@ public class XdocsPagesTest {
                         + "should have ',' & '.' at beginning of the next corresponding lines.");
 
         final String defaultTokenText = columns.get(3).getTextContent().trim();
-        assertEquals(CheckUtil.getTokenText(check.getDefaultTokens(),
-                check.getRequiredTokens()),
-                defaultTokenText
+        final String expectedDefaultTokenText = CheckUtil.getTokenText(check.getDefaultTokens(),
+                check.getRequiredTokens());
+        assertEquals(expectedDefaultTokenText, defaultTokenText
                         .replaceAll("\\s+", " ")
                         .replaceAll("\\s,", ",")
                         .replaceAll("\\s\\.", "."),
@@ -902,6 +905,10 @@ public class XdocsPagesTest {
                 fileName + "'s default token section: " + sectionName
                         + "should have ',' & '.' at beginning of the next corresponding lines.");
 
+    }
+
+    private static boolean isAllTokensAcceptable(AbstractCheck check) {
+        return Arrays.equals(check.getAcceptableTokens(), TokenUtil.getAllTokenIds());
     }
 
     private static void validatePropertySectionPropertyJavadocTokens(String fileName,
