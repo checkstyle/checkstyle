@@ -46,6 +46,9 @@
                <description>Define the violation message
  when the maximum count is exceeded.</description>
             </property>
+            <property default-value="empty" name="tokens" type="anyTokenTypesSet">
+               <description>tokens to check</description>
+            </property>
          </properties>
          <message-keys>
             <message-key key="descendant.token.max"/>
