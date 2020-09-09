@@ -9,6 +9,11 @@
   <!-- Suppress miscellaneous files -->
   <suppress checks="Regexp" files="package-info.java"/>
 
+  <!-- Suppress input files for JavadocMetadataScraper, as they are not inputs related to check
+        configuration. -->
+  <suppress id="ConfigCommentOnTopInputs" files="meta[\\/].*"/>
+  <suppress id="StyleValidationCommentInInputs" files="meta[\\/].*"/>
+
   <!-- Suppress older check UT input files -->
 
   <suppress checks="Regexp" files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationAnnotation.java"/>
