@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
@@ -70,6 +71,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static final String ROOT_MODULE_NAME = "root";
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    /**
+     * Used by {@link #createChecker(Configuration, ModuleCreationOption)} to
+     * call
+     * {@link BriefUtLogger#BriefUtLogger(java.io.OutputStream, OutputStreamOptions, java.io.OutputStream, OutputStreamOptions) }
+     */
+    protected OutputStreamOptions infoStreamOptions = OutputStreamOptions.CLOSE;
 
     /**
      * Returns log stream.
@@ -147,7 +155,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             final Configuration dc = createRootConfig(moduleConfig);
             checker.configure(dc);
         }
-        checker.addListener(new BriefUtLogger(stream));
+        checker.addListener(new BriefUtLogger(stream, infoStreamOptions, stream,
+                OutputStreamOptions.NONE));
         return checker;
     }
 
@@ -284,6 +293,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                           String messageFileName,
                           String... expected)
             throws Exception {
+        verifyNoDestroy(checker, processedFiles, messageFileName, expected);
+        checker.destroy();
+    }
+
+    protected void verifyNoDestroy(Checker checker, File[] processedFiles,
+            String messageFileName, String... expected) throws Exception {
         stream.flush();
         stream.reset();
         final List<File> theFiles = new ArrayList<>();
@@ -308,7 +323,6 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     expected.length, errs);
         }
 
-        checker.destroy();
     }
 
     /**
