@@ -34,24 +34,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @noinspection SerializableHasSerializationMethods
  */
-public final class DefaultConfiguration implements Configuration {
+public class DefaultConfiguration implements Configuration {
 
     private static final long serialVersionUID = 1157875385356127169L;
 
     /** Constant for optimization. */
     private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
 
-    /** The name of this configuration. */
-    private final String name;
-
-    /** The list of child Configurations. */
-    private final List<Configuration> children = new ArrayList<>();
+    /**
+     * The list of child Configurations.
+     */
+    // -@cs[VisibilityModifier] for using its subclass (InheritConfiguration).
+    protected final List<Configuration> children = new ArrayList<>();
 
     /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = new HashMap<>();
+    // -@cs[VisibilityModifier] for using its subclass (InheritConfiguration).
+    protected final Map<String, String> attributeMap = new HashMap<>();
 
     /** The map containing custom messages. */
-    private final Map<String, String> messages = new HashMap<>();
+    // -@cs[VisibilityModifier] for using its subclass (InheritConfiguration).
+    protected final Map<String, String> messages = new HashMap<>();
+
+    /** The name of this configuration. */
+    private final String name;
 
     /** The thread mode configuration. */
     private final ThreadModeSettings threadModeSettings;
