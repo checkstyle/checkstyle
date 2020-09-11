@@ -530,6 +530,9 @@
   <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationLambda3.java"/>
   <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationLambda4.java"/>
   <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationLambda5.java"/>
+  <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationLambda6.java"/>
+  <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationLambda7.java"/>
+  <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationLambda8.java"/>
   <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationMembers.java"/>
   <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationMethodCallLineWrap.java"/>
   <suppress checks="Regexp" files="indentation[\\/]indentation[\\/]InputIndentationMethodCStyle.java"/>
