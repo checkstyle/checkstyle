@@ -94,6 +94,18 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testResourceLoadInheritConfiguration() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        // load config that's only found in the classpath
+        final DefaultConfiguration config = (DefaultConfiguration) ConfigurationLoader.loadConfiguration(
+            getPath("InputConfigurationLoaderInheritGoogleChecks.xml"), new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode(config, "Checker", 5, null);
+    }
+    @Test
     public void testResourceLoadConfigurationWithMultiThreadConfiguration() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
@@ -309,6 +321,9 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         assertEquals(
                 childrenLength,
             config.getChildren().length, "children.length.");
+        if (atts == null) {
+            return;
+        }
 
         final String[] attNames = config.getAttributeNames();
         assertEquals(atts.size(), attNames.length, "attributes.length");
