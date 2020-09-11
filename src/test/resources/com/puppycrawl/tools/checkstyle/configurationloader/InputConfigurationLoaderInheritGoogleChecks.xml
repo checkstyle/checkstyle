@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/configuration_1_4.dtd">
+<module name="Checker" parent="google_checks.xml">
+  <property name="tabWidth" value="4" />
+  <property name="basedir" value="${checkstyle.basedir}" />
+  <module name="LineLength">
+    <property name="fileExtensions" value="java" />
+    <property name="max" value="${checkstyle_LineLength_max}" default="130" />
+    <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://" />
+  </module>
+  <module name="TreeWalker">
+    <module name="NoWhitespaceAfter">
+      <property name="tokens" value="DOT" />
+      <property name="allowLineBreaks" value="true" />
+    </module>
+
+    <module name="Indentation">
+      <property name="basicOffset" value="4" />
+      <property name="braceAdjustment" value="0" />
+      <property name="caseIndent" value="4" />
+      <property name="throwsIndent" value="4" />
+      <!-- 
+      <property name="lineWrappingIndentation" value="4" />
+      <property name="arrayInitIndent" value="2" />
+       -->
+    </module>
+  </module>
+</module>
