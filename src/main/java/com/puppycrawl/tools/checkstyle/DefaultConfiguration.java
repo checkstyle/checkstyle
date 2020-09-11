@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @noinspection SerializableHasSerializationMethods
  */
-public final class DefaultConfiguration implements Configuration {
+public class DefaultConfiguration implements Configuration {
 
     private static final long serialVersionUID = 1157875385356127169L;
 
@@ -44,17 +44,17 @@ public final class DefaultConfiguration implements Configuration {
     /** The name of this configuration. */
     private final String name;
 
-    /** The list of child Configurations. */
-    private final List<Configuration> children = new ArrayList<>();
-
-    /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = new HashMap<>();
-
-    /** The map containing custom messages. */
-    private final Map<String, String> messages = new HashMap<>();
-
     /** The thread mode configuration. */
     private final ThreadModeSettings threadModeSettings;
+
+    /** The list of child Configurations. */
+    protected final List<Configuration> children = new ArrayList<>();
+
+    /** The map from attribute names to attribute values. */
+    protected final Map<String, String> attributeMap = new HashMap<>();
+
+    /** The map containing custom messages. */
+    protected final Map<String, String> messages = new HashMap<>();
 
     /**
      * Instantiates a DefaultConfiguration.
