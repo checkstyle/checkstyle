@@ -21,6 +21,7 @@ package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -135,6 +136,68 @@ public class XpathRegressionIndentationTest extends AbstractXpathTestSupport {
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationTestThree']]"
                     + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/LITERAL_SWITCH/"
                     + "CASE_GROUP/LITERAL_CASE"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testLambda() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionIndentationLambdaTest1.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IndentationCheck.class);
+        moduleConfig.addAttribute("arrayInitIndent", "4");
+        moduleConfig.addAttribute("basicOffset", "4");
+        moduleConfig.addAttribute("braceAdjustment", "0");
+        moduleConfig.addAttribute("caseIndent", "4");
+        moduleConfig.addAttribute("forceStrictCondition", "false");
+        moduleConfig.addAttribute("lineWrappingIndentation", "4");
+        moduleConfig.addAttribute("tabWidth", "4");
+        moduleConfig.addAttribute("throwsIndent", "4");
+
+        final String[] expectedViolation = {
+            "6:9: " + getCheckMessage(IndentationCheck.class,
+                    IndentationCheck.MSG_ERROR, "(", 8, 12),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationLambdaTest1"
+                    + "']]/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF"
+                    + "[./IDENT[@text='getA']]/ASSIGN/LAMBDA/LPAREN"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testLambda2() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionIndentationLambdaTest2.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IndentationCheck.class);
+        moduleConfig.addAttribute("arrayInitIndent", "4");
+        moduleConfig.addAttribute("basicOffset", "4");
+        moduleConfig.addAttribute("braceAdjustment", "0");
+        moduleConfig.addAttribute("caseIndent", "4");
+        moduleConfig.addAttribute("forceStrictCondition", "false");
+        moduleConfig.addAttribute("lineWrappingIndentation", "4");
+        moduleConfig.addAttribute("tabWidth", "4");
+        moduleConfig.addAttribute("throwsIndent", "4");
+
+        final String[] expectedViolation = {
+            "14:15: " + getCheckMessage(IndentationCheck.class,
+                    IndentationCheck.MSG_CHILD_ERROR_MULTI, "block", 14, "12, 16"),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionIndentationLambdaTest2']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/SLIST/VARIABLE_DEF["
+                    + "./IDENT[@text='div']]/ASSIGN/LAMBDA/SLIST/LITERAL_RETURN"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

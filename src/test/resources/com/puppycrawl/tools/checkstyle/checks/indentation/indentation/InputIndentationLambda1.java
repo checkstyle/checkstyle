@@ -43,11 +43,11 @@ public class InputIndentationLambda1 { //indent:0 exp:0
 
     Runnable r7 = () //indent:4 exp:4
         -> //indent:8 exp:8
-     { //indent:5 exp:4 warn
-     }; //indent:5 exp:4 warn
+     { //indent:5 exp:4,8 warn
+     }; //indent:5 exp:4,8 warn
 
     Runnable r8 = //indent:4 exp:4
-         () //indent:9 exp:8 warn
+         () //indent:9 exp:9
            -> //indent:11 exp:12 warn
          {}; //indent:9 exp:8 warn
 
