@@ -94,6 +94,20 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testResourceLoadInheritConfiguration() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final String path = getPath("InputConfigurationLoaderInheritGoogleChecks.xml");
+        // load config that's only found in the classpath
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+            path, new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 5, null);
+    }
+
+    @Test
     public void testResourceLoadConfigurationWithMultiThreadConfiguration() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
@@ -309,14 +323,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         assertEquals(
                 childrenLength,
             config.getChildren().length, "children.length.");
-
-        final String[] attNames = config.getAttributeNames();
-        assertEquals(atts.size(), attNames.length, "attributes.length");
-
-        for (String attName : attNames) {
-            final String attribute = config.getAttribute(attName);
-            assertEquals(atts.getProperty(attName), attribute, "attribute[" + attName + "]");
+        if (atts != null) {
+            final String[] attNames = config.getAttributeNames();
+            assertEquals(atts.size(), attNames.length, "attributes.length");
+            for (String attName : attNames) {
+                final String attribute = config.getAttribute(attName);
+                assertEquals(atts.getProperty(attName), attribute, "attribute[" + attName + "]");
+            }
         }
+
     }
 
     @Test
