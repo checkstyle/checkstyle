@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/configuration_1_4.dtd">
+<module name="Checker"
+parent="com/puppycrawl/tools/checkstyle/configurationloader/InputConfigurationLoaderInherit1.xml">
+</module>
