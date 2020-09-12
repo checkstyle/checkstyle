@@ -16,6 +16,82 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.36.1">
+      <div class="releaseDate">12.09.2020</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            DesignForExtension check crashes CheckStyle if an undocumented
+            non-final method is present in a record (Java 14 + Java 15).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8810">#8810</a>
+          </li>
+          <li>
+            FinalClass check crashes CheckStyle if there are multiple
+            constructors in a record (Java 14 + Java 15) .
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8811">#8811</a>
+          </li>
+          <li>
+            IndentationCheck: false positive with nested records&#39; methods
+            (Java 14 + Java 15).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8806">#8806</a>
+          </li>
+          <li>
+            Support for all Token Types as a Property Type for Module Metadata.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8801">#8801</a>
+          </li>
+          <li>
+            MissingSwitchDefault to exclude Java 14 switch expressions.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8779">#8779</a>
+          </li>
+          <li>
+            Set tokenTypesSet as validationType for non base token properties.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8785">#8785</a>
+          </li>
+          <li>
+            Google style has improper enforcement of horizontal whitespace.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8122">#8122</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Update doc for NestedForDepth.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7651">#7651</a>
+          </li>
+          <li>
+            Improve code coverage for metadata generator classes.
+            Author: Gaurab Dasgupta
+            <a href="https://github.com/checkstyle/checkstyle/issues/8771">#8771</a>
+          </li>
+          <li>
+            Update doc for IllegalThrows.
+            Author: zy
+            <a href="https://github.com/checkstyle/checkstyle/issues/7644">#7644</a>
+          </li>
+          <li>
+            Update doc for ExplicitInitialization.
+            Author: Demezhan Marikov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7639">#7639</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - ImportOrderCheck (1).
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7872">#7872</a>
+          </li>
+          <li>
+            doc: Add stickler-ci to the active tool list.
+            Author: Mark Story
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.36">
       <div class="releaseDate">28.08.2020</div>
       <p>New:</p>
