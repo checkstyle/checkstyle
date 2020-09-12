@@ -3022,6 +3022,12 @@
   <suppress id="StyleValidationCommentInInputs"
             files="indentation[\\/]indentation[\\/]InputIndentationLambda5.java"/>
   <suppress id="StyleValidationCommentInInputs"
+            files="indentation[\\/]indentation[\\/]InputIndentationLambda6.java"/>
+  <suppress id="StyleValidationCommentInInputs"
+            files="indentation[\\/]indentation[\\/]InputIndentationLambda7.java"/>
+  <suppress id="StyleValidationCommentInInputs"
+            files="indentation[\\/]indentation[\\/]InputIndentationLambda8.java"/>
+  <suppress id="StyleValidationCommentInInputs"
             files="indentation[\\/]indentation[\\/]InputIndentationMembers.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="indentation[\\/]indentation[\\/]InputIndentationMethodCallLineWrap.java"/>
