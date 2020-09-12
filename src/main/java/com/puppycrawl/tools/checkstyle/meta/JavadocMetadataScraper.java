@@ -182,10 +182,12 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             scrapeContent(ast);
         }
 
-        if (ast.getType() == JavadocTokenTypes.JAVADOC
-            && getParent(getBlockCommentAst()).getType() == TokenTypes.CLASS_DEF) {
-            rootNode = ast;
-            toScan = true;
+        if (ast.getType() == JavadocTokenTypes.JAVADOC) {
+            final DetailAST parent = getParent(getBlockCommentAst());
+            if (parent != null && parent.getType() == TokenTypes.CLASS_DEF) {
+                rootNode = ast;
+                toScan = true;
+            }
         }
         else if (ast.getType() == JavadocTokenTypes.SINCE_LITERAL) {
             toScan = false;
