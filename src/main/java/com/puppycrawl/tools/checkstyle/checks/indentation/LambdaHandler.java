@@ -27,6 +27,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *
  */
 public class LambdaHandler extends AbstractExpressionHandler {
+    /**
+     * Checks whether the lambda is correctly indented, this variable get its value from checking
+     * the lambda handler's indentation, and it is being used in aligning the lambda's children.
+     * A true value depicts lambda is correctly aligned without giving any errors.
+     * This is updated to false where there is any Indentation error log.
+     */
+    private boolean isLambdaCorrectlyIndented = true;
 
     /**
      * Construct an instance of this handler with the given indentation check,
@@ -43,7 +50,13 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
-        return getIndent();
+        IndentLevel childIndent = getIndent();
+        if (isLambdaCorrectlyIndented) {
+            childIndent = IndentLevel.addAcceptable(childIndent, getLineStart(getMainAst()),
+                    getLineStart(getMainAst().getFirstChild()));
+        }
+
+        return childIndent;
     }
 
     /**
@@ -80,22 +93,35 @@ public class LambdaHandler extends AbstractExpressionHandler {
         // If the argument list is the first element on the line
         final DetailAST firstChild = getMainAst().getFirstChild();
         final DetailAST parent = getMainAst().getParent();
+
         if (parent.getType() != TokenTypes.SWITCH_RULE
                 && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+            final int firstChildColumnNo = expandedTabsColumnNo(firstChild);
             final IndentLevel level = getIndent();
-            if (!level.isAcceptable(expandedTabsColumnNo(firstChild))) {
-                logError(firstChild, "arguments", expandedTabsColumnNo(firstChild), level);
+
+            if (isNonAcceptableIndent(firstChildColumnNo, level)) {
+                isLambdaCorrectlyIndented = false;
+                logError(firstChild, "arguments", firstChildColumnNo, level);
             }
         }
 
         // If the "->" is the first element on the line, assume line wrapping.
-        if (getLineStart(getMainAst()) == expandedTabsColumnNo(getMainAst())) {
+        final int mainAstColumnNo = expandedTabsColumnNo(getMainAst());
+        if (mainAstColumnNo == getLineStart(getMainAst())) {
             final IndentLevel level =
                 new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
-            if (!level.isAcceptable(expandedTabsColumnNo(getMainAst()))) {
-                logError(getMainAst(), "", expandedTabsColumnNo(getMainAst()), level);
+
+            if (isNonAcceptableIndent(mainAstColumnNo, level)) {
+                isLambdaCorrectlyIndented = false;
+                logError(getMainAst(), "", mainAstColumnNo, level);
             }
         }
+    }
+
+    private boolean isNonAcceptableIndent(int astColumnNo, IndentLevel level) {
+        return astColumnNo < level.getFirstIndentLevel()
+            || getIndentCheck().isForceStrictCondition()
+               && !level.isAcceptable(astColumnNo);
     }
 
 }
