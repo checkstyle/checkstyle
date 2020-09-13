@@ -187,9 +187,9 @@ pitest-tree-walker)
 pitest-utils)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
-  "CommonUtil.java.html:<td class='uncovered'><pre><span  class=''>                catch (final URISyntaxException ex) {</span></pre></td></tr>"
-  "CommonUtil.java.html:<td class='uncovered'><pre><span  class='survived'>                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);</span></pre></td></tr>"
-  );
+  "CommonUtil.java.html:<td class='uncovered'><pre><span  class=''>        catch (final URISyntaxException ex) {</span></pre></td></tr>"
+  "CommonUtil.java.html:<td class='covered'><pre><span  class='survived'>            if (filename.charAt(0) != &#39;/&#39;) {</span></pre></td></tr>"
+ );
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
