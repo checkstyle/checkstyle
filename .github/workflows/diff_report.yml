@@ -104,6 +104,17 @@ jobs:
         ref: master
         path: checkstyle
         fetch-depth: 0
+
+     # set main checkstyle repo as an upstream
+     # Diff report will be generated taking upstream's master branch as a base branch
+     - name: set upstream
+       run: |
+         cd checkstyle
+         bash
+         MAIN_REPO_GIT_URL="https://github.com/checkstyle/checkstyle.git"
+         git remote add upstream $MAIN_REPO_GIT_URL
+         git fetch upstream
+         cd ../
      
      # fetch-depth default: 1
      # Don't need history for all branches and tags here.
@@ -133,14 +144,16 @@ jobs:
          bash
          REF="origin/${{needs.parse_body.outputs.branch}}"
          REPO="../../checkstyle"
+         BASE_BRANCH="upstream/master"
          if [ -f new_module_config.xml ]; then
            groovy diff.groovy -r $REPO -p $REF -pc new_module_config.xml -m single\
              -l project.properties
          elif [ -f patch_config.xml ]; then
-           groovy diff.groovy -r $REPO -b master -p $REF -bc diff_config.xml -pc patch_config.xml\
-             -l project.properties
+           groovy diff.groovy -r $REPO -b $BASE_BRANCH -p $REF -bc diff_config.xml\
+             -pc patch_config.xml -l project.properties
          else
-           groovy diff.groovy -r $REPO -b master -p $REF -c diff_config.xml -l project.properties
+           groovy diff.groovy -r $REPO -b $BASE_BRANCH -p $REF -c diff_config.xml\
+             -l project.properties
          fi
 
      - name: Copy Report to AWS S3 Bucket
