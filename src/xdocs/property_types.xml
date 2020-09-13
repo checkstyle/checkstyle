@@ -932,7 +932,7 @@
       <p>
         This type represents a URI. The string representation is parsed using a custom
         routine to analyze what type of URI the string is.
-        It can be a URL, regular file, or a resource path. It will try loading the path as
+        It can be a URL, regular file, or a resource path. If it's with prefix 'classpath:' means load from classpath only. If it's start with '/', then skip the URL check. Then it will try loading the path as
         a URL first, then as a file that must exist, and then finally as a resource on the
         classpath.
       </p>
