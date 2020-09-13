@@ -69,6 +69,12 @@ class InputIndentationCtorCall { //indent:0 exp:0
     arg); //indent:4 exp:8 warn
     } //indent:4 exp:4
 
+    public Invalid(InputIndentationCtorCall obj, double arg) { //indent:4 exp:4
+      obj. //indent:6 exp:6
+          super( //indent:10 exp:10
+          x -> arg); //indent:10 exp:12,14 warn
+    } //indent:4 exp:4
+
   } //indent:2 exp:2
 
   class Valid extends Base { //indent:2 exp:2
