@@ -410,12 +410,10 @@ public class IllegalImportCheck
                 break;
             }
         }
-        if (!result) {
-            for (Pattern pattern : illegalClassesRegexps) {
-                if (pattern.matcher(importText).matches()) {
-                    result = true;
-                    break;
-                }
+        for (Pattern pattern : illegalClassesRegexps) {
+            if (pattern.matcher(importText).matches()) {
+                result = true;
+                break;
             }
         }
         return result;
