@@ -75,6 +75,9 @@ public final class CommonUtil {
     /** Symbols with which multiple comment ends. */
     private static final String BLOCK_MULTIPLE_COMMENT_END = "*/";
 
+    /** Pseudo URL prefix for loading from the class path: "classpath:". */
+    private static final String CLASSPATH_URL_PREFIX = "classpath:";
+
     /** Stop instances being created. **/
     private CommonUtil() {
     }
@@ -500,42 +503,53 @@ public final class CommonUtil {
      */
     public static URI getUriByFilename(String filename) throws CheckstyleException {
         // figure out if this is a File or a URL
-        URI uri;
-        try {
-            final URL url = new URL(filename);
-            uri = url.toURI();
+        URI uri = null;
+        if (filename.startsWith(CLASSPATH_URL_PREFIX)) {
+            final String path = filename.substring(CLASSPATH_URL_PREFIX.length());
+            uri = toUri(path);
         }
-        catch (final URISyntaxException | MalformedURLException ignored) {
-            uri = null;
-        }
-
-        if (uri == null) {
-            final File file = new File(filename);
-            if (file.exists()) {
-                uri = file.toURI();
-            }
-            else {
-                // check to see if the file is in the classpath
+        else {
+            if (filename.charAt(0) != '/') {
                 try {
-                    final URL configUrl;
-                    if (filename.charAt(0) == '/') {
-                        configUrl = CommonUtil.class.getResource(filename);
-                    }
-                    else {
-                        configUrl = ClassLoader.getSystemResource(filename);
-                    }
-                    if (configUrl == null) {
-                        throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
-                    }
-                    uri = configUrl.toURI();
+                    final URL url = new URL(filename);
+                    uri = url.toURI();
                 }
-                catch (final URISyntaxException ex) {
-                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);
+                catch (final URISyntaxException | MalformedURLException ignored) {
+                    // ignored
+                }
+            }
+            if (uri == null) {
+                final File file = new File(filename);
+                if (file.exists()) {
+                    uri = file.toURI();
+                }
+                else {
+                    uri = toUri(filename);
                 }
             }
         }
 
         return uri;
+    }
+
+    private static URI toUri(String filename) throws CheckstyleException {
+        // check to see if the file is in the classpath
+        try {
+            final URL configUrl;
+            if (filename.charAt(0) == '/') {
+                configUrl = CommonUtil.class.getResource(filename);
+            }
+            else {
+                configUrl = ClassLoader.getSystemResource(filename);
+            }
+            if (configUrl == null) {
+                throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
+            }
+            return configUrl.toURI();
+        }
+        catch (final URISyntaxException ex) {
+            throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);
+        }
     }
 
     /**
