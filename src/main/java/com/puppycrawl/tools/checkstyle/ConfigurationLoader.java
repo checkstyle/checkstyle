@@ -118,6 +118,18 @@ public final class ConfigurationLoader {
     private static final String DTD_CONFIGURATION_NAME_1_3 =
         "com/puppycrawl/tools/checkstyle/configuration_1_3.dtd";
 
+    /** The public ID for version 1_4 of the configuration dtd. */
+    private static final String DTD_PUBLIC_ID_1_4 =
+        "-//Puppy Crawl//DTD Check Configuration 1.4//EN";
+
+    /** The new public ID for version 1_4 of the configuration dtd. */
+    private static final String DTD_PUBLIC_CS_ID_1_4 =
+        "-//Checkstyle//DTD Checkstyle Configuration 1.4//EN";
+
+    /** The resource for version 1_4 of the configuration dtd. */
+    private static final String DTD_CONFIGURATION_NAME_1_4 =
+        "com/puppycrawl/tools/checkstyle/configuration_1_4.dtd";
+
     /** Prefix for the exception when unable to parse resource. */
     private static final String UNABLE_TO_PARSE_EXCEPTION_PREFIX = "unable to parse"
             + " configuration stream";
@@ -176,10 +188,12 @@ public final class ConfigurationLoader {
         map.put(DTD_PUBLIC_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
         map.put(DTD_PUBLIC_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
         map.put(DTD_PUBLIC_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        map.put(DTD_PUBLIC_ID_1_4, DTD_CONFIGURATION_NAME_1_4);
         map.put(DTD_PUBLIC_CS_ID_1_0, DTD_CONFIGURATION_NAME_1_0);
         map.put(DTD_PUBLIC_CS_ID_1_1, DTD_CONFIGURATION_NAME_1_1);
         map.put(DTD_PUBLIC_CS_ID_1_2, DTD_CONFIGURATION_NAME_1_2);
         map.put(DTD_PUBLIC_CS_ID_1_3, DTD_CONFIGURATION_NAME_1_3);
+        map.put(DTD_PUBLIC_CS_ID_1_4, DTD_CONFIGURATION_NAME_1_4);
         return map;
     }
 
@@ -313,7 +327,8 @@ public final class ConfigurationLoader {
                     new ConfigurationLoader(overridePropsResolver,
                             omitIgnoreModules, threadModeSettings);
             loader.parseInputSource(configSource);
-            return loader.configuration;
+            final Configuration config = loader.configuration;
+            return config;
         }
         catch (final SAXParseException ex) {
             final String message = String.format(Locale.ROOT, SAX_PARSE_EXCEPTION_FORMAT,
@@ -502,11 +517,12 @@ public final class ConfigurationLoader {
                 // create configuration
                 final String originalName = attributes.getValue(NAME);
                 final String name = threadModeSettings.resolveName(originalName);
-                final DefaultConfiguration conf =
-                    new DefaultConfiguration(name, threadModeSettings);
-
+                final DefaultConfiguration conf;
                 if (configuration == null) {
-                    configuration = conf;
+                    conf = createTopModule(attributes, name);
+                }
+                else {
+                    conf = new DefaultConfiguration(name, threadModeSettings);
                 }
 
                 // add configuration to it's parent
@@ -559,7 +575,9 @@ public final class ConfigurationLoader {
             if (qName.equals(MODULE)) {
                 final Configuration recentModule =
                     configStack.pop();
-
+                if (recentModule instanceof InheritConfiguration) {
+                    ((InheritConfiguration) recentModule).doMergeParent();
+                }
                 // get severity attribute if it exists
                 SeverityLevel level = null;
                 if (containsAttribute(recentModule, SEVERITY)) {
@@ -601,6 +619,28 @@ public final class ConfigurationLoader {
             final Optional<String> result = Arrays.stream(names)
                     .filter(name -> name.equals(attributeName)).findFirst();
             return result.isPresent();
+        }
+
+        private DefaultConfiguration createTopModule(final Attributes attributes,
+            final String name) {
+            final DefaultConfiguration conf;
+            final String parentConfig = attributes.getValue("parent");
+            if (parentConfig != null) {
+                Configuration parent = null;
+                try {
+                    parent = loadConfiguration(parentConfig,
+                        overridePropsResolver, threadModeSettings);
+                }
+                catch (CheckstyleException ex) {
+                    throw new IllegalStateException(ex.getMessage(), ex);
+                }
+                conf = new InheritConfiguration(parent, name, threadModeSettings);
+            }
+            else {
+                conf = new DefaultConfiguration(name, threadModeSettings);
+            }
+            configuration = conf;
+            return conf;
         }
 
     }
