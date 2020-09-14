@@ -305,6 +305,19 @@
               </td>
             </tr>
             <tr>
+              <td>
+                <a href="https://github.com/nikitasavinov/checkstyle-action#checkstyle-github-action">
+                Checkstyle Github Actions</a>
+              </td>
+              <td>Nikita Savinov</td>
+              <td><a href="https://github.com/marketplace/actions/run-java-checkstyle">
+              Github-action Marketplace</a></td>
+              <td>It runs checkstyle on your Pull Requests using
+                <a href="https://github.com/features/actions">github-actions</a> and
+                <a href="https://github.com/reviewdog/reviewdog">reviewdog</a>
+              </td>
+            </tr>
+            <tr>
               <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
               Checkstyle plug-in</a></td>
               <td/>
