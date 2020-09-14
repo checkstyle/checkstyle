@@ -94,6 +94,91 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     }
 
     @Test
+    public void testLoadInheritConfiguration() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+        final String path = getPath("InputConfigurationLoaderInheritGoogleChecks.xml");
+        // load config that's only found in the classpath
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+            path, new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 5, null);
+    }
+
+    @Test
+    public void testLoadInheritConfigurationEmptyParent() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final String path = getPath("InputConfigurationLoaderInheritEmptyEmpty.xml");
+        // load config that's only found in the classpath
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+            path, new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 0, null);
+    }
+
+    @Test
+    public void testLoadInheritConfigurationOneChild() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final String path = getPath("InputConfigurationLoaderInherit1.xml");
+        // load config that's only found in the classpath
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+            path, new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 1, null);
+    }
+
+    @Test
+    public void testLoadInheritConfigurationOneFromParent() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final String path = getPath("InputConfigurationLoaderInheritOneFromParent.xml");
+        // load config that's only found in the classpath
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+            path, new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 1, null);
+    }
+
+    @Test
+    public void testLoadInheritConfigurationTwo() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+
+        final String path = getPath("InputConfigurationLoaderInherit2.xml");
+        // load config that's only found in the classpath
+        final Configuration config = ConfigurationLoader.loadConfiguration(
+            path, new PropertiesExpander(props));
+
+        // verify the root
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 1, null);
+    }
+
+    @Test
+    public void testLoadInheritConfigurationNotFoundParent() throws Exception {
+        final Properties props = new Properties();
+        props.setProperty("checkstyle.basedir", "basedir");
+        final PropertiesExpander propertiesExpander = new PropertiesExpander(props);
+        final String path = getPath("InputConfigurationLoaderInheritErrorParent.xml");
+        try {
+            ConfigurationLoader.loadConfiguration(path, propertiesExpander);
+            fail("An exception is expected");
+        }
+        catch (IllegalStateException ex) {
+            assertEquals("Unable to find: not_found_checks.xml",
+                ex.getMessage(), "Invalid exception message");
+        }
+    }
+
+    @Test
     public void testResourceLoadConfigurationWithMultiThreadConfiguration() throws Exception {
         final Properties props = new Properties();
         props.setProperty("checkstyle.basedir", "basedir");
@@ -309,14 +394,15 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         assertEquals(
                 childrenLength,
             config.getChildren().length, "children.length.");
-
-        final String[] attNames = config.getAttributeNames();
-        assertEquals(atts.size(), attNames.length, "attributes.length");
-
-        for (String attName : attNames) {
-            final String attribute = config.getAttribute(attName);
-            assertEquals(atts.getProperty(attName), attribute, "attribute[" + attName + "]");
+        if (atts != null) {
+            final String[] attNames = config.getAttributeNames();
+            assertEquals(atts.size(), attNames.length, "attributes.length");
+            for (String attName : attNames) {
+                final String attribute = config.getAttribute(attName);
+                assertEquals(atts.getProperty(attName), attribute, "attribute[" + attName + "]");
+            }
         }
+
     }
 
     @Test
