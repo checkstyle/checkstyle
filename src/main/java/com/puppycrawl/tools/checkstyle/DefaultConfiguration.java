@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @noinspection SerializableHasSerializationMethods
  */
-public final class DefaultConfiguration implements Configuration {
+public class DefaultConfiguration implements Configuration {
 
     private static final long serialVersionUID = 1157875385356127169L;
 
@@ -165,6 +165,33 @@ public final class DefaultConfiguration implements Configuration {
      */
     public ThreadModeSettings getThreadModeSettings() {
         return threadModeSettings;
+    }
+
+    /**
+     * The children of the configuration.
+     *
+     * @return The children.
+     */
+    protected List<Configuration> theChildren() {
+        return children;
+    }
+
+    /**
+     * The attributeMap of the configuration.
+     *
+     * @return The attributeMap.
+     */
+    protected Map<String, String> theAttributeMap() {
+        return attributeMap;
+    }
+
+    /**
+     * The messages of the configuration.
+     *
+     * @return The messages.
+     */
+    protected Map<String, String> theMessages() {
+        return messages;
     }
 
 }
