@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +29,8 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 /**
  * InheritConfiguration for inherit the config with parent attribute on root module.
+ *
+ * @noinspection SerializableHasSerializationMethods
  */
 public final class InheritConfiguration extends DefaultConfiguration {
 
@@ -88,40 +89,30 @@ public final class InheritConfiguration extends DefaultConfiguration {
 
     private static void mergeChildren(final DefaultConfiguration parent,
             final DefaultConfiguration current) {
-        final List<Configuration> children = parent.theChildren();
+        final Configuration[] children = parent.getChildren();
         final Map<String, Configuration> parents = toChildrenMap(children);
-        final boolean parentHasChildren = !parents.isEmpty();
-        if (parentHasChildren) {
-            final List<Configuration> currentChildren = current.theChildren();
-            final Map<String, Configuration> currents = toChildrenMap(current.theChildren());
-            final Collection<String> addKeys = new ArrayList<>(parents.keySet());
-            addKeys.removeAll(currents.keySet());
-            for (final String id : addKeys) {
-                currentChildren.add(parents.get(id));
-            }
-            final Collection<String> mergeKeys = intersection(parents.keySet(), currents.keySet());
-            for (final String id : mergeKeys) {
-                final Configuration parentChild = parents.get(id);
-                final DefaultConfiguration currentChild = (DefaultConfiguration) currents.get(id);
-                doMergeParent((DefaultConfiguration) parentChild, currentChild);
-            }
+
+        final Configuration[] currentChildren = current.getChildren();
+        final Map<String, Configuration> currents = toChildrenMap(currentChildren);
+        final Collection<String> addKeys = new ArrayList<>(parents.keySet());
+        addKeys.removeAll(currents.keySet());
+        for (final String id : addKeys) {
+            current.addChild(parents.get(id));
+        }
+        final Collection<String> mergeKeys = intersection(parents.keySet(), currents.keySet());
+        for (final String id : mergeKeys) {
+            final Configuration parentChild = parents.get(id);
+            final DefaultConfiguration currentChild = (DefaultConfiguration) currents.get(id);
+            doMergeParent((DefaultConfiguration) parentChild, currentChild);
         }
     }
 
-    private static void mergeMessages(final DefaultConfiguration parent,
+    private static void mergeMessages(final Configuration parent,
             final DefaultConfiguration current) {
-        final Map<String, String> currentMessages = current.theMessages();
-        final Map<String, String> messageMap = parent.theMessages();
-        //        if (parent instanceof DefaultConfiguration) {
-        //            messageMap = ((DefaultConfiguration) parent).theMessages();
-        //        }
-        //        else {
-        //            messageMap = parent.getMessages();
-        //        }
-        for (final Map.Entry<String, String> entry : messageMap.entrySet()) {
-            final String key = entry.getKey();
-            if (!currentMessages.containsKey(key)) {
-                currentMessages.put(key, entry.getValue());
+        final String[] names = parent.getMessageNames();
+        for (final String key : names) {
+            if (!current.containsMessage(key)) {
+                current.addMessage(key, parent.getMessage(key));
             }
         }
     }
@@ -129,11 +120,9 @@ public final class InheritConfiguration extends DefaultConfiguration {
     private static void mergeAttributes(final DefaultConfiguration parent,
             final DefaultConfiguration current) {
         final String[] attributeNames = parent.getAttributeNames();
-        final Map<String, String> currentAttributeMap = current.theAttributeMap();
-        final Map<String, String> parentAttributeMap = parent.theAttributeMap();
         for (final String attr : attributeNames) {
-            if (!currentAttributeMap.containsKey(attr)) {
-                currentAttributeMap.put(attr, parentAttributeMap.get(attr));
+            if (!current.containsAttribute(attr)) {
+                current.addAttribute(attr, parent.getTheAttribute(attr));
             }
         }
     }
@@ -150,20 +139,14 @@ public final class InheritConfiguration extends DefaultConfiguration {
     }
 
     private static Map<String, Configuration> toChildrenMap(
-            final Collection<Configuration> children) {
-        final Map<String, Configuration> map;
-        if (children.isEmpty()) {
-            map = Collections.emptyMap();
-        }
-        else {
-            map = new HashMap<>();
-            for (Configuration child : children) {
-                String id = ((DefaultConfiguration) child).theAttributeMap().get("id");
-                if (id == null) {
-                    id = child.getName();
-                }
-                map.put(id, child);
+            final Configuration... children) {
+        final Map<String, Configuration> map = new HashMap<>();
+        for (Configuration child : children) {
+            String id = ((DefaultConfiguration) child).getTheAttribute("id");
+            if (id == null) {
+                id = child.getName();
             }
+            map.put(id, child);
         }
         return map;
     }
