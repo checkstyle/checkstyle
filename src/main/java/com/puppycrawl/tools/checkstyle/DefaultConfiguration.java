@@ -44,6 +44,9 @@ public class DefaultConfiguration implements Configuration {
     /** The name of this configuration. */
     private final String name;
 
+    /** The thread mode configuration. */
+    private final ThreadModeSettings threadModeSettings;
+
     /** The list of child Configurations. */
     private final List<Configuration> children = new ArrayList<>();
 
@@ -52,9 +55,6 @@ public class DefaultConfiguration implements Configuration {
 
     /** The map containing custom messages. */
     private final Map<String, String> messages = new HashMap<>();
-
-    /** The thread mode configuration. */
-    private final ThreadModeSettings threadModeSettings;
 
     /**
      * Instantiates a DefaultConfiguration.
@@ -167,31 +167,22 @@ public class DefaultConfiguration implements Configuration {
         return threadModeSettings;
     }
 
-    /**
-     * The children of the configuration.
-     *
-     * @return The children.
-     */
-    protected List<Configuration> theChildren() {
-        return children;
+    @Override
+    public boolean containsAttribute(final String key) {
+         return attributeMap.containsKey(key);
     }
 
-    /**
-     * The attributeMap of the configuration.
-     *
-     * @return The attributeMap.
-     */
-    protected Map<String, String> theAttributeMap() {
-        return attributeMap;
+    @Override
+    public boolean containsMessage(final String key) {
+        return messages.containsKey(key);
     }
 
-    /**
-     * The messages of the configuration.
-     *
-     * @return The messages.
-     */
-    protected Map<String, String> theMessages() {
-        return messages;
+    @Override
+    public String getMessage(final String key) {
+        return messages.get(key);
     }
 
+    protected String getTheAttribute(final String attributeName){
+        return attributeMap.get(attributeName);
+    }
 }
