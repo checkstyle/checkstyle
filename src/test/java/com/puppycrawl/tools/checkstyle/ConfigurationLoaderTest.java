@@ -165,13 +165,26 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Configuration config = ConfigurationLoader.loadConfiguration(
             path, new PropertiesExpander(props));
 
+        final Properties attributes = new Properties();
+        attributes.setProperty("tabWidth", "2");
+        attributes.setProperty("basedir", "basedir");
+        attributes.setProperty("tabWidth1", "4");
         // verify the root
-        verifyConfigNode((DefaultConfiguration) config, "Checker", 2, null);
-        assertEquals(3, config.getMessages().size(), "messages not equals");
+        verifyConfigNode((DefaultConfiguration) config, "Checker", 2, attributes);
+        final Map<String, String> messages = config.getMessages();
+        assertEquals(3, messages.size(), "messages not equals");
+        assertEquals("abc3", messages.get("message1"), "messages not equals");
+        assertEquals("abc1", messages.get("message2"), "messages not equals");
+        assertEquals("abc3", messages.get("message3"), "messages not equals");
+
         final Configuration[] children = config.getChildren();
         for (Configuration item : children) {
-            if ("TreeWalker".equals(item.getName())) {
-                verifyConfigNode((DefaultConfiguration) item, "TreeWalker", 3, null);
+            final String name = item.getName();
+            if ("TreeWalker".equals(name)) {
+                verifyConfigNode((DefaultConfiguration) item, "TreeWalker", 4, null);
+            }
+            if ("LineLength".equals(name)) {
+                assertEquals("140", item.getAttribute("max"), "max not equals");
             }
         }
     }
