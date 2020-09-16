@@ -41,17 +41,17 @@ public class DefaultConfiguration implements Configuration {
     /** Constant for optimization. */
     private static final Configuration[] EMPTY_CONFIGURATION_ARRAY = new Configuration[0];
 
-    /** The name of this configuration. */
-    private final String name;
-
     /** The list of child Configurations. */
-    private final List<Configuration> children = new ArrayList<>();
+    protected final List<Configuration> children = new ArrayList<>();
 
     /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = new HashMap<>();
+    protected final Map<String, String> attributeMap = new HashMap<>();
 
     /** The map containing custom messages. */
-    private final Map<String, String> messages = new HashMap<>();
+    protected final Map<String, String> messages = new HashMap<>();
+
+    /** The name of this configuration. */
+    private final String name;
 
     /** The thread mode configuration. */
     private final ThreadModeSettings threadModeSettings;
@@ -167,31 +167,31 @@ public class DefaultConfiguration implements Configuration {
         return threadModeSettings;
     }
 
-    /**
-     * The children of the configuration.
-     *
-     * @return The children.
-     */
-    protected List<Configuration> theChildren() {
-        return children;
-    }
-
-    /**
-     * The attributeMap of the configuration.
-     *
-     * @return The attributeMap.
-     */
-    protected Map<String, String> theAttributeMap() {
-        return attributeMap;
-    }
-
-    /**
-     * The messages of the configuration.
-     *
-     * @return The messages.
-     */
-    protected Map<String, String> theMessages() {
-        return messages;
-    }
+//    /**
+//     * The children of the configuration.
+//     *
+//     * @return The children.
+//     */
+//    protected List<Configuration> theChildren() {
+//        return children;
+//    }
+//
+//    /**
+//     * The attributeMap of the configuration.
+//     *
+//     * @return The attributeMap.
+//     */
+//    protected Map<String, String> theAttributeMap() {
+//        return attributeMap;
+//    }
+//
+//    /**
+//     * The messages of the configuration.
+//     *
+//     * @return The messages.
+//     */
+//    protected Map<String, String> theMessages() {
+//        return messages;
+//    }
 
 }
