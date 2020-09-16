@@ -67,4 +67,29 @@ public interface Configuration extends Serializable {
      */
     Map<String, String> getMessages();
 
+    /**
+     * Returns <tt>true</tt> if its attribute contains a mapping for the specified key.
+     *
+     * @param key key whose presence in its attribute is to be tested
+     * @return <tt>true</tt> if its attribute contains a mapping for the specified key.
+     */
+    boolean containsAttribute(String key);
+
+    /**
+     * Returns <tt>true</tt> if its messages contains a mapping for the specified key.
+     *
+     * @param key key whose presence in its messages is to be tested
+     * @return <tt>true</tt> if its messages contains a mapping for the specified key.
+     */
+    boolean containsMessage(String key);
+
+    /**
+     * Returns the value to which the specified key is mapped in messages,
+     * or {@code null} if messages contains no mapping for the key.
+     *
+     * @param key key whose presence in its messages is to be tested
+     * @return the value to which the specified key is mapped, or
+     *         {@code null} if this map contains no mapping for the key
+     */
+    String getMessage(String key);
 }

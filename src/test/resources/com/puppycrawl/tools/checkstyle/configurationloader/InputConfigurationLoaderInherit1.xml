@@ -21,6 +21,7 @@
         <module name="NoWhitespaceAfter">
             <property name="tokens" value="DOT" />
             <property name="allowLineBreaks" value="true" />
+            <property name="id" value="NoWhitespaceAfter1"/>
         </module>
 
         <module name="MemberName">
