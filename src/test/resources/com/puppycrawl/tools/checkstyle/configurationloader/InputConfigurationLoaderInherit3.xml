@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.4//EN"
+    "https://checkstyle.org/dtds/configuration_1_4.dtd">
+<module name="Checker"
+parent="com/puppycrawl/tools/checkstyle/configurationloader/InputConfigurationLoaderInherit2.xml">
+    <property name="tabWidth" value="4" />
+    <module name="TreeWalker">
+        <module name="MemberName">
+            <message key="method.name.equals.class.name"
+                value="Member ''{0}'' must start with ''m'' (checked pattern ''{1}'')." />
+            <message key="method.name.equals.class.name1" value="test" />
+        </module>
+    </module>
+    <message key="message1" value="abc" />
+    <message key="message2" value="abc" />
+</module>
