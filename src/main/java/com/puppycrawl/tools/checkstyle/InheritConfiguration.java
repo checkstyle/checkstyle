@@ -88,12 +88,12 @@ public final class InheritConfiguration extends DefaultConfiguration {
 
     private static void mergeChildren(final DefaultConfiguration parent,
             final DefaultConfiguration current) {
-        final List<Configuration> children = parent.theChildren();
+        final List<Configuration> children = parent.children;
         final Map<String, Configuration> parents = toChildrenMap(children);
         final boolean parentHasChildren = !parents.isEmpty();
         if (parentHasChildren) {
-            final List<Configuration> currentChildren = current.theChildren();
-            final Map<String, Configuration> currents = toChildrenMap(current.theChildren());
+            final List<Configuration> currentChildren = current.children;
+            final Map<String, Configuration> currents = toChildrenMap(current.children);
             final Collection<String> addKeys = new ArrayList<>(parents.keySet());
             addKeys.removeAll(currents.keySet());
             for (final String id : addKeys) {
@@ -110,15 +110,15 @@ public final class InheritConfiguration extends DefaultConfiguration {
 
     private static void mergeMessages(final DefaultConfiguration parent,
             final DefaultConfiguration current) {
-        final Map<String, String> currentMessages = current.theMessages();
-        final Map<String, String> messageMap = parent.theMessages();
+        final Map<String, String> currentMessages = current.messages;
+        //final Map<String, String> messageMap = parent.messages;
         //        if (parent instanceof DefaultConfiguration) {
         //            messageMap = ((DefaultConfiguration) parent).theMessages();
         //        }
         //        else {
         //            messageMap = parent.getMessages();
         //        }
-        for (final Map.Entry<String, String> entry : messageMap.entrySet()) {
+        for (final Map.Entry<String, String> entry : parent.messages.entrySet()) {
             final String key = entry.getKey();
             if (!currentMessages.containsKey(key)) {
                 currentMessages.put(key, entry.getValue());
@@ -129,11 +129,10 @@ public final class InheritConfiguration extends DefaultConfiguration {
     private static void mergeAttributes(final DefaultConfiguration parent,
             final DefaultConfiguration current) {
         final String[] attributeNames = parent.getAttributeNames();
-        final Map<String, String> currentAttributeMap = current.theAttributeMap();
-        final Map<String, String> parentAttributeMap = parent.theAttributeMap();
+        final Map<String, String> currentAttributeMap = current.attributeMap;
         for (final String attr : attributeNames) {
             if (!currentAttributeMap.containsKey(attr)) {
-                currentAttributeMap.put(attr, parentAttributeMap.get(attr));
+                currentAttributeMap.put(attr, parent.attributeMap.get(attr));
             }
         }
     }
@@ -158,7 +157,7 @@ public final class InheritConfiguration extends DefaultConfiguration {
         else {
             map = new HashMap<>();
             for (Configuration child : children) {
-                String id = ((DefaultConfiguration) child).theAttributeMap().get("id");
+                String id = ((DefaultConfiguration) child).attributeMap.get("id");
                 if (id == null) {
                     id = child.getName();
                 }
