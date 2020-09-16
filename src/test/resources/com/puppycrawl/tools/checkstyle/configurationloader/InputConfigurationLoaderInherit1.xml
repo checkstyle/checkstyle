@@ -7,6 +7,7 @@
     <property name="tabWidth" value="4" />
     <property name="basedir" value="${checkstyle.basedir}" />
     <module name="LineLength">
+         <property name="id" value="LineLength1"/>
         <property name="fileExtensions" value="java" />
         <property name="max" value="${checkstyle_LineLength_max}" default="130" />
         <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://" />
@@ -21,6 +22,7 @@
         <module name="NoWhitespaceAfter">
             <property name="tokens" value="DOT" />
             <property name="allowLineBreaks" value="true" />
+            <property name="id" value="NoWhitespaceAfter1"/>
         </module>
 
         <module name="MemberName">
@@ -28,7 +30,9 @@
             <message key="name.invalidPattern"
                 value="Member ''{0}'' must start with ''m'' (checked pattern ''{1}'')." />
         </module>
+        <message key="message1" value="abc1" />
+        <message key="message2" value="abc1" />
     </module>
-    <message key="message1" value="abc" />
-    <message key="message3" value="abc" />
+    <message key="message1" value="abc1" />
+    <message key="message2" value="abc1" />
 </module>
