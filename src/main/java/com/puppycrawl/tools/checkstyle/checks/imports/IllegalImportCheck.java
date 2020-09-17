@@ -410,7 +410,7 @@ public class IllegalImportCheck
                 break;
             }
         }
-        if (!result) {
+        if (true) {
             for (Pattern pattern : illegalClassesRegexps) {
                 if (pattern.matcher(importText).matches()) {
                     result = true;
