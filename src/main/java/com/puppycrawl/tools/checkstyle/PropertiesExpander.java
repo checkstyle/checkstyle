@@ -21,8 +21,12 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Resolves external properties from an
@@ -31,6 +35,8 @@ import java.util.Properties;
  */
 public final class PropertiesExpander
     implements PropertyResolver {
+    /** Var expression pattern, ie: ${config_loc}. */
+    private static final Pattern VAR_EXPR_PATTERN = Pattern.compile("\\$\\{([^\\s}]+)}");
 
     /** The underlying values. */
     private final Map<String, String> values;
@@ -49,8 +55,28 @@ public final class PropertiesExpander
         values = new HashMap<>(properties.size());
         for (Enumeration<?> e = properties.propertyNames(); e.hasMoreElements();) {
             final String name = (String) e.nextElement();
-            values.put(name, properties.getProperty(name));
+            String val = properties.getProperty(name);
+            val = resloveValue(properties, name, val, new HashSet<>());
+            values.put(name, val);
         }
+    }
+
+    private String resloveValue(final Properties properties, final String name,
+            final String val, final Set<String> resolveKeys) {
+        String ret = val;
+        final Matcher matcher = VAR_EXPR_PATTERN.matcher(val);
+        if (matcher.find()) {
+            resolveKeys.add(name);
+            final String key = matcher.group(1);
+            String varPv = properties.getProperty(key);
+            if (varPv != null) {
+                if (!resolveKeys.contains(key)) {
+                    varPv = resloveValue(properties, key, varPv, resolveKeys);
+                }
+                ret = matcher.replaceFirst(Matcher.quoteReplacement(varPv));
+            }
+        }
+        return ret;
     }
 
     @Override
