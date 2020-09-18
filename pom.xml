@@ -2831,6 +2831,7 @@
                 <param>com.puppycrawl.tools.checkstyle.AuditEventDefaultFormatter*</param>
                 <param>com.puppycrawl.tools.checkstyle.ConfigurationLoader*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultConfiguration*</param>
+                <param>com.puppycrawl.tools.checkstyle.InheritConfiguration*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultContext*</param>
                 <param>com.puppycrawl.tools.checkstyle.DefaultLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
