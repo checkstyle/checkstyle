@@ -53,6 +53,14 @@ public interface Configuration extends Serializable {
     Configuration[] getChildren();
 
     /**
+     * Returns the child by name if found. null if not found.
+     *
+     * @param name - The child name.
+     * @return the child by name if found; null if not found.
+     */
+    Configuration getChild(String name);
+
+    /**
      * The name of this configuration.
      *
      * @return The name of this configuration.
@@ -67,4 +75,36 @@ public interface Configuration extends Serializable {
      */
     Map<String, String> getMessages();
 
+    /**
+     * The set of message names.
+     *
+     * @return The set of message names, never null.
+     */
+    String[] getMessageNames();
+
+    /**
+     * Returns true if its attribute contains a mapping for the specified key.
+     *
+     * @param key key whose presence in its attribute is to be tested
+     * @return true if its attribute contains a mapping for the specified key.
+     */
+    boolean containsAttribute(String key);
+
+    /**
+     * Returns true if its messages contains a mapping for the specified key.
+     *
+     * @param key key whose presence in its messages is to be tested
+     * @return true if its messages contains a mapping for the specified key.
+     */
+    boolean containsMessage(String key);
+
+    /**
+     * Returns the value to which the specified key is mapped in messages,
+     * or {@code null} if messages contains no mapping for the key.
+     *
+     * @param key key whose presence in its messages is to be tested
+     * @return the value to which the specified key is mapped, or
+     *         {@code null} if this map contains no mapping for the key
+     */
+    String getMessage(String key);
 }
