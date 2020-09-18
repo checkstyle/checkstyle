@@ -296,7 +296,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "11:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
             "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
             "47:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
+            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags.java"), expected);
     }
@@ -309,7 +309,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
             "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
+            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags.java"), expected);
     }
@@ -319,7 +319,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
         };
         verify(checkConfig,
