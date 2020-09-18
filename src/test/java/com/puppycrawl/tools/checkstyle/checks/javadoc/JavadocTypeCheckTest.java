@@ -410,7 +410,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "40:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
             "53:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
             "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            };
+        };
         verify(checkConfig, getNonCompilablePath("InputJavadocTypeRecords.java"), expected);
     }
 }
