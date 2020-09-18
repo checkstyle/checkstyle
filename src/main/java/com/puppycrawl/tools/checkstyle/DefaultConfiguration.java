@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * @noinspection SerializableHasSerializationMethods
  */
-public final class DefaultConfiguration implements Configuration {
+public class DefaultConfiguration implements Configuration {
 
     private static final long serialVersionUID = 1157875385356127169L;
 
@@ -44,6 +44,9 @@ public final class DefaultConfiguration implements Configuration {
     /** The name of this configuration. */
     private final String name;
 
+    /** The thread mode configuration. */
+    private final ThreadModeSettings threadModeSettings;
+
     /** The list of child Configurations. */
     private final List<Configuration> children = new ArrayList<>();
 
@@ -52,9 +55,6 @@ public final class DefaultConfiguration implements Configuration {
 
     /** The map containing custom messages. */
     private final Map<String, String> messages = new HashMap<>();
-
-    /** The thread mode configuration. */
-    private final ThreadModeSettings threadModeSettings;
 
     /**
      * Instantiates a DefaultConfiguration.
@@ -158,6 +158,12 @@ public final class DefaultConfiguration implements Configuration {
         return new HashMap<>(messages);
     }
 
+    @Override
+    public String[] getMessageNames() {
+        final Set<String> keySet = messages.keySet();
+        return keySet.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
     /**
      * Gets the thread mode configuration.
      *
@@ -167,4 +173,28 @@ public final class DefaultConfiguration implements Configuration {
         return threadModeSettings;
     }
 
+    @Override
+    public boolean containsAttribute(final String key) {
+        return attributeMap.containsKey(key);
+    }
+
+    @Override
+    public boolean containsMessage(final String key) {
+        return messages.containsKey(key);
+    }
+
+    @Override
+    public String getMessage(final String key) {
+        return messages.get(key);
+    }
+
+    /**
+     * Returns the attributeName value.
+     *
+     * @param attributeName - Attribute name.
+     * @return  The value of the attributeName.
+     */
+    protected String getTheAttribute(final String attributeName) {
+        return attributeMap.get(attributeName);
+    }
 }
