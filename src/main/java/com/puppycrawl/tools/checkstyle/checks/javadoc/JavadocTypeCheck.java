@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -37,10 +38,11 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks the Javadoc comments for annotation/enum/class/interface definitions. By default, does
+ * Checks the Javadoc comments for type definitions. By default, does
  * not check for author or version tags. The scope to verify is specified using the {@code Scope}
  * class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
  * scope to one of the {@code Scope} constants. To define the format for an author
@@ -53,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * as they should be redundant because of outer class.
  * </p>
  * <p>
- * Error messages about type parameters for which no param tags are present
+ * Error messages about type parameters and record components for which no param tags are present
  * can be suppressed by defining property {@code allowMissingParamTags}.
  * </p>
  * <ul>
@@ -238,6 +240,9 @@ public class JavadocTypeCheck
     /** Close angle bracket literal. */
     private static final String CLOSE_ANGLE_BRACKET = ">";
 
+    /** Space literal. */
+    private static final String SPACE = " ";
+
     /** Pattern to match type name within angle brackets in javadoc param tag. */
     private static final Pattern TYPE_NAME_IN_JAVADOC_TAG =
             Pattern.compile("\\s*<([^>]+)>.*");
@@ -372,6 +377,8 @@ public class JavadocTypeCheck
 
                 final List<String> typeParamNames =
                     CheckUtil.getTypeParameterNames(ast);
+                final List<String> recordComponentNames =
+                    getRecordComponentNames(ast);
 
                 if (!allowMissingParamTags) {
                     // Check type parameters that should exist, do
@@ -379,9 +386,13 @@ public class JavadocTypeCheck
                         checkTypeParamTag(
                             ast, tags, typeParamName);
                     }
+
+                    for (final String componentName : recordComponentNames) {
+                        checkComponentParamTag(ast, tags, componentName);
+                    }
                 }
 
-                checkUnusedTypeParamTags(tags, typeParamNames);
+                checkUnusedParamTags(tags, typeParamNames, recordComponentNames);
             }
         }
     }
@@ -460,6 +471,32 @@ public class JavadocTypeCheck
     }
 
     /**
+     * Verifies that a record definition has the specified param tag for
+     * the specified record component name.
+     *
+     * @param ast           the AST node for the record definition.
+     * @param tags          tags from the Javadoc comment for the record definition.
+     * @param recordComponentName the name of the type parameter
+     */
+    private void checkComponentParamTag(final DetailAST ast,
+                                        final List<JavadocTag> tags,
+                                        final String recordComponentName) {
+        boolean found = false;
+        for (int i = tags.size() - 1; i >= 0; i--) {
+            final JavadocTag tag = tags.get(i);
+            if (tag.isParamTag()
+                && tag.getFirstArg().indexOf(recordComponentName) == 0) {
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
+                + SPACE + recordComponentName);
+        }
+    }
+
+    /**
      * Verifies that a type definition has the specified param tag for
      * the specified type parameter name.
      *
@@ -481,41 +518,46 @@ public class JavadocTypeCheck
         }
         if (!found) {
             log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
-                + " " + OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
+                + SPACE + OPEN_ANGLE_BRACKET
+                + typeParamName + CLOSE_ANGLE_BRACKET);
         }
     }
 
     /**
-     * Checks for unused param tags for type parameters.
+     * Checks for unused param tags for type parameters and record components.
      *
      * @param tags tags from the Javadoc comment for the type definition.
      * @param typeParamNames names of type parameters
+     * @param recordComponentNames list of record component names in this definition
      */
-    private void checkUnusedTypeParamTags(
+    private void checkUnusedParamTags(
         final List<JavadocTag> tags,
-        final List<String> typeParamNames) {
+        final List<String> typeParamNames,
+        final List<String> recordComponentNames) {
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
-                final String typeParamName = extractTypeParamNameFromTag(tag);
+                final String paramName = extractParamNameFromTag(tag);
 
-                if (!typeParamNames.contains(typeParamName)) {
+                if (!typeParamNames.contains(paramName)
+                    && !recordComponentNames.contains(paramName)) {
+                    final String actualParamName =
+                        TYPE_NAME_IN_JAVADOC_TAG_SPLITTER.split(tag.getFirstArg())[0];
                     log(tag.getLineNo(), tag.getColumnNo(),
                             MSG_UNUSED_TAG,
-                            JavadocTagInfo.PARAM.getText(),
-                            OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
+                            JavadocTagInfo.PARAM.getText(), actualParamName);
                 }
             }
         }
     }
 
     /**
-     * Extracts type parameter name from tag.
+     * Extracts parameter name from tag.
      *
      * @param tag javadoc tag to extract parameter name
      * @return extracts type parameter name from tag
      */
-    private static String extractTypeParamNameFromTag(JavadocTag tag) {
+    private static String extractParamNameFromTag(JavadocTag tag) {
         final String typeParamName;
         final Matcher matchInAngleBrackets =
                 TYPE_NAME_IN_JAVADOC_TAG.matcher(tag.getFirstArg());
@@ -528,4 +570,24 @@ public class JavadocTypeCheck
         return typeParamName;
     }
 
+    /**
+     * Collects the record components in a record definition.
+     *
+     * @param node the possible record definition ast.
+     * @return the list of record components in this record definition.
+     */
+    private static List<String> getRecordComponentNames(final DetailAST node) {
+        final DetailAST components = node.findFirstToken(TokenTypes.RECORD_COMPONENTS);
+        final List<String> componentList = new ArrayList<>();
+
+        if (components != null) {
+            TokenUtil.forEachChild(components,
+                TokenTypes.RECORD_COMPONENT_DEF, component -> {
+                    final DetailAST ident = component.findFirstToken(TokenTypes.IDENT);
+                    componentList.add(ident.getText());
+                });
+        }
+
+        return componentList;
+    }
 }

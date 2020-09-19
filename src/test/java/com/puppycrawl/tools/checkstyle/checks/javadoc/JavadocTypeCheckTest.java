@@ -296,7 +296,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "11:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
             "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
             "47:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
+            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags.java"), expected);
     }
@@ -309,7 +309,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
             "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<x>"),
+            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags.java"), expected);
     }
@@ -319,7 +319,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
             "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
         };
         verify(checkConfig,
@@ -410,7 +410,47 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "40:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
             "53:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
             "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            };
+        };
         verify(checkConfig, getNonCompilablePath("InputJavadocTypeRecords.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecordComponents() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", "protected");
+        checkConfig.addAttribute("allowMissingParamTags", "false");
+        checkConfig.addAttribute("allowUnknownTags", "false");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputJavadocTypeRecordComponents.java"), expected);
+    }
+
+    @Test
+    public void testJavadocTypeRecordComponents2() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addAttribute("scope", "private");
+        checkConfig.addAttribute("allowMissingParamTags", "false");
+        checkConfig.addAttribute("allowUnknownTags", "false");
+
+        final String[] expected = {
+            "37:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <X>"),
+            "41:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "52:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "55:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
+            "55:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
+            "59:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "61:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myList"),
+            "68:1: " + getCheckMessage(MSG_MISSING_TAG, "@param X"),
+            "71:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "notMyString"),
+            "74:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "74:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myInt"),
+            "74:1: " + getCheckMessage(MSG_MISSING_TAG, "@param myString"),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputJavadocTypeRecordComponents2.java"), expected);
     }
 }
