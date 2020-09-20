@@ -1,0 +1,57 @@
+version: v1.0
+name: "Checkstyle CI pipeline on Semaphore"
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: "Main"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore m2
+          - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
+          - sudo apt-get update
+          - sudo apt-get install -y ant groovy xsltproc xmlstarlet
+      epilogue:
+        commands:
+          - |
+            if [[ ${M2_CACHE_SIZE} -ne $(du -s $HOME/.m2 | cut -f1) ]]
+            then
+              cache delete m2
+              cache store m2 $HOME/.m2
+            fi
+      jobs:
+        - name: Ensure that all Sevntu check are used
+          commands:
+            - sem-version java 11
+            - .ci/semaphore.sh all-sevntu-checks
+
+        - name: No error test on pmd
+          commands:
+            - sem-version java 11
+            - .ci/semaphore.sh no-error-pmd
+
+        - name: No violation testing on josm
+          commands:
+            - sem-version java 11
+            - .ci/semaphore.sh no-violation-test-josm
+
+        - name: No exception test
+          matrix:
+            - env_var: PROJECT
+              values:
+                - checkstyle-sevntu-checkstyle
+                - guava
+                - guava-with-google-checks
+                - guava-with-sun-checks
+                - hibernate
+                - spotbugs
+                - spring-framework
+                - hbase
+                - pmd-elasticsearch-lombok-ast
+                - alot-of-project1
+          commands:
+            - sem-version java 11
+            - .ci/semaphore.sh no-exception-test-$PROJECT
