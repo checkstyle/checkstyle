@@ -86,26 +86,12 @@ jobs:
         - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
         - USE_MAVEN_REPO="true"
 
-    # eclipse static analysis
-    - jdk: openjdk8
-      env:
-        - DESC="eclipse static analysis"
-        - CMD="mvn -e clean compile exec:exec -Peclipse-compiler"
-        - USE_MAVEN_REPO="true"
-
     # Releasenotes generation - validation
     - jdk: openjdk8
       env:
         - DESC="Releasenotes generation"
         - CMD="./.ci/travis/travis.sh releasenotes-gen"
         - SKIP_JOB_BY_FILES="false"
-        - USE_MAVEN_REPO="true"
-
-    # NonDex (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="NonDex"
-        - CMD="./.ci/travis/travis.sh nondex"
         - USE_MAVEN_REPO="true"
 
     # site
@@ -171,20 +157,6 @@ jobs:
         - CMD="./.ci/travis/travis.sh assembly-run-all-jar"
         - USE_MAVEN_REPO="true"
 
-    # NoExceptiontest - Guava with google_checks (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="NoExceptionTest - Guava with google_checks"
-        - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-google-checks"
-        - USE_MAVEN_REPO="true"
-
-    # NoExceptiontest - Guava with sun_checks (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="NoExceptionTest - Guava with sun_checks"
-        - CMD="./.ci/travis/travis.sh no-exception-test-guava-with-sun-checks"
-        - USE_MAVEN_REPO="true"
-
     # release dry run (openjdk8)
     - jdk: openjdk8
       env:
@@ -197,12 +169,6 @@ jobs:
         - DESC="check permissions on all files"
         - CMD="./.ci/travis/travis.sh check-chmod"
         - SKIP_JOB_BY_FILES="false"
-
-    # Ensure that all Sevntu check are kused
-    - jdk: openjdk8
-      env:
-        - DESC="All sevntu checks should be used"
-        - CMD="./.ci/travis/travis.sh all-sevntu-checks"
 
     # MacOS JDK8 verify (till cache is not working, we can not do verify)
     - os: osx
@@ -292,11 +258,6 @@ jobs:
         - DESC="compile input files with jdk14 specific syntax"
         - CMD="./.ci/travis/travis.sh javac14"
 
-    # find missing pitests
-    - env:
-        - DESC="find missing pitests"
-        - CMD="./.ci/travis/travis.sh check-missing-pitests"
-
     # Ensure that all modules are used in no exception configs
     - env:
         - DESC="ensure that all modules are used in no exception configs"
@@ -305,21 +266,6 @@ jobs:
     - env:
         - DESC="validate since javadoc tag if new module is created"
         - CMD="./.ci/travis/travis.sh check-since-version"
-
-    # No error testing - pmd
-    - jdk: openjdk11
-      env:
-          - DESC="no error test on pmd"
-          - USE_MAVEN_REPO="true"
-          - CMD="./.ci/travis/travis.sh no-error-pmd"
-
-    #  Disabled due to instability
-    #  No violation testing - josm (ant task)
-    # - jdk: openjdk11
-    #   env:
-    #      - DESC="no violation testing on josm"
-    #      - USE_MAVEN_REPO="true"
-    #      - CMD="./.ci/travis/travis.sh no-violation-test-josm"
 
     # OpenJDK14 checkstyle run with one module config to prove that we can parse jdk14 syntax
     - env:
