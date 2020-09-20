@@ -1865,7 +1865,7 @@ public class Test {
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocType_Description">
         <p>
-          Checks the Javadoc comments for annotation/enum/class/interface definitions.
+          Checks the Javadoc comments for type definitions.
           By default, does not check for author or version tags. The
           scope to verify is specified using the <code>Scope</code>
           class and defaults to <code>Scope.PRIVATE</code>. To verify
@@ -1881,8 +1881,8 @@ public class Test {
           classes, as they should be redundant because of outer class.
         </p>
         <p>
-          Error messages about type parameters for which no param tags are
-          present can be suppressed by defining property
+          Error messages about type parameters and record components for which no
+          param tags are present can be suppressed by defining property
           <code>allowMissingParamTags</code>.
         </p>
       </subsection>

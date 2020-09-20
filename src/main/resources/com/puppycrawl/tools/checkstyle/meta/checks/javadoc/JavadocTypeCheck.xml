@@ -5,7 +5,7 @@
              name="JavadocType"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks the Javadoc comments for annotation/enum/class/interface definitions. By default, does
+ Checks the Javadoc comments for type definitions. By default, does
  not check for author or version tags. The scope to verify is specified using the {@code Scope}
  class and defaults to {@code Scope.PRIVATE}. To verify another scope, set property
  scope to one of the {@code Scope} constants. To define the format for an author
@@ -18,7 +18,7 @@
  as they should be redundant because of outer class.
  &lt;/p&gt;
  &lt;p&gt;
- Error messages about type parameters for which no param tags are present
+ Error messages about type parameters and record components for which no param tags are present
  can be suppressed by defining property {@code allowMissingParamTags}.
  &lt;/p&gt;</description>
          <properties>
