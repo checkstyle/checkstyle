@@ -31,6 +31,7 @@ import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -46,6 +47,10 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
 
+/**
+ * This test should be run isolated as it uses Powermock.
+ */
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TreeWalker.class)
 public class TreeWalkerPowerTest extends AbstractModuleTestSupport {
