@@ -443,7 +443,7 @@
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocType">JavadocType</a></td>
-            <td>Checks the Javadoc comments for annotation/enum/class/interface definitions.</td>
+            <td>Checks the Javadoc comments for type definitions.</td>
           </tr>
           <tr>
             <td><a href="config_javadoc.html#JavadocVariable">JavadocVariable</a></td>
