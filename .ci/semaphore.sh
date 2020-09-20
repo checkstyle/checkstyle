@@ -1,6 +1,10 @@
 #!/bin/bash
 set -e
 
+removeFolderWithProtectedFiles() {
+  find $1 -delete
+}
+
 case $1 in
 
 assembly)
@@ -54,6 +58,23 @@ test-zh)
   mvn -e clean integration-test failsafe:verify \
     -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
   ;;
+
+spotbugs-and-pmd)
+  mkdir -p .ci-temp/spotbugs-and-pmd
+  CHECKSTYLE_DIR=$(pwd)
+  mvn -e clean test-compile pmd:check spotbugs:check \
+    -DargLine='-Xms1024m -Xmx2048m'
+  cd .ci-temp/spotbugs-and-pmd
+  grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
+  RESULT=$(cat errors.log | wc -l)
+  if [[ $RESULT != 0 ]]; then
+    echo "Errors are detected in target/site/pmd.html."
+    sleep 5s
+  fi
+  cd ..
+  removeFolderWithProtectedFiles spotbugs-and-pmd
+  exit "$RESULT"
+;;
 
 *)
   echo "Unexpected argument: $1"
