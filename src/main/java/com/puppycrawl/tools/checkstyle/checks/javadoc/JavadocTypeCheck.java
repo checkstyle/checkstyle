@@ -374,11 +374,10 @@ public class JavadocTypeCheck
                     CheckUtil.getTypeParameterNames(ast);
 
                 if (!allowMissingParamTags) {
-                    // Check type parameters that should exist, do
-                    for (final String typeParamName : typeParamNames) {
-                        checkTypeParamTag(
-                            ast, tags, typeParamName);
-                    }
+
+                    typeParamNames.forEach(typeParamName -> {
+                        checkTypeParamTag(ast, tags, typeParamName);
+                    });
                 }
 
                 checkUnusedTypeParamTags(tags, typeParamNames);
@@ -444,8 +443,8 @@ public class JavadocTypeCheck
         if (formatPattern != null) {
             boolean hasTag = false;
             final String tagPrefix = "@";
-            for (int i = tags.size() - 1; i >= 0; i--) {
-                final JavadocTag tag = tags.get(i);
+
+            for (final JavadocTag tag :tags) {
                 if (tag.getTagName().equals(tagName)) {
                     hasTag = true;
                     if (!formatPattern.matcher(tag.getFirstArg()).find()) {
@@ -469,16 +468,14 @@ public class JavadocTypeCheck
      */
     private void checkTypeParamTag(DetailAST ast,
             List<JavadocTag> tags, String typeParamName) {
-        boolean found = false;
-        for (int i = tags.size() - 1; i >= 0; i--) {
-            final JavadocTag tag = tags.get(i);
-            if (tag.isParamTag()
-                && tag.getFirstArg().indexOf(OPEN_ANGLE_BRACKET
-                        + typeParamName + CLOSE_ANGLE_BRACKET) == 0) {
-                found = true;
-                break;
-            }
-        }
+        final String typeParamNameWithBrackets =
+            OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET;
+
+        final boolean found = tags
+            .stream()
+            .filter(JavadocTag::isParamTag)
+            .anyMatch(tag -> tag.getFirstArg().indexOf(typeParamNameWithBrackets) == 0);
+
         if (!found) {
             log(ast, MSG_MISSING_TAG, JavadocTagInfo.PARAM.getText()
                 + " " + OPEN_ANGLE_BRACKET + typeParamName + CLOSE_ANGLE_BRACKET);
