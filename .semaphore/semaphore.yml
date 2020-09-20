@@ -49,3 +49,11 @@ blocks:
                 - zh
           commands:
             - .ci/semaphore.sh test-$LNG
+        - name: "Spotbugs and PMD"
+          matrix:
+            - env_var: JDK
+              values:
+                - "8"
+                - "11"
+          commands:
+            - .ci/semaphore.sh spotbugs-and-pmd
