@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Map;
@@ -110,4 +111,21 @@ public class DefaultConfigurationTest {
         assertEquals(multiThreadMode, config.getThreadModeSettings(), "Invalid thread mode");
     }
 
+    @Test
+    public void test4containsAttribute() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        final String key = "attribute";
+        config.addAttribute(key, "value");
+        assertTrue(config.containsAttribute(key), "Invalid attribute name");
+    }
+
+    @Test
+    public void test4containsMessage() {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        final String key = "attribute";
+        final String value = "value";
+        config.addMessage(key, value);
+        assertTrue(config.containsMessage(key), "Invalid attribute name");
+        assertEquals(value, config.getMessage(key), "Invalid thread mode");
+    }
 }
