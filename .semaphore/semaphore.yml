@@ -1,11 +1,11 @@
 version: v1.0
-name: "Checkstyle CI pipeline on Semaphore"
+name: Checkstyle CI pipeline on Semaphore 2.0
 agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: "Main"
+  - name: Run in Linux environment
     task:
       prologue:
         commands:
@@ -21,7 +21,7 @@ blocks:
               cache store m2 $HOME/.m2
             fi
       jobs:
-        - name: "Build"
+        - name: Build
           matrix:
             - env_var: JDK
               values:
@@ -29,13 +29,14 @@ blocks:
                 - "11"
             - env_var: CMD
               values:
-                - "verify"
-                - "assembly"
-                - "site"
+                - verify
+                - assembly
+                - site
+                - spotbugs-and-pmd
           commands:
             - sem-version java $JDK
             - .ci/semaphore.sh $CMD
-        - name: "Locale"
+        - name: Locale
           matrix:
             - env_var: LNG
               values:
@@ -49,3 +50,20 @@ blocks:
                 - zh
           commands:
             - .ci/semaphore.sh test-$LNG
+  - name: Run in macOS environment
+    task:
+      agent:
+        machine:
+          type: a1-standard-4
+          os_image: macos-xcode11
+      jobs:
+        - name: Build
+          matrix:
+            - env_var: CMD
+              values:
+                - verify
+                - assembly
+                - site
+                - spotbugs-and-pmd
+          commands:
+            - .ci/semaphore.sh $CMD
