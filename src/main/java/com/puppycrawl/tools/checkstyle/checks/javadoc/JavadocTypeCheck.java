@@ -392,7 +392,7 @@ public class JavadocTypeCheck
      * @param ast a given node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST ast) {
+    private boolean shouldCheck(DetailAST ast) {
         final Scope customScope;
 
         if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
@@ -467,8 +467,8 @@ public class JavadocTypeCheck
      * @param tags tags from the Javadoc comment for the type definition.
      * @param typeParamName the name of the type parameter
      */
-    private void checkTypeParamTag(final DetailAST ast,
-            final List<JavadocTag> tags, final String typeParamName) {
+    private void checkTypeParamTag(DetailAST ast,
+            List<JavadocTag> tags, String typeParamName) {
         boolean found = false;
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
@@ -492,8 +492,8 @@ public class JavadocTypeCheck
      * @param typeParamNames names of type parameters
      */
     private void checkUnusedTypeParamTags(
-        final List<JavadocTag> tags,
-        final List<String> typeParamNames) {
+        List<JavadocTag> tags,
+        List<String> typeParamNames) {
         for (int i = tags.size() - 1; i >= 0; i--) {
             final JavadocTag tag = tags.get(i);
             if (tag.isParamTag()) {
