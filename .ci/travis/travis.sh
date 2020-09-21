@@ -504,7 +504,7 @@ no-violation-test-josm)
   echo CS_version: ${CS_POM_VERSION}
   mkdir -p .ci-temp
   cd .ci-temp
-  TESTED=16391
+  TESTED=17013
   # Uncomment to test current tested version instead of hardcoded version
   # TESTED=`wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt`
   echo "JOSM revision: $TESTED"
