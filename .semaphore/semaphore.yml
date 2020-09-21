@@ -27,6 +27,10 @@ blocks:
               cache store m2 $HOME/.m2
             fi
       jobs:
+        - name: Check for missing pitests
+          commands:
+            - .ci/semaphore.sh check-missing-pitests
+
         - name: Eclipse static analysis
           commands:
             - .ci/semaphore.sh eclipse-static-analysis
@@ -38,11 +42,12 @@ blocks:
           commands:
             - .ci/semaphore.sh all-sevntu-checks
 
-        - name: NonDex
+        - name: NonDex (openjdk8)
           priority:
             - value: 80
               when: true
           commands:
+            - sem-version java 8 # NonDex only supports Java 8
             - .ci/semaphore.sh nondex
 
         - name: No error test on pmd

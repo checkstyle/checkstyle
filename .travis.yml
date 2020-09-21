@@ -258,11 +258,6 @@ jobs:
         - DESC="compile input files with jdk14 specific syntax"
         - CMD="./.ci/travis/travis.sh javac14"
 
-    # find missing pitests
-    - env:
-        - DESC="find missing pitests"
-        - CMD="./.ci/travis/travis.sh check-missing-pitests"
-
     # Ensure that all modules are used in no exception configs
     - env:
         - DESC="ensure that all modules are used in no exception configs"

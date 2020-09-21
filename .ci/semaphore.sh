@@ -24,6 +24,51 @@ all-sevntu-checks)
   removeFolderWithProtectedFiles $working_dir
   ;;
 
+check-missing-pitests)
+  fail=0
+  mkdir -p target
+
+  list=($(cat pom.xml | \
+    xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
+    -t -v '//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param'))
+
+  #  Temporary skip for Metadata generator related files for
+  #  https://github.com/checkstyle/checkstyle/issues/8761
+  list=("com.puppycrawl.tools.checkstyle.meta.*" "${list[@]}")
+
+  CMD="find src/main/java -type f ! -name 'package-info.java'"
+
+  for item in "${list[@]}"
+  do
+    item=${item//\./\/}
+    if [[ $item == */\*  ]] ; then
+     item=$item
+    else
+      if [[ $item != *\* ]] ; then
+        item="$item.java"
+      else
+        item="${item::-1}.java"
+      fi
+    fi
+
+    CMD="$CMD -and ! -wholename '*/$item'"
+  done
+
+  CMD="$CMD | sort > target/result.txt"
+  eval $CMD
+
+  results=$(cat target/result.txt)
+
+  echo "List of missing files in pitest profiles: $results"
+
+  if [[ -n $results ]] ; then
+    fail=1
+  fi
+
+  sleep 5s
+  exit $fail
+  ;;
+
 eclipse-static-analysis)
   mvn -e clean compile exec:exec -Peclipse-compiler
   ;;
