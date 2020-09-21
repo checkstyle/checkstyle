@@ -27,12 +27,23 @@ blocks:
               cache store m2 $HOME/.m2
             fi
       jobs:
+        - name: Eclipse static analysis
+          commands:
+            - .ci/semaphore.sh eclipse-static-analysis
+
         - name: Ensure that all Sevntu check are used
           priority:
             - value: 10
               when: true
           commands:
             - .ci/semaphore.sh all-sevntu-checks
+
+        - name: NonDex
+          priority:
+            - value: 80
+              when: true
+          commands:
+            - .ci/semaphore.sh nondex
 
         - name: No error test on pmd
           priority:

@@ -86,26 +86,12 @@ jobs:
         - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
         - USE_MAVEN_REPO="true"
 
-    # eclipse static analysis
-    - jdk: openjdk8
-      env:
-        - DESC="eclipse static analysis"
-        - CMD="mvn -e clean compile exec:exec -Peclipse-compiler"
-        - USE_MAVEN_REPO="true"
-
     # Releasenotes generation - validation
     - jdk: openjdk8
       env:
         - DESC="Releasenotes generation"
         - CMD="./.ci/travis/travis.sh releasenotes-gen"
         - SKIP_JOB_BY_FILES="false"
-        - USE_MAVEN_REPO="true"
-
-    # NonDex (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="NonDex"
-        - CMD="./.ci/travis/travis.sh nondex"
         - USE_MAVEN_REPO="true"
 
     # site

@@ -24,6 +24,21 @@ all-sevntu-checks)
   removeFolderWithProtectedFiles $working_dir
   ;;
 
+eclipse-static-analysis)
+  mvn -e clean compile exec:exec -Peclipse-compiler
+  ;;
+
+nondex)
+  mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
+  mkdir -p .ci-temp
+  cat "$(grep -RlE 'td class=.x' .nondex/ | cat)" < /dev/null > .ci-temp/output.txt
+  RESULT=$(wc -c < .ci-temp/output.txt)
+  cat .ci-temp/output.txt
+  echo "Size of output: ${RESULT}"
+  if [[ ${RESULT} != 0 ]]; then sleep 5s; false; fi
+  rm .ci-temp/output.txt
+  ;;
+
 no-error-pmd)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)

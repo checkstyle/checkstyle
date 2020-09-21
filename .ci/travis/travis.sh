@@ -139,17 +139,6 @@ jdk14-verify-limited)
   mvn -e verify -Dpmd.skip=true -Dspotbugs.skip=true
   ;;
 
-nondex)
-  mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
-  mkdir -p .ci-temp
-  cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > .ci-temp/output.txt
-  RESULT=$(cat .ci-temp/output.txt | wc -c)
-  cat .ci-temp/output.txt
-  echo 'Size of output:'$RESULT
-  if [[ $RESULT != 0 ]]; then sleep 5s; false; fi
-  rm .ci-temp/output.txt
-  ;;
-
 versions)
   if [ -v TRAVIS_EVENT_TYPE ] && [ $TRAVIS_EVENT_TYPE != "cron" ] ; then exit 0; fi
   mvn -e clean versions:dependency-updates-report versions:plugin-updates-report
