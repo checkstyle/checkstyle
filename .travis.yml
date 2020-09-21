@@ -313,13 +313,12 @@ jobs:
           - USE_MAVEN_REPO="true"
           - CMD="./.ci/travis/travis.sh no-error-pmd"
 
-    #  Disabled due to instability
     #  No violation testing - josm (ant task)
-    # - jdk: openjdk11
-    #   env:
-    #      - DESC="no violation testing on josm"
-    #      - USE_MAVEN_REPO="true"
-    #      - CMD="./.ci/travis/travis.sh no-violation-test-josm"
+    - jdk: openjdk11
+      env:
+         - DESC="no violation testing on josm"
+         - USE_MAVEN_REPO="true"
+         - CMD="./.ci/travis/travis.sh no-violation-test-josm"
 
     # OpenJDK14 checkstyle run with one module config to prove that we can parse jdk14 syntax
     - env:
