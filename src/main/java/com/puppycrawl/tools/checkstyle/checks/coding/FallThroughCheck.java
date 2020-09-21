@@ -44,47 +44,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * and must be on the last non-empty line before the {@code case} triggering
  * the warning or on the same line before the {@code case}(ugly, but possible).
  * </p>
- * <pre>
- * switch (i) {
- * case 0:
- *   i++; // fall through
- *
- * case 1:
- *   i++;
- *   // falls through
- * case 2:
- * case 3:
- * case 4: {
- *   i++;
- * }
- * // fallthrough
- * case 5:
- *   i++;
- * &#47;* fallthru *&#47;case 6:
- *   i++;
- * // fall-through
- * case 7:
- *   i++;
- *   break;
- * }
- * </pre>
  * <p>
  * Note: The check assumes that there is no unreachable code in the {@code case}.
  * </p>
- * <p>
- * The following fragment of code will NOT trigger the check,
- * because of the comment "fallthru" or any Java code
- * in case 5 are absent.
- * </p>
- * <pre>
- * case 3:
- *     x = 2;
- *     // fallthru
- * case 4:
- * case 5: // violation
- * case 6:
- *     break;
- * </pre>
  * <ul>
  * <li>
  * Property {@code checkLastCaseGroup} - Control whether the last case group must be checked.
@@ -102,15 +64,116 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * To configure the check:
  * </p>
  * <pre>
- * &lt;module name=&quot;FallThrough&quot;/&gt;
+ * &lt;module name="FallThrough"/&gt;
  * </pre>
  * <p>
- * or
+ * Example:
+ * </p>
+ * <pre>
+ * switch (i) {
+ *   case 1:
+ *     i++;
+ *   case 2: // violation, case 1 contains code but lacks break, return, throw or continue statement
+ *     i++;
+ *     break;
+ *   case 3: // OK
+ *     i++;
+ *     return;
+ *   case 4: // OK
+ *     i++;
+ *     throw new Exception();
+ *   case 5: // OK
+ *     i++;
+ *     continue;
+ *   case 6: // OK
+ *   case 7: // OK, case 6 does not contain code
+ *     i++;
+ *   // OK, by default the last case is not checked
+ * }
+ * </pre>
+ * <p>
+ * Unreachable code still causes violation:
+ * </p>
+ * <pre>
+ * switch (i) {
+ *   default:
+ *     return;
+ *   case 1:
+ *     i++; // unreachable
+ *   case 2: // violation
+ *     return;
+ * }
+ * </pre>
+ * <p>
+ * Add special comments to suppress the warning:
+ * </p>
+ * <pre>
+ * switch (i) {
+ *   case 1:
+ *     i++; // fall through
+ *
+ *   case 2: // OK
+ *     i++;
+ *     // fallthru
+ *   case 3: { // OK
+ *     i++;
+ *   }
+ *   &#47;* fall-thru *&#47;
+ *   case 4: // OK
+ *   i++;
+ *     // Fallthru
+ *   case 5: // violation, "Fallthru" in case 4 should be "fallthru"
+ *     i++;
+ *     // fall through
+ *     i++;
+ *   case 6: // violation, the comment must be on the last non-empty line before 'case'
+ *     i++;
+ *   &#47;* fall through *&#47;case 7: // OK, comment can appear on the same line but before 'case'
+ *     i++;
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it checks last case group
  * </p>
  * <pre>
  * &lt;module name=&quot;FallThrough&quot;&gt;
- *   &lt;property name=&quot;reliefPattern&quot; value=&quot;continue in next case&quot;/&gt;
+ *    &lt;property name=&quot;checkLastCaseGroup&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * switch (i) {
+ *   case 1:
+ *     break;
+ *   case 2: // OK
+ *     i++;
+ *     // violation, last case group is checked
+ * }
+ * </pre>
+ * <p>
+ * To configure the check with custom relief pattern
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;FallThrough&quot;&gt;
+ *    &lt;property name=&quot;reliefPattern&quot; value=&quot;FALL?[ -]?THROUGH&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * switch (i) {
+ *   case 1:
+ *     i++;
+ *     // FALL-THROUGH
+ *   case 2: // OK, "FALL-THROUGH" matches the regular expression "FALL?[ -]?THROUGH"
+ *     i++;
+ *     // fall-through
+ *   case 3: // violation, "fall-through" doesn't match
+ *     break;
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
