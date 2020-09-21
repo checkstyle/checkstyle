@@ -24,6 +24,66 @@ all-sevntu-checks)
   removeFolderWithProtectedFiles $working_dir
   ;;
 
+check-missing-pitests)
+  fail=0
+  mkdir -p target
+
+  list=($(cat pom.xml | \
+    xmlstarlet sel --ps -N pom="http://maven.apache.org/POM/4.0.0" \
+    -t -v '//pom:profile[./pom:id[contains(text(),'pitest')]]//pom:targetClasses/pom:param'))
+
+  #  Temporary skip for Metadata generator related files for
+  #  https://github.com/checkstyle/checkstyle/issues/8761
+  list=("com.puppycrawl.tools.checkstyle.meta.*" "${list[@]}")
+
+  CMD="find src/main/java -type f ! -name 'package-info.java'"
+
+  for item in "${list[@]}"
+  do
+    item=${item//\./\/}
+    if [[ $item == */\*  ]] ; then
+     item=$item
+    else
+      if [[ $item != *\* ]] ; then
+        item="$item.java"
+      else
+        item="${item::-1}.java"
+      fi
+    fi
+
+    CMD="$CMD -and ! -wholename '*/$item'"
+  done
+
+  CMD="$CMD | sort > target/result.txt"
+  eval $CMD
+
+  results=$(cat target/result.txt)
+
+  echo "List of missing files in pitest profiles: $results"
+
+  if [[ -n $results ]] ; then
+    fail=1
+  fi
+
+  sleep 5s
+  exit $fail
+  ;;
+
+eclipse-static-analysis)
+  mvn -e clean compile exec:exec -Peclipse-compiler
+  ;;
+
+nondex)
+  mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m'
+  mkdir -p .ci-temp
+  cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > .ci-temp/output.txt
+  RESULT=$(cat .ci-temp/output.txt | wc -c)
+  cat .ci-temp/output.txt
+  echo 'Size of output:'$RESULT
+  if [[ $RESULT != 0 ]]; then sleep 5s; false; fi
+  rm .ci-temp/output.txt
+  ;;
+
 no-error-pmd)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
