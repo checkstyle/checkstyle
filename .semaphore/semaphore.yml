@@ -1,0 +1,78 @@
+version: v1.0
+name: "Checkstyle CI pipeline on Semaphore"
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+auto_cancel:
+  running:
+    when: "branch != 'master'"
+blocks:
+  - name: "Linux openjdk build"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore m2
+          - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
+          - sudo apt-get update
+          - sudo apt-get install -y ant groovy xsltproc xmlstarlet
+          - sem-version java 11
+      epilogue:
+        commands:
+          - |
+            if [[ ${M2_CACHE_SIZE} -ne $(du -s $HOME/.m2 | cut -f1) ]]
+            then
+              cache delete m2
+              cache store m2 $HOME/.m2
+            fi
+      jobs:
+        - name: Check for missing pitests
+          priority:
+            - value: 10
+              when: true
+          commands:
+            - .ci/validation.sh check-missing-pitests
+
+        - name: Eclipse static analysis
+          priority:
+            - value: 10
+              when: true
+          commands:
+            - .ci/validation.sh eclipse-static-analysis
+
+        - name: Ensure that all Sevntu check are used
+          priority:
+            - value: 10
+              when: true
+          commands:
+            - .ci/validation.sh all-sevntu-checks
+
+        - name: NonDex (openjdk8)
+          priority:
+            - value: 80
+              when: true
+          commands:
+            - sem-version java 8 # NonDex only supports Java 8
+            - .ci/validation.sh nondex
+
+        - name: No error test on pmd
+          priority:
+            - value: 80
+              when: true
+          commands:
+            - .ci/validation.sh no-error-pmd
+
+        #  Disabled due to instability
+        #  - name: No violation testing on josm
+        #    commands:
+        #      - .ci/validation.sh no-violation-test-josm
+
+        - name: No exception test
+          matrix:
+            - env_var: PROJECT
+              values:
+                - guava-with-google-checks
+                - guava-with-sun-checks
+          commands:
+            - .ci/no-exception-test.sh $PROJECT
