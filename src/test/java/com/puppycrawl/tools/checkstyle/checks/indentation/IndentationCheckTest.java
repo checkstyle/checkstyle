@@ -671,6 +671,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAlternativeGoogleStyleSwitchCaseAndEnums()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "2");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationSwitchCasesAndEnums.java");
+        final String[] expected = {
+            "18:7: " + getCheckMessage(MSG_CHILD_ERROR, "block", 6, 4),
+            "35:7: " + getCheckMessage(MSG_ERROR, "block lcurly", 6, 8),
+            "38:11: " + getCheckMessage(MSG_ERROR, "block rcurly", 10, 8),
+            "54:5: " + getCheckMessage(MSG_ERROR, "block lcurly", 4, 2),
+            "55:3: " + getCheckMessage(MSG_CHILD_ERROR, "block", 2, 4),
+        };
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testInvalidSwitchWithChecker()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -935,8 +959,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "133:9: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 8, "10, 14"),
             "137:9: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 8, "10, 14"),
             "141:7: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 6, "8, 12"),
-            "142:13: " + getCheckMessage(MSG_ERROR, "method def modifier", 12, 10),
-            "144:13: " + getCheckMessage(MSG_ERROR, "method def rcurly", 12, 10),
             "145:7: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 6, "8, 12"),
             "150:11: " + getCheckMessage(MSG_ERROR, "method def modifier", 10, 12),
             "152:11: " + getCheckMessage(MSG_ERROR, "method def rcurly", 10, 12),
@@ -1502,7 +1524,16 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "28:9: " + getCheckMessage(MSG_ERROR, "if rcurly", 8, 10),
+            "18:1: " + getCheckMessage(MSG_ERROR, "class def lcurly", 0, 2),
+            "21:3: " + getCheckMessage(MSG_ERROR_MULTI, "ctor def modifier", 2, "4, 6"),
+            "22:3: " + getCheckMessage(MSG_ERROR_MULTI, "ctor def lcurly", 2, "6, 8"),
+            "26:11: " + getCheckMessage(MSG_ERROR_MULTI, "if lcurly", 10, "8, 12"),
+            "28:11: " + getCheckMessage(MSG_ERROR_MULTI, "if rcurly", 10, "8, 12"),
+            "29:3: " + getCheckMessage(MSG_ERROR_MULTI, "ctor def rcurly", 2, "6, 8"),
+            "31:1: " + getCheckMessage(MSG_ERROR, "class def rcurly", 0, 2),
+            "34:1: " + getCheckMessage(MSG_ERROR, "class def lcurly", 0, 2),
+            "36:5: " + getCheckMessage(MSG_ERROR_MULTI, "method def lcurly", 4, "6, 8"),
+            "40:1: " + getCheckMessage(MSG_ERROR, "class def rcurly", 0, 2),
         };
         verifyWarns(checkConfig, getPath("InputIndentationBraceAdjustment.java"), expected);
     }
