@@ -247,7 +247,8 @@ no-error-spring-cloud-gcp)
   checkout_from https://github.com/spring-cloud/spring-cloud-gcp
   cd .ci-temp/spring-cloud-gcp
   mvn -e checkstyle:check@checkstyle-validation -P full-checkstyle \
-   -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
+   -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION} \
+   -Dmaven-checkstyle-plugin.version=3.1.1
   cd ..
   removeFolderWithProtectedFiles spring-cloud-gcp
   ;;
