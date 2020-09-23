@@ -1,0 +1,17 @@
+task:
+  name: Cirrus CI
+  container:
+    image: maven:latest
+  maven_cache:
+    folder: ~/.m2
+  matrix:
+    - name: Linux
+        container:
+          image: maven:latest
+    - name: OSX
+        osx_instance:
+          image: catalina-xcode-12.0
+     - name: Windows
+        windows_container:
+          image: cirrusci/windowsservercore:2019
+  test_script: mvn verify
