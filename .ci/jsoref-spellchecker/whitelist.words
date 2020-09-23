@@ -219,6 +219,7 @@ chr
 ci
 cidfile
 circleci
+cirrusci
 Claira
 classdataabstractioncoupling
 classfanoutcomplexity
@@ -337,6 +338,7 @@ dghj
 Dgpg
 Dgui
 dhj
+Dhttp
 Diachenko
 dirname
 distelli
@@ -1435,6 +1437,7 @@ Wifi
 wiki
 wikipedia
 wiktionary
+windowsservercore
 woff
 wontfix
 wordpress
