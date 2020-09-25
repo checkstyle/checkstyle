@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * Abstract class for checking a class member (field/method)'s name conforms to
@@ -81,18 +82,34 @@ public abstract class AbstractAccessControlNameCheck
      * @return true if we should check such member.
      */
     protected boolean shouldCheckInScope(DetailAST modifiers) {
-        final boolean isPublic = modifiers
-                .findFirstToken(TokenTypes.LITERAL_PUBLIC) != null;
         final boolean isProtected = modifiers
                 .findFirstToken(TokenTypes.LITERAL_PROTECTED) != null;
         final boolean isPrivate = modifiers
                 .findFirstToken(TokenTypes.LITERAL_PRIVATE) != null;
+        final boolean isPublic = isPublic(modifiers);
+
         final boolean isPackage = !(isPublic || isProtected || isPrivate);
 
         return applyToPublic && isPublic
                 || applyToProtected && isProtected
                 || applyToPackage && isPackage
                 || applyToPrivate && isPrivate;
+    }
+
+    /**
+     * Checks if given modifiers has public access.
+     * There are 2 cases - it is either has explicit modifier, or it is
+     * in annotation or interface.
+     *
+     * @param modifiers - modifiers to check
+     * @return true if public
+     */
+    private static boolean isPublic(DetailAST modifiers) {
+        return modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
+                || ScopeUtil.isInAnnotationBlock(modifiers)
+                || ScopeUtil.isInInterfaceBlock(modifiers)
+                    // interface methods can be private
+                    && modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null;
     }
 
     /**
