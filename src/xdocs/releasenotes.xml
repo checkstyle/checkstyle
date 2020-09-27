@@ -16,6 +16,87 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.36.2">
+      <div class="releaseDate">27.09.2020</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Indentation: lambda don&#39;t respect lineWrappingIndentation when
+            forceStrictCondition is false.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/3342">#3342</a>
+          </li>
+          <li>
+            Java interface constants treated as non-public by ConstantName check.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8569">#8569</a>
+          </li>
+          <li>
+            JavadocTypeCheck: false positive with JavaDoc @param tags for Records
+            (Java 14 + Java 15).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8808">#8808</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Load Semaphore CI with more work.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8805">#8805</a>
+          </li>
+          <li>
+            add spring-cloud-gcp project to CIs no errror regresson testing.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/6209">#6209</a>
+          </li>
+          <li>
+            Add a job to automatically rebase PRs.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8842">#8842</a>
+          </li>
+          <li>
+            Update eclipse compiler to R17.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8839">#8839</a>
+          </li>
+          <li>
+            bump Saxon-HE from 9.9.1-7 to 10.2.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/8797">#8797</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-imports profile to 100% .
+            Author: hembhagat
+            <a href="https://github.com/checkstyle/checkstyle/issues/6658">#6658</a>
+          </li>
+          <li>
+            Diff Report should be generated against main checkstyle&#39;s master branch.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/8827">#8827</a>
+          </li>
+          <li>
+            doc: add checkstyle github action to related tools.
+            Author: Abhishek-kumar09
+          </li>
+          <li>
+            Comments in indentation is failing ci/phase-verification/unit-tests.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/8725">#8725</a>
+          </li>
+          <li>
+            All Regexp Checks that has few instances should have id property.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8790">#8790</a>
+          </li>
+          <li>
+            Sonar issue: A &quot;NullPointerException&quot; could be thrown;
+            &quot;getParent()&quot; can return null..
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8823">#8823</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.36.1">
       <div class="releaseDate">12.09.2020</div>
       <p>Bug fixes:</p>
