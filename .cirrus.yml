@@ -8,7 +8,7 @@ task:
           https://x-access-token:%CIRRUS_REPO_CLONE_TOKEN%@github.com/%CIRRUS_REPO_FULL_NAME%.git
           %CIRRUS_WORKING_DIR%/ci
     - cd ci
-    - git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%
+    - cmd /c "if defined CIRRUS_PR (git fetch origin pull/%CIRRUS_PR%/head:pull/%CIRRUS_PR%)"
     - git reset --hard %CIRRUS_CHANGE_IN_REPO%
   choco_cache:
     # should be under %CIRRUS_WORKING_DIR%
@@ -17,14 +17,7 @@ task:
     # should be under %CIRRUS_WORKING_DIR%
     folder: .m2
   matrix:
-    - name: Cirrus - JDK11
-      env:
-        OPENJDK_VERSION: "11.0.2.01"
-        OPENJDK_PATH: "jdk-11.0.2"
-    - name: Cirrus - JDK14
-      env:
-        OPENJDK_VERSION: "14.0.2"
-        OPENJDK_PATH: "jdk-14.0.2"
+    # add more JDK versions here
     - name: Cirrus - JDK15
       env:
         OPENJDK_VERSION: "15.0.0"
@@ -57,6 +50,9 @@ task:
     - mvn --version
     - xsltproc --version
     - xml --version
-  test_script:
-    - cd ci
-    - .ci/validation.cmd verify_without_checkstyle
+  test_sevntu_script:
+    - cd ci && .ci/validation.cmd sevntu
+  test_verify_without_checkstyle_script:
+    - cd ci && .ci/validation.cmd verify_without_checkstyle
+  test_site_without_verify_script:
+    - cd ci && .ci/validation.cmd site_without_verify
