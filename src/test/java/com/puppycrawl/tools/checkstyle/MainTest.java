@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
-            "Usage: checkstyle [OPTIONS]... FILES...%n"
+            "<make this fail>Usage: checkstyle [OPTIONS]... FILES...%n"
             + "Try 'checkstyle --help' for more information.%n");
 
     private static final String USAGE = String.format(Locale.ROOT,
