@@ -226,6 +226,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testJava14LocalRecordAnnotation() throws Exception {
+        verifyAst(getPath("java14/InputJava14LocalRecordAnnotation.txt"),
+            getNonCompilablePath("java14/InputJava14LocalRecordAnnotation.java"));
+    }
+
+    @Test
     public void testJava14TextBlocks() throws Exception {
         verifyAst(getPath("java14/InputJava14TextBlocks.txt"),
                 getNonCompilablePath("java14/InputJava14TextBlocks.java"));
