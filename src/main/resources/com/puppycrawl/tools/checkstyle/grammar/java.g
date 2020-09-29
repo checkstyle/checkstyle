@@ -1133,8 +1133,18 @@ traditionalStatement
         // up, but that's pretty hard without a symbol table ;)
         |    (declaration)=> declaration SEMI
 
-        // we create an empty modifiers AST as we do for classes without modifiers
-        |   recordDefinition[(AST) getASTFactory().create(MODIFIERS,"MODIFIERS")]
+        |    (annotations recordDefinition[#null])=>
+                (a:annotations!
+                    {
+                        // We will change the annotations AST to be a modifier AST so that
+                        // if there are no annotations, we still have an empty modifier AST as we
+                        // do for classes without modifiers AND to reflect the structure of our
+                        // class def AST.
+                        #a.setType(MODIFIERS);
+                        #a.setText("MODIFIERS");
+                    }
+                recordDefinition[#a]
+                )
 
         // switch/case statement
         |  switchExpression
