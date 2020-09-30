@@ -34,37 +34,35 @@ matrix:
 environment:
   global:
     CMD: " "
+    # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
+    MAVEN_OPTS: "-Dhttp.keepAlive=false -Dmaven.wagon.http.retryHandler.count=3"
   # We do matrix as AppVeyor could fail to finish simple "mvn -e verify"
   #    if he loose maven cache (happens from time to time)
   matrix:
-    # checkstyle and sevntu.checkstyle
+    # checkstyle and sevntu.checkstyle (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
-      DESC: "checkstyle and sevntu.checkstyle"
-      CMD: "./.ci/appveyor.bat sevntu"
+      DESC: "checkstyle and sevntu.checkstyle (JDK8)"
+      CMD: "./.ci/validation.cmd sevntu"
+    # checkstyle and sevntu.checkstyle (JDK11)
+    - JAVA_HOME: C:\Program Files\Java\jdk11
+      DESC: "checkstyle and sevntu.checkstyle (JDK11)"
+      CMD: "./.ci/validation.cmd sevntu"
     # verify without checkstyle (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "verify without checkstyle (JDK8)"
-      CMD: "./.ci/appveyor.bat verify_without_checkstyle"
+      CMD: "./.ci/validation.cmd verify_without_checkstyle"
     # verify without checkstyle (JDK11)
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "verify without checkstyle (JDK11)"
-      CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK11"
-    # verify without checkstyle (JDK14)
-    - JAVA_HOME: C:\Program Files\Java\jdk14
-      DESC: "verify without checkstyle (JDK14)"
-      CMD: "./.ci/appveyor.bat verify_without_checkstyle_JDK14"
+      CMD: "./.ci/validation.cmd verify_without_checkstyle"
     # site, without verify (JDK8)
     - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
       DESC: "site, without verify (JDK8)"
-      CMD: "./.ci/appveyor.bat site_without_verify"
+      CMD: "./.ci/validation.cmd site_without_verify"
     # site, without verify (JDK11)
     - JAVA_HOME: C:\Program Files\Java\jdk11
       DESC: "site, without verify (JDK11)"
-      CMD: "./.ci/appveyor.bat site_without_verify"
-    # site, without verify (JDK14)
-    - JAVA_HOME: C:\Program Files\Java\jdk14
-      DESC: "site, without verify (JDK14)"
-      CMD: "./.ci/appveyor.bat site_without_verify"
+      CMD: "./.ci/validation.cmd site_without_verify"
 
 build_script:
   - ps: |
