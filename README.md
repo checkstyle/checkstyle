@@ -2,6 +2,7 @@
 [![][appveyor img]][appveyor]
 [![][teamcity img]][teamcity]
 [![][circleci img]][circleci]
+[![][cirrusci img]][cirrusci]
 [![][wercker img]][wercker]
 [![][shippable img]][shippable]
 [![][coverage img]][coverage]
@@ -146,6 +147,9 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
 [circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
+
+[cirrusci]: https://cirrus-ci.com/github/checkstyle/checkstyle
+[cirrusci img]: https://api.cirrus-ci.com/github/checkstyle/checkstyle.svg?branch=master
 
 [wercker]: https://app.wercker.com/project/bykey/cd383127330ff96f89f1a78e8fd1a557
 [wercker img]: https://app.wercker.com/status/cd383127330ff96f89f1a78e8fd1a557/s/master
