@@ -89,6 +89,22 @@ public class PkgImportRuleTest {
     }
 
     @Test
+    public void testPkgImportRuleNoRegexp() {
+        final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", false, false);
+        assertNotNull(rule, "Rule must not be null");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkga"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg.a"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg.a.b"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("pkg"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("halloa"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("hallo.a"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("hallo.a.b"), "Invalid access result");
+        assertEquals(AccessResult.UNKNOWN, rule.verifyImport("hallo"), "Invalid access result");
+        assertEquals(AccessResult.ALLOWED, rule.verifyImport("(pkg|hallo).a"),
+                     "Invalid access result");
+    }
+
+    @Test
     public void testPkgImportRuleExactMatchRegexp() {
         final PkgImportRule rule = new PkgImportRule(true, false, "(pkg|hallo)", true, true);
         assertNotNull(rule, "Rule must not be null");
