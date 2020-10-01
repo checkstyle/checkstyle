@@ -9,6 +9,7 @@ branches:
   except:
     - gh-pages
 install:
+  - cmd: .ci/validation.cmd NO_SUCH_COMMAND
   - ps: |
       Add-Type -AssemblyName System.IO.Compression.FileSystem
       if (!(Test-Path -Path "C:\maven\apache-maven-3.2.5" )) {

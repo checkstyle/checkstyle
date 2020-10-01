@@ -35,6 +35,7 @@ task:
       C:/ProgramData/chocolatey/lib/maven/apache-maven-%MAVEN_VERSION%/bin;\
       C:/ProgramData/chocolatey/bin"
   install_script:
+    - ci/.ci/validation.cmd NO_SUCH_COMMAND
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
     - choco install -y ant
