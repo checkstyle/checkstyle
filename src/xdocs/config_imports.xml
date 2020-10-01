@@ -265,6 +265,15 @@ import java.net.*;                // violation
 &lt;module name="AvoidStaticImport"/&gt;
         </source>
         <p>
+          Example:
+        </p>
+        <source>
+import static java.lang.Math.pow;          // violation
+import static java.lang.System.*;          // violation
+import java.io.File;                       // OK
+import java.util.*;                        // OK
+        </source>
+        <p>
           To configure the check so that the <code>java.lang.System.out</code>
           member and all members from <code>java.lang.Math</code> are allowed:
         </p>
@@ -272,6 +281,16 @@ import java.net.*;                // violation
 &lt;module name="AvoidStaticImport"&gt;
   &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+         Example:
+        </p>
+        <source>
+import static java.lang.Math.*;            // OK
+import static java.lang.System.out;        // OK
+import static java.lang.Integer.parseInt;  // violation
+import java.io.*;                          // OK
+import java.util.*;                        // OK
         </source>
       </subsection>
 
