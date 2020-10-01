@@ -61,6 +61,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="AvoidStaticImport"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import static java.lang.Math.*;   // violation
+ * import static java.lang.System.*; // violation
+ * import java.io.File;              // OK
+ * import java.util.Scanner;         // OK
+ * </pre>
  * <p>
  * To configure the check so that the {@code java.lang.System.out} member and all
  * members from {@code java.lang.Math} are allowed:
@@ -69,6 +76,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="AvoidStaticImport"&gt;
  *   &lt;property name="excludes" value="java.lang.System.out,java.lang.Math.*"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import static java.lang.Math.*;   // OK
+ * import static java.lang.System.*; // violation
+ * import java.io.File;              // OK
+ * import java.util.Scanner;         // OK
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
