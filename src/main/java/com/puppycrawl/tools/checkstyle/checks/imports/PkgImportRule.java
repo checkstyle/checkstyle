@@ -62,20 +62,10 @@ class PkgImportRule extends AbstractImportRule {
 
         boolean pkgMatch;
 
-        if (isRegExp()) {
-            pkgMatch = forImport.matches(pkgName + "\\..*");
+        pkgMatch = forImport.matches(pkgName + "\\..*");
 
-            if (pkgMatch && exactMatch) {
-                pkgMatch = !forImport.matches(pkgName + "\\..*\\..*");
-            }
-        }
-        else {
-            pkgMatch = forImport.startsWith(pkgName + ".");
-
-            if (pkgMatch && exactMatch) {
-                pkgMatch = forImport.indexOf('.',
-                        pkgName.length() + 1) == -1;
-            }
+        if (pkgMatch && exactMatch) {
+            pkgMatch = !forImport.matches(pkgName + "\\..*\\..*");
         }
 
         return calculateResult(pkgMatch);
