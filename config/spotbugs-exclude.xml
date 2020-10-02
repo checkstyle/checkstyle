@@ -5,45 +5,9 @@
     <Package name="~com\.puppycrawl\.tools\.checkstyle\.grammar.*" />
   </Match>
   <Match>
-    <!-- We are not aware of encoding of files that user has, so using user encoding is ok -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.LineSeparatorOption" />
-    <Bug pattern="DM_DEFAULT_ENCODING" />
-  </Match>
-  <Match>
     <!-- see a reason of suppression at #910 -->
     <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck$UniqueProperties" />
     <Bug pattern="EQ_DOESNT_OVERRIDE_EQUALS" />
-  </Match>
-  <Match>
-    <!-- false-positive, as Map will return null if key is not found -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
-    <Method name="collectFirstNodes" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- it is ok here, as business meaning of that cases is not the same,
-           it is occasional similarity -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.blocks.RightCurlyCheck" />
-    <Method name="visitToken" />
-    <Bug pattern="DB_DUPLICATE_SWITCH_CLAUSES" />
-  </Match>
-  <Match>
-    <!-- false positive, condition elements are not the same -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.indentation.LineWrappingHandler" />
-    <Method name="collectFirstNodes" />
-    <Bug pattern="RpC_REPEATED_CONDITIONAL_TEST" />
-  </Match>
-  <Match>
-    <!-- false positive, "preceded" is returned from method as result -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceAfterCheck" />
-    <Method name="getPreceded" />
-    <Bug pattern="DLS_DEAD_LOCAL_STORE" />
-  </Match>
-  <Match>
-    <!-- that CLI class so we need system exit code there, but only in main(...) method -->
-    <Class name="com.puppycrawl.tools.checkstyle.Main" />
-    <Method name="main" />
-    <Bug pattern="DM_EXIT" />
   </Match>
   <Match>
     <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
@@ -55,12 +19,6 @@
     <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
     <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
     <Method name="load" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
-    <Method name="loadExternalResource" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
   </Match>
   <Match>
@@ -92,12 +50,6 @@
     <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck" />
     <Method name="processFiltered" />
     <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE" />
-  </Match>
-  <Match>
-    <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile" />
-    <Method name="loadExternalResource" />
-    <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE" />
   </Match>
   <Match>
     <!-- till https://github.com/spotbugs/spotbugs/issues/259 -->
@@ -146,98 +98,11 @@
     <Bug pattern="UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR" />
   </Match>
   <Match>
-    <!--
-     False-positive. ExternalResource cannot be null there.
-     FindBugs rise violation due to @Nullable annotation on 'apply' method.
-     See
-     https://stevewall123.wordpress.com/2014/12/18/findbugs-warning-with-guavas-predicate-interface/
-     See
-     http://stackoverflow.com/questions/12422473/nullable-input-in-google-guava-function-interface-triggers-findbugs-warning
-     -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile$1" />
-    <Method name="apply" />
-    <Bug pattern="NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE" />
-  </Match>
-  <Match>
     <!-- false-positive. Bugs reported even though casting is done only
            after verification using instanceof -->
     <Class name="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser"/>
     <Method name="parseJavadocAsDetailNode"/>
     <Bug pattern="BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.Main"/>
-    <Method name="loadProperties"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- won't fix: field values are injected by picocli -->
-    <Or>
-      <Class name="com.puppycrawl.tools.checkstyle.Main"/>
-      <Class name="com.puppycrawl.tools.checkstyle.JavadocPropertiesGenerator"/>
-    </Or>
-    <Or>
-      <Bug pattern="NP_UNWRITTEN_FIELD"/>
-      <Bug pattern="UWF_UNWRITTEN_FIELD"/>
-      <Bug pattern="MS_SHOULD_BE_FINAL"/>
-      <Bug pattern="MS_SHOULD_BE_REFACTORED_TO_BE_FINAL"/>
-      <Bug pattern="SS_SHOULD_BE_STATIC"/>
-    </Or>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PackageNamesLoader"/>
-    <Method name="processFile"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
-    <Method name="flushAndCloseOutStream"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
-    <Method name="load"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.header.AbstractHeaderCheck"/>
-    <Method name="loadHeaderFile"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask"/>
-    <Method name="createOverridingProperties"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
-    <Method name="persist"/>
-    <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.PropertyCacheFile"/>
-    <Method name="persist"/>
-    <Bug pattern="NP_NULL_PARAM_DEREF"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.TranslationCheck"/>
-    <Method name="getTranslationKeys"/>
-    <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
-  </Match>
-  <Match>
-    <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/5403 -->
-    <Class name="com.puppycrawl.tools.checkstyle.checks.UniquePropertiesCheck"/>
-    <Method name="processFiltered"/>
-    <Bug pattern="NP_GUARANTEED_DEREF_ON_EXCEPTION_PATH"/>
   </Match>
   <Match>
     <!-- false-positive. See details at https://github.com/checkstyle/checkstyle/pull/6343 -->
