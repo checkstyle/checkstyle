@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -192,14 +193,7 @@ public class FinalParametersCheck extends AbstractCheck {
                 && modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) == null) {
             final DetailAST parameters =
                 method.findFirstToken(TokenTypes.PARAMETERS);
-            DetailAST child = parameters.getFirstChild();
-            while (child != null) {
-                // children are PARAMETER_DEF and COMMA
-                if (child.getType() == TokenTypes.PARAMETER_DEF) {
-                    checkParam(child);
-                }
-                child = child.getNextSibling();
-            }
+            TokenUtil.forEachChild(parameters, TokenTypes.PARAMETER_DEF, this::checkParam);
         }
     }
 
