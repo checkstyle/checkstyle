@@ -63,6 +63,14 @@ blocks:
           commands:
             - .ci/validation.sh no-error-pmd
 
+        - name: No error test on Configurate
+          priority:
+            - value: 80
+              when: true
+          commands:
+            - sem-version java 14
+            - .ci/validation.sh no-violation-test-configurate
+
         #  Disabled due to instability
         #  - name: No violation testing on josm
         #    commands:
