@@ -6,13 +6,8 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Detects empty statements (standalone {@code ";"} semicolon).
- Empty statements often introduce bugs that are hard to spot, such as in
- &lt;/p&gt;
- &lt;pre&gt;
- if (someCondition);
-   doConditionalStuff();
- doUnconditionalStuff();
- &lt;/pre&gt;</description>
+ Empty statements often introduce bugs that are hard to spot
+ &lt;/p&gt;</description>
          <message-keys>
             <message-key key="empty.statement"/>
          </message-keys>
