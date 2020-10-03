@@ -977,13 +977,8 @@ case 2 -&gt; x = 32;
       <subsection name="Description" id="EmptyStatement_Description">
         <p>
           Detects empty statements (standalone <code>";"</code> semicolon).
-          Empty statements often introduce bugs that are hard to spot, such as in
+          Empty statements often introduce bugs that are hard to spot
         </p>
-        <source>
-if (someCondition);
-  doConditionalStuff();
-doUnconditionalStuff();
-        </source>
       </subsection>
 
       <subsection name="Examples" id="EmptyStatement_Examples">
@@ -992,6 +987,20 @@ doUnconditionalStuff();
         </p>
         <source>
 &lt;module name=&quot;EmptyStatement&quot;/&gt;
+        </source>
+        <p>
+            Example:
+        </p>
+        <source>
+public void foo() {
+  int i = 5;
+  if (i &gt; 3); // violation, ";" right after if statement
+    i++;
+  for (i = 0; i &lt; 5; i++); // violation
+    i++;
+  while (i &gt; 10) // OK
+    i++;
+}
         </source>
       </subsection>
 
