@@ -188,7 +188,8 @@
             <a href="https://github.com/checkstyle/checkstyle/issues/8748">#8748</a>
           </li>
           <li>
-            JavadocParagraph should complain about missing blank line before at-clauses.
+            new Check: RequireEmptyLineBeforeBlockTagGroup to complain about
+            missing blank line before at-clauses
             Author: Joseph Mate
             <a href="https://github.com/checkstyle/checkstyle/issues/6192">#6192</a>
           </li>
