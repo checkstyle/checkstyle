@@ -97,6 +97,19 @@ no-error-pmd)
   removeFolderWithProtectedFiles pmd
   ;;
 
+no-violation-test-configurate)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  echo "CS_version: ${CS_POM_VERSION}"
+  mkdir -p .ci-temp
+  cd .ci-temp
+  git clone https://github.com/SpongePowered/Configurate.git
+  cd Configurate
+  ./gradlew -PcheckstyleVersion="${CS_POM_VERSION}" -x test check
+  cd ..
+  removeFolderWithProtectedFiles Configurate
+  ;;
+
 no-violation-test-josm)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
