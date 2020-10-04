@@ -61,11 +61,22 @@ blocks:
             - value: 80
               when: true
           commands:
+            - mvn install -Pno-validations
             - .ci/validation.sh no-error-pmd
+
+        - name: No error test on Configurate
+          priority:
+            - value: 80
+              when: true
+          commands:
+            - sem-version java 14
+            - mvn install -Pno-validations
+            - .ci/validation.sh no-violation-test-configurate
 
         #  Disabled due to instability
         #  - name: No violation testing on josm
         #    commands:
+        #      - mvn install -Pno-validations
         #      - .ci/validation.sh no-violation-test-josm
 
         - name: No exception test
@@ -75,4 +86,5 @@ blocks:
                 - guava-with-google-checks
                 - guava-with-sun-checks
           commands:
+            - mvn install -Pno-validations
             - .ci/no-exception-test.sh $PROJECT
