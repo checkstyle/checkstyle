@@ -130,24 +130,24 @@
 
 
   <!-- Empty files that are used as input for UT -->
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]newlineatendoffile[\\/].*"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]checks[\\/]translation[\\/].*"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources-noncompilable[\\/].*[\\/]packagedeclaration[\\/]InputPackageDeclarationEmptyFile\.java"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]checkstyleanttask[\\/]InputCheckstyleAntTaskEmptyConfig\.xml"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]regexponfilename[\\/].*"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]grammar[\\/]InputRegressionEmptyAst\.txt"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile1\.java"/>
-  <suppress checks="RegexpMultiline"
+  <suppress id="noEmptyFile"
              files="src[\\/]test[\\/]resources[\\/].*[\\/]InputNoCodeInFile6\.java"/>
 </suppressions>
