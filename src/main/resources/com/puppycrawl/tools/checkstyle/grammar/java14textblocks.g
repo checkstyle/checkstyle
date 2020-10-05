@@ -40,6 +40,13 @@ options {
 
 {
     public TokenStreamSelector selector;
+
+    // explicitly set tab width to 1 (default in ANTLR 2.7.1)
+    // in ANTLR 2.7.2a2 the default has changed from 1 to 8
+    public void tab()
+    {
+        setColumn( getColumn() + 1 );
+    }
 }
 
 protected
