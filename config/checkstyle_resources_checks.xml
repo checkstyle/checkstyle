@@ -16,10 +16,12 @@
   </module>
   <module name="FileTabCharacter"/>
   <module name="RegexpSingleline">
+    <property name="id" value="noTrailingWhitespace"/>
     <property name="format" value="\s+$"/>
-    <property name="message" value="Trailing whitespace"/>
+    <property name="message" value="Trailing whitespace is not allowed"/>
   </module>
   <module name="RegexpOnFilename">
+    <property name="id" value="resourceFileName"/>
     <property name="folderPattern"
              value="[\\/]src[\\/](it|test)[\\/]resources(-noncompilable?)[\\/]"/>
     <property name="fileNamePattern"
