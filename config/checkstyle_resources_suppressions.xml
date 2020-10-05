@@ -157,6 +157,8 @@
     files="[\\/]InputSingleSpaceSeparatorErrors\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputParenPadWhitespace\.java"/>
+  <suppress checks="FileTabCharacter"
+    files="[\\/]InputNoWhitespaceBeforeTextBlocksTabIndent\.java"/>
 
   <!-- This file must not have a package statement, for testing purposes -->
   <suppress checks="PackageDeclarationCheck"
