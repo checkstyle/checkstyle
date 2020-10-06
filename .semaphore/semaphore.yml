@@ -73,11 +73,11 @@ blocks:
             - mvn -e install -Pno-validations
             - .ci/validation.sh no-violation-test-configurate
 
-        #  Disabled due to instability
-        #  - name: No violation testing on josm
-        #    commands:
-        #      - mvn -e install -Pno-validations
-        #      - .ci/validation.sh no-violation-test-josm
+         # Disabled due to instability
+         - name: No violation testing on josm
+           commands:
+             - mvn -e install -Pno-validations
+             - .ci/validation.sh no-violation-test-josm
 
         - name: No exception test
           matrix:
