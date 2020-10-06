@@ -244,10 +244,12 @@ no-error-spring-cloud-gcp)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/spring-cloud/spring-cloud-gcp
+  checkout_from https://github.com/romani/spring-cloud-gcp
   cd .ci-temp/spring-cloud-gcp
+  git checkout romani-patch-1
   mvn -e checkstyle:check@checkstyle-validation -P full-checkstyle \
-   -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
+   -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION} \
+   -Dmaven-checkstyle-plugin.version=3.1.1
   cd ..
   removeFolderWithProtectedFiles spring-cloud-gcp
   ;;
