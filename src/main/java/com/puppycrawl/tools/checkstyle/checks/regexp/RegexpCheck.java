@@ -625,8 +625,8 @@ public class RegexpCheck extends AbstractCheck {
 
     /** Recursive method that finds the matches. */
     private void findMatch() {
-        final boolean foundMatch = matcher.find();
-        if (foundMatch) {
+        boolean cont = true;
+        while (cont && matcher.find()) {
             final FileText text = getFileContents().getText();
             final LineColumn start = text.lineColumn(matcher.start());
             final int startLine = start.getLine();
@@ -641,11 +641,12 @@ public class RegexpCheck extends AbstractCheck {
                     logMessage(startLine);
                 }
             }
-            if (canContinueValidation(ignore)) {
-                findMatch();
+            if (!canContinueValidation()) {
+                cont = false;
             }
         }
-        else if (!illegalPattern && matchCount == 0) {
+
+        if (!illegalPattern && matchCount == 0) {
             logMessage(0);
         }
     }
@@ -653,12 +654,10 @@ public class RegexpCheck extends AbstractCheck {
     /**
      * Check if we can stop validation.
      *
-     * @param ignore flag
      * @return true is we can continue
      */
-    private boolean canContinueValidation(boolean ignore) {
-        return errorCount <= errorLimit - 1
-                && (ignore || illegalPattern || checkForDuplicates);
+    private boolean canContinueValidation() {
+        return errorCount <= errorLimit - 1;
     }
 
     /**
