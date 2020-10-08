@@ -201,6 +201,9 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         if (nonList != null) {
             final IndentLevel expected = new IndentLevel(getIndent(), getBasicOffset());
             checkExpressionSubtree(nonList, expected, false, false);
+
+            final DetailAST nonListStartAst = getFirstAstNode(nonList);
+            checkExpressionSubtree(nonListStartAst, expected, false, false);
         }
     }
 
