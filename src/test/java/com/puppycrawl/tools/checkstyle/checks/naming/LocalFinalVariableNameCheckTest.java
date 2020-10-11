@@ -114,4 +114,15 @@ public class LocalFinalVariableNameCheckTest
         verify(checkConfig, getPath("InputLocalFinalVariableNameTryResources.java"), expected);
     }
 
+    @Test
+    public void testTryWithResourcesJava9() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(LocalFinalVariableNameCheck.class);
+        checkConfig.addAttribute("format", "[a-z]+");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath(
+            "InputLocalFinalVariableNameTryResourcesJava9.java"), expected);
+    }
+
 }
