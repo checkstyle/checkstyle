@@ -50,7 +50,7 @@ public class ImportControlLoaderTest {
     public void testLoad() throws CheckstyleException {
         final AbstractImportControl root =
                 ImportControlLoader.load(
-                new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
+                    new File(getPath("InputImportControlLoaderComplete.xml")).toURI());
         assertNotNull(root, "Import root should not be null");
     }
 

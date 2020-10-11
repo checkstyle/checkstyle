@@ -107,7 +107,7 @@ public class InputIndentationInvalidMethodIndent { //indent:0 exp:0
 
         System.identityHashCode("methods are: " + //indent:8 exp:8
             Arrays.asList( //indent:12 exp:>=12
-              new String[] {"method"}).toString()); //indent:14 exp:>=14
+              new String[] {"method"}).toString()); //indent:14 exp:>=16 warn
 
         System.identityHashCode("methods are: " //indent:8 exp:8
           + Arrays.asList( //indent:10 exp:12 warn
@@ -115,7 +115,7 @@ public class InputIndentationInvalidMethodIndent { //indent:0 exp:0
 
         System.identityHashCode("methods are: " //indent:8 exp:8
             + Arrays.asList( //indent:12 exp:>=12
-              new String[] {"method"}).toString()); //indent:14 exp:>=12
+              new String[] {"method"}).toString()); //indent:14 exp:>=16 warn
 
 
         String blah = (String) System.getProperty( //indent:8 exp:8
