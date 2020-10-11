@@ -28,6 +28,7 @@ import java.net.URI;
 import java.net.URL;
 
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
@@ -39,6 +40,10 @@ import org.xml.sax.SAXParseException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader;
 
+/**
+ * This test should be run isolated as it uses Powermock.
+ */
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({ImportControlLoader.class, URI.class})
 public class ImportControlLoaderPowerTest {

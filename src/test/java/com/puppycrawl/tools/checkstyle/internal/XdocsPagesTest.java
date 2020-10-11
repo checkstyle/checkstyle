@@ -67,6 +67,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.beanutils.PropertyUtils;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -90,6 +91,10 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XdocUtil;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
+/**
+ * This test should be run isolated as it changes the global state (locale settings).
+ */
+@Isolated
 public class XdocsPagesTest {
 
     private static final Path AVAILABLE_CHECKS_PATH = Paths.get("src/xdocs/checks.xml");
