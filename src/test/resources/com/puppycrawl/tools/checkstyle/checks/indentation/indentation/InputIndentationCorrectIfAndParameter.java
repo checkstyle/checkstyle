@@ -30,14 +30,15 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
     if (conditionSecond(10000000000.0, new //indent:4 exp:4
         SecondClassLongNam7("Looooooooooooo" //indent:8 exp:8
         + "oooooooooooong").getString(new InputIndentationCorrectIfAndParameter(), //indent:8 exp:8
-        new SecondClassLongNam7("loooooooooong"). //indent:8 exp:8
+        new SecondClassLongNam7("loooooooooong"). //indent:8 exp:10,12 warn
         getInteger(new InputIndentationCorrectIfAndParameter(), "long")), "loong") //indent:8 exp:8
         || conditionThird(2048) || conditionFourth(new //indent:8 exp:8
         SecondClassLongNam7("Looooooooooooooo" //indent:8 exp:8
         + "oo").gB(new InputIndentationCorrectIfAndParameter(), false)) || //indent:8 exp:8
         conditionFifth(true, new SecondClassLongNam7(getString(2048, "Looo" //indent:8 exp:8
         + "ooooooooooooooooooooooooooooooooooooooooooong")).gB( //indent:8 exp:8
-        new InputIndentationCorrectIfAndParameter(), true)) || co(false, new //indent:8 exp:8
+        new InputIndentationCorrectIfAndParameter(), true)) //indent:8 exp:10,12 warn
+        || co(false, new //indent:8 exp:8
         SecondClassLongNam7(getString(100000, "Loooooong" //indent:8 exp:8
         + "Fooooooo><"))) || conditionNoArg() //indent:8 exp:8
         || conditionNoArg() || //indent:8 exp:8
@@ -86,14 +87,15 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
       if (conditionSecond(10000000000.0, new //indent:6 exp:6
           SecondClassLongNam7("Looooooooooooo" //indent:10 exp:10
           + "ooooooong").getString(new InputIndentationCorrectIfAndParameter(), //indent:10 exp:10
-          new SecondClassLongNam7("loooooooooong"). //indent:10 exp:10
+          new SecondClassLongNam7("loooooooooong"). //indent:10 exp:12,14 warn
           getInteger(new InputIndentationCorrectIfAndParameter(), "long")), "l") //indent:10 exp:10
           || conditionThird(2048) || conditionFourth(new //indent:10 exp:10
           SecondClassLongNam7("Looooooooooooooo" //indent:10 exp:10
             + "og").gB(new InputIndentationCorrectIfAndParameter(), false)) || //indent:12 exp:>=10
             conditionFifth(true, new SecondClassLongNam7(getString(2048, "Loo" //indent:12 exp:>=10
             + "ooooooooooooooooooooooooooooooooooooooooooong")).gB( //indent:12 exp:>=10
-            new InputIndentationCorrectIfAndParameter(), true)) ||co(false,new //indent:12 exp:>=10
+            new InputIndentationCorrectIfAndParameter(), true)) //indent:12 exp:14,16 warn
+              ||co(false,new //indent:14 exp:14
               SecondClassLongNam7(getString(100000, "Loooooong" //indent:14 exp:>=10
               + "Fooooooo><"))) || conditionNoArg() //indent:14 exp:>=10
               || conditionNoArg() || //indent:14 exp:>=10
@@ -114,14 +116,15 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
         if (conditionSecond(10000000000.0, new //indent:8 exp:8
             SecondClassLongNam7("Looooooooooooo" //indent:12 exp:12
             + "oooooong").getString(new InputIndentationCorrectIfAndParameter(), //indent:12 exp:12
-            new SecondClassLongNam7("loooooooooong"). //indent:12 exp:12
+            new SecondClassLongNam7("loooooooooong"). //indent:12 exp:14,16 warn
             getInteger(new InputIndentationCorrectIfAndParameter(), "lg")), "l") //indent:12 exp:12
             || conditionThird(2048) || conditionFourth(new //indent:12 exp:12
             SecondClassLongNam7("Looooooooooooooo" //indent:12 exp:12
               + "o").gB(new InputIndentationCorrectIfAndParameter(), false))|| //indent:14 exp:>=12
               conditionFifth(true, new SecondClassLongNam7(getString(2048, "L" //indent:14 exp:>=12
               + "ooooooooooooooooooooooooooooooooooooooooooong")).gB( //indent:14 exp:>=12
-              new InputIndentationCorrectIfAndParameter(),true))||co(false,new //indent:14 exp:>=12
+              new InputIndentationCorrectIfAndParameter(),true))//indent:14 exp:16,18 warn
+                || co(false, new //indent:16 exp:16
                 SecondClassLongNam7(getString(100000, "Loooooong" //indent:16 exp:>=12
                 + "Fooooooo><"))) || conditionNoArg() //indent:16 exp:>=12
                 || conditionNoArg() || //indent:16 exp:>=12

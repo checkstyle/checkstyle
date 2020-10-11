@@ -28,6 +28,11 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 public class NewHandler extends AbstractExpressionHandler {
 
     /**
+     * The Assignment operator.
+     */
+    private static final String ASSIGNMENT = "=";
+
+    /**
      * Construct an instance of this handler with the given indentation check,
      * abstract syntax tree, and parent handler.
      *
@@ -43,26 +48,57 @@ public class NewHandler extends AbstractExpressionHandler {
 
     @Override
     public void checkIndentation() {
-        final DetailAST type = getMainAst().getFirstChild();
-        if (type != null) {
-            checkExpressionSubtree(type, getIndent(), false, false);
+        final DetailAST firstChild = getMainAst().getFirstChild();
+        final DetailAST mainAst = getMainAst();
+
+        // if new is on the line start and it is not the part of assignment.
+        if (isOnStartOfLine(mainAst)
+                && !getMainAst().getParent().getParent().getText().equals(ASSIGNMENT)) {
+            final int columnNo = expandedTabsColumnNo(mainAst);
+            final IndentLevel level = getIndentImpl();
+
+            if (columnNo < level.getFirstIndentLevel()) {
+                logError(mainAst, "", columnNo, level);
+            }
         }
 
-        final DetailAST lparen = getMainAst().findFirstToken(TokenTypes.LPAREN);
+        if (firstChild != null) {
+            checkExpressionSubtree(firstChild, getIndent(), false, false);
+        }
+
+        final DetailAST lparen = mainAst.findFirstToken(TokenTypes.LPAREN);
         checkLeftParen(lparen);
     }
 
     @Override
+    public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
+        final IndentLevel childIndent;
+        if (child.getMainAst().getType() == TokenTypes.OBJBLOCK) {
+            childIndent = new IndentLevel(getIndent(), getBasicOffset());
+        }
+        else {
+            childIndent = new IndentLevel(getIndent(),
+                    getIndentCheck().getLineWrappingIndentation());
+        }
+        return childIndent;
+    }
+
+    @Override
     protected IndentLevel getIndentImpl() {
-        final IndentLevel result;
+        IndentLevel result;
         // if our expression isn't first on the line, just use the start
         // of the line
         if (getLineStart(getMainAst()) == getMainAst().getColumnNo()) {
             result = super.getIndentImpl();
+
+            if (getMainAst().getParent().getParent().getText().equals(ASSIGNMENT)) {
+                result = new IndentLevel(result, getIndentCheck().getLineWrappingIndentation());
+            }
         }
         else {
             result = new IndentLevel(getLineStart(getMainAst()));
         }
+
         return result;
     }
 
