@@ -123,4 +123,19 @@ class InputNonEmptyAtclauseDescription
         {
                 return 1;
         }
+
+        /**
+         * @param a xxx
+         * @return
+         */     // ^ violation
+        int foo(int a) {
+                return a;
+        }
+
+        /**
+         * @return {@code 1}
+         */     // ^ ok
+        int bar() {
+                return 1;
+        }
 }

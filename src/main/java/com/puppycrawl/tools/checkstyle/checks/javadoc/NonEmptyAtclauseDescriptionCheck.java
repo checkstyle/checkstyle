@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
@@ -127,7 +128,26 @@ public class NonEmptyAtclauseDescriptionCheck extends AbstractJavadocCheck {
     private static boolean isEmptyTag(DetailNode tagNode) {
         final DetailNode tagDescription =
                 JavadocUtil.findFirstToken(tagNode, JavadocTokenTypes.DESCRIPTION);
-        return tagDescription == null;
+        return tagDescription == null
+            || hasOnlyEmptyText(tagDescription);
+    }
+
+    /**
+     * Tests if description node is empty (has only new lines and blank strings).
+     *
+     * @param description description node.
+     * @return true, if description node has only new lines and blank strings.
+     */
+    private static boolean hasOnlyEmptyText(DetailNode description) {
+        boolean result = true;
+        for (DetailNode child : description.getChildren()) {
+            if (child.getType() != JavadocTokenTypes.TEXT
+                    || !CommonUtil.isBlank(child.getText())) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
 }
