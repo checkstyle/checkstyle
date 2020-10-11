@@ -36,6 +36,7 @@ import java.util.List;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.junit.Test;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -46,6 +47,10 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 
+/**
+ * This test should be run isolated as it uses Powermock.
+ */
+@Isolated
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(CheckstyleAntTask.class)
 public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {

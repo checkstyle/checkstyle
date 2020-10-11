@@ -60,6 +60,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
@@ -69,7 +70,13 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
+/**
+ * Test for CLI wrapper for the Checker.
+ * This test should be run isolated as it changes the global state (output handler,
+ * locale settings, class loader).
+ */
 @ExtendWith({ExitGuard.class, SystemErrGuard.class, SystemOutGuard.class})
+@Isolated
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
