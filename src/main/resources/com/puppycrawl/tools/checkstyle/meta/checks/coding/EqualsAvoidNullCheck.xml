@@ -12,23 +12,9 @@
  &lt;/p&gt;
  &lt;p&gt;Rationale: Calling the {@code equals()} method on String literals
  will avoid a potential {@code NullPointerException}. Also, it is
- pretty common to see null checks right before equals comparisons,
- which is not necessary in the example below.
- &lt;/p&gt;
- &lt;p&gt;
- For example, this code:
- &lt;/p&gt;
- &lt;pre&gt;
- String nullString = null;
- nullString.equals(&amp;quot;My_Sweet_String&amp;quot;);
- &lt;/pre&gt;
- &lt;p&gt;
- should be refactored to:
- &lt;/p&gt;
- &lt;pre&gt;
- String nullString = null;
- &amp;quot;My_Sweet_String&amp;quot;.equals(nullString);
- &lt;/pre&gt;</description>
+ pretty common to see null checks right before equals comparisons
+ but following this rule such checks are not required.
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="ignoreEqualsIgnoreCase" type="boolean">
                <description>Control whether to ignore
