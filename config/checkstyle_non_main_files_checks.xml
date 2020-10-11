@@ -43,22 +43,26 @@
 
   <!-- To restrict empty files -->
   <module name="RegexpMultiline">
+    <property name="id" value="noEmptyFile"/>
     <property name="format" value="^\s*$" />
     <property name="matchAcrossLines" value="true" />
     <property name="message" value="Empty file is not allowed" />
   </module>
 
   <module name="RegexpSingleline">
+    <property name="id" value="commentStartSpaceXml"/>
     <property name="format" value="&lt;!--[^ ]"/>
     <property name="fileExtensions" value="xml, properties"/>
     <property name="message" value="space is required after comment start"/>
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="commentEndSpaceXml"/>
     <property name="format" value="[^ ]--&gt;"/>
     <property name="fileExtensions" value="xml, properties"/>
     <property name="message" value="space is required before comment end"/>
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="commentStartSpaceYml"/>
     <property name="format" value=" #[^ !]"/>
     <property name="fileExtensions" value="sh, yml, yaml"/>
     <property name="message" value="space is required after comment start"/>

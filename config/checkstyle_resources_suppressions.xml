@@ -77,11 +77,11 @@
     files="src[\\/]it[\\/]resources[\\/].*[\\/]SuppressionXpathRegressionOuterTypeFilename.*\.java"/>
 
   <!-- intentional problem for testing -->
-  <suppress checks="RegexpSingleline"
+  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocContentLocationTrailingSpace\.java"/>
-  <suppress checks="RegexpSingleline"
+  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocParagraphCorrect\.java"/>
-  <suppress checks="RegexpSingleline"
+  <suppress id="noTrailingWhitespace"
     files="[\\/]InputJavadocTagContinuationIndentationGuavaFalsePositive\.java"/>
 
   <!-- intentional problem for testing -->

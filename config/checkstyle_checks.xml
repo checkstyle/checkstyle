@@ -81,40 +81,50 @@
   <module name="OrderedProperties" />
 
   <!-- Regexp -->
-  <module name="RegexpMultiline"/>
   <module name="RegexpMultiline">
+    <property name="id" value="regexpMultilineDefault"/>
+  </module>
+  <module name="RegexpMultiline">
+    <property name="id" value="noConsecutiveLines"/>
     <property name="format" value="\r?\n[\t ]*\r?\n[\t ]*\r?\n"/>
     <property name="fileExtensions" value="java,xml,properties"/>
     <property name="message" value="Unnecessary consecutive lines"/>
   </module>
   <module name="RegexpMultiline">
+    <property name="id" value="commentFirstSentenceMultiline"/>
     <property name="format" value="/\*\*\W+\* +\p{javaLowerCase}"/>
     <property name="fileExtensions" value="java"/>
     <property name="message"
               value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpMultiline">
+    <property name="id" value="noEmptyFile"/>
     <property name="format" value="^\s*$" />
     <property name="matchAcrossLines" value="true" />
     <property name="message" value="Empty file is not allowed" />
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="noTrailingWhitespace"/>
     <property name="format" value="\s+$"/>
     <property name="minimum" value="0"/>
     <property name="maximum" value="0"/>
+    <property name="message" value="Trailing whitespace is not allowed"/>
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="commentFirstSentenceSingleline"/>
     <property name="format" value="/\*\* +\p{javaLowerCase}"/>
     <property name="fileExtensions" value="java"/>
     <property name="message"
                 value="First sentence in a comment should start with a capital letter"/>
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="lineLengthGrammar"/>
     <property name="format" value="^(?!(.*http|import)).{101,}$"/>
     <property name="fileExtensions" value="g, g4"/>
     <property name="message" value="Line should not be longer than 100 symbols"/>
   </module>
   <module name="RegexpSingleline">
+    <property name="id" value="lineLengthXml"/>
     <property name="format"
               value="^(?!(\s*,?\s*&lt;a href=&quot;[^&quot;]+&quot;&gt;|.*http)).{101,}$"/>
     <property name="fileExtensions" value="xml, vm"/>
@@ -126,6 +136,7 @@
    See https://github.com/checkstyle/checkstyle/issues/7340 for details.
   -->
   <module name="RegexpSingleline">
+    <property name="id" value="noRelativeLinks"/>
     <property name="format" value="href=&quot;(?!\/|https?:\/\/).*?\.dtd&quot;"/>
     <property name="fileExtensions" value="xml, vm"/>
     <property name="message"
@@ -150,8 +161,11 @@
     <property name="message"
               value="Package comment marker should not be used if other visibility is defined"/>
   </module>
-  <module name="RegexpOnFilename" />
   <module name="RegexpOnFilename">
+    <property name="id" value="regexpOnFilenameWithSpace"/>
+  </module>
+  <module name="RegexpOnFilename">
+    <property name="id" value="javaFileLocation"/>
     <property name="folderPattern" value="[\\/]src[\\/]\w+[\\/]java[\\/]"/>
     <property name="fileNamePattern" value="\.java$"/>
     <property name="match" value="false"/>
@@ -159,6 +173,7 @@
              value="Only java files should be located in the ''src/*/java'' folders."/>
   </module>
   <module name="RegexpOnFilename">
+    <property name="id" value="xmlFileLocation"/>
     <property name="folderPattern" value="[\\/]src[\\/]xdocs[\\/]"/>
     <property name="fileNamePattern" value="\.(xml)|(vm)$"/>
     <property name="match" value="false"/>
@@ -166,6 +181,7 @@
       value="All files in the ''src/xdocs'' folder should have the ''xml'' or ''vm'' extension."/>
   </module>
   <module name="RegexpOnFilename">
+    <property name="id" value="testFileLocation"/>
     <property name="folderPattern" value="[\\/]src[\\/]it[\\/]java[\\/]"/>
     <property name="fileNamePattern" value="^((\w+Test)|(\w+TestSupport)|(Abstract\w+))\.java$"/>
     <property name="match" value="false"/>
