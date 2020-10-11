@@ -11,15 +11,15 @@ class InputIndentationCorrectReturnAndParameter { //indent:0 exp:0
     return conditionSecond(10000000000.0, new //indent:4 exp:4
         SecondClassLongName("Looooooooooooo" //indent:8 exp:8
         + "oooooooooooong").getString(new FooReturnClass(), //indent:8 exp:8
-        new SecondClassLongName("loooooooooong"). //indent:8 exp:8
+          new SecondClassLongName("loooooooooong"). //indent:10 exp:10
         getInteger(new FooReturnClass(), "loooooooooooooong")), "loooooooooooong") //indent:8 exp:8
         || conditionThird(2048) || conditionFourth(new //indent:8 exp:8
         SecondClassLongName("Looooooooooooooo" //indent:8 exp:8
         + "ooooooooooooong").getBoolean(new FooReturnClass(), false)) || //indent:8 exp:8
         conditionFifth(true, new SecondClassLongName(getString(2048, "Looo" //indent:8 exp:8
         + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:8 exp:8
-        new FooReturnClass(), true)) || conditionSixth(false, new //indent:8 exp:8
-        SecondClassLongName(getString(100000, "Loooooong" //indent:8 exp:8
+          new FooReturnClass(), true)) || conditionSixth(false, new //indent:10 exp:10
+          SecondClassLongName(getString(100000, "Loooooong" //indent:10 exp:10
         + "Fooooooo><"))) || conditionNoArg() //indent:8 exp:8
         || conditionNoArg() || //indent:8 exp:8
         conditionNoArg() || conditionNoArg();//indent:8 exp:8
@@ -69,14 +69,14 @@ class InputIndentationCorrectReturnAndParameter { //indent:0 exp:0
       return conditionSecond(10000000000.0, new //indent:6 exp:6
           SecondClassLongName("Looooooooooooo" //indent:10 exp:10
           + "oooooooooooong").getString(new FooReturnClass(), //indent:10 exp:10
-          new SecondClassLongName("loooooooooong"). //indent:10 exp:10
+            new SecondClassLongName("loooooooooong"). //indent:12 exp:12
           getInteger(new FooReturnClass(), "looooooooooong")), "loooooooooooong") //indent:10 exp:10
           || conditionThird(2048) || conditionFourth(new //indent:10 exp:10
           SecondClassLongName("Looooooooooooooo" //indent:10 exp:10
             + "ooooooooooooong").getBoolean(new FooReturnClass(), false)) || //indent:12 exp:>=10
             conditionFifth(true, new SecondClassLongName(getString(2048, "Looo" //indent:12 exp:>=10
             + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:12 exp:>=10
-            new FooReturnClass(), true)) || conditionSixth(false, new //indent:12 exp:>=10
+              new FooReturnClass(), true)) || conditionSixth(false, new //indent:14 exp:>=14
               SecondClassLongName(getString(100000, "Loooooong" //indent:14 exp:>=10
               + "Fooooooo><"))) || conditionNoArg() //indent:14 exp:>=10
               || conditionNoArg() || //indent:14 exp:>=10
@@ -92,14 +92,14 @@ class InputIndentationCorrectReturnAndParameter { //indent:0 exp:0
         return conditionSecond(10000000000.0, new //indent:8 exp:8
             SecondClassLongName("Looooooooooooo" //indent:12 exp:12
             + "oooooooooooong").getString(new FooReturnClass(), //indent:12 exp:12
-            new SecondClassLongName("loooooooooong"). //indent:12 exp:12
+              new SecondClassLongName("loooooooooong"). //indent:14 exp:14
             getInteger(new FooReturnClass(), "looooooooong")), "loooooooooooong") //indent:12 exp:12
             || conditionThird(2048) || conditionFourth(new //indent:12 exp:12
             SecondClassLongName("Looooooooooooooo" //indent:12 exp:12
               + "ooooooooooooong").getBoolean(new FooReturnClass(), false)) || //indent:14 exp:>=12
               conditionFifth(true, new SecondClassLongName(getString(2048, "Lo" //indent:14 exp:>=12
               + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:14 exp:>=12
-              new FooReturnClass(), true)) || conditionSixth(false, new //indent:14 exp:>=12
+                new FooReturnClass(), true)) || conditionSixth(false, new //indent:16 exp:>=16
                 SecondClassLongName(getString(100000, "Loooooong" //indent:16 exp:>=12
                 + "Fooooooo><"))) || conditionNoArg() //indent:16 exp:>=12
                 || conditionNoArg() || //indent:16 exp:>=12
