@@ -60,6 +60,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+import org.junit.jupiter.api.parallel.Isolated;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -92,9 +93,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * CheckerTest.
+ * This test should be run isolated as it changes the global state (locale settings, class loader).
  *
  * @noinspection ClassWithTooManyDependencies
  */
+@Isolated
 public class CheckerTest extends AbstractModuleTestSupport {
 
     @TempDir
