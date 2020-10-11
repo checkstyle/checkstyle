@@ -166,7 +166,18 @@ public class ScopeUtilTest {
 
     @Test
     public void testIsLocalVariableDefResource() {
-        assertTrue(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.RESOURCE)), "invalid result");
+        final DetailAstImpl resourceTwoChildren = getNode(TokenTypes.RESOURCE);
+        final DetailAstImpl modifiers = new DetailAstImpl();
+        modifiers.setType(TokenTypes.MODIFIERS);
+        resourceTwoChildren.addChild(modifiers);
+        final DetailAstImpl ident = new DetailAstImpl();
+        ident.setType(TokenTypes.IDENT);
+        resourceTwoChildren.addChild(ident);
+        assertTrue(ScopeUtil.isLocalVariableDef(resourceTwoChildren), "invalid result");
+        final DetailAstImpl resourceWithIdent = getNode(TokenTypes.RESOURCE);
+        resourceWithIdent.addChild(ident);
+        assertFalse(ScopeUtil.isLocalVariableDef(resourceWithIdent), "invalid result");
+        assertFalse(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.RESOURCE)), "invalid result");
     }
 
     @Test
