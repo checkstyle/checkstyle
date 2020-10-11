@@ -266,7 +266,7 @@ public final class ScopeUtil {
         }
 
         if (node.getType() == TokenTypes.RESOURCE) {
-            localVariableDef = true;
+            localVariableDef = node.getChildCount() > 1;
         }
         return localVariableDef;
     }
