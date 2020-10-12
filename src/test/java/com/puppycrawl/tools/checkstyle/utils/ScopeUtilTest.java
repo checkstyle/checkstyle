@@ -165,11 +165,6 @@ public class ScopeUtilTest {
     }
 
     @Test
-    public void testIsLocalVariableDefResource() {
-        assertTrue(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.RESOURCE)), "invalid result");
-    }
-
-    @Test
     public void testIsLocalVariableDefVariable() {
         assertTrue(ScopeUtil.isLocalVariableDef(getNode(TokenTypes.SLIST, TokenTypes.VARIABLE_DEF)),
                 "invalid result");
