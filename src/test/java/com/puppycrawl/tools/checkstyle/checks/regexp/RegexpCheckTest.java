@@ -113,6 +113,17 @@ public class RegexpCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStopEarly() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(RegexpCheck.class);
+        checkConfig.addAttribute("format", "a");
+        checkConfig.addAttribute("illegalPattern", "false");
+        checkConfig.addAttribute("duplicateLimit", "-1");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputRegexpCheckStopEarly.java"), expected);
+    }
+
+    @Test
     public void testIllegalFailBelowErrorLimit() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(RegexpCheck.class);
