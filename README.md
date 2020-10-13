@@ -65,7 +65,7 @@ Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checks
 
 Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
 
-Bugs and Feature requests (not the questions): https://github.com/checkstyle/checkstyle/issues
+Bugs and Feature requests (not the query): https://github.com/checkstyle/checkstyle/issues
 
 
 Support/Sponsor checkstyle
