@@ -44,6 +44,7 @@ import java.util.TreeSet;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.powermock.reflect.Whitebox;
+import org.w3c.dom.Node;
 
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport;
@@ -197,17 +198,9 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             "InputTranslationCheckFireErrors_de.properties",
                 Collections.singletonList(line + secondErrorMessage)));
 
-        verifyXml(getPath("ExpectedTranslationLog.xml"), out, (expected, actual) -> {
-            // order is not always maintained here for an unknown reason.
-            // File names can appear in different orders depending on the OS and VM.
-            // This ensures we pick up the correct file based on its name and the
-            // number of children it has.
-            return !"file".equals(expected.getNodeName())
-                    || XmlUtil.getNameAttributeOfNode(expected)
-                        .equals(XmlUtil.getNameAttributeOfNode(actual))
-                    && XmlUtil.getChildrenElements(expected).size() == XmlUtil
-                            .getChildrenElements(actual).size();
-        }, firstErrorMessage, secondErrorMessage);
+        verifyXml(getPath("ExpectedTranslationLog.xml"), out,
+            TranslationCheckTest::isFilenamesEqual,
+            firstErrorMessage, secondErrorMessage);
     }
 
     @Test
@@ -612,6 +605,25 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
             assertThat("Error message is unexpected",
                     exceptionMessage, endsWith("[TranslationCheck]"));
         }
+    }
+
+    /**
+     * Compare two file names.
+     *
+     * @param expected expected node
+     * @param actual actual node
+     * @return true if file names match
+     */
+    private static boolean isFilenamesEqual(Node expected, Node actual) {
+        // order is not always maintained here for an unknown reason.
+        // File names can appear in different orders depending on the OS and VM.
+        // This ensures we pick up the correct file based on its name and the
+        // number of children it has.
+        return !"file".equals(expected.getNodeName())
+            || XmlUtil.getNameAttributeOfNode(expected)
+            .equals(XmlUtil.getNameAttributeOfNode(actual))
+            && XmlUtil.getChildrenElements(expected).size() == XmlUtil
+            .getChildrenElements(actual).size();
     }
 
     private static class TestMessageDispatcher implements MessageDispatcher {
