@@ -53,17 +53,7 @@ public final class MetadataGeneratorUtilTest {
                         + "/tools/checkstyle/meta"))) {
             metaFiles = fileStream
                     .filter(Files::isRegularFile)
-                    .map(file -> {
-                        final String fileName = file.getFileName().toString();
-                        final int lengthToOmit;
-                        if (fileName.contains("Check")) {
-                            lengthToOmit = "Check.xml".length();
-                        }
-                        else {
-                            lengthToOmit = ".xml".length();
-                        }
-                        return fileName.substring(0, fileName.length() - lengthToOmit);
-                    })
+                    .map(MetadataGeneratorUtilTest::getMetaFileName)
                     .sorted()
                     .collect(Collectors.toCollection(LinkedHashSet::new));
         }
@@ -75,5 +65,23 @@ public final class MetadataGeneratorUtilTest {
         checkstyleModules.removeAll(modulesContainingNoMetadataFile);
         assertEquals("Number of generated metadata files dont match with number of checkstyle "
                         + "module", checkstyleModules, metaFiles);
+    }
+
+    /**
+     * Get meta file name from full file name.
+     *
+     * @param file file to process
+     * @return meta file name
+     */
+    private static String getMetaFileName(Path file) {
+        final String fileName = file.getFileName().toString();
+        final int lengthToOmit;
+        if (fileName.contains("Check")) {
+            lengthToOmit = "Check.xml".length();
+        }
+        else {
+            lengthToOmit = ".xml".length();
+        }
+        return fileName.substring(0, fileName.length() - lengthToOmit);
     }
 }
