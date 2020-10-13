@@ -184,12 +184,8 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
                 "processingTokenEnd",
                 processingTokenEnd -> {
                     try {
-                        return (Integer) TestUtil.getClassDeclaredField(
-                            processingTokenEnd.getClass(), "endLineNo").get(
-                            processingTokenEnd) == 0
-                            && (Integer) TestUtil.getClassDeclaredField(
-                                processingTokenEnd.getClass(), "endColumnNo").get(
-                                processingTokenEnd) == 0;
+                        return getFieldValue(processingTokenEnd, "endLineNo") == 0
+                            && getFieldValue(processingTokenEnd, "endColumnNo") == 0;
                     }
                     catch (IllegalAccessException | NoSuchFieldException ex) {
                         throw new IllegalStateException(ex);
@@ -396,6 +392,18 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         final DetailAstImpl astSemi = new DetailAstImpl();
         astSemi.initialize(tokenImportSemi);
         return astSemi;
+    }
+
+    /**
+     * Get int value of provided field in object.
+     *
+     * @param object object to get field from
+     * @param fieldName field name
+     * @return int value of field
+     */
+    private static Integer getFieldValue(Object object, String fieldName)
+            throws IllegalAccessException, NoSuchFieldException {
+        return (Integer) TestUtil.getClassDeclaredField(object.getClass(), fieldName).get(object);
     }
 
 }
