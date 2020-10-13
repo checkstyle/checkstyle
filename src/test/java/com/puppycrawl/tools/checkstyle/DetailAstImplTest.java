@@ -527,7 +527,6 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
                     && !NO_ROOT_FILES.contains(file.getName())) {
                 result.add(file);
             }
-
             return false;
         });
 
