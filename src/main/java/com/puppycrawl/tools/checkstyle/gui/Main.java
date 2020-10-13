@@ -43,7 +43,6 @@ public final class Main {
     public static void main(final String... args) {
         SwingUtilities.invokeLater(() -> {
             final MainFrame mainFrame = new MainFrame();
-
             if (args.length > 0) {
                 final File sourceFile = new File(args[0]);
                 mainFrame.openFile(sourceFile);
