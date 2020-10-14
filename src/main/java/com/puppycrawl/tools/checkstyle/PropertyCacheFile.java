@@ -331,20 +331,28 @@ public final class PropertyCacheFile {
      * @return true if the contents of external configuration resources were changed.
      */
     private boolean areExternalResourcesChanged(Set<ExternalResource> resources) {
-        return resources.stream().anyMatch(resource -> {
-            boolean changed = false;
-            if (isResourceLocationInCache(resource.location)) {
-                final String contentHashSum = resource.contentHashSum;
-                final String cachedHashSum = details.getProperty(resource.location);
-                if (!cachedHashSum.equals(contentHashSum)) {
-                    changed = true;
-                }
-            }
-            else {
+        return resources.stream().anyMatch(this::isResourceChanged);
+    }
+
+    /**
+     * Checks whether the resource is changed.
+     *
+     * @param resource resource to check.
+     * @return true if resource is changed.
+     */
+    private boolean isResourceChanged(ExternalResource resource) {
+        boolean changed = false;
+        if (isResourceLocationInCache(resource.location)) {
+            final String contentHashSum = resource.contentHashSum;
+            final String cachedHashSum = details.getProperty(resource.location);
+            if (!cachedHashSum.equals(contentHashSum)) {
                 changed = true;
             }
-            return changed;
-        });
+        }
+        else {
+            changed = true;
+        }
+        return changed;
     }
 
     /**
