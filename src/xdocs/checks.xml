@@ -457,6 +457,10 @@
             </td>
           </tr>
           <tr>
+            <td><a href="config_sizes.html#LambdaBodyLength">LambdaBodyLength</a></td>
+            <td>Checks lambda body length.</td>
+          </tr>
+          <tr>
             <td><a href="config_naming.html#LambdaParameterName">LambdaParameterName</a></td>
             <td>Checks lambda parameter names.</td>
           </tr>
