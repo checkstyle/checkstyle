@@ -569,6 +569,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.coding.VariableDeclarationUsageDistanceCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoArrayTrailingCommaCheck",
                 BASE_PACKAGE + ".checks.coding.NoArrayTrailingCommaCheck");
+        NAME_TO_FULL_MODULE_NAME.put("GenericXpathCheck",
+                BASE_PACKAGE + ".checks.coding.GenericXpathCheck");
     }
 
     /**
