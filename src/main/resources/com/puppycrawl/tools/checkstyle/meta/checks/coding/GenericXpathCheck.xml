@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.GenericXpathCheck"
+             name="GenericXpath"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+           Evaluates XPath query and verifies absence of the corresponding nodes.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value=""
+                      name="query"
+                      type="java.lang.String">
+               <description>XPath query.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="xpath.finding"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>

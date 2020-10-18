@@ -963,6 +963,10 @@
             <td>Checks the distance between declaration of variable and its first usage.</td>
           </tr>
           <tr>
+            <td><a href="config_coding.html#GenericXpath">GenericXpath</a></td>
+            <td>Evaluates XPath query and verifies absence of the corresponding nodes.</td>
+          </tr>
+          <tr>
             <td><a href="config_design.html#VisibilityModifier">VisibilityModifier</a></td>
             <td>Checks visibility of class members.</td>
           </tr>
