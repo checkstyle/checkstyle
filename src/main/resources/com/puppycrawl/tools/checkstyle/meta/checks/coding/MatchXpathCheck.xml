@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"
+             name="MatchXpath"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Evaluates Xpath query and report violation on matching AST nodes. All nodes
+ retrieved by Xpath evaluator will be logged as violations. Current check allows
+ user to implement custom checks using Xpath.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="query" type="java.lang.String">
+               <description>Xpath query.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="matchxpath.match"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
