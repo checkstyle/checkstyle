@@ -39,11 +39,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="ClassTypeParameterName"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass1&lt;T&gt; {}   // OK
+ * class MyClass2&lt;t&gt; {}   // violation
+ * </pre>
  * <p>
- * An example of how to configure the check for names that are only a single
- * letter is:
+ * To configure the check for names that are only a single letter:
  * </p>
- * <p>Configuration:</p>
  * <pre>
  * &lt;module name="ClassTypeParameterName"&gt;
  *   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
@@ -51,10 +54,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * class MyClass1&lt;T&gt; {} // OK
- * class MyClass2&lt;t&gt; {} // OK
- * class MyClass3&lt;abc&gt; {} // violation, the class type parameter
- *                              // name should match the regular expression "^[a-zA-Z]$"
+ * class MyClass1&lt;T&gt; {}   // OK
+ * class MyClass2&lt;t&gt; {}   // OK
+ * class MyClass3&lt;abc&gt; {} // violation
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
