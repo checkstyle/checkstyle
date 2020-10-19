@@ -39,22 +39,45 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * &lt;module name="ClassTypeParameterName"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass1&lt;T&gt; {}        // OK
+ * class MyClass2&lt;t&gt; {}        // violation
+ * class MyClass3&lt;abc&gt; {}      // violation
+ * class MyClass4&lt;LISTENER&gt; {} // violation
+ * class MyClass5&lt;RequestT&gt; {} // violation
+ * </pre>
  * <p>
- * An example of how to configure the check for names that are only a single
- * letter is:
+ * To configure the check for names that are uppercase word:
  * </p>
- * <p>Configuration:</p>
  * <pre>
  * &lt;module name="ClassTypeParameterName"&gt;
- *   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
+ *   &lt;property name="format" value="^[A-Z]{2,}$"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>Example:</p>
  * <pre>
- * class MyClass1&lt;T&gt; {} // OK
- * class MyClass2&lt;t&gt; {} // OK
- * class MyClass3&lt;abc&gt; {} // violation, the class type parameter
- *                              // name should match the regular expression "^[a-zA-Z]$"
+ * class MyClass1&lt;T&gt; {}        // violation
+ * class MyClass2&lt;t&gt; {}        // violation
+ * class MyClass3&lt;abc&gt; {}      // violation
+ * class MyClass4&lt;LISTENER&gt; {} // OK
+ * class MyClass5&lt;RequestT&gt; {} // violation
+ * </pre>
+ * <p>
+ * To configure the check for names that are camel case word with T as suffix:
+ * </p>
+ * <pre>
+ * &lt;module name="ClassTypeParameterName"&gt;
+ *   &lt;property name="format" value="^[A-Z][a-zA-Z]+T$"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass1&lt;T&gt; {}        // violation
+ * class MyClass2&lt;t&gt; {}        // violation
+ * class MyClass3&lt;abc&gt; {}      // violation
+ * class MyClass4&lt;LISTENER&gt; {} // violation
+ * class MyClass5&lt;RequestT&gt; {} //  OK
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
