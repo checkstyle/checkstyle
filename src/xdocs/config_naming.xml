@@ -732,10 +732,14 @@ public class MyTest {
         <source>
 &lt;module name=&quot;ClassTypeParameterName&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+class MyClass1&lt;T&gt; {}   // OK
+class MyClass2&lt;t&gt; {}   // violation
+        </source>
         <p>
-          An example of how to configure the check for names that are only a single letter is:
+          To configure the check for names that are only a single letter:
         </p>
-        <p>Configuration:</p>
         <source>
 &lt;module name=&quot;ClassTypeParameterName&quot;&gt;
   &lt;property name="format" value="^[a-zA-Z]$"/&gt;
@@ -743,10 +747,9 @@ public class MyTest {
         </source>
         <p>Example:</p>
         <source>
-class MyClass1&lt;T&gt; {} // OK
-class MyClass2&lt;t&gt; {} // OK
-class MyClass3&lt;abc&gt; {} // violation, the class type parameter
-                             // name should match the regular expression "^[a-zA-Z]$"
+class MyClass1&lt;T&gt; {}   // OK
+class MyClass2&lt;t&gt; {}   // OK
+class MyClass3&lt;abc&gt; {} // violation
         </source>
       </subsection>
 
