@@ -310,7 +310,7 @@ public class Test
                 SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
                 String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
                 TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
-                byte, char, double, float, int, long, short, void</code>
+                byte, char, double, float, int, long, short, var, void</code>
               </td>
               <td>5.7</td>
             </tr>
@@ -693,7 +693,7 @@ class Foo {
                 SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet,
                 String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
                 TreeMap, TreeSet, UnsupportedOperationException, Void, boolean,
-                byte, char, double, float, int, long, short, void</code>
+                byte, char, double, float, int, long, short, var, void</code>
               </td>
               <td>5.7</td>
             </tr>
@@ -739,6 +739,10 @@ class InputClassComplexity {
   Date date = new Date(); // Counted, 1
   Time time = new Time(); // Counted, 2
   Place place = new Place(); // Counted, 3
+  int value = 10; // int is ignored due to default excludedClasses property
+  void method() {
+    var result = "result"; // var is ignored due to default excludedClasses property
+  }
 }
         </source>
 

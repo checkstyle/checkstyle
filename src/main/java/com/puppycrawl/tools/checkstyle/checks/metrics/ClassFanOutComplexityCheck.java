@@ -61,7 +61,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Object, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short,
  * SortedMap, SortedSet, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
  * TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double,
- * float, int, long, short, void}.
+ * float, int, long, short, var, void}.
  * </li>
  * <li>
  * Property {@code excludeClassesRegexps} - Specify user-configured regular
@@ -96,6 +96,10 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   Date date = new Date(); // Counted, 1
  *   Time time = new Time(); // Counted, 2
  *   Place place = new Place(); // Counted, 3
+ *   int value = 10; // int is ignored due to default excludedClasses property
+ *   void method() {
+ *     var result = "result"; // var is ignored due to default excludedClasses property
+ *   }
  * }
  * </pre>
  * <p>
