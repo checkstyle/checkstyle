@@ -61,6 +61,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             // wrappers
             "Boolean", "Byte", "Character", "Double", "Float",
             "Integer", "Long", "Short", "Void",
+            // reserved type name
+            "var",
             // java.lang.*
             "Object", "Class",
             "String", "StringBuffer", "StringBuilder",
