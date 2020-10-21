@@ -33,6 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -778,10 +779,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
         DetailAST astTraverse = ast;
-        while (astTraverse.getType() != TokenTypes.METHOD_DEF
-                && astTraverse.getType() != TokenTypes.CLASS_DEF
-                && astTraverse.getType() != TokenTypes.ENUM_DEF
-                && astTraverse.getType() != TokenTypes.CTOR_DEF
+        while (!TokenUtil.isOfType(astTraverse, TokenTypes.METHOD_DEF, TokenTypes.CLASS_DEF,
+                TokenTypes.ENUM_DEF, TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF)
                 && !ScopeUtil.isClassFieldDef(astTraverse)) {
             astTraverse = astTraverse.getParent();
         }
