@@ -896,14 +896,20 @@ public class XdocsPagesTest {
         final String defaultTokenText = columns.get(3).getTextContent().trim();
         final String expectedDefaultTokenText = CheckUtil.getTokenText(check.getDefaultTokens(),
                 check.getRequiredTokens());
-        assertEquals(expectedDefaultTokenText, defaultTokenText
-                        .replaceAll("\\s+", " ")
-                        .replaceAll("\\s,", ",")
-                        .replaceAll("\\s\\.", "."),
-                fileName + " section '" + sectionName + "' should have all the default tokens");
-        assertFalse(isInvalidTokenPunctuation(defaultTokenText),
-                fileName + "'s default token section: " + sectionName
-                        + "should have ',' & '.' at beginning of the next corresponding lines.");
+        if (expectedDefaultTokenText.isEmpty()) {
+            assertEquals("empty", defaultTokenText,
+                    "Empty tokens should have 'empty' string in xdoc");
+        }
+        else {
+            assertEquals(expectedDefaultTokenText, defaultTokenText
+                            .replaceAll("\\s+", " ")
+                            .replaceAll("\\s,", ",")
+                            .replaceAll("\\s\\.", "."),
+                    fileName + " section '" + sectionName + "' should have all the default tokens");
+            assertFalse(isInvalidTokenPunctuation(defaultTokenText),
+                    fileName + "'s default token section: " + sectionName
+                           + "should have ',' & '.' at beginning of the next corresponding lines.");
+        }
 
     }
 
