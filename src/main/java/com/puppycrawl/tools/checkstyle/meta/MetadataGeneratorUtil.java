@@ -95,7 +95,6 @@ public final class MetadataGeneratorUtil {
                 }
             }
         }
-
         checker.process(validFiles);
     }
 
