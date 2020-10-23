@@ -37,11 +37,11 @@ task:
   install_script:
     - choco config set cacheLocation %CIRRUS_WORKING_DIR%/.chocolatey
     - choco upgrade -y chocolatey
-    - choco install -y ant
-    - choco install -y maven --version %MAVEN_VERSION%
-    - choco install -y openjdk --version %OPENJDK_VERSION%
-    - choco install -y xsltproc
-    - choco install -y xmlstarlet
+    - choco install -y --no-progress ant
+    - choco install -y --no-progress maven --version %MAVEN_VERSION%
+    - choco install -y --no-progress openjdk --version %OPENJDK_VERSION%
+    - choco install -y --no-progress xsltproc
+    - choco install -y --no-progress xmlstarlet
   version_script:
     - set
     - ant -version
