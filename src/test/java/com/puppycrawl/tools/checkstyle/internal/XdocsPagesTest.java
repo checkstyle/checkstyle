@@ -908,7 +908,7 @@ public class XdocsPagesTest {
                     fileName + " section '" + sectionName + "' should have all the default tokens");
             assertFalse(isInvalidTokenPunctuation(defaultTokenText),
                     fileName + "'s default token section: " + sectionName
-                           + "should have ',' & '.' at beginning of the next corresponding lines.");
+                          + "should have ',' or '.' at beginning of the next corresponding lines.");
         }
 
     }
