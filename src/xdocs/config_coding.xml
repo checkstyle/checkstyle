@@ -2698,7 +2698,7 @@ public native void myTest(); // violation
                 TEXT_BLOCK_CONTENT</a>
                 .
               </td>
-              <td>empty</td>
+              <td><code>empty</code></td>
               <td>3.2</td>
             </tr>
           </table>

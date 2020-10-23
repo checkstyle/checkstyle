@@ -87,7 +87,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code anyTokenTypesSet}.
- * Default value is {@code empty}.
+ * Default value is {@code ""}.
  * </li>
  * </ul>
  * <p>

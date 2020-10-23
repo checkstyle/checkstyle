@@ -298,10 +298,7 @@ public final class CheckUtil {
                 result.append(TokenUtil.getTokenName(token));
             }
 
-            if (result.length() == 0) {
-                result.append("empty");
-            }
-            else {
+            if (result.length() != 0) {
                 result.append('.');
             }
 
@@ -348,10 +345,7 @@ public final class CheckUtil {
             result.append(JavadocUtil.getTokenName(token));
         }
 
-        if (result.length() == 0) {
-            result.append("empty");
-        }
-        else {
+        if (result.length() != 0) {
             result.append('.');
         }
 
