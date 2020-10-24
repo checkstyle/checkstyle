@@ -53,6 +53,35 @@ guava-with-sun-checks)
   rm sun_checks.*
   ;;
 
+openjdk14-with-checks-nonjavadoc-error)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
+  #activate below line after https://github.com/checkstyle/contribution/pull/516
+  #git clone https://github.com/checkstyle/contribution
+  #need to remove below line after https://github.com/checkstyle/contribution/pull/516
+  git clone https://github.com/nmancus1/contribution.git
+  cd contribution/checkstyle-tester
+  git checkout skip-jxr #need to remove after https://github.com/checkstyle/contribution/pull/516
+  sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
+  sed -i.'' 's/#openjdk14|/openjdk14|/' projects-to-test-on.properties
+  cd ../../../
+  mvn -e clean install -Pno-validations
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  cd .ci-temp/contribution/checkstyle-tester
+  sed -i '/  <!-- Filters -->/r ../../../config/openjdk14-excluded.files' checks-nonjavadoc-error.xml
+  export MAVEN_OPTS="-Xmx2048m"
+  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml \
+      --checkstyleVersion $CS_POM_VERSION \
+      --extraMvnOptions "-Dmaven.jxr.skip=true"
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
   *)
   echo "Unexpected argument: $1"
   sleep 5s
