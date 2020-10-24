@@ -73,6 +73,8 @@ blocks:
                     && .ci/validation.sh no-error-pmd
                 - mvn -e clean install -Pno-validations
                     && .ci/validation.sh no-violation-test-configurate
+                - mvn -e clean install -Pno-validations
+                  && .ci/no-exception-test.sh openjdk14-with-checks-nonjavadoc-error
           commands:
             - sem-version java 11
             - echo "eval of CMD is starting";
