@@ -403,6 +403,7 @@ ent
 enum
 enumer
 envvar
+EOI
 eol
 eot
 equalsavoidnull
@@ -626,6 +627,7 @@ intercell
 interfaceistype
 interfacememberimpliedmodifier
 interfacetypeparametername
+Intf
 intqueue
 invalidformat
 invalidinherit
@@ -900,7 +902,6 @@ nbsp
 ncss
 ndex
 needbraces
-NEGS
 Nejmeh
 NEQ
 nestedfordepth
@@ -1347,6 +1348,7 @@ tt
 ttf
 ttype
 tw
+Twr
 typecastparenpad
 typename
 typeof
