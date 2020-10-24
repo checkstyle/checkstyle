@@ -84,6 +84,7 @@ blocks:
               values:
                 - guava-with-google-checks
                 - guava-with-sun-checks
+                - openjdk14-with-checks-nonjavadoc-error
           commands:
             - mvn -e install -Pno-validations
             - .ci/no-exception-test.sh $PROJECT
