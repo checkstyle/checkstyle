@@ -87,6 +87,17 @@ public class FinalLocalVariableCheckTest
     }
 
     @Test
+    public void testRecordsInput() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "15:17: " + getCheckMessage(MSG_KEY, "b"),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputFinalLocalVariableCheckRecords.java"), expected);
+    }
+
+    @Test
     public void testParameter() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalLocalVariableCheck.class);
