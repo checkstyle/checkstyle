@@ -150,7 +150,7 @@
         many improvements since then. The known plug-ins are:
       </p>
 
-      <subsection name="Active Tools" >
+      <subsection name="Active Tools" id="Related_Tools_Active_Tools">
         <div class="wrapper">
           <table>
             <tr>
@@ -430,7 +430,7 @@
         </div>
       </subsection>
 
-      <subsection name="Inactive / Old Tools" >
+      <subsection name="Inactive / Old Tools" id="Related_Tools_Inactive_Old_Tools">
         <div class="wrapper">
           <table>
             <tr>
