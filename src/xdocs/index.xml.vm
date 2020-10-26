@@ -160,6 +160,15 @@
               <th>Remarks</th>
             </tr>
             <tr>
+                <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
+                  Bamboo Checkstyle plug-in</a></td>
+                <td>Atlassian (formerly by Ross Rowe and Stephan Paulicke)</td>
+                <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
+                  Bamboo Checkstyle plug-in Home Page</a></td>
+                <td>An add-on that will parse and record CheckStyle reports and report your
+                  style violations over time.</td>
+            </tr>
+            <tr>
               <td>
                 <a href="https://www.atlassian.com/software/bitbucket">
                   Bitbucket Server
@@ -172,6 +181,19 @@
                 </a>
               </td>
               <td/>
+            </tr>
+            <tr>
+                <td>
+                  <a href="https://github.com/nikitasavinov/checkstyle-action#checkstyle-github-action">
+                  Checkstyle Github Actions</a>
+                </td>
+                <td>Nikita Savinov</td>
+                <td><a href="https://github.com/marketplace/actions/run-java-checkstyle">
+                Github-action Marketplace</a></td>
+                <td>It runs checkstyle on your Pull Requests using
+                  <a href="https://github.com/features/actions">github-actions</a> and
+                  <a href="https://github.com/reviewdog/reviewdog">reviewdog</a>
+                </td>
             </tr>
             <tr>
               <td>
@@ -187,6 +209,26 @@
                   Provides analysis per commit and per pull request. Supports CheckStyle
                   config files.
               </td>
+            </tr>
+            <tr>
+                <td><a href="https://github.com/nidi3/code-assert">code-assert</a></td>
+                <td>Stefan Niederhauser</td>
+                <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">
+                    code-assert</a></td>
+                <td>Assert that the java code of a project satisfies certain checks. Launch
+                    checkstyle validation from UTs</td>
+            </tr>
+            <tr>
+                <td>
+                  <a href="https://codeclimate.com/">Code Climate</a>
+                </td>
+                <td>Sivakumar Kailasam</td>
+                <td>
+                  <a href="https://github.com/sivakumar-kailasam/codeclimate-checkstyle">
+                    codeclimate-checkstyle
+                  </a>
+                </td>
+                <td/>
             </tr>
             <tr>
               <td><a href="https://www.eclipse.org/">Eclipse/RAD/RDz</a></td>
@@ -215,6 +257,33 @@
               </td>
             </tr>
             <tr>
+                <td><a href="https://www.eclipse.org/">Eclipse/RAD/RDz</a></td>
+                <td>Roman Ivanov</td>
+                <td>
+                  <a href="https://github.com/sevntu-checkstyle">Project Page</a>
+                </td>
+                <td>
+                  Extension for Eclipse-CS plugin and also an incubator for
+                  Checkstyle checks that are not present in main stream of
+                  Checkstyle. See the
+                  <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki">Wiki</a>
+                  and
+                  <a href="http://sevntu-checkstyle.github.io/sevntu.checkstyle/">Blog</a>
+                  .
+                </td>
+            </tr>
+            <tr>
+                <td><a href="https://www.eclipse.org/">Eclipse/RAD/RDz</a></td>
+                <td>Jan Burkhardt</td>
+                <td>
+                  <a href="https://github.com/bjrke/JSR305CheckstylePlugin">Project Page</a>
+                </td>
+                <td>
+                  Extension for Eclipse-CS plugin which ensures nullness annotations on
+                  methods and constructors (JSR305).
+                </td>
+              </tr>
+            <tr>
               <td><a href="https://gradle.org">Gradle</a></td>
               <td>Hans Dockter (initial author)</td>
               <td>Checkstyle supported out of the box</td>
@@ -223,6 +292,15 @@
                   Gradle Checkstyle docs
                 </a>
               </td>
+            </tr>
+            <tr>
+                <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
+                <td>Markus Mohnen</td>
+                <td>Part of the standard JDEE distribution -
+                  <a href="https://github.com/jdee-emacs/jdee"/>
+                </td>
+                <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">
+                    configuration could be seen at jdee-checkstyle.el</a></td>
             </tr>
             <tr>
               <td><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
@@ -235,58 +313,58 @@
               <td>Provides real-time and on-demand scanning.</td>
             </tr>
             <tr>
+                <td><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
+                <td>Jakub Slawinski</td>
+                <td>
+                  <a href="https://plugins.jetbrains.com/plugin/4594-qaplug">QAPlug</a>
+                </td>
+                <td>Provides quality assurance features.</td>
+            </tr>
+            <tr>
+                <td><a href="https://www.jarchitect.com">JArchitect</a></td>
+                <td/>
+                <td><a href="https://www.jarchitect.com">JArchitect Home Page</a></td>
+                <td>Imports XML result files from CheckStyle.</td>
+            </tr>
+            <tr>
+                <td><a href="http://www.jedit.org/">jEdit</a></td>
+                <td>Todd Papaioannou</td>
+                <td><a href="http://plugins.jedit.org/plugins/?CheckStylePlugin">
+                    JEdit CheckStylePlugin</a></td>
+                <td/>
+            </tr>
+            <tr>
               <td><a href="https://www.jgrasp.org/">jGRASP</a></td>
               <td>Larry Barowski</td>
               <td><a href="https://www.jgrasp.org/">jGRASP Home Page</a></td>
               <td/>
             </tr>
             <tr>
-              <td><a href="https://www.eclipse.org/">Eclipse/RAD/RDz</a></td>
-              <td>Roman Ivanov</td>
-              <td>
-                <a href="https://github.com/sevntu-checkstyle">Project Page</a>
-              </td>
-              <td>
-                Extension for Eclipse-CS plugin and also an incubator for
-                Checkstyle checks that are not present in main stream of
-                Checkstyle. See the
-                <a href="https://github.com/sevntu-checkstyle/sevntu.checkstyle/wiki">Wiki</a>
-                and
-                <a href="http://sevntu-checkstyle.github.io/sevntu.checkstyle/">Blog</a>
-                .
-              </td>
+                <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
+                Checkstyle plug-in</a></td>
+                <td/>
+                <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
+                Checkstyle plug-in Home Page</a></td>
+                <td>This plug-in is supported by the Static Analysis Collector plug-in that
+                collects different analysis results and shows the results in aggregated trend
+                graphs.</td>
             </tr>
             <tr>
-              <td><a href="https://www.eclipse.org/">Eclipse/RAD/RDz</a></td>
-              <td>Jan Burkhardt</td>
-              <td>
-                <a href="https://github.com/bjrke/JSR305CheckstylePlugin">Project Page</a>
-              </td>
-              <td>
-                Extension for Eclipse-CS plugin which ensures nullness annotations on
-                methods and constructors (JSR305).
-              </td>
+                <td><a href="http://maven.apache.org/">Maven</a></td>
+                <td>Vincent Massol</td>
+                <td>Checkstyle supported out of the box</td>
+                <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
+                    example report</a></td>
             </tr>
             <tr>
-              <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
-                Bamboo Checkstyle plug-in</a></td>
-              <td>Atlassian (formerly by Ross Rowe and Stephan Paulicke)</td>
-              <td><a href="https://bitbucket.org/atlassian/bamboo-checkstyle-plugin">
-                Bamboo Checkstyle plug-in Home Page</a></td>
-              <td>An add-on that will parse and record CheckStyle reports and report your
-                style violations over time.</td>
-            </tr>
-            <tr>
-              <td>
-                <a href="https://codeclimate.com/">Code Climate</a>
-              </td>
-              <td>Sivakumar Kailasam</td>
-              <td>
-                <a href="https://github.com/sivakumar-kailasam/codeclimate-checkstyle">
-                  codeclimate-checkstyle
-                </a>
-              </td>
-              <td/>
+                <td><a href="https://github.com/nvuillam/mega-linter">Mega-Linter</a></td>
+                <td>Nicolas Vuillamy</td>
+                <td>Checkstyle supported out of the box</td>
+                <td>
+                    Automatically detect 35 languages, 11 formats, 15 tooling formats and copy-pastes 
+                    in your repository sources, and apply their related linters. Available as Github 
+                    Action, other CI tools and locally
+                </td>
             </tr>
             <tr>
               <td>
@@ -303,42 +381,6 @@
                 <a href="https://developer.github.com/v3/checks/runs/">Check Run</a>
                 annotations. Supports CheckStyle config files.
               </td>
-            </tr>
-            <tr>
-              <td>
-                <a href="https://github.com/nikitasavinov/checkstyle-action#checkstyle-github-action">
-                Checkstyle Github Actions</a>
-              </td>
-              <td>Nikita Savinov</td>
-              <td><a href="https://github.com/marketplace/actions/run-java-checkstyle">
-              Github-action Marketplace</a></td>
-              <td>It runs checkstyle on your Pull Requests using
-                <a href="https://github.com/features/actions">github-actions</a> and
-                <a href="https://github.com/reviewdog/reviewdog">reviewdog</a>
-              </td>
-            </tr>
-            <tr>
-              <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
-              Checkstyle plug-in</a></td>
-              <td/>
-              <td><a href="https://wiki.jenkins.io/display/JENKINS/Checkstyle+Plugin">Jenkins
-              Checkstyle plug-in Home Page</a></td>
-              <td>This plug-in is supported by the Static Analysis Collector plug-in that
-              collects different analysis results and shows the results in aggregated trend
-              graphs.</td>
-            </tr>
-            <tr>
-              <td><a href="http://maven.apache.org/">Maven</a></td>
-              <td>Vincent Massol</td>
-              <td>Checkstyle supported out of the box</td>
-              <td><a href="http://maven.apache.org/plugins/maven-checkstyle-plugin/checkstyle.html">
-                  example report</a></td>
-            </tr>
-            <tr>
-              <td><a href="http://tide.olympe.in/">tIDE</a></td>
-              <td/>
-              <td>Built in</td>
-              <td/>
             </tr>
             <tr>
               <td><a href="https://netbeans.org/">NetBeans</a></td>
@@ -360,6 +402,21 @@
               <td/>
             </tr>
             <tr>
+                <td><a href="https://www.scala-sbt.org/">SBT</a></td>
+                <td>Andrew Johnson</td>
+                <td><a href="https://github.com/etsy/sbt-checkstyle-plugin">
+                    sbt-checkstyle-plugin Project Page</a></td>
+                <td>SBT plugin for running Checkstyle on Java source files in an SBT
+                  project</td>
+            </tr>
+            <tr>
+                <td><a href="https://www.scm-manager.org/">SCM-Manager</a></td>
+                <td/>
+                <td><a href="http://plugins.scm-manager.org/scm-plugin-backend/page/index.html">
+                    SCM-Manager Plugin Page</a></td>
+                <td/>
+            </tr>
+            <tr>
               <td><a href="https://www.sonarqube.org/">SonarQube</a></td>
               <td>Freddy Mallet (initial author)</td>
               <td><a href="https://github.com/checkstyle/sonar-checkstyle">
@@ -367,57 +424,10 @@
               <td><a href="https://sonarcloud.io/projects">Demo site of SonarQube</a></td>
             </tr>
             <tr>
-              <td><a href="http://www.jedit.org/">jEdit</a></td>
-              <td>Todd Papaioannou</td>
-              <td><a href="http://plugins.jedit.org/plugins/?CheckStylePlugin">
-                  JEdit CheckStylePlugin</a></td>
-              <td/>
-            </tr>
-            <tr>
-              <td><a href="https://www.scm-manager.org/">SCM-Manager</a></td>
-              <td/>
-              <td><a href="http://plugins.scm-manager.org/scm-plugin-backend/page/index.html">
-                  SCM-Manager Plugin Page</a></td>
-              <td/>
-            </tr>
-            <tr>
-              <td><a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a></td>
-              <td>Jakub Slawinski</td>
-              <td>
-                <a href="https://plugins.jetbrains.com/plugin/4594-qaplug">QAPlug</a>
-              </td>
-              <td>Provides quality assurance features.</td>
-            </tr>
-            <tr>
-              <td><a href="https://www.jarchitect.com">JArchitect</a></td>
-              <td/>
-              <td><a href="https://www.jarchitect.com">JArchitect Home Page</a></td>
-              <td>Imports XML result files from CheckStyle.</td>
-            </tr>
-            <tr>
-              <td><a href="https://www.scala-sbt.org/">SBT</a></td>
-              <td>Andrew Johnson</td>
-              <td><a href="https://github.com/etsy/sbt-checkstyle-plugin">
-                  sbt-checkstyle-plugin Project Page</a></td>
-              <td>SBT plugin for running Checkstyle on Java source files in an SBT
-                project</td>
-            </tr>
-            <tr>
-              <td><a href="https://github.com/nidi3/code-assert">code-assert</a></td>
-              <td>Stefan Niederhauser</td>
-              <td><a href="https://github.com/nidi3/code-assert#checkstyle-checks">
-                  code-assert</a></td>
-              <td>Assert that the java code of a project satisfies certain checks. Launch
-                  checkstyle validation from UTs</td>
-            </tr>
-            <tr>
-              <td><a href="http://jdee.sourceforge.net/">Emacs JDE</a></td>
-              <td>Markus Mohnen</td>
-              <td>Part of the standard JDEE distribution -
-                <a href="https://github.com/jdee-emacs/jdee"/>
-              </td>
-              <td><a href="https://github.com/jdee-emacs/jdee/blob/master/jdee-checkstyle.el">
-                  configuration could be seen at jdee-checkstyle.el</a></td>
+                <td><a href="http://tide.olympe.in/">tIDE</a></td>
+                <td/>
+                <td>Built in</td>
+                <td/>
             </tr>
             <tr>
               <td><a href="https://code.visualstudio.com/">Visual Studio Code</a></td>
