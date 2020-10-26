@@ -37,9 +37,9 @@
   </rule>
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
-      <property name="allowedResourceTypes" value="java.io.ByteArrayOutputStream|
-      java.io.ByteArrayInputStream|java.io.StringWriter|java.io.CharArrayWriter|
-      java.io.StringReader" />
+      <property name="allowedResourceTypes"
+               value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream|
+                     |java.io.StringWriter|java.io.CharArrayWriter|java.io.StringReader"/>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='DefaultLogger']
@@ -50,7 +50,9 @@
                     | //ClassOrInterfaceDeclaration[@SimpleName='XmlLoader']
                         //MethodDeclaration[@Name='resolveEntity']
                     | //ClassOrInterfaceDeclaration[@SimpleName='CheckstyleAntTask']
-                        //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']"/>
+                        //MethodDeclaration[@Name='getListeners' or @Name='createDefaultLogger']
+                    | //ClassOrInterfaceDeclaration[@SimpleName='AbstractNode']
+                        //MethodDeclaration[@Name='iterateAxis']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveMethodLength">
