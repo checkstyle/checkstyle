@@ -15,6 +15,8 @@ name: Diff-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
+  ISSUE_BODY: ${{github.event.issue.body}}
+
 on:
   issue_comment:
     types: [created, edited]
@@ -36,7 +38,7 @@ jobs:
     
      - name: Getting PR description
        run: |
-        echo "${{github.event.issue.body}}" > text
+        echo "$ISSUE_BODY" > text
         echo "${{github.event.issue.user.login}}" > user
         wget -q "${{github.event.issue.pull_request.url}}" -O info.json
         jq .head.ref info.json > branch
