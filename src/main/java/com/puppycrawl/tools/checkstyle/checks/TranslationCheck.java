@@ -662,7 +662,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             this.baseName = baseName;
             this.path = path;
             this.extension = extension;
-            files = new HashSet<>();
+            files = new TreeSet<>();
         }
 
         public String getBaseName() {
