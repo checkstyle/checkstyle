@@ -816,11 +816,13 @@ mailhost
 mailto
 mainframemodel
 marazmatic
+markdownlint
 Massol
 mavenbadge
 maxmethods
 MCHECKSTYLE
 mct
+mdl
 mega
 membername
 MENFORCER
@@ -973,7 +975,6 @@ nullness
 numberperline
 numericliterals
 nutsandbolts
-nvuillam
 nyu
 objblock
 oburn
@@ -1417,7 +1418,6 @@ Vladlis
 vm
 vscode
 Vtl
-Vuillamy
 Wadl
 Wakelock
 Warni
