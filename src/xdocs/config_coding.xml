@@ -1814,6 +1814,101 @@ public class MyClass {
       </subsection>
     </section>
 
+    <section name="GenericXpath">
+      <p>Since Checkstyle 8.37</p>
+      <subsection name="Description" id="GenericXpath_Description">
+        <p>
+          Evaluates XPath query and verifies absence of the corresponding nodes. All nodes
+          retrieved by XPath evaluator will be logged as violations. Current check allows user
+          to implement custom checks using XPath.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="GenericXpath_Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+
+            <tr>
+              <td>query</td>
+              <td>XPath query.</td>
+              <td><a href="property_types.html#String">String</a></td>
+              <td><code>&quot;&quot;</code></td>
+              <td>8.37</td>
+            </tr>
+
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="GenericXpath_Examples">
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;GenericXpath&quot;/&gt;
+        </source>
+        <p>To fail with violation if method name is 'test' or 'foo'</p>
+        <source>
+&lt;module name=&quot;GenericXpath&quot;>
+  &lt;property name=&quot;query&quot;
+          value=&quot;//METHOD_DEF[./IDENT[@text='test' or @text='foo']]&quot;/&gt;
+&lt;/module>
+        </source>
+        <p>Example:</p>
+        <source>
+          public class Test {
+          public void func1() throws RuntimeException {} // violation
+          public void func2() throws Exception {}  // ok
+          public void func3() throws Error {}  // violation
+          public void func4() throws Throwable {} // violation
+          public void func5() throws NullPointerException {} // ok
+          }
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="GenericXpath_Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig+filename%3Acheckstyle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+GenericXpath">
+              Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages"
+                  id="GenericXpath_Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fcoding+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22xpath.finding%22">
+              xpath.finding</a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="config.html#Custom_messages">see the documentation</a> to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="GenericXpath_Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.coding
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="GenericXpath_Parent_Module">
+        <p>
+          <a href="config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+
     <section name="HiddenField">
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="HiddenField_Description">
