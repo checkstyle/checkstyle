@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Object, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short,
  * SortedMap, SortedSet, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable,
  * TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double,
- * float, int, long, short, void}.
+ * float, int, long, short, var, void}.
  * </li>
  * <li>
  * Property {@code excludeClassesRegexps} - Specify user-configured regular
