@@ -1,3 +1,5 @@
+# Bug report template
+
 ---
 name: Bug report
 about: Create a report to help us improve
@@ -9,7 +11,7 @@ assignees: ''
 
 Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
 
-```
+```bash
 /var/tmp $ javac YOUR_FILE.java
 #[[MAKE SURE THERE IS NO OUTPUT]]
 
@@ -24,18 +26,20 @@ Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedChe
 #[[PLACE YOUR OUTPUT HERE]]
 ```
 
-For Windows users, please use `type` instead of `cat` and run 
-```
+For Windows users, please use `type` instead of `cat` and run
+
+```cmd
 set RUN_LOCALE="-Duser.language=en -Duser.country=US"
 java %RUN_LOCALE% -jar checkstyle-X.XX-all.jar -c config.xml YOUR_FILE.java
 ```
+
 in place of the last 2 commands above.
 
----------------
+---
 
 **Describe what you expect in detail.**
 
---------------
+---
 
 Still not clear ???
 see example - https://checkstyle.org/report_issue.html#How_to_report_a_bug.3F
