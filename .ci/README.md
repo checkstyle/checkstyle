@@ -1,3 +1,5 @@
+# Continuous integration
+
 ATTENTION:
   All scripts in this folder expect to be launched from root folder of repository
 

@@ -405,6 +405,10 @@ spotbugs-and-pmd)
   exit "$RESULT"
 ;;
 
+markdownlint)
+  mdl -g . && echo "All .md files verified"
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
