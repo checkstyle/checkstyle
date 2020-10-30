@@ -12,13 +12,14 @@ addons:
     packages:
       - xsltproc
       - xmlstarlet
+      - ruby
 
 branches:
   only:
     - master
 
 install:
-  - ""
+  - gem install mdl
 
 jobs:
   fast_finish: true
@@ -40,6 +41,11 @@ jobs:
         - DESC="spell checker"
         - CMD="./.ci/test-spelling-unknown-words.sh"
         - SKIP_JOB_BY_FILES="false"
+
+    # lint for .md files
+    - env:
+        - DESC="markdown lint"
+        - CMD="./.ci/travis/travis.sh markdownlint"
 
     # unit tests (openjdk8)
     - jdk: openjdk8
