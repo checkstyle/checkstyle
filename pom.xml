@@ -1504,6 +1504,7 @@
                 <exclude>java_regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
+                <exclude>markdownlint.rb</exclude>
               </excludes>
             </validationSet>
             <validationSet>
