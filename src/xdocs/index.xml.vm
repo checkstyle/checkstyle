@@ -161,20 +161,6 @@
             </tr>
             <tr>
               <td>
-                <a href="https://www.atlassian.com/software/bitbucket">
-                  Bitbucket Server
-                </a>
-              </td>
-              <td>Stephan Bechter</td>
-              <td>
-                <a href="https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server">
-                  Checkstyle for Bitbucket Server
-                </a>
-              </td>
-              <td/>
-            </tr>
-            <tr>
-              <td>
                 <a href="https://www.codacy.com/">Codacy</a>
               </td>
               <td>João Machado</td>
