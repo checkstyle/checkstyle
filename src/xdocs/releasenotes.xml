@@ -16,6 +16,154 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.37">
+      <div class="releaseDate">31.10.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New check: LambdaBodyLength .
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8341">#8341</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ClassFanOutComplexity: false positive on var.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6346">#6346</a>
+          </li>
+          <li>
+            Value &#39;empty&#39; in metadata files for &#39;tokens&#39; property
+            cause problems in plugins.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8916">#8916</a>
+          </li>
+          <li>
+            FinalLocalVariable: NPE in records.
+            Author: Anh Minh Tran
+            <a href="https://github.com/checkstyle/checkstyle/issues/8895">#8895</a>
+          </li>
+          <li>
+            Indentation: if with no curlies is not checked.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/3135">#3135</a>
+          </li>
+          <li>
+            LocalFinalVariableName false-positive.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8879">#8879</a>
+          </li>
+          <li>
+            NonEmptyAtclauseDescription does not work for @return.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8889">#8889</a>
+          </li>
+          <li>
+            NoWhitespaceBeforeCheck: String index out of range (with Java 15 Text Block)
+            when tabs are used.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8849">#8849</a>
+          </li>
+          <li>
+            Local records fail to parse when annotated.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8856">#8856</a>
+          </li>
+          <li>
+            Indentation: google-java-format and Checkstyle disagree about switch block indentation.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/3899">#3899</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: Add Mega-Linter to active tools list.
+            Author: Nicolas Vuillamy
+          </li>
+          <li>
+            Anchor links for active and inactive tools on front page are broken.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8925">#8925</a>
+          </li>
+          <li>
+            update Cirrus CI to not print download progress in logs.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8918">#8918</a>
+          </li>
+          <li>
+            Add default config example for ClassTypeParameterName.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7562">#7562</a>
+          </li>
+          <li>
+            Create Github action to generate web site .
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8876">#8876</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - RegexpCheck (2).
+            Author: Anh Minh Tran
+            <a href="https://github.com/checkstyle/checkstyle/issues/7983">#7983</a>
+          </li>
+          <li>
+            Update doc for EqualsAvoidNull.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7637">#7637</a>
+          </li>
+          <li>
+            All Regexp Checks that has few instances should have id property.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8790">#8790</a>
+          </li>
+          <li>
+            add spring-cloud-gcp project to CIs no errror regresson testing.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6209">#6209</a>
+          </li>
+          <li>
+            Add SpongePowered/Configurate Checkstyle run to CI to improve coverage of Java14 syntax.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8859">#8859</a>
+          </li>
+          <li>
+            update doc for AvoidStaticImport.
+            Author: AmrDeveloper
+            <a href="https://github.com/checkstyle/checkstyle/issues/7685">#7685</a>
+          </li>
+          <li>
+            Update doc for EmptyStatement.
+            Author: Anh Minh Tran
+            <a href="https://github.com/checkstyle/checkstyle/issues/7665">#7665</a>
+          </li>
+          <li>
+            Update doc for FallThrough.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/7640">#7640</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for pitest-imports profile to 100% .
+            Author: Hem Bhagat
+            <a href="https://github.com/checkstyle/checkstyle/issues/6658">#6658</a>
+          </li>
+          <li>
+            Use .ci/validation.cmd in appveyor ci.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8864">#8864</a>
+          </li>
+          <li>
+            Set up Cirrus CI.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8855">#8855</a>
+          </li>
+          <li>
+            Add markdown lint validation for .md files to CI.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8909">#8909</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.36.2">
       <div class="releaseDate">27.09.2020</div>
       <p>Bug fixes:</p>
