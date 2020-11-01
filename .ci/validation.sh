@@ -88,6 +88,7 @@ no-error-pmd)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo "CS_version: ${CS_POM_VERSION}"
+  mvn -e clean install -Pno-validations
   mkdir -p .ci-temp/
   cd .ci-temp/
   git clone https://github.com/pmd/pmd.git
@@ -101,6 +102,7 @@ no-violation-test-configurate)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
   echo "CS_version: ${CS_POM_VERSION}"
+  mvn -e clean install -Pno-validations
   mkdir -p .ci-temp
   cd .ci-temp
   git clone https://github.com/SpongePowered/Configurate.git
@@ -114,6 +116,7 @@ no-violation-test-josm)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
   echo "CS_version: ${CS_POM_VERSION}"
+  mvn -e clean install -Pno-validations
   mkdir -p .ci-temp
   cd .ci-temp
   TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
