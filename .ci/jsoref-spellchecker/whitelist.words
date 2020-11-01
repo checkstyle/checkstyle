@@ -82,6 +82,7 @@ atlassian
 attlist
 attr
 autoboxing
+autobuild
 autocomplete
 autocrlf
 Autoproxy
@@ -251,6 +252,7 @@ codeconventions
 codeconvtoc
 codecov
 codehaus
+codeql
 codeselectorpresentation
 codeship
 codestyle
