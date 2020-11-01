@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.37-SNAPSHOT</version>
+  <version>8.38-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -202,10 +202,10 @@
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
     <maven.spotbugs.plugin.version>4.1.4</maven.spotbugs.plugin.version>
     <maven.pmd.plugin.version>3.13.0</maven.pmd.plugin.version>
-    <pmd.version>6.26.0</pmd.version>
+    <pmd.version>6.29.0</pmd.version>
     <maven.jacoco.plugin.version>0.8.6</maven.jacoco.plugin.version>
     <powermock.version>2.0.7</powermock.version>
-    <saxon.version>10.2</saxon.version>
+    <saxon.version>10.3</saxon.version>
     <maven.checkstyle.plugin.version>3.1.1</maven.checkstyle.plugin.version>
     <maven.sevntu.checkstyle.plugin.version>1.37.1</maven.sevntu.checkstyle.plugin.version>
     <maven.sevntu-checkstyle-check.checkstyle.version>
@@ -252,7 +252,7 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>29.0-jre</version>
+      <version>30.0-jre</version>
     </dependency>
     <dependency>
       <groupId>org.apache.ant</groupId>
@@ -1504,6 +1504,7 @@
                 <exclude>java_regexp.header</exclude>
                 <exclude>org.eclipse.jdt.core.prefs</exclude>
                 <exclude>intellij-idea-inspections.properties</exclude>
+                <exclude>markdownlint.rb</exclude>
               </excludes>
             </validationSet>
             <validationSet>

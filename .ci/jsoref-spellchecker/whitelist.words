@@ -82,6 +82,7 @@ atlassian
 attlist
 attr
 autoboxing
+autobuild
 autocomplete
 autocrlf
 Autoproxy
@@ -251,6 +252,7 @@ codeconventions
 codeconvtoc
 codecov
 codehaus
+codeql
 codeselectorpresentation
 codeship
 codestyle
@@ -761,6 +763,7 @@ konstantinos
 Kordas
 Kotlin
 kused
+lambdabodylength
 lambdaparametername
 langtools
 lbc
@@ -815,11 +818,14 @@ mailhost
 mailto
 mainframemodel
 marazmatic
+markdownlint
 Massol
 mavenbadge
 maxmethods
 MCHECKSTYLE
 mct
+mdl
+mega
 membername
 MENFORCER
 metadata
@@ -971,6 +977,7 @@ nullness
 numberperline
 numericliterals
 nutsandbolts
+nvuillam
 nyu
 objblock
 oburn
@@ -1414,6 +1421,7 @@ Vladlis
 vm
 vscode
 Vtl
+Vuillamy
 Wadl
 Wakelock
 Warni

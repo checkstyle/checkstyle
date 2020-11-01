@@ -55,6 +55,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
     /** Class names to ignore. */
     private static final Set<String> DEFAULT_EXCLUDED_CLASSES = Collections.unmodifiableSet(
         Arrays.stream(new String[] {
+            // reserved type name
+            "var",
             // primitives
             "boolean", "byte", "char", "double", "float", "int",
             "long", "short", "void",

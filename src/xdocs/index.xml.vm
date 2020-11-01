@@ -161,20 +161,6 @@
             </tr>
             <tr>
               <td>
-                <a href="https://www.atlassian.com/software/bitbucket">
-                  Bitbucket Server
-                </a>
-              </td>
-              <td>Stephan Bechter</td>
-              <td>
-                <a href="https://marketplace.atlassian.com/apps/1214095/checkstyles-for-bitbucket-server">
-                  Checkstyle for Bitbucket Server
-                </a>
-              </td>
-              <td/>
-            </tr>
-            <tr>
-              <td>
                 <a href="https://www.codacy.com/">Codacy</a>
               </td>
               <td>João Machado</td>
@@ -425,6 +411,16 @@
               <td><a href="https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle">
                   vscode-checkstyle</a></td>
               <td>Checkstyle for Microsoft Visual Studio Code</td>
+            </tr>
+            <tr>
+              <td>
+                <a href="https://github.com/nvuillam/mega-linter">Mega-Linter</a>
+              </td>
+              <td>Nicolas Vuillamy</td>
+              <td>Checkstyle supported out of the box</td>
+              <td>Automatically detect 35 languages, 11 formats, 15 tooling formats and copy-pastes
+                  in your repository sources, and apply their related linters. Available as Github
+                  Action, other CI tools and locally</td>
             </tr>
           </table>
         </div>

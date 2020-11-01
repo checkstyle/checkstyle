@@ -12,13 +12,14 @@ addons:
     packages:
       - xsltproc
       - xmlstarlet
+      - ruby
 
 branches:
   only:
     - master
 
 install:
-  - ""
+  - gem install mdl
 
 jobs:
   fast_finish: true
@@ -40,6 +41,11 @@ jobs:
         - DESC="spell checker"
         - CMD="./.ci/test-spelling-unknown-words.sh"
         - SKIP_JOB_BY_FILES="false"
+
+    # lint for .md files
+    - env:
+        - DESC="markdown lint"
+        - CMD="./.ci/travis/travis.sh markdownlint"
 
     # unit tests (openjdk8)
     - jdk: openjdk8
@@ -273,7 +279,7 @@ jobs:
         - CMD=".ci/travis/travis.sh checkstyle-cli-run-openjdk14"
 
 script:
-  - SKIP_FILES1=".github|codeship-*|buddy.yml|appveyor.yml|circleci"
+  - SKIP_FILES1=".github|codeship-*|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
   - SKIP_FILES3="|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
   - SKIP_FILES4="|Jenkinsfile"

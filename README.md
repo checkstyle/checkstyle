@@ -1,3 +1,8 @@
+# ![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
+
+Checkstyle is a tool for checking Java source code for adherence to a Code Standard
+or set of validation rules (best practices).
+
 [![][travis img]][travis]
 [![][appveyor img]][appveyor]
 [![][teamcity img]][teamcity]
@@ -11,7 +16,6 @@
 
 [![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
-[![][buddy img]][buddy]
 
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
@@ -19,23 +23,16 @@
 Members chat: [![][gitter_mem img]][gitter_mem]
 Contributors chat: [![][gitter_con img]][gitter_con]
 
-![](https://raw.githubusercontent.com/checkstyle/resources/master/img/checkstyle-logos/checkstyle-logo-260x99.png)
-
-
-Checkstyle is a tool for checking Java source code for adherence to a Code Standard
-or set of validation rules (best practices).
-
 The latest release version can be found at
 [GitHub releases](https://github.com/checkstyle/checkstyle/releases/)
 or at [Maven repo](https://repo1.maven.org/maven2/com/puppycrawl/tools/checkstyle/).
 
 Each-commit builds of maven artifacts can be found at
-[Maven Snapshot repository](https://oss.sonatype.org/content/repositories/snapshots/com/puppycrawl/tools/checkstyle/) .
+[Maven Snapshot repository](https://oss.sonatype.org/content/repositories/snapshots/com/puppycrawl/tools/checkstyle/).
 
 Documentation is available in HTML format, see https://checkstyle.org/checks.html.
 
-Build instructions and Contribution
-======================
+## Build instructions and Contribution
 
 [Build instructions](https://checkstyle.org/contributing.html#Build)
 
@@ -49,8 +46,8 @@ Build instructions and Contribution
 
 [Report Issue](https://checkstyle.org/contributing.html#Report_an_issue)
 
-Continuous integration and Quality reports
-======================
+## Continuous integration and Quality reports
+
 Travis (Linux & MacOS build): [![][travis img]][travis]
 AppVeyor (Windows build): [![][appveyor img]][appveyor]
 
@@ -58,8 +55,7 @@ Quality reports: https://checkstyle.org/project-reports.html
 
 JavaScript, CSS and Java source file analysis on Codacy: [![][codacy img]][codacy]
 
-Feedback/Support
-========
+## Feedback/Support
 
 Please send any feedback to https://groups.google.com/forum/?hl=en#!forum/checkstyle
 
@@ -67,9 +63,7 @@ Questions and Answers from community: [![][stackoverflow img]][stackoverflow]
 
 Bugs and Feature requests (not the questions): https://github.com/checkstyle/checkstyle/issues
 
-
-Support/Sponsor checkstyle
-========
+## Support/Sponsor checkstyle
 
 If you want to speed up fixing of issue and want to encourage somebody in
 internet to resolve any issue:
@@ -80,9 +74,7 @@ internet to resolve any issue:
 [![][backers.opencollective img]][backers.opencollective]
 [![][sponsors.opencollective img]][sponsors.opencollective]
 
-
-Licensing
-=========
+## Licensing
 
 [![][license img]][license]
 
@@ -156,9 +148,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [shippable]: https://app.shippable.com/projects/577032be3be4f4faa56adb38
 [shippable img]: https://img.shields.io/shippable/577032be3be4f4faa56adb38/master.svg?label=shippable
-
-[buddy]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806
-[buddy img]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806/badge.svg?token=240176b1ce495d0a03a141f3f2f77971f43fe892a98de31cbc0e392ce5341f76 "buddy pipeline"
 
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
