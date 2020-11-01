@@ -16,7 +16,6 @@ or set of validation rules (best practices).
 
 [![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
-[![][buddy img]][buddy]
 
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
@@ -149,10 +148,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [shippable]: https://app.shippable.com/projects/577032be3be4f4faa56adb38
 [shippable img]: https://img.shields.io/shippable/577032be3be4f4faa56adb38/master.svg?label=shippable
-
-[buddy]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806
-[buddy img]: https://app.buddy.works/ivanovjr/checkstyle/pipelines/pipeline/135806/badge.svg?token=240176b1ce495d0a03a141f3f2f77971f43fe892a98de31cbc0e392ce5341f76
-"buddy pipeline"
 
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
