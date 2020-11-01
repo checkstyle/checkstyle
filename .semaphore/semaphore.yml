@@ -17,7 +17,6 @@ blocks:
           - eval "export M2_CACHE_SIZE=$(du -s $HOME/.m2 | cut -f1)"
           - sudo apt-get update
           - sudo apt-get install -y ant groovy xsltproc xmlstarlet
-          - sem-version java 11
       epilogue:
         commands:
           - |
@@ -27,27 +26,6 @@ blocks:
               cache store m2 $HOME/.m2
             fi
       jobs:
-        - name: Check for missing pitests
-          priority:
-            - value: 10
-              when: true
-          commands:
-            - .ci/validation.sh check-missing-pitests
-
-        - name: Eclipse static analysis
-          priority:
-            - value: 10
-              when: true
-          commands:
-            - .ci/validation.sh eclipse-static-analysis
-
-        - name: Ensure that all Sevntu check are used
-          priority:
-            - value: 10
-              when: true
-          commands:
-            - .ci/validation.sh all-sevntu-checks
-
         - name: NonDex (openjdk8)
           priority:
             - value: 80
@@ -56,15 +34,7 @@ blocks:
             - sem-version java 8 # NonDex only supports Java 8
             - .ci/validation.sh nondex
 
-        - name: No error test on pmd
-          priority:
-            - value: 80
-              when: true
-          commands:
-            - mvn -e install -Pno-validations
-            - .ci/validation.sh no-error-pmd
-
-        - name: No error test on Configurate
+        - name: No error test on Configurate (openjdk14)
           priority:
             - value: 80
               when: true
@@ -73,17 +43,22 @@ blocks:
             - mvn -e install -Pno-validations
             - .ci/validation.sh no-violation-test-configurate
 
-        - name: No violation testing on josm
-          commands:
-            - mvn -e install -Pno-validations
-            - .ci/validation.sh no-violation-test-josm
-
-        - name: No exception test
+        - name: Validation (openjdk11)
           matrix:
-            - env_var: PROJECT
+            - env_var: CMD
               values:
-                - guava-with-google-checks
-                - guava-with-sun-checks
+                - .ci/validation.sh check-missing-pitests
+                - .ci/validation.sh eclipse-static-analysis
+                - .ci/validation.sh all-sevntu-checks
+                - .ci/validation.sh no-error-pmd
+                - .ci/validation.sh no-violation-test-josm
+                - .ci/no-exception-test.sh guava-with-google-checks
+                - .ci/no-exception-test.sh guava-with-sun-checks
           commands:
+            - sem-version java 11
+            - export GRADLE_OPTS=-Dorg.gradle.console=plain
             - mvn -e install -Pno-validations
-            - .ci/no-exception-test.sh $PROJECT
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
