@@ -42,7 +42,7 @@ build:
   - script:
       name: Build Checkstyle
       code: |
-        SKIP_FILES1="appveyor.yml|codeship-*|buddy.yml|circleci|travis"
+        SKIP_FILES1="appveyor.yml|codeship-*|circleci|travis"
         SKIP_FILES2="|shippable|sonar-|fast-forward-merge.sh|LICENSE|LICENSE.apache20"
         SKIP_FILES3="|README.md|release.sh|RIGHTS.antlr|intellij-idea-inspections.xml"
         SKIP_FILES4="|org.eclipse.jdt.core.prefs|jsoref-spellchecker"
