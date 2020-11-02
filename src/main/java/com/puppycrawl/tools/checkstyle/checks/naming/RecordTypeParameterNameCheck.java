@@ -72,7 +72,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  */
 public class RecordTypeParameterNameCheck extends AbstractNameCheck {
 
-    /** Creates a new {@code ClassTypeParameterNameCheck} instance. */
+    /** Creates a new {@code RecordTypeParameterNameCheck} instance. */
     public RecordTypeParameterNameCheck() {
         super("^[A-Z]$");
     }
