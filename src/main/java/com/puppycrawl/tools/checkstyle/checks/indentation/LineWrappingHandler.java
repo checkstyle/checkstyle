@@ -239,7 +239,7 @@ public class LineWrappingHandler {
     /**
      * Checks line wrapping into annotations.
      *
-     * @param atNode at-clause node.
+     * @param atNode block tag node.
      * @param firstNodesOnLines map which contains
      *     first nodes as values and line numbers as keys.
      * @param indentLevel line wrapping indentation.

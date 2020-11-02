@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code target} - Specify the list of targets to check at-clauses.
+ * Property {@code target} - Specify the list of target block tags.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenTypesSet}.
  * Default value is
@@ -135,7 +135,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     };
 
     /**
-     * Specify the list of targets to check at-clauses.
+     * Specify the list of target block tags.
      */
     private List<Integer> target = Arrays.asList(
         TokenTypes.CLASS_DEF,
@@ -154,7 +154,7 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
     private List<String> tagOrder = Arrays.asList(DEFAULT_ORDER);
 
     /**
-     * Setter to specify the list of targets to check at-clauses.
+     * Setter to specify the list of target block tags.
      *
      * @param targets user's targets.
      */
