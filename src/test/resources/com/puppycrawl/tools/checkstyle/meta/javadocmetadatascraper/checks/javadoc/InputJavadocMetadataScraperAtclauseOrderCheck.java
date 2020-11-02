@@ -50,7 +50,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code target} - Specify the list of targets to check at-clauses.
+ * Property {@code target} - Specify the list of target block tags.
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
  * Default value is

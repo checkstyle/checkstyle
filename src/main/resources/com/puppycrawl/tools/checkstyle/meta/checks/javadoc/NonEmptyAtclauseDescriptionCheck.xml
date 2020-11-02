@@ -5,7 +5,7 @@
              name="NonEmptyAtclauseDescription"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks that the at-clause tag is followed by description.
+ Checks that the block tag is followed by description.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
