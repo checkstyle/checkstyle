@@ -731,8 +731,6 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.CatchParameterNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("ClassTypeParameterNameCheck",
                 BASE_PACKAGE + ".checks.naming.ClassTypeParameterNameCheck");
-        NAME_TO_FULL_MODULE_NAME.put("RecordTypeParameterNameCheck",
-                BASE_PACKAGE + ".checks.naming.RecordTypeParameterNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("ConstantNameCheck",
                 BASE_PACKAGE + ".checks.naming.ConstantNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("InterfaceTypeParameterNameCheck",
@@ -753,6 +751,10 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.naming.PackageNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParameterNameCheck",
                 BASE_PACKAGE + ".checks.naming.ParameterNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RecordComponentNameCheck",
+                BASE_PACKAGE + ".checks.naming.RecordComponentNameCheck");
+        NAME_TO_FULL_MODULE_NAME.put("RecordTypeParameterNameCheck",
+                BASE_PACKAGE + ".checks.naming.RecordTypeParameterNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("StaticVariableNameCheck",
                 BASE_PACKAGE + ".checks.naming.StaticVariableNameCheck");
         NAME_TO_FULL_MODULE_NAME.put("TypeNameCheck",
