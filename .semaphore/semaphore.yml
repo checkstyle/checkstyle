@@ -55,6 +55,8 @@ blocks:
                     && .ci/no-exception-test.sh guava-with-sun-checks
                 - mvn -e clean install -Pno-validations
                     && .ci/validation.sh no-violation-test-josm
+                - mvn -e clean install -Pno-validations
+                  && .ci/no-exception-test.sh openjdk14-with-checks-nonjavadoc-error
           commands:
             - sem-version java 11
             - echo "eval of CMD is starting";

@@ -53,6 +53,27 @@ guava-with-sun-checks)
   rm sun_checks.*
   ;;
 
+openjdk14-with-checks-nonjavadoc-error)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo CS_version: $CS_POM_VERSION
+  mkdir -p .ci-temp/
+  cd .ci-temp/
+  git clone https://github.com/checkstyle/contribution
+  cd ..
+  sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
+        .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
+  cd .ci-temp/contribution/checkstyle-tester
+  sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk14-excluded.files' checks-nonjavadoc-error.xml
+  export MAVEN_OPTS="-Xmx2048m"
+  groovy ./launch.groovy --listOfProjects ../../../.ci/openjdk-projects-to-test-on.config \
+      --config checks-nonjavadoc-error.xml \
+      --checkstyleVersion $CS_POM_VERSION \
+      --extraMvnOptions "\"-Dmaven.jxr.skip=true\""
+  cd ../../
+  removeFolderWithProtectedFiles contribution
+  ;;
+
   *)
   echo "Unexpected argument: $1"
   sleep 5s
