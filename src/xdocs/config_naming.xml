@@ -2572,7 +2572,7 @@ class MyClass {
         </p>
 
         <source>
- &lt;module name="PatternVariableName"/&gt;
+&lt;module name="PatternVariableName"/&gt;
         </source>
         <p>Code Example:</p>
         <source>
