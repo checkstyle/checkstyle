@@ -479,30 +479,33 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param scopeUninitializedVariableData variable for specific stack of uninitialized variables
      */
     private void updateUninitializedVariables(Deque<DetailAST> scopeUninitializedVariableData) {
-        final Iterator<DetailAST> iterator = currentScopeAssignedVariables.peek().iterator();
-        while (iterator.hasNext()) {
-            final DetailAST assignedVariable = iterator.next();
-            boolean shouldRemove = false;
-            for (DetailAST variable : scopeUninitializedVariableData) {
-                for (ScopeData scopeData : scopeStack) {
-                    final FinalVariableCandidate candidate =
-                        scopeData.scope.get(variable.getText());
-                    DetailAST storedVariable = null;
-                    if (candidate != null) {
-                        storedVariable = candidate.variableIdent;
-                    }
-                    if (storedVariable != null
-                            && isSameVariables(storedVariable, variable)
-                            && isSameVariables(assignedVariable, variable)) {
-                        scopeData.uninitializedVariables.push(variable);
-                        shouldRemove = true;
+        if (!currentScopeAssignedVariables.isEmpty()) {
+            final Iterator<DetailAST> iterator = currentScopeAssignedVariables.peek().iterator();
+            while (iterator.hasNext()) {
+                final DetailAST assignedVariable = iterator.next();
+                boolean shouldRemove = false;
+                for (DetailAST variable : scopeUninitializedVariableData) {
+                    for (ScopeData scopeData : scopeStack) {
+                        final FinalVariableCandidate candidate =
+                            scopeData.scope.get(variable.getText());
+                        DetailAST storedVariable = null;
+                        if (candidate != null) {
+                            storedVariable = candidate.variableIdent;
+                        }
+                        if (storedVariable != null
+                                && isSameVariables(storedVariable, variable)
+                                && isSameVariables(assignedVariable, variable)) {
+                            scopeData.uninitializedVariables.push(variable);
+                            shouldRemove = true;
+                        }
                     }
                 }
-            }
-            if (shouldRemove) {
-                iterator.remove();
+                if (shouldRemove) {
+                    iterator.remove();
+                }
             }
         }
+
     }
 
     /**
