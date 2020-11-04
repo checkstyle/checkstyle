@@ -5,8 +5,8 @@
              name="SingleLineJavadoc"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks that a Javadoc block can fit in a single line and doesn't contain at-clauses.
- Javadoc comment that contains at least one at-clause should be formatted in a few lines.
+ Checks that a Javadoc block can fit in a single line and doesn't contain block tags.
+ Javadoc comment that contains at least one block tag should be formatted in a few lines.
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
@@ -17,7 +17,7 @@
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
             </property>
             <property default-value="" name="ignoredTags" type="java.lang.String[]">
-               <description>Specify at-clauses which are ignored by the check.</description>
+               <description>Specify block tags which are ignored by the check.</description>
             </property>
             <property default-value="true" name="ignoreInlineTags" type="boolean">
                <description>Control whether inline tags must be ignored.</description>
