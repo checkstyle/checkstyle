@@ -86,7 +86,7 @@
   </module>
   <module name="RegexpMultiline">
     <property name="id" value="noIndentationConfigExamples"/>
-    <property name="format" value="&lt;source&gt;\r?\n\s+&amp;lt;module "/>
+    <property name="format" value="&lt;source&gt;\r?\n\s+"/>
     <property name="fileExtensions" value="xml"/>
     <property name="message" value="Module tag in config example should not be indented"/>
   </module>

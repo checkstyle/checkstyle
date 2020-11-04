@@ -108,4 +108,9 @@
   <suppress id="noSourceforgeIoLinks" files="[\\/]sun_style.xml" lines="31"/>
   <suppress id="noSourceforgeIoLinks" files="[\\/]index.xml.vm"/>
 
+  <!-- usage of div class="wrap-content" render even indented content properly -->
+  <suppress id="noIndentationConfigExamples" files="[\\/]src[\\/]xdocs[\\/]writingchecks.xml"/>
+  <suppress id="noIndentationConfigExamples"
+    files="[\\/]src[\\/]xdocs[\\/]beginning_development.xml"/>
+
 </suppressions>
