@@ -165,20 +165,20 @@ public class Test
         </source>
         <p>Code Example:</p>
         <source>
-  public class Test
+public class Test
+{
+  public static void main(String ... args)
   {
-    public static void main(String ... args)
-    {
-      boolean a = true;
-      boolean b = false;
+    boolean a = true;
+    boolean b = false;
 
-      boolean c = (!a &amp;&amp; b) | (a || !b) ^ a;    // OK, 1(&amp;&amp;) + 1(||) + 1(^) = 3
-                                                // | is ignored here
+    boolean c = (!a &amp;&amp; b) | (a || !b) ^ a;    // OK, 1(&amp;&amp;) + 1(||) + 1(^) = 3
+                                              // | is ignored here
 
-      boolean d = a ^ (a || b) ^ (b || a) &amp; a; // violation, 1(^) + 1(||) + 1(^) + 1(||) = 4
-                                               // &amp; is ignored here
-    }
+    boolean d = a ^ (a || b) ^ (b || a) &amp; a; // violation, 1(^) + 1(||) + 1(^) + 1(||) = 4
+                                             // &amp; is ignored here
   }
+}
         </source>
       </subsection>
 
