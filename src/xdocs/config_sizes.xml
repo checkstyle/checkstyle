@@ -365,7 +365,7 @@
           To configure the check to accept lambda bodies with up to 10 lines:
         </p>
         <source>
-          &lt;module name="LambdaBodyLength"/&gt;
+&lt;module name="LambdaBodyLength"/&gt;
         </source>
         <p>
         Example:
@@ -413,9 +413,9 @@ class Test {
           To configure the check to accept lambda bodies with max 5 lines:
         </p>
         <source>
-          &lt;module name="LambdaBodyLength"&gt;
-            &lt;property name="max" value="5"/&gt;
-          &lt;/module&gt;
+&lt;module name="LambdaBodyLength"&gt;
+  &lt;property name="max" value="5"/&gt;
+&lt;/module&gt;
         </source>
         <p>
           Example:

@@ -1758,10 +1758,10 @@ for (int number : myNumbers) { // violation
           but do not validate loop variables:
         </p>
         <source>
- &lt;module name="FinalLocalVariable"&gt;
-   &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
-   &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
- &lt;/module&gt;
+&lt;module name="FinalLocalVariable"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+  &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
+&lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -6524,9 +6524,9 @@ myList.stream()
            definitions:
         </p>
         <source>
- &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
-   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
- &lt;/module&gt;
+&lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           Example:
