@@ -7,6 +7,13 @@ package com.puppycrawl.tools.checkstyle.checks.coding.finallocalvariable;
  * tokens = {VARIABLE_DEF}
  */
 public class InputFinalLocalVariableCheckSwitchExpressions {
+    private static final int staticValue = 2;
+    private static final int staticField = switch(staticValue) {
+        case 0 -> -1;
+        case 2-> 2;
+        default -> 3;
+    };
+
     void foo1() throws Exception {
 
         Exception e; // violation
