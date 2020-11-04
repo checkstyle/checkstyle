@@ -301,9 +301,22 @@ public class FinalLocalVariableCheckTest
             "50:19: " + getCheckMessage(MSG_KEY, "e"),
             "88:19: " + getCheckMessage(MSG_KEY, "e"),
             "122:19: " + getCheckMessage(MSG_KEY, "e"),
-            };
+        };
         verify(checkConfig,
             getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
+            expected);
+    }
+
+    @Test
+    public void testFinalLocalVariableSwitchAssignment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "a"),
+            "39:13: " + getCheckMessage(MSG_KEY, "b"),
+            "41:21: " + getCheckMessage(MSG_KEY, "x"),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputFinalLocalVariableCheckSwitchAssignment.java"),
             expected);
     }
 
