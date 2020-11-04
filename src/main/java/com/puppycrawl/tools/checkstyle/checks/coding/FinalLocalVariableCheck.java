@@ -479,8 +479,12 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      * @param scopeUninitializedVariableData variable for specific stack of uninitialized variables
      */
     private void updateUninitializedVariables(Deque<DetailAST> scopeUninitializedVariableData) {
-        final Iterator<DetailAST> iterator = currentScopeAssignedVariables.peek().iterator();
-        while (iterator.hasNext()) {
+        final Deque<DetailAST> currentScope = currentScopeAssignedVariables.peek();
+        Iterator<DetailAST> iterator = null;
+        if (currentScope != null) {
+            iterator = currentScope.iterator();
+        }
+        while (iterator != null && iterator.hasNext()) {
             final DetailAST assignedVariable = iterator.next();
             boolean shouldRemove = false;
             for (DetailAST variable : scopeUninitializedVariableData) {
