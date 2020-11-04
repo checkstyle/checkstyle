@@ -297,10 +297,10 @@ public class FinalLocalVariableCheckTest
     public void testFinalLocalVariableSwitchExpressions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
         final String[] expected = {
-            "12:19: " + getCheckMessage(MSG_KEY, "e"),
-            "50:19: " + getCheckMessage(MSG_KEY, "e"),
-            "88:19: " + getCheckMessage(MSG_KEY, "e"),
-            "122:19: " + getCheckMessage(MSG_KEY, "e"),
+            "19:19: " + getCheckMessage(MSG_KEY, "e"),
+            "57:19: " + getCheckMessage(MSG_KEY, "e"),
+            "95:19: " + getCheckMessage(MSG_KEY, "e"),
+            "129:19: " + getCheckMessage(MSG_KEY, "e"),
             };
         verify(checkConfig,
             getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
