@@ -85,6 +85,12 @@
     <property name="id" value="regexpMultilineDefault"/>
   </module>
   <module name="RegexpMultiline">
+    <property name="id" value="noIndentationConfigExamples"/>
+    <property name="format" value="&lt;source&gt;\r?\n\s+"/>
+    <property name="fileExtensions" value="xml"/>
+    <property name="message" value="Module tag in config example should not be indented"/>
+  </module>
+  <module name="RegexpMultiline">
     <property name="id" value="noConsecutiveLines"/>
     <property name="format" value="\r?\n[\t ]*\r?\n[\t ]*\r?\n"/>
     <property name="fileExtensions" value="java,xml,properties"/>
