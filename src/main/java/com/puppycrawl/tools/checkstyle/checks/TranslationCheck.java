@@ -25,7 +25,6 @@ import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
@@ -34,6 +33,7 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
@@ -552,7 +552,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         final Set<File> filesInBundle = bundle.getFiles();
         // build a map from files to the keys they contain
         final Set<String> allTranslationKeys = new HashSet<>();
-        final Map<File, Set<String>> filesAssociatedWithKeys = new HashMap<>();
+        final Map<File, Set<String>> filesAssociatedWithKeys = new TreeMap<>();
         for (File currentFile : filesInBundle) {
             final Set<String> keysInCurrentFile = getTranslationKeys(currentFile);
             allTranslationKeys.addAll(keysInCurrentFile);
