@@ -766,7 +766,6 @@ Kotlin
 kused
 lambdabodylength
 lambdaparametername
-langtools
 lbc
 LBRACK
 lbt
@@ -854,7 +853,6 @@ missingtag
 mixin
 mkdir
 mkordas
-mktemp
 MLINKCHECK
 mockfile
 mockito
@@ -1315,7 +1313,6 @@ technotes
 tected
 Testik
 testmodules
-testresults
 textarea
 textlevel
 Tfo
