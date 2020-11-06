@@ -24,7 +24,7 @@
                       name="target"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
-               <description>Specify the list of targets to check at-clauses.</description>
+               <description>Specify the list of block tags targeted.</description>
             </property>
             <property default-value="@author, @deprecated, @exception, @param, @return, @see, @serial, @serialData, @serialField, @since, @throws, @version"
                       name="tagOrder"

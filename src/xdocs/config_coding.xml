@@ -1758,10 +1758,10 @@ for (int number : myNumbers) { // violation
           but do not validate loop variables:
         </p>
         <source>
- &lt;module name="FinalLocalVariable"&gt;
-   &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
-   &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
- &lt;/module&gt;
+&lt;module name="FinalLocalVariable"&gt;
+  &lt;property name="tokens" value="VARIABLE_DEF,PARAMETER_DEF"/&gt;
+  &lt;property name="validateEnhancedForLoopVariable" value="false"/&gt;
+&lt;/module&gt;
         </source>
         <p>Example:</p>
         <source>
@@ -6194,11 +6194,11 @@ class C {
           The check will flag the following with warnings:
         </p>
         <source>
-    return (x);          // parens around identifier
-    return (x + 1);      // parens around return value
-    int x = (y / 2 + 1); // parens around assignment rhs
-    for (int i = (0); i &lt; 10; i++) {  // parens around literal
-    t -= (z + 1);        // parens around assignment rhs
+return (x);          // parens around identifier
+return (x + 1);      // parens around return value
+int x = (y / 2 + 1); // parens around assignment rhs
+for (int i = (0); i &lt; 10; i++) {  // parens around literal
+t -= (z + 1);        // parens around assignment rhs
         </source>
       </subsection>
 
@@ -6209,7 +6209,7 @@ class C {
           operator precedence and associativity; therefore it won't catch something like
         </p>
         <source>
-            int x = (a + b) + c;
+int x = (a + b) + c;
         </source>
         <p>
           In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
@@ -6499,54 +6499,54 @@ myList.stream()
           Example:
         </p>
         <source>
- class A {
+class A {
 
-     class Nested {
+   class Nested {
 
-     }; // OK, nested type declarations are ignored
+   }; // OK, nested type declarations are ignored
 
- }; // violation
+}; // violation
 
- interface B {
+interface B {
 
- }; // violation
+}; // violation
 
- enum C {
+enum C {
 
- }; // violation
+}; // violation
 
- {@literal @}interface D {
+{@literal @}interface D {
 
- }; // violation
+}; // violation
         </source>
         <p>
            To configure the check to detect unnecessary semicolon only after top level class
            definitions:
         </p>
         <source>
- &lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
-   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
- &lt;/module&gt;
+&lt;module name=&quot;UnnecessarySemicolonAfterOuterTypeDeclaration&quot;&gt;
+  &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF&quot;/&gt;
+&lt;/module&gt;
         </source>
         <p>
           Example:
         </p>
         <source>
- class A {
+class A {
 
- }; // violation
+}; // violation
 
- interface B {
+interface B {
 
- }; // OK
+}; // OK
 
- enum C {
+enum C {
 
- }; // OK
+}; // OK
 
- {@literal @}interface D {
+{@literal @}interface D {
 
- }; // OK
+}; // OK
         </source>
       </subsection>
 
