@@ -306,5 +306,5 @@ public class FinalLocalVariableCheckTest
             getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
             expected);
     }
-
+    
 }
