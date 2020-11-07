@@ -8,11 +8,6 @@
   <property name="fileNamePattern" value="[\\/]NestedTypes.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/8934 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]ExpressionSwitchBugs.java$"/>
-</module>
-
 <!-- until https://github.com/checkstyle/checkstyle/issues/8656 -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]UnicodeCommentDelimiter.java$"/>
