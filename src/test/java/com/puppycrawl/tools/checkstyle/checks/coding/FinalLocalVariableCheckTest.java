@@ -307,4 +307,17 @@ public class FinalLocalVariableCheckTest
             expected);
     }
 
+    @Test
+    public void testFinalLocalVariableSwitchAssignment() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(FinalLocalVariableCheck.class);
+        final String[] expected = {
+            "16:13: " + getCheckMessage(MSG_KEY, "a"),
+            "39:13: " + getCheckMessage(MSG_KEY, "b"),
+            "41:21: " + getCheckMessage(MSG_KEY, "x"),
+            };
+        verify(checkConfig,
+            getNonCompilablePath("InputFinalLocalVariableCheckSwitchAssignment.java"),
+            expected);
+    }
+
 }
