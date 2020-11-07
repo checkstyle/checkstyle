@@ -132,5 +132,12 @@ public class InputFinalLocalVariableCheckSwitchExpressions {
         }
 
     }
+
+    private static final int staticValue = 2;
+    private static final int staticField = switch(staticValue) {
+        case 0 -> -1;
+        case 2-> 2;
+        default -> 3;
+    };
 }
 
