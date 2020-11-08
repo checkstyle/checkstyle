@@ -99,6 +99,7 @@ public abstract class AbstractSunModuleTestSupport extends AbstractItModuleTestS
      * @param moduleName module name.
      * @param moduleId module id.
      * @return {@link Configuration} instance for the given module name.
+     * @throws IllegalStateException if there is a problem retrieving the module or config.
      */
     protected static Configuration getModuleConfig(String moduleName, String moduleId) {
         final Configuration result;
