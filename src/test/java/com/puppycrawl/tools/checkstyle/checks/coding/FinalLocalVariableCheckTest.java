@@ -301,7 +301,7 @@ public class FinalLocalVariableCheckTest
             "50:19: " + getCheckMessage(MSG_KEY, "e"),
             "88:19: " + getCheckMessage(MSG_KEY, "e"),
             "122:19: " + getCheckMessage(MSG_KEY, "e"),
-            };
+        };
         verify(checkConfig,
             getNonCompilablePath("InputFinalLocalVariableCheckSwitchExpressions.java"),
             expected);
