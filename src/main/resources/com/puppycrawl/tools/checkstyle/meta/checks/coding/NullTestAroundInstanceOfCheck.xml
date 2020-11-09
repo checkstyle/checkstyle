@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.NullTestAroundInstanceOfCheck"
+             name="NullTestAroundInstanceOf"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks if unnecessary null check is used around instanceof expression.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value=""
+                      name="tokens"
+                      type="java.lang.String[]"
+                      validation-type="tokenSet">
+               <description></description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="null.test.around.instanceof"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
