@@ -530,8 +530,8 @@ public class TranslationCheck extends AbstractFileSetCheck {
 
     /**
      * Extracts path from a file name which contains the path.
-     * For example, if file nam is /xyz/messages.properties, then the method
-     * will return /xyz/.
+     * For example, if the file name is /xyz/messages.properties,
+     * then the method will return /xyz/.
      *
      * @param fileNameWithPath file name which contains the path.
      * @return file path.
