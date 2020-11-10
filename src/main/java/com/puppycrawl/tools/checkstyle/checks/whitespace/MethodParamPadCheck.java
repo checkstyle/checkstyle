@@ -78,6 +78,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="MethodParamPad"/&gt;
  * </pre>
+ * <pre>
+ * public class Test {
+ *  public Test() { // OK
+ *     super(); // OK
+ *   }
+ *
+ *   public Test (int aParam) { // Violation - '(' is preceded with whitespace
+ *     super (); // Violation - '(' is preceded with whitespace
+ *   }
+ *
+ *   public void method() {} // OK
+ *
+ *   public void methodWithVeryLongName
+ *     () {} // Violation - '(' is preceded with whitespace
+ *
+ * }
+ * </pre>
  * <p>
  * To configure the check to require a space
  * after the identifier of a method definition, except if the left
@@ -89,6 +106,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="option" value="space"/&gt;
  *   &lt;property name="allowLineBreaks" value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class Test {
+ *   public Test() { // OK
+ *     super(); // OK
+ *   }
+ *
+ *   public Test (int aParam) { // OK
+ *     super (); // OK
+ *   }
+ *
+ *   public void method() {} // Violation - '(' is NOT preceded with whitespace
+ *
+ *   public void methodWithVeryLongName
+ *     () {} // OK, because allowLineBreaks is true
+ *
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
