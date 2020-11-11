@@ -3455,28 +3455,96 @@ public class TestClass {
 
       <subsection name="Examples" id="WriteTag_Examples">
         <p>
-        To configure the check for printing author name:
+          Example of default Check configuration that do nothing.
         </p>
-
+        <source>
+&lt;module name="WriteTag"/&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Some class
+*/
+public class Test {
+  /** some doc */
+  void foo() {}
+}
+        </source>
+        <p>
+          To configure Check to demand some special tag (for example <code>@since</code>)
+          to be present on classes javadoc.
+        </p>
         <source>
 &lt;module name="WriteTag"&gt;
-  &lt;property name="tag" value="@author"/&gt;
-  &lt;property name="tagFormat" value="\S"/&gt;
+  &lt;property name="tag" value="@since"/&gt;
 &lt;/module&gt;
         </source>
-
         <p>
-         To configure the check to print warnings if an
-         "@incomplete" tag is found, and not print anything if it is not found:
+        Example:
         </p>
-
+        <source>
+/**
+* Some class
+*/
+public class Test { // violation as required tag is missed
+  /** some doc */
+  void foo() {} // OK, as methods are not checked by default
+}
+        </source>
+        <p>
+          To configure Check to demand some special tag (for example <code>@since</code>)
+          to be present on method javadocs also in addition to default tokens.
+        </p>
         <source>
 &lt;module name="WriteTag"&gt;
-  &lt;property name="tag" value="@incomplete"/&gt;
-  &lt;property name="tagFormat" value="\S"/&gt;
-  &lt;property name="severity" value="ignore"/&gt;
-  &lt;property name="tagSeverity" value="warning"/&gt;
+  &lt;property name="tag" value="@since"/&gt;
+  &lt;property name="tokens"
+            value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Some class
+*/
+public class Test { // violation as required tag is missed
+  /** some doc */
+  void foo() {} // violation as required tag is missed
+}
+        </source>
+        <p>
+          To configure Check to demand <code>@since</code> tag
+          to be present with digital value on method javadocs also in addition to default tokens.
+          Attention: usage of non "ignore" in tagSeverity will print violation with such severity
+          on each presence of such tag.
+        </p>
+        <source>
+&lt;module name="WriteTag"&gt;
+  &lt;property name="tag" value="@since"/&gt;
+  &lt;property name="tokens"
+            value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF, METHOD_DEF" /&gt;
+  &lt;property name="tagFormat" value="[1-9\.]"/&gt;
+  &lt;property name="tagSeverity" value="ignore"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+/**
+* Some class
+* @since 1.2
+*/
+public class Test {
+  /** some doc
+  * @since violation
+  */
+  void foo() {}
+}
         </source>
       </subsection>
 
