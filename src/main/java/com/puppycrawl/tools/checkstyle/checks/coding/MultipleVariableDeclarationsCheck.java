@@ -32,6 +32,22 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * and on its own line.
  * </p>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void myTest() {
+ *     int mid;    //OK
+ *     int high;   //OK
+ *     // ...
+ *     int lower, higher; // violation
+ *     // ...
+ *     int value;  //OK
+ *     int index;  //OK
+ *     // ...
+ *     int place, number; // violation, each to be decalared at a new line
+ * }
+ * </pre>
+ * <p>
  * Rationale: <a
  * href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
  * the Java code conventions chapter 6.1</a> recommends that
