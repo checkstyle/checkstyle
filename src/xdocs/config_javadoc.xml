@@ -102,13 +102,46 @@
             To configure the default check:
         </p>
         <source>
-&lt;module name=&quot;AtclauseOrder&quot;&gt;
-  &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
-  &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
-  &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
-  &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
-  METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
-&lt;/module>
+&lt;module name=&quot;AtclauseOrder&quot;/&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/**
+* Some javadoc. // OK
+*
+* @author Some javadoc. // OK
+* @version Some javadoc. // OK
+* @param Some javadoc. // OK
+* @return Some javadoc. // OK
+* @throws Some javadoc. // OK
+* @exception Some javadoc. // OK
+* @see Some javadoc. // OK
+* @since Some javadoc. // OK
+* @serial Some javadoc. // OK
+* @serialField // OK
+* @serialData // OK
+* @deprecated Some javadoc. // OK
+*/
+
+class Valid implements Serializable
+{
+}
+
+/**
+* Some javadoc.
+*
+* @since Some javadoc. // OK
+* @version Some javadoc. // Violation - wrong order
+* @deprecated
+* @see Some javadoc. // Violation - wrong order
+* @author Some javadoc. // Violation - wrong order
+*/
+
+class Invalid implements Serializable
+{
+}
         </source>
       </subsection>
 
