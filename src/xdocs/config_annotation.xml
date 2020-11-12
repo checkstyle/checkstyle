@@ -611,7 +611,25 @@ class Bar implements Foo {
         <source>
 &lt;module name=&quot;AnnotationUseStyle&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@Deprecated // OK
+@SomeArrays(pooches={DOGS.LEO}) // Violation - COMPACT_NO_ARRAY
+@SuppressWarnings({""}) // Violation - COMPACT_NO_ARRAY
+public class TestOne
+{
 
+}
+
+@SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // Violation - COMPACT_NO_ARRAY
+@SuppressWarnings("") // OK
+@Deprecated() // Violation - cannot have closing parenthesis
+class TestTwo {
+
+}
+        </source>
         <p>
           To configure the check to enforce an <code>expanded</code> style,
           with a trailing array comma set to <code>never</code>
@@ -623,6 +641,25 @@ class Bar implements Foo {
   &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
   &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@Deprecated // Violation - must have closing parenthesis
+@SomeArrays(pooches={DOGS.LEO}) // OK
+@SuppressWarnings({""}) // Violation - EXPANDED
+public class TestOne
+{
+
+}
+
+@SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // OK
+@SuppressWarnings("") // Violation - EXPANDED
+@Deprecated() // OK
+class TestTwo {
+
+}
         </source>
       </subsection>
 
