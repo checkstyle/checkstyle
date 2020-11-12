@@ -82,13 +82,46 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * To configure the default check:
  * </p>
  * <pre>
- * &lt;module name=&quot;AtclauseOrder&quot;&gt;
- *   &lt;property name=&quot;tagOrder&quot; value=&quot;&#64;author, &#64;version, &#64;param,
- *   &#64;return, &#64;throws, &#64;exception, &#64;see, &#64;since, &#64;serial,
- *   &#64;serialField, &#64;serialData, &#64;deprecated&quot;/&gt;
- *   &lt;property name=&quot;target&quot; value=&quot;CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
- *   METHOD_DEF, CTOR_DEF, VARIABLE_DEF&quot;/&gt;
- * &lt;/module&gt;
+ * &lt;module name=&quot;AtclauseOrder&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#47;**
+ * * Some javadoc. // OK
+ * *
+ * * &#64;author Some javadoc. // OK
+ * * &#64;version Some javadoc. // OK
+ * * &#64;param Some javadoc. // OK
+ * * &#64;return Some javadoc. // OK
+ * * &#64;throws Some javadoc. // OK
+ * * &#64;exception Some javadoc. // OK
+ * * &#64;see Some javadoc. // OK
+ * * &#64;since Some javadoc. // OK
+ * * &#64;serial Some javadoc. // OK
+ * * &#64;serialField // OK
+ * * &#64;serialData // OK
+ * * &#64;deprecated Some javadoc. // OK
+ * *&#47;
+ *
+ * class Valid implements Serializable
+ * {
+ * }
+ *
+ * &#47;**
+ * * Some javadoc.
+ * *
+ * * &#64;since Some javadoc. // OK
+ * * &#64;version Some javadoc. // Violation - wrong order
+ * * &#64;deprecated
+ * * &#64;see Some javadoc. // Violation - wrong order
+ * * &#64;author Some javadoc. // Violation - wrong order
+ * *&#47;
+ *
+ * class Invalid implements Serializable
+ * {
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
