@@ -123,6 +123,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="AnnotationUseStyle"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;Deprecated // OK
+ * &#64;SomeArrays(pooches={DOGS.LEO}) // Violation - COMPACT_NO_ARRAY
+ * &#64;SuppressWarnings({""}) // Violation - COMPACT_NO_ARRAY
+ * public class TestOne
+ * {
+ *
+ * }
+ *
+ * &#64;SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // Violation - COMPACT_NO_ARRAY
+ * &#64;SuppressWarnings("") // OK
+ * &#64;Deprecated() // Violation - cannot have closing parenthesis
+ * class TestTwo {
+ *
+ * }
+ * </pre>
+ * <p>
  * To configure the check to enforce an {@code expanded} style,
  * with a trailing array comma set to {@code never}
  * and always including the closing parenthesis.
@@ -133,6 +152,25 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;trailingArrayComma&quot; value=&quot;never&quot;/&gt;
  *   &lt;property name=&quot;closingParens&quot; value=&quot;always&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;Deprecated // Violation - must have closing parenthesis
+ * &#64;SomeArrays(pooches={DOGS.LEO}) // OK
+ * &#64;SuppressWarnings({""}) // Violation - EXPANDED
+ * public class TestOne
+ * {
+ *
+ * }
+ *
+ * &#64;SomeArrays(pooches={DOGS.LEO}, um={}, test={"bleh"}) // OK
+ * &#64;SuppressWarnings("") // Violation - EXPANDED
+ * &#64;Deprecated() // OK
+ * class TestTwo {
+ *
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
