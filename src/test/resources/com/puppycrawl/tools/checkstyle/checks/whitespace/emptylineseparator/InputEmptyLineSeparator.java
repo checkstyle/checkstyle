@@ -151,3 +151,7 @@ class Class2{
         }
     };
 }
+
+class Class3 {
+    int field;
+}
