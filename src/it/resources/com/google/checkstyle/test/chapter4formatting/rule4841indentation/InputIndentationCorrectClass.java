@@ -28,7 +28,7 @@ public class InputIndentationCorrectClass  //indent:0 exp:0
     SecondClassWithLongLongLongLongName anon =  //indent:4 exp:4
           new SecondClassWithLongLongLongLongName() {  //indent:10 exp:>=8
 
-    };  //indent:4 exp:4
+          };  //indent:10 exp:10
 
     SecondClassWithLongLongLongLongName anon2 = new  //indent:4 exp:4
           SecondClassWithLongLongLongLongName() {  //indent:10 exp:>=8

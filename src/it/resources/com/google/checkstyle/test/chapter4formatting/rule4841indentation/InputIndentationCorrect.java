@@ -36,27 +36,28 @@ public abstract class InputIndentationCorrect { //indent:0 exp:0
     /** Matches no characters. */ //indent:4 exp:4
     public static final InputFastMatcher NONE = //indent:4 exp:4
             new InputFastMatcher() { //indent:12 exp:>=8
-      @Override public boolean matches(char c) { //indent:6 exp:6
-        return false; //indent:8 exp:8
-      } //indent:6 exp:6
+              @Override public boolean matches(char c) { //indent:14 exp:14
+                return false; //indent:16 exp:16
+              } //indent:14 exp:14
 
-      @Override public String replaceFrom(CharSequence seq, CharSequence repl) { //indent:6 exp:6
-        checkNotNull(repl); //indent:8 exp:8
-        return seq.toString(); //indent:8 exp:8
-      } //indent:6 exp:6
+              @Override public String replaceFrom(CharSequence seq, //indent:14 exp:14
+                                                  CharSequence repl) { //indent:50 exp:50
+                checkNotNull(repl); //indent:16 exp:16
+                return seq.toString(); //indent:16 exp:16
+              } //indent:14 exp:14
 
-      private void checkNotNull(CharSequence replacement) {} //indent:6 exp:6
+              private void checkNotNull(CharSequence replacement) {} //indent:14 exp:14
 
-      @Override public String collapseFrom(CharSequence sequence, //indent:6 exp:6
-          char replacement) { //indent:10 exp:10
-        return sequence.toString(); //indent:8 exp:8
-      } //indent:6 exp:6
+              @Override public String collapseFrom(CharSequence sequence, //indent:14 exp:14
+                  char replacement) { //indent:18 exp:18
+                return sequence.toString(); //indent:16 exp:16
+              } //indent:14 exp:14
 
-      @Override //indent:6 exp:6
-      public String trimTrailingFrom(CharSequence sequence) { //indent:6 exp:6
-        return sequence.toString(); //indent:8 exp:8
-      } //indent:6 exp:6
-    }; //indent:4 exp:4
+              @Override //indent:14 exp:14
+              public String trimTrailingFrom(CharSequence sequence) { //indent:14 exp:14
+                return sequence.toString(); //indent:16 exp:16
+              } //indent:14 exp:14
+            }; //indent:12 exp:12
   } //indent:2 exp:2
 
   public boolean matches(char c) { //indent:2 exp:2
