@@ -4054,7 +4054,6 @@ for (String line: lines) {
           Checks that each variable declaration is in its own statement and on
           its own line.
         </p>
-
         <p>
           Rationale: <a
           href="styleguides/sun-code-conventions-19990420/CodeConventions.doc5.html#a2992">
@@ -4069,6 +4068,22 @@ for (String line: lines) {
         </p>
         <source>
 &lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
+        </source>
+        <p>
+              Example:
+        </p>
+        <source>
+public void myTest() {
+  int mid;    //OK
+  int high;   //OK
+  // ...
+  int lower, higher; // violation
+  // ...
+  int value;  //OK
+  int index;  //OK
+  // ...
+  int place, number; // violation, each to be decalared at a new line
+}
         </source>
       </subsection>
 
