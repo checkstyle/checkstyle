@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -319,11 +319,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     public static final String MSG_MULTIPLE_LINES_INSIDE =
             "empty.line.separator.multiple.lines.inside";
 
-    /** List of AST token types, which can not have comment nodes to check inside. */
-    private static final List<Integer> TOKEN_TYPES_WITHOUT_COMMENTS_TO_CHECK_INSIDE =
-            Arrays.asList(TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT,
-                    TokenTypes.STATIC_INIT);
-
     /** Allow no empty line between fields. */
     private boolean allowNoEmptyLineBetweenFields;
 
@@ -408,7 +403,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             checkCommentInModifiers(ast);
         }
         DetailAST nextToken = ast.getNextSibling();
-        while (nextToken != null && isComment(nextToken)) {
+        while (isComment(nextToken)) {
             nextToken = nextToken.getNextSibling();
         }
         if (nextToken != null) {
@@ -486,11 +481,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true if the AST is a class member block.
      */
     private static boolean isClassMemberBlock(int astType) {
-        return astType == TokenTypes.STATIC_INIT
-                || astType == TokenTypes.INSTANCE_INIT
-                || astType == TokenTypes.METHOD_DEF
-                || astType == TokenTypes.CTOR_DEF
-                || astType == TokenTypes.COMPACT_CTOR_DEF;
+        return TokenUtil.isOfType(astType,
+            TokenTypes.STATIC_INIT, TokenTypes.INSTANCE_INIT, TokenTypes.METHOD_DEF,
+            TokenTypes.CTOR_DEF, TokenTypes.COMPACT_CTOR_DEF);
     }
 
     /**
@@ -583,8 +576,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param nextToken next token
      */
     private void processImport(DetailAST ast, DetailAST nextToken) {
-        if (nextToken.getType() != TokenTypes.IMPORT
-                && nextToken.getType() != TokenTypes.STATIC_IMPORT && !hasEmptyLineAfter(ast)) {
+        if (!TokenUtil.isOfType(nextToken, TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT)
+            && !hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
     }
@@ -611,8 +604,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
-                && (!allowNoEmptyLineBetweenFields
-                    || detailAST.getType() != TokenTypes.VARIABLE_DEF);
+                && !(allowNoEmptyLineBetweenFields
+                    && TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
     }
 
     /**
@@ -633,7 +626,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private void checkComments(DetailAST token) {
         if (!allowMultipleEmptyLines) {
-            if (TOKEN_TYPES_WITHOUT_COMMENTS_TO_CHECK_INSIDE.contains(token.getType())) {
+            if (TokenUtil.isOfType(token,
+                TokenTypes.PACKAGE_DEF, TokenTypes.IMPORT,
+                TokenTypes.STATIC_IMPORT, TokenTypes.STATIC_INIT)) {
                 DetailAST previousNode = token.getPreviousSibling();
                 while (isCommentInBeginningOfLine(previousNode)) {
                     if (hasEmptyLineBefore(previousNode) && isPrePreviousLineEmpty(previousNode)) {
@@ -813,8 +808,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true, if given ast is comment.
      */
     private static boolean isComment(DetailAST ast) {
-        return ast.getType() == TokenTypes.SINGLE_LINE_COMMENT
-                   || ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN;
+        return TokenUtil.isOfType(ast,
+            TokenTypes.SINGLE_LINE_COMMENT, TokenTypes.BLOCK_COMMENT_BEGIN);
     }
 
     /**
@@ -824,9 +819,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return true variable definition is a type field.
      */
     private static boolean isTypeField(DetailAST variableDef) {
-        final int parentType = variableDef.getParent().getParent().getType();
-        return parentType == TokenTypes.CLASS_DEF
-                || parentType == TokenTypes.RECORD_DEF;
+        return TokenUtil.isOfType(variableDef.getParent().getParent(),
+             TokenTypes.CLASS_DEF, TokenTypes.RECORD_DEF);
     }
 
 }
