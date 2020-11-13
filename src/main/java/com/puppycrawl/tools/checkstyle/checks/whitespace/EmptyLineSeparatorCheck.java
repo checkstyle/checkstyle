@@ -32,6 +32,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -165,6 +166,17 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * &lt;/module&gt;
  * </pre>
  *
+ * <p>
+ * Example:
+ * </p>
+ *
+ * <pre>
+ * class Foo {
+ *   int field1; // ok
+ *   double field2; // ok
+ *   long field3, field4 = 10L, field5; // ok
+ * }
+ * </pre>
  * <p>
  * Example of declarations with multiple empty lines between class members (allowed by default):
  * </p>
@@ -612,7 +624,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
                 && (!allowNoEmptyLineBetweenFields
-                    || detailAST.getType() != TokenTypes.VARIABLE_DEF);
+                    || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
     }
 
     /**
