@@ -105,6 +105,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="LeftCurly"/&gt;
  * </pre>
+ * <pre>
+ * class Test
+ * { // Violation - '{' should be on the previous line
+ *   private interface TestInterface
+ *   { // Violation - '{' should be on the previous line
+ *   }
+ *
+ *   private
+ *   class
+ *   MyClass { // OK
+ *   }
+ *
+ *   enum Colors {RED, // OK
+ *     BLUE,
+ *     GREEN;
+ *   }
+ * }
+ * </pre>
  * <p>
  * To configure the check to apply the {@code nl} policy to type blocks:
  * </p>
@@ -114,6 +132,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF,INTERFACE_DEF&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <pre>
+ * class Test
+ * { // OK
+ *   private interface TestInterface
+ *   { // OK
+ *   }
+ *
+ *   private
+ *   class
+ *   MyClass { // Violation - '{' should be on a new line
+ *   }
+ *
+ *   enum Colors {RED, // OK
+ *     BLUE,
+ *     GREEN;
+ *   }
+ * }
+ * </pre>
  * <p>
  * An example of how to configure the check to validate enum definitions:
  * </p>
@@ -121,6 +157,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;LeftCurly&quot;&gt;
  *   &lt;property name=&quot;ignoreEnums&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * class Test
+ * { // Violation - '{' should be on the previous line
+ *   private interface TestInterface
+ *   { // Violation - '{' should be on the previous line
+ *   }
+ *
+ *   private
+ *   class
+ *   MyClass { // OK
+ *   }
+ *
+ *   enum Colors {RED, // Violation - '{' should have line break after
+ *   BLUE,
+ *   GREEN;
+ *   }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
