@@ -551,7 +551,7 @@ try {
             <tr>
               <td>option</td>
               <td>Specify the policy on placement of a left curly brace (<code>'{'</code>).</td>
-              <td><a href="property_types.html>SeverityLevel">LeftCurlyOption</a></td>
+              <td><a href="property_types.html#LeftCurlyOption">LeftCurlyOption</a></td>
               <td><code>eol</code></td>
               <td>3.0</td>
             </tr>
