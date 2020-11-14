@@ -44,6 +44,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name="MultipleVariableDeclarations"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void myTest() {
+ *     int mid;    //OK
+ *     int high;   //OK
+ *     // ...
+ *     int lower, higher; // violation
+ *     // ...
+ *     int value,
+ *         index;  //Violation
+ *     // ...
+ *     public void test() {
+ *         int place = ar[6], number = ar[place]; // violation, each to be decalared at a new line
+ *     }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
