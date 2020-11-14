@@ -265,7 +265,23 @@ switch (a) {
         <source>
 &lt;module name=&quot;EmptyBlock&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  private void emptyLoop() {
+    for (int i = 0; i &#60; 10; i++) { // violation
+    }
 
+    try { // violation
+
+    } catch (Exception e) {
+      // ignored
+    }
+  }
+}
+        </source>
         <p>
           To configure the check for the <code>text</code>
           policy and only <code> try</code> blocks:
@@ -276,6 +292,23 @@ switch (a) {
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_TRY&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p> Example: </p>
+        <source>
+public class Test {
+  private void emptyLoop() {
+    for (int i = 0; i &#60; 10; i++) {
+      // ignored
+    }
+
+    // violation on next line
+    try {
+
+    } catch (Exception e) {
+      // ignored
+    }
+  }
+}
+        </source>
         <p>
           To configure the check for default in switch block:
         </p>
@@ -284,17 +317,19 @@ switch (a) {
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_DEFAULT&quot;/&gt;
 &lt;/module&gt;
         </source>
-        <p> Result: </p>
+        <p> Example: </p>
         <source>
-switch (a) {
-  default:        // no violation for "default:" as empty block belong to "case 1:"
-  case 1: { }
-}
-        </source>
-        <source>
-switch (a) {
-  case 1:
-  default: { } // violation
+public class Test {
+  private void test(int a) {
+    switch (a) {
+      case 1: someMethod();
+      default: // OK, as there is no block
+    }
+    switch (a) {
+      case 1: someMethod();
+      default: {} // violation
+    }
+  }
 }
         </source>
       </subsection>
