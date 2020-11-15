@@ -4070,6 +4070,27 @@ for (String line: lines) {
         <source>
 &lt;module name=&quot;MultipleVariableDeclarations&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class Test {
+  public void myTest() {
+    int mid;
+    int high;
+    // ...
+
+    int lower, higher; // violation
+    // ...
+
+    int value,
+        index;  // violation
+    // ...
+
+    int place = mid, number = high; // violation
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="MultipleVariableDeclarations_Example_of_Usage">
