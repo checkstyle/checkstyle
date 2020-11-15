@@ -61,10 +61,10 @@ no-error-pgjdbc)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/pgjdbc/pgjdbc.git
+  checkout_from https://github.com/Abhishek-kumar09/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout REL42.2.16
+  git checkout master
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
@@ -82,12 +82,12 @@ no-error-orekit)
   git checkout $SHA_HIPPARCHUS
   mvn -e install -DskipTests
   cd -
-  checkout_from https://github.com/CS-SI/Orekit.git
+  checkout_from https://github.com/Abhishek-kumar09/Orekit.git
   cd .ci-temp/Orekit
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout "b67b419db7014f4b""ad921a1ba""c6c848384ad2b92"
+  git checkout "develop"
   mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles Orekit
