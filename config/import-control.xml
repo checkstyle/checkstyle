@@ -140,6 +140,12 @@
       <allow class="com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.+"
             regex="true" local-only="true"/>
     </subpackage>
+    <subpackage name="coding">
+      <file name="MatchXpathCheck">
+        <allow pkg="net.sf.saxon"/>
+        <allow pkg="com.puppycrawl.tools.checkstyle.xpath"/>
+      </file>
+    </subpackage>
   </subpackage>
 
   <subpackage name="filters">

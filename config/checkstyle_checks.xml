@@ -444,6 +444,7 @@
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
     <module name="VariableDeclarationUsageDistance"/>
+    <module name="MatchXpath"/>
 
     <!-- Filters -->
     <module name="SuppressionCommentFilter">
