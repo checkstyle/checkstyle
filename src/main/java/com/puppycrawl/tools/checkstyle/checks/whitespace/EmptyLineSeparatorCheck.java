@@ -167,6 +167,17 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </pre>
  *
  * <p>
+ * Example:
+ * </p>
+ *
+ * <pre>
+ * class Foo {
+ *   int field1; // ok
+ *   double field2; // ok
+ *   long field3, field4 = 10L, field5; // ok
+ * }
+ * </pre>
+ * <p>
  * Example of declarations with multiple empty lines between class members (allowed by default):
  * </p>
  *
@@ -612,8 +623,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      */
     private boolean isViolatingEmptyLineBetweenFieldsPolicy(DetailAST detailAST) {
         return detailAST.getType() != TokenTypes.RCURLY
-                && !(allowNoEmptyLineBetweenFields
-                    && TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
+                && (!allowNoEmptyLineBetweenFields
+                    || !TokenUtil.isOfType(detailAST, TokenTypes.COMMA, TokenTypes.VARIABLE_DEF));
     }
 
     /**

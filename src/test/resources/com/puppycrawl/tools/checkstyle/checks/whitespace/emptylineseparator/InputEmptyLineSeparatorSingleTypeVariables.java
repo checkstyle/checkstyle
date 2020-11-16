@@ -25,7 +25,6 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
  */
 
 public class InputEmptyLineSeparatorSingleTypeVariables {
-
     int a; // ok
     int b; // ok
     int c; // ok
