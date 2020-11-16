@@ -474,4 +474,16 @@ public class EmptyLineSeparatorCheckTest
                 expected);
     }
 
+    @Test
+    public void testEmptyLineSeparatorMultipleSingleTypeVariables() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorSingleTypeVariables.java"),
+                expected);
+    }
+
 }
