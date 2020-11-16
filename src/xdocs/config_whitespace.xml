@@ -397,6 +397,16 @@ class Foo {
 &lt;/module&gt;
         </source>
         <p>
+          Example:
+        </p>
+        <source>
+class Foo {
+  int field1; // ok
+  double field2; // ok
+  long field3, field4 = 10L, field5; // ok
+}
+        </source>
+        <p>
           Example of declarations with multiple empty lines between class members
           (allowed by default):
         </p>
