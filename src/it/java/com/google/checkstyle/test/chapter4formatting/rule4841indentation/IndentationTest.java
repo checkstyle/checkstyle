@@ -81,6 +81,17 @@ public class IndentationTest extends AbstractIndentationTestSupport {
     }
 
     @Test
+    public void testCorrectNewKeyword() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getModuleConfig("Indentation");
+        final String filePath = getPath("InputIndentationCorrectNewChildren.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
+    @Test
     public void testCorrect() throws Exception {
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
