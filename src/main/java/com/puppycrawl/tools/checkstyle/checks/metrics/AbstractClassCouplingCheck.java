@@ -77,6 +77,10 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
             "Set", "HashSet", "SortedSet", "TreeSet",
             "Map", "HashMap", "SortedMap", "TreeMap",
             "Override", "Deprecated", "SafeVarargs", "SuppressWarnings", "FunctionalInterface",
+            "Collection", "EnumSet", "LinkedHashMap", "LinkedHashSet", "Optional",
+            "OptionalDouble", "OptionalInt", "OptionalLong",
+            // java.util.stream.*
+            "DoubleStream", "IntStream", "LongStream", "Stream",
         }).collect(Collectors.toSet()));
 
     /** Package names to ignore. */
