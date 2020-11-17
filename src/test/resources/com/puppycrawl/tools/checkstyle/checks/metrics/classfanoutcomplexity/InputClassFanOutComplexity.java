@@ -2,6 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.metrics.classfanoutcomplexity;
 
 import javax.naming.*;
 import java.util.*;
+import java.util.stream.*;
 
 public class InputClassFanOutComplexity {
     private class InnerClass { //singleline comment
@@ -46,4 +47,25 @@ class InputMultiDimensionalArray {
     public  Object[][] get() {
         return new Object[][]{};
     }
+}
+
+class InputCollectionsExt {
+    private Collection col; // ok
+    private EnumSet enumSet; // ok
+    private LinkedHashMap map; // ok
+    private LinkedHashSet set; // ok
+}
+
+class InputOptionals {
+    private Optional<Long> op1; // ok
+    private OptionalInt op2; // ok
+    private OptionalLong op3; // ok
+    private OptionalDouble op4; // ok
+}
+
+class InputStreams {
+    private Stream s1; // ok
+    private IntStream s2; // ok
+    private LongStream s3; // ok
+    private DoubleStream s4; // ok
 }
