@@ -15,6 +15,29 @@
  &lt;a href="https://javarevisited.blogspot.com/2012/03/finalize-method-in-java-tutorial.html"&gt;
  10 points on finalize method in Java&lt;/a&gt;.
  &lt;/p&gt;</description>
+          <properties>
+            <property default-value="^SuperFinalize.+$"
+                      name="format"
+                      type="java.util.regex.Pattern">
+               <description>Specify valid identifiers.</description>
+            </property>
+            <property default-value="false" name="ignoreModifier" type="boolean">
+               <description>Control whether to ignore checking for the
+ {@code SuperFinalize} modifier on classes that match the name.</description>
+            </property>
+            <property default-value="false" name="ignoreName" type="boolean">
+               <description>Control whether to ignore checking the name.
+ Realistically only useful if using the check to identify that match name and
+ do not have the {@code SuperFinalize} modifier.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="illegal.SuperFinalize.class.name"/>
+            <message-key key="no.SuperFinalize.class.modifier"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
          <message-keys>
             <message-key key="missing.super.call"/>
          </message-keys>
