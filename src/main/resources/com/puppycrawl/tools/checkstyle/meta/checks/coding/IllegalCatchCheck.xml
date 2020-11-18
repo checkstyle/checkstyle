@@ -15,7 +15,7 @@
  catches {@code NullPointerException}, {@code OutOfMemoryError}, etc.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="Error, Exception, RuntimeException, Throwable, java.lang.Error,"
+            <property default-value="Error, Exception, RuntimeException, Throwable, java.lang.Error, java.lang.Exception, java.lang.RuntimeException, java.lang.Throwable"
                       name="illegalClassNames"
                       type="java.lang.String[]">
                <description>Specify exception class names to reject.</description>
