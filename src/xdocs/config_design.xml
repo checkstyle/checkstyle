@@ -287,8 +287,7 @@
         <p>
                     Example:
         </p>
-        <p>
-          <source>
+        <source>
                         final class MyClass{
                         private MyClass(){ } //OK
                         }
@@ -323,9 +322,7 @@
                         private MyClass(){ }
                         } //OK,class nested in an annotation is always final
                         }
-
-          </source>
-        </p>
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="FinalClass_Example_of_Usage">
