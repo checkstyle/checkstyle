@@ -31,6 +31,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -99,7 +100,8 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static final Set<String> PROPERTIES_TO_NOT_WRITE = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(
                     "null",
-                    "the charset property of the parent"
+                    "the charset property of the parent<a href=https://checkstyle.org/"
+                        + "config.html#Checker>Checker</a> module"
     )));
 
     /** ModuleDetails instance for each module AST traversal. */
@@ -431,11 +433,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static String getViolationMessages(DetailNode nodeLi) {
         final Optional<DetailNode> resultNode = getFirstChildOfType(nodeLi,
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, 0);
-        String result = "";
-        if (resultNode.isPresent()) {
-            result = getTextFromTag(resultNode.get());
-        }
-        return result;
+        return resultNode.map(JavadocMetadataScraper::getTextFromTag).orElse("");
     }
 
     /**
@@ -445,16 +443,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return text contained by the tag
      */
     private static String getTextFromTag(DetailNode nodeTag) {
-        String result = "";
-        if (nodeTag != null) {
-            final Optional<DetailNode> resultNode = getFirstChildOfType(
-                    nodeTag, JavadocTokenTypes.TEXT, 0);
-            if (resultNode.isPresent()) {
-                result = QUOTE_PATTERN
-                        .matcher(resultNode.get().getText().trim()).replaceAll("");
-            }
-        }
-        return result;
+        return Optional.ofNullable(nodeTag).map(JavadocMetadataScraper::getText).orElse("");
     }
 
     /**
@@ -471,6 +460,19 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return Arrays.stream(node.getChildren())
                 .filter(child -> child.getIndex() >= offset && child.getType() == tokenType)
                 .findFirst();
+    }
+
+    /**
+     * Get joined text from all text children nodes.
+     *
+     * @param parentNode parent node
+     * @return the joined text of node
+     */
+    private static String getText(DetailNode parentNode) {
+        return Arrays.stream(parentNode.getChildren())
+                .filter(child -> child.getType() == JavadocTokenTypes.TEXT)
+                .map(node -> QUOTE_PATTERN.matcher(node.getText().trim()).replaceAll(""))
+                .collect(Collectors.joining(" "));
     }
 
     /**
