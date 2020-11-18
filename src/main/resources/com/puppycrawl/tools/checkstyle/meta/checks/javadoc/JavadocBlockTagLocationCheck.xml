@@ -31,7 +31,7 @@
   *&amp;#47;
  &lt;/pre&gt;</description>
          <properties>
-            <property default-value="author, deprecated, exception, hidden, param, provides,"
+            <property default-value="author, deprecated, exception, hidden, param, provides, return, see, serial, serialData, serialField, since, throws, uses, version"
                       name="tags"
                       type="java.lang.String[]">
                <description>Specify the javadoc tags to process.</description>

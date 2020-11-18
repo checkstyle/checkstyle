@@ -64,7 +64,7 @@
             <property default-value="7" name="max" type="int">
                <description>Specify the maximum threshold allowed.</description>
             </property>
-            <property default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte,"
+            <property default-value="ArrayIndexOutOfBoundsException, ArrayList, Boolean, Byte, Character, Class, Deprecated, Deque, Double, Exception, Float, FunctionalInterface, HashMap, HashSet, IllegalArgumentException, IllegalStateException, IndexOutOfBoundsException, Integer, LinkedList, List, Long, Map, NullPointerException, Object, Override, Queue, RuntimeException, SafeVarargs, SecurityException, Set, Short, SortedMap, SortedSet, String, StringBuffer, StringBuilder, SuppressWarnings, Throwable, TreeMap, TreeSet, UnsupportedOperationException, Void, boolean, byte, char, double, float, int, long, short, var, void"
                       name="excludedClasses"
                       type="java.lang.String[]">
                <description>Specify user-configured class names to ignore.</description>

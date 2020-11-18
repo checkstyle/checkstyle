@@ -52,7 +52,7 @@
                       type="boolean">
                <description>Control whether to validate abstract class names.</description>
             </property>
-            <property default-value="HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap,"
+            <property default-value="HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap, TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap, java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet"
                       name="illegalClassNames"
                       type="java.lang.String[]">
                <description>Specify classes that should not be used
