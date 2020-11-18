@@ -291,7 +291,7 @@
                         final class MyClass{
                         private MyClass(){ } //OK
                         }
-                        class MyClass(){
+                        class MyClass{
                         private MyClass() { }
                         } //violation,class should be declared final
 
