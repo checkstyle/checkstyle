@@ -46,7 +46,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <pre>
  * final class MyClass {
- *   private MyClass(){ } //OK
+ *   private MyClass() { } //OK
  * }
  *
  * class MyClass {

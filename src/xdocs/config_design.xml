@@ -283,7 +283,7 @@ public class FooTest {
         </p>
         <source>
 final class MyClass {
-  private MyClass(){ } //OK
+  private MyClass() { } //OK
 }
 
 class MyClass {
