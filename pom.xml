@@ -1399,6 +1399,8 @@
         </dependencies>
       </plugin>
 
+
+
       <!-- Ensure the manifest has all the gory details -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

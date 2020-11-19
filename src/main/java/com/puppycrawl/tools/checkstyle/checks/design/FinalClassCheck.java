@@ -51,32 +51,32 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * class MyClass{
  * private MyClass() { }
  * } //violation,class should be declared final
- *class MyClass{
- *int a,String str;
- *private MyClass(int a){
- *this.a=a;
- *str="dummy value";
- *}
- *public MyClass(String str){
- *this.str=str;
- *a=0;
- *} //OK,since it has a public constructor
- *}
- *interface CheckInterface
- *{
- *class MyClass
- *{
- *private MyClass(){}
- *}
- *} //OK,nested class in interface is always final
- *public @interface Test {
- *public boolean enabled()
- *default true;
- *class MyClass{
- *private MyClass(){ }
- *} //OK,class nested in an annotation is always final
- *}
- *</pre>
+ * class MyClass{
+ * int a,String str;
+ * private MyClass(int a){
+ * this.a=a;
+ * str="dummy value";
+ * }
+ * public MyClass(String str){
+ * this.str=str;
+ * a=0;
+ * } //OK,since it has a public constructor
+ * }
+ * interface CheckInterface
+ * {
+ * class MyClass
+ * {
+ * private MyClass(){}
+ * }
+ * } //OK,nested class in interface is always final
+ * public @interface Test {
+ * public boolean enabled()
+ * default true;
+ * class MyClass{
+ * private MyClass(){ }
+ * } //OK,class nested in an annotation is always final
+ * }
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
