@@ -51,33 +51,34 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * class MyClass {
  *   private MyClass() { }
- * } //violation,class should be declared final
+ * } //violation, class should be declared final
  *
  * class MyClass {
- *   int a;String str;
- *   private MyClass(int a){
+ *   int a;
+ *   String str;
+ *   private MyClass(int a) {
  *   this.a=a;
  *   str="dummy value";
  *   }
- *   public MyClass(String str){
+ *   public MyClass(String str) {
  *   this.str=str;
  *   a=0;
- *   } //OK,since it has a public constructor
+ *   } //OK, since it has a public constructor
  * }
  *
  * interface CheckInterface
  * {
- *   class MyClass{
- *     private MyClass(){}
+ *   class MyClass {
+ *     private MyClass() { }
  *   }
- * } //OK,nested class in interface is always final
+ * } //OK, nested class in interface is always final
  *
  * public @interface Test {
  *   public boolean enabled()
  *   default true;
- *   class MyClass{
- *     private MyClass(){ }
- *   } //OK,class nested in an annotation is always final
+ *   class MyClass {
+ *     private MyClass() { }
+ *   } //OK, class nested in an annotation is always final
  * }
  * </pre>
  * <p>
