@@ -57,12 +57,12 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   int a;
  *   String str;
  *   private MyClass(int a) {
- *   this.a=a;
- *   str="dummy value";
+ *   this.a = a;
+ *   str = "dummy value";
  *   }
  *   public MyClass(String str) {
- *   this.str=str;
- *   a=0;
+ *   this.str = str;
+ *   a = 0;
  *   } //OK, since it has a public constructor
  * }
  *
