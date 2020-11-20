@@ -51,7 +51,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *
  * class MyClass {
  *   private MyClass() { }
- * } //violation,class should be declared final
+ * } //violation, class should be declared final
  *
  * class MyClass {
  *   int a;
