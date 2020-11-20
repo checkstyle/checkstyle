@@ -389,6 +389,16 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testFinalInstanceVariable() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_VARIABLE, "y", ""),
+            "14:9: " + getCheckMessage(MSG_VARIABLE, "z", ""),
+        };
+        verify(checkConfig, getPath("InputRequireThisFinalInstanceVariable.java"), expected);
+    }
+
+    @Test
     public void test() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(RequireThisCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
