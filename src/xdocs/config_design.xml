@@ -286,9 +286,9 @@ final class MyClass {
   private MyClass() { } //OK
 }
 
-class MyClass {
+class MyClass { //violation, class should be declared final
   private MyClass() { }
-} //violation, class should be declared final
+}
 
 class MyClass {
   int a;

@@ -49,9 +49,9 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   private MyClass() { } //OK
  * }
  *
- * class MyClass {
+ * class MyClass { //violation, class should be declared final
  *   private MyClass() { }
- * } //violation, class should be declared final
+ * }
  *
  * class MyClass {
  *   int a;
