@@ -302,11 +302,10 @@ class MyClass {
   a = 0;
   } //OK, since it has a public constructor
 }
-
 interface CheckInterface
 {
   class MyClass {
-    private MyClass() {}
+    private MyClass() { }
   }
 } //OK, nested class in interface is always final
 
@@ -317,6 +316,7 @@ public @interface Test {
     private MyClass() { }
   } //OK, class nested in an annotation is always final
 }
+
         </source>
       </subsection>
 

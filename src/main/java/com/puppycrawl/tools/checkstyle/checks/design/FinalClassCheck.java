@@ -65,11 +65,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   a = 0;
  *   } //OK, since it has a public constructor
  * }
- *
  * interface CheckInterface
  * {
  *   class MyClass {
- *     private MyClass() {}
+ *     private MyClass() { }
  *   }
  * } //OK, nested class in interface is always final
  *
