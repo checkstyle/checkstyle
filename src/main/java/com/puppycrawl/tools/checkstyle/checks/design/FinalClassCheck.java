@@ -42,6 +42,46 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;FinalClass&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * final class MyClass {  // OK
+ *   private MyClass() { }
+ * }
+ *
+ * class MyClass { // violation, class should be declared final
+ *   private MyClass() { }
+ * }
+ *
+ * class MyClass {
+ *   int field1;
+ *   String field2;
+ *   private MyClass(int value) {
+ *     this.field1 = value;
+ *     field2 = " ";
+ *   }
+ *   public MyClass(String value) { // OK, since it has a public constructor
+ *     this.field2 = value;
+ *     field1 = 0;
+ *   }
+ * }
+ *
+ * interface CheckInterface
+ * {
+ *   class MyClass { // OK, nested class in interface is always final
+ *     private MyClass() {}
+ *   }
+ * }
+ *
+ * public @interface Test {
+ *   public boolean enabled()
+ *   default true;
+ *   class MyClass { // OK, class nested in an annotation is always final
+ *     private MyClass() { }
+ *   }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
