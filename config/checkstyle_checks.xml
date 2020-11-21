@@ -444,6 +444,10 @@
     <module name="UnnecessarySemicolonInEnumeration"/>
     <module name="UnnecessarySemicolonInTryWithResources"/>
     <module name="VariableDeclarationUsageDistance"/>
+    <module name="MatchXpath">
+      <property name="query" value="//CLASS_DEF[@text!='Checker' and @text!='Main']
+      //LITERAL_CATCH//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/.."/>
+    </module>
 
     <!-- Filters -->
     <module name="SuppressionCommentFilter">
