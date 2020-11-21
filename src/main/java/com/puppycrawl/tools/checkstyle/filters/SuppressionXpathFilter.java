@@ -72,6 +72,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocMethod
  * </li>
  * <li>
+ * JavadocMissingLeadingAsterisk
+ * </li>
+ * <li>
  * JavadocMissingWhitespaceAfterAsterisk
  * </li>
  * <li>
