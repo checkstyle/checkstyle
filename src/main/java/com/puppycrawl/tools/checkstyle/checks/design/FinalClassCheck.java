@@ -62,7 +62,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   }
  *   public MyClass(String value) {
  *     this.field2 = value;
- *     this.field1 = 0;
+ *     this.field1 = 1;
  *   }
  * }
  *

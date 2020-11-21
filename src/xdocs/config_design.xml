@@ -299,7 +299,7 @@ class MyClass { // OK, since it has a public constructor
   }
   public MyClass(String value) {
     this.field2 = value;
-    this.field1 = 0;
+    this.field1 = 1;
   }
 }
 
