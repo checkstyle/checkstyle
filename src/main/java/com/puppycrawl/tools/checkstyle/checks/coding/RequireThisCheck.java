@@ -458,7 +458,8 @@ public class RequireThisCheck extends AbstractCheck {
             default:
                 if (checkFields) {
                     final AbstractFrame frame = getFieldWithoutThis(ast, parentType);
-                    if (frame != null) {
+                    final boolean canUseThis = !isInCompactConstructor(ast);
+                    if (frame != null && canUseThis) {
                         logViolation(MSG_VARIABLE, ast, frame);
                     }
                 }
@@ -508,6 +509,25 @@ public class RequireThisCheck extends AbstractCheck {
             }
         }
         return frame;
+    }
+
+    /**
+     * Return whether ast is in a COMPACT_CTOR_DEF.
+     *
+     * @param ast The token to check
+     * @return true if ast is in a COMPACT_CTOR_DEF, false otherwise
+     */
+    private static boolean isInCompactConstructor(DetailAST ast) {
+        boolean isInCompactCtor = false;
+        DetailAST parent = ast.getParent();
+        while (parent != null) {
+            if (parent.getType() == TokenTypes.COMPACT_CTOR_DEF) {
+                isInCompactCtor = true;
+                break;
+            }
+            parent = parent.getParent();
+        }
+        return isInCompactCtor;
     }
 
     /**
