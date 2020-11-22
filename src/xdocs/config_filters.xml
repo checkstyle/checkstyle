@@ -1545,9 +1545,9 @@ public class FileTwo {
         </p>
         <div class="wrapper">
           <pre>
-&lt;module name="SuppressionXpathSingleFilter&gt;
+&lt;module name="SuppressionXpathSingleFilter"&gt;
   &lt;property name="checks" value="PackageName"/&gt;
-  &lt;property name="query" query="/PACKAGE_DEF[@text='File']/IDENT"/&gt;
+  &lt;property name="query" value="/PACKAGE_DEF[@text='File']/IDENT"/&gt;
 &lt;/module&gt;
           </pre>
         </div>

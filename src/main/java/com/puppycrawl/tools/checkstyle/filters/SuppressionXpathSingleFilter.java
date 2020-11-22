@@ -160,9 +160,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
  * To suppress checks for all package definitions:
  * </p>
  * <pre>
- * &lt;module name=&quot;SuppressionXpathSingleFilter&gt;
+ * &lt;module name=&quot;SuppressionXpathSingleFilter"&gt;
  *   &lt;property name=&quot;checks&quot; value=&quot;PackageName&quot;/&gt;
- *   &lt;property name=&quot;query&quot; query=&quot;/PACKAGE_DEF[@text='File']/IDENT&quot;/&gt;
+ *   &lt;property name=&quot;query&quot; value=&quot;/PACKAGE_DEF[@text='File']/IDENT&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
