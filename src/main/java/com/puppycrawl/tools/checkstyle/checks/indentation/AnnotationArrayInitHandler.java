@@ -23,7 +23,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
- * Handler for array initialization blocks.
+ * Handler for annotation array initialization blocks.
  *
  */
 public class AnnotationArrayInitHandler extends BlockParentHandler {
