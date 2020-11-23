@@ -50,6 +50,25 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * &lt;module name=&quot;ParameterAssignment&quot;/&gt;
  * </pre>
  * <p>
+ * Example :
+ * </p>
+ * <pre>
+ * class MyClass {
+ *   int method(int parameter) {
+ *     parameter -= 2;  // violation
+ *     return parameter;
+ *   }
+ * }
+ *
+ * class MyClass {
+ *   int method(int parameter) {
+ *     int local = parameter;
+ *     local -= 2;  // OK
+ *     return local;
+ *   }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
