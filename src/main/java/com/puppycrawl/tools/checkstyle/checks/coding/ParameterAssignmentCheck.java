@@ -55,9 +55,8 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * class MyClass {
  *   int method1(int parameter1, int parameter2) {
- *     if (parameter2 > 50) {
- *       parameter1 -= 2;  // violation, Parameter assignment is poor programming practice
- *     }
+ *     parameter2 = 2;   // violation
+ *     parameter1 -= 2;  // violation
  *     return parameter1;
  *   }
  * }
@@ -66,7 +65,7 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  *   int method2(int parameter1, int parameter2) {
  *     int local = parameter1;
  *     if (parameter2 > 50) {
- *       local -= 2;  // OK, since a local variable is assigned
+ *       local -= 2;  // OK
  *     }
  *     return local;
  *   }
