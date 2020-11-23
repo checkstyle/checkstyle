@@ -133,6 +133,20 @@ no-violation-test-josm)
   if [[ ${RESULT} != 0 ]]; then false; fi
   ;;
 
+javac15)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java15' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java15 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac -source 15 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
