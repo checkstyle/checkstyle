@@ -5276,6 +5276,25 @@ public class AnnotationLocationCheck extends AbstractCheck {
         <source>
 &lt;module name=&quot;ParameterAssignment&quot;/&gt;
         </source>
+        <p>
+            Example :
+        </p>
+        <source>
+class MyClass {
+  int method(int parameter) {
+    parameter -= 2;  // violation
+    return parameter;
+  }
+}
+
+class MyClass {
+  int method(int parameter) {
+    int local = parameter;
+    local -= 2;  // OK
+    return local;
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="ParameterAssignment_Example_of_Usage">
