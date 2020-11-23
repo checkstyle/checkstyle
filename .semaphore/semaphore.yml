@@ -81,3 +81,18 @@ blocks:
             - echo "CMD=$CMD";
             - eval $CMD;
             - echo "eval of CMD is completed";
+
+        - name: Compile JDK15 input files
+          priority:
+            - value: 50
+              when: true
+          matrix:
+            - env_var: CMD
+              values:
+                - .ci/validation.sh javac15
+          commands:
+            - sem-version java 15
+            - echo "eval of CMD is starting";
+            - echo "CMD=$CMD";
+            - eval $CMD;
+            - echo "eval of CMD is completed";
