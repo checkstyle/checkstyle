@@ -152,4 +152,15 @@ public class IndentationTest extends AbstractIndentationTestSupport {
         verify(checkConfig, filePath, expected, warnList);
     }
 
+    @Test
+    public void testCorrectAnnotationArrayInit() throws Exception {
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        final Configuration checkConfig = getModuleConfig("Indentation");
+        final String filePath = getPath("InputIndentationCorrectAnnotationArrayInit.java");
+
+        final Integer[] warnList = getLinesWithWarn(filePath);
+        verify(checkConfig, filePath, expected, warnList);
+    }
+
 }

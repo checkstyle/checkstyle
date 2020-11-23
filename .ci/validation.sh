@@ -90,7 +90,7 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/pmd/pmd.git
+  git clone https://github.com/Abhishek-kumar09/pmd.git
   cd pmd
   mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
