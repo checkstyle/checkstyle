@@ -50,6 +50,29 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * &lt;module name=&quot;ParameterAssignment&quot;/&gt;
  * </pre>
  * <p>
+ * Example :
+ * </p>
+ * <pre>
+ * class MyClass {
+ *   int method1(int parameter1, int parameter2) {
+ *     if (parameter2 > 50) {
+ *       parameter1 -= 2;  // violation, Parameter assignment is poor programming practice
+ *     }
+ *     return parameter1;
+ *   }
+ * }
+ *
+ * class MyClass {
+ *   int method2(int parameter1, int parameter2) {
+ *     int local = parameter1;
+ *     if (parameter2 > 50) {
+ *       local -= 2;  // OK, since a local variable is assigned
+ *     }
+ *     return local;
+ *   }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
