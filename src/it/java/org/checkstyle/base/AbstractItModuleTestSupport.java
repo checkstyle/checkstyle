@@ -312,6 +312,12 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         return checkMessage;
     }
 
+    /**
+     * Remove device from path string for windows path.
+     *
+     * @param path path to correct.
+     * @return Path without device name.
+     */
     private static String removeDeviceFromPathOnWindows(String path) {
         String fixedPath = path;
         final String os = System.getProperty("os.name", "Unix");
