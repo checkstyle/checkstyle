@@ -2895,7 +2895,7 @@ public void myTest() {
               <td>subset of tokens
                 <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html">TokenTypes</a>
               </td>
-              <td><code>no tokens</code></td>
+              <td><code>{}</code></td>
               <td>6.3</td>
             </tr>
             <tr>
