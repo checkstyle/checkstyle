@@ -77,6 +77,21 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDefaultsEmptyStringMemberModifiers() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("memberModifiers", "");
+
+        final String[] expected = {
+            "17:13: " + getCheckMessage(MSG_KEY, "java.util.TreeSet"),
+            "18:13: " + getCheckMessage(MSG_KEY, "TreeSet"),
+            "43:14: " + getCheckMessage(MSG_KEY, "HashMap"),
+            "45:5: " + getCheckMessage(MSG_KEY, "HashMap"),
+        };
+
+        verify(checkConfig, getPath("InputIllegalType.java"), expected);
+    }
+
+    @Test
     public void testIgnoreMethodNames() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
         checkConfig.addAttribute("ignoredMethodNames", "table2");
