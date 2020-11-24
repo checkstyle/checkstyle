@@ -187,6 +187,12 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
         }
     }
 
+    /**
+     * Get length of lambda body.
+     *
+     * @param ast lambda body node.
+     * @return length of lambda body.
+     */
     private static int getLength(DetailAST ast) {
         final DetailAST lambdaBody = ast.getLastChild();
         final int length;

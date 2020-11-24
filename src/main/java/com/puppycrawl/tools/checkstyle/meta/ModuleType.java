@@ -34,6 +34,11 @@ public enum ModuleType {
     /** String representation of the module type. */
     private final String label;
 
+    /**
+     * Creates a new instance.
+     *
+     * @param label label of module
+     */
     ModuleType(String label) {
         this.label = label;
     }
