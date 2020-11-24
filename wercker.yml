@@ -1,4 +1,7 @@
-box: maven:3.6.3-jdk-11
+box:
+  id: maven:3.6.3-jdk-11
+  username: $DOCKERHUB_USER
+  password: $DOCKERHUB_TOKEN
 
 build:
   steps:
