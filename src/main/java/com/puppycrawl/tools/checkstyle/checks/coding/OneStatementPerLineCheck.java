@@ -276,6 +276,12 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         }
     }
 
+    /**
+     * Checks semicolon placement in lambda.
+     *
+     * @param ast semicolon to check
+     * @param currentStatement current statement
+     */
     private void checkLambda(DetailAST ast, DetailAST currentStatement) {
         int countOfSemiInCurrentLambda = countOfSemiInLambda.pop();
         countOfSemiInCurrentLambda++;
@@ -288,12 +294,21 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
         }
     }
 
+    /**
+     * Checks that given node is a resource.
+     *
+     * @param ast semicolon to check
+     * @return true if node is a resource
+     */
     private static boolean isResource(DetailAST ast) {
-        return ast != null
-            && (ast.getType() == TokenTypes.RESOURCES
-                 || ast.getType() == TokenTypes.RESOURCE_SPECIFICATION);
+        return TokenUtil.isOfType(ast, TokenTypes.RESOURCES, TokenTypes.RESOURCE_SPECIFICATION);
     }
 
+    /**
+     * Checks resource variable.
+     *
+     * @param currentStatement current statement
+     */
     private void checkResourceVariable(DetailAST currentStatement) {
         if (treatTryResourcesAsStatement) {
             final DetailAST nextNode = currentStatement.getNextSibling();
