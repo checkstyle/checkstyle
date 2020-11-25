@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -29,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -138,6 +140,12 @@ public class TrailingCommentCheck extends AbstractCheck {
     public static final String MSG_KEY = "trailing.comments";
 
     /**
+     * A Map contains illegal lines, the key is lineNo, the value is
+     * ColumnNo.
+     */
+    private final Map<Integer, Integer> illegalLines = new HashMap<>();
+
+    /**
      * Define pattern for text allowed in trailing comments.
      * (This pattern will not be applied to multiline comments and the text
      * of the comment will be trimmed before matching.)
@@ -168,6 +176,11 @@ public class TrailingCommentCheck extends AbstractCheck {
     }
 
     @Override
+    public boolean isCommentNodesRequired() {
+        return true;
+    }
+
+    @Override
     public int[] getDefaultTokens() {
         return getRequiredTokens();
     }
@@ -179,12 +192,19 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return CommonUtil.EMPTY_INT_ARRAY;
+        return new int[] {
+            TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN,
+        };
     }
 
     @Override
     public void visitToken(DetailAST ast) {
-        throw new IllegalStateException("visitToken() shouldn't be called.");
+        final int lineNo = ast.getLineNo();
+        if (illegalLines.get(lineNo) != null
+                && illegalLines.get(lineNo).equals(ast.getColumnNo())) {
+            log(ast, MSG_KEY);
+        }
     }
 
     @Override
@@ -219,7 +239,7 @@ public class TrailingCommentCheck extends AbstractCheck {
             }
             if (!format.matcher(lineBefore).find()
                 && !isLegalComment(comment)) {
-                log(lineNo, MSG_KEY);
+                illegalLines.put(lineNo, comment.getStartColNo());
             }
         }
     }

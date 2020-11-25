@@ -54,9 +54,6 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * RegexpSinglelineJava (reason is at
  * <a href="https://github.com/checkstyle/checkstyle/issues/7759#issuecomment-605525287"> #7759</a>)
  * </li>
- * <li>
- * TrailingComment
- * </li>
  * </ul>
  * <p>
  * Also, the filter does not support suppressions inside javadoc reported by Javadoc checks:
