@@ -21,15 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks;
 
 import static com.puppycrawl.tools.checkstyle.checks.TrailingCommentCheck.MSG_KEY;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
@@ -41,14 +38,18 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getRequiredTokens(),
+        final int[] expected = {TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN, };
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Required tokens array is not empty");
     }
 
     @Test
     public void testGetAcceptableTokens() {
         final TrailingCommentCheck checkObj = new TrailingCommentCheck();
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, checkObj.getAcceptableTokens(),
+        final int[] expected = {TokenTypes.SINGLE_LINE_COMMENT,
+            TokenTypes.BLOCK_COMMENT_BEGIN, };
+        assertArrayEquals(expected, checkObj.getAcceptableTokens(),
                 "Acceptable tokens array is not empty");
     }
 
@@ -56,14 +57,14 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testDefaults() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
-            "7: " + getCheckMessage(MSG_KEY),
-            "8: " + getCheckMessage(MSG_KEY),
-            "18: " + getCheckMessage(MSG_KEY),
-            "19: " + getCheckMessage(MSG_KEY),
-            "29: " + getCheckMessage(MSG_KEY),
-            "30: " + getCheckMessage(MSG_KEY),
-            "31: " + getCheckMessage(MSG_KEY),
+            "4:12: " + getCheckMessage(MSG_KEY),
+            "7:12: " + getCheckMessage(MSG_KEY),
+            "8:22: " + getCheckMessage(MSG_KEY),
+            "18:19: " + getCheckMessage(MSG_KEY),
+            "19:21: " + getCheckMessage(MSG_KEY),
+            "29:50: " + getCheckMessage(MSG_KEY),
+            "30:51: " + getCheckMessage(MSG_KEY),
+            "31:31: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -73,12 +74,12 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         checkConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
-            "7: " + getCheckMessage(MSG_KEY),
-            "8: " + getCheckMessage(MSG_KEY),
-            "18: " + getCheckMessage(MSG_KEY),
-            "19: " + getCheckMessage(MSG_KEY),
-            "31: " + getCheckMessage(MSG_KEY),
+            "4:12: " + getCheckMessage(MSG_KEY),
+            "7:12: " + getCheckMessage(MSG_KEY),
+            "8:22: " + getCheckMessage(MSG_KEY),
+            "18:19: " + getCheckMessage(MSG_KEY),
+            "19:21: " + getCheckMessage(MSG_KEY),
+            "31:31: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -88,35 +89,22 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         checkConfig.addAttribute("format", "NOT MATCH");
         final String[] expected = {
-            "4: " + getCheckMessage(MSG_KEY),
-            "5: " + getCheckMessage(MSG_KEY),
-            "6: " + getCheckMessage(MSG_KEY),
-            "7: " + getCheckMessage(MSG_KEY),
-            "8: " + getCheckMessage(MSG_KEY),
-            "13: " + getCheckMessage(MSG_KEY),
-            "14: " + getCheckMessage(MSG_KEY),
-            "15: " + getCheckMessage(MSG_KEY),
-            "18: " + getCheckMessage(MSG_KEY),
-            "19: " + getCheckMessage(MSG_KEY),
-            "26: " + getCheckMessage(MSG_KEY),
-            "29: " + getCheckMessage(MSG_KEY),
-            "30: " + getCheckMessage(MSG_KEY),
-            "31: " + getCheckMessage(MSG_KEY),
+            "4:12: " + getCheckMessage(MSG_KEY),
+            "5:5: " + getCheckMessage(MSG_KEY),
+            "6:5: " + getCheckMessage(MSG_KEY),
+            "7:12: " + getCheckMessage(MSG_KEY),
+            "8:22: " + getCheckMessage(MSG_KEY),
+            "13:17: " + getCheckMessage(MSG_KEY),
+            "14:7: " + getCheckMessage(MSG_KEY),
+            "15:5: " + getCheckMessage(MSG_KEY),
+            "18:19: " + getCheckMessage(MSG_KEY),
+            "19:21: " + getCheckMessage(MSG_KEY),
+            "26:5: " + getCheckMessage(MSG_KEY),
+            "29:50: " + getCheckMessage(MSG_KEY),
+            "30:51: " + getCheckMessage(MSG_KEY),
+            "31:31: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
-    }
-
-    @Test
-    public void testCallVisitToken() {
-        final TrailingCommentCheck check = new TrailingCommentCheck();
-        try {
-            check.visitToken(new DetailAstImpl());
-            fail("IllegalStateException is expected");
-        }
-        catch (IllegalStateException ex) {
-            assertEquals("visitToken() shouldn't be called.", ex.getMessage(),
-                    "Error message is unexpected");
-        }
     }
 
 }
