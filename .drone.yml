@@ -2,8 +2,12 @@ kind: pipeline
 name: default
 
 steps:
-- name: test
-  image: maven:3-jdk-10
+- name: checkstyle-and-sevntu
+  image: maven:3.6.3-adoptopenjdk-8
   commands:
-  - mvn -e install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - mvn -e test -B
+  - ./.ci/travis/travis.sh checkstyle-and-sevntu
+
+- name: spotbugs-and-pmd
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh spotbugs-and-pmd
