@@ -42,3 +42,18 @@ steps:
   image: maven:3.6.3-adoptopenjdk-8
   commands:
   - ./.ci/travis/travis.sh assembly-run-all-jar
+
+---
+kind: pipeline
+name: pipeline4
+
+steps:
+- name: javac8
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh javac8
+
+- name: check-since-version
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh check-since-version
