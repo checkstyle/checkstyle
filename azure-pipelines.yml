@@ -6,17 +6,31 @@
 trigger:
 - main
 
+strategy:
+  matrix:
+    'test':
+      image: 'ubuntu-16.04'
+      cmd: "mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
+    'false':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh test-de"
+
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: $(image)
+
+variables:
+  MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
+  MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
 
 steps:
-- task: Maven@3
+- task: Cache@2
   inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    key: 'maven | "$(Agent.OS)" | **/pom.xml'
+    restoreKeys: |
+      maven | "$(Agent.OS)"
+      maven
+    path: $(MAVEN_CACHE_FOLDER)
+  displayName: Cache Maven local repo
+
+- bash: eval "$(cmd)"
+
