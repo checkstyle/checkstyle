@@ -96,7 +96,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name=&quot;ConstantName&quot;&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>Code Example:</p>
+ * <p>Example:</p>
  * <pre>
  * class MyClass {
  *   public final static int FIRST_CONSTANT1 = 10; // OK

@@ -912,7 +912,7 @@ class MyClass {
 &lt;module name=&quot;ConstantName&quot;&gt;
 &lt;/module&gt;
         </source>
-        <p>Code Example:</p>
+        <p>Example:</p>
         <source>
 class MyClass {
   public final static int FIRST_CONSTANT1 = 10; // OK
@@ -929,8 +929,8 @@ class MyClass {
         </p>
         <source>
 &lt;module name=&quot;ConstantName&quot;&gt;
-&lt;property name="applyToPublic" value="false"/&gt;
-&lt;property name="applyToProtected" value="false"/&gt;
+  &lt;property name="applyToPublic" value="false"/&gt;
+  &lt;property name="applyToProtected" value="false"/&gt;
 &lt;/module&gt;
         </source>
         <p>Code Example:</p>
