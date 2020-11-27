@@ -81,19 +81,21 @@ jobs:
     #     - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
     #     - USE_MAVEN_REPO="true"
 
+    # moved to azure-pipelines.yml (as part of general 'verify')
     # spotbugs and pmd (openjdk11)
-    - jdk: openjdk11
-      env:
-        - DESC="spotbugs,pmd"
-        - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk11
+    #   env:
+    #     - DESC="spotbugs,pmd"
+    #     - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
+    #     - USE_MAVEN_REPO="true"
 
+    # moved to azure-pipelines.yml to run in OSX
     # spotbugs and pmd (openjdk14)
-    - jdk: openjdk14
-      env:
-        - DESC="spotbugs,pmd"
-        - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk14
+    #   env:
+    #     - DESC="spotbugs,pmd"
+    #     - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
+    #     - USE_MAVEN_REPO="true"
 
     # Releasenotes generation - validation
     - jdk: openjdk8
@@ -193,24 +195,22 @@ jobs:
     #     - CMD1="./.ci/travis/travis.sh osx-package"
     #     - CMD2="./.ci/travis/travis.sh osx-assembly"
     #     - CMD="$CMD1 && $CMD2"
-
     # MacOS JDK11 verify (till cache is not working, we can not do verify)
-    - os: osx
-      osx_image: xcode10.1
-      env:
-        - DESC="MacOS JDK11 verify, site, assembly"
-        - CMD1="./.ci/travis/travis.sh osx-package"
-        - CMD2="./.ci/travis/travis.sh osx-assembly"
-        - CMD="$CMD1 && $CMD2"
-
+    # - os: osx
+    #   osx_image: xcode10.1
+    #   env:
+    #     - DESC="MacOS JDK11 verify, site, assembly"
+    #     - CMD1="./.ci/travis/travis.sh osx-package"
+    #     - CMD2="./.ci/travis/travis.sh osx-assembly"
+    #     - CMD="$CMD1 && $CMD2"
     # MacOS JDK13 verify (till cache is not working, we can not do verify)
-    - os: osx
-      osx_image: xcode11.2
-      env:
-        - DESC="MacOS JDK13 verify, site, assembly"
-        - CMD1="./.ci/travis/travis.sh osx-jdk13-package"
-        - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
-        - CMD="$CMD1 && $CMD2"
+    # - os: osx
+    #   osx_image: xcode11.2
+    #   env:
+    #     - DESC="MacOS JDK13 verify, site, assembly"
+    #     - CMD1="./.ci/travis/travis.sh osx-jdk13-package"
+    #     - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
+    #     - CMD="$CMD1 && $CMD2"
 
     # moved to drone.yml
     # No error testing - simple-binary-encoding
@@ -252,12 +252,13 @@ jobs:
     #     - USE_MAVEN_REPO="true"
     #     - CMD="./.ci/travis/travis.sh jdk14-assembly-site"
 
+    # moved to azure-pipelines.yml as part of OSX verify
     # OpenJDK14 verify limited
-    - jdk: openjdk14
-      env:
-        - DESC="verify limited with OpenJDK14"
-        - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk14-verify-limited"
+    # - jdk: openjdk14
+    #   env:
+    #     - DESC="verify limited with OpenJDK14"
+    #     - USE_MAVEN_REPO="true"
+    #     - CMD="./.ci/travis/travis.sh jdk14-verify-limited"
 
     # moved to drone.yml
     # OpenJDK11 compile input files with jdk9 specific syntax
