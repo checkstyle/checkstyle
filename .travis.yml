@@ -232,19 +232,21 @@ jobs:
         - USE_MAVEN_REPO="true"
         - CMD="mvn -e verify"
 
+    # moved to drone.yml
     # OpenJDK11 assembly/site
-    - jdk: openjdk11
-      env:
-        - DESC="assembly/site with OpenJDK11"
-        - USE_MAVEN_REPO="true"
-        - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
+    # - jdk: openjdk11
+    #   env:
+    #     - DESC="assembly/site with OpenJDK11"
+    #     - USE_MAVEN_REPO="true"
+    #     - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
 
+    # moved to drone.yml
     # OpenJDK14 build
-    - jdk: openjdk14
-      env:
-        - DESC="build with OpenJDK14"
-        - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh jdk14-assembly-site"
+    # - jdk: openjdk14
+    #   env:
+    #     - DESC="build with OpenJDK14"
+    #     - USE_MAVEN_REPO="true"
+    #     - CMD="./.ci/travis/travis.sh jdk14-assembly-site"
 
     # OpenJDK14 verify limited
     - jdk: openjdk14
