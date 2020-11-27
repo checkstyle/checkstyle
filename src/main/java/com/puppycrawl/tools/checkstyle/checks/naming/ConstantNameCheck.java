@@ -61,10 +61,23 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>
  * To configure the check:
  * </p>
+ * <p>
+ * The following configuration is applicable by default.
+ * </p>
  * <pre>
  * &lt;module name="ConstantName"/&gt;
  * </pre>
- *
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public final static int FIRST_CONSTANT1 = 10; // OK
+ *   protected final static int SECOND_CONSTANT2 = 100; // OK
+ *   final static int third_Constant3 = 1000; // violation, name 'third_Constant3' must
+ *                                           // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *   private final static int fourth_Constant4 = 50;// violation, name 'fourth_Constant4' must match
+ *                                                 // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * }
+ * </pre>
  * <p>
  * The following configuration apart from names allowed by default allows {@code log}
  * or {@code logger}:
