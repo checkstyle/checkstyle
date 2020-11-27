@@ -68,6 +68,11 @@ strategy:
       image: 'macOS-10.14'
       cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e verify"
 
+    # MacOS JDK14 verify
+    'MacOS JDK14 verify':
+      image: 'macOS-10.14'
+      cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
+
 pool:
   vmImage: $(image)
 
