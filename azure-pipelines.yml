@@ -6,17 +6,18 @@
 trigger:
 - main
 
+strategy:
+  matrix:
+    'test':
+      image: 'ubuntu-18.04'
+      cmd: "mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
+    'false':
+      image: 'ubuntu-18.04'
+      cmd: "false"
+
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: $(image)
 
 steps:
-- task: Maven@3
-  inputs:
-    mavenPomFile: 'pom.xml'
-    mavenOptions: '-Xmx3072m'
-    javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
-    jdkArchitectureOption: 'x64'
-    publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+- bash: eval "$(cmd)"
+
