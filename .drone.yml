@@ -1,5 +1,6 @@
+---
 kind: pipeline
-name: default
+name: pipeline1
 
 steps:
 - name: checkstyle-and-sevntu
@@ -11,3 +12,18 @@ steps:
   image: maven:3.6.3-adoptopenjdk-8
   commands:
   - ./.ci/travis/travis.sh spotbugs-and-pmd
+
+---
+kind: pipeline
+name: pipeline2
+
+steps:
+- name: site
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh site
+
+- name: release-dry-run
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh release-dry-run
