@@ -21,6 +21,10 @@ jacoco)
     jacoco:check@default-check
   ;;
 
+test)
+  mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'
+  ;;
+
 test-de)
   mvn -e clean integration-test failsafe:verify \
     -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
