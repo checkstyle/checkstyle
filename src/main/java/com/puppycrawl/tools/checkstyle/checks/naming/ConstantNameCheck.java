@@ -90,6 +90,24 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * }
  * </pre>
  * <p>
+ * The following configuration is applicable by default.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ConstantName&quot;&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public final static int FIRST_CONSTANT1 = 10; // OK
+ *   protected final static int SECOND_CONSTANT2 = 100; // OK
+ *   final static int third_Constant3 = 1000; // violation, name 'third_Constant3' must
+ *                                             // match pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ *   private final static int fourth_Constant4 = 50;// violation, name 'fourth_Constant4' must match
+ *                                                   // pattern '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'
+ * }
+ * </pre>
+ * <p>
  * The following configuration skip validation on
  * public constant field and protected constant field.
  * </p>
