@@ -184,14 +184,15 @@ jobs:
     #     - CMD="./.ci/travis/travis.sh check-chmod"
     #     - SKIP_JOB_BY_FILES="false"
 
+    # moved to azure-pipelines.yml
     # MacOS JDK8 verify (till cache is not working, we can not do verify)
-    - os: osx
-      osx_image: xcode9.3
-      env:
-        - DESC="MacOS JDK8 verify, site, assembly"
-        - CMD1="./.ci/travis/travis.sh osx-package"
-        - CMD2="./.ci/travis/travis.sh osx-assembly"
-        - CMD="$CMD1 && $CMD2"
+    # - os: osx
+    #   osx_image: xcode9.3
+    #   env:
+    #     - DESC="MacOS JDK8 verify, site, assembly"
+    #     - CMD1="./.ci/travis/travis.sh osx-package"
+    #     - CMD2="./.ci/travis/travis.sh osx-assembly"
+    #     - CMD="$CMD1 && $CMD2"
 
     # MacOS JDK11 verify (till cache is not working, we can not do verify)
     - os: osx
@@ -227,12 +228,13 @@ jobs:
         - CMD="./.ci/travis/travis.sh versions"
         - SKIP_JOB_BY_FILES="false"
 
+    # moved to azure-pipelines.yml
     # OpenJDK11 verify
-    - jdk: openjdk11
-      env:
-        - DESC="verify with OpenJDK11"
-        - USE_MAVEN_REPO="true"
-        - CMD="mvn -e verify"
+    # - jdk: openjdk11
+    #   env:
+    #     - DESC="verify with OpenJDK11"
+    #     - USE_MAVEN_REPO="true"
+    #     - CMD="mvn -e verify"
 
     # moved to drone.yml
     # OpenJDK11 assembly/site
@@ -278,10 +280,11 @@ jobs:
     #     - DESC="compile input files with jdk14 specific syntax"
     #     - CMD="./.ci/travis/travis.sh javac14"
 
+    # moved to azure-pipelines.yml
     # Ensure that all modules are used in no exception configs
-    - env:
-        - DESC="ensure that all modules are used in no exception configs"
-        - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
+    # - env:
+    #     - DESC="ensure that all modules are used in no exception configs"
+    #     - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
 
     # moved to drone.yml
     # - env:

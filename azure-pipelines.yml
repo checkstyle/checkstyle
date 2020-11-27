@@ -48,6 +48,21 @@ strategy:
       image: 'ubuntu-16.04'
       cmd: "./.ci/travis/travis.sh test-tr"
 
+    # Ensure that all modules are used in no exception configs
+    'ensure that all modules are used in no exception configs':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
+
+    # OpenJDK11 verify
+    'OpenJDK11 verify':
+      image: 'ubuntu-20.04'
+      cmd: "mvn -e verify"
+
+    # MacOS JDK8 verify
+    'MacOS JDK8 verify':
+      image: 'macOS-10.14'
+      cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e verify"
+
 pool:
   vmImage: $(image)
 
