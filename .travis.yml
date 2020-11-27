@@ -47,6 +47,7 @@ jobs:
         - DESC="markdown lint"
         - CMD="./.ci/travis/travis.sh markdownlint"
 
+    # this job do deploy maven repository
     # unit tests (openjdk8)
     - jdk: openjdk8
       env:
@@ -110,54 +111,55 @@ jobs:
     #     - CMD="./.ci/travis/travis.sh site"
     #     - USE_MAVEN_REPO="true"
 
+    # moved to azure-pipelines.yml
     # unit tests in German locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests de"
-        - CMD="./.ci/travis/travis.sh test-de"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests de"
+    #     - CMD="./.ci/travis/travis.sh test-de"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in Spanish locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests es"
-        - CMD="./.ci/travis/travis.sh test-es"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests es"
+    #     - CMD="./.ci/travis/travis.sh test-es"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in Finnish locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests fi"
-        - CMD="./.ci/travis/travis.sh test-fi"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests fi"
+    #     - CMD="./.ci/travis/travis.sh test-fi"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in French locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests fr"
-        - CMD="./.ci/travis/travis.sh test-fr"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests fr"
+    #     - CMD="./.ci/travis/travis.sh test-fr"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in Chinese locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests zh"
-        - CMD="./.ci/travis/travis.sh test-zh"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests zh"
+    #     - CMD="./.ci/travis/travis.sh test-zh"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in Japanese locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests ja"
-        - CMD="./.ci/travis/travis.sh test-ja"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests ja"
+    #     - CMD="./.ci/travis/travis.sh test-ja"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in Portuguese locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests pt"
-        - CMD="./.ci/travis/travis.sh test-pt"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests pt"
+    #     - CMD="./.ci/travis/travis.sh test-pt"
+    #     - USE_MAVEN_REPO="true"
     # unit tests in Turkish locale (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests tr"
-        - CMD="./.ci/travis/travis.sh test-tr"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="tests tr"
+    #     - CMD="./.ci/travis/travis.sh test-tr"
+    #     - USE_MAVEN_REPO="true"
 
     # moved to drone.yml
     # assembly (openjdk8)
