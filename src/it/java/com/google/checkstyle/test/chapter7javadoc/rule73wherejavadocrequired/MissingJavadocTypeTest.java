@@ -49,7 +49,7 @@ public class MissingJavadocTypeTest extends AbstractGoogleModuleTestSupport {
             "25:5: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
             "29:5: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
             "33:5: " + getCheckMessage(MissingJavadocTypeCheck.class, MSG_JAVADOC_MISSING),
-        };
+            };
 
         final Configuration checkConfig = getModuleConfig("MissingJavadocType");
         final String filePath = getPath("InputMissingJavadocTypeCheck.java");
