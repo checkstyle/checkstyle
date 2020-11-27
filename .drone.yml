@@ -1,8 +1,29 @@
+
+global-variables:
+  - &default_cache_settings
+    image: drillster/drone-volume-cache
+    settings:
+    volumes:
+      - name: cache
+        path: /cache
+
+volumes:
+- name: cache
+  host:
+    path: /tmp/cache
+
 ---
 kind: pipeline
 name: pipeline1
 
 steps:
+- name: restore-cache
+  <<: *default_cache_settings
+  settings:
+    restore: true
+    mount:
+      - ./.m2
+
 - name: checkstyle-and-sevntu
   image: maven:3.6.3-adoptopenjdk-8
   commands:
@@ -12,6 +33,13 @@ steps:
   image: maven:3.6.3-adoptopenjdk-8
   commands:
   - ./.ci/travis/travis.sh spotbugs-and-pmd
+
+- name: rebuild-cache
+  <<: *default_cache_settings
+  settings:
+    rebuild: true
+    mount:
+      - ./.m2
 
 ---
 kind: pipeline
