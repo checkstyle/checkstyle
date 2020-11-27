@@ -1,3 +1,8 @@
+volumes:
+  - name: dependency
+    host:
+      path: /root/.m2
+
 ---
 kind: pipeline
 name: pipeline1
@@ -5,13 +10,20 @@ name: pipeline1
 steps:
 - name: checkstyle-and-sevntu
   image: maven:3.6.3-adoptopenjdk-8
+  volumes:
+    - name: dependency
+      path: /root/.m2
   commands:
   - ./.ci/travis/travis.sh checkstyle-and-sevntu
 
 - name: spotbugs-and-pmd
   image: maven:3.6.3-adoptopenjdk-8
+  volumes:
+    - name: dependency
+      path: /root/.m2
   commands:
   - ./.ci/travis/travis.sh spotbugs-and-pmd
+
 
 ---
 kind: pipeline
