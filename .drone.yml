@@ -76,7 +76,7 @@ steps:
 - name: javac15
   image: maven:3.6.3-adoptopenjdk-15
   commands:
-  - ./.ci/travis/travis.sh javac14
+  - ./.ci/travis/travis.sh javac15
 
 - name: no-error-test-sbe
   image: maven:3.6.3-adoptopenjdk-8
