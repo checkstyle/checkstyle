@@ -3,7 +3,7 @@ name: default
 
 steps:
 - name: test
-  image: maven:3-jdk-10
+  image: maven:3.6.3-adoptopenjdk-8
   commands:
-  - mvn -e install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - mvn -e test -B
+  - mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'
+  - ./.ci/travis/travis.sh checkstyle-and-sevntu
