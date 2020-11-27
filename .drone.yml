@@ -73,7 +73,27 @@ steps:
   commands:
   - ./.ci/travis/travis.sh javac14
 
+- name: javac15
+  image: maven:3.6.3-adoptopenjdk-15
+  commands:
+  - ./.ci/travis/travis.sh javac14
+
 - name: no-error-test-sbe
   image: maven:3.6.3-adoptopenjdk-8
   commands:
   - ./.ci/travis/travis.sh no-error-test-sbe
+
+---
+kind: pipeline
+name: pipeline6
+
+steps:
+- name: jdk14-assembly-site
+  image: maven:3.6.3-jdk-14
+  commands:
+  - ./.ci/travis/travis.sh jdk14-assembly-site
+
+- name: assembly/site with OpenJDK11
+  image: maven:3.6.3-adoptopenjdk-11
+  commands:
+  - mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true
