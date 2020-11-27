@@ -42,3 +42,23 @@ steps:
   image: maven:3.6.3-adoptopenjdk-8
   commands:
   - ./.ci/travis/travis.sh assembly-run-all-jar
+
+---
+kind: pipeline
+name: pipeline4
+
+steps:
+- name: check-chmod
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh javac8
+
+- name: assembly-run-all-jar
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh verify-no-exception-configs
+
+- name: assembly-run-all-jar
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh check-since-version
