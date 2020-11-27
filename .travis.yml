@@ -209,12 +209,13 @@ jobs:
         - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
         - CMD="$CMD1 && $CMD2"
 
+    # moved to drone.yml
     # No error testing - simple-binary-encoding
-    - jdk: openjdk8
-      env:
-        - DESC="no error test on simple-binary-encoding"
-        - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh no-error-test-sbe"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="no error test on simple-binary-encoding"
+    #     - USE_MAVEN_REPO="true"
+    #     - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
     # versions to update
     - jdk: openjdk8
@@ -252,11 +253,12 @@ jobs:
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh jdk14-verify-limited"
 
+    # moved to drone.yml
     # OpenJDK11 compile input files with jdk9 specific syntax
-    - jdk: openjdk11
-      env:
-        - DESC="compile input files with jdk9 specific syntax"
-        - CMD="./.ci/travis/travis.sh javac9"
+    # - jdk: openjdk11
+    #   env:
+    #     - DESC="compile input files with jdk9 specific syntax"
+    #     - CMD="./.ci/travis/travis.sh javac9"
 
     # moved to drone.yml
     # compile input files compilation that are not compiled by eclipse
@@ -265,11 +267,12 @@ jobs:
     #     - DESC="compile input files that are not compiled by eclipse"
     #     - CMD="./.ci/travis/travis.sh javac8"
 
+    # moved to drone.yml
     # OpenJDK14 compile input files with jdk14 specific syntax
-    - jdk: openjdk14
-      env:
-        - DESC="compile input files with jdk14 specific syntax"
-        - CMD="./.ci/travis/travis.sh javac14"
+    # - jdk: openjdk14
+    #   env:
+    #     - DESC="compile input files with jdk14 specific syntax"
+    #     - CMD="./.ci/travis/travis.sh javac14"
 
     # Ensure that all modules are used in no exception configs
     - env:
