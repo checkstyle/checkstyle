@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for array initialization blocks.
@@ -74,7 +75,16 @@ public class ArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel curlyIndent() {
-        final IndentLevel level = new IndentLevel(getIndent(), getBraceAdjustment());
+        int offset = 0;
+
+        final DetailAST lcurly = getLeftCurly();
+
+        if (isOnStartOfLine(lcurly)
+            && !TokenUtil.isOfType(lcurly.getParent(), TokenTypes.ARRAY_INIT)) {
+            offset = getBraceAdjustment();
+        }
+
+        final IndentLevel level = new IndentLevel(getIndent(), offset);
         return IndentLevel.addAcceptable(level, level.getLastIndentLevel()
                 + getLineWrappingIndentation());
     }
