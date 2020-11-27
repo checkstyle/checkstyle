@@ -68,12 +68,41 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;FinalParameters&quot;/&gt;
  * </pre>
  * <p>
+ * Example :
+ * </p>
+ * <pre>
+ * class MyClass {
+ *   public MyClass(final int num) { // OK
+ *   }
+ *   public void myMethod(final String str) { // OK
+ *   }
+ * }
+ *
+ * class MyClass {
+ *   public MyClass(int num) { // violation, num should be final
+ *   }
+ *   public void myMethod(final String str) { // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To configure the check to enforce final parameters only for constructors:
  * </p>
  * <pre>
  * &lt;module name=&quot;FinalParameters&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;CTOR_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example :
+ * </p>
+ * <pre>
+ * class MyClass {
+ *   public MyClass(int num) { // violation, num should be final
+ *   }
+ *   public void myMethod(String str) { // OK
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check to allow ignoring
@@ -84,6 +113,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;FinalParameters&quot;&gt;
  *   &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example :
+ * </p>
+ * <pre>
+ * class MyClass {
+ *   public MyClass(final int num) { // OK
+ *   }
+ *   public void myMethod(String str) { // violation, str should be final
+ *   }
+ * }
+ *
+ * class MyClass {
+ *   public MyClass(final int num) { // OK
+ *   }
+ *   public void myMethod(boolean bool) { // OK, boolean is a primitive datatype
+ *   }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
