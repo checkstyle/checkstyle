@@ -83,6 +83,17 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <pre>
  * &lt;module name="MethodName"/&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public void first_Method1() {} // OK
+ *   protected void second_Method2() {} // OK
+ *   private void Third_Method3() {} // violation, name 'ThirdMethod' must match
+ *                                 // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ *   void Fourth_Method4() {} // violation, name 'FourthMethod' must match
+ *                          // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
+ * }
+ * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:
@@ -134,25 +145,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  *   public MyClass() {} // OK
  *   public void MyClass() {} // violation,  method Name 'MyClass' must not
  *                            // equal the enclosing class name
- * }
- * </pre>
- * <p>
- * An example of the default configuration for all methods:
- * </p>
- * <pre>
- * &lt;module name="MethodName"&gt;
- *    &lt;property name="format" value="^[a-z](_?[a-zA-Z0-9]+)*$"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Code Example:</p>
- * <pre>
- * class MyClass {
- *   public void first_Method1() {} // OK
- *   protected void second_Method2() {} // OK
- *   private void Third_Method3() {} // violation, name 'ThirdMethod' must match
- *                                 // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
- *   void Fourth_Method4() {} // violation, name 'FourthMethod' must match
- *                          // pattern '^[a-z](_?[a-zA-Z0-9]+)*$'
  * }
  * </pre>
  * <p>

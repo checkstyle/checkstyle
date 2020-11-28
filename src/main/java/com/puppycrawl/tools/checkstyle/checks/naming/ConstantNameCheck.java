@@ -64,6 +64,7 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name="ConstantName"/&gt;
  * </pre>
+ *
  * <p>
  * The following configuration apart from names allowed by default allows {@code log}
  * or {@code logger}:
