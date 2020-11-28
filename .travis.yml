@@ -284,10 +284,11 @@ jobs:
     #     - DESC="compile input files with jdk14 specific syntax"
     #     - CMD="./.ci/travis/travis.sh javac14"
 
+    # moved to azure-pipelines.yml
     # Ensure that all modules are used in no exception configs
-    - env:
-        - DESC="ensure that all modules are used in no exception configs"
-        - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
+    # - env:
+    #     - DESC="ensure that all modules are used in no exception configs"
+    #     - CMD="./.ci/travis/travis.sh verify-no-exception-configs"
 
     # moved to drone.yml
     # - env:
