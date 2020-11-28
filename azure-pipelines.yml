@@ -90,6 +90,11 @@ strategy:
       cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
       skipCache: true
 
+    'releasenotes':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh releasenotes-gen"
+      
+
 pool:
   vmImage: $(image)
 
