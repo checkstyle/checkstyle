@@ -88,10 +88,10 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * class MyClass {
  *   public void firstMethod1() {} // OK
  *   protected void secondMethod2() {} // OK
- *   private void ThirdMethod3() {} // violation, name 'ThirdMethod' must match
- *                                 // pattern '^[a-z][a-zA-Z0-9]*$'
- *   void FourthMethod4() {} // violation, name 'FourthMethod' must match
- *                          // pattern '^[a-z][a-zA-Z0-9]*$'
+ *   private void ThirdMethod3() {} // violation, method name must match to the
+ *                                 //default pattern '^[a-z][a-zA-Z0-9]*$'
+ *   public void fourth_Method4() {} // violation, method name must match to the
+ *                                  //default pattern '^[a-z][a-zA-Z0-9]*$'
  * }
  * </pre>
  * <p>
