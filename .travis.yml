@@ -18,8 +18,9 @@ branches:
   only:
     - master
 
-install:
-  - gem install mdl
+# until https://github.com/checkstyle/checkstyle/issues/9046
+# install:
+#   - gem install mdl
 
 jobs:
   fast_finish: true
@@ -42,10 +43,11 @@ jobs:
         - CMD="./.ci/test-spelling-unknown-words.sh"
         - SKIP_JOB_BY_FILES="false"
 
+    # until https://github.com/checkstyle/checkstyle/issues/9046
     # lint for .md files
-    - env:
-        - DESC="markdown lint"
-        - CMD="./.ci/travis/travis.sh markdownlint"
+    # - env:
+    #     - DESC="markdown lint"
+    #     - CMD="./.ci/travis/travis.sh markdownlint"
 
     # this job do deploy maven repository
     # unit tests (openjdk8)
