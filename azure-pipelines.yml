@@ -101,6 +101,13 @@ strategy:
       skipCache: true
       needXmlstarlet: true
 
+    # lint for .md files
+    'markdownlint':
+      image: 'ubuntu-latest'
+      cmd: "./.ci/travis/travis.sh markdownlint"
+      skipCache: true
+      needMdl: true
+
     # versions to update
     'versions':
       image: 'ubuntu-16.04'
@@ -117,6 +124,7 @@ variables:
   IMAGE: $(image)
   ON_CRON_ONLY: $(onCronOnly)
   NEED_XMLSTARLET: $(needXmlstarlet)
+  NEED_MDL: $(needMdl)
   BUILD_REASON: $[variables['Build.Reason']]
 
 steps:
@@ -126,6 +134,14 @@ steps:
       and(
            ne(variables['Agent.OS'], 'Darwin'),
            eq(variables.NEED_XMLSTARLET, 'true')
+         )
+
+- bash: |
+    gem install mdl
+  condition: |
+      and(
+           ne(variables['Agent.OS'], 'Darwin'),
+           eq(variables.NEED_MDL, 'true')
          )
 
 - task: Cache@2
