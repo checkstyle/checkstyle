@@ -18,9 +18,8 @@ branches:
   only:
     - master
 
-# until https://github.com/checkstyle/checkstyle/issues/9046
-# install:
-#   - gem install mdl
+install:
+  - gem install chef-utils:16.6.14 mdl
 
 jobs:
   fast_finish: true
