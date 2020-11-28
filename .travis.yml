@@ -43,7 +43,7 @@ jobs:
     #     - CMD="./.ci/test-spelling-unknown-words.sh"
     #     - SKIP_JOB_BY_FILES="false"
 
-    # until https://github.com/checkstyle/checkstyle/issues/9046
+    # moved to azure-pipelines.yml
     # lint for .md files
     # - env:
     #     - DESC="markdown lint"
