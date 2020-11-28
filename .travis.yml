@@ -24,11 +24,12 @@ install:
 jobs:
   fast_finish: true
   include:
+    # moved to azure-pipelines.yml
     # testing age of pr
-    - env:
-        - DESC="test Commits Since Latest Master"
-        - CMD="./.ci/travis/travis.sh pr-age"
-        - SKIP_JOB_BY_FILES="false"
+    # - env:
+    #     - DESC="test Commits Since Latest Master"
+    #     - CMD="./.ci/travis/travis.sh pr-age"
+    #     - SKIP_JOB_BY_FILES="false"
 
     # testing of PR format
     - env:
