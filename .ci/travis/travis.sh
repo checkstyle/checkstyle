@@ -272,6 +272,7 @@ verify-no-exception-configs)
     --no-clobber \
     https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/checks-only-javadoc-error.xml
   MODULES_WITH_EXTERNAL_FILES="Filter|ImportControl"
+  fail
   xmlstarlet sel --net --template -m .//module -v "@name" \
     -n $working_dir/checks-nonjavadoc-error.xml -n $working_dir/checks-only-javadoc-error.xml \
     | grep -vE $MODULES_WITH_EXTERNAL_FILES | grep -v "^$" \
