@@ -8,6 +8,12 @@ trigger:
 
 strategy:
   matrix:
+    # spelling
+    'spelling':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/test-spelling-unknown-words.sh"
+      skipCache: true
+
     # unit tests (openjdk8)
     'test':
       image: 'ubuntu-16.04'
@@ -84,6 +90,7 @@ pool:
 variables:
   MAVEN_CACHE_FOLDER: $(Pipeline.Workspace)/.m2/repository
   MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
+  SKIP_CACHE: $(skipCache)
 
 steps:
 - task: Cache@2
@@ -94,6 +101,7 @@ steps:
       maven
     path: $(MAVEN_CACHE_FOLDER)
   displayName: Cache Maven local repo
+  condition: eq(variables.SKIP_CACHE, 'false')
 
 - bash: eval "$(cmd)"
 
