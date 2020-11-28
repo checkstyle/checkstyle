@@ -4294,7 +4294,15 @@ for(int i=0; i&lt;10; i++) {
         <source>
 &lt;module name=&quot;NestedIfDepth&quot;/&gt;
         </source>
-
+        <p>Example:</p>
+        <source>
+if(x &lt; 4) {
+   if(x &lt; 3) { // OK Till Here
+      if(x &lt; 2) { // Violation, Depth is more than '1'
+      }
+   }
+}
+        </source>
         <p>
           To configure the check to allow nesting depth 3:
         </p>
@@ -4302,6 +4310,19 @@ for(int i=0; i&lt;10; i++) {
 &lt;module name=&quot;NestedIfDepth&quot;&gt;
   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+if (x &lt; 4) {
+    if (x &lt; 3) {
+        if (x &lt; 2) {
+            if (x &lt; 1) { // OK Till Here
+                if(x &lt; 0) { // Violation, Depth is more than '3'
+                }
+            }
+        }
+    }
+}
         </source>
       </subsection>
 

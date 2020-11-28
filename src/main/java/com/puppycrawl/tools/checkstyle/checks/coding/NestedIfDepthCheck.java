@@ -42,6 +42,15 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * <pre>
  * &lt;module name=&quot;NestedIfDepth&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * if(x &lt; 4) {
+ *    if(x &lt; 3) { // OK Till Here
+ *       if(x &lt; 2) { // Violation, Depth is more than '1'
+ *       }
+ *    }
+ * }
+ * </pre>
  * <p>
  * To configure the check to allow nesting depth 3:
  * </p>
@@ -49,6 +58,19 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * &lt;module name=&quot;NestedIfDepth&quot;&gt;
  *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * if (x &lt; 4) {
+ *     if (x &lt; 3) {
+ *         if (x &lt; 2) {
+ *             if (x &lt; 1) { // OK Till Here
+ *                 if(x &lt; 0) { // Violation, Depth is more than '3'
+ *                 }
+ *             }
+ *         }
+ *     }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
