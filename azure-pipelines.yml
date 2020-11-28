@@ -8,81 +8,88 @@ trigger:
 
 strategy:
   matrix:
+    # ensure that all modules are used in no exception configs
+    'verify-no-exception-configs':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
+      skipCache: true
+
     # spelling
     'spelling':
       image: 'ubuntu-16.04'
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
 
-    # unit tests (openjdk8)
-    'test':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test"
+# bbbbbbbb
+    # # unit tests (openjdk8)
+    # 'test':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test"
 
-    # unit tests in German locale (openjdk8)
-    'test-de':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-de"
+    # # unit tests in German locale (openjdk8)
+    # 'test-de':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-de"
 
-    # unit tests in Spanish locale (openjdk8)
-    'test-es':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-es"
+    # # unit tests in Spanish locale (openjdk8)
+    # 'test-es':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-es"
 
-    # unit tests in Finnish locale (openjdk8)
-    'test-fi':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-fi"
+    # # unit tests in Finnish locale (openjdk8)
+    # 'test-fi':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-fi"
 
-    # unit tests in French locale (openjdk8)
-    'test-fr':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-fr"
+    # # unit tests in French locale (openjdk8)
+    # 'test-fr':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-fr"
 
-    # unit tests in Chinese locale (openjdk8)
-    'test-zh':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-zh"
+    # # unit tests in Chinese locale (openjdk8)
+    # 'test-zh':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-zh"
 
-    # unit tests in Japanese locale (openjdk8)
-    'test-ja':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-ja"
+    # # unit tests in Japanese locale (openjdk8)
+    # 'test-ja':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-ja"
 
-    # unit tests in Portuguese locale (openjdk8)
-    'test-pt':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-pt"
+    # # unit tests in Portuguese locale (openjdk8)
+    # 'test-pt':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-pt"
 
-    # unit tests in Turkish locale (openjdk8)
-    'test-tr':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-tr"
+    # # unit tests in Turkish locale (openjdk8)
+    # 'test-tr':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-tr"
 
-    # OpenJDK11 verify
-    'OpenJDK11 verify':
-      image: 'ubuntu-20.04'
-      cmd: "mvn -e verify"
+    # # OpenJDK11 verify
+    # 'OpenJDK11 verify':
+    #   image: 'ubuntu-20.04'
+    #   cmd: "mvn -e verify"
 
-    # MacOS JDK8 verify
-    'MacOS JDK8 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e verify"
+    # # MacOS JDK8 verify
+    # 'MacOS JDK8 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e verify"
 
-    # MacOS JDK11 verify
-    'MacOS JDK11 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e verify"
+    # # MacOS JDK11 verify
+    # 'MacOS JDK11 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e verify"
 
-    # MacOS JDK13 verify
-    'MacOS JDK13 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e verify"
+    # # MacOS JDK13 verify
+    # 'MacOS JDK13 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e verify"
 
-    # MacOS JDK14 verify
-    'MacOS JDK14 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
+    # # MacOS JDK14 verify
+    # 'MacOS JDK14 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
 
 pool:
   vmImage: $(image)
@@ -93,6 +100,9 @@ variables:
   SKIP_CACHE: $(skipCache)
 
 steps:
+# - bash: |
+#   sudo apt-get install xmlstarlet
+
 - task: Cache@2
   inputs:
     key: 'maven | "$(Agent.OS)" | **/pom.xml'
@@ -103,5 +113,9 @@ steps:
   displayName: Cache Maven local repo
   condition: eq(variables.SKIP_CACHE, 'false')
 
-- bash: eval "$(cmd)"
-
+- bash: |
+    set -e
+    type command_not_found_handle
+    unset command_not_found_handle
+    eval "$(cmd)"
+#  failOnStderr: true
