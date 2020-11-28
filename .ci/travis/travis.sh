@@ -1,6 +1,7 @@
 #!/bin/bash
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
+unset command_not_found_handle
 
 removeFolderWithProtectedFiles() {
   find $1 -delete
