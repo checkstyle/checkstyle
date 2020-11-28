@@ -222,13 +222,14 @@ jobs:
     #     - USE_MAVEN_REPO="true"
     #     - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
+    # moved to azure-pipelines.yml
     # versions to update
-    - jdk: openjdk8
-      env:
-        - DESC="print versions to update"
-        - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh versions"
-        - SKIP_JOB_BY_FILES="false"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="print versions to update"
+    #     - USE_MAVEN_REPO="true"
+    #     - CMD="./.ci/travis/travis.sh versions"
+    #     - SKIP_JOB_BY_FILES="false"
 
     # moved to azure-pipelines.yml
     # OpenJDK11 verify
