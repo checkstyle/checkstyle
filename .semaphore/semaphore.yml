@@ -53,9 +53,8 @@ blocks:
                     && .ci/no-exception-test.sh guava-with-google-checks
                 - mvn -e clean install -Pno-validations
                     && .ci/no-exception-test.sh guava-with-sun-checks
-                # disabled until 9021
-                # - mvn -e clean install -Pno-validations
-                #    && .ci/validation.sh no-violation-test-josm
+                - mvn -e clean install -Pno-validations
+                    && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
             - echo "eval of CMD is starting";
