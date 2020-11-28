@@ -67,13 +67,14 @@ jobs:
     #     - SKIP_JOB_BY_FILES="false"
     #     - USE_MAVEN_REPO="true"
 
+    # deprecated, we do not need it as coverage is already 100%
     # jacoco and codecov (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="jacoco and codecov"
-        - CMD="./.ci/travis/travis.sh jacoco"
-        - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
-        - USE_MAVEN_REPO="true"
+    # - jdk: openjdk8
+    #   env:
+    #     - DESC="jacoco and codecov"
+    #     - CMD="./.ci/travis/travis.sh jacoco"
+    #     - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
+    #     - USE_MAVEN_REPO="true"
 
     # moved to drone.yml
     # spotbugs and pmd (openjdk8)
