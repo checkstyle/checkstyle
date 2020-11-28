@@ -5,6 +5,21 @@ removeFolderWithProtectedFiles() {
   find "$1" -delete
 }
 
+addLocalMavenRepositoryToAntResolvers() {
+  xmlstarlet ed --inplace \
+    -s '/ivysettings/resolvers' -t elem -n filesystem \
+    -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n name -v local-maven2 \
+    -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n m2compatible -v true \
+    -s '/ivysettings/resolvers/filesystem[last()]' -t elem -n artifact \
+    -i '/ivysettings/resolvers/filesystem[last()]/artifact' -t attr -n pattern -v \
+    '${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]' \
+    -s '/ivysettings/modules' -t elem -n module \
+    -i '/ivysettings/modules/module[last()]' -t attr -n organisation -v com.puppycrawl.tools \
+    -i '/ivysettings/modules/module[last()]' -t attr -n name -v checkstyle \
+    -i '/ivysettings/modules/module[last()]' -t attr -n resolver -v local-maven2 \
+    ivysettings.xml
+}
+
 case $1 in
 
 all-sevntu-checks)
@@ -122,6 +137,7 @@ no-violation-test-josm)
   cd josm
   sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
    tools/ivy.xml
+  addLocalMavenRepositoryToAntResolvers
   ant -v checkstyle
   grep "<error" checkstyle-josm.xml | cat > errors.log
   echo "Checkstyle Errors:"
