@@ -37,11 +37,12 @@ jobs:
         - CMD="./.ci/travis/travis.sh pr-description"
         - SKIP_JOB_BY_FILES="false"
 
+    # moved to azure-pipelines.yml
     # new questionably spelled words
-    - env:
-        - DESC="spell checker"
-        - CMD="./.ci/test-spelling-unknown-words.sh"
-        - SKIP_JOB_BY_FILES="false"
+    # - env:
+    #     - DESC="spell checker"
+    #     - CMD="./.ci/test-spelling-unknown-words.sh"
+    #     - SKIP_JOB_BY_FILES="false"
 
     # until https://github.com/checkstyle/checkstyle/issues/9046
     # lint for .md files
