@@ -8,6 +8,12 @@ trigger:
 
 strategy:
   matrix:
+    # spelling
+    'spelling':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/test-spelling-unknown-words.sh"
+      skipCache: true
+
     # unit tests (openjdk8)
     'test':
       image: 'ubuntu-16.04'
@@ -94,6 +100,7 @@ steps:
       maven
     path: $(MAVEN_CACHE_FOLDER)
   displayName: Cache Maven local repo
+  condition: ne($(skipCache), 'true')
 
 - bash: eval "$(cmd)"
 
