@@ -3,92 +3,105 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
+schedules:
+- cron: "1 0 * * 0"
+  displayName: Weekly weekend build
+  branches:
+    include:
+    - master
+
 trigger:
 - main
 
 strategy:
   matrix:
-    # spelling
-    'spelling':
+    # # spelling
+    # 'spelling':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/test-spelling-unknown-words.sh"
+    #   skipCache: true
+
+    # # unit tests (openjdk8)
+    # 'test':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test"
+
+    # # unit tests in German locale (openjdk8)
+    # 'test-de':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-de"
+
+    # # unit tests in Spanish locale (openjdk8)
+    # 'test-es':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-es"
+
+    # # unit tests in Finnish locale (openjdk8)
+    # 'test-fi':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-fi"
+
+    # # unit tests in French locale (openjdk8)
+    # 'test-fr':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-fr"
+
+    # # unit tests in Chinese locale (openjdk8)
+    # 'test-zh':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-zh"
+
+    # # unit tests in Japanese locale (openjdk8)
+    # 'test-ja':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-ja"
+
+    # # unit tests in Portuguese locale (openjdk8)
+    # 'test-pt':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-pt"
+
+    # # unit tests in Turkish locale (openjdk8)
+    # 'test-tr':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh test-tr"
+
+    # # OpenJDK11 verify
+    # 'OpenJDK11 verify':
+    #   image: 'ubuntu-20.04'
+    #   cmd: "mvn -e verify"
+
+    # # MacOS JDK8 verify
+    # 'MacOS JDK8 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e verify"
+
+    # # MacOS JDK11 verify
+    # 'MacOS JDK11 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e verify"
+
+    # # MacOS JDK13 verify
+    # 'MacOS JDK13 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e verify"
+
+    # # MacOS JDK14 verify
+    # 'MacOS JDK14 verify':
+    #   image: 'macOS-10.14'
+    #   cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
+
+    # # ensure that all modules are used in no exception configs
+    # 'verify-no-exception-configs':
+    #   image: 'ubuntu-16.04'
+    #   cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
+    #   skipCache: true
+
+    # versions to update
+    'versions':
       image: 'ubuntu-16.04'
-      cmd: "./.ci/test-spelling-unknown-words.sh"
-      skipCache: true
-
-    # unit tests (openjdk8)
-    'test':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test"
-
-    # unit tests in German locale (openjdk8)
-    'test-de':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-de"
-
-    # unit tests in Spanish locale (openjdk8)
-    'test-es':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-es"
-
-    # unit tests in Finnish locale (openjdk8)
-    'test-fi':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-fi"
-
-    # unit tests in French locale (openjdk8)
-    'test-fr':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-fr"
-
-    # unit tests in Chinese locale (openjdk8)
-    'test-zh':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-zh"
-
-    # unit tests in Japanese locale (openjdk8)
-    'test-ja':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-ja"
-
-    # unit tests in Portuguese locale (openjdk8)
-    'test-pt':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-pt"
-
-    # unit tests in Turkish locale (openjdk8)
-    'test-tr':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh test-tr"
-
-    # OpenJDK11 verify
-    'OpenJDK11 verify':
-      image: 'ubuntu-20.04'
-      cmd: "mvn -e verify"
-
-    # MacOS JDK8 verify
-    'MacOS JDK8 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e verify"
-
-    # MacOS JDK11 verify
-    'MacOS JDK11 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e verify"
-
-    # MacOS JDK13 verify
-    'MacOS JDK13 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e verify"
-
-    # MacOS JDK14 verify
-    'MacOS JDK14 verify':
-      image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
-
-    # ensure that all modules are used in no exception configs
-    'verify-no-exception-configs':
-      image: 'ubuntu-16.04'
-      cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
-      skipCache: true
+      cmd: "./.ci/travis/travis.sh versions"
+      onCronOnly: true
 
 pool:
   vmImage: $(image)
@@ -98,6 +111,8 @@ variables:
   MAVEN_OPTS: '-Dmaven.repo.local=$(MAVEN_CACHE_FOLDER)'
   SKIP_CACHE: $(skipCache)
   IMAGE: $(image)
+  ON_CRON_ONLY: $(onCronOnly)
+  BUILD_REASON: $[variables['Build.Reason']]
 
 steps:
 - bash: |
@@ -116,4 +131,11 @@ steps:
 
 - bash: |
     set -e
+    echo $ON_CRON_ONLY
+    echo $BUILD_REASON
     eval "$(cmd)"
+  condition: |
+      or (
+          ne(variables.ON_CRON_ONLY, 'true'),
+          and(eq(variables.ON_CRON_ONLY, 'true'), variables['Build.Reason'], 'Schedule')
+         )
