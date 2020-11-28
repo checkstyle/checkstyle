@@ -18,6 +18,12 @@ pr:
 
 strategy:
   matrix:
+    # testing age of pr
+    'pr-age':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh pr-age"
+      skipCache: true
+
     # spelling
     'spelling':
       image: 'ubuntu-16.04'
