@@ -107,6 +107,13 @@ strategy:
       cmd: "./.ci/travis/travis.sh versions"
       onCronOnly: true
 
+    # lint for .md files, OSX is used because there is problem to install gem on linux
+    'markdownlint':
+      image: 'macOS-10.14'
+      cmd: "./.ci/travis/travis.sh markdownlint"
+      skipCache: true
+      needMdl: true
+
 pool:
   vmImage: $(image)
 
@@ -117,6 +124,7 @@ variables:
   IMAGE: $(image)
   ON_CRON_ONLY: $(onCronOnly)
   NEED_XMLSTARLET: $(needXmlstarlet)
+  NEED_MDL: $(needMdl)
   BUILD_REASON: $[variables['Build.Reason']]
 
 steps:
@@ -127,6 +135,10 @@ steps:
            ne(variables['Agent.OS'], 'Darwin'),
            eq(variables.NEED_XMLSTARLET, 'true')
          )
+
+- bash: |
+    gem install mdl
+  condition: eq(variables.NEED_MDL, 'true')
 
 - task: Cache@2
   inputs:
