@@ -11,7 +11,10 @@ schedules:
     - master
 
 trigger:
-- main
+- master
+
+pr:
+- master
 
 strategy:
   matrix:
