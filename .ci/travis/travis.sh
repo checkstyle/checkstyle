@@ -19,6 +19,10 @@ jacoco)
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \
     jacoco:check@default-check
+  # BUILD_REASON is variable from CI, if launch is not from CI, we skip this step
+  if [ -n "$BUILD_REASON" ];then
+    bash <(curl -s https://codecov.io/bash)
+  fi
   ;;
 
 test)
