@@ -876,7 +876,6 @@ class MyClass5&lt;RequestT&gt; {} // OK
         <p>
           To configure the check:
         </p>
-
         <source>
 &lt;module name="ConstantName"/&gt;
         </source>
