@@ -99,6 +99,7 @@ strategy:
       image: 'ubuntu-16.04'
       cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
       skipCache: true
+      needXmlstarlet: true
 
     # versions to update
     'versions':
@@ -115,12 +116,17 @@ variables:
   SKIP_CACHE: $(skipCache)
   IMAGE: $(image)
   ON_CRON_ONLY: $(onCronOnly)
+  NEED_XMLSTARLET: $(needXmlstarlet)
   BUILD_REASON: $[variables['Build.Reason']]
 
 steps:
 - bash: |
     apt-fast install -y xmlstarlet
-  condition: ne(variables.IMAGE, 'macOS-10.14')
+  condition: |
+      and(
+           ne(variables['Agent.OS'], 'Darwin'),
+           eq(variables.NEED_XMLSTARLET, 'true')
+         )
 
 - task: Cache@2
   inputs:
