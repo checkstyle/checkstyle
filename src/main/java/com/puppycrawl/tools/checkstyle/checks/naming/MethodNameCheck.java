@@ -83,6 +83,17 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * <pre>
  * &lt;module name="MethodName"/&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * class MyClass {
+ *   public void firstMethod1() {} // OK
+ *   protected void secondMethod2() {} // OK
+ *   private void ThirdMethod3() {} // violation, name 'ThirdMethod' must match
+ *                                 // pattern '^[a-z][a-zA-Z0-9]*$'
+ *   void FourthMethod4() {} // violation, name 'FourthMethod' must match
+ *                          // pattern '^[a-z][a-zA-Z0-9]*$'
+ * }
+ * </pre>
  * <p>
  * An example of how to configure the check for names that begin with
  * a lower case letter, followed by letters, digits, and underscores is:
