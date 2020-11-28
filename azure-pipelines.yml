@@ -8,6 +8,12 @@ trigger:
 
 strategy:
   matrix:
+    # ensure that all modules are used in no exception configs
+    'verify-no-exception-configs':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
+      skipCache: true
+
     # spelling
     'spelling':
       image: 'ubuntu-16.04'
@@ -93,6 +99,9 @@ variables:
   SKIP_CACHE: $(skipCache)
 
 steps:
+# - bash: |
+#   sudo apt-get install xmlstarlet
+
 - task: Cache@2
   inputs:
     key: 'maven | "$(Agent.OS)" | **/pom.xml'
@@ -103,5 +112,7 @@ steps:
   displayName: Cache Maven local repo
   condition: eq(variables.SKIP_CACHE, 'false')
 
-- bash: eval "$(cmd)"
-
+- bash: |
+    set -e
+    eval "$(cmd)"
+#  failOnStderr: true
