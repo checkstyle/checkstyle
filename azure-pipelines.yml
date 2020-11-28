@@ -8,6 +8,11 @@ trigger:
 
 strategy:
   matrix:
+    # spelling
+    'spelling':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/test-spelling-unknown-words.sh"
+
     # unit tests (openjdk8)
     'test':
       image: 'ubuntu-16.04'
