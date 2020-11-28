@@ -155,7 +155,7 @@ steps:
       maven
     path: $(MAVEN_CACHE_FOLDER)
   displayName: Cache Maven local repo
-  condition: eq(variables.SKIP_CACHE, 'false')
+  condition: ne(variables.SKIP_CACHE, 'true')
 
 - bash: |
     set -e
