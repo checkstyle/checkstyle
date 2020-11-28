@@ -84,6 +84,12 @@ strategy:
       image: 'macOS-10.14'
       cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
 
+    # ensure that all modules are used in no exception configs
+    'verify-no-exception-configs':
+      image: 'ubuntu-16.04'
+      cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
+      skipCache: true
+
 pool:
   vmImage: $(image)
 
@@ -93,6 +99,9 @@ variables:
   SKIP_CACHE: $(skipCache)
 
 steps:
+- bash: |
+    apt-fast install -y xmlstarlet
+
 - task: Cache@2
   inputs:
     key: 'maven | "$(Agent.OS)" | **/pom.xml'
@@ -103,5 +112,6 @@ steps:
   displayName: Cache Maven local repo
   condition: eq(variables.SKIP_CACHE, 'false')
 
-- bash: eval "$(cmd)"
-
+- bash: |
+    set -e
+    eval "$(cmd)"
