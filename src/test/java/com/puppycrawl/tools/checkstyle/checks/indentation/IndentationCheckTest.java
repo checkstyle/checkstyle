@@ -2397,6 +2397,20 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testIndentationSwitchExpressionNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "35:13: " + getCheckMessage(MSG_ERROR, "lambda", 12, 16),
+            "37:13: " + getCheckMessage(MSG_ERROR, "lambda", 12, 16),
+            };
+
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationCheckSwitchExpressionNewLine.java"),
+            expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
