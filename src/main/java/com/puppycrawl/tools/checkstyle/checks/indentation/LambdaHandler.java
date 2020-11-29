@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Handler for lambda expressions.
@@ -92,10 +91,13 @@ public class LambdaHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         // If the argument list is the first element on the line
         final DetailAST firstChild = getMainAst().getFirstChild();
-        final DetailAST parent = getMainAst().getParent();
 
-        if (parent.getType() != TokenTypes.SWITCH_RULE
-                && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+        // If the "->" has no children, it is a switch
+        // expression lambda (i.e. 'case ONE -> 1;')
+        final boolean isSwitchExpressionLambda = firstChild == null;
+
+        if (!isSwitchExpressionLambda
+            && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final int firstChildColumnNo = expandedTabsColumnNo(firstChild);
             final IndentLevel level = getIndent();
 
@@ -107,14 +109,9 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
         // If the "->" is the first element on the line, assume line wrapping.
         final int mainAstColumnNo = expandedTabsColumnNo(getMainAst());
-        if (mainAstColumnNo == getLineStart(getMainAst())) {
-            final IndentLevel level =
-                new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
-
-            if (isNonAcceptableIndent(mainAstColumnNo, level)) {
-                isLambdaCorrectlyIndented = false;
-                logError(getMainAst(), "", mainAstColumnNo, level);
-            }
+        final boolean isLineWrappedLambda = mainAstColumnNo == getLineStart(getMainAst());
+        if (isLineWrappedLambda) {
+            checkLineWrappedLambda(isSwitchExpressionLambda, mainAstColumnNo);
         }
     }
 
@@ -124,4 +121,35 @@ public class LambdaHandler extends AbstractExpressionHandler {
                && !level.isAcceptable(astColumnNo);
     }
 
+    /**
+     * This method checks a line wrapped lambda, whether it is a lambda
+     * expression or switch rule lambda.
+     *
+     * @param isSwitchExpressionLambda first child of the lambda main ast
+     * @param mainAstColumnNo the column number of the lambda we are checking
+     */
+    private void checkLineWrappedLambda(final boolean isSwitchExpressionLambda,
+                                        final int mainAstColumnNo) {
+        final IndentLevel level;
+
+        if (isSwitchExpressionLambda) {
+            // We check the indentation of the case literal or default literal
+            // on the previous line and use that to determine the correct
+            // indentation for the "->"
+            final DetailAST previousSibling = getMainAst().getPreviousSibling();
+            final int previousLineStart = getLineStart(previousSibling);
+
+            level = new IndentLevel(new IndentLevel(previousLineStart),
+                    getIndentCheck().getLineWrappingIndentation());
+        }
+        else {
+            level = new IndentLevel(getIndent(),
+                getIndentCheck().getLineWrappingIndentation());
+        }
+
+        if (isNonAcceptableIndent(mainAstColumnNo, level)) {
+            isLambdaCorrectlyIndented = false;
+            logError(getMainAst(), "", mainAstColumnNo, level);
+        }
+    }
 }
