@@ -287,8 +287,8 @@ verify-no-exception-configs)
   fail=0
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
-    if [[ $DRONE_PULL_REQUEST =~ ^([0-9]+)$ ]]; then
-      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$DRONE_PULL_REQUEST
+    if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]+)$ ]]; then
+      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
       PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_PR \
                   | jq '.body' | grep $REGEXP | cat )

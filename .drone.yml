@@ -38,6 +38,16 @@ steps:
   commands:
   - ./.ci/travis/travis.sh check-chmod
 
+- name: pr-description
+  image: giantswarm/tiny-tools:latest
+  commands:
+  - ./.ci/travis/travis.sh pr-description
+
+- name: releasenotes-gen
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh releasenotes-gen
+
 - name: assembly-run-all-jar
   image: maven:3.6.3-adoptopenjdk-8
   commands:
