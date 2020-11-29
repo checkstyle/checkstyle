@@ -16,6 +16,174 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.38">
+      <div class="releaseDate">29.11.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            new check: JavadocMissingLeadingAsteriskCheck.
+            Author: Gaurav Punjabi
+            <a href="https://github.com/checkstyle/checkstyle/issues/6722">#6722</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            InnerAssignment: false positives on for and do-while loops.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/6915">#6915</a>
+          </li>
+          <li>
+            RequireThis: Incorrectly triggers for record fields in compact constructor.
+            Author: Anh Minh Tran
+            <a href="https://github.com/checkstyle/checkstyle/issues/8873">#8873</a>
+          </li>
+          <li>
+            IndentationCheck: problem with content of anonymous class.
+            Author: abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/5362">#5362</a>
+          </li>
+          <li>
+            EmptyLineSeparator flags commas for multiple single type variables on line.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8957">#8957</a>
+          </li>
+          <li>
+            FinalLocalVariable throws a NPE on Switch expression in assignment.
+            Author: Anh Minh Tran
+            <a href="https://github.com/checkstyle/checkstyle/issues/8934">#8934</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Use azure CI for some validation tasks.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7045">#7045</a>
+          </li>
+          <li>
+            Travis is failing with error to install mdl package.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9046">#9046</a>
+          </li>
+          <li>
+            Isuse #7045: azure to use matrix.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Create jdk15 Input files compilation job in Travis.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9007">#9007</a>
+          </li>
+          <li>
+            Test more project on drone.io.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/2460">#2460</a>
+          </li>
+          <li>
+            Docker limits is reached in wercker .
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9019">#9019</a>
+          </li>
+          <li>
+            Update doc for FinalClass.
+            Author: Ehtesham
+            <a href="https://github.com/checkstyle/checkstyle/issues/7609">#7609</a>
+          </li>
+          <li>
+            google_checks.xml: Public class and interface javadoc is not checked.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/5148">#5148</a>
+          </li>
+          <li>
+            Exclude Stream, Optional, and additional collection types from
+            ClassFanOutComplexityCheck.
+            Author: Andrei Paikin, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8537">#8537</a>
+          </li>
+          <li>
+            Default values in meta files for wrapped list of values are incorrect.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8941">#8941</a>
+          </li>
+          <li>
+            Update doc for MultipleVariableDeclarations.
+            Author: Akash Mondal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7669">#7669</a>
+          </li>
+          <li>
+            doc: Update doc LeftCurly to have more examples.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            doc: add default example for NonEmptyAtclauseDescription.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Update doc for EmptyBlock.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7580">#7580</a>
+          </li>
+          <li>
+            doc: Update AtclauseOrderCheck for default config example.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            doc: add example for default config for AnnotationUseStyle.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Update doc for WriteTag.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7606">#7606</a>
+          </li>
+          <li>
+            MethodParamPad: add examples.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/3601">#3601</a>
+          </li>
+          <li>
+            Relaxing the stated limitation about UTF-8 in documentation.
+            Author: Olivier Cailloux
+            <a href="https://github.com/checkstyle/checkstyle/issues/8551">#8551</a>
+          </li>
+          <li>
+            Nondeterministic order of error messages in Translation check.
+            Author: Rashmi Mudduluru
+            <a href="https://github.com/checkstyle/checkstyle/issues/8963">#8963</a>
+          </li>
+          <li>
+            Disable &quot;checkstyle-cli-run-openjdk14&quot; job in travis.sh.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8921">#8921</a>
+          </li>
+          <li>
+            change all &quot;at-clause&quot; terms to &quot;block tag&quot; from
+            source code and documentation.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8552">#8552</a>
+          </li>
+          <li>
+            Run regression testing in CI over openjdk14 or newer codebase.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8901">#8901</a>
+          </li>
+          <li>
+            Remove Buddy CI config .
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8951">#8951</a>
+          </li>
+          <li>
+            doc: add security policy page.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            Keep user comment in env variable of git workflow.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8938">#8938</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.37">
       <div class="releaseDate">31.10.2020</div>
       <p>New:</p>
