@@ -107,14 +107,9 @@ public class LambdaHandler extends AbstractExpressionHandler {
 
         // If the "->" is the first element on the line, assume line wrapping.
         final int mainAstColumnNo = expandedTabsColumnNo(getMainAst());
-        if (mainAstColumnNo == getLineStart(getMainAst())) {
-            final IndentLevel level =
-                new IndentLevel(getIndent(), getIndentCheck().getLineWrappingIndentation());
-
-            if (isNonAcceptableIndent(mainAstColumnNo, level)) {
-                isLambdaCorrectlyIndented = false;
-                logError(getMainAst(), "", mainAstColumnNo, level);
-            }
+        final boolean lambdaStartsLine = mainAstColumnNo == getLineStart(getMainAst());
+        if (lambdaStartsLine) {
+            checkLineWrappedLambda(firstChild, parent, mainAstColumnNo);
         }
     }
 
@@ -124,4 +119,39 @@ public class LambdaHandler extends AbstractExpressionHandler {
                && !level.isAcceptable(astColumnNo);
     }
 
+    /**
+     * This method checks a line wrapped lambda, whether it is a lambda
+     * expression or switch rule lambda.
+     *
+     * @param firstChild first child of the lambda main ast
+     * @param parent parent ast of the lambda
+     * @param mainAstColumnNo the column number of the lambda we are checking
+     */
+    private void checkLineWrappedLambda(DetailAST firstChild, DetailAST parent,
+                                        final int mainAstColumnNo) {
+
+        // If the "->" has no children, it is a switch
+        // expression lambda (i.e. 'case ONE -> 1;')
+        final boolean mainAstIsSwitchExprLambda = firstChild == null;
+        final IndentLevel level;
+
+        if (mainAstIsSwitchExprLambda) {
+            // We check the indentation of the case literal on the previous line
+            // and use that to determine the correct indentation for the "->"
+            final DetailAST caseStatement = parent.findFirstToken(TokenTypes.LITERAL_CASE);
+            final int previousLineStart = getLineStart(caseStatement);
+
+            level = new IndentLevel(new IndentLevel(previousLineStart),
+                    getIndentCheck().getLineWrappingIndentation());
+        }
+        else {
+            level = new IndentLevel(getIndent(),
+                getIndentCheck().getLineWrappingIndentation());
+        }
+
+        if (isNonAcceptableIndent(mainAstColumnNo, level)) {
+            isLambdaCorrectlyIndented = false;
+            logError(getMainAst(), "", mainAstColumnNo, level);
+        }
+    }
 }
