@@ -33,7 +33,6 @@ public class SwitchRuleHandler extends AbstractExpressionHandler {
     private static final int[] SWITCH_RULE_CHILDREN = {
         TokenTypes.LITERAL_CASE,
         TokenTypes.LITERAL_DEFAULT,
-        TokenTypes.LAMBDA,
     };
 
     /**
