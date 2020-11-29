@@ -79,6 +79,7 @@
       <Class name="com.puppycrawl.tools.checkstyle.checks.AvoidEscapedUnicodeCharactersCheck" />
       <Class name="com.puppycrawl.tools.checkstyle.checks.coding.RequireThisCheck" />
       <Class name="com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheck" />
+      <Class name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"/>
       <Class name="com.puppycrawl.tools.checkstyle.checks.OuterTypeFilenameCheck" />
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
       <!-- createJavadocNode is private and can not be launched without visitToken -->
