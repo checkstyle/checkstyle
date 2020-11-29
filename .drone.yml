@@ -40,8 +40,11 @@ steps:
 
 - name: releasenotes-gen
   image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    READ_ONLY_TOKEN:
+      from_secret: READ_ONLY_TOKEN
   commands:
-  - ./.ci/travis/travis.sh releasenotes-gen
+  - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/travis/travis.sh releasenotes-gen
 
 - name: assembly-run-all-jar
   image: maven:3.6.3-adoptopenjdk-8

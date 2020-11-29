@@ -6,9 +6,8 @@
 
 set -e
 
-PULL_REQUEST=$DRONE_PULL_REQUEST
 echo "PULL_REQUEST:"$PULL_REQUEST
-if [[ $PULL_REQUEST =~ ^([0-9]*)$ ]]; then
+if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
   echo "Build is not for Pull Request";
   sleep 5;
   exit 0;
