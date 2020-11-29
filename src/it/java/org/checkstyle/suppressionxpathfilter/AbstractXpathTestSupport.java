@@ -22,10 +22,8 @@ package org.checkstyle.suppressionxpathfilter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -34,8 +32,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.checkstyle.base.AbstractCheckstyleModuleTestSupport;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
@@ -56,48 +53,12 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
             Pattern.compile("([0-9]+):([0-9]+):");
 
     /**
-     * <p>
      * The temporary folder to hold intermediate files.
-     * </p>
-     * <p>
-     * Till https://github.com/junit-team/junit5/issues/1786
-     * we need to create and clean it manually.
-     * Once this issue will be resolved, it should be annotated with &#64;TempDir
-     * and methods setupTemporaryFolder and removeTemporaryFolder should be dropped.
-     * </p>
      */
-    private Path temporaryFolder;
+    @TempDir
+    public Path temporaryFolder;
 
     protected abstract String getCheckName();
-
-    /**
-     * <p>
-     * Creates temporary folder for intermediate files.
-     * </p>
-     *
-     * @throws IOException if an IO error occurs
-     */
-    @BeforeEach
-    public void setupTemporaryFolder() throws IOException {
-        temporaryFolder = Files.createTempDirectory("xpath-test");
-    }
-
-    /**
-     * <p>
-     * Removes temporary folder with intermediate files.
-     * </p>
-     *
-     * @throws IOException if an IO error occurs
-     */
-    @AfterEach
-    public void removeTemporaryFolder() throws IOException {
-        try (DirectoryStream<Path> paths = Files.newDirectoryStream(temporaryFolder)) {
-            for (Path path : paths) {
-                Files.delete(path);
-            }
-        }
-        Files.delete(temporaryFolder);
-    }
 
     @Override
     protected String getPackageLocation() {
