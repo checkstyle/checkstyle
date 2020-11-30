@@ -74,7 +74,7 @@
                <description>Specify RegExp for illegal abstract class
  names.</description>
             </property>
-            <property default-value="no tokens"
+            <property default-value=""
                       name="memberModifiers"
                       type="java.lang.String[]"
                       validation-type="tokenTypesSet">
