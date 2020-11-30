@@ -300,6 +300,7 @@ verify-no-exception-configs)
         echo 'and add your new Check '
         echo '   to file checkstyle-tester/checks-nonjavadoc-error.xml'
         echo 'or to file checkstyle-tester/checks-only-javadoc-error.xml'
+        echo 'Place the contribution repository PR link in the description of this PR.'
         echo 'PR for contribution repository will be merged right after this PR.'
         fail=1;
       fi
