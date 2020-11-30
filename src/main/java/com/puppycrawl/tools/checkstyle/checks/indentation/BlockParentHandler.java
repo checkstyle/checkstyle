@@ -49,6 +49,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     private static final int[] CHECKED_CHILDREN = {
         TokenTypes.VARIABLE_DEF,
         TokenTypes.EXPR,
+        TokenTypes.ANNOTATION,
         TokenTypes.OBJBLOCK,
         TokenTypes.LITERAL_BREAK,
         TokenTypes.LITERAL_RETURN,
@@ -253,10 +254,18 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         else {
             // NOTE: switch statements usually don't have curlies
             if (!hasCurlies() || !TokenUtil.areOnSameLine(getLeftCurly(), getRightCurly())) {
+                // Note: For Annotation Array Init only:
+                // If its a annotation array init block with strict cond being false then,
+                // we want flexible child indents with any indentLevel above minimum requirement
+                // All the other block elements will follow strict discrete indentation levels.
+                final boolean doesAnnotationArrayInitFollowsStrictCond =
+                    !TokenUtil.isOfType(listChild, TokenTypes.ANNOTATION_ARRAY_INIT)
+                        || getIndentCheck().isForceStrictCondition();
+
                 checkChildren(listChild,
                         getCheckedChildren(),
                         getChildrenExpectedIndent(),
-                        true,
+                        doesAnnotationArrayInitFollowsStrictCond,
                         canChildrenBeNested());
             }
         }
