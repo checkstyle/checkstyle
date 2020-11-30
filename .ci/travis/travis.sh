@@ -71,21 +71,21 @@ test-tr)
 
 osx-assembly)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Passembly
+  mvn -e clean package -Passembly
   ;;
 
 osx-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package
+  mvn -e clean package
   ;;
 
 osx-jdk13-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package
+  mvn -e clean package
   ;;
 
 osx-jdk13-assembly)
-  mvn -e package -Passembly
+  mvn -e clean package -Passembly
   ;;
 
 site)
@@ -152,13 +152,13 @@ javac15)
   ;;
 
 jdk14-assembly-site)
-  mvn -e package -Passembly
-  mvn -e site -Pno-validations
+  mvn -e clean package -Passembly
+  mvn -e clean site -Pno-validations
   ;;
 
 jdk14-verify-limited)
   # we skip pmd and spotbugs as they executed in special Travis build
-  mvn -e verify -Dpmd.skip=true -Dspotbugs.skip=true
+  mvn -e clean verify -Dpmd.skip=true -Dspotbugs.skip=true
   ;;
 
 versions)
