@@ -51,7 +51,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
  * STATIC_INIT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>.
  * </li>
  * </ul>
  * <p>
@@ -119,6 +121,7 @@ public final class ExecutableStatementCountCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -136,6 +139,7 @@ public final class ExecutableStatementCountCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -162,6 +166,7 @@ public final class ExecutableStatementCountCheck
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
             case TokenTypes.COMPACT_CTOR_DEF:
+            case TokenTypes.LAMBDA:
                 visitMemberDef(ast);
                 break;
             case TokenTypes.SLIST:
@@ -180,6 +185,7 @@ public final class ExecutableStatementCountCheck
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
             case TokenTypes.COMPACT_CTOR_DEF:
+            case TokenTypes.LAMBDA:
                 leaveMemberDef(ast);
                 break;
             case TokenTypes.SLIST:
@@ -225,6 +231,7 @@ public final class ExecutableStatementCountCheck
             DetailAST parent = ast.getParent();
             int type = parent.getType();
             while (type != TokenTypes.METHOD_DEF
+                && type != TokenTypes.LAMBDA
                 && !isConstructorOrInit(type)) {
                 parent = parent.getParent();
                 type = parent.getType();

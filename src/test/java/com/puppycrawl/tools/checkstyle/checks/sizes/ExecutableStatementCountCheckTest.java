@@ -75,6 +75,7 @@ public class ExecutableStatementCountCheckTest
             "67:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "76:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "79:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "90:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig, getPath("InputExecutableStatementCount.java"), expected);
