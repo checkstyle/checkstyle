@@ -932,6 +932,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           <li>AtclauseOrder</li>
           <li>JavadocBlockTagLocation</li>
           <li>JavadocMethod</li>
+          <li>JavadocMissingLeadingAsterisk</li>
           <li>JavadocMissingWhitespaceAfterAsterisk</li>
           <li>JavadocParagraph</li>
           <li>JavadocStyle</li>

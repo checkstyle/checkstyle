@@ -13,6 +13,8 @@ or set of validation rules (best practices).
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
 [![][semaphoreci img]][semaphoreci]
+[![][azure img]][azure]
+[![][drone img]][drone]
 
 [![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
@@ -158,6 +160,9 @@ are in the file named "LICENSE.apache20" in this directory.
 [flattr]:https://flattr.com/submit/auto?fid=g39d10&amp;url=https%3A%2F%2Fcheckstyle.org
 [flattr img]:https://button.flattr.com/flattr-badge-large.png
 
+[azure]:https://dev.azure.com/romanivanovjr/romanivanovjr/_build/latest?definitionId=1&branchName=master
+[azure img]:https://dev.azure.com/romanivanovjr/romanivanovjr/_apis/build/status/checkstyle.checkstyle?branchName=master
+
 [liberapay]:https://liberapay.com/checkstyle/
 [liberapay img]:https://liberapay.com/assets/widgets/donate.svg
 
@@ -175,3 +180,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [dependabot]:https://dependabot.com
 [dependabot img]:https://api.dependabot.com/badges/status?host=github&repo=checkstyle/checkstyle
+
+[drone]:https://cloud.drone.io/checkstyle/checkstyle
+[drone img]:https://cloud.drone.io/api/badges/checkstyle/checkstyle/status.svg

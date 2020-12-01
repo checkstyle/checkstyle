@@ -19,6 +19,14 @@ jacoco)
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \
     jacoco:check@default-check
+  # BUILD_REASON is variable from CI, if launch is not from CI, we skip this step
+  if [ -n "$BUILD_REASON" ];then
+    bash <(curl -s https://codecov.io/bash)
+  fi
+  ;;
+
+test)
+  mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'
   ;;
 
 test-de)
@@ -125,6 +133,20 @@ javac14)
       for file in "${files[@]}"
       do
         javac --release 14 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
+javac15)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java15' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java15 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 15 --enable-preview -d target "${file}"
       done
   fi
   ;;
@@ -265,8 +287,8 @@ verify-no-exception-configs)
   fail=0
   if [[ $DIFF_TEXT != "" ]]; then
     echo "Diff is detected."
-    if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]+)$ ]]; then
-      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$TRAVIS_PULL_REQUEST
+    if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
+      LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
       REGEXP="https://github.com/checkstyle/contribution/pull/"
       PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_PR \
                   | jq '.body' | grep $REGEXP | cat )

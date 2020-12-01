@@ -2,12 +2,12 @@
 # Attention, there is no "-x" to avoid problem on Travis
 # to run on local:
 # export READ_ONLY_TOKEN=9ffd28f
-#  && export TRAVIS_PULL_REQUEST="master" && ./.ci/travis/travis.sh releasenotes-gen
+#  && export DRONE_PULL_REQUEST="master" && ./.ci/travis/travis.sh releasenotes-gen
 
 set -e
 
-echo "TRAVIS_PULL_REQUEST:"$TRAVIS_PULL_REQUEST
-if [[ $TRAVIS_PULL_REQUEST =~ ^([0-9]*)$ ]]; then
+echo "PULL_REQUEST:"$PULL_REQUEST
+if [[ $PULL_REQUEST =~ ^([0-9]+)$ ]]; then
   echo "Build is not for Pull Request";
   sleep 5;
   exit 0;

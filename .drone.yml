@@ -1,0 +1,107 @@
+---
+kind: pipeline
+name: pipeline1
+
+steps:
+- name: checkstyle-and-sevntu
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh checkstyle-and-sevntu
+
+- name: spotbugs-and-pmd
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh spotbugs-and-pmd
+
+---
+kind: pipeline
+name: pipeline2
+
+steps:
+- name: site
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh site
+
+- name: release-dry-run
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh release-dry-run
+
+---
+kind: pipeline
+name: pipeline3
+
+steps:
+- name: check-chmod
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh check-chmod
+
+- name: releasenotes-gen
+  image: maven:3.6.3-adoptopenjdk-8
+  environment:
+    READ_ONLY_TOKEN:
+      from_secret: READ_ONLY_TOKEN
+  commands:
+  - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/travis/travis.sh releasenotes-gen
+
+- name: assembly-run-all-jar
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh assembly-run-all-jar
+
+---
+kind: pipeline
+name: pipeline4
+
+steps:
+- name: javac8
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh javac8
+
+- name: check-since-version
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh check-since-version
+
+---
+kind: pipeline
+name: pipeline5
+
+steps:
+- name: javac9
+  image: maven:3.6.3-jdk-11
+  commands:
+  - ./.ci/travis/travis.sh javac9
+
+- name: javac14
+  image: maven:3.6.3-adoptopenjdk-14
+  commands:
+  - ./.ci/travis/travis.sh javac14
+
+- name: javac15
+  image: maven:3.6.3-adoptopenjdk-15
+  commands:
+  - ./.ci/travis/travis.sh javac15
+
+- name: no-error-test-sbe
+  image: maven:3.6.3-adoptopenjdk-8
+  commands:
+  - ./.ci/travis/travis.sh no-error-test-sbe
+
+---
+kind: pipeline
+name: pipeline6
+
+steps:
+- name: jdk14-assembly-site
+  image: maven:3.6.3-jdk-14
+  commands:
+  - ./.ci/travis/travis.sh jdk14-assembly-site
+
+- name: assembly/site with OpenJDK11
+  image: maven:3.6.3-adoptopenjdk-11
+  commands:
+  - mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true

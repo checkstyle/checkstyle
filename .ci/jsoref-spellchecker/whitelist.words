@@ -19,6 +19,7 @@ Aconfig
 adb
 addons
 adf
+adoptopenjdk
 adr
 AFDF
 AFilter
@@ -331,6 +332,7 @@ Destructuring
 detailast
 detailastimpl
 detailnodetreestringprinter
+devops
 Dexec
 Dfile
 dfn
@@ -661,6 +663,7 @@ javadoccontentlocation
 javadocdetailnodeparser
 javadocmetadatascraper
 javadocmethod
+javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
@@ -838,7 +841,7 @@ methodparampad
 methodtypeparametername
 MEZk
 Micha
-Microsoft
+microsoft
 minimalistic
 Mipmap
 misconfigured
@@ -1160,6 +1163,7 @@ rmdir
 rnveach
 romani
 romanivanov
+romanivanovjr
 Rootsmorejunk
 rp
 rparen
