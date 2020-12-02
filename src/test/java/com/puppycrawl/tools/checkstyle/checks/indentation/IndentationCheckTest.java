@@ -668,8 +668,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "110:15: " + getCheckMessage(MSG_ERROR, "operator new", 14, 16),
             "113:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
             "118:15: " + getCheckMessage(MSG_ERROR, "operator new", 14, 16),
-            "122:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
-            "126:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
+            "122:11: " + getCheckMessage(MSG_ERROR, "operator new", 10, 12),
+            "126:11: " + getCheckMessage(MSG_ERROR, "operator new", 10, 12),
             "127:7: " + getCheckMessage(MSG_ERROR, ")", 6, 8),
             "131:7: " + getCheckMessage(MSG_ERROR, "method call rparen", 6, 8),
             "145:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
@@ -885,16 +885,46 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNewChildren() throws Exception {
+    public void testNewKeyword2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("basicOffset", "4");
-        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("forceStrictCondition", "true");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("InputIndentationValidNewChildren.java"), expected);
+        verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
+    }
+
+    @Test
+    public void testValidNewKeywordWithForceStrictCond() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
+    }
+
+    @Test
+    public void testInvalidNewKeywordWithForceStrictCond() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+            "23:17: " + getCheckMessage(MSG_ERROR, "operator new", 16, 24),
+            "24:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
+            "25:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithForceStrict.java"), expected);
     }
 
     @Test
@@ -1838,7 +1868,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("arrayInitIndent", "4");
         final String[] expected = {
             "40:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
-            "42:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
+            "42:15: " + getCheckMessage(MSG_ERROR, "operator new", 14, 16),
             "48:15: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 14, "16, 20, 24"),
             "60:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def lcurly", 18, "16, 20, 24"),
             "66:19: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 18, "16, 20, 24"),
@@ -2156,6 +2186,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "60:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
             "61:5: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
             "72:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "86:21: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 20, "12, 16"),
+            "87:29: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 28, "16, 20"),
             "117:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 4),
             "128:2: " + getCheckMessage(MSG_ERROR, "interface", 1, 0),
             "134:12: " + getCheckMessage(MSG_ERROR, "@", 11, 0),
@@ -2223,7 +2255,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "150:8: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
             "151:8: " + getCheckMessage(MSG_ERROR_MULTI, "try rparen", 7, "8, 12"),
             "164:9: " + getCheckMessage(MSG_ERROR, ".", 8, 12),
-            "172:12: " + getCheckMessage(MSG_ERROR, "new", 11, 12),
+            "172:12: " + getCheckMessage(MSG_ERROR, "operator new", 11, 12),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -2272,6 +2304,19 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testNewHandler() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "8:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
+            "10:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
+            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "operator new", 0, 8),
+            "15:1: " + getCheckMessage(MSG_ERROR, "operator new lparen", 0, 8),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
+    }
+
+    @Test
+    public void testNewHandler2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
