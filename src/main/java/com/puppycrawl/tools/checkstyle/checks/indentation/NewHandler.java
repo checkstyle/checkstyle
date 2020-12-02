@@ -53,9 +53,8 @@ public class NewHandler extends AbstractExpressionHandler {
             final int columnNo = expandedTabsColumnNo(mainAst);
             final IndentLevel level = getIndentImpl();
 
-            final boolean isForceStrictCond = getIndentCheck().isForceStrictCondition();
-            if (isForceStrictCond && !level.isAcceptable(columnNo)
-                    || !isForceStrictCond && level.isGreaterThan(columnNo)) {
+            final boolean forceStrictCondition = getIndentCheck().isForceStrictCondition();
+            if (!level.isAcceptable(columnNo, forceStrictCondition)) {
                 logError(mainAst, "", columnNo, level);
             }
         }

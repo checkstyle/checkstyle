@@ -1024,7 +1024,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testValidNewKeywordWithForceStrictCond() throws Exception {
+    public void testValidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("basicOffset", "4");
@@ -1037,7 +1037,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testInvalidNewKeywordWithForceStrictCond() throws Exception {
+    public void testInvalidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("basicOffset", "4");
@@ -1050,7 +1050,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "24:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
             "25:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
         };
-        verifyWarns(checkConfig, getPath("InputIndentationNewWithForceStrict.java"), expected);
+        verifyWarns(checkConfig,
+            getPath("InputIndentationNewWithForceStrictCondition.java"), expected);
     }
 
     @Test

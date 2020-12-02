@@ -16,7 +16,7 @@ import java.io.BufferedReader; //indent:0 exp:0
 import java.io.IOException; //indent:0 exp:0
 import java.io.InputStreamReader; //indent:0 exp:0
 
-public class InputIndentationNewWithForceStrict { //indent:0 exp:0
+public class InputIndentationNewWithForceStrictCondition { //indent:0 exp:0
     void test() throws IOException  { //indent:4 exp:4
         BufferedReader bf =  //indent:8 exp:8
                 new BufferedReader(  //indent:16 exp:16
