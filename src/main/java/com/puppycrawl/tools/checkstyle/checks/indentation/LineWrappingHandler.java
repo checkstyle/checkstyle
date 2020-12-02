@@ -70,6 +70,21 @@ public class LineWrappingHandler {
     }
 
     /**
+     * The list of ignored token types for being checked by lineWrapping indentation
+     * inside {@code checkIndentation()} as these tokens are checked for lineWrapping
+     * inside their dedicated handlers.
+     *
+     * @see NewHandler#getIndentImpl()
+     * @see BlockParentHandler#curlyIndent()
+     * @see ArrayInitHandler#getIndentImpl()
+     */
+    private static final int[] IGNORED_LIST = {
+        TokenTypes.RCURLY,
+        TokenTypes.LITERAL_NEW,
+        TokenTypes.ARRAY_INIT,
+    };
+
+    /**
      * The current instance of {@code IndentationCheck} class using this
      * handler. This field used to get access to private fields of
      * IndentationCheck instance.
@@ -162,7 +177,7 @@ public class LineWrappingHandler {
             if (currentType == TokenTypes.RPAREN) {
                 logWarningMessage(node, firstNodeIndent);
             }
-            else if (currentType != TokenTypes.RCURLY && currentType != TokenTypes.ARRAY_INIT) {
+            else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
                 logWarningMessage(node, currentIndent);
             }
         }

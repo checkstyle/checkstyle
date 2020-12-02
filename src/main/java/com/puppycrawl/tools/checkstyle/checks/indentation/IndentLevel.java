@@ -83,6 +83,25 @@ public class IndentLevel {
     }
 
     /**
+     * Checks if given indentation is acceptable based on forceStrictCondition property.
+     *
+     * @param indent                  indentation to check.
+     * @param forceStrictCondition    if forceStrictCondition is set to true
+     *
+     * @return                        true if given indentation is acceptable,
+     *                                false otherwise.
+     */
+    public boolean isAcceptable(int indent, boolean forceStrictCondition) {
+        boolean isAcceptable = !isGreaterThan(indent);
+
+        if (forceStrictCondition) {
+            isAcceptable = isAcceptable(indent);
+        }
+
+        return isAcceptable;
+    }
+
+    /**
      * Returns true if indent less than minimal of
      * acceptable indentation levels, false otherwise.
      *
