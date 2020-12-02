@@ -4294,7 +4294,22 @@ for(int i=0; i&lt;10; i++) {
         <source>
 &lt;module name=&quot;NestedIfDepth&quot;/&gt;
         </source>
-
+        <p>Valid Code Example:</p>
+        <source>
+if (true) {
+    if (true) {} // OK
+    else {}
+}
+        </source>
+        <p>Invalid Code Example:</p>
+        <source>
+if (true) {
+    if (true) {
+        if (true) { // Nested if-else depth is 2 (max allowed is 1)
+        }
+    }
+}
+        </source>
         <p>
           To configure the check to allow nesting depth 3:
         </p>
@@ -4302,6 +4317,32 @@ for(int i=0; i&lt;10; i++) {
 &lt;module name=&quot;NestedIfDepth&quot;&gt;
   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Valid Code Example:</p>
+        <source>
+if (true) {
+   if (true) {
+      if (true) {
+         if (true) {} // OK
+         else {}
+      }
+   }
+}
+        </source>
+        <p>Invalid Code Example:</p>
+        <source>
+if (true) {
+   if (true) {
+      if (true) {
+         if (true) {
+            if (true) { // Nested if-else depth is 5 (max allowed is 3).
+               if (true) {}
+               else {}
+            }
+         }
+      }
+   }
+}
         </source>
       </subsection>
 
