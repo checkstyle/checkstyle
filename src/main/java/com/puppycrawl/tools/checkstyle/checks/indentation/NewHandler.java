@@ -49,12 +49,13 @@ public class NewHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         // if new is on the line start and it is not the part of assignment.
-        if (isOnStartOfLine(mainAst)
-                && !isNewKeywordFollowedByAssign()) {
+        if (isOnStartOfLine(mainAst)) {
             final int columnNo = expandedTabsColumnNo(mainAst);
             final IndentLevel level = getIndentImpl();
 
-            if (columnNo < level.getFirstIndentLevel()) {
+            final boolean isForceStrictCond = getIndentCheck().isForceStrictCondition();
+            if (isForceStrictCond && !level.isAcceptable(columnNo)
+                    || !isForceStrictCond && level.isGreaterThan(columnNo)) {
                 logError(mainAst, "", columnNo, level);
             }
         }
@@ -88,7 +89,9 @@ public class NewHandler extends AbstractExpressionHandler {
         if (getLineStart(mainAst) == mainAst.getColumnNo()) {
             result = super.getIndentImpl();
 
-            if (isNewKeywordFollowedByAssign()) {
+            final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
+                                        TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+            if (isLineWrappedNew) {
                 result = new IndentLevel(result, getLineWrappingIndent());
             }
         }
@@ -97,15 +100,6 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         return result;
-    }
-
-    /**
-     * Checks if the 'new' keyword is followed by an assignment.
-     *
-     * @return true if new keyword is followed by assignment.
-     */
-    private boolean isNewKeywordFollowedByAssign() {
-        return mainAst.getParent().getParent().getType() == TokenTypes.ASSIGN;
     }
 
     /**
