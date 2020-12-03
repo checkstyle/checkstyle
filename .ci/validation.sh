@@ -5,6 +5,20 @@ removeFolderWithProtectedFiles() {
   find "$1" -delete
 }
 
+addCheckstyleBundleToAntResolvers() {
+  xmlstarlet ed --inplace \
+    -s '/ivysettings/resolvers' -t elem -n filesystem \
+    -i '/ivysettings/resolvers/filesystem[last()]' -t attr -n name -v local-checkstyle \
+    -s '/ivysettings/resolvers/filesystem[last()]' -t elem -n artifact \
+    -i '/ivysettings/resolvers/filesystem[last()]/artifact' -t attr -n pattern -v \
+    '${base.dir}/../../target/[artifact]-[revision]-all.[ext]' \
+    -s '/ivysettings/modules' -t elem -n module \
+    -i '/ivysettings/modules/module[last()]' -t attr -n organisation -v com.puppycrawl.tools \
+    -i '/ivysettings/modules/module[last()]' -t attr -n name -v checkstyle \
+    -i '/ivysettings/modules/module[last()]' -t attr -n resolver -v local-checkstyle \
+    ivysettings.xml
+}
+
 case $1 in
 
 all-sevntu-checks)
@@ -116,12 +130,16 @@ no-violation-test-josm)
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp
   cd .ci-temp
-  TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
+  # The tested version is 17329 (as of 2020-11-30), it has some violations fixed in 17332.
+  # Once the tested version will be updated, we should switch back to the version from the wiki.
+  TESTED=17332
+  # TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
   echo "JOSM revision: ${TESTED}"
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
   cd josm
   sed -i -E "s/(name=\"checkstyle\" rev=\")([0-9]+\.[0-9]+(-SNAPSHOT)?)/\1${CS_POM_VERSION}/" \
    tools/ivy.xml
+  addCheckstyleBundleToAntResolvers
   ant -v checkstyle
   grep "<error" checkstyle-josm.xml | cat > errors.log
   echo "Checkstyle Errors:"
