@@ -100,7 +100,7 @@ no-error-xwiki)
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/xwiki-commons.git
   cd .ci-temp/xwiki-commons
-  git checkout reflection-exclude
+  git checkout exclude-antlr
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e test-compile checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
