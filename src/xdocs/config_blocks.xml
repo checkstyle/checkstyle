@@ -1117,6 +1117,8 @@ allowedFuture.addCallback(result -> {
                   RECORD_DEF</a>
                 ,<a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                   COMPACT_CTOR_DEF</a>
+              , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#OBJBLOCK">
+                  OBJBLOCK</a>
                 .
               </td>
               <td>
