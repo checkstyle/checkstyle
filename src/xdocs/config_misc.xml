@@ -1024,6 +1024,19 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
         <source>
 &lt;module name=&quot;FinalParameters&quot;/&gt;
         </source>
+        <p>
+          Example :
+        </p>
+        <source>
+class MyClass {
+  public MyClass(final int num) { // OK
+  }
+  public MyClass(long value) { // violation
+  }
+  public void myMethod(final String str) { // OK
+  }
+}
+        </source>
 
         <p>
           To configure the check to enforce final parameters only for
@@ -1035,6 +1048,17 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;/module&gt;
         </source>
         <p>
+          Example :
+        </p>
+        <source>
+class MyClass {
+  public MyClass(int num) { // violation, num should be final
+  }
+  public void myMethod(String str) { // OK
+  }
+}
+        </source>
+        <p>
           To configure the check to allow ignoring
           <a href="https://docs.oracle.com/javase/tutorial/java/nutsandbolts/datatypes.html">
            primitive datatypes</a> as parameters:
@@ -1043,6 +1067,25 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
 &lt;module name=&quot;FinalParameters&quot;&gt;
   &lt;property name=&quot;ignorePrimitiveTypes&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example :
+        </p>
+        <source>
+class MyClass {
+  public MyClass(final int num) { // OK
+  }
+  public void myMethod(String str) { // violation, str should be final
+  }
+}
+
+class MyClass {
+  public MyClass(final int num) { // OK
+  }
+  public void myMethod(boolean bool) { // OK, boolean is a primitive datatype
+  }
+}
+
         </source>
       </subsection>
 
