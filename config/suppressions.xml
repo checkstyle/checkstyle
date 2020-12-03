@@ -7,6 +7,8 @@
 <suppressions>
   <!-- can't split long messages between lines -->
   <suppress id="lineLengthXml" files="google_checks\.xml" lines="56,126"/>
+  <!-- until https://github.com/checkstyle/checkstyle/issues/9204 -->
+  <suppress id="lineLengthXml" files="config_design\.xml" lines="163"/>
   <!-- don't validate generated files -->
   <suppress id="lineLengthXml" files="releasenotes\.xml"/>
   <suppress id="lineLengthXml" files="[\\/]meta[\\/]"/>
