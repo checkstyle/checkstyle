@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck"
+             name="MatchXpath"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Evaluates Xpath query and report violation on all matching AST nodes. This check allows
+ user to implement custom checks using Xpath. If Xpath query is not specified explicitly,
+ then the check does nothing.
+ &lt;/p&gt;
+ &lt;p&gt;
+ It is recommended to define custom message for violation to explain what is not allowed and what
+ to use instead, default message might be too abstract. To customize a message you need to
+ add {@code message} element with &lt;b&gt;matchxpath.match&lt;/b&gt; as {@code key} attribute and
+ desired message as {@code value} attribute.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Please read more about Xpath syntax at
+ &lt;a href="https://www.saxonica.com/html/documentation/expressions/"&gt;Xpath Syntax&lt;/a&gt;.
+ Information regarding Xpath functions can be found at
+ &lt;a href="https://www.saxonica.com/html/documentation/functions/fn/"&gt;XSLT/XPath Reference&lt;/a&gt;.
+ Note, that &lt;b&gt;@text&lt;/b&gt; attribute can used only with token types that are listed in
+ &lt;a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22"&gt;
+     XpathUtil&lt;/a&gt;.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="" name="query" type="java.lang.String">
+               <description>Specify Xpath query.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="matchxpath.match"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
