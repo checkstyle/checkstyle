@@ -1645,13 +1645,13 @@ import java.util.stream.IntStream;
       </subsection>
 
       <subsection name="Examples" id="ImportOrder_Examples">
-          <p>
+        <p>
           To configure the check:
         </p>
         <source>
 &lt;module name=&quot;ImportOrder&quot;/&gt;
         </source>
-          <p>Example:</p>
+        <p>Example:</p>
         <source>
 //No violations Example
 import java.io.IOException; //OK
@@ -1679,7 +1679,7 @@ public class SomeClass { ... }
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
-          <p>Example:</p>
+        <p>Example:</p>
         <source>
 import static java.lang.System.out; //Violation; it should be sorted
 import static java.lang.Math.*; //OK
@@ -1737,7 +1737,7 @@ public class SomeClass { ... }
         <source>
 import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
 import static java.lang.Math.PI; //OK
-import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' < 'a'
+import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' comes before 'a'
 import java.lang.Math.sqrt; //Ok, Follow property 'Option' value 'above'
 
 import static java.io.File.createTempFile; //OK
@@ -1793,7 +1793,7 @@ public class SomeClass { ... }
   &lt;property name="message" value="^'java\..*'.*"/&gt;
 &lt;/module&gt;
         </source>
-          <p>Example:</p>
+        <p>Example:</p>
         <source>
 import static javax.swing.WindowConstants.*; //Violation; all static imports comes at the bottom
 
@@ -1803,7 +1803,7 @@ import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java
 
 import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
 import static java.lang.Math.PI; //OK
-import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' < 'a'
+import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' comes before 'a'
 
 public class SomeClass { ... }
         </source>
