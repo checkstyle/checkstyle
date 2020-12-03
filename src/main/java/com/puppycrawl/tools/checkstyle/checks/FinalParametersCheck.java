@@ -74,7 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * class MyClass {
  *   public MyClass(final int num) { // OK
  *   }
- *   public MyClass(float value) { // violation
+ *   public MyClass(long value) { // violation
  *   }
  *   public void myMethod(final String str) { // OK
  *   }
