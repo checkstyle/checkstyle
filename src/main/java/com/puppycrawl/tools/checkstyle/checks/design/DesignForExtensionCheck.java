@@ -342,7 +342,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @param methodDef method definition token.
      * @return true if a method has a javadoc comment.
      */
-    private static boolean hasJavadocComment(DetailAST methodDef) {
+    private boolean hasJavadocComment(DetailAST methodDef) {
         return hasJavadocCommentOnToken(methodDef, TokenTypes.MODIFIERS)
                 || hasJavadocCommentOnToken(methodDef, TokenTypes.TYPE);
     }
@@ -354,7 +354,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @param tokenType token type.
      * @return true if a token has a javadoc comment.
      */
-    private static boolean hasJavadocCommentOnToken(DetailAST methodDef, int tokenType) {
+    private boolean hasJavadocCommentOnToken(DetailAST methodDef, int tokenType) {
         final DetailAST token = methodDef.findFirstToken(tokenType);
         return branchContainsJavadocComment(token);
     }
@@ -365,7 +365,7 @@ public class DesignForExtensionCheck extends AbstractCheck {
      * @param token tree token.
      * @return true if a javadoc comment exists under the token.
      */
-    private static boolean branchContainsJavadocComment(DetailAST token) {
+    private boolean branchContainsJavadocComment(DetailAST token) {
         boolean result = false;
         DetailAST curNode = token;
         while (curNode != null) {
