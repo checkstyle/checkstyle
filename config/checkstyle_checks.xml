@@ -394,6 +394,11 @@
     </module>
     <module name="InnerAssignment"/>
     <module name="MagicNumber"/>
+    <module name="MatchXpath">
+      <property name="query" value="//CLASS_DEF[@text!='Checker' and @text!='Main']
+      //LITERAL_CATCH//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/.."/>
+      <message key="matchxpath.match" value="Avoid using 'printStackTrace'."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
