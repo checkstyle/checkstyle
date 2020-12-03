@@ -138,4 +138,16 @@ public class DesignForExtensionCheckTest
             getNonCompilablePath("InputDesignForExtensionRecords.java"), expected);
     }
 
+    @Test
+    public void testRequiredJavadocPhrase() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
+        checkConfig.addAttribute("requiredJavadocPhrase", "This implementation");
+        final String className = "InputDesignForExtensionRequiredJavadocPhrase";
+        final String[] expected = {
+            "37:5: " + getCheckMessage(MSG_KEY, className, "foo5"),
+            "44:5: " + getCheckMessage(MSG_KEY, className, "foo8"),
+            "47:5: " + getCheckMessage(MSG_KEY, className, "foo9"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionRequiredJavadocPhrase.java"), expected);
+    }
 }
