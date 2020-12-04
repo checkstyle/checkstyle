@@ -146,7 +146,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="ImportOrder"/&gt;
  * </pre>
-  * <p>Example:</p>
+ * <p>Example:</p>
  * <pre>
  * import java.io.IOException; //OK
  * import java.net.URL; //OK
@@ -181,7 +181,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
- <p>Example:</p>
+ * <p>Example:</p>
  * <pre>
  * import static java.lang.System.out; //Violation; it should be sorted
  * import static java.lang.Math.*; //OK
