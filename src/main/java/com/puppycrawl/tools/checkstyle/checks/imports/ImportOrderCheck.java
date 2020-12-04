@@ -140,6 +140,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="ImportOrder"/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * import java.io.IOException; //OK
+ * import java.net.URL; //OK
+ * import java.security.KeyManagementException; //OK
+ *
+ * import javax.net.ssl.SSLContext; //OK
+ * import javax.net.ssl.TrustManager; //OK
+ * import javax.net.ssl.X509TrustManager; //OK
+ *
+ * import org.apache.http.conn.ClientConnectionManager; //OK
+ * import org.apache.http.conn.scheme.Scheme; //OK
+ *
+ * import com.neurologic.http.HttpClient; //OK
+ * import com.neurologic.http.impl.ApacheHttpClient; //OK
+ *
+ * public class SomeClass { ... }
+ * </pre>
+ * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Kepler and Luna releases):
  * </p>
@@ -157,6 +181,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
+ * <p>Example:</p>
+ * <pre>
+ * import static java.lang.System.out; //Violation; it should be sorted
+ * import static java.lang.Math.*; //OK
+ * import java.io.IOException; //Violation; Groups aren't separated by blank line
+ *
+ * import java.net.URL; //OK
+ * import java.security.KeyManagementException; //OK
+ *
+ * import javax.net.ssl.TrustManager; //OK
+ *
+ * import javax.net.ssl.X509TrustManager; //Violation; Groups should not separate internally
+ *
+ * import org.apache.http.conn.ClientConnectionManager; //OK
+ * import org.apache.http.conn.scheme.Scheme; //OK
+ *
+ * public class SomeClass { ... }
+ * </pre>
  * <p>
  * Notes:
  * </p>
@@ -207,6 +249,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <pre>
+ * import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
+ * import static java.lang.Math.PI; //OK
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' < 'a'
+ * import java.lang.Math.sqrt; //Ok, Follow property 'Option' value 'above'
+ *
+ * import static java.io.File.createTempFile; //OK
+ * import java.io.File; //OK
+ *
+ * import java.io.IOException; //Violation; Should follow 'Group' property
+ *
+ * import org.abego.*; //Violation; Should follow 'ordered' property
+ *
+ * import static javax.swing.WindowConstants.*; //Ok
+ * import javax.swing.JComponent; //OK
+ * import org.apache.http.conn.ClientConnectionManager; //Violation; Should follow 'separated' property
+ *
+ * import org.linux.apache.server.SoapServer; //OK
+ *
+ * import com.neurologic.http.HttpClient; //OK; tested on Mars release.
+ * import com.neurologic.http.impl.ApacheHttpClient; //OK; tested on Mars release.
+ *
+ * public class SomeClass { ... }
+ * </pre>
  * <p>
  * To configure the check so that it matches default IntelliJ IDEA formatter configuration
  * (tested on v2018.2):
@@ -249,6 +315,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="checks" value="ImportOrder"/&gt;
  *   &lt;property name="message" value="^'java\..*'.*"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at the bottom
+ *
+ * import java.net.URL; //OK
+ * import java.security.KeyManagementException; //OK
+ * import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
+ *
+ * import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
+ * import static java.lang.Math.PI; //OK
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' < 'a'
+ *
+ * public class SomeClass { ... }
  * </pre>
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
