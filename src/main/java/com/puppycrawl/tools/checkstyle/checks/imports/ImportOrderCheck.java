@@ -140,7 +140,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- *<p>
+ * <p>
  * To configure the check:
  * </p>
  * <pre>
