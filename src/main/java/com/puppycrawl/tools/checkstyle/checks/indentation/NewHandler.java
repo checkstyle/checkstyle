@@ -49,12 +49,13 @@ public class NewHandler extends AbstractExpressionHandler {
     @Override
     public void checkIndentation() {
         // if new is on the line start and it is not the part of assignment.
-        if (isOnStartOfLine(mainAst)
-                && !isNewKeywordFollowedByAssign()) {
+        if (isOnStartOfLine(mainAst)) {
             final int columnNo = expandedTabsColumnNo(mainAst);
             final IndentLevel level = getIndentImpl();
 
-            if (columnNo < level.getFirstIndentLevel()) {
+            final boolean isForceStrictCond = getIndentCheck().isForceStrictCondition();
+            if (isForceStrictCond && !level.isAcceptable(columnNo)
+                    || !isForceStrictCond && level.isGreaterThan(columnNo)) {
                 logError(mainAst, "", columnNo, level);
             }
         }
