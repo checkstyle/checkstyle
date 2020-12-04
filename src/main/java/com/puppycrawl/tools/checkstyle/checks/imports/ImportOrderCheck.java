@@ -140,13 +140,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- *<p>
  * To configure the check:
  * </p>
  * <pre>
  * &lt;module name="ImportOrder"/&gt;
  * </pre>
-  * <p>Example:</p>
+ * <p>Example:</p>
  * <pre>
  * import java.io.IOException; //OK
  * import java.net.URL; //OK
@@ -161,6 +160,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import com.neurologic.http.HttpClient; //OK
  * import com.neurologic.http.impl.ApacheHttpClient; //OK
+ *
  * public class SomeClass { ... }
  * </pre>
  * <p>
@@ -181,7 +181,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
- <p>Example:</p>
+ * <p>Example:</p>
  * <pre>
  * import static java.lang.System.out; //Violation; it should be sorted
  * import static java.lang.Math.*; //OK
@@ -196,6 +196,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import org.apache.http.conn.ClientConnectionManager; //OK
  * import org.apache.http.conn.scheme.Scheme; //OK
+ *
  * public class SomeClass { ... }
  * </pre>
  * <p>
@@ -269,6 +270,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import com.neurologic.http.HttpClient; //OK; tested on Mars release.
  * import com.neurologic.http.impl.ApacheHttpClient; //OK; tested on Mars release.
+ *
  * public class SomeClass { ... }
  * </pre>
  * <p>
