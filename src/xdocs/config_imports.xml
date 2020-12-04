@@ -1653,7 +1653,6 @@ import java.util.stream.IntStream;
         </source>
         <p>Example:</p>
         <source>
-//No violations Example
 import java.io.IOException; //OK
 import java.net.URL; //OK
 import java.security.KeyManagementException; //OK
@@ -1714,6 +1713,7 @@ public class SomeClass { ... }
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        
         <p>To configure the check so that it matches default Eclipse formatter
            configuration (tested on Mars release):</p>
         <ul>
