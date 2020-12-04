@@ -145,7 +145,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="ImportOrder"/&gt;
  * </pre>
- * <p>Example:</p>
+ *
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * import java.io.IOException; //OK
  * import java.net.URL; //OK
@@ -163,6 +166,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class SomeClass { ... }
  * </pre>
+ *
  * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Kepler and Luna releases):
@@ -181,7 +185,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
- * <p>Example:</p>
+ *
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * import static java.lang.System.out; //Violation; it should be sorted
  * import static java.lang.Math.*; //OK
@@ -199,6 +206,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class SomeClass { ... }
  * </pre>
+ *
  * <p>
  * Notes:
  * </p>
@@ -249,10 +257,14 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
  * import static java.lang.Math.PI; //OK
- * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' < 'a'
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  * import java.lang.Math.sqrt; //Ok, Follow property 'Option' value 'above'
  *
  * import static java.io.File.createTempFile; //OK
@@ -260,7 +272,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.io.IOException; //Violation; Should follow 'Group' property
  *
- * import org.abego.*; //Violation; Should follow 'ordered' property
+ * import org.albedo.*; //Violation; Should follow 'ordered' property
  *
  * import static javax.swing.WindowConstants.*; //Ok
  * import javax.swing.JComponent; //OK
@@ -273,6 +285,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class SomeClass { ... }
  * </pre>
+ *
  * <p>
  * To configure the check so that it matches default IntelliJ IDEA formatter configuration
  * (tested on v2018.2):
@@ -291,6 +304,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
+ *
  * <p>
  * Note: a <a href="https://checkstyle.org/config_filters.html#SuppressionXpathSingleFilter">
  * suppression xpath single filter</a> is needed because
@@ -316,6 +330,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="message" value="^'java\..*'.*"/&gt;
  * &lt;/module&gt;
  * </pre>
+ *
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at the bottom
  *
@@ -325,10 +343,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
  * import static java.lang.Math.PI; //OK
- * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' < 'a'
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
  * public class SomeClass { ... }
  * </pre>
+ *
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
  * (tested on v8):
