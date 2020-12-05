@@ -145,9 +145,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name="ImportOrder"/&gt;
  * </pre>
- *
  * <p>
- * Example:
+ * Example of Import order:
  * </p>
  * <pre>
  * import java.io.IOException; //OK
@@ -166,7 +165,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class SomeClass { ... }
  * </pre>
- *
  * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Kepler and Luna releases):
@@ -176,7 +174,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * group of static imports is on the top
  * </li>
  * <li>
- * groups of type imports: "java" and "javax" packages first, then "org" and then all other imports
+ * groups of type imports: "java" and "javax" packages first,
+ * then "org" and then all other imports
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -185,12 +184,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
- *
  * <p>
  * Example:
  * </p>
  * <pre>
- * import static java.lang.System.out; //Violation; it should be sorted
+ * import static java.lang.System.out; //Violation; it should be 'sorted'
  * import static java.lang.Math.*; //OK
  * import java.io.IOException; //Violation; Groups aren't separated by blank line
  *
@@ -206,18 +204,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * public class SomeClass { ... }
  * </pre>
- *
  * <p>
  * Notes:
  * </p>
  * <ul>
  * <li>
- * "com" package is not mentioned on configuration, because it is ignored by Eclipse Kepler and Luna
- * (looks like Eclipse defect)
+ * "com" package is not mentioned on configuration, because it is
+ * ignored by Eclipse Kepler and Luna (looks like Eclipse defect)
  * </li>
  * <li>
- * configuration below doesn't work in all 100% cases due to inconsistent behavior prior to
- * Mars release, but covers most scenarios
+ * configuration below doesn't work in all 100% cases due to inconsistent behavior
+ * prior to Mars release, but covers most scenarios
  * </li>
  * </ul>
  * <pre>
@@ -230,16 +227,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check so that it matches default Eclipse formatter configuration
- * (tested on Mars release):
+ * To configure the check so that it matches default Eclipse formatter
+ * configuration (tested on Mars release):
  * </p>
  * <ul>
  * <li>
  * group of static imports is on the top
  * </li>
  * <li>
- * groups of type imports: "java" and "javax" packages first, then "org" and "com",
- * then all other imports as one group
+ * groups of type imports: "java" and "javax" packages first,
+ * then "org" and "com", then all other imports as one group
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -257,45 +254,44 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * <p>
  * Example:
  * </p>
  * <pre>
- * import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
- * import static java.lang.Math.PI; //OK
- * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
+ * import static java.lang.Math.PI; //Ok
+ * import static java.lang.Math.abs; //Ok, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  * import java.lang.Math.sqrt; //Ok, Follow property 'Option' value 'above'
  *
- * import static java.io.File.createTempFile; //OK
- * import java.io.File; //OK
+ * import static java.io.File.createTempFile; //Ok
+ * import java.io.File; //Ok
  *
  * import java.io.IOException; //Violation; Should follow 'Group' property
  *
- * import org.albedo.*; //Violation; Should follow 'ordered' property
+ * import org.albedo.*; //Violation; Should follow 'ordered' property *{comes after javax imports}
  *
  * import static javax.swing.WindowConstants.*; //Ok
- * import javax.swing.JComponent; //OK
- * import org.apache.http.conn.ClientConnectionManager; //Violation; Should follow 'separated' property
+ * import javax.swing.JComponent; //Ok
+ * import org.apache.http.conn.ClientConnectionManager; //Violation; Should follow 'separated'
  *
  * import org.linux.apache.server.SoapServer; //OK
  *
- * import com.neurologic.http.HttpClient; //OK; tested on Mars release.
- * import com.neurologic.http.impl.ApacheHttpClient; //OK; tested on Mars release.
+ * import com.neurologic.http.HttpClient; //Ok; tested on Mars release.
+ * import com.neurologic.http.impl.ApacheHttpClient; //Ok; tested on Mars release.
  *
  * public class SomeClass { ... }
  * </pre>
- *
  * <p>
- * To configure the check so that it matches default IntelliJ IDEA formatter configuration
- * (tested on v2018.2):
+ * To configure the check so that it matches default IntelliJ IDEA formatter
+ * configuration (tested on v2018.2):
  * </p>
  * <ul>
  * <li>
  * group of static imports is on the bottom
  * </li>
  * <li>
- * groups of type imports: all imports except of "javax" and "java", then "javax" and "java"
+ * groups of type imports: all imports except of "javax"
+ * and "java", then "javax" and "java"
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -304,18 +300,17 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
- *
  * <p>
  * Note: a <a href="https://checkstyle.org/config_filters.html#SuppressionXpathSingleFilter">
  * suppression xpath single filter</a> is needed because
  * IDEA has no blank line between "javax" and "java".
- * ImportOrder has a limitation by design to enforce an empty line between groups ("java", "javax").
- * There is no flexibility to enforce empty lines between some groups and no empty lines between
- * other groups.
+ * ImportOrder has a limitation by design to enforce an empty line between groups
+ * ("java", "javax"). There is no flexibility to enforce empty lines between some
+ * groups and no empty lines between other groups.
  * </p>
  * <p>
- * Note: "separated" option is disabled because IDEA default has blank line between "java" and
- * static imports, and no blank line between "javax" and "java".
+ * Note: "separated" option is disabled because IDEA default has blank line
+ * between "java" and static imports, and no blank line between "javax" and "java".
  * </p>
  * <pre>
  * &lt;module name=&quot;ImportOrder&quot;&gt;
@@ -330,31 +325,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="message" value="^'java\..*'.*"/&gt;
  * &lt;/module&gt;
  * </pre>
- *
  * <p>
  * Example:
  * </p>
  * <pre>
- * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at the bottom
+ * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at bottom
  *
  * import java.net.URL; //OK
  * import java.security.KeyManagementException; //OK
  * import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
  *
- * import static java.awt.Button.A; //Violation; Should follow  'sortStaticImportsAlphabetically' property
+ * import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
  * import static java.lang.Math.PI; //OK
- * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
  * public class SomeClass { ... }
  * </pre>
- *
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
  * (tested on v8):
  * </p>
  * <ul>
  * <li>
- * groups of type imports are not defined, all imports will be sorted as a one group
+ * groups of type imports are not defined, all imports will be sorted as a one
+ * group
  * </li>
  * <li>
  * static imports are not separated, they will be sorted along with other imports
@@ -367,21 +361,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </pre>
  * <p>
  * Group descriptions enclosed in slashes are interpreted as regular expressions.
- * If multiple groups match, the one matching a longer substring of the imported name
- * will take precedence, with ties broken first in favor of earlier matches and finally
- * in favor of the first matching group.
+ * If multiple groups match, the one matching a longer
+ * substring of the imported name will take precedence, with ties
+ * broken first in favor of earlier matches and finally in favor of
+ * the first matching group.
  * </p>
  * <p>
- * There is always a wildcard group to which everything not in a named group belongs.
- * If an import does not match a named group, the group belongs to this wildcard group.
- * The wildcard group position can be specified using the {@code *} character.
+ * There is always a wildcard group to which everything not in a named group
+ * belongs. If an import does not match a named group, the group belongs to
+ * this wildcard group. The wildcard group position can be specified using the
+ * {@code *} character.
  * </p>
  * <p>
- * Check also has on option making it more flexible: <b>sortStaticImportsAlphabetically</b>
- * - sets whether static imports grouped by <b>top</b> or <b>bottom</b> option should be sorted
- * alphabetically or not, default value is <b>false</b>. It is applied to static imports grouped
- * with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling of this
- * Check and other tools like Eclipse's Organize Imports feature.
+ * Check also has on option making it more flexible:
+ * <b>sortStaticImportsAlphabetically</b> - sets whether static imports grouped
+ * by <b>top</b> or <b>bottom</b> option should be sorted alphabetically or
+ * not, default value is <b>false</b>. It is applied to static imports grouped
+ * with <b>top</b> or <b>bottom</b> options. This option is helping in reconciling
+ * of this Check and other tools like Eclipse's Organize Imports feature.
  * </p>
  * <p>
  * To configure the Check allows static imports grouped to the <b>top</b> being sorted
