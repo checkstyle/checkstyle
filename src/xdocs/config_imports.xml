@@ -1645,8 +1645,38 @@ import java.util.stream.IntStream;
       </subsection>
 
       <subsection name="Examples" id="ImportOrder_Examples">
-        <p>To configure the check so that it matches default Eclipse formatter configuration
-           (tested on Kepler and Luna releases):</p>
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ImportOrder&quot;/&gt;
+        </source>
+
+        <p>
+          Example of Import order:
+        </p>
+        <source>
+import java.io.IOException; //OK
+import java.net.URL; //OK
+import java.security.KeyManagementException; //OK
+
+import javax.net.ssl.SSLContext; //OK
+import javax.net.ssl.TrustManager; //OK
+import javax.net.ssl.X509TrustManager; //OK
+
+import org.apache.http.conn.ClientConnectionManager; //OK
+import org.apache.http.conn.scheme.Scheme; //OK
+
+import com.neurologic.http.HttpClient; //OK
+import com.neurologic.http.impl.ApacheHttpClient; //OK
+
+public class SomeClass { ... }
+        </source>
+
+        <p>
+          To configure the check so that it matches default Eclipse formatter configuration
+          (tested on Kepler and Luna releases):
+        </p>
         <ul>
           <li>group of static imports is on the top</li>
           <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
@@ -1654,7 +1684,31 @@ import java.util.stream.IntStream;
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
-        <p>Notes:</p>
+
+        <p>
+          Example:
+        </p>
+        <source>
+import static java.lang.System.out; //Violation; it should be 'sorted'
+import static java.lang.Math.*; //OK
+import java.io.IOException; //Violation; Groups aren't separated by blank line
+
+import java.net.URL; //OK
+import java.security.KeyManagementException; //OK
+
+import javax.net.ssl.TrustManager; //OK
+
+import javax.net.ssl.X509TrustManager; //Violation; Groups should not separate internally
+
+import org.apache.http.conn.ClientConnectionManager; //OK
+import org.apache.http.conn.scheme.Scheme; //OK
+
+public class SomeClass { ... }
+        </source>
+
+        <p>
+          Notes:
+        </p>
         <ul>
           <li>&quot;com&quot; package is not mentioned on configuration, because it is
               ignored by Eclipse Kepler and Luna (looks like Eclipse defect)</li>
@@ -1672,8 +1726,10 @@ import java.util.stream.IntStream;
 &lt;/module&gt;
         </source>
 
-        <p>To configure the check so that it matches default Eclipse formatter
-           configuration (tested on Mars release):</p>
+        <p>
+          To configure the check so that it matches default Eclipse formatter
+          configuration (tested on Mars release):
+        </p>
         <ul>
           <li>group of static imports is on the top</li>
           <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
@@ -1692,8 +1748,38 @@ import java.util.stream.IntStream;
 &lt;/module&gt;
         </source>
 
-        <p>To configure the check so that it matches default IntelliJ IDEA formatter
-           configuration (tested on v2018.2):</p>
+        <p>
+          Example:
+        </p>
+        <source>
+import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
+import static java.lang.Math.PI; //Ok
+import static java.lang.Math.abs; //Ok, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+import java.lang.Math.sqrt; //Ok, Follow property 'Option' value 'above'
+
+import static java.io.File.createTempFile; //Ok
+import java.io.File; //Ok
+
+import java.io.IOException; //Violation; Should follow 'Group' property
+
+import org.albedo.*; //Violation; Should follow 'ordered' property *{comes after javax imports}
+
+import static javax.swing.WindowConstants.*; //Ok
+import javax.swing.JComponent; //Ok
+import org.apache.http.conn.ClientConnectionManager; //Violation; Should follow 'separated' property
+
+import org.linux.apache.server.SoapServer; //Ok
+
+import com.neurologic.http.HttpClient; //Ok; tested on Mars release.
+import com.neurologic.http.impl.ApacheHttpClient; //OK; tested on Mars release.
+
+public class SomeClass { ... }
+        </source>
+
+        <p>
+          To configure the check so that it matches default IntelliJ IDEA formatter
+          configuration (tested on v2018.2):
+        </p>
         <ul>
           <li>group of static imports is on the bottom</li>
           <li>groups of type imports: all imports except of &quot;javax&quot;
@@ -1708,7 +1794,8 @@ import java.util.stream.IntStream;
           is needed because IDEA has no blank line between "javax" and "java".
           ImportOrder has a limitation by design to enforce an empty line between groups
           ("java", "javax"). There is no flexibility to enforce empty lines between some
-          groups and no empty lines between other groups.</p>
+          groups and no empty lines between other groups.
+        </p>
         <p>
           Note: "separated" option is disabled because IDEA default has blank line
           between "java" and static imports, and no blank line between "javax" and "java".
@@ -1726,9 +1813,27 @@ import java.util.stream.IntStream;
   &lt;property name="message" value="^'java\..*'.*"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import static javax.swing.WindowConstants.*; //Violation; all static imports comes at bottom
 
-        <p>To configure the check so that it matches default NetBeans formatter configuration
-           (tested on v8):</p>
+import java.net.URL; //OK
+import java.security.KeyManagementException; //OK
+import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
+
+import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
+import static java.lang.Math.PI; //OK
+import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+
+public class SomeClass { ... }
+        </source>
+
+        <p>
+          To configure the check so that it matches default NetBeans formatter configuration
+          (tested on v8):
+        </p>
         <ul>
           <li>groups of type imports are not defined, all imports will be sorted as a one
               group</li>
