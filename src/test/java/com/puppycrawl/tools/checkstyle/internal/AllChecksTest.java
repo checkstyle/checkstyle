@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -78,9 +79,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
-            new HashMap<>();
+            new LinkedHashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
-            new HashMap<>();
+            new LinkedHashMap<>();
     private static final Set<String> INTERNAL_MODULES;
 
     static {
@@ -471,7 +472,17 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
                                               Set<String> configTokens) {
-        if (Arrays.equals(check.getDefaultTokens(), check.getRequiredTokens())) {
+
+        final Integer[] defaultTokens = Arrays.stream(check.getDefaultTokens())
+            .boxed()
+            .toArray(Integer[]::new);
+        final Integer[] requiredTokens = Arrays.stream(check.getRequiredTokens())
+            .boxed()
+            .toArray(Integer[]::new);
+        final Set<Integer> defaultTokensSet = new HashSet<>(Arrays.asList(defaultTokens));
+        final Set<Integer> requiredTokensSet = new HashSet<>(Arrays.asList(requiredTokens));
+
+        if (defaultTokensSet.equals(requiredTokensSet)) {
             configTokens.addAll(
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
