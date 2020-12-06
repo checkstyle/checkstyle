@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -140,13 +142,16 @@ public class UnusedImportsCheck extends AbstractCheck {
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
-    /** Set of references - possibly to imports or other things. */
-    private final Set<String> referenced = new HashSet<>();
-
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
     /** Control whether to process Javadoc comments. */
     private boolean processJavadoc = true;
+
+    /**
+     * The scope is being processed.
+     * Types declared in a scope can shadow imported types.
+     */
+    private Frame currentFrame;
 
     /**
      * Setter to control whether to process Javadoc comments.
@@ -160,12 +165,13 @@ public class UnusedImportsCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         collect = false;
+        currentFrame = Frame.compilationUnit();
         imports.clear();
-        referenced.clear();
     }
 
     @Override
     public void finishTree(DetailAST rootAST) {
+        currentFrame.finish();
         // loop over all the imports to see if referenced.
         imports.stream()
             .filter(imprt -> isUnusedImport(imprt.getText()))
@@ -196,6 +202,9 @@ public class UnusedImportsCheck extends AbstractCheck {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            // Tokens for creating a new frame
+            TokenTypes.OBJBLOCK,
+            TokenTypes.SLIST,
         };
     }
 
@@ -206,22 +215,35 @@ public class UnusedImportsCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (ast.getType() == TokenTypes.IDENT) {
-            if (collect) {
-                processIdent(ast);
-            }
+        switch (ast.getType()) {
+            case TokenTypes.IDENT:
+                if (collect) {
+                    processIdent(ast);
+                }
+                break;
+            case TokenTypes.IMPORT:
+                processImport(ast);
+                break;
+            case TokenTypes.STATIC_IMPORT:
+                processStaticImport(ast);
+                break;
+            case TokenTypes.OBJBLOCK:
+            case TokenTypes.SLIST:
+                currentFrame = currentFrame.push();
+                break;
+            default:
+                collect = true;
+                if (processJavadoc) {
+                    collectReferencesFromJavadoc(ast);
+                }
+                break;
         }
-        else if (ast.getType() == TokenTypes.IMPORT) {
-            processImport(ast);
-        }
-        else if (ast.getType() == TokenTypes.STATIC_IMPORT) {
-            processStaticImport(ast);
-        }
-        else {
-            collect = true;
-            if (processJavadoc) {
-                collectReferencesFromJavadoc(ast);
-            }
+    }
+
+    @Override
+    public void leaveToken(DetailAST ast) {
+        if (TokenUtil.isOfType(ast, TokenTypes.OBJBLOCK, TokenTypes.SLIST)) {
+            currentFrame = currentFrame.pop();
         }
     }
 
@@ -233,7 +255,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private boolean isUnusedImport(String imprt) {
         final Matcher javaLangPackageMatcher = JAVA_LANG_PACKAGE_PATTERN.matcher(imprt);
-        return !referenced.contains(CommonUtil.baseClassName(imprt))
+        return !currentFrame.isReferencedType(CommonUtil.baseClassName(imprt))
             || javaLangPackageMatcher.matches();
     }
 
@@ -245,11 +267,12 @@ public class UnusedImportsCheck extends AbstractCheck {
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-        if (parentType != TokenTypes.DOT
-            && parentType != TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null) {
-            referenced.add(ast.getText());
+        if (TokenUtil.isTypeDeclaration(parentType)) {
+            currentFrame.addDeclaredType(ast.getText());
+        }
+        else if (parentType != TokenTypes.DOT && parentType != TokenTypes.METHOD_DEF
+                || parentType == TokenTypes.DOT && ast.getNextSibling() != null) {
+            currentFrame.addReferencedType(ast.getText());
         }
     }
 
@@ -289,7 +312,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final int lineNo = ast.getLineNo();
         final TextBlock textBlock = contents.getJavadocBefore(lineNo);
         if (textBlock != null) {
-            referenced.addAll(collectReferencesFromJavadoc(textBlock));
+            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
         }
     }
 
@@ -379,6 +402,107 @@ public class UnusedImportsCheck extends AbstractCheck {
             topLevelType = type.substring(0, dotIndex);
         }
         return topLevelType;
+    }
+
+    /**
+     * Holds the names of referenced types and names of declared inner types.
+     */
+    private static final class Frame {
+
+        /** Parent frame. */
+        private final Frame parent;
+
+        /** Nested types declared in the current scope. */
+        private final Set<String> declaredTypes;
+
+        /** Set of references - possibly to imports or locally declared types. */
+        private final Set<String> referencedTypes;
+
+        /**
+         * Private constructor. Use {@link #compilationUnit()} to create a new top-level frame.
+         *
+         * @param parent the parent frame
+         */
+        private Frame(Frame parent) {
+            this.parent = parent;
+            declaredTypes = new HashSet<>();
+            referencedTypes = new HashSet<>();
+        }
+
+        /**
+         * Adds new inner type.
+         *
+         * @param type the type name
+         */
+        public void addDeclaredType(String type) {
+            declaredTypes.add(type);
+        }
+
+        /**
+         * Adds new type reference to the current frame.
+         *
+         * @param type the type name
+         */
+        public void addReferencedType(String type) {
+            referencedTypes.add(type);
+        }
+
+        /**
+         * Adds new inner types.
+         *
+         * @param types the type names
+         */
+        public void addReferencedTypes(Collection<String> types) {
+            referencedTypes.addAll(types);
+        }
+
+        /**
+         * Filters out all references to locally defined types.
+         *
+         */
+        public void finish() {
+            referencedTypes.removeAll(declaredTypes);
+        }
+
+        /**
+         * Creates new inner frame.
+         *
+         * @return a new frame.
+         */
+        public Frame push() {
+            return new Frame(this);
+        }
+
+        /**
+         * Pulls all referenced types up, except those that are declared in this scope.
+         *
+         * @return the parent frame
+         */
+        public Frame pop() {
+            finish();
+            parent.addReferencedTypes(referencedTypes);
+            return parent;
+        }
+
+        /**
+         * Checks whether this type name is used in this frame.
+         *
+         * @param type the type name
+         * @return {@code true} if the type is used
+         */
+        public boolean isReferencedType(String type) {
+            return referencedTypes.contains(type);
+        }
+
+        /**
+         * Creates a new top-level frame for the compilation unit.
+         *
+         * @return a new frame.
+         */
+        public static Frame compilationUnit() {
+            return new Frame(null);
+        }
+
     }
 
 }
