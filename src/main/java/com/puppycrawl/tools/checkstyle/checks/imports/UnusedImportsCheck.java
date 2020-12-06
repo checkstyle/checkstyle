@@ -20,6 +20,7 @@
 package com.puppycrawl.tools.checkstyle.checks.imports;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -34,8 +35,10 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -140,13 +143,13 @@ public class UnusedImportsCheck extends AbstractCheck {
     /** Set of the imports. */
     private final Set<FullIdent> imports = new HashSet<>();
 
-    /** Set of references - possibly to imports or other things. */
-    private final Set<String> referenced = new HashSet<>();
-
     /** Flag to indicate when time to start collecting references. */
     private boolean collect;
     /** Control whether to process Javadoc comments. */
     private boolean processJavadoc = true;
+
+    /** The type which scope is being processed. */
+    private Frame currentFrame;
 
     /**
      * Setter to control whether to process Javadoc comments.
@@ -160,8 +163,8 @@ public class UnusedImportsCheck extends AbstractCheck {
     @Override
     public void beginTree(DetailAST rootAST) {
         collect = false;
+        currentFrame = new Frame(null, null);
         imports.clear();
-        referenced.clear();
     }
 
     @Override
@@ -219,9 +222,20 @@ public class UnusedImportsCheck extends AbstractCheck {
         }
         else {
             collect = true;
+            if (TokenUtil.isTypeDeclaration(ast.getType())) {
+                currentFrame = new Frame(currentFrame, ast.getLastChild());
+            }
             if (processJavadoc) {
                 collectReferencesFromJavadoc(ast);
             }
+        }
+    }
+
+    @Override
+    public void leaveToken(DetailAST ast) {
+        if (TokenUtil.isTypeDeclaration(ast.getType())) {
+            currentFrame.propagateReferencesToParent();
+            currentFrame = currentFrame.getParent();
         }
     }
 
@@ -233,7 +247,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private boolean isUnusedImport(String imprt) {
         final Matcher javaLangPackageMatcher = JAVA_LANG_PACKAGE_PATTERN.matcher(imprt);
-        return !referenced.contains(CommonUtil.baseClassName(imprt))
+        return currentFrame.isUnusedImport(CommonUtil.baseClassName(imprt))
             || javaLangPackageMatcher.matches();
     }
 
@@ -245,11 +259,12 @@ public class UnusedImportsCheck extends AbstractCheck {
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
-        if (parentType != TokenTypes.DOT
-            && parentType != TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null) {
-            referenced.add(ast.getText());
+        if (TokenUtil.isTypeDeclaration(parentType)) {
+            currentFrame.getParent().addDeclaredType(ast);
+        }
+        else if (parentType != TokenTypes.DOT && parentType != TokenTypes.METHOD_DEF
+                || parentType == TokenTypes.DOT && ast.getNextSibling() != null) {
+            currentFrame.addReferencedType(ast);
         }
     }
 
@@ -289,7 +304,7 @@ public class UnusedImportsCheck extends AbstractCheck {
         final int lineNo = ast.getLineNo();
         final TextBlock textBlock = contents.getJavadocBefore(lineNo);
         if (textBlock != null) {
-            referenced.addAll(collectReferencesFromJavadoc(textBlock));
+            currentFrame.addReferencedTypes(collectReferencesFromJavadoc(textBlock));
         }
     }
 
@@ -379,6 +394,96 @@ public class UnusedImportsCheck extends AbstractCheck {
             topLevelType = type.substring(0, dotIndex);
         }
         return topLevelType;
+    }
+
+    /**
+     * Holds the names of referenced types and names of declared nested types.
+     */
+    private static class Frame {
+
+        /** Parent frame. */
+        private final Frame parent;
+
+        /** The {@link TokenTypes#OBJBLOCK} node for the current frame. */
+        private final DetailAST objBlock;
+
+        /** Nested types declared in the current class or interface. */
+        private final Set<String> declaredTypes;
+
+        /** Set of references - possibly to imports or locally declared types. */
+        private final Set<String> referencedTypes;
+
+        /**
+         * Creates new frame.
+         *
+         * @param parent the parent frame
+         * @param objBlock the OBJBLOCK node for the current frame
+         */
+        /* package */ Frame(Frame parent, DetailAST objBlock) {
+            this.parent = parent;
+            this.objBlock = objBlock;
+            declaredTypes = new HashSet<>();
+            referencedTypes = new HashSet<>();
+        }
+
+        /**
+         * Adds new nested type.
+         *
+         * @param node the detail node
+         */
+        public void addDeclaredType(DetailAST node) {
+            declaredTypes.add(node.getText());
+        }
+
+        /**
+         * Adds new type reference. All types located in the source file before
+         * the {@link TokenTypes#OBJBLOCK} node (annotations, type arguments, etc)
+         * should be resolved in the parent frame.
+         *
+         * @param node the detail node
+         */
+        public void addReferencedType(DetailAST node) {
+            if (objBlock == null || CheckUtil.isBeforeInSource(objBlock, node)) {
+                referencedTypes.add(node.getText());
+            }
+            else {
+                parent.addReferencedType(node);
+            }
+        }
+
+        /**
+         * Adds new nested types.
+         *
+         * @param types the type names
+         */
+        public void addReferencedTypes(Collection<String> types) {
+            referencedTypes.addAll(types);
+        }
+
+        /**
+         * Getter for the parent frame.
+         *
+         * @return parent frame.
+         */
+        public Frame getParent() {
+            return parent;
+        }
+
+        /** Pulls all referenced types up, except those that are declared in this scope. */
+        public void propagateReferencesToParent() {
+            referencedTypes.removeAll(declaredTypes);
+            parent.addReferencedTypes(referencedTypes);
+        }
+
+        /**
+         * Checks whether this type name is used in this frame.
+         *
+         * @param type the type name
+         * @return {@code true} if the type is not used
+         */
+        public boolean isUnusedImport(String type) {
+            return declaredTypes.contains(type) || !referencedTypes.contains(type);
+        }
     }
 
 }
