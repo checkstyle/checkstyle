@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
@@ -523,7 +523,7 @@ public class IndentationCheck extends AbstractCheck {
         final PrimordialHandler primordialHandler = new PrimordialHandler(this);
         handlers.push(primordialHandler);
         primordialHandler.checkIndentation();
-        incorrectIndentationLines = new HashSet<>();
+        incorrectIndentationLines = new LinkedHashSet<>();
     }
 
     @Override
