@@ -115,6 +115,13 @@ public class LambdaHandler extends AbstractExpressionHandler {
         }
     }
 
+    /**
+     * Checks that given indent is acceptable or not.
+     *
+     * @param astColumnNo indent value to check
+     * @param level indent level
+     * @return true if indent is not acceptable
+     */
     private boolean isNonAcceptableIndent(int astColumnNo, IndentLevel level) {
         return astColumnNo < level.getFirstIndentLevel()
             || getIndentCheck().isForceStrictCondition()

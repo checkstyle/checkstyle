@@ -571,8 +571,17 @@
     <module name="MissingJavadocMethod">
       <property name="allowMissingPropertyJavadoc" value="true"/>
     </module>
+    <module name="MissingJavadocMethod">
+      <property name="id" value="missingPrivateMethodsJavadoc"/>
+      <property name="allowMissingPropertyJavadoc" value="true"/>
+      <property name="scope" value="private"/>
+    </module>
     <module name="MissingJavadocPackage"/>
     <module name="MissingJavadocType"/>
+    <module name="MissingJavadocType">
+      <property name="id" value="missingPrivateTypesJavadoc"/>
+      <property name="scope" value="private"/>
+    </module>
     <module name="NonEmptyAtclauseDescription"/>
     <module name="SingleLineJavadoc"/>
     <module name="WriteTag"/>
