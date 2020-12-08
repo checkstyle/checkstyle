@@ -72,7 +72,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;NeedBraces&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+ *   &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Valid code example:</p>
+ * <pre>
+ * if (true) {
+ *     return true; // OK
+ * }  else {
+ *     return false; // OK
+ * }
+ * </pre>
+ * <p>Invalid code example:</p>
+ * <pre>
+ * if (true)
+ *     return true; // violation, single line statements without braces are not allowed
+ * else
+ *     return false; // violation, single line statements without braces are not allowed
  * </pre>
  * <p>
  * To configure the check to allow single-line statements
