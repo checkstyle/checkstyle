@@ -305,6 +305,13 @@ public class LineWrappingHandler {
         return endOfScope;
     }
 
+    /**
+     * Checks that some parent of given node contains given token type.
+     *
+     * @param node node to check
+     * @param type type to look for
+     * @return true if there is a parent of given type
+     */
     private static boolean isParentContainsTokenType(final DetailAST node, int type) {
         boolean returnValue = false;
         for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {
