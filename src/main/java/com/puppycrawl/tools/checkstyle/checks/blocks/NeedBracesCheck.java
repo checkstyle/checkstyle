@@ -74,6 +74,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Code Example:</p>
+ * <pre>
+ * if (true) {
+ *     return true; // OK
+ * }  else
+ *     return false; // violation, single line statements without braces are not allowed
+ * </pre>
  * <p>
  * To configure the check to allow single-line statements
  * ({@code if, while, do-while, for}) without braces:
