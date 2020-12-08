@@ -922,6 +922,13 @@ class Test
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>Code Example:</p>
+        <source>
+if (true) {
+    return true; // OK
+}  else
+    return false; // violation, single line statements without braces are not allowed
+        </source>
 
         <p>
           To configure the check to allow single-line statements
