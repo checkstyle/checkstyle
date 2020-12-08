@@ -270,6 +270,13 @@ public class MatchXpathCheck extends AbstractCheck {
         }
     }
 
+    /**
+     * Find nodes that match query.
+     *
+     * @param rootAST root node
+     * @return list of matching nodes
+     * @throws IllegalStateException if evaluation of xpath query fails
+     */
     private List<DetailAST> findMatchingNodesByXpathQuery(DetailAST rootAST) {
         try {
             final RootNode rootNode = new RootNode(rootAST);
