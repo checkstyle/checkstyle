@@ -555,7 +555,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
      * Logs a trailing array comma violation if one exists.
      *
      * @param ast the array init
-     * {@link TokenTypes#ANNOTATION_ARRAY_INIT ANNOTATION_ARRAY_INIT}.
+     *     {@link TokenTypes#ANNOTATION_ARRAY_INIT ANNOTATION_ARRAY_INIT}.
      */
     private void logCommaViolation(final DetailAST ast) {
         final DetailAST rCurly = ast.findFirstToken(TokenTypes.RCURLY);
