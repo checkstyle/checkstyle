@@ -93,27 +93,18 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel getChildrenExpectedIndent() {
+        IndentLevel expectedIndent =
+            new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
 
-        final int offset = Math.min(getArrayInitIndentation(), getLineWrappingIndentation());
-        IndentLevel expectedIndent = new IndentLevel(getIndent(), offset);
+        final int firstLine = getFirstLine(getListChild());
+        final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
+        final int firstChildPos =
+            getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
 
-        // If force strict condition is true,
-        // then the child should have discrete indentation values.
-        if (getIndentCheck().isForceStrictCondition()) {
-            expectedIndent = new IndentLevel(getIndent(),
-                        getArrayInitIndentation(), getLineWrappingIndentation());
-
-            final int firstLine = getFirstLine(getListChild());
-            final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
-            final int firstChildPos =
-                getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
-
-            if (firstChildPos != NOT_EXIST) {
-                expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
+        if (firstChildPos != NOT_EXIST) {
+            expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
                     + getLineWrappingIndentation());
-            }
         }
-
         return expectedIndent;
     }
 
