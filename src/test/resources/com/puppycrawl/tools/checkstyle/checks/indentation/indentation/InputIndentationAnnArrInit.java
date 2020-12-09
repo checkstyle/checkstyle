@@ -14,12 +14,12 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
 
 @InputIndentationAnnArrInit.Foo({ @InputIndentationAnnArrInit.Bar, //indent:0 exp:0
     @InputIndentationAnnArrInit.Bar, //indent:4 exp:4
-@InputIndentationAnnArrInit.Bar, //indent:0 exp:>=4 warn
+@InputIndentationAnnArrInit.Bar, //indent:0 exp:4,6,34,36 warn
 }) //indent:0 exp:0
 
 @InputIndentationAnnArrInit.Baz({ //indent:0 exp:0
     "Hello", //indent:4 exp:4
-             "Checkstyle", //indent:13 exp:13
+             "Checkstyle", //indent:13 exp:4,6,34,36 warn
   }) //indent:2 exp:0,4 warn
 
 class InputIndentationAnnArrInit { //indent:0 exp:0
@@ -32,7 +32,7 @@ class InputIndentationAnnArrInit { //indent:0 exp:0
   @interface Baz { //indent:2 exp:2
     String[] value() default { //indent:4 exp:4
         "Hello", //indent:8 exp:8
-      "Checkstyle" //indent:6 exp:>=8 warn
+      "Checkstyle" //indent:6 exp:8,10,31,33 warn
   }; //indent:2 exp:4,8 warn
   } //indent:2 exp:2
 
@@ -49,7 +49,7 @@ interface SomeInterface { //indent:0 exp:0
 
   @SomeAnnotation(values =  //indent:2 exp:2
       { //indent:6 exp:6
-     Info.A, //indent:5 exp:>=6 warn
+     Info.A, //indent:5 exp:6,8,10 warn
       Info.B //indent:6 exp:6
      } //indent:5 exp:2,6 warn
   ) //indent:2 exp:2
