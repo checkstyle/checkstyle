@@ -61,10 +61,10 @@ no-error-pgjdbc)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/pgjdbc/pgjdbc.git
+  checkout_from https://github.com/Abhishek-kumar09/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "bad34f1c2985225b8809eb1c3fee5c5684d363a7"
+  git checkout "f41cc39001fe""bd824242a""fa5cb474fa0a52c1081"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
