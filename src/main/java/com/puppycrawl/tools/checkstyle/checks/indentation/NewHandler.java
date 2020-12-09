@@ -42,19 +42,20 @@ public class NewHandler extends AbstractExpressionHandler {
     public NewHandler(IndentationCheck indentCheck,
                       DetailAST ast,
                       AbstractExpressionHandler parent) {
-        super(indentCheck, "operator new", ast, parent);
+        super(indentCheck, "new", ast, parent);
         mainAst = ast;
     }
 
     @Override
     public void checkIndentation() {
         // if new is on the line start and it is not the part of assignment.
-        if (isOnStartOfLine(mainAst)
-                && !isNewKeywordFollowedByAssign()) {
+        if (isOnStartOfLine(mainAst)) {
             final int columnNo = expandedTabsColumnNo(mainAst);
             final IndentLevel level = getIndentImpl();
 
-            if (columnNo < level.getFirstIndentLevel()) {
+            final boolean forceStrictCondition = getIndentCheck().isForceStrictCondition();
+            if (forceStrictCondition && !level.isAcceptable(columnNo)
+                || !forceStrictCondition && level.isGreaterThan(columnNo)) {
                 logError(mainAst, "", columnNo, level);
             }
         }
@@ -88,7 +89,10 @@ public class NewHandler extends AbstractExpressionHandler {
         if (getLineStart(mainAst) == mainAst.getColumnNo()) {
             result = super.getIndentImpl();
 
-            if (isNewKeywordFollowedByAssign()) {
+            final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
+                                        TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+
+            if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {
                 result = new IndentLevel(result, getLineWrappingIndent());
             }
         }
@@ -97,15 +101,6 @@ public class NewHandler extends AbstractExpressionHandler {
         }
 
         return result;
-    }
-
-    /**
-     * Checks if the 'new' keyword is followed by an assignment.
-     *
-     * @return true if new keyword is followed by assignment.
-     */
-    private boolean isNewKeywordFollowedByAssign() {
-        return mainAst.getParent().getParent().getType() == TokenTypes.ASSIGN;
     }
 
     /**
@@ -121,6 +116,23 @@ public class NewHandler extends AbstractExpressionHandler {
     @Override
     protected boolean shouldIncreaseIndent() {
         return false;
+    }
+
+    /**
+     * The function checks if the new keyword is a child of chained method calls,
+     * it checks if the new is directly followed by equal operator or return operator.
+     *
+     * @return true if the new it is chained method calls and new keyword is directly followed
+     *         by assign or return
+     */
+    private boolean doesChainedMethodNeedsLineWrapping() {
+        DetailAST ast = mainAst.getParent();
+
+        while (TokenUtil.isOfType(ast, TokenTypes.DOT, TokenTypes.METHOD_CALL, TokenTypes.EXPR)) {
+            ast = ast.getParent();
+        }
+
+        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
     }
 
 }
