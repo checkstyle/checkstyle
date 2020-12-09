@@ -24,7 +24,7 @@ public class ClassWithChainedMethods { //indent:0 exp:0
     .length(); //indent:4 exp:>=8 warn
 
     int length2 =  //indent:4 exp:4
-    new ClassWithChainedMethods("param1","param2") //indent:4 exp:>=8 warn
+    new ClassWithChainedMethods("param1","param2") //indent:4 exp:4
         .getInstance() //indent:8 exp:8
         .doNothing("nothing") //indent:8 exp:8
         .length(); //indent:8 exp:8
