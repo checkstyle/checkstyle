@@ -19,17 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
-
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -140,12 +133,6 @@ public class TrailingCommentCheck extends AbstractCheck {
     public static final String MSG_KEY = "trailing.comments";
 
     /**
-     * A Map contains illegal lines, the key is lineNo, the value is
-     * ColumnNo.
-     */
-    private final Map<Integer, Integer> illegalLines = new HashMap<>();
-
-    /**
      * Define pattern for text allowed in trailing comments.
      * (This pattern will not be applied to multiline comments and the text
      * of the comment will be trimmed before matching.)
@@ -200,76 +187,44 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int lineNo = ast.getLineNo();
-        if (illegalLines.get(lineNo) != null
-                && illegalLines.get(lineNo).equals(ast.getColumnNo())) {
-            log(ast, MSG_KEY);
-        }
-    }
+        final String commentBeginLine = getLine(ast.getLineNo() - 1);
+        final String beforeComment = commentBeginLine.substring(0, ast.getColumnNo());
+        final String commentContent = ast.getFirstChild().getText();
+        final boolean isBeforeCommentLegal = format.matcher(beforeComment).find();
 
-    @Override
-    public void beginTree(DetailAST rootAST) {
-        final Map<Integer, TextBlock> cppComments = getFileContents()
-                .getSingleLineComments();
-        final Map<Integer, List<TextBlock>> cComments = getFileContents()
-                .getBlockComments();
-        final Set<Integer> lines = new HashSet<>();
-        lines.addAll(cppComments.keySet());
-        lines.addAll(cComments.keySet());
-
-        for (Integer lineNo : lines) {
-            final String line = getLines()[lineNo - 1];
-            final String lineBefore;
-            final TextBlock comment;
-            if (cppComments.containsKey(lineNo)) {
-                comment = cppComments.get(lineNo);
-                lineBefore = line.substring(0, comment.getStartColNo());
+        if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            if (!isBeforeCommentLegal && !isCommentMatchLegalPattern(commentContent)) {
+                log(ast, MSG_KEY);
             }
-            else {
-                final List<TextBlock> commentList = cComments.get(lineNo);
-                comment = commentList.get(commentList.size() - 1);
-                lineBefore = line.substring(0, comment.getStartColNo());
-
-                // do not check comment which doesn't end line
-                if (comment.getText().length == 1
-                        && !CommonUtil.isBlank(line
-                            .substring(comment.getEndColNo() + 1))) {
-                    continue;
+        } else if (ast.getType() == TokenTypes.BLOCK_COMMENT_BEGIN) {
+            final DetailAST commentEnd = ast.getFirstChild().getNextSibling();
+            final String commentEndLine = getLine(commentEnd.getLineNo() - 1);
+            final int commentEndColumnNo = commentEnd.getColumnNo();
+            final String afterComment;
+            if (commentEndLine.charAt(commentEndColumnNo) == '*') {
+                afterComment = commentEndLine.substring(commentEndColumnNo + 2);
+            } else {
+                afterComment = commentEndLine.substring(commentEndColumnNo + 3);
+            }
+            final boolean isCommentEndALine = CommonUtil.isBlank(afterComment);
+            if (isCommentEndALine) {
+                final boolean isMultiLine = commentEnd.getLineNo() > ast.getLineNo();
+                // Multiline comment cannot be legal
+                final boolean isCommentLegal = !isMultiLine && isCommentMatchLegalPattern(commentContent);
+                if (!isBeforeCommentLegal && !isCommentLegal) {
+                    log(ast, MSG_KEY);
                 }
-            }
-            if (!format.matcher(lineBefore).find()
-                && !isLegalComment(comment)) {
-                illegalLines.put(lineNo, comment.getStartColNo());
             }
         }
     }
 
     /**
-     * Checks if given comment is legal (single-line and matches to the
-     * pattern).
+     * Check if commentContent matches legalComment pattern
      *
-     * @param comment comment to check.
-     * @return true if the comment if legal.
+     * @param commentContent the content of a comment
+     * @return true if commentContent matches legalComment pattern
      */
-    private boolean isLegalComment(final TextBlock comment) {
-        final boolean legal;
-
-        // multi-line comment can not be legal
-        if (legalComment == null || comment.getStartLineNo() != comment.getEndLineNo()) {
-            legal = false;
-        }
-        else {
-            String commentText = comment.getText()[0];
-            // remove chars which start comment
-            commentText = commentText.substring(2);
-            // if this is a C-style comment we need to remove its end
-            if (commentText.endsWith("*/")) {
-                commentText = commentText.substring(0, commentText.length() - 2);
-            }
-            commentText = commentText.trim();
-            legal = legalComment.matcher(commentText).find();
-        }
-        return legal;
+    private boolean isCommentMatchLegalPattern(String commentContent) {
+        return legalComment != null && legalComment.matcher(commentContent.trim()).find();
     }
-
 }
