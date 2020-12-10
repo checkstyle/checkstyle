@@ -920,7 +920,23 @@ class Test
         <source>
 &lt;module name=&quot;NeedBraces&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
+  &lt;property name=&quot;allowSingleLineStatement&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Valid code example:</p>
+        <source>
+if (true) {
+    return true; // OK
+}  else {
+    return false; // OK
+}
+        </source>
+        <p>Invalid code example:</p>
+        <source>
+if (true)
+    return true; // violation, single line statements without braces are not allowed
+else
+    return false; // violation, single line statements without braces are not allowed
         </source>
 
         <p>
