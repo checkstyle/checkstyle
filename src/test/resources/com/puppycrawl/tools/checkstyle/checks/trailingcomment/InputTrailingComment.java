@@ -30,4 +30,10 @@ public class InputTrailingComment {
     final static public String NAME2="Some Name"; /*NOI18N*/
     String NAME3="Some Name"; /*NOI18N
 */
+
+
+    /* A multiline comment here. Should ignore this
+    end here*/                  // don't use trailing comment :)
+
+    /* first comment is ok **/ private int  b; /* Second comment is a trailing comment **/
 }
