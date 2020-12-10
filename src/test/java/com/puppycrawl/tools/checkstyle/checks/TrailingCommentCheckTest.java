@@ -65,8 +65,19 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "29:50: " + getCheckMessage(MSG_KEY),
             "30:51: " + getCheckMessage(MSG_KEY),
             "31:31: " + getCheckMessage(MSG_KEY),
+            "36:33: " + getCheckMessage(MSG_KEY),
+            "38:48: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    @Test
+    public void testDefaultsPastFalsePositive() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
+        final String[] expected = {
+            "8:42: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputTrailingCommentPastFalsePositive.java"), expected);
     }
 
     @Test
@@ -80,6 +91,8 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "18:19: " + getCheckMessage(MSG_KEY),
             "19:21: " + getCheckMessage(MSG_KEY),
             "31:31: " + getCheckMessage(MSG_KEY),
+            "36:33: " + getCheckMessage(MSG_KEY),
+            "38:48: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -103,8 +116,9 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "29:50: " + getCheckMessage(MSG_KEY),
             "30:51: " + getCheckMessage(MSG_KEY),
             "31:31: " + getCheckMessage(MSG_KEY),
+            "36:33: " + getCheckMessage(MSG_KEY),
+            "38:48: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
-
 }
