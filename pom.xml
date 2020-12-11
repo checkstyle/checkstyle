@@ -339,7 +339,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.9.0.202009080501-r</version>
+      <version>5.10.0.202012080955-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
