@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -39,6 +40,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -78,9 +80,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
     };
 
     private static final Map<String, Set<String>> CHECKSTYLE_TOKENS_IN_CONFIG_TO_IGNORE =
-            new HashMap<>();
+            new LinkedHashMap<>();
     private static final Map<String, Set<String>> GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE =
-            new HashMap<>();
+            new LinkedHashMap<>();
     private static final Set<String> INTERNAL_MODULES;
 
     static {
@@ -471,7 +473,16 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
                                               Set<String> configTokens) {
-        if (Arrays.equals(check.getDefaultTokens(), check.getRequiredTokens())) {
+
+        final Set<Integer> defaultTokensSet = IntStream.of(check.getDefaultTokens())
+            .boxed()
+            .collect(Collectors.toSet());
+
+        final Set<Integer> requiredTokensSet = IntStream.of(check.getRequiredTokens())
+            .boxed()
+            .collect(Collectors.toSet());
+
+        if (defaultTokensSet.equals(requiredTokensSet)) {
             configTokens.addAll(
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
