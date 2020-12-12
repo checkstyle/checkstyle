@@ -912,6 +912,22 @@ class Test
         <source>
 &lt;module name=&quot;NeedBraces&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <source>
+if (true) { // OK
+    return true;
+} else // violation, single-line statements not allowed without braces
+    return false;
+for (int i = 0; i &lt; 5; i++) { // OK
+    ++count;
+}
+do // violation, single-line statements not allowed without braces
+    ++count;
+while (false);
+for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
+while (counter &lt; 10) // violation, single-line statements not allowed without braces
+    ++count;
+        </source>
 
         <p>
           To configure the check for <code>if</code> and
@@ -921,6 +937,13 @@ class Test
 &lt;module name=&quot;NeedBraces&quot;&gt;
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+if (x &gt; 10) { // OK
+    return true;
+} else // violation, single-line statements not allowed without braces
+    return false;
         </source>
 
         <p>
