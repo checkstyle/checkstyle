@@ -66,6 +66,32 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="NeedBraces"/&gt;
  * </pre>
+ * <p>Valid code example:</p>
+ * <pre>
+ * if (true) {
+ *    return true; // OK
+ * }  else {
+ *    return false; // OK
+ * }
+ * for(int i =0; ; ) { // OK
+ *    ++count;
+ * }
+ * do { // OK
+ *    ++count;
+ * } while (false);
+ * </pre>
+ * <p>Invalid code example:</p>
+ * <pre>
+ * if (true)
+ *    return true; // violation, single line statements without braces are not allowed
+ * else
+ *    return false; // violation, single line statements without braces are not allowed
+ * for(int i =0; ; ) // violation, single line statements without braces are not allowed
+ *    ++count;
+ * do // violation, single line statements without braces are not allowed
+ *    ++count;
+ *  while (false);
+ * </pre>
  * <p>
  * To configure the check for {@code if} and {@code else} blocks:
  * </p>
@@ -125,6 +151,30 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   case 1: counter++; break; // OK
  *   case 6: counter += 10; break; // OK
  *   default: counter = 100; break; // OK
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to not allow {@code case, default} single-line statements without braces:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;NeedBraces&quot;&gt;
+ *  &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_CASE, LITERAL_DEFAULT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Code example:</p>
+ * <pre>
+ * switch (num) {
+ *     case 1: // violation, single line statements without braces are not allowed
+ *         counter++;
+ *         break;
+ *     case 6: { // OK
+ *         counter += 10;
+ *         break;
+ *     }
+ *     default: { // OK
+ *         counter = 100;
+ *         break;
+ *     }
  * }
  * </pre>
  * <p>
