@@ -164,38 +164,52 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        if (rootAST != null) {
-            visitEachToken(rootAST);
+        visitEachToken(rootAST);
+    }
+
+    /**
+     * Examines every sibling and descendant of {@code node} for violations.
+     *
+     * @param rootAst The root of the AST
+     */
+    private void visitEachToken(DetailAST rootAst) {
+        DetailAST curNode = rootAst;
+        // Visit every token iteratively
+        while (curNode != null) {
+            if (isNodeViolate(curNode)) {
+                log(curNode, MSG_KEY);
+            }
+            DetailAST toVisit = curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
+            }
+            curNode = toVisit;
         }
     }
 
     /**
-     * Examines every sibling and child of {@code node} for violations.
+     * Checks if {@code curNode} violate single space separator rule.
      *
-     * @param node The node to start examining.
+     * @param curNode The current AST node to be examined
+     * @return {@code true} if the current AST node violates single space separator rule.
      */
-    private void visitEachToken(DetailAST node) {
-        DetailAST sibling = node;
+    private boolean isNodeViolate(DetailAST curNode) {
+        boolean violate = false;
+        final int columnNo = curNode.getColumnNo() - 1;
 
-        do {
-            final int columnNo = sibling.getColumnNo() - 1;
+        // in such expression: "j  =123", placed at the start of the string index of
+        // the second space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace).
+        // It is a minimal possible index for the second whitespace between
+        // non-whitespace characters.
+        final int minSecondWhitespaceColumnNo = 2;
 
-            // in such expression: "j  =123", placed at the start of the string index of the second
-            // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
-            // possible index for the second whitespace between non-whitespace characters.
-            final int minSecondWhitespaceColumnNo = 2;
-
-            if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
-                            columnNo)) {
-                log(sibling, MSG_KEY);
-            }
-            if (sibling.getChildCount() >= 1) {
-                visitEachToken(sibling.getFirstChild());
-            }
-
-            sibling = sibling.getNextSibling();
-        } while (sibling != null);
+        if (columnNo >= minSecondWhitespaceColumnNo
+                && !isTextSeparatedCorrectlyFromPrevious(getLine(curNode.getLineNo() - 1),
+                columnNo)) {
+            violate = true;
+        }
+        return violate;
     }
 
     /**
