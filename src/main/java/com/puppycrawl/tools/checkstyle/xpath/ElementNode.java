@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -69,17 +70,18 @@ public class ElementNode extends AbstractNode {
      * @param root {@code Node} root of the tree
      * @param parent {@code Node} parent of the current node
      * @param detailAst reference to {@code DetailAST}
+     * @param indexAmongSiblings the current node index among the parent children nodes
      */
-    public ElementNode(AbstractNode root, AbstractNode parent, DetailAST detailAst) {
+    public ElementNode(AbstractNode root, AbstractNode parent, DetailAST detailAst,
+            int indexAmongSiblings) {
         super(root.getTreeInfo());
         this.parent = parent;
         this.root = root;
         this.detailAst = detailAst;
         text = TokenUtil.getTokenName(detailAst.getType());
-        indexAmongSiblings = parent.getChildren().size();
+        this.indexAmongSiblings = indexAmongSiblings;
         setDepth(parent.getDepth() + 1);
         createTextAttribute();
-        createChildren();
     }
 
     /**
@@ -121,14 +123,19 @@ public class ElementNode extends AbstractNode {
     /**
      * Iterates children of the current node and
      * recursively creates new Xpath-nodes.
+     *
+     * @return children list
      */
-    private void createChildren() {
+    @Override
+    protected List<AbstractNode> createChildren() {
         DetailAST currentChild = detailAst.getFirstChild();
+        final List<AbstractNode> result = new ArrayList<>();
         while (currentChild != null) {
-            final AbstractNode child = new ElementNode(root, this, currentChild);
-            addChild(child);
+            final AbstractNode child = new ElementNode(root, this, currentChild, result.size());
+            result.add(child);
             currentChild = currentChild.getNextSibling();
         }
+        return result;
     }
 
     /**

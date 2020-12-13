@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.Configuration;
@@ -55,8 +58,6 @@ public class RootNode extends AbstractNode {
     public RootNode(DetailAST detailAst) {
         super(new GenericTreeInfo(Configuration.newConfiguration()));
         this.detailAst = detailAst;
-
-        createChildren();
     }
 
     /**
@@ -74,14 +75,19 @@ public class RootNode extends AbstractNode {
     /**
      * Iterates siblings of the current node and
      * recursively creates new Xpath-nodes.
+     *
+     * @return children list
      */
-    private void createChildren() {
+    @Override
+    protected List<AbstractNode> createChildren() {
         DetailAST currentChild = detailAst;
+        final List<AbstractNode> result = new ArrayList<>();
         while (currentChild != null) {
-            final ElementNode child = new ElementNode(this, this, currentChild);
-            addChild(child);
+            final ElementNode child = new ElementNode(this, this, currentChild, result.size());
+            result.add(child);
             currentChild = currentChild.getNextSibling();
         }
+        return result;
     }
 
     /**

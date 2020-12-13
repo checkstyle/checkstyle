@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -47,6 +48,13 @@ public class AttributeNodeTest {
             assertEquals("Operation is not supported",
                 ex.getMessage(), "Invalid exception message");
         }
+    }
+
+    @Test
+    public void testHasChildNodes() {
+        assertWithMessage("Attribute node shouldn't have children")
+            .that(attributeNode.hasChildNodes())
+            .isFalse();
     }
 
     @Test

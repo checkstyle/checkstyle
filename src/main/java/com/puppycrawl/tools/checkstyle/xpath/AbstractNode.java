@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -44,11 +43,11 @@ import net.sf.saxon.type.SchemaType;
  */
 public abstract class AbstractNode implements NodeInfo {
 
-    /** The children. */
-    private final List<AbstractNode> children = new ArrayList<>();
-
     /** The {@code TreeInfo} object. */
     private final TreeInfo treeInfo;
+
+    /** The children. */
+    private List<AbstractNode> children;
 
     /** Depth of the node. */
     private int depth;
@@ -100,16 +99,19 @@ public abstract class AbstractNode implements NodeInfo {
      * @return children list
      */
     protected List<AbstractNode> getChildren() {
-        return Collections.unmodifiableList(children);
+        if (children == null) {
+            children = Collections.unmodifiableList(createChildren());
+        }
+        return children;
     }
 
     /**
-     * Add new child node to children list.
+     * Creates nodes for children.
      *
-     * @param node child node
+     * @return children list
      */
-    protected void addChild(AbstractNode node) {
-        children.add(node);
+    protected List<AbstractNode> createChildren() {
+        return Collections.emptyList();
     }
 
     /**
@@ -150,7 +152,7 @@ public abstract class AbstractNode implements NodeInfo {
      */
     @Override
     public boolean hasChildNodes() {
-        return !children.isEmpty();
+        return !getChildren().isEmpty();
     }
 
     /**
