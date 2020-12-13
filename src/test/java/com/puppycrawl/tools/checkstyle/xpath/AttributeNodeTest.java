@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -50,6 +51,27 @@ public class AttributeNodeTest {
     }
 
     @Test
+    public void testGetDepth() {
+        try {
+            attributeNode.getDepth();
+            fail("Exception is excepted");
+        }
+        catch (UnsupportedOperationException ex) {
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                    .isEqualTo("Operation is not supported");
+        }
+    }
+
+    @Test
+    public void testHasChildNodes() {
+        assertWithMessage("Attribute node shouldn't have children")
+            .that(attributeNode.hasChildNodes())
+            .isFalse();
+    }
+
+    @Test
     public void testGetAttributeValue() {
         try {
             attributeNode.getAttributeValue("", "");
@@ -58,6 +80,20 @@ public class AttributeNodeTest {
         catch (UnsupportedOperationException ex) {
             assertEquals("Operation is not supported",
                 ex.getMessage(), "Invalid exception message");
+        }
+    }
+
+    @Test
+    public void testGetChildren() {
+        try {
+            attributeNode.getChildren();
+            fail("Exception is excepted");
+        }
+        catch (UnsupportedOperationException ex) {
+            assertWithMessage("Invalid exception message")
+                .that(ex)
+                .hasMessageThat()
+                    .isEqualTo("Operation is not supported");
         }
     }
 

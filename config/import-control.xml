@@ -74,6 +74,7 @@
       <allow class="com.puppycrawl.tools.checkstyle.AstTreeStringPrinter"/>
       <allow class="com.puppycrawl.tools.checkstyle.JavaParser"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
+      <allow class="com.puppycrawl.tools.checkstyle.xpath.ElementNode"/>
       <allow class="com.puppycrawl.tools.checkstyle.xpath.RootNode"/>
     </file>
   </subpackage>
