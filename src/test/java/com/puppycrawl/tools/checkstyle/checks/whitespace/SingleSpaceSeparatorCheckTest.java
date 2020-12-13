@@ -52,6 +52,15 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testDeepStringConcat() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig, getPath("DeepStringConcat.java"), expected);
+    }
+
+    @Test
     public void testSpaceErrors() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(SingleSpaceSeparatorCheck.class);
