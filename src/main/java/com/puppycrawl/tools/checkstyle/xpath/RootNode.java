@@ -19,8 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 import net.sf.saxon.Configuration;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.GenericTreeInfo;
@@ -55,8 +58,6 @@ public class RootNode extends AbstractNode {
     public RootNode(DetailAST detailAst) {
         super(new GenericTreeInfo(Configuration.newConfiguration()));
         this.detailAst = detailAst;
-
-        createChildren();
     }
 
     /**
@@ -74,14 +75,22 @@ public class RootNode extends AbstractNode {
     /**
      * Iterates siblings of the current node and
      * recursively creates new Xpath-nodes.
+     *
+     * @return children list
      */
-    private void createChildren() {
-        DetailAST currentChild = detailAst;
-        while (currentChild != null) {
-            final ElementNode child = new ElementNode(this, this, currentChild);
-            addChild(child);
-            currentChild = currentChild.getNextSibling();
-        }
+    @Override
+    protected List<AbstractNode> createChildren() {
+        return XpathUtil.createChildren(this, this, detailAst);
+    }
+
+    /**
+     * Determine whether the node has any children.
+     *
+     * @return {@code true} is the node has any children.
+     */
+    @Override
+    public boolean hasChildNodes() {
+        return detailAst != null;
     }
 
     /**
@@ -226,6 +235,16 @@ public class RootNode extends AbstractNode {
     @Override
     public DetailAST getUnderlyingNode() {
         return detailAst;
+    }
+
+    /**
+     * Getter method for node depth.
+     *
+     * @return always {@code 0}
+     */
+    @Override
+    public int getDepth() {
+        return 0;
     }
 
     /**
