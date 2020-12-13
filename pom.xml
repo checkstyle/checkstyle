@@ -3227,6 +3227,8 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest
                 </param>
+                <!-- XpathUtil -->
+                <param>com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheckTest</param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
                 </param>
