@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.utils;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static com.puppycrawl.tools.checkstyle.utils.XpathUtil.getTextAttributeValue;
@@ -34,6 +35,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -42,6 +44,8 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
+import com.puppycrawl.tools.checkstyle.xpath.RootNode;
 
 public class XpathUtilTest {
 
@@ -160,6 +164,23 @@ public class XpathUtilTest {
                     + ", file: " + file.getCanonicalPath();
             assertThat("Exception message is different", ex.getMessage(), is(expectedMessage));
         }
+    }
+
+    @Test
+    public void testCreateChildren() {
+        final DetailAstImpl rootAst = new DetailAstImpl();
+        final DetailAstImpl elementAst = new DetailAstImpl();
+        rootAst.addChild(elementAst);
+        final RootNode rootNode = new RootNode(rootAst);
+        final List<AbstractNode> children =
+                XpathUtil.createChildren(rootNode, rootNode, elementAst);
+
+        assertWithMessage("Expected one child node")
+                .that(children)
+                .hasSize(1);
+        assertWithMessage("Node depth should be 1")
+                .that(children.get(0).getDepth())
+                .isEqualTo(1);
     }
 
     private static DetailAST createDetailAST(int type) {
