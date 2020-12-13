@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Stack;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -170,32 +172,37 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Examines every sibling and child of {@code node} for violations.
+     * Examines every sibling and descendant of {@code node} for violations.
      *
-     * @param node The node to start examining.
+     * @param rootAst The root of the AST
      */
-    private void visitEachToken(DetailAST node) {
-        DetailAST sibling = node;
+    private void visitEachToken(DetailAST rootAst) {
+        final Stack<DetailAST> stack = new Stack<>();
+        stack.push(rootAst);
 
-        do {
-            final int columnNo = sibling.getColumnNo() - 1;
+        while (!stack.isEmpty()) {
+            DetailAST sibling = stack.pop();
+            while (sibling != null) {
+                final int columnNo = sibling.getColumnNo() - 1;
 
-            // in such expression: "j  =123", placed at the start of the string index of the second
-            // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
-            // possible index for the second whitespace between non-whitespace characters.
-            final int minSecondWhitespaceColumnNo = 2;
+                // in such expression: "j  =123", placed at the start of the string index of
+                // the second space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace).
+                // It is a minimal possible index for the second whitespace between
+                // non-whitespace characters.
+                final int minSecondWhitespaceColumnNo = 2;
 
-            if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
-                            columnNo)) {
-                log(sibling, MSG_KEY);
+                if (columnNo >= minSecondWhitespaceColumnNo
+                        && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
+                        columnNo)) {
+                    log(sibling, MSG_KEY);
+                }
+                if (sibling.getChildCount() >= 1) {
+                    stack.push(sibling.getFirstChild());
+                }
+
+                sibling = sibling.getNextSibling();
             }
-            if (sibling.getChildCount() >= 1) {
-                visitEachToken(sibling.getFirstChild());
-            }
-
-            sibling = sibling.getNextSibling();
-        } while (sibling != null);
+        }
     }
 
     /**
