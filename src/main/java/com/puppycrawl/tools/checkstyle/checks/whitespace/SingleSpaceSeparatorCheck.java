@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -170,32 +173,47 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
     }
 
     /**
-     * Examines every sibling and child of {@code node} for violations.
+     * Examines every sibling and descendant of {@code node} for violations.
      *
-     * @param node The node to start examining.
+     * @param rootAst The root of the AST
      */
-    private void visitEachToken(DetailAST node) {
-        DetailAST sibling = node;
-
-        do {
-            final int columnNo = sibling.getColumnNo() - 1;
-
-            // in such expression: "j  =123", placed at the start of the string index of the second
-            // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
-            // possible index for the second whitespace between non-whitespace characters.
-            final int minSecondWhitespaceColumnNo = 2;
-
-            if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
-                            columnNo)) {
-                log(sibling, MSG_KEY);
+    private void visitEachToken(DetailAST rootAst) {
+        DetailAST curNode = rootAst;
+        // Visit every token iteratively
+        while (curNode != null) {
+            if (isNodeViolate(curNode)) {
+                log(curNode, MSG_KEY);
             }
-            if (sibling.getChildCount() >= 1) {
-                visitEachToken(sibling.getFirstChild());
+            DetailAST toVisit = curNode.getFirstChild();
+            while (curNode != null && toVisit == null) {
+                toVisit = curNode.getNextSibling();
+                curNode = curNode.getParent();
             }
+            curNode = toVisit;
+        }
+    }
 
-            sibling = sibling.getNextSibling();
-        } while (sibling != null);
+    /**
+     * Checks if {@code curNode} violate single space separator rule.
+     * @param curNode
+     * @return {@code true} if the current AST node violates single space separator rule.
+     */
+    private boolean isNodeViolate(DetailAST curNode) {
+        boolean violate = false;
+        final int columnNo = curNode.getColumnNo() - 1;
+
+        // in such expression: "j  =123", placed at the start of the string index of
+        // the second space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace).
+        // It is a minimal possible index for the second whitespace between
+        // non-whitespace characters.
+        final int minSecondWhitespaceColumnNo = 2;
+
+        if (columnNo >= minSecondWhitespaceColumnNo
+                && !isTextSeparatedCorrectlyFromPrevious(getLine(curNode.getLineNo() - 1),
+                columnNo)) {
+            violate = true;
+        }
+        return violate;
     }
 
     /**
