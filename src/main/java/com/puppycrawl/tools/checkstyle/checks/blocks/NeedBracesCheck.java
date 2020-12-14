@@ -66,6 +66,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="NeedBraces"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * if (true) { // OK
+ *    return true;
+ * }  else  // violation, single line statements without braces are not allowed
+ *    return false;
+ * for(int i =0; i &lt; 5 ; i++ ) { // OK
+ *    ++count;
+ * }
+ * do // violation, single line statements without braces are not allowed
+ *    ++count;
+ *  while (false);
+ * </pre>
  * <p>
  * To configure the check for {@code if} and {@code else} blocks:
  * </p>
