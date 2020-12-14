@@ -19,7 +19,6 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
@@ -40,18 +39,14 @@ import net.sf.saxon.type.SchemaType;
 
 /**
  * Represents general class for {@code ElementNode}, {@code RootNode} and {@code AttributeNode}.
- *
  */
 public abstract class AbstractNode implements NodeInfo {
-
-    /** The children. */
-    private final List<AbstractNode> children = new ArrayList<>();
 
     /** The {@code TreeInfo} object. */
     private final TreeInfo treeInfo;
 
-    /** Depth of the node. */
-    private int depth;
+    /** The children. */
+    private List<AbstractNode> children;
 
     /**
      * Constructor of the abstract class {@code AbstractNode}.
@@ -77,22 +72,11 @@ public abstract class AbstractNode implements NodeInfo {
     public abstract DetailAST getUnderlyingNode();
 
     /**
-     * Getter method for node depth.
+     * Creates nodes for children.
      *
-     * @return depth
+     * @return children list
      */
-    public int getDepth() {
-        return depth;
-    }
-
-    /**
-     * Setter method for node depth.
-     *
-     * @param depth depth of node
-     */
-    public final void setDepth(int depth) {
-        this.depth = depth;
-    }
+    protected abstract List<AbstractNode> createChildren();
 
     /**
      * Getter method for children.
@@ -100,16 +84,10 @@ public abstract class AbstractNode implements NodeInfo {
      * @return children list
      */
     protected List<AbstractNode> getChildren() {
+        if (children == null) {
+            children = createChildren();
+        }
         return Collections.unmodifiableList(children);
-    }
-
-    /**
-     * Add new child node to children list.
-     *
-     * @param node child node
-     */
-    protected void addChild(AbstractNode node) {
-        children.add(node);
     }
 
     /**
@@ -150,7 +128,7 @@ public abstract class AbstractNode implements NodeInfo {
      */
     @Override
     public boolean hasChildNodes() {
-        return !children.isEmpty();
+        return !getChildren().isEmpty();
     }
 
     /**

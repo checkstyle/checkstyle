@@ -24,6 +24,8 @@ import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.type.Type;
 
+import java.util.List;
+
 /**
  * Represents attribute of the element.
  *
@@ -180,6 +182,27 @@ public class AttributeNode extends AbstractNode {
     @Override
     public DetailAST getUnderlyingNode() {
         throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Creates nodes for children. Attribute node has no children, so
+     * this method throws {@code UnsupportedOperationException}.
+     *
+     * @return never
+     */
+    @Override
+    protected List<AbstractNode> createChildren() {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Determine whether the node has any children.
+     *
+     * @return always {@code false}
+     */
+    @Override
+    public boolean hasChildNodes() {
+        return false;
     }
 
     /**
