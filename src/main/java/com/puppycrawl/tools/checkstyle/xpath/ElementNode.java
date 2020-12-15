@@ -19,7 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
@@ -54,14 +56,11 @@ public class ElementNode extends AbstractNode {
     /** The ast node. */
     private final DetailAST detailAst;
 
-    /** Represents text of the DetailAST. */
-    private final String text;
+    /** Depth of the node. */
+    private final int depth;
 
     /** Represents index among siblings. */
     private final int indexAmongSiblings;
-
-    /** The text attribute node. */
-    private AttributeNode attributeNode;
 
     /**
      * Creates a new {@code ElementNode} instance.
@@ -69,17 +68,17 @@ public class ElementNode extends AbstractNode {
      * @param root {@code Node} root of the tree
      * @param parent {@code Node} parent of the current node
      * @param detailAst reference to {@code DetailAST}
+     * @param depth the current node depth in the hierarchy
+     * @param indexAmongSiblings the current node index among the parent children nodes
      */
-    public ElementNode(AbstractNode root, AbstractNode parent, DetailAST detailAst) {
+    public ElementNode(AbstractNode root, AbstractNode parent, DetailAST detailAst,
+            int depth, int indexAmongSiblings) {
         super(root.getTreeInfo());
         this.parent = parent;
         this.root = root;
         this.detailAst = detailAst;
-        text = TokenUtil.getTokenName(detailAst.getType());
-        indexAmongSiblings = parent.getChildren().size();
-        setDepth(parent.getDepth() + 1);
-        createTextAttribute();
-        createChildren();
+        this.depth = depth;
+        this.indexAmongSiblings = indexAmongSiblings;
     }
 
     /**
@@ -91,44 +90,54 @@ public class ElementNode extends AbstractNode {
     @Override
     public int compareOrder(NodeInfo other) {
         int result = 0;
-        if (other instanceof AbstractNode) {
-            result = getDepth() - ((AbstractNode) other).getDepth();
+        if (other instanceof ElementNode) {
+            result = Integer.compare(depth, ((ElementNode) other).depth);
             if (result == 0) {
-                final ElementNode[] children = getCommonAncestorChildren(other);
-                result = children[0].indexAmongSiblings - children[1].indexAmongSiblings;
+                result = compareCommonAncestorChildrenOrder(this, other);
             }
         }
         return result;
     }
 
     /**
-     * Finds the ancestors of the children whose parent is their common ancestor.
+     * Walks up the hierarchy until a common ancestor is found.
+     * Then compares topmost sibling nodes.
      *
-     * @param other another {@code NodeInfo} object
-     * @return {@code ElementNode} immediate children(also ancestors of the given children) of the
-     *         common ancestor
+     * @param first {@code NodeInfo} to compare
+     * @param second {@code NodeInfo} to compare
+     * @return the value {@code 0} if {@code first == second};
+     *         a value less than {@code 0} if {@code first} should be first;
+     *         a value greater than {@code 0} if {@code second} should be first.
      */
-    private ElementNode[] getCommonAncestorChildren(NodeInfo other) {
-        NodeInfo child1 = this;
-        NodeInfo child2 = other;
+    private static int compareCommonAncestorChildrenOrder(NodeInfo first, NodeInfo second) {
+        NodeInfo child1 = first;
+        NodeInfo child2 = second;
         while (!child1.getParent().equals(child2.getParent())) {
             child1 = child1.getParent();
             child2 = child2.getParent();
         }
-        return new ElementNode[] {(ElementNode) child1, (ElementNode) child2};
+        final int index1 = ((ElementNode) child1).indexAmongSiblings;
+        final int index2 = ((ElementNode) child2).indexAmongSiblings;
+        return Integer.compare(index1, index2);
     }
 
     /**
      * Iterates children of the current node and
      * recursively creates new Xpath-nodes.
+     *
+     * @return children list
      */
-    private void createChildren() {
+    @Override
+    protected List<AbstractNode> createChildren() {
         DetailAST currentChild = detailAst.getFirstChild();
+        final List<AbstractNode> result = new ArrayList<>();
         while (currentChild != null) {
-            final AbstractNode child = new ElementNode(root, this, currentChild);
-            addChild(child);
+            final int index = result.size();
+            final AbstractNode child = new ElementNode(root, this, currentChild, depth + 1, index);
+            result.add(child);
             currentChild = currentChild.getNextSibling();
         }
+        return result;
     }
 
     /**
@@ -143,12 +152,9 @@ public class ElementNode extends AbstractNode {
     public String getAttributeValue(String namespace, String localPart) {
         final String result;
         if (TEXT_ATTRIBUTE_NAME.equals(localPart)) {
-            if (attributeNode == null) {
-                result = null;
-            }
-            else {
-                result = attributeNode.getStringValue();
-            }
+            result = Optional.ofNullable(getAttributeNode())
+                .map(AttributeNode::getStringValue)
+                .orElse(null);
         }
         else {
             result = null;
@@ -163,7 +169,7 @@ public class ElementNode extends AbstractNode {
      */
     @Override
     public String getLocalPart() {
-        return text;
+        return TokenUtil.getTokenName(detailAst.getType());
     }
 
     /**
@@ -220,7 +226,7 @@ public class ElementNode extends AbstractNode {
                 result = new Navigator.AncestorEnumeration(this, true);
                 break;
             case AxisInfo.ATTRIBUTE:
-                result = SingleNodeIterator.makeIterator(attributeNode);
+                result = SingleNodeIterator.makeIterator(getAttributeNode());
                 break;
             case AxisInfo.CHILD:
                 if (hasChildNodes()) {
@@ -377,14 +383,19 @@ public class ElementNode extends AbstractNode {
      * Checks if token type supports {@code @text} attribute,
      * extracts its value, creates {@code AttributeNode} object and returns it.
      * Value can be accessed using {@code @text} attribute.
+     *
+     * @return attribute node if possible, otherwise the {@code null} value
      */
-    private void createTextAttribute() {
-        AttributeNode attribute = null;
+    private AttributeNode getAttributeNode() {
+        final AttributeNode result;
         if (XpathUtil.supportsTextAttribute(detailAst)) {
-            attribute = new AttributeNode(TEXT_ATTRIBUTE_NAME,
-                    XpathUtil.getTextAttributeValue(detailAst));
+            final String value = XpathUtil.getTextAttributeValue(detailAst);
+            result = new AttributeNode(TEXT_ATTRIBUTE_NAME, value);
         }
-        attributeNode = attribute;
+        else {
+            result = null;
+        }
+        return result;
     }
 
     /**

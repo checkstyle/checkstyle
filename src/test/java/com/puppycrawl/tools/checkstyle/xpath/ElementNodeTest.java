@@ -67,8 +67,8 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         parentAST.setFirstChild(detailAST);
         parentAST.setType(TokenTypes.METHOD_DEF);
 
-        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST);
-        final AbstractNode childNode = new ElementNode(rootNode, parentNode, detailAST);
+        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
+        final AbstractNode childNode = new ElementNode(rootNode, parentNode, detailAST, 2, 0);
         assertEquals(-1, parentNode.compareOrder(childNode), "Incorrect ordering value");
         assertEquals(1, childNode.compareOrder(parentNode), "Incorrect ordering value");
     }
@@ -86,7 +86,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         parentAST.addChild(detailAst1);
         parentAST.addChild(detailAst2);
 
-        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST);
+        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
         final List<AbstractNode> children = parentNode.getChildren();
 
         assertEquals(-1, children.get(0).compareOrder(children.get(1)), "Incorrect ordering value");
@@ -141,6 +141,13 @@ public class ElementNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetNodeByValueWithSameTokenText() throws Exception {
+        final String xPath = "//STRING_LITERAL[@text = 'foo' or @text = 'bar']";
+        final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
+        assertEquals(0, nodes.size(), "Invalid number of nodes");
+    }
+
+    @Test
+    public void testGetNodeByValueWithSameTokenText1() throws Exception {
         final String xPath = "//MODIFIERS[@text = 'MODIFIERS']";
         final List<NodeInfo> nodes = getXpathItems(xPath, rootNode);
         assertEquals(0, nodes.size(), "Invalid number of nodes");
@@ -152,7 +159,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
 
-        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST);
+        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertEquals("HelloWorld", elementNode.getAttributeValue(null, "text"),
                 "Invalid text attribute");
@@ -164,7 +171,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         detailAST.setType(TokenTypes.CLASS_DEF);
         detailAST.setText("HelloWorld");
 
-        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST);
+        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertNull(elementNode.getAttributeValue(null, "text"), "Must be null");
     }
@@ -175,7 +182,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         detailAST.setType(TokenTypes.IDENT);
         detailAST.setText("HelloWorld");
 
-        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST);
+        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
 
         assertNull(elementNode.getAttributeValue(null, "somename"), "Must be null");
     }
@@ -184,7 +191,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
     public void testIterateAxisEmptyChildren() {
         final DetailAstImpl detailAST = new DetailAstImpl();
         detailAST.setType(TokenTypes.METHOD_DEF);
-        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST);
+        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
             assertTrue(iterator instanceof EmptyIterator, "Invalid iterator");
         }
@@ -200,7 +207,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final DetailAstImpl childAst = new DetailAstImpl();
         childAst.setType(TokenTypes.VARIABLE_DEF);
         detailAST.addChild(childAst);
-        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST);
+        final ElementNode elementNode = new ElementNode(rootNode, rootNode, detailAST, 1, 0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.CHILD)) {
             assertTrue(iterator instanceof ArrayIterator, "Invalid iterator");
         }
@@ -217,7 +224,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         final DetailAstImpl parentAST = new DetailAstImpl();
         parentAST.setFirstChild(detailAST);
         parentAST.setType(TokenTypes.METHOD_DEF);
-        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST);
+        final AbstractNode parentNode = new ElementNode(rootNode, rootNode, parentAST, 1, 0);
 
         final AbstractNode elementNode = parentNode.getChildren().get(0);
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.FOLLOWING_SIBLING)) {
