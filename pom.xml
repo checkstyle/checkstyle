@@ -1590,7 +1590,12 @@
       <plugin>
         <groupId>edu.illinois</groupId>
         <artifactId>nondex-maven-plugin</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
+        <configuration>
+          <excludedGroups>
+            com.puppycrawl.tools.checkstyle.JavadocPropertiesGeneratorTest
+          </excludedGroups>
+        </configuration>
       </plugin>
     </plugins>
   </build>
