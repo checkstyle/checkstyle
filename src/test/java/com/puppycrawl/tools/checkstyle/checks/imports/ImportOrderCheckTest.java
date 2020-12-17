@@ -657,10 +657,12 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGroupWithDot() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
-        checkConfig.addAttribute("groups", "java.awt.");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verify(checkConfig, getPath("InputImportOrder_NoFailureForRedundantImports.java"),
+        checkConfig.addAttribute("groups", "javax.swing.,java.awt.");
+        final String[] expected = {
+            "5:1: " + getCheckMessage(MSG_ORDERING, "java.awt.Dialog"),
+            "7:1: " + getCheckMessage(MSG_ORDERING, "javax.swing.JComponent"),
+        };
+        verify(checkConfig, getPath("InputImportOrder_DotPackageName.java"),
             expected);
     }
 
