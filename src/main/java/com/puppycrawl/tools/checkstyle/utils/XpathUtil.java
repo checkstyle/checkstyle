@@ -21,10 +21,11 @@ package com.puppycrawl.tools.checkstyle.utils;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.AstTreeStringPrinter;
 import com.puppycrawl.tools.checkstyle.JavaParser;
@@ -98,9 +99,10 @@ public final class XpathUtil {
      * Only these tokens support text attribute because they make our xpath queries more accurate.
      * These token types are listed below.
      * */
-    private static final List<Integer> TOKEN_TYPES_WITH_TEXT_ATTRIBUTE = Arrays.asList(
+    private static final Set<Integer> TOKEN_TYPES_WITH_TEXT_ATTRIBUTE = Stream.of(
             TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
-            TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT);
+            TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT)
+            .collect(Collectors.toSet());
 
     /** Delimiter to separate xpath results. */
     private static final String DELIMITER = "---------" + System.lineSeparator();
