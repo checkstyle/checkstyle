@@ -146,6 +146,15 @@ D:\Test.java:5: 'catch' child has incorrect indentation level 8,
 expected level should be 12. [Indentation]
         ]]></source>
       </p>
+      <p>
+        More Examples:
+        <a href="https://github.com/checkstyle/checkstyle/issues/8856#issue-711050333">
+          Example 1
+        </a>,
+        <a href="https://github.com/checkstyle/checkstyle/issues/8808#issue-695386080">
+          Example 2
+        </a>
+      </p>
 
     </section>
 
@@ -193,6 +202,12 @@ Describe how the additional functionality will solve the problem:
 
 Additional context, screenshots or examples:
       </source>
+      <p>
+        More Examples:
+        <a href="https://github.com/checkstyle/checkstyle/issues/8764#issue-686630541">
+          Example 1
+        </a>
+      </p>
     </section>
 
     <section name="How to request new Check/Module?">
