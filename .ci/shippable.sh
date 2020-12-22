@@ -36,7 +36,7 @@ no-exception-openjdk7-openjdk8)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b cleanup-projects https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties
@@ -52,7 +52,7 @@ no-exception-openjdk9-lucene-and-others)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b cleanup-projects https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   # till hg is installed
@@ -72,7 +72,7 @@ no-exception-cassandra-storm-tapestry)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b cleanup-projects https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties
@@ -89,7 +89,7 @@ no-exception-hadoop-apache-groovy-scouter)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b cleanup-projects https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties
@@ -107,7 +107,7 @@ no-exception-only-javadoc)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b cleanup-projects https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
