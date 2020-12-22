@@ -11,6 +11,11 @@ assignees: ''
 
 Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
 
+The cli helps in touching the roots of the problem better.
+It describes the problem better than 1,000 words.
+
+[Download and run cli]('https://checkstyle.org/cmdline.html#Download_and_Run')
+
 ```bash
 /var/tmp $ javac YOUR_FILE.java
 #[[MAKE SURE THERE IS NO OUTPUT]]
