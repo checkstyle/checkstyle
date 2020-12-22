@@ -22,6 +22,7 @@ on:
 jobs:
   parse_pr_info:
     if: github.event.comment.body == 'GitHub, generate web site'
+          || github.event.comment.body == 'GitHub, generate website'
           || github.event.comment.body == 'GitHub, generate site'
     runs-on: ubuntu-latest
     outputs:
