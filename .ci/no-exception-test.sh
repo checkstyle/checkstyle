@@ -13,7 +13,7 @@ guava-with-google-checks)
   echo CS_version: $CS_POM_VERSION
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone -b cleanup-projects https://github.com/nmancus1/contribution.git
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
@@ -36,7 +36,7 @@ guava-with-sun-checks)
   echo CS_version: $CS_POM_VERSION
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone -b cleanup-projects https://github.com/nmancus1/contribution.git
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
@@ -59,7 +59,7 @@ openjdk14-with-checks-nonjavadoc-error)
   echo CS_version: $CS_POM_VERSION
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone -b cleanup-projects https://github.com/nmancus1/contribution.git
   cd ..
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml

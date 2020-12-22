@@ -123,8 +123,8 @@ jobs:
      - name: Download contribution
        uses: actions/checkout@v2
        with:
-        repository: checkstyle/contribution
-        ref: master
+        repository: nmancus1/contribution
+        ref: cleanup-projects
         path: contribution
 
      - name: Prepare environment
