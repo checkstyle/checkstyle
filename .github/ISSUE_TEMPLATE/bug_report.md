@@ -9,11 +9,15 @@ assignees: ''
 
 ---
 
+Download and run checkstyle cli: https://checkstyle.org/cmdline.html#Download_and_Run
+
 Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
+
+Cli describes the problem better than 1,000 words.
 
 ```bash
 /var/tmp $ javac YOUR_FILE.java
-#[[MAKE SURE THERE IS NO OUTPUT]]
+#[[MAKE SURE THERE IS SUCCESSFUL COMPILATION]]
 
 /var/tmp $ cat config.xml
 #[[PLACE YOUR OUTPUT HERE]]
@@ -42,6 +46,7 @@ in place of the last 2 commands above.
 ---
 
 Still not clear ???
-see example - https://checkstyle.org/report_issue.html#How_to_report_a_bug.3F
+see example - https://checkstyle.org/report_issue.html#How_to_report_a_bug.3F,
+https://github.com/checkstyle/checkstyle/issues/8856,
 
 ATTENTION: FAILURE TO FOLLOW THE ABOVE TEMPLATE WILL RESULT IN THE ISSUE BEING CLOSED.
