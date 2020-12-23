@@ -175,10 +175,11 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
      * @param node The node to start examining.
      */
     private void visitEachToken(DetailAST node) {
-        DetailAST sibling = node;
+        DetailAST currentNode = node;
+        final DetailAST parent = node.getParent();
 
         do {
-            final int columnNo = sibling.getColumnNo() - 1;
+            final int columnNo = currentNode.getColumnNo() - 1;
 
             // in such expression: "j  =123", placed at the start of the string index of the second
             // space character will be: 2 = 0(j) + 1(whitespace) + 1(whitespace). It is a minimal
@@ -186,16 +187,21 @@ public class SingleSpaceSeparatorCheck extends AbstractCheck {
             final int minSecondWhitespaceColumnNo = 2;
 
             if (columnNo >= minSecondWhitespaceColumnNo
-                    && !isTextSeparatedCorrectlyFromPrevious(getLine(sibling.getLineNo() - 1),
+                    && !isTextSeparatedCorrectlyFromPrevious(
+                            getLine(currentNode.getLineNo() - 1),
                             columnNo)) {
-                log(sibling, MSG_KEY);
+                log(currentNode, MSG_KEY);
             }
-            if (sibling.getChildCount() >= 1) {
-                visitEachToken(sibling.getFirstChild());
+            if (currentNode.hasChildren()) {
+                currentNode = currentNode.getFirstChild();
             }
-
-            sibling = sibling.getNextSibling();
-        } while (sibling != null);
+            else {
+                while (currentNode.getNextSibling() == null && currentNode.getParent() != parent) {
+                    currentNode = currentNode.getParent();
+                }
+                currentNode = currentNode.getNextSibling();
+            }
+        } while (currentNode != null);
     }
 
     /**
