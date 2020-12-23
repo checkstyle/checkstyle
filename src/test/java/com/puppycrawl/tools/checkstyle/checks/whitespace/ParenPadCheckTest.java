@@ -467,6 +467,14 @@ public class ParenPadCheckTest
     }
 
     @Test
+    public void testNoStackoverflowError()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputParenPadNoStackoverflowError.java"), expected);
+    }
+
+    @Test
     public void testParenPadCheckRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
 
