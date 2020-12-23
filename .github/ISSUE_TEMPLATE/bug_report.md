@@ -9,7 +9,12 @@ assignees: ''
 
 ---
 
+
 Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
+
+Download and run checkstyle cli: https://checkstyle.org/cmdline.html#Download_and_Run
+
+Cli describes the problem better than 1,000 words.
 
 ```bash
 /var/tmp $ javac YOUR_FILE.java
