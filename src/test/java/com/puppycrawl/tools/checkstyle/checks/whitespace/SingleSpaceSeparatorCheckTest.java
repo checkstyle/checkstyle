@@ -44,6 +44,14 @@ public class SingleSpaceSeparatorCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testNoStackoverflowError() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(SingleSpaceSeparatorCheck.class);
+        verify(checkConfig, getPath("InputSingleSpaceSeparatorNoStackoverflowError.java"),
+                CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final SingleSpaceSeparatorCheck check = new SingleSpaceSeparatorCheck();
 
