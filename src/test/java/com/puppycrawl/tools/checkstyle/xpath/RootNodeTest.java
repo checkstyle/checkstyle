@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.internal.utils.XpathUtil.getXpathItems;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -78,6 +79,13 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertTrue(firstNode instanceof RootNode,
                 "Should return true, because selected node is RootNode");
         assertEquals(firstNode, rootNode, "Result node should have same reference as expected");
+    }
+
+    @Test
+    public void testGetDepth() {
+        assertWithMessage("Root node depth should be 0")
+                .that(rootNode.getDepth())
+                .isEqualTo(0);
     }
 
     @Test
