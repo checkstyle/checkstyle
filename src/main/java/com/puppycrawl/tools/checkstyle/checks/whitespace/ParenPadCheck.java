@@ -339,20 +339,26 @@ public class ParenPadCheck extends AbstractParenPadCheck {
      * @param ast the token to check.
      */
     private void processExpression(DetailAST ast) {
-        DetailAST childAst = ast.getFirstChild();
-        while (childAst != null) {
-            if (childAst.getType() == TokenTypes.LPAREN) {
-                processLeft(childAst);
+        DetailAST currentNode = ast.getFirstChild();
+        while (currentNode != null) {
+            if (currentNode.getType() == TokenTypes.LPAREN) {
+                processLeft(currentNode);
             }
-            else if (childAst.getType() == TokenTypes.RPAREN && !isInTypecast(childAst)) {
-                processRight(childAst);
+            else if (currentNode.getType() == TokenTypes.RPAREN && !isInTypecast(currentNode)) {
+                processRight(currentNode);
             }
-            else if (!isAcceptableToken(childAst)) {
+            else if (currentNode.hasChildren() && !isAcceptableToken(currentNode)) {
                 // Traverse all subtree tokens which will never be configured
                 // to be launched in visitToken()
-                processExpression(childAst);
+                currentNode = currentNode.getFirstChild();
+                continue;
             }
-            childAst = childAst.getNextSibling();
+
+            // Go up after processing the last child
+            while (currentNode.getNextSibling() == null && currentNode.getParent() != ast) {
+                currentNode = currentNode.getParent();
+            }
+            currentNode = currentNode.getNextSibling();
         }
     }
 
