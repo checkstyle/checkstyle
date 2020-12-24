@@ -42,7 +42,7 @@ public class NewHandler extends AbstractExpressionHandler {
     public NewHandler(IndentationCheck indentCheck,
                       DetailAST ast,
                       AbstractExpressionHandler parent) {
-        super(indentCheck, "operator new", ast, parent);
+        super(indentCheck, "new", ast, parent);
         mainAst = ast;
     }
 
