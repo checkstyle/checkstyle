@@ -209,6 +209,16 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "94:46: " + getCheckMessage(MSG_KEY),
             "98:38: " + getCheckMessage(MSG_KEY),
             "104:38: " + getCheckMessage(MSG_KEY),
+            "106:46: " + getCheckMessage(MSG_KEY),
+            "107:55: " + getCheckMessage(MSG_KEY),
+            "108:46: " + getCheckMessage(MSG_KEY),
+            "109:55: " + getCheckMessage(MSG_KEY),
+            "110:46: " + getCheckMessage(MSG_KEY),
+            "111:55: " + getCheckMessage(MSG_KEY),
+            "112:46: " + getCheckMessage(MSG_KEY),
+            "113:55: " + getCheckMessage(MSG_KEY),
+            "114:46: " + getCheckMessage(MSG_KEY),
+            "115:55: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -251,6 +261,16 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "94:46: " + getCheckMessage(MSG_KEY),
             "98:38: " + getCheckMessage(MSG_KEY),
             "104:38: " + getCheckMessage(MSG_KEY),
+            "106:46: " + getCheckMessage(MSG_KEY),
+            "107:55: " + getCheckMessage(MSG_KEY),
+            "108:46: " + getCheckMessage(MSG_KEY),
+            "109:55: " + getCheckMessage(MSG_KEY),
+            "110:46: " + getCheckMessage(MSG_KEY),
+            "111:55: " + getCheckMessage(MSG_KEY),
+            "112:46: " + getCheckMessage(MSG_KEY),
+            "113:55: " + getCheckMessage(MSG_KEY),
+            "114:46: " + getCheckMessage(MSG_KEY),
+            "115:55: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -283,6 +303,11 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "92:45: " + getCheckMessage(MSG_KEY),
             "98:38: " + getCheckMessage(MSG_KEY),
             "104:38: " + getCheckMessage(MSG_KEY),
+            "106:46: " + getCheckMessage(MSG_KEY),
+            "108:46: " + getCheckMessage(MSG_KEY),
+            "110:46: " + getCheckMessage(MSG_KEY),
+            "112:46: " + getCheckMessage(MSG_KEY),
+            "114:46: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -307,6 +332,16 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "88:38: " + getCheckMessage(MSG_KEY),
             "89:38: " + getCheckMessage(MSG_KEY),
             "98:38: " + getCheckMessage(MSG_KEY),
+            "106:46: " + getCheckMessage(MSG_KEY),
+            "107:55: " + getCheckMessage(MSG_KEY),
+            "108:46: " + getCheckMessage(MSG_KEY),
+            "109:55: " + getCheckMessage(MSG_KEY),
+            "110:46: " + getCheckMessage(MSG_KEY),
+            "111:55: " + getCheckMessage(MSG_KEY),
+            "112:46: " + getCheckMessage(MSG_KEY),
+            "113:55: " + getCheckMessage(MSG_KEY),
+            "114:46: " + getCheckMessage(MSG_KEY),
+            "115:55: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
@@ -337,6 +372,16 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
             "94:46: " + getCheckMessage(MSG_KEY),
             "98:38: " + getCheckMessage(MSG_KEY),
             "104:38: " + getCheckMessage(MSG_KEY),
+            "106:46: " + getCheckMessage(MSG_KEY),
+            "107:55: " + getCheckMessage(MSG_KEY),
+            "108:46: " + getCheckMessage(MSG_KEY),
+            "109:55: " + getCheckMessage(MSG_KEY),
+            "110:46: " + getCheckMessage(MSG_KEY),
+            "111:55: " + getCheckMessage(MSG_KEY),
+            "112:46: " + getCheckMessage(MSG_KEY),
+            "113:55: " + getCheckMessage(MSG_KEY),
+            "114:46: " + getCheckMessage(MSG_KEY),
+            "115:55: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidEscapedUnicodeCharacters.java"), expected);
     }
