@@ -179,15 +179,7 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     /** Regular expression for all escaped chars. */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
-            + "|\""
-            + "|'"
-            + "|\\\\"
-            + "|\\\\b"
-            + "|\\\\f"
-            + "|\\\\n"
-            + "|\\\\r"
-            + "|\\\\t"
-            + ")+$");
+            + "|[\"'\\\\\\\\b\\\\f\\\\n\\\\r\\\\t])+$");
 
     /** Regular expression for escaped backslash. */
     private static final Pattern ESCAPED_BACKSLASH = Pattern.compile("\\\\\\\\");
