@@ -286,7 +286,8 @@
               </td>
               <td>
                 Provides analysis per pull request as GitHub
-                <a href="https://developer.github.com/v3/checks/runs/">Check Run</a>
+                <a href="https://docs.github.com/en/free-pro-team@latest/rest/reference/checks#runs">
+                  Check Run</a>
                 annotations. Supports CheckStyle config files.
               </td>
             </tr>
