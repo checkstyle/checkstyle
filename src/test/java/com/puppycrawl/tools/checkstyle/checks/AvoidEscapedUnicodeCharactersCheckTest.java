@@ -429,6 +429,44 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testAvoidEscapedUnicodeCharactersEscapedS() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+        checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
+        final String[] expected = {
+            "14:21: " + getCheckMessage(MSG_KEY),
+            "15:22: " + getCheckMessage(MSG_KEY),
+            "24:24: " + getCheckMessage(MSG_KEY),
+            "27:24: " + getCheckMessage(MSG_KEY),
+            "30:24: " + getCheckMessage(MSG_KEY),
+            "33:22: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+                getNonCompilablePath("InputAvoidEscapedUnicodeCharactersEscapedS.java"),
+                expected);
+    }
+
+    @Test
+    public void testAvoidEscapedUnicodeCharactersEscapedSdefault() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
+        final String[] expected = {
+            "9:21: " + getCheckMessage(MSG_KEY),
+            "10:21: " + getCheckMessage(MSG_KEY),
+            "11:21: " + getCheckMessage(MSG_KEY),
+            "12:22: " + getCheckMessage(MSG_KEY),
+            "16:24: " + getCheckMessage(MSG_KEY),
+            "21:24: " + getCheckMessage(MSG_KEY),
+            "24:24: " + getCheckMessage(MSG_KEY),
+            "27:24: " + getCheckMessage(MSG_KEY),
+            "29:22: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputAvoidEscapedUnicodeCharactersEscapedSDefault.java"),
+            expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final AvoidEscapedUnicodeCharactersCheck check = new AvoidEscapedUnicodeCharactersCheck();
         final int[] actual = check.getAcceptableTokens();
