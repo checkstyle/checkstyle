@@ -29,7 +29,9 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -155,6 +157,11 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     public static final String MSG_KEY = "forbid.escaped.unicode.char";
 
+    /**
+     * String used to amend TEXT_BLOCK_CONTENT so that it matches STRING_LITERAL.
+     */
+    private static final String QUOTE = "\"";
+
     /** Regular expression for Unicode chars. */
     private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
 
@@ -191,6 +198,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\n"
             + "|\\\\r"
             + "|\\\\t"
+            + "|\\\\s"
             + ")+$");
 
     /** Regular expression for escaped backslash. */
@@ -348,7 +356,14 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String literal = ast.getText();
+        String literal = ast.getText();
+
+        // Manipulate text block contents to match identical string literal
+        if (TokenUtil.isOfType(ast, TokenTypes.TEXT_BLOCK_CONTENT)) {
+            literal =
+                CheckUtil.stripIndentAndInitialNewLineFromTextBlock(literal);
+            literal = QUOTE + literal + QUOTE;
+        }
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
