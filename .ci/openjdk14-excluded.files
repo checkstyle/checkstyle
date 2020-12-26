@@ -32,14 +32,6 @@
   <property name="fileNamePattern" value="[\\/]UncommonParamNames.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/8651 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]TextBlockLang.java$"/>
-</module>
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]TranslateEscapes.java$"/>
-</module>
-
 <!-- until https://github.com/checkstyle/checkstyle/issues/8655 -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]UnicodeAtEOL.java$"/>
