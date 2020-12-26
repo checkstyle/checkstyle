@@ -187,6 +187,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\n"
             + "|\\\\r"
             + "|\\\\t"
+            + "|\\\\s"
             + ")+$");
 
     /** Regular expression for escaped backslash. */
