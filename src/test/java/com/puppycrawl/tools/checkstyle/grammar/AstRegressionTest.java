@@ -34,6 +34,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.Issue;
 
 import antlr.NoViableAltForCharException;
 import antlr.ParserSharedInputState;
@@ -253,6 +254,13 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     public void testInputJava14TextBlocksTabSize() throws Exception {
         verifyAst(getPath("java14/InputJava14TextBlocksTabSize.txt"),
             getNonCompilablePath("java14/InputJava14TextBlocksTabSize.java"));
+    }
+
+    @Issue("https://github.com/checkstyle/checkstyle/issues/8651")
+    @Test
+    public void testInputEscapedS() throws Exception {
+        verifyAst(getPath("java14/InputJava14EscapedS.txt"),
+                getNonCompilablePath("java14/InputJava14EscapedS.java"));
     }
 
     @Test
