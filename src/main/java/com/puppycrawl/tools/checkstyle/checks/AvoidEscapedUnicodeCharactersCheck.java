@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -180,7 +181,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     /**
      * Regular expression for all escaped chars.
      * See "EscapeSequence" at
-     * https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6
+     * https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7
      */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
             + "|\""
@@ -190,6 +191,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\f"
             + "|\\\\n"
             + "|\\\\r"
+            + "|\\\\s"
             + "|\\\\t"
             + ")+$");
 
@@ -348,7 +350,9 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String literal = ast.getText();
+        // See https://github.com/checkstyle/checkstyle/pull/9135#issue-545666710
+        final String literal =
+            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
@@ -452,8 +456,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
-                && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
-                        literal.length() - 1)).find();
+                && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
 
 }
