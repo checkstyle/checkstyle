@@ -95,14 +95,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of using escapes with trail comment:
+ * Example of using escapes for non-printable, control characters:
  * </p>
  * <pre>
- * String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s"
- * String textBlockUnitAbbrev = """
- *          &#92;u03bcs"""; // Greek letter mu, "s"
+ * String unitAbbrev = "\ufeff"; // OK
  * </pre>
- * <p>An example of how to configure the check to allow using escapes
+ * <p>
+ * An example of how to configure the check to allow using escapes
  * if trail comment is present:
  * </p>
  * <pre>
@@ -110,18 +109,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="allowByTailComment" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>Example of using escapes if literal contains only them:
+ * <p>Example of using escapes if trail comment is present:
  * </p>
  * <pre>
- * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc";
+ * String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
+ * String textBlockUnitAbbrev = """
+ *             \u03bcs"""; // Greek letter mu, "s"
  * </pre>
- * <p>An example of how to configure the check to allow escapes
- * if literal contains only them:
+ * <p>
+ * An example of how to configure the check to allow if
+ * all characters in literal are escaped.
  * </p>
  * <pre>
  * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
  *   &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example of using escapes if all characters in literal are escaped:</p>
+ * <pre>
+ * String unitAbbrev = "\u03bc\u03bc\u03bc"; // OK
+ * String unitAbbrev = "\u03bc\u03bcs"; // Violation, not all characters are escaped ('s').
  * </pre>
  * <p>An example of how to configure the check to allow using escapes
  * for non-printable, whitespace characters:
@@ -131,6 +138,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example of using escapes for non-printable, whitespace characters:</p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
