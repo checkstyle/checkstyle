@@ -102,4 +102,15 @@ public class InputAvoidEscapedUnicodeCharacters {
         private String notAUnicodeEscaped2 = "\\\\u1234";
 
         private String onlyEscaped = "\\\u1234";
+
+        private String sumilarToEscapedByB = "b\u1234";
+        private String sumilarToEscapedCommentedByB = "b\u1234"; // comment
+        private String sumilarToEscapedByF = "f\u1234";
+        private String sumilarToEscapedCommentedByF = "f\u1234"; // comment
+        private String sumilarToEscapedByR = "r\u1234";
+        private String sumilarToEscapedCommentedByR = "r\u1234"; // comment
+        private String sumilarToEscapedByN = "n\u1234";
+        private String sumilarToEscapedCommentedByN = "n\u1234"; // comment
+        private String sumilarToEscapedByT = "t\u1234";
+        private String sumilarToEscapedCommentedByT = "t\u1234"; // comment
 }

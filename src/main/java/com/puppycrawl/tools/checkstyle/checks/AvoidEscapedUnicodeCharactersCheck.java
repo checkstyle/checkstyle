@@ -177,7 +177,11 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|[fF]{3}[9a-bA-B]"
             + "|[fF][eE][fF]{2})");
 
-    /** Regular expression for all escaped chars. */
+    /**
+     * Regular expression for all escaped chars.
+     * See "EscapeSequence" at
+     * https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6
+     */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
             + "|\""
             + "|'"
