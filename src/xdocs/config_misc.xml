@@ -239,12 +239,10 @@ return '\ufeff' + content; // byte order mark
 &lt;/module&gt;
         </source>
         <p>
-          Example of using escapes with trail comment:
+          Example of using escapes for non-printable, control characters:
         </p>
         <source>
-String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
-String textBlockUnitAbbrev = """
-          &#92;u03bcs"""; // Greek letter mu, "s"
+String unitAbbrev = "\ufeff"; // OK
         </source>
         <p>
           An example of how to configure the check to allow using escapes
@@ -256,19 +254,26 @@ String textBlockUnitAbbrev = """
 &lt;/module&gt;
         </source>
         <p>
-          Example of using escapes if literal contains only them:
+          Example of using escapes if trail comment is present:
         </p>
         <source>
-String unitAbbrev = "\u03bc\u03bc\u03bc";
+String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
+String textBlockUnitAbbrev = """
+            \u03bcs"""; // Greek letter mu, "s"
         </source>
         <p>
-          An example of how to configure the check to allow escapes
-          if literal contains only them:
+          An example of how to configure the check to allow if
+          all characters in literal are escaped.
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
   &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example of using escapes if all characters in literal are escaped:</p>
+        <source>
+String unitAbbrev = "\u03bc\u03bc\u03bc"; // OK
+String unitAbbrev = "\u03bc\u03bcs"; // Violation, not all characters are escaped ('s').
         </source>
         <p>
           An example of how to configure the check to allow using escapes
@@ -279,6 +284,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
   &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example of using escapes for non-printable, whitespace characters:</p>
       </subsection>
 
       <subsection name="Example of Usage" id="AvoidEscapedUnicodeCharacters_Example_of_Usage">
