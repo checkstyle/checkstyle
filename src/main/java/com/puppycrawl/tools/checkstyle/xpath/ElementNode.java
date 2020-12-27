@@ -96,30 +96,34 @@ public class ElementNode extends AbstractNode {
     public int compareOrder(NodeInfo other) {
         int result = 0;
         if (other instanceof AbstractNode) {
-            result = depth - ((AbstractNode) other).getDepth();
+            result = Integer.compare(depth, ((AbstractNode) other).getDepth());
             if (result == 0) {
-                final ElementNode[] children = getCommonAncestorChildren(other);
-                result = children[0].indexAmongSiblings - children[1].indexAmongSiblings;
+                result = compareCommonAncestorChildrenOrder(this, other);
             }
         }
         return result;
     }
 
     /**
-     * Finds the ancestors of the children whose parent is their common ancestor.
+     * Walks up the hierarchy until a common ancestor is found.
+     * Then compares topmost sibling nodes.
      *
-     * @param other another {@code NodeInfo} object
-     * @return {@code ElementNode} immediate children(also ancestors of the given children) of the
-     *         common ancestor
+     * @param first {@code NodeInfo} to compare
+     * @param second {@code NodeInfo} to compare
+     * @return the value {@code 0} if {@code first == second};
+     *         a value less than {@code 0} if {@code first} should be first;
+     *         a value greater than {@code 0} if {@code second} should be first.
      */
-    private ElementNode[] getCommonAncestorChildren(NodeInfo other) {
-        NodeInfo child1 = this;
-        NodeInfo child2 = other;
+    private static int compareCommonAncestorChildrenOrder(NodeInfo first, NodeInfo second) {
+        NodeInfo child1 = first;
+        NodeInfo child2 = second;
         while (!child1.getParent().equals(child2.getParent())) {
             child1 = child1.getParent();
             child2 = child2.getParent();
         }
-        return new ElementNode[] {(ElementNode) child1, (ElementNode) child2};
+        final int index1 = ((ElementNode) child1).indexAmongSiblings;
+        final int index2 = ((ElementNode) child2).indexAmongSiblings;
+        return Integer.compare(index1, index2);
     }
 
     /**
