@@ -897,7 +897,7 @@
           <tr>
             <td><a href="config_annotation.html#SuppressWarnings">SuppressWarnings</a></td>
             <td>
-              Allows to specify what warnings that<code>@SuppressWarnings</code>
+              Allows to specify what warnings that <code>@SuppressWarnings</code>
               is not allowed to suppress.
             </td>
           </tr>
