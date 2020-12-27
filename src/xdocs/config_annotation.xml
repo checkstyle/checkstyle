@@ -1089,7 +1089,7 @@ package com.example.annotations.packageannotation; //ok
     <section name="SuppressWarnings">
       <p>Since Checkstyle 5.0</p>
       <subsection name="Description" id="SuppressWarnings_Description">
-        <p>Allows to specify what warnings that<code>@SuppressWarnings</code>
+        <p>Allows to specify what warnings that <code>@SuppressWarnings</code>
           is not allowed to suppress.
         You can also specify a list of TokenTypes that
         the configured warning(s) cannot be suppressed on.
