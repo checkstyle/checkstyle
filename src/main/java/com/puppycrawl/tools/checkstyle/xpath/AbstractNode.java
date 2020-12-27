@@ -39,7 +39,6 @@ import net.sf.saxon.type.SchemaType;
 
 /**
  * Represents general class for {@code ElementNode}, {@code RootNode} and {@code AttributeNode}.
- *
  */
 public abstract class AbstractNode implements NodeInfo {
 
