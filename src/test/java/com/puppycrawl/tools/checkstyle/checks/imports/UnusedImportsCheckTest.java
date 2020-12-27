@@ -182,6 +182,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.SLIST,
         };
 
         assertArrayEquals(expected, actual, "Default required tokens are invalid");
@@ -209,6 +211,8 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
             TokenTypes.VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.OBJBLOCK,
+            TokenTypes.SLIST,
         };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
@@ -273,6 +277,18 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
                 getNonCompilablePath("InputUnusedImportsRecordsAndCompactCtors.java"),
                 expected);
+    }
+
+    @Test
+    public void testShadowedImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(UnusedImportsCheck.class);
+        final String[] expected = {
+            "5:8: " + getCheckMessage(MSG_KEY, "java.util.Map"),
+            "6:8: " + getCheckMessage(MSG_KEY, "java.util.Set"),
+            "9:8: " + getCheckMessage(MSG_KEY, "com.puppycrawl.tools.checkstyle.checks.imports."
+                    + "unusedimports.InputUnusedImportsShadowed"),
+        };
+        verify(checkConfig, getPath("InputUnusedImportsShadowed.java"), expected);
     }
 
 }
