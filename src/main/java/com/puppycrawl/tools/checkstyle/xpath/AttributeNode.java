@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.List;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.AxisIterator;
@@ -180,6 +182,38 @@ public class AttributeNode extends AbstractNode {
     @Override
     public DetailAST getUnderlyingNode() {
         throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Getter method for node depth. This method is not applicable to attribute nodes,
+     * throws unsupported exception.
+     *
+     * @return never
+     */
+    @Override
+    public int getDepth() {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Creates nodes for children. Attribute node has no children, so
+     * this method throws unsupported exception.
+     *
+     * @return never
+     */
+    @Override
+    protected List<AbstractNode> createChildren() {
+        throw throwUnsupportedOperationException();
+    }
+
+    /**
+     * Determine whether the node has any children.
+     *
+     * @return always {@code false}
+     */
+    @Override
+    public boolean hasChildNodes() {
+        return false;
     }
 
     /**
