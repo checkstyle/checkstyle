@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -191,6 +192,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\n"
             + "|\\\\r"
             + "|\\\\t"
+            + "|\\\\s"
             + ")+$");
 
     /** Regular expression for escaped backslash. */
@@ -348,7 +350,13 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String literal = ast.getText();
+        // pitest does not like the following assignment guarded by
+        // a 'if (TokenUtil.isOfType...)' statement. Since traditional string
+        // literals do not have preceeding whitespace or newline,
+        // 'stripIndentAndInitialNewLineFromTextBlock' has no effect
+        // on them and does not affect the functionality of this check.
+        final String literal =
+            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
@@ -452,8 +460,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
-                && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
-                        literal.length() - 1)).find();
+                && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
 
 }
