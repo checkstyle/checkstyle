@@ -124,7 +124,8 @@ public class LambdaHandler extends AbstractExpressionHandler {
      */
     private boolean isNonAcceptableIndent(int astColumnNo, IndentLevel level) {
         return astColumnNo < level.getFirstIndentLevel()
-            || !level.isAcceptable(astColumnNo, getIndentCheck().isForceStrictCondition());
+            || getIndentCheck().isForceStrictCondition()
+                && !level.isAcceptable(astColumnNo);
     }
 
     /**
