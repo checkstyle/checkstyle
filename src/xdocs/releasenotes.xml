@@ -16,6 +16,120 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.39">
+      <div class="releaseDate">31.12.2020</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            New module: MatchXpath.
+            Author: Timur Tibeyev
+            <a href="https://github.com/checkstyle/checkstyle/issues/6481">#6481</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            OperatorWrapCheck no violation if single line comment after operator.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/8018">#8018</a>
+          </li>
+          <li>
+            Xpath suppression matching prone to stack overflow.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/5820">#5820</a>
+          </li>
+          <li>
+            Checkstyle fails on escape &#39;\s&#39; character.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8651">#8651</a>
+          </li>
+          <li>
+            Incorrect warning for array initializer indentation inside annotations when
+            using google_checks.xml.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/5951">#5951</a>
+          </li>
+          <li>
+            Update AbstractChecks to log DetailAST - TrailingComment.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7763">#7763</a>
+          </li>
+          <li>
+            IndentationCheck throws NPE on switch expresion with `-&gt;` on new line.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9037">#9037</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Lack of space:  that@SuppressWarnings.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9130">#9130</a>
+          </li>
+          <li>
+            Mark sonar violation &#39;Regular expressions should not overflow the
+            stack&#39; as false positive over AvoidEscapedUnicodeCharactersCheck.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9129">#9129</a>
+          </li>
+          <li>
+            Github actions should reuse maven cache.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9116">#9116</a>
+          </li>
+          <li>
+            update trigering of web site generation in github actions by &#39;website&#39;.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9117">#9117</a>
+          </li>
+          <li>
+            pitest: increase mutation coverage for javadoc profile to 100%.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/6295">#6295</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - ImportOrderCheck (4).
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/7875">#7875</a>
+          </li>
+          <li>
+            Do clean in all Travis maven commands.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8908">#8908</a>
+          </li>
+          <li>
+            Update wording of verify-no-exception-configs validation to mention what is expected.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9066">#9066</a>
+          </li>
+          <li>
+            Update doc for NestedIfDepth.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/7652">#7652</a>
+          </li>
+          <li>
+            Semaphore CI failing on josm project build as local artifact is not found.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9021">#9021</a>
+          </li>
+          <li>
+            Add default config example for ConstantName.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/7564">#7564</a>
+          </li>
+          <li>
+            Add default config example for MethodName.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/7567">#7567</a>
+          </li>
+          <li>
+            IllegalType: inability to set default value for property memberModifiers.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8933">#8933</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.38">
       <div class="releaseDate">29.11.2020</div>
       <p>New:</p>
