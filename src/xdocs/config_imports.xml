@@ -1562,7 +1562,8 @@ import java.util.stream.IntStream;
                 control whether static import groups should be separated by, at least, one
                 blank line or comment and aren't separated internally.
                 This property has effect only when the property <code>option</code>
-                is is set to <code>top</code> or <code>bottom</code>.
+                is set to <code>top</code> or <code>bottom</code> and when property
+                <code>staticGroups</code> is enabled.
               </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>false</code></td>
@@ -1638,8 +1639,38 @@ import java.util.stream.IntStream;
       </subsection>
 
       <subsection name="Examples" id="ImportOrder_Examples">
-        <p>To configure the check so that it matches default Eclipse formatter configuration
-           (tested on Kepler and Luna releases):</p>
+        <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;ImportOrder&quot;/&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import java.io.IOException; // Ok
+import java.net.URL; // Ok
+
+import java.io.IOException; // Violation, Extra separation in import group
+
+import javax.net.ssl.SSLContext; // Ok
+import javax.net.ssl.TrustManager; // Ok
+
+import org.apache.http.conn.ClientConnectionManager; // Ok
+import org.apache.http.conn.scheme.Scheme; // Ok
+
+import java.util.Set; // Violation, Wrong order for 'java.util.Set' import.
+
+import com.neurologic.http.HttpClient; // Ok
+import com.neurologic.http.impl.ApacheHttpClient; // Ok
+
+public class SomeClass { }
+        </source>
+        <p>
+          To configure the check so that it matches default Eclipse formatter configuration
+          (tested on Kepler and Luna releases):
+        </p>
         <ul>
           <li>group of static imports is on the top</li>
           <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
@@ -1654,7 +1685,6 @@ import java.util.stream.IntStream;
           <li>configuration below doesn't work in all 100% cases due to inconsistent behavior
               prior to Mars release, but covers most scenarios</li>
         </ul>
-
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;groups&quot; value=&quot;/^java\./,javax,org&quot;/&gt;
@@ -1664,9 +1694,29 @@ import java.util.stream.IntStream;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import static java.lang.System.out;
+import static java.lang.Math; // Violation, Alphabetical case sensitive ASCII order, 'M' &lt; 'S'
+import java.io.IOException;
 
-        <p>To configure the check so that it matches default Eclipse formatter
-           configuration (tested on Mars release):</p>
+import java.net.URL; // Violation, Extra separation in import group
+import java.security.KeyManagementException;
+
+import javax.net.ssl.TrustManager;
+
+import javax.net.ssl.X509TrustManager; // Violation, Groups should not separate internally
+
+import org.apache.http.conn.ClientConnectionManager;
+
+public class SomeClass { }
+        </source>
+        <p>
+          To configure the check so that it matches default Eclipse formatter configuration
+          (tested on Mars release):
+        </p>
         <ul>
           <li>group of static imports is on the top</li>
           <li>groups of type imports: &quot;java&quot; and &quot;javax&quot; packages first,
@@ -1684,9 +1734,33 @@ import java.util.stream.IntStream;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import static java.io.File.createTempFile;
+import static java.lang.Math.abs; // Ok, Alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+import java.lang.Math.sqrt; // Ok, Follow property 'Option' value 'above'
+import java.io.File; // Violation, Alphabetical case sensitive ASCII order, 'i' &lt; 'l'
 
-        <p>To configure the check so that it matches default IntelliJ IDEA formatter
-           configuration (tested on v2018.2):</p>
+import java.io.IOException; // Violation, Extra separation in import group
+
+import org.albedo.*;
+
+import static javax.swing.WindowConstants.*; // Violation, Wrong order for import
+import javax.swing.JComponent;
+import org.apache.http.ClientConnectionManager; // Violation, Must separated from previous import
+import org.linux.apache.server.SoapServer; // Ok
+
+import com.neurologic.http.HttpClient; // Ok
+import com.neurologic.http.impl.ApacheHttpClient; // Ok
+
+public class SomeClass { }
+        </source>
+        <p>
+          To configure the check so that it matches default IntelliJ IDEA formatter
+          configuration (tested on v2018.2):
+        </p>
         <ul>
           <li>group of static imports is on the bottom</li>
           <li>groups of type imports: all imports except of &quot;javax&quot;
@@ -1694,14 +1768,14 @@ import java.util.stream.IntStream;
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
-
         <p>
           Note: a <a href="config_filters.html#SuppressionXpathSingleFilter">
           suppression xpath single filter</a>
           is needed because IDEA has no blank line between "javax" and "java".
           ImportOrder has a limitation by design to enforce an empty line between groups
           ("java", "javax"). There is no flexibility to enforce empty lines between some
-          groups and no empty lines between other groups.</p>
+          groups and no empty lines between other groups.
+        </p>
         <p>
           Note: "separated" option is disabled because IDEA default has blank line
           between "java" and static imports, and no blank line between "javax" and "java".
@@ -1719,21 +1793,52 @@ import java.util.stream.IntStream;
   &lt;property name="message" value="^'java\..*'.*"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import static javax.swing.WindowConstants.*; // Violation, All static imports comes at bottom
 
-        <p>To configure the check so that it matches default NetBeans formatter configuration
-           (tested on v8):</p>
+import java.net.URL; // Violation, Wrong order for 'java.net.URL'
+import java.security.KeyManagementException;
+import javax.net.ssl.TrustManager; // Ok, No blank line between "javax" and "java".
+
+import static java.awt.Button.A; // Violation, Extra separation in import group
+import static java.lang.Math.PI; // Ok
+import static java.lang.Math.abs; // Ok, Alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+
+public class SomeClass { }
+        </source>
+        <p>
+          To configure the check so that it matches default NetBeans formatter configuration
+          (tested on v8):
+        </p>
         <ul>
           <li>groups of type imports are not defined, all imports will be sorted as a one
               group</li>
           <li>static imports are not separated, they will be sorted along with other imports</li>
         </ul>
-
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import static java.io.File.createTempFile;
 
+import static java.lang.Math.PI; // Violation, Static imports are not separated
+import java.lang.Math.sqrt;
+import javax.swing.JComponent; // Ok, Imports are grouped as one
+import static javax.WindowConstants.*; // Violation, Wrong order for 'javax.WindowConstants.*'
+import org.linux.apache.server.SoapServer; // Ok, Imports will be sorted as a one group
+
+import com.neurologic.http.HttpClient; // Violation, Extra separation in group and Wrong order
+
+public class SomeClass { }
+        </source>
         <p>
           Group descriptions enclosed in slashes are interpreted as regular expressions.
           If multiple groups match, the one matching a longer
@@ -1759,7 +1864,6 @@ import java.util.stream.IntStream;
           To configure the Check allows static imports grouped to the <b>top</b> being sorted
           alphabetically:
         </p>
-
         <source>
 &lt;module name=&quot;ImportOrder&quot;&gt;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
@@ -1769,14 +1873,14 @@ import java.util.stream.IntStream;
 
         <source>
 import static java.lang.Math.PI;
-import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
-import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
+import static java.lang.Math.abs; // Ok, Alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+import static org.abego.treelayout.Configuration.AlignmentInLevel; // Ok, Alphabetical order
 
 import org.abego.*;
 
-import java.util.Set; //  Wrong order for 'java.util.Set' import.
+import java.util.Set; // Violation, Wrong order for 'java.util.Set' import.
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
 
         <p>
@@ -1796,7 +1900,7 @@ import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
 import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
 
         <p>
@@ -1851,9 +1955,32 @@ public class InputEclipseStaticImportsOrder { }
 import static io.netty.handler.codec.http.HttpConstants.COLON;
 import static io.netty.handler.codec.http.HttpHeaders.addHeader;
 import static io.netty.handler.codec.http.HttpHeaders.setHeader;
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // Violation
 
 public class InputEclipseStaticImportsOrder { }
+        </source>
+        <p>
+          To configure the check to enforce static import group separation
+        </p>
+        <p>
+          Example for <code>separatedStaticGroups=true</code>
+        </p>
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+  &lt;property name=&quot;staticGroups&quot; value=&quot;*,java,javax,org&quot;/&gt;
+  &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+  &lt;property name=&quot;separatedStaticGroups&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <source>
+import static java.lang.Math.PI;
+import static java.io.File.createTempFile;
+import static javax.swing.JComponent; // Violation, Should be separated from previous imports
+import static javax.WindowConstants.*; // Ok
+
+import java.net.URL;
+
+public class SomeClass { }
         </source>
       </subsection>
 
