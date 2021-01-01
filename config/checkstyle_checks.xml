@@ -399,6 +399,12 @@
       //LITERAL_CATCH//METHOD_CALL[.//IDENT[@text = 'printStackTrace']]/.."/>
       <message key="matchxpath.match" value="Avoid using 'printStackTrace'."/>
     </module>
+    <module name="MatchXpath">
+      <property name="query" value="//METHOD_DEF/MODIFIERS//
+            ANNOTATION[./IDENT[@text='Test']]/ANNOTATION_MEMBER_VALUE_PAIR
+            [./IDENT[@text='expected']]"/>
+      <message key="matchxpath.match" value="Avoid using 'expected' attribute in Test annotation."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
