@@ -94,8 +94,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code separatedStaticGroups} - control whether static import groups should
  * be separated by, at least, one blank line or comment and aren't separated internally.
- * This property has effect only when the property {@code option} is is set to {@code top}
- * or {@code bottom}.
+ * This property has effect only when the property {@code option} is set to {@code top}
+ * or {@code bottom} and when property {@code staticGroups} is enabled.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -140,6 +140,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="ImportOrder"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import java.io.IOException;
+ * import java.net.URL;
+ *
+ * import java.io.IOException; // violation, extra separation before import
+ *                             // and wrong order, comes before 'java.net.URL'.
+ * import javax.net.ssl.TrustManager; // violation, extra separation due to above comment
+ * import javax.swing.JComponent;
+ * import org.apache.http.conn.ClientConnectionManager; // OK
+ * import java.util.Set; // violation, wrong order, 'java' should not come after 'org' imports
+ * import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports comes at top
+ * import com.neurologic.http.impl.ApacheHttpClient; // OK
+ *
+ * public class SomeClass { }
+ * </pre>
+ * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Kepler and Luna releases):
  * </p>
@@ -180,6 +204,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.lang.System.out;
+ * import static java.lang.Math; // violation, alphabetical case sensitive ASCII order, 'M' &lt; 'S'
+ * import java.io.IOException;
+ *
+ * import java.net.URL; // violation, extra separation before import
+ * import java.security.KeyManagementException;
+ *
+ * import javax.net.ssl.TrustManager;
+ *
+ * import javax.net.ssl.X509TrustManager; // violation, groups should not be separated internally
+ *
+ * import org.apache.http.conn.ClientConnectionManager;
+ *
+ * public class SomeClass { }
+ * </pre>
+ * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Mars release):
  * </p>
@@ -208,8 +251,31 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check so that it matches default IntelliJ IDEA formatter configuration
- * (tested on v2018.2):
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.io.File.createTempFile;
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+ * import java.lang.Math.sqrt; // OK, follows property 'Option' value 'above'
+ * import java.io.File; // violation, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+ *
+ * import java.io.IOException; // violation, extra separation in 'java' import group
+ *
+ * import org.albedo.*;
+ *
+ * import static javax.WindowConstants.*; // violation, wrong order, 'javax' comes before 'org'
+ * import javax.swing.JComponent;
+ * import org.apache.http.ClientConnectionManager; // violation, must separate from previous import
+ * import org.linux.apache.server.SoapServer; // OK
+ *
+ * import com.neurologic.http.HttpClient; // OK
+ * import com.neurologic.http.impl.ApacheHttpClient; // OK
+ *
+ * public class SomeClass { }
+ * </pre>
+ * <p>
+ * To configure the check so that it matches default IntelliJ IDEA formatter
+ * configuration (tested on v2018.2):
  * </p>
  * <ul>
  * <li>
@@ -251,6 +317,21 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import com.neurologic.http.impl.ApacheHttpClient; // OK
+ * import static java.awt.Button.A;
+ * import javax.swing.JComponent; // violation, wrong order, caused by above static import
+ *                                // all static imports comes at bottom
+ * import java.net.URL; // violation, extra separation in import group
+ * import java.security.KeyManagementException;
+ * import javax.swing.JComponent; // violation, wrong order, 'javax' should be above 'java' imports
+ * import com.neurologic.http.HttpClient; // violation, wrong order, 'com' imports should be at top
+ *
+ * public class TestClass { }
+ * </pre>
+ * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
  * (tested on v8):
  * </p>
@@ -266,6 +347,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;ImportOrder&quot;&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;inflow&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.io.File.createTempFile;
+ * import java.lang.Math.sqrt;
+ *
+ * import javax.swing.JComponent; // violation, extra separation in import group
+ * import static javax.windowConstants.*; // OK
+ *                                     // all static imports are processed like non static imports.
+ * public class SomeClass { }
  * </pre>
  * <p>
  * Group descriptions enclosed in slashes are interpreted as regular expressions.
@@ -300,11 +393,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  * import static org.abego.treelayout.Configuration.AlignmentInLevel; // OK, alphabetical order
  *
+ * import java.util.Set; // violation, extra separation in import group
+ * import static java.lang.Math.abs; // violation, wrong order, all static imports comes at 'top'
  * import org.abego.*;
  *
- * import java.util.Set; //  Wrong order for 'java.util.Set' import.
- *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * To configure the Check with groups of static imports:
@@ -321,7 +414,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static java.lang.String.format; // Group 2
  * import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
  *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * The following example shows the idea of 'useContainerOrderingForStatic' option that is
@@ -378,6 +471,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
  *
  * public class InputEclipseStaticImportsOrder { }
+ * </pre>
+ * <p>
+ * To configure the check to enforce static import group separation
+ * </p>
+ * <p>
+ * Example for {@code separatedStaticGroups=true}
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *   &lt;property name=&quot;staticGroups&quot; value=&quot;*,java,javax,org&quot;/&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+ *   &lt;property name=&quot;separatedStaticGroups&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * import static java.lang.Math.PI;
+ * import static java.io.File.createTempFile;
+ * import static javax.swing.JComponent; // violation, should be separated from previous imports
+ * import static javax.WindowConstants.*; // OK
+ *
+ * import java.net.URL;
+ *
+ * public class SomeClass { }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -456,7 +572,8 @@ public class ImportOrderCheck
     /**
      * Control whether static import groups should be separated by, at least, one blank
      * line or comment and aren't separated internally. This property has effect only when the
-     * property {@code option} is is set to {@code top} or {@code bottom}.
+     * property {@code option} is set to {@code top} or {@code bottom} and when property
+     * {@code staticGroups} is enabled.
      */
     private boolean separatedStaticGroups;
 
@@ -574,7 +691,8 @@ public class ImportOrderCheck
      * Setter to control whether static import groups should be separated by, at least,
      * one blank line or comment and aren't separated internally.
      * This property has effect only when the property
-     * {@code option} is is set to {@code top} or {@code bottom}.
+     * {@code option} is set to {@code top} or {@code bottom} and when property {@code staticGroups}
+     * is enabled.
      *
      * @param separatedStaticGroups
      *            whether groups should be separated by one blank line or comment.
