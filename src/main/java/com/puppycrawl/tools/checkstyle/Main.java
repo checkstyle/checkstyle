@@ -805,7 +805,7 @@ public final class Main {
             }
             // ensure there is no conflicting options
             else if (printAst || printAstWithComments || printJavadocTree || printTreeWithJavadoc
-                || xpath != null) {
+                    || xpath != null) {
                 if (suppressionLineColumnNumber != null || configurationFile != null
                         || propertiesFile != null || outputPath != null
                         || parseResult.hasMatchedOption(OUTPUT_FORMAT_OPTION)) {
