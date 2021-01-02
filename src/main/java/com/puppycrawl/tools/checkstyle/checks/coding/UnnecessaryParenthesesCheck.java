@@ -335,7 +335,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             log(ast, MSG_LAMBDA, ast.getText());
         }
         else if (type != TokenTypes.ASSIGN
-            || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+                || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             final boolean surrounded = isSurrounded(ast);
             // An identifier surrounded by parentheses.
             if (surrounded && type == TokenTypes.IDENT) {
@@ -380,7 +380,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
 
         // shouldn't process assign in annotation pairs
         if (type != TokenTypes.ASSIGN
-            || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
+                || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
             // An expression is surrounded by parentheses.
             if (type == TokenTypes.EXPR) {
                 // If 'parentToSkip' == 'ast', then we've already logged a

@@ -178,9 +178,78 @@ public class LineWrappingHandler {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                final int additionalIndent = expressionStartsBetween(firstNode, node)
+                    * indentCheck.getBasicOffset();
+                logWarningMessage(node, currentIndent + additionalIndent);
             }
         }
+    }
+
+    /**
+     * Counts the beginnings of expressions in previous lines between {@code firstNode} and
+     * {@code node}.
+     *
+     * @param firstNode Node on the highest line.
+     * @param node Node to start examining.
+     * @return Number of expression starts or zero.
+     */
+    public static int expressionStartsBetween(final DetailAST firstNode, DetailAST node) {
+        return Math.max(0, expressionStartsBetweenInternal(firstNode, node));
+    }
+
+    /**
+     * Counts the beginnings of expressions in previous lines between {@code firstNode} and
+     * {@code node}.
+     *
+     * @param firstNode Node on the highest line.
+     * @param node Node to start examining.
+     * @return Number of expression starts (negative, if there are more expression ends than starts
+     *         between {@code firstNode} and {@code node}.
+     */
+    private static int expressionStartsBetweenInternal(final DetailAST firstNode, DetailAST node) {
+        final int result;
+        if (node == firstNode) {
+            result = 0;
+        }
+        else if (node.getType() == TokenTypes.LPAREN) {
+            // if node type is LPAREN the curly bracket is in own line -> skip
+            result = expressionStartsBetween(firstNode, node.getParent());
+        }
+        else {
+            result = numberOfSingleLparenPreviousSiblings(node)
+                + expressionStartsBetween(firstNode, node.getParent());
+        }
+        return result;
+    }
+
+    /**
+     * Counts the number of previous siblings starting new expressions.
+     *
+     * @param node Node to start examining.
+     * @return Number of previous siblings starting new expressions.
+     */
+    private static int numberOfSingleLparenPreviousSiblings(DetailAST node) {
+        int previousSiblings = 0;
+        if (node.getPreviousSibling() == null) {
+            if (node.getType() == TokenTypes.LPAREN) {
+                previousSiblings = 1;
+            }
+        }
+        else if (node.getType() != TokenTypes.FOR_INIT && node.getType() != TokenTypes.PARAMETERS
+                && node.getType() != TokenTypes.ELIST) {
+            if (node.getType() == TokenTypes.LPAREN) {
+                previousSiblings =
+                        1 + numberOfSingleLparenPreviousSiblings(node.getPreviousSibling());
+            }
+            else if (node.getType() == TokenTypes.RPAREN) {
+                previousSiblings =
+                        numberOfSingleLparenPreviousSiblings(node.getPreviousSibling()) - 1;
+            }
+            else {
+                previousSiblings = numberOfSingleLparenPreviousSiblings(node.getPreviousSibling());
+            }
+        }
+        return previousSiblings;
     }
 
     /**
@@ -224,7 +293,7 @@ public class LineWrappingHandler {
             final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
 
             if (firstTokenOnLine == null
-                || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
+                    || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
                 result.put(curNode.getLineNo(), curNode);
             }
             curNode = getNextCurNode(curNode);
@@ -279,10 +348,10 @@ public class LineWrappingHandler {
                     && isEndOfScope(lastAnnotationNode, node);
             if (!isArrayInitPresentInAncestors
                     && (isCurrentNodeCloseAnnotationAloneInLine
-                    || node.getType() == TokenTypes.AT
-                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode))) {
+                        || node.getType() == TokenTypes.AT
+                        && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
+                            || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
+                        || TokenUtil.areOnSameLine(node, atNode))) {
                 logWarningMessage(node, firstNodeIndent);
             }
             else if (!isArrayInitPresentInAncestors) {

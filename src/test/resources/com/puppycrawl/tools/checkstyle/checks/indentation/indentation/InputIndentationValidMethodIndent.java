@@ -31,7 +31,7 @@ public class InputIndentationValidMethodIndent extends Object { //indent:0 exp:0
 
 
     private InputIndentationValidMethodIndent(boolean test, //indent:4 exp:4
-        boolean test2) { //indent:8 exp:>=8
+            boolean test2) { //indent:12 exp:>=12
         boolean test3 = true; //indent:8 exp:>=8
 
         int i = 4 +  //indent:8 exp:8
@@ -40,7 +40,7 @@ public class InputIndentationValidMethodIndent extends Object { //indent:0 exp:0
 
 
     private InputIndentationValidMethodIndent(boolean test, //indent:4 exp:4
-        boolean test2, boolean test3)  //indent:8 exp:>=8
+            boolean test2, boolean test3)  //indent:12 exp:>=12
     { //indent:4 exp:4
         boolean test4 = true; //indent:8 exp:8
 
@@ -71,20 +71,20 @@ public class InputIndentationValidMethodIndent extends Object { //indent:0 exp:0
 
     // params on multiple lines //indent:4 exp:4
     public void method2(int x, int y, int w, int h, //indent:4 exp:4
-        int x1, int y1, int w1, int h1) //indent:8 exp:>=8
+            int x1, int y1, int w1, int h1) //indent:12 exp:>=12
     { //indent:4 exp:4
     } //indent:4 exp:4
 
     // params on multiple lines //indent:4 exp:4
     public void method3(int x, int y, int w, int h, //indent:4 exp:4
-        int x1, int y1, int w1, int h1) //indent:8 exp:>=8
+            int x1, int y1, int w1, int h1) //indent:12 exp:>=12
     { //indent:4 exp:4
         System.getProperty("foo"); //indent:8 exp:8
     } //indent:4 exp:4
 
     // params on multiple lines //indent:4 exp:4
     public void method4(int x, int y, int w, int h, //indent:4 exp:4
-        int x1, int y1, int w1, int h1) //indent:8 exp:8
+            int x1, int y1, int w1, int h1) //indent:12 exp:12
     { //indent:4 exp:4
         boolean test = true; //indent:8 exp:8
 

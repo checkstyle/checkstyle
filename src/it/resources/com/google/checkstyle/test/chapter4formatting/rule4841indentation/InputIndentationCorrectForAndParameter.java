@@ -21,30 +21,30 @@ class InputIndentationCorrectForAndParameter { //indent:0 exp:0
           getString(1000000000, "Loooooooooooooooong")); i < 10; i++) {} //indent:10 exp:>=8
 
     for (Map.Entry<String, String> entry : new SecondForLongName("Loo" //indent:4 exp:4
-        + "ooooooooooooooooooooong").getMap(new //indent:8 exp:8
-        FooForClass(), 10000000, //indent:8 exp:8
-        getString(10000, "Loooooooooo" //indent:8 exp:8
-        + "ooooong")).entrySet()) {} //indent:8 exp:8
+            + "ooooooooooooooooooooong").getMap(new //indent:12 exp:12
+            FooForClass(), 10000000, //indent:12 exp:12
+            getString(10000, "Loooooooooo" //indent:12 exp:12
+            + "ooooong")).entrySet()) {} //indent:12 exp:12
 
     for (Map.Entry<String, String> entry : new SecondForLongName("Loo" //indent:4 exp:4
-        + "ooooooooooooooooooooong").getMap(new //indent:8 exp:8
-            FooForClass(), 10000000, //indent:12 exp:>=8
-          getString(10000, "Loooooooooo" //indent:10 exp:>=8
-               + "ooooong")).entrySet()) {} //indent:15 exp:>=8
+            + "ooooooooooooooooooooong").getMap(new //indent:12 exp:12
+            FooForClass(), 10000000, //indent:12 exp:12
+            getString(10000, "Loooooooooo" //indent:12 exp:12
+               + "ooooong")).entrySet()) {} //indent:15 exp:>=12
 
     for (String string : new SecondForLongName(getString(1024 //indent:4 exp:4
-        , "Looooooooooooooooooong")). //indent:8 exp:8
-        getList(new FooForClass(), 1000, getString(1024, //indent:8 exp:8
-        "Loooooooooooooooooooooooooooooooo" //indent:8 exp:8
-        + "oooooooooooooooooooooooooooooooooooooooo" //indent:8 exp:8
-        + "oooooooooong"))) {} //indent:8 exp:8
+            , "Looooooooooooooooooong")). //indent:12 exp:12
+            getList(new FooForClass(), 1000, getString(1024, //indent:12 exp:12
+            "Loooooooooooooooooooooooooooooooo" //indent:12 exp:12
+            + "oooooooooooooooooooooooooooooooooooooooo" //indent:12 exp:12
+            + "oooooooooong"))) {} //indent:12 exp:12
 
     for (String string : new SecondForLongName(getString(1024 //indent:4 exp:4
-        , "Looooooooooooooooooong")). //indent:8 exp:8
-            getList(new FooForClass(), 1000, getString(1024, //indent:12 exp:>=8
-              "Loooooooooooooooooooooooooooooooo" //indent:14 exp:>=8
-          + "oooooooooooooooooooooooooooooooooooooooo" //indent:10 exp:>=8
-             + "oooooooooong"))) {} //indent:13 exp:>=8
+            , "Looooooooooooooooooong")). //indent:12 exp:12
+            getList(new FooForClass(), 1000, getString(1024, //indent:12 exp:12
+              "Loooooooooooooooooooooooooooooooo" //indent:14 exp:>=12
+            + "oooooooooooooooooooooooooooooooooooooooo" //indent:12 exp:12
+             + "oooooooooong"))) {} //indent:13 exp:>=12
 
   } //indent:2 exp:2
 
@@ -55,34 +55,34 @@ class InputIndentationCorrectForAndParameter { //indent:0 exp:0
       for (int i = 1; i < 10; i ++) {} //indent:6 exp:6
 
       for (int i = new SecondForLongName("Loooooooooooooooooooo" //indent:6 exp:6
-          + "oong").getInteger(new FooForClass(), //indent:10 exp:10
-            getString(1000000000, "Loooooooooooooooong")); i < 10; i++) {} //indent:12 exp:>=10
+              + "oong").getInteger(new FooForClass(), //indent:14 exp:14
+                getString(1000000000, "Loooooooooooooooong")); i < 10; i++) {} //indent:16 exp:>=14
 
       for (Map.Entry<String, String> entry : new SecondForLongName("Loo" //indent:6 exp:6
-          + "ooooooooooooooooooooong").getMap(new //indent:10 exp:10
-          FooForClass(), 10000000, //indent:10 exp:10
-          getString(10000, "Loooooooooo" //indent:10 exp:10
-          + "ooooong")).entrySet()) {} //indent:10 exp:10
+              + "ooooooooooooooooooooong").getMap(new //indent:14 exp:14
+              FooForClass(), 10000000, //indent:14 exp:14
+              getString(10000, "Loooooooooo" //indent:14 exp:14
+              + "ooooong")).entrySet()) {} //indent:14 exp:14
 
       for (Map.Entry<String, String> entry : new SecondForLongName("Loo" //indent:6 exp:6
-            + "ooooooooooooooooooooong").getMap(new //indent:12 exp:>=10
-             FooForClass(), 10000000, //indent:13 exp:>=10
-                  getString(10000, "Loooooooooo" //indent:18 exp:>=10
-               + "ooooong")).entrySet()) {} //indent:15 exp:>=10
+              + "ooooooooooooooooooooong").getMap(new //indent:14 exp:14
+               FooForClass(), 10000000, //indent:15 exp:>=14
+                  getString(10000, "Loooooooooo" //indent:18 exp:>=14
+               + "ooooong")).entrySet()) {} //indent:15 exp:>=14
 
       for (String string : new SecondForLongName(getString(1024 //indent:6 exp:6
-          , "Looooooooooooooooooong")). //indent:10 exp:10
-          getList(new FooForClass(), 1000, getString(1024, //indent:10 exp:10
-          "Loooooooooooooooooooooooooooooooo" //indent:10 exp:10
-          + "oooooooooooooooooooooooooooooooooooooooo" //indent:10 exp:10
-          + "oooooooooong"))) {} //indent:10 exp:10
+              , "Looooooooooooooooooong")). //indent:14 exp:14
+              getList(new FooForClass(), 1000, getString(1024, //indent:14 exp:14
+              "Loooooooooooooooooooooooooooooooo" //indent:14 exp:14
+              + "oooooooooooooooooooooooooooooooooooooooo" //indent:14 exp:14
+              + "oooooooooong"))) {} //indent:14 exp:14
 
       for (String string : new SecondForLongName(getString(1024 //indent:6 exp:6
-               , "Looooooooooooooooooong")). //indent:15 exp:>=10
-             getList(new FooForClass(), 1000, getString(1024, //indent:13 exp:>=10
-                   "Loooooooooooooooooooooooooooooooo" //indent:19 exp:>=10
-                     + "oooooooooooooooooooooooooooooooooooooooo" //indent:21 exp:>=10
-          + "oooooooooong"))) {} //indent:10 exp:10
+               , "Looooooooooooooooooong")). //indent:15 exp:>=14
+               getList(new FooForClass(), 1000, getString(1024, //indent:15 exp:>=14
+                   "Loooooooooooooooooooooooooooooooo" //indent:19 exp:>=14
+                     + "oooooooooooooooooooooooooooooooooooooooo" //indent:21 exp:>=14
+              + "oooooooooong"))) {} //indent:14 exp:14
     } //indent:4 exp:4
   } //indent:2 exp:2
 }  //indent:0 exp:0
