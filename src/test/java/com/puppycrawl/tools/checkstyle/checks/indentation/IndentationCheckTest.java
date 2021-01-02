@@ -222,6 +222,27 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testStrictCondition2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "4");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String[] expected = {
+            "31:9: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 4),
+            "35:17: " + getCheckMessage(MSG_ERROR, "||", 16, 20),
+            "36:17: " + getCheckMessage(MSG_ERROR, "||", 16, 20),
+            "59:23: " + getCheckMessage(MSG_ERROR_MULTI, "\"test\"", 22, "20, 32"),
+            "111:15: " + getCheckMessage(MSG_ERROR_MULTI, "\"test\"", 14, "16, 49"),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationStrictCondition2.java"), expected);
+    }
+
+    @Test
     public void forbidOldStyle() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -233,8 +254,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = {
-            "20:30: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
-            "21:30: " + getCheckMessage(MSG_ERROR, "int", 29, 12),
+            "20:30: " + getCheckMessage(MSG_ERROR_MULTI, "int", 29, "12, 40"),
+            "21:30: " + getCheckMessage(MSG_ERROR_MULTI, "int", 29, "12, 40"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationMethodCStyle.java"), expected);
     }
@@ -313,11 +334,11 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
             "40:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 0, "4, 23, 25"),
+                    "annotation array initialization", 0, "4, 8, 23, 25"),
             "41:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 0, "4, 23, 25"),
+                    "annotation array initialization", 0, "4, 8, 23, 25"),
             "50:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                    "annotation array initialization", 6, "8, 27, 29"),
+                    "annotation array initialization", 6, "8, 12, 27, 29"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationDifficultAnnotations.java"), expected);
     }
@@ -531,9 +552,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
 
             "17:1: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 0,
-                "4, 6, 34, 36"),
+                "4, 6, 8, 34, 36"),
             "22:14: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                    13, "4, 6, 34, 36"),
+                    13, "4, 6, 8, 34, 36"),
             "23:3: " + getCheckMessage(MSG_ERROR_MULTI,
                     "annotation array initialization rcurly", 2, "0, 4"),
             "35:7: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization", 6,
@@ -565,15 +586,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
 
             "17:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "0, 33, 35"),
+                "annotation array initialization", 4, "0, 2, 33, 35"),
             "30:9: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
                 "annotation array initialization", 8, "4, 29, 31"),
             "32:3: " + getCheckMessage(MSG_ERROR,
                 "annotation array initialization rcurly", 2, 4),
             "47:7: " + getCheckMessage(MSG_ERROR,
                 "annotation array initialization lcurly", 6, 2),
-            "49:5: " + getCheckMessage(MSG_CHILD_ERROR_MULTI,
-                "annotation array initialization", 4, "2, 6, 8"),
         };
         final String fileName = getPath("InputIndentationAnnArrInit2.java");
         verifyWarns(checkConfig, fileName, expected);
@@ -596,7 +615,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String fileName = getPath("InputIndentationOddLineWrappingAndArrayInit.java");
         final String[] expected = {
             "25:17: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                    16, "11, 17, 47, 54"),
+                    16, "11, 15, 17, 47, 54"),
         };
         verifyWarns(checkConfig, fileName, expected);
     }
@@ -1225,14 +1244,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             // following are tests for annotation array initialisation
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "124:15: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
-                14, 12),
+            "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+                14, "12, 16"),
             "128:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                14, "16, 28, 30"),
+                14, "16, 20, 28, 30"),
             "129:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "131:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
-                12, 16),
+            "131:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+                12, "16, 20"),
         };
 
         // Test input for this test case is not checked due to issue #693.
@@ -1299,7 +1318,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "66:3: " + getCheckMessage(MSG_ERROR_MULTI, "array initialization rcurly", 2, "6, 10"),
             "69:7: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 6, 8),
             "76:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
-            "89:9: " + getCheckMessage(MSG_ERROR, "1", 8, 12),
+            "89:9: " + getCheckMessage(MSG_ERROR_MULTI, "1", 8, "12, 25"),
             "100:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
             "101:15: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 14, 12),
             "104:11: " + getCheckMessage(MSG_CHILD_ERROR, "array initialization", 10, 12),
@@ -1312,14 +1331,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             // following are tests for annotation array initialisation
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "124:15: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
-                14, 12),
+            "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+                14, "12, 16"),
             "128:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
-                14, "16, 28, 30"),
+                14, "16, 20, 28, 30"),
             "129:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
                 8, "12, 16"),
-            "131:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
-                12, 16),
+            "131:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+                12, "16, 20"),
         };
 
         // Test input for this test case is not checked due to issue #693.
@@ -2333,10 +2352,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("forceStrictCondition", "true");
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         final String[] expected = {
-            "23:17: " + getCheckMessage(MSG_ERROR, "(", 16, 12),
-            "24:17: " + getCheckMessage(MSG_ERROR, "->", 16, 12),
-            "26:27: " + getCheckMessage(MSG_ERROR, "\"SECOND_ARG\"", 26, 12),
-            "27:26: " + getCheckMessage(MSG_ERROR, "(", 25, 12),
+            "23:17: " + getCheckMessage(MSG_ERROR_MULTI, "(", 16, "12, 26"),
+            "24:17: " + getCheckMessage(MSG_ERROR_MULTI, "->", 16, "12, 26"),
+            "27:26: " + getCheckMessage(MSG_ERROR_MULTI, "(", 25, "12, 26"),
             "30:17: " + getCheckMessage(MSG_ERROR, "(", 16, 12),
             "31:21: " + getCheckMessage(MSG_ERROR, "if", 20, 16),
             "32:25: " + getCheckMessage(MSG_CHILD_ERROR, "if", 24, 20),
@@ -2525,8 +2543,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "84:20: " + getCheckMessage(MSG_ERROR, "writ", 19, 12),
             "91:20: " + getCheckMessage(MSG_ERROR, "writ", 19, 16),
             "98:22: " + getCheckMessage(MSG_ERROR, "writ", 21, 16),
-            "113:18: " + getCheckMessage(MSG_ERROR, "zipFileName", 17, 16),
-            "120:16: " + getCheckMessage(MSG_ERROR, "zipFileName", 15, 16),
+            "113:18: " + getCheckMessage(MSG_ERROR_MULTI, "zipFileName", 17, "16, 37"),
+            "120:16: " + getCheckMessage(MSG_ERROR_MULTI, "zipFileName", 15, "16, 37"),
             "130:8: " + getCheckMessage(MSG_ERROR, "try", 7, 8),
             "135:16: " + getCheckMessage(MSG_CHILD_ERROR, "try", 15, 12),
             "141:12: " + getCheckMessage(MSG_ERROR, "try resource", 11, 12),

@@ -283,10 +283,10 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode previousNode = JavadocUtil.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
-                    && !CommonUtil.isBlank(previousNode.getText())
-                || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
-                    && previousNode.getType() != JavadocTokenTypes.NEWLINE
-                    && previousNode.getType() != JavadocTokenTypes.TEXT) {
+                        && !CommonUtil.isBlank(previousNode.getText())
+                    || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
+                        && previousNode.getType() != JavadocTokenTypes.NEWLINE
+                        && previousNode.getType() != JavadocTokenTypes.TEXT) {
                 result = false;
                 break;
             }

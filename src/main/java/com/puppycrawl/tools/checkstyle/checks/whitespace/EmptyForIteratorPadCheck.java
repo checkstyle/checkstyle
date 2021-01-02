@@ -132,7 +132,7 @@ public class EmptyForIteratorPadCheck
             // don't check if at end of line
             if (after < line.length()) {
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(after))) {
+                        && Character.isWhitespace(line.charAt(after))) {
                     log(ast, MSG_WS_FOLLOWED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE
