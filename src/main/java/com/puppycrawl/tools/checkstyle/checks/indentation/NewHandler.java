@@ -55,7 +55,7 @@ public class NewHandler extends AbstractExpressionHandler {
 
             final boolean forceStrictCondition = getIndentCheck().isForceStrictCondition();
             if (forceStrictCondition && !level.isAcceptable(columnNo)
-                || !forceStrictCondition && level.isGreaterThan(columnNo)) {
+                    || !forceStrictCondition && level.isGreaterThan(columnNo)) {
                 logError(mainAst, "", columnNo, level);
             }
         }

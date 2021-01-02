@@ -815,8 +815,8 @@ public class ImportOrderCheck
 
         if (groupIdx > lastGroup) {
             if (!beforeFirstImport
-                && ast.getLineNo() - lastImportLine < 2
-                && needSeparator(isStatic)) {
+                    && ast.getLineNo() - lastImportLine < 2
+                    && needSeparator(isStatic)) {
                 log(ast, MSG_SEPARATION, name);
             }
         }
