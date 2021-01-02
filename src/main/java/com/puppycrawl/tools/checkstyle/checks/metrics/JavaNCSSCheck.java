@@ -309,8 +309,8 @@ public class JavaNCSSCheck extends AbstractCheck {
         final int tokenType = ast.getType();
 
         if (tokenType == TokenTypes.CLASS_DEF
-            || tokenType == TokenTypes.RECORD_DEF
-            || isMethodOrCtorOrInitDefinition(tokenType)) {
+                || tokenType == TokenTypes.RECORD_DEF
+                || isMethodOrCtorOrInitDefinition(tokenType)) {
             // add a counter for this class/method
             counters.push(new Counter());
         }
@@ -444,7 +444,7 @@ public class JavaNCSSCheck extends AbstractCheck {
         final int parentType = ast.getParent().getType();
 
         if (parentType == TokenTypes.SLIST
-            || parentType == TokenTypes.OBJBLOCK) {
+                || parentType == TokenTypes.OBJBLOCK) {
             final DetailAST prevSibling = ast.getPreviousSibling();
 
             // is countable if no previous sibling is found or

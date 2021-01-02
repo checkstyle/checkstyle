@@ -219,7 +219,7 @@ public class MethodParamPadCheck
             else {
                 final int before = parenAST.getColumnNo() - 1;
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                        && Character.isWhitespace(line.charAt(before))) {
                     log(parenAST, MSG_WS_PRECEDED, parenAST.getText());
                 }
                 else if (option == PadOption.SPACE

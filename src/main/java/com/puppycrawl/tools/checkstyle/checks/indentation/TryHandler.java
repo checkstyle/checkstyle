@@ -63,7 +63,7 @@ public class TryHandler extends BlockParentHandler {
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         final IndentLevel result;
         if (child instanceof CatchHandler
-            || child instanceof FinallyHandler) {
+                || child instanceof FinallyHandler) {
             result = getIndent();
         }
         else {
