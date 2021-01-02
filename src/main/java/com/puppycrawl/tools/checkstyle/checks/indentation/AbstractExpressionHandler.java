@@ -288,7 +288,7 @@ public abstract class AbstractExpressionHandler {
 
             IndentLevel theLevel = indentLevel;
             if (firstLineMatches
-                || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
+                    || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
                 theLevel = new IndentLevel(indentLevel, getBasicOffset());
             }
 
@@ -440,8 +440,8 @@ public abstract class AbstractExpressionHandler {
         DetailAST realStart = ast;
 
         if (tree.getLineNo() < realStart.getLineNo()
-            || tree.getLineNo() == realStart.getLineNo()
-            && tree.getColumnNo() < realStart.getColumnNo()
+                || tree.getLineNo() == realStart.getLineNo()
+                && tree.getColumnNo() < realStart.getColumnNo()
         ) {
             realStart = tree;
         }
@@ -509,7 +509,7 @@ public abstract class AbstractExpressionHandler {
              modifier != null;
              modifier = modifier.getNextSibling()) {
             if (isOnStartOfLine(modifier)
-                && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
+                    && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
                 logError(modifier, "modifier",
                     expandedTabsColumnNo(modifier));
             }
