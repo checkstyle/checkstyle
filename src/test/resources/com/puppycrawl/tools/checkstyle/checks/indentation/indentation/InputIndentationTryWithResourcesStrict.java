@@ -110,14 +110,14 @@ newBufferedWriter(filePath, charset); //indent:0 exp:12 warn
         try ( //indent:8 exp:8
             BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:12 exp:12
             ZipFile zf = new ZipFile( //indent:12 exp:12
-                 zipFileName) //indent:17 exp:16 warn
+                 zipFileName) //indent:17 exp:16,37 warn
             ) { //indent:12 exp:8,12
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
         try ( //indent:8 exp:8
             BufferedWriter writer = Files.newBufferedWriter(filePath, charset); //indent:12 exp:12
             ZipFile zf = new ZipFile( //indent:12 exp:12
-               zipFileName) //indent:15 exp:16 warn
+               zipFileName) //indent:15 exp:16,37 warn
             ) { //indent:12 exp:8,12
             zf.getName(); //indent:12 exp:12
         } //indent:8 exp:8
