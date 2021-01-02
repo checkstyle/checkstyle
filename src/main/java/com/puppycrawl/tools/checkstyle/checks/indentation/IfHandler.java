@@ -93,7 +93,8 @@ public class IfHandler extends BlockParentHandler {
         final DetailAST condAst = getMainAst().findFirstToken(TokenTypes.LPAREN)
             .getNextSibling();
         final IndentLevel expected =
-            new IndentLevel(getIndent(), getBasicOffset());
+            new IndentLevel(getIndent(), getBasicOffset()
+                * (1 + LineWrappingHandler.expressionStartsBetween(condAst.getParent(), condAst)));
         checkExpressionSubtree(condAst, expected, false, false);
     }
 

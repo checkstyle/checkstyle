@@ -183,8 +183,8 @@ public final class ScopeUtil {
                 returnValue = true;
             }
             else if (TokenUtil.isOfType(token, TokenTypes.INTERFACE_DEF,
-                TokenTypes.ANNOTATION_DEF, TokenTypes.CLASS_DEF,
-                TokenTypes.LITERAL_NEW)) {
+                    TokenTypes.ANNOTATION_DEF, TokenTypes.CLASS_DEF,
+                    TokenTypes.LITERAL_NEW)) {
                 break;
             }
         }

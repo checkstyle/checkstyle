@@ -270,7 +270,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "44:4: " + getCheckMessage(MSG_ERROR, "member def type", 3, 4),
             "47:9: " + getCheckMessage(MSG_ERROR, "foo", 8, 12),
             "50:9: " + getCheckMessage(MSG_ERROR, "int", 8, 12),
-            "53:14: " + getCheckMessage(MSG_ERROR, "true", 13, 16),
+            "53:14: " + getCheckMessage(MSG_CHILD_ERROR, "if", 13, 16),
             "56:17: " + getCheckMessage(MSG_ERROR, "+", 16, 20),
             "57:9: " + getCheckMessage(MSG_ERROR, "if", 8, 12),
             "60:12: " + getCheckMessage(MSG_ERROR, "if rcurly", 11, 12),
@@ -388,14 +388,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String[] expected = {
-            "33:9: " + getCheckMessage(MSG_ERROR_MULTI, "new", 8, "10, 12"),
-            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "new", 8, "10, 12"),
-            "90:11: " + getCheckMessage(MSG_ERROR_MULTI, "new", 10, "12, 14"),
-            "97:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
-            "119:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
-            "126:15: " + getCheckMessage(MSG_ERROR_MULTI, "new", 14, "16, 18"),
-        };
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verifyWarns(checkConfig, getPath("InputIndentationCorrectIfAndParameter.java"), expected);
     }
 
@@ -1518,8 +1511,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
             "188:15: " + getCheckMessage(MSG_CHILD_ERROR, "else", 14, 12),
             "189:11: " + getCheckMessage(MSG_ERROR, "else rcurly", 10, 8),
-            "192:10: " + getCheckMessage(MSG_CHILD_ERROR, "if", 9, 12),
-            "193:12: " + getCheckMessage(MSG_CHILD_ERROR, "if", 11, 12),
+            "192:10: " + getCheckMessage(MSG_CHILD_ERROR, "if", 9, 16),
+            "193:12: " + getCheckMessage(MSG_CHILD_ERROR, "if", 11, 16),
             "197:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
             "200:8: " + getCheckMessage(MSG_ERROR, "if rcurly", 7, 8),
             "207:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
@@ -1533,13 +1526,15 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "251:7: " + getCheckMessage(MSG_ERROR, "if lparen", 6, 8),
             "253:7: " + getCheckMessage(MSG_ERROR, "if rparen", 6, 8),
             "256:1: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
-            "257:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
+            "257:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 16),
             "258:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "259:1: " + getCheckMessage(MSG_ERROR, "if rcurly", 0, 8),
             "260:1: " + getCheckMessage(MSG_ERROR, "if", 0, 8),
             "261:1: " + getCheckMessage(MSG_CHILD_ERROR, "if", 0, 12),
             "262:1: " + getCheckMessage(MSG_ERROR, "else", 0, 8),
             "263:1: " + getCheckMessage(MSG_CHILD_ERROR, "else", 0, 12),
+            "266:17: " + getCheckMessage(MSG_ERROR, "||", 16, 20),
+            "267:17: " + getCheckMessage(MSG_ERROR, "||", 16, 20),
         };
         verifyWarns(checkConfig, fileName, expected);
     }

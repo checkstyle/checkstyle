@@ -6,7 +6,7 @@ public class InputIndentationTwoStatementsPerLine {//indent:0 exp:0
 
     public void method() { //indent:4 exp:4
         long_lined_label: if (true //indent:8 exp:8
-            && true) {} //indent:12 exp:12
+                && true) {} //indent:16 exp:16
     } //indent:4 exp:4
     /* package-private */ static final void //indent:4 exp:4
         method2() {} //indent:8 exp:8

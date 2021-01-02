@@ -238,7 +238,7 @@ public class TrailingCommentCheck extends AbstractCheck {
                 }
             }
             if (!format.matcher(lineBefore).find()
-                && !isLegalComment(comment)) {
+                    && !isLegalComment(comment)) {
                 illegalLines.put(lineNo, comment.getStartColNo());
             }
         }

@@ -305,8 +305,8 @@ public class NeedBracesCheck extends AbstractCheck {
             result = parent.getLastChild().getType() != TokenTypes.SLIST;
         }
         else if (nextSibling != null
-            && nextSibling.getType() == TokenTypes.SLIST
-            && nextSibling.getFirstChild().getType() != TokenTypes.SLIST) {
+                && nextSibling.getType() == TokenTypes.SLIST
+                && nextSibling.getFirstChild().getType() != TokenTypes.SLIST) {
             result = true;
         }
         return result;
