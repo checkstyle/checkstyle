@@ -189,8 +189,8 @@ System.getProperty("blah"); //indent:0 exp:12 warn
           } //indent:10 exp:8 warn
 
         if (test //indent:8 exp:8
-         && 7 < 8 && 8 < 9 //indent:9 exp:12 warn
-           && 10 < 11) { //indent:11 exp:12 warn
+         && 7 < 8 && 8 < 9 //indent:9 exp:16 warn
+           && 10 < 11) { //indent:11 exp:16 warn
         } //indent:8 exp:8
 
         if (test) //indent:8 exp:8
@@ -249,12 +249,12 @@ System.getProperty("blah"); //indent:0 exp:12 warn
 
         if  //indent:8 exp:8
       ( //indent:6 exp:8 warn
-            test //indent:12 exp:12
+                test //indent:16 exp:16
       ) { //indent:6 exp:8 warn
             System.getProperty("blah");  //indent:12 exp:12
         } //indent:8 exp:8
 if (test  //indent:0 exp:8 warn
-|| test) {  //indent:0 exp:12 warn
+|| test) {  //indent:0 exp:16 warn
 System.getProperty("blah");  //indent:0 exp:12 warn
 }  //indent:0 exp:8 warn
 if (test) //indent:0 exp:8 warn
@@ -262,6 +262,13 @@ System.getProperty("blah"); //indent:0 exp:12 warn
 else //indent:0 exp:8 warn
 System.getProperty("blah"); //indent:0 exp:12 warn
 
+        if ((test //indent:8 exp:8
+                || 1 < 2 //indent:16 exp:20 warn
+                || 3 < 4) //indent:16 exp:20 warn
+                && 5 == 6 //indent:16 exp:16
+                && 7 == 8) { //indent:16 exp:16
+            System.getProperty("blah");  //indent:12 exp:12
+        } //indent:8 exp:8
     } //indent:4 exp:4
 
 } //indent:0 exp:0

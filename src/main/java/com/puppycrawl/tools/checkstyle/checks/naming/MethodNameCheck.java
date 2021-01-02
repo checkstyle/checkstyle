@@ -240,7 +240,7 @@ public class MethodNameCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (!AnnotationUtil.containsAnnotation(ast, OVERRIDE)
-            && !AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
+                && !AnnotationUtil.containsAnnotation(ast, CANONICAL_OVERRIDE)) {
             // Will check the name against the format.
             super.visitToken(ast);
         }
@@ -260,7 +260,7 @@ public class MethodNameCheck
             // Such a rare case, will not have the logic to handle parsing
             // down the tree looking for the first ident.
             if (classIdent != null
-                && method.getText().equals(classIdent.getText())) {
+                    && method.getText().equals(classIdent.getText())) {
                 log(method, MSG_KEY, method.getText());
             }
         }

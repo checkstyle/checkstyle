@@ -178,11 +178,11 @@ public class FinalClassCheck
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             final ClassDesc desc = classes.pop();
             if (desc.isWithPrivateCtor()
-                && !desc.isDeclaredAsAbstract()
-                && !desc.isDeclaredAsFinal()
-                && !desc.isWithNonPrivateCtor()
-                && !desc.isWithNestedSubclass()
-                && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+                    && !desc.isDeclaredAsAbstract()
+                    && !desc.isDeclaredAsFinal()
+                    && !desc.isWithNonPrivateCtor()
+                    && !desc.isWithNestedSubclass()
+                    && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
                 final String qualifiedName = desc.getQualifiedName();
                 final String className = getClassNameFromQualifiedName(qualifiedName);
                 log(ast, MSG_KEY, className);

@@ -246,9 +246,9 @@ public class UnusedImportsCheck extends AbstractCheck {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
         if (parentType != TokenTypes.DOT
-            && parentType != TokenTypes.METHOD_DEF
-            || parentType == TokenTypes.DOT
-                && ast.getNextSibling() != null) {
+                && parentType != TokenTypes.METHOD_DEF
+                || parentType == TokenTypes.DOT
+                    && ast.getNextSibling() != null) {
             referenced.add(ast.getText());
         }
     }

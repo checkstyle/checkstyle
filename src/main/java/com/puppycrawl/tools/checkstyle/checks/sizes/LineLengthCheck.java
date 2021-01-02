@@ -147,7 +147,7 @@ public class LineLengthCheck extends AbstractFileSetCheck {
                 line, line.codePointCount(0, line.length()), getTabWidth());
 
             if (realLength > max && !IGNORE_PATTERN.matcher(line).find()
-                && !ignorePattern.matcher(line).find()) {
+                    && !ignorePattern.matcher(line).find()) {
                 log(i + 1, MSG_KEY, max, realLength);
             }
         }

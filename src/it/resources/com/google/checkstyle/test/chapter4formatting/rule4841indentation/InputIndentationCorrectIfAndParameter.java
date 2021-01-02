@@ -9,25 +9,25 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
   void fooMethodWithIf() { //indent:2 exp:2
 
     if (conditionFirst("Loooooooooooooooooong", new //indent:4 exp:4
-        SecondClassLongNam6("Loooooooooooooooooog"). //indent:8 exp:8
-        getInteger(new FooIfClass(), "Loooooooooooooooooog"), //indent:8 exp:8
-        new InnerClassFoo())) {} //indent:8 exp:8
+          SecondClassLongNam6("Loooooooooooooooooog"). //indent:10 exp:10
+          getInteger(new FooIfClass(), "Loooooooooooooooooog"), //indent:10 exp:10
+          new InnerClassFoo())) {} //indent:10 exp:10
 
     if (conditionSecond(10000000000.0, new //indent:4 exp:4
-        SecondClassLongNam6("Looooooooooooo" //indent:8 exp:8
-        + "oooooooooooong").getString(new FooIfClass(), //indent:8 exp:8
-          new SecondClassLongNam6("loooooooooong"). //indent:10 exp:10
-        getInteger(new FooIfClass(), "loooooooooooooong")), "loooooooooooong") //indent:8 exp:8
-        || conditionThird(2048) || conditionFourth(new //indent:8 exp:8
-        SecondClassLongNam6("Looooooooooooooo" //indent:8 exp:8
-        + "ooooooooooooong").getBoolean(new FooIfClass(), false)) || //indent:8 exp:8
-        conditionFifth(true, new SecondClassLongNam6(getString(2048, "Looo" //indent:8 exp:8
-        + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:8 exp:8
-          new FooIfClass(), true)) || conditionSixth(false, new //indent:10 exp:10
-          SecondClassLongNam6(getString(100000, "Loooooong" //indent:10 exp:10
-        + "Fooooooo><"))) || conditionNoArg() //indent:8 exp:8
-        || conditionNoArg() || //indent:8 exp:8
-        conditionNoArg() || conditionNoArg()) {} //indent:8 exp:8
+          SecondClassLongNam6("Looooooooooooo" //indent:10 exp:10
+          + "oooooooooooong").getString(new FooIfClass(), //indent:10 exp:10
+            new SecondClassLongNam6("loooooooooong"). //indent:12 exp:12,14
+            getInteger(new FooIfClass(), "looooooooooooong")), "looooooooooong") //indent:12 exp:12
+          || conditionThird(2048) || conditionFourth(new //indent:10 exp:10
+          SecondClassLongNam6("Looooooooooooooo" //indent:10 exp:10
+          + "ooooooooooooong").getBoolean(new FooIfClass(), false)) || //indent:10 exp:10
+          conditionFifth(true, new SecondClassLongNam6(getString(2048, "Looo" //indent:10 exp:10
+          + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:10 exp:10
+            new FooIfClass(), true)) || conditionSixth(false, new //indent:12 exp:12,14
+            SecondClassLongNam6(getString(100000, "Loooooong" //indent:12 exp:12
+            + "Fooooooo><"))) || conditionNoArg() //indent:12 exp:12
+          || conditionNoArg() || //indent:10 exp:10
+          conditionNoArg() || conditionNoArg()) {} //indent:10 exp:10
   } //indent:2 exp:2
 
   private boolean conditionFirst(String longString, int //indent:2 exp:2
@@ -65,25 +65,25 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
 
     void fooMethodWithIf() { //indent:4 exp:4
       if (conditionFirst("Loooooooooooooooooong", new //indent:6 exp:6
-          SecondClassLongNam6("Loooooooooooooooooog"). //indent:10 exp:10
-              getInteger(new FooIfClass(), "Loooooooooooooooooog"), //indent:14 exp:>=10
-              new InnerClassFoo())) {} //indent:14 exp:>=10
+            SecondClassLongNam6("Loooooooooooooooooog"). //indent:12 exp:12
+              getInteger(new FooIfClass(), "Loooooooooooooooooog"), //indent:14 exp:>=12
+              new InnerClassFoo())) {} //indent:14 exp:>=12
 
       if (conditionSecond(10000000000.0, new //indent:6 exp:6
-          SecondClassLongNam6("Looooooooooooo" //indent:10 exp:10
-          + "oooooooooooong").getString(new FooIfClass(), //indent:10 exp:10
-            new SecondClassLongNam6("loooooooooong"). //indent:12 exp:12
-          getInteger(new FooIfClass(), "loooooooooooooong")), "loooooooooooong") //indent:10 exp:10
-          || conditionThird(2048) || conditionFourth(new //indent:10 exp:10
-          SecondClassLongNam6("Looooooooooooooo" //indent:10 exp:10
-            + "ooooooooooooong").getBoolean(new FooIfClass(), false)) || //indent:12 exp:>=10
-            conditionFifth(true, new SecondClassLongNam6(getString(2048, "Looo" //indent:12 exp:>=10
-            + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:12 exp:>=10
-              new FooIfClass(), true)) || conditionSixth(false, new //indent:14 exp:14,16
-              SecondClassLongNam6(getString(100000, "Loooooong" //indent:14 exp:>=10
-              + "Fooooooo><"))) || conditionNoArg() //indent:14 exp:>=10
-              || conditionNoArg() || //indent:14 exp:>=10
-              conditionNoArg() || conditionNoArg()) {} //indent:14 exp:>=10
+            SecondClassLongNam6("Looooooooooooo" //indent:12 exp:12
+            + "oooooooooooong").getString(new FooIfClass(), //indent:12 exp:12
+              new SecondClassLongNam6("loooooooooong"). //indent:14 exp:14
+            getInteger(new FooIfClass(), "looooooooooooong")), "looooooooooong") //indent:12 exp:12
+            || conditionThird(2048) || conditionFourth(new //indent:12 exp:12
+            SecondClassLongNam6("Looooooooooooooo" //indent:12 exp:12
+              + "ooooooooooooong").getBoolean(new FooIfClass(), false)) || //indent:14 exp:>=12
+              conditionFifth(true, new SecondClassLongNam6(getString(2048, "Loo" //indent:14 exp:14
+              + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:14 exp:14
+                new FooIfClass(), true)) || conditionSixth(false, new //indent:16 exp:16,18
+                SecondClassLongNam6(getString(100000, "Loooooong" //indent:16 exp:16
+                + "Fooooooo><"))) || conditionNoArg() //indent:16 exp:16
+                || conditionNoArg() || //indent:16 exp:16
+                conditionNoArg() || conditionNoArg()) {} //indent:16 exp:16
     } //indent:4 exp:4
 
     FooIfClass anonymousClass = new FooIfClass() { //indent:4 exp:4
@@ -93,26 +93,26 @@ class InputIndentationCorrectIfAndParameter { //indent:0 exp:0
               fooooooooobooleanBooleanVeryLongName) { //indent:14 exp:>=10
 
         if (conditionFirst("Loooooooooooooooooong", new //indent:8 exp:8
-            SecondClassLongNam6("Loooooooooooooooooog"). //indent:12 exp:12
-                getInteger(new FooIfClass(), "Loooooooooooooooooog"), //indent:16 exp:>=12
-                   new InnerClassFoo())) {} //indent:19 exp:>=12
+              SecondClassLongNam6("Loooooooooooooooooog"). //indent:14 exp:14
+                getInteger(new FooIfClass(), "Loooooooooooooooooog"), //indent:16 exp:>=14
+                   new InnerClassFoo())) {} //indent:19 exp:>=14
 
         if (conditionSecond(10000000000.0, new //indent:8 exp:8
-            SecondClassLongNam6("Looooooooooooo" //indent:12 exp:12
-            + "oooooooooooong").getString(new FooIfClass(), //indent:12 exp:12
-              new SecondClassLongNam6("loooooooooong"). //indent:14 exp:14
-            getInteger(new FooIfClass(), "looooooooooooong")), "loooooooooooong") //indent:12 exp:12
-            || conditionThird(2048) || conditionFourth(new //indent:12 exp:12
-            SecondClassLongNam6("Looooooooooooooo" //indent:12 exp:12
-              + "ooooooooooooong").getBoolean(new FooIfClass(), false)) || //indent:14 exp:>=12
-              conditionFifth(true, new SecondClassLongNam6(getString(2048, "Lo" //indent:14 exp:>=12
-              + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:14 exp:>=12
-                new FooIfClass(), true)) || conditionSixth(false, new //indent:16 exp:>=16
-                SecondClassLongNam6(getString(100000, "Loooooong" //indent:16 exp:>=12
-                + "Fooooooo><"))) || conditionNoArg() //indent:16 exp:>=12
-                || conditionNoArg() || //indent:16 exp:>=12
-                  conditionNoArg() || conditionNoArg() //indent:18 exp:>=12
-                     && fooooooooobooleanBooleanVeryLongName) {} //indent:21 exp:>=12
+              SecondClassLongNam6("Looooooooooooo" //indent:14 exp:14
+              + "oooooooooooong").getString(new FooIfClass(), //indent:14 exp:14
+                new SecondClassLongNam6("loooooooooong"). //indent:16 exp:16,18
+              getInteger(new FooIfClass(), "loooooooooooong")), "loooooooooong") //indent:14 exp:14
+              || conditionThird(2048) || conditionFourth(new //indent:14 exp:14
+              SecondClassLongNam6("Looooooooooooooo" //indent:14 exp:14
+                + "ooooooooooooong").getBoolean(new FooIfClass(), false)) || //indent:16 exp:>=14
+                conditionFifth(true, new SecondClassLongNam6(getString(256, "" //indent:16 exp:>=14
+                + "ooooooooooooooooooooooooooooooooooooooooooong")).getBoolean( //indent:16 exp:16
+                  new FooIfClass(), true)) || conditionSixth(false, new //indent:18 exp:>=14
+                  SecondClassLongNam6(getString(100000, "Loooooong" //indent:18 exp:18
+                  + "Fooooooo><"))) || conditionNoArg() //indent:18 exp:18
+                  || conditionNoArg() || //indent:18 exp:>=14
+                    conditionNoArg() || conditionNoArg() //indent:20 exp:>=14
+                       && fooooooooobooleanBooleanVeryLongName) {} //indent:23 exp:>=14
       } //indent:6 exp:6
     }; //indent:4 exp:4
   } //indent:2 exp:2
