@@ -96,10 +96,17 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * void method() {
+ *   System.out.print("Example"); // OK
+ *   System.out.print // violation
+ *     ("Example");
+ *   System.out
+ *   .print("Example"); // OK
  *   System.out. // violation
  *   print("Example");
- *   System.out.
- *   print("Example");
+ *   System
+ *   .out.print("Example"); // OK
+ *   System. // violation
+ *   out.print("Example");
  * }
  * </pre>
  * <p>

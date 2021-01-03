@@ -600,12 +600,19 @@ public static final int A_SETPOINT = 1;
           Example of violation from the above config:
         </p>
         <source>
-void method() {
-  System.out. // violation
-  print("Example");
-  System.out.
-  print("Example");
-}
+          void method() {
+            System.out.print("Example"); // OK
+            System.out.print // violation
+              ("Example");
+            System.out
+            .print("Example"); // OK
+            System.out. // violation
+            print("Example");
+            System
+            .out.print("Example"); // OK
+            System. // violation
+            out.print("Example");
+          }
         </source>
         <p>
           Note: Beware of the greedy regular expression used in the above example.
