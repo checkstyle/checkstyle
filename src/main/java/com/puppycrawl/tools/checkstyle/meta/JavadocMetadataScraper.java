@@ -78,7 +78,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             Pattern.compile("\\s*Violation Message Keys:\\s*");
 
     /** Regular expression for detecting ANTLR tokens(for e.g. CLASS_DEF). */
-    private static final Pattern TOKEN_TEXT_PATTERN = Pattern.compile("([A-Z]+_*+)+[A-Z]+");
+    private static final Pattern TOKEN_TEXT_PATTERN = Pattern.compile("([A-Z]+_)?[A-Z]+");
 
     /** Regular expression for removal of @code{-} present at the beginning of texts. */
     private static final Pattern DESC_CLEAN = Pattern.compile("-\\s");
