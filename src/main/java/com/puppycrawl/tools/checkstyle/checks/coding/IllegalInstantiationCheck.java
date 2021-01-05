@@ -77,6 +77,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest (boolean a, boolean b) {
+ *     Boolean c = new Boolean(a); // violation, instantiation of java.lang.Boolean
+ *                                 // should be avoided
+ *     Boolean d = Boolean.valueOf(b); // OK
+ *   }
+ * }
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
