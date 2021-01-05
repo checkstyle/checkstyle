@@ -70,12 +70,125 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check to find instantiations of {@code java.lang.Boolean}:
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalInstantiation&quot;/&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTest (boolean a, int b, double c) {
+ *     Boolean d = new Boolean(a); // OK, fully qualified class names that should
+ *                                 // not be instantiated are not defined by default
+ *     Integer e = new Integer(b); // OK
+ *     Double f = new Double(c); // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to find instantiations of {@code java.lang.Boolean},
+ * {@code java.lang.Integer}, or {@code java.lang.Double}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
+ *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean, java.lang.Integer,
+ *     java.lang.Double&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public void myTestBool (boolean a, boolean b, String c) {
+ *     Boolean d = new Boolean(a); // violation, instantiation of java.lang.Boolean
+ *                                 // should be avoided
+ *     Boolean e = Boolean.valueOf(b); // OK
+ *     Boolean f = Boolean.valueOf(c); // OK
+ *   }
+ *
+ *   public void myTestInt (int a, int b, String c) {
+ *     Integer d = new Integer(a); // violation, instantiation of java.lang.Integer
+ *                                 // should be avoided
+ *     Integer e = Integer.valueOf(b); // OK
+ *     Integer f = Integer.valueOf(c); // OK
+ *   }
+ *
+ *   public void myTestDouble (double a, double b, String c) {
+ *     Double d = new Double(a); // violation, instantiation of java.lang.Double
+ *                               // should be avoided
+ *     Double e = Double.valueOf(b); // OK
+ *     Double f = Double.valueOf(c); // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to avoid false alarms for local classes vs classes
+ * defined in the check, for example, {@code java.lang.Boolean}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
+ *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean,
+ *     mypackage.lang.Integer&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;CLASS_DEF, LITERAL_NEW,
+ *     PACKAGE_DEF, IMPORT&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * package mypackage.lang;
+ *
+ * public class MyTest {
+ *   public class Boolean {
+ *     boolean a;
+ *
+ *     public Boolean (boolean a) { this.a = a; }
+ *   }
+ *
+ *   public class Integer {
+ *     int a;
+ *
+ *     public Integer (int a) { this.a = a; }
+ *   }
+ *
+ *   public void myTestBool (boolean b) {
+ *     Boolean c = new Boolean(b); // OK
+ *     java.lang.Boolean d = new java.lang.Boolean(b); // violation, instantiation of
+ *                                                     // java.lang.Boolean should be avoided
+ *   }
+ *
+ *   public void myTestInt (int b) {
+ *     Integer c = new Integer(b); // violation, instantiation of mypackage.lang.Integer
+ *                                 // should be avoided
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to allow violations for local classes vs classes
+ * defined in the check, for example, {@code java.lang.Boolean}:
  * </p>
  * <pre>
  * &lt;module name=&quot;IllegalInstantiation&quot;&gt;
  *   &lt;property name=&quot;classes&quot; value=&quot;java.lang.Boolean&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_NEW, PACKAGE_DEF,
+ *     IMPORT&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class MyTest {
+ *   public class Boolean {
+ *     boolean a;
+ *
+ *     public Boolean (boolean a) { this.a = a; }
+ *   }
+ *
+ *   public void myTest (boolean b) {
+ *     Boolean c = new Boolean(b); // violation, instantiation of java.lang.Boolean
+ *                                 // should be avoided
+ *     java.lang.Boolean d = new java.lang.Boolean(b); // violation, instantiation of
+ *                                                     // java.lang.Boolean should be avoided
+ *   }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
