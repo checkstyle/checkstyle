@@ -40,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /** Class which handles all the metadata generation and writing calls. */
 public final class MetadataGeneratorUtil {
 
+    /** Stop instances being created. **/
     private MetadataGeneratorUtil() {
     }
 
