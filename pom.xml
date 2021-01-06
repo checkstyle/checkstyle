@@ -1354,7 +1354,9 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8</argLine>
+          <!-- The default stack size is 1M for x64, 320K for i386.
+               Set explicitly to 1M to avoid stack overflow errors on i386. -->
+          <argLine>-Xss1M -Dfile.encoding=UTF-8</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
