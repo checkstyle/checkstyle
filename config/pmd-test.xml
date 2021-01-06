@@ -117,7 +117,8 @@
              from the test method.
            In XdocsPagesTest PMD does not find asserts in lambdas.
            All test classes which starts with XpathRegression have asserts inside parent's method.
-           In ArchUnitTest assertion calls are not required as they are called by the library -->
+           In ArchUnitTest assertion calls are not required as they are called by the library.
+           All no-stack-overflow test are using helper method with call to assert inside. -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest'
                      or @SimpleName='AstRegressionTest'
@@ -131,7 +132,13 @@
                    | //ClassOrInterfaceDeclaration[starts-with(@SimpleName,'XpathRegression')]
                        //MethodDeclaration
                    | //ClassOrInterfaceDeclaration[@SimpleName='ArchUnitTest']
-                       //MethodDeclaration"/>
+                       //MethodDeclaration
+                   | //ClassOrInterfaceDeclaration[@SimpleName='MatchXpathCheckTest']
+                       //MethodDeclaration[@Name='testNoStackoverflowError']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='ParenPadCheckTest']
+                       //MethodDeclaration[@Name='testNoStackoverflowError']
+                   | //ClassOrInterfaceDeclaration[@SimpleName='SingleSpaceSeparatorCheckTest']
+                       //MethodDeclaration[@Name='testNoStackoverflowError']"/>
     </properties>
   </rule>
 
@@ -210,6 +217,14 @@
                      //MethodDeclaration[@Name='verifyOutput']
                  | //ClassOrInterfaceDeclaration[@SimpleName='CommonUtilTest']
                      //MethodDeclaration[@Name='testClose']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/multithreading.xml/DoNotUseThreads">
+    <properties>
+      <!-- We use thread to limit the stack size for a test method. -->
+      <property name="violationSuppressXPath"
+               value="//ClassOrInterfaceDeclaration[@SimpleName='TestUtil']
+                        //MethodDeclaration[@Name='executeWithLimitedStackSizeAndTimeout']"/>
     </properties>
   </rule>
 </ruleset>
