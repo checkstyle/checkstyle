@@ -28,6 +28,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MatchXpathCheckTest
@@ -53,8 +54,9 @@ public class MatchXpathCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MatchXpathCheck.class);
         checkConfig.addAttribute("query", "//STRING_LITERAL[not(@text='')]");
+        final String path = getPath("InputMatchXpathNoStackoverflowError.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMatchXpathNoStackoverflowError.java"), expected);
+        TestUtil.executeWithLimitedStackSizeAndTimeout(() -> verify(checkConfig, path, expected));
     }
 
     @Test
