@@ -348,7 +348,8 @@ public class AvoidEscapedUnicodeCharactersCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        final String literal = ast.getText();
+        final String literal =
+            CheckUtil.stripIndentAndInitialNewLineFromTextBlock(ast.getText());
 
         if (hasUnicodeChar(literal) && !(allowByTailComment && hasTrailComment(ast)
                 || isAllCharactersEscaped(literal)
@@ -452,8 +453,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      */
     private boolean isAllCharactersEscaped(String literal) {
         return allowIfAllCharactersEscaped
-                && ALL_ESCAPED_CHARS.matcher(literal.substring(1,
-                        literal.length() - 1)).find();
+                && ALL_ESCAPED_CHARS.matcher(literal).find();
     }
 
 }
