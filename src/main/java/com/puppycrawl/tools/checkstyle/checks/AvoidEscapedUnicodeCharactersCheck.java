@@ -29,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -180,7 +181,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     /**
      * Regular expression for all escaped chars.
      * See "EscapeSequence" at
-     * https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.6
+     * https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7
      */
     private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
             + "|\""
@@ -190,6 +191,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\f"
             + "|\\\\n"
             + "|\\\\r"
+            + "|\\\\s"
             + "|\\\\t"
             + ")+$");
 
