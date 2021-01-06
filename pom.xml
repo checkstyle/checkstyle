@@ -1354,7 +1354,8 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8</argLine>
+          <!-- Minimal stack size for early detection of stack overflow issues. -->
+          <argLine>-Xss256K -Dfile.encoding=UTF-8</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
