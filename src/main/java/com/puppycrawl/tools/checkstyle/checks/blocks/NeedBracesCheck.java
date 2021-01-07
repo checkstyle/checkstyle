@@ -66,6 +66,28 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name="NeedBraces"/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
+ * if (true) {                     // OK
+ *     return true;
+ * } else                          // violation, single-line statements not allowed without braces
+ *     return false;
+ * for (int i = 0; i &lt; 5; i++) {   // OK
+ *      ++count;
+ * }
+ * do                              // violation, single-line statements not allowed without braces
+ *     ++count;
+ * while (false);
+ * for (int j = 0; j &lt; 10; j++);   // violation, empty loop body not allowed
+ * for(int i = 0; i &lt; 10; value.incrementValue()); // violation, empty loop body not allowed
+ * while (counter &lt; 10)            // violation, single-line statements not allowed without braces
+ *     ++count;
+ * while (value.incrementValue() &lt; 5); // violation, empty loop body not allowed
+ * switch (num) {
+ *   case 1: counter++; break;         // OK
+ * }
+ * </pre>
  * <p>
  * To configure the check for {@code if} and {@code else} blocks:
  * </p>
@@ -73,6 +95,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;NeedBraces&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * if (obj.isValid()) return true; // violation, single-line statements not allowed without braces
+ * if (true) {                     // OK
+ *     return true;
+ * } else                          // violation, single-line statements not allowed without braces
+ *     return false;
  * </pre>
  * <p>
  * To configure the check to allow single-line statements
@@ -87,10 +117,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Next statements won't be violated by check:
  * </p>
  * <pre>
- * if (obj.isValid()) return true; // OK
- * while (obj.isValid()) return true; // OK
+ * if (obj.isValid()) return true;      // OK
+ * while (obj.isValid()) return true;   // OK
  * do this.notify(); while (o != null); // OK
- * for (int i = 0; ; ) this.notify(); // OK
+ * for (int i = 0; ; ) this.notify();   // OK
+ * while (value.incrementValue() &lt; 5);  // OK
  * </pre>
  * <p>
  * To configure the check to allow {@code case, default} single-line statements without braces:
@@ -106,8 +137,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * switch (num) {
- *   case 1: counter++; break; // OK
- *   case 6: counter += 10; break; // OK
+ *   case 1: counter++; break;      // OK
+ *   case 6: counter += 10; break;  // OK
  *   default: counter = 100; break; // OK
  * }
  * </pre>
@@ -123,8 +154,9 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Next statements won't be violated by check:
  * </p>
  * <pre>
- * while (value.incrementValue() &lt; 5); // OK
+ * while (value.incrementValue() &lt; 5);             // OK
  * for(int i = 0; i &lt; 10; value.incrementValue()); // OK
+ * for (int j = 0; j &lt; 10; j++);                   // OK
  * </pre>
  * <p>
  * To configure the check to lambdas:
