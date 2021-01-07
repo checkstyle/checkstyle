@@ -33,6 +33,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -423,4 +424,23 @@ public class RootNodeTest extends AbstractPathTestSupport {
         assertFalse(rootNode.isSameNodeInfo(null),
                 "Should return false, because object does not equal null");
     }
+
+    @Test
+    public void testNoStackOverflow() {
+        final DetailAstImpl rootAst = new DetailAstImpl();
+        rootAst.setType(TokenTypes.SLIST);
+
+        DetailAstImpl parentAst = rootAst;
+        for (int i = 0; i < 10000; ++i) {
+            final DetailAstImpl childAst = new DetailAstImpl();
+            childAst.setType(TokenTypes.SLIST);
+            parentAst.addChild(childAst);
+            parentAst = childAst;
+        }
+
+        assertWithMessage("Expected one element node")
+                .that(new RootNode(rootAst).getChildren())
+                .hasSize(1);
+    }
+
 }

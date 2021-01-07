@@ -48,16 +48,6 @@ public class MatchXpathCheckTest
     }
 
     @Test
-    public void testNoStackoverflowError()
-            throws Exception {
-        final DefaultConfiguration checkConfig =
-                createModuleConfig(MatchXpathCheck.class);
-        checkConfig.addAttribute("query", "//STRING_LITERAL[not(@text='')]");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMatchXpathNoStackoverflowError.java"), expected);
-    }
-
-    @Test
     public void testCheckWithImplicitEmptyQuery()
             throws Exception {
         final DefaultConfiguration checkConfig =
