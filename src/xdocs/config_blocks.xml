@@ -929,7 +929,22 @@ class Test
         <source>
 &lt;module name=&quot;NeedBraces&quot;/&gt;
         </source>
-
+        <p>Example:</p>
+        <source>
+if (true) {       // OK
+    return true;
+} else            // violation, single-line statements not allowed without braces
+    return false;
+for (int i = 0; i &lt; 5; i++) { // OK
+     ++count;
+}
+do                               // violation, single-line statements not allowed without braces
+    ++count;
+while (false);
+for (int j = 0; j &lt; 10; j++); // violation, empty loop body not allowed
+while (counter &lt; 10)          // violation, single-line statements not allowed without braces
+    ++count;
+        </source>
         <p>
           To configure the check for <code>if</code> and
           <code> else</code> blocks:
@@ -939,7 +954,13 @@ class Test
   &lt;property name=&quot;tokens&quot; value=&quot;LITERAL_IF, LITERAL_ELSE&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>Example:</p>
+        <source>
+if (true) {      // OK
+    return true;
+} else           // violation, single-line statements not allowed without braces
+    return false;
+        </source>
         <p>
           To configure the check to allow single-line statements
           (<code>if, while, do-while, for</code>) without braces:
@@ -954,10 +975,10 @@ class Test
           Next statements won't be violated by check:
         </p>
         <source>
-if (obj.isValid()) return true; // OK
-while (obj.isValid()) return true; // OK
+if (obj.isValid()) return true;      // OK
+while (obj.isValid()) return true;   // OK
 do this.notify(); while (o != null); // OK
-for (int i = 0; ; ) this.notify(); // OK
+for (int i = 0; ; ) this.notify();   // OK
         </source>
 
         <p>
@@ -976,8 +997,8 @@ for (int i = 0; ; ) this.notify(); // OK
         </p>
         <source>
 switch (num) {
-  case 1: counter++; break; // OK
-  case 6: counter += 10; break; // OK
+  case 1: counter++; break;      // OK
+  case 6: counter += 10; break;  // OK
   default: counter = 100; break; // OK
 }
         </source>
@@ -994,7 +1015,7 @@ switch (num) {
             Next statements won't be violated by check:
         </p>
         <source>
-while (value.incrementValue() &lt; 5); // OK
+while (value.incrementValue() &lt; 5);             // OK
 for(int i = 0; i &lt; 10; value.incrementValue()); // OK
         </source>
         <p>
