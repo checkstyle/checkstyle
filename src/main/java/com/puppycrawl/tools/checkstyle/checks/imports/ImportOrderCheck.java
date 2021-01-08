@@ -172,7 +172,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * group of static imports is on the top
  * </li>
  * <li>
- * groups of type imports: "java" and "javax" packages first, then "org" and then all other imports
+ * groups of type imports: "java" and "javax" packages first,
+ * then "org" and then all other imports
  * </li>
  * <li>
  * imports will be sorted in the groups
