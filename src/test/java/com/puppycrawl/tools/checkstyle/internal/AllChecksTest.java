@@ -39,6 +39,7 @@ import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
@@ -471,7 +472,16 @@ public class AllChecksTest extends AbstractModuleTestSupport {
 
     private static void validateDefaultTokens(Configuration checkConfig, AbstractCheck check,
                                               Set<String> configTokens) {
-        if (Arrays.equals(check.getDefaultTokens(), check.getRequiredTokens())) {
+
+        final Set<Integer> defaultTokensSet = IntStream.of(check.getDefaultTokens())
+            .boxed()
+            .collect(Collectors.toSet());
+
+        final Set<Integer> requiredTokensSet = IntStream.of(check.getRequiredTokens())
+            .boxed()
+            .collect(Collectors.toSet());
+
+        if (defaultTokensSet.equals(requiredTokensSet)) {
             configTokens.addAll(
                     CheckUtil.getTokenNameSet(check.getDefaultTokens()));
         }
