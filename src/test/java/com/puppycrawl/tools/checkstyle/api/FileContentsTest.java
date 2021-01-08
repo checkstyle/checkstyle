@@ -280,7 +280,7 @@ public class FileContentsTest {
                 "clangComments");
         final TextBlock textBlock = new Comment(new String[] {""}, 1, 1, 1);
         clangComments.put(1, Collections.singletonList(textBlock));
-        clangComments.put(2, null);
+        clangComments.put(2, Collections.emptyList());
 
         assertTrue((Boolean) Whitebox.invokeMethod(fileContents,
                 "hasIntersectionWithBlockComment", 1, 1, 1, 1),
