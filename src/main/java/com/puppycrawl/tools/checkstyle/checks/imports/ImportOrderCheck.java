@@ -286,7 +286,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * group of static imports is on the bottom
  * </li>
  * <li>
- * groups of type imports: all imports except of "javax" and "java", then "javax" and "java"
+ * groups of type imports: all imports except of "javax"
+ * and "java", then "javax" and "java"
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -326,12 +327,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * import static javax.swing.WindowConstants.*; // Violation; all static imports comes at bottom
  *
- * import java.net.URL; // OK
- * import java.security.KeyManagementException; // OK
+ * import java.net.URL;
+ * import java.security.KeyManagementException;
  * import javax.net.ssl.TrustManager; // OK; no blank line between "javax" and "java".
  *
  * import static java.awt.Button.A; // Violation; Should follow 'sortStaticImportsAlphabetically'
- * import static java.lang.Math.PI; // OK
+ * import static java.lang.Math.PI;
  * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
  * public class SomeClass { ... }
