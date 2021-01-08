@@ -146,22 +146,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name="ImportOrder"/&gt;
  * </pre>
  * <p>
- * Example of Import order:
+ * Example:
  * </p>
  * <pre>
- * import java.io.IOException; //OK
- * import java.net.URL; //OK
- * import java.security.KeyManagementException; //OK
+ * import java.io.IOException; // OK
+ * import java.net.URL; // OK
  *
- * import javax.net.ssl.SSLContext; //OK
- * import javax.net.ssl.TrustManager; //OK
- * import javax.net.ssl.X509TrustManager; //OK
+ * import javax.net.ssl.SSLContext; // OK
+ * import javax.net.ssl.TrustManager; // OK
  *
- * import org.apache.http.conn.ClientConnectionManager; //OK
- * import org.apache.http.conn.scheme.Scheme; //OK
+ * import org.apache.http.conn.ClientConnectionManager; // OK
+ * import org.apache.http.conn.scheme.Scheme; // OK
  *
- * import com.neurologic.http.HttpClient; //OK
- * import com.neurologic.http.impl.ApacheHttpClient; //OK
+ * import com.neurologic.http.HttpClient; // OK
+ * import com.neurologic.http.impl.ApacheHttpClient; // OK
  *
  * public class SomeClass { ... }
  * </pre>
@@ -174,8 +172,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * group of static imports is on the top
  * </li>
  * <li>
- * groups of type imports: "java" and "javax" packages first,
- * then "org" and then all other imports
+ * groups of type imports: "java" and "javax" packages first, then "org" and then all other imports
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -188,19 +185,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static java.lang.System.out; //Violation; it should be 'sorted'
- * import static java.lang.Math.*; //OK
- * import java.io.IOException; //Violation; Groups aren't separated by blank line
+ * import static java.lang.System.out; // Violation; it should be 'sorted'
+ * import static java.lang.Math.*; // OK
+ * import java.io.IOException; // Violation; Groups aren't separated by blank line
  *
- * import java.net.URL; //OK
- * import java.security.KeyManagementException; //OK
+ * import java.net.URL; // OK
+ * import java.security.KeyManagementException; // OK
  *
- * import javax.net.ssl.TrustManager; //OK
+ * import javax.net.ssl.TrustManager; // OK
  *
- * import javax.net.ssl.X509TrustManager; //Violation; Groups should not separate internally
+ * import javax.net.ssl.X509TrustManager; // Violation; Groups should not separate internally
  *
- * import org.apache.http.conn.ClientConnectionManager; //OK
- * import org.apache.http.conn.scheme.Scheme; //OK
+ * import org.apache.http.conn.ClientConnectionManager; // OK
  *
  * public class SomeClass { ... }
  * </pre>
@@ -209,12 +205,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <ul>
  * <li>
- * "com" package is not mentioned on configuration, because it is
- * ignored by Eclipse Kepler and Luna (looks like Eclipse defect)
+ * "com" package is not mentioned on configuration, because it is ignored by Eclipse Kepler and Luna
+ * (looks like Eclipse defect)
  * </li>
  * <li>
- * configuration below doesn't work in all 100% cases due to inconsistent behavior
- * prior to Mars release, but covers most scenarios
+ * configuration below doesn't work in all 100% cases due to inconsistent behavior prior to
+ * Mars release, but covers most scenarios
  * </li>
  * </ul>
  * <pre>
@@ -227,16 +223,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check so that it matches default Eclipse formatter
- * configuration (tested on Mars release):
+ * To configure the check so that it matches default Eclipse formatter configuration
+ * (tested on Mars release):
  * </p>
  * <ul>
  * <li>
  * group of static imports is on the top
  * </li>
  * <li>
- * groups of type imports: "java" and "javax" packages first,
- * then "org" and "com", then all other imports as one group
+ * groups of type imports: "java" and "javax" packages first, then "org" and "com",
+ * then all other imports as one group
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -258,26 +254,26 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
- * import static java.lang.Math.PI; //Ok
- * import static java.lang.Math.abs; //Ok, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
- * import java.lang.Math.sqrt; //Ok, Follow property 'Option' value 'above'
+ * import static java.awt.Button.A; // Violation; Should follow 'sortStaticImportsAlphabetically'
+ * import static java.lang.Math.PI;
+ * import static java.lang.Math.abs; // Ok, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import java.lang.Math.sqrt; // Ok, Follow property 'Option' value 'above'
  *
- * import static java.io.File.createTempFile; //Ok
- * import java.io.File; //Ok
+ * import static java.io.File.createTempFile;
+ * import java.io.File;
  *
- * import java.io.IOException; //Violation; Should follow 'Group' property
+ * import java.io.IOException; // Violation; Should follow 'Group' property
  *
- * import org.albedo.*; //Violation; Should follow 'ordered' property *{comes after javax imports}
+ * import org.albedo.*; // Violation; Should follow 'ordered' property *{comes after javax imports}
  *
- * import static javax.swing.WindowConstants.*; //Ok
- * import javax.swing.JComponent; //Ok
- * import org.apache.http.ClientConnectionManager; //Violation; Should follow 'separated' property
+ * import static javax.swing.WindowConstants.*;
+ * import javax.swing.JComponent;
+ * import org.apache.http.ClientConnectionManager; // Violation; Should follow 'separated' property
  *
- * import org.linux.apache.server.SoapServer; //Ok
+ * import org.linux.apache.server.SoapServer;
  *
- * import com.neurologic.http.HttpClient; //Ok; tested on Mars release.
- * import com.neurologic.http.impl.ApacheHttpClient; //OK; tested on Mars release.
+ * import com.neurologic.http.HttpClient;
+ * import com.neurologic.http.impl.ApacheHttpClient;
  *
  * public class SomeClass { ... }
  * </pre>
@@ -290,8 +286,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * group of static imports is on the bottom
  * </li>
  * <li>
- * groups of type imports: all imports except of "javax"
- * and "java", then "javax" and "java"
+ * groups of type imports: all imports except of "javax" and "java", then "javax" and "java"
  * </li>
  * <li>
  * imports will be sorted in the groups
@@ -304,13 +299,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Note: a <a href="https://checkstyle.org/config_filters.html#SuppressionXpathSingleFilter">
  * suppression xpath single filter</a> is needed because
  * IDEA has no blank line between "javax" and "java".
- * ImportOrder has a limitation by design to enforce an empty line between groups
- * ("java", "javax"). There is no flexibility to enforce empty lines between some
- * groups and no empty lines between other groups.
+ * ImportOrder has a limitation by design to enforce an empty line between groups ("java", "javax").
+ * There is no flexibility to enforce empty lines between some groups and no empty lines between
+ * other groups.
  * </p>
  * <p>
- * Note: "separated" option is disabled because IDEA default has blank line
- * between "java" and static imports, and no blank line between "javax" and "java".
+ * Note: "separated" option is disabled because IDEA default has blank line between "java" and
+ * static imports, and no blank line between "javax" and "java".
  * </p>
  * <pre>
  * &lt;module name=&quot;ImportOrder&quot;&gt;
@@ -329,15 +324,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at bottom
+ * import static javax.swing.WindowConstants.*; // Violation; all static imports comes at bottom
  *
- * import java.net.URL; //OK
- * import java.security.KeyManagementException; //OK
- * import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
+ * import java.net.URL; // OK
+ * import java.security.KeyManagementException; // OK
+ * import javax.net.ssl.TrustManager; // OK; no blank line between "javax" and "java".
  *
- * import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
- * import static java.lang.Math.PI; //OK
- * import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import static java.awt.Button.A; // Violation; Should follow 'sortStaticImportsAlphabetically'
+ * import static java.lang.Math.PI; // OK
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
  * public class SomeClass { ... }
  * </pre>
