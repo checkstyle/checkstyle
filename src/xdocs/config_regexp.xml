@@ -577,6 +577,22 @@ public static final int A_SETPOINT = 1;
 
       <subsection name="Examples" id="RegexpMultiline_Examples">
         <p>
+          To run the check with its default configuration:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpMultiline&quot;&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+void method() {
+  int i = 5; // OK
+  System.out.println(i); // OK
+}
+        </source>
+        <p>
           To configure the check to find calls to print to the console:
         </p>
         <source>
@@ -585,7 +601,27 @@ public static final int A_SETPOINT = 1;
     value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+  System.out.print("Example"); // OK
+  System.err.println("Example"); // OK
+  System.out.print
+    ("Example"); // violation
+  System.err.println
+    ("Example"); // violation
+  System
+  .out.print("Example"); // OK
+  System
+  .err.println("Example"); // OK
+  System.
+  out.print("Example"); // violation
+  System.
+  err.println("Example"); // violation
+}
+        </source>
         <p>
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
@@ -597,14 +633,23 @@ public static final int A_SETPOINT = 1;
 &lt;/module&gt;
         </source>
         <p>
-          Example of violation from the above config:
+          Example:
         </p>
         <source>
 void method() {
-  System.out. // violation
-  print("Example");
+  System.out.print("Example"); // OK
+  System.out.print(
+      "Example"); // OK
+  System.out.print
+  ("Example"); // violation
+  System.out
+  .print("Example"); // OK
   System.out.
-  print("Example");
+  print("Example"); // violation
+  System
+  .out.print("Example"); // OK
+  System.
+  out.print("Example"); // violation
 }
         </source>
         <p>
