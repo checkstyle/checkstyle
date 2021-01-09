@@ -140,6 +140,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="ImportOrder"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import java.io.IOException; // OK
+ * import java.net.URL; // OK
+ *
+ * import javax.net.ssl.SSLContext; // OK
+ * import javax.net.ssl.TrustManager; // OK
+ *
+ * import org.apache.http.conn.ClientConnectionManager; // OK
+ * import org.apache.http.conn.scheme.Scheme; // OK
+ *
+ * import com.neurologic.http.HttpClient; // OK
+ * import com.neurologic.http.impl.ApacheHttpClient; // OK
+ *
+ * public class SomeClass { ... }
+ * </pre>
+ * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
  * (tested on Kepler and Luna releases):
  * </p>
@@ -157,6 +181,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.lang.System.out; // Violation; it should be 'sorted'
+ * import static java.lang.Math.*; // OK
+ * import java.io.IOException; // Violation; Groups aren't separated by blank line
+ *
+ * import java.net.URL;
+ * import java.security.KeyManagementException;
+ *
+ * import javax.net.ssl.TrustManager;
+ *
+ * import javax.net.ssl.X509TrustManager; // Violation; Groups should not separate internally
+ *
+ * import org.apache.http.conn.ClientConnectionManager;
+ *
+ * public class SomeClass { ... }
+ * </pre>
  * <p>
  * Notes:
  * </p>
@@ -208,8 +251,35 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check so that it matches default IntelliJ IDEA formatter configuration
- * (tested on v2018.2):
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.awt.Button.A; // Violation; Should follow 'sortStaticImportsAlphabetically'
+ * import static java.lang.Math.PI;
+ * import static java.lang.Math.abs; // Ok, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import java.lang.Math.sqrt; // Ok, Follow property 'Option' value 'above'
+ *
+ * import static java.io.File.createTempFile;
+ * import java.io.File;
+ *
+ * import java.io.IOException; // Violation; Should follow 'Group' property
+ *
+ * import org.albedo.*; // Violation; Should follow 'ordered' property *{comes after javax imports}
+ *
+ * import static javax.swing.WindowConstants.*;
+ * import javax.swing.JComponent;
+ * import org.apache.http.ClientConnectionManager; // Violation; Should follow 'separated' property
+ *
+ * import org.linux.apache.server.SoapServer;
+ *
+ * import com.neurologic.http.HttpClient;
+ * import com.neurologic.http.impl.ApacheHttpClient;
+ *
+ * public class SomeClass { ... }
+ * </pre>
+ * <p>
+ * To configure the check so that it matches default IntelliJ IDEA formatter
+ * configuration (tested on v2018.2):
  * </p>
  * <ul>
  * <li>
@@ -249,6 +319,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="checks" value="ImportOrder"/&gt;
  *   &lt;property name="message" value="^'java\..*'.*"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at bottom
+ *
+ * import java.net.URL;
+ * import java.security.KeyManagementException;
+ * import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
+ *
+ * import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
+ * import static java.lang.Math.PI; //OK
+ * import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ *
+ * public class SomeClass { ... }
  * </pre>
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
