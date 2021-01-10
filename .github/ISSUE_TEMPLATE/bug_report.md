@@ -8,12 +8,16 @@ labels: ''
 assignees: ''
 
 ---
+I have read check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck: Yes/No
 
-Check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
+I have downloaded the latest checkstyle from: https://checkstyle.org/cmdline.html#Download_and_Run: Yes/No
+
+I have executed the cli and showing it below, as cli describes the problem better than 1,000 words:
+Yes/No
 
 ```bash
 /var/tmp $ javac YOUR_FILE.java
-#[[MAKE SURE THERE IS NO OUTPUT]]
+#[[MAKE SURE THERE IS SUCCESSFUL COMPILATION]]
 
 /var/tmp $ cat config.xml
 #[[PLACE YOUR OUTPUT HERE]]
