@@ -358,6 +358,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.io.File.createTempFile; // Violation, Static imports are not separated
+ *
+ * import static java.lang.Math.PI; //OK
+ * import java.lang.Math.sqrt;
+ * import javax.swing.JComponent; // Ok, Imports are grouped as one
+ * import static javax.WindowConstants.*; // Ok, static imports processed like non-static imports
+ * import org.linux.apache.server.SoapServer; // Ok, imports will be sorted as a one group
+ *
+ * import com.neurologic.http.HttpClient; // Violation, Imports will be grouped as one
+ *
+ * public class SomeClass { }
+ * </pre>
+ * <p>
  * Group descriptions enclosed in slashes are interpreted as regular expressions.
  * If multiple groups match, the one matching a longer substring of the imported name
  * will take precedence, with ties broken first in favor of earlier matches and finally
