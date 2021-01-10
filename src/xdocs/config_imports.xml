@@ -1658,16 +1658,20 @@ import java.util.stream.IntStream;
 import java.io.IOException; // OK
 import java.net.URL; // OK
 
+import java.io.IOException; // Violation; Should follow 'Group' property
+
 import javax.net.ssl.SSLContext; // OK
 import javax.net.ssl.TrustManager; // OK
 
 import org.apache.http.conn.ClientConnectionManager; // OK
 import org.apache.http.conn.scheme.Scheme; // OK
 
+import java.util.Set; //  Wrong order for 'java.util.Set' import.
+
 import com.neurologic.http.HttpClient; // OK
 import com.neurologic.http.impl.ApacheHttpClient; // OK
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
         <p>
           To configure the check so that it matches default Eclipse formatter configuration
@@ -1680,25 +1684,6 @@ public class SomeClass { ... }
           <li>imports will be sorted in the groups</li>
           <li>groups are separated by, at least, one blank line and aren't separated internally</li>
         </ul>
-        <p>
-          Example:
-        </p>
-        <source>
-import static java.lang.System.out; // Violation; it should be 'sorted'
-import static java.lang.Math.*; // OK
-import java.io.IOException; // Violation; Groups aren't separated by blank line
-
-import java.net.URL;
-import java.security.KeyManagementException;
-
-import javax.net.ssl.TrustManager;
-
-import javax.net.ssl.X509TrustManager; // Violation; Groups should not separate internally
-
-import org.apache.http.conn.ClientConnectionManager;
-
-public class SomeClass { ... }
-        </source>
         <p>
           Notes:
         </p>
@@ -1716,6 +1701,25 @@ public class SomeClass { ... }
   &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import static java.lang.System.out; // Violation; it should be 'sorted'
+import static java.lang.Math.*; // OK
+import java.io.IOException; // Violation; Groups aren't separated by blank line
+
+import java.net.URL;
+import java.security.KeyManagementException;
+
+import javax.net.ssl.TrustManager;
+
+import javax.net.ssl.X509TrustManager; // Violation; Groups should not separate internally
+
+import org.apache.http.conn.ClientConnectionManager;
+
+public class SomeClass { }
         </source>
         <p>
           To configure the check so that it matches default Eclipse formatter configuration
@@ -1758,12 +1762,12 @@ import static javax.swing.WindowConstants.*;
 import javax.swing.JComponent;
 import org.apache.http.ClientConnectionManager; // Violation; Should follow 'separated' property
 
-import org.linux.apache.server.SoapServer;
+import org.linux.apache.server.SoapServer; // Ok
 
-import com.neurologic.http.HttpClient;
-import com.neurologic.http.impl.ApacheHttpClient;
+import com.neurologic.http.HttpClient; // Ok
+import com.neurologic.http.impl.ApacheHttpClient; // Ok
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
         <p>
           To configure the check so that it matches default IntelliJ IDEA formatter
@@ -1815,7 +1819,7 @@ import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAl
 import static java.lang.Math.PI; //OK
 import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
         <p>
           To configure the check so that it matches default NetBeans formatter configuration
@@ -1872,7 +1876,7 @@ import org.abego.*;
 
 import java.util.Set; //  Wrong order for 'java.util.Set' import.
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
 
         <p>
@@ -1892,7 +1896,7 @@ import static java.lang.Math.abs; // Group 2
 import static java.lang.String.format; // Group 2
 import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
 
-public class SomeClass { ... }
+public class SomeClass { }
         </source>
 
         <p>

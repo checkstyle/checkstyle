@@ -152,16 +152,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import java.io.IOException; // OK
  * import java.net.URL; // OK
  *
+ * import java.io.IOException; // Violation; Should follow 'Group' property
+ *
  * import javax.net.ssl.SSLContext; // OK
  * import javax.net.ssl.TrustManager; // OK
  *
  * import org.apache.http.conn.ClientConnectionManager; // OK
  * import org.apache.http.conn.scheme.Scheme; // OK
  *
+ * import java.util.Set; //  Wrong order for 'java.util.Set' import.
+ *
  * import com.neurologic.http.HttpClient; // OK
  * import com.neurologic.http.impl.ApacheHttpClient; // OK
  *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
@@ -181,25 +185,6 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * groups are separated by, at least, one blank line and aren't separated internally
  * </li>
  * </ul>
- * <p>
- * Example:
- * </p>
- * <pre>
- * import static java.lang.System.out; // Violation; it should be 'sorted'
- * import static java.lang.Math.*; // OK
- * import java.io.IOException; // Violation; Groups aren't separated by blank line
- *
- * import java.net.URL;
- * import java.security.KeyManagementException;
- *
- * import javax.net.ssl.TrustManager;
- *
- * import javax.net.ssl.X509TrustManager; // Violation; Groups should not separate internally
- *
- * import org.apache.http.conn.ClientConnectionManager;
- *
- * public class SomeClass { ... }
- * </pre>
  * <p>
  * Notes:
  * </p>
@@ -221,6 +206,25 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;option&quot; value=&quot;above&quot;/&gt;
  *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * import static java.lang.System.out; // Violation; it should be 'sorted'
+ * import static java.lang.Math.*; // OK
+ * import java.io.IOException; // Violation; Groups aren't separated by blank line
+ *
+ * import java.net.URL;
+ * import java.security.KeyManagementException;
+ *
+ * import javax.net.ssl.TrustManager;
+ *
+ * import javax.net.ssl.X509TrustManager; // Violation; Groups should not separate internally
+ *
+ * import org.apache.http.conn.ClientConnectionManager;
+ *
+ * public class SomeClass { }
  * </pre>
  * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
@@ -270,12 +274,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import javax.swing.JComponent;
  * import org.apache.http.ClientConnectionManager; // Violation; Should follow 'separated' property
  *
- * import org.linux.apache.server.SoapServer;
+ * import org.linux.apache.server.SoapServer; // Ok
  *
- * import com.neurologic.http.HttpClient;
- * import com.neurologic.http.impl.ApacheHttpClient;
+ * import com.neurologic.http.HttpClient; // Ok
+ * import com.neurologic.http.impl.ApacheHttpClient; // Ok
  *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * To configure the check so that it matches default IntelliJ IDEA formatter
@@ -334,7 +338,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static java.lang.Math.PI; //OK
  * import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
@@ -390,7 +394,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.util.Set; //  Wrong order for 'java.util.Set' import.
  *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * To configure the Check with groups of static imports:
@@ -407,7 +411,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static java.lang.String.format; // Group 2
  * import static com.google.common.primitives.Doubles.BYTES; // Group "everything else"
  *
- * public class SomeClass { ... }
+ * public class SomeClass { }
  * </pre>
  * <p>
  * The following example shows the idea of 'useContainerOrderingForStatic' option that is
