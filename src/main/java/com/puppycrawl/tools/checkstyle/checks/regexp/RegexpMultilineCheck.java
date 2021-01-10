@@ -82,25 +82,24 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of violation from the above config:
+ * Example:
  * </p>
  * <pre>
  * void method() {
  *   System.out.print("Example"); // OK
  *   System.err.println("Example"); // OK
- *   System.out.print // violation
- *       ("Example");
- *   System.err.println // violation
- *       ("Example"); 
- *   
- *   System // OK
- *   .out.print("Example");      
- *   System // OK
- *   .err.println("Example"); 
- *   System. // violation
- *   out.print("Example");
- *   System. // violation
- *   err.println("Example");
+ *   System.out.print
+ *     ("Example"); // violation
+ *   System.err.println
+ *     ("Example"); // violation
+ *   System
+ *   .out.print("Example"); // OK
+ *   System
+ *   .err.println("Example"); // OK
+ *   System.
+ *   out.print("Example"); // violation
+ *   System.
+ *   err.println("Example"); // violation
  * }
  * </pre>
  * <p>
@@ -114,33 +113,32 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of violation from the above config:
+ * Example:
  * </p>
  * <pre>
  * void method() {
  *   System.out.print("Example"); // OK
  *   System.out.println("Example"); // OK
- *   System.out.print // violation
- *       ("Example");
- *   System.out.println // violation
- *       ("Example");
- *
+ *   System.out.print
+ *     ("Example"); // violation
+ *   System.out.println
+ *     ("Example"); // violation
  *   System.out
  *   .print("Example"); // OK
  *   System.out
  *   .println("Example"); // OK
- *   System.out. // violation
- *   print("Example");
- *   System.out. // violation
- *   println("Example");
+ *   System.out.
+ *   print("Example"); // violation
+ *   System.out.
+ *   println("Example"); // violation
  *   System
  *   .out.print("Example"); // OK
  *   System
  *   .out.println("Example"); // OK
- *   System. // violation
- *   out.print("Example");
- *   System. // violation
- *   out.println("Example");
+ *   System.
+ *   out.print("Example"); // violation
+ *   System.
+ *   out.println("Example"); // violation
  * }
  * </pre>
  * <p>
