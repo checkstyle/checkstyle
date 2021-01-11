@@ -3,7 +3,7 @@
    <module>
       <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck"
              name="RegexpMultiline"
-             parent="com.puppycrawl.tools.checkstyle.Checker">
+             parent="">
          <description>&lt;p&gt;
  Checks that a specified pattern matches across multiple lines in any file type.
  &lt;/p&gt;
