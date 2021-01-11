@@ -176,13 +176,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
 
-    /** Period literal. */
+    /**
+     * Period literal.
+     */
     private static final String PERIOD = ".";
 
-    /** Closing Curly Bracket literal. */
+    /**
+     * Closing Curly Bracket literal.
+     */
     private static final String CLOSING_CURLY_BRACKETS = "}";
 
-    /** Set of allowed Tokens tags in summary java doc. */
+    /**
+     * Set of allowed Tokens tags in summary java doc.
+     */
     private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(JavadocTokenTypes.TEXT,
                     JavadocTokenTypes.WS,
@@ -190,10 +196,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                     JavadocTokenTypes.TEXT))
     );
 
-    /** Specify the regexp for forbidden summary fragments. */
+    /**
+     * Specify the regexp for forbidden summary fragments.
+     */
     private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
-    /** Specify the period symbol at the end of first javadoc sentence. */
+    /**
+     * Specify the period symbol at the end of first javadoc sentence.
+     */
     private String period = PERIOD;
 
     /**
@@ -216,7 +226,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {
+        return new int[]{
                 JavadocTokenTypes.JAVADOC,
         };
     }
@@ -232,9 +242,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             final String summaryDoc = getSummarySentence(ast);
             final String inlineSummaryDoc = getInlineSummarySentence(ast);
             if (summaryDoc.isEmpty() && inlineSummaryDoc.isEmpty()) {
-                log(ast.getLineNumber(), containsSummaryTag(ast)+" ");
-            }
-            else if (!period.isEmpty()) {
+                log(ast.getLineNumber(), containsSummaryTag(ast) + " ");
+            } else if (!period.isEmpty()) {
                 final String firstSentence = getFirstSentence(ast);
                 final String inlineFirstSentence = getInlineFirstSentence(ast);
                 final int endOfSentence = firstSentence.lastIndexOf(period);
@@ -268,8 +277,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
                     && child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
                 found = true;
-            }
-            else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+            } else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && !CommonUtil.isBlank(child.getText())) {
                 break;
             }
@@ -290,13 +298,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         for (DetailNode child : ast.getChildren()) {
             if (ALLOWED_TYPES.contains(child.getType())) {
                 result.append(child.getText());
-            }
-            else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
+            } else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
                     && CommonUtil.isBlank(result.toString().trim())) {
                 result.append(getStringInsideTag(result.toString(),
                         child.getChildren()[0].getChildren()[0]));
-            }
-            else if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+            } else if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                 flag = false;
             }
             if (!flag) {
@@ -309,7 +315,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Concatenates string within text of html tags.
      *
-     * @param result javadoc string
+     * @param result     javadoc string
      * @param detailNode javadoc tag node
      * @return java doc tag content appended in result
      */
@@ -338,8 +344,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             final String text;
             if (child.getChildren().length == 0) {
                 text = child.getText();
-            }
-            else {
+            } else {
                 text = getFirstSentence(child);
             }
 
@@ -384,8 +389,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
                 previousWhitespace = true;
                 print = ' ';
-            }
-            else {
+            } else {
                 previousWhitespace = false;
                 print = letter;
             }
@@ -405,8 +409,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         for (DetailNode node : javadoc.getChildren()) {
             if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
                 DetailNode[] child = node.getChildren();
-                for(DetailNode ch : child) {
-                    if(ch.getType() == JavadocTokenTypes.CUSTOM_NAME) {
+                for (DetailNode ch : child) {
+                    if (ch.getType() == JavadocTokenTypes.CUSTOM_NAME) {
                         final String summary = ch.getText();
                         if (summary.equals("@summary")) {
                             return true;
@@ -430,7 +434,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
                 DetailNode[] ch = node.getChildren();
                 for (DetailNode dataType : ch) {
-                    if(dataType.getType() == JavadocTokenTypes.DESCRIPTION) {
+                    if (dataType.getType() == JavadocTokenTypes.DESCRIPTION) {
                         DetailNode[] summary = dataType.getChildren();
                         for (DetailNode child : summary) {
                             if (child.getType() == JavadocTokenTypes.TEXT) {
@@ -461,10 +465,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                         final String text;
                         if (child.getChildren().length == 0) {
                             text = child.getText();
-                        }else if (child.getType() == JavadocTokenTypes.DESCRIPTION) {
+                        } else if (child.getType() == JavadocTokenTypes.DESCRIPTION) {
                             final DetailNode[] child2 = child.getChildren();
                             String Inline_text = null;
-                            for(DetailNode ch2 :child2) {
+                            for (DetailNode ch2 : child2) {
                                 if (ch2.getType() == JavadocTokenTypes.TEXT) {
                                     Inline_text = ch2.getText();
                                     break;
