@@ -386,12 +386,12 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "33:9: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 8, "10, 12"),
-            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 8, "10, 12"),
-            "90:11: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 10, "12, 14"),
-            "97:13: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 12, "14, 16"),
-            "119:13: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 12, "14, 16"),
-            "126:15: " + getCheckMessage(MSG_ERROR_MULTI, "operator new", 14, "16, 18"),
+            "33:9: " + getCheckMessage(MSG_ERROR_MULTI, "new", 8, "10, 12"),
+            "40:9: " + getCheckMessage(MSG_ERROR_MULTI, "new", 8, "10, 12"),
+            "90:11: " + getCheckMessage(MSG_ERROR_MULTI, "new", 10, "12, 14"),
+            "97:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
+            "119:13: " + getCheckMessage(MSG_ERROR_MULTI, "new", 12, "14, 16"),
+            "126:15: " + getCheckMessage(MSG_ERROR_MULTI, "new", 14, "16, 18"),
         };
         verifyWarns(checkConfig, getPath("InputIndentationCorrectIfAndParameter.java"), expected);
     }
@@ -791,9 +791,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "100:11: " + getCheckMessage(MSG_CHILD_ERROR, "if", 10, 12),
             "101:7: " + getCheckMessage(MSG_ERROR, "if rcurly", 6, 8),
             "104:11: " + getCheckMessage(MSG_ERROR, "Arrays", 10, 12),
-            "110:15: " + getCheckMessage(MSG_ERROR, "operator new", 14, 16),
+            "110:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
             "113:11: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 10, 12),
-            "118:15: " + getCheckMessage(MSG_ERROR, "operator new", 14, 16),
+            "118:15: " + getCheckMessage(MSG_ERROR, "new", 14, 16),
             "122:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
             "126:11: " + getCheckMessage(MSG_ERROR, "new", 10, 12),
             "127:7: " + getCheckMessage(MSG_ERROR, ")", 6, 8),
@@ -1011,16 +1011,47 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testNewChildren() throws Exception {
+    public void testNewKeyword2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
         checkConfig.addAttribute("basicOffset", "4");
-        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("forceStrictCondition", "true");
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("InputIndentationValidNewChildren.java"), expected);
+        verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
+    }
+
+    @Test
+    public void testValidNewKeywordWithForceStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
+    }
+
+    @Test
+    public void testInvalidNewKeywordWithForceStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+            "23:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
+            "24:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
+            "25:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+        };
+        verifyWarns(checkConfig,
+            getPath("InputIndentationNewWithForceStrictCondition.java"), expected);
     }
 
     @Test
@@ -1119,6 +1150,29 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         // Test input for this test case is not checked due to issue #693.
         verify(checkConfig, fileName, expected);
+    }
+
+    @Test
+    public void testChainedMethodCalling() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "2");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("forceStrictCondition", "false");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String fileName = getPath("InputIndentationChainedMethodCalls.java");
+        final String[] expected = {
+            "32:5: " + getCheckMessage(IndentationCheck.class,
+                MSG_CHILD_ERROR, "method call", 4, 8),
+            "37:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
+            "38:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, ".", 4, 8),
+            "41:5: " + getCheckMessage(IndentationCheck.class, MSG_ERROR, "new", 4, 8),
+        };
+        verifyWarns(checkConfig, fileName, expected);
     }
 
     @Test
@@ -2356,6 +2410,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "60:8: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 7, 4),
             "61:5: " + getCheckMessage(MSG_ERROR, "annotation def rcurly", 4, 0),
             "72:4: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 3, 4),
+            "87:29: " + getCheckMessage(MSG_ERROR_MULTI, "new", 28, "20, 24"),
             "117:6: " + getCheckMessage(MSG_ERROR, "annotation def modifier", 5, 4),
             "128:2: " + getCheckMessage(MSG_ERROR, "interface", 1, 0),
             "134:12: " + getCheckMessage(MSG_ERROR, "@", 11, 0),
@@ -2477,8 +2532,21 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
             "10:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
-            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "operator new", 0, 8),
-            "15:1: " + getCheckMessage(MSG_ERROR, "operator new lparen", 0, 8),
+            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
+            "15:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
+    }
+
+    @Test
+    public void testNewHandler2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "8:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
+            "10:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
+            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
+            "15:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
