@@ -680,14 +680,14 @@ void method() {
 /var/tmp/Test.java // violation, a file must not be empty.
         </source>
         <p>
-          To run the check with its default configuration: 
+          To run the check with its default configuration:
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
 &lt;/module&gt;
         </source>
         <p>
-        Example: 
+        Example:
         </p>
         <source>
 void method() {

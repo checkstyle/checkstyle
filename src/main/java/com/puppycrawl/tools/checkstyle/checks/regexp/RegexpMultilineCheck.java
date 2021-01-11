@@ -175,7 +175,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * /var/tmp/Test.java // violation, a file must not be empty.
  * </pre>
  * <p>
- * To run the check with its default configuration: 
+ * To run the check with its default configuration:
  * </p>
  * <pre>
  * &lt;module name=&quot;RegexpMultiline&quot;&gt;
