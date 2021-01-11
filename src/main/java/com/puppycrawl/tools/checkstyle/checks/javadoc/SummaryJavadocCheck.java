@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import org.apache.tools.ant.taskdefs.Java;
 
 /**
  * <p>
@@ -175,19 +176,34 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
 
-    /** Period literal. */
+    /**
+     * Period literal.
+     */
     private static final String PERIOD = ".";
 
-    /** Set of allowed Tokens tags in summary java doc. */
+    /**
+     * Closing Curly Bracket literal.
+     */
+    private static final String CLOSING_CURLY_BRACKETS = "}";
+
+    /**
+     * Set of allowed Tokens tags in summary java doc.
+     */
     private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(JavadocTokenTypes.TEXT,
-                    JavadocTokenTypes.WS))
+                    JavadocTokenTypes.WS,
+                    JavadocTokenTypes.DESCRIPTION,
+                    JavadocTokenTypes.TEXT))
     );
 
-    /** Specify the regexp for forbidden summary fragments. */
+    /**
+     * Specify the regexp for forbidden summary fragments.
+     */
     private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
-    /** Specify the period symbol at the end of first javadoc sentence. */
+    /**
+     * Specify the period symbol at the end of first javadoc sentence.
+     */
     private String period = PERIOD;
 
     /**
@@ -210,8 +226,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public int[] getDefaultJavadocTokens() {
-        return new int[] {
-            JavadocTokenTypes.JAVADOC,
+        return new int[]{
+                JavadocTokenTypes.JAVADOC,
         };
     }
 
@@ -222,19 +238,24 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (!startsWithInheritDoc(ast)) {
+        if (!startsWithInheritDoc(ast) || containsSummaryTag(ast)) {
             final String summaryDoc = getSummarySentence(ast);
-            if (summaryDoc.isEmpty()) {
-                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
-            }
-            else if (!period.isEmpty()) {
+            final String inlineSummaryDoc = getInlineSummarySentence(ast);
+            if (summaryDoc.isEmpty() && inlineSummaryDoc.isEmpty()) {
+                log(ast.getLineNumber(), containsSummaryTag(ast) + " ");
+            } else if (!period.isEmpty()) {
                 final String firstSentence = getFirstSentence(ast);
+                final String inlineFirstSentence = getInlineFirstSentence(ast);
                 final int endOfSentence = firstSentence.lastIndexOf(period);
-                if (!summaryDoc.contains(period)) {
+                final int endOfInlineSentence = inlineFirstSentence.lastIndexOf(period);
+                if (!summaryDoc.contains(period) && !inlineSummaryDoc.contains(period)) {
                     log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
                 }
-                if (endOfSentence != -1
-                        && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
+                if ((endOfSentence != -1
+                        && containsForbiddenFragment(firstSentence.substring(0, endOfSentence)))
+                        && (endOfInlineSentence != -1
+                        && containsForbiddenFragment(inlineFirstSentence.substring(0,
+                        endOfInlineSentence)))) {
                     log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
                 }
             }
@@ -251,13 +272,12 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         boolean found = false;
         final DetailNode[] children = root.getChildren();
 
-        for (int i = 0; !found; i++) {
+        for (int i = 0; !found && i < children.length; i++) {
             final DetailNode child = children[i];
             if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
                     && child.getChildren()[1].getType() == JavadocTokenTypes.INHERIT_DOC_LITERAL) {
                 found = true;
-            }
-            else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
+            } else if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && !CommonUtil.isBlank(child.getText())) {
                 break;
             }
@@ -278,13 +298,11 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         for (DetailNode child : ast.getChildren()) {
             if (ALLOWED_TYPES.contains(child.getType())) {
                 result.append(child.getText());
-            }
-            else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
+            } else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT
                     && CommonUtil.isBlank(result.toString().trim())) {
                 result.append(getStringInsideTag(result.toString(),
                         child.getChildren()[0].getChildren()[0]));
-            }
-            else if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
+            } else if (child.getType() == JavadocTokenTypes.JAVADOC_TAG) {
                 flag = false;
             }
             if (!flag) {
@@ -297,7 +315,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /**
      * Concatenates string within text of html tags.
      *
-     * @param result javadoc string
+     * @param result     javadoc string
      * @param detailNode javadoc tag node
      * @return java doc tag content appended in result
      */
@@ -326,8 +344,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             final String text;
             if (child.getChildren().length == 0) {
                 text = child.getText();
-            }
-            else {
+            } else {
                 text = getFirstSentence(child);
             }
 
@@ -372,8 +389,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
                 previousWhitespace = true;
                 print = ' ';
-            }
-            else {
+            } else {
                 previousWhitespace = false;
                 print = letter;
             }
@@ -384,4 +400,94 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return result.toString();
     }
 
+    /**
+     * Finds and return if summary tag present.
+     *
+     * @param javadoc Javadoc root node.
+     */
+    private boolean containsSummaryTag(DetailNode javadoc) {
+        for (DetailNode node : javadoc.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                DetailNode[] child = node.getChildren();
+                for (DetailNode ch : child) {
+                    if (ch.getType() == JavadocTokenTypes.CUSTOM_NAME) {
+                        final String summary = ch.getText();
+                        if (summary.equals("@summary")) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if period is at the end of sentence.
+     *
+     * @param ast Javadoc root node.
+     * @return violation string
+     */
+    private static String getInlineSummarySentence(DetailNode ast) {
+        final StringBuilder result = new StringBuilder(256);
+        for (DetailNode node : ast.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                DetailNode[] ch = node.getChildren();
+                for (DetailNode dataType : ch) {
+                    if (dataType.getType() == JavadocTokenTypes.DESCRIPTION) {
+                        DetailNode[] summary = dataType.getChildren();
+                        for (DetailNode child : summary) {
+                            if (child.getType() == JavadocTokenTypes.TEXT) {
+                                result.append(child.getText());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return result.toString().trim();
+    }
+
+    /**
+     * Finds and returns first sentence.
+     *
+     * @param ast Javadoc root node.
+     * @return first sentence.
+     */
+    private static String getInlineFirstSentence(DetailNode ast) {
+        final StringBuilder result = new StringBuilder(256);
+        final String period = PERIOD + ' ';
+        for (DetailNode node : ast.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                DetailNode[] ch = node.getChildren();
+                for (DetailNode child : ch) {
+                    if (ALLOWED_TYPES.contains(child.getType())) {
+                        final String text;
+                        if (child.getChildren().length == 0) {
+                            text = child.getText();
+                        } else if (child.getType() == JavadocTokenTypes.DESCRIPTION) {
+                            final DetailNode[] child2 = child.getChildren();
+                            String Inline_text = null;
+                            for (DetailNode ch2 : child2) {
+                                if (ch2.getType() == JavadocTokenTypes.TEXT) {
+                                    Inline_text = ch2.getText();
+                                    break;
+                                }
+                            }
+                            text = Inline_text;
+                        } else {
+                            text = getInlineFirstSentence(child);
+                        }
+
+                        if (text.contains(period)) {
+                            result.append(text, 0, text.indexOf(period) + 1);
+                            break;
+                        }
+                        result.append(text);
+                    }
+                }
+            }
+        }
+        return result.toString();
+    }
 }
