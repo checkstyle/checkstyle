@@ -179,7 +179,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- * &lt;module&gt;
+ * &lt;/module&gt;
  * </pre>
  * <p>Example: </p>
  * <pre>

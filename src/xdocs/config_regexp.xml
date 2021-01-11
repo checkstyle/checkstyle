@@ -684,7 +684,7 @@ void method() {
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
-&lt;module&gt;
+&lt;/module&gt;
         </source>
         <p>
         Example: 
