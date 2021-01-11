@@ -178,7 +178,8 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * To run the check with its default configuration: 
  * </p>
  * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot; /&gt;
+ * &lt;module name=&quot;RegexpMultiline&quot;&gt;
+ * &lt;module&gt;
  * </pre>
  * <p>Example: </p>
  * <pre>
