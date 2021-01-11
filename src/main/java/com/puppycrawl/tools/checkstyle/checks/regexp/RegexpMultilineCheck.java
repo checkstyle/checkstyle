@@ -188,6 +188,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   System.out.println(i); // OK
  * }
  * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>
