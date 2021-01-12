@@ -476,6 +476,23 @@ public class CommonUtilTest extends AbstractPathTestSupport {
                 content, startsWith("good"));
     }
 
+    @Test
+    public void testGetUriByFilenameFindsAbsoluteResourceOnClasspathPrefix() throws Exception {
+        final String filename = CommonUtil.CLASSPATH_URL_PREFIX
+            + "/" + getPackageLocation()
+            + "/InputCommonUtilTest_empty_checks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+    }
+
+    @Test
+    public void testGetUriByFilenameFindsRelativeResourceOnClasspathPrefix() throws Exception {
+        final String filename = CommonUtil.CLASSPATH_URL_PREFIX
+            + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+    }
+
     private static class TestCloseable implements Closeable {
 
         private boolean closed;
