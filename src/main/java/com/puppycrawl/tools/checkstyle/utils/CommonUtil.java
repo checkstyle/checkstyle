@@ -494,7 +494,7 @@ public final class CommonUtil {
     /**
      * Resolve the specified filename to a URI.
      *
-     * @param filename name os the file
+     * @param filename name of the file
      * @return resolved header file URI
      * @throws CheckstyleException on failure
      */
