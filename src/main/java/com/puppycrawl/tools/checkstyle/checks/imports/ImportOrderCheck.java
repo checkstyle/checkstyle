@@ -212,7 +212,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * import static java.lang.System.out;
- * import static java.lang.Math.*; // Violation; alphabetical case sensitive ASCII order, 'M' &lt; 'S'
+ * import static java.lang.Math; // Violation; alphabetical case sensitive ASCII order, 'M' &lt; 'S'
  * import java.io.IOException;
  *
  * import java.net.URL; // Violation; Extra separation in import group
@@ -267,9 +267,9 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import org.albedo.*;
  *
- * import static javax.swing.WindowConstants.*; // Violation; Wrong order, Should follow 'ordered' property
+ * import static javax.swing.WindowConstants.*; // Violation; Should follow 'ordered' property
  * import javax.swing.JComponent;
- * import org.apache.http.ClientConnectionManager; // Violation; should be separated from previous imports
+ * import org.apache.http.ClientConnectionManager; // Violation; should follow 'separated' property
  * import org.linux.apache.server.SoapServer; // Ok
  *
  * import com.neurologic.http.HttpClient; // Ok
@@ -359,13 +359,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * import static java.io.File.createTempFile;
  *
- * import static java.lang.Math.PI; // Violation, Static imports are not separated
+ * import static java.lang.Math.PI; // Violation; Static imports are not separated
  * import java.lang.Math.sqrt;
- * import javax.swing.JComponent; // Ok, Imports are grouped as one
+ * import javax.swing.JComponent; // Ok; Imports are grouped as one
  * import static javax.WindowConstants.*; // Violation;  Wrong order for 'javax.WindowConstants.*'
- * import org.linux.apache.server.SoapServer; // Ok, imports will be sorted as a one group
+ * import org.linux.apache.server.SoapServer; // Ok; imports will be sorted as a one group
  *
- * import com.neurologic.http.HttpClient; // Violation,  Extra separation in import group &  Wrong order
+ * import com.neurologic.http.HttpClient; // Violation; Extra separation in group and Wrong order
  *
  * public class SomeClass { }
  * </pre>
