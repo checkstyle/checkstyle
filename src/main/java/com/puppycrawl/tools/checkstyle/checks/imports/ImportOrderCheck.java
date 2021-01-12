@@ -152,7 +152,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import java.io.IOException; // OK
  * import java.net.URL; // OK
  *
- * import java.io.IOException; // Violation; Should follow 'Group' property
+ * import java.io.IOException; // Violation; Extra separation in import group
  *
  * import javax.net.ssl.SSLContext; // OK
  * import javax.net.ssl.TrustManager; // OK
@@ -211,11 +211,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static java.lang.System.out; // Violation; it should be 'sorted'
- * import static java.lang.Math.*; // OK
- * import java.io.IOException; // Violation; Groups aren't separated by blank line
+ * import static java.lang.System.out;
+ * import static java.lang.Math.*; // Violation; alphabetical case sensitive ASCII order, 'M' &lt; 'S'
+ * import java.io.IOException;
  *
- * import java.net.URL;
+ * import java.net.URL; // Violation; Extra separation in import group
  * import java.security.KeyManagementException;
  *
  * import javax.net.ssl.TrustManager;
@@ -258,22 +258,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static java.awt.Button.A; // Violation; Should follow 'sortStaticImportsAlphabetically'
- * import static java.lang.Math.PI;
- * import static java.lang.Math.abs; // Ok, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
- * import java.lang.Math.sqrt; // Ok, Follow property 'Option' value 'above'
- *
  * import static java.io.File.createTempFile;
- * import java.io.File;
+ * import static java.lang.Math.abs; // Ok, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
+ * import java.lang.Math.sqrt; // Ok, Follow property 'Option' value 'above'
+ * import java.io.File; // Violation, alphabetical case sensitive ASCII order, 'i' &lt; 'l'
  *
- * import java.io.IOException; // Violation; Should follow 'Group' property
+ * import java.io.IOException; // Violation; Extra separation in import group
  *
- * import org.albedo.*; // Violation; Should follow 'ordered' property *{comes after javax imports}
+ * import org.albedo.*;
  *
- * import static javax.swing.WindowConstants.*;
+ * import static javax.swing.WindowConstants.*; // Violation; Wrong order, Should follow 'ordered' property
  * import javax.swing.JComponent;
- * import org.apache.http.ClientConnectionManager; // Violation; Should follow 'separated' property
- *
+ * import org.apache.http.ClientConnectionManager; // Violation; should be separated from previous imports
  * import org.linux.apache.server.SoapServer; // Ok
  *
  * import com.neurologic.http.HttpClient; // Ok
@@ -330,11 +326,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at bottom
  *
- * import java.net.URL;
+ * import java.net.URL; // Violation; Wrong order for 'java.net.URL'
  * import java.security.KeyManagementException;
  * import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
  *
- * import static java.awt.Button.A; //Violation; Should follow 'sortStaticImportsAlphabetically'
+ * import static java.awt.Button.A; //Violation;  Extra separation in import group
  * import static java.lang.Math.PI; //OK
  * import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
@@ -361,15 +357,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static java.io.File.createTempFile; // Violation, Static imports are not separated
+ * import static java.io.File.createTempFile;
  *
- * import static java.lang.Math.PI; //OK
+ * import static java.lang.Math.PI; // Violation, Static imports are not separated
  * import java.lang.Math.sqrt;
  * import javax.swing.JComponent; // Ok, Imports are grouped as one
- * import static javax.WindowConstants.*; // Ok, static imports processed like non-static imports
+ * import static javax.WindowConstants.*; // Violation;  Wrong order for 'javax.WindowConstants.*'
  * import org.linux.apache.server.SoapServer; // Ok, imports will be sorted as a one group
  *
- * import com.neurologic.http.HttpClient; // Violation, Imports will be grouped as one
+ * import com.neurologic.http.HttpClient; // Violation,  Extra separation in import group &  Wrong order
  *
  * public class SomeClass { }
  * </pre>
