@@ -557,12 +557,12 @@ public class DescendantTokenCheck extends AbstractCheck {
      *
      * @param message the violation message for maximum count exceeded.
      *     Used as a {@code MessageFormat} pattern with arguments
-     * <ul>
-     * <li>{0} - token count</li>
-     * <li>{1} - maximum number</li>
-     * <li>{2} - name of token</li>
-     * <li>{3} - name of limited token</li>
-     * </ul>
+     *     <ul>
+     *     <li>{0} - token count</li>
+     *     <li>{1} - maximum number</li>
+     *     <li>{2} - name of token</li>
+     *     <li>{3} - name of limited token</li>
+     *     </ul>
      */
 
     public void setMaximumMessage(String message) {
