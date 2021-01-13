@@ -94,8 +94,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <li>
  * Property {@code separatedStaticGroups} - control whether static import groups should
  * be separated by, at least, one blank line or comment and aren't separated internally.
- * This property has effect only when the property {@code option} is is set to {@code top}
- * or {@code bottom}.
+ * This property has effect only when the property {@code option} is set to {@code top}
+ * or {@code bottom} and when property {@code staticGroups} is enabled.
  * Type is {@code boolean}.
  * Default value is {@code false}.
  * </li>
@@ -160,7 +160,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import org.apache.http.conn.ClientConnectionManager; // OK
  * import org.apache.http.conn.scheme.Scheme; // OK
  *
- * import java.util.Set; //  Wrong order for 'java.util.Set' import.
+ * import java.util.Set; // Violation: Wrong order for 'java.util.Set' import.
  *
  * import com.neurologic.http.HttpClient; // OK
  * import com.neurologic.http.impl.ApacheHttpClient; // OK
@@ -324,15 +324,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Example:
  * </p>
  * <pre>
- * import static javax.swing.WindowConstants.*; //Violation; all static imports comes at bottom
+ * import static javax.swing.WindowConstants.*; // Violation; all static imports comes at bottom
  *
  * import java.net.URL; // Violation; Wrong order for 'java.net.URL'
  * import java.security.KeyManagementException;
- * import javax.net.ssl.TrustManager; //OK; no blank line between "javax" and "java".
+ * import javax.net.ssl.TrustManager; // OK; no blank line between "javax" and "java".
  *
- * import static java.awt.Button.A; //Violation;  Extra separation in import group
- * import static java.lang.Math.PI; //OK
- * import static java.lang.Math.abs; //OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
+ * import static java.awt.Button.A; // Violation;  Extra separation in import group
+ * import static java.lang.Math.PI; // OK
+ * import static java.lang.Math.abs; // OK, alphabetical case sensitive ASCII order, 'P' &lt; 'a'
  *
  * public class SomeClass { }
  * </pre>
@@ -480,6 +480,29 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // violation
  *
  * public class InputEclipseStaticImportsOrder { }
+ * </pre>
+ * <p>
+ * To configure the check to enforce static import group separation
+ * </p>
+ * <p>
+ * Example for {@code separatedStaticGroups=true}
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *   &lt;property name=&quot;staticGroups&quot; value=&quot;*,javax,java,org&quot;/&gt;
+ *   &lt;property name=&quot;option&quot; value=&quot;top&quot;/&gt;
+ *   &lt;property name=&quot;separatedStaticGroups&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * import static java.lang.Math.PI;
+ * import static java.io.File.createTempFile;
+ * import static javax.swing.JComponent; // Violation; should be separated from previous imports
+ * import static javax.WindowConstants.*; // Ok
+ *
+ * import java.net.URL;
+ *
+ * public class SomeClass { }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}

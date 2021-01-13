@@ -63,8 +63,8 @@
             <property default-value="false" name="separatedStaticGroups" type="boolean">
                <description>control whether static import groups should
  be separated by, at least, one blank line or comment and aren't separated internally.
- This property has effect only when the property {@code option} is is set to {@code top}
- or {@code bottom}.</description>
+ This property has effect only when the property {@code option} is set to {@code top}
+ or {@code bottom} and when property {@code staticGroups} is enabled.</description>
             </property>
             <property default-value="true" name="caseSensitive" type="boolean">
                <description>control whether string comparison should be case
