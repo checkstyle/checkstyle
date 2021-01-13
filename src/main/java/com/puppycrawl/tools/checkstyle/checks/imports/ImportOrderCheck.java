@@ -581,7 +581,8 @@ public class ImportOrderCheck
     /**
      * Control whether static import groups should be separated by, at least, one blank
      * line or comment and aren't separated internally. This property has effect only when the
-     * property {@code option} is is set to {@code top} or {@code bottom}.
+     * property {@code option} is set to {@code top} or {@code bottom} and when property
+     * {@code staticGroups} is enabled.
      */
     private boolean separatedStaticGroups;
 
@@ -699,7 +700,8 @@ public class ImportOrderCheck
      * Setter to control whether static import groups should be separated by, at least,
      * one blank line or comment and aren't separated internally.
      * This property has effect only when the property
-     * {@code option} is is set to {@code top} or {@code bottom}.
+     * {@code option} is set to {@code top} or {@code bottom} and when property {@code staticGroups}
+     * is enabled.
      *
      * @param separatedStaticGroups
      *            whether groups should be separated by one blank line or comment.
