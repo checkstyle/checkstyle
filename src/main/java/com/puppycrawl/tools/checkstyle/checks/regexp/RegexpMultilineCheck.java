@@ -118,27 +118,18 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <pre>
  * void method() {
  *   System.out.print("Example"); // OK
- *   System.out.println("Example"); // OK
+ *   System.out.print(
+ *       "Example"); // OK
  *   System.out.print
- *     ("Example"); // violation
- *   System.out.println
- *     ("Example"); // violation
+ *   ("Example"); // violation
  *   System.out
  *   .print("Example"); // OK
- *   System.out
- *   .println("Example"); // OK
  *   System.out.
  *   print("Example"); // violation
- *   System.out.
- *   println("Example"); // violation
  *   System
  *   .out.print("Example"); // OK
- *   System
- *   .out.println("Example"); // OK
  *   System.
  *   out.print("Example"); // violation
- *   System.
- *   out.println("Example"); // violation
  * }
  * </pre>
  * <p>
