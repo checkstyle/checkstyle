@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- copy from http://maven.apache.org/xsd/decoration-1.8.0.xsd ,
+     just to make build stable in offline mode.
+     source was a bit formatted to pass LineLength and NewlineAtEndOfFile and
+     spelling validation
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           xmlns="http://maven.apache.org/DECORATION/1.8.0"
+           targetNamespace="http://maven.apache.org/DECORATION/1.8.0">
+  <xs:element name="project" type="DecorationModel">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">
+        The &lt;code&gt;&amp;lt;project&amp;gt;&lt;/code&gt; element is the root of the site
+        decoration descriptor.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="DecorationModel">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">
+        The &lt;code&gt;&amp;lt;project&amp;gt;&lt;/code&gt; element is the root of the site
+        decoration descriptor.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="bannerLeft" type="Banner">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">Banner logo on the masthead of the site to the
+            left.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="bannerRight" type="Banner">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">Banner logo on the masthead of the site to the
+            right.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="googleAdSenseClient" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.3.0+</xs:documentation>
+          <xs:documentation source="description">Your Google AdSense client id.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="googleAdSenseSlot" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.3.0+</xs:documentation>
+          <xs:documentation source="description">Your Google AdSense slot id.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="googleAnalyticsAccountId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.1.0+</xs:documentation>
+          <xs:documentation source="description">The id for your Google Analytics account.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="publishDate" type="PublishDate">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">Modify the date published display properties.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="version" type="Version">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">Modify the version published display properties.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="edit" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.8.0+</xs:documentation>
+          <xs:documentation source="description">
+            The base url to edit Doxia document sources.
+            In general, &lt;code&gt;${project.scm.url}&lt;/code&gt; value should do the job.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="poweredBy">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">Powered by logos list.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="logo" minOccurs="0" maxOccurs="unbounded" type="Logo"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="skin" type="Skin">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The artifact containing the skin for the site.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="body" type="Body">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The main site content decoration.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="custom">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">
+            Custom configuration for use with customized Velocity templates. Data from this field
+            are accessible in Velocity template from &lt;code&gt;$decoration.custom&lt;/code&gt;
+            variable as DOM content. Example:
+            &lt;code&gt;$decoration.custom.getChild( &apos;customElement&apos;)
+            .getValue()&lt;/code&gt;
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" maxOccurs="unbounded" processContents="skip"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:all>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The full name of the project.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="combine.self" type="xs:string" default="merge">
+      <xs:annotation>
+        <xs:documentation source="version">1.6.0+</xs:documentation>
+        <xs:documentation source="description">
+          Whether to inherit configuration from a parent project site descriptor
+          (&lt;code&gt;merge&lt;/code&gt;) or not (&lt;code&gt;override&lt;/code&gt;).
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Version">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">Modify display properties for version published.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="position" type="xs:string" default="left">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">Where to place the version published
+          (left, right, navigation-top, navigation-bottom, bottom).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Banner">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">Banner logo on the masthead of the site.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="name" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The name of the banner.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="src" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The source location of an image for the banner.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="alt" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The alt description for the banner image.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="href" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The href of a link to be used for the banner
+            image.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="border" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.1+</xs:documentation>
+          <xs:documentation source="description">The border to use for the banner image.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="width" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.1+</xs:documentation>
+          <xs:documentation source="description">The width to use for the banner image.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="height" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.1+</xs:documentation>
+          <xs:documentation source="description">The height to use for the banner image.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="title" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.3.0+</xs:documentation>
+          <xs:documentation source="description">The title for the banner image.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Body">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">The main content decoration.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="head" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.7.0+</xs:documentation>
+          <xs:documentation source="description">Additional content (like JavaScript)
+            to include in the HEAD block of the generated pages.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="links">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">A list of links to display in the navigation.
+          </xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="item" minOccurs="0" maxOccurs="unbounded" type="LinkItem"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="breadcrumbs">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">A list of breadcrumbs to display in
+            the navigation.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="item" minOccurs="0" maxOccurs="unbounded" type="LinkItem"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="menu" type="Menu" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">A list of menus to include in the navigation.
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="footer" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.7.0+</xs:documentation>
+          <xs:documentation source="description">If present, the contained text will be used
+            instead of the generated copyright text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LinkItem">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">A link in the navigation.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The name to display for the link.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="href" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The href to use for the link.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="img" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The source location of an image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="position" type="xs:string" default="left">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where to place the image regarding
+          the displayed name (left or right).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="alt" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The alt to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="border" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The border to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="width" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The width to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="height" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The height to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="target" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where the new document will be displayed when
+          the user follows a link, i.e. _blank opens the new document in a new window.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="title" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.3.0+</xs:documentation>
+        <xs:documentation source="description">The title to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Menu">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">A menu in the navigation.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="item" type="MenuItem" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">A list of menu item.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The name to display for the menu.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="inherit" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">
+          The way in which the menu is inherited. Can be one of : &lt;code&gt;top&lt;/code&gt;,
+          &lt;code&gt;bottom&lt;/code&gt;.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="inheritAsRef" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">
+          If this is a reference, setting &lt;inheritAsRef&gt;true&lt;/inheritAsRef&gt; means that
+          it will be populated in the project, whereas if it is false,
+          it is populated in the parent and then inherited.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ref" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">
+          Mark this menu as reference to a pre-defined menu: &lt;code&gt;reports&lt;/code&gt;,
+          &lt;code&gt;modules&lt;/code&gt; or &lt;code&gt;parent&lt;/code&gt;.
+          It will be populated at runtime with corresponding pre-defined content.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="img" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The source location of an menu image.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="alt" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The alt description for the image.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="position" type="xs:string" default="left">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where to place the image regarding
+          the displayed name (left or right).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="border" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The border to use for the menu image.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="width" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The width to use for the menu image.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="height" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The height to use for the menu image.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="title" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.3.0+</xs:documentation>
+        <xs:documentation source="description">The title for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="MenuItem">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">A menu item.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="description" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">A description of the menu item.
+            This is used on any summary pages for a menu.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="item" type="MenuItem" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">A list of menu item.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="collapse" type="xs:boolean" default="false">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">Whether to collapse children elements of
+          an item menu (by default).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="ref" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">A reference to a pre-defined menu item,
+          such as a report (specified by the report goal name).
+          Any elements explicitly given override those from the pre-defined reference.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The name to display for the link.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="href" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The href to use for the link.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="img" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The source location of an image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="position" type="xs:string" default="left">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where to place the image regarding
+          the displayed name (left or right).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="alt" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The alt to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="border" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The border to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="width" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The width to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="height" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The height to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="target" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where the new document will be displayed when
+          the user follows a link, i.e. _blank opens the new document in a new window.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="title" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.3.0+</xs:documentation>
+        <xs:documentation source="description">The title to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="Skin">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">An skin artifact declaration.</xs:documentation>
+    </xs:annotation>
+    <xs:all>
+      <xs:element minOccurs="0" name="groupId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The skin group ID.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="artifactId" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The skin artifact ID.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="version" type="xs:string">
+        <xs:annotation>
+          <xs:documentation source="version">1.0.0+</xs:documentation>
+          <xs:documentation source="description">The skin version.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="Logo">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">Power by logo on the navigation.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="name" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The name to display for the link.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="href" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The href to use for the link.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="img" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">The source location of an image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="position" type="xs:string" default="left">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where to place the image regarding
+          the displayed name (left or right).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="alt" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The alt to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="border" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The border to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="width" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The width to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="height" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">The height to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="target" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.1+</xs:documentation>
+        <xs:documentation source="description">Where the new document will be displayed when
+          the user follows a link, i.e. _blank opens the new document in a new window.
+        </xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="title" type="xs:string">
+      <xs:annotation>
+        <xs:documentation source="version">1.3.0+</xs:documentation>
+        <xs:documentation source="description">The title to use for the image.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="PublishDate">
+    <xs:annotation>
+      <xs:documentation source="version">1.0.0+</xs:documentation>
+      <xs:documentation source="description">Modify display properties for date published.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="position" type="xs:string" default="left">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">Where to place the date published
+          (left, right, navigation-top, navigation-bottom, bottom).</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="format" type="xs:string" default="yyyy-MM-dd">
+      <xs:annotation>
+        <xs:documentation source="version">1.0.0+</xs:documentation>
+        <xs:documentation source="description">Date format to use.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>
