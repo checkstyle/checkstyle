@@ -54,9 +54,8 @@ guava-with-sun-checks)
   ;;
 
 openjdk14-with-checks-nonjavadoc-error)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  echo CS_version: $CS_POM_VERSION
+  LOCAL_GIT_REPO=$(pwd)
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
   mkdir -p .ci-temp/
   cd .ci-temp/
   git clone https://github.com/checkstyle/contribution
@@ -64,12 +63,15 @@ openjdk14-with-checks-nonjavadoc-error)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
+  cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk14-excluded.files' checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects ../../../.ci/openjdk-projects-to-test-on.config \
-      --config checks-nonjavadoc-error.xml \
-      --checkstyleVersion $CS_POM_VERSION \
-      --extraMvnOptions "\"-Dmaven.jxr.skip=true\""
+  groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
+      --mode single \
+      --patchConfig checks-nonjavadoc-error.xml \
+      --localGitRepo  "$LOCAL_GIT_REPO" \
+      --patchBranch "$BRANCH"
+
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
