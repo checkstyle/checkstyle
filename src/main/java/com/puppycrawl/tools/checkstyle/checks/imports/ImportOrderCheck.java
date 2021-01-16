@@ -611,8 +611,8 @@ public class ImportOrderCheck
     private boolean beforeFirstImport;
     /**
      * Whether static and type import groups should be split apart.
-     * When the {@code option} property is set to {@code INFLOW}, {@code BELOW} or {@code UNDER},
-     * both the type and static imports use the properties {@code groups} and {@code separated}.
+     * When the {@code option} property is set to {@code INFLOW} and {@code UNDER},
+     * both the type and static imports uses the properties {@code groups} and {@code separated}.
      * When the {@code option} property is set to {@code TOP} or {@code BOTTOM}, static imports
      * uses the properties {@code staticGroups} and {@code separatedStaticGroups}.
      **/
