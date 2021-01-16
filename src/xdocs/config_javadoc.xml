@@ -3519,6 +3519,16 @@ public class TestClass {
   */
   void validJavaDocMethod() {
   }
+  /**
+  * {@summary This is a valid JavaDoc。}
+  */
+  void correctJavaDocMethod() {
+  }
+  /**
+  * {@summary This is an invalid JavaDoc.}
+  */
+  void inCorrectJavaDocMethod() {
+  }
 }
         </source>
       </subsection>
