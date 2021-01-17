@@ -153,7 +153,7 @@ class InputSummaryJavadocCorrect {
         boolean emulated(String s) {return false;}
 
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
+         * As of JDK 1.1, replaced by .
          */
         void foo3() {}
 
@@ -195,5 +195,121 @@ class InputSummaryJavadocCorrect {
 
          /** Stop instances being created. **/
          String twoSentences1() {return "Sentence one. Sentence two.";}
+    };
+
+    class InputInlineSummaryJavadocParagraphCheck  {
+        /**
+         *  {@summary foooo@foooo.}
+         */
+        public static final byte NUL = 0;
+
+        /**
+         * {@summary Some java@doc.
+         * This method returns.}
+         */
+        public static final byte NUL_2 = 0;
+
+        /**
+         * {@summary Returns the customer ID.
+         *  This method returns.}
+         */
+        int getId() {return 666;}
+
+        /**
+         * {@summary This is valid.
+         * <a href="mailto:vlad@htmlbook.ru"/>.}
+         */
+        void foo2() {}
+
+        /**
+         * {@summary As of JDK 1.1,
+         * replaced by {@link #setBounds(int,int,int,int)}. This method returns.}
+         */
+        void foo3() {}
+
+        /**
+         * {@summary This is description.}
+         * @throws Exception if a problem occurs.
+         */
+        void foo4() throws Exception {}
+
+        /**
+         * {@summary JAXB Provider Use Only: Provides partial default
+         * implementations for some of the javax.xml.bind interfaces.}
+         */
+        void foo5() {}
+
+        /**
+         * {@summary An especially short (int... A) bit of Javadoc. This
+         * method returns.}
+         */
+        void foo6() {}
+    }
+
+    /**
+     * {@summary Some
+     * javadoc. A {@code Foo} is a simple Javadoc.}
+     */
+    InputInlineSummaryJavadocParagraphCheck iden = new InputInlineSummaryJavadocParagraphCheck() {
+
+        /**
+         * {@summary JAXB 1.0 only default validation event handler.}
+         */
+        public static final byte NUL = 0;
+
+        /**
+         * {@summary Returns the current state.
+         * This method returns.}
+         */
+        boolean emulated(String s) {return false;}
+
+        /**
+         * {@summary As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.}
+         */
+        void foo3() {}
+
+        /**
+         * {@summary This is valid.}
+         * @throws Exception if a problem occurs.
+         */
+        void foo4() throws Exception {}
+
+        /** {@summary An especially short bit of Javadoc.} */
+        void foo5() {}
+
+        /**
+         * {@summary An especially short bit of Javadoc.}
+         */
+        void foo6() {}
+
+        /**
+         * {@summary <p>This code is right.</p>}
+         */
+        void foo7(){}
+
+        /**
+         * {@summary Some Javadoc. This method returns some javadoc.}
+         */
+        boolean emulated() {return false;}
+
+        /**
+         * {@summary Some Javadoc. This method returns some javadoc. Some Javadoc.}
+         */
+        boolean emulated1() {return false;}
+
+        /**
+         * {@summary This is valid.}
+         * @return Some Javadoc the customer ID.
+         */
+        int geId() {return 666;}
+
+        /**
+         * {@summary This is valid.}
+         * @return Sentence one. Sentence two.
+         */
+        String twoSentences() {return "Sentence one. Sentence two.";}
+
+        /** {@summary Stop instances being created.} **/
+        String twoSentences1() {return "Sentence one. Sentence two.";}
     };
 }
