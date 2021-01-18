@@ -85,7 +85,6 @@ public void guessTheOutput()
         <source>
 &lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
         </source>
-
         <p>Example:</p>
         <source>
 public void foo() {
@@ -94,17 +93,17 @@ public void foo() {
     myInteger = 2;
   }
   System.out.println("myInteger = " + myInteger);
-}
 
-switch (a) {
-  case 1:
-    {                   // violation
-      System.out.println("Case 1");
+  switch (a) {
+    case 1:
+      {                   // violation
+        System.out.println("Case 1");
+        break;
+      }
+    case 2:
+      System.out.println("Case 2");     // OK
       break;
-    }
-  case 2:
-    System.out.println("Case 2");     // OK
-    break;
+  }
 }
         </source>
         <p>To configure the check to allow nested blocks in switch case:</p>
