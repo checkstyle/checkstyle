@@ -372,7 +372,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "47:6: " + getCheckMessage(MSG_ERROR, "<", 5, 6),
+        };
         verifyWarns(checkConfig, getPath("InputIndentationFromGuava.java"), expected);
     }
 
@@ -798,13 +800,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "31:3: " + getCheckMessage(MSG_ERROR, "method def modifier", 2, 4),
             "32:7: " + getCheckMessage(MSG_ERROR, "method def rcurly", 6, 4),
             "69:6: " + getCheckMessage(MSG_ERROR, "method def modifier", 5, 4),
-            "70:6: " + getCheckMessage(MSG_ERROR, "final", 5, 9),
-            "71:6: " + getCheckMessage(MSG_ERROR, "void", 5, 9),
-            "72:5: " + getCheckMessage(MSG_ERROR, "method5", 4, 9),
+            "70:6: " + getCheckMessage(MSG_ERROR, "final", 5, 8),
+            "71:6: " + getCheckMessage(MSG_ERROR, "void", 5, 8),
+            "72:5: " + getCheckMessage(MSG_ERROR, "method5", 4, 8),
             "80:4: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 4),
-            "81:4: " + getCheckMessage(MSG_ERROR, "final", 3, 7),
-            "82:4: " + getCheckMessage(MSG_ERROR, "void", 3, 7),
-            "83:6: " + getCheckMessage(MSG_ERROR, "method6", 5, 7),
+            "81:4: " + getCheckMessage(MSG_ERROR, "final", 3, 8),
+            "82:4: " + getCheckMessage(MSG_ERROR, "void", 3, 8),
+            "83:6: " + getCheckMessage(MSG_ERROR, "method6", 5, 8),
             "93:5: " + getCheckMessage(MSG_CHILD_ERROR, "ctor def", 4, 8),
             "98:7: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 6, 8),
             "99:7: " + getCheckMessage(MSG_ERROR, "if", 6, 8),
@@ -1233,6 +1235,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 8, "12, 16"),
             "131:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
+            "134:7: " + getCheckMessage(MSG_ERROR, "void", 6, 8),
         };
 
         // Test input for this test case is not checked due to issue #693.
@@ -1320,6 +1323,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
                 8, "12, 16"),
             "131:13: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
                 12, 16),
+            "134:7: " + getCheckMessage(MSG_ERROR, "void", 6, 8),
         };
 
         // Test input for this test case is not checked due to issue #693.
@@ -1423,9 +1427,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "86:9: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
             "88:13: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
             "91:9: " + getCheckMessage(MSG_ERROR, "class def ident", 2, 4),
-            "95:7: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
+            "95:7: " + getCheckMessage(MSG_ERROR, "MODIFIERS", 6, 8),
             "101:11: " + getCheckMessage(MSG_ERROR, "int", 10, 12),
-            "106:7: " + getCheckMessage(MSG_ERROR, "member def modifier", 6, 8),
+            "106:7: " + getCheckMessage(MSG_ERROR, "MODIFIERS", 6, 8),
             "111:7: " + getCheckMessage(MSG_ERROR, "class def rcurly", 6, 4),
             "113:13: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 4),
             "119:13: " + getCheckMessage(MSG_ERROR, "class def ident", 6, 8),
@@ -2650,6 +2654,33 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testWrongAnnotationIndentation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_ERROR, "public", 0, 2),
+            "28:7: " + getCheckMessage(MSG_ERROR, "public", 6, 2),
+            "34:1: " + getCheckMessage(MSG_ERROR, "public", 0, 6),
+            "70:4: " + getCheckMessage(MSG_ERROR, "method def modifier", 3, 2),
+            "75:5: " + getCheckMessage(MSG_ERROR, "@", 4, 2),
+            "76:5: " + getCheckMessage(MSG_ERROR, "@", 4, 2),
+            "77:9: " + getCheckMessage(MSG_ERROR, "@", 8, 6),
+            "94:3: " + getCheckMessage(MSG_ERROR, "class", 2, 0),
+            // Lines 102 and 103 are bugs of Issue 270
+            "102:9: " + getCheckMessage(MSG_ERROR, "@", 8, 4),
+            "103:5: " + getCheckMessage(MSG_ERROR, ")", 4, 0),
+            "113:3: " + getCheckMessage(MSG_ERROR, "AnnotationIndentationAnnotation2", 2, 0),
+        };
+        final String fileName = "InputIndentationInvalidAnnotationIndent.java";
+        verifyWarns(checkConfig, getPath(fileName), expected);
+    }
+
+    @Test
     public void testIndentationSwitchExpression() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
@@ -2765,11 +2796,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
 
         final String[] expected = {
+            "26:5: " + getCheckMessage(MSG_ERROR, "public", 4, 8),
             "33:1: " + getCheckMessage(MSG_ERROR, ")", 0, 4),
+            "35:5: " + getCheckMessage(MSG_ERROR, "public", 4, 8),
             "55:11: " + getCheckMessage(MSG_ERROR, "interface def ident", 0, 4),
             "56:1: " + getCheckMessage(MSG_ERROR, "method def modifier", 0, 8),
-            "57:1: " + getCheckMessage(MSG_ERROR, "void", 0, 4),
-            "58:1: " + getCheckMessage(MSG_ERROR, "method", 0, 4),
+            "57:1: " + getCheckMessage(MSG_ERROR, "void", 0, 12),
+            "58:1: " + getCheckMessage(MSG_ERROR, "method", 0, 12),
             "59:1: " + getCheckMessage(MSG_ERROR, "throws", 0, 4),
             "60:1: " + getCheckMessage(MSG_ERROR, "IOException", 0, 4),
             "61:1: " + getCheckMessage(MSG_ERROR, "method def rcurly", 0, 8),
