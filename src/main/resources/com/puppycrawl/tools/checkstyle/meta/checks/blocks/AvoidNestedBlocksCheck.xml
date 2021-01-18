@@ -12,7 +12,7 @@
  debugging process, they confuse the reader.
  &lt;/p&gt;
  &lt;p&gt;
- For example this Check finds the obsolete braces in
+ For example, this check finds the obsolete braces in
  &lt;/p&gt;
  &lt;pre&gt;
  public void guessTheOutput()
@@ -39,32 +39,7 @@
  it is necessary to open a nested block. This is supported, set
  the allowInSwitchCase property to true and include all statements
  of the case in the block.
- &lt;/p&gt;
- &lt;pre&gt;
- switch (a)
- {
-   case 0:
-     // Never OK, break outside block
-     {
-       x = 1;
-     }
-     break;
-   case 1:
-     // Never OK, statement outside block
-     System.out.println("Hello");
-     {
-       x = 2;
-       break;
-     }
-   case 2:
-     // OK if allowInSwitchCase is true
-     {
-       System.out.println("Hello");
-       x = 3;
-       break;
-     }
- }
- &lt;/pre&gt;</description>
+ &lt;/p&gt;</description>
          <properties>
             <property default-value="false" name="allowInSwitchCase" type="boolean">
                <description>Allow nested blocks if they are the
