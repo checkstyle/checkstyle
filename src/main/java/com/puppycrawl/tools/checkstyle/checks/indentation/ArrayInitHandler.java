@@ -94,20 +94,24 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean canChildrenBeNested() {
-        return true;
-    }
-
-    @Override
     protected DetailAST getListChild() {
         return getMainAst();
     }
 
     @Override
     protected IndentLevel getChildrenExpectedIndent() {
-        IndentLevel expectedIndent =
-            new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
+        IndentLevel expectedIndent;
+        if (getMainAst().getParent().getType() == TokenTypes.ARRAY_INIT
+                && getMainAst().getParent().getLineNo() == getMainAst().getLineNo()) {
+            expectedIndent =
+                new IndentLevel(getIndent(), 0, getIndentCheck().getArrayInitIndent(),
                     getIndentCheck().getLineWrappingIndentation());
+        }
+        else {
+            expectedIndent =
+                new IndentLevel(getIndent(), getIndentCheck().getArrayInitIndent(),
+                    getIndentCheck().getLineWrappingIndentation());
+        }
 
         final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
