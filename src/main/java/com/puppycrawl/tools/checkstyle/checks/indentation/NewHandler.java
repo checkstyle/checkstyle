@@ -84,9 +84,10 @@ public class NewHandler extends AbstractExpressionHandler {
     @Override
     protected IndentLevel getIndentImpl() {
         IndentLevel result;
+        final int lineStart = getLineStart(mainAst);
         // if our expression isn't first on the line, just use the start
         // of the line
-        if (getLineStart(mainAst) == mainAst.getColumnNo()) {
+        if (lineStart == mainAst.getColumnNo()) {
             result = super.getIndentImpl();
 
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
@@ -95,9 +96,17 @@ public class NewHandler extends AbstractExpressionHandler {
             if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {
                 result = new IndentLevel(result, getLineWrappingIndent());
             }
+
+            // if lineStart is valid use it as single valid indent level
+            if (getIndentCheck().isForceStrictCondition()
+                    && result.isAcceptable(lineStart)
+                    || !getIndentCheck().isForceStrictCondition()
+                    && !result.isGreaterThan(lineStart)) {
+                result = new IndentLevel(lineStart);
+            }
         }
         else {
-            result = new IndentLevel(getLineStart(mainAst));
+            result = new IndentLevel(lineStart);
         }
 
         return result;
