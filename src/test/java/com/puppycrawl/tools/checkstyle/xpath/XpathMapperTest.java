@@ -815,7 +815,7 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode,
-                expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling()};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
         assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
         assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.RCURLY));
