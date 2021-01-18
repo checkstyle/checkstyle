@@ -86,7 +86,7 @@ public void guessTheOutput()
 &lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
         </source>
 
-        <p> Example: </p>
+        <p>Example:</p>
         <source>
 public void foo() {
   int myInteger = 0;
@@ -107,15 +107,13 @@ switch (a) {
     break;
 }
         </source>
-
-        <p> To configure the check to allow nested blocks in switch case: </p>
+        <p>To configure the check to allow nested blocks in switch case:</p>
         <source>
 &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
   &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
-
-        <p> Example: </p>
+        <p>Example:</p>
         <source>
 switch (a)
 {
