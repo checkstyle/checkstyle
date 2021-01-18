@@ -222,6 +222,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testEnumStrictCondition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "2");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "2");
+        checkConfig.addAttribute("throwsIndent", "2");
+        final String[] expected = {
+            "19:9: " + getCheckMessage(MSG_ERROR, "+", 8, 6),
+            "20:22: " + getCheckMessage(MSG_ERROR, "+", 21, 6),
+            "22:4: " + getCheckMessage(MSG_ERROR, "enum def", 3, 2),
+            "30:5: " + getCheckMessage(MSG_ERROR, "@", 4, 2),
+            "34:4: " + getCheckMessage(MSG_ERROR, "enum def annotation", 3, 2),
+            "49:5: " + getCheckMessage(MSG_ERROR, "public", 4, 2),
+            "58:4: " + getCheckMessage(MSG_ERROR, "enum def modifier", 3, 2),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationInvalidEnumStrictCondition.java"),
+            expected);
+    }
+
+    @Test
     public void forbidOldStyle() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("arrayInitIndent", "4");
@@ -1665,6 +1689,29 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testValidWhileWithForceStrictConditionTrue()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("arrayInitIndent", "2");
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "2");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "2");
+        checkConfig.addAttribute("tabWidth", "2");
+        checkConfig.addAttribute("throwsIndent", "2");
+        final String[] expected = {
+            "23:21: " + getCheckMessage(MSG_CHILD_ERROR, "while", 20, 6),
+            "24:18: " + getCheckMessage(MSG_CHILD_ERROR, "while", 17, 6),
+            "29:21: " + getCheckMessage(MSG_CHILD_ERROR, "if", 20, 6),
+            "30:18: " + getCheckMessage(MSG_CHILD_ERROR, "if", 17, 6),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationInvalidWhileIndentStrict.java"),
+            expected);
+    }
+
+    @Test
     public void testInvalidInvalidAnonymousClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
@@ -2340,7 +2387,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final String[] expected = {
             "23:17: " + getCheckMessage(MSG_ERROR, "(", 16, 12),
             "24:17: " + getCheckMessage(MSG_ERROR, "->", 16, 12),
-            "26:27: " + getCheckMessage(MSG_ERROR, "\"SECOND_ARG\"", 26, 12),
+            "26:27: " + getCheckMessage(MSG_CHILD_ERROR, "method call", 26, 12),
             "27:26: " + getCheckMessage(MSG_ERROR, "(", 25, 12),
             "30:17: " + getCheckMessage(MSG_ERROR, "(", 16, 12),
             "31:21: " + getCheckMessage(MSG_ERROR, "if", 20, 16),

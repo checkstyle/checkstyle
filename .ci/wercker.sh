@@ -45,7 +45,7 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "bad34f1c2985225b8809eb1c3fee5c5684d363a7"
+  git checkout "b9f791f940ef13439b252a3f543fe1031cf""f2218"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../
@@ -67,7 +67,7 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout "2d1474fb""cd8a41c2bd1f71196a2c7ad985208f""cc"
+  git checkout "c9a6735f8190c4be""de2bb""e3d21c48b7cb230b54c"
   mvn -e --no-transfer-progress compile checkstyle:check \
     -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ..
