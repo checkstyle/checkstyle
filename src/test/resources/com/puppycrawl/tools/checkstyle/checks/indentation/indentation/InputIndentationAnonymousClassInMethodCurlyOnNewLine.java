@@ -30,14 +30,14 @@ public class InputIndentationAnonymousClassInMethodCurlyOnNewLine //indent:0 exp
                         return null; //indent:24 exp:24
                     } //indent:20 exp:20
                 }; //indent:16 exp:16
-        final Supplier<Map<String, List<AbstractExpressionHandler>>> sup2 = //indent:8 exp:8
-                  new Supplier<Map<String, List<AbstractExpressionHandler>>>(){ //indent:18 exp:>=16
-                    @Override //indent:20 exp:20
-                    public Map<String, List<AbstractExpressionHandler>> get() //indent:20 exp:20
-                    { //indent:20 exp:20
+        final Supplier<Map<String, List<String>>> sup2 = //indent:8 exp:8
+                  new Supplier<Map<String, List<String>>>(){ //indent:18 exp:>=16
+                    @Override //indent:20 exp:22,26 warn
+                    public Map<String, List<String>> get() //indent:20 exp:22 warn
+                    { //indent:20 exp:22,26 warn
                         return null; //indent:24 exp:24
-                    } //indent:20 exp:20
-                  }; //indent:18 exp:16,20,24 warn
+                    } //indent:20 exp:22,26 warn
+                  }; //indent:18 exp:18
         final Supplier<Map<String, List<AbstractExpressionHandler>>> sup3 = //indent:8 exp:8
               new Supplier<Map<String,List<AbstractExpressionHandler>>>(){ //indent:14 exp:>=16 warn
                     @Override //indent:20 exp:20

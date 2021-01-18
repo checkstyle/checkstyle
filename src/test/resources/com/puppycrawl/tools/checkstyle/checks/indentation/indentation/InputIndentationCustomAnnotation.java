@@ -84,7 +84,7 @@ class InnerAnnotSingleLine { //indent:0 exp:0
         public String toString() { //indent:8 exp:8
             return //indent:12 exp:12
                     new String( //indent:20 exp:20
-                            new StringBuilder("Hello") //indent:28 exp:20,24 warn
+                            new StringBuilder("Hello") //indent:28 exp:24 warn
                                     .append(",World")) //indent:36 exp:36
                     ; //indent:20 exp:20
         } //indent:8 exp:8
