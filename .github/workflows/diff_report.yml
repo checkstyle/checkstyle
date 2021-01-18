@@ -35,7 +35,15 @@ jobs:
       branch: ${{ steps.branch.outputs.ref }}
       
     steps:
-    
+     - uses: khan/pull-request-comment-trigger@master
+       name: React with rocket on run
+       with:
+         trigger: ','
+         reaction: rocket
+       env:
+         GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+     - run: 'echo We print it here for this action to work'
+       if: 'true'
      - name: Getting PR description
        run: |
         echo "$ISSUE_BODY" > text
@@ -204,7 +212,7 @@ jobs:
      
       - name: Set message
         id: out
-        run: echo ::set-output name=message::$(cat message)   
+        run: echo ::set-output name=message::$(cat message)
       
       - name: Comment PR
         uses: checkstyle/contribution/comment-action@master
