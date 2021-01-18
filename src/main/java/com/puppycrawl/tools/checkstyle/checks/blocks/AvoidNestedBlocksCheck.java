@@ -33,7 +33,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * debugging process, they confuse the reader.
  * </p>
  * <p>
- * For example this Check finds the obsolete braces in
+ * For example, this check finds the obsolete braces in
  * </p>
  * <pre>
  * public void guessTheOutput()
@@ -61,6 +61,54 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * the allowInSwitchCase property to true and include all statements
  * of the case in the block.
  * </p>
+ * <ul>
+ * <li>
+ * Property {@code allowInSwitchCase} - Allow nested blocks if they are the
+ * only child of a switch case.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * </ul>
+ * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name="AvoidNestedBlocks"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public void foo() {
+ *   int myInteger = 0;
+ *   {                      // violation
+ *     myInteger = 2;
+ *   }
+ *   System.out.println("myInteger = " + myInteger);
+ *   
+ *   switch (a) {
+ *     case 1:
+ *       {                    // violation
+ *         System.out.println("Case 1");
+ *         break;
+ *       }
+ *     case 2:
+ *       System.out.println("Case 2");     // OK
+ *       break;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to allow nested blocks in switch case:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
+ *   &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
  * <pre>
  * switch (a)
  * {
@@ -85,20 +133,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *       break;
  *     }
  * }
- * </pre>
- * <ul>
- * <li>
- * Property {@code allowInSwitchCase} - Allow nested blocks if they are the
- * only child of a switch case.
- * Type is {@code boolean}.
- * Default value is {@code false}.
- * </li>
- * </ul>
- * <p>
- * To configure the check:
- * </p>
- * <pre>
- * &lt;module name="AvoidNestedBlocks"/&gt;
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
