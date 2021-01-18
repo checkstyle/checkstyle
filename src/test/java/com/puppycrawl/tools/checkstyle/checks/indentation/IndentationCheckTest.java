@@ -372,7 +372,9 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "4");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        final String[] expected = {
+            "47:6: " + getCheckMessage(MSG_ERROR, "<", 5, 6),
+        };
         verifyWarns(checkConfig, getPath("InputIndentationFromGuava.java"), expected);
     }
 
@@ -2646,6 +2648,30 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "84:3: " + getCheckMessage(MSG_CHILD_ERROR, "method def", 2, 4),
         };
         final String fileName = "InputIndentationChainedMethodWithBracketOnNewLine.java";
+        verifyWarns(checkConfig, getPath(fileName), expected);
+    }
+
+    @Test
+    public void testWrongAnnotationIndentation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "2");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String[] expected = {
+            "22:1: " + getCheckMessage(MSG_ERROR, "public", 0, 2),
+            "28:7: " + getCheckMessage(MSG_ERROR, "public", 6, 2),
+            "34:1: " + getCheckMessage(MSG_ERROR, "public", 0, 6),
+            "83:3: " + getCheckMessage(MSG_ERROR, "class", 2, 0),
+            // Lines 91 and 92 are bugs of Issue 270, they will be fixed with
+            // https://github.com/checkstyle/checkstyle/pull/9147
+            "91:9: " + getCheckMessage(MSG_ERROR, "@", 8, 4),
+            "92:5: " + getCheckMessage(MSG_ERROR, ")", 4, 0),
+            "102:3: " + getCheckMessage(MSG_ERROR, "AnnotationIndentationAnnotation2", 2, 0),
+        };
+        final String fileName = "InputIndentationInvalidAnnotationIndent.java";
         verifyWarns(checkConfig, getPath(fileName), expected);
     }
 
