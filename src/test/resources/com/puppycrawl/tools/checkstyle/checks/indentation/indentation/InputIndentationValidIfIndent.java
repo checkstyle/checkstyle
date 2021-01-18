@@ -70,8 +70,8 @@ public class InputIndentationValidIfIndent { //indent:0 exp:0
         } //indent:8 exp:8
 
         if (foo() //indent:8 exp:8
-            || test //indent:12 exp:12
-            || test) //indent:12 exp:12
+                || test //indent:16 exp:16
+                || test) //indent:16 exp:16
         { //indent:8 exp:8
         } //indent:8 exp:8
 
@@ -170,8 +170,8 @@ public class InputIndentationValidIfIndent { //indent:0 exp:0
         else System.getProperty("foo"); //indent:8 exp:8
 
         if (test //indent:8 exp:8
-            && 7 < 8 && 8 < 9 //indent:12 exp:12
-            && 10 < 11) { //indent:12 exp:12
+                && 7 < 8 && 8 < 9 //indent:16 exp:16
+                && 10 < 11) { //indent:16 exp:16
         } //indent:8 exp:8
 
         if (test) //indent:8 exp:8
@@ -229,7 +229,7 @@ public class InputIndentationValidIfIndent { //indent:0 exp:0
 
         if //indent:8 exp:8
         ( //indent:8 exp:12 warn
-            test //indent:12 exp:12
+                test //indent:16 exp:16
         ) { //indent:8 exp:8
             System.getProperty("blah"); //indent:12 exp:12
         } //indent:8 exp:8
@@ -251,10 +251,35 @@ class FooFoo { //indent:0 exp:0
         if (test) { //indent:8 exp:8
             System.getProperty("blah"); //indent:12 exp:12
         } else if (7 < 8 //indent:8 exp:8
-            && 8 < 9) { //indent:12 exp:12
+                && 8 < 9) { //indent:16 exp:16
             System.getProperty("blah"); //indent:12 exp:12
         } else if (8 < 9) { //indent:8 exp:8
             System.getProperty("blah"); //indent:12 exp:12
+        } //indent:8 exp:8
+        if ((1 == 2 //indent:8 exp:8
+                    && test //indent:20 exp:20
+                    && test) //indent:20 exp:20
+                || 3 == 4 //indent:16 exp:16
+                || //indent:16 exp:16
+                ( //indent:16 exp:16
+                    5 == 6 //indent:20 exp:20
+                )) { //indent:16 exp:16
+        } //indent:8 exp:8
+    } //indent:4 exp:4
+
+    void bar42(String foo, String bar) { //indent:4 exp:4
+        if (("A".equals(foo) //indent:8 exp:8
+                    || "B".equals(foo) //indent:20 exp:20
+                    || "C".equals(foo)) //indent:20 exp:20
+                && ("D".equals(bar) //indent:16 exp:16
+                    || "E".equals(bar) //indent:20 exp:20
+                    || "F".equals(bar) //indent:20 exp:20
+                    || "G".equals(bar)) //indent:20 exp:20
+                || ("H".equals(foo) //indent:16 exp:16
+                    || "I".equals(foo) //indent:20 exp:20
+                    || "J".equals(foo)) //indent:20 exp:20
+                && "K".equals(bar)) { //indent:16 exp:16
+            toString(); //indent:12 exp:12
         } //indent:8 exp:8
     } //indent:4 exp:4
 } //indent:0 exp:0
