@@ -177,6 +177,7 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
+<<<<<<< HEAD
      * Searches in given subtree (including given node) for the token
      * which represents first symbol for this subtree in file.
      *
@@ -200,6 +201,8 @@ public abstract class AbstractExpressionHandler {
     }
 
     /**
+=======
+>>>>>>> Issue #618: Fix indentation of line after annotation not checked
      * Get the start of the line for the given expression.
      *
      * @param ast   the expression to find the start of the line for
