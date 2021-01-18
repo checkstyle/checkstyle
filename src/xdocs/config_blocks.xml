@@ -90,22 +90,21 @@ public void guessTheOutput()
         <source>
 public void foo() {
   int myInteger = 0;
-  {
-    myInteger = 2;    //NOT OK, violation : Avoid nested blocks.
+  {                     // violation
+    myInteger = 2;
   }
   System.out.println("myInteger = " + myInteger);
 }
-        </source>
-        <p> Example of redundant nested block in switch case: </p>
-        <source>
+
+//example of redundant nested block in switch case
 switch (a) {
   case 1:
-    {
-      System.out.println("Case 1");   //NOT OK, violation : Avoid nested blocks.
+    {                   // violation
+      System.out.println("Case 1");
       break;
     }
   case 2:
-    System.out.println("Case 2");     //OK
+    System.out.println("Case 2");     // OK
     break;
 }
         </source>
@@ -113,7 +112,7 @@ switch (a) {
         <p> To configure the check to allow nested blocks in switch case: </p>
         <source>
 &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
-&lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 

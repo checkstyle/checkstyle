@@ -81,24 +81,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * public void foo() {
  *   int myInteger = 0;
- *   {
- *     myInteger = 2;    //NOT OK, violation : Avoid nested blocks.
+ *   {                      // violation
+ *     myInteger = 2;
  *   }
  *   System.out.println("myInteger = " + myInteger);
  * }
- * </pre>
- * <p>
- * Example of redundant nested block in switch case:
- * </p>
- * <pre>
+ *
+ * //example of redundant nested block in switch case
  * switch (a) {
  *   case 1:
- *     {
- *       System.out.println("Case 1");   //NOT OK, violation : Avoid nested blocks.
+ *     {                    // violation
+ *       System.out.println("Case 1");
  *       break;
  *     }
  *   case 2:
- *     System.out.println("Case 2");     //OK
+ *     System.out.println("Case 2");     // OK
  *     break;
  * }
  * </pre>
@@ -107,7 +104,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name=&quot;AvoidNestedBlocks&quot;&gt;
- * &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
+ *   &lt;property name=&quot;allowInSwitchCase&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
