@@ -63,8 +63,9 @@ public class MethodDefHandler extends BlockParentHandler {
         final DetailAST throwsAst = getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
 
         if (throwsAst != null) {
-            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
-                    .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
+            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), 0,
+                    getLineStart(getMethodDefLineStart(getMainAst()))
+                        + getIndentCheck().getThrowsIndent(),
                     !isOnStartOfLine(throwsAst));
         }
     }
@@ -111,7 +112,9 @@ public class MethodDefHandler extends BlockParentHandler {
         checkThrows();
 
         if (getMethodDefParamRightParen(getMainAst()) != null) {
-            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()),
+                    getIndentCheck().getLineWrappingIndentation(),
+                    getIndent().getFirstIndentLevel(), true);
         }
         // abstract method def -- no body
         if (getLeftCurly() != null) {
