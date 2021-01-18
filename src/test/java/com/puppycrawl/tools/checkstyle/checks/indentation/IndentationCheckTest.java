@@ -1036,7 +1036,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("forceStrictCondition", "true");
-<<<<<<< HEAD
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
@@ -1050,8 +1049,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
 
         checkConfig.addAttribute("basicOffset", "4");
         checkConfig.addAttribute("forceStrictCondition", "true");
-=======
->>>>>>> 33757d199... Issue #9071: New keyword throwing unresolvable indentation errors
         checkConfig.addAttribute("lineWrappingIndentation", "8");
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
@@ -1060,22 +1057,6 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-<<<<<<< HEAD
-=======
-    public void testValidNewKeywordWithForceStrictCondition() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-
-        checkConfig.addAttribute("basicOffset", "4");
-        checkConfig.addAttribute("forceStrictCondition", "true");
-        checkConfig.addAttribute("lineWrappingIndentation", "8");
-        checkConfig.addAttribute("tabWidth", "4");
-        checkConfig.addAttribute("throwsIndent", "8");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verifyWarns(checkConfig, getPath("InputIndentationNew.java"), expected);
-    }
-
-    @Test
->>>>>>> 33757d199... Issue #9071: New keyword throwing unresolvable indentation errors
     public void testInvalidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
