@@ -81,7 +81,7 @@ public void guessTheOutput()
       </subsection>
 
       <subsection name="Examples" id="AvoidNestedBlocks_Examples">
-        <p> To configure the check: </p>
+        <p>To configure the check:</p>
         <source>
 &lt;module name=&quot;AvoidNestedBlocks&quot;/&gt;
         </source>
