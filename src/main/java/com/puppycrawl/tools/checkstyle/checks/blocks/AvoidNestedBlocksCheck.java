@@ -87,7 +87,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   System.out.println("myInteger = " + myInteger);
  * }
  *
- * //example of redundant nested block in switch case
  * switch (a) {
  *   case 1:
  *     {                    // violation
