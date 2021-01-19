@@ -499,7 +499,23 @@ public final class CommonUtil {
      * @throws CheckstyleException on failure
      */
     public static URI getUriByFilename(String filename) throws CheckstyleException {
-        // figure out if this is a File or a URL
+        URI uri = getWebOrFilePrefixUri(filename);
+
+        if (uri == null) {
+            uri = getClasspathOrFilepathUri(filename);
+        }
+
+        return uri;
+    }
+
+    /**
+     * Resolves the specified filename containing 'http', 'https', 'ftp',
+     * and 'file' protocols (or any RFC 2396 compliant URL) to a URI.
+     *
+     * @param filename name of the file
+     * @return resolved header file URI or null if URL is malformed or non-existent
+     */
+    public static URI getWebOrFilePrefixUri(String filename) {
         URI uri;
         try {
             final URL url = new URL(filename);
@@ -508,31 +524,54 @@ public final class CommonUtil {
         catch (final URISyntaxException | MalformedURLException ignored) {
             uri = null;
         }
+        return uri;
+    }
 
-        if (uri == null) {
+    /**
+     * Resolves the specified local filename to a URI.
+     *
+     * @param filename name of the file
+     * @return resolved header file URI
+     * @throws CheckstyleException on failure
+     */
+    private static URI getClasspathOrFilepathUri(String filename) throws CheckstyleException {
+        final URI uri;
+        if (new File(filename).exists()) {
             final File file = new File(filename);
-            if (file.exists()) {
-                uri = file.toURI();
-            }
-            else {
-                // check to see if the file is in the classpath
-                try {
-                    final URL configUrl;
-                    if (filename.charAt(0) == '/') {
-                        configUrl = CommonUtil.class.getResource(filename);
-                    }
-                    else {
-                        configUrl = ClassLoader.getSystemResource(filename);
-                    }
-                    if (configUrl == null) {
-                        throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
-                    }
-                    uri = configUrl.toURI();
-                }
-                catch (final URISyntaxException ex) {
-                    throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);
-                }
-            }
+            uri = file.toURI();
+        }
+        else {
+            uri = getResourceFromClassPath(filename);
+        }
+        return uri;
+    }
+
+    /**
+     * Gets a resource from the classpath.
+     *
+     * @param filename name of file
+     * @return URI of file in classpath
+     * @throws CheckstyleException on failure
+     */
+    public static URI getResourceFromClassPath(String filename) throws CheckstyleException {
+        final URL configUrl;
+        if (filename.charAt(0) == '/') {
+            configUrl = CommonUtil.class.getResource(filename);
+        }
+        else {
+            configUrl = ClassLoader.getSystemResource(filename);
+        }
+
+        if (configUrl == null) {
+            throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename);
+        }
+
+        final URI uri;
+        try {
+            uri = configUrl.toURI();
+        }
+        catch (final URISyntaxException ex) {
+            throw new CheckstyleException(UNABLE_TO_FIND_EXCEPTION_PREFIX + filename, ex);
         }
 
         return uri;
