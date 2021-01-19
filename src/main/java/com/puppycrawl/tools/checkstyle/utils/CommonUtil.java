@@ -64,6 +64,8 @@ public final class CommonUtil {
     public static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
     /** Copied from org.apache.commons.lang3.ArrayUtils. */
     public static final double[] EMPTY_DOUBLE_ARRAY = new double[0];
+    /** Pseudo URL protocol for loading from the class path. */
+    public static final String CLASSPATH_URL_PROTOCOL = "classpath:";
 
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
@@ -529,7 +531,8 @@ public final class CommonUtil {
 
     /**
      * Resolves the specified local filename, possibly with 'classpath:'
-     * protocol, to a URI.
+     * protocol, to a URI.  First we attempt to create a new file with
+     * given filename, then attempt to load file from class path.
      *
      * @param filename name of the file
      * @return resolved file URI
@@ -537,12 +540,21 @@ public final class CommonUtil {
      */
     private static URI getFilepathOrClasspathUri(String filename) throws CheckstyleException {
         final URI uri;
-        if (new File(filename).exists()) {
-            final File file = new File(filename);
+        final File file = new File(filename);
+
+        if (file.exists()) {
             uri = file.toURI();
         }
         else {
-            uri = getResourceFromClassPath(filename);
+            final int lastIndexOfClasspathProtocol;
+            if (filename.lastIndexOf(CLASSPATH_URL_PROTOCOL) == 0) {
+                lastIndexOfClasspathProtocol = CLASSPATH_URL_PROTOCOL.length();
+            }
+            else {
+                lastIndexOfClasspathProtocol = 0;
+            }
+            uri = getResourceFromClassPath(filename
+                .substring(lastIndexOfClasspathProtocol));
         }
         return uri;
     }
