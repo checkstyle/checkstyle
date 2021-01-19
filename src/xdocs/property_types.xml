@@ -929,7 +929,7 @@
         a URL first, then as a file that must exist, and then finally as a resource on the
         classpath.
 
-        Checkstyle supports the psuedo URL `classpath:` which specifies that the resource
+        Checkstyle supports the pseudo URL `classpath:` which specifies that the resource
         should be loaded from the class path.
       </p>
     </section>
