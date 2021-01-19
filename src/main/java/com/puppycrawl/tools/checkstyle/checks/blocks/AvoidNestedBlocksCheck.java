@@ -85,7 +85,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *     myInteger = 2;
  *   }
  *   System.out.println("myInteger = " + myInteger);
- *   
+ *
  *   switch (a) {
  *     case 1:
  *       {                    // violation
