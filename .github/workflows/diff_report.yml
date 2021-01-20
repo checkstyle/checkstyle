@@ -31,6 +31,7 @@ jobs:
       config_link: ${{ steps.parse.outputs.config_link }}
       new_module_config_link: ${{ steps.parse.outputs.new_module_config_link }}
       patch_config_link: ${{ steps.parse.outputs.patch_config_link }}
+      report_label: ${{ steps.parse.outputs.report_label }}
       user: ${{ steps.branch.outputs.user }}
       branch: ${{ steps.branch.outputs.ref }}
       
@@ -69,7 +70,11 @@ jobs:
         grep "^Diff Regression patch config:" text | cat > temp
         sed 's/Diff Regression patch config: //' temp > patch_config_link
         echo ::set-output name=patch_config_link::$(cat patch_config_link)
-        
+
+        grep "^Report label:" text | cat > temp
+        sed 's/Report label: //' temp > report_label
+        echo ::set-output name=report_label::$(cat report_label)
+
      - name: Set branch and username
        id: branch
        run: |
@@ -180,8 +185,11 @@ jobs:
         DIFF="./contribution/checkstyle-tester/reports/diff"
         LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
         aws s3 cp $DIFF s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/ --recursive
-        echo $LINK/$FOLDER/reports/diff/index.html > message
-        
+        if [ ! -z "${{needs.parse_body.outputs.report_label}}" ]; then
+          echo "${{needs.parse_body.outputs.report_label}}: " > message
+        fi
+        echo $LINK/$FOLDER/reports/diff/index.html >> message
+
      - name: Set output
        id: out
        run: echo ::set-output name=message::$(cat message)   
