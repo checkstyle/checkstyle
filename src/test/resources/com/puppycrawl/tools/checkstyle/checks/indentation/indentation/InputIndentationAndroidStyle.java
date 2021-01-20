@@ -26,11 +26,11 @@ class InputIndentationAndroidStyle //indent:0 exp:0
             int aNnum, boolean aFlag) { //indent:12 exp:12
 
         if (true && true && //indent:8 exp:8
-                true && true) { //indent:16 exp:16
+                    true && true) { //indent:20 exp:20
             String string2 = foo("fooooooo" //indent:12 exp:12
                     + "oooooooo", 0, false); //indent:20 exp:20
             if (false && //indent:12 exp:12
-                    false && false) { //indent:20 exp:20
+                        false && false) { //indent:24 exp:24
 
             } //indent:12 exp:12
         } //indent:8 exp:8
@@ -55,7 +55,7 @@ class InputIndentationAndroidStyleIncorrect //indent:0 exp:0
             String string2 = foo("fooooooo" //indent:12 exp:12
                 + "oooooooo", 0, false); //indent:16 exp:20 warn
         if (false && //indent:8 exp:12 warn
-                  false && false) { //indent:18 exp:>=16
+                    false && false) { //indent:20 exp:20
 
            }  //indent:11 exp:12 warn
         } //indent:8 exp:8

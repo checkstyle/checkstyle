@@ -130,7 +130,7 @@ public class InnerTypeLastCheck extends AbstractCheck {
             DetailAST nextSibling = ast.getNextSibling();
             while (nextSibling != null) {
                 if (!ScopeUtil.isInCodeBlock(ast)
-                    && CLASS_MEMBER_TOKENS.contains(nextSibling.getType())) {
+                        && CLASS_MEMBER_TOKENS.contains(nextSibling.getType())) {
                     log(nextSibling, MSG_KEY);
                 }
                 nextSibling = nextSibling.getNextSibling();

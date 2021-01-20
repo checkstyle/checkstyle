@@ -273,8 +273,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.SLIST:
                 currentScopeAssignedVariables.push(new ArrayDeque<>());
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
-                    || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
-                    == ast.getParent()) {
+                        || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
+                        == ast.getParent()) {
                     storePrevScopeUninitializedVariableData();
                     scopeStack.push(new ScopeData());
                 }
@@ -316,8 +316,8 @@ public class FinalLocalVariableCheck extends AbstractCheck {
             case TokenTypes.EXPR:
                 // Switch labeled expression has no slist
                 if (ast.getParent().getType() == TokenTypes.SWITCH_RULE
-                    && ast.getParent().getParent().findFirstToken(TokenTypes.SWITCH_RULE)
-                        == ast.getParent()) {
+                        && ast.getParent().getParent().findFirstToken(TokenTypes.SWITCH_RULE)
+                            == ast.getParent()) {
                     storePrevScopeUninitializedVariableData();
                 }
                 break;
@@ -350,7 +350,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
                 prevScopeUninitializedVariableData = prevScopeUninitializedVariables.peek();
                 boolean containsBreak = false;
                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
-                    || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
+                        || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
                             TokenTypes.CASE_GROUP, TokenTypes.SLIST) == ast.getParent()) {
                     containsBreak = scopeStack.peek().containsBreak;
                     scope = scopeStack.pop().scope;

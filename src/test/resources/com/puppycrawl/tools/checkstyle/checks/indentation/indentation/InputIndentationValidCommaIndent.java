@@ -33,7 +33,7 @@ public class InputIndentationValidCommaIndent { //indent:0 exp:0
         } //indent:8 exp:8
 
         if ((j == 2 && k == 3) //indent:8 exp:8
-              || test) { //indent:14 exp:>=12
+                || test) { //indent:16 exp:16
             System.identityHashCode("test"); //indent:12 exp:12
         } //indent:8 exp:8
 
