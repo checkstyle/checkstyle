@@ -96,15 +96,15 @@ jobs:
        run: |
         wget -q "${{needs.parse_body.outputs.projects_link}}" -O project.properties
 
-        if [ ! -z  "${{needs.parse_body.outputs.new_module_config_link}}" ]; then
+        if [ -n "${{needs.parse_body.outputs.new_module_config_link}}" ]; then
           wget -q "${{needs.parse_body.outputs.new_module_config_link}}" -O new_module_config.xml
         fi
 
-        if [ ! -z  "${{needs.parse_body.outputs.config_link}}" ]; then
+        if [ -n "${{needs.parse_body.outputs.config_link}}" ]; then
           wget -q "${{needs.parse_body.outputs.config_link}}" -O diff_config.xml
         fi
 
-        if [ ! -z  "${{needs.parse_body.outputs.patch_config_link}}" ]; then
+        if [ -n "${{needs.parse_body.outputs.patch_config_link}}" ]; then
           wget -q "${{needs.parse_body.outputs.patch_config_link}}" -O patch_config.xml
         fi
         
@@ -203,7 +203,7 @@ jobs:
 
       - name: Get message
         run: |
-         if [ -z  "${{needs.make_report.outputs.message}}" ]; then
+         if [ -z "${{needs.make_report.outputs.message}}" ]; then
            JOBS_LINK="https://github.com/checkstyle/checkstyle/actions/runs/${{github.run_id}}"
            API_LINK="https://api.github.com/repos/checkstyle/checkstyle/actions/runs/"
            API_LINK="${API_LINK}${{github.run_id}}/jobs"
