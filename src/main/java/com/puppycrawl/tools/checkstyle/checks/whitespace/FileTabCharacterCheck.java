@@ -57,18 +57,78 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- * To configure the check to report on the first instance in each file:
+ * To configure the check to report only the first instance in each file:
  * </p>
  * <pre>
  * &lt;module name=&quot;FileTabCharacter&quot;/&gt;
  * </pre>
  * <p>
- * To configure the check to report on each line in each file:
+ * Example:
+ * </p>
+ * <pre>
+ * public class test {
+ *   int a;            // violation : indented using tab, no further checks
+ *
+ *   public void foo (int arg) {
+ *     a = arg;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to report each instance in each file:
  * </p>
  * <pre>
  * &lt;module name=&quot;FileTabCharacter&quot;&gt;
  *   &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class test {
+ *   int a;                          // violation : indented using tab
+ *
+ *   public void foo (int arg) {     // violation : indented using tab
+ *     a = arg;                      // OK, indented using spaces
+ *   }                               // OK, indented using spaces
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to report instances on only certain file types:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;FileTabCharacter&quot;&gt;
+ *   &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * //a java file
+ * public class test {
+ *   int a;                          // violation : indented using tab, no further checks
+ *
+ *   public void foo (int arg) {
+ *     a = arg;
+ *   }
+ * }
+ *
+ * //an XML file
+ * &lt;?xml version="1.0" encoding="UTF-8" ?&gt;
+ * &lt;UserAccount&gt;
+ *   &lt;FirstName&gt;John&lt;/FirstName&gt;   // violation: indented using tab, no further checks
+ *   &lt;LastName&gt;Doe&lt;/LastName&gt;
+ * &lt;/UserAccount&gt;
+ *
+ * //an HTML file
+ * &lt;head&gt;
+ *   &lt;title&gt;Page Title&lt;/title&gt;   // no check performed, file extension not specified
+ * &lt;/head&gt;
+ * &lt;body&gt;
+ *   &lt;p&gt;This is a simple html document.&lt;/p&gt;
+ * &lt;/body&gt;
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
