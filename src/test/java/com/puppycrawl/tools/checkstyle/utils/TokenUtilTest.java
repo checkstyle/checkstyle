@@ -126,8 +126,8 @@ public class TokenUtilTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expectedException) {
-            assertEquals("given id " + nextAfterMaxId, expectedException.getMessage(),
-                    "Invalid exception message");
+            assertEquals("unknown TokenTypes id '" + nextAfterMaxId + "'",
+                expectedException.getMessage(), "Invalid exception message");
         }
     }
 
@@ -155,7 +155,8 @@ public class TokenUtilTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given id " + id, expected.getMessage(), "Invalid exception message");
+            assertEquals("unknown TokenTypes id '" + id + "'", expected.getMessage(),
+                "Invalid exception message");
         }
     }
 
@@ -167,7 +168,8 @@ public class TokenUtilTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given name " + id, expected.getMessage(), "Invalid exception message");
+            assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
+                "Invalid exception message");
         }
     }
 
@@ -179,7 +181,8 @@ public class TokenUtilTest {
             fail("IllegalArgumentException is expected");
         }
         catch (IllegalArgumentException expected) {
-            assertEquals("given name " + id, expected.getMessage(), "Invalid exception message");
+            assertEquals("unknown TokenTypes value '" + id + "'", expected.getMessage(),
+                "Invalid exception message");
         }
     }
 

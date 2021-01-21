@@ -48,11 +48,11 @@ public final class TokenUtil {
     /** Array of all token IDs. */
     private static final int[] TOKEN_IDS;
 
-    /** Prefix for exception when getting token by given id. */
-    private static final String TOKEN_ID_EXCEPTION_PREFIX = "given id ";
+    /** Format for exception message when getting token by given id. */
+    private static final String TOKEN_ID_EXCEPTION_FORMAT = "unknown TokenTypes id '%s'";
 
-    /** Prefix for exception when getting token by given name. */
-    private static final String TOKEN_NAME_EXCEPTION_PREFIX = "given name ";
+    /** Format for exception message when getting token by given name. */
+    private static final String TOKEN_NAME_EXCEPTION_FORMAT = "unknown TokenTypes value '%s'";
 
     // initialise the constants
     static {
@@ -152,11 +152,13 @@ public final class TokenUtil {
      */
     public static String getTokenName(int id) {
         if (id > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + id);
+            throw new IllegalArgumentException(
+                String.format(Locale.ROOT, TOKEN_ID_EXCEPTION_FORMAT, id));
         }
         final String name = TOKEN_VALUE_TO_NAME[id];
         if (name == null) {
-            throw new IllegalArgumentException(TOKEN_ID_EXCEPTION_PREFIX + id);
+            throw new IllegalArgumentException(
+                String.format(Locale.ROOT, TOKEN_ID_EXCEPTION_FORMAT, id));
         }
         return name;
     }
@@ -171,7 +173,8 @@ public final class TokenUtil {
     public static int getTokenId(String name) {
         final Integer id = TOKEN_NAME_TO_VALUE.get(name);
         if (id == null) {
-            throw new IllegalArgumentException(TOKEN_NAME_EXCEPTION_PREFIX + name);
+            throw new IllegalArgumentException(
+                String.format(Locale.ROOT, TOKEN_NAME_EXCEPTION_FORMAT, name));
         }
         return id;
     }
@@ -185,7 +188,8 @@ public final class TokenUtil {
      */
     public static String getShortDescription(String name) {
         if (!TOKEN_NAME_TO_VALUE.containsKey(name)) {
-            throw new IllegalArgumentException(TOKEN_NAME_EXCEPTION_PREFIX + name);
+            throw new IllegalArgumentException(
+                String.format(Locale.ROOT, TOKEN_NAME_EXCEPTION_FORMAT, name));
         }
 
         final String tokenTypes =
