@@ -312,7 +312,11 @@
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
+<<<<<<< HEAD
       <version>1.1.2</version>
+=======
+      <version>1.1.1</version>
+>>>>>>> 5c16e52e8... dependency: bump truth from 1.1 to 1.1.1
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
