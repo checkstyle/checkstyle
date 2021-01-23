@@ -446,7 +446,11 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String filename =
             "/" + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
         final URI uri = CommonUtil.getUriByFilename(filename);
-        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+
+        final Properties properties = System.getProperties();
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+            new PropertiesExpander(properties));
+        assertEquals("Checker", config.getName(), "Unexpected config name!");
     }
 
     @Test
@@ -454,7 +458,11 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String filename =
             getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
         final URI uri = CommonUtil.getUriByFilename(filename);
-        assertThat("URI is null for: " + filename, uri, is(not(nullValue())));
+
+        final Properties properties = System.getProperties();
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+            new PropertiesExpander(properties));
+        assertEquals("Checker", config.getName(), "Unexpected config name!");
     }
 
     /**
