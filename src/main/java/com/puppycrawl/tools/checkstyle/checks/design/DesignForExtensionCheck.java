@@ -184,7 +184,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <pre>
- * public class A extends B {
+ * public class A {
  *   &#64;Override
  *   public int foo() {
  *     return 2;

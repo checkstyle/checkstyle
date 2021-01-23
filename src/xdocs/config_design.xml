@@ -191,7 +191,7 @@ public abstract class Plant {
         </source>
 
         <source>
-public class A extends B {
+public class A {
   @Override
   public int foo() {
     return 2;
