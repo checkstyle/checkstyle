@@ -577,6 +577,22 @@ public static final int A_SETPOINT = 1;
 
       <subsection name="Examples" id="RegexpMultiline_Examples">
         <p>
+          To run the check with its default configuration:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpMultiline&quot;&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+void method() {
+  int i = 5; // OK
+  System.out.println(i); // OK
+}
+        </source>
+        <p>
           To configure the check to find calls to print to the console:
         </p>
         <source>
@@ -669,22 +685,6 @@ void method() {
         <p>Result:</p>
         <source>
 /var/tmp/Test.java // violation, a file must not be empty.
-        </source>
-        <p>
-          To run the check with its default configuration:
-        </p>
-        <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-&lt;/module&gt;
-        </source>
-        <p>
-        Example:
-        </p>
-        <source>
-void method() {
-  int i = 5; // OK
-  System.out.println(i); // OK
-}
         </source>
       </subsection>
 

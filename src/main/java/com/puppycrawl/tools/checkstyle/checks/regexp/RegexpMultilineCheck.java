@@ -73,6 +73,20 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
+ * To run the check with its default configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpMultiline&quot;&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * void method() {
+ *   int i = 5; // OK
+ *   System.out.println(i); // OK
+ * }
+ * </pre>
+ * <p>
  * To configure the check to find calls to print to the console:
  * </p>
  * <pre>
@@ -164,20 +178,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>Result:</p>
  * <pre>
  * /var/tmp/Test.java // violation, a file must not be empty.
- * </pre>
- * <p>
- * To run the check with its default configuration:
- * </p>
- * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>Example: </p>
- * <pre>
- * void method() {
- *   int i = 5; // OK
- *   System.out.println(i); // OK
- * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
