@@ -198,14 +198,14 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * void method() {
- *  System.out.println("Test #1: this is a test string"); // OK
- *  System.out.println("teSt #2: This is a test string"); // OK
- *  int i = 5; // violation
- *  System.out.println("TesY #3: This is a test string"); // OK
- *  System.out.println("TEst #4: This is a test string"); // OK
- *  System.out.println("TEST #5: This is a test string"); // OK
- *  System.out.println("Test #6: This is a test string"); // violation, maximum matches exceeded
- *  System.out.println("Value of i: " + i); // violation
+ *   System.out.println("Test #1: this is a test string"); // OK
+ *   System.out.println("teSt #2: This is a test string"); // OK
+ *   int i = 5; // violation
+ *   System.out.println("TesY #3: This is a test string"); // violation
+ *   System.out.println("TEst #4: This is a test string"); // OK
+ *   System.out.println("TEST #5 : This is a test string"); // violation
+ *   System.out.println("TEST #6: This is a test string"); // OK
+ *   System.out.println("Value of i: " + i); // violation
  * }
  * </pre>
  * <p>
