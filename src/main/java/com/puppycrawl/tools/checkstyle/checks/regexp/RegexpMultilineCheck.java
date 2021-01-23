@@ -180,6 +180,35 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * /var/tmp/Test.java // violation, a file must not be empty.
  * </pre>
  * <p>
+ * To configure the check to match the text that spans multiple lines to a Test string
+ * format that we have defined, ignoring its case with a specified minimum and maximum
+ * number of matches:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpMultiline&quot;&gt;
+ *     &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
+ *     &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot; /&gt;
+ *     &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot; /&gt;
+ *     &lt;property name=&quot;minimum&quot; value=&quot;1&quot; /&gt;
+ *     &lt;property name=&quot;maximum&quot; value=&quot;5&quot; /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of violation from the above config:
+ * </p>
+ * <pre>
+ * void method() {
+ *  System.out.println("Test #1: this is a test string"); // OK
+ *  System.out.println("teSt #2: This is a test string"); // OK
+ *  int i = 5; // violation
+ *  System.out.println("TesY #3: This is a test string"); // OK
+ *  System.out.println("TEst #4: This is a test string"); // OK
+ *  System.out.println("TEST #5: This is a test string"); // OK
+ *  System.out.println("Test #6: This is a test string"); // violation, maximum matches exceeded
+ *  System.out.println("Value of i: " + i); // violation
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  * <p>
