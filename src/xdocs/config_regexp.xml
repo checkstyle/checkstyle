@@ -570,6 +570,22 @@ public static final int A_SETPOINT = 1;
 
       <subsection name="Examples" id="RegexpMultiline_Examples">
         <p>
+          To run the check with its default configuration:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpMultiline&quot;&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+        Example:
+        </p>
+        <source>
+void method() {
+  int i = 5; // OK
+  System.out.println(i); // OK
+}
+        </source>
+        <p>
           To configure the check to find calls to print to the console:
         </p>
         <source>
@@ -578,7 +594,27 @@ public static final int A_SETPOINT = 1;
     value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
 &lt;/module&gt;
         </source>
-
+        <p>
+          Example:
+        </p>
+        <source>
+void method() {
+  System.out.print("Example"); // OK
+  System.err.println("Example"); // OK
+  System.out.print
+    ("Example"); // violation
+  System.err.println
+    ("Example"); // violation
+  System
+  .out.print("Example"); // OK
+  System
+  .err.println("Example"); // OK
+  System.
+  out.print("Example"); // violation
+  System.
+  err.println("Example"); // violation
+}
+        </source>
         <p>
           To configure the check to match text that spans multiple lines,
           like normal code in a Java file:
@@ -590,14 +626,23 @@ public static final int A_SETPOINT = 1;
 &lt;/module&gt;
         </source>
         <p>
-          Example of violation from the above config:
+          Example:
         </p>
         <source>
 void method() {
-  System.out. // violation
-  print("Example");
+  System.out.print("Example"); // OK
+  System.out.print(
+      "Example"); // OK
+  System.out.print
+  ("Example"); // violation
+  System.out
+  .print("Example"); // OK
   System.out.
-  print("Example");
+  print("Example"); // violation
+  System
+  .out.print("Example"); // OK
+  System.
+  out.print("Example"); // violation
 }
         </source>
         <p>
@@ -617,7 +662,7 @@ void method() {
     &lt;property name=&quot;format&quot; value=&quot;^\s*$&quot; /&gt;
     &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
     &lt;property name=&quot;message&quot; value=&quot;Empty file is not allowed&quot; /&gt;
-&lt;/module>
+&lt;/module&gt;
         </source>
         <p>
           Example of violation from the above config:
@@ -633,6 +678,35 @@ void method() {
         <p>Result:</p>
         <source>
 /var/tmp/Test.java // violation, a file must not be empty.
+        </source>
+        <p>
+          To configure the check to match the text that spans multiple lines to a Test string
+          format that we have defined, ignoring its case with a specified minimum and maximum
+          number of matches:
+        </p>
+        <source>
+&lt;module name=&quot;RegexpMultiline&quot;&gt;
+    &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot; /&gt;
+    &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot; /&gt;
+    &lt;property name=&quot;minimum&quot; value=&quot;1&quot; /&gt;
+    &lt;property name=&quot;maximum&quot; value=&quot;5&quot; /&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example of violation from the above config:
+        </p>
+        <source>
+  void method() {
+    System.out.println("Test #1: this is a test string"); // OK
+    System.out.println("teSt #2: This is a test string"); // OK
+    int i = 5; // violation
+    System.out.println("TesY #3: This is a test string"); // OK
+    System.out.println("TEst #4: This is a test string"); // OK
+    System.out.println("TEST #5: This is a test string"); // OK
+    System.out.println("Test #6: This is a test string"); // violation, maximum matches exceeded
+    System.out.println("Value of i: " + i); // violation
+  }
         </source>
       </subsection>
 
