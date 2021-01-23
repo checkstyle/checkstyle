@@ -39,12 +39,16 @@ import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.util.Dictionary;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
+import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -474,6 +478,30 @@ public class CommonUtilTest extends AbstractPathTestSupport {
         final String content = IOUtils.toString(uri.toURL(), StandardCharsets.UTF_8);
         assertThat("Content mismatches for: " + uri,
                 content, startsWith("good"));
+    }
+
+    @Test
+    public void testGetUriByFilenameClasspathPrefixLoadConfig() throws Exception {
+        final String filename = CommonUtil.CLASSPATH_URL_PREFIX
+            + getPackageLocation() + "/InputCommonUtilTestWithChecks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+
+        final Properties properties = System.getProperties();
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+            new PropertiesExpander(properties));
+        assertEquals("Checker", config.getName(), "Unexpected config name!");
+    }
+
+    @Test
+    public void testGetUriByFilenameFindsRelativeResourceOnClasspathPrefix() throws Exception {
+        final String filename = CommonUtil.CLASSPATH_URL_PREFIX
+            + getPackageLocation() + "/InputCommonUtilTest_empty_checks.xml";
+        final URI uri = CommonUtil.getUriByFilename(filename);
+
+        final Properties properties = System.getProperties();
+        final Configuration config = ConfigurationLoader.loadConfiguration(uri.toString(),
+            new PropertiesExpander(properties));
+        assertEquals("Checker", config.getName(), "Unexpected config name!");
     }
 
     private static class TestCloseable implements Closeable {
