@@ -600,20 +600,68 @@ class Test {
       </subsection>
 
       <subsection name="Examples" id="FileTabCharacter_Examples">
-        <p>
-          To configure the check to report on the first instance in each
-          file:
-        </p>
+        <p>To configure the check to report only the first instance in each file:</p>
         <source>
 &lt;module name=&quot;FileTabCharacter&quot;/&gt;
         </source>
-        <p>
-          To configure the check to report on each line in each file:
-        </p>
+        <p>Example - Test.java:</p>
+        <source>
+public class Test {
+  int a;                      // violation : indented using tab
+
+  public void foo (int arg) { // OK : indented using tab, only first occurrence in file reported
+      a = arg;                // OK, indented using spaces
+  }                           // OK, indented using spaces
+}
+        </source>
+        <p>To configure the check to report each instance in each file:</p>
         <source>
 &lt;module name=&quot;FileTabCharacter&quot;&gt;
   &lt;property name=&quot;eachLine&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example - Test.java:</p>
+        <source>
+public class Test {
+  int a;                            // violation : indented using tab
+
+  public void foo (int arg) {       // violation : indented using tab
+      a = arg;                      // OK, indented using spaces
+  }                                 // OK, indented using spaces
+}
+        </source>
+        <p>To configure the check to report instances on only certain file types:</p>
+        <source>
+&lt;module name=&quot;FileTabCharacter&quot;&gt;
+  &lt;property name=&quot;fileExtensions&quot; value=&quot;java, xml&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example - Test.java:</p>
+        <source>
+public class Test {
+  int a;                      // violation : indented using tab
+
+  public void foo (int arg) { // OK : indented using tab, only first occurrence in file reported
+      a = arg;                // OK, indented using spaces
+  }                           // OK, indented using spaces
+}
+        </source>
+        <p>Example - Test.xml:</p>
+        <source>
+<![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
+<UserAccount>
+  <FirstName>John</FirstName>      <!-- violation : indented using tab -->
+  <LastName>Doe</LastName>         <!-- only first occurrence in file reported -->
+</UserAccount>]]>
+        </source>
+        <p>Example - Test.html:</p>
+        <source>
+&lt;head&gt;
+  &lt;title&gt;Page Title&lt;/title&gt;      &lt;!-- no check performed, html file extension --&gt;
+&lt;/head&gt;                          &lt;!-- not specified in check config --&gt;
+&lt;body&gt;
+  &lt;p&gt;This is a simple html document.&lt;/p&gt;
+&lt;/body&gt;
         </source>
       </subsection>
 
