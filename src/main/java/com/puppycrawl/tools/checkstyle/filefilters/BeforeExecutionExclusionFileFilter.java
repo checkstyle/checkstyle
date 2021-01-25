@@ -62,6 +62,16 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * To configure the filter to run only on required files for example that ends with "Remote"
+ * use <a href="https://www.regular-expressions.info/lookaround.html">negative lookahead</a>:
+ * </p>
+ *
+ * <pre>
+ * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot; value=&quot;^((?!Remote\.java).)*$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  *
