@@ -68,6 +68,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 
 @ExtendWith({ExitGuard.class, SystemErrGuard.class, SystemOutGuard.class})
 public class MainTest {
@@ -610,6 +611,31 @@ public class MainTest {
         assertEquals(addEndOfLine(auditStartMessage.getMessage(), auditFinishMessage.getMessage()),
                 systemOut.getCapturedData(), "Unexpected output log");
         assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+    }
+
+    @Test
+    public void testPropertyFileWithPropertyChaining(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) throws IOException {
+        Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
+            "-p", getPath("InputMainPropertyChaining.properties"), getPath("InputMain.java"));
+        assertEquals(addEndOfLine(auditStartMessage.getMessage(), auditFinishMessage.getMessage()),
+            systemOut.getCapturedData(), "Unexpected output log");
+        assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+    }
+
+    @Test
+    public void testPropertyFileWithPropertyChainingUndefinedProperty(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        assertExitWithStatus(-2, () -> {
+            invokeMain("-c", getPath("InputMainConfig-classname-prop.xml"),
+                "-p", getPath("InputMainPropertyChainingUndefinedProperty.properties"),
+                getPath("InputMain.java"));
+        });
+
+        assertTrue(systemErr.getCapturedData()
+            .contains(ChainedPropertyUtil.UNDEFINED_PROPERTY_MESSAGE),
+            "Invalid error message");
+        assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
     }
 
     @Test
