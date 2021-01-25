@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.AbstractPathTestSupport.addEndOfLine;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.hamcrest.CoreMatchers.is;
@@ -68,6 +69,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
+import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 
 @ExtendWith({ExitGuard.class, SystemErrGuard.class, SystemOutGuard.class})
 public class MainTest {
@@ -610,6 +612,38 @@ public class MainTest {
         assertEquals(addEndOfLine(auditStartMessage.getMessage(), auditFinishMessage.getMessage()),
                 systemOut.getCapturedData(), "Unexpected output log");
         assertEquals("", systemErr.getCapturedData(), "Unexpected system error log");
+    }
+
+    @Test
+    public void testPropertyFileWithPropertyChaining(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) throws IOException {
+        Main.main("-c", getPath("InputMainConfig-classname-prop.xml"),
+            "-p", getPath("InputMainPropertyChaining.properties"), getPath("InputMain.java"));
+
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo(addEndOfLine(auditStartMessage.getMessage(),
+                auditFinishMessage.getMessage()));
+        assertWithMessage("Unexpected system error log")
+            .that(systemErr.getCapturedData())
+            .isEqualTo("");
+    }
+
+    @Test
+    public void testPropertyFileWithPropertyChainingUndefinedProperty(@SysErr Capturable systemErr,
+            @SysOut Capturable systemOut) {
+        assertExitWithStatus(-2, () -> {
+            invokeMain("-c", getPath("InputMainConfig-classname-prop.xml"),
+                "-p", getPath("InputMainPropertyChainingUndefinedProperty.properties"),
+                getPath("InputMain.java"));
+        });
+
+        assertWithMessage("Invalid error message")
+            .that(systemErr.getCapturedData())
+            .contains(ChainedPropertyUtil.UNDEFINED_PROPERTY_MESSAGE);
+        assertWithMessage("Unexpected output log")
+            .that(systemOut.getCapturedData())
+            .isEqualTo("");
     }
 
     @Test
