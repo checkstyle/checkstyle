@@ -2,20 +2,8 @@ package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.checks.custo
 
 /**
  * <p>
- * Checks whether file contains code. Files which are considered to have no code:
+ * Description.
  * </p>
- * <ul>
- * <li>
- * File with no text
- * </li>
- * <li>
- * File with single line comment(s)
- * </li>
- * <li>
- * File with a multi line comment(s).
- * </li>
- * </ul>
- * <p>
  * <ul>
  * <li>
  * Property
