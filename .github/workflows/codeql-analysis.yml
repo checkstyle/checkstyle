@@ -23,6 +23,12 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Setup local maven cache
+       uses: actions/cache@v2
+       with:
+         path: ~/.m2/repository
+         key: checkstyle-maven-cache-${{ hashFiles('**/pom.xml') }}
+
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
