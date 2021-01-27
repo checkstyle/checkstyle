@@ -524,7 +524,7 @@ public final class CommonUtil {
             final URL url = new URL(filename);
             uri = url.toURI();
         }
-        catch (final URISyntaxException | MalformedURLException ignored) {
+        catch (URISyntaxException | MalformedURLException ignored) {
             uri = null;
         }
         return uri;
