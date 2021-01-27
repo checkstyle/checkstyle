@@ -208,7 +208,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * }//OK
  * class test2{
  * public test2(){ return; }
- * }//Violation,don't allow return statement in constructors
+ * }//Violation,don't allow return statements in constructors
  * public int test3(int a){
  * if(a &lt; 0) return 0;
  * return 1;
