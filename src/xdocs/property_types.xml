@@ -928,6 +928,9 @@
         It can be a URL, regular file, or a resource path. It will try loading the path as
         a URL first, then as a file that must exist, and then finally as a resource on the
         classpath.
+
+        Checkstyle supports the pseudo URL `classpath:` which specifies that the resource
+        should be loaded from the class path.
       </p>
     </section>
 
