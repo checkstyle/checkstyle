@@ -90,12 +90,39 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example for above configuration:
+ * </p>
+ * <pre>
+ * public int test1(int a){
+ * if(a == 0) return 1;
+ * return 0;
+ * }//OK
+ * public int test2(int a){
+ * if(a &lt; 0) return -1;
+ * if(a == 0) return 1;
+ * return 0;
+ * }//OK
+ * public int test3(int a){
+ * if(a &lt; -2) return -2;
+ * if(a == 0) return 0;
+ * if(a &gt; 2) return 2;
+ * return 1;
+ * }//Violation,more than three return statements
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow any return statements per void method:
  * </p>
  * <pre>
  * &lt;module name=&quot;ReturnCount&quot;&gt;
  *   &lt;property name=&quot;maxForVoid&quot; value=&quot;0&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example for above configuration:
+ * </p>
+ * <pre>
+ * public void test1(){ } //OK
+ * public void test2(){ return; } //Violation
  * </pre>
  * <p>
  * To configure the check so that it doesn't allow more than 2 return statements per method
@@ -108,6 +135,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * Example for above configuration:
+ * </p>
+ * <pre>
+ * public void test1(){ } //OK
+ * public void test2(){ return; } //OK
+ * public void test3(int a){
+ * if(a == 0) return;
+ * return;
+ * }//Violation,more than 1 return statements
+ * public int test4(int a){
+ * if(a &lt; 0) return 0;
+ * return 1;
+ * }//OK
+ * public int test5(int a){
+ * if(a &lt; 0) return -1;
+ * if(a == 0) return 0;
+ * return 1;
+ * }//Violation,more than 2 return statements
+ * </pre>
+ * <p>
  * To configure the check so that it doesn't allow more than three
  * return statements per method for all methods:
  * </p>
@@ -116,6 +163,22 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;max&quot; value=&quot;3&quot;/&gt;
  *   &lt;property name=&quot;format&quot; value=&quot;^$&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example for above configuration:
+ * </p>
+ * <pre>
+ * public int test1(int a){
+ * if(a &lt; 0) return -1;
+ * if(a == 0) return 0;
+ * return 1;
+ * }//OK
+ * public int test2(int a){
+ * if(a &lt; -2) return -2;
+ * if(a == 0) return 0;
+ * if(a &gt; 2) return 2;
+ * return 1;
+ * }//Violation,don't allow 4 return statements
  * </pre>
  * <p>
  * To configure the check so that it doesn't allow any return statements in constructors,
@@ -135,6 +198,32 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   &lt;property name=&quot;max&quot; value=&quot;2&quot;/&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;METHOD_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example for above configuration:
+ * </p>
+ * <pre>
+ * class test1{
+ * public test1(){ };
+ * }//OK
+ * class test2{
+ * public test2(){ return; }
+ * }//Violation,don't allow return statement in constructors
+ * public int test3(int a){
+ * if(a &lt; 0) return 0;
+ * return 1;
+ * }//OK
+ * public int test4(int a){
+ * if(a &lt; 0) return -1;
+ * if(a &gt; 0) return 1;
+ * return 0;
+ * }//Violation,3 return statements
+ * (int x,int y) -> x + y //OK
+ * (int x,int y) -> { return x + y;} //OK
+ * (int x,int y) -> {
+ * if(x &gt; y) return x - y;
+ * return x + y;
+ * }//Violation,2 return statements in lambda expressions
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
