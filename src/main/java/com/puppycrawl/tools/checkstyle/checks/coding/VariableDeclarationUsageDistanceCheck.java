@@ -37,54 +37,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <p>
  * Checks the distance between declaration of variable and its first usage.
- * </p>
- * <p>
- * ATTENTION!! (Not supported cases)
- * </p>
- * <pre>
- * Case #1:
- * {
- *   int c;
- *   int a = 3;
- *   int b = 2;
- *     {
- *       a = a + b;
- *       c = b;
- *     }
- * }
- * </pre>
- * <p>
- * Distance for variable 'a' = 1;
- * Distance for variable 'b' = 1;
- * Distance for variable 'c' = 2.
- * </p>
- * <p>
- * As distance by default is 1 the Check doesn't raise warning for variables 'a'
- * and 'b' to move them into the block.
- * </p>
- * <p>
- * Case #2:
- * </p>
- * <pre>
- * int sum = 0;
- * for (int i = 0; i &lt; 20; i++) {
- *   a++;
- *   b--;
- *   sum++;
- *   if (sum &gt; 10) {
- *     res = true;
- *   }
- * }
- * </pre>
- * <p>
- * Distance for variable 'sum' = 3.
- * </p>
- * <p>
- * As the distance is more than the default one, the Check raises warning for variable
- * 'sum' to move it into the 'for(...)' block. But there is situation when
- * variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
- * warnings you can use Suppression Filter, provided by Checkstyle, for the
- * whole class.
+ * Note : Variable declaration/initialization statements are not counted while calculating length.
  * </p>
  * <ul>
  * <li>
@@ -112,32 +65,42 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * </ul>
  * <p>
- * To configure the check:
- * </p>
- * <p>
- * Example #1:
+ * To configure the check with default config:
  * </p>
  * <pre>
- * int count;
- * a = a + b;
- * b = a + a;
- * count = b; // DECLARATION OF VARIABLE 'count'
- *            // SHOULD BE HERE (distance = 3)
+ * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;/&gt;
  * </pre>
- * <p>
- * Example #2:
- * </p>
+ * <p>Example:</p>
  * <pre>
- * int count;
- * {
- *   a = a + b;
- *   count = b; // DECLARATION OF VARIABLE 'count'
- *              // SHOULD BE HERE (distance = 2)
+ * public class Test {
+ *
+ *   public void foo1() {
+ *     int num;        // violation, distance = 4
+ *     final int PI;   // OK, final variables not checked
+ *     System.out.println("Statement 1");
+ *     System.out.println("Statement 2");
+ *     System.out.println("Statement 3");
+ *     num = 1;
+ *     PI = 3.14;
+ *   }
+ *
+ *   public void foo2() {
+ *     int a;          // OK, used in different scope
+ *     int b;          // OK, used in different scope
+ *     int count = 0;  // OK, used in different scope
+ *
+ *     {
+ *       System.out.println("Inside inner scope");
+ *       a = 1;
+ *       b = 2;
+ *       count++;
+ *     }
+ *   }
  * }
  * </pre>
  * <p>
  * Check can detect a block of initialization methods. If a variable is used in
- * such a block and there is no other statements after this variable then distance=1.
+ * such a block and there are no other statements after variable declaration, then distance = 1.
  * </p>
  * <p>Case #1:</p>
  * <pre>
@@ -150,7 +113,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * cal.set(Calendar.MINUTE, minutes);
  * </pre>
  * <p>
- * The distance for the variable minutes is 1 even
+ * The distance for the variable "minutes" is 1 even
  * though this variable is used in the fifth method's call.
  * </p>
  * <p>Case #2:</p>
@@ -165,30 +128,206 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * cal.set(Calendar.MINUTE, minutes);
  * </pre>
  * <p>
- * The distance for the variable minutes is 6 because there is one more expression
+ * The distance for the variable "minutes" is 6 because there is one more expression
  * (except the initialization block) between the declaration of this variable and its usage.
  * </p>
  * <p>
- * An example how to configure this Check:
- * </p>
- * <pre>
- * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;/&gt;
- * </pre>
- * <p>
- * An example of how to configure this Check:
- *  - to set the allowed distance to 4;
- *  - to ignore variables with prefix '^temp';
- *  - to force the validation between scopes;
- *  - to check the final variables;
+ * To configure the check to set allowed distance:
  * </p>
  * <pre>
  * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
  *   &lt;property name=&quot;allowedDistance&quot; value=&quot;4&quot;/&gt;
- *   &lt;property name=&quot;ignoreVariablePattern&quot; value=&quot;^temp.*&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public void foo1() {
+ *     int num;        // OK, distance = 4
+ *     final int PI;   // OK, final variables not checked
+ *     System.out.println("Statement 1");
+ *     System.out.println("Statement 2");
+ *     System.out.println("Statement 3");
+ *     num = 1;
+ *     PI = 3.14;
+ *   }
+ *
+ *   public void foo2() {
+ *     int a;          // OK, used in different scope
+ *     int b;          // OK, used in different scope
+ *     int count = 0;  // OK, used in different scope
+ *
+ *     {
+ *       System.out.println("Inside inner scope");
+ *       a = 1;
+ *       b = 2;
+ *       count++;
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to ignore certain variables:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
+ *   &lt;property name=&quot;ignoreVariablePattern&quot; value=&quot;^num$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * This configuration ignores variables named "num".
+ * </p>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public void foo1() {
+ *     int num;        // OK, variable ignored
+ *     final int PI;   // OK, final variables not checked
+ *     System.out.println("Statement 1");
+ *     System.out.println("Statement 2");
+ *     System.out.println("Statement 3");
+ *     num = 1;
+ *     PI = 3.14;
+ *   }
+ *
+ *   public void foo2() {
+ *     int a;          // OK, used in different scope
+ *     int b;          // OK, used in different scope
+ *     int count = 0;  // OK, used in different scope
+ *
+ *     {
+ *       System.out.println("Inside inner scope");
+ *       a = 1;
+ *       b = 2;
+ *       count++;
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to force validation between scopes:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
  *   &lt;property name=&quot;validateBetweenScopes&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public void foo1() {
+ *     int num;        // violation, distance = 4
+ *     final int PI;   // OK, final variables not checked
+ *     System.out.println("Statement 1");
+ *     System.out.println("Statement 2");
+ *     System.out.println("Statement 3");
+ *     num = 1;
+ *     PI = 3.14;
+ *   }
+ *
+ *   public void foo2() {
+ *     int a;          // OK, distance = 2
+ *     int b;          // OK, distance = 3
+ *     int count = 0;  // violation, distance = 4
+ *
+ *     {
+ *       System.out.println("Inside inner scope");
+ *       a = 1;
+ *       b = 2;
+ *       count++;
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to check final variables:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;VariableDeclarationUsageDistance&quot;&gt;
  *   &lt;property name=&quot;ignoreFinal&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public void foo1() {
+ *     int num;        // violation, distance = 4
+ *     final int PI;   // violation, distance = 5
+ *     System.out.println("Statement 1");
+ *     System.out.println("Statement 2");
+ *     System.out.println("Statement 3");
+ *     num = 1;
+ *     PI = 3.14;
+ *   }
+ *
+ *   public void foo2() {
+ *     int a;          // OK, used in different scope
+ *     int b;          // OK, used in different scope
+ *     int count = 0;  // OK, used in different scope
+ *
+ *     {
+ *       System.out.println("Inside inner scope");
+ *       a = 1;
+ *       b = 2;
+ *       count++;
+ *     }
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * ATTENTION! (Unsupported cases)
+ * </p>
+ * <p>
+ * Case #1:
+ * </p>
+ * <pre>
+ * {
+ *   int c;
+ *   int a = 3;
+ *   int b = 2;
+ *   {
+ *     a = a + b;
+ *     c = b;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Distance for variable 'a' = 1;
+ * Distance for variable 'b' = 1;
+ * Distance for variable 'c' = 2.
+ * </p>
+ * <p>
+ * As distance by default is 1 the check doesn't raise warning for variables 'a'
+ * and 'b' to move them into the block.
+ * </p>
+ * <p>
+ * Case #2:
+ * </p>
+ * <pre>
+ * int sum = 0;
+ * for (int i = 0; i &lt; 20; i++) {
+ *   a++;
+ *   b--;
+ *   sum++;
+ *   if (sum &gt; 10) {
+ *     res = true;
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Distance for variable 'sum' = 3.
+ * </p>
+ * <p>
+ * As the distance is more than the default (=1), the check raises warning for variable
+ * 'sum' to move it into the 'for(...)' block. But there is situation when
+ * variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
+ * warnings you can use Suppression Filter, provided by Checkstyle, for the
+ * whole class.
+ * </p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
