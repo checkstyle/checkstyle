@@ -26,6 +26,7 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -57,14 +58,14 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static final Pattern PROPERTY_TAG = Pattern.compile("\\s*Property\\s*");
 
     /** Regular expression for property type location in class-level javadocs. */
-    private static final Pattern TYPE_TAG = Pattern.compile("\\s.*Type is\\s.*");
+    private static final Pattern TYPE_TAG = Pattern.compile("^ Type is\\s.*");
 
     /** Regular expression for property validation type location in class-level javadocs. */
     private static final Pattern VALIDATION_TYPE_TAG =
             Pattern.compile("\\s.*Validation type is\\s.*");
 
     /** Regular expression for property default value location in class-level javadocs. */
-    private static final Pattern DEFAULT_VALUE_TAG = Pattern.compile("\\s*Default value is:*.*");
+    private static final Pattern DEFAULT_VALUE_TAG = Pattern.compile("^ Default value is:*.*");
 
     /** Regular expression for check example location in class-level javadocs. */
     private static final Pattern EXAMPLES_TAG =
@@ -103,6 +104,17 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                     "the charset property of the parent <a href=https://checkstyle.org/"
                         + "config.html#Checker>Checker</a> module"
     )));
+
+    /**
+     * Format for exception message for missing type for check property.
+     */
+    private static final String PROP_TYPE_MISSING = "Type for property '%s' is missing";
+
+    /**
+     * Format for exception message for missing default value for check property.
+     */
+    private static final String PROP_DEFAULT_VALUE_MISSING =
+        "Default value for property '%s' is missing";
 
     /** ModuleDetails instance for each module AST traversal. */
     private ModuleDetails moduleDetails;
@@ -261,38 +273,41 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, 0);
         if (propertyNameNode.isPresent()) {
             final DetailNode propertyNameTag = propertyNameNode.get();
+            final String propertyName = getTextFromTag(propertyNameTag);
 
-            final Optional<DetailNode> propertyTypeNode =
-                    getFirstChildOfMatchingText(nodeLi, TYPE_TAG);
-            if (propertyTypeNode.isPresent()) {
-                final DetailNode propertyType = propertyTypeNode.get();
-                final String propertyDesc = DESC_CLEAN.matcher(
-                        constructSubTreeText(nodeLi, propertyNameTag.getIndex() + 1,
-                                propertyType.getIndex() - 1))
-                        .replaceAll(Matcher.quoteReplacement(""));
+            final DetailNode propertyType = getFirstChildOfMatchingText(nodeLi, TYPE_TAG)
+                .orElseThrow(() -> {
+                    return new MetadataGenerationException(String.format(
+                        Locale.ROOT, PROP_TYPE_MISSING, propertyName)
+                    );
+                });
+            final String propertyDesc = DESC_CLEAN.matcher(
+                    constructSubTreeText(nodeLi, propertyNameTag.getIndex() + 1,
+                            propertyType.getIndex() - 1))
+                    .replaceAll(Matcher.quoteReplacement(""));
 
-                modulePropertyDetails.setDescription(propertyDesc.trim());
+            modulePropertyDetails.setDescription(propertyDesc.trim());
+            modulePropertyDetails.setName(propertyName);
+            modulePropertyDetails.setType(getTagTextFromProperty(nodeLi, propertyType));
+
+            final Optional<DetailNode> validationTypeNodeOpt = getFirstChildOfMatchingText(nodeLi,
+                VALIDATION_TYPE_TAG);
+            if (validationTypeNodeOpt.isPresent()) {
+                final DetailNode validationTypeNode = validationTypeNodeOpt.get();
+                modulePropertyDetails.setValidationType(getTagTextFromProperty(nodeLi,
+                    validationTypeNode));
             }
 
-            modulePropertyDetails.setName(getTextFromTag(propertyNameTag));
-        }
-
-        final Optional<DetailNode> typeNode = getFirstChildOfMatchingText(nodeLi, TYPE_TAG);
-        if (typeNode.isPresent()) {
-            modulePropertyDetails.setType(getTagTextFromProperty(nodeLi, typeNode.get()));
-        }
-
-        final Optional<DetailNode> validationTypeNodeOpt = getFirstChildOfMatchingText(nodeLi,
-                VALIDATION_TYPE_TAG);
-        if (validationTypeNodeOpt.isPresent()) {
-            final DetailNode validationTypeNode = validationTypeNodeOpt.get();
-            modulePropertyDetails.setValidationType(getTagTextFromProperty(nodeLi,
-                    validationTypeNode));
-        }
-
-        final String defaultValue = getPropertyDefaultText(nodeLi);
-        if (!PROPERTIES_TO_NOT_WRITE.contains(defaultValue)) {
-            modulePropertyDetails.setDefaultValue(defaultValue);
+            final String defaultValue = getFirstChildOfMatchingText(nodeLi, DEFAULT_VALUE_TAG)
+                .map(defaultValueNode -> getPropertyDefaultText(nodeLi, defaultValueNode))
+                .orElseThrow(() -> {
+                    return new MetadataGenerationException(String.format(
+                        Locale.ROOT, PROP_DEFAULT_VALUE_MISSING, propertyName)
+                    );
+                });
+            if (!PROPERTIES_TO_NOT_WRITE.contains(defaultValue)) {
+                modulePropertyDetails.setDefaultValue(defaultValue);
+            }
         }
         return modulePropertyDetails;
     }
@@ -398,28 +413,24 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * Create property default text, which is either normal property value or list of tokens.
      *
      * @param nodeLi list item javadoc node
+     * @param defaultValueNode default value node
      * @return default property text
      */
-    private static String getPropertyDefaultText(DetailNode nodeLi) {
-        String result = "";
-        final Optional<DetailNode> defaultValueNodeOpt = getFirstChildOfMatchingText(nodeLi,
-                DEFAULT_VALUE_TAG);
-        if (defaultValueNodeOpt.isPresent()) {
-            final DetailNode defaultValueNode = defaultValueNodeOpt.get();
-            final Optional<DetailNode> propertyDefaultValueTagNode = getFirstChildOfType(nodeLi,
-                    JavadocTokenTypes.JAVADOC_INLINE_TAG, defaultValueNode.getIndex() + 1);
-            DetailNode propertyDefaultValueTag = null;
-            if (propertyDefaultValueTagNode.isPresent()) {
-                propertyDefaultValueTag = propertyDefaultValueTagNode.get();
-            }
-            if (propertyDefaultValueTag == null) {
-                final String tokenText = constructSubTreeText(nodeLi,
-                        defaultValueNode.getIndex(), nodeLi.getChildren().length);
-                result = cleanDefaultTokensText(tokenText);
-            }
-            else {
-                result = getTextFromTag(propertyDefaultValueTag);
-            }
+    private static String getPropertyDefaultText(DetailNode nodeLi, DetailNode defaultValueNode) {
+        final String result;
+        final Optional<DetailNode> propertyDefaultValueTagNode = getFirstChildOfType(nodeLi,
+                JavadocTokenTypes.JAVADOC_INLINE_TAG, defaultValueNode.getIndex() + 1);
+        DetailNode propertyDefaultValueTag = null;
+        if (propertyDefaultValueTagNode.isPresent()) {
+            propertyDefaultValueTag = propertyDefaultValueTagNode.get();
+        }
+        if (propertyDefaultValueTag == null) {
+            final String tokenText = constructSubTreeText(nodeLi,
+                    defaultValueNode.getIndex(), nodeLi.getChildren().length);
+            result = cleanDefaultTokensText(tokenText);
+        }
+        else {
+            result = getTextFromTag(propertyDefaultValueTag);
         }
         return result;
     }
