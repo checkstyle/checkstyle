@@ -90,7 +90,6 @@ public final class ChainedPropertyUtil {
                 unresolvedPropertyIterator.remove();
             }
 
-
             if (!unresolvedPropertyIterator.hasNext()) {
                 final boolean isUnresolvablePropertyPresent =
                     numberOfPropertiesLeftToResolve == unresolvedPropertyNames.size();
