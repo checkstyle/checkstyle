@@ -14,7 +14,7 @@
  All other lines in a Javadoc should start with {@code *}, including blank lines and code blocks.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value=""
+            <property default-value="false"
                       name="violateExecutionOnNonTightHtml"
                       type="boolean">
                <description>Control when to print violations if the

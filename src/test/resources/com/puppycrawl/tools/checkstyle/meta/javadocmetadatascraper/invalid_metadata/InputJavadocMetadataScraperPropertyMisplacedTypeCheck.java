@@ -1,0 +1,30 @@
+package com.puppycrawl.tools.checkstyle.meta.javadocmetadatascraper.invalid_metadata;
+
+/**
+ * <p>
+ * Checks whether file contains code. Files which are considered to have no code:
+ * </p>
+ * <ul>
+ * <li>
+ * File with no text
+ * </li>
+ * <li>
+ * File with single line comment(s)
+ * </li>
+ * <li>
+ * File with a multi line comment(s).
+ * </li>
+ * </ul>
+ * <p>
+ * <ul>
+ * <li>
+ * Property {@code misplacedType} - Some long wrapped
+ * description. Type is {@code java.lang.String}.
+ * Default value is {@code ""}.
+ * </li>
+ * </ul>
+ *
+ * @since 8.33
+ */
+public class InputJavadocMetadataScraperPropertyMisplacedTypeCheck {
+}
