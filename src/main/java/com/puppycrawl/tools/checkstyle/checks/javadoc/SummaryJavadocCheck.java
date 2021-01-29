@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -178,10 +179,26 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     /** Period literal. */
     private static final String PERIOD = ".";
 
+    /** Summary tag text. */
+    private static final String SUMMARY_TEXT = "@summary";
+
     /** Set of allowed Tokens tags in summary java doc. */
     private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(JavadocTokenTypes.TEXT,
-                    JavadocTokenTypes.WS))
+                    JavadocTokenTypes.WS,
+                    JavadocTokenTypes.DESCRIPTION,
+                    JavadocTokenTypes.TEXT))
+    );
+
+    /**
+     * Set of allowed Tokens tags in summary java doc.
+     */
+    private static final Set<String> ALLOWED_INLINE_TAGS = Collections.unmodifiableSet(
+            new HashSet<>(Arrays.asList(
+                    "@code",
+                    "@link",
+                    "@input"
+            ))
     );
 
     /** Specify the regexp for forbidden summary fragments. */
@@ -222,7 +239,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (!startsWithInheritDoc(ast)) {
+        if (containsSummaryTag(ast)) {
+            withSummaryTag(ast);
+        }
+        else if (!startsWithInheritDoc(ast)) {
             final String summaryDoc = getSummarySentence(ast);
             if (summaryDoc.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
@@ -237,6 +257,32 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                         && containsForbiddenFragment(firstSentence.substring(0, endOfSentence))) {
                     log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
                 }
+            }
+        }
+    }
+
+    /**
+     * Check the summary when of inline form.
+     *
+     * @param ast Javadoc root Node.
+     */
+    private void withSummaryTag(DetailNode ast) {
+        final String inlineSummaryDoc = getInlineSummarySentence(ast);
+        if (inlineSummaryDoc.isEmpty()) {
+            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+        }
+        else if (!period.isEmpty()) {
+            final String inlineFirstSentence = getInlineFirstSentence(ast);
+            final int endOfInlineSentence = inlineFirstSentence.lastIndexOf(period);
+            if (!inlineSummaryDoc.contains(period)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
+            }
+            if (endOfInlineSentence != -1
+                    && (containsForbiddenFragment(inlineFirstSentence.substring(0,
+                    endOfInlineSentence))
+                    || !containsCorrectInlineTags(ast)
+                    || !validInlineTagInsideHtmlFormat(ast))) {
+                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
     }
@@ -384,4 +430,299 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return result.toString();
     }
 
+    /**
+     * Finds and return if summary tag present.
+     *
+     * @param javadoc Javadoc root node.
+     * @return true, if first sentence contains @summary tag.
+     */
+    private static boolean containsSummaryTag(DetailNode javadoc) {
+        boolean contains = false;
+        for (DetailNode node : javadoc.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                final DetailNode[] child = node.getChildren();
+                if (child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
+                    && SUMMARY_TEXT.equals(child[1].getText())) {
+                    contains = true;
+                }
+            }
+        }
+
+        if (containsSummaryTagWithHtmlTag(javadoc)) {
+            contains = true;
+        }
+
+        return contains;
+    }
+
+    /**
+     * Finds and return if summary tag present as HTML Format.
+     *
+     * @param javadoc Javadoc root node.
+     * @return true, if first sentence contains @summary tag.
+     */
+    private static boolean containsSummaryTagWithHtmlTag(DetailNode javadoc) {
+        boolean contains = false;
+        if (getInlineTagNodeInsideHtml(javadoc) != null) {
+            final DetailNode[] htmlChild = getInlineTagNodeInsideHtml(javadoc).getChildren();
+            contains = htmlChild[1].getType() == JavadocTokenTypes.CUSTOM_NAME
+                    && SUMMARY_TEXT.equals(htmlChild[1].getText());
+        }
+        return contains;
+    }
+
+    /**
+     * Returns InlineTagNode of html type summary.
+     *
+     * @param ast Root node.
+     * @return DetailNode of InlineTag.
+     */
+    public static DetailNode getInlineTagNodeInsideHtml(DetailNode ast) {
+        DetailNode inlineNode = null;
+        for (DetailNode node : ast.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                for (DetailNode child : node.getChildren()) {
+                    if (child.getType() == JavadocTokenTypes.PARAGRAPH) {
+                        for (DetailNode inline : child.getChildren()) {
+                            if (inline.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                                inlineNode = inline;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return inlineNode;
+    }
+
+    /**
+     * Finds and return if the Inline Tag has allowed Inline Tags.
+     *
+     * @param ast Children of javadoc Inline Tag DetailNode[].
+     * @return true, if first sentence contains allowed tags.
+     */
+    private static boolean containsCorrectInlineTags(DetailNode ast) {
+        boolean contains = true;
+        for (DetailNode node : ast.getChildren()) {
+            final DetailNode[] child = node.getChildren();
+            if (child.length > 1
+                && child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
+                && getInlineTag(child) != null
+                && !ALLOWED_INLINE_TAGS.contains(getInlineTag(child).getText())) {
+                contains = false;
+                break;
+            }
+        }
+        return contains;
+    }
+
+    /**
+     * Finds and return if the HTML Format Inline Tag has allowed Inline Tags.
+     *
+     * @param ast Javadoc root Node.
+     * @return true, if first sentence contains allowed tags.
+     */
+    private static boolean validInlineTagInsideHtmlFormat(DetailNode ast) {
+        boolean contains = true;
+        if (getInlineTagNodeInsideHtml(ast) != null) {
+            for (DetailNode node : getInlineTagNodeInsideHtml(ast).getChildren()) {
+                if (node.getType() == JavadocTokenTypes.DESCRIPTION) {
+                    for (DetailNode nestedInlineTag : node.getChildren()) {
+                        if (nestedInlineTag.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                            final DetailNode[] child = nestedInlineTag.getChildren();
+                            if (child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
+                                    && !ALLOWED_INLINE_TAGS.contains(child[1].getText())) {
+                                contains = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return contains;
+    }
+
+    /**
+     * Get Inline tag inside Inline tag.
+     *
+     * @param javadoc Inline tag DetailNode.
+     * @return DetailNode with CUSTOM_NAME;
+     */
+    private static DetailNode getInlineTag(DetailNode... javadoc) {
+        DetailNode tagName = null;
+        if (getInlineTagNode(javadoc) != null) {
+            for (DetailNode child4 : getInlineTagNode(javadoc).getChildren()) {
+                if (child4.getType() == JavadocTokenTypes.CUSTOM_NAME) {
+                    tagName = child4;
+                }
+            }
+        }
+        return tagName;
+    }
+
+    /**
+     * Gets InlineTag Node.
+     *
+     * @param javadoc Inline tag DetailNode.
+     * @return DetailNode with CUSTOM_NAME;
+     */
+    private static DetailNode getInlineTagNode(DetailNode... javadoc) {
+        DetailNode tagNode = null;
+        for (DetailNode child2 : javadoc) {
+            if (child2.getType() == JavadocTokenTypes.DESCRIPTION) {
+                for (DetailNode child3 : child2.getChildren()) {
+                    if (child3.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                        tagNode = child3;
+                    }
+                }
+            }
+        }
+        return tagNode;
+    }
+
+    /**
+     * Checks if period is at the end of sentence.
+     *
+     * @param ast Javadoc root node.
+     * @return violation string
+     */
+    private static String getInlineSummarySentence(DetailNode ast) {
+        final StringBuilder result = new StringBuilder(256);
+        if (getDescriptionNode(ast) != null) {
+            for (DetailNode child : getDescriptionNode(ast).getChildren()) {
+                if (child.getType() == JavadocTokenTypes.TEXT) {
+                    result.append(child.getText());
+                }
+            }
+        }
+
+        if (getInlineTagNodeInsideHtml(ast) != null
+                && getDescriptionNodeInsideHtml(getInlineTagNodeInsideHtml(ast)) != null) {
+            for (DetailNode child
+                    : getDescriptionNodeInsideHtml(getInlineTagNodeInsideHtml(ast)).getChildren()) {
+                if (child.getType() == JavadocTokenTypes.TEXT) {
+                    result.append(child.getText());
+                }
+            }
+        }
+        return result.toString().trim();
+    }
+
+    /**
+     * Get Description node from ast.
+     *
+     * @param ast Javadoc root node.
+     * @return Description DetailNode.
+     */
+    private static DetailNode getDescriptionNode(DetailNode ast) {
+        DetailNode descriptionNode = null;
+        for (DetailNode node : ast.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                for (DetailNode dataType : node.getChildren()) {
+                    if (dataType.getType() == JavadocTokenTypes.DESCRIPTION) {
+                        descriptionNode = dataType;
+                    }
+                }
+            }
+        }
+        return descriptionNode;
+    }
+
+    /**
+     * Finds and returns first sentence.
+     *
+     * @param ast Javadoc root node.
+     * @return first sentence.
+     */
+    private static String getInlineFirstSentence(DetailNode ast) {
+        final StringBuilder result = new StringBuilder(256);
+        for (DetailNode node : ast.getChildren()) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                result.append(returnInlineFirstSentence(node));
+            }
+
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                result.append(returnInlineFirstSentence(
+                        Objects.requireNonNull(getInlineTagNodeInsideHtml(ast))));
+            }
+        }
+        return result.toString();
+    }
+
+    /**
+     * Sets result string in method getInlineFirstSentence.
+     *
+     * @param node JavaDoc Inline node.
+     * @return first sentence.
+     */
+    public static String returnInlineFirstSentence(DetailNode node) {
+        final StringBuilder result = new StringBuilder(256);
+        final String periodSuffix = PERIOD;
+        for (DetailNode child : node.getChildren()) {
+            if (ALLOWED_TYPES.contains(child.getType())) {
+                final String text;
+                if (child.getChildren().length == 0) {
+                    text = child.getText();
+                }
+                else {
+                    text = getTextFromDescription(child);
+                }
+
+                if (text.contains(periodSuffix)) {
+                    result.append(text, 0, text.indexOf(periodSuffix) + 1);
+                    break;
+                }
+
+                result.append(text);
+            }
+        }
+
+        return result.toString();
+    }
+
+    /**
+     * Returns the text from an InlineTag Description.
+     *
+     * @param child InlineTag Node.
+     * @return text of InlineTag Description.
+     */
+    private static String getTextFromDescription(DetailNode child) {
+        final String period = PERIOD + ' ';
+        final DetailNode[] child2 = child.getChildren();
+        StringBuilder inlineText = null;
+        for (DetailNode ch2 : child2) {
+            if (ch2.getType() == JavadocTokenTypes.TEXT) {
+                if (inlineText == null) {
+                    inlineText = new StringBuilder(ch2.getText());
+                }
+                else {
+                    inlineText.append(ch2.getText());
+                }
+
+                if (inlineText.toString().contains(period)) {
+                    break;
+                }
+            }
+        }
+        return inlineText.toString();
+    }
+
+    /**
+     * Returns Description Node inside HTML Type description.
+     *
+     * @param inlineTag Inline Tag node inside HTML.
+     * @return Description Node.
+     */
+    private static DetailNode getDescriptionNodeInsideHtml(DetailNode inlineTag) {
+        DetailNode node = null;
+        for (DetailNode child: inlineTag.getChildren()) {
+            if (child.getType() == JavadocTokenTypes.DESCRIPTION) {
+                node = child;
+                break;
+            }
+        }
+        return node;
+    }
 }
