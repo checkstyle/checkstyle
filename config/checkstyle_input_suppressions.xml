@@ -1382,6 +1382,8 @@
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriodAtEnd.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
+  <suppress id="StyleValidationCommentInInputs"
+            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocHtmlFormat.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]writetag[\\/]InputWriteTag2.java"/>
   <suppress id="ConfigCommentOnTopInputs"
@@ -3196,6 +3198,8 @@
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriodAtEnd.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
+  <suppress id="StyleValidationCommentInInputs"
+            files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocHtmlFormat.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]writetag[\\/]InputWriteTag2.java"/>
   <suppress id="StyleValidationCommentInInputs"
