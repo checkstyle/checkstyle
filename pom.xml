@@ -1680,7 +1680,9 @@
         <artifactId>maven-report</artifactId>
         <version>0.1</version>
         <configuration>
-          <sonarHostURL>https://sonarcloud.io</sonarHostURL>
+          <sonarHostURL default-value="https://sonarcloud.io/dashboard?id=org.checkstyle%3Acheckstyle"></sonarHostURL>
+          <project combine.self="override"> </project>
+          <branch implementation = "java.lang.Character" combine.self="override"> </branch>
         </configuration>
       </plugin>
 
