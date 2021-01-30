@@ -179,7 +179,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * package com.company;
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * import static java.util.*; //OK
  * import java.time.*; //OK
  * import static java.io.*; //OK
@@ -208,7 +208,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import javax.net.*; //OK
  * import static java.io.*; //violation as static imports should be in top
  *
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  * </pre>
@@ -234,7 +234,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import java.time.*; //OK
  * import javax.net.*; //violation as it is not included in standard java package group.
  *
- * import org.apache.commons.io.fileutils; //violation
+ * import org.apache.commons.io.FileUtils; //violation
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  * </pre>
@@ -260,7 +260,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import java.time.*; //OK
  * import javax.net.*; //OK
  *
- * import org.apache.commons.io.fileutils; //violation(should be in end)
+ * import org.apache.commons.io.FileUtils; //violation(should be in end)
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //violation
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  * </pre>
@@ -287,7 +287,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.time.*; //OK
  * import javax.net.*; //OK
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //violation
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  * </pre>
@@ -314,7 +314,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.time.*; //OK
  * import javax.net.*; //OK
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  * </pre>
@@ -342,7 +342,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.time.*; //OK
  * import javax.net.*; //OK
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  * </pre>
@@ -398,7 +398,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.time.*; //OK
  * import javax.net.*; //OK
- * import org.apache.commons.io.fileutils; //Violation should be separated by space
+ * import org.apache.commons.io.FileUtils; //Violation should be separated by space
  *
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
@@ -447,7 +447,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //Violation
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //Violation
  *
- * import org.apache.commons.io.fileutils;
+ * import org.apache.commons.io.FileUtils;
  * </pre>
  * <p>
  * To configure the check so that it matches default IntelliJ IDEA formatter configuration
@@ -495,7 +495,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import javax.net.*; //Violation should be in special import group
  *
- * import org.apache.commons.io.fileutils; //Violation should be in
+ * import org.apache.commons.io.FileUtils; //Violation should be in
  *                                        //THIRD PARTY PACKAGE GROUP
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //Violation
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //Violation
@@ -528,7 +528,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
  *
- * import org.apache.commons.io.fileutils; //should not be separated by line
+ * import org.apache.commons.io.FileUtils; //should not be separated by line
  * </pre>
  * <p>
  * To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
@@ -555,7 +555,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * </pre>
  * <p>
  * Also, this check can be configured to force empty line separator between
@@ -578,7 +578,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import javax.net.*; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
- * import org.apache.commons.io.fileutils; //OK
+ * import org.apache.commons.io.FileUtils; //OK
  * </pre>
  * <p>
  * It is possible to enforce
