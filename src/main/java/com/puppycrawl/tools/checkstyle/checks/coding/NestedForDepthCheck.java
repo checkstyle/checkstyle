@@ -130,7 +130,7 @@ public final class NestedForDepthCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_FOR};
+        return new int[] {TokenTypes.LITERAL_FOR };
     }
 
     @Override

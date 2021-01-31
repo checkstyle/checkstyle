@@ -40,7 +40,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     public void testGetAcceptableTokens() {
         final NonEmptyAtclauseDescriptionCheck checkObj =
             new NonEmptyAtclauseDescriptionCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
@@ -49,7 +49,7 @@ public class NonEmptyAtclauseDescriptionCheckTest
     public void testGetRequiredTokens() {
         final NonEmptyAtclauseDescriptionCheck checkObj =
             new NonEmptyAtclauseDescriptionCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

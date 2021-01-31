@@ -319,7 +319,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
                 final LocalizedMessage msg = new LocalizedMessage(1, TRANSLATION_BUNDLE,
-                        WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
+                        WRONG_LANGUAGE_CODE_KEY, new Object[] {code }, getId(), getClass(), null);
                 final String exceptionMessage = String.format(Locale.ROOT,
                         "%s [%s]", msg.getMessage(), TranslationCheck.class.getSimpleName());
                 throw new IllegalArgumentException(exceptionMessage);
@@ -622,7 +622,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
             key = "general.fileNotFound";
         }
         else {
-            args = new String[] {exception.getMessage()};
+            args = new String[] {exception.getMessage() };
             key = "general.exception";
         }
         final LocalizedMessage message =

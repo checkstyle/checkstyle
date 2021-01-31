@@ -69,7 +69,7 @@ import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-@ExtendWith({ExitGuard.class, SystemErrGuard.class, SystemOutGuard.class})
+@ExtendWith({ExitGuard.class, SystemErrGuard.class, SystemOutGuard.class })
 public class MainTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,
@@ -445,11 +445,11 @@ public class MainTest {
         Main.main("-c", getPath("InputMainConfig-classname2.xml"), getPath("InputMain.java"));
         final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$" },
                 null, getClass(), null);
         final LocalizedMessage invalidPatternMessageMainInner = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$" },
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain.java");
         assertEquals(
@@ -496,14 +496,14 @@ public class MainTest {
         });
         final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(2)}, null, getClass(), null);
+                new String[] {String.valueOf(2) }, null, getClass(), null);
         final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$" },
                 null, getClass(), null);
         final LocalizedMessage invalidPatternMessageMainInner = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$" },
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain.java");
         assertEquals(
@@ -534,10 +534,10 @@ public class MainTest {
         });
         final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(1)}, null, getClass(), null);
+                new String[] {String.valueOf(1) }, null, getClass(), null);
         final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
-                "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},
+                "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$" },
                 null, getClass(), null);
         final String expectedPath = getFilePath("InputMain1.java");
         assertEquals(
@@ -558,7 +558,7 @@ public class MainTest {
         });
         final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
-                new String[] {String.valueOf(1)}, null, getClass(), null);
+                new String[] {String.valueOf(1) }, null, getClass(), null);
         final LocalizedMessage message = new LocalizedMessage(1,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 "javadoc.packageInfo", new String[] {},
@@ -681,7 +681,7 @@ public class MainTest {
             // so we skip that drive letter for compatibility issues
             final LocalizedMessage loadPropertiesMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
-                    new String[] {""}, null, getClass(), null);
+                    new String[] {"" }, null, getClass(), null);
             final String causeMessage = ex.getCause().getLocalizedMessage();
             final String localizedMessage = loadPropertiesMessage.getMessage();
             final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
@@ -701,7 +701,7 @@ public class MainTest {
             @SysOut Capturable systemOut) throws IOException {
         // we just reference there all violations
         final String[][] outputValues = {
-                {"InputMainComplexityOverflow", "1", "172"},
+                {"InputMainComplexityOverflow", "1", "172" },
         };
 
         final int allowedLength = 170;
@@ -718,7 +718,7 @@ public class MainTest {
                 + outputValues[0][1] + ": ";
         for (String[] outputValue : outputValues) {
             final String localizedMessage = new LocalizedMessage(1, bundle,
-                    msgKey, new Integer[] {Integer.valueOf(outputValue[2]), allowedLength},
+                    msgKey, new Integer[] {Integer.valueOf(outputValue[2]), allowedLength },
                     null, getClass(), null).getMessage();
             final String line = format + localizedMessage + " [FileLength]";
             sb.append(line).append(EOL);
@@ -1449,7 +1449,7 @@ public class MainTest {
                 new String[] {"TestRootModuleChecker", checkstylePackage
                         + "TestRootModuleChecker, "
                         + "TestRootModuleCheckerCheck, " + checkstylePackage
-                        + "TestRootModuleCheckerCheck"},
+                        + "TestRootModuleCheckerCheck" },
                 null, getClass(), null);
         assertTrue(systemErr.getCapturedData().startsWith(checkstylePackage
                 + "api.CheckstyleException: " + unableToInstantiateExceptionMessage.getMessage()),

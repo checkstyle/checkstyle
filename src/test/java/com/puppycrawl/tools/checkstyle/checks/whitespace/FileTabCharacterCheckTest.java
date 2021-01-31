@@ -77,7 +77,7 @@ public class FileTabCharacterCheckTest
         final String exceptionMessage = " (No such file or directory)";
         final LocalizedMessage localizedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {path + exceptionMessage}, null, getClass(), null);
+                new String[] {path + exceptionMessage }, null, getClass(), null);
 
         final String[] expected = {
             "1: " + localizedMessage.getMessage(),

@@ -188,7 +188,7 @@ public class AvoidStarImportCheck
         //      <property name="tokens" value="IMPORT"/>
         //      <property name="allowStaticMemberImports" value="false"/>
         //   </module>
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT };
     }
 
     /**

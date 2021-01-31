@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.whitespacearound;
 
-@SuppressWarnings({"this", "that"})
+@SuppressWarnings({"this", "that" })
 public class InputWhitespaceAround
 {
     protected InputWhitespaceAround ( int i )
@@ -23,7 +23,7 @@ public class InputWhitespaceAround
 }
 
 @interface CronExpression {
-    Class<?>[] groups() default {};
+    Class<?>[] groups() default { };
 }
 
 @interface CronExpression1 {

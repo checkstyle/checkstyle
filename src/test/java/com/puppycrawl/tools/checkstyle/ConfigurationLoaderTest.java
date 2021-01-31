@@ -362,18 +362,18 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
     @Test
     public void testReplacePropertiesReplace() throws Exception {
         final String[][] testValues = {
-            {"${a}", "A"},
-            {"x${a}", "xA"},
-            {"${a}x", "Ax"},
-            {"${a}${b}", "AB"},
-            {"x${a}${b}", "xAB"},
-            {"${a}x${b}", "AxB"},
-            {"${a}${b}x", "ABx"},
-            {"x${a}y${b}", "xAyB"},
-            {"${a}x${b}y", "AxBy"},
-            {"x${a}${b}y", "xABy"},
-            {"x${a}y${b}z", "xAyBz"},
-            {"$$", "$"},
+            {"${a}", "A" },
+            {"x${a}", "xA" },
+            {"${a}x", "Ax" },
+            {"${a}${b}", "AB" },
+            {"x${a}${b}", "xAB" },
+            {"${a}x${b}", "AxB" },
+            {"${a}${b}x", "ABx" },
+            {"x${a}y${b}", "xAyB" },
+            {"${a}x${b}y", "AxBy" },
+            {"x${a}${b}y", "xABy" },
+            {"x${a}y${b}z", "xAyBz" },
+            {"$$", "$" },
         };
         final Properties props = initProperties();
         for (String[] testValue : testValues) {

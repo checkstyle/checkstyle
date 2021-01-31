@@ -37,7 +37,7 @@ public class DefaultConfigurationTest {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
         config.addAttribute("attribute", "value");
         final String[] actual = config.getAttributeNames();
-        final String[] expected = {"attribute"};
+        final String[] expected = {"attribute" };
         assertArrayEquals(expected, actual, "Invalid attribute names");
     }
 

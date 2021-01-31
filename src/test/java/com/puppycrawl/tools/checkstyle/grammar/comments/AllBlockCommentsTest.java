@@ -73,7 +73,7 @@ public class AllBlockCommentsTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN};
+            return new int[] {TokenTypes.BLOCK_COMMENT_BEGIN };
         }
 
         @Override

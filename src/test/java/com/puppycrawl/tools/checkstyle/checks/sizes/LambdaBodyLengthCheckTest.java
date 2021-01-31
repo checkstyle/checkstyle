@@ -39,7 +39,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final LambdaBodyLengthCheck checkObj = new LambdaBodyLengthCheck();
-        final int[] expected = {TokenTypes.LAMBDA};
+        final int[] expected = {TokenTypes.LAMBDA };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }
@@ -49,7 +49,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
         final LambdaBodyLengthCheck lambdaBodyLengthCheckObj =
                 new LambdaBodyLengthCheck();
         final int[] actual = lambdaBodyLengthCheckObj.getAcceptableTokens();
-        final int[] expected = {TokenTypes.LAMBDA};
+        final int[] expected = {TokenTypes.LAMBDA };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }

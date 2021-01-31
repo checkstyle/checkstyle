@@ -42,7 +42,7 @@ public class JavadocParagraphCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final JavadocParagraphCheck checkObj = new JavadocParagraphCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

@@ -106,7 +106,7 @@ public class StringLiteralEqualityCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EQUAL, TokenTypes.NOT_EQUAL};
+        return new int[] {TokenTypes.EQUAL, TokenTypes.NOT_EQUAL };
     }
 
     @Override

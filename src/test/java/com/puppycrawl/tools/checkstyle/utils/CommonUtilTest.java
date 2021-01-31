@@ -149,7 +149,7 @@ public class CommonUtilTest extends AbstractPathTestSupport {
 
     @Test
     public void testFileExtensions() {
-        final String[] fileExtensions = {"java"};
+        final String[] fileExtensions = {"java" };
         final File pdfFile = new File("file.pdf");
         assertFalse(CommonUtil.matchesFileExtension(pdfFile, fileExtensions),
                 "Invalid file extension");

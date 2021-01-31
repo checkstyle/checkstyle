@@ -45,7 +45,7 @@ public class NoFinalizerCheckTest
     public void testGetAcceptableTokens() {
         final NoFinalizerCheck noFinalizerCheck =
                 new NoFinalizerCheck();
-        final int[] expected = {TokenTypes.METHOD_DEF};
+        final int[] expected = {TokenTypes.METHOD_DEF };
 
         assertArrayEquals(expected, noFinalizerCheck.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");

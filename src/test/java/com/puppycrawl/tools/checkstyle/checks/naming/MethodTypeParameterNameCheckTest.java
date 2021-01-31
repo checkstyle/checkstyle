@@ -40,7 +40,7 @@ public class MethodTypeParameterNameCheckTest
     public void testGetAcceptableTokens() {
         final MethodTypeParameterNameCheck methodTypeParameterNameCheck =
             new MethodTypeParameterNameCheck();
-        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+        final int[] expected = {TokenTypes.TYPE_PARAMETER };
 
         assertArrayEquals(expected, methodTypeParameterNameCheck.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
@@ -50,7 +50,7 @@ public class MethodTypeParameterNameCheckTest
     public void testGetRequiredTokens() {
         final MethodTypeParameterNameCheck checkObj =
             new MethodTypeParameterNameCheck();
-        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+        final int[] expected = {TokenTypes.TYPE_PARAMETER };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

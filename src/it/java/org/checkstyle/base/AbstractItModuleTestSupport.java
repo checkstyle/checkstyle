@@ -214,7 +214,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     protected final void verify(Configuration config, String fileName, String[] expected,
             Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
-                new File[] {new File(fileName)},
+                new File[] {new File(fileName) },
                 fileName, expected, warnsExpected);
     }
 

@@ -290,7 +290,7 @@ public class SuppressWarningsHolder
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.ANNOTATION};
+        return new int[] {TokenTypes.ANNOTATION };
     }
 
     @Override

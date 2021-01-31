@@ -77,7 +77,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
     @Test
     public void testGet() {
         final SuppressWarningsHolder checkObj = new SuppressWarningsHolder();
-        final int[] expected = {TokenTypes.ANNOTATION};
+        final int[] expected = {TokenTypes.ANNOTATION };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Required token array differs from expected");
         assertArrayEquals(expected, checkObj.getAcceptableTokens(),

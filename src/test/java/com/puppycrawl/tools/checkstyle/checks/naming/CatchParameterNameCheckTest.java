@@ -40,7 +40,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTokens() {
         final CatchParameterNameCheck catchParameterNameCheck = new CatchParameterNameCheck();
-        final int[] expected = {TokenTypes.PARAMETER_DEF};
+        final int[] expected = {TokenTypes.PARAMETER_DEF };
 
         assertArrayEquals(expected, catchParameterNameCheck.getRequiredTokens(),
                 "Default required tokens are invalid");

@@ -265,7 +265,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                           String... expected)
             throws Exception {
         verify(checker,
-                new File[] {new File(processedFilename)},
+                new File[] {new File(processedFilename) },
                 messageFileName, expected);
     }
 

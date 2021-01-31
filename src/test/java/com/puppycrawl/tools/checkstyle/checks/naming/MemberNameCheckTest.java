@@ -39,7 +39,7 @@ public class MemberNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         final MemberNameCheck checkObj = new MemberNameCheck();
-        final int[] expected = {TokenTypes.VARIABLE_DEF};
+        final int[] expected = {TokenTypes.VARIABLE_DEF };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

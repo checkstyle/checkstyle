@@ -516,7 +516,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.SINGLE_LINE_COMMENT};
+            return new int[] {TokenTypes.SINGLE_LINE_COMMENT };
         }
 
         @Override
@@ -610,7 +610,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.ANNOTATION};
+            return new int[] {TokenTypes.ANNOTATION };
         }
 
         @Override

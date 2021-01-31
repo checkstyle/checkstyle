@@ -131,7 +131,7 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.ARRAY_DECLARATOR};
+        return new int[] {TokenTypes.ARRAY_DECLARATOR };
     }
 
     @Override

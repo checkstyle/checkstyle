@@ -126,7 +126,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF};
+        return new int[] {TokenTypes.CLASS_DEF };
     }
 
     @Override

@@ -68,7 +68,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAcceptableTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
-        final int[] expected = {TokenTypes.LITERAL_THROWS};
+        final int[] expected = {TokenTypes.LITERAL_THROWS };
         assertArrayEquals(expected, obj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
@@ -76,7 +76,7 @@ public class ThrowsCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final ThrowsCountCheck obj = new ThrowsCountCheck();
-        final int[] expected = {TokenTypes.LITERAL_THROWS};
+        final int[] expected = {TokenTypes.LITERAL_THROWS };
         assertArrayEquals(expected, obj.getRequiredTokens(), "Default required tokens are invalid");
     }
 

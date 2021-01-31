@@ -41,7 +41,7 @@ public class RequireEmptyLineBeforeBlockTagGroupCheckTest extends AbstractModule
     public void testGetRequiredTokens() {
         final RequireEmptyLineBeforeBlockTagGroupCheck checkObj =
                 new RequireEmptyLineBeforeBlockTagGroupCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

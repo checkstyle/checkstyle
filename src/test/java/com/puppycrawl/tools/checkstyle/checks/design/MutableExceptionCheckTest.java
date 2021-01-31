@@ -82,7 +82,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
             "6:9: " + getCheckMessage(MSG_KEY, "errorCode"),
             "10:9: " + getCheckMessage(MSG_KEY, "errorCode"));
 
-        final File[] inputs = {new File(filePath1), new File(filePath2)};
+        final File[] inputs = {new File(filePath1), new File(filePath2) };
 
         verify(createChecker(checkConfig), inputs,
                 ImmutableMap.of(filePath1, expected1, filePath2, expected2));
@@ -103,7 +103,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF };
         assertArrayEquals(expected, obj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
@@ -111,7 +111,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF };
         assertArrayEquals(expected, obj.getRequiredTokens(), "Default required tokens are invalid");
     }
 

@@ -39,7 +39,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetAcceptableTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
@@ -47,7 +47,7 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
-        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
+        final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

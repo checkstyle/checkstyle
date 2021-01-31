@@ -177,7 +177,7 @@ public class RootNodeTest extends AbstractPathTestSupport {
 
     @Test
     public void testGetDeclaredNamespaces() {
-        final NamespaceBinding[] namespaceBindings = {new NamespaceBinding("prefix", "uri")};
+        final NamespaceBinding[] namespaceBindings = {new NamespaceBinding("prefix", "uri") };
         try {
             rootNode.getDeclaredNamespaces(namespaceBindings);
             fail("Exception is excepted");

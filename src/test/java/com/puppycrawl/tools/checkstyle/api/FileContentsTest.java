@@ -43,7 +43,7 @@ public class FileContentsTest {
                 new FileText(new File("filename"), Arrays.asList("123", "456")));
 
         assertEquals("filename", fileContents.getText().getFile().getName(), "Invalid file name");
-        assertArrayEquals(new String[] {"123", "456"}, fileContents.getLines(), "Invalid array");
+        assertArrayEquals(new String[] {"123", "456" }, fileContents.getLines(), "Invalid array");
         assertEquals("filename", fileContents.getFileName(), "Invalid file name");
     }
 
@@ -78,8 +78,8 @@ public class FileContentsTest {
         fileContents.reportSingleLineComment(1, 1);
         fileContents.reportBlockComment(1, 1, 1, 1);
 
-        final Comment cppComment = new Comment(new String[] {"23"}, 1, 1, 2);
-        final Comment cComment = new Comment(new String[] {"2"}, 1, 1, 1);
+        final Comment cppComment = new Comment(new String[] {"23" }, 1, 1, 2);
+        final Comment cComment = new Comment(new String[] {"2" }, 1, 1, 1);
         final String lineComment = fileContents.getSingleLineComments().get(1).toString();
         assertEquals(cppComment.toString(), lineComment, "Invalid cpp comment");
         final String blockComment = fileContents.getBlockComments().get(1).get(0).toString();
@@ -114,7 +114,7 @@ public class FileContentsTest {
         final Map<Integer, TextBlock> cppComments = fileContents.getSingleLineComments();
 
         assertEquals(
-                new Comment(new String[] {" //  "}, 2, 1, 6).toString(),
+                new Comment(new String[] {" //  " }, 2, 1, 6).toString(),
                 cppComments.get(1).toString(), "Invalid comment");
     }
 
@@ -137,7 +137,7 @@ public class FileContentsTest {
         final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertEquals(
-                new Comment(new String[] {"/"}, 2, 1, 2).toString(),
+                new Comment(new String[] {"/" }, 2, 1, 2).toString(),
                 comments.get(1).get(0).toString(), "Invalid comment");
     }
 
@@ -150,8 +150,8 @@ public class FileContentsTest {
         final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertEquals(Arrays.asList(
-            new Comment(new String[] {"/* a */"}, 0, 1, 6),
-            new Comment(new String[] {"/* b */"}, 8, 1, 14)
+            new Comment(new String[] {"/* a */" }, 0, 1, 6),
+            new Comment(new String[] {"/* b */" }, 8, 1, 14)
         ).toString(), comments.get(1).toString(), "Invalid comment");
     }
 
@@ -163,7 +163,7 @@ public class FileContentsTest {
         final Map<Integer, List<TextBlock>> comments = fileContents.getBlockComments();
 
         assertEquals(Collections.singletonList(
-            new Comment(new String[] {"/*", "c", "*/"}, 0, 3, 1)
+            new Comment(new String[] {"/*", "c", "*/" }, 0, 3, 1)
         ).toString(), comments.get(1).toString(), "Invalid comment");
     }
 
@@ -176,7 +176,7 @@ public class FileContentsTest {
         fileContents.reportBlockComment("type", 5, 0, 5, 6);
 
         assertNull(fileContents.getJavadocBefore(1), "Invalid comment");
-        assertEquals(new Comment(new String[] {"/** A */"}, 0, 1, 7).toString(),
+        assertEquals(new Comment(new String[] {"/** A */" }, 0, 1, 7).toString(),
             fileContents.getJavadocBefore(4).toString(), "Invalid comment");
         assertNull(fileContents.getJavadocBefore(5), "Invalid comment");
         assertNull(fileContents.getJavadocBefore(6), "Invalid comment");
@@ -211,7 +211,7 @@ public class FileContentsTest {
         final TextBlock comment = fileContents.getJavadocBefore(2);
 
         assertEquals(
-                new Comment(new String[] {"/** *"}, 2, 1, 6).toString(),
+                new Comment(new String[] {"/** *" }, 2, 1, 6).toString(),
                 comment.toString(), "Invalid comment");
     }
 
@@ -223,7 +223,7 @@ public class FileContentsTest {
         final TextBlock comment = fileContents.getJavadocBefore(2);
 
         assertEquals(
-                new Comment(new String[] {"/** *"}, 2, 1, 6).toString(),
+                new Comment(new String[] {"/** *" }, 2, 1, 6).toString(),
                 comment.toString(), "Invalid comment");
     }
 
@@ -250,12 +250,12 @@ public class FileContentsTest {
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Collections.singletonList("    ")));
         final Map<Integer, TextBlock> javadoc = new HashMap<>();
-        javadoc.put(0, new Comment(new String[] {"// "}, 2, 1, 2));
+        javadoc.put(0, new Comment(new String[] {"// " }, 2, 1, 2));
         Whitebox.setInternalState(fileContents, "javadocComments", javadoc);
         final TextBlock javadocBefore = fileContents.getJavadocBefore(2);
 
         assertEquals(
-                new Comment(new String[] {"// "}, 2, 1, 2).toString(),
+                new Comment(new String[] {"// " }, 2, 1, 2).toString(),
                 javadocBefore.toString(), "Invalid before javadoc");
     }
 
@@ -269,7 +269,7 @@ public class FileContentsTest {
             fileContents.getBlockComments();
         final String[] text = blockComments.get(3).get(0).getText();
 
-        assertArrayEquals(new String[] {"/* test   ", "  *"}, text, "Invalid comment text");
+        assertArrayEquals(new String[] {"/* test   ", "  *" }, text, "Invalid comment text");
     }
 
     @Test
@@ -278,7 +278,7 @@ public class FileContentsTest {
                 new FileText(new File("filename"), Collections.emptyList()));
         final Map<Integer, List<TextBlock>> clangComments = Whitebox.getInternalState(fileContents,
                 "clangComments");
-        final TextBlock textBlock = new Comment(new String[] {""}, 1, 1, 1);
+        final TextBlock textBlock = new Comment(new String[] {"" }, 1, 1, 1);
         clangComments.put(1, Collections.singletonList(textBlock));
         clangComments.put(2, Collections.emptyList());
 

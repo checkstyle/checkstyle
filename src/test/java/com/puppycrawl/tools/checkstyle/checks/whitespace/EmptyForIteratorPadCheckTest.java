@@ -44,7 +44,7 @@ public class EmptyForIteratorPadCheckTest
     @Test
     public void testGetRequiredTokens() {
         final EmptyForIteratorPadCheck checkObj = new EmptyForIteratorPadCheck();
-        final int[] expected = {TokenTypes.FOR_ITERATOR};
+        final int[] expected = {TokenTypes.FOR_ITERATOR };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

@@ -148,7 +148,7 @@ public class CatchParameterNameCheck extends AbstractNameCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.PARAMETER_DEF};
+        return new int[] {TokenTypes.PARAMETER_DEF };
     }
 
     @Override

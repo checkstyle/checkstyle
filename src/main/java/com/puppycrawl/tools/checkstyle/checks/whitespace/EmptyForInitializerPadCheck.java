@@ -119,7 +119,7 @@ public class EmptyForInitializerPadCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.FOR_INIT};
+        return new int[] {TokenTypes.FOR_INIT };
     }
 
     @Override

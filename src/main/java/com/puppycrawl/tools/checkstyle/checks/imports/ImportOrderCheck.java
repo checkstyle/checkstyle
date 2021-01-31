@@ -741,12 +741,12 @@ public class ImportOrderCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT };
     }
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.IMPORT};
+        return new int[] {TokenTypes.IMPORT };
     }
 
     @Override

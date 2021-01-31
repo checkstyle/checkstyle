@@ -308,7 +308,7 @@ public class MagicNumberCheck extends AbstractCheck {
     };
 
     /** Specify non-magic numbers. */
-    private double[] ignoreNumbers = {-1, 0, 1, 2};
+    private double[] ignoreNumbers = {-1, 0, 1, 2 };
 
     /** Ignore magic numbers in hashCode methods. */
     private boolean ignoreHashCodeMethod;

@@ -135,7 +135,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         };
 
         check.setTokens("IDENT, EXPR, ELIST");
-        assertArrayEquals(new String[] {"IDENT, EXPR, ELIST"},
+        assertArrayEquals(new String[] {"IDENT, EXPR, ELIST" },
             check.getTokenNames().toArray(), "unexpected result");
     }
 
@@ -215,7 +215,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 return getDefaultTokens();
             }
         };
-        final String[] lines = {"test"};
+        final String[] lines = {"test" };
         final FileContents fileContents = new FileContents(
                 new FileText(new File("filename"), Arrays.asList(lines)));
         check.setFileContents(fileContents);
@@ -226,9 +226,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testGetAcceptableTokens() {
-        final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
-        final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
-        final int[] requiredTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF};
+        final int[] defaultTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
+        final int[] acceptableTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
+        final int[] requiredTokens = {TokenTypes.CLASS_DEF, TokenTypes.INTERFACE_DEF };
         final AbstractCheck check = new AbstractCheck() {
             @Override
             public int[] getDefaultTokens() {
@@ -323,7 +323,7 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
     public static final class DummyAbstractCheck extends AbstractCheck {
 
-        private static final int[] DUMMY_ARRAY = {6};
+        private static final int[] DUMMY_ARRAY = {6 };
 
         @Override
         public int[] getDefaultTokens() {

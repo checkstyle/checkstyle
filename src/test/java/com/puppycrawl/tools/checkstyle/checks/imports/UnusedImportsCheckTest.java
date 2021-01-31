@@ -53,9 +53,9 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
                 "5:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
         );
         final File[] inputsWithWarningsFirst =
-            {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+            {new File(inputWithWarnings), new File(inputWithoutWarnings) };
         final File[] inputsWithoutWarningFirst =
-            {new File(inputWithoutWarnings), new File(inputWithWarnings)};
+            {new File(inputWithoutWarnings), new File(inputWithWarnings) };
 
         verify(createChecker(checkConfig), inputsWithWarningsFirst, ImmutableMap.of(
                 inputWithoutWarnings, expectedFirstInput,

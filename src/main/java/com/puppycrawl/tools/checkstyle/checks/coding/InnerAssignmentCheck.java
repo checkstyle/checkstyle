@@ -138,16 +138,16 @@ public class InnerAssignmentCheck
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGNMENT_CONTEXT = {
-        {TokenTypes.EXPR, TokenTypes.SLIST},
-        {TokenTypes.VARIABLE_DEF},
-        {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT},
-        {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_ITERATOR},
-        {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR}, {
+        {TokenTypes.EXPR, TokenTypes.SLIST },
+        {TokenTypes.VARIABLE_DEF },
+        {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_INIT },
+        {TokenTypes.EXPR, TokenTypes.ELIST, TokenTypes.FOR_ITERATOR },
+        {TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR }, {
             TokenTypes.RESOURCE,
             TokenTypes.RESOURCES,
             TokenTypes.RESOURCE_SPECIFICATION,
         },
-        {TokenTypes.EXPR, TokenTypes.LAMBDA},
+        {TokenTypes.EXPR, TokenTypes.LAMBDA },
     };
 
     /**
@@ -155,11 +155,11 @@ public class InnerAssignmentCheck
      * towards the root.
      */
     private static final int[][] CONTROL_CONTEXT = {
-        {TokenTypes.EXPR, TokenTypes.LITERAL_DO},
-        {TokenTypes.EXPR, TokenTypes.LITERAL_FOR},
-        {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE},
-        {TokenTypes.EXPR, TokenTypes.LITERAL_IF},
-        {TokenTypes.EXPR, TokenTypes.LITERAL_ELSE},
+        {TokenTypes.EXPR, TokenTypes.LITERAL_DO },
+        {TokenTypes.EXPR, TokenTypes.LITERAL_FOR },
+        {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE },
+        {TokenTypes.EXPR, TokenTypes.LITERAL_IF },
+        {TokenTypes.EXPR, TokenTypes.LITERAL_ELSE },
     };
 
     /**
@@ -167,9 +167,9 @@ public class InnerAssignmentCheck
      * towards the root.
      */
     private static final int[][] ALLOWED_ASSIGNMENT_IN_COMPARISON_CONTEXT = {
-        {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE},
-        {TokenTypes.EXPR, TokenTypes.FOR_CONDITION},
-        {TokenTypes.EXPR, TokenTypes.LITERAL_DO},
+        {TokenTypes.EXPR, TokenTypes.LITERAL_WHILE },
+        {TokenTypes.EXPR, TokenTypes.FOR_CONDITION },
+        {TokenTypes.EXPR, TokenTypes.LITERAL_DO },
     };
 
     /**

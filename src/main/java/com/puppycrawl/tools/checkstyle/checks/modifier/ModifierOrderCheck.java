@@ -123,7 +123,7 @@ public class ModifierOrderCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.MODIFIERS};
+        return new int[] {TokenTypes.MODIFIERS };
     }
 
     @Override

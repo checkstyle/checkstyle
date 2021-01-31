@@ -80,7 +80,7 @@ public class BlockTagUtilTest {
         final String[] text = {
             "/**",
             " * Foo",
-            " * @version 1.0 */"};
+            " * @version 1.0 */" };
 
         final List<TagInfo> tags = BlockTagUtil.extractBlockTags(text);
         assertEquals(1, tags.size(), "Invalid tags size");

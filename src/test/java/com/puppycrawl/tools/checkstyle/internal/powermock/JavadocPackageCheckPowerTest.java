@@ -54,7 +54,7 @@ public class JavadocPackageCheckPowerTest extends AbstractModuleTestSupport {
         when(fileWithoutParent.getParentFile()).thenReturn(null);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(moduleConfig),
-                new File[] {fileWithoutParent},
+                new File[] {fileWithoutParent },
                 getPath("annotation"
                     + File.separator + "package-info.java"), expected);
     }

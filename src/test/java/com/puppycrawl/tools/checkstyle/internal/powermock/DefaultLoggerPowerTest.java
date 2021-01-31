@@ -52,7 +52,7 @@ public class DefaultLoggerPowerTest {
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
         final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
-                new String[] {"myfile"}, null,
+                new String[] {"myfile" }, null,
                 getClass(), null);
         final LocalizedMessage startMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_STARTED_MESSAGE,

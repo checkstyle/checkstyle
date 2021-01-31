@@ -98,7 +98,7 @@ public class TokenUtilTest {
 
         final String[] actualArray =
             TokenUtil.valueToNameArrayFromNameToValueMap(map);
-        final String[] expectedArray = {"ZERO", "ONE", "TWO"};
+        final String[] expectedArray = {"ZERO", "ONE", "TWO" };
 
         assertArrayEquals(expectedArray, actualArray, "Unexpected value to name array");
     }

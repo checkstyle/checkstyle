@@ -44,7 +44,7 @@ public class EmptyForInitializerPadCheckTest
     @Test
     public void testGetRequiredTokens() {
         final EmptyForInitializerPadCheck checkObj = new EmptyForInitializerPadCheck();
-        final int[] expected = {TokenTypes.FOR_INIT};
+        final int[] expected = {TokenTypes.FOR_INIT };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

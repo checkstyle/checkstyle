@@ -170,7 +170,7 @@ public class AvoidNestedBlocksCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.SLIST};
+        return new int[] {TokenTypes.SLIST };
     }
 
     @Override

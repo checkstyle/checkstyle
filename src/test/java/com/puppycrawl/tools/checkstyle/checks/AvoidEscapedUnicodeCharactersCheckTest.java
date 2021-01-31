@@ -511,7 +511,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
         String expression = ((Pattern) field.get(null)).pattern();
 
         // Replacing expressions like "\\u000[bB]" with "\\u000B"
-        final String[] charExpressions = {"Aa", "Bb", "Cc", "Dd", "Ee", "Ff"};
+        final String[] charExpressions = {"Aa", "Bb", "Cc", "Dd", "Ee", "Ff" };
         for (String charExpression : charExpressions) {
             final String regex = "\\[[" + charExpression + "]{2}]";
             expression = expression.replaceAll(regex, charExpression.substring(0, 1));

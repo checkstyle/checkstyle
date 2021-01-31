@@ -174,7 +174,7 @@ public class LambdaBodyLengthCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LAMBDA};
+        return new int[] {TokenTypes.LAMBDA };
     }
 
     @Override

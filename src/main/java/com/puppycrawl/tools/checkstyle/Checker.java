@@ -341,7 +341,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             log.debug("IOException occurred.", ioe);
             fileMessages.add(new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {ioe.getMessage()}, null, getClass(), null));
+                    new String[] {ioe.getMessage() }, null, getClass(), null));
         }
         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
         catch (Exception ex) {
@@ -358,7 +358,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
             fileMessages.add(new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-                    new String[] {sw.getBuffer().toString()},
+                    new String[] {sw.getBuffer().toString() },
                     null, getClass(), null));
         }
         return fileMessages;

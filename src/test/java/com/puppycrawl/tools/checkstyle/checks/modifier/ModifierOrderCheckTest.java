@@ -43,7 +43,7 @@ public class ModifierOrderCheckTest
     @Test
     public void testGetRequiredTokens() {
         final ModifierOrderCheck checkObj = new ModifierOrderCheck();
-        final int[] expected = {TokenTypes.MODIFIERS};
+        final int[] expected = {TokenTypes.MODIFIERS };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }
@@ -77,7 +77,7 @@ public class ModifierOrderCheckTest
     public void testGetDefaultTokens() {
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getDefaultTokens();
-        final int[] expected = {TokenTypes.MODIFIERS};
+        final int[] expected = {TokenTypes.MODIFIERS };
         final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,
@@ -93,7 +93,7 @@ public class ModifierOrderCheckTest
     public void testGetAcceptableTokens() {
         final ModifierOrderCheck modifierOrderCheckObj = new ModifierOrderCheck();
         final int[] actual = modifierOrderCheckObj.getAcceptableTokens();
-        final int[] expected = {TokenTypes.MODIFIERS};
+        final int[] expected = {TokenTypes.MODIFIERS };
         final int[] unexpectedArray = {
             TokenTypes.MODIFIERS,
             TokenTypes.OBJBLOCK,

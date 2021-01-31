@@ -613,7 +613,7 @@ public class CheckstyleAntTask extends Task {
     public static class FormatterType extends EnumeratedAttribute {
 
         /** My possible values. */
-        private static final String[] VALUES = {E_XML, E_PLAIN};
+        private static final String[] VALUES = {E_XML, E_PLAIN };
 
         @Override
         public String[] getValues() {

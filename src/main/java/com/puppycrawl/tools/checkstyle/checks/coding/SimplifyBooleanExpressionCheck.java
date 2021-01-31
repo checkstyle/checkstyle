@@ -99,7 +99,7 @@ public class SimplifyBooleanExpressionCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE};
+        return new int[] {TokenTypes.LITERAL_TRUE, TokenTypes.LITERAL_FALSE };
     }
 
     @Override
