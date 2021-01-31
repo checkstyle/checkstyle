@@ -19,11 +19,11 @@ class InputWhitespaceAroundEmptyTypesAndCycles
 	private static final String ALLOWS_NULL_KEYS = "";
 	private static final String ALLOWS_NULL_VALUES = "";
 
-	@MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES})
+	@MapFeature.Require({ALLOWS_NULL_KEYS, ALLOWS_NULL_VALUES })
 	private void foo()
 	{
 		int i = 0;
-		String[][] x = { {"foo"} };
+		String[][] x = { {"foo" } };
 		int len = 0;
 		String sequence = null;
 		for (int first = 0; first < len && matches(sequence.charAt(first)); first++) {}
