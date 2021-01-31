@@ -10,6 +10,156 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.40">
+      <div class="releaseDate">31.01.2021</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Create new check RecordComponentName.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8765">#8765</a>
+          </li>
+          <li>
+            DesignForExtension: Special comment.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/4358">#4358</a>
+          </li>
+          <li>
+            AvoidEscapedUnicodeCharacters should support &#39;\s&#39; escape symbol.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9133">#9133</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            Metadata generation fails on line wrapped type description.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9204">#9204</a>
+          </li>
+          <li>
+            Exception message for invalid token is unclear .
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8932">#8932</a>
+          </li>
+          <li>
+            Indentation check gives false positive: &#39;array initialization
+            rcurly&#39; has incorrect indentation.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/8979">#8979</a>
+          </li>
+          <li>
+            UnusedImports doesn&#39;t recognize imports shadowed by inner interfaces.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/4219">#4219</a>
+          </li>
+          <li>
+            Unresolvable &#39;new&#39; Indentation Rule conflict introduced in 8.38.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/9071">#9071</a>
+          </li>
+          <li>
+            ForceStrictCondition should not affect individual array elements..
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/9086">#9086</a>
+          </li>
+          <li>
+            AvoidEscapedUnicodeCharactersCheck: False positive on text blocks
+            with a line separation.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9159">#9159</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            doc: udpate BeforeExecutionExclusionFileFilter to show example of negative lookahead.
+            Author: Roman Ivanov
+          </li>
+          <li>
+            fix TOKEN_TEXT_PATTERN in JavadocMetadataScraper.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9140">#9140</a>
+          </li>
+          <li>
+            Update doc for VariableDeclarationUsageDistance.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7663">#7663</a>
+          </li>
+          <li>
+            update doc for ImportOrder.
+            Author: Aryan Bindal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7687">#7687</a>
+          </li>
+          <li>
+            Github action CodeQL should use maven cache.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9203">#9203</a>
+          </li>
+          <li>
+            update ISSUE_TEMPLATE/feature_request.md to make demand to show
+            current  beharior by CLI.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/9114">#9114</a>
+          </li>
+          <li>
+            Update doc for FileTabCharacter.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7620">#7620</a>
+          </li>
+          <li>
+            Update doc for AvoidNestedBlocks.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7579">#7579</a>
+          </li>
+          <li>
+            Add optional label/title to diff report message.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9177">#9177</a>
+          </li>
+          <li>
+            Github actions should react with thump up (+1) emoj on message if triggered.
+            Author: Akash Mondal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9187">#9187</a>
+          </li>
+          <li>
+            minor: fix anchors for generated pages.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9185">#9185</a>
+          </li>
+          <li>
+            nondex tool found issue in token ordering at Indentation.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9003">#9003</a>
+          </li>
+          <li>
+            Create MatchXpath instance to forbig usage of &#39;expected&#39;
+            element in Test annotation of junit.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9137">#9137</a>
+          </li>
+          <li>
+            Use diff.groovy in openjdk14-with-checks-nonjavadoc-error semaphore job.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8960">#8960</a>
+          </li>
+          <li>
+            To top button - different behavior and text on different pages.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9001">#9001</a>
+          </li>
+          <li>
+            no-error-pgjdbc is failing on master build.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/9176">#9176</a>
+          </li>
+          <li>
+            Checkstyle: Javadoc not required on private method.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8710">#8710</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.39">
       <div class="releaseDate">31.12.2020</div>
       <p>New:</p>
