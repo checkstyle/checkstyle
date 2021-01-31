@@ -6,7 +6,7 @@ public class InputWhitespaceAroundArrayInitialization {
 
         final int[] COLORS = new int[]{5 }; // missing WS before "{"
 
-        final int[] COLORS1 = new int[] {5 }; // valid
+        final int[] COLORS1 = new int[] { 5 }; // valid
 
         final String[][] COLORS2 = {{"Green"}, {"Red"}}; //missing WS before inner array
 
@@ -26,7 +26,7 @@ public class InputWhitespaceAroundArrayInitialization {
 
         final String[][][][] COLORS42 = { { {{"White", "Blue"}, //missing WS between "{"
                                              {"Gray", "Black"},},},
-                                             { { {"Red"}}}};
+                                             { { {"Red" } } } };
 
     }
 
