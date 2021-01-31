@@ -566,7 +566,7 @@ recordDefinition![AST modifiers]
         ic:implementsClause
         rb:recordBodyDeclaration
         {#recordDefinition = #(#[RECORD_DEF, "RECORD_DEF"],
-                              modifiers, r, id, tp, ic, rc, rb);}
+                              modifiers, r, id, tp, rc, ic, rb);}
     ;
 
 recordComponentsList
