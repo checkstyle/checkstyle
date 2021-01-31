@@ -39,56 +39,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Checks the distance between declaration of variable and its first usage.
  * Note : Variable declaration/initialization statements are not counted while calculating length.
  * </p>
- * <p>
- * ATTENTION! (Unsupported cases)
- * </p>
- * <p>
- * Case #1:
- * </p>
- * <pre>
- * {
- *   int c;
- *   int a = 3;
- *   int b = 2;
- *   {
- *     a = a + b;
- *     c = b;
- *   }
- * }
- * </pre>
- * <p>
- * Distance for variable 'a' = 1;
- * Distance for variable 'b' = 1;
- * Distance for variable 'c' = 2.
- * </p>
- * <p>
- * As distance by default is 1 the check doesn't raise warning for variables 'a'
- * and 'b' to move them into the block.
- * </p>
- * <p>
- * Case #2:
- * </p>
- * <pre>
- * int sum = 0;
- * for (int i = 0; i &lt; 20; i++) {
- *   a++;
- *   b--;
- *   sum++;
- *   if (sum &gt; 10) {
- *     res = true;
- *   }
- * }
- * </pre>
- * <p>
- * Distance for variable 'sum' = 3.
- * </p>
- * <p>
- * As the distance is more than the default (=1), the check raises warning for variable
- * 'sum' to move it into the 'for(...)' block. But there is situation when
- * variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
- * warnings you can use the Suppression Filter, provided by Checkstyle, for the
- * whole class.
- * </p>
  * <ul>
  * <li>
  * Property {@code allowedDistance} - Specify distance between declaration
