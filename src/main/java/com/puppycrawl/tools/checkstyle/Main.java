@@ -49,6 +49,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
+import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
 import picocli.CommandLine;
@@ -437,7 +438,7 @@ public final class Main {
             throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
         }
 
-        return properties;
+        return ChainedPropertyUtil.getResolvedProperties(properties);
     }
 
     /**
