@@ -110,24 +110,13 @@ public class MethodDefHandler extends BlockParentHandler {
         checkModifiers();
         checkThrows();
 
-        if (getMethodDefParamRightParen(getMainAst()) != null) {
-            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
-        }
+        final DetailAST nextToLastChild = getMainAst().getLastChild().getPreviousSibling();
+        checkWrappingIndentation(getMainAst(), nextToLastChild);
+
         // abstract method def -- no body
         if (getLeftCurly() != null) {
             super.checkIndentation();
         }
-    }
-
-    /**
-     * Returns right parenthesis of method definition parameter list.
-     *
-     * @param methodDefAst
-     *          method definition ast node(TokenTypes.LITERAL_IF)
-     * @return right parenthesis of method definition parameter list.
-     */
-    private static DetailAST getMethodDefParamRightParen(DetailAST methodDefAst) {
-        return methodDefAst.findFirstToken(TokenTypes.RPAREN);
     }
 
     /**
