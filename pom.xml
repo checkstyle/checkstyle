@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.40</version>
+  <version>8.41-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
