@@ -244,4 +244,11 @@ public class InputNoEnumTrailingComma {
         A,B(){ public String toString() { return "";}},; //violation
         interface SomeInterface {}
     }
+
+    enum Foo45 {
+        , // violation
+    }
+    enum Foo46 {
+        ,; // violation
+    }
 }

@@ -23,6 +23,7 @@ import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -123,17 +124,16 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.ENUM_CONSTANT_DEF};
+        return new int[] {TokenTypes.ENUM_DEF};
     }
 
     @Override
     public void visitToken(DetailAST detailAST) {
-        final DetailAST nextSibling = detailAST.getNextSibling();
-        if (nextSibling.getType() == TokenTypes.COMMA) {
-            final DetailAST nextToNextSibling = nextSibling.getNextSibling();
-            if (nextToNextSibling.getType() != TokenTypes.ENUM_CONSTANT_DEF) {
-                log(nextSibling, MSG_KEY);
-            }
-        }
+        final DetailAST enumBlock = detailAST.findFirstToken(TokenTypes.OBJBLOCK);
+        TokenUtil.findFirstTokenByPredicate(enumBlock,
+            node -> TokenUtil.isOfType(node, TokenTypes.SEMI, TokenTypes.RCURLY))
+            .map(DetailAST::getPreviousSibling)
+            .filter(token -> token.getType() == TokenTypes.COMMA)
+            .ifPresent(comma -> log(comma, MSG_KEY));
     }
 }
