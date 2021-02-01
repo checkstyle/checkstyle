@@ -37,6 +37,7 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -470,8 +471,9 @@ public class ParenPadCheckTest
     public void testNoStackoverflowError()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ParenPadCheck.class);
+        final String path = getPath("InputParenPadNoStackoverflowError.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputParenPadNoStackoverflowError.java"), expected);
+        TestUtil.executeWithLimitedStackSizeAndTimeout(() -> verify(checkConfig, path, expected));
     }
 
     @Test

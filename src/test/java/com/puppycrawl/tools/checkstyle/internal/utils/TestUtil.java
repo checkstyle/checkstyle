@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.internal.utils;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -28,6 +30,8 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
+
+import org.junit.jupiter.api.function.Executable;
 
 import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
@@ -39,6 +43,21 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 
 public final class TestUtil {
+
+    /**
+     * The stack size used in {@link #executeWithLimitedStackSizeAndTimeout(Executable)}.
+     * This value should be as small as possible. Some JVM requires this value to be
+     * at least 144k.
+     *
+     * @see <a href="https://www.baeldung.com/jvm-configure-stack-sizes">
+     *      Configuring Stack Sizes in the JVM</a>
+     */
+    private static final int MINIMAL_STACK_SIZE = 147456;
+
+    /**
+     * Timeout for {@link #executeWithLimitedStackSizeAndTimeout} method.
+     */
+    private static final int EXECUTION_TIMEOUT = 10_000;
 
     private TestUtil() {
     }
@@ -235,6 +254,21 @@ public final class TestUtil {
             ++result;
         }
         return result;
+    }
+
+    /**
+     * Executes a test method in a thread with limited stack size.
+     *
+     * @param executable the method to execute
+     * @see <a href="https://docs.oracle.com/javase/specs/jvms/se15/html/jvms-2.html#jvms-2.5.2">
+     *      JVMS &sect;2.5.2</a>
+     */
+    public static void executeWithLimitedStackSizeAndTimeout(Executable executable) {
+        final Thread thread = new Thread(null, () -> {
+            assertDoesNotThrow(executable, "No exception expected");
+        }, "LimitedStackThread", MINIMAL_STACK_SIZE);
+        assertDoesNotThrow(() -> thread.join(EXECUTION_TIMEOUT),
+            "The worker thread should finish in less than 10 seconds");
     }
 
 }
