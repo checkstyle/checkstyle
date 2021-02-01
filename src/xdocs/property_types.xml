@@ -925,9 +925,12 @@
       <p>
         This type represents a URI. The string representation is parsed using a custom
         routine to analyze what type of URI the string is.
-        It can be a URL, regular file, or a resource path. It will try loading the path as
-        a URL first, then as a file that must exist, and then finally as a resource on the
-        classpath.
+        It can be a URL, regular file, a file referenced using 'classpath:' protocol, or
+        a resource path. It will try loading the path as a URL first, then as a file that
+        must exist, and then finally as a resource on the classpath.
+
+        Note that the pseudo URL `classpath:` specifies that the resource
+        should be loaded from the class path, if it is not a local file.
       </p>
     </section>
 
