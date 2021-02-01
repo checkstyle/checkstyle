@@ -757,7 +757,8 @@ annotationDefault
 // followed by any number of fields like a regular class
 enumBlock
     :    LCURLY
-            ( enumConstant ( options{greedy=true;}: COMMA enumConstant )* ( COMMA )? )?
+            ( enumConstant ( options{greedy=true;}: COMMA enumConstant )* )?
+            ( COMMA )?
             ( SEMI ( field | SEMI )* )?
         RCURLY
         {#enumBlock = #([OBJBLOCK, "OBJBLOCK"], #enumBlock);}
