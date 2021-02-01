@@ -59,6 +59,8 @@ public class NoEnumTrailingCommaCheckTest extends AbstractModuleTestSupport {
             "180:21: " + getCheckMessage(MSG_KEY),
             "200:10: " + getCheckMessage(MSG_KEY),
             "244:55: " + getCheckMessage(MSG_KEY),
+            "249:9: " + getCheckMessage(MSG_KEY),
+            "252:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputNoEnumTrailingComma.java"), expected);
     }
