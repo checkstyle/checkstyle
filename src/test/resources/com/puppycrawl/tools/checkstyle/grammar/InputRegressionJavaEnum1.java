@@ -23,3 +23,9 @@ enum e1 {
 enum e2 {
     E1();;
 }
+enum e3 {
+    ,
+}
+enum e4 {
+    ,;
+}
