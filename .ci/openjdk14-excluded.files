@@ -56,9 +56,9 @@
   <property name="fileNamePattern" value="[\\/]AnnoTreeTests.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/8653 -->
+<!-- until https://github.com/checkstyle/checkstyle/issues/9260 -->
 <module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]TrailingComma.java$"/>
+  <property name="fileNamePattern" value="annotations[\\/]pos[\\/]TrailingComma.java$"/>
 </module>
 
 <!-- until https://github.com/checkstyle/checkstyle/issues/8943 -->
