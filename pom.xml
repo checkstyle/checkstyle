@@ -892,7 +892,9 @@
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableCellRenderer*</exclude>
                     <exclude>com.puppycrawl.tools.checkstyle.gui.TreeTableModelAdapter*</exclude>
                     <!-- Metadata Generator related classes -->
-                    <exclude>com.puppycrawl.tools.checkstyle.meta.*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.ModuleDetails*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.JavadocMetadataScraper*</exclude>
+                    <exclude>com.puppycrawl.tools.checkstyle.meta.XmlMetaWriter*</exclude>
                   </excludes>
                   <limits>
                     <limit>
@@ -1079,7 +1081,7 @@
                     <limit>
                       <counter>BRANCH</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.87</minimum>
+                      <minimum>0.95</minimum>
                     </limit>
                   </limits>
                 </rule>
@@ -1107,26 +1109,6 @@
                   <element>CLASS</element>
                   <includes>
                     <include>
-                      com.puppycrawl.tools.checkstyle.meta.XmlMetaReader
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.00</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.00</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
                        com.puppycrawl.tools.checkstyle.meta.ModuleDetails
                     </include>
                   </includes>
@@ -1135,26 +1117,6 @@
                       <counter>LINE</counter>
                       <value>COVEREDRATIO</value>
                       <minimum>0.76</minimum>
-                    </limit>
-                  </limits>
-                </rule>
-                <rule>
-                  <element>CLASS</element>
-                  <includes>
-                    <include>
-                      com.puppycrawl.tools.checkstyle.meta.MetadataGeneratorUtil
-                    </include>
-                  </includes>
-                  <limits>
-                    <limit>
-                      <counter>LINE</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.87</minimum>
-                    </limit>
-                    <limit>
-                      <counter>BRANCH</counter>
-                      <value>COVEREDRATIO</value>
-                      <minimum>0.90</minimum>
                     </limit>
                   </limits>
                 </rule>
