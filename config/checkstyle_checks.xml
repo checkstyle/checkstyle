@@ -116,6 +116,14 @@
     <property name="maximum" value="0"/>
     <property name="message" value="Trailing whitespace is not allowed"/>
   </module>
+  <!-- This is needed for correct metadata generation -->
+  <module name="RegexpSingleline">
+    <property name="id" value="propertyTypeOnNewLine"/>
+    <property name="format" value="^ \* .+(Type|Default value|Validation type) is \{@code "/>
+    <property name="minimum" value="0"/>
+    <property name="maximum" value="0"/>
+    <property name="message" value="Property attribute should be on new javadoc line"/>
+  </module>
   <module name="RegexpSingleline">
     <property name="id" value="commentFirstSentenceSingleline"/>
     <property name="format" value="/\*\* +\p{javaLowerCase}"/>
@@ -690,6 +698,7 @@
     <module name="AbstractClassName"/>
     <module name="ClassTypeParameterName"/>
     <module name="RecordTypeParameterName"/>
+    <module name="RecordComponentName"/>
     <module name="ConstantName"/>
     <module name="InterfaceTypeParameterName"/>
     <module name="LocalFinalVariableName"/>

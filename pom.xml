@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.40-SNAPSHOT</version>
+  <version>8.41-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -52,24 +52,31 @@
       </roles>
     </developer>
     <developer>
+      <id>strkkk</id>
+      <name>Andrei Paikin</name>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>sabaka</id>
       <name>Ilja Dubinin</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>MEZk</id>
       <name>Andrei Selkin</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
       <id>Vladlis</id>
       <name>Vladislav Lisetskii</name>
       <roles>
-        <role>developer</role>
+        <role>former developer</role>
       </roles>
     </developer>
     <developer>
@@ -288,7 +295,7 @@
     <dependency>
       <groupId>org.junit-pioneer</groupId>
       <artifactId>junit-pioneer</artifactId>
-      <version>1.2.0</version>
+      <version>1.3.0</version>
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
@@ -301,7 +308,7 @@
     <dependency>
       <groupId>com.google.truth</groupId>
       <artifactId>truth</artifactId>
-      <version>1.1.1</version>
+      <version>1.1.2</version>
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->

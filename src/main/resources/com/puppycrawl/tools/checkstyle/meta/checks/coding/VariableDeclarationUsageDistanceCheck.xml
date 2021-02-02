@@ -6,20 +6,23 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the distance between declaration of variable and its first usage.
+ Note : Variable declaration/initialization statements are not counted while calculating length.
  &lt;/p&gt;
  &lt;p&gt;
- ATTENTION!! (Not supported cases)
+ ATTENTION! (Unsupported cases)
+ &lt;/p&gt;
+ &lt;p&gt;
+ Case #1:
  &lt;/p&gt;
  &lt;pre&gt;
- Case #1:
  {
    int c;
    int a = 3;
    int b = 2;
-     {
-       a = a + b;
-       c = b;
-     }
+   {
+     a = a + b;
+     c = b;
+   }
  }
  &lt;/pre&gt;
  &lt;p&gt;
@@ -28,7 +31,7 @@
  Distance for variable 'c' = 2.
  &lt;/p&gt;
  &lt;p&gt;
- As distance by default is 1 the Check doesn't raise warning for variables 'a'
+ As distance by default is 1 the check doesn't raise warning for variables 'a'
  and 'b' to move them into the block.
  &lt;/p&gt;
  &lt;p&gt;
@@ -49,10 +52,10 @@
  Distance for variable 'sum' = 3.
  &lt;/p&gt;
  &lt;p&gt;
- As the distance is more than the default one, the Check raises warning for variable
+ As the distance is more than the default (=1), the check raises warning for variable
  'sum' to move it into the 'for(...)' block. But there is situation when
  variable 'sum' hasn't to be 0 within each iteration. So, to avoid such
- warnings you can use Suppression Filter, provided by Checkstyle, for the
+ warnings you can use the Suppression Filter, provided by Checkstyle, for the
  whole class.
  &lt;/p&gt;</description>
          <properties>

@@ -807,6 +807,7 @@ localhost
 localvariablename
 Loggable
 lombok
+lookaround
 Loughran
 lparen
 lpb
@@ -1038,6 +1039,7 @@ packifc
 packpub
 Pageflow
 pageview
+Paikin
 Papaioannou
 paraception
 parameterassignment
@@ -1130,6 +1132,7 @@ README
 Readonly
 rebased
 rebasing
+recordcomponentname
 recordcomponentnumber
 recordtypeparametername
 redundantimport
@@ -1271,6 +1274,7 @@ stmt
 streamapi
 strictfp
 stringliteralequality
+strkkk
 Studman
 Styleable
 styleguide
