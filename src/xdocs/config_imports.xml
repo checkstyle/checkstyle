@@ -2043,10 +2043,21 @@ public class SomeClass { }
 
       <subsection name="Examples" id="RedundantImport_Examples">
         <p>
-          To configure the check:
+            <source>
+                <module name="Checker">
+                    <module name="TreeWalker">
+                        <module name="RedundantImport"/>
+                    </module>
+                </module>
+            </source>
         </p>
         <source>
-&lt;module name=&quot;RedundantImport&quot;/&gt;
+            package  Test; // ok......
+            import Test.test; //violation result from the reason 3
+            import java.lang.String; //violation result from the reason 2
+            import java.lang.String;//   violation result from the reason 1
+            public class test {//ok..
+            }//  ok ..
         </source>
       </subsection>
 
