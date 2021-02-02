@@ -55,10 +55,16 @@ public class InputUnnecessarySemicolonInEnumeration{
         ; // violation
     }
     enum NoEnums2 {
+        ,; // violation
+    }
+    enum NoEnums3 {
         ;
         {}
     }
     enum EmptyEnum {
+    }
+    enum EmptyEnum2 {
+        ,
     }
     enum Normal {
         A,B;
