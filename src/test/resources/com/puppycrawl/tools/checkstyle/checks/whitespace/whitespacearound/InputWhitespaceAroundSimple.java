@@ -40,7 +40,7 @@ final class InputWhitespaceAroundSimple
 
     /** commas are wrong **/
     private int[] mInts = new int[] {1,2, 3,
-                                     4};
+                                     4 };
 
     //
     // Accessor tests

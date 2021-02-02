@@ -259,7 +259,7 @@ class SpecialCasesInForLoop
             new Runnable() {
                 public void run() {
                 }
-            }};
+            } };
         runs[0]
 .
  run()
