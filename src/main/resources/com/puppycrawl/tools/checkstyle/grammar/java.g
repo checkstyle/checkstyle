@@ -758,6 +758,7 @@ annotationDefault
 enumBlock
     :    LCURLY
             ( enumConstant ( options{greedy=true;}: COMMA enumConstant )* ( COMMA )? )?
+            ( COMMA )?
             ( SEMI ( field | SEMI )* )?
         RCURLY
         {#enumBlock = #([OBJBLOCK, "OBJBLOCK"], #enumBlock);}
