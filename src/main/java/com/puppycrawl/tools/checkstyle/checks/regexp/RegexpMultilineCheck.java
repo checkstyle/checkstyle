@@ -73,6 +73,20 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
+ * To run the check with its default configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpMultiline&quot;&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * void method() {
+ *   int i = 5; // OK
+ *   System.out.println(i); // OK
+ * }
+ * </pre>
+ * <p>
  * To configure the check to find calls to print to the console:
  * </p>
  * <pre>
@@ -80,6 +94,27 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   &lt;property name="format"
  *     value="System\.(out)|(err)\.print(ln)?\("/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * void method() {
+ *   System.out.print("Example"); // OK
+ *   System.err.println("Example"); // OK
+ *   System.out.print
+ *     ("Example"); // violation
+ *   System.err.println
+ *     ("Example"); // violation
+ *   System
+ *   .out.print("Example"); // OK
+ *   System
+ *   .err.println("Example"); // OK
+ *   System.
+ *   out.print("Example"); // violation
+ *   System.
+ *   err.println("Example"); // violation
+ * }
  * </pre>
  * <p>
  * To configure the check to match text that spans multiple lines,
@@ -92,14 +127,23 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of violation from the above config:
+ * Example:
  * </p>
  * <pre>
  * void method() {
- *   System.out. // violation
- *   print("Example");
+ *   System.out.print("Example"); // OK
+ *   System.out.print(
+ *       "Example"); // OK
+ *   System.out.print
+ *   ("Example"); // violation
+ *   System.out
+ *   .print("Example"); // OK
  *   System.out.
- *   print("Example");
+ *   print("Example"); // violation
+ *   System
+ *   .out.print("Example"); // OK
+ *   System.
+ *   out.print("Example"); // violation
  * }
  * </pre>
  * <p>
@@ -134,6 +178,35 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <p>Result:</p>
  * <pre>
  * /var/tmp/Test.java // violation, a file must not be empty.
+ * </pre>
+ * <p>
+ * To configure the check to match the text that spans multiple lines to a Test string
+ * format that we have defined, ignoring its case with a specified minimum and maximum
+ * number of matches:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpMultiline&quot;&gt;
+ *     &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot; /&gt;
+ *     &lt;property name=&quot;format&quot; value=&quot;Test #[0-9]+:[A-Za-z ]+&quot; /&gt;
+ *     &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot; /&gt;
+ *     &lt;property name=&quot;minimum&quot; value=&quot;1&quot; /&gt;
+ *     &lt;property name=&quot;maximum&quot; value=&quot;5&quot; /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example of violation from the above config:
+ * </p>
+ * <pre>
+ * void method() {
+ *   System.out.println("Test #1: this is a test string"); // OK
+ *   System.out.println("teSt #2: This is a test string"); // OK
+ *   int i = 5; // violation
+ *   System.out.println("TesY #3: This is a test string"); // violation
+ *   System.out.println("TEst #4: This is a test string"); // OK
+ *   System.out.println("TEST #5 : This is a test string"); // violation
+ *   System.out.println("TEST #6: This is a test string"); // OK
+ *   System.out.println("Value of i: " + i); // violation
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
