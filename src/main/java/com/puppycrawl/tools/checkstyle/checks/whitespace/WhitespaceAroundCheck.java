@@ -732,8 +732,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
 
         return starImportOrSlistInsideCaseGroup
                 || colonOfCaseOrDefaultOrForEach
-                || emptyBlockOrType
-                || isArrayInitialization(currentType, parentType);
+                || emptyBlockOrType;
     }
 
     /**
@@ -770,7 +769,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !(ast.getType() == TokenTypes.LITERAL_RETURN
                     && ast.getFirstChild().getType() == TokenTypes.SEMI)
-                && ast.getType() != TokenTypes.ARRAY_INIT
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
     }
@@ -863,13 +861,12 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * Is array initialization.
      *
      * @param currentType current token
-     * @param parentType parent token
+     * @param childType child token
      * @return true is current token inside array initialization
      */
-    private static boolean isArrayInitialization(int currentType, int parentType) {
-        return currentType == TokenTypes.RCURLY
-                && (parentType == TokenTypes.ARRAY_INIT
-                        || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
+    private static boolean isArrayInitialization(int currentType, int childType) {
+        return (currentType == TokenTypes.ARRAY_INIT || currentType == TokenTypes.ANNOTATION_ARRAY_INIT) &&
+                childType == TokenTypes.RCURLY;
     }
 
     /**
