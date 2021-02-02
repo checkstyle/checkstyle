@@ -96,7 +96,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * String unitAbbrev = "μs"; // No violation, a normal String
- * String unitAbbrev = "&#92;u03bcs"; // violation, "\u03bcs" is a printable character.
+ * String unitAbbrev = "&#92;u03bcs"; // violation, "&#92;u03bcs" is a printable character.
  * return '&#92;ufeff' + content; // No violation, non-printable control character.
  * </pre>
  * <p>
