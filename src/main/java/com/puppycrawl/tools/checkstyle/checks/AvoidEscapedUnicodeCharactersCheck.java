@@ -77,14 +77,10 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * Examples of using Unicode:</p>
  * <pre>
- * String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
- * String unitAbbrev = "&#92;u03bcs"; // Poor: the reader has no idea what this is.
- * </pre>
- * <p>
- * An example of non-printable, control characters.
- * </p>
- * <pre>
- * return '&#92;ufeff' + content; // byte order mark
+ * String unitAbbrev = "μs"; // OK, perfectly clear even without a comment.
+ * String unitAbbrev = "&#92;u03bcs"; // violation, the reader has no idea what this is.
+ * return '&#92;ufeff' + content; // OK, an example of non-printable,
+ *                               // control characters (byte order mark).
  * </pre>
  * <p>
  * An example of how to configure the check to allow using escapes
@@ -96,14 +92,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of using escapes with trail comment:
+ * Example of using escapes for non-printable, control characters:
  * </p>
  * <pre>
- * String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s"
- * String textBlockUnitAbbrev = """
- *          &#92;u03bcs"""; // Greek letter mu, "s"
+ * String unitAbbrev = "μs"; // No violation, a normal String
+ * String unitAbbrev = "&#92;u03bcs"; // violation, "&#92;u03bcs" is a printable character.
+ * return '&#92;ufeff' + content; // No violation, non-printable control character.
  * </pre>
- * <p>An example of how to configure the check to allow using escapes
+ * <p>
+ * An example of how to configure the check to allow using escapes
  * if trail comment is present:
  * </p>
  * <pre>
@@ -111,18 +108,30 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="allowByTailComment" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
- * <p>Example of using escapes if literal contains only them:
+ * <p>Example of using escapes if trail comment is present:
  * </p>
  * <pre>
- * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc";
+ * String unitAbbrev = "μs"; // No violation, a normal String
+ * String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s" (No violation)
+ * return '&#92;ufeff' + content;
+ * // ----^ violation if comment is not used within same line.
  * </pre>
- * <p>An example of how to configure the check to allow escapes
- * if literal contains only them:
+ * <p>
+ * An example of how to configure the check to allow if
+ * all characters in literal are escaped.
  * </p>
  * <pre>
  * &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
  *   &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example of using escapes if all characters in literal are escaped:</p>
+ * <pre>
+ * String unitAbbrev = "μs"; // No violation, a normal String
+ * String unitAbbrev = "&#92;u03bcs"; // Violation, not all characters are escaped ('s').
+ * String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc"; // OK
+ * String unitAbbrev = "&#92;u03bc&#92;u03bcs"; // Violation, not all characters are escaped ('s').
+ * return '&#92;ufeff' + content; // No violation, all control characters are escaped
  * </pre>
  * <p>An example of how to configure the check to allow using escapes
  * for non-printable, whitespace characters:
@@ -132,6 +141,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example of using escapes for non-printable, whitespace characters:</p>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
