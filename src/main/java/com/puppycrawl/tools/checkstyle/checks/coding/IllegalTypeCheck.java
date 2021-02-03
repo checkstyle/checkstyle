@@ -289,6 +289,39 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to target fields types only:
+ * </p>
+ * <pre>
+ * &lt;module name="IllegalType"&gt;
+ *   &lt;property name=&quot;illegalClassNames&quot; value=&quot;java.util.Optional&quot;/&gt;
+ *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
+ *   &lt;property name=&quot;id&quot; value=&quot;IllegalTypeOptionalAsField&quot;/&gt;
+ * &lt;/module&gt;
+ * &lt;module name="SuppressionXpathSingleFilter"&gt;
+ *   &lt;property name=&quot;query&quot; value=&quot;//METHOD_DEF//*&quot;/&gt;
+ *   &lt;property name=&quot;id&quot; value=&quot;IllegalTypeOptionalAsField&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * import java.util.Optional;
+ *
+ * public class Main {
+ *
+ *   static int field1 = 4; // OK
+ *   public Optional&lt;String&gt; field2; // violation, usage of type 'Optional' is not allowed
+ *   protected String field3; // OK
+ *   Optional&lt;String&gt; field4; // violation, usage of type 'Optional' is not allowed
+ *   private Optional&lt;String&gt; field5; // violation, usage of type 'Optional' is not allowed
+ *
+ *   void foo() {
+ *     Optional&lt;String&gt; i; // OK
+ *   }
+ *   public &lt;T extends java.util.Optional&gt; void method(T t) { // OK
+ *     Optional&lt;T&gt; i; // OK
+ *   }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
