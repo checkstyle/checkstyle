@@ -773,6 +773,12 @@
       </plugin>
 
       <plugin>
+        <groupId>com.github.akmo03</groupId>
+        <artifactId>SonarCloudUrl-maven-plugin</artifactId>
+        <version>1.0.0</version>
+      </plugin>
+
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <executions>
@@ -1676,12 +1682,9 @@
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.sonar-plugins</groupId>
-        <artifactId>maven-report</artifactId>
-        <version>0.1</version>
-        <configuration>
-          <sonarHostURL>https://sonarcloud.io</sonarHostURL>
-        </configuration>
+        <groupId>com.github.akmo03</groupId>
+        <artifactId>SonarCloudUrl-maven-plugin</artifactId>
+        <version>1.0.0</version>
       </plugin>
 
       <plugin>
