@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <document xmlns="http://maven.apache.org/XDOC/2.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
@@ -1925,22 +1924,21 @@ public class InputEclipseStaticImportsOrder { }
 
       <subsection name="Examples" id="RedundantImport_Examples">
         <p>
-            <source>
-                <module name="Checker">
-                    <module name="TreeWalker">
-                        <module name="RedundantImport"/>
-                    </module>
-                </module>
-            </source>
+            To configure the check:
         </p>
         <source>
-            package  Test; // ok......
-            import Test.test; //violation result from the reason 3
-            import java.lang.String; //violation result from the reason 2
-            import java.lang.String;//   violation result from the reason 1
-            public class test {//ok..
-            }//  ok ..
+             	 &lt;module name=&quot;RedundantImport&quot;/&gt;
         </source>
+        <p>Example:</p>
+        <div class="wrapper">
+          <pre>
+package  Test; // ok...
+import Test.test; //violation result from the reason 3
+import java.lang.String; //violation result from the reason 2
+import java.lang.String;// violation result from the reason 1
+public class test { };//  ok ..
+          </pre>
+        </div>
       </subsection>
 
       <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
