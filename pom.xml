@@ -227,6 +227,7 @@
     <pitest.junit5.plugin.version>0.12</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
     <junit.version>5.7.0</junit.version>
+    <sonar.host.url>https://sonarcloud.io/</sonar.host.url>
   </properties>
 
   <dependencies>
@@ -770,6 +771,12 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
         <version>2.5.2</version>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.akmo03</groupId>
+        <artifactId>SonarCloudUrl-maven-plugin</artifactId>
+        <version>1.0.0</version>
       </plugin>
 
       <plugin>
@@ -1676,12 +1683,9 @@
       </plugin>
 
       <plugin>
-        <groupId>org.codehaus.sonar-plugins</groupId>
-        <artifactId>maven-report</artifactId>
-        <version>0.1</version>
-        <configuration>
-          <sonarHostURL>https://sonarcloud.io</sonarHostURL>
-        </configuration>
+        <groupId>com.github.akmo03</groupId>
+        <artifactId>SonarCloudUrl-maven-plugin</artifactId>
+        <version>1.0.0</version>
       </plugin>
 
       <plugin>
