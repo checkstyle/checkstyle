@@ -125,6 +125,24 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  *  &lt;module name=&quot;HiddenField&quot;/&gt;
  * </pre>
+ * <pre>
+ * public class SomeClass {
+ *
+ *   private String field;
+ *
+ *   public void method(String param) { // OK
+ *       String field = param; // violation, 'field' variable hides 'field' field
+ *   }
+ *   // setter method
+ *   public void setField(String field) { // violation, 'field' param hides 'field' field
+ *       this.field = field;
+ *   }
+ *   // chain-setters method
+ *   public SomeClass setField(String field) { // violation, 'field' param hides 'field' field
+ *       this.field = field;
+ *   }
+ * }
+ * </pre>
  *
  * <p>
  * To configure the check so that it checks local variables but not parameters:
@@ -133,6 +151,19 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;HiddenField&quot;&gt;
  *   &lt;property name=&quot;tokens&quot; value=&quot;VARIABLE_DEF&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class SomeClass {
+ *
+ *   private String field;
+ *
+ *   public void method1(String param) {
+ *     String field = param; // violation, 'field' variable hides 'field' field
+ *   }
+ *   public void method2(String field) { // OK
+ *     String myname = field;
+ *   }
+ * }
  * </pre>
  *
  * <p>
@@ -144,19 +175,15 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;/module&gt;
  * </pre>
  * <pre>
- * class SomeClass
- * {
+ * public class SomeClass {
+ *
  *   private List&lt;String&gt; test;
  *
- *   private void addTest(List&lt;String&gt; test) // no violation
- *   {
+ *   private void addTest(List&lt;String&gt; test) { // OK
  *     this.test.addAll(test);
  *   }
- *
- *   private void foo()
- *   {
- *     final List&lt;String&gt; test = new ArrayList&lt;&gt;(); // no violation
- *     ...
+ *   private void foo() {
+ *     final List&lt;String&gt; test = new ArrayList&lt;&gt;(); // OK
  *   }
  * }
  * </pre>
@@ -168,6 +195,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreConstructorParameter&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <pre>
+ * public class SomeClass {
+ *
+ *   private List&lt;String&gt; field;
+ *
+ *   // Parameterized constructor
+ *   public SomeClass(String field) { // OK, 'field' parameter doesn't hides any field
+ *     this.field = field;
+ *   }
+ *   private void method() {
+ *     String field; // violation, 'field' variable hides a 'field' field
+ *   }
+ * }
+ * </pre>
  * <p>
  * To configure the check so that it ignores the parameter of setter methods:
  * </p>
@@ -175,6 +216,23 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;HiddenField&quot;&gt;
  *   &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class SomeClass {
+ *
+ *   private List&lt;String&gt; field;
+ *
+ *   public String getField() {
+ *    return field;
+ *   }
+ *   public void setField(String field) { // OK
+ *     this.field = field;
+ *   }
+ *   public void method(int field) { // violation, 'field' param hides a 'field' field
+ *                                   // 'method' is not a setter method
+ *   // Do something ...
+ *   }
+ * }
  * </pre>
  * <p>
  * To configure the check so that it ignores the parameter of setter methods
@@ -185,6 +243,70 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;ignoreSetter&quot; value=&quot;true&quot;/&gt;
  *   &lt;property name=&quot;setterCanReturnItsClass&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * public class SomeClass {
+ *
+ *   private String first; // field 1
+ *   private String second; // field 2
+ *
+ *   // Parameterized Constructor
+ *   public SomeClass(int first,long second) { // violation, 'first' and 'second' params
+ *                                             // hides 'first' and 'second' fields respectively
+ *     // Do something ...
+ *   }
+ *   // getter method 1
+ *   public String getFirst() {
+ *     return first;
+ *   }
+ *   // getter method 2
+ *   public String getSecond() {
+ *     return second;
+ *   }
+ *   // setter method. This is also known as chain-setters.
+ *   public SomeClass setFirst(String first) { // OK
+ *     this.first = first;
+ *     return this;
+ *   }
+ *   // setter method
+ *   public void setSecond(String second) { // OK
+ *     this.second = second;
+ *   }
+ *   public void method(int second) { // violation,  'second' param hides a 'second' field
+ *                                    // 'method' is not a setter method
+ *
+ *     String first; // violation, 'first' variable hides a 'first' field
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * To configure the check so that it ignores parameters of abstract methods:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;HiddenField&quot;&gt;
+ *   &lt;property name=&quot;ignoreAbstractMethods&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * // abstract class
+ * abstract class SomeClass {
+ *
+ *   private String field; // field
+ *
+ *   // Parameterized Constructor
+ *   public SomeClass(int field) { // violation, 'field' param hides a 'field' field
+ *     float field; // violation, 'field' variable hides a 'field' field
+ *   }
+ *   // abstract method
+ *   public abstract int method(String field); // OK
+ * }
+ * // Regular class extends abstract class
+ * public class Demo extends SomeClass {
+ *
+ *   public int method(String param){
+ *     return param;
+ *   }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
