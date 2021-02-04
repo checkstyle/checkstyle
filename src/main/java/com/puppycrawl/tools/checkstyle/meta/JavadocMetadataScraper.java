@@ -198,7 +198,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
 
         if (ast.getType() == JavadocTokenTypes.JAVADOC) {
             final DetailAST parent = getParent(getBlockCommentAst());
-            if (parent != null && parent.getType() == TokenTypes.CLASS_DEF) {
+            if (parent.getType() == TokenTypes.CLASS_DEF) {
                 rootNode = ast;
                 toScan = true;
             }
@@ -417,20 +417,16 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return default property text
      */
     private static String getPropertyDefaultText(DetailNode nodeLi, DetailNode defaultValueNode) {
-        final Optional<DetailNode> propertyDefaultValueTagNode = getFirstChildOfType(nodeLi,
+        final Optional<DetailNode> propertyDefaultValueTag = getFirstChildOfType(nodeLi,
                 JavadocTokenTypes.JAVADOC_INLINE_TAG, defaultValueNode.getIndex() + 1);
-        DetailNode propertyDefaultValueTag = null;
-        if (propertyDefaultValueTagNode.isPresent()) {
-            propertyDefaultValueTag = propertyDefaultValueTagNode.get();
-        }
         final String result;
-        if (propertyDefaultValueTag == null) {
+        if (propertyDefaultValueTag.isPresent()) {
+            result = getTextFromTag(propertyDefaultValueTag.get());
+        }
+        else {
             final String tokenText = constructSubTreeText(nodeLi,
                     defaultValueNode.getIndex(), nodeLi.getChildren().length);
             result = cleanDefaultTokensText(tokenText);
-        }
-        else {
-            result = getTextFromTag(propertyDefaultValueTag);
         }
         return result;
     }
@@ -508,15 +504,12 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      */
     private static DetailAST getParent(DetailAST commentBlock) {
         final DetailAST parentNode = commentBlock.getParent();
-        DetailAST result = null;
-        if (parentNode != null) {
-            result = parentNode;
-            if (result.getType() == TokenTypes.ANNOTATION) {
-                result = parentNode.getParent().getParent();
-            }
-            else if (result.getType() == TokenTypes.MODIFIERS) {
-                result = parentNode.getParent();
-            }
+        DetailAST result = parentNode;
+        if (result.getType() == TokenTypes.ANNOTATION) {
+            result = parentNode.getParent().getParent();
+        }
+        else if (result.getType() == TokenTypes.MODIFIERS) {
+            result = parentNode.getParent();
         }
         return result;
     }
@@ -543,18 +536,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return parent text
      */
     private static String getParentText(DetailNode nodeParagraph) {
-        String result = null;
-        final Optional<DetailNode> resultNode = getFirstChildOfType(nodeParagraph,
-                JavadocTokenTypes.TEXT, 0);
-        if (resultNode.isPresent()
-                && PARENT_TAG.matcher(resultNode.get().getText()).matches()) {
-            final Optional<DetailNode> childNode = getFirstChildOfType(nodeParagraph,
-                    JavadocTokenTypes.JAVADOC_INLINE_TAG, 0);
-            if (childNode.isPresent()) {
-                result = getTextFromTag(childNode.get());
-            }
-        }
-        return result;
+        return getFirstChildOfType(nodeParagraph, JavadocTokenTypes.JAVADOC_INLINE_TAG, 0)
+                .map(JavadocMetadataScraper::getTextFromTag)
+                .orElse(null);
     }
 
     /**
@@ -642,9 +626,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return true if the section matches the example section marker
      */
     private static boolean isExamplesText(DetailNode ast) {
-        final Optional<DetailNode> resultNode = getFirstChildOfType(ast, JavadocTokenTypes.TEXT, 0);
-        return resultNode.isPresent()
-                && EXAMPLES_TAG.matcher(resultNode.get().getText()).matches();
+        return isChildNodeTextMatches(ast, EXAMPLES_TAG);
     }
 
     /**
@@ -654,10 +636,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return true if the node is part of a property list
      */
     private static boolean isPropertyList(DetailNode nodeLi) {
-        final Optional<DetailNode> firstTextChildToken =
-                getFirstChildOfType(nodeLi, JavadocTokenTypes.TEXT, 0);
-        return firstTextChildToken.isPresent()
-                && PROPERTY_TAG.matcher(firstTextChildToken.get().getText()).matches();
+        return isChildNodeTextMatches(nodeLi, PROPERTY_TAG);
     }
 
     /**
@@ -668,10 +647,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return true if paragraph node contains the violation message keys text
      */
     private static boolean isViolationMessagesText(DetailNode nodeParagraph) {
-        final Optional<DetailNode> resultNode = getFirstChildOfType(nodeParagraph,
-                JavadocTokenTypes.TEXT, 0);
-        return resultNode.isPresent()
-                && VIOLATION_MESSAGES_TAG.matcher(resultNode.get().getText()).matches();
+        return isChildNodeTextMatches(nodeParagraph, VIOLATION_MESSAGES_TAG);
     }
 
     /**
@@ -682,9 +658,21 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
      * @return true if paragraph node contains the parent text
      */
     private static boolean isParentText(DetailNode nodeParagraph) {
-        final Optional<DetailNode> resultNode = getFirstChildOfType(nodeParagraph,
-                JavadocTokenTypes.TEXT, 0);
-        return resultNode.isPresent()
-                && PARENT_TAG.matcher(resultNode.get().getText()).matches();
+        return isChildNodeTextMatches(nodeParagraph, PARENT_TAG);
+    }
+
+    /**
+     * Checks whether the first child {@code JavadocTokenType.TEXT} node matches given pattern.
+     *
+     * @param ast parent javadoc node
+     * @param pattern pattern to match
+     * @return true if one of child text nodes matches pattern
+     */
+    private static boolean isChildNodeTextMatches(DetailNode ast, Pattern pattern) {
+        return getFirstChildOfType(ast, JavadocTokenTypes.TEXT, 0)
+                .map(DetailNode::getText)
+                .map(pattern::matcher)
+                .map(Matcher::matches)
+                .orElse(false);
     }
 }
