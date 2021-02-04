@@ -36,4 +36,8 @@
   so static Loggers are okay there. -->
   <suppress checks="AvoidModifiersForTypesCheck"
              files="Main\.java|MainTest\.java"/>
+
+  <!-- No need for constructor with cause -->
+  <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
+
 </suppressions>
