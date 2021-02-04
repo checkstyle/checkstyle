@@ -36,14 +36,4 @@ public class MetadataGenerationException extends RuntimeException {
         super(message);
     }
 
-    /**
-     * Creates a new {@code MetadataGenerationException} instance
-     * that was caused by another exception.
-     *
-     * @param message a message that explains this exception
-     * @param cause the Exception that is wrapped by this exception
-     */
-    public MetadataGenerationException(String message, Throwable cause) {
-        super(message, cause);
-    }
 }
