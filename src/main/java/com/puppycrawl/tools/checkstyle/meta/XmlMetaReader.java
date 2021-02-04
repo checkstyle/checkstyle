@@ -40,6 +40,7 @@ import org.xml.sax.SAXException;
 
 /**
  * Class having utilities required to read module details from an XML metadata file of a module.
+ * Note: methods of this class are used in Eclipse plugin.
  */
 public final class XmlMetaReader {
 
