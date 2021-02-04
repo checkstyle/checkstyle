@@ -686,7 +686,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
-        if (!isNotRelevantSituation(ast, currentType)) {
+        final int parentType = ast.getParent().getType();
+        if (!isNotRelevantSituation(ast, currentType) ||
+                isArrayInitialization(currentType, parentType)) {
             final String line = getLine(ast.getLineNo() - 1);
             final int before = ast.getColumnNo() - 1;
             final int after = ast.getColumnNo() + ast.getText().length();
@@ -770,7 +772,6 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !(ast.getType() == TokenTypes.LITERAL_RETURN
                     && ast.getFirstChild().getType() == TokenTypes.SEMI)
-                && ast.getType() != TokenTypes.ARRAY_INIT
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
     }
