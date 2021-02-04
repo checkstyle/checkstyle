@@ -210,13 +210,14 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("braceAdjustment", "4");
         checkConfig.addAttribute("caseIndent", "4");
         checkConfig.addAttribute("forceStrictCondition", "true");
-        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
         checkConfig.addAttribute("tabWidth", "4");
-        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("throwsIndent", "4");
         final String[] expected = {
-            "10:29: " + getCheckMessage(MSG_ERROR_MULTI, "method def rcurly", 28, "16, 20, 24"),
-            "13:9: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 4),
-            "14:5: " + getCheckMessage(MSG_ERROR, "class def rcurly", 4, 0),
+            "31:9: " + getCheckMessage(MSG_ERROR, "method def rcurly", 8, 4),
+            "35:17: " + getCheckMessage(MSG_ERROR, "||", 16, 20),
+            "36:17: " + getCheckMessage(MSG_ERROR, "||", 16, 20),
+            "83:5: " + getCheckMessage(MSG_ERROR, "class def rcurly", 4, 0),
         };
         verifyWarns(checkConfig, getPath("InputIndentationStrictCondition.java"), expected);
     }

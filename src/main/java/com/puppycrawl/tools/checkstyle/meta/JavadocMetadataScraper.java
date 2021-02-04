@@ -377,7 +377,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
             for (DetailNode child : detailNode.getChildren()) {
                 if (child.getParent().equals(node)
                         && (child.getIndex() < childLeftLimit
-                        || child.getIndex() > childRightLimit)) {
+                            || child.getIndex() > childRightLimit)) {
                     continue;
                 }
                 if (!visited.contains(child)) {

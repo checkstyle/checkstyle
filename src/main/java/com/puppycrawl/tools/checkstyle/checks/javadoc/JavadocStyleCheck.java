@@ -495,9 +495,9 @@ public class JavadocStyleCheck
         final String commentText = getCommentText(comment.getText());
 
         if (!commentText.isEmpty()
-            && !endOfSentenceFormat.matcher(commentText).find()
-            && !(commentText.startsWith("{@inheritDoc}")
-            && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
+                && !endOfSentenceFormat.matcher(commentText).find()
+                && !(commentText.startsWith("{@inheritDoc}")
+                    && JavadocTagInfo.INHERIT_DOC.isValidOn(ast))) {
             log(comment.getStartLineNo(), MSG_NO_PERIOD);
         }
     }
@@ -657,8 +657,8 @@ public class JavadocStyleCheck
         final List<String> typeParameters = CheckUtil.getTypeParameterNames(ast);
         for (final HtmlTag htmlTag : htmlStack) {
             if (!isSingleTag(htmlTag)
-                && !htmlTag.getId().equals(lastFound)
-                && !typeParameters.contains(htmlTag.getId())) {
+                    && !htmlTag.getId().equals(lastFound)
+                    && !typeParameters.contains(htmlTag.getId())) {
                 log(htmlTag.getLineNo(), htmlTag.getPosition(),
                         MSG_UNCLOSED_HTML, htmlTag.getText());
                 lastFound = htmlTag.getId();
