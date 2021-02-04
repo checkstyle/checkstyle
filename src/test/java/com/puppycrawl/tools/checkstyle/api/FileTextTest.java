@@ -129,20 +129,20 @@ public class FileTextTest extends AbstractPathTestSupport {
         final List<String> lines = Collections.singletonList("abc");
         final FileText fileText = new FileText(new File(getPath("InputFileTextImportControl.xml")),
                 lines);
-        assertArrayEquals(new String[] {"abc"}, fileText.toLinesArray(), "Invalid line");
+        assertArrayEquals(new String[] {"abc" }, fileText.toLinesArray(), "Invalid line");
     }
 
     @Test
     public void testFindLineBreaks() throws Exception {
         final FileText fileText = new FileText(new File("fileName"), Arrays.asList("1", "2"));
 
-        assertArrayEquals(new int[] {0, 2, 4},
+        assertArrayEquals(new int[] {0, 2, 4 },
                 Whitebox.invokeMethod(fileText, "findLineBreaks"), "Invalid line breaks");
 
         final FileText fileText2 = new FileText(new File("fileName"), Arrays.asList("1", "2"));
         Whitebox.setInternalState(fileText2, "fullText", "1\n2");
 
-        assertArrayEquals(new int[] {0, 2, 3},
+        assertArrayEquals(new int[] {0, 2, 3 },
                 Whitebox.invokeMethod(fileText2, "findLineBreaks"), "Invalid line breaks");
     }
 
@@ -156,7 +156,7 @@ public class FileTextTest extends AbstractPathTestSupport {
     @Test
     public void testFindLineBreaksCache() throws Exception {
         final FileText fileText = new FileText(new File("fileName"), Collections.emptyList());
-        final int[] lineBreaks = {5};
+        final int[] lineBreaks = {5 };
         Whitebox.setInternalState(fileText, "lineBreaks", lineBreaks);
         // produces NPE if used
         Whitebox.setInternalState(fileText, "fullText", (Object) null);

@@ -101,7 +101,7 @@ public class MissingSwitchDefaultCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_SWITCH};
+        return new int[] {TokenTypes.LITERAL_SWITCH };
     }
 
     @Override

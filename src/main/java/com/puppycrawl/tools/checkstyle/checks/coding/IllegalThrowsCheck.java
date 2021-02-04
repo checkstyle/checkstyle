@@ -193,7 +193,7 @@ public final class IllegalThrowsCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_THROWS};
+        return new int[] {TokenTypes.LITERAL_THROWS };
     }
 
     @Override

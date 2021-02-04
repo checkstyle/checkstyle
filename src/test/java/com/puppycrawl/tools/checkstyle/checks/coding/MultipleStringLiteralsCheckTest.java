@@ -83,7 +83,7 @@ public class MultipleStringLiteralsCheckTest extends AbstractModuleTestSupport {
         final String firstInput = getPath("InputMultipleStringLiterals.java");
         final String secondInput = getPath("InputMultipleStringLiteralsNoWarnings.java");
 
-        final File[] inputs = {new File(firstInput), new File(secondInput)};
+        final File[] inputs = {new File(firstInput), new File(secondInput) };
 
         final List<String> expectedFirstInput = Arrays.asList(
             "5:16: " + getCheckMessage(MSG_KEY, "\"StringContents\"", 3),

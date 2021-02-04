@@ -38,7 +38,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final IllegalImportCheck checkObj = new IllegalImportCheck();
-        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }
@@ -74,7 +74,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final IllegalImportCheck testCheckObject =
                 new IllegalImportCheck();
         final int[] actual = testCheckObject.getAcceptableTokens();
-        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        final int[] expected = {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT };
 
         assertArrayEquals(expected, actual, "Default acceptable tokens are invalid");
     }

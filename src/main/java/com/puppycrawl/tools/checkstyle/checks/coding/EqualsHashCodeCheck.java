@@ -157,7 +157,7 @@ public class EqualsHashCodeCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.METHOD_DEF};
+        return new int[] {TokenTypes.METHOD_DEF };
     }
 
     @Override

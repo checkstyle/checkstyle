@@ -180,7 +180,7 @@ public class ModuleReflectionUtilTest {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {0};
+            return new int[] {0 };
         }
 
         @Override

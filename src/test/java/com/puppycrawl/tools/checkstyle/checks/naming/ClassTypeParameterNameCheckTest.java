@@ -40,7 +40,7 @@ public class ClassTypeParameterNameCheckTest
     public void testGetClassRequiredTokens() {
         final ClassTypeParameterNameCheck checkObj =
             new ClassTypeParameterNameCheck();
-        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+        final int[] expected = {TokenTypes.TYPE_PARAMETER };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

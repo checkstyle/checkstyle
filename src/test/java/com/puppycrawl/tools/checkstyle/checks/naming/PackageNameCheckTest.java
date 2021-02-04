@@ -40,7 +40,7 @@ public class PackageNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         final PackageNameCheck checkObj = new PackageNameCheck();
-        final int[] expected = {TokenTypes.PACKAGE_DEF};
+        final int[] expected = {TokenTypes.PACKAGE_DEF };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

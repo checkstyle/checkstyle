@@ -141,7 +141,7 @@ public final class NestedIfDepthCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_IF};
+        return new int[] {TokenTypes.LITERAL_IF };
     }
 
     @Override

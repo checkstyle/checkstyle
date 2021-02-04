@@ -89,7 +89,7 @@ public class AvoidInlineConditionalsCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.QUESTION};
+        return new int[] {TokenTypes.QUESTION };
     }
 
     @Override

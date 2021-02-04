@@ -119,7 +119,7 @@ public class EmptyForIteratorPadCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.FOR_ITERATOR};
+        return new int[] {TokenTypes.FOR_ITERATOR };
     }
 
     @Override

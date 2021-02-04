@@ -39,7 +39,7 @@ public class PatternVariableNameCheckTest
     @Test
     public void testGetAcceptableTokens() {
         final PatternVariableNameCheck patternVariableNameCheck = new PatternVariableNameCheck();
-        final int[] expected = {TokenTypes.PATTERN_VARIABLE_DEF};
+        final int[] expected = {TokenTypes.PATTERN_VARIABLE_DEF };
 
         assertArrayEquals(expected, patternVariableNameCheck.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");

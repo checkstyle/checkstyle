@@ -131,7 +131,7 @@ public class JavadocUtilTest {
 
     @Test
     public void testInlineTagPositions() {
-        final String[] text = {"/** Also {@link Name value} */"};
+        final String[] text = {"/** Also {@link Name value} */" };
         final Comment comment = new Comment(text, 1, 0, text[0].length());
 
         final List<JavadocTag> tags = JavadocUtil.getJavadocTags(

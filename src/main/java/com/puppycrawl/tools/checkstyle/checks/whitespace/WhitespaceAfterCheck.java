@@ -170,7 +170,7 @@ public class WhitespaceAfterCheck
         else {
             final String line = getLine(ast.getLineNo() - 1);
             if (!isFollowedByWhitespace(ast, line)) {
-                final Object[] message = {ast.getText()};
+                final Object[] message = {ast.getText() };
                 log(ast, MSG_WS_NOT_FOLLOWED, message);
             }
         }

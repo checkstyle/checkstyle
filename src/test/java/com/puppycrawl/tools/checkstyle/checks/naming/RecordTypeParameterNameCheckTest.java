@@ -39,7 +39,7 @@ public class RecordTypeParameterNameCheckTest extends AbstractModuleTestSupport 
     public void testGetClassRequiredTokens() {
         final RecordTypeParameterNameCheck checkObj =
                 new RecordTypeParameterNameCheck();
-        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+        final int[] expected = {TokenTypes.TYPE_PARAMETER };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

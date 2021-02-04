@@ -81,7 +81,7 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            new File[] {new File(path1), new File(path2)},
+            new File[] {new File(path1), new File(path2) },
             path1,
             expected);
     }

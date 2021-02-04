@@ -30,7 +30,7 @@ public class CommentTest {
 
     @Test
     public void test() {
-        final String[] text = {"test"};
+        final String[] text = {"test" };
         final Comment comment = new Comment(text, 1, 2, 3);
 
         assertArrayEquals(text, comment.getText(), "invalid text");
@@ -45,7 +45,7 @@ public class CommentTest {
 
     @Test
     public void testIntersects() {
-        final String[] text = {"test", "test"};
+        final String[] text = {"test", "test" };
         final Comment comment = new Comment(text, 2, 4, 4);
 
         assertFalse(comment.intersects(1, 1, 1, 1), "invalid");
@@ -57,7 +57,7 @@ public class CommentTest {
 
     @Test
     public void testIntersects2() {
-        final String[] text = {"a"};
+        final String[] text = {"a" };
         final Comment comment = new Comment(text, 2, 2, 2);
 
         assertTrue(comment.intersects(2, 2, 2, 2), "invalid");
@@ -65,7 +65,7 @@ public class CommentTest {
 
     @Test
     public void testIntersects3() {
-        final String[] text = {"test"};
+        final String[] text = {"test" };
         final Comment comment = new Comment(text, 1, 1, 2);
 
         assertFalse(comment.intersects(1, Integer.MAX_VALUE, 1, 2), "invalid");

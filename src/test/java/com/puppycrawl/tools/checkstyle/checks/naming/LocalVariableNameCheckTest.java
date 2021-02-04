@@ -40,7 +40,7 @@ public class LocalVariableNameCheckTest
     @Test
     public void testGetAcceptableTokens() {
         final LocalVariableNameCheck localVariableNameCheck = new LocalVariableNameCheck();
-        final int[] expected = {TokenTypes.VARIABLE_DEF};
+        final int[] expected = {TokenTypes.VARIABLE_DEF };
 
         assertArrayEquals(expected, localVariableNameCheck.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");

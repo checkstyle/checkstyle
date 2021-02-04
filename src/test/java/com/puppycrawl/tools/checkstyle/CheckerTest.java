@@ -138,7 +138,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.process(Collections.singletonList(tempFile));
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new Object[] {"arg" }, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
 
         assertFalse(auditAdapter.wasCalled(), "Checker.destroy() doesn't remove listeners.");
@@ -176,7 +176,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         auditAdapter.resetListener();
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new Object[] {"arg" }, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
         assertTrue(auditAdapter.wasCalled(), "Checker.fireErrors() doesn't call listener");
         assertTrue(auditAdapter.wasEventPassed(), "Checker.fireErrors() doesn't pass event");
@@ -218,7 +218,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         aa2.resetListener();
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new Object[] {"arg" }, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
         assertTrue(aa2.wasCalled(), "Checker.fireErrors() doesn't call listener");
         assertFalse(auditAdapter.wasCalled(), "Checker.fireErrors() does call removed listener");
@@ -261,7 +261,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         filter.resetFilter();
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new Object[] {"arg" }, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
         assertTrue(filter.wasCalled(), "Checker.fireErrors() doesn't call filter");
     }
@@ -278,7 +278,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         f2.resetFilter();
         final SortedSet<LocalizedMessage> messages = new TreeSet<>();
         messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
-                new Object[] {"arg"}, null, getClass(), null));
+                new Object[] {"arg" }, null, getClass(), null));
         checker.fireErrors("Some File Name", messages);
         assertTrue(f2.wasCalled(), "Checker.fireErrors() doesn't call filter");
         assertFalse(filter.wasCalled(), "Checker.fireErrors() does call removed filter");
@@ -303,7 +303,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         files.add(file);
         final File otherFile = new File("file.java");
         files.add(otherFile);
-        final String[] fileExtensions = {"java", "xml", "properties"};
+        final String[] fileExtensions = {"java", "xml", "properties" };
         checker.setFileExtensions(fileExtensions);
         checker.setCacheFile(File.createTempFile("junit", null, temporaryFolder).getPath());
         final int counter = checker.process(files);
@@ -337,7 +337,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final List<File> allIgnoredFiles = new ArrayList<>();
         final File ignoredFile = new File("file.pdf");
         allIgnoredFiles.add(ignoredFile);
-        final String[] fileExtensions = {"java", "xml", "properties"};
+        final String[] fileExtensions = {"java", "xml", "properties" };
         checker.setFileExtensions(fileExtensions);
         checker.setCacheFile(File.createTempFile("junit", null, temporaryFolder).getPath());
         final int counter = checker.process(allIgnoredFiles);
@@ -652,7 +652,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         checker.setFileExtensions(".test1", "test2");
         final String[] actual = Whitebox.getInternalState(checker, "fileExtensions");
-        assertArrayEquals(new String[] {".test1", ".test2"}, actual,
+        assertArrayEquals(new String[] {".test1", ".test2" }, actual,
                 "Extensions are not expected");
     }
 
@@ -1523,17 +1523,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.METHOD_DEF};
+            return new int[] {TokenTypes.METHOD_DEF };
         }
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.METHOD_DEF};
+            return new int[] {TokenTypes.METHOD_DEF };
         }
 
         @Override
         public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.METHOD_DEF};
+            return new int[] {TokenTypes.METHOD_DEF };
         }
 
         @Override
@@ -1582,17 +1582,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.METHOD_DEF};
+            return new int[] {TokenTypes.METHOD_DEF };
         }
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.METHOD_DEF};
+            return new int[] {TokenTypes.METHOD_DEF };
         }
 
         @Override
         public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.METHOD_DEF};
+            return new int[] {TokenTypes.METHOD_DEF };
         }
 
         @Override
@@ -1631,17 +1631,17 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultTokens() {
-            return new int[] {TokenTypes.CLASS_DEF};
+            return new int[] {TokenTypes.CLASS_DEF };
         }
 
         @Override
         public int[] getAcceptableTokens() {
-            return new int[] {TokenTypes.CLASS_DEF};
+            return new int[] {TokenTypes.CLASS_DEF };
         }
 
         @Override
         public int[] getRequiredTokens() {
-            return new int[] {TokenTypes.CLASS_DEF};
+            return new int[] {TokenTypes.CLASS_DEF };
         }
 
         @Override

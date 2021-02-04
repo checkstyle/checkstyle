@@ -161,7 +161,7 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
         synchronized (errorWriter) {
             final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, ADD_EXCEPTION_MESSAGE,
-                new String[] {event.getFileName()}, null,
+                new String[] {event.getFileName() }, null,
                 LocalizedMessage.class, null);
             errorWriter.println(addExceptionMessage.getMessage());
             throwable.printStackTrace(errorWriter);

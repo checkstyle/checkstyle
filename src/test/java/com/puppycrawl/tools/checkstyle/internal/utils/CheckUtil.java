@@ -354,7 +354,7 @@ public final class CheckUtil {
 
     public static String getLineSeparatorForFile(String filepath, Charset charset)
             throws IOException {
-        final boolean[] crFound = {false};
+        final boolean[] crFound = {false };
         new FileText(new File(filepath), charset.name())
                 .getFullText()
                 .chars()

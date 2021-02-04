@@ -142,7 +142,7 @@ public final class Main {
             if (errorCounter > 0) {
                 final LocalizedMessage errorCounterMessage = new LocalizedMessage(1,
                         Definitions.CHECKSTYLE_BUNDLE, ERROR_COUNTER,
-                        new String[] {String.valueOf(errorCounter)}, null, Main.class, null);
+                        new String[] {String.valueOf(errorCounter) }, null, Main.class, null);
                 // print error count statistic to error output stream,
                 // output stream might be used by validation report content
                 System.err.println(errorCounterMessage.getMessage());
@@ -433,7 +433,7 @@ public final class Main {
         catch (final IOException ex) {
             final LocalizedMessage loadPropertiesExceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, LOAD_PROPERTIES_EXCEPTION,
-                    new String[] {file.getAbsolutePath()}, null, Main.class, null);
+                    new String[] {file.getAbsolutePath() }, null, Main.class, null);
             throw new CheckstyleException(loadPropertiesExceptionMessage.getMessage(), ex);
         }
 
@@ -674,13 +674,13 @@ public final class Main {
          *
          * @noinspection CanBeFinal
          */
-        @Option(names = {"-w", "--tabWidth"},
+        @Option(names = {"-w", "--tabWidth" },
                 description = "Sets the length of the tab character. "
                 + "Used only with -s option. Default value is ${DEFAULT-VALUE}.")
         private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
         /** Switch whether to generate suppressions file or not. */
-        @Option(names = {"-g", "--generate-xpath-suppression"},
+        @Option(names = {"-g", "--generate-xpath-suppression" },
                 description = "Generates to output a suppression xml to use to suppress all "
                         + "violations from user's config. Instead of printing every violation, "
                         + "all violations will be catched and single suppressions xml file will "
@@ -701,21 +701,21 @@ public final class Main {
         private OutputFormat format = DEFAULT_OUTPUT_FORMAT;
 
         /** Option that controls whether to print the AST of the file. */
-        @Option(names = {"-t", "--tree"},
+        @Option(names = {"-t", "--tree" },
                 description = "Prints Abstract Syntax Tree(AST) of the checked file. The option "
                         + "cannot be used other options and requires exactly one file to run on "
                         + "to be specified.")
         private boolean printAst;
 
         /** Option that controls whether to print the AST of the file including comments. */
-        @Option(names = {"-T", "--treeWithComments"},
+        @Option(names = {"-T", "--treeWithComments" },
                 description = "Prints Abstract Syntax Tree(AST) with comment nodes "
                         + "of the checked file. The option cannot be used with other options "
                         + "and requires exactly one file to run on to be specified.")
         private boolean printAstWithComments;
 
         /** Option that controls whether to print the parse tree of the javadoc comment. */
-        @Option(names = {"-j", "--javadocTree"},
+        @Option(names = {"-j", "--javadocTree" },
                 description = "Prints Parse Tree of the Javadoc comment. "
                         + "The file have to contain only Javadoc comment content without "
                         + "including '/**' and '*/' at the beginning and at the end respectively. "
@@ -724,7 +724,7 @@ public final class Main {
         private boolean printJavadocTree;
 
         /** Option that controls whether to print the full AST of the file. */
-        @Option(names = {"-J", "--treeWithJavadoc"},
+        @Option(names = {"-J", "--treeWithJavadoc" },
                 description = "Prints Abstract Syntax Tree(AST) with Javadoc nodes "
                         + "and comment nodes of the checked file. Attention that line number and "
                         + "columns will not be the same as it is a file due to the fact that each "
@@ -734,7 +734,7 @@ public final class Main {
         private boolean printTreeWithJavadoc;
 
         /** Option that controls whether to print debug info. */
-        @Option(names = {"-d", "--debug"},
+        @Option(names = {"-d", "--debug" },
                 description = "Prints all debug logging of CheckStyle utility.")
         private boolean debug;
 
@@ -744,7 +744,7 @@ public final class Main {
          *
          * @noinspection CanBeFinal
          */
-        @Option(names = {"-e", "--exclude"},
+        @Option(names = {"-e", "--exclude" },
                 description = "Directory/file to exclude from CheckStyle. The path can be the "
                         + "full, absolute path, or relative to the current path. Multiple "
                         + "excludes are allowed.")
@@ -756,18 +756,18 @@ public final class Main {
          *
          * @noinspection CanBeFinal
          */
-        @Option(names = {"-x", "--exclude-regexp"},
+        @Option(names = {"-x", "--exclude-regexp" },
                 description = "Directory/file pattern to exclude from CheckStyle. Multiple "
                         + "excludes are allowed.")
         private List<Pattern> excludeRegex = new ArrayList<>();
 
         /** Switch whether to execute ignored modules or not. */
-        @Option(names = {"-E", "--executeIgnoredModules"},
+        @Option(names = {"-E", "--executeIgnoredModules" },
                 description = "Allows ignored modules to be run.")
         private boolean executeIgnoredModules;
 
         /** Show AST branches that match xpath. */
-        @Option(names = {"-b", "--branch-matching-xpath"},
+        @Option(names = {"-b", "--branch-matching-xpath" },
             description = "Shows Abstract Syntax Tree(AST) branches that match given XPath query.")
         private String xpath;
 

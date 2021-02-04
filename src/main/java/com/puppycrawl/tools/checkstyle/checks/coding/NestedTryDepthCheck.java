@@ -178,7 +178,7 @@ public final class NestedTryDepthCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_TRY};
+        return new int[] {TokenTypes.LITERAL_TRY };
     }
 
     @Override

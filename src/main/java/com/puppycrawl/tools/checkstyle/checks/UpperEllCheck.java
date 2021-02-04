@@ -83,7 +83,7 @@ public class UpperEllCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.NUM_LONG};
+        return new int[] {TokenTypes.NUM_LONG };
     }
 
     @Override

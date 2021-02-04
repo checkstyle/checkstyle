@@ -79,7 +79,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -93,7 +93,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST);
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -108,7 +108,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.RCURLY);
-        final DetailAST[] expected = {expectedCurlyNode};
+        final DetailAST[] expected = {expectedCurlyNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -124,7 +124,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST expectedMethodDefNode2 = expectedMethodDefNode1.getNextSibling();
         final DetailAST[] expected = {expectedClassDefNode, expectedMethodDefNode1,
-            expectedMethodDefNode2};
+            expectedMethodDefNode2 };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -137,7 +137,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.CLASS_DEF);
         final DetailAST expectedObjblockNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK);
-        final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode};
+        final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -150,7 +150,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode
                 .findFirstToken(TokenTypes.ANNOTATIONS);
-        final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode};
+        final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -169,7 +169,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedClassDefNode, expectedObjblockNode,
-            expectedMethodDefNode, expectedMethodDefNode2};
+            expectedMethodDefNode, expectedMethodDefNode2 };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -185,7 +185,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -200,7 +200,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST expectedMethodDefNode = expectedClassDefNode
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -224,7 +224,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -260,7 +260,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling() };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
         assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
         assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.METHOD_DEF));
@@ -278,7 +278,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF);
-        final DetailAST[] expected = {expectedClassDefNode};
+        final DetailAST[] expected = {expectedClassDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -292,7 +292,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -307,7 +307,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling() };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
         assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
         assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.METHOD_DEF));
@@ -324,7 +324,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -336,7 +336,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(nodes);
         final DetailAST expectedClassDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF);
-        final DetailAST[] expected = {expectedClassDefNode};
+        final DetailAST[] expected = {expectedClassDefNode };
         final ElementNode classDefNode = (ElementNode) nodes.get(0);
         assertThat("Invalid node name", classDefNode.getLocalPart(), equalTo("CLASS_DEF"));
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
@@ -369,7 +369,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -387,7 +387,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -409,7 +409,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling() };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
         assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
         assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.METHOD_DEF));
@@ -471,7 +471,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST expectedObjBlockNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.OBJBLOCK);
-        final DetailAST[] expected = {expectedObjBlockNode};
+        final DetailAST[] expected = {expectedObjBlockNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -502,7 +502,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.MODIFIERS)
                 .findFirstToken(TokenTypes.ANNOTATION);
-        final DetailAST[] expected = {expectedAnnotationNode};
+        final DetailAST[] expected = {expectedAnnotationNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -521,7 +521,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, enumRootNode));
         final DetailAST expectedEnumDefNode = getSiblingByType(enumRootNode.getUnderlyingNode(),
                 TokenTypes.ENUM_DEF);
-        final DetailAST[] expected = {expectedEnumDefNode};
+        final DetailAST[] expected = {expectedEnumDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -545,7 +545,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.ENUM_CONSTANT_DEF)
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedEnumConstantDefNode};
+        final DetailAST[] expected = {expectedEnumConstantDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -557,7 +557,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST expectedInterfaceDefNode = getSiblingByType(
                 interfaceRootNode.getUnderlyingNode(),
                 TokenTypes.INTERFACE_DEF);
-        final DetailAST[] expected = {expectedInterfaceDefNode};
+        final DetailAST[] expected = {expectedInterfaceDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -580,7 +580,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -594,7 +594,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.CLASS_DEF)
                 .findFirstToken(TokenTypes.IDENT);
 
-        final DetailAST[] expected = {expectedIdentNode};
+        final DetailAST[] expected = {expectedIdentNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -612,7 +612,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.DOT)
                 .findFirstToken(TokenTypes.IDENT)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedMethodDefNode};
+        final DetailAST[] expected = {expectedMethodDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -627,7 +627,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -645,7 +645,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -670,7 +670,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedAnnotationNode};
+        final DetailAST[] expected = {expectedAnnotationNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -681,7 +681,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.IMPORT);
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -692,7 +692,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.IMPORT).getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -703,7 +703,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.IMPORT).getNextSibling().getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -722,7 +722,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .getNextSibling()
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -740,7 +740,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.LITERAL_SWITCH)
                 .findFirstToken(TokenTypes.CASE_GROUP);
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -759,7 +759,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.LITERAL_SWITCH)
                 .findFirstToken(TokenTypes.CASE_GROUP)
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -779,7 +779,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.CASE_GROUP)
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -800,7 +800,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .getNextSibling()
                 .getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -815,7 +815,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling();
         final DetailAST[] expected = {expectedMethodDefNode,
-                expectedMethodDefNode.getNextSibling()};
+                expectedMethodDefNode.getNextSibling() };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
         assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
         assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.RCURLY));
@@ -839,7 +839,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .getNextSibling().getNextSibling();
-        final DetailAST[] expected = {expectedRightCurlyNode};
+        final DetailAST[] expected = {expectedRightCurlyNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -860,7 +860,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .getNextSibling();
         final DetailAST expectedExprNode = expectedAssignNode.getFirstChild();
         final DetailAST expectedNumIntNode = expectedExprNode.getFirstChild();
-        final DetailAST[] expected = {expectedAssignNode, expectedExprNode, expectedNumIntNode};
+        final DetailAST[] expected = {expectedAssignNode, expectedExprNode, expectedNumIntNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -874,7 +874,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.OBJBLOCK)
                 .findFirstToken(TokenTypes.METHOD_DEF);
         final DetailAST[] expected = {expectedMethodDefNode,
-            expectedMethodDefNode.getNextSibling()};
+            expectedMethodDefNode.getNextSibling() };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
         assertThat("Invalid token type", actual[0].getType(), equalTo(TokenTypes.METHOD_DEF));
         assertThat("Invalid token type", actual[1].getType(), equalTo(TokenTypes.METHOD_DEF));
@@ -903,7 +903,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST expectedVariableDefNode2 = expectedSemiNode1.getNextSibling();
         final DetailAST expectedSemiNode2 = expectedVariableDefNode2.getNextSibling();
         final DetailAST[] expected = {expectedVariableDefNode1, expectedSemiNode1,
-            expectedVariableDefNode2, expectedSemiNode2};
+            expectedVariableDefNode2, expectedSemiNode2 };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -921,7 +921,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
         final DetailAST expectedVariableDefNode2 = expectedVariableDefNode1.getNextSibling()
                 .getNextSibling();
-        final DetailAST[] expected = {expectedVariableDefNode1, expectedVariableDefNode2};
+        final DetailAST[] expected = {expectedVariableDefNode1, expectedVariableDefNode2 };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -936,7 +936,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 .findFirstToken(TokenTypes.METHOD_DEF)
                 .findFirstToken(TokenTypes.SLIST)
                 .findFirstToken(TokenTypes.VARIABLE_DEF);
-        final DetailAST[] expected = {expectedVariableDefNode};
+        final DetailAST[] expected = {expectedVariableDefNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -956,7 +956,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST expectedPackageDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.PACKAGE_DEF);
         final DetailAST expectedAnnotationsNode = expectedPackageDefNode.getFirstChild();
-        final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode};
+        final DetailAST[] expected = {expectedPackageDefNode, expectedAnnotationsNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
@@ -967,7 +967,7 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
         final DetailAST expectedLiteralPublicNode = getSiblingByType(rootNode.getUnderlyingNode(),
                 TokenTypes.CLASS_DEF).getFirstChild().getFirstChild();
-        final DetailAST[] expected = {expectedLiteralPublicNode};
+        final DetailAST[] expected = {expectedLiteralPublicNode };
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 

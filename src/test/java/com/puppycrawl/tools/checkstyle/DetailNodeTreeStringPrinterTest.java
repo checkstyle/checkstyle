@@ -92,7 +92,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 35,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 MSG_JAVADOC_MISSED_HTML_CLOSE,
-                new Object[] {7, "xyz"},
+                new Object[] {7, "xyz" },
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);
@@ -110,7 +110,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 10,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 MSG_JAVADOC_PARSE_RULE_ERROR,
-                new Object[] {9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"},
+                new Object[] {9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT" },
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);
@@ -127,7 +127,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 100,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 MSG_JAVADOC_WRONG_SINGLETON_TAG,
-                new Object[] {9, "tag"},
+                new Object[] {9, "tag" },
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);

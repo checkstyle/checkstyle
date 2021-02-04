@@ -91,7 +91,7 @@ public class MissingJavadocPackageCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.PACKAGE_DEF};
+        return new int[] {TokenTypes.PACKAGE_DEF };
     }
 
     @Override

@@ -125,7 +125,7 @@ public final class MutableExceptionCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
+        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF };
     }
 
     @Override

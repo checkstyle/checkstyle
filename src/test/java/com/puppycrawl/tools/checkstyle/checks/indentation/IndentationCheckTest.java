@@ -2584,7 +2584,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testArgumentOrderOfErrorMessages() {
-        final Object[] arguments = {"##0##", "##1##", "##2##"};
+        final Object[] arguments = {"##0##", "##1##", "##2##" };
         final String[] messages = {
             getCheckMessage(MSG_ERROR, arguments),
             getCheckMessage(MSG_CHILD_ERROR, arguments),

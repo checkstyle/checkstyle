@@ -53,7 +53,7 @@ public class RegexpOnFilenameCheckPowerTest extends AbstractModuleTestSupport {
         when(fileWithoutParent.getParentFile()).thenReturn(null);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(moduleConfig),
-                new File[] {fileWithoutParent},
+                new File[] {fileWithoutParent },
                 getPath("package-info.java"), expected);
     }
 

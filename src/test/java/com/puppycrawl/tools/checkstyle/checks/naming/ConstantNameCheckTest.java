@@ -44,7 +44,7 @@ public class ConstantNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         final ConstantNameCheck checkObj = new ConstantNameCheck();
-        final int[] expected = {TokenTypes.VARIABLE_DEF};
+        final int[] expected = {TokenTypes.VARIABLE_DEF };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

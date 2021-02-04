@@ -123,7 +123,7 @@ public class NoEnumTrailingCommaCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.ENUM_CONSTANT_DEF};
+        return new int[] {TokenTypes.ENUM_CONSTANT_DEF };
     }
 
     @Override

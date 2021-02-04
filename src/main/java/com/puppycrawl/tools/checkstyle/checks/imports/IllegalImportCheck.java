@@ -374,7 +374,7 @@ public class IllegalImportCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT};
+        return new int[] {TokenTypes.IMPORT, TokenTypes.STATIC_IMPORT };
     }
 
     @Override

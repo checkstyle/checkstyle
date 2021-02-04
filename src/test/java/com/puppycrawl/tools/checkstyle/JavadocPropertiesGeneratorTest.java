@@ -43,7 +43,7 @@ import antlr.MismatchedTokenException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
-@ExtendWith({SystemErrGuard.class, SystemOutGuard.class})
+@ExtendWith({SystemErrGuard.class, SystemOutGuard.class })
 public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
 
     private static final String EOL = System.lineSeparator();

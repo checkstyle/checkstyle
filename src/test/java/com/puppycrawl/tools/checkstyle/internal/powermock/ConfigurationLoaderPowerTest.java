@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.ThreadModeSettings;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class})
+@PrepareForTest({DefaultConfiguration.class, ConfigurationLoader.class })
 public class ConfigurationLoaderPowerTest extends AbstractPathTestSupport {
 
     @Override
@@ -52,7 +52,7 @@ public class ConfigurationLoaderPowerTest extends AbstractPathTestSupport {
     public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
         // emulate exception from unrelated code, but that is same try-catch
         final DefaultConfiguration tested = PowerMockito.mock(DefaultConfiguration.class);
-        when(tested.getAttributeNames()).thenReturn(new String[] {"severity"});
+        when(tested.getAttributeNames()).thenReturn(new String[] {"severity" });
         when(tested.getName()).thenReturn("MemberName");
         when(tested.getAttribute("severity")).thenThrow(CheckstyleException.class);
         // to void creation of 2 other mocks for now reason, only one moc is used for all cases

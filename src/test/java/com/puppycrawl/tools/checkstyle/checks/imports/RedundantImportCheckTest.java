@@ -67,7 +67,7 @@ public class RedundantImportCheckTest
             "7:1: " + getCheckMessage(MSG_DUPLICATE, 6, "java.util.List")
         );
         final List<String> expectedSecondInput = Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
-        final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings)};
+        final File[] inputs = {new File(inputWithWarnings), new File(inputWithoutWarnings) };
 
         verify(createChecker(checkConfig), inputs, ImmutableMap.of(
             inputWithWarnings, expectedFirstInput,

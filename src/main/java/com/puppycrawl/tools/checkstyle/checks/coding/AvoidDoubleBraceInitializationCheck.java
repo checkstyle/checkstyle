@@ -141,7 +141,7 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.OBJBLOCK};
+        return new int[] {TokenTypes.OBJBLOCK };
     }
 
     @Override

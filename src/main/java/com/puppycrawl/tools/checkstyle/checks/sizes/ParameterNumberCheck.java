@@ -155,7 +155,7 @@ public class ParameterNumberCheck
 
     @Override
     public int[] getAcceptableTokens() {
-        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF};
+        return new int[] {TokenTypes.METHOD_DEF, TokenTypes.CTOR_DEF };
     }
 
     @Override

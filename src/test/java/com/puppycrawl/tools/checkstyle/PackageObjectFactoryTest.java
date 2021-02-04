@@ -140,7 +140,7 @@ public class PackageObjectFactoryTest {
         catch (CheckstyleException ex) {
             final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, null}, null, factory.getClass(), null);
+                    new String[] {name, null }, null, factory.getClass(), null);
             assertEquals(exceptionMessage.getMessage(), ex.getMessage(),
                     "Invalid exception message");
         }
@@ -160,7 +160,7 @@ public class PackageObjectFactoryTest {
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
                 final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, factory.getClass(), null);
+                    new String[] {name, attemptedNames }, null, factory.getClass(), null);
                 assertEquals(exceptionMessage.getMessage(), ex.getMessage(),
                         "Invalid exception message");
             }
@@ -224,7 +224,7 @@ public class PackageObjectFactoryTest {
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
             final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
-                    new String[] {name, optionalNames}, null, getClass(), null);
+                    new String[] {name, optionalNames }, null, getClass(), null);
             assertEquals(
                     exceptionMessage.getMessage(), ex.getMessage(), "Invalid exception message");
         }
@@ -251,7 +251,7 @@ public class PackageObjectFactoryTest {
                     + package2 + PACKAGE_SEPARATOR + checkName;
             final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, getClass(), null);
+                    new String[] {name, attemptedNames }, null, getClass(), null);
             assertEquals(
                     exceptionMessage.getMessage(), ex.getMessage(), "Invalid exception message");
         }
@@ -279,7 +279,7 @@ public class PackageObjectFactoryTest {
                     + package2 + PACKAGE_SEPARATOR + checkName;
             final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
-                    new String[] {name, attemptedNames}, null, getClass(), null);
+                    new String[] {name, attemptedNames }, null, getClass(), null);
             assertEquals(
                     exceptionMessage.getMessage(), ex.getMessage(), "Invalid exception message");
         }

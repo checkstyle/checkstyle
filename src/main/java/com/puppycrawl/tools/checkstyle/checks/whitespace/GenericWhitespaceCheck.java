@@ -159,7 +159,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END};
+        return new int[] {TokenTypes.GENERIC_START, TokenTypes.GENERIC_END };
     }
 
     @Override

@@ -50,7 +50,7 @@ public class CommentsTest extends AbstractTreeTestSupport {
 
     @Test
     public void testToString() {
-        final Comment comment = new Comment(new String[] {"value"}, 1, 2, 3);
+        final Comment comment = new Comment(new String[] {"value" }, 1, 2, 3);
         assertEquals(
                 "Comment[text=[value], startLineNo=2, endLineNo=2, startColNo=1, endColNo=3]",
                 comment.toString(), "Invalid toString result");
@@ -64,7 +64,7 @@ public class CommentsTest extends AbstractTreeTestSupport {
             "     * @param firstCol number of the first column of the comment.",
             "     * @param lastLine number of the last line of the comment.",
             "     * @param lastCol number of the last column of the comment.",
-            "     */"};
+            "     */" };
         final Comment comment = new Comment(commentText, 5, 49, 66);
 
         assertEquals(43, comment.getStartLineNo(), "Invalid comment start line number");
@@ -76,7 +76,7 @@ public class CommentsTest extends AbstractTreeTestSupport {
     @Test
     public void testIntersects() {
         final String[] commentText = {"// compute a single number for start and end",
-            "// to simplify conditional logic"};
+            "// to simplify conditional logic" };
         final Comment comment = new Comment(commentText, 9, 89, 53);
 
         assertTrue(comment.intersects(89, 9, 89, 41), "Invalid intersection result");

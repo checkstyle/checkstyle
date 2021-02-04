@@ -43,7 +43,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final MethodCountCheck checkObj = new MethodCountCheck();
-        final int[] expected = {TokenTypes.METHOD_DEF};
+        final int[] expected = {TokenTypes.METHOD_DEF };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

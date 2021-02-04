@@ -440,7 +440,7 @@ public class VariableDeclarationUsageDistanceCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.VARIABLE_DEF};
+        return new int[] {TokenTypes.VARIABLE_DEF };
     }
 
     @Override

@@ -38,7 +38,7 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testGetRequiredTokens() {
         final EmptyCatchBlockCheck checkObj = new EmptyCatchBlockCheck();
-        final int[] expected = {TokenTypes.LITERAL_CATCH};
+        final int[] expected = {TokenTypes.LITERAL_CATCH };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

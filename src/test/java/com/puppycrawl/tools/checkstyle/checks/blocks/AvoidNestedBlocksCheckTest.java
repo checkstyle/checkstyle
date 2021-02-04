@@ -39,7 +39,7 @@ public class AvoidNestedBlocksCheckTest
     @Test
     public void testGetRequiredTokens() {
         final AvoidNestedBlocksCheck checkObj = new AvoidNestedBlocksCheck();
-        final int[] expected = {TokenTypes.SLIST};
+        final int[] expected = {TokenTypes.SLIST };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

@@ -97,7 +97,7 @@ public class AnonInnerLengthCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_NEW};
+        return new int[] {TokenTypes.LITERAL_NEW };
     }
 
     @Override

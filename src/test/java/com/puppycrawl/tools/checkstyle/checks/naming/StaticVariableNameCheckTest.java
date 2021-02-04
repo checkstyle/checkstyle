@@ -40,7 +40,7 @@ public class StaticVariableNameCheckTest
     @Test
     public void testGetRequiredTokens() {
         final StaticVariableNameCheck checkObj = new StaticVariableNameCheck();
-        final int[] expected = {TokenTypes.VARIABLE_DEF};
+        final int[] expected = {TokenTypes.VARIABLE_DEF };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

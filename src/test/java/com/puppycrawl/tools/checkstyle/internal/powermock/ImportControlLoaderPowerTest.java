@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportControlLoader;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({ImportControlLoader.class, URI.class})
+@PrepareForTest({ImportControlLoader.class, URI.class })
 public class ImportControlLoaderPowerTest {
 
     @Test

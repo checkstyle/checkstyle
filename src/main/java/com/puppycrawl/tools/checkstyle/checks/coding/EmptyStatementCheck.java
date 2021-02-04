@@ -84,7 +84,7 @@ public class EmptyStatementCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.EMPTY_STAT};
+        return new int[] {TokenTypes.EMPTY_STAT };
     }
 
     @Override

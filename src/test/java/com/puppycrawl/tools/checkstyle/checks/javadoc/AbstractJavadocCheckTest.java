@@ -223,7 +223,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
     @Test
     public void testTokens() {
-        final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC};
+        final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC };
         final AbstractJavadocCheck check = new AbstractJavadocCheck() {
             @Override
             public void visitJavadocToken(DetailNode ast) {
@@ -492,7 +492,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.JAVADOC};
+            return new int[] {JavadocTokenTypes.JAVADOC };
         }
 
         @Override
@@ -510,12 +510,12 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.RETURN_LITERAL};
+            return new int[] {JavadocTokenTypes.RETURN_LITERAL };
         }
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL };
         }
 
         @Override
@@ -534,17 +534,17 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL };
         }
 
         @Override
         public int[] getDefaultJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL };
         }
 
         @Override
         public int[] getAcceptableJavadocTokens() {
-            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL};
+            return new int[] {JavadocTokenTypes.DEPRECATED_LITERAL };
         }
 
         @Override
@@ -566,7 +566,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
 
         @Override
         public int[] getRequiredJavadocTokens() {
-            return new int[] {JavadocTokenTypes.TEXT};
+            return new int[] {JavadocTokenTypes.TEXT };
         }
 
         @Override

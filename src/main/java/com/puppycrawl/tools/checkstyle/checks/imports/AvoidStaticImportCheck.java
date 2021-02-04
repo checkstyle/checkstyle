@@ -129,7 +129,7 @@ public class AvoidStaticImportCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.STATIC_IMPORT};
+        return new int[] {TokenTypes.STATIC_IMPORT };
     }
 
     /**

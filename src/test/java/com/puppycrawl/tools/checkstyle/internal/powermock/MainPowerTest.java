@@ -36,7 +36,7 @@ import com.puppycrawl.tools.checkstyle.Main;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Main.class, CommonUtil.class})
+@PrepareForTest({Main.class, CommonUtil.class })
 public class MainPowerTest {
 
     private static final String SHORT_USAGE = String.format(Locale.ROOT,

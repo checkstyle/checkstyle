@@ -229,7 +229,7 @@ public class ArrayTrailingCommaCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.ARRAY_INIT};
+        return new int[] {TokenTypes.ARRAY_INIT };
     }
 
     @Override

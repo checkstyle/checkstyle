@@ -192,7 +192,7 @@ public final class ReturnCountCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.LITERAL_RETURN};
+        return new int[] {TokenTypes.LITERAL_RETURN };
     }
 
     @Override

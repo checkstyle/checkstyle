@@ -39,7 +39,7 @@ public class RecordComponentNameCheckTest extends AbstractModuleTestSupport {
     public void testGetClassRequiredTokens() {
         final RecordComponentNameCheck checkObj =
                 new RecordComponentNameCheck();
-        final int[] expected = {TokenTypes.RECORD_COMPONENT_DEF};
+        final int[] expected = {TokenTypes.RECORD_COMPONENT_DEF };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

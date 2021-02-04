@@ -1717,7 +1717,7 @@ public class XdocsPagesTest {
 
             styleChecks.remove(moduleName);
 
-            for (String configName : new String[] {"config", "test"}) {
+            for (String configName : new String[] {"config", "test" }) {
                 Node config = null;
 
                 try {

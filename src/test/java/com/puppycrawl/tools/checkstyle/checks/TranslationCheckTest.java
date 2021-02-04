@@ -257,7 +257,7 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         assertEquals(1, dispatcher.savedErrors.size(), "expected number of errors to fire");
         final LocalizedMessage localizedMessage = new LocalizedMessage(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
-                new String[] {exception.getMessage()}, null, getClass(), null);
+                new String[] {exception.getMessage() }, null, getClass(), null);
         assertEquals(localizedMessage.getMessage(),
                 dispatcher.savedErrors.iterator().next().getMessage(), "Invalid message");
     }

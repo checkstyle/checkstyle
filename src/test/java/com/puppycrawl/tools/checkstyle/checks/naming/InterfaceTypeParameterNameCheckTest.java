@@ -40,7 +40,7 @@ public class InterfaceTypeParameterNameCheckTest
     public void testGetAcceptableTokens() {
         final InterfaceTypeParameterNameCheck interfaceTypeParameterNameCheck =
             new InterfaceTypeParameterNameCheck();
-        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+        final int[] expected = {TokenTypes.TYPE_PARAMETER };
 
         assertArrayEquals(expected, interfaceTypeParameterNameCheck.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
@@ -50,7 +50,7 @@ public class InterfaceTypeParameterNameCheckTest
     public void testGetRequiredTokens() {
         final InterfaceTypeParameterNameCheck checkObj =
             new InterfaceTypeParameterNameCheck();
-        final int[] expected = {TokenTypes.TYPE_PARAMETER};
+        final int[] expected = {TokenTypes.TYPE_PARAMETER };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

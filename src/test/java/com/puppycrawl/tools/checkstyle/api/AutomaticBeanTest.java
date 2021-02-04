@@ -193,13 +193,13 @@ public class AutomaticBeanTest {
         config.addAttribute("accessModifiers", "public, private");
         bean.configure(config);
 
-        assertArrayEquals(new String[] {"a", "b", "c"}, bean.strings, "invalid result");
+        assertArrayEquals(new String[] {"a", "b", "c" }, bean.strings, "invalid result");
         assertEquals(".*", bean.pattern.pattern(), "invalid result");
         assertEquals(SeverityLevel.ERROR, bean.severityLevel, "invalid result");
         assertEquals(Scope.PUBLIC, bean.scope, "invalid result");
         assertEquals(new URI("http://github.com"), bean.uri, "invalid result");
         assertArrayEquals(new AccessModifierOption[] {AccessModifierOption.PUBLIC,
-            AccessModifierOption.PRIVATE}, bean.accessModifiers,
+            AccessModifierOption.PRIVATE }, bean.accessModifiers,
                 "invalid result");
     }
 

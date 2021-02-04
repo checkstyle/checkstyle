@@ -40,7 +40,7 @@ public class UpperEllCheckTest
     @Test
     public void testGetRequiredTokens() {
         final UpperEllCheck checkObj = new UpperEllCheck();
-        final int[] expected = {TokenTypes.NUM_LONG};
+        final int[] expected = {TokenTypes.NUM_LONG };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }

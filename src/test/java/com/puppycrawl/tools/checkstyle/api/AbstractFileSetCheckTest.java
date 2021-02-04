@@ -141,7 +141,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     public void testGetFileExtension() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setFileExtensions("tmp", ".java");
-        final String[] expectedExtensions = {".tmp", ".java"};
+        final String[] expectedExtensions = {".tmp", ".java" };
 
         assertArrayEquals(expectedExtensions, check.getFileExtensions(), "Invalid extensions");
     }
