@@ -74,5 +74,31 @@
       </p>
     </section>
 
+    <section name="Property chaining support">
+      <p>
+        Checkstyle supports property expansion within property definitions, also
+        known as property chaining. This feature allows you to define properties
+        using other properties. For example:
+        <source>
+checkstyle.dir=/home/user/checkstyle
+config.dir=configs
+checkstyle.suppressions.file=${checkstyle.dir}/${config.dir}/suppressions.xml
+        </source>
+        You can then use
+        <code>${checkstyle.suppressions.file}</code> in your checkstyle configuration,
+        which will resolve to
+        <code>/home/user/checkstyle/configs/suppressions.xml</code>.
+      </p>
+      <subsection name="Notes" id="Property_chaining_support_Notes">
+        <p>
+          Note that property variable expression must be of the form
+          <code>${expression}</code>.
+        </p>
+        <p>
+          It is not necessary to define chained properties sequentially.
+        </p>
+      </subsection>
+    </section>
+
   </body>
 </document>
