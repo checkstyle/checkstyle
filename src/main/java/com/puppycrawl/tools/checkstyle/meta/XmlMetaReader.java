@@ -40,6 +40,7 @@ import org.xml.sax.SAXException;
 
 /**
  * Class having utilities required to read module details from an XML metadata file of a module.
+ * This class is used by plugins that need load of metadata from XML files.
  */
 public final class XmlMetaReader {
 
@@ -119,27 +120,16 @@ public final class XmlMetaReader {
      */
     public static ModuleDetails read(InputStream moduleMetadataStream, ModuleType moduleType)
             throws ParserConfigurationException, IOException, SAXException {
-        final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        final DocumentBuilder builder = factory.newDocumentBuilder();
-        final Document document = builder.parse(moduleMetadataStream);
-        final Element root = document.getDocumentElement();
-        final Element element = getDirectChildsByTag(root, "module").get(0);
-        Element module = null;
-        final ModuleDetails moduleDetails = new ModuleDetails();
-        if (moduleType == ModuleType.CHECK) {
-            module = getDirectChildsByTag(element, "check").get(0);
-            moduleDetails.setModuleType(ModuleType.CHECK);
-        }
-        else if (moduleType == ModuleType.FILTER) {
-            module = getDirectChildsByTag(element, "filter").get(0);
-            moduleDetails.setModuleType(ModuleType.FILTER);
-        }
-        else if (moduleType == ModuleType.FILEFILTER) {
-            module = getDirectChildsByTag(element, "file-filter").get(0);
-            moduleDetails.setModuleType(ModuleType.FILEFILTER);
-        }
         ModuleDetails result = null;
-        if (module != null) {
+        if (moduleType != null) {
+            final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            final DocumentBuilder builder = factory.newDocumentBuilder();
+            final Document document = builder.parse(moduleMetadataStream);
+            final Element root = document.getDocumentElement();
+            final Element element = getDirectChildsByTag(root, "module").get(0);
+            final ModuleDetails moduleDetails = new ModuleDetails();
+            final Element module = getDirectChildsByTag(element, moduleType.getLabel()).get(0);
+            moduleDetails.setModuleType(moduleType);
             result = createModule(module, moduleDetails);
         }
         return result;
