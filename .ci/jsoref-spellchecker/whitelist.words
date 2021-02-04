@@ -1494,6 +1494,7 @@ xml
 xmlcatalog
 XMLHTTP
 xmllogger
+xmlmetareader
 xmlns
 xmlp
 xmlstarlet
