@@ -883,7 +883,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @param parentType parent token.
      * @return true is current token inside array initialization
      */
-    private boolean isArrayInitialization(int currentType, int parentType) {
+    private static boolean isArrayInitialization(int currentType, int parentType) {
         return currentType == TokenTypes.RCURLY && parentType == TokenTypes.ANNOTATION_ARRAY_INIT
                 || parentType == TokenTypes.ARRAY_INIT;
     }
