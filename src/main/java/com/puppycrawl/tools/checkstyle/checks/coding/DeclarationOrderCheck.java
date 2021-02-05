@@ -89,36 +89,89 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name=&quot;DeclarationOrder&quot;/&gt;
  * </pre>
- * <p>
- * With default options:
- * </p>
+ * <p>Example:</p>
  * <pre>
- * class K {
- *   int a;
- *   void m(){}
- *   K(){}  &lt;-- &quot;Constructor definition in wrong order&quot;
- *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
+ * public class Test {
+ *
+ *   public int a;
+ *   protected int b;
+ *   public int c;            // violation, variable access definition in wrong order
+ *
+ *   Test() {
+ *     this.a = 0;
+ *   }
+ *
+ *   public void foo() {
+ *     // This method does nothing
+ *   }
+ *
+ *   Test(int a) {            // violation, constructor definition in wrong order
+ *     this.a = a;
+ *   }
+ *
+ *   private String name;     // violation, instance variable declaration in wrong order
  * }
  * </pre>
  * <p>
- * With <b>ignoreConstructors</b> option:
+ * To configure the check to ignore validation of constructors:
  * </p>
  * <pre>
- * class K {
- *   int a;
- *   void m(){}
- *   K(){}
- *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
+ * &lt;module name=&quot;DeclarationOrder&quot;&gt;
+ *   &lt;property name=&quot;ignoreConstructors&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public int a;
+ *   protected int b;
+ *   public int c;            // violation, variable access definition in wrong order
+ *
+ *   Test() {
+ *     this.a = 0;
+ *   }
+ *
+ *   public void foo() {
+ *     // This method does nothing
+ *   }
+ *
+ *   Test(int a) {            // OK, validation of constructors ignored
+ *     this.a = a;
+ *   }
+ *
+ *   private String name;     // violation, instance variable declaration in wrong order
  * }
  * </pre>
  * <p>
- * With <b>ignoreConstructors</b> option and without a method definition in a source class:
+ * To configure the check to ignore modifiers:
  * </p>
  * <pre>
- * class K {
- *   int a;
- *   K(){}
- *   int b; &lt;-- &quot;Instance variable definition in wrong order&quot;
+ * &lt;module name=&quot;DeclarationOrder&quot;&gt;
+ *   &lt;property name=&quot;ignoreModifiers&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *
+ *   public int a;
+ *   protected int b;
+ *   public int c;            // OK, access modifiers not considered while validating
+ *
+ *   Test() {
+ *     this.a = 0;
+ *   }
+ *
+ *   public void foo() {
+ *     // This method does nothing
+ *   }
+ *
+ *   Test(int a) {            // violation, constructor definition in wrong order
+ *     this.a = a;
+ *   }
+ *
+ *   private String name;     // violation, instance variable declaration in wrong order
  * }
  * </pre>
  * <p>
