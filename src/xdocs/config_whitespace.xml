@@ -3015,6 +3015,13 @@ try {
               <td>5.5</td>
             </tr>
             <tr>
+              <td>allowWhitespaceAroundArrayInit</td>
+              <td>Allow whitespace around array initialization.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.41</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
 
