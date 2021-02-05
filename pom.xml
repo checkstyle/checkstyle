@@ -418,7 +418,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.7.0.1746</version>
+          <version>3.8.0.2131</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
