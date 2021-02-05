@@ -3470,6 +3470,24 @@ class Test {
     }
 }
         </source>
+        <p>
+          To configure the check to allow whitespace around array initialisation.
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+ &lt;property name="allowWhitespaceAroundArrayInit" value="true" /&gt;
+ &lt;property name="tokens" value="ARRAY_INIT,RCURLY" /&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    public static void check() {
+        int[] arr = {1,2,3}; // 2 violations, '{' is not followed by whitespace and
+                            // '}' is not preceded by whitespace.
+    }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="WhitespaceAround_Example_of_Usage">

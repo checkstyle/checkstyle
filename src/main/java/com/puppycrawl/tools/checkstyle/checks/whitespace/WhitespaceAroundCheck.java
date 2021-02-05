@@ -449,6 +449,24 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to allow whitespace around array initialisation.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;WhitespaceAround&quot;&gt;
+ *  &lt;property name="allowWhitespaceAroundArrayInit" value="true" /&gt;
+ *  &lt;property name="tokens" value="ARRAY_INIT,RCURLY" /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     public static void check() {
+ *         int[] arr = {1,2,3}; // 2 violations, '{' is not followed by whitespace and
+ *                             // '}' is not preceded by whitespace.
+ *     }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
