@@ -498,7 +498,7 @@ public final class ConfigurationLoader {
                                  String qName,
                                  Attributes attributes)
                 throws SAXException {
-            if (qName.equals(MODULE)) {
+            if (MODULE.equals(qName)) {
                 // create configuration
                 final String originalName = attributes.getValue(NAME);
                 final String name = threadModeSettings.resolveName(originalName);
@@ -518,7 +518,7 @@ public final class ConfigurationLoader {
 
                 configStack.push(conf);
             }
-            else if (qName.equals(PROPERTY)) {
+            else if (PROPERTY.equals(qName)) {
                 // extract value and name
                 final String value;
                 try {
