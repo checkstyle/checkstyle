@@ -498,7 +498,7 @@ public final class ConfigurationLoader {
                                  String qName,
                                  Attributes attributes)
                 throws SAXException {
-            if (qName.equals(MODULE)) {
+            if (MODULE.equals(qName)) {
                 // create configuration
                 final String originalName = attributes.getValue(NAME);
                 final String name = threadModeSettings.resolveName(originalName);
@@ -518,7 +518,7 @@ public final class ConfigurationLoader {
 
                 configStack.push(conf);
             }
-            else if (qName.equals(PROPERTY)) {
+            else if (PROPERTY.equals(qName)) {
                 // extract value and name
                 final String value;
                 try {
@@ -536,7 +536,7 @@ public final class ConfigurationLoader {
                     configStack.peek();
                 top.addAttribute(name, value);
             }
-            else if (qName.equals(MESSAGE)) {
+            else if (MESSAGE.equals(qName)) {
                 // extract key and value
                 final String key = attributes.getValue(KEY);
                 final String value = attributes.getValue(VALUE);
@@ -546,7 +546,7 @@ public final class ConfigurationLoader {
                 top.addMessage(key, value);
             }
             else {
-                if (!qName.equals(METADATA)) {
+                if (!METADATA.equals(qName)) {
                     throw new IllegalStateException("Unknown name:" + qName + ".");
                 }
             }
@@ -556,7 +556,7 @@ public final class ConfigurationLoader {
         public void endElement(String uri,
                                String localName,
                                String qName) throws SAXException {
-            if (qName.equals(MODULE)) {
+            if (MODULE.equals(qName)) {
                 final Configuration recentModule =
                     configStack.pop();
 
