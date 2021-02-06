@@ -89,53 +89,112 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;/&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private int a;
+ *   private int b;
+ *   private int c;
+ *
+ *   public Test(int a) {
+ *     // overlapping by constructor argument
+ *     this.a = a;       // OK, this keyword used
+ *     b = 0;            // OK, no overlap
+ *     foo(5);           // OK
+ *   }
+ *
+ *   public void foo(int c) {
+ *     // overlapping by method argument
+ *     c = c;            // violation, reference to instance variable "c" requires "this"
+ *   }
+ * }
+ * </pre>
  * <p>
- * To configure to check the {@code this} qualifier for fields only:
+ * To configure the check for fields only:
  * </p>
  * <pre>
  * &lt;module name=&quot;RequireThis&quot;&gt;
  *   &lt;property name=&quot;checkMethods&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private int a;
+ *   private int b;
+ *   private int c;
+ *
+ *   public Test(int a) {
+ *     // overlapping by constructor argument
+ *     this.a = a;       // OK, this keyword used
+ *     b = 0;            // OK, no overlap
+ *     foo(5);           // OK, no validation for methods
+ *   }
+ *
+ *   public void foo(int c) {
+ *     // overlapping by method argument
+ *     c = c;            // violation, reference to instance variable "c" requires "this"
+ *   }
+ * }
+ * </pre>
  * <p>
- * Examples of how the check works if validateOnlyOverlapping option is set to true:
+ * To configure the check for methods only:
  * </p>
  * <pre>
- * public static class A {
- *   private int field1;
- *   private int field2;
+ * &lt;module name=&quot;RequireThis&quot;&gt;
+ *   &lt;property name=&quot;checkFields&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private int a;
+ *   private int b;
+ *   private int c;
  *
- *   public A(int field1) {
- *     // Overlapping by constructor argument.
- *     field1 = field1; // violation: Reference to instance variable "field1" needs "this".
- *     field2 = 0;
+ *   public Test(int a) {
+ *     // overlapping by constructor argument
+ *     this.a = a;       // OK, no validation for fields
+ *     b = 0;            // OK, no validation for fields
+ *     foo(5);           // OK, no overlap
  *   }
  *
- *   void foo3() {
- *     String field1 = "values";
- *     // Overlapping by local variable.
- *     field1 = field1; // violation:  Reference to instance variable "field1" needs "this".
- *   }
- * }
- *
- * public static class B {
- *   private int field;
- *
- *   public A(int f) {
- *     field = f;
- *   }
- *
- *   String addSuffixToField(String field) {
- *     // Overlapping by method argument. Equal to "return field = field + "suffix";"
- *     return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
+ *   public void foo(int c) {
+ *     // overlapping by method argument
+ *     c = c;            // OK, no validation for fields
  *   }
  * }
+ * </pre>
+ * <p>
+ * Note that method call foo(5) does not raise a violation
+ * because methods cannot be overlapped in java.
+ * </p>
+ * <p>
+ * To configure the check to validate for non-overlapping fields and methods:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RequireThis&quot;&gt;
+ *   &lt;property name=&quot;validateOnlyOverlapping&quot; value=&quot;false&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *   private int a;
+ *   private int b;
+ *   private int c;
  *
- * public static record C(int x) {
- *     void getTwoX(int x) {
- *         // Overlapping by method argument.
- *         return x += x; // violation: Reference to instance variable "x" needs "this".
- *     }
+ *   public Test(int a) {
+ *     // overlapping by constructor argument
+ *     this.a = a;       // OK, no validation for fields
+ *     b = 0;            // violation, reference to instance variable "b" requires "this"
+ *     foo(5);           // violation, method call "foo(5)" requires "this"
+ *   }
+ *
+ *   public void foo(int c) {
+ *     // overlapping by method argument
+ *     c = c;            // violation, reference to instance variable "c" requires "this"
+ *   }
  * }
  * </pre>
  * <p>
@@ -149,10 +208,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * public class C {
  *   private int scale;
  *   private int x;
+ *
  *   public void foo(int scale) {
- *     scale = this.scale; // no violation
+ *     scale = this.scale;      // no violation
+ *
  *     if (scale &gt; 0) {
- *       scale = -scale; // no violation
+ *       scale = -scale;        // no violation
  *     }
  *     x *= scale;
  *   }
@@ -165,63 +226,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * <pre>
  * public class D {
  *   private String prefix;
+ *
  *   public String modifyPrefix(String prefix) {
- *     prefix = "^" + prefix + "$" // no violation (modification of parameter)
- *     return prefix; // modified method parameter is returned from the method
+ *     prefix = "^" + prefix + "$";  // no violation, because method parameter is returned
+ *     return prefix;
  *   }
- * }
- * </pre>
- * <p>
- * Examples of how the check works if validateOnlyOverlapping option is set to false:
- * </p>
- * <pre>
- * public static class A {
- *   private int field1;
- *   private int field2;
- *
- *   public A(int field1) {
- *     field1 = field1; // violation: Reference to instance variable "field1" needs "this".
- *     field2 = 0; // violation: Reference to instance variable "field2" needs "this".
- *     String field2;
- *     field2 = "0"; // No violation. Local var allowed
- *   }
- *
- *   void foo3() {
- *     String field1 = "values";
- *     field1 = field1; // violation:  Reference to instance variable "field1" needs "this".
- *   }
- * }
- *
- * public static class B {
- *   private int field;
- *
- *   public A(int f) {
- *     field = f; // violation:  Reference to instance variable "field" needs "this".
- *   }
- *
- *   String addSuffixToField(String field) {
- *     return field += "suffix"; // violation: Reference to instance variable "field" needs "this".
- *   }
- * }
- *
- * // If the variable is locally defined, there won't be a violation provided the variable
- * // doesn't overlap.
- * class C {
- *   private String s1 = "foo1";
- *   String s2 = "foo2";
- *
- *   C() {
- *     s1 = "bar1"; // Violation. Reference to instance variable 's1' needs "this.".
- *     String s2;
- *     s2 = "bar2"; // No violation. Local var allowed.
- *     s2 += s2; // Violation. Overlapping. Reference to instance variable 's2' needs "this.".
- *   }
- * }
- *
- * public static record D(int x) {
- *     public D {
- *         x = x; // violation: Reference to instance variable "x" needs "this".
- *     }
  * }
  * </pre>
  * <p>
