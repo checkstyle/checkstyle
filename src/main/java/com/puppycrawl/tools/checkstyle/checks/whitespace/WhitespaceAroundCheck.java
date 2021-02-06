@@ -803,9 +803,11 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true if it should be checked if next token is separated by whitespace,
      *      false otherwise.
      */
-    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
+    private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
         return !(ast.getType() == TokenTypes.LITERAL_RETURN
                     && ast.getFirstChild().getType() == TokenTypes.SEMI)
+                && (ast.getType() != TokenTypes.ARRAY_INIT
+                || allowWhitespaceAroundArrayInit)
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
     }
@@ -902,8 +904,9 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true is current token inside array initialization
      */
     private static boolean isArrayInitialization(int currentType, int parentType) {
-        return currentType == TokenTypes.RCURLY && parentType == TokenTypes.ANNOTATION_ARRAY_INIT
-                || parentType == TokenTypes.ARRAY_INIT;
+        return currentType == TokenTypes.RCURLY
+                && (parentType == TokenTypes.ARRAY_INIT
+                        || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
     }
 
     /**
@@ -915,10 +918,10 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      *         allowWhitespaceAroundArrayInit is set to true.
      */
     private boolean isArrayInitializationWithProperty(int currentType, int parentType) {
-        final boolean result = currentType == TokenTypes.RCURLY
-                && parentType == TokenTypes.ANNOTATION_ARRAY_INIT
-                || parentType == TokenTypes.ARRAY_INIT;
-        return result && allowWhitespaceAroundArrayInit;
+        return (currentType == TokenTypes.RCURLY
+                && (parentType == TokenTypes.ARRAY_INIT
+                        || parentType == TokenTypes.ANNOTATION_ARRAY_INIT))
+                                && allowWhitespaceAroundArrayInit;
     }
 
     /**
