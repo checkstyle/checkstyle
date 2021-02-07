@@ -52,11 +52,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
 
     /** Maps from token name to ordinary checks. */
-    private final Map<String, Set<AbstractCheck>> tokenToOrdinaryChecks =
+    private final Map<Integer, Set<AbstractCheck>> tokenToOrdinaryChecks =
         new HashMap<>();
 
     /** Maps from token name to comment checks. */
-    private final Map<String, Set<AbstractCheck>> tokenToCommentChecks =
+    private final Map<Integer, Set<AbstractCheck>> tokenToCommentChecks =
             new HashMap<>();
 
     /** Registered ordinary checks, that don't use comment nodes. */
@@ -211,7 +211,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             for (String token : checkTokens) {
                 final int tokenId = TokenUtil.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
-                    registerCheck(token, check);
+                    registerCheck(tokenId, check);
                 }
                 else {
                     final String message = String.format(Locale.ROOT, "Token \"%s\" was "
@@ -240,17 +240,17 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @throws CheckstyleException if Check is misconfigured
      */
     private void registerCheck(int tokenId, AbstractCheck check) throws CheckstyleException {
-        registerCheck(TokenUtil.getTokenName(tokenId), check);
+        registerCheck(tokenId, check);
     }
 
     /**
-     * Register a check for a specified token name.
+     * Register a check for a specified token id.
      *
-     * @param token the name of the token
+     * @param token the id of the token
      * @param check the check to register
      * @throws CheckstyleException if Check is misconfigured
      */
-    private void registerCheck(String token, AbstractCheck check) throws CheckstyleException {
+    private void registerCheck(Integer token, AbstractCheck check) throws CheckstyleException {
         if (check.isCommentNodesRequired()) {
             tokenToCommentChecks.computeIfAbsent(token, empty -> new HashSet<>()).add(check);
         }
