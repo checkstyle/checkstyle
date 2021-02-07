@@ -52,11 +52,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
 
     /** Maps from token name to ordinary checks. */
-    private final Map<String, Set<AbstractCheck>> tokenToOrdinaryChecks =
+    private final Map<Integer, Set<AbstractCheck>> tokenToOrdinaryChecks =
         new HashMap<>();
 
     /** Maps from token name to comment checks. */
-    private final Map<String, Set<AbstractCheck>> tokenToCommentChecks =
+    private final Map<Integer, Set<AbstractCheck>> tokenToCommentChecks =
             new HashMap<>();
 
     /** Registered ordinary checks, that don't use comment nodes. */
@@ -211,7 +211,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             for (String token : checkTokens) {
                 final int tokenId = TokenUtil.getTokenId(token);
                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
-                    registerCheck(token, check);
+                    registerCheck(tokenId, check);
                 }
                 else {
                     final String message = String.format(Locale.ROOT, "Token \"%s\" was "
@@ -240,28 +240,18 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      * @throws CheckstyleException if Check is misconfigured
      */
     private void registerCheck(int tokenId, AbstractCheck check) throws CheckstyleException {
-        registerCheck(TokenUtil.getTokenName(tokenId), check);
-    }
-
-    /**
-     * Register a check for a specified token name.
-     *
-     * @param token the name of the token
-     * @param check the check to register
-     * @throws CheckstyleException if Check is misconfigured
-     */
-    private void registerCheck(String token, AbstractCheck check) throws CheckstyleException {
         if (check.isCommentNodesRequired()) {
-            tokenToCommentChecks.computeIfAbsent(token, empty -> new HashSet<>()).add(check);
+            tokenToCommentChecks.computeIfAbsent(tokenId, empty -> new HashSet<>()).add(check);
         }
-        else if (TokenUtil.isCommentType(token)) {
+        else if (TokenUtil.isCommentType(tokenId)) {
             final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
                     + "token ('%s') and should override 'isCommentNodesRequired()' "
-                    + "method to return 'true'", check.getClass().getName(), token);
+                    + "method to return 'true'", check.getClass().getName(),
+                    TokenUtil.getTokenName(tokenId));
             throw new CheckstyleException(message);
         }
         else {
-            tokenToOrdinaryChecks.computeIfAbsent(token, empty -> new HashSet<>()).add(check);
+            tokenToOrdinaryChecks.computeIfAbsent(tokenId, empty -> new HashSet<>()).add(check);
         }
     }
 
@@ -370,13 +360,13 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private Collection<AbstractCheck> getListOfChecks(DetailAST ast, AstState astState) {
         final Collection<AbstractCheck> visitors;
-        final String tokenType = TokenUtil.getTokenName(ast.getType());
+        final int tokenId = ast.getType();
 
         if (astState == AstState.WITH_COMMENTS) {
-            visitors = tokenToCommentChecks.get(tokenType);
+            visitors = tokenToCommentChecks.get(tokenId);
         }
         else {
-            visitors = tokenToOrdinaryChecks.get(tokenType);
+            visitors = tokenToOrdinaryChecks.get(tokenId);
         }
         return visitors;
     }

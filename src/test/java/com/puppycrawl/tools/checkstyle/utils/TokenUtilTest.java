@@ -198,6 +198,10 @@ public class TokenUtilTest {
                 "Should return true when valid type passed");
         assertTrue(TokenUtil.isCommentType("COMMENT_CONTENT"),
                 "Should return true when valid type passed");
+        assertFalse(TokenUtil.isCommentType(TokenTypes.CLASS_DEF),
+                "Should return false when invalid type passed");
+        assertFalse(TokenUtil.isCommentType("CLASS_DEF"),
+                "Should return false when invalid type passed");
     }
 
     @Test
