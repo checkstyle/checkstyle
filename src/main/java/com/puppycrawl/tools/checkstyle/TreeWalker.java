@@ -60,10 +60,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             new HashMap<>();
 
     /** Registered ordinary checks, that don't use comment nodes. */
-    private final Set<AbstractCheck> ordinaryChecks = new HashSet<>();
+    private final Set<AbstractCheck> ordinaryChecks = createNewTreeSetCheck();
 
     /** Registered comment checks. */
-    private final Set<AbstractCheck> commentChecks = new HashSet<>();
+    private final Set<AbstractCheck> commentChecks = createNewTreeSetCheck();
 
     /** The ast filters. */
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
@@ -252,7 +252,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private void registerCheck(String token, AbstractCheck check) throws CheckstyleException {
         if (check.isCommentNodesRequired()) {
-            tokenToCommentChecks.computeIfAbsent(token, empty -> new HashSet<>()).add(check);
+            tokenToCommentChecks.computeIfAbsent(token, empty -> createNewTreeSetCheck())
+                    .add(check);
         }
         else if (TokenUtil.isCommentType(token)) {
             final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
@@ -261,7 +262,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             throw new CheckstyleException(message);
         }
         else {
-            tokenToOrdinaryChecks.computeIfAbsent(token, empty -> new HashSet<>()).add(check);
+            tokenToOrdinaryChecks.computeIfAbsent(token, empty -> createNewTreeSetCheck())
+                    .add(check);
         }
     }
 
@@ -457,6 +459,23 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
             curNode = toVisit;
         }
+    }
+
+    /**
+     * Creates a new {@link TreeSet} with a deterministic order based on the
+     * Check's name.
+     *
+     * @return The new {@link TreeSet}.
+     */
+    private static Set<AbstractCheck> createNewTreeSetCheck() {
+        return new TreeSet<>((AbstractCheck check1, AbstractCheck check2) -> {
+            int result = check1.getClass().getName().compareTo(check2.getClass().getName());
+            if (result == 0) {
+                result = Integer.compare(check1.hashCode(), check2.hashCode());
+            }
+
+            return result;
+        });
     }
 
     /**
