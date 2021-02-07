@@ -264,6 +264,46 @@ no-error-test-sbe)
   removeFolderWithProtectedFiles simple-binary-encoding
   ;;
 
+no-error-xwiki)
+  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  echo version:$CS_POM_VERSION
+  mvn -e clean install -Pno-validations
+  mkdir -p .ci-temp/
+  cd .ci-temp/
+  git clone --depth 1 https://github.com/xwiki/xwiki-commons.git
+  cd xwiki-commons
+  # Build custom Checkstyle rules
+  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
+    install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
+  # Validate xwiki-commons
+  mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
+  # Install various required poms and extensions
+  mvn -e install:install-file -Dfile=pom.xml -DpomFile=pom.xml
+  mvn -e install:install-file -Dfile=xwiki-commons-tools/pom.xml -DpomFile=xwiki-commons-tools/pom.xml
+  mvn -e install:install-file -Dfile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml \
+    -DpomFile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml
+  mvn -e install:install-file -Dfile=xwiki-commons-pom/pom.xml -DpomFile=xwiki-commons-pom/pom.xml
+  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
+    install -Dmaven.test.skip
+  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
+  install -Dmaven.test.skip
+  cd ..
+  removeFolderWithProtectedFiles xwiki-commons
+  git clone --depth 1 https://github.com/xwiki/xwiki-rendering.git
+  cd xwiki-rendering
+  # Validate xwiki-rendering
+  mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
+  cd ..
+  removeFolderWithProtectedFiles xwiki-rendering
+  git clone --depth 1 https://github.com/xwiki/xwiki-platform.git
+  cd xwiki-platform
+  # Validate xwiki-platform
+  mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
+  cd ..
+  removeFolderWithProtectedFiles xwiki-platform
+  ;;
+
 verify-no-exception-configs)
   mkdir -p .ci-temp/verify-no-exception-configs
   working_dir=.ci-temp/verify-no-exception-configs
