@@ -2766,6 +2766,26 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testIndentationLineWrappedRecordDeclaration() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        checkConfig.addAttribute("arrayInitIndent", "4");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+
+        final String[] expected = {
+            "31:1: " + getCheckMessage(MSG_ERROR, ")", 0, 4),
+        };
+
+        verifyWarns(checkConfig,
+            getNonCompilablePath("InputIndentationLineWrappedRecordDeclaration.java"),
+            expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
