@@ -295,6 +295,15 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
+     * Returns the name of the class.
+     *
+     * @return The class name.
+     */
+    public String getClassName() {
+        return getClass().getName();
+    }
+
+    /**
      * The actual context holder.
      */
     private static class FileContext {
