@@ -71,8 +71,9 @@ blocks:
               values:
                 - mvn -e clean install -Pno-validations
                     && .ci/validation.sh no-error-pmd
-                - mvn -e clean install -Pno-validations
-                    && .ci/validation.sh no-violation-test-configurate
+                # until https://github.com/checkstyle/checkstyle/issues/9248
+                # - mvn -e clean install -Pno-validations
+                #    && .ci/validation.sh no-violation-test-configurate
                 - mvn -e clean install -Pno-validations
                     && .ci/no-exception-test.sh openjdk14-with-checks-nonjavadoc-error
           commands:
