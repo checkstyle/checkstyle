@@ -24,6 +24,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
+import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -264,7 +265,7 @@ public class XpathQueryGenerator {
                     .append(TokenUtil.getTokenName(cur.getType()));
             if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(XpathUtil.getTextAttributeValue(cur))
+                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
                         .append("']");
             }
             else {
@@ -331,5 +332,53 @@ public class XpathQueryGenerator {
         return ast.getLineNo() == lineNumber
                 && expandedTabColumn(ast) == columnNumber
                 && (tokenType == 0 || tokenType == ast.getType());
+    }
+
+    /**
+     * Escape &lt;, &gt; &amp; &#39; and &quot; as their entities.
+     *
+     * @param value the value to escape.
+     * @return the escaped value if necessary.
+     */
+    public static String encode(String value) {
+        final StringBuilder sb = new StringBuilder(256);
+        for (int i = 0; i < value.length(); i++) {
+            final char chr = value.charAt(i);
+            switch (chr) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '\'':
+                    sb.append("\\&quot;&apos;");
+                    break;
+                case '\"':
+                    sb.append("&quot;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
+                    break;
+                case '\r':
+                    break;
+                case '\n':
+                    sb.append("&#10;");
+                    break;
+                default:
+                    if (Character.isISOControl(chr)) {
+                        // true escape characters need '&' before but it also requires XML 1.1
+                        // until https://github.com/checkstyle/checkstyle/issues/5168
+                        sb.append("#x");
+                        sb.append(Integer.toHexString(chr));
+                        sb.append(';');
+                    }
+                    else {
+                        sb.append(chr);
+                    }
+                    break;
+            }
+        }
+        return sb.toString();
     }
 }
