@@ -225,6 +225,13 @@ jobs:
     #     - USE_MAVEN_REPO="true"
     #     - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
+    # No error testing - XWiki project non regression
+    - jdk: openjdk8
+      env:
+        - DESC="non regression on XWiki project"
+        - USE_MAVEN_REPO="true"
+        - CMD="./.ci/travis/travis.sh no-error-xwiki"
+
     # moved to azure-pipelines.yml
     # versions to update
     # - jdk: openjdk8
