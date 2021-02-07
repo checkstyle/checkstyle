@@ -220,14 +220,10 @@ public class MyClass {
           Examples of using Unicode:
         </p>
         <source>
-String unitAbbrev = "μs";      // Best: perfectly clear even without a comment.
-String unitAbbrev = "\u03bcs"; // Poor: the reader has no idea what this is.
-        </source>
-        <p>
-          An example of non-printable, control characters.
-        </p>
-        <source>
-return '\ufeff' + content; // byte order mark
+String unitAbbrev = "μs"; // OK, perfectly clear even without a comment.
+String unitAbbrev = "&#92;u03bcs"; // violation, the reader has no idea what this is.
+return '&#92;ufeff' + content; // OK, an example of non-printable,
+                              // control characters (byte order mark).
         </source>
         <p>
           An example of how to configure the check to allow using escapes
@@ -239,12 +235,12 @@ return '\ufeff' + content; // byte order mark
 &lt;/module&gt;
         </source>
         <p>
-          Example of using escapes with trail comment:
+          Example of using escapes for non-printable, control characters:
         </p>
         <source>
-String unitAbbrev = "\u03bcs"; // Greek letter mu, "s"
-String textBlockUnitAbbrev = """
-          &#92;u03bcs"""; // Greek letter mu, "s"
+String unitAbbrev = "μs"; // No violation, a normal String
+String unitAbbrev = "&#92;u03bcs"; // violation, "&#92;u03bcs" is a printable character.
+return '&#92;ufeff' + content; // No violation, non-printable control character.
         </source>
         <p>
           An example of how to configure the check to allow using escapes
@@ -256,19 +252,30 @@ String textBlockUnitAbbrev = """
 &lt;/module&gt;
         </source>
         <p>
-          Example of using escapes if literal contains only them:
+          Example of using escapes if trail comment is present:
         </p>
         <source>
-String unitAbbrev = "\u03bc\u03bc\u03bc";
+String unitAbbrev = "μs"; // No violation, a normal String
+String unitAbbrev = "&#92;u03bcs"; // Greek letter mu, "s" (No violation)
+return '&#92;ufeff' + content;
+// ----^ violation if comment is not used within same line.
         </source>
         <p>
-          An example of how to configure the check to allow escapes
-          if literal contains only them:
+          An example of how to configure the check to allow if
+          all characters in literal are escaped.
         </p>
         <source>
 &lt;module name="AvoidEscapedUnicodeCharacters"&gt;
   &lt;property name="allowIfAllCharactersEscaped" value="true"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example of using escapes if all characters in literal are escaped:</p>
+        <source>
+String unitAbbrev = "μs"; // No violation, a normal String
+String unitAbbrev = "&#92;u03bcs"; // Violation, not all characters are escaped ('s').
+String unitAbbrev = "&#92;u03bc&#92;u03bc&#92;u03bc"; // OK
+String unitAbbrev = "&#92;u03bc&#92;u03bcs"; // Violation, not all characters are escaped ('s').
+return '&#92;ufeff' + content; // No violation, all control characters are escaped
         </source>
         <p>
           An example of how to configure the check to allow using escapes
@@ -279,6 +286,7 @@ String unitAbbrev = "\u03bc\u03bc\u03bc";
   &lt;property name="allowNonPrintableEscapes" value="true"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example of using escapes for non-printable, whitespace characters:</p>
       </subsection>
 
       <subsection name="Example of Usage" id="AvoidEscapedUnicodeCharacters_Example_of_Usage">
