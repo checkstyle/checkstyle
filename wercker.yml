@@ -82,16 +82,6 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: NoErrorTest - XWiki
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-xwiki"
-          ./.ci/wercker.sh no-error-xwiki
-        else
-          echo "build is skipped ..."
-        fi
-
 # disabled till https://github.com/checkstyle/checkstyle/issues/7815
 #  - script:
 #      name: NoErrorTest - Apache Apex
