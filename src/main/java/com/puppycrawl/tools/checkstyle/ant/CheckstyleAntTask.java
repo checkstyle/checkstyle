@@ -786,30 +786,4 @@ public class CheckstyleAntTask extends Task {
 
     }
 
-    /** Represents a custom listener. */
-    public static class Listener {
-
-        /** Class name of the listener class. */
-        private String className;
-
-        /**
-         * Gets class name.
-         *
-         * @return the class name
-         */
-        public String getClassname() {
-            return className;
-        }
-
-        /**
-         * Sets class name.
-         *
-         * @param name set the class name
-         */
-        public void setClassname(String name) {
-            className = name;
-        }
-
-    }
-
 }
