@@ -573,8 +573,7 @@ public static final int A_SETPOINT = 1;
           To run the check with its default configuration:
         </p>
         <source>
-&lt;module name=&quot;RegexpMultiline&quot;&gt;
-&lt;/module&gt;
+&lt;module name=&quot;RegexpMultiline&quot;/&gt;
         </source>
         <p>
         Example:
@@ -599,18 +598,18 @@ void method() {
         </p>
         <source>
 void method() {
-  System.out.print("Example"); // OK
-  System.err.println("Example"); // OK
+  System.out.print("Example"); // violation
+  System.err.println("Example"); // violation
   System.out.print
     ("Example"); // violation
   System.err.println
-    ("Example"); // violation
+    ("Example"); // OK
   System
   .out.print("Example"); // OK
   System
-  .err.println("Example"); // OK
+  .err.println("Example"); // violation
   System.
-  out.print("Example"); // violation
+  out.print("Example"); // OK
   System.
   err.println("Example"); // violation
 }
@@ -630,19 +629,20 @@ void method() {
         </p>
         <source>
 void method() {
-  System.out.print("Example"); // OK
-  System.out.print(
-      "Example"); // OK
+  System.out.print("Example"); // violation
+  System.err.println("Example");
   System.out.print
-  ("Example"); // violation
-  System.out
-  .print("Example"); // OK
-  System.out.
-  print("Example"); // violation
+    ("Example");
+  System.err.println
+    ("Example");
   System
-  .out.print("Example"); // OK
+  .out.print("Example");
+  System
+  .err.println("Example");
   System.
-  out.print("Example"); // violation
+  out.print("Example");
+  System.
+  err.println("Example");
 }
         </source>
         <p>
