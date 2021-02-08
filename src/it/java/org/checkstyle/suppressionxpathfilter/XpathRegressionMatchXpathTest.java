@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.checks.coding.MatchXpathCheck;
+import com.puppycrawl.tools.checkstyle.checks.whitespace.OperatorWrapCheck;
 
 public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
 
@@ -82,6 +83,131 @@ public class XpathRegressionMatchXpathTest extends AbstractXpathTestSupport {
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathTwo']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='func1']]"
                         + "/LITERAL_THROWS[./IDENT[@text='RuntimeException']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testEncodedOne() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedOne.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OperatorWrapCheck.class);
+
+        final String[] expectedViolation = {
+            "24:38: " + getCheckMessage(OperatorWrapCheck.class, OperatorWrapCheck.MSG_LINE_NEW,
+                    '+'),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedOne']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedOne']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR/PLUS"
+                    + "[./STRING_LITERAL[@text='\\&quot;testOne\\&quot;']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testEncodedTwo() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedTwo.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OperatorWrapCheck.class);
+
+        final String[] expectedViolation = {
+            "24:34: " + getCheckMessage(OperatorWrapCheck.class, OperatorWrapCheck.MSG_LINE_NEW,
+                    '+'),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedTwo']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedTwo']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR/PLUS"
+                    + "[./STRING_LITERAL[@text='&lt;testTwo']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testEncodedThree() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedThree.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OperatorWrapCheck.class);
+
+        final String[] expectedViolation = {
+            "24:39: " + getCheckMessage(OperatorWrapCheck.class, OperatorWrapCheck.MSG_LINE_NEW,
+                    '+'),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedThree']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedThree']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR/PLUS"
+                    + "[./STRING_LITERAL[@text='testFive\\n']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testEncodedFour() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedFour.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OperatorWrapCheck.class);
+
+        final String[] expectedViolation = {
+            "24:38: " + getCheckMessage(OperatorWrapCheck.class, OperatorWrapCheck.MSG_LINE_NEW,
+                    '+'),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedFour']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedFour']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR/PLUS"
+                    + "[./STRING_LITERAL[@text='&gt;testFour']]"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation,
+                expectedXpathQueries);
+    }
+
+    @Test
+    public void testEncodedFive() throws Exception {
+        final File fileToProcess =
+                new File(getPath("SuppressionXpathRegressionMatchXpathEncodedFive.java"));
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(OperatorWrapCheck.class);
+
+        final String[] expectedViolation = {
+            "24:41: " + getCheckMessage(OperatorWrapCheck.class, OperatorWrapCheck.MSG_LINE_NEW,
+                    '+'),
+        };
+
+        final List<String> expectedXpathQueries = Arrays.asList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedFive']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR",
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionMatchXpathEncodedFive']]/"
+                    + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR/PLUS"
+                    + "[./STRING_LITERAL[@text='&amp;testThree']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
