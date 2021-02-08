@@ -90,8 +90,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name="RegexpMultiline"&gt;
- *   &lt;property name="format"
- *     value="System\.(out)|(err)\.print(ln)?\("/&gt;
+ *   &lt;property name="format" value="System\.(out)|(err)\.print(ln)?\("/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
