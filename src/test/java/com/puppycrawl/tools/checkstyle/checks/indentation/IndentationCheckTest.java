@@ -2617,23 +2617,10 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
-            "10:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
-            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
-            "15:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
-        };
-        verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
-    }
-
-    @Test
-    public void testNewHandler2() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
-        checkConfig.addAttribute("tabWidth", "4");
-        final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
-            "10:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
-            "13:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
-            "15:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
+            "10:1: " + getCheckMessage(MSG_ERROR, "Object", 0, 12),
+            "12:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
+            "15:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
+            "17:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
