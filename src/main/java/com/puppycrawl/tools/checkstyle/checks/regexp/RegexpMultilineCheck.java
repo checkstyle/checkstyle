@@ -76,8 +76,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * To run the check with its default configuration:
  * </p>
  * <pre>
- * &lt;module name=&quot;RegexpMultiline&quot;&gt;
- * &lt;/module&gt;
+ * &lt;module name=&quot;RegexpMultiline&quot;/&gt;
  * </pre>
  * <p>Example: </p>
  * <pre>
@@ -100,18 +99,18 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * void method() {
- *   System.out.print("Example"); // OK
- *   System.err.println("Example"); // OK
+ *   System.out.print("Example"); // violation
+ *   System.err.println("Example"); // violation
  *   System.out.print
  *     ("Example"); // violation
  *   System.err.println
- *     ("Example"); // violation
+ *     ("Example"); // OK
  *   System
  *   .out.print("Example"); // OK
  *   System
- *   .err.println("Example"); // OK
+ *   .err.println("Example"); // violation
  *   System.
- *   out.print("Example"); // violation
+ *   out.print("Example"); // OK
  *   System.
  *   err.println("Example"); // violation
  * }
@@ -131,19 +130,20 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * void method() {
- *   System.out.print("Example"); // OK
- *   System.out.print(
- *       "Example"); // OK
+ *   System.out.print("Example"); // violation
+ *   System.err.println("Example");
  *   System.out.print
- *   ("Example"); // violation
- *   System.out
- *   .print("Example"); // OK
- *   System.out.
- *   print("Example"); // violation
+ *     ("Example");
+ *   System.err.println
+ *     ("Example");
  *   System
- *   .out.print("Example"); // OK
+ *   .out.print("Example");
+ *   System
+ *   .err.println("Example");
  *   System.
- *   out.print("Example"); // violation
+ *   out.print("Example");
+ *   System.
+ *   err.println("Example");
  * }
  * </pre>
  * <p>
