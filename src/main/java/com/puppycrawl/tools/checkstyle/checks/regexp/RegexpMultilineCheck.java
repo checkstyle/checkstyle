@@ -73,6 +73,19 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
+ * To run the check with its default configuration:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;RegexpMultiline&quot;/&gt;
+ * </pre>
+ * <p>Example: </p>
+ * <pre>
+ * void method() {
+ *   int i = 5; // OK
+ *   System.out.println(i); // OK
+ * }
+ * </pre>
+ * <p>
  * To configure the check to find calls to print to the console:
  * </p>
  * <pre>
@@ -80,6 +93,27 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   &lt;property name="format"
  *     value="System\.(out)|(err)\.print(ln)?\("/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * void method() {
+ *   System.out.print("Example"); // violation
+ *   System.err.println("Example"); // violation
+ *   System.out.print
+ *     ("Example"); // violation
+ *   System.err.println
+ *     ("Example"); // OK
+ *   System
+ *   .out.print("Example"); // OK
+ *   System
+ *   .err.println("Example"); // violation
+ *   System.
+ *   out.print("Example"); // OK
+ *   System.
+ *   err.println("Example"); // violation
+ * }
  * </pre>
  * <p>
  * To configure the check to match text that spans multiple lines,
@@ -92,14 +126,24 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example of violation from the above config:
+ * Example:
  * </p>
  * <pre>
  * void method() {
- *   System.out. // violation
- *   print("Example");
- *   System.out.
- *   print("Example");
+ *   System.out.print("Example"); // violation
+ *   System.err.println("Example");
+ *   System.out.print
+ *     ("Example");
+ *   System.err.println
+ *     ("Example");
+ *   System
+ *   .out.print("Example");
+ *   System
+ *   .err.println("Example");
+ *   System.
+ *   out.print("Example");
+ *   System.
+ *   err.println("Example");
  * }
  * </pre>
  * <p>
