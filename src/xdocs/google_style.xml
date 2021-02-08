@@ -788,12 +788,8 @@
                   <a href="https://webtoolkit.googleblog.com/2008/07/getting-to-really-know-gwt-part-1-jsni.html">
                     JSNI</a>
                   could not be detected right now, but might be possible after
-                  comments and javadoc support appear in Checkstyle
+                  comments and javadoc support appear in Checkstyle.
                   <br />
-                  Also full-length characters are not counted as one character,
-                  but as multiple and will be addressed in the issue
-                  <a href="https://github.com/checkstyle/checkstyle/issues/5089">
-                    #5089</a>.
                 </td>
                 <td>
                   <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+LineLength">
