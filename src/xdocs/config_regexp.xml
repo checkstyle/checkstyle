@@ -589,8 +589,7 @@ void method() {
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot;
-    value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
+  &lt;property name=&quot;format&quot;value=&quot;System\.(out)|(err)\.print(ln)?\(&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
