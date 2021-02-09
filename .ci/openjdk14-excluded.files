@@ -61,11 +61,6 @@
   <property name="fileNamePattern" value="[\\/]TrailingComma.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/8943 -->
-<module name="BeforeExecutionExclusionFileFilter">
-  <property name="fileNamePattern" value="[\\/]DeepStringConcat.java$"/>
-</module>
-
 <!-- Non-compilable -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]C.java$"/>
