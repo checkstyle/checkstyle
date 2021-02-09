@@ -15,7 +15,7 @@ public class InputWhitespaceAroundArrayInitWithProperty {
         final int[] colors2 = new int[]{ // violation, missing whitespace before '{'
                                 0, 1, 2, 3
                               };
-        final int[][] colors3 = new int[][]{
+        final int[][] colors3 = new int[][]{ // missing whitespace before '{'
                                     {0,1,2,3}, // missing whitespace after '{', '}' and before '}'
                                     {4,5,6,7} // missing whitespace after '{' and before '}'
                                 };
