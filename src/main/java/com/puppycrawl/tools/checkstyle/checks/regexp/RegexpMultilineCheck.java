@@ -146,13 +146,59 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * }
  * </pre>
  * <p>
+ * To configure the check to match a maximum of three test strings:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpMultiline"&gt;
+ *   &lt;property name="format" value='\"Test #[0-9]+:[A-Za-z ]+\"' /&gt;
+ *   &lt;property name="ignoreCase" value="true" /&gt;
+ *   &lt;property name="maximum" value="3" /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * void method() {
+ *   System.out.println("Test #1: this is a test string"); // OK
+ *   System.out.println("TeSt #2: This is a test string"); // OK
+ *   System.out.println("TEST #3: This is a test string"); // OK
+ *   int i = 5;
+ *   System.out.println("Value of i: " + i);
+ *   System.out.println("Test #4: This is a test string"); // violation
+ *   System.out.println("TEst #5: This is a test string"); // violation
+ * }
+ * </pre>
+ * <p>
+ * To configure the check to match a minimum of two test strings:
+ * </p>
+ * <pre>
+ * &lt;module name="RegexpMultiline"&gt;
+ *   &lt;property name="format" value='\"Test #[0-9]+:[A-Za-z ]+\"' /&gt;
+ *   &lt;property name="minimum" value="2" /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * void method() {
+ *   System.out.println("Test #1: this is a test string"); // violation
+ *   System.out.println("TEST #2: This is a test string"); // OK, because "ignoreCase" is false by default
+ *   int i = 5;
+ *   System.out.println("Value of i: " + i);
+ *   System.out.println("Test #3: This is a test string"); // violation
+ *   System.out.println("Test #4: This is a test string"); // violation
+ * }
+ * </pre>
+ * <pre>
  * Note: Beware of the greedy regular expression used in the above example.
  * {@code .*} will match as much as possible and not produce multiple violations
  * in the file if multiple groups of lines could match the expression. To prevent
  * an expression being too greedy, avoid overusing matching all text or allow it
  * to be optional, like {@code .*?}. Changing the example expression to not be
  * greedy will allow multiple violations in the example to be found in the same file.
- * </p>
+ * </pre>
  *
  * <p>
  * To configure the check to restrict an empty file:
