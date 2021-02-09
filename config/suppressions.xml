@@ -51,9 +51,6 @@
   <suppress checks="ExecutableStatementCount" files=".*IllegalInstantiationCheckTest\.java"/>
   <suppress checks="ExecutableStatementCount" files=".*Main\.java"/>
 
-  <!-- till https://github.com/checkstyle/checkstyle/issues/4983 -->
-  <suppress checks="MissingDeprecated" files=".*JavadocTokenTypes\.java"/>
-
   <!-- Till https://github.com/checkstyle/checkstyle/issues/1854 -->
   <suppress checks="TrailingComment"
        files="(InnerAssignmentCheck\.java|OperatorWrapCheck\.java|
