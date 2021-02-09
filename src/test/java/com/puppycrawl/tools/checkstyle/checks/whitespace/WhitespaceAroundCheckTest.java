@@ -556,4 +556,52 @@ public class WhitespaceAroundCheckTest
         verify(checkConfig, getPath("InputWhitespaceAroundAllTokens.java"), expected);
     }
 
+    @Test
+    public void testAllowWhitespaceAroundArrayInit()
+            throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(WhitespaceAroundCheck.class);
+        checkConfig.addAttribute("allowWhitespaceAroundArrayInit", "true");
+        checkConfig.addAttribute("tokens", "ARRAY_INIT");
+        checkConfig.addAttribute("tokens", "RCURLY");
+        final String[] expected = {
+            "11:30: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "11:36: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "13:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "13:40: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "13:46: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "15:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "18:44: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "19:37: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "19:45: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "20:37: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "20:45: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "22:33: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "22:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "22:34: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "22:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "22:42: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "22:42: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "22:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "22:48: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "}"),
+            "22:49: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "25:33: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "25:34: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "25:34: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "25:40: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "25:43: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "25:43: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "29:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "29:28: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "30:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "30:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "33:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "33:32: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "34:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "34:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "35:19: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "35:24: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+        };
+        verify(checkConfig, getPath("InputWhitespaceAroundArrayInitWithProperty.java"), expected);
+    }
+
 }
