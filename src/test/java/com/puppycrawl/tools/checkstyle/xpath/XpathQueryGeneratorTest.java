@@ -23,6 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
@@ -39,6 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 
 public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
@@ -47,6 +49,26 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     private static DetailAST rootAst;
 
     private static FileText fileText;
+
+    private final CloseAndFlushTestByteArrayOutputStream outStream =
+            new CloseAndFlushTestByteArrayOutputStream();
+
+    private final String[][] encodings = {
+            {"<", "&lt;"},
+            {">", "&gt;"},
+            {"'", "&apos;&apos;"},
+            {"\"", "&quot;"},
+            {"&", "&amp;"},
+            {"&lt;", "&amp;lt;"},
+            {"abc;", "abc;"},
+            {"&#0;", "&amp;#0;"},
+            {"&#0", "&amp;#0"},
+            {"&#X0;", "&amp;#X0;"},
+            {"\u0001", "#x1;"},
+            {"\u0080", "#x80;"},
+            {"\n", "&#10;"},
+            {"\r", ""},
+    };
 
     @Override
     protected String getPackageLocation() {
@@ -458,4 +480,13 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
+    @Test
+    public void testEncode()
+            throws IOException {
+        for (String[] encoding : encodings) {
+            final String encoded = XpathQueryGenerator.encode(encoding[0]);
+            assertEquals(encoding[1], encoded, "\"" + encoding[0] + "\"");
+        }
+        outStream.close();
+    }
 }
