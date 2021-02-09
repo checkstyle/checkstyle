@@ -649,9 +649,9 @@ void method() {
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\"Test #[0-9]+:[A-Za-z ]+\"&quot; /&gt;
-  &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot; /&gt;
-  &lt;property name=&quot;maximum&quot; value=&quot;3&quot; /&gt;
+  &lt;property name=&quot;format&quot; value=&apos;\"Test #[0-9]+:[A-Za-z ]+\"&apos;/&gt;
+  &lt;property name=&quot;ignoreCase&quot; value=&quot;true&quot;/&gt;
+  &lt;property name=&quot;maximum&quot; value=&quot;3&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -673,8 +673,8 @@ void method() {
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
-  &lt;property name=&quot;format&quot; value=&quot;\"Test #[0-9]+:[A-Za-z ]+\"&quot; /&gt;
-  &lt;property name=&quot;minimum&quot; value=&quot;2&quot; /&gt;
+  &lt;property name=&quot;format&quot; value=&apos;\"Test #[0-9]+:[A-Za-z ]+\"&apos;/&gt;
+  &lt;property name=&quot;minimum&quot; value=&quot;2&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
