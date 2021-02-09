@@ -14,7 +14,6 @@
   <!-- guava causes issues with other libraries since not everyone is on the same version -->
   <disallow pkg="com\.google.*" regex="true"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/6628 -->
   <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
 
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
@@ -60,7 +59,6 @@
   </file>
 
   <subpackage name="utils">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/6628 -->
     <allow pkg="antlr"/>
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
 
