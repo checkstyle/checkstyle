@@ -38,8 +38,9 @@
   <rule ref="category/java/errorprone.xml/CloseResource">
     <properties>
       <property name="allowedResourceTypes"
-               value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream|
-                     |java.io.StringWriter|java.io.CharArrayWriter|java.io.StringReader"/>
+               value="java.io.ByteArrayOutputStream|java.io.ByteArrayInputStream"/>
+      <property name="allowedResourceTypes"
+               value="java.io.StringWriter|java.io.CharArrayWriter|java.io.StringReader"/>
       <!-- we do close streams in special methods -->
       <property name="violationSuppressXPath"
                value="//ClassOrInterfaceDeclaration[@SimpleName='DefaultLogger']
