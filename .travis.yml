@@ -32,10 +32,10 @@ jobs:
     #     - SKIP_JOB_BY_FILES="false"
 
     # testing of PR format
-    - env:
-       - DESC="test Issue ref in PR description"
-       - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/travis.sh pr-description"
-       - SKIP_JOB_BY_FILES="false"
+#    - env:
+#       - DESC="test Issue ref in PR description"
+#       - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/travis.sh pr-description"
+#       - SKIP_JOB_BY_FILES="false"
 
     # testing of PR format
     - env:
@@ -58,12 +58,12 @@ jobs:
 
     # this job do deploy maven repository
     # unit tests (openjdk8)
-    - jdk: openjdk8
-      env:
-        - DESC="tests and deploy"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
-        - DEPLOY="true"
-        - USE_MAVEN_REPO="true"
+#    - jdk: openjdk8
+#      env:
+#        - DESC="tests and deploy"
+#        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
+#        - DEPLOY="true"
+#        - USE_MAVEN_REPO="true"
 
     # moved to drone.yml
     # checkstyle (openjdk8)
@@ -294,11 +294,11 @@ jobs:
     #     - CMD="./.ci/travis/travis.sh javac14"
 
     # Ensure that all modules are used in no exception configs
-    - env:
-        - DESC="ensure that all modules are used in no exception configs"
-        - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-        - CMD2="./.ci/travis/travis.sh verify-no-exception-configs"
-        - CMD="$CMD1 && $CMD2"
+#    - env:
+#        - DESC="ensure that all modules are used in no exception configs"
+#        - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
+#        - CMD2="./.ci/travis/travis.sh verify-no-exception-configs"
+#        - CMD="$CMD1 && $CMD2"
 
     # moved to drone.yml
     # - env:
