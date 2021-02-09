@@ -40,7 +40,7 @@ jobs:
     # testing closed to do issues
     - env:
        - DESC="test closed to do issues"
-       - CMD="./.ci/travis/travis.sh no-old-refs"
+       - CMD="./.ci/travis/travis.sh pr-description"
        - SKIP_JOB_BY_FILES="false"
 
     # moved to azure-pipelines.yml
