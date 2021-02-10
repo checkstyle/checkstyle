@@ -106,9 +106,8 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * </li>
  * </ul>
  * <p>
- * Note, that support for these Checks will be available after resolving issues
- * <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a> and
- * <a href="https://github.com/checkstyle/checkstyle/issues/5777">#5777</a>.
+ * Note, that support for these Checks will be available after resolving issue
+ * <a href="https://github.com/checkstyle/checkstyle/issues/5770">#5770</a>.
  * </p>
  * <p>
  * Currently, filter supports the following xpath axes:
