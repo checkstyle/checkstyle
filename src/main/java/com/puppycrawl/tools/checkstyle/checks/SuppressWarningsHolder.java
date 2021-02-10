@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -307,35 +308,42 @@ public class SuppressWarningsHolder
             identifier = identifier.substring(JAVA_LANG_PREFIX.length());
         }
         if ("SuppressWarnings".equals(identifier)) {
-            final List<String> values = getAllAnnotationValues(ast);
-            if (!isAnnotationEmpty(values)) {
-                final DetailAST targetAST = getAnnotationTarget(ast);
+            getAnnotationTarget(ast).ifPresent(targetAST -> {
+                addSuppressions(getAllAnnotationValues(ast), targetAST);
+            });
+        }
+    }
 
-                // get text range of target
-                final int firstLine = targetAST.getLineNo();
-                final int firstColumn = targetAST.getColumnNo();
-                final DetailAST nextAST = targetAST.getNextSibling();
-                final int lastLine;
-                final int lastColumn;
-                if (nextAST == null) {
-                    lastLine = Integer.MAX_VALUE;
-                    lastColumn = Integer.MAX_VALUE;
-                }
-                else {
-                    lastLine = nextAST.getLineNo();
-                    lastColumn = nextAST.getColumnNo() - 1;
-                }
+    /**
+     * Method to populate list of suppression entries.
+     *
+     * @param values
+     *            - list of check names
+     * @param targetAST
+     *            - annotation target
+     */
+    private static void addSuppressions(List<String> values, DetailAST targetAST) {
+        // get text range of target
+        final int firstLine = targetAST.getLineNo();
+        final int firstColumn = targetAST.getColumnNo();
+        final DetailAST nextAST = targetAST.getNextSibling();
+        final int lastLine;
+        final int lastColumn;
+        if (nextAST == null) {
+            lastLine = Integer.MAX_VALUE;
+            lastColumn = Integer.MAX_VALUE;
+        }
+        else {
+            lastLine = nextAST.getLineNo();
+            lastColumn = nextAST.getColumnNo() - 1;
+        }
 
-                // add suppression entries for listed checks
-                final List<Entry> entries = ENTRIES.get();
-                for (String value : values) {
-                    String checkName = value;
-                    // strip off the checkstyle-only prefix if present
-                    checkName = removeCheckstylePrefixIfExists(checkName);
-                    entries.add(new Entry(checkName, firstLine, firstColumn,
-                            lastLine, lastColumn));
-                }
-            }
+        final List<Entry> entries = ENTRIES.get();
+        for (String value : values) {
+            // strip off the checkstyle-only prefix if present
+            final String checkName = removeCheckstylePrefixIfExists(value);
+            entries.add(new Entry(checkName, firstLine, firstColumn,
+                    lastLine, lastColumn));
         }
     }
 
@@ -362,7 +370,7 @@ public class SuppressWarningsHolder
      */
     private static List<String> getAllAnnotationValues(DetailAST ast) {
         // get values of annotation
-        List<String> values = null;
+        List<String> values = Collections.emptyList();
         final DetailAST lparenAST = ast.findFirstToken(TokenTypes.LPAREN);
         if (lparenAST != null) {
             final DetailAST nextAST = lparenAST.getNextSibling();
@@ -392,36 +400,32 @@ public class SuppressWarningsHolder
     }
 
     /**
-     * Checks that annotation is empty.
-     *
-     * @param values list of values in the annotation
-     * @return whether annotation is empty or contains some values
-     */
-    private static boolean isAnnotationEmpty(List<String> values) {
-        return values == null;
-    }
-
-    /**
      * Get target of annotation.
      *
      * @param ast the AST node to get the child of
      * @return get target of annotation
      */
-    private static DetailAST getAnnotationTarget(DetailAST ast) {
-        final DetailAST targetAST;
+    private static Optional<DetailAST> getAnnotationTarget(DetailAST ast) {
+        final Optional<DetailAST> result;
         final DetailAST parentAST = ast.getParent();
         switch (parentAST.getType()) {
             case TokenTypes.MODIFIERS:
             case TokenTypes.ANNOTATIONS:
             case TokenTypes.ANNOTATION:
             case TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR:
-                targetAST = parentAST.getParent();
+                result = Optional.of(parentAST.getParent());
+                break;
+            case TokenTypes.LITERAL_DEFAULT:
+                result = Optional.empty();
+                break;
+            case TokenTypes.ANNOTATION_ARRAY_INIT:
+                result = getAnnotationTarget(parentAST);
                 break;
             default:
                 // unexpected container type
                 throw new IllegalArgumentException("Unexpected container AST: " + parentAST);
         }
-        return targetAST;
+        return result;
     }
 
     /**

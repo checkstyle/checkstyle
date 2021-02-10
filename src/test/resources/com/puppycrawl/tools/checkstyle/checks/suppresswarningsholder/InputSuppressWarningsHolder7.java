@@ -8,21 +8,27 @@ public class InputSuppressWarningsHolder7 {
     @TestSwAnnotation(@SuppressWarnings("unchecked"))
     private List<String> testSwAnnotation;
 
-    @TestSwAnnotationVal(onMethod = @SuppressWarnings("unchecked"))
+    @TestSwAnnotationVal(value = @SuppressWarnings("unchecked"))
     private List<String> testSwAnnotationVal;
+
+    @TestSwAnnotationVal(value = {@SuppressWarnings("unchecked")})
+    private List<String> list1;
+
+    @TestSwAnnotationVal({@SuppressWarnings("unchecked"), @SuppressWarnings("unchecked")})
+    private List<String> list2;
 }
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @interface TestSwAnnotation {
-    SuppressWarnings value();
+    SuppressWarnings value() default @SuppressWarnings({"",});
 }
 
 @Target({ElementType.FIELD, ElementType.TYPE})
 @Retention(RetentionPolicy.SOURCE)
 @interface TestSwAnnotationVal{
 
-    SuppressWarnings[] onMethod() default {};
+    SuppressWarnings[] value() default {@SuppressWarnings({"",})};
 
     @Deprecated
     @Retention(RetentionPolicy.SOURCE)
