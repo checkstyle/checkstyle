@@ -15,6 +15,7 @@ while read issue_id; do
   echo "issue: $issue_id has state: $STATE"
   if [[ "$STATE" == "closed" ]]; then
     echo "$ISSUE_LINK_PREFIX/$issue_id" >> $FAILED_IDS_FILE
+    cat $FAILED_IDS_FILE
   fi
 done < ids
 
@@ -25,4 +26,6 @@ if [ -f "$FAILED_IDS_FILE" ]; then
     cat $FAILED_IDS_FILE
     rm -f $FAILED_IDS_FILE
     exit 1
+else
+    echo "No such file"
 fi
