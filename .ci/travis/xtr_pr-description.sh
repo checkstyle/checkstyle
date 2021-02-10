@@ -2,35 +2,26 @@
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
 
-if [[ ! $PULL_REQUEST =~ ^([0-9]*)$ ]]; then exit 0; fi
-LINK_COMMITS=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST/commits
-COMMITS=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_COMMITS \
-             | jq '.[0] | .commit.message')
-echo 'Commit messages from github: '${COMMITS:0:60}...
-ISSUE_NUMBER=$(echo $COMMITS | sed -e 's/^.*Issue //' | sed -e 's/:.*//')
-echo 'Issue number: '$ISSUE_NUMBER && RESULT=0
-if [[ $ISSUE_NUMBER =~ ^#[0-9]+$ ]]; then
-    LINK_PR=https://api.github.com/repos/checkstyle/checkstyle/pulls/$PULL_REQUEST
-    LINK_ISSUE=https://api.github.com/repos/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1}
-    REGEXP=($ISSUE_NUMBER\|https://github.com/checkstyle/checkstyle/issues/${ISSUE_NUMBER:1})
-    PR_DESC=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_PR \
-                | jq '.body' | grep -E $REGEXP | cat )
-    echo 'PR Description grepped:'${PR_DESC:0:80}
-    if [[ -z $PR_DESC ]]; then
-         echo 'Please put a reference to an Issue in the PR description,'
-         echo 'this will bind the Issue to your PR in Github'
-         RESULT=1;
-       fi
-    LABEL_APRV=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" $LINK_ISSUE \
-                   | jq '.labels [] | .name' | grep approved | cat | wc -l )
-    if [[ $LABEL_APRV == 0 ]]; then
-         echo 'You are providing a PR for an Issue that is not approved yet,'
-         echo 'please ask admins to approve your Issue first'
-         RESULT=1;
-    fi
+FAILED_IDS_FILE=failed
+ISSUE_LINK_PREFIX="https://api.github.com/repos/checkstyle/checkstyle/issues/"
+
+grep -Pohr "[Tt]il[l]? https://github.com/checkstyle/checkstyle/issues/\d{1,5}" . \
+| sed -e 's/.*issues\///' | sort | uniq > ids
+
+while read issue_id; do
+  STATE=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$ISSUE_LINK_PREFIX$issue_id" \
+   | jq '.state')
+  echo "issue: $issue_id has state: $STATE"
+  if [ "$STATE" = "closed" ]; then
+    echo "https://github.com/checkstyle/checkstyle/issues/$issue_id" >> $FAILED_IDS_FILE
   fi
-if [[ $RESULT == 0 ]]; then
-      echo 'PR validation succeeded.';
-else
-      echo 'PR validation failed.' && false;
+done < ids
+
+rm -f ids
+
+if [ -f "$FAILED_IDS_FILE" ]; then
+    echo "Following issues are mentioned in code to do something after they are closed:"
+    cat $FAILED_IDS_FILE
+    rm -f $FAILED_IDS_FILE
+    exit 1
 fi
