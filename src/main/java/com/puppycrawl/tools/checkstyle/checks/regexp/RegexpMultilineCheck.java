@@ -184,7 +184,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <pre>
  * void method() {
  *   System.out.println("Test #1: this is a test string"); // violation
- *   System.out.println("TEST #2: This is a test string"); // OK, because "ignoreCase" is false by default
+ *   System.out.println("TEST #2: This is a test string"); // OK, "ignoreCase" is false by default
  *   int i = 5;
  *   System.out.println("Value of i: " + i);
  *   System.out.println("Test #3: This is a test string"); // violation
