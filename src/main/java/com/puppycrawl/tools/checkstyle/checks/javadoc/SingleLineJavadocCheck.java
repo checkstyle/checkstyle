@@ -45,12 +45,16 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code ignoredTags} - Specify block tags which are ignored by the check.
+ * Property {@code ignoredTags} - Specify
+ * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ * block tags</a> which are ignored by the check.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
  * <li>
- * Property {@code ignoreInlineTags} - Control whether inline tags must be ignored.
+ * Property {@code ignoreInlineTags} - Control whether
+ * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ * inline tags</a> must be ignored.
  * Type is {@code boolean}.
  * Default value is {@code true}.
  * </li>
