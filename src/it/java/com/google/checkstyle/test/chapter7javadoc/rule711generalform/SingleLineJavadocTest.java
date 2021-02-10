@@ -37,12 +37,9 @@ public class SingleLineJavadocTest extends AbstractGoogleModuleTestSupport {
         final String msg = getCheckMessage(SingleLineJavadocCheck.class, "singleline.javadoc");
 
         final String[] expected = {
-            "5: " + msg,
             "13: " + msg,
             "29: " + msg,
-            "32: " + msg,
             "35: " + msg,
-            "38: " + msg,
             "41: " + msg,
         };
 
