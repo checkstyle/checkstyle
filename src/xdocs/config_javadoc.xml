@@ -3311,14 +3311,20 @@ public boolean testMethod(int firstParam) {
               <td>8.3</td>
             </tr>
             <tr>
-              <td>ignoredTags</td>
+              <td>
+                <a href = "http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                ignoredTags</a>
+              </td>
               <td>Specify block tags which are ignored by the check.</td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>6.8</td>
             </tr>
             <tr>
-              <td>ignoreInlineTags</td>
+              <td>
+                <a href = "http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                ignoreInlineTags</a>
+              </td>
               <td>Control whether inline tags must be ignored.</td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
