@@ -264,7 +264,7 @@ public class XpathQueryGenerator {
                     .append(TokenUtil.getTokenName(cur.getType()));
             if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(XpathUtil.getTextAttributeValue(cur))
+                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
                         .append("']");
             }
             else {
@@ -331,5 +331,62 @@ public class XpathQueryGenerator {
         return ast.getLineNo() == lineNumber
                 && expandedTabColumn(ast) == columnNumber
                 && (tokenType == 0 || tokenType == ast.getType());
+    }
+
+    /**
+     * Controls true escape characters. True escape characters need '&' before but it also
+     * requires XML 1.1 until https://github.com/checkstyle/checkstyle/issues/5168.
+     *
+     * @param chr character from parent method encode() .
+     * @param encStr StringBuilder from parent method encode().
+     */
+    private static void controlTrueCharacter(char chr, StringBuilder encStr) {
+        if (Character.isISOControl(chr)) {
+            encStr.append("#x");
+            encStr.append(Integer.toHexString(chr));
+            encStr.append(';');
+        }
+        else {
+            encStr.append(chr);
+        }
+    }
+
+    /**
+     * Escape &lt;, &gt; &amp; &#39; and &quot; as their entities.
+     *
+     * @param value the value to escape.
+     * @return the escaped value if necessary.
+     */
+    public static String encode(String value) {
+        final StringBuilder sb = new StringBuilder(256);
+        for (int i = 0; i < value.length(); i++) {
+            final char chr = value.charAt(i);
+            switch (chr) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '\'':
+                    sb.append("&apos;&apos;");
+                    break;
+                case '\"':
+                    sb.append("&quot;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
+                    break;
+                case '\r':
+                    break;
+                case '\n':
+                    sb.append("&#10;");
+                    break;
+                default:
+                    controlTrueCharacter(chr, sb);
+                    break;
+            }
+        }
+        return sb.toString();
     }
 }
