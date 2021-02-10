@@ -17,10 +17,14 @@
  &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
             </property>
             <property default-value="" name="ignoredTags" type="java.lang.String[]">
-               <description>Specify block tags which are ignored by the check.</description>
+               <description>Specify
+ &lt;a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF"&gt;
+ block tags&lt;/a&gt; which are ignored by the check.</description>
             </property>
             <property default-value="true" name="ignoreInlineTags" type="boolean">
-               <description>Control whether inline tags must be ignored.</description>
+               <description>Control whether
+ &lt;a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF"&gt;
+ inline tags&lt;/a&gt; must be ignored.</description>
             </property>
          </properties>
          <message-keys>
