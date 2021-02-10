@@ -6,12 +6,11 @@ FAILED_IDS_FILE=failed
 API_ISSUE_LINK_PREFIX="https://api.github.com/repos/checkstyle/checkstyle/issues"
 ISSUE_LINK_PREFIX="https://github.com/checkstyle/checkstyle/issues"
 
-grep -Pohr "[Tt]il[l]? $ISSUE_LINK_PREFIX/\d{1,5}" . \
-| sed -e 's/.*issues\///' | sort | uniq > ids
+grep -Pohr "[Tt]il[l]? $ISSUE_LINK_PREFIX/\d{1,5}" . | sed -e 's/.*issues\///' | sort | uniq > ids
 
 while read issue_id; do
   STATE=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$API_ISSUE_LINK_PREFIX/$issue_id" \
-   | jq '.state')
+   | jq '.state' | xargs)
   echo "issue: $issue_id has state: $STATE"
   if [[ "$STATE" == "closed" ]]; then
     echo "$ISSUE_LINK_PREFIX/$issue_id" >> $FAILED_IDS_FILE
