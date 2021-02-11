@@ -37,6 +37,12 @@ jobs:
        - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/travis.sh pr-description"
        - SKIP_JOB_BY_FILES="false"
 
+    # testing closed to do issues
+    - env:
+       - DESC="test closed to do issues"
+       - CMD="./.ci/no_old_refs.sh"
+       - SKIP_JOB_BY_FILES="false"
+
     # moved to azure-pipelines.yml
     # new questionably spelled words
     # - env:
