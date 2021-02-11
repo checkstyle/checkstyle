@@ -87,6 +87,8 @@
   <!-- there is no way to make line wrap in property value -->
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]customimportorder"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilterEscape.xml"/>
 
   <!-- there is no way to make line wrap in property value -->
   <suppress id="lineLength"
