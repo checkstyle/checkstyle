@@ -683,6 +683,8 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilter.java"/>
   <suppress id="ConfigCommentOnTopInputs"
+            files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilterEscape.java"/>
+  <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilter.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="filters[\\/]suppresswarningsfilter[\\/]InputSuppressWarningsFilterById.java"/>
@@ -2659,6 +2661,8 @@
             files="filters[\\/]suppressionsinglefilter[\\/]InputSuppressionSingleFilter.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilter.java"/>
+  <suppress id="StyleValidationCommentInInputs"
+            files="filters[\\/]suppressionxpathfilter[\\/]InputSuppressionXpathFilterEscape.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="filters[\\/]suppressionxpathsinglefilter[\\/]InputSuppressionXpathSingleFilter.java"/>
   <suppress id="StyleValidationCommentInInputs"

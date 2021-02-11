@@ -23,10 +23,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -47,6 +50,27 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     private static DetailAST rootAst;
 
     private static FileText fileText;
+
+    private final Map<String, String> encodings = createMap();
+
+    private static Map<String, String> createMap() {
+        final Map<String, String> encoding = new HashMap<>();
+        encoding.put("<", "&lt;");
+        encoding.put(">", "&gt;");
+        encoding.put("'", "&apos;&apos;");
+        encoding.put("\"", "&quot;");
+        encoding.put("&", "&amp;");
+        encoding.put("&lt;", "&amp;lt;");
+        encoding.put("abc;", "abc;");
+        encoding.put("&#0;", "&amp;#0;");
+        encoding.put("&#0", "&amp;#0");
+        encoding.put("&#X0;", "&amp;#X0;");
+        encoding.put("\u0001", "#x1;");
+        encoding.put("\u0080", "#x80;");
+        encoding.put("\n", "&#10;");
+        encoding.put("\r", "");
+        return encoding;
+    }
 
     @Override
     protected String getPackageLocation() {
@@ -458,4 +482,12 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
+    @Test
+    public void testEncode()
+            throws IOException {
+        for (Map.Entry<String, String> entry : encodings.entrySet()) {
+            final String encoded = XpathQueryGenerator.encode(entry.getKey());
+            assertEquals(entry.getValue(), encoded, "\"" + entry.getKey() + "\"");
+        }
+    }
 }
