@@ -78,9 +78,8 @@
  &lt;/li&gt;
  &lt;/ul&gt;
  &lt;p&gt;
- Note, that support for these Checks will be available after resolving issues
- &lt;a href="https://github.com/checkstyle/checkstyle/issues/5770"&gt;#5770&lt;/a&gt; and
- &lt;a href="https://github.com/checkstyle/checkstyle/issues/5777"&gt;#5777&lt;/a&gt;.
+ Note, that support for these Checks will be available after resolving issue
+ &lt;a href="https://github.com/checkstyle/checkstyle/issues/5770"&gt;#5770&lt;/a&gt;.
  &lt;/p&gt;
  &lt;p&gt;
  Currently, filter supports the following xpath axes:
