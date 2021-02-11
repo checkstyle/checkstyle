@@ -651,7 +651,6 @@ public class XdocsPagesTest {
 
     private static void validateDescriptionSection(String fileName, String sectionName,
             Node subSection) {
-        // Till https://github.com/checkstyle/checkstyle/issues/5777
         if ("config_filters.xml".equals(fileName) && "SuppressionXpathFilter".equals(sectionName)) {
             validateListOfSuppressionXpathFilterIncompatibleChecks(subSection);
         }
