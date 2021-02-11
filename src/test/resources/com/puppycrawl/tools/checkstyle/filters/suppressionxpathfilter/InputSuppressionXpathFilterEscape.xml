@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionXpathFilter Experimental Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2_xpath_experimental.dtd">
+<suppressions>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='quoteChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='\&quot;escaped\&quot;']]"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='lessChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='&lt;escaped']]"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='ampersandChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='&amp;escaped']]"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='&gt;escaped']]"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='newLineChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='escaped\n']]"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='specialChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='escaped\r']]"/>
+    <suppress-xpath
+            files="InputSuppressionXpathFilterEscape.java"
+            checks="OperatorWrapCheck"
+            query="/CLASS_DEF[./IDENT[@text='A']]/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='aposChar']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='&apos;&apos;escaped&apos;&apos;']]"/>
+</suppressions>

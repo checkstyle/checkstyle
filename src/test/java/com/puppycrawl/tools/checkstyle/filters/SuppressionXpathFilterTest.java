@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Set;
 
@@ -35,6 +36,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -179,4 +182,17 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         return suppressionXpathFilter;
     }
 
+    @Test
+    public void testAcceptThree() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscape.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscape.java"));
+        final FileText fileText = new FileText(file, StandardCharsets.ISO_8859_1.name());
+        final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(new FileContents(fileText),
+                "InputSuppressionXpathFilterEscape.java", null, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+
+        assertTrue(filter.accept(ev), "TreeWalker audit event should be rejected");
+    }
 }
