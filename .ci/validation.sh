@@ -168,7 +168,7 @@ no-error-xwiki)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:$CS_POM_VERSION
   mvn -e --no-transfer-progress clean install -Pno-validations
-  checkout_from "https://github.com/xwiki/xwiki-commons.git"
+  checkout_from "-b checkstyle_9280 https://github.com/checkstyle/xwiki-commons.git"
   cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
   mvn -e --no-transfer-progress -f \
