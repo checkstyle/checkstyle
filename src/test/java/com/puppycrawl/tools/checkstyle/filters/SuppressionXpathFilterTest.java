@@ -179,4 +179,108 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         return suppressionXpathFilter;
     }
 
+    @Test
+    public void testFalseEncodeString() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscape.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscape.java"));
+
+        final LocalizedMessage messageQuot = new LocalizedMessage(5, 37, TokenTypes.PLUS, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evQuot = new TreeWalkerAuditEvent(null,
+                "Test.java", messageQuot, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evQuot), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageLess = new LocalizedMessage(8, 33, TokenTypes.PLUS, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evLess = new TreeWalkerAuditEvent(null,
+                "Test.java", messageLess, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evLess), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageAmpersand = new LocalizedMessage(11, 38, TokenTypes.PLUS,
+                "", "", null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evAmpersand = new TreeWalkerAuditEvent(null,
+                "Test.java", messageAmpersand, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evAmpersand), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageGreater = new LocalizedMessage(14, 36, TokenTypes.PLUS,
+                "", "", null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evGreater = new TreeWalkerAuditEvent(null,
+                "Test.java", messageGreater, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evGreater), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageNewLine = new LocalizedMessage(17, 37, TokenTypes.PLUS,
+                "", "", null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evNewLine = new TreeWalkerAuditEvent(null,
+                "Test.java", messageNewLine, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evNewLine), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageSpecial = new LocalizedMessage(20, 37, TokenTypes.PLUS,
+                "", "", null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evSpecial = new TreeWalkerAuditEvent(null,
+                "Test.java", messageSpecial, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evSpecial), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageApos = new LocalizedMessage(23, 34, TokenTypes.PLUS,
+                "", "", null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evApos = new TreeWalkerAuditEvent(null,
+                "Test.java", messageApos, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evApos), "TreeWalker audit event should be rejected");
+    }
+
+    @Test
+    public void testFalseEncodeChar() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscape.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscape.java"));
+
+        final LocalizedMessage messageAmpChar = new LocalizedMessage(26, 13,
+                TokenTypes.CHAR_LITERAL, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evAmpChar = new TreeWalkerAuditEvent(null,
+                "Test.java", messageAmpChar, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evAmpChar), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageQuoteChar = new LocalizedMessage(28, 13,
+                TokenTypes.CHAR_LITERAL, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evQuoteChar = new TreeWalkerAuditEvent(null,
+                "Test.java", messageQuoteChar, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evQuoteChar), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageAposChar = new LocalizedMessage(30, 13,
+                TokenTypes.CHAR_LITERAL, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evAposChar = new TreeWalkerAuditEvent(null,
+                "Test.java", messageAposChar, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evAposChar), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageLessChar = new LocalizedMessage(32, 13,
+                TokenTypes.CHAR_LITERAL, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evLessChar = new TreeWalkerAuditEvent(null,
+                "Test.java", messageLessChar, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evLessChar), "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageGreaterChar = new LocalizedMessage(34, 13,
+                TokenTypes.CHAR_LITERAL, "", "",
+                null, null, "777", getClass(), null);
+        final TreeWalkerAuditEvent evGreaterChar = new TreeWalkerAuditEvent(null,
+                "Test.java", messageGreaterChar, JavaParser.parseFile(file,
+                JavaParser.Options.WITHOUT_COMMENTS));
+        assertFalse(filter.accept(evGreaterChar), "TreeWalker audit event should be rejected");
+    }
 }
