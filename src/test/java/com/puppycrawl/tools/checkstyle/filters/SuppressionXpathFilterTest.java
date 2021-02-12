@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
@@ -179,4 +180,85 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         return suppressionXpathFilter;
     }
 
+    private LocalizedMessage getMessageForStringLiteral(int lineNo, int coloumnNo) {
+        return new LocalizedMessage(lineNo, coloumnNo, TokenTypes.PLUS, "", "",
+                null, null, "777", getClass(), null);
+    }
+
+    private LocalizedMessage getMessageForCharLiteral(int lineNo, int coloumnNo) {
+        return new LocalizedMessage(lineNo, coloumnNo, TokenTypes.CHAR_LITERAL, "", "",
+                null, null, "777", getClass(), null);
+    }
+
+    private TreeWalkerAuditEvent getTreeWalkerAuditForString(LocalizedMessage messageQuot,
+                                                             File file)
+            throws IOException, CheckstyleException {
+        return new TreeWalkerAuditEvent(null, "Test.java", messageQuot,
+                JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
+    }
+
+    @Test
+    public void testFalseEncodeString() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscapeString.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscapeString.java"));
+
+        final LocalizedMessage messageQuot = getMessageForStringLiteral(8, 37);
+
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageQuot, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageLess = getMessageForStringLiteral(11, 33);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageLess, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageAmpersand = getMessageForStringLiteral(14, 38);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageAmpersand, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageGreater = getMessageForStringLiteral(17, 36);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageGreater, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageNewLine = getMessageForStringLiteral(20, 37);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageNewLine, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageSpecial = getMessageForStringLiteral(23, 37);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageSpecial, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageApos = getMessageForStringLiteral(26, 34);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageApos, file)),
+                "TreeWalker audit event should be rejected");
+    }
+
+    @Test
+    public void testFalseEncodeChar() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscapeChar.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscapeChar.java"));
+
+        final LocalizedMessage messageAmpChar = getMessageForCharLiteral(8, 13);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageAmpChar, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageQuoteChar = getMessageForCharLiteral(10, 13);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageQuoteChar, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageAposChar = getMessageForCharLiteral(12, 13);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageAposChar, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageLessChar = getMessageForCharLiteral(14, 13);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageLessChar, file)),
+                "TreeWalker audit event should be rejected");
+
+        final LocalizedMessage messageGreaterChar = getMessageForCharLiteral(16, 13);
+        assertFalse(filter.accept(getTreeWalkerAuditForString(messageGreaterChar, file)),
+                "TreeWalker audit event should be rejected");
+    }
 }
