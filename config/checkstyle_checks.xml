@@ -665,7 +665,7 @@
     <module name="TodoComment">
       <property name="format" value="(TODO)|(FIXME)" />
     </module>
-    <!-- till https://github.com/checkstyle/checkstyle/issues/7388 -->
+    <!-- till https://github.com/checkstyle/checkstyle/issues/8137 -->
     <module name="TodoComment">
       <property name="id" value="commentStartWithSpace"/>
       <property name="format" value="^([^\s\/*])"/>

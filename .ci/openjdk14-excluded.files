@@ -61,7 +61,7 @@
   <property name="fileNamePattern" value="enum[\\/]TrailingComma.java$"/>
 </module>
 
-<!-- until https://github.com/checkstyle/checkstyle/issues/8943 -->
+<!-- until https://github.com/checkstyle/checkstyle/issues/9267 -->
 <module name="BeforeExecutionExclusionFileFilter">
   <property name="fileNamePattern" value="[\\/]DeepStringConcat.java$"/>
 </module>
