@@ -73,7 +73,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </li>
  * </ul>
  * <p>
- * To run the check with its default configuration:
+ * To run the check with its default configuration (no matches will be):
  * </p>
  * <pre>
  * &lt;module name=&quot;RegexpMultiline&quot;/&gt;
@@ -121,7 +121,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * <pre>
  * &lt;module name="RegexpMultiline"&gt;
  *   &lt;property name="matchAcrossLines" value="true"/&gt;
- *   &lt;property name="format" value="System\.out.*print\("/&gt;
+ *   &lt;property name="format" value="System\.out.*?print\("/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -131,7 +131,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * void method() {
  *   System.out.print("Example"); // violation
  *   System.err.println("Example");
- *   System.out.print
+ *   System.out.print // violation
  *     ("Example");
  *   System.err.println
  *     ("Example");
@@ -145,6 +145,14 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   err.println("Example");
  * }
  * </pre>
+ * <p>
+ * Note: Beware of the greedy regular expression used in the above example.
+ * {@code .*} will match as much as possible and not produce multiple violations
+ * in the file if multiple groups of lines could match the expression. To prevent
+ * an expression being too greedy, avoid overusing matching all text or allow it
+ * to be optional, like {@code .*?}. Changing the example expression to not be
+ * greedy will allow multiple violations in the example to be found in the same file.
+ * </p>
  * <p>
  * To configure the check to match a maximum of three test strings:
  * </p>
@@ -191,15 +199,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  *   System.out.println("Test #4: This is a test string"); // violation
  * }
  * </pre>
- * <p>
- * Note: Beware of the greedy regular expression used in the above example.
- * {@code .*} will match as much as possible and not produce multiple violations
- * in the file if multiple groups of lines could match the expression. To prevent
- * an expression being too greedy, avoid overusing matching all text or allow it
- * to be optional, like {@code .*?}. Changing the example expression to not be
- * greedy will allow multiple violations in the example to be found in the same file.
- * </p>
- *
  * <p>
  * To configure the check to restrict an empty file:
  * </p>

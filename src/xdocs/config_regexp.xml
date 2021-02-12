@@ -570,7 +570,7 @@ public static final int A_SETPOINT = 1;
 
       <subsection name="Examples" id="RegexpMultiline_Examples">
         <p>
-          To run the check with its default configuration:
+        To run the check with its default configuration (no matches will be):
         </p>
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;/&gt;
@@ -620,7 +620,7 @@ void method() {
         <source>
 &lt;module name=&quot;RegexpMultiline&quot;&gt;
   &lt;property name=&quot;matchAcrossLines&quot; value=&quot;true&quot;/&gt;
-  &lt;property name=&quot;format&quot; value=&quot;System\.out.*print\(&quot;/&gt;
+  &lt;property name=&quot;format&quot; value=&quot;System\.out.*?print\(&quot;/&gt;
 &lt;/module&gt;
         </source>
         <p>
@@ -630,7 +630,7 @@ void method() {
 void method() {
   System.out.print("Example"); // violation
   System.err.println("Example");
-  System.out.print
+  System.out.print // violation
     ("Example");
   System.err.println
     ("Example");
@@ -644,6 +644,14 @@ void method() {
   err.println("Example");
 }
         </source>
+        <p>
+          Note: Beware of the greedy regular expression used in the above example.
+          <code>.*</code> will match as much as possible and not produce multiple violations in
+          the file if multiple groups of lines could match the expression. To prevent an
+          expression being too greedy, avoid overusing matching all text or allow it to be
+          optional, like <code>.*?</code>. Changing the example expression to not be greedy
+          will allow multiple violations in the example to be found in the same file.
+        </p>
         <p>
         To configure the check to match a maximum of three test strings:
         </p>
@@ -690,15 +698,6 @@ void method() {
   System.out.println("Test #4: This is a test string"); // violation
 }
         </source>
-        <p>
-          Note: Beware of the greedy regular expression used in the above example.
-          <code>.*</code> will match as much as possible and not produce multiple violations in
-          the file if multiple groups of lines could match the expression. To prevent an
-          expression being too greedy, avoid overusing matching all text or allow it to be
-          optional, like <code>.*?</code>. Changing the example expression to not be greedy
-          will allow multiple violations in the example to be found in the same file.
-        </p>
-
         <p>
           To configure the check to restrict an empty file:
         </p>
