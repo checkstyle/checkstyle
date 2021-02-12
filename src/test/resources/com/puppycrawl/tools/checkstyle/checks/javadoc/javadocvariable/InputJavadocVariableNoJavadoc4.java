@@ -1,9 +1,9 @@
 /*
 JavadocVariable
-scope = (default)private
-excludeScope = (default)null
+accessModifiers = (default)public, protected, package, private
 ignoreNamePattern = log|logger
 tokens = (default)ENUM_CONSTANT_DEF
+
 
 
 */
