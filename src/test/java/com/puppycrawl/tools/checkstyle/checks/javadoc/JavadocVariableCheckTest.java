@@ -26,8 +26,8 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class JavadocVariableCheckTest
@@ -93,7 +93,7 @@ public class JavadocVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        checkConfig.addAttribute("accessModifiers", AccessModifierOption.PUBLIC.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocVariableInner2.java"), expected);
     }
@@ -120,7 +120,7 @@ public class JavadocVariableCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        checkConfig.addAttribute("accessModifiers", AccessModifierOption.PUBLIC.toString());
         final String[] expected = {
             "46:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -128,7 +128,7 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes() throws Exception {
+    public void testAccessModifiersAll() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
@@ -176,10 +176,13 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testScopes2() throws Exception {
+    public void testAccessModifiersPublicProtected() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addAttribute(
+            "accessModifiers",
+            AccessModifierOption.PROTECTED.name() + "," + AccessModifierOption.PUBLIC.name()
+        );
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -192,11 +195,13 @@ public class JavadocVariableCheckTest
     }
 
     @Test
-    public void testExcludeScope() throws Exception {
+    public void testAccessModifiersPrivatePackage() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+        checkConfig.addAttribute(
+            "accessModifiers",
+            AccessModifierOption.PRIVATE.name() + "," + AccessModifierOption.PACKAGE.name()
+        );
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "12:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
