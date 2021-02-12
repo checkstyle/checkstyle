@@ -84,7 +84,7 @@ public class HandlerFactory {
         register(TokenTypes.ANNOTATION_FIELD_DEF, MethodDefHandler.class);
         register(TokenTypes.SWITCH_RULE, SwitchRuleHandler.class);
         register(TokenTypes.LITERAL_YIELD, YieldHandler.class);
-        register(TokenTypes.RECORD_DEF, MethodDefHandler.class);
+        register(TokenTypes.RECORD_DEF, ClassDefHandler.class);
         register(TokenTypes.COMPACT_CTOR_DEF, MethodDefHandler.class);
     }
 
