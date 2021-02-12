@@ -241,8 +241,10 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     public void checkIndentation() {
         checkTopLevelToken();
         // separate to allow for eventual configuration
-        checkLeftParen(getLeftParen());
-        checkRightParen(getLeftParen(), getRightParen());
+        if (getMainAst().getType() != TokenTypes.RECORD_DEF) {
+            checkLeftParen(getLeftParen());
+            checkRightParen(getLeftParen(), getRightParen());
+        }
         if (hasCurlies()) {
             checkLeftCurly();
             checkRightCurly();
