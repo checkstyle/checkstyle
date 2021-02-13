@@ -175,20 +175,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;CustomImportOrder&quot;/&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
- * import org.apache.commons.io.FileUtils; //OK
- * import static java.util.*; //OK
- * import java.time.*; //OK
- * import static java.io.*; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import org.apache.commons.io.FileUtils; // OK
+ * import static java.util.*; // OK
+ * import java.time.*; // OK
+ * import static java.io.*; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
  * To configure the check so that it checks in the order
- * (static imports,standard java packages,third party package):-
+ * (static imports,standard java packages,third party package):
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -197,20 +197,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
+ * import static java.util.*; // OK
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import static java.io.*; //violation as static imports should be in top
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ * import static java.io.*; // violation as static imports should be in top
  *
- * import org.apache.commons.io.FileUtils; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import org.apache.commons.io.FileUtils; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
  * To configure the check such that only java packages are included in standard java packages
@@ -223,20 +223,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
- * import static java.io.*; //OK
+ * import static java.util.*; // OK
+ * import static java.io.*; // OK
  *
- * import java.time.*; //OK
- * import javax.net.*; //violation as it is not included in standard java package group.
+ * import java.time.*; // OK
+ * import javax.net.*; // violation as it is not included in standard java package group.
  *
- * import org.apache.commons.io.FileUtils; //violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import org.apache.commons.io.FileUtils; // violation
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
  * To configure the check to include only "com" packages as third party group imports
@@ -249,50 +249,49 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
- * import static java.io.*; //OK
+ * import static java.util.*; // OK
+ * import static java.io.*; // OK
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
  *
- * import org.apache.commons.io.FileUtils; //violation(should be in end)
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import org.apache.commons.io.FileUtils; // violation(should be in end)
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
- * To configure the check to include "com" packages as third party packages
- * and "org" packages in special import group
+ * To configure the check to force some packages in special import groups
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
  *   &lt;property name=&quot;customImportOrderRules&quot;
- *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
+ *     value=&quot;STATIC###SPECIAL_IMPORTS###STANDARD_JAVA_PACKAGE&quot;/&gt;
  *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
- *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
- * import static java.io.*; //OK
+ * import static java.util.*; // OK
+ * import static java.io.*; // OK
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import org.apache.commons.io.FileUtils; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import org.json.JSONObject; // OK
+ *
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ *
+ * import org.apache.commons.io.FileUtils; // violation
  * </pre>
  * <p>
- * To configure the check such that empty line separator between two groups is disabled:-
+ * To configure the check such that empty line separator between two groups is disabled:
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -304,22 +303,22 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
- * import static java.io.*; //OK
+ * import static java.util.*; // OK
+ * import static java.io.*; // OK
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import org.apache.commons.io.FileUtils; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ * import org.apache.commons.io.FileUtils; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
- * To configure the check such that import groups are forced to be sorted alphabetically:-
+ * To configure the check such that import groups are forced to be sorted alphabetically:
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -332,19 +331,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
- * import static java.io.*; //Violation since it should come before"java.util"
+ * import static java.util.*; // OK
+ * import static java.io.*; // Violation since it should come before"java.util"
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import org.apache.commons.io.FileUtils; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ * import org.apache.commons.io.FileUtils; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
@@ -388,20 +387,20 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.util.*; //OK
- * import static java.io.*; //Violation since it should come before"java.util"
+ * import static java.util.*; // OK
+ * import static java.io.*; // Violation since it should come before"java.util"
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import org.apache.commons.io.FileUtils; //Violation should be separated by space
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ * import org.apache.commons.io.FileUtils; // Violation should be separated by space
  *
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
  * To configure the check so that it matches default Eclipse formatter configuration
@@ -433,19 +432,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.io.*; //OK
- * import static java.util.*; //OK
+ * import static java.io.*; // OK
+ * import static java.util.*; // OK
  *
- * import java.time.*; //OK
- * import javax.net.*; //OK
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
  *
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //Violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //Violation
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
  *
  * import org.apache.commons.io.FileUtils;
  * </pre>
@@ -482,23 +481,23 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.io.*; //OK
- * import static java.util.*; //OK
+ * import static java.io.*; // OK
+ * import static java.util.*; // OK
  *
- * import java.time.*; //violation should be in standard package group
- *                    //below special import
+ * import java.time.*; // violation should be in standard package group
+ *                    // below special import
  *
- * import javax.net.*; //Violation should be in special import group
+ * import javax.net.*; // Violation should be in special import group
  *
- * import org.apache.commons.io.FileUtils; //Violation should be in
- *                                        //THIRD PARTY PACKAGE GROUP
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //Violation
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //Violation
+ * import org.apache.commons.io.FileUtils; // Violation should be in
+ *                                        // THIRD PARTY PACKAGE GROUP
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // Violation
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // Violation
  * </pre>
  * <p>
  * To configure the check so that it matches default NetBeans formatter configuration
@@ -516,19 +515,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;module name=&quot;CustomImportOrder&quot;/&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.io.*; //OK
- * import static java.util.*; //OK
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
+ * import static java.io.*; // OK
+ * import static java.util.*; // OK
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  *
- * import org.apache.commons.io.FileUtils; //should not be separated by line
+ * import org.apache.commons.io.FileUtils; // should not be separated by line
  * </pre>
  * <p>
  * To set RegExps for THIRD_PARTY_PACKAGE and STANDARD_JAVA_PACKAGE groups use
@@ -543,19 +542,19 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.io.*; //OK
- * import static java.util.*; //OK
- * import java.time.*; //violation
- * import javax.net.*; //violation
+ * import static java.io.*; // OK
+ * import static java.util.*; // OK
+ * import java.time.*; // violation
+ * import javax.net.*; // violation
  *
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
- * import org.apache.commons.io.FileUtils; //OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+ * import org.apache.commons.io.FileUtils; // OK
  * </pre>
  * <p>
  * Also, this check can be configured to force empty line separator between
@@ -567,18 +566,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example:-
+ * Example:
  * </p>
  * <pre>
  * package com.company;
  *
- * import static java.io.*; //OK
- * import static java.util.*; //OK
- * import java.time.*; //OK
- * import javax.net.*; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; //OK
- * import org.apache.commons.io.FileUtils; //OK
+ * import static java.io.*; // OK
+ * import static java.util.*; // OK
+ * import java.time.*; // OK
+ * import javax.net.*; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
+ * import org.apache.commons.io.FileUtils; // OK
  * </pre>
  * <p>
  * It is possible to enforce
