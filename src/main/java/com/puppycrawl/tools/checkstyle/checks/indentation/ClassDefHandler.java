@@ -113,19 +113,25 @@ public class ClassDefHandler extends BlockParentHandler {
      */
     private static String getHandlerName(DetailAST ast) {
         final String name;
+        final int tokenType = ast.getType();
 
-        if (ast.getType() == TokenTypes.CLASS_DEF) {
-            name = "class def";
+        switch (tokenType) {
+            case TokenTypes.CLASS_DEF:
+                name = "class def";
+                break;
+            case TokenTypes.ENUM_DEF:
+                name = "enum def";
+                break;
+            case TokenTypes.ANNOTATION_DEF:
+                name = "annotation def";
+                break;
+            case TokenTypes.RECORD_DEF:
+                name = "record def";
+                break;
+            default:
+                name = "interface def";
         }
-        else if (ast.getType() == TokenTypes.ENUM_DEF) {
-            name = "enum def";
-        }
-        else if (ast.getType() == TokenTypes.ANNOTATION_DEF) {
-            name = "annotation def";
-        }
-        else {
-            name = "interface def";
-        }
+
         return name;
     }
 
