@@ -98,20 +98,20 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * void method() {
- *   System.out.print("Example"); // violation
+ *   System.out.print("Example");   // violation
  *   System.err.println("Example"); // violation
  *   System.out.print
- *     ("Example"); // violation
+ *     ("Example");                 // violation
  *   System.err.println
- *     ("Example"); // OK
+ *     ("Example");          // OK
  *   System
- *   .out.print("Example"); // OK
+ *   .out.print("Example");  // OK
  *   System
- *   .err.println("Example"); // violation
+ *   .err.println("Example");       // violation
  *   System.
- *   out.print("Example"); // OK
+ *   out.print("Example");   // OK
  *   System.
- *   err.println("Example"); // violation
+ *   err.println("Example");        // violation
  * }
  * </pre>
  * <p>
@@ -129,9 +129,9 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * void method() {
- *   System.out.print("Example"); // violation
+ *   System.out.print("Example");  // violation
  *   System.err.println("Example");
- *   System.out.print // violation
+ *   System.out.print              // violation
  *     ("Example");
  *   System.err.println
  *     ("Example");
