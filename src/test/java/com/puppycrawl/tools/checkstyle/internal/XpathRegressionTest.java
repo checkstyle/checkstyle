@@ -54,7 +54,6 @@ import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 public class XpathRegressionTest extends AbstractModuleTestSupport {
 
     // Checks that not compatible with SuppressionXpathFilter
-    // till https://github.com/checkstyle/checkstyle/issues/5777
     public static final Set<String> INCOMPATIBLE_CHECK_NAMES =
         Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
             "NoCodeInFile (reason is that AST is not generated for a file not containing code)",
