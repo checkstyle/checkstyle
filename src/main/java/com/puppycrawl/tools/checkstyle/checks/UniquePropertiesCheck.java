@@ -55,9 +55,63 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * To configure the check:
  * </p>
  * <pre>
+ * &lt;module name=&quot;UniqueProperties&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example: in foo.properties file
+ * </p>
+ * <pre>
+ * key.one=44
+ * key.two=32 // OK
+ * key.one=54 // violation
+ * </pre>
+ * <p>
+ * To configure the check to scan custom file extensions:
+ * </p>
+ * <pre>
  * &lt;module name=&quot;UniqueProperties&quot;&gt;
- *   &lt;property name=&quot;fileExtensions&quot; value=&quot;properties&quot; /&gt;
+ *  &lt;property name=&quot;fileExtensions&quot; value=&quot;customproperties&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example: in foo.customproperties file
+ * </p>
+ * <pre>
+ * key.one=44
+ * key.two=32 // OK
+ * key.one=54 // violation
+ * </pre>
+ * <p>
+ * Example: in foo.properties file
+ * </p>
+ * <pre>
+ * key.one=44
+ * key.two=32 // OK
+ * key.one=54 // OK
+ * </pre>
+ * <p>
+ * To configure the check to scan custom file extensions and properties file:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;UniqueProperties&quot;&gt;
+ *  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, customproperties&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example: in foo.customproperties file:
+ * </p>
+ * <pre>
+ * key.one=44
+ * key.two=32 // OK
+ * key.one=54 // violation
+ * </pre>
+ * <p>
+ * Example: in foo.properties file:
+ * </p>
+ * <pre>
+ * key.one=44
+ * key.two=32 // OK
+ * key.one=54 // violation
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
