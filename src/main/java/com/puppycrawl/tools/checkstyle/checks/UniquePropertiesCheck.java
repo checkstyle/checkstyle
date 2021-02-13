@@ -70,7 +70,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name=&quot;UniqueProperties&quot;&gt;
- * &lt;property name=&quot;fileExtensions&quot; value=&quot;customproperties"/&gt;
+ *  &lt;property name=&quot;fileExtensions&quot; value=&quot;customproperties&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -94,7 +94,7 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name=&quot;UniqueProperties&quot;&gt;
- * &lt;property name=&quot;fileExtensions&quot; value="properties, customproperties"/&gt;
+ *  &lt;property name=&quot;fileExtensions&quot; value=&quot;properties, customproperties&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
