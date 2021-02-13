@@ -294,6 +294,7 @@ csv
 ctor
 ctx
 customimportorder
+customproperties
 cvs
 cyclomatic
 cyclomaticcomplexity
