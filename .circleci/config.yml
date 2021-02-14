@@ -42,6 +42,17 @@ jobs:
             else
               echo "build is skipped ..."
             fi
+      - run:
+          name: download all maven dependencies and groovy (second try)
+          command: |
+            RUN_JOB=`cat .ci-temp/run_job`
+            echo "RUN_JOB="$RUN_JOB
+            if [[ $RUN_JOB == 1 ]]; then
+              mvn -e -Ppitest-metrics dependency:go-offline
+            else
+              echo "build is skipped ..."
+            fi
+          when: on_fail
       - persist_to_workspace:
           root: /home/circleci/
           paths:
