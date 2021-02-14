@@ -28,16 +28,13 @@ import static org.powermock.api.mockito.PowerMockito.mockStatic;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
@@ -45,6 +42,9 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.CheckstyleAntTaskLogStub;
+import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.CheckstyleAntTaskStub;
+import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.MessageLevelPair;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(CheckstyleAntTask.class)
@@ -123,78 +123,4 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
                     ex.getMessage().startsWith("Unable to process files:"));
         }
     }
-
-    /**
-     * Non meaningful javadoc just to contain "noinspection" tag.
-     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     *
-     * @noinspection JUnitTestCaseWithNoTests
-     */
-    private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
-
-        @Override
-        protected List<File> scanFileSets() {
-            final File mock = PowerMockito.mock(File.class);
-            // Assume that I/O error is happened when we try to invoke 'lastModified()' method.
-            final Exception expectedError = new RuntimeException("");
-            when(mock.lastModified()).thenThrow(expectedError);
-            final List<File> list = new ArrayList<>();
-            list.add(mock);
-            return list;
-        }
-
-    }
-
-    /**
-     * Non meaningful javadoc just to contain "noinspection" tag.
-     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     *
-     * @noinspection JUnitTestCaseWithNoTests
-     */
-    private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
-
-        private final List<MessageLevelPair> loggedMessages = new ArrayList<>();
-
-        @Override
-        public void log(String msg, int msgLevel) {
-            loggedMessages.add(new MessageLevelPair(msg, msgLevel));
-        }
-
-        @Override
-        public void log(String msg, Throwable t, int msgLevel) {
-            loggedMessages.add(new MessageLevelPair(msg, msgLevel));
-        }
-
-        public List<MessageLevelPair> getLoggedMessages() {
-            return Collections.unmodifiableList(loggedMessages);
-        }
-
-    }
-
-    /**
-     * Non meaningful javadoc just to contain "noinspection" tag.
-     * Till https://youtrack.jetbrains.com/issue/IDEA-187210
-     *
-     * @noinspection JUnitTestCaseWithNoTests
-     */
-    private static final class MessageLevelPair {
-
-        private final String msg;
-        private final int level;
-
-        /* package */ MessageLevelPair(String msg, int level) {
-            this.msg = msg;
-            this.level = level;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public int getLevel() {
-            return level;
-        }
-
-    }
-
 }
