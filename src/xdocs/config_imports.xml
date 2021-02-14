@@ -531,7 +531,7 @@ import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; //
 import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
         </source>
         <p>
-          To configure the check such that only java packages are included in standard java packages:
+          To configure the check such that only java packages are included in standard java packages
         </p>
         <source>
 &lt;module name=&quot;CustomImportOrder&quot;&gt;

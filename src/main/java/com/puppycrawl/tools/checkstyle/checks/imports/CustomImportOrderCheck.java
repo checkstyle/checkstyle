@@ -213,7 +213,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
- * To configure the check such that only java packages are included in standard java packages:
+ * To configure the check such that only java packages are included in standard java packages
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
