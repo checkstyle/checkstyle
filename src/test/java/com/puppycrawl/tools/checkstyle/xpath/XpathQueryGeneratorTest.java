@@ -26,11 +26,14 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.google.common.truth.Truth;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
@@ -458,4 +461,29 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
+    @Test
+    public void testEncode() {
+        final Map<String, String> encoding = new HashMap<>();
+
+        encoding.put("<", "&lt;");
+        encoding.put(">", "&gt;");
+        encoding.put("'", "&apos;&apos;");
+        encoding.put("\"", "&quot;");
+        encoding.put("&", "&amp;");
+        encoding.put("&lt;", "&amp;lt;");
+        encoding.put("abc;", "abc;");
+        encoding.put("&#0;", "&amp;#0;");
+        encoding.put("&#0", "&amp;#0");
+        encoding.put("&#X0;", "&amp;#X0;");
+        encoding.put("\u0001", "#x1;");
+        encoding.put("\u0080", "#x80;");
+        encoding.put("\n", "&#10;");
+        encoding.put("\r", "");
+
+        for (Map.Entry<String, String> entry : encoding.entrySet()) {
+            final String encoded = XpathQueryGenerator.encode(entry.getKey());
+            assertEquals(entry.getValue(), encoded, "\"" + entry.getKey() + "\"");
+            Truth.assertWithMessage("Incorrect encoding").that(entry.getValue()).isEqualTo(encoded);
+        }
+    }
 }
