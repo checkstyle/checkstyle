@@ -56,6 +56,7 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
             "46:9: " + getCheckMessage(MSG_SEMI),
             "51:33: " + getCheckMessage(MSG_SEMI),
             "55:9: " + getCheckMessage(MSG_SEMI),
+            "58:10: " + getCheckMessage(MSG_SEMI),
         };
 
         verify(checkConfig, getPath("InputUnnecessarySemicolonInEnumeration.java"), expected);
