@@ -36,13 +36,14 @@ no-exception-openjdk7-openjdk8)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#openjdk7/openjdk7/' projects-for-circle.properties
   sed -i'' 's/#openjdk8/openjdk8/' projects-for-circle.properties
-  groovy launch.groovy --listOfProjects projects-for-circle.properties \
-    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy diff.groovy --listOfProjects projects-for-circle.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+    --mode single --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles .ci-temp/contribution
   ;;
@@ -52,7 +53,7 @@ no-exception-openjdk9-lucene-and-others)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   # till hg is installed
@@ -61,8 +62,9 @@ no-exception-openjdk9-lucene-and-others)
   sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
   sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
   sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties
-  groovy launch.groovy --listOfProjects projects-for-circle.properties \
-    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy diff.groovy --listOfProjects projects-for-circle.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+    --mode single --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -72,14 +74,15 @@ no-exception-cassandra-storm-tapestry)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#tapestry-5/tapestry-5/' projects-for-circle.properties
   sed -i'' 's/#storm/storm/' projects-for-circle.properties
   sed -i'' 's/#cassandra/cassandra/' projects-for-circle.properties
-  groovy launch.groovy --listOfProjects projects-for-circle.properties \
-    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy diff.groovy --listOfProjects projects-for-circle.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+    --mode single --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -89,15 +92,16 @@ no-exception-hadoop-apache-groovy-scouter)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties
   sed -i'' 's/#hadoop/hadoop/' projects-for-circle.properties
   sed -i'' 's/#groovy/groovy/' projects-for-circle.properties
   sed -i'' 's/#scouter/scouter/' projects-for-circle.properties
-  groovy launch.groovy --listOfProjects projects-for-circle.properties \
-    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy diff.groovy --listOfProjects projects-for-circle.properties \
+    --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+    --mode single --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -107,7 +111,7 @@ no-exception-only-javadoc)
                       --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
@@ -115,8 +119,9 @@ no-exception-only-javadoc)
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
-  groovy launch.groovy --listOfProjects projects-to-test-on.properties \
-    --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy diff.groovy --listOfProjects projects-to-test-on.properties \
+    --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+    --mode single --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
