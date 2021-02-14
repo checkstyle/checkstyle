@@ -13,7 +13,7 @@ guava-with-google-checks)
   echo CS_version: $CS_POM_VERSION
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
@@ -23,8 +23,8 @@ guava-with-google-checks)
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION 
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm google_checks.*
@@ -36,7 +36,7 @@ guava-with-sun-checks)
   echo CS_version: $CS_POM_VERSION
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
@@ -46,8 +46,8 @@ guava-with-sun-checks)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION 
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm sun_checks.*
@@ -58,7 +58,7 @@ openjdk14-with-checks-nonjavadoc-error)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
+  git clone "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd ..
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
