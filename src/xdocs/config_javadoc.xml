@@ -2291,18 +2291,13 @@ class DatabaseConfiguration {}
               <th>since</th>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
+              <td>accessModifiers</td>
+              <td>Specify the access modifiers where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#AccessModifierOption.5B.5D">AccessModifierOption[]
+              </a>
+              </td>
+              <td><code>public, protected, package, private</code></td>
               <td>3.0</td>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
-              <td>3.4</td>
             </tr>
             <tr>
               <td>ignoreNamePattern</td>
@@ -2337,25 +2332,13 @@ class DatabaseConfiguration {}
         </source>
 
         <p>
-          To configure the check for <code>public</code>
-          scope:
+          To configure the check for <code>public</code> and <code>protected</code>
+          variables:
         </p>
 
         <source>
 &lt;module name="JavadocVariable"&gt;
-  &lt;property name="scope" value="public"/&gt;
-&lt;/module&gt;
-        </source>
-
-        <p>
-          To configure the check for members which are in <code>private</code>, but not in
-          <code>protected</code> scope:
-        </p>
-
-        <source>
-&lt;module name="JavadocVariable"&gt;
-  &lt;property name="scope" value="private"/&gt;
-  &lt;property name="excludeScope" value="protected"/&gt;
+  &lt;property name="accessModifiers" value="public,protected"/&gt;
 &lt;/module&gt;
         </source>
 
