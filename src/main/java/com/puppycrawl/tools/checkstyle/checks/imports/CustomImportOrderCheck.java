@@ -213,7 +213,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
- * To configure the check such that only java packages are included in standard java packages
+ * To configure the check such that only java packages are included in standard java packages:
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -239,7 +239,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
- * To configure the check to include only "com" packages as third party group imports
+ * To configure the check to include only "com" packages as third party group imports:
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -265,7 +265,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
- * To configure the check to force some packages in special import groups
+ * To configure the check to force some packages in special import group:
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -291,7 +291,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * import org.apache.commons.io.FileUtils; // violation
  * </pre>
  * <p>
- * To configure the check such that empty line separator between two groups is disabled:
+ * To configure the check such that empty line separator between two groups is enabled:
  * </p>
  * <pre>
  * &lt;module name=&quot;CustomImportOrder&quot;&gt;
@@ -299,7 +299,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *     value=&quot;STATIC###STANDARD_JAVA_PACKAGE###SPECIAL_IMPORTS###THIRD_PARTY_PACKAGE&quot;/&gt;
  *   &lt;property name=&quot;specialImportsRegExp&quot; value=&quot;^org\.&quot;/&gt;
  *   &lt;property name=&quot;thirdPartyPackageRegExp&quot; value=&quot;^com\.&quot;/&gt;
- *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;false&quot;/&gt;
+ *   &lt;property name=&quot;separateLineBetweenGroups&quot; value=&quot;true&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -313,8 +313,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *
  * import java.time.*; // OK
  * import javax.net.*; // OK
- * import org.apache.commons.io.FileUtils; // OK
- * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // OK
+ * import org.apache.commons.io.FileUtils; // violation
+ * import com.puppycrawl.tools.checkstyle.checks.imports.CustomImportOrderCheck; // violation
  * import com.puppycrawl.tools.checkstyle.checks.imports.ImportOrderCheck; // OK
  * </pre>
  * <p>
