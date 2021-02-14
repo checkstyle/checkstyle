@@ -5,16 +5,29 @@ removeFolderWithProtectedFiles() {
   find $1 -delete
 }
 
+function checkout_from {
+  CLONE_URL=$1
+  PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
+  mkdir -p .ci-temp
+  cd .ci-temp
+  if [ -d "$PROJECT" ]; then
+    echo "Target project $PROJECT is already cloned, latest changes will be fetched"
+    cd $PROJECT
+    git fetch
+    cd ../
+  else
+    for i in 1 2 3 4 5; do git clone $CLONE_URL && break || sleep 15; done
+  fi
+  cd ../
+}
+
 case $1 in
 
 guava-with-google-checks)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
@@ -23,8 +36,8 @@ guava-with-google-checks)
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION 
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm google_checks.*
@@ -34,10 +47,7 @@ guava-with-sun-checks)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo CS_version: $CS_POM_VERSION
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
@@ -46,8 +56,8 @@ guava-with-sun-checks)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION 
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm sun_checks.*
@@ -56,13 +66,9 @@ guava-with-sun-checks)
 openjdk14-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
-  cd ..
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
-  cd .ci-temp/contribution/checkstyle-tester
   cp ../../../.ci/openjdk-projects-to-test-on.config openjdk-projects-to-test-on.config
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk14-excluded.files' checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
