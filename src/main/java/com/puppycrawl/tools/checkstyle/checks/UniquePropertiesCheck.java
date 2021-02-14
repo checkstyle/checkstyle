@@ -70,11 +70,11 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
  * </p>
  * <pre>
  * &lt;module name=&quot;UniqueProperties&quot;&gt;
- *  &lt;property name=&quot;fileExtensions&quot; value=&quot;PROPERTIES&quot;/&gt;
+ *  &lt;property name=&quot;fileExtensions&quot; value=&quot;customProperties&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * Example: in foo.PROPERTIES file
+ * Example: in foo.customProperties file
  * </p>
  * <pre>
  * key.one=44
