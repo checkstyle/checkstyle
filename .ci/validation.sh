@@ -132,10 +132,7 @@ no-violation-test-josm)
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp
   cd .ci-temp
-  # The tested version is 17329 (as of 2020-11-30), it has some violations fixed in 17332.
-  # Once the tested version will be updated, we should switch back to the version from the wiki.
-  TESTED=17332
-  # TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
+  TESTED=$(wget -q -O - https://josm.openstreetmap.de/wiki/TestedVersion?format=txt)
   echo "JOSM revision: ${TESTED}"
   svn -q --force export https://josm.openstreetmap.de/svn/trunk/ -r "${TESTED}" --native-eol LF josm
   cd josm
