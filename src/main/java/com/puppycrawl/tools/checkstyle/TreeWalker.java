@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -60,10 +61,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             new HashMap<>();
 
     /** Registered ordinary checks, that don't use comment nodes. */
-    private final Set<AbstractCheck> ordinaryChecks = new HashSet<>();
+    private final Set<AbstractCheck> ordinaryChecks = createNewCheckSortedSet();
 
     /** Registered comment checks. */
-    private final Set<AbstractCheck> commentChecks = new HashSet<>();
+    private final Set<AbstractCheck> commentChecks = createNewCheckSortedSet();
 
     /** The ast filters. */
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
@@ -241,7 +242,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private void registerCheck(int tokenId, AbstractCheck check) throws CheckstyleException {
         if (check.isCommentNodesRequired()) {
-            tokenToCommentChecks.computeIfAbsent(tokenId, empty -> new HashSet<>()).add(check);
+            tokenToCommentChecks.computeIfAbsent(tokenId, empty -> createNewCheckSortedSet())
+                    .add(check);
         }
         else if (TokenUtil.isCommentType(tokenId)) {
             final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
@@ -251,7 +253,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             throw new CheckstyleException(message);
         }
         else {
-            tokenToOrdinaryChecks.computeIfAbsent(tokenId, empty -> new HashSet<>()).add(check);
+            tokenToOrdinaryChecks.computeIfAbsent(tokenId, empty -> createNewCheckSortedSet())
+                    .add(check);
         }
     }
 
@@ -447,6 +450,20 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
             curNode = toVisit;
         }
+    }
+
+    /**
+     * Creates a new {@link SortedSet} with a deterministic order based on the
+     * Check's name before the default ordering.
+     *
+     * @return The new {@link SortedSet}.
+     */
+    private static SortedSet<AbstractCheck> createNewCheckSortedSet() {
+        return new TreeSet<>(
+                Comparator.<AbstractCheck, String>comparing(check -> check.getClass().getName())
+                        .thenComparing(Comparator.comparing(AbstractCheck::getId,
+                                Comparator.nullsLast(Comparator.naturalOrder())))
+                        .thenComparing(AbstractCheck::hashCode));
     }
 
     /**
