@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#This script is used at https://app.codeship.com/projects/124310
-#Run "firefox target/site/linkcheck.html" after completion to review html report
+# This script is used at https://app.codeship.com/projects/124310
+# Run "firefox target/site/linkcheck.html" after completion to review html report
 
 set -e
 pwd
