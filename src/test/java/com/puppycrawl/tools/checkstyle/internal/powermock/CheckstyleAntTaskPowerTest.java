@@ -127,7 +127,7 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
     /**
      * IDEA inspections expect nested classes in tests to be tests as well, so they are suppressed.
      *
-     * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
+     * @noinspection JUnitTestCaseWithNoTests
      */
     private static class CheckstyleAntTaskStub extends CheckstyleAntTask {
 
@@ -147,7 +147,7 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
     /**
      * IDEA inspections expect nested classes in tests to be tests as well, so they are suppressed.
      *
-     * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
+     * @noinspection JUnitTestCaseWithNoTests
      */
     private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
 
@@ -172,7 +172,7 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
     /**
      * IDEA inspections expect nested classes in tests to be tests as well, so they are suppressed.
      *
-     * @noinspection JUnitTestCaseWithNoTests, JUnitTestClassNamingConvention
+     * @noinspection JUnitTestCaseWithNoTests
      */
     private static final class MessageLevelPair {
 
