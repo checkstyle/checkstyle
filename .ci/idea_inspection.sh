@@ -28,7 +28,7 @@ if [[ -z $IDEA_PATH ]]; then
     fi
 fi
 
-#Execute compilation of Checkstyle to generate all source files
+# Execute compilation of Checkstyle to generate all source files
 mvn -e clean compile
 
 mkdir -p $RESULTS_DIR
