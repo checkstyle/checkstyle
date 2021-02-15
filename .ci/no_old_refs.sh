@@ -7,16 +7,20 @@ CLOSED_ISSUES=/tmp/failed
 API_ISSUE_LINK_PREFIX="https://api.github.com/repos/checkstyle/checkstyle/issues"
 ISSUE_LINK_PREFIX="https://github.com/checkstyle/checkstyle/issues"
 
+# collect issues where full link is used
 grep -Pohr "(after|[Tt]il[l]?) $ISSUE_LINK_PREFIX/\d{1,5}" . \
-  | sed -e 's/.*issues\///' | sort | uniq > $MENTIONED_IDS
+  | sed -e 's/.*issues\///' >> $MENTIONED_IDS
 
-while read issue_id; do
+# collect issues where only hash sign is used
+grep -Pohr "[Tt]il[l]? #\d{1,5}" . | sed -e 's/.*#//' >> $MENTIONED_IDS
+
+for issue_id in $(sort -u $MENTIONED_IDS); do
   STATE=$(curl -s -H "Authorization: token $READ_ONLY_TOKEN" "$API_ISSUE_LINK_PREFIX/$issue_id" \
    | jq '.state' | xargs)
   if [[ "$STATE" == "closed" ]]; then
     echo "$ISSUE_LINK_PREFIX/$issue_id" >> $CLOSED_ISSUES
   fi
-done < $MENTIONED_IDS
+done
 
 rm -f $MENTIONED_IDS
 
