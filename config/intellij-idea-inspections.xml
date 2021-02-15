@@ -2752,8 +2752,7 @@
   </inspection_tool>
   <inspection_tool class="JUnitDatapoint" enabled="true" level="ERROR" enabled_by_default="true"/>
   <inspection_tool class="JUnitRule" enabled="true" level="ERROR" enabled_by_default="true"/>
-  <!-- suppressed till #5949 when we migrate to 2018.1.4 where such rule have new name -->
-  <inspection_tool class="JUnitTestClassNamingConvention" enabled="false" level="ERROR"
+  <inspection_tool class="JUnitTestClassNamingConvention" enabled="true" level="ERROR"
                    enabled_by_default="true">
     <option name="m_regex" value="[A-Z][A-Za-z\d]*Test"/>
     <option name="m_minLength" value="8"/>
@@ -4419,10 +4418,6 @@
         <option value="CheckedExceptionClass"/>
         <option value="StaticVariableMayNotBeInitialized"/>
         <option value="StaticVariableUsedBeforeInitialization"/>
-        <!-- till #4734 -->
-        <option value="NonFinalFieldReferenceInEquals"/>
-        <!-- till #4734 -->
-        <option value="NonFinalFieldReferencedInHashCode"/>
         <!-- violations in DetailAST will be addressed further -->
         <option value="FieldNotUsedInToString"/>
         <!-- WeakerAccess reports 'can be protected' that we can not change -->
@@ -4438,7 +4433,7 @@
         <option value="unused"/>
         <!-- we use it for testing purposes -->
         <option value="UseOfPropertiesAsHashtable"/>
-        <!-- till #4861, #4862, #4863, #4864, #4866 -->
+        <!-- till #4862, #4864 -->
         <option value="ThisEscapedInObjectConstruction"/>
         <!-- it will makes code too complicated in some cases -->
         <option value="MultipleReturnPointsPerMethod"/>
@@ -4446,10 +4441,6 @@
         <option value="AnnotationClass"/>
         <!-- Suppression is only for TokenTypes class -->
         <option value="ClassWithTooManyDependents"/>
-        <!-- till #4870, used in MT check markers -->
-        <option value="ClassIndependentOfModule"/>
-        <!-- till #4870, used in MT check markers -->
-        <option value="unused"/>
         <!-- XDocs UT is very long and complex -->
         <option value="OverlyComplexBooleanExpression"/>
         <option value="ReuseOfLocalVariable"/>
