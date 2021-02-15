@@ -75,23 +75,35 @@ import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
  */
 public class XpathQueryGenerator {
 
-    /** The root ast. */
+    /**
+     * The root ast.
+     */
     private final DetailAST rootAst;
-    /** The line number of the element for which the query should be generated. */
+    /**
+     * The line number of the element for which the query should be generated.
+     */
     private final int lineNumber;
-    /** The column number of the element for which the query should be generated. */
+    /**
+     * The column number of the element for which the query should be generated.
+     */
     private final int columnNumber;
-    /** The token type of the element for which the query should be generated. Optional. */
+    /**
+     * The token type of the element for which the query should be generated. Optional.
+     */
     private final int tokenType;
-    /** The {@code FileText} object, representing content of the file. */
+    /**
+     * The {@code FileText} object, representing content of the file.
+     */
     private final FileText fileText;
-    /** The distance between tab stop position. */
+    /**
+     * The distance between tab stop position.
+     */
     private final int tabWidth;
 
     /**
      * Creates a new {@code XpathQueryGenerator} instance.
      *
-     * @param event {@code TreeWalkerAuditEvent} object
+     * @param event    {@code TreeWalkerAuditEvent} object
      * @param tabWidth distance between tab stop position
      */
     public XpathQueryGenerator(TreeWalkerAuditEvent event, int tabWidth) {
@@ -102,11 +114,11 @@ public class XpathQueryGenerator {
     /**
      * Creates a new {@code XpathQueryGenerator} instance.
      *
-     * @param rootAst root ast
-     * @param lineNumber line number of the element for which the query should be generated
+     * @param rootAst      root ast
+     * @param lineNumber   line number of the element for which the query should be generated
      * @param columnNumber column number of the element for which the query should be generated
-     * @param fileText the {@code FileText} object
-     * @param tabWidth distance between tab stop position
+     * @param fileText     the {@code FileText} object
+     * @param tabWidth     distance between tab stop position
      */
     public XpathQueryGenerator(DetailAST rootAst, int lineNumber, int columnNumber,
                                FileText fileText, int tabWidth) {
@@ -116,12 +128,12 @@ public class XpathQueryGenerator {
     /**
      * Creates a new {@code XpathQueryGenerator} instance.
      *
-     * @param rootAst root ast
-     * @param lineNumber line number of the element for which the query should be generated
+     * @param rootAst      root ast
+     * @param lineNumber   line number of the element for which the query should be generated
      * @param columnNumber column number of the element for which the query should be generated
-     * @param tokenType token type of the element for which the query should be generated
-     * @param fileText the {@code FileText} object
-     * @param tabWidth distance between tab stop position
+     * @param tokenType    token type of the element for which the query should be generated
+     * @param fileText     the {@code FileText} object
+     * @param tabWidth     distance between tab stop position
      */
     public XpathQueryGenerator(DetailAST rootAst, int lineNumber, int columnNumber, int tokenType,
                                FileText fileText, int tabWidth) {
@@ -141,9 +153,9 @@ public class XpathQueryGenerator {
      */
     public List<String> generate() {
         return getMatchingAstElements()
-            .stream()
-            .map(XpathQueryGenerator::generateXpathQuery)
-            .collect(Collectors.toList());
+                .stream()
+                .map(XpathQueryGenerator::generateXpathQuery)
+                .collect(Collectors.toList());
     }
 
     /**
@@ -252,7 +264,7 @@ public class XpathQueryGenerator {
      * Returns relative xpath query for given ast element from root.
      *
      * @param root {@code DetailAST} root element
-     * @param ast {@code DetailAST} ast element
+     * @param ast  {@code DetailAST} ast element
      * @return relative xpath query for given ast element from root
      */
     private static String getXpathQuery(DetailAST root, DetailAST ast) {
@@ -264,7 +276,7 @@ public class XpathQueryGenerator {
                     .append(TokenUtil.getTokenName(cur.getType()));
             if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(XpathUtil.getTextAttributeValue(cur))
+                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
                         .append("']");
             }
             else {
@@ -331,5 +343,61 @@ public class XpathQueryGenerator {
         return ast.getLineNo() == lineNumber
                 && expandedTabColumn(ast) == columnNumber
                 && (tokenType == 0 || tokenType == ast.getType());
+    }
+
+    /**
+     * Escape &lt;, &gt;, &amp;, &#39; and &quot; as their entities.
+     *
+     * @param value the value to escape.
+     * @return the escaped value if necessary.
+     */
+    public static String encode(String value) {
+        final StringBuilder sb = new StringBuilder(256);
+        for (char chr : value.toCharArray()) {
+            switch (chr) {
+                case '<':
+                    sb.append("&lt;");
+                    break;
+                case '>':
+                    sb.append("&gt;");
+                    break;
+                case '\'':
+                    sb.append("&apos;&apos;");
+                    break;
+                case '\"':
+                    sb.append("&quot;");
+                    break;
+                case '&':
+                    sb.append("&amp;");
+                    break;
+                case '\r':
+                    break;
+                case '\n':
+                    sb.append("&#10;");
+                    break;
+                default:
+                    controlCharacter(chr, sb);
+                    break;
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Controls escape characters. Escape characters need '&amp;' before but it also
+     * requires XML 1.1 until https://github.com/checkstyle/checkstyle/issues/5168.
+     *
+     * @param chr character to check.
+     * @param encStr StringBuilder from parent method encode().
+     */
+    private static void controlCharacter(char chr, StringBuilder encStr) {
+        if (Character.isISOControl(chr)) {
+            encStr.append("#x");
+            encStr.append(Integer.toHexString(chr));
+            encStr.append(';');
+        }
+        else {
+            encStr.append(chr);
+        }
     }
 }
