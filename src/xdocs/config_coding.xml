@@ -4320,7 +4320,7 @@ switch (i) {
         </p>
         <source>
 for (int i = 0; i &lt; 1; i++) {
-  i++; //violation
+  i++; // violation
 }
         </source>
         <p>
@@ -4335,6 +4335,15 @@ for (int i = 0; i &lt; 1; i++) {
         <source>
 for (int i = 0; i &lt; 10;) {
   i++;
+}
+        </source>
+        <p>
+          NOTE:The check works with only primitive type variables.
+          The check will not work for arrays used as control variable.An example is
+        </p>
+        <source>
+for (int a[]={0};a[0] &lt; 10;a[0]++) {
+ a[0]++;   // it will skip this violation
 }
         </source>
       </subsection>
@@ -4376,7 +4385,18 @@ for (int i = 0; i &lt; 10;) {
         <source>
 &lt;module name=&quot;ModifiedControlVariable&quot;/&gt;
         </source>
-
+        <p>
+          Example:
+        </p>
+        <source>
+for(int i=0;i &lt; 8;i++) {
+  i++; // violation, control variable modified
+}
+String args1[]={"Coding", "block"};
+for (String arg: args1) {
+  arg = arg.trim(); // violation, control variable modified
+}
+        </source>
         <p>
           By default, This Check validates
           <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
@@ -4396,8 +4416,12 @@ for (int i = 0; i &lt; 10;) {
         </source>
         <p>Example:</p>
         <source>
-for (String line: lines) {
-  line = line.trim();   // it will skip this violation
+for(int i=0;i &lt; 8;i++) {
+  i++; // violation, control variable modified
+}
+String args1[]={"Coding", "block"};
+for (String arg: args1) {
+  arg = arg.trim(); // ok
 }
         </source>
       </subsection>
