@@ -3015,6 +3015,13 @@ try {
               <td>5.5</td>
             </tr>
             <tr>
+              <td>enforceWhitespaceAroundArrayInit</td>
+              <td>Enforce whitespace around array initialization.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.41</td>
+            </tr>
+            <tr>
               <td>tokens</td>
               <td>tokens to check</td>
 
@@ -3460,6 +3467,26 @@ class Test {
         for (char item: vowels) { // violation, ':' is not preceded by whitespace.
             // body
         }
+    }
+}
+        </source>
+        <p>
+          To configure the check to enforce whitespace around array initialization.
+        </p>
+        <source>
+&lt;module name=&quot;WhitespaceAround&quot;&gt;
+ &lt;property name="enforceWhitespaceAroundArrayInit" value="true" /&gt;
+ &lt;property name="tokens" value="ARRAY_INIT,RCURLY" /&gt;
+&lt;/module&gt;
+        </source>
+        <p>Example:</p>
+        <source>
+public class Test {
+    public static void main() {
+        int[] arr = {1,2,3};   // 2 violations, '{' is not followed by whitespace and
+                               // '}' is not preceded by whitespace.
+        int[] arr1 = {1,2,3 }; // violation, '{' is not followed by whitespace.
+        int[][] arr2 = { { 1,2,3 } , { 4,5,6 } }; // ok.
     }
 }
         </source>
