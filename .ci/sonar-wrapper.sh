@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#This file is for manual execution only
+# This file is for manual execution only
 
 set -e
 
@@ -13,6 +13,6 @@ sleep "60"
 
 ./.ci/sonar.sh
 
-#kill container
+# kill container
 docker stop sonar
 docker rm sonar
