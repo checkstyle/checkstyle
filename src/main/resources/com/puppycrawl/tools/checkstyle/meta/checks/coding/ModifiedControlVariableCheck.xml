@@ -26,6 +26,16 @@
  for (int i = 0; i &amp;lt; 10;) {
    i++;
  }
+ &lt;/pre&gt;
+ &lt;p&gt;
+ NOTE:The check works with only primitive type variables.
+ The check will not work for arrays used as control variable.An example is
+ &lt;/p&gt;
+ &lt;pre&gt;
+ for (int a[]={0};a[0] &amp;lt; 10;a[0]++)
+ {
+ a[0]++;   // it will skip this violation
+ }
  &lt;/pre&gt;</description>
          <properties>
             <property default-value="false"
