@@ -1044,7 +1044,7 @@ public class RequireThisCheck extends AbstractCheck {
             }
             while (vertex != null) {
                 if (tokenType == vertex.getType()
-                    && vertex.getLineNo() <= endLineNumber) {
+                        && vertex.getLineNo() <= endLineNumber) {
                     result.add(vertex);
                 }
                 if (vertex.getNextSibling() != null) {
@@ -1340,7 +1340,7 @@ public class RequireThisCheck extends AbstractCheck {
             final AbstractFrame frame;
 
             if (!lookForMethod
-                && containsFieldOrVariable(nameToFind)) {
+                    && containsFieldOrVariable(nameToFind)) {
                 frame = this;
             }
             else {
@@ -1565,7 +1565,7 @@ public class RequireThisCheck extends AbstractCheck {
             AbstractFrame frame = null;
 
             if (lookForMethod && containsMethod(nameToFind)
-                || containsFieldOrVariable(nameToFind)) {
+                    || containsFieldOrVariable(nameToFind)) {
                 frame = this;
             }
             else if (getParent() != null) {
