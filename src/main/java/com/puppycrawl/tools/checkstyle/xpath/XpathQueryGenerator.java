@@ -264,7 +264,7 @@ public class XpathQueryGenerator {
                     .append(TokenUtil.getTokenName(cur.getType()));
             if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(XpathUtil.getTextAttributeValue(cur))
+                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
                         .append("']");
             }
             else {
@@ -331,5 +331,75 @@ public class XpathQueryGenerator {
         return ast.getLineNo() == lineNumber
                 && expandedTabColumn(ast) == columnNumber
                 && (tokenType == 0 || tokenType == ast.getType());
+    }
+
+    /**
+     * Escape &lt;, &gt;, &amp;, &#39; and &quot; as their entities.
+     * Custom method for Xpath generation to maintain compatibility
+     * with Saxon and encoding outside Ascii range characters.
+     *
+     * @param value the value to escape.
+     * @return the escaped value if necessary.
+     */
+    public static String encode(String value) {
+        final StringBuilder sb = new StringBuilder(256);
+        value.chars().forEach(
+            chr -> {
+                encodeCharacter(sb, (char) chr);
+            }
+        );
+        return sb.toString();
+    }
+
+    /**
+     * Encodes escape character for Xpath.
+     *
+     * @param encStr StringBuilder from parent method encode().
+     * @param chr Character to check.
+     */
+    private static void encodeCharacter(StringBuilder encStr, char chr) {
+        switch (chr) {
+            case '<':
+                encStr.append("&lt;");
+                break;
+            case '>':
+                encStr.append("&gt;");
+                break;
+            case '\'':
+                encStr.append("&apos;&apos;");
+                break;
+            case '\"':
+                encStr.append("&quot;");
+                break;
+            case '&':
+                encStr.append("&amp;");
+                break;
+            case '\r':
+                break;
+            case '\n':
+                encStr.append("&#10;");
+                break;
+            default:
+                controlCharacter(chr, encStr);
+                break;
+        }
+    }
+
+    /**
+     * Controls escape characters. Escape characters need '&amp;' before but it also
+     * requires XML 1.1 until https://github.com/checkstyle/checkstyle/issues/5168.
+     *
+     * @param chr character to check.
+     * @param encStr StringBuilder from parent method encode().
+     */
+    private static void controlCharacter(char chr, StringBuilder encStr) {
+        if (Character.isISOControl(chr)) {
+            encStr.append("#x");
+            encStr.append(Integer.toHexString(chr));
+            encStr.append(';');
+        }
+        else {
+            encStr.append(chr);
+        }
     }
 }
