@@ -73,6 +73,21 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name="ModifiedControlVariable"/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Demo
+ * {
+ * public static void main(String args[])
+ * {
+ * for(int i=0;i &lt; 8;i++)
+ * {
+ * i++; // violation
+ * }
+ * }
+ * }
+ * </pre>
+ * <p>
  * By default, This Check validates
  *  <a href = "https://docs.oracle.com/javase/specs/jls/se11/html/jls-14.html#jls-14.14.2">
  * Enhanced For-Loop</a>.
@@ -92,8 +107,17 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  *
  * <pre>
+ * import java.util.*;
+ * class Demo
+ * {
+ * public static void main(String args[])
+ * {
+ * List&lt;String&gt; lines =new ArrayList&lt;String&gt;();
+ * lines.add(" CHECKSTYLE ");
  * for (String line: lines) {
- *   line = line.trim();   // it will skip this violation
+ * line = line.trim();   // it will skip this violation
+ * }
+ * }
  * }
  * </pre>
  * <p>
