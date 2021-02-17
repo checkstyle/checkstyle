@@ -15,7 +15,7 @@ name: Diff-Report
 env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
-  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on.properties"
+  DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
   ISSUE_BODY: ${{github.event.issue.body}}
 
 on:
