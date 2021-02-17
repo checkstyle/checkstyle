@@ -3080,15 +3080,6 @@
                 <mutator>TRUE_RETURNS</mutator>
                 <mutator>VOID_METHOD_CALLS</mutator>
               </mutators>
-              <avoidCallsTo>
-                <!-- Till https://github.com/hcoles/pitest/issues/766
-                 Pitest complains about redundant call to close() method.
-                 This is unavoidable, since this method is called deep inside
-                 try-with-resources statement. As a workaround, we can exclude
-                 all methods of these classes from mutation. -->
-                <avoidCallsTo>java.io.BufferedReader</avoidCallsTo>
-                <avoidCallsTo>java.io.Reader</avoidCallsTo>
-              </avoidCallsTo>
               <targetClasses>
                 <param>com.puppycrawl.tools.checkstyle.api.*</param>
               </targetClasses>
