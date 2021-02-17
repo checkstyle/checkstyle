@@ -89,8 +89,10 @@
       <!-- beginProcessing() is kind of c-tor -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpMultilineCheck" />
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck" />
-      <!-- Uses setters to set fields values -->
-      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck" />
+      <!-- Uses setters to set fields values.
+           This is part of the public API, so it's hard to refactor. -->
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractCheck$FileContext" />
+      <Class name="com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck$FileContext" />
       <!-- We cannot modify fields since we won't have the values
              to create the instance until the setters are called -->
       <Class name="com.puppycrawl.tools.checkstyle.filters.SuppressionSingleFilter"/>
