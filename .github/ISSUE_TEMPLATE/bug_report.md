@@ -1,5 +1,3 @@
-# Bug report template
-
 ---
 name: Bug report
 about: Create a report to help us improve
@@ -8,6 +6,7 @@ labels: ''
 assignees: ''
 
 ---
+
 I have read check documentation: https://checkstyle.org/config_xxxxxx.html#NameOfAffectedCheck
 I have downloaded the latest checkstyle from: https://checkstyle.org/cmdline.html#Download_and_Run
 I have executed the cli and showed it below, as cli describes the problem better than 1,000 words
