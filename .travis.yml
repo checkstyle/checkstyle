@@ -18,8 +18,9 @@ branches:
   only:
     - master
 
-install:
-  - gem install chef-utils:16.6.14 mdl
+#install:
+# moved to azure-pipelines.yml
+#  - gem install chef-utils:16.6.14 mdl
 
 jobs:
   fast_finish: true
@@ -51,8 +52,8 @@ jobs:
     #     - CMD="./.ci/travis/travis.sh markdownlint"
 
     # this job do deploy maven repository
-    # unit tests (openjdk8)
-    - jdk: openjdk8
+    # unit tests (openjdk11)
+    - jdk: openjdk11
       env:
         - DESC="tests and deploy"
         - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
@@ -226,7 +227,7 @@ jobs:
     #     - CMD="./.ci/travis/travis.sh no-error-test-sbe"
 
     # No error testing - XWiki project non regression
-    - jdk: openjdk8
+    - jdk: openjdk11
       env:
         - DESC="non regression on XWiki project"
         - USE_MAVEN_REPO="true"
