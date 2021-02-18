@@ -230,7 +230,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
         //
         final int indexOfAmp = line.indexOf('&', after);
         if (indexOfAmp >= 1
-            && containsWhitespaceBetween(after, indexOfAmp, line)) {
+                && containsWhitespaceBetween(after, indexOfAmp, line)) {
             if (indexOfAmp - after == 0) {
                 log(ast, MSG_WS_NOT_PRECEDED, "&");
             }
@@ -328,7 +328,7 @@ public class GenericWhitespaceCheck extends AbstractCheck {
             }
             // Whitespace not required
             else if (Character.isWhitespace(line.charAt(before))
-                && !containsWhitespaceBefore(before, line)) {
+                    && !containsWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, OPEN_ANGLE_BRACKET);
             }
         }

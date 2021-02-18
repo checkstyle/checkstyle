@@ -428,7 +428,7 @@ public class HiddenFieldCheck
                 && firstChild.getType() == TokenTypes.IDENT) {
             final String untypedLambdaParameterName = firstChild.getText();
             if (frame.containsStaticField(untypedLambdaParameterName)
-                || isInstanceField(firstChild, untypedLambdaParameterName)) {
+                    || isInstanceField(firstChild, untypedLambdaParameterName)) {
                 log(firstChild, MSG_KEY, untypedLambdaParameterName);
             }
         }
@@ -501,9 +501,9 @@ public class HiddenFieldCheck
     @Override
     public void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF
-            || ast.getType() == TokenTypes.ENUM_DEF
-            || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF
-            || ast.getType() == TokenTypes.RECORD_DEF) {
+                || ast.getType() == TokenTypes.ENUM_DEF
+                || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF
+                || ast.getType() == TokenTypes.RECORD_DEF) {
             // pop
             frame = frame.getParent();
         }
@@ -518,10 +518,10 @@ public class HiddenFieldCheck
      */
     private void processVariable(DetailAST ast) {
         if (!ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
-            && !CheckUtil.isReceiverParameter(ast)
-            && (ScopeUtil.isLocalVariableDef(ast)
-                || ast.getType() == TokenTypes.PARAMETER_DEF
-                || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
+                && !CheckUtil.isReceiverParameter(ast)
+                && (ScopeUtil.isLocalVariableDef(ast)
+                    || ast.getType() == TokenTypes.PARAMETER_DEF
+                    || ast.getType() == TokenTypes.PATTERN_VARIABLE_DEF)) {
             // local variable or parameter. Does it shadow a field?
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             final String name = nameAST.getText();
@@ -618,8 +618,8 @@ public class HiddenFieldCheck
             final DetailAST parametersAST = ast.getParent();
             final DetailAST methodAST = parametersAST.getParent();
             if (parametersAST.getChildCount() == 1
-                && methodAST.getType() == TokenTypes.METHOD_DEF
-                && isSetterMethod(methodAST, name)) {
+                    && methodAST.getType() == TokenTypes.METHOD_DEF
+                    && isSetterMethod(methodAST, name)) {
                 isIgnoredSetterParam = true;
             }
         }
