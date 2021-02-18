@@ -4,12 +4,12 @@ name: pipeline1
 
 steps:
 - name: checkstyle-and-sevntu
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh checkstyle-and-sevntu
 
 - name: spotbugs-and-pmd
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh spotbugs-and-pmd
 
@@ -19,12 +19,12 @@ name: pipeline2
 
 steps:
 - name: site
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh site
 
 - name: release-dry-run
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh release-dry-run
 
@@ -34,12 +34,12 @@ name: pipeline3
 
 steps:
 - name: check-chmod
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh check-chmod
 
 - name: releasenotes-gen
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   environment:
     READ_ONLY_TOKEN:
       from_secret: READ_ONLY_TOKEN
@@ -47,7 +47,7 @@ steps:
   - export PULL_REQUEST=$DRONE_PULL_REQUEST && ./.ci/travis/travis.sh releasenotes-gen
 
 - name: assembly-run-all-jar
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh assembly-run-all-jar
 
@@ -57,12 +57,12 @@ name: pipeline4
 
 steps:
 - name: javac8
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh javac8
 
 - name: check-since-version
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh check-since-version
 
@@ -92,7 +92,7 @@ steps:
   - ./.ci/travis/travis.sh javac16
 
 - name: no-error-test-sbe
-  image: maven:3.6.3-adoptopenjdk-8
+  image: maven:3.6.3-adoptopenjdk-11
   commands:
   - ./.ci/travis/travis.sh no-error-test-sbe
 
