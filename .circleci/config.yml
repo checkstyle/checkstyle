@@ -1,8 +1,9 @@
-version: 2
+version: 2.1
 jobs:
 
   build-caches:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     steps:
       # restore_cache.keys does not work, so multiple restore_cache.key is used
       - restore_cache:
@@ -61,7 +62,8 @@ jobs:
             - contribution
 
   pitest1:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -85,7 +87,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest2:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -109,7 +112,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest3:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -133,7 +137,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest4:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -157,7 +162,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest5:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -181,7 +187,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest6:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -205,7 +212,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest7:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
@@ -227,7 +235,8 @@ jobs:
           path: ./target/pit-reports
 
   pitest8:
-    machine: true
+    machine:
+      image: ubuntu-2004:202101-01
     parallelism: 4
     steps:
       - attach_workspace:
