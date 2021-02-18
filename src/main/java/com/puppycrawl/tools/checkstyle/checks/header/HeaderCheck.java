@@ -183,14 +183,9 @@ public class HeaderCheck extends AbstractHeaderCheck {
      * @param list comma separated list of line numbers to ignore in header.
      */
     public void setIgnoreLines(int... list) {
-        if (list.length == 0) {
-            ignoreLines = EMPTY_INT_ARRAY;
-        }
-        else {
-            ignoreLines = new int[list.length];
-            System.arraycopy(list, 0, ignoreLines, 0, list.length);
-            Arrays.sort(ignoreLines);
-        }
+        ignoreLines = new int[list.length];
+        System.arraycopy(list, 0, ignoreLines, 0, list.length);
+        Arrays.sort(ignoreLines);
     }
 
     @Override
