@@ -18,10 +18,6 @@ branches:
   only:
     - master
 
-#install:
-# moved to azure-pipelines.yml
-#  - gem install chef-utils:16.6.14 mdl
-
 jobs:
   fast_finish: true
   include:
