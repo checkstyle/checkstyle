@@ -184,4 +184,20 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
     }
 
+    @Test
+    public void testIfStatement() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(UnnecessaryParenthesesCheck.class);
+
+        final String[] expected = {
+            "10:20: " + getCheckMessage(MSG_EXPR),
+            "29:13: " + getCheckMessage(MSG_EXPR),
+            "41:13: " + getCheckMessage(MSG_EXPR),
+            "45:13: " + getCheckMessage(MSG_EXPR),
+            "54:20: " + getCheckMessage(MSG_EXPR),
+        };
+
+        verify(checkConfig, getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
+    }
+
 }

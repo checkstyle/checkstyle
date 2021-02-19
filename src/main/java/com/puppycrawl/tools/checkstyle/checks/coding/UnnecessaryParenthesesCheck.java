@@ -104,7 +104,11 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
- * TEXT_BLOCK_LITERAL_BEGIN</a>.
+ * TEXT_BLOCK_LITERAL_BEGIN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+ * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
+ * LITERAL_INSTANCEOF</a>.
  * </li>
  * </ul>
  * <p>
@@ -251,6 +255,13 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.STAR_ASSIGN,
     };
 
+    /** Token types for conditional operators. */
+    private static final int[] CONDITIONALS = {
+        TokenTypes.LOR,
+        TokenTypes.LAND,
+        TokenTypes.LITERAL_INSTANCEOF,
+    };
+
     /**
      * Used to test if logging a warning in a parent node may be skipped
      * because a warning was already logged on an immediate child node.
@@ -286,6 +297,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+            TokenTypes.LAND,
+            TokenTypes.LITERAL_INSTANCEOF,
         };
     }
 
@@ -316,6 +329,8 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+            TokenTypes.LAND,
+            TokenTypes.LITERAL_INSTANCEOF,
         };
     }
 
@@ -369,6 +384,11 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 if (last.getType() == TokenTypes.RPAREN) {
                     log(ast, MSG_ASSIGN);
                 }
+            }
+            else if (isInTokenList(type, CONDITIONALS)
+                    && isInTokenList(parent.getType(), CONDITIONALS)
+                    && isSurrounded(ast)) {
+                log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
     }
