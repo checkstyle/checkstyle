@@ -175,16 +175,44 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
             final List<DetailNode> textNodes = getAllNewlineNodes(ast);
             for (DetailNode newlineNode : textNodes) {
                 final DetailNode textNode = JavadocUtil.getNextSibling(newlineNode);
-                if (textNode.getType() == JavadocTokenTypes.TEXT) {
-                    final String text = textNode.getText();
-                    if (!CommonUtil.isBlank(text.trim())
-                            && (text.length() <= offset
-                                    || !text.substring(1, offset + 1).trim().isEmpty())) {
-                        log(textNode.getLineNumber(), MSG_KEY, offset);
-                    }
+                if (textNode.getType() == JavadocTokenTypes.TEXT && isViolation(textNode)) {
+                    log(textNode.getLineNumber(), MSG_KEY, offset);
                 }
             }
         }
+    }
+
+    /**
+     * Checks if a text node meets the criteria for a violation.
+     * If the text is shorter than {@code offset} characters, then a violation is
+     * detected if the text is not blank or the next node is not a newline.
+     * If the text is longer than {@code offset} characters, then a violation is
+     * detected if any of the first {@code offset} characters are not blank.
+     *
+     * @param textNode the node to check.
+     * @return true if the node has a violation.
+     */
+    private boolean isViolation(DetailNode textNode) {
+        boolean result = false;
+        final String text = textNode.getText();
+        if (text.length() <= offset) {
+            if (CommonUtil.isBlank(text)) {
+                final DetailNode nextNode = JavadocUtil.getNextSibling(textNode);
+                if (nextNode != null && nextNode.getType() != JavadocTokenTypes.NEWLINE) {
+                    // text is blank but line hasn't ended yet
+                    result = true;
+                }
+            }
+            else {
+                // text is not blank
+                result = true;
+            }
+        }
+        else if (!CommonUtil.isBlank(text.substring(1, offset + 1))) {
+            // first offset number of characters are not blank
+            result = true;
+        }
+        return result;
     }
 
     /**
