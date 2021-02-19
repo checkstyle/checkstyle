@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -417,7 +416,8 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean isAloneOnLine(Details details, String targetSrcLine) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST nextToken = details.nextToken;
-        return (!TokenUtil.areOnSameLine(rcurly, nextToken) || skipDoubleBraceInstInit(details))
+        return (nextToken == null || !TokenUtil.areOnSameLine(rcurly,
+                nextToken) || skipDoubleBraceInstInit(details))
                 && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(), targetSrcLine);
     }
 
@@ -442,7 +442,8 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean skipDoubleBraceInstInit(Details details) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
-        return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
+        return tokenAfterNextToken == null
+                || rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
                 && details.nextToken.getType() == TokenTypes.RCURLY
                 && rcurly.getLineNo() != Details.getNextToken(tokenAfterNextToken).getLineNo();
     }
@@ -711,12 +712,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 next = parent.getNextSibling();
                 parent = parent.getParent();
             }
-            if (next == null) {
-                // a DetailAST object with DetailAST#NOT_INITIALIZED for line and column numbers
-                // that no 'actual' DetailAST objects can have.
-                next = new DetailAstImpl();
-            }
-            else {
+            if (next != null) {
                 next = CheckUtil.getFirstNode(next);
             }
             return next;
