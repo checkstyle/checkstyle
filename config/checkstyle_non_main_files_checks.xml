@@ -63,7 +63,7 @@
   </module>
   <module name="RegexpSingleline">
     <property name="id" value="commentStartSpaceYml"/>
-    <property name="format" value="^ +#[^ ]"/>
+    <property name="format" value="^ *#[^ #]"/>
     <property name="fileExtensions" value="yml, yaml"/>
     <property name="message" value="space is required after comment start"/>
   </module>
