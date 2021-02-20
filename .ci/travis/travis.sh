@@ -93,6 +93,13 @@ site)
   ;;
 
 javac8)
+  # Additional input files for import order tests, since Java9 requires
+  # the existence of all imported classes.
+  extra_inputs=( \
+    src/main/java/com/puppycrawl/tools/checkstyle/checks/imports/AccessResult.java \
+    src/test/resources/sun/InputClass.java \
+    src/test/resources/sun/applet/InputClass.java \
+  )
   # InputCustomImportOrderNoPackage2 - nothing is required in front of first import
   # InputIllegalTypePackageClassName - bad import for testing
   # InputVisibilityModifierPackageClassName - bad import for testing
@@ -105,7 +112,7 @@ javac8)
   mkdir -p target
   for file in "${files[@]}"
   do
-    javac -d target "${file}"
+    javac -d target "${file}" "${extra_inputs[@]}"
   done
   ;;
 
