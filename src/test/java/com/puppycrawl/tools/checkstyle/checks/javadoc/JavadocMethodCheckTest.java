@@ -528,10 +528,10 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
                 + "JavadocMethodCheck$Token");
         final Constructor<?> tokenConstructor = tokenType.getDeclaredConstructor(String.class,
                 int.class, int.class);
-        final Object token = tokenConstructor.newInstance("blablabla", 1, 1);
+        final Object token = tokenConstructor.newInstance("tokenName", 1, 1);
         final Method toString = token.getClass().getDeclaredMethod("toString");
         final String result = (String) toString.invoke(token);
-        assertEquals("Token[blablabla(1x1)]", result, "Invalid toString result");
+        assertEquals("Token[tokenName(1x1)]", result, "Invalid toString result");
     }
 
     @Test
