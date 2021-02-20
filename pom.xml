@@ -332,6 +332,13 @@
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
     <dependency>
+      <groupId>org.javassist</groupId>
+      <artifactId>javassist</artifactId>
+      <version>3.27.0-GA</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>
       <version>${powermock.version}</version>
@@ -1184,7 +1191,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>1.8</version>
+                  <version>${java.version}</version>
                 </requireJavaVersion>
                 <requireMavenVersion>
                   <version>3.0.1</version>
@@ -3288,6 +3295,7 @@
               <classpathScope>test</classpathScope>
               <arguments>
                 <classpath />
+                <argument>${java.version}</argument>
               </arguments>
             </configuration>
           </plugin>

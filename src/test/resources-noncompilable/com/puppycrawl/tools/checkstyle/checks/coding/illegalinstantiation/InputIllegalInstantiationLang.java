@@ -1,10 +1,11 @@
-// non-compiled jdk8: different package is intentional for test
+//non-compiled with javac: compiling on jdk before 9
 package java.lang;
 
 class InputIllegalInstantiationLang {
     Boolean obj = new Boolean();
     Integer obj2 = new Integer();
-}
+
+
 
 class Boolean{}
 class Integer{}
