@@ -357,7 +357,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-            getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
     }
 
@@ -371,7 +371,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
+                getPath("InputJavadocTypeAllowedAnnotations.java"),
                 expected);
     }
 
@@ -379,11 +379,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAllowedAnnotationsAllowed() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowedAnnotations", "Generated, ThisIsOk");
+        checkConfig.addAttribute("allowedAnnotations", "SuppressWarnings, ThisIsOk");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-            getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
     }
 
@@ -395,7 +395,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-            getNonCompilablePath("InputJavadocTypeAllowedAnnotations.java"),
+            getPath("InputJavadocTypeAllowedAnnotations.java"),
             expected);
     }
 

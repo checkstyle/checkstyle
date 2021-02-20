@@ -1,3 +1,4 @@
+//non-compiled with javac: compiling on jdk before 9
 package com.puppycrawl.tools.checkstyle.checks.naming.illegalidentifiername;
 
 /* Config:
