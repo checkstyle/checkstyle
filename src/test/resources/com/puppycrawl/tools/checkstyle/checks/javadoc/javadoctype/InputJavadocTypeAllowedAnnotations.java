@@ -1,7 +1,7 @@
-//non-compiled with jkd11: contains dropped packages
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-import javax.annotation.Generated;
+
+import java.lang.SuppressWarnings;
 
 @ThisIsOk
 class InputJavadocTypeAllowedAnnotations {
@@ -11,7 +11,7 @@ class InputJavadocTypeAllowedAnnotations {
 class InputJavadocTypeAllowedAnnotationsFQN {
 }
 
-@Generated(value = "some code generator")
+@SuppressWarnings(value = "some code generator")
 class InputJavadocTypeAllowedAnnotationByDefault {
 }
 

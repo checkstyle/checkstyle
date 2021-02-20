@@ -87,6 +87,16 @@ eclipse-static-analysis)
   mvn -e clean compile exec:exec -Peclipse-compiler
   ;;
 
+eclipse-static-analysis-java11)
+  # Ensure that project sources can be compiled by eclipse with Java11 language features.
+  mvn -e clean compile exec:exec -Peclipse-compiler -D java.version=11
+  ;;
+
+java11-verify)
+  # Ensure that project sources can be compiled by jdk with Java11 language features.
+  mvn -e clean verify -D java.version=11
+  ;;
+
 nondex)
   # Below we exclude test that fails due to picocli library usage
   mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
