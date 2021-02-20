@@ -7,6 +7,8 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
+JAVA_RELEASE=${2:-1.8}
+
 ECJ_JAR="ecj-4.17.jar"
 ECJ_MAVEN_VERSION="R-4.17-202009021800"
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
@@ -23,10 +25,10 @@ mkdir -p target/classes target/test-classes target/eclipse
 RESULT_FILE=target/eclipse/report.txt
 
 echo "Executing eclipse compiler, output is redirected to $RESULT_FILE..."
-echo "java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1  ..."
+echo "java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1  ..."
 
 set +e
-java -jar $ECJ_PATH -target 1.8 -source 1.8 -encoding UTF-8 -cp $1 \
+java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -encoding UTF-8 -cp $1 \
         -d target/eclipse-compile \
         -properties config/org.eclipse.jdt.core.prefs \
         -enableJavadoc \
@@ -46,7 +48,7 @@ if [[ $EXIT_CODE != 0 ]]; then
 else
     # check compilation of resources, all WARN and INFO are ignored
     set +e
-    java -jar $ECJ_PATH -target 1.8 -source 1.8 -cp $1 \
+    java -jar $ECJ_PATH -target ${JAVA_RELEASE} -source ${JAVA_RELEASE} -cp $1 \
             -d target/eclipse-compile \
             -nowarn \
             src/main/java \
