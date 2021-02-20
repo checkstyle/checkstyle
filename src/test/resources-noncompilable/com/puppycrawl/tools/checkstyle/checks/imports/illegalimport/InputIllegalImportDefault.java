@@ -97,5 +97,6 @@ class InputIllegalImportDefault
      * @throws TestClass7 when broken
      * @deprecated in 1 for removal in 2. Use {@link TestClass8}
      */
+    @Deprecated
     public void aMethodWithManyLinks() {}
 }
