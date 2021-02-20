@@ -548,7 +548,7 @@ annotationMemberArrayInitializer
     ;
 
 // The two things that can initialize an annotation array element are a conditional expression
-//   and an annotation (nested annotation array initialisers are not valid)
+//   and an annotation (nested annotation array initializers are not valid)
 annotationMemberArrayValueInitializer
     :    (annotationExpression)=>annotationExpression
     |   annotation

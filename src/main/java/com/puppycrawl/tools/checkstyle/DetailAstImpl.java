@@ -60,12 +60,12 @@ public final class DetailAstImpl extends CommonASTWithHiddenTokens implements De
     private BitSet branchTokenTypes;
 
     @Override
-    public void initialize(Token tok) {
-        super.initialize(tok);
-        lineNo = tok.getLine();
+    public void initialize(Token token) {
+        super.initialize(token);
+        lineNo = token.getLine();
 
         // expect columns to start @ 0
-        columnNo = tok.getColumn() - 1;
+        columnNo = token.getColumn() - 1;
     }
 
     @Override
