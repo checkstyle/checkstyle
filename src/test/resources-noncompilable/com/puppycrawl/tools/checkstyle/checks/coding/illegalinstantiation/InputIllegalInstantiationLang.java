@@ -1,4 +1,4 @@
-// non-compiled jdk8: different package is intentional for test
+//non-compiled with javac: compiling on jdk before 9
 package java.lang;
 
 class InputIllegalInstantiationLang {
