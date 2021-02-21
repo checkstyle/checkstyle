@@ -21,13 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Optional;
 
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -305,7 +304,7 @@ public class RightCurlyCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final Details details = Details.getDetails(ast);
-        final DetailAST rcurly = details.rcurly;
+        final DetailAST rcurly = details.rcurly.orElse(null);
 
         if (rcurly != null) {
             final String violation = validate(details);
@@ -330,7 +329,9 @@ public class RightCurlyCheck extends AbstractCheck {
         else if (shouldBeOnSameLine(option, details)) {
             violation = MSG_KEY_LINE_SAME;
         }
-        else if (shouldBeAloneOnLine(option, details, getLine(details.rcurly.getLineNo() - 1))) {
+        else if (details.rcurly.isPresent()
+                && shouldBeAloneOnLine(option, details,
+                getLine(details.rcurly.get().getLineNo() - 1))) {
             violation = MSG_KEY_LINE_ALONE;
         }
         return violation;
@@ -346,8 +347,8 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean shouldHaveLineBreakBefore(RightCurlyOption bracePolicy,
                                                      Details details) {
         return bracePolicy == RightCurlyOption.SAME
-                && !hasLineBreakBefore(details.rcurly)
-                && !TokenUtil.areOnSameLine(details.lcurly, details.rcurly);
+                && !hasLineBreakBefore(details.rcurly.get())
+                && !TokenUtil.areOnSameLine(details.lcurly.get(), details.rcurly.get());
     }
 
     /**
@@ -358,9 +359,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if a right curly should be alone on a line.
      */
     private static boolean shouldBeOnSameLine(RightCurlyOption bracePolicy, Details details) {
-        return bracePolicy == RightCurlyOption.SAME
-                && !details.shouldCheckLastRcurly
-                && !TokenUtil.areOnSameLine(details.rcurly, details.nextToken);
+        if (details.rcurly.isPresent()
+                && details.nextToken.isPresent()) {
+            return bracePolicy == RightCurlyOption.SAME
+                    && !details.shouldCheckLastRcurly
+                    && !TokenUtil.areOnSameLine(details.rcurly.get(), details.nextToken.get());
+        } else return false;
     }
 
     /**
@@ -415,10 +419,12 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if right curly is alone on a line.
      */
     private static boolean isAloneOnLine(Details details, String targetSrcLine) {
-        final DetailAST rcurly = details.rcurly;
-        final DetailAST nextToken = details.nextToken;
-        return (!TokenUtil.areOnSameLine(rcurly, nextToken) || skipDoubleBraceInstInit(details))
-                && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(), targetSrcLine);
+        final DetailAST rcurly = details.rcurly.get();
+        final Optional<DetailAST> nextToken = Optional.ofNullable(details.nextToken.orElse(null));
+        return (!nextToken.isPresent() || !TokenUtil.areOnSameLine(rcurly,
+                nextToken.get()) || skipDoubleBraceInstInit(details))
+                && CommonUtil.hasWhitespaceBefore(details.rcurly.get().getColumnNo(),
+                targetSrcLine);
     }
 
     /**
@@ -440,11 +446,19 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return if the double brace initialization rcurly should be skipped over by the check
      */
     private static boolean skipDoubleBraceInstInit(Details details) {
-        final DetailAST rcurly = details.rcurly;
-        final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
-        return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
-                && details.nextToken.getType() == TokenTypes.RCURLY
-                && rcurly.getLineNo() != Details.getNextToken(tokenAfterNextToken).getLineNo();
+        final Optional<DetailAST> rcurly = details.rcurly;
+        boolean skipDoubleBraceInstInit = false;
+        final Optional<DetailAST> tokenAfterNextToken = details.nextToken.isPresent() ?
+                Details.getNextToken(details.nextToken.get()) : Optional.empty();
+        if (tokenAfterNextToken.isPresent() && rcurly.isPresent()
+                && Details.getNextToken(tokenAfterNextToken.get()).isPresent()) {
+            skipDoubleBraceInstInit = rcurly.get().getParent().getParent().
+                    getType() == TokenTypes.INSTANCE_INIT
+                    && details.nextToken.get().getType() == TokenTypes.RCURLY
+                    && rcurly.get().getLineNo() != Details.getNextToken(tokenAfterNextToken.get())
+                        .get().getLineNo();
+        }
+        return skipDoubleBraceInstInit;
     }
 
     /**
@@ -454,19 +468,24 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if block has single-line format and is alone on a line.
      */
     private static boolean isBlockAloneOnSingleLine(Details details) {
-        final DetailAST rcurly = details.rcurly;
-        final DetailAST lcurly = details.lcurly;
-        DetailAST nextToken = details.nextToken;
-        while (nextToken.getType() == TokenTypes.LITERAL_ELSE) {
-            nextToken = Details.getNextToken(nextToken);
+        Optional<DetailAST> nextToken = details.nextToken;
+        boolean isBlockAloneOnSingleLine = false;
+        while (nextToken.isPresent() && nextToken.get().getType() == TokenTypes.LITERAL_ELSE) {
+            nextToken = Details.getNextToken(nextToken.get());
         }
-        if (nextToken.getType() == TokenTypes.DO_WHILE) {
-            final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
+
+        if (nextToken.isPresent() && nextToken.get().getType() == TokenTypes.DO_WHILE) {
+            final DetailAST doWhileSemi = nextToken.get().getParent().getLastChild();
             nextToken = Details.getNextToken(doWhileSemi);
         }
-        return TokenUtil.areOnSameLine(rcurly, lcurly)
-                && (!TokenUtil.areOnSameLine(rcurly, nextToken)
+        if (nextToken.isPresent()) {
+            final Optional<DetailAST> rcurly = details.rcurly;
+            final Optional<DetailAST> lcurly = details.lcurly;
+            isBlockAloneOnSingleLine = TokenUtil.areOnSameLine(rcurly.get(), lcurly.get())
+                && (!TokenUtil.areOnSameLine(rcurly.get(), nextToken.get())
                 || isRightcurlyFollowedBySemicolon(details));
+        }
+        return isBlockAloneOnSingleLine;
     }
 
     /**
@@ -476,7 +495,8 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if the right curly is followed by a semicolon.
      */
     private static boolean isRightcurlyFollowedBySemicolon(Details details) {
-        return details.nextToken.getType() == TokenTypes.SEMI;
+        return details.nextToken.filter(detailAST -> detailAST.getType() == TokenTypes.SEMI)
+                .isPresent();
     }
 
     /**
@@ -510,11 +530,11 @@ public class RightCurlyCheck extends AbstractCheck {
         };
 
         /** Right curly. */
-        private final DetailAST rcurly;
+        private final Optional<DetailAST> rcurly;
         /** Left curly. */
-        private final DetailAST lcurly;
+        private final Optional<DetailAST> lcurly;
         /** Next token. */
-        private final DetailAST nextToken;
+        private final Optional<DetailAST> nextToken;
         /** Should check last right curly. */
         private final boolean shouldCheckLastRcurly;
 
@@ -526,8 +546,8 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param nextToken the token after the token whose details are being collected
          * @param shouldCheckLastRcurly boolean value to determine if to check last rcurly
          */
-        private Details(DetailAST lcurly, DetailAST rcurly,
-                        DetailAST nextToken, boolean shouldCheckLastRcurly) {
+        private Details(Optional<DetailAST> lcurly, Optional<DetailAST> rcurly,
+                        Optional<DetailAST> nextToken, boolean shouldCheckLastRcurly) {
             this.lcurly = lcurly;
             this.rcurly = rcurly;
             this.nextToken = nextToken;
@@ -571,33 +591,33 @@ public class RightCurlyCheck extends AbstractCheck {
          * @return object containing all details to make a validation
          */
         private static Details getDetailsForTryCatchFinally(DetailAST ast) {
-            final DetailAST lcurly;
-            DetailAST nextToken;
+            final Optional<DetailAST> lcurly;
+            Optional<DetailAST> nextToken;
             final int tokenType = ast.getType();
             if (tokenType == TokenTypes.LITERAL_TRY) {
                 if (ast.getFirstChild().getType() == TokenTypes.RESOURCE_SPECIFICATION) {
-                    lcurly = ast.getFirstChild().getNextSibling();
+                    lcurly = Optional.ofNullable(ast.getFirstChild().getNextSibling());
                 }
                 else {
-                    lcurly = ast.getFirstChild();
+                    lcurly = Optional.ofNullable(ast.getFirstChild());
                 }
-                nextToken = lcurly.getNextSibling();
+                nextToken = Optional.ofNullable(lcurly.get().getNextSibling());
             }
             else {
-                nextToken = ast.getNextSibling();
-                lcurly = ast.getLastChild();
+                nextToken = Optional.ofNullable(ast.getNextSibling());
+                lcurly = Optional.ofNullable(ast.getLastChild());
             }
 
             final boolean shouldCheckLastRcurly;
-            if (nextToken == null) {
+            if (nextToken.isPresent()) {
+                shouldCheckLastRcurly = false;
+            }
+            else {
                 shouldCheckLastRcurly = true;
                 nextToken = getNextToken(ast);
             }
-            else {
-                shouldCheckLastRcurly = false;
-            }
 
-            final DetailAST rcurly = lcurly.getLastChild();
+            final Optional<DetailAST> rcurly = Optional.ofNullable(lcurly.get().getLastChild());
             return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
 
@@ -609,22 +629,23 @@ public class RightCurlyCheck extends AbstractCheck {
          */
         private static Details getDetailsForIfElse(DetailAST ast) {
             final boolean shouldCheckLastRcurly;
-            final DetailAST lcurly;
-            DetailAST nextToken = ast.findFirstToken(TokenTypes.LITERAL_ELSE);
+            final Optional<DetailAST> lcurly;
+            Optional<DetailAST> nextToken = Optional.ofNullable(ast.findFirstToken
+                    (TokenTypes.LITERAL_ELSE));
 
-            if (nextToken == null) {
-                shouldCheckLastRcurly = true;
-                nextToken = getNextToken(ast);
-                lcurly = ast.getLastChild();
+            if (nextToken.isPresent()) {
+                shouldCheckLastRcurly = false;
+                lcurly = nextToken.map(DetailAST::getPreviousSibling);
             }
             else {
-                shouldCheckLastRcurly = false;
-                lcurly = nextToken.getPreviousSibling();
+                shouldCheckLastRcurly = true;
+                nextToken = getNextToken(ast);
+                lcurly = Optional.ofNullable(ast.getLastChild());
             }
 
-            DetailAST rcurly = null;
-            if (lcurly.getType() == TokenTypes.SLIST) {
-                rcurly = lcurly.getLastChild();
+            Optional<DetailAST> rcurly = Optional.empty();
+            if (lcurly.isPresent() && lcurly.get().getType() == TokenTypes.SLIST) {
+                rcurly = Optional.ofNullable(lcurly.get().getLastChild());
             }
             return new Details(lcurly, rcurly, nextToken, shouldCheckLastRcurly);
         }
@@ -637,19 +658,19 @@ public class RightCurlyCheck extends AbstractCheck {
          * @return an object containing all details to make a validation
          */
         private static Details getDetailsForOthers(DetailAST ast) {
-            DetailAST rcurly = null;
-            final DetailAST lcurly;
+            Optional<DetailAST> rcurly = Optional.empty();
+            final Optional<DetailAST> lcurly;
             final int tokenType = ast.getType();
             if (isTokenWithNoChildSlist(tokenType)) {
                 final DetailAST child = ast.getLastChild();
-                lcurly = child.getFirstChild();
-                rcurly = child.getLastChild();
+                lcurly = Optional.ofNullable(child.getFirstChild());
+                rcurly = Optional.ofNullable(child.getLastChild());
             }
             else {
-                lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                if (lcurly != null) {
+                lcurly = Optional.ofNullable(ast.findFirstToken(TokenTypes.SLIST));
+                if (lcurly.isPresent()) {
                     // SLIST could be absent if method is abstract
-                    rcurly = lcurly.getLastChild();
+                    rcurly = Optional.ofNullable(lcurly.get().getLastChild());
                 }
             }
             return new Details(lcurly, rcurly, getNextToken(ast), true);
@@ -673,25 +694,25 @@ public class RightCurlyCheck extends AbstractCheck {
          * @return an object containing all details to make a validation
          */
         private static Details getDetailsForLoops(DetailAST ast) {
-            DetailAST rcurly = null;
-            final DetailAST lcurly;
-            final DetailAST nextToken;
+            Optional<DetailAST> rcurly = Optional.empty();
+            final Optional<DetailAST> lcurly;
+            final Optional<DetailAST> nextToken;
             final int tokenType = ast.getType();
             final boolean shouldCheckLastRcurly;
             if (tokenType == TokenTypes.LITERAL_DO) {
                 shouldCheckLastRcurly = false;
-                nextToken = ast.findFirstToken(TokenTypes.DO_WHILE);
-                lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                if (lcurly != null) {
-                    rcurly = lcurly.getLastChild();
+                nextToken = Optional.ofNullable(ast.findFirstToken(TokenTypes.DO_WHILE));
+                lcurly = Optional.ofNullable(ast.findFirstToken(TokenTypes.SLIST));
+                if (lcurly.isPresent()) {
+                    rcurly = Optional.ofNullable(lcurly.get().getLastChild());
                 }
             }
             else {
                 shouldCheckLastRcurly = true;
-                lcurly = ast.findFirstToken(TokenTypes.SLIST);
-                if (lcurly != null) {
+                lcurly = Optional.ofNullable(ast.findFirstToken(TokenTypes.SLIST));
+                if (lcurly.isPresent()) {
                     // SLIST could be absent in code like "while(true);"
-                    rcurly = lcurly.getLastChild();
+                    rcurly = Optional.ofNullable(lcurly.get().getLastChild());
                 }
                 nextToken = getNextToken(ast);
             }
@@ -704,24 +725,14 @@ public class RightCurlyCheck extends AbstractCheck {
          * @param ast the given node.
          * @return the token which represents next lexical item.
          */
-        private static DetailAST getNextToken(DetailAST ast) {
-            DetailAST next = null;
+        private static Optional<DetailAST> getNextToken(DetailAST ast) {
+            Optional<DetailAST> next = Optional.empty();
             DetailAST parent = ast;
-            while (next == null && parent != null) {
-                next = parent.getNextSibling();
+            while (parent != null && !next.isPresent()) {
+                next = Optional.ofNullable(parent.getNextSibling());
                 parent = parent.getParent();
-            }
-            if (next == null) {
-                // a DetailAST object with DetailAST#NOT_INITIALIZED for line and column numbers
-                // that no 'actual' DetailAST objects can have.
-                next = new DetailAstImpl();
-            }
-            else {
-                next = CheckUtil.getFirstNode(next);
             }
             return next;
         }
-
     }
-
 }
