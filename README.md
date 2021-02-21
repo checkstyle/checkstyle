@@ -22,6 +22,8 @@ or set of validation rules (best practices).
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
 
+[![][closed issues img]][closed issues]
+
 Members chat: [![][gitter_mem img]][gitter_mem]
 Contributors chat: [![][gitter_con img]][gitter_con]
 
@@ -183,3 +185,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [drone]:https://cloud.drone.io/checkstyle/checkstyle
 [drone img]:https://cloud.drone.io/api/badges/checkstyle/checkstyle/status.svg
+
+[closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml
+[closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
