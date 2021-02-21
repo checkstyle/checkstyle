@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,12 +27,15 @@ import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -39,8 +43,9 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
 
-public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
+public class XpathQueryGeneratorTest extends AbstractXpathTestSupport {
 
     private static final int DEFAULT_TAB_WIDTH = 4;
 
@@ -49,13 +54,18 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
     private static FileText fileText;
 
     @Override
+    protected String getCheckName() {
+        return XpathQueryGenerator.class.getSimpleName();
+    }
+
+    @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator";
     }
 
     @BeforeEach
     public void init() throws Exception {
-        final File file = new File(getPath("InputXpathQueryGenerator.java"));
+        final File file = new File(getPathForCheckTest("InputXpathQueryGenerator.java"));
         fileText = new FileText(file,
                 StandardCharsets.UTF_8.name());
         rootAst = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
@@ -350,7 +360,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testTabWidthBeforeMethodDef() throws Exception {
-        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final File testFile = new File(getPathForCheckTest(
+                "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
@@ -373,7 +384,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testTabWidthAfterVoidLiteral() throws Exception {
-        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final File testFile = new File(getPathForCheckTest(
+                "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
@@ -394,7 +406,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testTabWidthBeforeSlist() throws Exception {
-        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final File testFile = new File(getPathForCheckTest(
+                "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
@@ -413,7 +426,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testTabWidthEndOfLine() throws Exception {
-        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final File testFile = new File(getPathForCheckTest(
+                "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
@@ -458,4 +472,72 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
+    @Test
+    public void testEncode() {
+        final Map<String, String> encoding = new HashMap<>();
+
+        encoding.put("<", "&lt;");
+        encoding.put(">", "&gt;");
+        encoding.put("'", "&apos;&apos;");
+        encoding.put("\"", "&quot;");
+        encoding.put("&", "&amp;");
+        encoding.put("&lt;", "&amp;lt;");
+        encoding.put("abc;", "abc;");
+        encoding.put("&#0;", "&amp;#0;");
+        encoding.put("&#0", "&amp;#0");
+        encoding.put("&#X0;", "&amp;#X0;");
+        encoding.put("\u0001", "#x1;");
+        encoding.put("\u0080", "#x80;");
+        encoding.put("\n", "&#10;");
+        encoding.put("\r", "");
+
+        for (Map.Entry<String, String> entry : encoding.entrySet()) {
+            final String encoded = XpathQueryGenerator.encode(entry.getKey());
+            assertWithMessage("Incorrect xpath encoding").that(entry.getValue())
+                    .isEqualTo(encoded);
+        }
+    }
+
+    @Test
+    public void testEncodedGreaterChar() throws Exception {
+
+        final File fileToProcess =
+                new File(getPathForCheckTest("InputXpathQueryGeneratorGreaterChar.java"));
+        final File testFile = new File(getPathForCheckTest(
+                "InputXpathQueryGeneratorGreaterChar.java"));
+        final FileText testFileText = new FileText(fileToProcess,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+        final int lineNumber = 4;
+        final int columnNumber = 24;
+        final int tabWidth = 8;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst, lineNumber,
+                columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(IllegalTokenCheck.class);
+        moduleConfig.addAttribute("tokens", "CHAR_LITERAL");
+
+        final String[] expectedViolationsForGreater = {
+            "4:24: " + getCheckMessage(IllegalTokenCheck.class, IllegalTokenCheck.MSG_KEY,
+                        "'>'"),
+        };
+
+        final List<String> expectedXpathQueriesForGreater = Arrays.asList(
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorGreaterChar']]/"
+                        + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR"
+                        + "[./CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']]",
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorGreaterChar']]/"
+                        + "OBJBLOCK/VARIABLE_DEF[./IDENT[@text='greaterChar']]/ASSIGN/EXPR/"
+                        + "CHAR_LITERAL[@text='&apos;&apos;&gt;&apos;&apos;']"
+        );
+
+        assertEquals(expectedXpathQueriesForGreater, actual,
+                "Generated queries do not match expected ones");
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolationsForGreater,
+                expectedXpathQueriesForGreater);
+    }
 }
