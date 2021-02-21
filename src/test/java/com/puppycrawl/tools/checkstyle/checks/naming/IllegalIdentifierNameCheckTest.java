@@ -142,8 +142,9 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
         final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
 
         final String[] expected = {
-            "11:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
+            "12:12: " + getCheckMessage(MSG_INVALID_PATTERN, "_", format),
             };
-        verify(checkConfig, getPath("InputIllegalIdentifierNameUnderscore.java"), expected);
+        verify(checkConfig,
+            getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
     }
 }

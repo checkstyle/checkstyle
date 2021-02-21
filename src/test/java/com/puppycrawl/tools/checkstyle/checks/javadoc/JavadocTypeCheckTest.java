@@ -379,7 +379,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAllowedAnnotationsAllowed() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowedAnnotations", "Generated, ThisIsOk");
+        checkConfig.addAttribute("allowedAnnotations", "SuppressWarnings, ThisIsOk");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
