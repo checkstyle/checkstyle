@@ -110,6 +110,12 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Default value is {@code true}.
  * </li>
  * <li>
+ * Property {@code enforceWhitespaceAroundArrayInit} - Enforce whitespace
+ * around array initialization.
+ * Type is {@code boolean}.
+ * Default value is {@code false}.
+ * </li>
+ * <li>
  * Property {@code tokens} - tokens to check
  * Type is {@code java.lang.String[]}.
  * Validation type is {@code tokenSet}.
@@ -444,6 +450,27 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * }
  * </pre>
  * <p>
+ * To configure the check to enforce whitespace around array initialization.
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;WhitespaceAround&quot;&gt;
+ *  &lt;property name="enforceWhitespaceAroundArrayInit" value="true" /&gt;
+ *  &lt;property name="tokens" value="ARRAY_INIT,RCURLY" /&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>Example:</p>
+ * <pre>
+ * public class Test {
+ *     public static void main() {
+ *         int[] arr = {1,2,3};   // 2 violations, '{' is not followed by whitespace and
+ *                                // '}' is not preceded by whitespace.
+ *         int[] arr1 = {1,2,3 }; // violation, '{' is not followed by whitespace.
+ *         int[][] arr2 = {{ 1,2,3 } , { 4,5,6 }};   // violation.
+ *         int[][] arr3 = { { 1,2,3 } , { 4,5,6 } }; // ok.
+ *     }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
@@ -493,6 +520,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * enhanced for</a> loop.
      */
     private boolean ignoreEnhancedForColon = true;
+    /** Enforce whitespace around array initialization. */
+    private boolean enforceWhitespaceAroundArrayInit;
 
     @Override
     public int[] getDefaultTokens() {
@@ -683,6 +712,15 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         allowEmptyCatches = allow;
     }
 
+    /**
+     * Setter to enforce whitespace around array initialization.
+     *
+     * @param allow {@code true} to enforce whitespace around array initialization.
+     */
+    public void setEnforceWhitespaceAroundArrayInit(boolean allow) {
+        enforceWhitespaceAroundArrayInit = allow;
+    }
+
     @Override
     public void visitToken(DetailAST ast) {
         final int currentType = ast.getType();
@@ -721,6 +759,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         final boolean starImport = currentType == TokenTypes.STAR
                 && parentType == TokenTypes.DOT;
         final boolean insideCaseGroup = parentType == TokenTypes.CASE_GROUP;
+        final boolean annotationArrayInitializer = parentType == TokenTypes.ANNOTATION_ARRAY_INIT;
 
         final boolean starImportOrSlistInsideCaseGroup = starImport || insideCaseGroup;
         final boolean colonOfCaseOrDefaultOrForEach =
@@ -733,7 +772,8 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         return starImportOrSlistInsideCaseGroup
                 || colonOfCaseOrDefaultOrForEach
                 || emptyBlockOrType
-                || isArrayInitialization(currentType, parentType);
+                || annotationArrayInitializer
+                || isArrayInitAndShouldBeChecked(currentType, parentType);
     }
 
     /**
@@ -767,10 +807,10 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true if it should be checked if next token is separated by whitespace,
      *      false otherwise.
      */
-    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
-        return !(ast.getType() == TokenTypes.LITERAL_RETURN
+    private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
+        return (enforceWhitespaceAroundArrayInit || ast.getType() != TokenTypes.ARRAY_INIT)
+                 && !(ast.getType() == TokenTypes.LITERAL_RETURN
                     && ast.getFirstChild().getType() == TokenTypes.SEMI)
-                && ast.getType() != TokenTypes.ARRAY_INIT
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
     }
@@ -860,16 +900,17 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     }
 
     /**
-     * Is array initialization.
+     * Is array initialization and should be checked.
      *
      * @param currentType current token
      * @param parentType parent token
      * @return true is current token inside array initialization
+     *         and enforceWhitespaceAroundArrayInit is false.
      */
-    private static boolean isArrayInitialization(int currentType, int parentType) {
-        return currentType == TokenTypes.RCURLY
-                && (parentType == TokenTypes.ARRAY_INIT
-                        || parentType == TokenTypes.ANNOTATION_ARRAY_INIT);
+    private boolean isArrayInitAndShouldBeChecked(int currentType, int parentType) {
+        return !enforceWhitespaceAroundArrayInit
+                && currentType == TokenTypes.RCURLY
+                    && parentType == TokenTypes.ARRAY_INIT;
     }
 
     /**
