@@ -359,4 +359,19 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         return "it";
     }
 
+    /**
+     * Returns canonical path for the file with the given file name.
+     * The path is formed base on the root location.
+     * This implementation uses 'src/test/resources/'
+     * as a root location.
+     *
+     * @param filename file name.
+     * @return canonical path for the file name.
+     * @throws IOException if I/O exception occurs while forming the path.
+     */
+    protected final String getPathForCheckTest(String filename) throws IOException {
+        return new File("src/test/resources/" + getPackageLocation() + "/"
+                + filename).getCanonicalPath();
+    }
+
 }
