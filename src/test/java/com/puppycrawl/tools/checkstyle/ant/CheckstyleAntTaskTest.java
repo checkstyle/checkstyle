@@ -560,14 +560,6 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testSetClassName() {
-        final String customName = "customName";
-        final CheckstyleAntTask.Listener listener = new CheckstyleAntTask.Listener();
-        listener.setClassname(customName);
-        assertEquals(customName, listener.getClassname(), "Class name is unexpected");
-    }
-
-    @Test
     public void testSetFileValueByFile() throws IOException {
         final String filename = getPath("InputCheckstyleAntTaskCheckstyleAntTest.properties");
         final CheckstyleAntTask.Property property = new CheckstyleAntTask.Property();
