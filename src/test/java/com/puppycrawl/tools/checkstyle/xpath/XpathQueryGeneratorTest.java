@@ -19,26 +19,29 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.api.*;
+import org.checkstyle.suppressionxpathfilter.AbstractXpathTestSupport;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.coding.IllegalTokenCheck;
 
 public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
@@ -350,7 +353,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testTabWidthBeforeMethodDef() throws Exception {
-        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final File testFile = new File(getPath(
+                "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
@@ -373,7 +377,8 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
 
     @Test
     public void testTabWidthAfterVoidLiteral() throws Exception {
-        final File testFile = new File(getPath("InputXpathQueryGeneratorTabWidth.java"));
+        final File testFile = new File(getPath(
+                "InputXpathQueryGeneratorTabWidth.java"));
         final FileText testFileText = new FileText(testFile,
                 StandardCharsets.UTF_8.name());
         final DetailAST detailAst =
@@ -458,4 +463,62 @@ public class XpathQueryGeneratorTest extends AbstractPathTestSupport {
         assertEquals(expected, actual, "Generated queries do not match expected ones");
     }
 
+    @Test
+    public void testUnicodeChar() throws IOException, CheckstyleException {
+        final File testFile = new File(getPath("InputXpathQueryGeneratorUnicode.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+
+        int lineNumberOne = 4;
+        int columnNumberOne = 25;
+        final XpathQueryGenerator queryGeneratorOne = new XpathQueryGenerator(detailAst, lineNumberOne,
+                columnNumberOne, TokenTypes.STRING_LITERAL, testFileText, DEFAULT_TAB_WIDTH);
+        final List<String> actualOne = queryGeneratorOne.generate();
+        final List<String> expectedOne = Collections.singletonList(
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorUnicode']]/OBJBLOCK/" +
+                        "VARIABLE_DEF[./IDENT[@text='unicodeOne']]/ASSIGN/EXPR/STRING_LITERAL" +
+                        "[@text='ǯØÿChar']");
+        assertEquals(expectedOne, actualOne, "Generated queries do not match expected ones");
+
+        int lineNumberTwo = 6;
+        int columnNumberTwo = 25;
+        final XpathQueryGenerator queryGeneratorTwo= new XpathQueryGenerator(detailAst, lineNumberTwo,
+                columnNumberTwo, TokenTypes.STRING_LITERAL, testFileText, DEFAULT_TAB_WIDTH);
+        final List<String> actualTwo = queryGeneratorTwo.generate();
+        final List<String> expectedTwo = Collections.singletonList(
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorUnicode']]/OBJBLOCK/" +
+                        "VARIABLE_DEF[./IDENT[@text='unicodeTwo']]/ASSIGN/EXPR/STRING_LITERAL" +
+                        "[@text='ѭѮѰӁChar']");
+        assertEquals(expectedTwo, actualTwo, "Generated queries do not match expected ones");
+    }
+
+    @Test
+    public void testEncode() {
+        final Map<String, String> encoding = new HashMap<>();
+
+        encoding.put("<", "&lt;");
+        encoding.put(">", "&gt;");
+        encoding.put("'", "&apos;&apos;");
+        encoding.put("\"", "&quot;");
+        encoding.put("&", "&amp;");
+        encoding.put("&lt;", "&amp;lt;");
+        encoding.put("abc;", "abc;");
+        encoding.put("&#0;", "&amp;#0;");
+        encoding.put("&#0", "&amp;#0");
+        encoding.put("&#X0;", "&amp;#X0;");
+        encoding.put("\u0001", "#x1;");
+        encoding.put("\u0080", "#x80;");
+        encoding.put("语言处理Char", "语言处理Char");
+        encoding.put("ǯChar","ǯChar");
+        encoding.put("\n", "&#10;");
+        encoding.put("\r", "");
+
+        for (Map.Entry<String, String> entry : encoding.entrySet()) {
+            final String encoded = XpathQueryGenerator.encode(entry.getKey());
+            assertWithMessage("Incorrect xpath encoding").that(entry.getValue())
+                    .isEqualTo(encoded);
+        }
+    }
 }
