@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------------
+#####################################################################################
 # Github Action to generate Checkstyle report.
 # 
 # Workflow starts when:
@@ -10,7 +10,7 @@
 #
 # If you need to change bucket name or region, change AWS_REGION and AWS_BUCKET_NAME variables.
 # For another bucket, you will need to change the secrets.
-#------------------------------------------------------------------------------------
+#####################################################################################
 name: Diff-Report
 env:
   AWS_REGION: us-east-2
