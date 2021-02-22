@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------------
+#####################################################################################
 # Github Action to rebase pull request.
 #
 # Workflow starts when pr comment created or edited
@@ -6,7 +6,7 @@
 # Job will not work if:
 # 1. Patch branch name is 'master'
 # 2. There was an updates in github actions in target branch (restriction by github)
-#------------------------------------------------------------------------------------
+#####################################################################################
 on:
   issue_comment:
     types: [created, edited]
