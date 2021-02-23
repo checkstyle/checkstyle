@@ -246,14 +246,9 @@ public class RegexpHeaderCheck extends AbstractHeaderCheck {
      * @param list comma separated list of line numbers to repeat in header.
      */
     public void setMultiLines(int... list) {
-        if (list.length == 0) {
-            multiLines = EMPTY_INT_ARRAY;
-        }
-        else {
-            multiLines = new int[list.length];
-            System.arraycopy(list, 0, multiLines, 0, list.length);
-            Arrays.sort(multiLines);
-        }
+        multiLines = new int[list.length];
+        System.arraycopy(list, 0, multiLines, 0, list.length);
+        Arrays.sort(multiLines);
     }
 
     @Override
