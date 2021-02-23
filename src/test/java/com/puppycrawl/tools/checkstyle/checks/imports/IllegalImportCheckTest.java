@@ -54,7 +54,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "23:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
             "27:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -63,10 +63,10 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalImportCheck.class);
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
+            "15:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -87,10 +87,10 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalClasses", "java.sql.Connection");
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
+            "15:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -101,10 +101,10 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalClasses", "java.io.*");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.applet.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.*"),
+            "15:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -139,7 +139,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "13:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
             "17:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             "35:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
             "36:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
-        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
 
 }
