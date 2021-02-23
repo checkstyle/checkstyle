@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -256,14 +257,14 @@ public class ElementNode extends AbstractNode {
                 break;
             case AxisInfo.DESCENDANT:
                 if (hasChildNodes()) {
-                    result = new Navigator.DescendantEnumeration(this, false, true);
+                    result = new DescendantEnumeration(this, false);
                 }
                 else {
                     result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
-                result = new Navigator.DescendantEnumeration(this, true, true);
+                result = new DescendantEnumeration(this, true);
                 break;
             case AxisInfo.PARENT:
                 result = SingleNodeIterator.makeIterator(parent);
@@ -470,4 +471,37 @@ public class ElementNode extends AbstractNode {
         }
     }
 
+    public static final class DescendantEnumeration implements AxisIterator {
+
+        private final LinkedList<NodeInfo> queue = new LinkedList<>();
+
+        public DescendantEnumeration(NodeInfo start,
+                                     boolean includeSelf) {
+            if (includeSelf) {
+                queue.add(start);
+            } else {
+                addChildren(start);
+            }
+        }
+
+        private void addChildren(NodeInfo parent) {
+            AxisIterator iterator = parent.iterateAxis(AxisInfo.CHILD);
+            NodeInfo node = iterator.next();
+            while (node != null) {
+                queue.add(node);
+                node = iterator.next();
+            }
+        }
+
+        @Override
+        public final NodeInfo next() {
+            if (!queue.isEmpty()) {
+                NodeInfo node = queue.removeFirst();
+                addChildren(node);
+                return node;
+            } else {
+                return null;
+            }
+        }
+    }
 }

@@ -41,7 +41,6 @@ import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
-import net.sf.saxon.tree.util.Navigator;
 
 public class ElementNodeTest extends AbstractPathTestSupport {
 
@@ -219,7 +218,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
             assertTrue(iterator instanceof ArrayIterator, "Invalid iterator");
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
-            assertTrue(iterator instanceof Navigator.DescendantEnumeration, "Invalid iterator");
+            assertTrue(iterator instanceof ElementNode.DescendantEnumeration, "Invalid iterator");
         }
     }
 
