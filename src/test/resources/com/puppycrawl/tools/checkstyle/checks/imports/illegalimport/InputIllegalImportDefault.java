@@ -1,10 +1,10 @@
-//non-compiled with jdk10: contains dropped packages
+
 
 
 
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*;
 
 import java.io.*;
 import java.lang.*;
@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.List;
 import java.lang.ArithmeticException;
-import sun.applet.*;
+import sun.misc.*;
 import java.util.Enumeration;
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
-import sun.*;
+import sun.reflect.*;
 
 import java.awt.Component;
 import java.awt.Graphics2D;
@@ -97,5 +97,6 @@ class InputIllegalImportDefault
      * @throws TestClass7 when broken
      * @deprecated in 1 for removal in 2. Use {@link TestClass8}
      */
+    @Deprecated
     public void aMethodWithManyLinks() {}
 }
