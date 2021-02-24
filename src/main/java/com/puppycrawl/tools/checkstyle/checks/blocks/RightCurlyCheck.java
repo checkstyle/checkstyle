@@ -22,12 +22,10 @@ package com.puppycrawl.tools.checkstyle.checks.blocks;
 import java.util.Arrays;
 import java.util.Locale;
 
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
@@ -361,6 +359,7 @@ public class RightCurlyCheck extends AbstractCheck {
         return bracePolicy == RightCurlyOption.SAME
                 && !details.shouldCheckLastRcurly
                 && !TokenUtil.areOnSameLine(details.rcurly, details.nextToken);
+
     }
 
     /**
@@ -417,8 +416,10 @@ public class RightCurlyCheck extends AbstractCheck {
     private static boolean isAloneOnLine(Details details, String targetSrcLine) {
         final DetailAST rcurly = details.rcurly;
         final DetailAST nextToken = details.nextToken;
-        return (!TokenUtil.areOnSameLine(rcurly, nextToken) || skipDoubleBraceInstInit(details))
-                && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(), targetSrcLine);
+        return (nextToken == null || !TokenUtil.areOnSameLine(rcurly,
+                nextToken) || skipDoubleBraceInstInit(details))
+                && CommonUtil.hasWhitespaceBefore(details.rcurly.getColumnNo(),
+                targetSrcLine);
     }
 
     /**
@@ -440,11 +441,16 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return if the double brace initialization rcurly should be skipped over by the check
      */
     private static boolean skipDoubleBraceInstInit(Details details) {
-        final DetailAST rcurly = details.rcurly;
+        boolean skipDoubleBraceInstInit = true;
         final DetailAST tokenAfterNextToken = Details.getNextToken(details.nextToken);
-        return rcurly.getParent().getParent().getType() == TokenTypes.INSTANCE_INIT
-                && details.nextToken.getType() == TokenTypes.RCURLY
-                && rcurly.getLineNo() != Details.getNextToken(tokenAfterNextToken).getLineNo();
+        if (tokenAfterNextToken != null) {
+            final DetailAST rcurly = details.rcurly;
+            skipDoubleBraceInstInit = rcurly.getParent().getParent()
+                    .getType() == TokenTypes.INSTANCE_INIT
+                    && details.nextToken.getType() == TokenTypes.RCURLY
+                    && !TokenUtil.areOnSameLine(rcurly, Details.getNextToken(tokenAfterNextToken));
+        }
+        return skipDoubleBraceInstInit;
     }
 
     /**
@@ -454,19 +460,24 @@ public class RightCurlyCheck extends AbstractCheck {
      * @return true if block has single-line format and is alone on a line.
      */
     private static boolean isBlockAloneOnSingleLine(Details details) {
-        final DetailAST rcurly = details.rcurly;
-        final DetailAST lcurly = details.lcurly;
         DetailAST nextToken = details.nextToken;
-        while (nextToken.getType() == TokenTypes.LITERAL_ELSE) {
+        while (nextToken != null && nextToken.getType() == TokenTypes.LITERAL_ELSE) {
             nextToken = Details.getNextToken(nextToken);
         }
-        if (nextToken.getType() == TokenTypes.DO_WHILE) {
+
+        if (nextToken != null && nextToken.getType() == TokenTypes.DO_WHILE) {
             final DetailAST doWhileSemi = nextToken.getParent().getLastChild();
             nextToken = Details.getNextToken(doWhileSemi);
         }
-        return TokenUtil.areOnSameLine(rcurly, lcurly)
+        boolean isBlockAloneOnSingleLine = true;
+        if (nextToken != null) {
+            final DetailAST rcurly = details.rcurly;
+            final DetailAST lcurly = details.lcurly;
+            isBlockAloneOnSingleLine = TokenUtil.areOnSameLine(rcurly, lcurly)
                 && (!TokenUtil.areOnSameLine(rcurly, nextToken)
                 || isRightcurlyFollowedBySemicolon(details));
+        }
+        return isBlockAloneOnSingleLine;
     }
 
     /**
@@ -711,17 +722,7 @@ public class RightCurlyCheck extends AbstractCheck {
                 next = parent.getNextSibling();
                 parent = parent.getParent();
             }
-            if (next == null) {
-                // a DetailAST object with DetailAST#NOT_INITIALIZED for line and column numbers
-                // that no 'actual' DetailAST objects can have.
-                next = new DetailAstImpl();
-            }
-            else {
-                next = CheckUtil.getFirstNode(next);
-            }
             return next;
         }
-
     }
-
 }
