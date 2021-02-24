@@ -54,23 +54,21 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * </p>
  * <pre>
  * class MyClass {
- *   int method(int parameter) {
+ *   int methodOne(int parameter) {
  *     if (parameter &lt;= 0 ) {
  *       throw new IllegalArgumentException("A positive value is expected");
  *     }
  *     parameter -= 2;  // violation
  *     return parameter;
  *   }
- * }
  *
- * class MyClass {
- *   int method(int parameter) {
- *     int var = parameter;
- *     if (var &lt;= 0 ) {
+ *   int methodTwo(int parameter) {
+ *     if (parameter &lt;= 0 ) {
  *       throw new IllegalArgumentException("A positive value is expected");
  *     }
- *     var -= 2;  // OK
- *     return var;
+ *     int local = parameter;
+ *     local -= 2;  // OK
+ *     return local;
  *   }
  * }
  * </pre>
