@@ -86,7 +86,7 @@ jobs:
         run: |
           cd checkstyle
           bash
-          mvn -e clean site -Pno-validations
+          mvn -e --no-transfer-progress clean site -Pno-validations
 
       - name: Copy site to AWS S3 Bucket
         run: |
