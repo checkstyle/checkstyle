@@ -5836,6 +5836,31 @@ public class AnnotationLocationCheck extends AbstractCheck {
         <source>
 &lt;module name=&quot;ParameterAssignment&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+class MyClass {
+  int method(int parameter) {
+    if (parameter &lt;= 0 ) {
+      throw new IllegalArgumentException("A positive value is expected");
+    }
+    parameter -= 2;  // violation
+    return parameter;
+  }
+}
+
+class MyClass {
+  int method(int parameter) {
+    int var = parameter;
+    if (var &lt;= 0 ) {
+      throw new IllegalArgumentException("A positive value is expected");
+    }
+    var -= 2;  // OK
+    return var;
+  }
+}
+        </source>
       </subsection>
 
       <subsection name="Example of Usage" id="ParameterAssignment_Example_of_Usage">
