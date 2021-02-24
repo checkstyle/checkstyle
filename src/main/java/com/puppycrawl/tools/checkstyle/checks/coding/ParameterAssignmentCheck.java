@@ -50,6 +50,29 @@ import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
  * &lt;module name=&quot;ParameterAssignment&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class MyClass {
+ *   int methodOne(int parameter) {
+ *     if (parameter &lt;= 0 ) {
+ *       throw new IllegalArgumentException("A positive value is expected");
+ *     }
+ *     parameter -= 2;  // violation
+ *     return parameter;
+ *   }
+ *
+ *   int methodTwo(int parameter) {
+ *     if (parameter &lt;= 0 ) {
+ *       throw new IllegalArgumentException("A positive value is expected");
+ *     }
+ *     int local = parameter;
+ *     local -= 2;  // OK
+ *     return local;
+ *   }
+ * }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>
