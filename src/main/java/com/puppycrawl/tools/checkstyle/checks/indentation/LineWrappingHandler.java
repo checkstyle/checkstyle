@@ -212,7 +212,7 @@ public class LineWrappingHandler {
      * @param previousLineNode Node in previous line which isn't an annotation parameter.
      * @return true, if node is annotation or line after annotation.
      */
-    private static boolean isAnnotationOrLineAfterAnnotation(DetailAST node,
+    public static boolean isAnnotationOrLineAfterAnnotation(DetailAST node,
             DetailAST previousLineNode) {
         final boolean result;
         if (node.getType() == TokenTypes.AT) {
@@ -223,9 +223,15 @@ public class LineWrappingHandler {
             // non-annotation node inside annotation
             result = false;
         }
+        else if (previousLineNode != null
+                && previousLineNode.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
+            // enum constant -> check if child exists
+            result = previousLineNode.getFirstChild().getFirstChild() != null;
+        }
         else {
             // non-annotation node outside an annotation
-            result = previousLineNode != null && previousLineNode.getType() == TokenTypes.AT;
+            result = previousLineNode != null && (previousLineNode.getType() == TokenTypes.AT
+                    || previousLineNode.getType() == TokenTypes.ANNOTATION);
         }
         return result;
     }
