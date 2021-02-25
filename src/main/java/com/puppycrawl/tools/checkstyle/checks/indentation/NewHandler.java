@@ -113,11 +113,6 @@ public class NewHandler extends AbstractExpressionHandler {
         return getIndentCheck().getLineWrappingIndentation();
     }
 
-    @Override
-    protected boolean shouldIncreaseIndent() {
-        return false;
-    }
-
     /**
      * The function checks if the new keyword is a child of chained method calls,
      * it checks if the new is directly followed by equal operator or return operator.
