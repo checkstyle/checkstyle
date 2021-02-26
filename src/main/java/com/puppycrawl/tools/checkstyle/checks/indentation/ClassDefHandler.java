@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for class definitions.
@@ -89,6 +90,13 @@ public class ClassDefHandler extends BlockParentHandler {
         }
         else {
             checkWrappingIndentation(getMainAst(), getListChild());
+        }
+        if (getMainAst().getType() == TokenTypes.ENUM_DEF) {
+            TokenUtil.forEachChild(getListChild(), TokenTypes.ENUM_CONSTANT_DEF,
+                ast -> {
+                    checkExpressionSubtree(ast,
+                        new IndentLevel(getIndent(), getBasicOffset()), true, false);
+                });
         }
         super.checkIndentation();
     }
