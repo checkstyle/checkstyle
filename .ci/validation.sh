@@ -116,10 +116,19 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp/
   cd .ci-temp/
+  git clone https://github.com/checkstyle/build-tools.git
+  cd build-tools
+  git checkout checkstyle_7417
+  PMD_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
+                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  mvn -e install
+  cd ..
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} \
+    -Dpmd.build-tools.version=${PMD_POM_VERSION}
   cd ..
+  removeFolderWithProtectedFiles build-tools
   removeFolderWithProtectedFiles pmd
   ;;
 
