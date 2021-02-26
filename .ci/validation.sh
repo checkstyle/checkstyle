@@ -116,10 +116,18 @@ no-error-pmd)
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp/
   cd .ci-temp/
+  git clone https://github.com/checkstyle/build-tools.git
+  mvn -e install
+  cd ..
+  cd build-tools
+  git checkout checkstyle_7417
+  mvn -e install
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} \
+    -Dpmd.build-tools.version=9-SNAPSHOT
   cd ..
+  removeFolderWithProtectedFiles build-tools
   removeFolderWithProtectedFiles pmd
   ;;
 
