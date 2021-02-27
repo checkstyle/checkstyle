@@ -30,8 +30,8 @@ import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
+import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
 /**
  * Parses file as javadoc DetailNode tree and prints to system output stream.
@@ -79,7 +79,7 @@ public final class DetailNodeTreeStringPrinter {
      * @return tree
      */
     private static DetailNode parseJavadocAsDetailNode(String javadocComment) {
-        final DetailAST blockComment = CommonUtil.createBlockCommentNode(javadocComment);
+        final DetailAST blockComment = ParserUtil.createBlockCommentNode(javadocComment);
         return parseJavadocAsDetailNode(blockComment);
     }
 

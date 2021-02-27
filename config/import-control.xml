@@ -59,9 +59,12 @@
     <allow class="java.math.BigInteger"/>
   </file>
 
+  <file name="ParserUtil">
+    <allow class="antlr.Token"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+  </file>
+
   <subpackage name="utils">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/9272 -->
-    <allow pkg="antlr"/>
     <!-- until https://github.com/checkstyle/checkstyle/issues/9271 -->
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
 
