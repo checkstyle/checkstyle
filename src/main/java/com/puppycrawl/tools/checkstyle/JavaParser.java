@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer;
 import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer;
 import com.puppycrawl.tools.checkstyle.grammar.GeneratedTextBlockLexer;
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
 /**
  * Helper methods to parse java source files.
@@ -227,7 +227,7 @@ public final class JavaParser {
             commentAst = createSlCommentNode(token);
         }
         else {
-            commentAst = CommonUtil.createBlockCommentNode(token);
+            commentAst = ParserUtil.createBlockCommentNode(token);
         }
         return commentAst;
     }
