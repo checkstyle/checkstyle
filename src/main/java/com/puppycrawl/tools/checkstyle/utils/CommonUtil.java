@@ -30,18 +30,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.AbstractMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import antlr.Token;
-import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 /**
  * Contains utility methods.
@@ -69,13 +63,6 @@ public final class CommonUtil {
 
     /** Prefix for the exception when unable to find resource. */
     private static final String UNABLE_TO_FIND_EXCEPTION_PREFIX = "Unable to find: ";
-
-    /** Symbols with which javadoc starts. */
-    private static final String JAVADOC_START = "/**";
-    /** Symbols with which multiple comment starts. */
-    private static final String BLOCK_MULTIPLE_COMMENT_BEGIN = "/*";
-    /** Symbols with which multiple comment ends. */
-    private static final String BLOCK_MULTIPLE_COMMENT_END = "*/";
 
     /** Stop instances being created. **/
     private CommonUtil() {
@@ -113,115 +100,6 @@ public final class CommonUtil {
             throw new IllegalArgumentException(
                 "Failed to initialise regular expression " + pattern, ex);
         }
-    }
-
-    /**
-     * Create block comment from string content.
-     *
-     * @param content comment content.
-     * @return DetailAST block comment
-     */
-    public static DetailAST createBlockCommentNode(String content) {
-        final DetailAstImpl blockCommentBegin = new DetailAstImpl();
-        blockCommentBegin.setType(TokenTypes.BLOCK_COMMENT_BEGIN);
-        blockCommentBegin.setText(BLOCK_MULTIPLE_COMMENT_BEGIN);
-        blockCommentBegin.setLineNo(0);
-        blockCommentBegin.setColumnNo(-JAVADOC_START.length());
-
-        final DetailAstImpl commentContent = new DetailAstImpl();
-        commentContent.setType(TokenTypes.COMMENT_CONTENT);
-        commentContent.setText("*" + content);
-        commentContent.setLineNo(0);
-        // javadoc should starts at 0 column, so COMMENT_CONTENT node
-        // that contains javadoc identifier has -1 column
-        commentContent.setColumnNo(-1);
-
-        final DetailAstImpl blockCommentEnd = new DetailAstImpl();
-        blockCommentEnd.setType(TokenTypes.BLOCK_COMMENT_END);
-        blockCommentEnd.setText(BLOCK_MULTIPLE_COMMENT_END);
-
-        blockCommentBegin.setFirstChild(commentContent);
-        commentContent.setNextSibling(blockCommentEnd);
-        return blockCommentBegin;
-    }
-
-    /**
-     * Create block comment from token.
-     *
-     * @param token
-     *        Token object.
-     * @return DetailAST with BLOCK_COMMENT type.
-     */
-    public static DetailAST createBlockCommentNode(Token token) {
-        final DetailAstImpl blockComment = new DetailAstImpl();
-        blockComment.initialize(TokenTypes.BLOCK_COMMENT_BEGIN, BLOCK_MULTIPLE_COMMENT_BEGIN);
-
-        // column counting begins from 0
-        blockComment.setColumnNo(token.getColumn() - 1);
-        blockComment.setLineNo(token.getLine());
-
-        final DetailAstImpl blockCommentContent = new DetailAstImpl();
-        blockCommentContent.setType(TokenTypes.COMMENT_CONTENT);
-
-        // column counting begins from 0
-        // plus length of '/*'
-        blockCommentContent.setColumnNo(token.getColumn() - 1 + 2);
-        blockCommentContent.setLineNo(token.getLine());
-        blockCommentContent.setText(token.getText());
-
-        final DetailAstImpl blockCommentClose = new DetailAstImpl();
-        blockCommentClose.initialize(TokenTypes.BLOCK_COMMENT_END, BLOCK_MULTIPLE_COMMENT_END);
-
-        final Map.Entry<Integer, Integer> linesColumns = countLinesColumns(
-                token.getText(), token.getLine(), token.getColumn());
-        blockCommentClose.setLineNo(linesColumns.getKey());
-        blockCommentClose.setColumnNo(linesColumns.getValue());
-
-        blockComment.addChild(blockCommentContent);
-        blockComment.addChild(blockCommentClose);
-        return blockComment;
-    }
-
-    /**
-     * Count lines and columns (in last line) in text.
-     *
-     * @param text
-     *        String.
-     * @param initialLinesCnt
-     *        initial value of lines counter.
-     * @param initialColumnsCnt
-     *        initial value of columns counter.
-     * @return entry(pair), first element is lines counter, second - columns
-     *         counter.
-     */
-    private static Map.Entry<Integer, Integer> countLinesColumns(
-            String text, int initialLinesCnt, int initialColumnsCnt) {
-        int lines = initialLinesCnt;
-        int columns = initialColumnsCnt;
-        boolean foundCr = false;
-        for (char c : text.toCharArray()) {
-            if (c == '\n') {
-                foundCr = false;
-                lines++;
-                columns = 0;
-            }
-            else {
-                if (foundCr) {
-                    foundCr = false;
-                    lines++;
-                    columns = 0;
-                }
-                if (c == '\r') {
-                    foundCr = true;
-                }
-                columns++;
-            }
-        }
-        if (foundCr) {
-            lines++;
-            columns = 0;
-        }
-        return new AbstractMap.SimpleEntry<>(lines, columns);
     }
 
     /**
