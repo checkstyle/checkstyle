@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -33,11 +34,16 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * The check will flag the following with warnings:
  * </p>
  * <pre>
- *     return (x);          // parens around identifier
- *     return (x + 1);      // parens around return value
- *     int x = (y / 2 + 1); // parens around assignment rhs
- *     for (int i = (0); i &lt; 10; i++) {  // parens around literal
- *     t -= (z + 1);        // parens around assignment rhs</pre>
+ * return (x);          // parens around identifier
+ * return (x + 1);      // parens around return value
+ * int x = (y / 2 + 1); // parens around assignment rhs
+ * for (int i = (0); i &lt; 10; i++) {  // parens around literal
+ * t -= (z + 1);                     // parens around assignment rhs
+ * boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
+ *             || z &lt; 9;
+ * boolean b = (~a) &gt; -27            // parens around ~a
+ *             &amp;&amp; (a-- &lt; 30);        // parens around expression
+ * </pre>
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
  * are unnecessary based on the types in an expression.  It also doesn't know
@@ -104,7 +110,39 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
- * TEXT_BLOCK_LITERAL_BEGIN</a>.
+ * TEXT_BLOCK_LITERAL_BEGIN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+ * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
+ * LITERAL_INSTANCEOF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
+ * GT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LT">
+ * LT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GE">
+ * GE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LE">
+ * LE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EQUAL">
+ * EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NOT_EQUAL">
+ * NOT_EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
+ * UNARY_MINUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
+ * UNARY_PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">
+ * INC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">
+ * DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">
+ * LNOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">
+ * BNOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
+ * POST_INC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
+ * POST_DEC</a>.
  * </li>
  * </ul>
  * <p>
@@ -119,18 +157,28 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * public int square(int a, int b){
  *   int square = (a * b); //violation
- *   return (square); //violation
+ *   return (square);      //violation
  * }
  * int sumOfSquares = 0;
- * for(int i=(0); i&lt;10; i++){ //violation
- *   int x = (i + 1); //violation
- *   sumOfSquares += (square(x * x)); //violation
+ * for(int i=(0); i&lt;10; i++){          //violation
+ *   int x = (i + 1);                  //violation
+ *   sumOfSquares += (square(x * x));  //violation
  * }
  * double num = (10.0); //violation
  * List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
  * myList.stream()
  *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
  *   .forEach(System.out::println);
+ * int a = 10, b = 12, c = 15;
+ * if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
+ *          || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
+ *          || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
+ *     return;
+ * }
+ * if ((-a) != -27 // violation, unnecessary parenthesis
+ *          &amp;&amp; b &gt; 5) {
+ *     return;
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -251,6 +299,31 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.STAR_ASSIGN,
     };
 
+    /** Token types for conditional and relational operators. */
+    private static final int[] CONDITIONALS_AND_RELATIONAL = {
+        TokenTypes.LOR,
+        TokenTypes.LAND,
+        TokenTypes.LITERAL_INSTANCEOF,
+        TokenTypes.GT,
+        TokenTypes.LT,
+        TokenTypes.GE,
+        TokenTypes.LE,
+        TokenTypes.EQUAL,
+        TokenTypes.NOT_EQUAL,
+    };
+
+    /** Token types for unary and postfix operators. */
+    private static final int[] UNARY_AND_POSTFIX = {
+        TokenTypes.UNARY_MINUS,
+        TokenTypes.UNARY_PLUS,
+        TokenTypes.INC,
+        TokenTypes.DEC,
+        TokenTypes.LNOT,
+        TokenTypes.BNOT,
+        TokenTypes.POST_INC,
+        TokenTypes.POST_DEC,
+    };
+
     /**
      * Used to test if logging a warning in a parent node may be skipped
      * because a warning was already logged on an immediate child node.
@@ -286,6 +359,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+            TokenTypes.LAND,
+            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.GT,
+            TokenTypes.LT,
+            TokenTypes.GE,
+            TokenTypes.LE,
+            TokenTypes.EQUAL,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.LNOT,
+            TokenTypes.BNOT,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
         };
     }
 
@@ -316,6 +405,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+            TokenTypes.LAND,
+            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.GT,
+            TokenTypes.LT,
+            TokenTypes.GE,
+            TokenTypes.LE,
+            TokenTypes.EQUAL,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.LNOT,
+            TokenTypes.BNOT,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
         };
     }
 
@@ -381,28 +486,14 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         // shouldn't process assign in annotation pairs
         if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-            // An expression is surrounded by parentheses.
             if (type == TokenTypes.EXPR) {
-                // If 'parentToSkip' == 'ast', then we've already logged a
-                // warning about an immediate child node in visitToken, so we don't
-                // need to log another one here.
-
-                if (parentToSkip != ast && isExprSurrounded(ast)) {
-                    if (assignDepth >= 1) {
-                        log(ast, MSG_ASSIGN);
-                    }
-                    else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
-                        log(ast, MSG_RETURN);
-                    }
-                    else {
-                        log(ast, MSG_EXPR);
-                    }
-                }
-
-                parentToSkip = null;
+                checkExpression(ast);
             }
             else if (isInTokenList(type, ASSIGNMENTS)) {
                 assignDepth--;
+            }
+            else if (checkAroundOperators(ast)) {
+                log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
     }
@@ -435,6 +526,49 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isExprSurrounded(DetailAST ast) {
         return ast.getFirstChild().getType() == TokenTypes.LPAREN;
+    }
+
+    /**
+     * Checks whether an expression is surrounded by parentheses.
+     *
+     * @param ast the {@code DetailAST} to check if it is surrounded by
+     *        parentheses.
+     */
+    private void checkExpression(DetailAST ast) {
+        // If 'parentToSkip' == 'ast', then we've already logged a
+        // warning about an immediate child node in visitToken, so we don't
+        // need to log another one here.
+        if (parentToSkip != ast && isExprSurrounded(ast)) {
+            if (assignDepth >= 1) {
+                log(ast, MSG_ASSIGN);
+            }
+            else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
+                log(ast, MSG_RETURN);
+            }
+            else {
+                log(ast, MSG_EXPR);
+            }
+        }
+
+        parentToSkip = null;
+    }
+
+    /**
+     * Checks if conditional, relational, unary and postfix operators
+     * in expressions are surrounded by parentheses.
+     *
+     * @param ast the {@code DetailAST} to check if it is surrounded by
+     *        parentheses.
+     * @return {@code true} if the expression is surrounded by
+     *         parentheses.
+     */
+    private static boolean checkAroundOperators(DetailAST ast) {
+        final int type = ast.getType();
+        final DetailAST parent = ast.getParent();
+        return (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                    || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
+                && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
+                && isSurrounded(ast);
     }
 
     /**
