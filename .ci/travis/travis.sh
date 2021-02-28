@@ -271,8 +271,9 @@ no-error-xwiki)
   mvn -e clean install -Pno-validations
   mkdir -p .ci-temp/
   cd .ci-temp/
-  git clone --depth 1 https://github.com/xwiki/xwiki-commons.git
+  git clone --depth 1 https://github.com/checkstyle/xwiki-commons.git
   cd xwiki-commons
+  git checkout checkstyle_7417
   # Build custom Checkstyle rules
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
