@@ -10,6 +10,225 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.41">
+      <div class="releaseDate">28.02.2021</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Checkstyle should support &quot;classpath:&quot; protocol.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9170">#9170</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            ImportOrder and CustomImportOrder report only first &quot;Extra
+            separation&quot; violation, inconsistent order.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/9251">#9251</a>
+          </li>
+          <li>
+            Record implementing interfaces, indentation faulty.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9152">#9152</a>
+          </li>
+          <li>
+            JavadocTagContinuationIndentation: no violation with block tag starting the line.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/5711">#5711</a>
+          </li>
+          <li>
+            Correct NoEnumTrailingCheck and UnnessaryEnumSemicolonCheck to handle empty enums.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9230">#9230</a>
+          </li>
+          <li>
+            Regression in IndentationCheck 8.40 regarding the white spaces needed
+            in a second line of a try/resource declaration.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/9236">#9236</a>
+          </li>
+          <li>
+            Checkstyle fails on empty enum with only comma in it.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/8653">#8653</a>
+          </li>
+          <li>
+            SuppressWarningsHolder fails on @SuppressWarnings in annotation array initialization.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9260">#9260</a>
+          </li>
+          <li>
+            Record definition elements &quot;record component list&quot; and
+            &quot;implements clause&quot; out of order in AST.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9221">#9221</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Create parser util class that will host util methods for parser that creates AST.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9272">#9272</a>
+          </li>
+          <li>
+            Update doc for ParameterAssignment.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/7655">#7655</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - RegexpHeader.
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/9317">#9317</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - HeaderCheck (1).
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/9304">#9304</a>
+          </li>
+          <li>
+            test inputs should be compilable with javac11.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9310">#9310</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - ImportOrderCheck (6).
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7877">#7877</a>
+          </li>
+          <li>
+            Solve Spotbugs violations reported for Java 11.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9297">#9297</a>
+          </li>
+          <li>
+            doc: fix checkstyle jar version in issue templates.
+            Author: Andrei Paikin
+          </li>
+          <li>
+            Extend closed issues job to check issues in other repos.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9298">#9298</a>
+          </li>
+          <li>
+            Disable markdownlint rule MD041.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9292">#9292</a>
+          </li>
+          <li>
+            Add one more closed to do issue pattern and fix violations.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9276">#9276</a>
+          </li>
+          <li>
+            update doc for AvoidEscapedUnicodeCharacters.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9131">#9131</a>
+          </li>
+          <li>
+            Update doc for UniqueProperties.
+            Author: Divesh2201
+            <a href="https://github.com/checkstyle/checkstyle/issues/7595">#7595</a>
+          </li>
+          <li>
+            Update doc for NeedBraces.
+            Author: Vyom Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/7583">#7583</a>
+          </li>
+          <li>
+            update CircleCi to try one more time execution of mvn dependency:go-offline.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9115">#9115</a>
+          </li>
+          <li>
+            update doc for CustomImportOrder.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/7686">#7686</a>
+          </li>
+          <li>
+            Update doc for RequireThis.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7656">#7656</a>
+          </li>
+          <li>
+            Add job to scan sources for closed issue references.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9256">#9256</a>
+          </li>
+          <li>
+            update doc for RegexpMultiline.
+            Author: stryder2000
+            <a href="https://github.com/checkstyle/checkstyle/issues/7695">#7695</a>
+          </li>
+          <li>
+            Update doc for HiddenField.
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/7641">#7641</a>
+          </li>
+          <li>
+            IllegalType: update examples to show how to target Check to fields only.
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/8930">#8930</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - ImportOrderCheck (7).
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/7878">#7878</a>
+          </li>
+          <li>
+            Build also xwiki-rendering and xwiki-platform in the no regression travis job.
+            Author: Thomas Mortagne
+            <a href="https://github.com/checkstyle/checkstyle/issues/9242">#9242</a>
+          </li>
+          <li>
+            Minimize the stack size used for unit tests.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9163">#9163</a>
+          </li>
+          <li>
+            diff report generation should have default projects file.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9255">#9255</a>
+          </li>
+          <li>
+            doc: remove outdated limitation from google style doc.
+            Author: Andrei Paikin
+          </li>
+          <li>
+            Improve metadata code and coverage.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9231">#9231</a>
+          </li>
+          <li>
+            Update doc for DeclarationOrder.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/7635">#7635</a>
+          </li>
+          <li>
+            documentation of VariableDeclarationUsageDistance has stange note of default distance.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9219">#9219</a>
+          </li>
+          <li>
+            Update doc for IllegalInstantiation.
+            Author: Himanshu Rijal
+            <a href="https://github.com/checkstyle/checkstyle/issues/7643">#7643</a>
+          </li>
+          <li>
+            Sonar Dashboard link doesn&#39;t work in Generated Reports.
+            Author: Akash Mondal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9217">#9217</a>
+          </li>
+          <li>
+            Checkstyle should support property expansion within property
+            definitions (property chaining).
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9173">#9173</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.40">
       <div class="releaseDate">31.01.2021</div>
       <p>New:</p>
