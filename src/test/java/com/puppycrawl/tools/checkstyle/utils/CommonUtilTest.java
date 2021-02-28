@@ -49,8 +49,6 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class CommonUtilTest extends AbstractPathTestSupport {
 
@@ -128,27 +126,6 @@ public class CommonUtilTest extends AbstractPathTestSupport {
             assertEquals("Failed to initialise regular expression [", ex.getMessage(),
                     "Invalid exception message");
         }
-    }
-
-    @Test
-    public void testCreationOfFakeCommentBlock() {
-        final DetailAST testCommentBlock =
-                CommonUtil.createBlockCommentNode("test_comment");
-        assertEquals(TokenTypes.BLOCK_COMMENT_BEGIN, testCommentBlock.getType(),
-                "Invalid token type");
-        assertEquals("/*", testCommentBlock.getText(), "Invalid text");
-        assertEquals(0, testCommentBlock.getLineNo(), "Invalid line number");
-
-        final DetailAST contentCommentBlock = testCommentBlock.getFirstChild();
-        assertEquals(TokenTypes.COMMENT_CONTENT, contentCommentBlock.getType(),
-                "Invalid token type");
-        assertEquals("*test_comment", contentCommentBlock.getText(), "Invalid text");
-        assertEquals(0, contentCommentBlock.getLineNo(), "Invalid line number");
-        assertEquals(-1, contentCommentBlock.getColumnNo(), "Invalid column number");
-
-        final DetailAST endCommentBlock = contentCommentBlock.getNextSibling();
-        assertEquals(TokenTypes.BLOCK_COMMENT_END, endCommentBlock.getType(), "Invalid token type");
-        assertEquals("*/", endCommentBlock.getText(), "Invalid text");
     }
 
     @Test
