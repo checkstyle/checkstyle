@@ -116,6 +116,7 @@ beanutils
 beforeexecutionexclusionfilefilter
 bestpractices
 bew
+bfbfb
 bintray
 bitbucket
 bitset
@@ -398,6 +399,7 @@ fallthru
 Fannotation
 favicon
 Fblocks
+fca
 Fchecks
 Fcheckstyle
 fchurn

@@ -104,7 +104,39 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
  * LAMBDA</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
- * TEXT_BLOCK_LITERAL_BEGIN</a>.
+ * TEXT_BLOCK_LITERAL_BEGIN</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
+ * LAND</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
+ * LITERAL_INSTANCEOF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
+ * GT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LT">
+ * LT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GE">
+ * GE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LE">
+ * LE</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EQUAL">
+ * EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NOT_EQUAL">
+ * NOT_EQUAL</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
+ * UNARY_MINUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
+ * UNARY_PLUS</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#INC">
+ * INC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#DEC">
+ * DEC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LNOT">
+ * LNOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#BNOT">
+ * BNOT</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_INC">
+ * POST_INC</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#POST_DEC">
+ * POST_DEC</a>.
  * </li>
  * </ul>
  * <p>
@@ -251,6 +283,35 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.STAR_ASSIGN,
     };
 
+    /** Token types for conditional operators. */
+    private static final int[] CONDITIONALS = {
+        TokenTypes.LOR,
+        TokenTypes.LAND,
+        TokenTypes.LITERAL_INSTANCEOF,
+    };
+
+    /** Token types for relational operators. */
+    private static final int[] RELATIONAL = {
+        TokenTypes.GT,
+        TokenTypes.LT,
+        TokenTypes.GE,
+        TokenTypes.LE,
+        TokenTypes.EQUAL,
+        TokenTypes.NOT_EQUAL,
+    };
+
+    /** Token types for unary and postfix operators. */
+    private static final int[] UNARY_AND_POSTFIX = {
+        TokenTypes.UNARY_MINUS,
+        TokenTypes.UNARY_PLUS,
+        TokenTypes.INC,
+        TokenTypes.DEC,
+        TokenTypes.LNOT,
+        TokenTypes.BNOT,
+        TokenTypes.POST_INC,
+        TokenTypes.POST_DEC,
+    };
+
     /**
      * Used to test if logging a warning in a parent node may be skipped
      * because a warning was already logged on an immediate child node.
@@ -286,6 +347,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+            TokenTypes.LAND,
+            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.GT,
+            TokenTypes.LT,
+            TokenTypes.GE,
+            TokenTypes.LE,
+            TokenTypes.EQUAL,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.LNOT,
+            TokenTypes.BNOT,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
         };
     }
 
@@ -316,6 +393,22 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
+            TokenTypes.LAND,
+            TokenTypes.LITERAL_INSTANCEOF,
+            TokenTypes.GT,
+            TokenTypes.LT,
+            TokenTypes.GE,
+            TokenTypes.LE,
+            TokenTypes.EQUAL,
+            TokenTypes.NOT_EQUAL,
+            TokenTypes.UNARY_MINUS,
+            TokenTypes.UNARY_PLUS,
+            TokenTypes.INC,
+            TokenTypes.DEC,
+            TokenTypes.LNOT,
+            TokenTypes.BNOT,
+            TokenTypes.POST_INC,
+            TokenTypes.POST_DEC,
         };
     }
 
@@ -381,28 +474,19 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         // shouldn't process assign in annotation pairs
         if (type != TokenTypes.ASSIGN
             || parent.getType() != TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR) {
-            // An expression is surrounded by parentheses.
             if (type == TokenTypes.EXPR) {
-                // If 'parentToSkip' == 'ast', then we've already logged a
-                // warning about an immediate child node in visitToken, so we don't
-                // need to log another one here.
-
-                if (parentToSkip != ast && isExprSurrounded(ast)) {
-                    if (assignDepth >= 1) {
-                        log(ast, MSG_ASSIGN);
-                    }
-                    else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
-                        log(ast, MSG_RETURN);
-                    }
-                    else {
-                        log(ast, MSG_EXPR);
-                    }
-                }
-
-                parentToSkip = null;
+                checkExpression(ast);
             }
             else if (isInTokenList(type, ASSIGNMENTS)) {
                 assignDepth--;
+            }
+            else if ((isInTokenList(type, CONDITIONALS)
+                    || isInTokenList(type, RELATIONAL)
+                    || isInTokenList(type, UNARY_AND_POSTFIX))
+                    && (isInTokenList(parent.getType(), CONDITIONALS)
+                    || isInTokenList(parent.getType(), RELATIONAL))
+                    && isSurrounded(ast)) {
+                log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
     }
@@ -435,6 +519,30 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean isExprSurrounded(DetailAST ast) {
         return ast.getFirstChild().getType() == TokenTypes.LPAREN;
+    }
+
+    /**
+     * Checks whether an expression is surrounded by parentheses.
+     * @param ast the {@code DetailAST} to check if it is surrounded by
+     *        parentheses.
+     */
+    private void checkExpression(DetailAST ast) {
+        // If 'parentToSkip' == 'ast', then we've already logged a
+        // warning about an immediate child node in visitToken, so we don't
+        // need to log another one here.
+        if (parentToSkip != ast && isExprSurrounded(ast)) {
+            if (assignDepth >= 1) {
+                log(ast, MSG_ASSIGN);
+            }
+            else if (ast.getParent().getType() == TokenTypes.LITERAL_RETURN) {
+                log(ast, MSG_RETURN);
+            }
+            else {
+                log(ast, MSG_EXPR);
+            }
+        }
+
+        parentToSkip = null;
     }
 
     /**
