@@ -58,12 +58,11 @@
   <file name="PropertyCacheFile">
     <allow class="java.math.BigInteger"/>
   </file>
+  <file name="ParserUtil">
+    <allow class="antlr.Token"/>
+  </file>
 
   <subpackage name="utils">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/9272 -->
-    <allow pkg="antlr"/>
-    <!-- until https://github.com/checkstyle/checkstyle/issues/9271 -->
-    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
 
     <allow pkg="java.lang.reflect" local-only="true" />
     <allow pkg="java.nio" local-only="true" />
