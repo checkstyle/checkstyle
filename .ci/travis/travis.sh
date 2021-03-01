@@ -2,6 +2,22 @@
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
 
+function checkout_from {
+  CLONE_URL=$1
+  PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
+  mkdir -p .ci-temp
+  cd .ci-temp
+  if [ -d "$PROJECT" ]; then
+    echo "Target project $PROJECT is already cloned, latest changes will be fetched"
+    cd $PROJECT
+    git fetch
+    cd ../
+  else
+    for i in 1 2 3 4 5; do git clone $CLONE_URL && break || sleep 15; done
+  fi
+  cd ../
+}
+
 removeFolderWithProtectedFiles() {
   find $1 -delete
 }
@@ -252,10 +268,8 @@ no-error-test-sbe)
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
   mvn -e clean install -Pno-validations
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/real-logic/simple-binary-encoding.git
-  cd simple-binary-encoding
+  checkout_from https://github.com/real-logic/simple-binary-encoding.git
+  cd .ci-temp/simple-binary-encoding
   sed -i'' \
     "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
     build.gradle
@@ -269,10 +283,8 @@ no-error-xwiki)
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
   mvn -e clean install -Pno-validations
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone --depth 1 https://github.com/xwiki/xwiki-commons.git
-  cd xwiki-commons
+  checkout_from https://github.com/xwiki/xwiki-commons.git
+  cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
@@ -287,19 +299,21 @@ no-error-xwiki)
   mvn -e install:install-file -Dfile=xwiki-commons-pom/pom.xml \
     -DpomFile=xwiki-commons-pom/pom.xml
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
-    install -Dmaven.test.skip
+    install -Dmaven.test.skip -Dcheckstyle.version=${CS_POM_VERSION}
   mvn -e -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
-  install -Dmaven.test.skip
+    install -Dmaven.test.skip -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-commons
-  git clone --depth 1 https://github.com/xwiki/xwiki-rendering.git
-  cd xwiki-rendering
+  cd ..
+  checkout_from https://github.com/xwiki/xwiki-rendering.git
+  cd .ci-temp/xwiki-rendering
   # Validate xwiki-rendering
   mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
-  git clone --depth 1 https://github.com/xwiki/xwiki-platform.git
-  cd xwiki-platform
+  cd ..
+  checkout_from https://github.com/xwiki/xwiki-platform.git
+  cd .ci-temp/xwiki-platform
   # Validate xwiki-platform
   mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
