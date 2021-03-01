@@ -10,7 +10,8 @@ case $1 in
 
 checkstyle-and-sevntu)
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
+  mvn -e clean verify -DskipTests -DskipITs --no-transfer-progress \
+    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
 jacoco)
@@ -89,7 +90,7 @@ osx-jdk13-assembly)
   ;;
 
 site)
-  mvn -e clean site -Pno-validations
+  mvn -e --no-transfer-progress clean site -Pno-validations
   ;;
 
 javac8)
@@ -152,8 +153,8 @@ javac15)
   ;;
 
 jdk14-assembly-site)
-  mvn -e package -Passembly
-  mvn -e site -Pno-validations
+  mvn -e --no-transfer-progress package -Passembly
+  mvn -e --no-transfer-progress site -Pno-validations
   ;;
 
 jdk14-verify-limited)
@@ -182,7 +183,7 @@ versions)
   ;;
 
 assembly-run-all-jar)
-  mvn -e clean package -Passembly
+  mvn -e --no-transfer-progress clean package -Passembly
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
@@ -204,9 +205,10 @@ assembly-run-all-jar)
 
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];then
-    mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
-      -Djacoco.skip=true -Dpmd.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
-      -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
+    mvn -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
+    -Darguments='-DskipTests -DskipITs -Djacoco.skip=true -Dpmd.skip=true \
+      -Dspotbugs.skip=true -Dxml.skip=true -Dcheckstyle.ant.skip=true \
+      -Dcheckstyle.skip=true -Dgpg.skip=true --no-transfer-progress'
     mvn -e release:clean
   fi
   ;;
@@ -251,7 +253,7 @@ no-error-test-sbe)
   CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
   echo version:$CS_POM_VERSION
-  mvn -e clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Pno-validations
   mkdir -p .ci-temp/
   cd .ci-temp/
   git clone https://github.com/real-logic/simple-binary-encoding.git
@@ -402,7 +404,7 @@ spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean test-compile pmd:check spotbugs:check
+  mvn -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)
