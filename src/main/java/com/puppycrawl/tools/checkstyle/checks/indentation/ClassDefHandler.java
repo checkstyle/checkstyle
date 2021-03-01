@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for class definitions.
@@ -90,7 +91,25 @@ public class ClassDefHandler extends BlockParentHandler {
         else {
             checkWrappingIndentation(getMainAst(), getListChild());
         }
+        if (getMainAst().getType() == TokenTypes.ENUM_DEF) {
+            checkEnumConstantDef(getListChild());
+        }
         super.checkIndentation();
+    }
+
+    /**
+     * Checks enum constant definitions.
+     *
+     * @param parent parent enum definition
+     */
+    private void checkEnumConstantDef(DetailAST parent) {
+        TokenUtil.forEachChild(parent, TokenTypes.ENUM_CONSTANT_DEF,
+            ast -> {
+                if (isOnStartOfLine(ast)) {
+                    checkExpressionSubtree(ast,
+                        new IndentLevel(getIndent(), getBasicOffset()), true, false);
+                }
+            });
     }
 
     @Override
