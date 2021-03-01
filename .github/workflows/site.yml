@@ -26,7 +26,6 @@ jobs:
           || github.event.comment.body == 'GitHub, generate site'
     runs-on: ubuntu-latest
     outputs:
-      user: ${{ steps.branch.outputs.user }}
       branch: ${{ steps.branch.outputs.ref }}
 
     steps:
@@ -41,14 +40,12 @@ jobs:
         if: 'true'
       - name: Getting PR description
         run: |
-          echo "${{github.event.issue.user.login}}" > user
           wget -q "${{github.event.issue.pull_request.url}}" -O info.json
           jq .head.ref info.json > branch
 
-      - name: Set branch and username
+      - name: Set branch
         id: branch
         run: |
-          echo ::set-output name=user::$(cat user)
           echo ::set-output name=ref::$(cat branch | xargs)
 
   generate_site:
@@ -63,8 +60,10 @@ jobs:
       # ref - branch to checkout.
       - name: Download checkstyle
         uses: actions/checkout@v2
+        env:
+          USER_LOGIN: ${{ github.event.issue.user.login }}
         with:
-          repository: ${{needs.parse_pr_info.outputs.user}}/checkstyle
+          repository: ${{ env.USER_LOGIN }}/checkstyle
           ref: ${{needs.parse_pr_info.outputs.branch}}
           path: checkstyle
           fetch-depth: 0

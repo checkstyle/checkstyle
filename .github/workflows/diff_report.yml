@@ -16,7 +16,7 @@ env:
   AWS_REGION: us-east-2
   AWS_BUCKET_NAME: "checkstyle-diff-reports"
   DEFAULT_PROJECTS_LINK: "https://raw.githubusercontent.com/checkstyle/contribution/master/checkstyle-tester/projects-to-test-on-for-github-action.properties"
-  ISSUE_BODY: ${{github.event.issue.body}}
+  USER_LOGIN: ${{ github.event.issue.user.login }}
 
 on:
   issue_comment:
@@ -33,7 +33,6 @@ jobs:
       new_module_config_link: ${{ steps.parse.outputs.new_module_config_link }}
       patch_config_link: ${{ steps.parse.outputs.patch_config_link }}
       report_label: ${{ steps.parse.outputs.report_label }}
-      user: ${{ steps.branch.outputs.user }}
       branch: ${{ steps.branch.outputs.ref }}
       
     steps:
@@ -47,10 +46,13 @@ jobs:
      - run: 'echo We print it here for this action to work'
        if: 'true'
      - name: Getting PR description
+       env:
+         ISSUE_BODY: ${{ github.event.issue.body }}
+         PULL_REQUEST_URL: ${{ github.event.issue.pull_request.url }}
        run: |
         echo "$ISSUE_BODY" > text
-        echo "${{github.event.issue.user.login}}" > user
-        wget -q "${{github.event.issue.pull_request.url}}" -O info.json
+        echo "$USER_LOGIN" > user
+        wget -q "$PULL_REQUEST_URL" -O info.json
         jq .head.ref info.json > branch
         
      - name: Parsing content of PR description
@@ -76,10 +78,9 @@ jobs:
         sed 's/Report label: //' temp > report_label
         echo ::set-output name=report_label::$(cat report_label)
 
-     - name: Set branch and username
+     - name: Set branch
        id: branch
        run: |
-        echo ::set-output name=user::$(cat user)
         echo ::set-output name=ref::$(cat branch)
 
      
@@ -89,25 +90,28 @@ jobs:
     if: needs.parse_body.outputs.config_link != ''
             || needs.parse_body.outputs.new_module_config_link != ''
     outputs:
-      message: ${{ steps.out.outputs.message}}
+      message: ${{ steps.out.outputs.message }}
     steps: 
        
      - name: Download files
+       env:
+        NEW_MODULE_CONFIG_LINK: ${{ needs.parse_body.outputs.new_module_config_link }}
+        DIFF_CONFIG_LINK: ${{ needs.parse_body.outputs.config_link }}
+        PATCH_CONFIG_LINK: ${{ needs.parse_body.outputs.patch_config_link }}
+        LINK_FROM_PR: ${{ needs.parse_body.outputs.projects_link }}
        run: |
-        LINK_FROM_PR="${{needs.parse_body.outputs.projects_link}}"
         LINK="${LINK_FROM_PR:-$DEFAULT_PROJECTS_LINK}"
         wget -q "$LINK" -O project.properties
-
-        if [ -n "${{needs.parse_body.outputs.new_module_config_link}}" ]; then
-          wget -q "${{needs.parse_body.outputs.new_module_config_link}}" -O new_module_config.xml
+        if [ -n "$NEW_MODULE_CONFIG_LINK" ]; then
+          wget -q "$NEW_MODULE_CONFIG_LINK" -O new_module_config.xml
         fi
 
-        if [ -n "${{needs.parse_body.outputs.config_link}}" ]; then
-          wget -q "${{needs.parse_body.outputs.config_link}}" -O diff_config.xml
+        if [ -n "$DIFF_CONFIG_LINK" ]; then
+          wget -q "$DIFF_CONFIG_LINK" -O diff_config.xml
         fi
 
-        if [ -n "${{needs.parse_body.outputs.patch_config_link}}" ]; then
-          wget -q "${{needs.parse_body.outputs.patch_config_link}}" -O patch_config.xml
+        if [ -n "$PATCH_CONFIG_LINK" ]; then
+          wget -q "$PATCH_CONFIG_LINK" -O patch_config.xml
         fi
         
      # fetch-depth - number of commits to fetch.
@@ -117,7 +121,7 @@ jobs:
      - name: Download checkstyle
        uses: actions/checkout@v2
        with:
-        repository: ${{needs.parse_body.outputs.user}}/checkstyle
+        repository: ${{ env.USER_LOGIN }}/checkstyle
         ref: master
         path: checkstyle
         fetch-depth: 0
@@ -180,6 +184,8 @@ jobs:
          fi
 
      - name: Copy Report to AWS S3 Bucket
+       env:
+         LABEL: ${{ needs.parse_body.outputs.report_label }}
        run: |
         bash
         TIME=`date +%Y%H%M%S`
@@ -187,8 +193,8 @@ jobs:
         DIFF="./contribution/checkstyle-tester/reports/diff"
         LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
         aws s3 cp $DIFF s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/reports/diff/ --recursive
-        if [ -n "${{needs.parse_body.outputs.report_label}}" ]; then
-          echo "${{needs.parse_body.outputs.report_label}}: " > message
+        if [ -n "$LABEL" ]; then
+          echo "$LABEL: " > message
         fi
         echo $LINK/$FOLDER/reports/diff/index.html >> message
 
