@@ -286,12 +286,6 @@ public abstract class AbstractExpressionHandler {
             // doesn't start the line) then don't indent more, the first
             // indentation is absorbed by the nesting
 
-            IndentLevel theLevel = indentLevel;
-            if (firstLineMatches
-                || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
-                theLevel = new IndentLevel(indentLevel, getBasicOffset());
-            }
-
             // check following lines
             for (int i = startLineAst.getLineNo() + 1; i <= endLine; i++) {
                 final Integer col = astSet.getStartColumn(i);
@@ -300,10 +294,31 @@ public abstract class AbstractExpressionHandler {
                 // checked by a child expression)
 
                 if (col != null) {
-                    checkLineIndent(astSet.getAst(i), theLevel, false);
+                    checkLineIndent(astSet.getAst(i), astSet.getAst(i - 1), indentLevel,
+                        firstLineMatches, firstLine);
                 }
             }
         }
+    }
+
+    /**
+     * Check the indentation for a line.
+     *
+     * @param ast                line to check
+     * @param previousLine       previousLine
+     * @param indentLevel        the indentation level
+     * @param firstLineMatches   whether or not the first line has to match
+     * @param firstLine          first line of whole expression
+     */
+    private void checkLineIndent(DetailAST ast, DetailAST previousLine, IndentLevel indentLevel,
+            boolean firstLineMatches, int firstLine) {
+        IndentLevel theLevel = indentLevel;
+        if ((firstLineMatches || firstLine > mainAst.getLineNo() && shouldIncreaseIndent())
+                && !LineWrappingHandler.isAnnotationOrLineAfterAnnotation(ast, previousLine)) {
+            theLevel = new IndentLevel(indentLevel, getBasicOffset());
+        }
+
+        checkLineIndent(ast, theLevel, indentCheck.isForceStrictCondition());
     }
 
     /**
