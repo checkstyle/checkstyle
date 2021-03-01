@@ -131,6 +131,6 @@ public class InputIndentationInvalidArrayInitIndent { //indent:0 exp:0
             "hello", "chekstyle"
             }
         )
-      void worked();
+        void worked();
     }
 }
