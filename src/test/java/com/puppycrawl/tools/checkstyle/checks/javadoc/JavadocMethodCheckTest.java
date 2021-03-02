@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -183,7 +182,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testNoJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.NOTHING.getName());
+        checkConfig.addAttribute("accessModifiers", "");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodPublicOnly.java"), expected);
     }
@@ -192,7 +191,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRelaxedJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addAttribute("accessModifiers", "public, protected");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodPublicOnly.java"), expected);
     }
@@ -200,7 +199,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopeInnerInterfacesPublic() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
+        checkConfig.addAttribute("accessModifiers", "public");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodScopeInnerInterfaces.java"), expected);
     }
@@ -208,22 +207,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopeAnonInnerPrivate() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavadocMethodScopeAnonInner.java"), expected);
-    }
-
-    @Test
-    public void testScopeAnonInnerAnonInner() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.ANONINNER.getName());
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavadocMethodScopeAnonInner.java"), expected);
-    }
-
-    @Test
-    public void testScopeAnonInnerWithResolver() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("accessModifiers", "public, protected, package, private");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputJavadocMethodScopeAnonInner.java"), expected);
     }
@@ -273,7 +257,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testScopes2() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
+        checkConfig.addAttribute("accessModifiers", "public, protected");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "17: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
@@ -284,12 +268,20 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testExcludeScope() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
-        checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
+        checkConfig.addAttribute("accessModifiers", "private, package, public");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "19: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
             "21: " + getCheckMessage(MSG_UNUSED_TAG_GENERAL),
+        };
+        verify(checkConfig, getPath("InputJavadocMethodNoJavadoc.java"), expected);
+    }
+
+    @Test
+    public void testExcludeScope2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(JavadocMethodCheck.class);
+        checkConfig.addAttribute("accessModifiers", "private");
+        final String[] expected = {
         };
         verify(checkConfig, getPath("InputJavadocMethodNoJavadoc.java"), expected);
     }
