@@ -26,7 +26,7 @@ else
   cd ../
 fi
 cd .ci-temp/contribution/releasenotes-builder
-mvn -e clean compile package
+mvn -e --no-transfer-progress clean compile package
 cd ../../../
 
 # we need to do full clone as Travis do "git clone --depth=50"
@@ -45,8 +45,9 @@ cd .ci-temp/checkstyle
 LATEST_RELEASE_TAG=$(git describe $(git rev-list --tags --max-count=1))
 cd ../../
 
-CS_RELEASE_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-              --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//' )
+CS_RELEASE_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+              -Dexec.args='${project.version}' \
+              --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec | sed 's/-SNAPSHOT//')
 echo LATEST_RELEASE_TAG=$LATEST_RELEASE_TAG
 echo CS_RELEASE_VERSION=$CS_RELEASE_VERSION
 cd .ci-temp
