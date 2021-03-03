@@ -55,7 +55,8 @@ jobs:
     - jdk: openjdk8
       env:
         - DESC="tests and deploy"
-        - CMD="mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'"
+        - CMD="mvn -e --no-transfer-progress clean integration-test failsafe:verify
+          -DargLine='-Xms1024m -Xmx2048m'"
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
@@ -333,8 +334,8 @@ script:
       fi
       if [[ $USE_MAVEN_REPO == 'true' && ! -d "~/.m2" ]]; then
        echo "Maven local repo cache is not found, initializing it ..."
-       mvn -e -B install -Pno-validations;
-       mvn -e clean;
+       mvn -e --no-transfer-progress -B install -Pno-validations;
+       mvn -e --no-transfer-progress clean;
       fi
       echo "eval of CMD is starting";
       echo "CMD=$CMD";
@@ -375,7 +376,7 @@ after_success:
             && $SKIP_DEPLOY == 'false'
        ]];
     then
-        mvn -e -s config/deploy-settings.xml -Pno-validations deploy;
+        mvn -e --no-transfer-progress -s config/deploy-settings.xml -Pno-validations deploy;
         echo "deploy to maven snapshot repository is finished";
     fi
     sleep 5s
