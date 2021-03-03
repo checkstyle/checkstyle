@@ -18,10 +18,16 @@ function checkout_from {
   cd ../
 }
 
+function getCheckstylePomVersion {
+  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                      -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
+}
+
 function build_checkstyle {
   if [[ "$SHIPPABLE" == "true" ]]; then
     echo "Build checkstyle ..."
-    mvn -e clean install -Pno-validations
+    mvn -e --no-transfer-progress clean install -Pno-validations
   fi
 }
 
@@ -32,8 +38,7 @@ function removeFolderWithProtectedFiles() {
 case $1 in
 
 no-exception-openjdk7-openjdk8)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
@@ -48,8 +53,7 @@ no-exception-openjdk7-openjdk8)
   ;;
 
 no-exception-openjdk9-lucene-and-others)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
@@ -68,8 +72,7 @@ no-exception-openjdk9-lucene-and-others)
   ;;
 
 no-exception-cassandra-storm-tapestry)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
@@ -85,8 +88,7 @@ no-exception-cassandra-storm-tapestry)
   ;;
 
 no-exception-hadoop-apache-groovy-scouter)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
@@ -103,8 +105,7 @@ no-exception-hadoop-apache-groovy-scouter)
   ;;
 
 no-exception-only-javadoc)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   build_checkstyle
   checkout_from https://github.com/checkstyle/contribution.git
