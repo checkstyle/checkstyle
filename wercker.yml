@@ -9,7 +9,7 @@ build:
       name: setup maven local repo
       code: |
         export MAVEN_OPTS="-Dmaven.repo.local=${WERCKER_CACHE_DIR}"
-        mvn -version
+        mvn --version
         echo "------"
         if [[ $(grep "pull" .git/FETCH_HEAD | cat | wc -l) > 0 ]]; then
           export PR=$(cat .git/FETCH_HEAD | cut -d ' ' -f 1 | cut -d '/' -f 3)
@@ -57,7 +57,7 @@ build:
         # should_run_job will change RUN_JOB variable
         should_run_job "recheck" $SKIP_FILES
         if [[ $RUN_JOB == 1 ]]; then
-          mvn -e clean install -Pno-validations
+          mvn -e --no-transfer-progress clean install -Pno-validations
         else
           echo "build is skipped ..."
         fi

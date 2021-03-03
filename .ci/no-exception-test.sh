@@ -5,6 +5,12 @@ removeFolderWithProtectedFiles() {
   find $1 -delete
 }
 
+function getCheckstylePomVersion {
+  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                      -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
+}
+
 function checkout_from {
   CLONE_URL=$1
   PROJECT=$(echo "$CLONE_URL" | sed -nE 's/.*\/(.*).git/\1/p')
@@ -24,15 +30,14 @@ function checkout_from {
 case $1 in
 
 guava-with-google-checks)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
-  mvn -e clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Pno-validations
   cp src/main/resources/google_checks.xml .ci-temp/google_checks.xml
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -45,15 +50,14 @@ guava-with-google-checks)
   ;;
 
 guava-with-sun-checks)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
-  mvn -e clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Pno-validations
   cp src/main/resources/sun_checks.xml .ci-temp/sun_checks.xml
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester

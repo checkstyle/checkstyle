@@ -51,11 +51,11 @@ blocks:
                 - .ci/validation.sh eclipse-static-analysis
                 - .ci/validation.sh eclipse-static-analysis-java11
                 - .ci/validation.sh java11-verify
-                - mvn -e clean install -Pno-validations
+                - mvn -e --no-transfer-progress clean install -Pno-validations
                     && .ci/no-exception-test.sh guava-with-google-checks
-                - mvn -e clean install -Pno-validations
+                - mvn -e --no-transfer-progress clean install -Pno-validations
                     && .ci/no-exception-test.sh guava-with-sun-checks
-                - mvn -e clean package -Passembly
+                - mvn -e --no-transfer-progress clean package -Passembly
                     && .ci/validation.sh no-violation-test-josm
           commands:
             - sem-version java 11
@@ -71,12 +71,12 @@ blocks:
           matrix:
             - env_var: CMD
               values:
-                - mvn -e clean install -Pno-validations
+                - mvn -e --no-transfer-progress clean install -Pno-validations
                     && .ci/validation.sh no-error-pmd
                 # until https://github.com/checkstyle/checkstyle/issues/9248
                 # - mvn -e clean install -Pno-validations
                 #    && .ci/validation.sh no-violation-test-configurate
-                - mvn -e clean install -Pno-validations
+                - mvn -e --no-transfer-progress clean install -Pno-validations
                     && .ci/no-exception-test.sh openjdk14-with-checks-nonjavadoc-error
           commands:
             - sem-version java 11
