@@ -104,4 +104,5 @@ steps:
 - name: assembly/site with OpenJDK11
   image: maven:3.6.3-adoptopenjdk-11
   commands:
-  - mvn -e --no-transfer-progress package -Passembly && mvn -e site -Dlinkcheck.skip=true
+  - "mvn -e --no-transfer-progress package -Passembly && \
+     mvn -e --no-transfer-progress site -Dlinkcheck.skip=true"
