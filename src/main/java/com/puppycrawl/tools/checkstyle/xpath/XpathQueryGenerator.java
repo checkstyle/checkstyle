@@ -264,7 +264,7 @@ public class XpathQueryGenerator {
                     .append(TokenUtil.getTokenName(cur.getType()));
             if (XpathUtil.supportsTextAttribute(cur)) {
                 curNodeQueryBuilder.append("[@text='")
-                        .append(XpathUtil.getTextAttributeValue(cur))
+                        .append(encode(XpathUtil.getTextAttributeValue(cur)))
                         .append("']");
             }
             else {
@@ -331,5 +331,63 @@ public class XpathQueryGenerator {
         return ast.getLineNo() == lineNumber
                 && expandedTabColumn(ast) == columnNumber
                 && (tokenType == 0 || tokenType == ast.getType());
+    }
+
+    /**
+     * Escape &lt;, &gt;, &amp;, &#39; and &quot; as their entities.
+     * Custom method for Xpath generation to maintain compatibility
+     * with Saxon and encoding outside Ascii range characters.
+     *
+     * <p>According to Saxon documentation in http://saxon.sourceforge.net/saxon7.1/expressions.html
+     * From Saxon 7.1, string delimiters can be doubled within the string to represent
+     * the delimiter itself: for example select='"He said, ""Go!"""'.
+     *
+     * <p>Guava cannot as Guava encoding does not meet our requirements like
+     * double encoding for apos, removed slashes which are basic requirements
+     * for Saxon to decode.
+     *
+     * @param value the value to escape.
+     * @return the escaped value if necessary.
+     */
+    private static String encode(String value) {
+        final StringBuilder sb = new StringBuilder(256);
+        value.codePoints().forEach(
+            chr -> {
+                sb.append(encodeCharacter(Character.toChars(chr)[0]));
+            }
+        );
+        return sb.toString();
+    }
+
+    /**
+     * Encodes escape character for Xpath. Escape characters need '&amp;' before but it also
+     * requires XML 1.1 until https://github.com/checkstyle/checkstyle/issues/5168.
+     *
+     * @param chr Character to check.
+     * @return String, Encoded string.
+     */
+    private static String encodeCharacter(char chr) {
+        final String encode;
+        switch (chr) {
+            case '<':
+                encode = "&lt;";
+                break;
+            case '>':
+                encode = "&gt;";
+                break;
+            case '\'':
+                encode = "&apos;&apos;";
+                break;
+            case '\"':
+                encode = "&quot;";
+                break;
+            case '&':
+                encode = "&amp;";
+                break;
+            default:
+                encode = String.valueOf(chr);
+                break;
+        }
+        return encode;
     }
 }
