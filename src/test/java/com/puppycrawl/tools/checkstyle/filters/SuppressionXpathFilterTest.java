@@ -26,6 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Set;
 
@@ -179,4 +180,70 @@ public class SuppressionXpathFilterTest extends AbstractModuleTestSupport {
         return suppressionXpathFilter;
     }
 
+    @Test
+    public void testFalseEncodeString() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscapeString.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscapeString.java"));
+
+        assertFalse(filter.accept(createTreeWalkerAudit(8, 23, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(10, 22, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(12, 27, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(14, 25, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(16, 25, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(18, 25, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(20, 22, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(22, 28, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(24, 28, TokenTypes.STRING_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+    }
+
+    @Test
+    public void testFalseEncodeChar() throws Exception {
+        final boolean optional = false;
+        final SuppressionXpathFilter filter = createSuppressionXpathFilter(
+                getPath("InputSuppressionXpathFilterEscapeChar.xml"), optional);
+        final File file = new File(getPath("InputSuppressionXpathFilterEscapeChar.java"));
+
+        assertFalse(filter.accept(createTreeWalkerAudit(8, 13, TokenTypes.CHAR_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(10, 13, TokenTypes.CHAR_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(12, 13, TokenTypes.CHAR_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(14, 13, TokenTypes.CHAR_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+
+        assertFalse(filter.accept(createTreeWalkerAudit(16, 13, TokenTypes.CHAR_LITERAL, file)),
+                "TreeWalker audit event should be rejected");
+    }
+
+    private static TreeWalkerAuditEvent createTreeWalkerAudit(int lineNo, int columnNo,
+                                                              int tokenTypes, File file)
+            throws IOException, CheckstyleException {
+        final LocalizedMessage message = new LocalizedMessage(lineNo, columnNo, tokenTypes, "", "",
+                null, null, "777", SuppressionXpathFilterTest.class, null);
+        return new TreeWalkerAuditEvent(null, "Test.java", message,
+                JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
+    }
 }
