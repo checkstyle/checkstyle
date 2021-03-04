@@ -5,6 +5,12 @@ removeFolderWithProtectedFiles() {
   find "$1" -delete
 }
 
+function getCheckstylePomVersion {
+  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                      -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
+}
+
 addCheckstyleBundleToAntResolvers() {
   xmlstarlet ed --inplace \
     -s '/ivysettings/resolvers' -t elem -n filesystem \
@@ -84,22 +90,22 @@ check-missing-pitests)
   ;;
 
 eclipse-static-analysis)
-  mvn -e clean compile exec:exec -Peclipse-compiler
+  mvn -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler
   ;;
 
 eclipse-static-analysis-java11)
   # Ensure that project sources can be compiled by eclipse with Java11 language features.
-  mvn -e clean compile exec:exec -Peclipse-compiler -D java.version=11
+  mvn -e --no-transfer-progress clean compile exec:exec -Peclipse-compiler -D java.version=11
   ;;
 
 java11-verify)
   # Ensure that project sources can be compiled by jdk with Java11 language features.
-  mvn -e clean verify -D java.version=11
+  mvn -e --no-transfer-progress clean verify -D java.version=11
   ;;
 
 nondex)
   # Below we exclude test that fails due to picocli library usage
-  mvn -e --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
+  mvn -e --no-transfer-progress --fail-never clean nondex:nondex -DargLine='-Xms1024m -Xmx2048m' \
     -Dtest=!JavadocPropertiesGeneratorTest#testNonExistentArgument
   mkdir -p .ci-temp
   cat `grep -RlE 'td class=.x' .nondex/ | cat` < /dev/null > .ci-temp/output.txt
@@ -111,21 +117,19 @@ nondex)
   ;;
 
 no-error-pmd)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp/
   cd .ci-temp/
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  mvn -e install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles pmd
   ;;
 
 no-violation-test-configurate)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp
   cd .ci-temp
@@ -137,8 +141,7 @@ no-violation-test-configurate)
   ;;
 
 no-violation-test-josm)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.6.0:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
   mkdir -p .ci-temp
   cd .ci-temp
