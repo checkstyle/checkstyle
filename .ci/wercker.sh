@@ -18,6 +18,12 @@ function checkout_from {
   cd ../
 }
 
+function getCheckstylePomVersion {
+  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                      -Dexec.args='${project.version}' \
+                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
+}
+
 removeFolderWithProtectedFiles() {
   find $1 -delete
 }
@@ -38,7 +44,7 @@ sonarqube)
   fi
   if [[ -z $SONAR_TOKEN ]]; then echo "SONAR_TOKEN is not set"; sleep 5s; exit 1; fi
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e -Pno-validations --no-transfer-progress clean package sonar:sonar $SONAR_PR_VARIABLES \
+  mvn -e --no-transfer-progress -Pno-validations clean package sonar:sonar $SONAR_PR_VARIABLES \
        -Dsonar.host.url=https://sonarcloud.io \
        -Dsonar.login=$SONAR_TOKEN \
        -Dsonar.projectKey=org.checkstyle:checkstyle \
@@ -58,8 +64,7 @@ sonarqube)
 
 
 no-error-pgjdbc)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
@@ -72,15 +77,14 @@ no-error-pgjdbc)
   ;;
 
 no-error-orekit)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/Hipparchus-Math/hipparchus.git
   cd .ci-temp/hipparchus
   # checkout to version that Orekit expects
   SHA_HIPPARCHUS="1fb""fb8a2a259a9""7a23e2a387e8fd""c5e0a8402e77"
   git checkout $SHA_HIPPARCHUS
-  mvn -e install -DskipTests
+  mvn -e --no-transfer-progress install -DskipTests
   cd -
   checkout_from https://github.com/CS-SI/Orekit.git
   cd .ci-temp/Orekit
@@ -88,77 +92,74 @@ no-error-orekit)
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
   git checkout "54f5f2eb410ec42e5410ec8e5c415ff9182d3235"
-  mvn -e compile checkstyle:check -Dorekit.checkstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress compile checkstyle:check \
+    -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles Orekit
   removeFolderWithProtectedFiles hipparchus
   ;;
 
 no-error-apex-core)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/apex-core
   cd .ci-temp/apex-core
-  mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles apex-core
   ;;
 
 no-error-equalsverifier)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles equalsverifier
   ;;
 
 no-error-hibernate-search)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/hibernate/hibernate-search.git
   cd .ci-temp/hibernate-search
-  mvn -e clean install -DskipTests=true -Dtest.elasticsearch.run.skip=true \
+  mvn -e --no-transfer-progress clean install -DskipTests=true -Dtest.elasticsearch.run.skip=true \
      -Dcheckstyle.skip=true -Dforbiddenapis.skip=true \
      -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
-  mvn -e checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress checkstyle:check  -Dpuppycrawl.checkstyle.version=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles hibernate-search
   ;;
 
 no-error-htmlunit)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/HtmlUnit/htmlunit
   cd .ci-temp/htmlunit
-  mvn -e compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles htmlunit
   ;;
 
 no-error-checkstyles-sevntu)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  mvn -e compile verify -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} \
+  mvn -e --no-transfer-progress compile verify \
+    -Dmaven.sevntu-checkstyle-check.checkstyle.version=${CS_POM_VERSION} \
     -Dmaven.test.skip=true -Dcheckstyle.ant.skip=true -Dpmd.skip=true -Dspotbugs.skip=true \
     -Djacoco.skip=true -Dforbiddenapis.skip=true -Dxml.skip=true
   ;;
 
 no-error-sevntu-checks)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
-  mvn -e -Pno-validations verify  -Dcheckstyle.skip=false -Dcheckstyle.version=${CS_POM_VERSION} \
+  mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.skip=false \
+     -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../../
   removeFolderWithProtectedFiles sevntu.checkstyle
@@ -166,17 +167,16 @@ no-error-sevntu-checks)
 
 no-error-contribution)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution
   cd patch-diff-report-tool
-  mvn -e verify -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} \
+  mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../
   cd releasenotes-builder
-  mvn -e verify -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} \
+  mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../../config/checkstyle_checks.xml
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -184,12 +184,11 @@ no-error-contribution)
 
 no-error-methods-distance)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/sevntu-checkstyle/methods-distance.git
   cd .ci-temp/methods-distance
-  mvn -e verify -DskipTests -Dcheckstyle-version=${CS_POM_VERSION} \
+  mvn -e --no-transfer-progress verify -DskipTests -Dcheckstyle-version=${CS_POM_VERSION} \
      -Dcheckstyle.configLocation=../../config/checkstyle_checks.xml
   cd ..
   removeFolderWithProtectedFiles  methods-distance
@@ -197,14 +196,14 @@ no-error-methods-distance)
 
 no-error-strata)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/OpenGamma/Strata.git
   cd .ci-temp/Strata
-  STRATA_CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${checkstyle.version}' \
+  STRATA_CS_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
+                     -Dexec.args='${checkstyle.version}' \
                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
-  mvn -e install -B -Dstrict -DskipTests \
+  mvn -e --no-transfer-progress install -B -Dstrict -DskipTests \
      -Dforbiddenapis.skip=true -Dcheckstyle.version=${CS_POM_VERSION} \
      -Dcheckstyle.config.suffix="-v$STRATA_CS_POM_VERSION"
   cd ../
@@ -213,8 +212,7 @@ no-error-strata)
 
 no-error-spring-integration)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/spring-projects/spring-integration.git
   cd .ci-temp/spring-integration
@@ -227,12 +225,11 @@ no-error-spring-integration)
 
 no-error-spring-cloud-gcp)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/googlecloudplatform/spring-cloud-gcp
   cd .ci-temp/spring-cloud-gcp
-  mvn -e checkstyle:check@checkstyle-validation \
+  mvn -e --no-transfer-progress checkstyle:check@checkstyle-validation \
    -Dmaven-checkstyle-plugin.version=3.1.1 \
    -Dpuppycrawl-tools-checkstyle.version=${CS_POM_VERSION}
   cd ..
@@ -240,8 +237,7 @@ no-error-spring-cloud-gcp)
   ;;
 
 no-exception-struts)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -255,8 +251,7 @@ no-exception-struts)
 
 no-exception-checkstyle-sevntu)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -271,8 +266,7 @@ no-exception-checkstyle-sevntu)
 
 no-exception-checkstyle-sevntu-javadoc)
   set -e
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -286,8 +280,7 @@ no-exception-checkstyle-sevntu-javadoc)
   ;;
 
 no-exception-guava)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -300,8 +293,7 @@ no-exception-guava)
   ;;
 
 no-exception-hibernate-orm)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -314,8 +306,7 @@ no-exception-hibernate-orm)
   ;;
 
 no-exception-spotbugs)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -328,8 +319,7 @@ no-exception-spotbugs)
   ;;
 
 no-exception-spoon)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -342,8 +332,7 @@ no-exception-spoon)
   ;;
 
 no-exception-spring-framework)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -356,8 +345,7 @@ no-exception-spring-framework)
   ;;
 
 no-exception-hbase)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -370,8 +358,7 @@ no-exception-hbase)
   ;;
 
 no-exception-Pmd-elasticsearch-lombok-ast)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -386,8 +373,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
   ;;
 
 no-exception-alot-of-projects)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -408,8 +394,7 @@ no-warning-imports-guava)
   PROJECTS=checks-import-order/projects-to-test-imports-guava.properties
   CONFIG=checks-import-order/checks-imports-error-guava.xml
   REPORT=reports/guava/site/index.html
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
@@ -432,8 +417,7 @@ no-warning-imports-java-design-patterns)
   PROJECTS=checks-import-order/projects-to-test-imports-java-design-patterns.properties
   CONFIG=checks-import-order/checks-imports-error-java-design-patterns.xml
   REPORT=reports/java-design-patterns/site/index.html
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution.git
   cd .ci-temp/contribution/checkstyle-tester
