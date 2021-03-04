@@ -511,6 +511,11 @@ public class WhitespaceAroundCheckTest
             "49:14: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "="),
             "49:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
             "62:21: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "="),
+            "75:22: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "78:26: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
+            "78:26: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, "{"),
+            "78:48: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "}"),
+            "83:27: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "{"),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputWhitespaceAroundAllowEmptyCompactCtors.java"),
