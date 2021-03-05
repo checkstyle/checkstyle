@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.Optional;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -51,11 +53,28 @@ public class MemberDefHandler extends AbstractExpressionHandler {
             checkType();
         }
         final DetailAST firstNode = getMainAst();
-        final DetailAST lastNode = getVarDefStatementSemicolon(firstNode);
+        final DetailAST lastNode = getArrayInitNode(firstNode)
+            .orElseGet(() -> getVarDefStatementSemicolon(firstNode));
 
-        if (lastNode != null && !isArrayDeclaration(firstNode)) {
+        if (lastNode != null) {
             checkWrappingIndentation(firstNode, lastNode);
         }
+    }
+
+    /**
+     * Finds the array init node.
+     *
+     * @param firstNode Node to begin searching
+     * @return array init node
+     */
+    private static Optional<DetailAST> getArrayInitNode(DetailAST firstNode) {
+        return Optional.ofNullable(firstNode.findFirstToken(TokenTypes.ASSIGN))
+            .map(assign -> {
+                return Optional.ofNullable(assign.findFirstToken(TokenTypes.EXPR))
+                    .map(expr -> expr.findFirstToken(TokenTypes.LITERAL_NEW))
+                    .orElse(assign);
+            })
+            .map(node -> node.findFirstToken(TokenTypes.ARRAY_INIT));
     }
 
     @Override
@@ -82,17 +101,6 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         if (isOnStartOfLine(ident) && !getIndent().isAcceptable(columnNo)) {
             logError(ident, "type", columnNo);
         }
-    }
-
-    /**
-     * Checks if variable_def node is array declaration.
-     *
-     * @param variableDef current variable_def.
-     * @return true if variable_def node is array declaration.
-     */
-    private static boolean isArrayDeclaration(DetailAST variableDef) {
-        return variableDef.findFirstToken(TokenTypes.TYPE)
-            .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
     }
 
     /**
