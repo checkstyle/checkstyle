@@ -63,7 +63,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         final String[] expected = {
-            "79:5: " + getCheckMessage(MSG_KEY, 20, 19),
+            "79:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
         verify(checkConfig, getPath("InputMethodLengthSimple.java"), expected);
     }
@@ -85,7 +85,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("max", "7");
         checkConfig.addAttribute("countEmpty", "false");
         final String[] expected = {
-            "25:5: " + getCheckMessage(MSG_KEY, 8, 7),
+            "25:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
         };
         verify(checkConfig, getPath("InputMethodLengthComments.java"), expected);
     }
@@ -109,11 +109,11 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         final int max = 2;
 
         final String[] expected = {
-            "21:9: " + getCheckMessage(MSG_KEY, 6, max),
-            "30:9: " + getCheckMessage(MSG_KEY, 5, max),
-            "38:9: " + getCheckMessage(MSG_KEY, 7, max),
-            "59:9: " + getCheckMessage(MSG_KEY, 15, max),
-            "62:17: " + getCheckMessage(MSG_KEY, 8, max),
+            "21:9: " + getCheckMessage(MSG_KEY, 6, max, "MyTestRecord2"),
+            "30:9: " + getCheckMessage(MSG_KEY, 5, max, "foo"),
+            "38:9: " + getCheckMessage(MSG_KEY, 7, max, "MyTestRecord4"),
+            "59:9: " + getCheckMessage(MSG_KEY, 15, max, "m"),
+            "62:17: " + getCheckMessage(MSG_KEY, 8, max, "R76"),
         };
 
         verify(checkConfig,
