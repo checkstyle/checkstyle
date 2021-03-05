@@ -1121,9 +1121,20 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addProperty("tabWidth", "4");
         checkConfig.addProperty("throwsIndent", "8");
         final String[] expected = {
-            "23:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
-            "24:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
-            "25:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+            "21:12: " + getCheckMessage(MSG_ERROR, "]", 11, 12),
+            "25:5: " + getCheckMessage(MSG_ERROR, "[", 4, 12),
+            "32:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
+            "33:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
+            "34:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+            "37:36: " + getCheckMessage(MSG_ERROR, "+", 35, 16),
+            "41:35: " + getCheckMessage(MSG_ERROR, "]", 34, 16),
+            "45:36: " + getCheckMessage(MSG_ERROR, "42", 35, 16),
+            "49:36: " + getCheckMessage(MSG_ERROR, "+", 35, 16),
+            "50:36: " + getCheckMessage(MSG_ERROR, "+", 35, 16),
+            "55:21: " + getCheckMessage(MSG_ERROR, "1", 20, 16),
+            "59:13: " + getCheckMessage(MSG_ERROR, "fun2", 12, 16),
+            "78:11: " + getCheckMessage(MSG_ERROR, "Object", 10, 12),
+            "82:16: " + getCheckMessage(MSG_ERROR, "]", 15, 12),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationNewWithForceStrictCondition.java"), expected);
@@ -2703,6 +2714,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "12:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
             "15:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
             "17:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
+            "25:1: " + getCheckMessage(MSG_ERROR, "=", 0, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
