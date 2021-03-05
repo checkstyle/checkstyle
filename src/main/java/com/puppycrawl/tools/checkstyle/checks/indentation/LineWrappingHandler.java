@@ -19,8 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
 
@@ -163,12 +165,45 @@ public class LineWrappingHandler {
                 continue;
             }
             if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
+                logWarningMessage(node, new IndentLevel(firstNodeIndent));
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                final int[] offsets =
+                    additionalOffsets(node, currentIndent);
+                logWarningMessage(node, new IndentLevel(
+                            new IndentLevel(currentIndent), offsets));
             }
         }
+    }
+
+    /**
+     * Returns possible offsets in addition to baseIndent for {@code node}.
+     *
+     * @param node Node to examine.
+     * @param baseIndent Current indentation level.
+     * @return Indentation offsets.
+     */
+    private static int[] additionalOffsets(DetailAST node, int baseIndent) {
+        final List<Integer> offsets = new ArrayList<>();
+        offsets.add(0);
+
+        for (DetailAST ast = node.getParent(); ast != null; ast = ast.getParent()) {
+            if (ast.getType() == TokenTypes.ARRAY_DECLARATOR
+                    && ast.getLineNo() < node.getLineNo()) {
+                int offset = ast.getColumnNo() - baseIndent;
+                if (node.getType() != TokenTypes.RBRACK) {
+                    offset++;
+                }
+                offsets.add(Math.max(0, offset));
+                break;
+            }
+        }
+
+        final int[] result = new int[offsets.size()];
+        for (int i = 0; i < offsets.size(); i++) {
+            result[i] = offsets.get(i);
+        }
+        return result;
     }
 
     /**
@@ -318,10 +353,10 @@ public class LineWrappingHandler {
                     && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
                         || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
                     || TokenUtil.areOnSameLine(node, atNode))) {
-                logWarningMessage(node, firstNodeIndent);
+                logWarningMessage(node, new IndentLevel(firstNodeIndent));
             }
             else if (!isArrayInitPresentInAncestors) {
-                logWarningMessage(node, currentIndent);
+                logWarningMessage(node, new IndentLevel(currentIndent));
             }
             itr.remove();
         }
@@ -423,18 +458,20 @@ public class LineWrappingHandler {
      * @param currentIndent
      *            correct indentation.
      */
-    private void logWarningMessage(DetailAST currentNode, int currentIndent) {
+    private void logWarningMessage(DetailAST currentNode, IndentLevel currentIndent) {
         if (indentCheck.isForceStrictCondition()) {
-            if (expandedTabsColumnNo(currentNode) != currentIndent) {
+            if (!currentIndent.isAcceptable(expandedTabsColumnNo(currentNode))) {
                 indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
+                        AbstractExpressionHandler.getIndentErrorMessage(currentIndent),
+                        currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
         else {
-            if (expandedTabsColumnNo(currentNode) < currentIndent) {
+            if (currentIndent.isGreaterThan(expandedTabsColumnNo(currentNode))) {
                 indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
+                        AbstractExpressionHandler.getIndentErrorMessage(currentIndent),
+                        currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
