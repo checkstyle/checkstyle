@@ -1066,9 +1066,13 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("tabWidth", "4");
         checkConfig.addAttribute("throwsIndent", "8");
         final String[] expected = {
-            "23:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
-            "24:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
-            "25:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+            "21:12: " + getCheckMessage(MSG_ERROR_MULTI, "]", 11, "12, 33"),
+            "25:5: " + getCheckMessage(MSG_ERROR, "[", 4, 12),
+            "32:17: " + getCheckMessage(MSG_ERROR, "new", 16, 24),
+            "33:21: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "object def", 20, "28, 32, 36"),
+            "34:17: " + getCheckMessage(MSG_ERROR_MULTI, "object def rcurly", 16, "24, 28, 32"),
+            "61:11: " + getCheckMessage(MSG_ERROR, "Object", 10, 12),
+            "65:16: " + getCheckMessage(MSG_ERROR_MULTI, "]", 15, "12, 62"),
         };
         verifyWarns(checkConfig,
             getPath("InputIndentationNewWithForceStrictCondition.java"), expected);
@@ -2621,6 +2625,7 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             "12:1: " + getCheckMessage(MSG_ERROR, "(", 0, 12),
             "15:1: " + getCheckMessage(MSG_CHILD_ERROR, "new", 0, 8),
             "17:1: " + getCheckMessage(MSG_ERROR, "new lparen", 0, 8),
+            "25:1: " + getCheckMessage(MSG_ERROR, "=", 0, 8),
         };
         verifyWarns(checkConfig, getPath("InputIndentationNewHandler.java"), expected);
     }
