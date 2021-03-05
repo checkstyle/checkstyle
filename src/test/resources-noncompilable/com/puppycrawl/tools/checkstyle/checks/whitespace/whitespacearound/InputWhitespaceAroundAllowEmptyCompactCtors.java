@@ -63,6 +63,6 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
     }
 
     record TestRecord7() {
-        public TestRecord7 {} // ok
+        public TestRecord7{} // violation, no WS before '{'
     }
 }
