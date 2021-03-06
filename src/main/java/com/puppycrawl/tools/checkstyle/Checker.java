@@ -27,13 +27,13 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -240,20 +240,11 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      *         checks and filters.
      */
     private Set<String> getExternalResourceLocations() {
-        final Set<String> externalResources = new HashSet<>();
-        fileSetChecks.stream().filter(check -> check instanceof ExternalResourceHolder)
-            .forEach(check -> {
-                final Set<String> locations =
-                    ((ExternalResourceHolder) check).getExternalResourceLocations();
-                externalResources.addAll(locations);
-            });
-        filters.getFilters().stream().filter(filter -> filter instanceof ExternalResourceHolder)
-            .forEach(filter -> {
-                final Set<String> locations =
-                    ((ExternalResourceHolder) filter).getExternalResourceLocations();
-                externalResources.addAll(locations);
-            });
-        return externalResources;
+        return Stream.concat(fileSetChecks.stream(), filters.getFilters().stream())
+            .filter(ExternalResourceHolder.class::isInstance)
+            .map(ExternalResourceHolder.class::cast)
+            .flatMap(resource -> resource.getExternalResourceLocations().stream())
+            .collect(Collectors.toSet());
     }
 
     /** Notify all listeners about the audit start. */
