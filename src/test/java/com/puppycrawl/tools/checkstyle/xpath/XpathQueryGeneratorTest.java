@@ -514,17 +514,18 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
         final int tabWidth = 8;
 
-        final int lineNumberOne = 6;
-        final int columnNumberOne = 25;
-        final XpathQueryGenerator queryGeneratorOne = new XpathQueryGenerator(detailAst,
-                lineNumberOne, columnNumberOne, testFileText, tabWidth);
-        final List<String> actualTestOne = queryGeneratorOne.generate();
-        final List<String> expectedTestOne = Collections.singletonList(
+        final int lineNumber = 6;
+        final int columnNumber = 25;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
+                lineNumber, columnNumber, testFileText, tabWidth);
+        final List<String> actualTest = queryGenerator.generate();
+        final List<String> expectedTest = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTextBlock']]/OBJBLOCK/"
                     + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
-                    + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT"
+                    + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT[@text='\\n        "
+                    + "&amp;1line\\n        &gt;2line\\n        &lt;3line\\n        ']"
             );
-        assertEquals(expectedTestOne, actualTestOne,
+        assertEquals(expectedTest, actualTest,
                 "Generated queries do not match expected ones");
     }
 }
