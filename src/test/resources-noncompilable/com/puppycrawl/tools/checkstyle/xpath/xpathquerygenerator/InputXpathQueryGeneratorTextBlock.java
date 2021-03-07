@@ -5,6 +5,7 @@ public class InputXpathQueryGeneratorTextBlock {
 
     String testOne = """
         &1line
+
         >2line
         <3line
         """;
