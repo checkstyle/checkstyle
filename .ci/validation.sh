@@ -1,15 +1,9 @@
 #!/bin/bash
 set -e
 
-removeFolderWithProtectedFiles() {
-  find "$1" -delete
-}
-
-function getCheckstylePomVersion {
-  echo "$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
-                      -Dexec.args='${project.version}' \
-                      --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)"
-}
+source ./util.sh
+#getCheckstylePomVersion
+#removeFolderWithProtectedFiles
 
 addCheckstyleBundleToAntResolvers() {
   xmlstarlet ed --inplace \
