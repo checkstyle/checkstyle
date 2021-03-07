@@ -64,7 +64,8 @@ public class TryHandler extends BlockParentHandler {
         final IndentLevel result;
         if (child instanceof CatchHandler
             || child instanceof FinallyHandler
-            || child instanceof NewHandler) {
+            || child instanceof NewHandler
+                && isTryBlocksResourceSpecification(child)) {
             result = getIndent();
         }
         else {
@@ -161,6 +162,30 @@ public class TryHandler extends BlockParentHandler {
             }
             resourceAst = resourceAst.getNextSibling();
         }
+    }
+
+    /**
+     * Check if the expression is resource of try block.
+     * https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.20.3
+     *
+     * @param expression The expression to check
+     * @return if the expression provided is try block's resource specification.
+     */
+    private static boolean isTryBlocksResourceSpecification(AbstractExpressionHandler expression) {
+        boolean isResourceSpecificationExpression = false;
+
+        DetailAST ast = expression.getMainAst();
+
+        while (ast.getType() != TokenTypes.LITERAL_TRY) {
+            if (ast.getType() == TokenTypes.RESOURCE_SPECIFICATION) {
+                isResourceSpecificationExpression = true;
+                break;
+            }
+
+            ast = ast.getParent();
+        }
+
+        return isResourceSpecificationExpression;
     }
 
 }
