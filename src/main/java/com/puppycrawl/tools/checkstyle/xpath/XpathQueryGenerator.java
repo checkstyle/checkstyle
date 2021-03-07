@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
@@ -192,7 +193,8 @@ public class XpathQueryGenerator {
             }
             xpathQueryBuilder.append(']');
         }
-        return xpathQueryBuilder.toString();
+        return Pattern.compile("[\n]+").matcher(xpathQueryBuilder
+                .toString()).replaceAll("\\\\n");
     }
 
     /**
