@@ -340,7 +340,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * </p>
  * <pre>
  * class Test {
- *     public Test(){} // ok
+ *     public Test() {} // ok
  *     public void muFunction() {} // violation, '{' is not followed by whitespace.
  * }
  * </pre>
@@ -767,9 +767,10 @@ public class WhitespaceAroundCheck extends AbstractCheck {
      * @return true if it should be checked if next token is separated by whitespace,
      *      false otherwise.
      */
-    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
-        return !(ast.getType() == TokenTypes.LITERAL_RETURN
-                    && ast.getFirstChild().getType() == TokenTypes.SEMI)
+    private boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {
+        return !(allowEmptyConstructors && isEmptyCtorBlock(ast))
+                && !(ast.getType() == TokenTypes.LITERAL_RETURN
+                && ast.getFirstChild().getType() == TokenTypes.SEMI)
                 && ast.getType() != TokenTypes.ARRAY_INIT
                 && !isAnonymousInnerClassEnd(ast.getType(), nextChar)
                 && !isPartOfDoubleBraceInitializerForNextToken(ast);
@@ -800,6 +801,7 @@ public class WhitespaceAroundCheck extends AbstractCheck {
     private boolean isEmptyBlock(DetailAST ast, int parentType) {
         return isEmptyMethodBlock(ast, parentType)
                 || isEmptyCtorBlock(ast, parentType)
+                && !isEmptyCtorBlock(ast)
                 || isEmptyLoop(ast, parentType)
                 || isEmptyLambda(ast, parentType)
                 || isEmptyCatch(ast, parentType);
@@ -899,6 +901,20 @@ public class WhitespaceAroundCheck extends AbstractCheck {
         return allowEmptyConstructors
                 && (isEmptyBlock(ast, parentType, TokenTypes.CTOR_DEF)
                     || isEmptyBlock(ast, parentType, TokenTypes.COMPACT_CTOR_DEF));
+    }
+
+    /**
+     * Test if the given {@code DetailAST} is a part of a
+     * constructor.
+     *
+     * @param ast the {@code DetailAST} to test.
+     * @return {@code true} if {@code ast} makes up part of a
+     *          constructor block.
+     */
+    private static boolean isEmptyCtorBlock(DetailAST ast) {
+        return (ast.getParent().getType() == TokenTypes.CTOR_DEF
+                || ast.getParent().getType() == TokenTypes.COMPACT_CTOR_DEF)
+                && ast.getFirstChild().getType() == TokenTypes.RCURLY;
     }
 
     /**
