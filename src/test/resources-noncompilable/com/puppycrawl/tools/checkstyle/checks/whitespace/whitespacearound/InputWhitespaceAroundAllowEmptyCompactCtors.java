@@ -63,6 +63,22 @@ public class InputWhitespaceAroundAllowEmptyCompactCtors {
     }
 
     record TestRecord7() {
-        public TestRecord7 {} // ok
+        public TestRecord7{} // violation, no WS before '{'
+    }
+
+    class foo {
+        public foo() {}
+        public foo() {
+            System.out.println();
+        }
+    }
+
+    class foo2 {
+        public foo(){} // violation, no WS before '{'
+        class foo3 {
+            public foo3(){ // violation, no WS before '{'
+                System.out.println();
+            }
+        }
     }
 }
