@@ -104,7 +104,8 @@ public final class XpathUtil {
     private static final Set<Integer> TOKEN_TYPES_WITH_TEXT_ATTRIBUTE =
         Stream.of(
             TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
-            TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT)
+            TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
+            TokenTypes.TEXT_BLOCK_CONTENT)
         .collect(Collectors.toSet());
 
     /** Delimiter to separate xpath results. */
@@ -157,6 +158,7 @@ public final class XpathUtil {
         if (ast.getType() == TokenTypes.STRING_LITERAL) {
             text = text.substring(1, text.length() - 1);
         }
+        text = text.replaceAll("[\n]+", "\\\\n");
         return text;
     }
 
