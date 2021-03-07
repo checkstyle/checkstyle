@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.xpath;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
@@ -74,6 +75,11 @@ import com.puppycrawl.tools.checkstyle.utils.XpathUtil;
  *
  */
 public class XpathQueryGenerator {
+
+    /**
+     * This regexp is used to convert new line to newline tag.
+     */
+    private static final Pattern NEWLINE_TO_TAG = Pattern.compile("[\n]+");
 
     /** The root ast. */
     private final DetailAST rootAst;
@@ -192,7 +198,7 @@ public class XpathQueryGenerator {
             }
             xpathQueryBuilder.append(']');
         }
-        return xpathQueryBuilder.toString();
+        return NEWLINE_TO_TAG.matcher(xpathQueryBuilder.toString()).replaceAll("\\\\n");
     }
 
     /**
