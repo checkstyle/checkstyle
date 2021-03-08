@@ -2626,6 +2626,28 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testTryHandler() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationTryBlockWithResources.java"), expected);
+    }
+
+    @Test
+    public void testTryHandler2() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationTryBlock.java"), expected);
+    }
+
+    @Test
     public void testChainedMethodWithBracketOnNewLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
