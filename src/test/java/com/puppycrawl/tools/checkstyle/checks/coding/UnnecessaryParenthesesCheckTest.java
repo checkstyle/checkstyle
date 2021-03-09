@@ -184,4 +184,38 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
         assertNotNull(check.getRequiredTokens(), "Required tokens should not be null");
     }
 
+    @Test
+    public void testIfStatement() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(UnnecessaryParenthesesCheck.class);
+
+        final String[] expected = {
+            "10:20: " + getCheckMessage(MSG_EXPR),
+            "25:13: " + getCheckMessage(MSG_EXPR),
+            "25:24: " + getCheckMessage(MSG_EXPR),
+            "29:13: " + getCheckMessage(MSG_EXPR),
+            "29:14: " + getCheckMessage(MSG_EXPR),
+            "29:25: " + getCheckMessage(MSG_EXPR),
+            "33:26: " + getCheckMessage(MSG_EXPR),
+            "37:13: " + getCheckMessage(MSG_EXPR),
+            "37:25: " + getCheckMessage(MSG_EXPR),
+            "41:13: " + getCheckMessage(MSG_EXPR),
+            "41:14: " + getCheckMessage(MSG_EXPR),
+            "41:26: " + getCheckMessage(MSG_EXPR),
+            "45:13: " + getCheckMessage(MSG_EXPR),
+            "50:14: " + getCheckMessage(MSG_EXPR),
+            "50:30: " + getCheckMessage(MSG_EXPR),
+            "53:12: " + getCheckMessage(MSG_EXPR),
+            "53:34: " + getCheckMessage(MSG_EXPR),
+            "53:56: " + getCheckMessage(MSG_EXPR),
+            "60:20: " + getCheckMessage(MSG_EXPR),
+            "78:12: " + getCheckMessage(MSG_EXPR),
+            "81:12: " + getCheckMessage(MSG_EXPR),
+            "81:26: " + getCheckMessage(MSG_EXPR),
+            "84:12: " + getCheckMessage(MSG_EXPR),
+        };
+
+        verify(checkConfig, getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
+    }
+
 }
