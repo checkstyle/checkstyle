@@ -502,7 +502,13 @@ public class CommentsIndentationCheck extends AbstractCheck {
         if (currentToken.getType() == TokenTypes.SEMI) {
             currentToken = currentToken.getPreviousSibling();
             while (currentToken.getFirstChild() != null) {
-                currentToken = currentToken.getFirstChild();
+                DetailAST child = currentToken.getFirstChild();
+                while (child != null && isComment(child)) {
+                    child = child.getNextSibling();
+                }
+                if (child != null) {
+                    currentToken = child;
+                }
             }
             previousStatement = currentToken;
         }
