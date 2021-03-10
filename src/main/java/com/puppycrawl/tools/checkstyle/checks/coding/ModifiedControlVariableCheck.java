@@ -40,7 +40,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * for (int i = 0; i &lt; 1; i++) {
- *   i++; //violation
+ *   i++; // violation
  * }
  * </pre>
  * <p>
@@ -57,6 +57,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  *   i++;
  * }
  * </pre>
+ * <p>
+ * NOTE:The check works with only primitive type variables.
+ * The check will not work for arrays used as control variable.An example is
+ * </p>
+ * <pre>
+ * for (int a[]={0};a[0] &lt; 10;a[0]++) {
+ *  a[0]++;   // it will skip this violation
+ * }
+ * </pre>
  * <ul>
  * <li>
  * Property {@code skipEnhancedForLoopVariable} - Control whether to check
@@ -71,6 +80,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * &lt;module name="ModifiedControlVariable"/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * class Demo {
+ *    public static void main(String args[]) {
+ *      for(int i=0;i &lt; 8;i++) {
+ *       i++; // violation
+ *      }
+ *    }
+ * }
  * </pre>
  * <p>
  * By default, This Check validates
@@ -92,8 +113,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <p>Example:</p>
  *
  * <pre>
- * for (String line: lines) {
- *   line = line.trim();   // it will skip this violation
+ * for (String arg: args) {
+ *   arg = arg.trim();   // ok
  * }
  * </pre>
  * <p>
