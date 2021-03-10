@@ -155,7 +155,19 @@ for (Iterator foo = very.long.line.iterator();
         <source>
 &lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // violation since whitespace
+                                                                //after semicolon
 
+for (Iterator i = m.entrySet().iterator();  i.hasNext();); // ok
+
+for (Iterator foo = very.long.line.iterator();
+     foo.hasNext();
+     ); // ok
+        </source>
         <p>
           To configure the check to require white space at an empty for
           iterator:
@@ -164,6 +176,19 @@ for (Iterator foo = very.long.line.iterator();
 &lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // ok
+
+for (Iterator i = m.entrySet().iterator();  i.hasNext();); // violation as there is no
+                                                           // whitespace after semicolon
+
+for (Iterator foo = very.long.line.iterator();
+     foo.hasNext();
+     ); // violation as there  is no whitespace after semicolon
         </source>
       </subsection>
 
