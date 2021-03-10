@@ -53,6 +53,26 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * try {
+ *   throw new RuntimeException();
+ * } catch(RuntimeException expected) {
+ * } // violation
+ * try {
+ *   throw new RuntimeException();
+ * } catch(RuntimeException ignore) {
+ *   // no handling
+ * } // ok, catch block has comment
+ * </pre>
+ * <p>
  * To configure the check to suppress empty catch block if exception's variable name is
  * {@code expected} or {@code ignore} or there's any comment inside:
  * </p>
