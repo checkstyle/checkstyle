@@ -51,12 +51,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * &lt;module name=&quot;EmptyForIteratorPad&quot;/&gt;
  * </pre>
  * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for (Iterator foo =mp.entrySet().iterator();  foo.hasNext(); ); // violation since whitespace
+ *                                                                 //after semicolon
+ *
+ * for (Iterator foo =mp.entrySet().iterator();  foo.hasNext();); // ok
+ * </pre>
+ * <p>
  * To configure the check to require white space at an empty for iterator:
  * </p>
  * <pre>
  * &lt;module name=&quot;EmptyForIteratorPad&quot;&gt;
  *   &lt;property name=&quot;option&quot; value=&quot;space&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * for (Iterator foo =mp.entrySet().iterator();  foo.hasNext(); ); // ok
+ *
+ * for (Iterator foo =mp.entrySet().iterator();  foo.hasNext();); // violation as there  is
+ *                                                               // no whitespace after semicolon
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
