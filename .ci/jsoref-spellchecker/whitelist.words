@@ -216,6 +216,7 @@ clemens
 Clickable
 Clientjunk
 Cloneable
+cloudbees
 clss
 cmdline
 cmt
@@ -582,6 +583,7 @@ invalidinherit
 invalidjavadocposition
 ioe
 ioffset
+IPohr
 IPv
 isindex
 isrutf
@@ -626,6 +628,7 @@ javaparser
 javarevisited
 javascript
 javase
+javassist
 javastrangefolder
 javax
 Jax
@@ -994,7 +997,6 @@ pmdruleset
 PModel
 png
 Pno
-Pohr
 Pointcut
 POJO
 Popup

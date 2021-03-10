@@ -2,20 +2,19 @@
 # Attention, there is no "-x" to avoid problems on Travis
 set -e
 
-removeFolderWithProtectedFiles() {
-  find $1 -delete
-}
+source ./.ci/util.sh
 
 case $1 in
 
 checkstyle-and-sevntu)
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean verify -DskipTests -DskipITs -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
+  mvn -e --no-transfer-progress clean verify -DskipTests -DskipITs --no-transfer-progress \
+    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true
   ;;
 
 jacoco)
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean test \
+  mvn -e --no-transfer-progress clean test \
     jacoco:restore-instrumented-classes \
     jacoco:report@default-report \
     jacoco:check@default-check
@@ -26,70 +25,71 @@ jacoco)
   ;;
 
 test)
-  mvn -e clean integration-test failsafe:verify -DargLine='-Xms1024m -Xmx2048m'
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
+  -DargLine='-Xms1024m -Xmx2048m'
   ;;
 
 test-de)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=de -Duser.country=DE -Xms1024m -Xmx2048m'
   ;;
 
 test-es)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=es -Duser.country=ES -Xms1024m -Xmx2048m'
   ;;
 
 test-fi)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=fi -Duser.country=FI -Xms1024m -Xmx2048m'
   ;;
 
 test-fr)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=fr -Duser.country=FR -Xms1024m -Xmx2048m'
   ;;
 
 test-zh)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=zh -Duser.country=CN -Xms1024m -Xmx2048m'
   ;;
 
 test-ja)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=ja -Duser.country=JP -Xms1024m -Xmx2048m'
   ;;
 
 test-pt)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=pt -Duser.country=PT -Xms1024m -Xmx2048m'
   ;;
 
 test-tr)
-  mvn -e clean integration-test failsafe:verify \
+  mvn -e --no-transfer-progress clean integration-test failsafe:verify \
     -DargLine='-Duser.language=tr -Duser.country=TR -Xms1024m -Xmx2048m'
   ;;
 
 osx-assembly)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package -Passembly
+  mvn -e --no-transfer-progress package -Passembly
   ;;
 
 osx-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package
+  mvn -e --no-transfer-progress package
   ;;
 
 osx-jdk13-package)
   export JAVA_HOME=$(/usr/libexec/java_home)
-  mvn -e package
+  mvn -e --no-transfer-progress package
   ;;
 
 osx-jdk13-assembly)
-  mvn -e package -Passembly
+  mvn -e --no-transfer-progress package -Passembly
   ;;
 
 site)
-  mvn -e clean site -Pno-validations
+  mvn -e --no-transfer-progress clean site -Pno-validations
   ;;
 
 javac8)
@@ -152,18 +152,19 @@ javac15)
   ;;
 
 jdk14-assembly-site)
-  mvn -e package -Passembly
-  mvn -e site -Pno-validations
+  mvn -e --no-transfer-progress package -Passembly
+  mvn -e --no-transfer-progress site -Pno-validations
   ;;
 
 jdk14-verify-limited)
   # we skip pmd and spotbugs as they executed in special Travis build
-  mvn -e verify -Dpmd.skip=true -Dspotbugs.skip=true
+  mvn -e --no-transfer-progress verify -Dpmd.skip=true -Dspotbugs.skip=true
   ;;
 
 versions)
   if [ -v TRAVIS_EVENT_TYPE ] && [ $TRAVIS_EVENT_TYPE != "cron" ] ; then exit 0; fi
-  mvn -e clean versions:dependency-updates-report versions:plugin-updates-report
+  mvn -e --no-transfer-progress clean versions:dependency-updates-report \
+    versions:plugin-updates-report
   if [ $(grep "<nextVersion>" target/*-updates-report.xml | cat | wc -l) -gt 0 ]; then
     echo "Version reports (dependency-updates-report.xml):"
     cat target/dependency-updates-report.xml
@@ -182,9 +183,8 @@ versions)
   ;;
 
 assembly-run-all-jar)
-  mvn -e clean package -Passembly
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  mvn -e --no-transfer-progress clean package -Passembly
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:$CS_POM_VERSION
   mkdir -p .ci-temp
   FOLDER=src/it/resources/com/google/checkstyle/test/chapter7javadoc/rule73wherejavadocrequired
@@ -204,10 +204,11 @@ assembly-run-all-jar)
 
 release-dry-run)
   if [ $(git log -1 | grep -E "\[maven-release-plugin\] prepare release" | cat | wc -l) -lt 1 ];then
-    mvn -e release:prepare -DdryRun=true --batch-mode -Darguments='-DskipTests -DskipITs \
-      -Djacoco.skip=true -Dpmd.skip=true -Dspotbugs.skip=true -Dxml.skip=true \
-      -Dcheckstyle.ant.skip=true -Dcheckstyle.skip=true -Dgpg.skip=true'
-    mvn -e release:clean
+    mvn -e --no-transfer-progress release:prepare -DdryRun=true --batch-mode \
+    -Darguments='-DskipTests -DskipITs -Djacoco.skip=true -Dpmd.skip=true \
+      -Dspotbugs.skip=true -Dxml.skip=true -Dcheckstyle.ant.skip=true \
+      -Dcheckstyle.skip=true -Dgpg.skip=true --no-transfer-progress'
+    mvn -e --no-transfer-progress release:clean
   fi
   ;;
 
@@ -248,14 +249,11 @@ check-chmod)
   ;;
 
 no-error-test-sbe)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                    --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:$CS_POM_VERSION
-  mvn -e clean install -Pno-validations
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/real-logic/simple-binary-encoding.git
-  cd simple-binary-encoding
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  checkout_from https://github.com/real-logic/simple-binary-encoding.git
+  cd .ci-temp/simple-binary-encoding
   sed -i'' \
     "s/'com.puppycrawl.tools:checkstyle:.*'/'com.puppycrawl.tools:checkstyle:$CS_POM_VERSION'/" \
     build.gradle
@@ -265,43 +263,44 @@ no-error-test-sbe)
   ;;
 
 no-error-xwiki)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                    --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo version:$CS_POM_VERSION
-  mvn -e clean install -Pno-validations
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone --depth 1 https://github.com/xwiki/xwiki-commons.git
-  cd xwiki-commons
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  checkout_from https://github.com/xwiki/xwiki-commons.git
+  cd .ci-temp/xwiki-commons
   # Build custom Checkstyle rules
-  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
+  mvn -e --no-transfer-progress -f \
+    xwiki-commons-tools/xwiki-commons-tool-verification-resources/pom.xml \
     install -DskipTests -Dcheckstyle.version=${CS_POM_VERSION}
   # Validate xwiki-commons
-  mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   # Install various required poms and extensions
-  mvn -e install:install-file -Dfile=pom.xml -DpomFile=pom.xml
-  mvn -e install:install-file -Dfile=xwiki-commons-tools/pom.xml \
+  mvn -e --no-transfer-progress install:install-file -Dfile=pom.xml -DpomFile=pom.xml
+  mvn -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-tools/pom.xml \
     -DpomFile=xwiki-commons-tools/pom.xml
-  mvn -e install:install-file -Dfile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml \
+  mvn -e --no-transfer-progress install:install-file \
+    -Dfile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml \
     -DpomFile=xwiki-commons-tools/xwiki-commons-tool-pom/pom.xml
-  mvn -e install:install-file -Dfile=xwiki-commons-pom/pom.xml \
+  mvn -e --no-transfer-progress install:install-file -Dfile=xwiki-commons-pom/pom.xml \
     -DpomFile=xwiki-commons-pom/pom.xml
-  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
-    install -Dmaven.test.skip
-  mvn -e -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
-  install -Dmaven.test.skip
+  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-webjar-handlers/pom.xml \
+    install -Dmaven.test.skip -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress -f xwiki-commons-tools/xwiki-commons-tool-xar/pom.xml \
+    install -Dmaven.test.skip -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-commons
-  git clone --depth 1 https://github.com/xwiki/xwiki-rendering.git
-  cd xwiki-rendering
+  cd ..
+  checkout_from https://github.com/xwiki/xwiki-rendering.git
+  cd .ci-temp/xwiki-rendering
   # Validate xwiki-rendering
-  mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
-  git clone --depth 1 https://github.com/xwiki/xwiki-platform.git
-  cd xwiki-platform
+  cd ..
+  checkout_from https://github.com/xwiki/xwiki-platform.git
+  cd .ci-temp/xwiki-platform
   # Validate xwiki-platform
-  mvn -e checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-platform
   ;;
@@ -386,8 +385,7 @@ check-since-version)
 
   if [ -f "$NEW_CHECK_FILE" ]; then
     echo "New Check detected: $NEW_CHECK_FILE"
-    CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+    CS_POM_VERSION="$(getCheckstylePomVersion)"
     CS_RELEASE_VERSION=$(echo $CS_POM_VERSION | cut -d '-' -f 1)
     echo "CS Release version: $CS_RELEASE_VERSION"
     echo "Grep for @since $CS_RELEASE_VERSION"
@@ -402,7 +400,7 @@ spotbugs-and-pmd)
   mkdir -p .ci-temp/spotbugs-and-pmd
   CHECKSTYLE_DIR=$(pwd)
   export MAVEN_OPTS='-Xmx2000m'
-  mvn -e clean test-compile pmd:check spotbugs:check
+  mvn -e --no-transfer-progress clean test-compile pmd:check spotbugs:check
   cd .ci-temp/spotbugs-and-pmd
   grep "Processing_Errors" "$CHECKSTYLE_DIR/target/site/pmd.html" | cat > errors.log
   RESULT=$(cat errors.log | wc -l)

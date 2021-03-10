@@ -3312,14 +3312,22 @@ public boolean testMethod(int firstParam) {
             </tr>
             <tr>
               <td>ignoredTags</td>
-              <td>Specify block tags which are ignored by the check.</td>
+              <td>
+                Specify
+                <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                block tags</a> which are ignored by the check.
+              </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
               <td><code>{}</code></td>
               <td>6.8</td>
             </tr>
             <tr>
               <td>ignoreInlineTags</td>
-              <td>Control whether inline tags must be ignored.</td>
+              <td>
+                Control whether
+                <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                inline tags</a> must be ignored.
+              </td>
               <td><a href="property_types.html#boolean">boolean</a></td>
               <td><code>true</code></td>
               <td>6.8</td>
@@ -3336,14 +3344,168 @@ public boolean testMethod(int firstParam) {
 &lt;module name=&quot;SingleLineJavadoc&quot;/&gt;
         </source>
         <p>
-          To configure the check with a list of ignored block tags and make
-          inline tags not ignored:
+          Example:
+        </p>
+        <source>
+/** @see Math */ // violation, javadoc should be multiline
+public int foo() {
+  return 42;
+}
+
+/**
+ * @return 42
+ */  // ok
+public int bar() {
+  return 42;
+}
+
+/** {@link #equals(Object)} */ // ok
+public int baz() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question
+ */ // ok
+public int magic() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+ */ // ok
+public int foobar() {
+  return 42;
+}
+        </source>
+        <p>
+          To configure the check with a list of ignored block tags:
         </p>
         <source>
 &lt;module name=&quot;SingleLineJavadoc&quot;&gt;
   &lt;property name=&quot;ignoredTags&quot; value=&quot;&#64;inheritDoc, &#64;see&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/** @see Math */ // ok
+public int foo() {
+    return 42;
+}
+
+/**
+ * @return 42
+ */  // ok
+public int bar() {
+  return 42;
+}
+
+/** {@link #equals(Object)} */ // ok
+public int baz() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question
+ */ // ok
+public int magic() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+ */ // ok
+public int foobar() {
+  return 42;
+}
+        </source>
+        <p>
+          To configure the check to not ignore inline tags:
+        </p>
+        <source>
+&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
   &lt;property name=&quot;ignoreInlineTags&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/** @see Math */ // violation, javadoc should be multiline
+public int foo() {
+  return 42;
+}
+
+/**
+ * @return 42
+ */  // ok
+public int bar() {
+  return 42;
+}
+
+/** {@link #equals(Object)} */ // violation, javadoc should be multiline
+public int baz() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question
+ */ // ok
+public int magic() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+ */ // ok
+public int foobar() {
+  return 42;
+}
+        </source>
+        <p>
+          To configure the check to report violations for Tight-HTML Rules:
+        </p>
+        <source>
+&lt;module name=&quot;SingleLineJavadoc&quot;&gt;
+  &lt;property name=&quot;violateExecutionOnNonTightHtml&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+/** @see Math */ // violation, javadoc should be multiline
+public int foo() {
+  return 42;
+}
+
+/**
+ * @return 42
+ */  // ok
+public int bar() {
+  return 42;
+}
+
+/** {@link #equals(Object)} */ // ok
+public int baz() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question
+ */ // violation, unclosed HTML tag found: p
+public int magic() {
+  return 42;
+}
+
+/**
+ * &lt;p&gt;the answer to the ultimate question&lt;/p&gt;
+ */ // ok
+public int foobar() {
+  return 42;
+}
         </source>
       </subsection>
 

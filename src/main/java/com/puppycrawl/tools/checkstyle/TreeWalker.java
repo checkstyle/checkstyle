@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Locale;
@@ -29,6 +30,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
@@ -60,10 +63,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             new HashMap<>();
 
     /** Registered ordinary checks, that don't use comment nodes. */
-    private final Set<AbstractCheck> ordinaryChecks = new HashSet<>();
+    private final Set<AbstractCheck> ordinaryChecks = createNewCheckSortedSet();
 
     /** Registered comment checks. */
-    private final Set<AbstractCheck> commentChecks = new HashSet<>();
+    private final Set<AbstractCheck> commentChecks = createNewCheckSortedSet();
 
     /** The ast filters. */
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
@@ -241,7 +244,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
      */
     private void registerCheck(int tokenId, AbstractCheck check) throws CheckstyleException {
         if (check.isCommentNodesRequired()) {
-            tokenToCommentChecks.computeIfAbsent(tokenId, empty -> new HashSet<>()).add(check);
+            tokenToCommentChecks.computeIfAbsent(tokenId, empty -> createNewCheckSortedSet())
+                    .add(check);
         }
         else if (TokenUtil.isCommentType(tokenId)) {
             final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
@@ -251,7 +255,8 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             throw new CheckstyleException(message);
         }
         else {
-            tokenToOrdinaryChecks.computeIfAbsent(tokenId, empty -> new HashSet<>()).add(check);
+            tokenToOrdinaryChecks.computeIfAbsent(tokenId, empty -> createNewCheckSortedSet())
+                    .add(check);
         }
     }
 
@@ -380,52 +385,12 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     @Override
     public Set<String> getExternalResourceLocations() {
-        final Set<String> ordinaryChecksResources =
-                getExternalResourceLocationsOfChecks(ordinaryChecks);
-        final Set<String> commentChecksResources =
-                getExternalResourceLocationsOfChecks(commentChecks);
-        final Set<String> filtersResources =
-                getExternalResourceLocationsOfFilters();
-        final int resultListSize = commentChecksResources.size()
-                + ordinaryChecksResources.size()
-                + filtersResources.size();
-        final Set<String> resourceLocations = new HashSet<>(resultListSize);
-        resourceLocations.addAll(ordinaryChecksResources);
-        resourceLocations.addAll(commentChecksResources);
-        resourceLocations.addAll(filtersResources);
-        return resourceLocations;
-    }
-
-    /**
-     * Returns a set of external configuration resource locations which are used by the filters set.
-     *
-     * @return a set of external configuration resource locations which are used by the filters set.
-     */
-    private Set<String> getExternalResourceLocationsOfFilters() {
-        final Set<String> externalConfigurationResources = new HashSet<>();
-        filters.stream().filter(filter -> filter instanceof ExternalResourceHolder)
-                .forEach(filter -> {
-                    final Set<String> checkExternalResources =
-                        ((ExternalResourceHolder) filter).getExternalResourceLocations();
-                    externalConfigurationResources.addAll(checkExternalResources);
-                });
-        return externalConfigurationResources;
-    }
-
-    /**
-     * Returns a set of external configuration resource locations which are used by the checks set.
-     *
-     * @param checks a set of checks.
-     * @return a set of external configuration resource locations which are used by the checks set.
-     */
-    private static Set<String> getExternalResourceLocationsOfChecks(Set<AbstractCheck> checks) {
-        final Set<String> externalConfigurationResources = new HashSet<>();
-        checks.stream().filter(check -> check instanceof ExternalResourceHolder).forEach(check -> {
-            final Set<String> checkExternalResources =
-                ((ExternalResourceHolder) check).getExternalResourceLocations();
-            externalConfigurationResources.addAll(checkExternalResources);
-        });
-        return externalConfigurationResources;
+        return Stream.concat(filters.stream(),
+                Stream.concat(ordinaryChecks.stream(), commentChecks.stream()))
+            .filter(ExternalResourceHolder.class::isInstance)
+            .map(ExternalResourceHolder.class::cast)
+            .flatMap(resource -> resource.getExternalResourceLocations().stream())
+            .collect(Collectors.toSet());
     }
 
     /**
@@ -447,6 +412,20 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             }
             curNode = toVisit;
         }
+    }
+
+    /**
+     * Creates a new {@link SortedSet} with a deterministic order based on the
+     * Check's name before the default ordering.
+     *
+     * @return The new {@link SortedSet}.
+     */
+    private static SortedSet<AbstractCheck> createNewCheckSortedSet() {
+        return new TreeSet<>(
+                Comparator.<AbstractCheck, String>comparing(check -> check.getClass().getName())
+                        .thenComparing(AbstractCheck::getId,
+                                Comparator.nullsLast(Comparator.naturalOrder()))
+                        .thenComparing(AbstractCheck::hashCode));
     }
 
     /**

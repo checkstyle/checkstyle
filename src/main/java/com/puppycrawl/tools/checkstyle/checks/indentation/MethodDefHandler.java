@@ -149,9 +149,6 @@ public class MethodDefHandler extends BlockParentHandler {
             case TokenTypes.COMPACT_CTOR_DEF:
                 name = "compact ctor def";
                 break;
-            case TokenTypes.RECORD_DEF:
-                name = "record def";
-                break;
             default:
                 name = "method def";
         }

@@ -113,4 +113,6 @@ public class InputAvoidEscapedUnicodeCharacters {
         private String sumilarToEscapedCommentedByN = "n\u1234"; // comment
         private String sumilarToEscapedByT = "t\u1234";
         private String sumilarToEscapedCommentedByT = "t\u1234"; // comment
+        private String validEscapeWithManyUs = "t\uuuuuuuuu1234";
+        private String validEscapeWithManyUsCommented = "t\uuuuuuuuu1234"; // comment
 }

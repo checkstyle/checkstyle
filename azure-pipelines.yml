@@ -78,27 +78,27 @@ strategy:
     # OpenJDK11 verify
     'OpenJDK11 verify':
       image: 'ubuntu-20.04'
-      cmd: "mvn -e verify"
+      cmd: "mvn -e --no-transfer-progress verify"
 
     # MacOS JDK8 verify
     'MacOS JDK8 verify':
       image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e verify"
+      cmd: "export JAVA_HOME=$JAVA_HOME_8_X64 && mvn -e --no-transfer-progress verify"
 
     # MacOS JDK11 verify
     'MacOS JDK11 verify':
       image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e verify"
+      cmd: "export JAVA_HOME=$JAVA_HOME_11_X64 && mvn -e --no-transfer-progress verify"
 
     # MacOS JDK13 verify
     'MacOS JDK13 verify':
       image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e verify"
+      cmd: "export JAVA_HOME=$JAVA_HOME_13_X64 && mvn -e --no-transfer-progress verify"
 
     # MacOS JDK14 verify
     'MacOS JDK14 verify':
       image: 'macOS-10.14'
-      cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e verify"
+      cmd: "export JAVA_HOME=$JAVA_HOME_14_X64 && mvn -e --no-transfer-progress verify"
 
     # moved back to Travis till we find a way to keep secrets in azure
     # ensure that all modules are used in no exception configs

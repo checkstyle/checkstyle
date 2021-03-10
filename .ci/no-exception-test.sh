@@ -1,24 +1,19 @@
 #!/bin/bash
 set -e
 
-removeFolderWithProtectedFiles() {
-  find $1 -delete
-}
+source ./.ci/util.sh
 
 case $1 in
 
 guava-with-google-checks)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: $CS_POM_VERSION
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
-  mvn -e clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Pno-validations
   cp src/main/resources/google_checks.xml .ci-temp/google_checks.xml
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -31,17 +26,14 @@ guava-with-google-checks)
   ;;
 
 guava-with-sun-checks)
-  CS_POM_VERSION=$(mvn -e -q -Dexec.executable='echo' -Dexec.args='${project.version}' \
-                     --non-recursive org.codehaus.mojo:exec-maven-plugin:1.3.1:exec)
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: $CS_POM_VERSION
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
-  cd contribution/checkstyle-tester
+  checkout_from https://github.com/checkstyle/contribution
+  cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
   cd ../../../
-  mvn -e clean install -Pno-validations
+  mvn -e --no-transfer-progress clean install -Pno-validations
   cp src/main/resources/sun_checks.xml .ci-temp/sun_checks.xml
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
@@ -56,10 +48,7 @@ guava-with-sun-checks)
 openjdk14-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  mkdir -p .ci-temp/
-  cd .ci-temp/
-  git clone https://github.com/checkstyle/contribution
-  cd ..
+  checkout_from https://github.com/checkstyle/contribution
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester

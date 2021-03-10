@@ -14,9 +14,6 @@
   <!-- guava causes issues with other libraries since not everyone is on the same version -->
   <disallow pkg="com\.google.*" regex="true"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/9271 -->
-  <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
-
   <allow pkg="com.puppycrawl.tools.checkstyle.api"/>
   <allow pkg="com.puppycrawl.tools.checkstyle.checks"/>
   <allow pkg="java.io"/>
@@ -58,12 +55,12 @@
   <file name="PropertyCacheFile">
     <allow class="java.math.BigInteger"/>
   </file>
+  <file name="ParserUtil">
+    <allow class="antlr.Token"/>
+    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
+  </file>
 
   <subpackage name="utils">
-    <!-- until https://github.com/checkstyle/checkstyle/issues/9272 -->
-    <allow pkg="antlr"/>
-    <!-- until https://github.com/checkstyle/checkstyle/issues/9271 -->
-    <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
 
     <allow pkg="java.lang.reflect" local-only="true" />
     <allow pkg="java.nio" local-only="true" />
@@ -193,7 +190,7 @@
   <subpackage name="meta">
 
     <allow pkg="java.nio"/>
-    <allow pkg="javax.xml.transform"/>
+    <allow pkg="javax.xml"/>
     <allow pkg="org.reflections"/>
     <allow pkg="org.w3c.dom"/>
 

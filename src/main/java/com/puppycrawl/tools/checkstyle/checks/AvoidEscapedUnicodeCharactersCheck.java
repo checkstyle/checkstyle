@@ -174,7 +174,7 @@ public class AvoidEscapedUnicodeCharactersCheck
     public static final String MSG_KEY = "forbid.escaped.unicode.char";
 
     /** Regular expression for Unicode chars. */
-    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u[a-fA-F0-9]{4}");
+    private static final Pattern UNICODE_REGEXP = Pattern.compile("\\\\u+[a-fA-F0-9]{4}");
 
     /**
      * Regular expression Unicode control characters.
@@ -182,7 +182,7 @@ public class AvoidEscapedUnicodeCharactersCheck
      * @see <a href="https://en.wiktionary.org/wiki/Appendix:Control_characters">
      *     Appendix:Control characters</a>
      */
-    private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\[uU]"
+    private static final Pattern UNICODE_CONTROL = Pattern.compile("\\\\u+"
             + "(00[0-1][0-9A-Fa-f]"
             + "|00[8-9][0-9A-Fa-f]"
             + "|00[aA][dD]"
@@ -200,7 +200,8 @@ public class AvoidEscapedUnicodeCharactersCheck
      * See "EscapeSequence" at
      * https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10.7
      */
-    private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^((\\\\u)[a-fA-F0-9]{4}"
+    private static final Pattern ALL_ESCAPED_CHARS = Pattern.compile("^("
+            + UNICODE_REGEXP.pattern()
             + "|\""
             + "|'"
             + "|\\\\"

@@ -52,8 +52,6 @@ pitest-header)
   declare -a ignoredItems=(
   "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class=''>            catch (final IOException ex) {</span></pre></td></tr>"
   "AbstractHeaderCheck.java.html:<td class='uncovered'><pre><span  class='survived'>                throw new IllegalArgumentException(&#34;unable to load header&#34;, ex);</span></pre></td></tr>"
-  "HeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
-  "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>        if (list.length == 0) {</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                    isMatch = headerLineNo == headerSize</span></pre></td></tr>"
   "RegexpHeaderCheck.java.html:<td class='covered'><pre><span  class='survived'>                            || isMatch(line, headerLineNo);</span></pre></td></tr>"
   );
@@ -64,7 +62,6 @@ pitest-imports)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=(
   "ImportControlLoader.java.html:<td class='covered'><pre><span  class='survived'>        else if (ALLOW_ELEMENT_NAME.equals(qName) || &#34;disallow&#34;.equals(qName)) {</span></pre></td></tr>"
-  "ImportOrderCheck.java.html:<td class='covered'><pre><span  class='survived'>        return !beforeFirstImport &#38;&#38; line - lastImportLine &#62; 1;</span></pre></td></tr>"
   "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (alreadyRegex) {</span></pre></td></tr>"
   "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex || parent.regex) {</span></pre></td></tr>"
   "PkgImportControl.java.html:<td class='covered'><pre><span  class='survived'>        if (regex) {</span></pre></td></tr>"
@@ -136,7 +133,6 @@ pitest-indentation)
   "IndentationCheck.java.html:<td class='covered'><pre><span  class='survived'>        handlers.clear();</span></pre></td></tr>"
   "IndentationCheck.java.html:<td class='covered'><pre><span  class='survived'>        primordialHandler.checkIndentation();</span></pre></td></tr>"
   "MethodDefHandler.java.html:<td class='covered'><pre><span  class='survived'>            if (node.getLineNo() &#60; lineStart) {</span></pre></td></tr>"
-  "MethodDefHandler.java.html:<td class='covered'><pre><span  class='survived'>            if (node.getType() == TokenTypes.ANNOTATION) {</span></pre></td></tr>"
   "NewHandler.java.html:<td class='covered'><pre><span  class='survived'>        return false;</span></pre></td></tr>"
   "SwitchHandler.java.html:<td class='covered'><pre><span  class='survived'>        checkExpressionSubtree(</span></pre></td></tr>"
   "SwitchHandler.java.html:<td class='covered'><pre><span  class='survived'>        checkSwitchExpr();</span></pre></td></tr>"
