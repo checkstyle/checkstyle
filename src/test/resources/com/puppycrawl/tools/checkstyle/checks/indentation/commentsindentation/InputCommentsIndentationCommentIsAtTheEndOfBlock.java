@@ -380,7 +380,7 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
             /* violation */
         new Object()
             .toString();
-            // comment
+        // comment
     }
 
     void foo56() {
