@@ -1425,6 +1425,21 @@ public final class TokenTypes {
     /**
      * The {@code =} (assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--EXPR
+     *     |
+     *     +--ASSIGN (=)
+     *         |
+     *         +--IDENT (a)
+     *         +--IDENT (b)
+     * +--SEMI (;)
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.1">Java
      * Language Specification, &sect;15.26.1</a>
