@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
 
@@ -103,8 +104,18 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "29:50: " + getCheckMessage(MSG_KEY),
             "30:51: " + getCheckMessage(MSG_KEY),
             "31:31: " + getCheckMessage(MSG_KEY),
+            "34:9: " + getCheckMessage(MSG_KEY),
+            "35:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+    }
+
+    @Test
+    public void testNullAst() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
+        checkConfig.addAttribute("legalComment", "ok");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getPath("InputTrailingCommentNullAst.java"), expected);
     }
 
 }
