@@ -63,22 +63,19 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </p>
  * <pre>
  * try {
- *
+ * throw new RuntimeException();
  * }
- * catch(Exception e) {
+ * catch(RuntimeException expected) {
  *
  * } // violation
- * </pre>
- * <p>
- * Example to show that check allows  empty catch block with any comment inside:
- * </p>
- * <pre>
  * try {
- *
+ * throw new RuntimeException();
  * }
- * catch(Exception e) { // Comments allowed inside empty catch block
+ * catch(RuntimeException ignore) {
  *
- * } // ok
+ *  // no handling
+ *
+ * } // ok, catch block has comment
  * </pre>
  * <p>
  * To configure the check to suppress empty catch block if exception's variable name is
