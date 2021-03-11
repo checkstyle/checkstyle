@@ -1425,6 +1425,27 @@ public final class TokenTypes {
     /**
      * The {@code =} (assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * int i = 0;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     *+--VARIABLE_DEF
+     *   |
+     *   +--MODIFIERS
+     *   +--TYPE
+     *      |
+     *      +--LITERAL_INT (int)
+     *      +--IDENT (i)
+     *      +--ASSIGN (=)
+     *         |
+     *         +--EXPR
+     *            |
+     *            +--NUM_INT (0)
+     * +--SEMI (;)
+     *  </pre>
+     * 
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.1">Java
      * Language Specification, &sect;15.26.1</a>
@@ -1434,7 +1455,7 @@ public final class TokenTypes {
     /**
      * The {@code throws} keyword.  The children are a number of
      * one or more identifiers separated by commas.
-     *
+     * 
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.4">Java
      * Language Specification, &sect;8.4.4</a>
