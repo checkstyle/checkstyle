@@ -1,0 +1,28 @@
+#####################################################################################
+# Github Action to run link checks.
+#
+# Workflow starts when:
+# 1) push on master branch
+#
+#####################################################################################
+name: "Check no broken links"
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  check_issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download checkstyle
+        uses: actions/checkout@v2
+        with:
+          repository: checkstyle/checkstyle
+          ref: master
+          path: checkstyle
+
+      - name: Check links
+        run: |
+          cd checkstyle
+          ./.ci/run-link-check-plugin.sh
