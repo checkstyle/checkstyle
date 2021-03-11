@@ -23,6 +23,7 @@ or set of validation rules (best practices).
 [![][sonar img]][sonar]
 
 [![][closed issues img]][closed issues]
+[![][link check img]][link check]
 
 Members chat: [![][gitter_mem img]][gitter_mem]
 Contributors chat: [![][gitter_con img]][gitter_con]
@@ -188,3 +189,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
+
+[link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml
+[link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml/badge.svg

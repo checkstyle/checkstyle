@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# This script is used at https://app.codeship.com/projects/124310
 # Run "firefox target/site/linkcheck.html" after completion to review html report
 
 set -e
@@ -8,7 +7,7 @@ pwd
 uname -a
 mvn --version
 curl -I https://sourceforge.net/projects/checkstyle/
-mvn -e clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
+mvn -e --no-transfer-progress clean site -Dcheckstyle.ant.skip=true -DskipTests -DskipITs \
    -Dpmd.skip=true -Dspotbugs.skip=true -Djacoco.skip=true -Dcheckstyle.skip=true
 echo "------------ grep of linkcheck.html--BEGIN"
 # "grep ... | cat" is required command is running in "set -e" mode and
