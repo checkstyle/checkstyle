@@ -321,7 +321,7 @@
               <td/>
             </tr>
             <tr>
-              <td><a href="https://netbeans.org/">NetBeans</a></td>
+              <td><a href="https://netbeans.apache.org/">NetBeans</a></td>
               <td>Petr Hejl</td>
               <td>
                 <a href="https://www.sickboy.cz/checkstyle/">Checkstyle Beans</a>
@@ -332,7 +332,7 @@
               </td>
             </tr>
             <tr>
-              <td><a href="https://netbeans.org/">NetBeans</a></td>
+              <td><a href="https://netbeans.apache.org/">NetBeans</a></td>
               <td/>
               <td>
                 <a href="http://sqe-team.github.io">Software Quality Environment (SQE)</a>

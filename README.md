@@ -16,13 +16,13 @@ or set of validation rules (best practices).
 [![][azure img]][azure]
 [![][drone img]][drone]
 
-[![][codeship img]][codeship]
 [![][dependabot img]][dependabot]
 
 [![][mavenbadge img]][mavenbadge]
 [![][sonar img]][sonar]
 
 [![][closed issues img]][closed issues]
+[![][link check img]][link check]
 
 Members chat: [![][gitter_mem img]][gitter_mem]
 Contributors chat: [![][gitter_con img]][gitter_con]
@@ -138,9 +138,6 @@ are in the file named "LICENSE.apache20" in this directory.
 [teamcity]:https://teamcity.jetbrains.com/viewType.html?buildTypeId=Checkstyle_IdeaInspectionsMaster
 [teamcity img]:https://teamcity.jetbrains.com/app/rest/builds/buildType:(id:Checkstyle_IdeaInspectionsMaster)/statusIcon
 
-[codeship]: https://codeship.com/projects/124310
-[codeship img]:https://codeship.com/projects/67b814a0-8fee-0133-9b59-02a170289b8c/status?branch=master
-
 [circleci]: https://circleci.com/gh/checkstyle/checkstyle/tree/master
 [circleci img]: https://circleci.com/gh/checkstyle/checkstyle/tree/master.svg?style=svg
 
@@ -188,3 +185,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [closed issues]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml
 [closed issues img]:https://github.com/checkstyle/checkstyle/actions/workflows/no_old_refs.yml/badge.svg
+
+[link check]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml
+[link check img]:https://github.com/checkstyle/checkstyle/actions/workflows/run_link_check.yml/badge.svg

@@ -46,14 +46,14 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </li>
  * <li>
  * Property {@code ignoredTags} - Specify
- * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
  * block tags</a> which are ignored by the check.
  * Type is {@code java.lang.String[]}.
  * Default value is {@code ""}.
  * </li>
  * <li>
  * Property {@code ignoreInlineTags} - Control whether
- * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+ * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
  * inline tags</a> must be ignored.
  * Type is {@code boolean}.
  * Default value is {@code true}.
@@ -255,21 +255,21 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Specify
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * block tags</a> which are ignored by the check.
      */
     private List<String> ignoredTags = new ArrayList<>();
 
     /**
      * Control whether
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * inline tags</a> must be ignored.
      */
     private boolean ignoreInlineTags = true;
 
     /**
      * Setter to specify
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * block tags</a> which are ignored by the check.
      *
      * @param tags to be ignored by check.
@@ -280,7 +280,7 @@ public class SingleLineJavadocCheck extends AbstractJavadocCheck {
 
     /**
      * Setter to control whether
-     * <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
      * inline tags</a> must be ignored.
      *
      * @param ignoreInlineTags whether inline tags must be ignored.
