@@ -30,4 +30,13 @@ public class InputTrailingComment {
     final static public String NAME2="Some Name"; /*NOI18N*/
     String NAME3="Some Name"; /*NOI18N
 */
+    void method3() {
+        /* Test Block comment */
+        // Test single line comment
+    }
+
+    private static class TimerEntry {
+        /* package */ final String operation = null;
+        /* package */ final long start = 0l;
+    }
 }
