@@ -1054,6 +1054,28 @@ public final class TokenTypes {
     /**
      * The {@code abstract} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     *  public abstract class MyClass
+     *  {
+     *  }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--CLASS_DEF
+     *     |
+     *     +--MODIFIERS
+     *         |
+     *         +--LITERAL_PUBLIC (public)
+     *         +--ABSTRACT (abstract)
+     *     +--LITERAL_CLASS (class)
+     *     +--IDENT (MyClass)
+     *     +--OBJBLOCK
+     *         |
+     *         +--LCURLY ({)
+     *         +--RCURLY (})
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int ABSTRACT = GeneratedJavaTokenTypes.ABSTRACT;
