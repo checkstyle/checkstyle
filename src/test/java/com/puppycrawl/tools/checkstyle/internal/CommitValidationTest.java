@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -77,7 +78,7 @@ public class CommitValidationTest {
     private static final String ISSUE_COMMIT_MESSAGE_REGEX_PATTERN = "^Issue #\\d+: .*$";
     private static final String PR_COMMIT_MESSAGE_REGEX_PATTERN = "^Pull #\\d+: .*$";
     private static final String OTHER_COMMIT_MESSAGE_REGEX_PATTERN =
-            "^(minor|config|infra|doc|spelling|dependency): .*$";
+            "^(minor|config|infra|doc|spelling|dependency|supplemental): .*$";
 
     private static final String ACCEPTED_COMMIT_MESSAGE_REGEX_PATTERN =
               "(" + ISSUE_COMMIT_MESSAGE_REGEX_PATTERN + ")|"
@@ -134,6 +135,27 @@ public class CommitValidationTest {
                 + "Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test "
                 + "Test Test Test Test Test Test Test  Test Test Test Test Test Test"),
                 "should accept commit message with less than or equal to 200 characters");
+    }
+
+    @Test
+    public void testSupplementalPrefix() {
+        assertWithMessage("should accept commit message with supplemental prefix").that(0)
+                .isEqualTo(validateCommitMessage("supplemental: Test message for supplemental for"
+                        + " Issue #XXXX"));
+        assertWithMessage("should not accept commit message with periods on end")
+                .that(3).isEqualTo(validateCommitMessage("supplemental: Test. Test."));
+        assertWithMessage("should not accept commit message with spaces on end")
+                .that(3).isEqualTo(validateCommitMessage("supplemental: Test. "));
+        assertWithMessage("should not accept commit message with tabs on end")
+                .that(3).isEqualTo(validateCommitMessage("supplemental: Test.\t"));
+        assertWithMessage("should not accept commit message with period on end, ignoring new line")
+                .that(3).isEqualTo(validateCommitMessage("supplemental: Test.\n"));
+        assertWithMessage("should not accept commit message with multiple lines with text")
+                .that(2).isEqualTo(validateCommitMessage("supplemental: Test.\nTest"));
+        assertWithMessage("should accept commit message with a new line on end")
+                .that(0).isEqualTo(validateCommitMessage("supplemental: Test\n"));
+        assertWithMessage("should accept commit message with multiple new lines on end")
+                .that(0).isEqualTo(validateCommitMessage("supplemental: Test\n\n"));
     }
 
     @Test

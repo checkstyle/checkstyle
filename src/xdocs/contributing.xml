@@ -164,6 +164,9 @@
         Small changes of configuration files, documentation fixes, etc. can be contributed by
         starting the commit message with one of "minor:", "config:", "infra:", "doc:",
         "dependency:" or "spelling:", followed by a space and a brief single-line message.
+        Changes that improves performance or is connected to another PR the commit message
+        should be "supplemental: .... for Issue #XXXX" where XXXX is issue number is to which
+        the PRs aim to solve.
       </p>
 
       <p>
