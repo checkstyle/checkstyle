@@ -164,6 +164,10 @@
         Small changes of configuration files, documentation fixes, etc. can be contributed by
         starting the commit message with one of "minor:", "config:", "infra:", "doc:",
         "dependency:" or "spelling:", followed by a space and a brief single-line message.
+        <br/>
+        "supplemental:" is used for PRs/commits that will support other, more significant
+        changes with format as "supplemental: .... for Issue #XXXX" where "XXXX" refers to the
+        issue that requires this supplemental commit.
       </p>
 
       <p>
