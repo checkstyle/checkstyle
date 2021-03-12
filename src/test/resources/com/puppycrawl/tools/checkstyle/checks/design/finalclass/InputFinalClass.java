@@ -127,3 +127,30 @@ interface TestInterface {
         private SomeClass() {}
     }
 }
+
+class Test {
+    public static final Test ONE = new Test() {
+        @Override
+        public int value() {
+            return 1;
+        }
+    };
+
+    private Test() {
+    }
+
+    public int value() {
+        return 0;
+    }
+}
+
+class test {
+    private test() {
+    }
+
+    public int count() {
+        return 1;
+    }
+    public static final test ONE = new test();
+    public static final test6 TWO = new test6();
+}
