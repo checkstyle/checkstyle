@@ -4,6 +4,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.design.finalclass;
 
+import java.util.ArrayList;
+
 public class InputFinalClass
 {
     private InputFinalClass() {}
@@ -127,3 +129,45 @@ interface TestInterface {
         private SomeClass() {}
     }
 }
+
+class Test {
+    public static final Test ONE = new Test() {
+        @Override
+        public int value() {
+            return 1;
+        }
+    };
+
+    private Test() {
+    }
+
+    public int value() {
+        return 0;
+    }
+}
+
+class test {
+
+    private test(String s) {
+        String a = "hello" + s;
+    }
+
+    public int count() {
+        return 1;
+    }
+    public static final test ONE = new test("world");
+    public static final test6 TWO = new test6();
+
+    public static void main(String[] args) {
+
+        ArrayList<String> foo = new ArrayList<>();
+        foo.add("world");
+        foo.forEach(test::new);
+
+    }
+}
+
+interface Test1 {
+    ArrayList<String> foo = new ArrayList<>();
+}
+
