@@ -2317,6 +2317,15 @@ public class SomeClass { }
         <source>
 &lt;module name=&quot;RedundantImport&quot;/&gt;
         </source>
+        <p>
+           Examples:
+        </p>
+        <source>
+         import java.util.*;  //OK
+         import java.io.*;  //OK
+         import java.util.Scanner;  //  violation, Scanner class already included in java.util package.
+         import java.io.file;  //  violation, file class already included in java.io package.
+       </source>
       </subsection>
 
       <subsection name="Example of Usage" id="RedundantImport_Example_of_Usage">
