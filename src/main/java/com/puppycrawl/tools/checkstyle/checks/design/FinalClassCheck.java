@@ -80,6 +80,15 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *     private MyClass() { }
  *   }
  * }
+ *
+ * class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
+ *     public static final TestAnonymousInnerClasses ONE = new TestAnonymousInnerClasses() {
+ *
+ *     };
+ *
+ *     private TestAnonymousInnerClasses() {
+ *     }
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
@@ -128,7 +137,12 @@ public class FinalClassCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
     }
 
     @Override
@@ -168,6 +182,17 @@ public class FinalClassCheck
                 }
                 break;
 
+            case TokenTypes.LITERAL_NEW:
+                if (ast.getFirstChild() != null
+                        && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
+                    for (ClassDesc classDesc : classes) {
+                        if (doesNameOfClassMatchAnonymousInnerClassName(ast, classDesc)) {
+                            classDesc.registerAnonymousInnerClass();
+                        }
+                    }
+                }
+                break;
+
             default:
                 throw new IllegalStateException(ast.toString());
         }
@@ -178,7 +203,8 @@ public class FinalClassCheck
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             final ClassDesc desc = classes.pop();
             if (desc.isWithPrivateCtor()
-                && !desc.isDeclaredAsAbstract()
+                && !(desc.isDeclaredAsAbstract()
+                    || desc.isWithAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass()
@@ -218,6 +244,20 @@ public class FinalClassCheck
                 }
             }
         }
+    }
+
+    /**
+     * Check if class name matches with anonymous inner class name.
+     *
+     * @param ast current ast.
+     * @param classDesc class to match.
+     * @return true if current class name matches anonymous inner
+     *         class name.
+     */
+    private static boolean doesNameOfClassMatchAnonymousInnerClassName(DetailAST ast,
+                                                               ClassDesc classDesc) {
+        final String[] className = classDesc.getQualifiedName().split("\\.");
+        return ast.getFirstChild().getText().equals(className[className.length - 1]);
     }
 
     /**
@@ -326,6 +366,9 @@ public class FinalClassCheck
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
 
+        /** Does class have anonymous inner class. */
+        private boolean withAnonymousInnerClass;
+
         /**
          *  Create a new ClassDesc instance.
          *
@@ -364,6 +407,11 @@ public class FinalClassCheck
         /** Adds nested subclass. */
         private void registerNestedSubclass() {
             withNestedSubclass = true;
+        }
+
+        /** Adds anonymous inner class. */
+        private void registerAnonymousInnerClass() {
+            withAnonymousInnerClass = true;
         }
 
         /**
@@ -409,6 +457,15 @@ public class FinalClassCheck
          */
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
+        }
+
+        /**
+         * Does class have an anonymous inner class.
+         *
+         * @return true if class has anonymous inner class
+         */
+        private boolean isWithAnonymousInnerClass() {
+            return withAnonymousInnerClass;
         }
 
     }
