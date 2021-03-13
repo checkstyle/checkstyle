@@ -809,29 +809,23 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *     +--TYPE
-     *         |
-     *         +--ARRAY_DECLARATOR ([)
-     *             |
-     *             +--LITERAL_INT (int)
-     *     +--IDENT (y)
-     *     +--ASSIGN (=)
-     *         |
-     *         +--ARRAY_INIT ({)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--NUM_INT (1)
-     *             +--COMMA (,)
-     *             +--EXPR
-     *                 |
-     *                 +--NUM_INT (2)
-     *             +--COMMA (,)
-     *             +--RCURLY (})
-     * +--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--ARRAY_DECLARATOR -&gt; [
+     * |   |       |--LITERAL_INT -&gt; int
+     * |   |       `--RBRACK -&gt; ]
+     * |   |--IDENT -&gt; y
+     * |   `--ASSIGN -&gt; =
+     * |       `--ARRAY_INIT -&gt; {
+     * |           |--EXPR -&gt; EXPR
+     * |           |   `--NUM_INT -&gt; 1
+     * |           |--COMMA -&gt; ,
+     * |           |--EXPR -&gt; EXPR
+     * |           |   `--NUM_INT -&gt; 2
+     * |           |--COMMA -&gt; ,
+     * |           `--RCURLY -&gt; }
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * <p>Also consider:</p>
@@ -844,34 +838,28 @@ public final class TokenTypes {
      * </pre>
      * <p>which parses as:</p>
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *     +--TYPE
-     *         |
-     *         +--ARRAY_DECLARATOR ([)
-     *             |
-     *             +--LITERAL_INT (int)
-     *     +--IDENT (z)
-     *     +--ASSIGN (=)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--LITERAL_NEW (new)
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *                 +--ARRAY_DECLARATOR ([)
-     *                 +--ARRAY_INIT ({)
-     *                     |
-     *                     +--EXPR
-     *                         |
-     *                         +--NUM_INT (1)
-     *                     +--COMMA (,)
-     *                     +--EXPR
-     *                         |
-     *                         +--NUM_INT (2)
-     *                     +--COMMA (,)
-     *                     +--RCURLY (})
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--ARRAY_DECLARATOR -&gt; [
+     * |   |       |--LITERAL_INT -&gt; int
+     * |   |       `--RBRACK -&gt; ]
+     * |   |--IDENT -&gt; z
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_NEW -&gt; new
+     * |               |--LITERAL_INT -&gt; int
+     * |               |--ARRAY_DECLARATOR -&gt; [
+     * |               |   `--RBRACK -&gt; ]
+     * |               `--ARRAY_INIT -&gt; {
+     * |                   |--EXPR -&gt; EXPR
+     * |                   |   `--NUM_INT -&gt; 1
+     * |                   |--COMMA -&gt; ,
+     * |                   |--EXPR -&gt; EXPR
+     * |                   |   `--NUM_INT -&gt; 2
+     * |                   |--COMMA -&gt; ,
+     * |                   `--RCURLY -&gt; }
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @see #ARRAY_DECLARATOR
