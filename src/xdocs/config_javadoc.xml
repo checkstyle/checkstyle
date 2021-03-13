@@ -3314,7 +3314,7 @@ public boolean testMethod(int firstParam) {
               <td>ignoredTags</td>
               <td>
                 Specify
-                <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
                 block tags</a> which are ignored by the check.
               </td>
               <td><a href="property_types.html#String.5B.5D">String[]</a></td>
@@ -3325,7 +3325,7 @@ public boolean testMethod(int firstParam) {
               <td>ignoreInlineTags</td>
               <td>
                 Control whether
-                <a href="http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
+                <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/windows/javadoc.html#CHDBEFIF">
                 inline tags</a> must be ignored.
               </td>
               <td><a href="property_types.html#boolean">boolean</a></td>

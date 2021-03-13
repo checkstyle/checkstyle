@@ -8,4 +8,3 @@
     # -  command: ./.ci/travis/travis.sh site
     # -  command: ./.ci/travis/travis.sh nondex
     -  command: ls -la
-    -  command: .ci/run-link-check-plugin.sh
