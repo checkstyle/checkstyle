@@ -46,7 +46,12 @@ public class FinalClassCheckTest
     @Test
     public void testGetRequiredTokens() {
         final FinalClassCheck checkObj = new FinalClassCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
+        final int[] expected =
+            {TokenTypes.CLASS_DEF,
+             TokenTypes.CTOR_DEF,
+             TokenTypes.PACKAGE_DEF,
+             TokenTypes.LITERAL_NEW,
+            };
         assertArrayEquals(expected, checkObj.getRequiredTokens(),
                 "Default required tokens are invalid");
     }
@@ -59,6 +64,7 @@ public class FinalClassCheckTest
             "7:1: " + getCheckMessage(MSG_KEY, "InputFinalClass"),
             "15:4: " + getCheckMessage(MSG_KEY, "test4"),
             "113:5: " + getCheckMessage(MSG_KEY, "someinnerClass"),
+            "147:1: " + getCheckMessage(MSG_KEY, "test"),
         };
         verify(checkConfig, getPath("InputFinalClass.java"), expected);
     }
@@ -120,7 +126,12 @@ public class FinalClassCheckTest
     @Test
     public void testGetAcceptableTokens() {
         final FinalClassCheck obj = new FinalClassCheck();
-        final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
+        final int[] expected =
+            {TokenTypes.CLASS_DEF,
+             TokenTypes.CTOR_DEF,
+             TokenTypes.PACKAGE_DEF,
+             TokenTypes.LITERAL_NEW,
+            };
         assertArrayEquals(expected, obj.getAcceptableTokens(),
                 "Default acceptable tokens are invalid");
     }
@@ -133,4 +144,15 @@ public class FinalClassCheckTest
                 "unexpected result");
     }
 
+    @Test
+    public void testAnonymousInnerClass() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(FinalClassCheck.class);
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verify(checkConfig,
+            getNonCompilablePath("InputFinalClassAnonymousInnerClass.java"),
+            expected);
+    }
 }
