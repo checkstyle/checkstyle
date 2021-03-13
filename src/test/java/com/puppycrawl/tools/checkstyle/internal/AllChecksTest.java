@@ -246,9 +246,9 @@ public class AllChecksTest extends AbstractModuleTestSupport {
                 "DIV_ASSIGN", "BOR_ASSIGN", "SL_ASSIGN", "ASSIGN", "BSR_ASSIGN", "BAND_ASSIGN",
                 "PLUS_ASSIGN", "MINUS_ASSIGN", "SR_ASSIGN", "STAR_ASSIGN", "BXOR_ASSIGN",
                 "MOD_ASSIGN",
-                // state of the configuration when test was made until
+                // COLON token ignored in check config, explained in
                 // https://github.com/checkstyle/checkstyle/issues/4122
-                "COLON", "TYPE_EXTENSION_AND").collect(Collectors.toSet()));
+                "COLON").collect(Collectors.toSet()));
         GOOGLE_TOKENS_IN_CONFIG_TO_IGNORE.put("NoWhitespaceBefore", Stream.of(
                 // google uses GenericWhitespace for this behavior
                 "GENERIC_START", "GENERIC_END",
