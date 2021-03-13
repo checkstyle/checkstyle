@@ -42,6 +42,7 @@ public class OperatorWrapTest extends AbstractGoogleModuleTestSupport {
             "12:28: " + getCheckMessage(clazz, messageKey, "-"),
             "20:27: " + getCheckMessage(clazz, messageKey, "&&"),
             "28:33: " + getCheckMessage(clazz, messageKey, "::"),
+            "43:35: " + getCheckMessage(clazz, messageKey, "&"),
             "62:42: " + getCheckMessage(clazz, messageKey, "?"),
             "66:27: " + getCheckMessage(clazz, messageKey, "!="),
             "72:30: " + getCheckMessage(clazz, messageKey, "=="),
