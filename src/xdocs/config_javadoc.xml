@@ -2336,19 +2336,15 @@ class DatabaseConfiguration {}
 &lt;module name="JavadocVariable"/&gt;
         </source>
         <p>Example:</p>
-        <p>
-            <source>
-                public class Test {
-                    private int privateVariable2; // violation, missing javadoc for private variable
-
-                    /**
-                     *  Some description here
-                     */
-                    private int privateVariable2;   // OK
-                }
-            </source>
-        </p>
-
+        <source>
+        public class Test {
+        private int privateVariable2; // violation, missing javadoc for private variable
+        /**
+         *  Some description here
+         */
+        private int privateVariable2;   // OK
+        }
+        </source>
         <p>
           To configure the check for <code>public</code>
           scope:
@@ -2358,6 +2354,18 @@ class DatabaseConfiguration {}
 &lt;module name="JavadocVariable"&gt;
   &lt;property name="scope" value="public"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example</p>
+        <source>
+        public class Test {
+        public int publicVariable1;    // violation, missing javadoc for public variable
+
+        /**
+        * Some description here.
+        */
+        public int publicVariable2;  // OK
+        private int privateVariable;    // OK
+        }
         </source>
 
         <p>
@@ -2371,6 +2379,19 @@ class DatabaseConfiguration {}
   &lt;property name="excludeScope" value="protected"/&gt;
 &lt;/module&gt;
         </source>
+        <p>Example</p>
+        <source>
+        public class Test {
+        private int privateVariable1;    // violation, missing javadoc for private variable
+
+        /**
+        * Some description here.
+        */
+        private int privateVariable2;    // OK
+        protected int protectedVariable; // OK
+        public int publicVariable;  // OK
+        }
+        </source>
 
         <p>
           To ignore absence of Javadoc comments for variables with names <code>log</code> or
@@ -2381,6 +2402,19 @@ class DatabaseConfiguration {}
 &lt;module name="JavadocVariable"&gt;
   &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
 &lt;/module&gt;
+        </source>
+        <p>Example</p>
+        <source>
+        public class Test {
+        public int publicVariable_1;    // violation, missing javadoc for public variable
+
+        /**
+        * Some description here.
+        */
+        public int publicVariable_2;    // OK
+        public int log;   // OK
+        public int logger;    // OK
+        }
         </source>
       </subsection>
 
