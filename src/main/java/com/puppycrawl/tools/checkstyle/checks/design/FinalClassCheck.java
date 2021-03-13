@@ -128,7 +128,12 @@ public class FinalClassCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
     }
 
     @Override
@@ -168,6 +173,19 @@ public class FinalClassCheck
                 }
                 break;
 
+            case TokenTypes.LITERAL_NEW:
+                if (ast.getFirstChild() != null) {
+                    final ClassDesc currClass = classes.peek();
+                    final String qualifiedAnonInnerClassName =
+                            prefixClassName(ast.getFirstChild());
+                    if (currClass != null
+                            && qualifiedAnonInnerClassName.equals(currClass.getQualifiedName())
+                            && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
+                        currClass.registerAnonymousInnerClass();
+                    }
+                }
+                break;
+
             default:
                 throw new IllegalStateException(ast.toString());
         }
@@ -182,6 +200,7 @@ public class FinalClassCheck
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass()
+                && !desc.isWithAnonymousInnerClass()
                 && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
                 final String qualifiedName = desc.getQualifiedName();
                 final String className = getClassNameFromQualifiedName(qualifiedName);
@@ -198,6 +217,16 @@ public class FinalClassCheck
      */
     private static String extractQualifiedName(DetailAST ast) {
         return FullIdent.createFullIdent(ast).getText();
+    }
+
+    /**
+     * Prefix class name with package name.
+     *
+     * @param identAst ast to identifier
+     * @return qualified name
+     */
+    private String prefixClassName(DetailAST identAst) {
+        return packageName + PACKAGE_SEPARATOR + identAst.getText();
     }
 
     /**
@@ -326,6 +355,9 @@ public class FinalClassCheck
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
 
+        /** Does class have anonymous inner class. */
+        private boolean withAnonymousInnerClass;
+
         /**
          *  Create a new ClassDesc instance.
          *
@@ -364,6 +396,11 @@ public class FinalClassCheck
         /** Adds nested subclass. */
         private void registerNestedSubclass() {
             withNestedSubclass = true;
+        }
+
+        /** Adds anonymous inner class. */
+        private void registerAnonymousInnerClass() {
+            withAnonymousInnerClass = true;
         }
 
         /**
@@ -409,6 +446,15 @@ public class FinalClassCheck
          */
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
+        }
+
+        /**
+         * Does class have a anonymous inner class.
+         *
+         * @return true if class has anonymous inner class
+         */
+        private boolean isWithAnonymousInnerClass() {
+            return withAnonymousInnerClass;
         }
 
     }
