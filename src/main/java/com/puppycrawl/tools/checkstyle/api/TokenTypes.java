@@ -938,22 +938,22 @@ public final class TokenTypes {
      * <pre>
      * |--CASE_GROUP -&gt; CASE_GROUP
      * |   |--LITERAL_CASE -&gt; case
-     * |    `--EXPR -&gt; EXPR
-     * |        NUM_INT -&gt; 0
-     * |    | LITERAL_CASE -&gt; case
-     * |      `--EXPR -&gt; EXPR
-     * |        NUM_INT -&gt; 1
-     * |    | LITERAL_CASE -&gt; case
-     * | `--EXPR -&gt; EXPR
-     * |        NUM_INT -&gt; 2
-     * | --SLIST -&gt; SLIST
-     * |     `--EXPR -&gt; EXPR
-     * |     `--ASSIGN -&gt; =
-     * |      |--IDENT -&gt; x
-     * |      |`--NUM_INT -&gt; 3
-     * |--SEMI -&gt; ;
-     * | LITERAL_BREAK -&gt; break
-     * |--SEMI -&gt; ;
+     * |        |`--EXPR -&gt; EXPR
+     * |            |`--NUM_INT -&gt; 0
+     * |   |--LITERAL_CASE -&gt; case
+     * |        |`--EXPR -&gt; EXPR
+     * |            |`--NUM_INT -&gt; 1
+     * |   |--LITERAL_CASE -&gt; case
+     * |        |`--EXPR -&gt; EXPR
+     * |            |`--NUM_INT -&gt; 2
+     * |    |--SLIST -&gt; SLIST
+     * |        |`--EXPR -&gt; EXPR
+     * |             |`--ASSIGN -&gt; =
+     * |                |--IDENT -&gt; x
+     * |                |`--NUM_INT -&gt; 3
+     * |        |--SEMI -&gt; ;
+     * |        |--LITERAL_BREAK -&gt; break
+     * |            |--SEMI -&gt; ;
      * </pre>
      *
      * @see #LITERAL_CASE
