@@ -1350,7 +1350,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8</argLine>
+          <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
