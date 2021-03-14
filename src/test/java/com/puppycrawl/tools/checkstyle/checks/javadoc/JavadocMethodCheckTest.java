@@ -82,6 +82,43 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testThrowsDetection() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
+        config.addAttribute("validateThrows", "true");
+        final String[] expected = {
+            "16:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "UnsupportedOperationException"),
+            "27:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "UnsupportedOperationException"),
+            "30:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "IllegalArgumentException"),
+            "43:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "UnsupportedOperationException"),
+            "47:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "IllegalArgumentException"),
+            "58:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "UnsupportedOperationException"),
+            "61:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "IllegalArgumentException"),
+            "72:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "UnsupportedOperationException"),
+            "75:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "IllegalArgumentException"),
+            "87:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "IllegalArgumentException"),
+            "101:31: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "IllegalArgumentException"),
+            "113:19: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "UnsupportedOperationException"),
+            "128:23: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "RuntimeException"),
+            "141:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws",
+                    "RuntimeException"),
+        };
+        verify(config, getPath("InputJavadocMethodThrowsDetection.java"), expected);
+    }
+
+    @Test
     public void testExtraThrows() throws Exception {
         final DefaultConfiguration config = createModuleConfig(JavadocMethodCheck.class);
         config.addAttribute("validateThrows", "true");
@@ -503,6 +540,7 @@ public class JavadocMethodCheckTest extends AbstractModuleTestSupport {
             "73:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
             "83:12: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "properties"),
             "86:35: " + getCheckMessage(MSG_EXPECTED_TAG, "@param", "myInt"),
+            "90:27: " + getCheckMessage(MSG_EXPECTED_TAG, "@throws", "IllegalArgumentException"),
 
             };
         verify(checkConfig,
