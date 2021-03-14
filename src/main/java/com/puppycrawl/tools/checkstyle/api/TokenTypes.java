@@ -950,7 +950,7 @@ public final class TokenTypes {
      * |     `--EXPR -&gt; EXPR
      * |     `--ASSIGN -&gt; =
      * |      |--IDENT -&gt; x
-     * |      |--NUM_INT -&gt; 3
+     * |      |`--NUM_INT -&gt; 3
      * |--SEMI -&gt; ;
      * | LITERAL_BREAK -&gt; break
      * |--SEMI -&gt; ;
