@@ -445,16 +445,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *     +--TYPE
-     *         |
-     *         +--ARRAY_DECLARATOR ([)
-     *             |
-     *             +--LITERAL_INT (int)
-     *     +--IDENT (x)
-     * +--SEMI (;)
+     *|  |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *|  |--MODIFIERS -&gt; MODIFIERS
+     *|  |--TYPE -&gt; TYPE
+     * |   |   `--ARRAY_DECLARATOR -&gt; [
+     * |   |       |--LITERAL_INT -&gt; int
+     * |   |       `--RBRACK -&gt; ]
+     * |             |--IDENT -&gt; x
+     * |--SEMI -&gt; 
      * </pre>
      *
      * <p>The array declaration may also represent an inline array
