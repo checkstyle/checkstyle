@@ -445,7 +445,7 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * *|--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *|  |--VARIABLE_DEF -&gt; VARIABLE_DEF
      *|  |--MODIFIERS -&gt; MODIFIERS
      *|  |--TYPE -&gt; TYPE
      * |   |   `--ARRAY_DECLARATOR -&gt; [
