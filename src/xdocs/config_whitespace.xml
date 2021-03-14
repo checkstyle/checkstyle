@@ -1371,6 +1371,15 @@ import static java.math.BigInteger.ZERO;
         <source>
 &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
         </source>
+        <p>
+          Example:
+        </p>
+        <source>
+int[] array; // OK
+int [] array; // violation, whitespace between int and opening bracket [
+array[2]; // OK
+array[ 2 ]; // violation, whitespace between opening bracket [ and dimension of array
+        </source>
 
         <p>
           To configure the check to forbid linebreaks after a DOT token:
@@ -1380,6 +1389,18 @@ import static java.math.BigInteger.ZERO;
   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
 &lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+public class A { // initializing a class
+int create(); // method in class
+}
+A obj = new A(); // instantiating object of class A
+A.create(); // OK
+A.
+create(); // violation, dot operator at line break
         </source>
         <p>
          If the annotation is between the type and the array, the check will skip validation for

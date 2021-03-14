@@ -89,6 +89,15 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <pre>
  * &lt;module name=&quot;NoWhitespaceAfter&quot;/&gt;
  * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * int[] array; // OK
+ * int [] array; // violation, whitespace between int and opening bracket [
+ * array[2]; // OK
+ * array[ 2 ]; // violation, whitespace between opening bracket [ and dimension of array
+ * </pre>
  * <p>To configure the check to forbid linebreaks after a DOT token:
  * </p>
  * <pre>
@@ -96,6 +105,18 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  *   &lt;property name=&quot;tokens&quot; value=&quot;DOT&quot;/&gt;
  *   &lt;property name=&quot;allowLineBreaks&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * public class A { // initializing a class
+ * int create(); // method in class
+ * }
+ * A obj = new A(); // instantiating object of class A
+ * A.create(); // OK
+ * A.
+ * create(); // violation, dot operator at line break
  * </pre>
  * <p>
  * If the annotation is between the type and the array, the check will skip validation for spaces:
