@@ -53,6 +53,30 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * </li>
  * </ul>
  * <p>
+ * To configure the check:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException expected) {
+ * } // violation
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ignore) {
+ *   // no handling
+ * } // ok, catch block has comment
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ex) {
+ * } // violation
+ * </pre>
+ * <p>
  * To configure the check to suppress empty catch block if exception's variable name is
  * {@code expected} or {@code ignore} or there's any comment inside:
  * </p>
@@ -68,11 +92,15 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * try {
  *   throw new RuntimeException();
  * } catch (RuntimeException expected) {
- * }
+ * } // ok
  * try {
  *   throw new RuntimeException();
  * } catch (RuntimeException ignore) {
- * }
+ * } // ok
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ex) {
+ * } // violation
  * </pre>
  * <p>
  * To configure the check to suppress empty catch block if single-line comment inside
@@ -89,9 +117,18 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <pre>
  * try {
  *   throw new RuntimeException();
+ * } catch (RuntimeException expected) {
+ * } // violation
+ * try {
+ *   throw new RuntimeException();
+ * } catch (RuntimeException ignore) {
+ *   // no handling
+ * } // violation
+ * try {
+ *   throw new RuntimeException();
  * } catch (RuntimeException ex) {
- *   //This is expected
- * }
+ *   // This is expected
+ * } // ok
  * </pre>
  * <p>
  * To configure the check to suppress empty catch block if single-line comment inside
