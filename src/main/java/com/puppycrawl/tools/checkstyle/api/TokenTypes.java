@@ -431,7 +431,7 @@ public final class TokenTypes {
      **/
     public static final int PACKAGE_DEF = GeneratedJavaTokenTypes.PACKAGE_DEF;
     /**
-    An array declaration.
+     * An array declaration.
      *
      * <p>If the array declaration represents a type, then the type of
      * the array elements is the first child.  Multidimensional arrays
@@ -445,16 +445,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *     +--TYPE
-     *         |
-     *         +--ARRAY_DECLARATOR ([)
-     *             |
-     *             +--LITERAL_INT (int)
-     *     +--IDENT (x)
-     * +--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--ARRAY_DECLARATOR -&gt; [
+     * |   |       |--LITERAL_INT -&gt; int
+     * |   |       `--RBRACK -&gt; ]
+     * |   |--IDENT -&gt; x
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * <p>The array declaration may also represent an inline array
@@ -938,24 +936,35 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--CASE_GROUP -&gt; CASE_GROUP
-     * |   |--LITERAL_CASE -&gt; case
-     * |        |`--EXPR -&gt; EXPR
-     * |            |`--NUM_INT -&gt; 0
-     * |   |--LITERAL_CASE -&gt; case
-     * |        |`--EXPR -&gt; EXPR
-     * |            |`--NUM_INT -&gt; 1
-     * |   |--LITERAL_CASE -&gt; case
-     * |        |`--EXPR -&gt; EXPR
-     * |            |`--NUM_INT -&gt; 2
-     * |    |--SLIST -&gt; SLIST
-     * |        |`--EXPR -&gt; EXPR
-     * |             |`--ASSIGN -&gt; =
-     * |                |--IDENT -&gt; x
-     * |                |`--NUM_INT -&gt; 3
-     * |        |--SEMI -&gt; ;
-     * |        |--LITERAL_BREAK -&gt; break
-     * |            |--SEMI -&gt; ;
+     * +--CASE_GROUP
+     *     |
+     *     +--LITERAL_CASE (case)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--NUM_INT (0)
+     *     +--LITERAL_CASE (case)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--NUM_INT (1)
+     *     +--LITERAL_CASE (case)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--NUM_INT (2)
+     *     +--SLIST
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--ASSIGN (=)
+     *                 |
+     *                 +--IDENT (x)
+     *                 +--NUM_INT (3)
+     *         +--SEMI (;)
+     *         +--LITERAL_BREAK (break)
+     *             |
+     *             +--SEMI (;)
      * </pre>
      *
      * @see #LITERAL_CASE
