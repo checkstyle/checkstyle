@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /*
- * This test-input is intended to be checked using following defaults configuration:
+ * This test-input is intended to be checked using following configuration:
  *
- * allowNewlineParagraph = true
+ * allowNewlineParagraph = false
  * violateExecutionOnNonTightHtml = false
  */
 
@@ -13,12 +13,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
  * /^ WARN/   Some Javadoc.<p> // violation
  *
  */
-class InputJavadocParagraphIncorrect {
+class InputJavadocParagraphIncorrect2 {
 
     /**
-     * Some Javadoc.<P> // violation
+     * Some Javadoc.<P>  // violation
      *
-     * <p>  Some Javadoc. // violation
+     * <p>  Some Javadoc.
      *
      * @since 8.0
      */
@@ -27,7 +27,7 @@ class InputJavadocParagraphIncorrect {
     /**
      * Some <p>Javadoc. // violation
      *
-     * <p>    Some Javadoc. // violation
+     * <p>    Some Javadoc.
      *
      * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
      *     Documentation about GWT emulated source</a>
@@ -50,7 +50,7 @@ class InputJavadocParagraphIncorrect {
         /**<p>  // violation
          * /^WARN/ Some Javadoc.
          *
-         * <P> // violation
+         * <P>
          * /^WARN/
          * <p> // violation
          *  /^WARN/ Some Javadoc.<p> // violation
@@ -74,7 +74,7 @@ class InputJavadocParagraphIncorrect {
         /**
          * /WARN/  Some Javadoc.<p> // violation
          *
-         *  <p>  Some Javadoc. // violation
+         *  <p>  Some Javadoc.
          *
          * @see <a href="http://www.gwtproject.org/doc/latest/DevGuideOrganizingProjects.html#DevGuideModules">
          *     Documentation about <p> GWT emulated source</a> // violation

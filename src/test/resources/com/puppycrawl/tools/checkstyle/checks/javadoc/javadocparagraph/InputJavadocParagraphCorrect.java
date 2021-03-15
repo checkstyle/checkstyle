@@ -1,5 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
+/*
+ * This test-input is intended to be checked using following defaults configuration:
+ *
+ * allowNewlineParagraph = true
+ * violateExecutionOnNonTightHtml = false
+ */
+
 /**
  * Some Javadoc.
  *
