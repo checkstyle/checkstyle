@@ -971,6 +971,14 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
+    @Test
+    public void testManyNestedNodes() throws Exception {
+        final String xpath = "//STRING_LITERAL";
+        final RootNode rootNode = getRootNode("InputXpathMapperStringConcat.java");
+        final List<NodeInfo> actual = getXpathItems(xpath, rootNode);
+        assertThat("Number of result nodes differ from expected", actual.size(), equalTo(17592));
+    }
+
     private RootNode getRootNode(String fileName) throws Exception {
         final File file = new File(getPath(fileName));
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
