@@ -477,12 +477,34 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (isClassMemberBlock(astType)) {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
-
             for (Integer lineNo : emptyLinesToLog) {
                 // Checkstyle counts line numbers from 0 but IDE from 1
-                log(lineNo + 1, MSG_MULTIPLE_LINES_INSIDE);
+                log(getLastElementBeforeEmptyLines(ast, lineNo), MSG_MULTIPLE_LINES_INSIDE,
+                        lineNo + 1);
             }
         }
+    }
+
+    /**
+     * Returns the element after which empty lines exist.
+     *
+     * @param ast the ast to check.
+     * @param line the empty line which gives violation.
+     * @return The DetailAST after which empty lines are present.
+     */
+    private static DetailAST getLastElementBeforeEmptyLines(DetailAST ast, int line) {
+        DetailAST travelAST = ast;
+        if (ast.getFirstChild().getLineNo() < line) {
+            travelAST = ast.getFirstChild();
+            while (travelAST.getNextSibling() != null
+                    && travelAST.getNextSibling().getLineNo() < line) {
+                travelAST = travelAST.getNextSibling();
+            }
+            if (travelAST.hasChildren()) {
+                travelAST = getLastElementBeforeEmptyLines(travelAST, line);
+            }
+        }
+        return travelAST;
     }
 
     /**
