@@ -24,10 +24,25 @@ public class InputTrailingComment {
     }
 
     /**
-     * comment with trailing space
+     * comment with trailing space.
      */
     final static public String NAME="Some Name"; // NOI18N
     final static public String NAME2="Some Name"; /*NOI18N*/
     String NAME3="Some Name"; /*NOI18N
 */
+    void method3() {
+        /* violation on this block */
+        // violation here
+    }
+
+    private static class TimerEntry {
+        /* ok */ final String operation = null;
+        /* ok */ final long start = 0L;
+    }
+
+    /**
+     * violation above this line.
+     **/
+    /* ok */ void addError() {
+    }
 }
