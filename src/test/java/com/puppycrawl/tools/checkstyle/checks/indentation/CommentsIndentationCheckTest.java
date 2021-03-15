@@ -89,6 +89,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "557:1: " + getCheckMessage(MSG_KEY_SINGLE, 555, 0, 8),
             "562:1: " + getCheckMessage(MSG_KEY_SINGLE, 561, 0, 8),
             "577:1: " + getCheckMessage(MSG_KEY_SINGLE, 574, 0, 8),
+            "601:17: " + getCheckMessage(MSG_KEY_SINGLE, 596, 16, 8),
         };
         final String testInputFile = "InputCommentsIndentationCommentIsAtTheEndOfBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);
