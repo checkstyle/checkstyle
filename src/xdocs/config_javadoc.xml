@@ -2435,8 +2435,7 @@ class DatabaseConfiguration {}
           For getters and setters for the property <code>allowMissingPropertyJavadoc</code>,
           the methods must match exactly the structures below.
         </p>
-        <div class="wrapper">
-          <pre>
+          <source>
 public void setNumber(final int number)
 {
     mNumber = number;
@@ -2451,8 +2450,7 @@ public boolean isSomething()
 {
     return false;
 }
-          </pre>
-        </div>
+          </source>
       </subsection>
 
       <subsection name="Properties" id="MissingJavadocMethod_Properties">
@@ -2879,14 +2877,12 @@ package com.checkstyle.api; // violation
         </source>
 
         <p>Example:</p>
-        <div class="wrapper">
-          <pre>
+        <source>
 public class PublicClass {} // violation
 private class PublicClass {}
 protected class PublicClass {}
 class PackagePrivateClass {}
-          </pre>
-        </div>
+        </source>
 
         <p>
           To configure the check for <code>private</code> scope:
@@ -2898,14 +2894,12 @@ class PackagePrivateClass {}
         </source>
 
         <p>Example:</p>
-        <div class="wrapper">
-          <pre>
+        <source>
 public class PublicClass {} // violation
 private class PublicClass {} // violation
 protected class PublicClass {} // violation
 class PackagePrivateClass {} // violation
-          </pre>
-        </div>
+        </source>
 
         <p>
           To configure the check for <code>private</code> classes only:
@@ -2918,14 +2912,12 @@ class PackagePrivateClass {} // violation
         </source>
 
         <p>Example:</p>
-        <div class="wrapper">
-          <pre>
+        <source>
 public class PublicClass {}
 private class PublicClass {} // violation
 protected class PublicClass {}
 class PackagePrivateClass {}
-          </pre>
-        </div>
+        </source>
 
         <p>
           Example that allows missing comments for classes annotated with
