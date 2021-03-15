@@ -32,7 +32,6 @@ import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
 import net.sf.saxon.tree.iter.SingleNodeIterator;
-import net.sf.saxon.tree.util.Navigator;
 import net.sf.saxon.type.Type;
 
 /**
@@ -182,14 +181,14 @@ public class RootNode extends AbstractNode {
                 break;
             case AxisInfo.DESCENDANT:
                 if (hasChildNodes()) {
-                    result = new Navigator.DescendantEnumeration(this, false, true);
+                    result = new AxisIterators.DescendantEnumeration(this, false);
                 }
                 else {
                     result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
-                result = new Navigator.DescendantEnumeration(this, true, true);
+                result = new AxisIterators.DescendantEnumeration(this, true);
                 break;
             default:
                 throw throwUnsupportedOperationException();
