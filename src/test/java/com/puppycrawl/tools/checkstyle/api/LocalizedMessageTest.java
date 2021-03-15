@@ -22,7 +22,6 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.utils.CommonUtil.EMPTY_OBJECT_ARRAY;
 import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -81,20 +80,6 @@ public class LocalizedMessageTest {
         if (!country.isEmpty()) {
             assertThat("Invalid country",
                     Arrays.asList(Locale.getISOCountries()), hasItem(country));
-        }
-    }
-
-    /**
-     * Verifies that if the language is specified explicitly (and it is not English),
-     * the message does not use the default value.
-     */
-    @Test
-    public void testLocaleIsSupported() {
-        final String language = DEFAULT_LOCALE.getLanguage();
-        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
-            final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
-            assertThat("Unsupported language: " + DEFAULT_LOCALE,
-                    localizedMessage.getMessage(), not("Empty statement."));
         }
     }
 
