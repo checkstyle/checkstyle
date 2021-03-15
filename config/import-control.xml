@@ -218,6 +218,8 @@
     <allow class="java.lang.reflect.Field"/>
     <allow class="java.nio.charset.StandardCharsets" local-only="true"/>
     <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
+    <allow class="com.puppycrawl.tools.checkstyle.xpath.AbstractNode"/>
+    <allow pkg="com.puppycrawl.tools.checkstyle.xpath.iterators" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
   </subpackage>
 

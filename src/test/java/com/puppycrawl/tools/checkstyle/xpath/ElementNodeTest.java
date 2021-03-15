@@ -33,12 +33,12 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.xpath.iterators.DescendantIterator;
 import net.sf.saxon.om.AxisInfo;
 import net.sf.saxon.om.NodeInfo;
 import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
-import net.sf.saxon.tree.util.Navigator;
 
 public class ElementNodeTest extends AbstractPathTestSupport {
 
@@ -259,7 +259,7 @@ public class ElementNodeTest extends AbstractPathTestSupport {
         }
         try (AxisIterator iterator = elementNode.iterateAxis(AxisInfo.DESCENDANT)) {
             assertWithMessage("Invalid iterator")
-                    .that(iterator instanceof Navigator.DescendantEnumeration)
+                    .that(iterator instanceof DescendantIterator)
                     .isTrue();
         }
     }
