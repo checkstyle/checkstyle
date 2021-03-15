@@ -480,9 +480,53 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
 
             for (Integer lineNo : emptyLinesToLog) {
                 // Checkstyle counts line numbers from 0 but IDE from 1
-                log(lineNo + 1, MSG_MULTIPLE_LINES_INSIDE);
+                log(getLastElemetBeforeEmptyLines(ast, lineNo), MSG_MULTIPLE_LINES_INSIDE,
+                        lineNo + 1);
             }
         }
+    }
+
+    /**
+     * Returns the element after which empty lines exist.
+     *
+     * @param ast the ast to check.
+     * @param line the empty line which gives violation.
+     * @return The DetailAST after which empty lines are present.
+     */
+    private static DetailAST getLastElemetBeforeEmptyLines(DetailAST ast, int line) {
+        DetailAST travelAST;
+        travelAST = ast.getFirstChild();
+        while (travelAST.getNextSibling() != null
+                && travelAST.getNextSibling().getLineNo() < line) {
+            travelAST = travelAST.getNextSibling();
+        }
+        travelAST = getLastElementTraversal(travelAST, line);
+        if (travelAST.getNextSibling() != null
+            && travelAST.hasChildren()) {
+            travelAST = getLastElemetBeforeEmptyLines(travelAST, line);
+        }
+        return travelAST;
+    }
+
+    /**
+     * Traverse AST and give last element of a level above the line.
+     *
+     * @param astModified modified ast to be checked.
+     * @param line the empty line which gives violation.
+     * @return The DetailAST of a level after which empty lines are present.
+     */
+    private static DetailAST getLastElementTraversal(DetailAST astModified, int line) {
+        DetailAST travelAST = astModified;
+        if (travelAST.getFirstChild() != null && travelAST.getFirstChild().getLineNo() < line) {
+            travelAST = travelAST.getFirstChild();
+        }
+        if (travelAST.getNextSibling() == null || travelAST.getNextSibling().getLineNo() < line) {
+            while (travelAST.getNextSibling() != null && travelAST.getNextSibling()
+                    .getLineNo() < line) {
+                travelAST = travelAST.getNextSibling();
+            }
+        }
+        return travelAST;
     }
 
     /**
