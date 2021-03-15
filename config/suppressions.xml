@@ -26,7 +26,8 @@
   <suppress checks="AbstractClassNameCheck"
              files="AbstractCheckTest.java|AbstractClassNameCheckTest.java|
                     |AbstractJavadocCheckTest.java|
-                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java"/>
+                    |AbstractViolationReporterTest.java|AbstractFileSetCheckTest.java|
+                    |AbstractIteratorTest.java"/>
 
   <!-- Tone down the checking for test code -->
   <suppress checks="ExecutableStatementCount|JavaNCSS|BooleanExpressionComplexity|
@@ -66,7 +67,7 @@
   <suppress checks="ClassDataAbstractionCoupling" files="AutomaticBean\.java"/>
   <!-- they are aggregators of logic, usage a several of classes are ok -->
   <suppress checks="ClassDataAbstractionCoupling"
-             files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
+             files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser|ElementNode)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
                     |CheckstyleAntTaskTest|
