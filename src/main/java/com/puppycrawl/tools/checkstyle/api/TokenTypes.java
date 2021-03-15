@@ -2459,7 +2459,20 @@ public final class TokenTypes {
     public static final int MINUS = GeneratedJavaTokenTypes.MINUS;
     /**
      * The {@code /} (division) operator.
-     *
+     * <p>For example:</p>
+     * <pre>
+     * a = 4 / 2;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--DIV -&gt; /
+     * |           |--NUM_INT -&gt; 4
+     * |           `--NUM_INT -&gt; 2
+     * |--SEMI -> ;
+     * </pre>
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.2">Java
      * Language Specification, &sect;15.17.2</a>
