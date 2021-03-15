@@ -413,6 +413,10 @@
             [./IDENT[@text='expected']]"/>
       <message key="matchxpath.match" value="Avoid using 'expected' attribute in Test annotation."/>
     </module>
+    <module name="MatchXpath">
+      <property name="query" value="//ANNOTATION[./IDENT[@text='Issue']]"/>
+      <message key="matchxpath.match" value="Avoid using @Issue annotation."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
