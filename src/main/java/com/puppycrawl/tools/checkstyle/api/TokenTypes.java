@@ -2318,6 +2318,19 @@ public final class TokenTypes {
     /**
      * The {@code |} (bitwise OR) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a | b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--BOR -&gt; |
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.22.1">Java
      * Language Specification, &sect;15.22.1</a>
