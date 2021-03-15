@@ -583,6 +583,24 @@ public class InputCommentsIndentationCommentIsAtTheEndOfBlock {
         }
     }
 
+    void foo79() {
+        String
+                // comment
+                .valueOf(new Integer(0))
+                .trim()
+                .length();
+        // comment
+    }
+
+    void foo80() {
+        String
+                // comment
+                .valueOf(new Integer(0))
+                .trim()
+                .length();
+                // violation
+    }
+
     // We almost reached the end of the class here.
 }
 // The END of the class.

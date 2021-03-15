@@ -503,12 +503,10 @@ public class CommentsIndentationCheck extends AbstractCheck {
             currentToken = currentToken.getPreviousSibling();
             while (currentToken.getFirstChild() != null) {
                 DetailAST child = currentToken.getFirstChild();
-                while (child != null && isComment(child)) {
+                while (isComment(child)) {
                     child = child.getNextSibling();
                 }
-                if (child != null) {
-                    currentToken = child;
-                }
+                currentToken = child;
             }
             previousStatement = currentToken;
         }
