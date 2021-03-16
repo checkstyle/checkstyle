@@ -2965,10 +2965,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]abstractjavadoc[\\/]InputAbstractJavadocWrongSingletonTagInJavadoc.java"/>
   <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderCorrect.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderIncorrect.java"/>
-  <suppress id="StyleValidationCommentInInputs"
             files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition.java"/>

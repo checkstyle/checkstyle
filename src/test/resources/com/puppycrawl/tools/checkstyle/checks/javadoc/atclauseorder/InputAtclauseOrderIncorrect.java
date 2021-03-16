@@ -6,10 +6,10 @@ import java.io.Serializable;
  * Some javadoc.
  *
  * @since Some javadoc.
- * @version 1.0 //warn //warn
+ * @version 1.0 // violation
  * @deprecated Some javadoc.
- * @see Some javadoc. //warn
- * @author max //warn
+ * @see Some javadoc. // violation
+ * @author max // violation
  */
 class InputAtclauseOrderIncorrect implements Serializable
 {
@@ -37,7 +37,7 @@ class InputAtclauseOrderIncorrect implements Serializable
      * @return Some text.
      * @serialData Some javadoc.
      * @deprecated Some text.
-     * @throws Exception Some text. //warn
+     * @throws Exception Some text. // violation
      */
     String method(String aString) throws Exception
     {
@@ -47,9 +47,9 @@ class InputAtclauseOrderIncorrect implements Serializable
     /**
      * Some text.
      * @serialData Some javadoc.
-     * @return Some text. //warn
-     * @param aString Some text. //warn
-     * @throws Exception Some text.
+     * @return Some text. // violation
+     * @param aString Some text. // violation
+     * @throws Exception Some text. // violation
      */
     String method1(String aString) throws Exception
     {
@@ -59,14 +59,14 @@ class InputAtclauseOrderIncorrect implements Serializable
     /**
      * Some text.
      * @throws Exception Some text.
-     * @param aString Some text. //warn
+     * @param aString Some text. // violation
      */
     void method2(String aString) throws Exception {}
 
     /**
      * Some text.
      * @deprecated Some text.
-     * @throws Exception Some text. //warn
+     * @throws Exception Some text. // violation
      */
     void method3() throws Exception {}
 
@@ -83,8 +83,8 @@ class InputAtclauseOrderIncorrect implements Serializable
     /**
      * Some text.
      * @deprecated Some text.
-     * @return Some text. //warn
-     * @param aString Some text. //warn
+     * @return Some text. // violation
+     * @param aString Some text. // violation
      */
     String method5(String aString)
     {
@@ -96,9 +96,9 @@ class InputAtclauseOrderIncorrect implements Serializable
      * @param aString Some text.
      * @return Some text.
      * @serialData Some javadoc.
-     * @param aInt Some text. //warn
-     * @throws Exception Some text.
-     * @param aBoolean Some text. //warn
+     * @param aInt Some text. // violation
+     * @throws Exception Some text. // violation
+     * @param aBoolean Some text. // violation
      * @deprecated Some text.
      */
     String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -112,7 +112,7 @@ class InputAtclauseOrderIncorrect implements Serializable
      * @version 1.0
      * @since Some javadoc.
      * @serialData Some javadoc.
-     * @author max //warn
+     * @author max // violation
      */
     class InnerClassWithAnnotations
     {
@@ -120,8 +120,8 @@ class InputAtclauseOrderIncorrect implements Serializable
          * Some text.
          * @return Some text.
          * @deprecated Some text.
-         * @param aString Some text. //warn
-         * @throws Exception Some text.
+         * @param aString Some text. // violation
+         * @throws Exception Some text. // violation
          */
         String method(String aString) throws Exception
         {
@@ -131,8 +131,8 @@ class InputAtclauseOrderIncorrect implements Serializable
         /**
          * Some text.
          * @throws Exception Some text.
-         * @return Some text. //warn
-         * @param aString Some text. //warn
+         * @return Some text. // violation
+         * @param aString Some text. // violation
          */
         String method1(String aString) throws Exception
         {
@@ -142,15 +142,15 @@ class InputAtclauseOrderIncorrect implements Serializable
         /**
          * Some text.
          * @serialData Some javadoc.
-         * @param aString Some text. //warn
-         * @throws Exception Some text.
+         * @param aString Some text. // violation
+         * @throws Exception Some text. // violation
          */
         void method2(String aString) throws Exception {}
 
         /**
          * Some text.
          * @deprecated Some text.
-         * @throws Exception Some text. //warn
+         * @throws Exception Some text. // violation
          */
         void method3() throws Exception {}
 
@@ -158,7 +158,7 @@ class InputAtclauseOrderIncorrect implements Serializable
          * Some text.
          * @throws Exception Some text.
          * @serialData Some javadoc.
-         * @return Some text. //warn
+         * @return Some text. // violation
          */
         String method4() throws Exception
         {
@@ -169,7 +169,7 @@ class InputAtclauseOrderIncorrect implements Serializable
          * Some text.
          * @param aString Some text.
          * @deprecated Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation
          */
         String method5(String aString)
         {
@@ -180,9 +180,9 @@ class InputAtclauseOrderIncorrect implements Serializable
          * Some text.
          * @param aString Some text.
          * @return Some text.
-         * @param aInt Some text. //warn
+         * @param aInt Some text. // violation
          * @throws Exception Some text.
-         * @param aBoolean Some text. //warn
+         * @param aBoolean Some text. // violation
          * @deprecated Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -196,10 +196,10 @@ class InputAtclauseOrderIncorrect implements Serializable
         /**
          * Some text.
          * @throws Exception Some text.
-         * @param aString Some text. //warn
+         * @param aString Some text. // violation
          * @serialData Some javadoc.
          * @deprecated Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation
          */
         String method(String aString) throws Exception
         {
@@ -210,7 +210,7 @@ class InputAtclauseOrderIncorrect implements Serializable
          * Some text.
          * @param aString Some text.
          * @throws Exception Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation
          */
         String method1(String aString) throws Exception
         {
@@ -220,21 +220,21 @@ class InputAtclauseOrderIncorrect implements Serializable
         /**
          * Some text.
          * @throws Exception Some text.
-         * @param aString Some text. //warn
+         * @param aString Some text. // violation
          */
         void method2(String aString) throws Exception {}
 
         /**
          * Some text.
          * @deprecated Some text.
-         * @throws Exception Some text. //warn
+         * @throws Exception Some text. // violation
          */
         void method3() throws Exception {}
 
         /**
          * Some text.
          * @throws Exception Some text.
-         * @return Some text. //warn
+         * @return Some text. // violation
          */
         String method4() throws Exception
         {
@@ -244,8 +244,8 @@ class InputAtclauseOrderIncorrect implements Serializable
         /**
          * Some text.
          * @deprecated Some text.
-         * @return Some text. //warn
-         * @param aString Some text. //warn
+         * @return Some text. // violation
+         * @param aString Some text. // violation
          */
         String method5(String aString)
         {
@@ -256,9 +256,9 @@ class InputAtclauseOrderIncorrect implements Serializable
          * Some text.
          * @param aString Some text.
          * @return Some text.
-         * @param aInt Some text. //warn
+         * @param aInt Some text. // violation
          * @throws Exception Some text.
-         * @param aBoolean Some text. //warn
+         * @param aBoolean Some text. // violation
          * @deprecated Some text.
          */
         String method6(String aString, int aInt, boolean aBoolean) throws Exception
@@ -272,10 +272,10 @@ class InputAtclauseOrderIncorrect implements Serializable
  * Some javadoc.
  *
  * @since Some javadoc.
- * @version 1.0 //warn //warn
+ * @version 1.0 // violation
  * @deprecated Some javadoc.
- * @see Some javadoc. //warn
- * @author max //warn
+ * @see Some javadoc. // violation
+ * @author max // violation
  */
 enum Foo4 {}
 
@@ -285,7 +285,7 @@ enum Foo4 {}
  * @version 1.0
  * @since Some javadoc.
  * @serialData Some javadoc.
- * @author max //warn
+ * @author max // violation
  */
 interface FooIn {
     /**
