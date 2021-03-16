@@ -1072,11 +1072,11 @@ public final class TokenTypes {
      * <p>parses as:</p>
      * <pre>
      * --CTOR_CALL -&gt; CTOR_CALL
-     *     --LPAREN -&gt; (
-     *     --ELIST -&gt; ELIST
-     *         --EXPR -&gt; EXPR
+     *    |--LPAREN -&gt; (
+     *    |--ELIST -&gt; ELIST
+     *    |    --EXPR -&gt; EXPR
      *             `--NUM_INT -&gt; 1
-     *     --LPAREN -&gt; )
+     *    | --LPAREN -&gt; )
      *     `--SEMI -&gt; ;
      * </pre>
      *
