@@ -1067,17 +1067,17 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * |--this -&gt; 1
+     * this(1);
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--CTOR_CALL -&gt; CTOR_CALL
-     * |    |--LPAREN -&gt; (
-     * |    |--ELIST -&gt; ELIST
-     * |        |--EXPR -&gt; EXPR
-     * |            |`--NUM_INT -&gt; 1
-     * |    |--LPAREN -&gt; )
-     * |    |--SEMI -&gt; ;
+     * --CTOR_CALL -&gt; CTOR_CALL
+     *     --LPAREN -&gt; (
+     *     --ELIST -&gt; ELIST
+     *         --EXPR -&gt; EXPR
+     *             `--NUM_INT -&gt; 1
+     *     --LPAREN -&gt; )
+     *     --SEMI -&gt; ;
      * </pre>
      *
      * @see #ELIST
