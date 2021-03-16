@@ -451,7 +451,7 @@ public final class TokenTypes {
      * |   |   `--ARRAY_DECLARATOR -&gt; [
      * |   |       |--LITERAL_INT -&gt; int
      * |   |       `--RBRACK -&gt; ]
-     * |   |--IDENT -&gt; x
+     * |   | --IDENT -&gt; x
      * |--SEMI -&gt; ;
      * </pre>
      *
