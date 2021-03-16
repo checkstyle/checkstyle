@@ -128,7 +128,12 @@ public class FinalClassCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
     }
 
     @Override
@@ -168,6 +173,19 @@ public class FinalClassCheck
                 }
                 break;
 
+            case TokenTypes.LITERAL_NEW:
+                if (ast.getFirstChild() != null) {
+                    final ClassDesc currClass = classes.peek();
+                    final String qualifiedAnonInnerClassName =
+                            packageName + PACKAGE_SEPARATOR + ast.getFirstChild().getText();
+                    if (currClass != null
+                            && qualifiedAnonInnerClassName.equals(currClass.getQualifiedName())
+                            && ast.getLastChild().getType() == TokenTypes.OBJBLOCK) {
+                        currClass.registerAnonymousInnerClass();
+                    }
+                }
+                break;
+
             default:
                 throw new IllegalStateException(ast.toString());
         }
@@ -178,7 +196,8 @@ public class FinalClassCheck
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             final ClassDesc desc = classes.pop();
             if (desc.isWithPrivateCtor()
-                && !desc.isDeclaredAsAbstract()
+                && !(desc.isDeclaredAsAbstract()
+                    || desc.isWithAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass()
@@ -326,6 +345,9 @@ public class FinalClassCheck
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
 
+        /** Does class have anonymous inner class. */
+        private boolean withAnonymousInnerClass;
+
         /**
          *  Create a new ClassDesc instance.
          *
@@ -364,6 +386,11 @@ public class FinalClassCheck
         /** Adds nested subclass. */
         private void registerNestedSubclass() {
             withNestedSubclass = true;
+        }
+
+        /** Adds anonymous inner class. */
+        private void registerAnonymousInnerClass() {
+            withAnonymousInnerClass = true;
         }
 
         /**
@@ -409,6 +436,15 @@ public class FinalClassCheck
          */
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
+        }
+
+        /**
+         * Does class have an anonymous inner class.
+         *
+         * @return true if class has anonymous inner class
+         */
+        private boolean isWithAnonymousInnerClass() {
+            return withAnonymousInnerClass;
         }
 
     }
