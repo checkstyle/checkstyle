@@ -103,8 +103,10 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
             "29:50: " + getCheckMessage(MSG_KEY),
             "30:51: " + getCheckMessage(MSG_KEY),
             "31:31: " + getCheckMessage(MSG_KEY),
+            "34:9: " + getCheckMessage(MSG_KEY),
+            "35:9: " + getCheckMessage(MSG_KEY),
+            "43:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
-
 }
