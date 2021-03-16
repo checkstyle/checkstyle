@@ -57,7 +57,8 @@ public final class JavadocPropertiesGenerator {
      * The end of the sentence is determined by the symbol "period", "exclamation mark" or
      * "question mark", followed by a space or the end of the text.
      */
-    private static final Pattern END_OF_SENTENCE_PATTERN = Pattern.compile("(.*?[.?!])(\\s|$)");
+    private static final Pattern END_OF_SENTENCE_PATTERN = Pattern.compile(
+        "(([^.?!]|[.?!](?!\\s|$))*+[.?!])(\\s|$)");
 
     /** Max width of the usage help message for this command. */
     private static final int USAGE_HELP_WIDTH = 100;
