@@ -120,9 +120,9 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         final String tagOrder = "[@since, @version, @param, @return, @throws, @exception,"
                 + " @deprecated, @see, @serial, @serialField, @serialData, @author]";
         final String[] expected = {
-            "113: " + getCheckMessage(MSG_KEY, tagOrder),
+            "119: " + getCheckMessage(MSG_KEY, tagOrder),
         };
-        verify(checkConfig, getPath("InputAtclauseOrderIncorrect.java"), expected);
+        verify(checkConfig, getPath("InputAtclauseOrderIncorrectCustom.java"), expected);
     }
 
     @Test
