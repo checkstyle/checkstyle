@@ -1077,7 +1077,7 @@ public final class TokenTypes {
      *         --EXPR -&gt; EXPR
      *             `--NUM_INT -&gt; 1
      *     --LPAREN -&gt; )
-     *     --SEMI -&gt; ;
+     *     `--SEMI -&gt; ;
      * </pre>
      *
      * @see #ELIST
