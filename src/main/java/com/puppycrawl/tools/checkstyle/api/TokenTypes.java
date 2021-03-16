@@ -1093,7 +1093,20 @@ public final class TokenTypes {
     /**
      * The statement terminator ({@code ;}).  Depending on the
      * context, this make occur as a sibling, a child, or not at all.
-     *
+     *  <p>For example:</p>
+     * <pre>
+     * |--this -&gt; 1
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--CTOR_CALL -&gt; this
+     *     |--LPAREN -&gt; (
+     *     |--ELIST -&gt; ELIST
+     *         |--EXPR -&gt; EXPR
+     *             |--NUM_INT -&gt; 1
+     *     |--RPAREN -&gt; )
+     *     |--SEMI -&gt; ;
+     * </pre>
      * @see #PACKAGE_DEF
      * @see #IMPORT
      * @see #SLIST
@@ -1269,18 +1282,23 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * |--LITERAL_SYNCHRONIZED -&gt; synchronized
-     * |    |--LPAREN -&gt; (
-     * |    |--EXPR -&gt; EXPR
-     * |        |--LITERAL_THIS -&gt; this
-     * |    |--RPAREN -&gt; )
-     * |    |--SLIST -&gt; {
-     * |        |--EXPR -&gt; EXPR
-     * |            |--POST_INC -&gt; ++
-     * |                |--IDENT -&gt; x
-     * |        |--SEMI -&gt; ;
-     * |        |--RCURLY -&gt; }
-     * |--RCURLY -&gt; }
+     * +--LITERAL_SYNCHRONIZED (synchronized)
+     *     |
+     *     +--LPAREN (()
+     *     +--EXPR
+     *         |
+     *         +--LITERAL_THIS (this)
+     *     +--RPAREN ())
+     *     +--SLIST ({)
+     *         |
+     *         +--EXPR
+     *             |
+     *             +--POST_INC (++)
+     *                 |
+     *                 +--IDENT (x)
+     *         +--SEMI (;)
+     *         +--RCURLY (})
+     * +--RCURLY (})
      * </pre>
      *
      * @see #MODIFIERS
