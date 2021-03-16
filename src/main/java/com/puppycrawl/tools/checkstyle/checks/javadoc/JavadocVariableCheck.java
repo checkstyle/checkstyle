@@ -67,12 +67,37 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocVariable"/&gt;
  * </pre>
  * <p>
+ * By default, this setting will report a violation if
+ * there is no javadoc for {@code private} member.
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a; // violation, missing javadoc for private member
+ *
+ *   &#47;**
+ *   * Some description here
+ *   *&#47;
+ *   private int b; // OK
+ * }
+ * </pre>
+ * <p>
  * To configure the check for {@code public} scope:
  * </p>
  * <pre>
  * &lt;module name="JavadocVariable"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>This setting will report a violation if there is no javadoc for {@code public} member.</p>
+ * <pre>
+ * public class Test {
+ *   public int a; // violation, missing javadoc for public member
+ *
+ *   &#47;**
+ *   * Some description here
+ *   *&#47;
+ *   public int b; // OK
+ * }
  * </pre>
  * <p>
  * To configure the check for members which are in {@code private},
@@ -85,12 +110,43 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * This setting will report a violation if there is no javadoc for {@code private} member
+ * and ignores {@code protected} member.
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a; // violation, missing javadoc for private member
+ *
+ *   &#47;**
+ *   * Some description here
+ *   *&#47;
+ *   private int b; // OK
+ *   protected int c; // OK
+ * }
+ * </pre>
+ * <p>
  * To ignore absence of Javadoc comments for variables with names {@code log} or {@code logger}:
  * </p>
  * <pre>
  * &lt;module name="JavadocVariable"&gt;
  *   &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * This setting will report a violation if there is no javadoc for {@code private} member and
+ * ignores members with name {@code log} or {@code logger}.
+ * </p>
+ * <pre>
+ * public class Test {
+ *   private int a; // violation, missing javadoc for private member
+ *
+ *   &#47;**
+ *   * Some description here
+ *   *&#47;
+ *   private int b; // OK
+ *   private int log; // OK
+ *   private int logger; // OK
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
