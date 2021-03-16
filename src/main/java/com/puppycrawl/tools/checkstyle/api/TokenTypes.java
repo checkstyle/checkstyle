@@ -2442,6 +2442,21 @@ public final class TokenTypes {
     /**
      * The {@code +} (addition) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     *     a = b + c;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |   |--IDENT -&gt; a
+     * |   `--PLUS -&gt; +
+     * |   |--IDENT -&gt; b
+     * |   `--IDENT -&gt; c
+     * |--SEMI -> ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      * Language Specification, &sect;15.18</a>
