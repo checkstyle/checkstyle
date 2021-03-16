@@ -3397,6 +3397,25 @@ public final class TokenTypes {
      * An upper bounds on a wildcard type argument or type parameter.
      * This node has one child - the type that is being used for
      * the bounding.
+     * <p>For example:</p>
+     * <pre>List&lt;? extends Number&gt;</pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * --VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--TYPE -&gt; TYPE
+     *  |   |   |--IDENT -&gt; List
+     *  |   |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |   |       |--GENERIC_START -&gt; &lt;
+     *  |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |   |       |   |--WILDCARD_TYPE -&gt; ?
+     *  |   |       |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     *  |   |       |       `--IDENT -&gt; Number
+     *  |   |       `--GENERIC_END -&gt; &gt;
+     *  |   |--IDENT -&gt; list
+     *  |   `--SEMI -&gt; ;
+     *  </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
