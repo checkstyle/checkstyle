@@ -131,14 +131,14 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <p>Example</p>
  * <pre>
  * public class Test {
- *      public int publicVariable_1;    // violation, missing javadoc for public variable
+ *      private int privateVariable1;    // violation, missing javadoc for private variable
  *
  *      &#47;**
  *      * Some description here.
  *      *&#47;
- *      public int publicVariable_2;    // OK
- *      public int log;   // OK
- *      public int logger;    // OK
+ *      private int publicVariable2;    // OK
+ *      private int log;   // OK
+ *      private int logger;    // OK
  * }
  * </pre>
  * <p>
