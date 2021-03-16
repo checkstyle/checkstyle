@@ -607,20 +607,16 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--TYPECAST (()
-     *     |
-     *     +--TYPE
-     *         |
-     *         +--IDENT (String)
-     *     +--RPAREN ())
-     *     +--METHOD_CALL (()
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (it)
-     *             +--IDENT (next)
-     *         +--ELIST
-     *         +--RPAREN ())
+     * `--TYPECAST -&gt; (
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--RPAREN -&gt; )
+     *     `--METHOD_CALL -&gt; (
+     *         |--DOT -&gt; .
+     *         |   |--IDENT -&gt; it
+     *         |   `--IDENT -&gt; next
+     *         |--ELIST -&gt; ELIST
+     *         `--RPAREN -&gt; )
      * </pre>
      *
      * @see <a
