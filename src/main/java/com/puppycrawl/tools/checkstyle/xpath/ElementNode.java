@@ -31,7 +31,6 @@ import net.sf.saxon.tree.iter.ArrayIterator;
 import net.sf.saxon.tree.iter.AxisIterator;
 import net.sf.saxon.tree.iter.EmptyIterator;
 import net.sf.saxon.tree.iter.SingleNodeIterator;
-import net.sf.saxon.tree.util.Navigator;
 import net.sf.saxon.type.Type;
 
 /**
@@ -237,10 +236,10 @@ public class ElementNode extends AbstractNode {
         final AxisIterator result;
         switch (axisNumber) {
             case AxisInfo.ANCESTOR:
-                result = new Navigator.AncestorEnumeration(this, false);
+                result = new AxisIterators.AncestorEnumeration(this, false);
                 break;
             case AxisInfo.ANCESTOR_OR_SELF:
-                result = new Navigator.AncestorEnumeration(this, true);
+                result = new AxisIterators.AncestorEnumeration(this, true);
                 break;
             case AxisInfo.ATTRIBUTE:
                 result = SingleNodeIterator.makeIterator(getAttributeNode());
@@ -256,14 +255,14 @@ public class ElementNode extends AbstractNode {
                 break;
             case AxisInfo.DESCENDANT:
                 if (hasChildNodes()) {
-                    result = new Navigator.DescendantEnumeration(this, false, true);
+                    result = new AxisIterators.DescendantEnumeration(this, false);
                 }
                 else {
                     result = EmptyIterator.ofNodes();
                 }
                 break;
             case AxisInfo.DESCENDANT_OR_SELF:
-                result = new Navigator.DescendantEnumeration(this, true, true);
+                result = new AxisIterators.DescendantEnumeration(this, true);
                 break;
             case AxisInfo.PARENT:
                 result = SingleNodeIterator.makeIterator(parent);
@@ -278,10 +277,10 @@ public class ElementNode extends AbstractNode {
                 result = getPrecedingSiblingsIterator();
                 break;
             case AxisInfo.FOLLOWING:
-                result = new FollowingEnumeration(this);
+                result = new AxisIterators.FollowingEnumeration(this);
                 break;
             case AxisInfo.PRECEDING:
-                result = new Navigator.PrecedingEnumeration(this, true);
+                result = new AxisIterators.PrecedingEnumeration(this);
                 break;
             default:
                 throw throwUnsupportedOperationException();
@@ -424,50 +423,4 @@ public class ElementNode extends AbstractNode {
     private static UnsupportedOperationException throwUnsupportedOperationException() {
         return new UnsupportedOperationException("Operation is not supported");
     }
-
-    /**
-     * Implementation of the following axis, in terms of the child and following-sibling axes.
-     */
-    private static final class FollowingEnumeration implements AxisIterator {
-        /** Following-sibling axis iterator. */
-        private AxisIterator siblingEnum;
-        /** Child axis iterator. */
-        private AxisIterator descendEnum;
-
-        /**
-         * Create an iterator over the "following" axis.
-         *
-         * @param start the initial context node.
-         */
-        /* package */ FollowingEnumeration(NodeInfo start) {
-            siblingEnum = start.iterateAxis(AxisInfo.FOLLOWING_SIBLING);
-        }
-
-        /**
-         * Get the next item in the sequence.
-         *
-         * @return the next Item. If there are no more nodes, return null.
-         */
-        @Override
-        public NodeInfo next() {
-            NodeInfo result = null;
-            if (descendEnum != null) {
-                result = descendEnum.next();
-            }
-
-            if (result == null) {
-                descendEnum = null;
-                result = siblingEnum.next();
-                if (result == null) {
-                    siblingEnum = null;
-                }
-                else {
-                    descendEnum = new Navigator.DescendantEnumeration(result, true, false);
-                    result = next();
-                }
-            }
-            return result;
-        }
-    }
-
 }

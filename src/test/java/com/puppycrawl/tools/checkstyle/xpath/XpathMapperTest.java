@@ -844,27 +844,6 @@ public class XpathMapperTest extends AbstractPathTestSupport {
     }
 
     @Test
-    public void testQueryElementFollowing() throws Exception {
-        final String xpath = "//IDENT[@text='variable']/following::*";
-        final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
-        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
-        final DetailAST expectedAssignNode = getSiblingByType(rootNode.getUnderlyingNode(),
-                TokenTypes.CLASS_DEF)
-                .findFirstToken(TokenTypes.OBJBLOCK)
-                .findFirstToken(TokenTypes.METHOD_DEF)
-                .findFirstToken(TokenTypes.SLIST)
-                .findFirstToken(TokenTypes.VARIABLE_DEF)
-                .findFirstToken(TokenTypes.MODIFIERS)
-                .getNextSibling()
-                .getNextSibling()
-                .getNextSibling();
-        final DetailAST expectedExprNode = expectedAssignNode.getFirstChild();
-        final DetailAST expectedNumIntNode = expectedExprNode.getFirstChild();
-        final DetailAST[] expected = {expectedAssignNode, expectedExprNode, expectedNumIntNode};
-        assertThat("Result nodes differ from expected", actual, equalTo(expected));
-    }
-
-    @Test
     public void testQueryElementFollowingMethodDef() throws Exception {
         final String xpath = "//PACKAGE_DEF/following::METHOD_DEF";
         final RootNode rootNode = getRootNode("InputXpathMapperAst.java");
@@ -969,6 +948,14 @@ public class XpathMapperTest extends AbstractPathTestSupport {
                 TokenTypes.CLASS_DEF).getFirstChild().getFirstChild();
         final DetailAST[] expected = {expectedLiteralPublicNode};
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
+    @Test
+    public void testManyNestedNodes() throws Exception {
+        final String xpath = "//STRING_LITERAL";
+        final RootNode rootNode = getRootNode("InputXpathMapperStringConcat.java");
+        final List<NodeInfo> actual = getXpathItems(xpath, rootNode);
+        assertThat("Number of result nodes differ from expected", actual.size(), equalTo(31560));
     }
 
     private RootNode getRootNode(String fileName) throws Exception {
