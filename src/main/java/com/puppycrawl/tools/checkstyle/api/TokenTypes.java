@@ -3544,16 +3544,14 @@ public final class TokenTypes {
      * Text of single-line or block comment.
      *
      * <pre>
-     * +--SINGLE_LINE_COMMENT
-     *         |
-     *         +--COMMENT_CONTENT
+     * |--SINGLE_LINE_COMMENT -&gt; SINGLE_LINE_COMMENT
+     *      |--COMMENT_CONTENT -&gt; COMMENT_CONTENT
      * </pre>
      *
      * <pre>
-     * +--BLOCK_COMMENT_BEGIN
-     *         |
-     *         +--COMMENT_CONTENT
-     *         +--BLOCK_COMMENT_END
+     * |--BLOCK_COMMENT_BEGIN -&gt; BLOCK_COMMENT_BEGIN
+     *      |--COMMENT_CONTENT -&gt; COMMENT_CONTENT
+     *      |--BLOCK_COMMENT_END -&gt; BLOCK_COMMENT_END
      * </pre>
      */
     public static final int COMMENT_CONTENT =
