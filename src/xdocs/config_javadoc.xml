@@ -2408,14 +2408,14 @@ public int publicVariable;  // OK
         <p>Example</p>
         <source>
 public class Test {
-public int publicVariable_1;    // violation, missing javadoc for public variable
+private int publicVariable1;    // violation, missing javadoc for private variable
 
 /**
 * Some description here.
 */
-public int publicVariable_2;    // OK
-public int log;   // OK
-public int logger;    // OK
+private int publicVariable2;    // OK
+private int log;   // OK
+private int logger;    // OK
 }
         </source>
       </subsection>
