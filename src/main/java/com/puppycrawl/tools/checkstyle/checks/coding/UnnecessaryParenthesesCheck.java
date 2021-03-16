@@ -448,7 +448,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 log(ast, MSG_IDENT, ast.getText());
             }
             // A literal (numeric or string) surrounded by parentheses.
-            else if (surrounded && isInTokenList(type, LITERALS)) {
+            else if (surrounded && TokenUtil.isOfType(type, LITERALS)) {
                 parentToSkip = ast.getParent();
                 if (type == TokenTypes.STRING_LITERAL) {
                     log(ast, MSG_STRING,
@@ -468,7 +468,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
                 }
             }
             // The rhs of an assignment surrounded by parentheses.
-            else if (isInTokenList(type, ASSIGNMENTS)) {
+            else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth++;
                 final DetailAST last = ast.getLastChild();
                 if (last.getType() == TokenTypes.RPAREN) {
@@ -489,7 +489,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             if (type == TokenTypes.EXPR) {
                 checkExpression(ast);
             }
-            else if (isInTokenList(type, ASSIGNMENTS)) {
+            else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
             else if (checkAroundOperators(ast)) {
@@ -591,26 +591,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             }
         }
         return result;
-    }
-
-    /**
-     * Check if the given token type can be found in an array of token types.
-     *
-     * @param type the token type.
-     * @param tokens an array of token types to search.
-     * @return {@code true} if {@code type} was found in {@code
-     *         tokens}.
-     */
-    private static boolean isInTokenList(int type, int... tokens) {
-        // NOTE: Given the small size of the two arrays searched, I'm not sure
-        //       it's worth bothering with doing a binary search or using a
-        //       HashMap to do the searches.
-
-        boolean found = false;
-        for (int i = 0; i < tokens.length && !found; i++) {
-            found = tokens[i] == type;
-        }
-        return found;
     }
 
     /**
