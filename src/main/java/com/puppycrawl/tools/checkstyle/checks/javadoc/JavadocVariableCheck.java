@@ -66,6 +66,17 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * <pre>
  * &lt;module name="JavadocVariable"/&gt;
  * </pre>
+ * <p>Example</p>
+ * <pre>
+ * public class Test {
+ *   private int privateVariable1; // violation, missing javadoc for private variable
+ *
+ *   &#47;**
+ *   * Some description here.
+ *   *&#47;
+ *   private int privateVariable2; // OK
+ * }
+ * </pre>
  * <p>
  * To configure the check for {@code public} scope:
  * </p>
@@ -73,6 +84,18 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocVariable"&gt;
  *   &lt;property name="scope" value="public"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example</p>
+ * <pre>
+ * public class Test {
+ *   public int publicVariable1; // violation, missing javadoc for public variable
+ *
+ *   &#47;**
+ *   * Some description here.
+ *   *&#47;
+ *   public int publicVariable2; // OK
+ *   private int privateVariable; // OK
+ * }
  * </pre>
  * <p>
  * To configure the check for members which are in {@code private},
@@ -84,6 +107,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  *   &lt;property name="excludeScope" value="protected"/&gt;
  * &lt;/module&gt;
  * </pre>
+ * <p>Example</p>
+ * <pre>
+ * public class Test {
+ *   private int privateVariable1; // violation, missing javadoc for private variable
+ *
+ *   &#47;**
+ *   * Some description here.
+ *   *&#47;
+ *   private int privateVariable2; // OK
+ *   protected int protectedVariable; // OK
+ *   public int publicVariable; // OK
+ * }
+ * </pre>
  * <p>
  * To ignore absence of Javadoc comments for variables with names {@code log} or {@code logger}:
  * </p>
@@ -91,6 +127,19 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocVariable"&gt;
  *   &lt;property name="ignoreNamePattern" value="log|logger"/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <p>Example</p>
+ * <pre>
+ * public class Test {
+ *   private int privateVariable1; // violation, missing javadoc for private variable
+ *
+ *   &#47;**
+ *   * Some description here.
+ *   *&#47;
+ *   private int privateVariable2; // OK
+ *   private int log; // OK
+ *   private int logger; // OK
+ * }
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
