@@ -2708,6 +2708,21 @@ public final class TokenTypes {
     /**
      * A string literal.  This is a sequence of (possibly escaped)
      * characters enclosed in double quotes.
+     * <p>For example:</p>
+     * <pre>String str = "StringLiteral";</pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--TYPE -&gt; TYPE
+     *  |   |   `--IDENT -&gt; String
+     *  |   |--IDENT -&gt; str
+     *  |   `--ASSIGN -&gt; =
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--STRING_LITERAL -&gt; "StringLiteral"
+     *  |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.5">Java
