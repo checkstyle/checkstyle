@@ -2257,6 +2257,19 @@ public final class TokenTypes {
     /**
      * The {@code |=} (bitwise OR assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a |= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--BOR_ASSIGN -&gt; |=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
@@ -2460,6 +2473,21 @@ public final class TokenTypes {
     /**
      * The {@code /} (division) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 4 / 2;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--DIV -&gt; /
+     * |           |--NUM_INT -&gt; 4
+     * |           `--NUM_INT -&gt; 2
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.2">Java
      * Language Specification, &sect;15.17.2</a>
@@ -2497,6 +2525,20 @@ public final class TokenTypes {
     public static final int DEC = GeneratedJavaTokenTypes.DEC;
     /**
      * The {@code ~} (bitwise complement) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a = ~ a;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--BNOT -&gt; ~
+     * |           `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.5">Java
