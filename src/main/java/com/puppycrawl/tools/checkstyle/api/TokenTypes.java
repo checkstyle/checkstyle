@@ -2763,6 +2763,19 @@ public final class TokenTypes {
      * A single precision floating point literal.  This is a floating
      * point number with an {@code F} or {@code f} suffix.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3.14d;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_FLOAT -&gt; 3.14f
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      * Language Specification, &sect;3.10.2</a>
@@ -2786,6 +2799,19 @@ public final class TokenTypes {
      * A double precision floating point literal.  This is a floating
      * point number with an optional {@code D} or {@code d}
      * suffix.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3.14d;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_DOUBLE -&gt; 3.14d
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
