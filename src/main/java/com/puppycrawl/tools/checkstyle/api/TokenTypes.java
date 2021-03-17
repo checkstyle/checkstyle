@@ -1421,8 +1421,8 @@ public final class TokenTypes {
      * <pre>
      * |--EXPR -&gt; EXPR
      * |   `--ASSIGN -&gt; =
-     * |   |--IDENT -&gt; a
-     * |   `--IDENT -&gt; b
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
      * |--SEMI -&gt; ;
      * </pre>
      *
