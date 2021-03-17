@@ -2980,6 +2980,19 @@ public final class TokenTypes {
      * literals, but they have an {@code L} or {@code l}
      * (ell) suffix.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3l;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_LONG -&gt; 3l
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      * Language Specification, &sect;3.10.1</a>
