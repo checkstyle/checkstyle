@@ -691,19 +691,21 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * Math.random()
+     * Integer.parseInt("123");
      * </pre>
      *
-     * <p>parses as:
+     * <p>parses as:</p>
      * <pre>
-     * +--METHOD_CALL (()
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--IDENT (Math)
-     *         +--IDENT (random)
-     *     +--ELIST
-     *     +--RPAREN ())
+     * |--EXPR -&gt; EXPR
+     * |   `--METHOD_CALL -&gt; (
+     * |       |--DOT -&gt; .
+     * |       |   |--IDENT -&gt; Integer
+     * |       |   `--IDENT -&gt; parseInt
+     * |       |--ELIST -&gt; ELIST
+     * |       |   `--EXPR -&gt; EXPR
+     * |       |       `--STRING_LITERAL -&gt; "123"
+     * |       `--RPAREN -&gt; )
+     * |--SEMI -&gt; ;
      * </pre>
      *
      *
