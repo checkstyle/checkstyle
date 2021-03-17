@@ -103,8 +103,8 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
-        verify(checkConfig, getPath("InputMissingJavadocMethodTags.java"), expected);
 
+        verify(checkConfig, getPath("InputMissingJavadocMethodTags.java"), expected);
     }
 
     @Test
