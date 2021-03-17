@@ -2892,6 +2892,19 @@ public final class TokenTypes {
      * An integer literal.  These may be specified in decimal,
      * hexadecimal, or octal form.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_INT -&gt; 3
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      * Language Specification, &sect;3.10.1</a>
