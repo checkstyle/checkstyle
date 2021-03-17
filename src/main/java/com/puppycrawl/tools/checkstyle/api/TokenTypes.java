@@ -3382,6 +3382,35 @@ public final class TokenTypes {
      * This node has one child - the type that is being used for
      * the bounding.
      *
+     * <p>For example:</p>
+     *
+     * <pre>
+     *     Unknown Type
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * +--VARIABLE_DEF
+     *     |
+     *     +--MODIFIERS
+     *         |
+     *         +--LITERAL_PUBLIC (public)
+     *     +--TYPE
+     *         |
+     *         +--IDENT (Collection)
+     *             |
+     *             +--TYPE_UPPER_BOUNDS
+     *                 |
+     *                 +--GENERIC_START (&lt;)
+     *                 +--TYPE_UPPER_BOUND
+     *                     |
+     *                     +--WILDCARD_TYPE (?)
+     *                 +--GENERIC_END (&gt;)
+     *     +--IDENT (a)
+     *     +--SEMI (;)
+     * </pre>
+     *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_PARAMETER
