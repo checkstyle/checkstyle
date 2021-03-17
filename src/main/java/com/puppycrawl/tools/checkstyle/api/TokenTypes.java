@@ -2787,6 +2787,19 @@ public final class TokenTypes {
      * point number with an optional {@code D} or {@code d}
      * suffix.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3.14d;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_DOUBLE -&gt; 3.14d
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      * Language Specification, &sect;3.10.2</a>
