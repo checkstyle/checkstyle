@@ -40,7 +40,7 @@ class InputOperatorWrap
     }
 
     <
-    T extends Comparable &
+    /*warn*/ T extends Comparable &
         java.io.Serializable
     >
     void testGenerics1()
