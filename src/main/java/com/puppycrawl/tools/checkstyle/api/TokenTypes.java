@@ -919,15 +919,6 @@ public final class TokenTypes {
     /**
      * The {@code -} (unary minus) operator.
      *
-     * @see <a
-     * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
-     * Language Specification, &sect;15.15.4</a>
-     * @see #EXPR
-     **/
-    public static final int UNARY_MINUS = GeneratedJavaTokenTypes.UNARY_MINUS;
-    /**
-     * The {@code +} (unary plus) operator.
-     *
      * <p>For example:</p>
      *
      *  <pre>
@@ -949,6 +940,15 @@ public final class TokenTypes {
      *                  +--IDENT (b)
      *   +--SEMI (;)
      * </pre>
+     *
+     * @see <a
+     * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
+     * Language Specification, &sect;15.15.4</a>
+     * @see #EXPR
+     **/
+    public static final int UNARY_MINUS = GeneratedJavaTokenTypes.UNARY_MINUS;
+    /**
+     * The {@code +} (unary plus) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.3">Java
