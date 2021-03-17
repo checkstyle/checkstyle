@@ -691,27 +691,21 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * String n = Integer.parseInt("123");
+     * Integer.parseInt("123");
      * </pre>
      *
      * <p>parses as:
      * <pre>
-     *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     *  |   |--MODIFIERS -&gt; MODIFIERS
-     *  |   |--TYPE -&gt; TYPE
-     *  |   |   `--IDENT -&gt; String
-     *  |   |--IDENT -&gt; n
-     *  |   `--ASSIGN -&gt; =
-     *  |       `--EXPR -&gt; EXPR
-     *  |           `--METHOD_CALL -&gt; (
-     *  |               |--DOT -&gt; .
-     *  |               |   |--IDENT -&gt; Integer
-     *  |               |   `--IDENT -&gt; parseInt
-     *  |               |--ELIST -&gt; ELIST
-     *  |               |   `--EXPR -&gt; EXPR
-     *  |               |       `--STRING_LITERAL -&gt; "123"
-     *  |               `--RPAREN -&gt; )
-     *  |--SEMI -&gt; ;
+     * |--EXPR -&gt; EXPR
+     * |   `--METHOD_CALL -&gt; (
+     * |       |--DOT -&gt; .
+     * |       |   |--IDENT -&gt; Integer
+     * |       |   `--IDENT -&gt; parseInt
+     * |       |--ELIST -&gt; ELIST
+     * |       |   `--EXPR -&gt; EXPR
+     * |       |       `--STRING_LITERAL -&gt; "123"
+     * |       `--RPAREN -&gt; )
+     * |--SEMI -&gt; ;
      * </pre>
      *
      *
