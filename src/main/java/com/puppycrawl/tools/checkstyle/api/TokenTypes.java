@@ -916,6 +916,28 @@ public final class TokenTypes {
     /**
      * The {@code +} (unary plus) operator.
      *
+     * <p>For example:</p>
+     *
+     *  <pre>
+     *   a=-b;
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     *   +--UNARY_MINUS
+     *       |
+     *       +--EXPR
+     *          |
+     *          +--ASSIGN (=)
+     *              |
+     *              +--IDENT (a)
+     *              +--MINUS (-)
+     *                  |
+     *                  +--IDENT (b)
+     *   +--SEMI (;)
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.3">Java
      * Language Specification, &sect;15.15.3</a>
