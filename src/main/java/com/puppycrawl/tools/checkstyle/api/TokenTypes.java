@@ -2453,13 +2453,14 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * c = a-b;
+     * d = a-b;
      * </pre>
      * <p>parses as:</p>
+     
      * <pre>
      * |--EXPR -&gt; EXPR 
      * |   `--ASSIGN -&gt; = 
-     * |       |--IDENT -&gt; c 
+     * |       |--IDENT -&gt; d 
      * |       `--MINUS -&gt; - 
      * |           |--IDENT -&gt; a 
      * |           `--IDENT -&gt; b 
