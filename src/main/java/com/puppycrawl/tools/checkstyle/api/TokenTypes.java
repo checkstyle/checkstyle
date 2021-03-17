@@ -1194,6 +1194,21 @@ public final class TokenTypes {
     /**
      * The {@code *} (multiplication or wildcard) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * f = m * a;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; f
+     * |       `--STAR -&gt; *
+     * |           |--IDENT -&gt; m
+     * |           `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-7.html#jls-7.5.2">Java
      * Language Specification, &sect;7.5.2</a>
