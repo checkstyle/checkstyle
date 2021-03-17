@@ -771,14 +771,62 @@ class TestTwo {
         <source>
 &lt;module name=&quot;MissingDeprecated&quot;/&gt;
         </source>
-        <p>Examples of validating source code:</p>
+        <p>Example:</p>
         <source>
 @Deprecated
-public static final int MY_CONST = 123456; // no violation
+public static final int MY_CONST = 13; // ok
 
 /** This javadoc is missing deprecated tag. */
 @Deprecated
 public static final int COUNTER = 10; // violation
+
+/**
+ * @deprecated
+ * &lt;p&gt;&lt;/p&gt;
+ */
+@Deprecated
+public static final int NUM = 123456; // ok
+
+/**
+ * @deprecated
+ *  &lt;p&gt;
+ */
+@Deprecated
+public static final int CONST = 12; // ok
+        </source>
+        <p>
+          To configure the check such that it prints violation
+          messages if tight HTML rules are not obeyed
+        </p>
+        <source>
+&lt;module name="MissingDeprecated"&gt;
+  &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+@Deprecated
+public static final int MY_CONST = 13; // ok
+
+/** This javadoc is missing deprecated tag. */
+@Deprecated
+public static final int COUNTER = 10; // violation
+
+/**
+ * @deprecated
+ * &lt;p&gt;&lt;/p&gt;
+ */
+@Deprecated
+public static final int NUM = 123456; // ok
+
+/**
+ * @deprecated
+ * &lt;p&gt;
+ */
+@Deprecated
+public static final int CONST = 12; // violation, tight HTML rules not obeyed
         </source>
       </subsection>
 
