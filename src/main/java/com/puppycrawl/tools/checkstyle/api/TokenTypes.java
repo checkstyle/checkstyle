@@ -1048,6 +1048,22 @@ public final class TokenTypes {
     /**
      * The {@code strictfp} keyword.
      *
+     * <p>For example:</p>
+     * <pre>public strictfp class Test {}</pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_PUBLIC -&gt; public
+     * |   `--STRICTFP -&gt; strictfp
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int STRICTFP = GeneratedJavaTokenTypes.STRICTFP;
