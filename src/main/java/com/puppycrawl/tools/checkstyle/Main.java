@@ -542,6 +542,8 @@ public final class Main {
     enum OutputFormat {
         /** XML output format. */
         XML,
+        /** SARIF output format. */
+        SARIF,
         /** Plain output format. */
         PLAIN;
 
@@ -557,6 +559,9 @@ public final class Main {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);
+            }
+            else if (this == SARIF) {
+                result = new SarifLogger(out, options);
             }
             else {
                 result = new DefaultLogger(out, options);
@@ -697,8 +702,8 @@ public final class Main {
          */
         @Option(names = "-f",
                 description = "Specifies the output format. Valid values: "
-                + "${COMPLETION-CANDIDATES} for XMLLogger and DefaultLogger respectively. "
-                + "Defaults to ${DEFAULT-VALUE}.")
+                + "${COMPLETION-CANDIDATES} for XMLLogger, SarifLogger, "
+                + "and DefaultLogger respectively. Defaults to ${DEFAULT-VALUE}.")
         private OutputFormat format = DEFAULT_OUTPUT_FORMAT;
 
         /** Option that controls whether to print the AST of the file. */

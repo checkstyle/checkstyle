@@ -60,8 +60,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         </li>
         <li>
           <code>-f format</code> - Specifies the output
-          format. Valid values: <code>xml</code>, <code>plain</code> for <a
-          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
+          format. Valid values: <code>xml</code>, <code>sarif</code>, <code>plain</code> for <a
+          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>,
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/SarifLogger.html">SarifLogger</a>,
           and <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger
           .html">DefaultLogger</a> respectively.
           Defaults to <code>plain</code>.
