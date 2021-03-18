@@ -67,7 +67,7 @@ no-error-orekit)
   # no CI is enforced in project, so to make our build stable we should
   # checkout to latest release/development (annotated tag or hash) or sha that have fix we need
   # git checkout $(git describe --abbrev=0 --tags)
-  git checkout "54f5f2eb410ec42e5410ec8e5c415ff9182d3235"
+  git checkout "2d1474fb""cd8a41c2bd1f71196a2c7ad985208f""cc"
   mvn -e --no-transfer-progress compile checkstyle:check \
     -Dorekit.checkstyle.version=${CS_POM_VERSION}
   cd ..
