@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.design;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -128,7 +129,12 @@ public class FinalClassCheck
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {TokenTypes.CLASS_DEF, TokenTypes.CTOR_DEF, TokenTypes.PACKAGE_DEF};
+        return new int[] {
+            TokenTypes.CLASS_DEF,
+            TokenTypes.CTOR_DEF,
+            TokenTypes.PACKAGE_DEF,
+            TokenTypes.LITERAL_NEW,
+        };
     }
 
     @Override
@@ -168,6 +174,17 @@ public class FinalClassCheck
                 }
                 break;
 
+            case TokenTypes.LITERAL_NEW:
+                if (ast.getFirstChild() != null) {
+                    for (ClassDesc classDesc : classes) {
+                        if (ast.getLastChild().getType() == TokenTypes.OBJBLOCK
+                                && doesNameOfClassMatchAnonymousInnerClassName(ast, classDesc)) {
+                            classDesc.registerAnonymousInnerClass();
+                        }
+                    }
+                }
+                break;
+
             default:
                 throw new IllegalStateException(ast.toString());
         }
@@ -178,7 +195,8 @@ public class FinalClassCheck
         if (ast.getType() == TokenTypes.CLASS_DEF) {
             final ClassDesc desc = classes.pop();
             if (desc.isWithPrivateCtor()
-                && !desc.isDeclaredAsAbstract()
+                && !(desc.isDeclaredAsAbstract()
+                    || desc.isWithAnonymousInnerClass())
                 && !desc.isDeclaredAsFinal()
                 && !desc.isWithNonPrivateCtor()
                 && !desc.isWithNestedSubclass()
@@ -218,6 +236,21 @@ public class FinalClassCheck
                 }
             }
         }
+    }
+
+    /**
+     * Check if class name matches with anonymous inner class name.
+     *
+     * @param ast current ast.
+     * @param classDesc class to match.
+     * @return true if current class name matches anonymous inner
+     *         class name.
+     */
+    private boolean doesNameOfClassMatchAnonymousInnerClassName(DetailAST ast,
+                                                               ClassDesc classDesc) {
+        final String classNameExtractor = Pattern.quote(packageName + PACKAGE_SEPARATOR) + "|\\.";
+        final String[] className = classDesc.getQualifiedName().split(classNameExtractor);
+        return ast.getFirstChild().getText().equals(className[className.length - 1]);
     }
 
     /**
@@ -326,6 +359,9 @@ public class FinalClassCheck
         /** Does class have nested subclass. */
         private boolean withNestedSubclass;
 
+        /** Does class have anonymous inner class. */
+        private boolean withAnonymousInnerClass;
+
         /**
          *  Create a new ClassDesc instance.
          *
@@ -364,6 +400,11 @@ public class FinalClassCheck
         /** Adds nested subclass. */
         private void registerNestedSubclass() {
             withNestedSubclass = true;
+        }
+
+        /** Adds anonymous inner class. */
+        private void registerAnonymousInnerClass() {
+            withAnonymousInnerClass = true;
         }
 
         /**
@@ -409,6 +450,15 @@ public class FinalClassCheck
          */
         private boolean isDeclaredAsAbstract() {
             return declaredAsAbstract;
+        }
+
+        /**
+         * Does class have an anonymous inner class.
+         *
+         * @return true if class has anonymous inner class
+         */
+        private boolean isWithAnonymousInnerClass() {
+            return withAnonymousInnerClass;
         }
 
     }
