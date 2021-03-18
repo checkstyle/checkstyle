@@ -3191,25 +3191,19 @@ public final class TokenTypes {
      * declaration.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     *   import static java.io.IOException;
+     * import static java.io.IOException;
      * </pre>
-     *
      * <p>parses as:</p>
-     *
      * <pre>
-     * +--STATIC_IMPORT (import)
-     *     |
-     *     +--LITERAL_STATIC
-     *     +--DOT (.)
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (java)
-     *             +--IDENT (io)
-     *         +--IDENT (IOException)
-     *     +--SEMI (;)
+     * STATIC_IMPORT -&gt; import
+     * |--LITERAL_STATIC -&gt; static
+     * |--DOT -&gt; .
+     * |   |--DOT -&gt; .
+     * |   |   |--IDENT -&gt; java
+     * |   |   `--IDENT -&gt; io
+     * |   `--IDENT -&gt; IOException
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
