@@ -287,6 +287,21 @@ public final class TokenTypes {
      * dot which is the root of a fully qualified type, or an array of
      * any of these. The second child may be type arguments to the type.
      *
+     * <p>For example:</p>
+     * <pre>boolean var = true;</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; var
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_TRUE -&gt; true
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #VARIABLE_DEF
      * @see #METHOD_DEF
      * @see #PARAMETER_DEF
