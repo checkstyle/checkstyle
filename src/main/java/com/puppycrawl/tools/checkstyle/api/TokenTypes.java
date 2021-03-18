@@ -271,6 +271,39 @@ public final class TokenTypes {
      * or enum declaration (interfaces cannot have static initializers).  The
      * first and only child is a statement list.
      *
+     * <p>For example:</p>
+     *
+     * <pre>
+     * static int num;
+     *
+     * static {
+     *   num = 10;
+     *   // Inside Static Initialisation Block
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * --VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |   `--LITERAL_STATIC -&gt; static
+     *    |--TYPE -&gt; TYPE
+     *    |   `--LITERAL_INT -&gt; int
+     *    |--IDENT -&gt; num
+     *    `--SEMI -&gt; ;
+     * --STATIC_INIT -&gt; STATIC_INIT
+     *    `--SLIST -&gt; {
+     *        |--EXPR -&gt; EXPR
+     *        |   `--ASSIGN -&gt; =
+     *        |       |--IDENT -&gt; num
+     *        |       `--NUM_INT -&gt; 10
+     *        |--SEMI -&gt; ;
+     *        |--SINGLE_LINE_COMMENT -&gt; //
+     *        |   `--COMMENT_CONTENT -&gt;  Inside Static Initialisation Block\n
+     *        `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.7">Java
      * Language Specification, &sect;8.7</a>
