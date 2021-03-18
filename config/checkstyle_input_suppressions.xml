@@ -1323,8 +1323,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotImplementedTag.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]singlelinejavadoc[\\/]InputSingleLineJavadoc.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocCorrect.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocIncorrect.java"/>
@@ -3084,8 +3082,6 @@
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotConstants.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="javadocpropertiesgenerator[\\/]InputJavadocPropertiesGeneratorNotImplementedTag.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]singlelinejavadoc[\\/]InputSingleLineJavadoc.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocCorrect.java"/>
   <suppress id="StyleValidationCommentInInputs"
