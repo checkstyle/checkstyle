@@ -234,6 +234,23 @@ public final class TokenTypes {
      * A field or local variable declaration.  The children are
      * modifiers, type, the identifier name, and an optional
      * assignment statement.
+     * <p>For example:</p>
+     * <pre>
+     * private int PI = 3.14;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |   `--LITERAL_PRIVATE -&gt; private
+     *    |--TYPE -&gt; TYPE
+     *    |   `--LITERAL_INT -&gt; int
+     *    |--IDENT -&gt; PI
+     *    |--ASSIGN -&gt; =
+     *    |   `--EXPR -&gt; EXPR
+     *    |       `--NUM_FLOAT -&gt; 3.14
+     *    `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #MODIFIERS
      * @see #TYPE
