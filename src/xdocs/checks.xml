@@ -914,8 +914,7 @@
           </tr>
           <tr>
             <td><a href="config_misc.html#TrailingComment">TrailingComment</a></td>
-            <td>
-            The check to ensure that requires that comments be the only thing on a line.</td>
+            <td>The check to ensure that lines with code do not end with comment.</td>
           </tr>
           <tr>
             <td><a href="config_misc.html#Translation">Translation</a></td>

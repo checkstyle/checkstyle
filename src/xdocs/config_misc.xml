@@ -1971,8 +1971,8 @@ i=i/x; // FIX :  handle x = 0 case         // OK
       <p>Since Checkstyle 3.4</p>
       <subsection name="Description" id="TrailingComment_Description">
         <p>
-          The check to ensure that requires that comments be the only thing on
-          a line. For the case of <code>//</code> comments that means that the only thing
+          The check to ensure that lines with code do not end with comment.
+          For the case of <code>//</code> comments that means that the only thing
           that should precede it is whitespace. It doesn't check comments if
           they do not end a line; for example, it accepts the following:
           <code>Thread.sleep( 10 /*some comment here*/ );</code> Format
