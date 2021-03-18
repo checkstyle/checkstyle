@@ -184,6 +184,9 @@
       <!-- Annotations like '@SuppressWarnings' don't need to be checked, it is better to keep their
              strings connected to the annotation instead of separating. -->
       <property name="skipAnnotations" value="true"/>
+      <!-- Keeping the duplicated strings maintains readability -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']"/>
     </properties>
   </rule>
   <rule ref="category/java/errorprone.xml/EmptyCatchBlock">
@@ -266,9 +269,9 @@
              are big and should not be split without a good reason.
            The methods visitToken/leaveToken are a big SWITCH block with a number of IF blocks.
              If we split the block to several methods it will damage the readability.
-           XMLLogger.encode, FallThroughCheck.isTerminated, ElementNode.iterateAxis,
-             NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement are also huge switches,
-             they has to be monolithic.
+           XMLLogger.encode, SarifLogger.escape, FallThroughCheck.isTerminated,
+             ElementNode.iterateAxis, NoWhitespaceAfterCheck.getArrayDeclaratorPreviousElement
+             are also huge switches, they has to be monolithic.
            SuppressFilterElement is a single constructor and can't be split easily -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
@@ -276,6 +279,7 @@
         or @SimpleName='VariableDeclarationUsageDistanceCheck'
         or @SimpleName='HandlerFactory']
       | //ClassOrInterfaceDeclaration[@SimpleName='XMLLogger']//MethodDeclaration[@Name='encode']
+      | //ClassOrInterfaceDeclaration[@SimpleName='SarifLogger']//MethodDeclaration[@Name='escape']
       | //ClassOrInterfaceDeclaration[@SimpleName='LeftCurlyCheck'
         or @SimpleName='FinalLocalVariableCheck'
         or @SimpleName='NPathComplexityCheck']
