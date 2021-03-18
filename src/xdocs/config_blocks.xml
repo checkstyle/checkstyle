@@ -448,6 +448,38 @@ public class Test {
 
       <subsection name="Examples" id="EmptyCatchBlock_Examples">
         <p>
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;EmptyCatchBlock&quot;/&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+try {
+  throw new RuntimeException();
+} catch (RuntimeException expected) {
+} // violation
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException ignore) {
+  // no handling
+} // ok, catch block has comment
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException o) {
+} // violation
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException ex) {
+  // This is expected
+} // ok
+        </source>
+        <p>
           To configure the check to suppress empty catch block if exception's variable name is
           <code>expected</code> or <code>ignore</code> or there's any comment inside:
         </p>
@@ -463,11 +495,24 @@ public class Test {
 try {
   throw new RuntimeException();
 } catch (RuntimeException expected) {
-}
+} // ok
+
 try {
   throw new RuntimeException();
 } catch (RuntimeException ignore) {
-}
+  // no handling
+} // ok
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException o) {
+} // violation
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException ex) {
+  // This is expected
+} // ok
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside
@@ -484,9 +529,25 @@ try {
         <source>
 try {
   throw new RuntimeException();
+} catch (RuntimeException expected) {
+} // violation
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException ignore) {
+  // no handling
+} // violation
+
+try {
+  throw new RuntimeException();
+} catch (RuntimeException o) {
+} // violation
+
+try {
+  throw new RuntimeException();
 } catch (RuntimeException ex) {
-  //This is expected
-}
+  // This is expected
+} // ok
         </source>
         <p>
           To configure the check to suppress empty catch block if single-line comment inside

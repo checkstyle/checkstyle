@@ -87,7 +87,7 @@ public class InputJavadocMethodRecordsAndCompactCtors {
             this("my string");
             // here is NPE possible
             if (myString.charAt(0) == 0) {
-                throw new IllegalArgumentException("cannot have char with code 0");
+                throw new IllegalArgumentException("cannot have char with code 0"); // violation
             }
         }
     }
