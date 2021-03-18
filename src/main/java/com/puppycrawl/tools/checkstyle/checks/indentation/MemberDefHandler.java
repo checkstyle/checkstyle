@@ -54,7 +54,11 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         final DetailAST lastNode = getVarDefStatementSemicolon(firstNode);
 
         if (lastNode != null && !isArrayDeclaration(firstNode)) {
-            checkWrappingIndentation(firstNode, lastNode);
+            checkWrappingIndentation(firstNode,
+                    lastNode,
+                    getIndentCheck().getLineWrappingIndentation(),
+                    getIndent().getFirstIndentLevel(),
+                    !isOnStartOfLine(firstNode));
         }
     }
 
@@ -66,10 +70,10 @@ public class MemberDefHandler extends AbstractExpressionHandler {
     @Override
     protected void checkModifiers() {
         final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (isOnStartOfLine(modifier)
-            && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
-            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
-        }
+        checkWrappingIndentation(modifier, modifier.getLastChild(),
+                getIndentCheck().getLineWrappingIndentation(),
+                getIndent().getFirstIndentLevel(),
+                false);
     }
 
     /**
