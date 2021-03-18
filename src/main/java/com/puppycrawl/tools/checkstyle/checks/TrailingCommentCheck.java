@@ -35,7 +35,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * <p>
- * The check to ensure that requires that comments be the only thing on a line.
+ * The check to ensure that lines with code do not end with comment.
  * For the case of {@code //} comments that means that the only thing that should precede
  * it is whitespace. It doesn't check comments if they do not end a line; for example,
  * it accepts the following: <code>Thread.sleep( 10 /*some comment here&#42;/ );</code>
