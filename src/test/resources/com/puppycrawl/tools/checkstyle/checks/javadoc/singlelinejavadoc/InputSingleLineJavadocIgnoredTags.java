@@ -2,12 +2,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
 
 /* Config:
  * violateExecutionOnNonTightHtml = false
- * ignoreInlineTags = true
+ * ignoredTags = @inheritDoc, @throws, @ignoredCustomTag
+ * ignoreInlineTags = false
  */
 
-class InputSingleLineJavadoc {
+class InputSingleLineJavadocIgnoredTags {
 
-        /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
+        /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */ // violation
     void foo() {}
 
     /**
@@ -15,7 +16,7 @@ class InputSingleLineJavadoc {
      */
     void foo1() {}
 
-    /** @throws CheckstyleException if an problem occurs */ // violation
+    /** @throws CheckstyleException if an problem occurs */
     void foo2() {}
 
     /**
@@ -31,25 +32,25 @@ class InputSingleLineJavadoc {
      */
     void foo5() {}
 
-    /** @inheritDoc */ // violation
+    /** @inheritDoc */
     void foo6() {}
 
     /** {@inheritDoc} */
     void foo7() {}
 
-    /** {@inheritDoc}  {@code bar} */
+    /** {@inheritDoc}  {@code bar} */ // violation
     void foo8() {}
 
-    /** {@inheritDoc}  {@link #bar} */
+    /** {@inheritDoc}  {@link #bar} */ // violation
     void foo9() {}
 
     /** @customTag */ // violation
     void bar() {}
 
-    /** @ignoredCustomTag */ // violation
+    /** @ignoredCustomTag */
     void bar1() {}
 
-    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/
+    /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/ // violation
     void bar2() {}
 
     /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/ // violation
