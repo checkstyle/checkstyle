@@ -2485,6 +2485,7 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
+     
      * |--EXPR -&gt; EXPR
      * |   `--ASSIGN -&gt; =
      * |       |--IDENT -&gt; c
