@@ -2479,13 +2479,13 @@ public final class TokenTypes {
     /**
      * The {@code -} (subtraction) operator.
      *
+     
      * <p>For example:</p>
      * <pre>
      * c = a - b;
      * </pre>
      * <p>parses as:</p>
-     * <pre>
-     
+     * <pre>     
      * |--EXPR -&gt; EXPR
      * |   `--ASSIGN -&gt; =
      * |       |--IDENT -&gt; c
