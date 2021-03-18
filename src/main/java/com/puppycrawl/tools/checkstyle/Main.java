@@ -542,6 +542,8 @@ public final class Main {
     enum OutputFormat {
         /** XML output format. */
         XML,
+        /** SARIF output format. */
+        SARIF,
         /** Plain output format. */
         PLAIN;
 
@@ -557,6 +559,9 @@ public final class Main {
             final AuditListener result;
             if (this == XML) {
                 result = new XMLLogger(out, options);
+            }
+            else if (this == SARIF) {
+                result = new SarifLogger(out, options);
             }
             else {
                 result = new DefaultLogger(out, options);
