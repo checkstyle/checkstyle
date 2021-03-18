@@ -401,23 +401,18 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--PACKAGE_DEF (package)
-     *     |
-     *     +--ANNOTATIONS
-     *     +--DOT (.)
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--DOT (.)
-     *                 |
-     *                 +--DOT (.)
-     *                     |
-     *                     +--IDENT (com)
-     *                     +--IDENT (puppycrawl)
-     *                 +--IDENT (tools)
-     *             +--IDENT (checkstyle)
-     *         +--IDENT (api)
-     *     +--SEMI (;)
+     * PACKAGE_DEF -> package
+     * |--ANNOTATIONS -> ANNOTATIONS
+     * |--DOT -> .
+     * |   |--DOT -> .
+     * |   |   |--DOT -> .
+     * |   |   |   |--DOT -> .
+     * |   |   |   |   |--IDENT -> com
+     * |   |   |   |   `--IDENT -> puppycrawl
+     * |   |   |   `--IDENT -> tools
+     * |   |   `--IDENT -> checkstyle
+     * |   `--IDENT -> api
+     * `--SEMI -> ;
      * </pre>
      *
      * @see <a
