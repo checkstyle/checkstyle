@@ -2280,6 +2280,16 @@ public final class TokenTypes {
     public static final int DIV_ASSIGN = GeneratedJavaTokenTypes.DIV_ASSIGN;
     /**
      * The {@code %=} (remainder assignment) operator.
+     * <p>For example:</p>
+     * <pre>a %= 2;</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--MOD_ASSIGN -&gt; %=
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_INT -&gt; 2
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
