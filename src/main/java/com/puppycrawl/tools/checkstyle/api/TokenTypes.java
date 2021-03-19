@@ -3391,24 +3391,11 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--TYPE
-     *         |
-     *         +--IDENT (Collection)
-     *             |
-     *             +--TYPE_ARGUMENTS
-     *                 |
-     *                 +--GENERIC_START (&lt;)
-     *                 +--TYPE_ARGUMENT
-     *                     |
-     *                     +--WILDCARD_TYPE (?)
-     *                 +--GENERIC_END (&gt;)
-     *     +--IDENT (a)
-     *     +--SEMI (;)
+     * `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *     |--GENERIC_START -&gt; &lt;
+     *     |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *     |   `--WILDCARD_TYPE -&gt; ?
+     *     `--GENERIC_END -&gt; &gt;
      * </pre>
      *
      * @see #GENERIC_START
