@@ -1,25 +1,24 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
+/* Config:
+ * javaFiveCompatibility = "false"
+ */
 public class InputMissingOverrideNotOverride
 {
     /**
      * {@inheritDoc}
      */
-    private void bleh() {
-
-    }
+    private void bleh() {}      // violation
 
     /**
      * {@inheritDoc}
      */
-    public static void eh() {
-
-    }
+    public static void eh() {}      // violation
 
     /**
      * {@inheritDoc}
      */
-    public String junk = "";
+    public String junk = "";        // ok
 
     void dodoo() {}
 }
