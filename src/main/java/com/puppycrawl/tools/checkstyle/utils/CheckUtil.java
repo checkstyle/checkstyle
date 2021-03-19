@@ -438,6 +438,28 @@ public final class CheckUtil {
     }
 
     /**
+     * Returns the access modifier of the method/constructor at the specified AST. If
+     * the method is in an interface or annotation block, the access modifier is assumed
+     * to be public.
+     *
+     * @param ast the token of the method/constructor.
+     * @return the access modifier of the method/constructor.
+     */
+    public static AccessModifierOption getAccessModifierFromModifiersToken(DetailAST ast) {
+        final AccessModifierOption accessModifier;
+
+        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
+            accessModifier = AccessModifierOption.PUBLIC;
+        }
+        else {
+            final DetailAST modsToken = ast.findFirstToken(TokenTypes.MODIFIERS);
+            accessModifier = getAccessModifierFromModifiersTokenDirectly(modsToken);
+        }
+
+        return accessModifier;
+    }
+
+    /**
      * Returns {@link AccessModifierOption} based on the information about access modifier
      * taken from the given token of type {@link TokenTypes#MODIFIERS}.
      *
@@ -445,9 +467,9 @@ public final class CheckUtil {
      * @return {@link AccessModifierOption}.
      * @throws IllegalArgumentException when expected non-null modifiersToken with type 'MODIFIERS'
      */
-    public static AccessModifierOption
-        getAccessModifierFromModifiersToken(DetailAST modifiersToken) {
-        if (modifiersToken == null || modifiersToken.getType() != TokenTypes.MODIFIERS) {
+    private static AccessModifierOption getAccessModifierFromModifiersTokenDirectly(
+            DetailAST modifiersToken) {
+        if (modifiersToken == null) {
             throw new IllegalArgumentException("expected non-null AST-token with type 'MODIFIERS'");
         }
 
@@ -467,6 +489,34 @@ public final class CheckUtil {
             }
         }
         return accessModifier;
+    }
+
+    /**
+     * Returns the access modifier of the surrounding "block".
+     *
+     * @param node the node to return the access modifier for
+     * @return the access modifier of the surrounding block
+     */
+    public static AccessModifierOption getSurroundingAccessModifier(DetailAST node) {
+        AccessModifierOption returnValue = null;
+        for (DetailAST token = node.getParent();
+             token != null && returnValue == null;
+             token = token.getParent()) {
+            final int type = token.getType();
+            if (type == TokenTypes.CLASS_DEF
+                || type == TokenTypes.INTERFACE_DEF
+                || type == TokenTypes.ANNOTATION_DEF
+                || type == TokenTypes.ENUM_DEF) {
+                final DetailAST mods =
+                    token.findFirstToken(TokenTypes.MODIFIERS);
+                returnValue = getAccessModifierFromModifiersTokenDirectly(mods);
+            }
+            else if (type == TokenTypes.LITERAL_NEW) {
+                break;
+            }
+        }
+
+        return returnValue;
     }
 
     /**

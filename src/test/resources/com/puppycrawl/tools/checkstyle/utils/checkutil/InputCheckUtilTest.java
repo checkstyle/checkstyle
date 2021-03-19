@@ -67,4 +67,8 @@ public class InputCheckUtilTest<V, C> {
     }
 
     public void testReceiver(InputCheckUtilTest<V, C>this, int variable) {}
+
+    public interface Example {
+        void method();
+    }
 }
