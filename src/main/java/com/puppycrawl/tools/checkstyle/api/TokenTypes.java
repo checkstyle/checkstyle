@@ -195,37 +195,29 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--METHOD_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *         +--LITERAL_STATIC (static)
-     *     +--TYPE
-     *         |
-     *         +--LITERAL_INT (int)
-     *     +--IDENT (square)
-     *     +--PARAMETERS
-     *         |
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (x)
-     *     +--SLIST ({)
-     *         |
-     *         +--LITERAL_RETURN (return)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--STAR (*)
-     *                     |
-     *                     +--IDENT (x)
-     *                     +--IDENT (x)
-     *             +--SEMI (;)
-     *         +--RCURLY (})
+     * --METHOD_DEF -&gt; METHOD_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |   |--LITERAL_PUBLIC -&gt; public
+     *    |   `--LITERAL_STATIC -&gt; static
+     *    |--TYPE -&gt; TYPE
+     *    |   `--LITERAL_INT -&gt; int
+     *    |--IDENT -&gt; square
+     *    |--LPAREN -&gt; (
+     *    |--PARAMETERS -&gt; PARAMETERS
+     *    |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *    |       |--MODIFIERS -&gt; MODIFIERS
+     *    |       |--TYPE -&gt; TYPE
+     *    |       |   `--LITERAL_INT -&gt; int
+     *    |       `--IDENT -&gt; x
+     *    |--RPAREN -&gt; )
+     *    `--SLIST -&gt; {
+     *        |--LITERAL_RETURN -&gt; return
+     *        |   |--EXPR -&gt; EXPR
+     *        |   |   `--STAR -&gt; *
+     *        |   |       |--IDENT -&gt; x
+     *        |   |       `--IDENT -&gt; x
+     *        |   `--SEMI -&gt; ;
+     *        `--RCURLY -&gt; }
      * </pre>
      *
      * @see #MODIFIERS
