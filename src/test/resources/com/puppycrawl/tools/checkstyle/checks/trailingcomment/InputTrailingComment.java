@@ -18,16 +18,31 @@ public class InputTrailingComment {
     /* c-style */ // cpp-style
     /* c-style 1 */ /*c-style 2 */
 
-    void method2(long ms /* we should ignore this */) {
+    /* package */ void method2(long ms /* we should ignore this */) {
         /* comment before text */int z;
         /* int y */int y/**/;
     }
 
     /**
-     * comment with trailing space
+     * comment with trailing space.
      */
     final static public String NAME="Some Name"; // NOI18N
     final static public String NAME2="Some Name"; /*NOI18N*/
     String NAME3="Some Name"; /*NOI18N
 */
+    /* package */ void method3() {
+        /* violation on this block */
+        // violation here for format NOT FOUND
+    }
+
+    private static class TimerEntry {
+        /* ok */ final String operation = null;
+        /* ok */ final long start = 0L;
+    }
+
+    /**
+     * violation above this line.
+     **/
+    /* package */ void addError() {
+    }
 }
