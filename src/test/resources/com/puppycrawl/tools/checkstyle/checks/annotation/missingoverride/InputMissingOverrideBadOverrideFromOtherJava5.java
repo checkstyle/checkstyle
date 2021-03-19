@@ -3,9 +3,9 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 import java.io.Serializable;
 
 /* Config:
- * javaFiveCompatibility = "false"
+ * javaFiveCompatibility = "true"
  */
-public class InputMissingOverrideBadOverrideFromOther implements IFoo2
+public class InputMissingOverrideBadOverrideFromOtherJava5 implements IFoo2Java5
 {
     /**
      * {@inheritDoc}
@@ -16,12 +16,12 @@ public class InputMissingOverrideBadOverrideFromOther implements IFoo2
 
 }
 
-interface IFoo2 {
+interface IFoo2Java5 {
 
     void doFoo();
 }
 
-interface IBar2 extends IFoo2 {
+interface IBar2Java5 extends IFoo2Java5 {
 
     /**
      * {@inheritDoc}
@@ -29,7 +29,7 @@ interface IBar2 extends IFoo2 {
     public void doFoo();        // violation
 }
 
-class MoreJunk2 extends InputMissingOverrideBadOverrideFromOther {
+class MoreJunk2Java5 extends InputMissingOverrideBadOverrideFromOtherJava5 {
 
     /**
      * {@inheritDoc}
@@ -41,7 +41,7 @@ class MoreJunk2 extends InputMissingOverrideBadOverrideFromOther {
      */
     public void doFoo2() {}     // violation
 
-    class EvenMoreJunk extends MoreJunk2 implements Serializable {
+    class EvenMoreJunk2 extends MoreJunk2Java5 implements Serializable {
 
         /**
          * {@inheritDoc}
@@ -55,7 +55,7 @@ class MoreJunk2 extends InputMissingOverrideBadOverrideFromOther {
     }
 }
 
-enum Football2 implements IFoo2, IBar2 {
+enum Football2Java5 implements IFoo2Java5, IBar2Java5 {
     Detroit_Lions;
 
     /**
