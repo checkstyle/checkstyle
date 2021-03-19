@@ -668,6 +668,18 @@ public final class TokenTypes {
     /**
      * The {@code ++} (postfix increment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a++;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--POST_INC -&gt; ++
+     * |       `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.1">Java
      * Language Specification, &sect;15.14.1</a>
