@@ -3624,7 +3624,7 @@ public final class TokenTypes {
      *    |       |   `--WILDCARD_TYPE -&gt; ?
      *    |       `--GENERIC_END -&gt; &gt;
      *    |--IDENT -&gt; a
-     *    `--SEMI -&gt; &semi;
+     *    `--SEMI -&gt; ;
      * </pre>
      *
      * @see #GENERIC_START
