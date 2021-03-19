@@ -464,30 +464,30 @@
 
 &lt;/target&gt;
       </source>
-      </section>
+    </section>
       
-       <p>
-        <b>
+    <p>
+      <b>
           Add a custom JAR(like sevntu) to the classpath
           
-        </b>
-      </p>
-      <p>
+      </b>
+    </p>
+    <p>
            Download the desired JAR. To download latest sevntu JAR 
            click
-           <a href="https://search.maven.org/search?q=g:%22com.github.sevntu-checkstyle%22%20AND%20a:%22sevntu-checks%22">
+      <a href="https://search.maven.org/search?q=g:%22com.github.sevntu-checkstyle%22%20AND%20a:%22sevntu-checks%22">
             here</a>.
-       </p>
-       <p>
-            It is advised to have a <code>lib</code> inside your project folder so
+    </p>
+    <p>
+            It is advised to have <code>lib</code> inside your project folder so
             that you can add external JAR lib in the Ant build.
             For a directory structure : "/build/lib/src/build.xml". Follow
             these steps:
-       </p>
-       <p>
+    </p>
+    <p>
          In the build.xml file : 
-       </p>
-       <source>
+    </p>
+    <source>
 &lt;javac srcdir=&quot;./src&quot;
            destdir=&quot;./build/classes&quot;&gt;
 
@@ -495,9 +495,9 @@
          &lt;pathelement path=&quot;lib/sevntu-checks-1.38.0.jar&quot;/&gt;
    &lt;/classpath&gt; 
 &lt;/javac&gt;                         
-       </source>
+    </source>
     
-  </section>
+    </section>
   </body>
 </document>
 
