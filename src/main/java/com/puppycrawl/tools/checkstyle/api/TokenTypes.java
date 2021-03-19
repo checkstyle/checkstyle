@@ -2255,6 +2255,19 @@ public final class TokenTypes {
     /**
      * The {@code &=} (bitwise AND assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a &amp;= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--BAND_ASSIGN -&gt; &amp;=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
