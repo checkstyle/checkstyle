@@ -464,7 +464,8 @@
 
 &lt;/target&gt;
       </source>
-         
+      </section>
+      
        <p>
         <b>
           Add a custom JAR(like sevntu) to the classpath
