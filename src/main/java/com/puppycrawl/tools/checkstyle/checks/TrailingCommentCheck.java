@@ -19,19 +19,14 @@
 
 package com.puppycrawl.tools.checkstyle.checks;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -139,11 +134,8 @@ public class TrailingCommentCheck extends AbstractCheck {
      */
     public static final String MSG_KEY = "trailing.comments";
 
-    /**
-     * A Map contains illegal lines, the key is lineNo, the value is
-     * ColumnNo.
-     */
-    private final Map<Integer, Integer> illegalLines = new HashMap<>();
+    /** Specify pattern for strings to be formatted without comment specifiers. */
+    private static final Pattern FORMAT_LINE = Pattern.compile("/");
 
     /**
      * Define pattern for text allowed in trailing comments.
@@ -200,76 +192,96 @@ public class TrailingCommentCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final int lineNo = ast.getLineNo();
-        if (illegalLines.get(lineNo) != null
-                && illegalLines.get(lineNo).equals(ast.getColumnNo())) {
-            log(ast, MSG_KEY);
+        if (ast.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
+            checkSingleLineComment(ast);
         }
-    }
-
-    @Override
-    public void beginTree(DetailAST rootAST) {
-        final Map<Integer, TextBlock> cppComments = getFileContents()
-                .getSingleLineComments();
-        final Map<Integer, List<TextBlock>> cComments = getFileContents()
-                .getBlockComments();
-        final Set<Integer> lines = new HashSet<>();
-        lines.addAll(cppComments.keySet());
-        lines.addAll(cComments.keySet());
-
-        for (Integer lineNo : lines) {
-            final String line = getLines()[lineNo - 1];
-            final String lineBefore;
-            final TextBlock comment;
-            if (cppComments.containsKey(lineNo)) {
-                comment = cppComments.get(lineNo);
-                lineBefore = line.substring(0, comment.getStartColNo());
-            }
-            else {
-                final List<TextBlock> commentList = cComments.get(lineNo);
-                comment = commentList.get(commentList.size() - 1);
-                lineBefore = line.substring(0, comment.getStartColNo());
-
-                // do not check comment which doesn't end line
-                if (comment.getText().length == 1
-                        && !CommonUtil.isBlank(line
-                            .substring(comment.getEndColNo() + 1))) {
-                    continue;
-                }
-            }
-            if (!format.matcher(lineBefore).find()
-                && !isLegalComment(comment)) {
-                illegalLines.put(lineNo, comment.getStartColNo());
-            }
+        else {
+            checkBlockComment(ast);
         }
     }
 
     /**
-     * Checks if given comment is legal (single-line and matches to the
-     * pattern).
+     * Checks if single line comment is legal.
      *
+     * @param ast Detail ast element to be checked.
+     */
+    private void checkSingleLineComment(DetailAST ast) {
+        final int lineNo = ast.getLineNo();
+        final String comment = ast.getFirstChild().getText();
+        final String line = getLines()[lineNo - 1];
+        final String lineBefore = line.substring(0, ast.getColumnNo());
+
+        if (!format.matcher(lineBefore).find()
+                && !isLegalSingleLineComment(comment)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Method to check if block comment is in correct format.
+     *
+     * @param ast Detail ast element to be checked.
+     */
+    private void checkBlockComment(DetailAST ast) {
+        final int lineNo = ast.getLineNo();
+        final String comment = ast.getFirstChild().getText();
+        String line = getLines()[lineNo - 1];
+
+        if (line.length() > ast.getLastChild().getColumnNo() + 1) {
+            line = line.substring(ast.getLastChild().getColumnNo() + 2);
+        }
+
+        line = FORMAT_LINE.matcher(line).replaceAll("");
+
+        final String lineBefore = getLines()[lineNo - 1].substring(0, ast.getColumnNo());
+
+        // do not check comment which doesn't end line
+        if ((ast.getLineNo() != ast.getLastChild().getLineNo() || CommonUtil.isBlank(line))
+                && !format.matcher(lineBefore).find()
+                && !isLegalBlockComment(ast, comment)) {
+            log(ast, MSG_KEY);
+        }
+    }
+
+    /**
+     * Checks if block comment is legal and matches to the pattern.
+     *
+     * @param ast Detail ast element to be checked.
      * @param comment comment to check.
      * @return true if the comment if legal.
      */
-    private boolean isLegalComment(final TextBlock comment) {
+    private boolean isLegalBlockComment(DetailAST ast, String comment) {
         final boolean legal;
 
         // multi-line comment can not be legal
-        if (legalComment == null || comment.getStartLineNo() != comment.getEndLineNo()) {
+        if (legalComment == null
+                || !TokenUtil.areOnSameLine(ast.getFirstChild(), ast.getLastChild())) {
             legal = false;
         }
         else {
-            String commentText = comment.getText()[0];
-            // remove chars which start comment
-            commentText = commentText.substring(2);
-            // if this is a C-style comment we need to remove its end
-            if (commentText.endsWith("*/")) {
-                commentText = commentText.substring(0, commentText.length() - 2);
-            }
-            commentText = commentText.trim();
+            final String commentText = comment.trim();
             legal = legalComment.matcher(commentText).find();
         }
         return legal;
     }
 
+    /**
+     * Checks if given single line comment is legal (single-line and matches to the
+     * pattern).
+     *
+     * @param comment comment to check.
+     * @return true if the comment if legal.
+     */
+    private boolean isLegalSingleLineComment(String comment) {
+        final boolean legal;
+        if (legalComment == null) {
+            legal = false;
+        }
+        else {
+            // remove chars which start comment
+            final String commentText = comment.substring(1).trim();
+            legal = legalComment.matcher(commentText).find();
+        }
+        return legal;
+    }
 }
