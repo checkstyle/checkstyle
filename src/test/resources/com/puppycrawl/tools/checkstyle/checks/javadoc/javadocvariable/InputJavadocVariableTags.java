@@ -8,7 +8,7 @@ import java.io.IOException;
 class InputJavadocVariableTags1
 {
     // Invalid - should be Javadoc
-    private int mMissingJavadoc;
+    private int mMissingJavadoc; // violation
 
     // Invalid - should be Javadoc
     void method1()
@@ -301,14 +301,14 @@ class InputJavadocVariableTags1
 
 enum InputJavadocVariableTagsEnum
 {
-    CONSTANT_A,
+    CONSTANT_A,// violation
 
     /**
      *
      */
     CONSTANT_B,
 
-    CONSTANT_C
+    CONSTANT_C // violation
     {
         /**
          *
@@ -327,7 +327,7 @@ enum InputJavadocVariableTagsEnum
 @interface InputJavadocVariableTagsAnnotation
 {
     String someField();
-    int A_CONSTANT = 0;
+    int A_CONSTANT = 0; // violation
     /** Some javadoc. */
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */
