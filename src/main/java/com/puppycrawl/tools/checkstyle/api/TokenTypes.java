@@ -92,6 +92,18 @@ public final class TokenTypes {
     /**
      * A list of statements.
      *
+     * <p>For example:</p>
+     * <pre>
+     * {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--SLIST -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #RCURLY
      * @see #EXPR
      * @see #LABELED_STAT
