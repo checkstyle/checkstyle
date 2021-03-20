@@ -66,8 +66,8 @@ public class JavadocPackageCheckTest
         };
         verify(
             createChecker(checkConfig),
-            getPath("InputJavadocPackageBadCls.java"),
-            getPath("InputJavadocPackageBadCls.java"),
+            getPath("InputJavadocPackageBadCls2.java"),
+            getPath("InputJavadocPackageBadCls2.java"),
             expected);
     }
 
@@ -115,7 +115,7 @@ public class JavadocPackageCheckTest
         checkConfig.addAttribute("allowLegacy", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(createChecker(checkConfig),
-            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored.java"),
+            getPath("pkghtml" + File.separator + "InputJavadocPackageHtmlIgnored2.java"),
             getPath("pkghtml" + File.separator + "package-info.java"), expected);
     }
 
