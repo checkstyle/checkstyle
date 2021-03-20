@@ -63,10 +63,10 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalImportCheck.class);
         final String[] expected = {
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
+            "12:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
+            "25:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
-        verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
     }
 
     @Test
@@ -85,10 +85,11 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalClasses", "java.sql.Connection");
+        checkConfig.addAttribute("illegalPkgs", "org.junit.jupiter.api");
         final String[] expected = {
             "11:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
+            "15:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
@@ -99,10 +100,11 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalClasses", "java.io.*");
+        checkConfig.addAttribute("illegalPkgs", "org.junit.jupiter.api");
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "15:1: " + getCheckMessage(MSG_KEY, "sun.misc.*"),
-            "28:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
+            "15:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault.java"), expected);
     }
