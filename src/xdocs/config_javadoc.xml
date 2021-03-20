@@ -3567,8 +3567,16 @@ public int foobar() {
           Checks that
           <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
-          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
-          violate Javadoc that does not contain first sentence.
+          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped for normal
+          summary javadoc but are violations for inline summary javadoc. Check also violate Javadoc
+          that does not contain first sentence.
+        </p>
+        <p>
+          According to <a href="https://docs.oracle.com/javase/10/docs/specs/doc-comment-spec.html#general-syntax">
+          Documentation Comment Specification for the Standard Doclet</a> "The first sentence of
+          the initial description should be a summary sentence that contains a concise but complete
+          description of the declared entity. Descriptive text may include HTML tags and entities,
+          and inline tags as described below."
         </p>
       </subsection>
 
@@ -3608,6 +3616,39 @@ public int foobar() {
               <td>6.2</td>
             </tr>
           </table>
+          <br/>
+          <p>
+            As per <a href="https://docs.oracle.com/javase/10/docs/specs/doc-comment-spec.html#inline-tags">
+            Documentation Comment Specification for the Standard Doclet</a> allowed tags inside
+            inline summary javadoc are
+          </p>
+          <table>
+            <tr>
+              <td>name</td>
+              <td>values</td>
+            </tr>
+            <tr>
+              <td>ALLOWED_INLINE_TAGS</td>
+              <td>
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#CODE_LITERAL">
+                  CODE_LITERAL</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#LINK_LITERAL">
+                  LINK_LITERAL</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#INPUT_TAG">
+                  INPUT_TAG</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#DOC_ROOT_LITERAL">
+                  DOC_ROOT_LITERAL</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#LINKPLAIN_LITERAL">
+                  LINKPLAIN_LITERAL</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#LITERAL_LITERAL">
+                  LITERAL_LITERAL</a>,
+                <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/JavadocTokenTypes.html#VALUE_LITERAL">
+                  VALUE_LITERAL</a>,
+                INDEX
+              </td>
+            </tr>
+          </table>
+          <br/>
         </div>
       </subsection>
 
@@ -3641,6 +3682,27 @@ public class Test extends Exception {
 }
         </source>
         <p>
+              Example of <code>{@inheritDoc}</code> is not permitted for Inline Summary Javadoc.
+        </p>
+        <source>
+public class Test extends Exception {
+  //Violation
+  /**
+   * {@summary {@inheritDoc}.}
+   */
+  public String InvalidFunctionOne(){
+    return "";
+  }
+  //Violation
+  /**
+   * {@summary }
+   */
+  public String InvalidFunctionTwo(){
+    return "";
+  }
+}
+        </source>
+        <p>
           To ensure that summary do not contain phrase like "This method returns", use
           following config:
         </p>
@@ -3664,15 +3726,65 @@ public class Test extends Exception {
 
         <source>
 public class TestClass {
-  /**
+ /**
   * This is invalid java doc.
   */
   void invalidJavaDocMethod() {
   }
-  /**
+ /**
   * This is valid java doc。
   */
   void validJavaDocMethod() {
+  }
+}
+        </source>
+        <p>
+          Example of period property for inline summary javadoc.
+        </p>
+        <source>
+public class TestClass {
+ /**
+  * {@summary This is invalid java doc.}
+  */
+  public void invalidJavaDocMethod() { // violation
+  }
+ /**
+  * {@summary This is valid java doc。}
+  */
+  public void validJavaDocMethod() { // ok
+  }
+}
+        </source>
+        <p>
+          Example of inline summary javadoc with inline tags.
+        </p>
+        <source>
+public class TestClass {
+ /**
+  * {@summary {@code someCode} valid inline javadoc.}
+  */
+  public void validJavaDoc() {} // ok
+ /**
+  * {@summary {@inheritDoc} invalid inline javadoc.}
+  */
+  public void invalidJavaDocMethod() { // violation
+  }
+}
+        </source>
+        <p>
+          Example of inline summary javadoc with HTML tags.
+        </p>
+        <source>
+public class Test {
+ /**
+  * {@summary first sentence is normally the summary.
+  * Use of html tags:
+  * &lt;ul&gt;
+  * &lt;li&gt;Item one.&lt;/li&gt;
+  * &lt;li&gt;Item two.&lt;/li&gt;
+  * &lt;/ul&gt;}
+  */
+  public void validInlineJavadoc() { // ok
   }
 }
         </source>
