@@ -92,6 +92,30 @@ public final class TokenTypes {
     /**
      * A list of statements.
      *
+     * <p>For example:</p>
+     * <pre>
+     * if (c == 1) {
+     *     c = 0;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--EQUAL -&gt; ==
+     *  |       |--IDENT -&gt; c
+     *  |       `--NUM_INT -&gt; 1
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--IDENT -&gt; c
+     *      |       `--NUM_INT -&gt; 0
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #RCURLY
      * @see #EXPR
      * @see #LABELED_STAT
