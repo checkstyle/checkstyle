@@ -445,16 +445,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *     +--TYPE
-     *         |
-     *         +--ARRAY_DECLARATOR ([)
-     *             |
-     *             +--LITERAL_INT (int)
-     *     +--IDENT (x)
-     * +--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--ARRAY_DECLARATOR -&gt; [
+     * |   |       |--LITERAL_INT -&gt; int
+     * |   |       `--RBRACK -&gt; ]
+     * |   |--IDENT -&gt; x
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * <p>The array declaration may also represent an inline array
@@ -614,20 +612,16 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--TYPECAST (()
-     *     |
-     *     +--TYPE
-     *         |
-     *         +--IDENT (String)
-     *     +--RPAREN ())
-     *     +--METHOD_CALL (()
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (it)
-     *             +--IDENT (next)
-     *         +--ELIST
-     *         +--RPAREN ())
+     * `--TYPECAST -&gt; (
+     *     |--TYPE -&gt; TYPE
+     *     |   `--IDENT -&gt; String
+     *     |--RPAREN -&gt; )
+     *     `--METHOD_CALL -&gt; (
+     *         |--DOT -&gt; .
+     *         |   |--IDENT -&gt; it
+     *         |   `--IDENT -&gt; next
+     *         |--ELIST -&gt; ELIST
+     *         `--RPAREN -&gt; )
      * </pre>
      *
      * @see <a
@@ -668,6 +662,18 @@ public final class TokenTypes {
     /**
      * The {@code ++} (postfix increment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a++;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--POST_INC -&gt; ++
+     * |       `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.1">Java
      * Language Specification, &sect;15.14.1</a>
@@ -677,6 +683,18 @@ public final class TokenTypes {
     public static final int POST_INC = GeneratedJavaTokenTypes.POST_INC;
     /**
      * The {@code --} (postfix decrement) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a--;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--POST_DEC -&gt; --
+     * |       `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.14.2">Java
@@ -691,19 +709,21 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * Math.random()
+     * Integer.parseInt("123");
      * </pre>
      *
-     * <p>parses as:
+     * <p>parses as:</p>
      * <pre>
-     * +--METHOD_CALL (()
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--IDENT (Math)
-     *         +--IDENT (random)
-     *     +--ELIST
-     *     +--RPAREN ())
+     * |--EXPR -&gt; EXPR
+     * |   `--METHOD_CALL -&gt; (
+     * |       |--DOT -&gt; .
+     * |       |   |--IDENT -&gt; Integer
+     * |       |   `--IDENT -&gt; parseInt
+     * |       |--ELIST -&gt; ELIST
+     * |       |   `--EXPR -&gt; EXPR
+     * |       |       `--STRING_LITERAL -&gt; "123"
+     * |       `--RPAREN -&gt; )
+     * |--SEMI -&gt; ;
      * </pre>
      *
      *
@@ -1047,6 +1067,22 @@ public final class TokenTypes {
     public static final int ABSTRACT = GeneratedJavaTokenTypes.ABSTRACT;
     /**
      * The {@code strictfp} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>public strictfp class Test {}</pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_PUBLIC -&gt; public
+     * |   `--STRICTFP -&gt; strictfp
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #MODIFIERS
      **/
@@ -1421,8 +1457,8 @@ public final class TokenTypes {
      * <pre>
      * |--EXPR -&gt; EXPR
      * |   `--ASSIGN -&gt; =
-     * |   |--IDENT -&gt; a
-     * |   `--IDENT -&gt; b
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
      * |--SEMI -&gt; ;
      * </pre>
      *
@@ -2163,6 +2199,19 @@ public final class TokenTypes {
     /**
      * The {@code +=} (addition assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a += b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--PLUS_ASSIGN -&gt; +=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
@@ -2171,6 +2220,19 @@ public final class TokenTypes {
     public static final int PLUS_ASSIGN = GeneratedJavaTokenTypes.PLUS_ASSIGN;
     /**
      * The {@code -=} (subtraction assignment) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a -= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--MINUS_ASSIGN -&gt; -=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2183,6 +2245,19 @@ public final class TokenTypes {
     /**
      * The {@code *=} (multiplication assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a *= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--STAR_ASSIGN -&gt; *=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
@@ -2192,6 +2267,19 @@ public final class TokenTypes {
     /**
      * The {@code /=} (division assignment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a /= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--DIV_ASSIGN -&gt; /=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
@@ -2200,6 +2288,16 @@ public final class TokenTypes {
     public static final int DIV_ASSIGN = GeneratedJavaTokenTypes.DIV_ASSIGN;
     /**
      * The {@code %=} (remainder assignment) operator.
+     * <p>For example:</p>
+     * <pre>a %= 2;</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--MOD_ASSIGN -&gt; %=
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_INT -&gt; 2
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2211,6 +2309,19 @@ public final class TokenTypes {
      * The {@code >>=} (signed right shift assignment)
      * operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a &gt;&gt;= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--SR_ASSIGN -&gt; &gt;&gt;=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
      * Language Specification, &sect;15.26.2</a>
@@ -2220,6 +2331,19 @@ public final class TokenTypes {
     /**
      * The {@code >>>=} (unsigned right shift assignment)
      * operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a &gt;&gt;&gt;= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--BSR_ASSIGN -&gt; &gt;&gt;&gt;=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2238,6 +2362,19 @@ public final class TokenTypes {
     public static final int SL_ASSIGN = GeneratedJavaTokenTypes.SL_ASSIGN;
     /**
      * The {@code &=} (bitwise AND assignment) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a &amp;= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--BAND_ASSIGN -&gt; &amp;=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.26.2">Java
@@ -2443,6 +2580,21 @@ public final class TokenTypes {
     /**
      * The {@code <<} (shift left) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = a &lt;&lt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--SR -&gt; &lt;&lt;
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      * Language Specification, &sect;15.19</a>
@@ -2451,6 +2603,21 @@ public final class TokenTypes {
     public static final int SL = GeneratedJavaTokenTypes.SL;
     /**
      * The {@code >>} (signed shift right) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a = a &gt;&gt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--SR -&gt; &gt;&gt;
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
@@ -2492,6 +2659,8 @@ public final class TokenTypes {
      * |           |--IDENT -&gt; a
      * |           `--IDENT -&gt; b
      * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      * Language Specification, &sect;15.18</a>
@@ -2543,6 +2712,18 @@ public final class TokenTypes {
     public static final int INC = GeneratedJavaTokenTypes.INC;
     /**
      * The {@code --} (prefix decrement) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * --a;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--DEC -&gt; --
+     * |       `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.2">Java
@@ -2756,6 +2937,19 @@ public final class TokenTypes {
      * An integer literal.  These may be specified in decimal,
      * hexadecimal, or octal form.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_INT -&gt; 3
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      * Language Specification, &sect;3.10.1</a>
@@ -2778,6 +2972,21 @@ public final class TokenTypes {
     /**
      * A string literal.  This is a sequence of (possibly escaped)
      * characters enclosed in double quotes.
+     * <p>For example:</p>
+     * <pre>String str = "StringLiteral";</pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--TYPE -&gt; TYPE
+     *  |   |   `--IDENT -&gt; String
+     *  |   |--IDENT -&gt; str
+     *  |   `--ASSIGN -&gt; =
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--STRING_LITERAL -&gt; "StringLiteral"
+     *  |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.5">Java
@@ -2791,6 +3000,19 @@ public final class TokenTypes {
      * A single precision floating point literal.  This is a floating
      * point number with an {@code F} or {@code f} suffix.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3.14f;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_FLOAT -&gt; 3.14f
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
      * Language Specification, &sect;3.10.2</a>
@@ -2803,6 +3025,19 @@ public final class TokenTypes {
      * literals, but they have an {@code L} or {@code l}
      * (ell) suffix.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3l;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_LONG -&gt; 3l
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.1">Java
      * Language Specification, &sect;3.10.1</a>
@@ -2814,6 +3049,19 @@ public final class TokenTypes {
      * A double precision floating point literal.  This is a floating
      * point number with an optional {@code D} or {@code d}
      * suffix.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * a = 3.14d;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--NUM_DOUBLE -&gt; 3.14d
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.2">Java
@@ -3467,6 +3715,25 @@ public final class TokenTypes {
      * An upper bounds on a wildcard type argument or type parameter.
      * This node has one child - the type that is being used for
      * the bounding.
+     * <p>For example:</p>
+     * <pre>List&lt;? extends Number&gt; list;</pre>
+     *
+     * <p>parses as:</p>
+     * <pre>
+     * --VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; List
+     *  |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |       |--GENERIC_START -&gt; &lt;
+     *  |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |       |   |--WILDCARD_TYPE -&gt; ?
+     *  |       |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     *  |       |       `--IDENT -&gt; Number
+     *  |       `--GENERIC_END -&gt; &gt;
+     *  |--IDENT -&gt; list
+     *  `--SEMI -&gt; ;
+     *  </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
@@ -3480,6 +3747,26 @@ public final class TokenTypes {
     /**
      * A lower bounds on a wildcard type argument. This node has one child
      *  - the type that is being used for the bounding.
+     *
+     *  <p>For example:</p>
+     *  <pre>List&lt;? super Integer&gt; list;</pre>
+     *
+     *  <p>parses as:</p>
+     *  <pre>
+     *  --VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   |--IDENT -&gt; List
+     *     |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *     |       |--GENERIC_START -&gt; &lt;
+     *     |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *     |       |   |--WILDCARD_TYPE -&gt; ?
+     *     |       |   `--TYPE_LOWER_BOUNDS -&gt; super
+     *     |       |       `--IDENT -&gt; Integer
+     *     |       `--GENERIC_END -&gt; &gt;
+     *     |--IDENT -&gt; list
+     *     `--SEMI -&gt; ;
+     *  </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
