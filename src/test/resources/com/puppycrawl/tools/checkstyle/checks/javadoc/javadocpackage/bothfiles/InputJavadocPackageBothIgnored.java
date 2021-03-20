@@ -1,5 +1,7 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.bothfiles;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.bothfiles;       // violation
 
-class InputJavadocPackageBothIgnored
-{
-}
+/* Config:
+ * allowLegacy = "false"
+ * fileExtensions = "java"
+ */
+class InputJavadocPackageBothIgnored {}
