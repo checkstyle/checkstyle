@@ -115,7 +115,8 @@ no-error-pmd)
   cd .ci-temp/
   git clone https://github.com/pmd/pmd.git
   cd pmd
-  mvn -e --no-transfer-progress install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
+  mvn -e --no-transfer-progress install checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION} \
+      -Dcheckstyle.config.location="https://gist.githubusercontent.com/nmancus1/89ecda0da9761ca9b7e591fa7e61d5d6/raw/a76cabdc174747f098b49cc14e0a0ff4f9bef372/pmd-checkstyle-config.xml"
   cd ..
   removeFolderWithProtectedFiles pmd
   ;;
