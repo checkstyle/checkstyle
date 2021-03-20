@@ -6,9 +6,6 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks the Javadoc of a method or constructor.
- The scope to verify is specified using the {@code Scope} class and defaults
- to {@code Scope.PRIVATE}. To verify another scope, set property scope to
- a different &lt;a href="https://checkstyle.org/property_types.html#Scope"&gt;scope&lt;/a&gt;.
  &lt;/p&gt;
  &lt;p&gt;
  Violates parameters and type parameters for which no param tags are present can
@@ -73,14 +70,11 @@
             <property default-value="false" name="validateThrows" type="boolean">
                <description>Control whether to validate {@code throws} tags.</description>
             </property>
-            <property default-value="private"
-                      name="scope"
-                      type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments are checked.</description>
-            </property>
-            <property name="excludeScope" type="com.puppycrawl.tools.checkstyle.api.Scope">
-               <description>Specify the visibility scope where Javadoc comments
- are not checked.</description>
+            <property default-value="public, protected, package, private"
+                      name="accessModifiers"
+                      type="com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]">
+               <description>Specify the access modifiers where Javadoc comments are
+ checked.</description>
             </property>
             <property default-value="false" name="allowMissingParamTags" type="boolean">
                <description>Control whether to ignore violations
