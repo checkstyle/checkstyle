@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -94,7 +94,7 @@ public abstract class AbstractNode implements NodeInfo {
         if (children == null) {
             children = createChildren();
         }
-        return Collections.unmodifiableList(children);
+        return new ArrayList<>(children);
     }
 
     /**
