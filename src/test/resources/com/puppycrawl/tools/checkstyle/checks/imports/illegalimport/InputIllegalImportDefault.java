@@ -12,7 +12,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.List;
 import java.lang.ArithmeticException;
-import sun.misc.*;
+import org.junit.jupiter.api.*;
 import java.util.Enumeration;
 import java.util.Arrays;
 
@@ -25,7 +25,7 @@ import static java.io.File.listRoots;
 import static javax.swing.WindowConstants.*;
 import static javax.swing.WindowConstants.*;
 import static java.io.File.createTempFile;
-import sun.reflect.*;
+import org.junit.jupiter.api.*;
 
 import java.awt.Component;
 import java.awt.Graphics2D;
