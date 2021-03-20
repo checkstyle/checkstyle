@@ -35,20 +35,16 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
-import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
  * Checks the Javadoc of a method or constructor.
- * The scope to verify is specified using the {@code Scope} class and defaults
- * to {@code Scope.PRIVATE}. To verify another scope, set property scope to
- * a different <a href="https://checkstyle.org/property_types.html#Scope">scope</a>.
  * </p>
  * <p>
  * Violates parameters and type parameters for which no param tags are present can
@@ -116,15 +112,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * Default value is {@code false}.
  * </li>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
- * Property {@code excludeScope} - Specify the visibility scope where Javadoc comments
- * are not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
+ * Property {@code accessModifiers} - Specify the access modifiers where Javadoc comments are
+ * checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
+ * Default value is {@code public, protected, package, private}.
  * </li>
  * <li>
  * Property {@code allowMissingParamTags} - Control whether to ignore violations
@@ -160,22 +151,21 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocMethod"/&gt;
  * </pre>
  * <p>
- * To configure the check for {@code public} scope, ignoring any missing param tags is:
+ * To configure the check for only {@code public} modifier, ignoring any missing param tags is:
  * </p>
  * <pre>
  * &lt;module name="JavadocMethod"&gt;
- *   &lt;property name="scope" value="public"/&gt;
+ *   &lt;property name="accessModifiers" value="public"/&gt;
  *   &lt;property name="allowMissingParamTags" value="true"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * To configure the check for methods which are in {@code private},
- * but not in {@code protected} scope:
+ * To configure the check for methods which are in {@code private} and {@code package},
+ * but not any other modifier:
  * </p>
  * <pre>
  * &lt;module name="JavadocMethod"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- *   &lt;property name="excludeScope" value="protected"/&gt;
+ *   &lt;property name="accessModifiers" value="private, package"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
@@ -371,11 +361,13 @@ public class JavadocMethodCheck extends AbstractCheck {
     /** Name of current class. */
     private String currentClassName;
 
-    /** Specify the visibility scope where Javadoc comments are checked. */
-    private Scope scope = Scope.PRIVATE;
-
-    /** Specify the visibility scope where Javadoc comments are not checked. */
-    private Scope excludeScope;
+    /** Specify the access modifiers where Javadoc comments are checked. */
+    private AccessModifierOption[] accessModifiers = {
+        AccessModifierOption.PUBLIC,
+        AccessModifierOption.PROTECTED,
+        AccessModifierOption.PACKAGE,
+        AccessModifierOption.PRIVATE,
+    };
 
     /**
      * Control whether to validate {@code throws} tags.
@@ -416,21 +408,13 @@ public class JavadocMethodCheck extends AbstractCheck {
     }
 
     /**
-     * Setter to specify the visibility scope where Javadoc comments are checked.
+     * Setter to specify the access modifiers where Javadoc comments are checked.
      *
-     * @param scope a scope.
+     * @param accessModifiers access modifiers.
      */
-    public void setScope(Scope scope) {
-        this.scope = scope;
-    }
-
-    /**
-     * Setter to specify the visibility scope where Javadoc comments are not checked.
-     *
-     * @param excludeScope a scope.
-     */
-    public void setExcludeScope(Scope excludeScope) {
-        this.excludeScope = excludeScope;
+    public void setAccessModifiers(AccessModifierOption... accessModifiers) {
+        this.accessModifiers =
+            Arrays.copyOf(accessModifiers, accessModifiers.length);
     }
 
     /**
@@ -519,8 +503,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      *             IMPORT tokens.
      */
     private void processAST(DetailAST ast) {
-        final Scope theScope = calculateScope(ast);
-        if (shouldCheck(ast, theScope)) {
+        if (shouldCheck(ast)) {
             final FileContents contents = getFileContents();
             final TextBlock textBlock = contents.getJavadocBefore(ast.getLineNo());
 
@@ -534,17 +517,17 @@ public class JavadocMethodCheck extends AbstractCheck {
      * Whether we should check this node.
      *
      * @param ast a given node.
-     * @param nodeScope the scope of the node.
      * @return whether we should check a given node.
      */
-    private boolean shouldCheck(final DetailAST ast, final Scope nodeScope) {
-        final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
-
-        return (excludeScope == null
-                || nodeScope != excludeScope
-                && surroundingScope != excludeScope)
-            && nodeScope.isIn(scope)
-            && surroundingScope.isIn(scope);
+    private boolean shouldCheck(final DetailAST ast) {
+        final AccessModifierOption surroundingAccessModifier = CheckUtil
+                .getSurroundingAccessModifier(ast);
+        final AccessModifierOption accessModifier = CheckUtil
+                .getAccessModifierFromModifiersToken(ast);
+        return surroundingAccessModifier != null
+                && Arrays.stream(accessModifiers)
+                        .anyMatch(modifier -> modifier == surroundingAccessModifier)
+                && Arrays.stream(accessModifiers).anyMatch(modifier -> modifier == accessModifier);
     }
 
     /**
@@ -611,27 +594,6 @@ public class JavadocMethodCheck extends AbstractCheck {
             result = false;
         }
         return result;
-    }
-
-    /**
-     * Returns the scope for the method/constructor at the specified AST. If
-     * the method is in an interface or annotation block, the scope is assumed
-     * to be public.
-     *
-     * @param ast the token of the method/constructor
-     * @return the scope of the method/constructor
-     */
-    private static Scope calculateScope(final DetailAST ast) {
-        final Scope scope;
-
-        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            scope = Scope.PUBLIC;
-        }
-        else {
-            final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-            scope = ScopeUtil.getScopeFromMods(mods);
-        }
-        return scope;
     }
 
     /**
