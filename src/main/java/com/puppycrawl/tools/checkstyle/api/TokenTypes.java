@@ -2497,6 +2497,7 @@ public final class TokenTypes {
      * |           |--IDENT -&gt; a
      * |           `--IDENT -&gt; b
      * |--SEMI -&gt; ;
+     * </pre>
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      * Language Specification, &sect;15.18</a>
