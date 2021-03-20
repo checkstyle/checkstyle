@@ -45,12 +45,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="annotation[\\/]annotationlocation[\\/]inputs[\\/]PackageAnnotations.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck2.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheckOnDifferentTokens.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleCustomAnnotation.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleDifferentStyles.java"/>
@@ -1901,12 +1895,6 @@
             files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationWithoutAnnotations.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="annotation[\\/]annotationlocation[\\/]inputs[\\/]PackageAnnotations.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck2.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheckOnDifferentTokens.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleCustomAnnotation.java"/>
   <suppress id="StyleValidationCommentInInputs"
