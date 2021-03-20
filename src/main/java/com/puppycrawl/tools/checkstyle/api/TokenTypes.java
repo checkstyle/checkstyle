@@ -2477,13 +2477,8 @@ public final class TokenTypes {
      **/
     public static final int PLUS = GeneratedJavaTokenTypes.PLUS;
     /**
-     * The {@code -} (subtraction) operator.
+     * The {@code -} (subtraction) operator.                         
      *
-     
-     
-     
-     
-     
      * <p>For example:</p>
      * <pre>
      * c = a - b;
@@ -2498,6 +2493,7 @@ public final class TokenTypes {
      * |           `--IDENT -&gt; b
      * |--SEMI -&gt; ;
      * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
      * Language Specification, &sect;15.18</a>
