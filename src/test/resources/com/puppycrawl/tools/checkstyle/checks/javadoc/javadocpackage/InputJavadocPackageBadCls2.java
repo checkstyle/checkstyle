@@ -1,13 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;      // violation
 
 /* Config:
- * allowLegacy = "false"
+ * allowLegacy = "true"
  * fileExtensions = "java"
  */
-/**
- * The following is a bad tag.
- * @mytag Hello
- */
-public class InputJavadocPackageBadTag
-{
+class InputJavadocPackageBadCls2 {
+    class X extends Exception {}
+    void m() throws X {}
 }

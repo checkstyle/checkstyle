@@ -1,5 +1,7 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.pkghtml;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage.pkghtml;      // violation
 
-class InputJavadocPackageHtmlIgnored
-{
-}
+/* Config:
+ * allowLegacy = "false"
+ * fileExtensions = "java"
+ */
+class InputJavadocPackageHtmlIgnored {}
