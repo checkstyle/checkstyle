@@ -3826,35 +3826,35 @@ public final class TokenTypes {
      * <p>Generic type bounds extension:
      * {@code class Comparable<T extends Serializable & CharSequence>}</p>
      * <pre>
-     * CLASS_DEF
-     * |--MODIFIERS
-     * |--LITERAL_CLASS (class)
-     * |--IDENT (Comparable)
-     * +--TYPE_PARAMETERS
-     *     |--GENERIC_START (&lt;)
-     *     |--TYPE_PARAMETER
-     *     |   |--IDENT (T)
-     *     |   +--TYPE_UPPER_BOUNDS (extends)
-     *     |       |--IDENT (Serializable)
-     *     |       |--TYPE_EXTENSION_AND (&amp;)
-     *     |       +--IDENT (CharSequence)
-     *     +--GENERIC_END (&gt;)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Comparable
+     * |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     *     |--GENERIC_START -&gt; &lt;
+     *     |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     *     |   |--IDENT -&gt; T
+     *     |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     *     |       |--IDENT -&gt; Serializable
+     *     |       |--TYPE_EXTENSION_AND -&gt; &#38;
+     *     |       `--IDENT -&gt; CharSequence
+     *     `--GENERIC_END -&gt; &gt;
      * </pre>
      *
      * <p>Type cast extension:
-     * {@code return (CheckedFunction & Serializable) null;}</p>
+     * {@code return (Serializable & CharSequence) null;}</p>
      * <pre>
-     * LITERAL_RETURN (return)
-     * |--EXPR
-     * |   +--TYPECAST (()
-     * |       |--TYPE
-     * |       |   +--IDENT (CheckedFunction)
-     * |       |--TYPE_EXTENSION_AND (&amp;)
-     * |       |--TYPE
-     * |       |   +--IDENT (Serializable)
-     * |       |--RPAREN ())
-     * |       +--LITERAL_NULL (null)
-     * +--SEMI (;)
+     * --LITERAL_RETURN -&gt; return
+     *    |--EXPR -&gt; EXPR
+     *    |   `--TYPECAST -&gt; (
+     *    |       |--TYPE -&gt; TYPE
+     *    |       |   `--IDENT -&gt; Serializable
+     *    |       |--TYPE_EXTENSION_AND -&gt; &#38;
+     *    |       |--TYPE -&gt; TYPE
+     *    |       |   `--IDENT -&gt; CharSequence
+     *    |       |--RPAREN -&gt; )
+     *    |       `--LITERAL_NULL -&gt; null
+     *    `--SEMI -&gt; ;
      * </pre>
      *
      * @see #EXTENDS_CLAUSE
