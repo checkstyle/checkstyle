@@ -215,12 +215,13 @@ no-error-spring-cloud-gcp)
 no-exception-struts)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#apache-struts/apache-struts/' projects-for-wercker.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}  \
+      --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -229,13 +230,14 @@ no-exception-checkstyle-sevntu)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}  \
+      --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -244,13 +246,14 @@ no-exception-checkstyle-sevntu-javadoc)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#local-checkstyle/local-checkstyle/' projects-for-wercker.properties
   sed -i'' 's/#sevntu-checkstyle/sevntu-checkstyle/' projects-for-wercker.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
-      --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}  \
+      --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -258,12 +261,13 @@ no-exception-checkstyle-sevntu-javadoc)
 no-exception-guava)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i'' 's/^guava/#guava/' projects-for-wercker.properties
   sed -i'' 's/#guava/guava/' projects-for-wercker.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -271,12 +275,13 @@ no-exception-guava)
 no-exception-hibernate-orm)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#hibernate-orm/hibernate-orm/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -284,12 +289,13 @@ no-exception-hibernate-orm)
 no-exception-spotbugs)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -297,12 +303,13 @@ no-exception-spotbugs)
 no-exception-spoon)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spoon/spoon/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-for-wercker.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-for-wercker.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -310,12 +317,13 @@ no-exception-spoon)
 no-exception-spring-framework)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -323,12 +331,13 @@ no-exception-spring-framework)
 no-exception-hbase)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#Hbase/Hbase/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -336,14 +345,15 @@ no-exception-hbase)
 no-exception-Pmd-elasticsearch-lombok-ast)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
   sed -i.'' 's/#elasticsearch/elasticsearch/' projects-to-test-on.properties
   sed -i.'' 's/#lombok-ast/lombok-ast/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -351,7 +361,7 @@ no-exception-Pmd-elasticsearch-lombok-ast)
 no-exception-alot-of-projects)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#RxJava/RxJava/' projects-to-test-on.properties
@@ -360,8 +370,9 @@ no-exception-alot-of-projects)
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
   sed -i.'' 's/#apache-jsecurity/apache-jsecurity/' projects-to-test-on.properties
   sed -i.'' 's/#android-launcher/android-launcher/' projects-to-test-on.properties
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
-      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+      --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
+       --allowExcludes --mode single
   cd ../../
   removeFolderWithProtectedFiles contribution
   ;;
@@ -372,10 +383,11 @@ no-warning-imports-guava)
   REPORT=reports/guava/site/index.html
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
-  groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
-      --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects $PROJECTS --config $CONFIG \
+      --checkstyleVersion ${CS_POM_VERSION}  --allowExcludes \
+      --mode single
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
   cd ../../
   removeFolderWithProtectedFiles contribution
@@ -395,10 +407,11 @@ no-warning-imports-java-design-patterns)
   REPORT=reports/java-design-patterns/site/index.html
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/contribution.git
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
-  groovy ./launch.groovy --listOfProjects $PROJECTS --config $CONFIG \
-      --checkstyleVersion ${CS_POM_VERSION}
+  groovy ./diff.groovy --listOfProjects $PROJECTS --config $CONFIG \
+      --checkstyleVersion ${CS_POM_VERSION}  --allowExcludes \
+      --mode single
   RESULT=`grep -A 5 "&#160;Warning</td>" $REPORT | cat`
   cd ../../
   removeFolderWithProtectedFiles contribution
