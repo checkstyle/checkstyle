@@ -176,13 +176,13 @@ jobs:
          BASE_BRANCH="upstream/master"
          if [ -f new_module_config.xml ]; then
            groovy diff.groovy -r $REPO -p $REF -pc new_module_config.xml -m single\
-             -l project.properties
+             -l project.properties -xm "-Dcheckstyle.failsOnError=false"
          elif [ -f patch_config.xml ]; then
            groovy diff.groovy -r $REPO -b $BASE_BRANCH -p $REF -bc diff_config.xml\
-             -pc patch_config.xml -l project.properties
+             -pc patch_config.xml -l project.properties -xm "-Dcheckstyle.failsOnError=false"
          else
            groovy diff.groovy -r $REPO -b $BASE_BRANCH -p $REF -c diff_config.xml\
-             -l project.properties
+             -l project.properties -xm "-Dcheckstyle.failsOnError=false"
          fi
 
      - name: Copy Report to AWS S3 Bucket
