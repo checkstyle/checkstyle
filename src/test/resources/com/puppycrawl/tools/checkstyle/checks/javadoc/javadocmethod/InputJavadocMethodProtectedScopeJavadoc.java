@@ -1,13 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 /**
- * Config: default
+ * Config:
+ * scope = Scope.PROTECTED.getName()
  */
-public class InputJavadocMethodPublicOnly // ignore - need javadoc                            // ok
+public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc                 // ok
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc               // ok
     {
@@ -21,20 +18,20 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc              
             private InnerInnerClass()
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};
-                    };
+                    public void run() {};
+                };
             }
 
             void method2() // ignore - when not relaxed about Javadoc                         // ok
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};                                                 // ok
-                    };
+                    public void run() {};                                                     // ok
+                };
             }
         }
     }
 
-    private class InnerClass // ignore                                                        // ok
+    private class InnerClass  // ignore                                                       // ok
     {
         private int mDiff; // ignore - when not relaxed about Javadoc                         // ok
 
@@ -49,32 +46,32 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc              
     public int aFreddo; // ignore                                                             // ok
 
     // ignore - need Javadoc
-    private InputJavadocMethodPublicOnly(int aA)                                              // ok
+    private InputJavadocMethodProtectedScopeJavadoc(int aA)                                   // ok
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocMethodPublicOnly(String aA)                                                   // ok
+    InputJavadocMethodProtectedScopeJavadoc(String aA)                                        // ok
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocMethodPublicOnly(Object aA)                                         // ok
+    protected InputJavadocMethodProtectedScopeJavadoc(Object aA)                              // ok
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocMethodPublicOnly(Class<Object> aA)                                     // ok
+    public InputJavadocMethodProtectedScopeJavadoc(Class<Object> aA)                          // ok
     {
     }
 
-    /** Here should be an error, In scope */
-    private void method(int aA)                                                        // violation
+    /** Here should not be an error, Out of scope */
+    private void method(int aA)                                                               // ok
     {
     }
 
-    /** Here should be an error, In scope */
-    void method(Long aA)                                                               // violation
+    /** Here should not be an error, Out of scope */
+    void method(Long aA)                                                                      // ok
     {
     }
 
@@ -90,16 +87,16 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc              
 
 
     /**
-       A param tag should not be required here when relaxed about Javadoc.
-       Writing a little documentation should not be worse than not
-       writing any documentation at all.
+     A param tag should not be required here when relaxed about Javadoc.
+     Writing a little documentation should not be worse than not
+     writing any documentation at all.
      */
-    private void method(String aA)                                                     // violation
+    private void method(String aA)                                                            // ok
     {
     }
 
     /**
-       This inner class has no author tag, which is OK.
+     This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor                                                           // ok
     {
