@@ -1154,6 +1154,21 @@ public final class TokenTypes {
      * The statement terminator ({@code ;}).  Depending on the
      * context, this make occur as a sibling, a child, or not at all.
      *
+     * <p>For example:</p>
+     * <pre>boolean var = true;</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; var
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_TRUE -&gt; true
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #PACKAGE_DEF
      * @see #IMPORT
      * @see #SLIST
