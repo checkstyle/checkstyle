@@ -85,15 +85,63 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
  * &lt;module name=&quot;MissingDeprecated&quot;/&gt;
  * </pre>
  * <p>
- * Examples of validating source code:
+ * Example:
  * </p>
  * <pre>
  * &#64;Deprecated
- * public static final int MY_CONST = 123456; // no violation
+ * public static final int MY_CONST = 13; // ok
  *
  * &#47;** This javadoc is missing deprecated tag. *&#47;
  * &#64;Deprecated
  * public static final int COUNTER = 10; // violation
+ *
+ * &#47;**
+ *  * &#64;deprecated
+ *  * &lt;p&gt;&lt;/p&gt;
+ *  *&#47;
+ * &#64;Deprecated
+ * public static final int NUM = 123456; // ok
+ *
+ * &#47;**
+ *  * &#64;deprecated
+ *  * &lt;p&gt;
+ *  *&#47;
+ * &#64;Deprecated
+ * public static final int CONST = 12; // ok
+ * </pre>
+ * <p>
+ * To configure the check such that it prints violation
+ * messages if tight HTML rules are not obeyed
+ * </p>
+ * <pre>
+ * &lt;module name="MissingDeprecated"&gt;
+ *   &lt;property name="violateExecutionOnNonTightHtml" value="true"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * Example:
+ * </p>
+ * <pre>
+ * &#64;Deprecated
+ * public static final int MY_CONST = 13; // ok
+ *
+ * &#47;** This javadoc is missing deprecated tag. *&#47;
+ * &#64;Deprecated
+ * public static final int COUNTER = 10; // violation
+ *
+ * &#47;**
+ *  * &#64;deprecated
+ *  * &lt;p&gt;&lt;/p&gt;
+ *  *&#47;
+ * &#64;Deprecated
+ * public static final int NUM = 123456; // ok
+ *
+ * &#47;**
+ *  * &#64;deprecated
+ *  * &lt;p&gt;
+ *  *&#47;
+ * &#64;Deprecated
+ * public static final int CONST = 12; // violation, tight HTML rules not obeyed
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
