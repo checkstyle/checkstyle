@@ -2821,6 +2821,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
+                <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
@@ -2843,6 +2844,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefinitionsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLoggerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.SarifLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpanderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
