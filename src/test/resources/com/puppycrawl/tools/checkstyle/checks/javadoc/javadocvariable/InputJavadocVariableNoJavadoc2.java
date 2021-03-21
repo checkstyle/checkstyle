@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;// violation
 /* Config:
  * scope = protected
  * excludeScope = null
@@ -6,8 +6,8 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
  */
 public class InputJavadocVariableNoJavadoc2 //comment test
 {
-    public int i1; //violation
-    protected int i2; //violation
+    public int i1; // violation
+    protected int i2; // violation
     int i3;
     private int i4;
 
@@ -17,8 +17,8 @@ public class InputJavadocVariableNoJavadoc2 //comment test
     private void foo4() {}
 
     protected class ProtectedInner {
-        public int i1; //violation
-        protected int i2; //violation
+        public int i1; // violation
+        protected int i2; // violation
         int i3;
         private int i4;
 
