@@ -2570,6 +2570,19 @@ public final class TokenTypes {
     public static final int NOT_EQUAL = GeneratedJavaTokenTypes.NOT_EQUAL;
     /**
      * The {@code ==} (equal) operator.
+     * <p>For example:</p>
+     * <pre>
+     * return a == b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--LITERAL_RETURN -&gt; return
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--EQUAL -&gt; ==
+     * |   |       |--IDENT -&gt; a
+     * |   |       `--IDENT -&gt; b
+     * |   `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #EXPR
      **/
