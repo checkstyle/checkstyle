@@ -2571,6 +2571,19 @@ public final class TokenTypes {
     /**
      * The {@code ==} (equal) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * return a == b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -> EXPR
+     * |   `--EQUAL -> ==
+     * |       |--IDENT -> a
+     * |       `--IDENT -> b
+     * `--SEMI -> ;
+     * </pre>
+     *
      * @see #EXPR
      **/
     public static final int EQUAL = GeneratedJavaTokenTypes.EQUAL;
