@@ -67,10 +67,10 @@ public class JavadocVariableCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocVariableCheck.class);
         final String[] expected = {
-            "11:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "304:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "311:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "330:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "309:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "316:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "335:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputJavadocVariableTags.java"), expected);
     }

@@ -1,17 +1,17 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+// violation
+
+
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
- * Tests having inner types
- * @author Oliver Burn
- **/
-/* Config:
+ * Config:
  * scope = public
  * excludeScope = null
  *
+ *
+ * Tests having inner types
+ * @author Oliver Burn
  */
 class InputJavadocVariableInner2
 {
@@ -19,20 +19,20 @@ class InputJavadocVariableInner2
     class InnerInner2
     {
         // Ignore
-        public int fData;       //violation
+        public int fData;
     }
 
     // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc";       //violation
+        String data = "zxzc";
 
         // Ignore
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData;       //violation
+            public int rData;
 
             /** needs to be made private unless allowProtected. */
             protected int protectedVariable;
@@ -66,7 +66,7 @@ class InputJavadocVariableInner2
     @interface InnerAnnotation
     {
         /** Ignore - should be all upper case. */
-        String data = "zxzc";       //violation
+        String data = "zxzc";
     }
 
     /** enum with public member variable */
