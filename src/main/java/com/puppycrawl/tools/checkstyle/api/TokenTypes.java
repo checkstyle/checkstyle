@@ -3988,18 +3988,25 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     ? super List
+     *     List&lt;? super List&gt; list;
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--TYPE_ARGUMENT
-     *     |
-     *     +--WILDCARD_TYPE (?)
-     *     +--TYPE_LOWER_BOUNDS
-     *         |
-     *         +--IDENT (List)
+     *--VARIABLE_DEF -> VARIABLE_DEF
+     *   |--MODIFIERS -> MODIFIERS
+     *   |--TYPE -> TYPE
+     *   |   |--IDENT -> List
+     *   |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *   |       |--GENERIC_START -> <
+     *   |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *   |       |   |--WILDCARD_TYPE -> ?
+     *   |       |   `--TYPE_LOWER_BOUNDS -> super
+     *   |       |       `--IDENT -> List
+     *   |       `--GENERIC_END -> >
+     *   |--IDENT -> list
+     *   `--SEMI -> ;
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
