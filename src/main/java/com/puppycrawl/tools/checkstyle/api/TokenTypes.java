@@ -2559,6 +2559,19 @@ public final class TokenTypes {
     /**
      * The <code>&#33;=</code> (not equal) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a != b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--NOT_EQUAL -&gt; !=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
      **/
