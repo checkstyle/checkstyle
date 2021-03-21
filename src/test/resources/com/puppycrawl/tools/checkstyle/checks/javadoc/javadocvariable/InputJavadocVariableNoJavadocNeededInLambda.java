@@ -1,4 +1,4 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;// violation
 
 import java.util.function.Function;
 /* Config:
@@ -7,7 +7,7 @@ import java.util.function.Function;
  * ignoreNamePattern = null
  */
 public class InputJavadocVariableNoJavadocNeededInLambda {
-    private static final Function<String, String> FUNCTION1 = (String it) -> { //violation
+    private static final Function<String, String> FUNCTION1 = (String it) -> { // violation
         String stuff = it;
         return stuff + it;
     };
