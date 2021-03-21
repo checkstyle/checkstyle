@@ -8,7 +8,7 @@ case $1 in
 guava-with-google-checks)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: $CS_POM_VERSION
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
@@ -18,7 +18,7 @@ guava-with-google-checks)
   sed -i.'' 's/warning/ignore/' .ci-temp/google_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../google_checks.xml --checkstyleVersion $CS_POM_VERSION
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -28,7 +28,7 @@ guava-with-google-checks)
 guava-with-sun-checks)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: $CS_POM_VERSION
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   cd .ci-temp/contribution/checkstyle-tester
   sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#guava|/guava|/' projects-to-test-on.properties
@@ -38,7 +38,7 @@ guava-with-sun-checks)
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' .ci-temp/sun_checks.xml
   cd .ci-temp/contribution/checkstyle-tester
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./launch.groovy --listOfProjects projects-to-test-on.properties \
+  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --config ../../sun_checks.xml --checkstyleVersion $CS_POM_VERSION
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -48,7 +48,7 @@ guava-with-sun-checks)
 openjdk14-with-checks-nonjavadoc-error)
   LOCAL_GIT_REPO=$(pwd)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
-  checkout_from https://github.com/checkstyle/contribution
+  checkout_from "-b issue-529 https://github.com/nmancus1/contribution.git"
   sed -i.'' 's/value=\"error\"/value=\"ignore\"/' \
         .ci-temp/contribution/checkstyle-tester/checks-nonjavadoc-error.xml
   cd .ci-temp/contribution/checkstyle-tester
