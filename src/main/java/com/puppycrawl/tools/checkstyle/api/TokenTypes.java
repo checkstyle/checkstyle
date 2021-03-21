@@ -889,16 +889,13 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--IMPORT (import)
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (java)
-     *             +--IDENT (io)
-     *         +--IDENT (IOException)
-     *     +--SEMI (;)
+     * IMPORT -&gt; import
+     * |--DOT -&gt; .
+     * |   |--DOT -&gt; .
+     * |   |   |--IDENT -&gt; java
+     * |   |   `--IDENT -&gt; io
+     * |   `--IDENT -&gt; IOException
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a
