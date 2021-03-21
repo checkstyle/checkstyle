@@ -1376,6 +1376,7 @@ xffffffffffffffff
 xg
 Xhenseval
 XHTML
+xm
 xml
 XMLHTTP
 xmllogger
@@ -1383,7 +1384,6 @@ xmlmetareader
 xmlns
 xmlp
 xmlstarlet
-Xms
 Xmx
 xpath
 xpathfilegenerator
