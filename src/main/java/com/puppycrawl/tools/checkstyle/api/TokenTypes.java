@@ -4161,23 +4161,34 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     *         String hello = """
-     *                 Hello, world!
-     *                 """;
+     * public class MyClass {
+     *     String example = """
+     *             Hello,
+     *             World!
+     *             """;
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF
-     * |   |--MODIFIERS
-     * |   |--TYPE
-     * |   |   `--IDENT (String)
-     * |   |--IDENT (hello)
-     * |   |--ASSIGN (=)
-     * |   |   `--EXPR
-     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
-     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
-     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
-     * |   `--SEMI (;)
+     * CLASS_DEF
+     * |--MODIFIERS
+     * |   `--LITERAL_PUBLIC (public)
+     * |--LITERAL_CLASS (class)
+     * |--IDENT (MyClass)
+     * `--OBJBLOCK
+     *     |--LCURLY ({)
+     *     |--VARIABLE_DEF
+     *     |   |--MODIFIERS
+     *     |   |--TYPE
+     *     |   |   `--IDENT (String)
+     *     |   |--IDENT (example)
+     *     |   |--ASSIGN (=)
+     *     |   |   `--EXPR
+     *     |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
+     *     |   |           |--TEXT_BLOCK_CONTENT (\n            Hello,\n            World!\n             )
+     *     |   |           `--TEXT_BLOCK_LITERAL_END (""")
+     *     |   `--SEMI (;)
+     *     `--RCURLY (})
      * </pre>
      *
      * @since 8.36
