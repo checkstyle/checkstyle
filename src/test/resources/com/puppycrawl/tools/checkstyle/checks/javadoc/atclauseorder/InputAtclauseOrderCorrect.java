@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 1.0
  * @see Some javadoc.
  * @since Some javadoc.
- * @deprecated Some javadoc.
+ * @deprecated Some javadoc. // ok
  */
 class InputAtclauseOrderCorrect implements Serializable
 {
