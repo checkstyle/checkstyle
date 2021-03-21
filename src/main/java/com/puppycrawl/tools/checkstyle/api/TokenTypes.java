@@ -1339,23 +1339,18 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--LITERAL_SYNCHRONIZED (synchronized)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--LITERAL_THIS (this)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--POST_INC (++)
-     *                 |
-     *                 +--IDENT (x)
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     * +--RCURLY (})
+     * |--LITERAL_SYNCHRONIZED -&gt; synchronized
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_THIS -&gt; this
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       |--EXPR -&gt; EXPR
+     * |       |   `--POST_INC -&gt; ++
+     * |       |       `--IDENT -&gt; x
+     * |       |--SEMI -&gt; ;
+     * |       `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
      * </pre>
      *
      * @see #MODIFIERS
