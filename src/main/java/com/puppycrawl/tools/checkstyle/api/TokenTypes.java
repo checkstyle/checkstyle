@@ -1819,7 +1819,7 @@ public final class TokenTypes {
      * +--LITERAL_BREAK -&gt; break 
      *      |   
      *      +--SEMI -&gt; ;
-     *
+     * </pre>
      * @see #IDENT
      * @see #SEMI
      * @see #SLIST
