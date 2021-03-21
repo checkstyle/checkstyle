@@ -1810,7 +1810,16 @@ public final class TokenTypes {
     /**
      * The {@code continue} keyword.  The first child is an
      * optional identifier and the last child is a semicolon.
-     *
+     * <p>For example:</p>
+     * <pre>
+     *      break;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--LITERAL_BREAK -&gt; break 
+     *      |   
+     *      +--SEMI -&gt; ;
+     * </pre>
      * @see #IDENT
      * @see #SEMI
      * @see #SLIST
