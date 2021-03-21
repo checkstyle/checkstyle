@@ -54,12 +54,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Example:
  * </p>
  * <pre>
- * for (Iterator it =map.entrySet().iterator();  it.hasNext(); ); // violation since whitespace
+ * for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // violation since whitespace
  *                                                                 //after semicolon
  *
  * for (Iterator foo = very.long.line.iterator();
  *       foo.hasNext();
  *      ); // ok
+ *
+ * for (Iterator i = m.entrySet().iterator();  i.hasNext();); // ok
  * </pre>
  * <p>
  * To configure the check to require white space at an empty for iterator:
@@ -73,11 +75,14 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Example:
  * </p>
  * <pre>
- * for (Iterator it =map.entrySet().iterator();  it.hasNext(); ); // ok
+ * for (Iterator it = map.entrySet().iterator();  it.hasNext(); ); // ok
  *
  * for (Iterator foo = very.long.line.iterator();
  *       foo.hasNext();
  *      ); // violation as there  is no whitespace after semicolon
+ *
+ * for (Iterator i = m.entrySet().iterator();  i.hasNext();); // violation as there is no
+ *                                                             // whitespace after semicolon
  * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
