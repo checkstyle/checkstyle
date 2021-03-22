@@ -1,15 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 /* Config:
  * scope = private
- * excludeScope = null
+ * excludeScope = protected
  *
  */
-public class InputJavadocVariableNoJavadoc //comment test
+public class InputJavadocVariableNoJavadoc3 //comment test
 {
-    public int i1; // violation
-    protected int i2; // violation
-    int i3; // violation
-    private int i4; // violation
+    public int i1;
+    protected int i2;
+    int i3; //violation
+    private int i4; //violation
 
     public void foo1() {}
     protected void foo2() {}
@@ -17,10 +17,10 @@ public class InputJavadocVariableNoJavadoc //comment test
     private void foo4() {}
 
     protected class ProtectedInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1;
+        protected int i2;
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -29,10 +29,10 @@ public class InputJavadocVariableNoJavadoc //comment test
     }
 
     class PackageInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; //violation
+        protected int i2; //violation
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -41,10 +41,10 @@ public class InputJavadocVariableNoJavadoc //comment test
     }
 
     private class PrivateInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; //violation
+        protected int i2; //violation
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -53,11 +53,11 @@ public class InputJavadocVariableNoJavadoc //comment test
     }
 }
 
-class PackageClass {
-    public int i1; // violation
-    protected int i2; // violation
-    int i3; // violation
-    private int i4; // violation
+class PackageClass3 {
+    public int i1; //violation
+    protected int i2; //violation
+    int i3; //violation
+    private int i4; //violation
 
     public void foo1() {}
     protected void foo2() {}
@@ -65,10 +65,10 @@ class PackageClass {
     private void foo4() {}
 
     public class PublicInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; //violation
+        protected int i2; //violation
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -77,10 +77,10 @@ class PackageClass {
     }
 
     protected class ProtectedInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; //violation
+        protected int i2; //violation
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -89,10 +89,10 @@ class PackageClass {
     }
 
     class PackageInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; //violation
+        protected int i2; //violation
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -101,10 +101,10 @@ class PackageClass {
     }
 
     private class PrivateInner {
-        public int i1; // violation
-        protected int i2; // violation
-        int i3; // violation
-        private int i4; // violation
+        public int i1; //violation
+        protected int i2; //violation
+        int i3; //violation
+        private int i4; //violation
 
         public void foo1() {}
         protected void foo2() {}
@@ -114,7 +114,7 @@ class PackageClass {
 
     class IgnoredName {
         // ignore by name
-        private int logger; // violation
+        private int logger; //violation
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }
