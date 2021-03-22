@@ -3615,39 +3615,30 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     public class Blah&lt;A, B&gt;
-     *     {
-     *     }
+     * public class MyClass&lt;A, B&gt; {
+     *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--CLASS_DEF ({)
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--LITERAL_CLASS (class)
-     *     +--IDENT (Blah)
-     *     +--TYPE_PARAMETERS
-     *         |
-     *         +--GENERIC_START (&lt;)
-     *         +--TYPE_PARAMETER
-     *             |
-     *             +--IDENT (A)
-     *         +--COMMA (,)
-     *         +--TYPE_PARAMETER
-     *             |
-     *             +--IDENT (B)
-     *         +--GENERIC_END (&gt;)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *     +--NUM_INT (1)
-     *     +--COMMA (,)
-     *     +--NUM_INT (2)
-     *     +--RCURLY (})
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; MyClass
+     * |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     * |   |--GENERIC_START -&gt; &lt;
+     * |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |   `--IDENT -&gt; A
+     * |   |--COMMA -&gt; ,
+     * |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |   `--IDENT -&gt; B
+     * |   `--GENERIC_END -&gt; &gt;
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
