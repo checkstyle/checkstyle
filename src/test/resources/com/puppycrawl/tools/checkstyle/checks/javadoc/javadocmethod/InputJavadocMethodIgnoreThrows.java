@@ -24,13 +24,13 @@ public class InputJavadocMethodIgnoreThrows {
         try {
             int value = Integer.parseInt(s);
             if (value <= 0) {
-                throw new NumberFormatException(value + " is negative/zero"); // ok, try
+                throw new NumberFormatException(value + " is negative/zero");  // ok
             }
             return value;
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("Invalid number", ex); // violation, catch
+            throw new IllegalArgumentException("Invalid number", ex);  // violation, catch
         } finally {
-            throw new IllegalStateException("Should never reach here"); // violation, finally
+            throw new IllegalStateException("Should never reach here");   // violation, finally
         }
     }
 
@@ -43,10 +43,10 @@ public class InputJavadocMethodIgnoreThrows {
     private static void catchAndRethrow(Object o) {
         try {
             if (o == null) {
-                throw new IllegalArgumentException("null"); // ok, try
+                throw new IllegalArgumentException("null");  // ok, try
             }
         } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException(ex.toString()); // violation, catch
+            throw new IllegalArgumentException(ex.toString());   // violation, catch
         }
     }
 
@@ -75,12 +75,12 @@ public class InputJavadocMethodIgnoreThrows {
      */
     private static void catchAndRethrowDifferent(Object o, int i) {
         try {
-            float x = 1 / i; // ArithmeticException when i = 0
+            float x = 1 / i;                // ArithmeticException when i = 0
         } catch (RuntimeException ex) {
             if (o == null) {
                 ex = new NullPointerException("");
             }
-            throw ex; // no violation
+            throw ex;              // ok
         }
     }
 
@@ -93,7 +93,7 @@ public class InputJavadocMethodIgnoreThrows {
     private static Function<String, String> getTruncateFunction(int maxLength) {
         return s -> {
             if (s == null) {
-                throw new IllegalArgumentException("Cannot truncate null"); // ok, inside lambda
+                throw new IllegalArgumentException("Cannot truncate null");  // ok, inside lambda
             }
             return s.length() > maxLength ? s.substring(0, maxLength) : s;
         };
@@ -110,10 +110,10 @@ public class InputJavadocMethodIgnoreThrows {
             System.out.println(s);
             if (s.length() == 0) {
                 // false negative, unable to tell what was caught
-                throw new IllegalArgumentException("empty input"); // no violation
+                throw new IllegalArgumentException("empty input");  // no violation
             }
             else {
-                throw new IOException(); // ok, exception was caught
+                throw new IOException();       // ok, exception was caught
             }
         } catch (IOException e) {
             System.out.println("Error reading file");
@@ -126,7 +126,7 @@ public class InputJavadocMethodIgnoreThrows {
     private static void keepTryWithoutCatch() {
         try (Scanner sc = new Scanner(System.in)) {
             if (sc.nextInt() <= 0) {
-                throw new IllegalArgumentException(""); // violation, not caught and no @param
+                throw new IllegalArgumentException("");    // violation, not caught and no @param
             }
         }
     }
@@ -139,7 +139,7 @@ public class InputJavadocMethodIgnoreThrows {
     void dfs(DetailAST ast) {
         class DFS {
             void neverCalled() {
-                throw new IllegalStateException(""); // ok, inside local class
+                throw new IllegalStateException("");    // ok, inside local class
             }
 
             void dfs(DetailAST ast) {
@@ -177,15 +177,15 @@ public class InputJavadocMethodIgnoreThrows {
         try {
             int value = Integer.parseInt(s);
             if (value <= 0) {
-                throw new NumberFormatException(value + " is negative/zero"); // ok, try
+                throw new NumberFormatException(value + " is negative/zero");   // ok, try
             }
             return x -> value;
         } catch (NumberFormatException ex) {
             if (s.length() == 1) {
-                throw new IllegalArgumentException("Invalid number", ex); // violation, catch
+                throw new IllegalArgumentException("Invalid number", ex);      // violation, catch
             }
             return x -> {
-                throw new UnsupportedOperationException(""); // ok, inside lambda
+                throw new UnsupportedOperationException("");    // ok, inside lambda
             };
         }
     }
