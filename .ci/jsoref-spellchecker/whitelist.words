@@ -92,6 +92,7 @@ avoidstarimport
 avoidstaticimport
 aws
 awt
+azurewebsites
 backend
 backport
 Backquote
@@ -536,6 +537,7 @@ icu
 identifiernames
 Idref
 idx
+ietf
 Igno
 IGNORETHIS
 igorminar
@@ -1066,6 +1068,7 @@ Rethrown
 returncount
 reviewdog
 revwalk
+rfc
 rfe
 rga
 Rgb
@@ -1093,6 +1096,8 @@ rw
 rx
 sabaka
 Sameline
+sariflogger
+sarifweb
 Savinov
 saxonica
 sbe
