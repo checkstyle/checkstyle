@@ -3645,12 +3645,10 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--TYPE_PARAMETER
-     *     |
-     *     +--IDENT (A)
-     *     +--TYPE_UPPER_BOUNDS
-     *         |
-     *         +--IDENT (Collection)
+     * |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |--IDENT -&gt; A
+     * |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     * |       `--IDENT -&gt; Collection
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
