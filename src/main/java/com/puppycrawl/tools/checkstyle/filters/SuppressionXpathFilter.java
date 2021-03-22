@@ -104,6 +104,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * <li>
  * WriteTag
  * </li>
+ * <li>
+ * JavadocParamOrder
+ * </li>
  * </ul>
  * <p>
  * Note, that support for these Checks will be available after resolving issue
