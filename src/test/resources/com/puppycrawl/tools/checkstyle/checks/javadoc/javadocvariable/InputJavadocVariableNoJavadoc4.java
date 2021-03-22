@@ -2,9 +2,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /* Config:
  * scope = private
- * excludeScope = null
+ *  excludeScope = null
+ * ignoreNamePattern = "log|logger"
  */
-public class InputJavadocVariableNoJavadoc //comment test
+public class InputJavadocVariableNoJavadoc4 //comment test
 {
     public int i1; // violation
     protected int i2; // violation
@@ -53,7 +54,7 @@ public class InputJavadocVariableNoJavadoc //comment test
     }
 }
 
-class PackageClass {
+class PackageClass4 {
     public int i1; // violation
     protected int i2; // violation
     int i3; // violation
@@ -114,7 +115,7 @@ class PackageClass {
 
     class IgnoredName {
         // ignore by name
-        private int logger; // violation
+        private int logger;
         // no warning, 'serialVersionUID' fields do not require Javadoc
         private static final long serialVersionUID = 0;
     }
