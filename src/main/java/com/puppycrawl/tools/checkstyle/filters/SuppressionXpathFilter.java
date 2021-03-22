@@ -78,6 +78,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * JavadocParagraph
  * </li>
  * <li>
+ * JavadocParamOrder
+ * </li>
+ * <li>
  * JavadocStyle
  * </li>
  * <li>

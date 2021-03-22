@@ -1269,7 +1269,7 @@ public final class JavadocTokenTypes {
      * </ul>
      *
      * <p><b>Example</b></p>
-     * <pre>{@code &#64;param T The bar.}</pre>
+     * <pre>{@code @param T The bar.}</pre>
      * <b>Tree</b>
      * <pre>{@code
      *   |--JAVADOC_TAG[4x3] : [@param T The bar.]
