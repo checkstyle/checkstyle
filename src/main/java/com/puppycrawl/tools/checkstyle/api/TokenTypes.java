@@ -1805,9 +1805,8 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_BREAK -&gt; break
-     *      |
-     *      +--SEMI -&gt; ;
+     * --LITERAL_BREAK -&gt; break
+     *     `--SEMI -&gt; ;
      * </pre>
      *
      * @see #IDENT
