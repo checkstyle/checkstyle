@@ -141,4 +141,29 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
     }
+
+    @Test
+    public void testFive() throws Exception {
+        final File fileToProcess = new File(
+                getPath("SuppressionXpathRegressionEmptyLineSeparator5.java")
+        );
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        moduleConfig.addAttribute("allowMultipleEmptyLines", "false");
+        moduleConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+
+        final String[] expectedViolation = {
+            "14:15: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_INSIDE, 16),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator5']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/LITERAL_TRY/SLIST"
+                        + "/SINGLE_LINE_COMMENT/COMMENT_CONTENT"
+        );
+
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 }
