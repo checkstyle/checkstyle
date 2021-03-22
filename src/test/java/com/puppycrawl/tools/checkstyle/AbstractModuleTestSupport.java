@@ -348,13 +348,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             message.append("missing violations: ").append(missingViolations);
         }
         if (!unexpectedViolations.isEmpty()) {
-            if (message.length() > 0) {
+            if (!message.isEmpty()) {
                 message.append('\n');
             }
             message.append("unexpected violations: ").append(unexpectedViolations);
         }
         if (!differingViolations.isEmpty()) {
-            if (message.length() > 0) {
+            if (!message.isEmpty()) {
                 message.append('\n');
             }
             message.append("differing violations: ").append(differingViolations);
