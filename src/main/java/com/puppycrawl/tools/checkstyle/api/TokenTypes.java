@@ -1785,6 +1785,27 @@ public final class TokenTypes {
     /**
      * Literal {@code while} in do-while loop.
      *
+     * <p>For example:</p>
+     * <pre>
+     * do {
+     *
+     * } while (a &gt; 0);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_DO -&gt; do
+     *    |--SLIST -&gt; {
+     *    |   `--RCURLY -&gt; }
+     *    |--DO_WHILE -&gt; while
+     *    |--LPAREN -&gt; (
+     *    |--EXPR -&gt; EXPR
+     *    |   `--GT -&gt; &gt;
+     *    |       |--IDENT -&gt; a
+     *    |       `--NUM_INT -&gt; 0
+     *    |--RPAREN -&gt; )
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #LITERAL_DO
      */
     public static final int DO_WHILE = GeneratedJavaTokenTypes.DO_WHILE;
