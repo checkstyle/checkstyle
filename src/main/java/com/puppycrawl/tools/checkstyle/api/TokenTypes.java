@@ -3026,6 +3026,18 @@ public final class TokenTypes {
      * A character literal.  This is a (possibly escaped) character
      * enclosed in single quotes.
      *
+     * <p>For example:</p>
+     * <pre>
+     * return 'a';
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_RETURN -&gt; return
+     *    |--EXPR -&gt; EXPR
+     *    |   `--CHAR_LITERAL -&gt; 'a'
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.4">Java
      * Language Specification, &sect;3.10.4</a>
