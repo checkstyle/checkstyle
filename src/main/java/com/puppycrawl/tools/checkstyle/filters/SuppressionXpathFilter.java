@@ -96,6 +96,9 @@ import com.puppycrawl.tools.checkstyle.utils.FilterUtil;
  * RequireEmptyLineBeforeBlockTagGroup
  * </li>
  * <li>
+ * JavadocParamOrder
+ * </li>
+ * <li>
  * SingleLineJavadoc
  * </li>
  * <li>

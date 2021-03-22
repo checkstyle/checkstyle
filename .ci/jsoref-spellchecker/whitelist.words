@@ -612,6 +612,7 @@ javadocmissingleadingasterisk
 javadocmissingwhitespaceafterasterisk
 javadocpackage
 javadocparagraph
+javadocparamorder
 javadocpropertiesgenerator
 javadocstyle
 javadoctagcontinuationindentation

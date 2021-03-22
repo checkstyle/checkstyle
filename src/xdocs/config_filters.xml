@@ -927,6 +927,7 @@ files=&quot;com[\\/]mycompany[\\/]app[\\/].*IT.java&quot;/&gt;
           <li>JavadocMissingLeadingAsterisk</li>
           <li>JavadocMissingWhitespaceAfterAsterisk</li>
           <li>JavadocParagraph</li>
+          <li>JavadocParamOrder</li>
           <li>JavadocStyle</li>
           <li>JavadocTagContinuationIndentation</li>
           <li>JavadocType</li>
