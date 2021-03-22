@@ -1,7 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.awt.event.MouseEvent;
@@ -9,19 +5,20 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 
 /**
- * Config: default
+ * Config:
+ * scope: Scope.ANONINNER.getName()
  **/
-public class InputJavadocMethodScopeAnonInner
+public class InputJavadocMethodScopeAnonInnerDefault
 {
     /**
        button.
     */
-    private JButton mButton = new JButton();    // ok
+    private JButton mButton = new JButton();  // ok
 
     /**
        anon inner in member variable initialization.
     */
-    private Runnable mRunnable = new Runnable() {      // ok
+    private Runnable mRunnable = new Runnable() {   // ok
         public void run() // should not have to be documented, class is anon.
         {
             System.identityHashCode("running");
@@ -31,7 +28,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in constructor.
     */
-    InputJavadocMethodScopeAnonInner()   // ok
+    InputJavadocMethodScopeAnonInnerDefault()    // ok
     {
         mButton.addMouseListener( new MouseAdapter()
             {
@@ -45,7 +42,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in method
     */
-    public void addInputAnonInner()    // ok
+    public void addInputAnonInner()   // ok
     {
         mButton.addMouseListener( new MouseAdapter()
             {
