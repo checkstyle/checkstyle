@@ -1,7 +1,7 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+// violation
+
+
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
@@ -9,30 +9,30 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
  * @author Oliver Burn
  **/
 /* Config:
- * scope = private
- * excludeScope =null
+ * scope = public
+ * excludeScope = null
  *
  */
-class InputJavadocVariableInner
+class InputJavadocVariableInner2
 {
     // Ignore - two violations
     class InnerInner2
     {
         // Ignore
-        public int fData;   // violation
+        public int fData;
     }
 
     // Ignore - 2 violations
     interface InnerInterface2
     {
         // Ignore - should be all upper case
-        String data = "zxzc";   // violation
+        String data = "zxzc";
 
         // Ignore
         class InnerInterfaceInnerClass
         {
             // Ignore - need Javadoc and made private
-            public int rData;   // violation
+            public int rData;
 
             /** needs to be made private unless allowProtected. */
             protected int protectedVariable;
