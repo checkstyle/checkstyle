@@ -4,7 +4,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 import java.io.IOException;
-// Tests for Javadoc tags.
+/**
+ * Config:
+ * scope = private
+ * excludeScope =null
+ * Tests for Javadoc tags.
+ */
 class InputJavadocVariableTags1
 {
     // Invalid - should be Javadoc

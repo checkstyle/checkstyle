@@ -5,7 +5,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
- *  Config:
+ * Config:
  * scope = public
  */
 public class InputJavadocVariablePublicOnly2 // ignore - need javadoc
