@@ -3691,7 +3691,9 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     class MyClass &lt; A extends Collection &gt;
+     * class MyClass &lt;A extends Collection&gt; {
+     *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
@@ -3708,6 +3710,9 @@ public final class TokenTypes {
      * |   |   `--TYPE_UPPER_BOUNDS -&gt; extends
      * |   |       `--IDENT -&gt; Collection
      * |   `--GENERIC_END -&gt; &gt;
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
