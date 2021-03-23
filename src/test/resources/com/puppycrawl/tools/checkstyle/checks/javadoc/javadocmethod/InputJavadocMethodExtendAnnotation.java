@@ -26,6 +26,10 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
+ * Config:
+ * allowedAnnotations = MyAnnotation, Override
+ *
+ *
  * Common superclass for {@link MultisetSetCountUnconditionallyTester} and
  * {@link MultisetSetCountConditionallyTester}. It is used by those testers to
  * test calls to the unconditional {@code setCount()} method and calls to the
@@ -35,25 +39,25 @@ import java.util.List;
  * @author Chris Povirk
  */
 @SuppressWarnings(value = "unchecked")
-public abstract class InputJavadocMethodExtendAnnotation<E>
+public abstract class InputJavadocMethodExtendAnnotation<E> // ok
   {
 
   private static final String SUPPORTS_ADD = "";
   private static final String SUPPORTS_REMOVE = null;
 
 @CollectionFeature.Require
-  public void testSetCount_zeroToZero_unsupported() {
+  public void testSetCount_zeroToZero_unsupported() { // ok
     try {
       assertZeroToZero();
     } catch (UnsupportedOperationException tolerated) {
     }
   }
 
-  private void assertZeroToZero() {
+  private void assertZeroToZero() { // ok
 
   }
 
-  @interface CollectionFeature {
+  @interface CollectionFeature { // ok
       @interface Require {
       }
   }

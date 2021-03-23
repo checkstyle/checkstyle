@@ -4,11 +4,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
+/**
+ * Config:
+ * scope = Scope.PUBLIC.getName()
+ */
 public class InputJavadocMethodScopeInnerInterfaces
 {
     // inner interfaces with different scopes
 
-    private interface PrivateInterface
+    private interface PrivateInterface // ok
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -17,7 +21,7 @@ public class InputJavadocMethodScopeInnerInterfaces
         void mb();
     }
 
-    interface PackageInnerInterface
+    interface PackageInnerInterface // ok
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -26,7 +30,7 @@ public class InputJavadocMethodScopeInnerInterfaces
         void mb();
     }
 
-    protected interface ProtectedInnerInterface
+    protected interface ProtectedInnerInterface // ok
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -35,7 +39,7 @@ public class InputJavadocMethodScopeInnerInterfaces
         void mb();
     }
 
-    public interface PublicInnerInterface
+    public interface PublicInnerInterface // ok
     {
         public String CA = "CONST A";
         String CB = "CONST b";
@@ -46,29 +50,29 @@ public class InputJavadocMethodScopeInnerInterfaces
 
     private
     class
-    MyClass1 {
+    MyClass1 { // ok
     }
 
     class
-    MyClass2 {
+    MyClass2 { // ok
     }
 
     private
     interface
-    MyInterface1 {
+    MyInterface1 { // ok
     }
 
     interface
-    MyInterface2 {
+    MyInterface2 { // ok
     }
 
     protected
     enum
-    MyEnum {
+    MyEnum { // ok
     }
 
     private
     @interface
-    MyAnnotation {
+    MyAnnotation { // ok
     }
 }
