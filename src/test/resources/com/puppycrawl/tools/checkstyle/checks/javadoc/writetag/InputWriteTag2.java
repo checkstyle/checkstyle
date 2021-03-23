@@ -6,21 +6,31 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
- * @incomplete This enum needs more code...
+ * Config:
+ * tag = incomplete
+ * tagFormat = .*
+ * severity = ignore
+ * tagSeverity = error
+ * tokens = ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF
  */
-enum InputWriteTag2 {
+public class InputWriteTag2 {
     /**
-     * @incomplete This enum constant needs more code...
-     */
-    FOO;
-}
+     * @incomplete This enum needs more code...
+     */ // violation
+    enum InputWriteTag {
+        /**
+         * @incomplete This enum constant needs more code...
+         */ // violation
+        FOO;
+    }
 
-/**
- * @incomplete This annotation needs more code...
- */
-@interface InputWriteTag2a {
     /**
-     * @incomplete This annotation field needs more code...
-     */
-    int foo() default 0;
+     * @incomplete This annotation needs more code...
+     */ // violation
+    @interface InputWriteTag2a {
+        /**
+         * @incomplete This annotation field needs more code...
+         */ // violation
+        int foo() default 0;
+    }
 }
