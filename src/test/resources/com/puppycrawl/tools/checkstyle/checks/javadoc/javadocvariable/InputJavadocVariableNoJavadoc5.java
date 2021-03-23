@@ -1,10 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;// violation
-/**
- * Config:
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;  // violation
+/* Config:
  * scope = private
- * excludeScope = null
+ *  excludeScope = null
+ * ignoreNamePattern = ""
  */
-public class InputJavadocVariableNoJavadoc //comment test
+public class InputJavadocVariableNoJavadoc5 //comment test
 {
     public int i1; // violation
     protected int i2; // violation
@@ -53,7 +53,7 @@ public class InputJavadocVariableNoJavadoc //comment test
     }
 }
 
-class PackageClass {
+class PackageClass5 {
     public int i1; // violation
     protected int i2; // violation
     int i3; // violation
