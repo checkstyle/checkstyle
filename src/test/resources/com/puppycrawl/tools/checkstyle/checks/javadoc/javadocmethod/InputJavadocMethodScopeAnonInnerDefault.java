@@ -1,7 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 import java.awt.event.MouseEvent;
@@ -9,9 +5,10 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 
 /**
- * Config: default
+ * Config:
+ * scope: Scope.ANONINNER.getName()
  **/
-public class InputJavadocMethodScopeAnonInner
+public class InputJavadocMethodScopeAnonInnerDefault
 {
     /**
        button.
@@ -31,7 +28,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in constructor.
     */
-    InputJavadocMethodScopeAnonInner() // ok
+    InputJavadocMethodScopeAnonInnerDefault() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
             {
