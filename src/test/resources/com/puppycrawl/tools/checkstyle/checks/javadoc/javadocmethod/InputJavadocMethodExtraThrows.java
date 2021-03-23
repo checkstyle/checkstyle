@@ -4,6 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Config:
+ * validateThrows = true
+ */
 public class InputJavadocMethodExtraThrows {
 
     /**
@@ -12,7 +16,7 @@ public class InputJavadocMethodExtraThrows {
      * @throws IllegalArgumentException when argument is wrong // ok
      * @throws NullPointerException indicates null was passed // ok
      */
-    public InputJavadocMethodExtraThrows(String properties) {
+    public InputJavadocMethodExtraThrows(String properties) { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
             throw new IllegalArgumentException("cannot have char with code 0");
@@ -25,7 +29,7 @@ public class InputJavadocMethodExtraThrows {
      * @throws java.lang.IllegalArgumentException when argument is wrong // ok
      * @throws java.lang.NullPointerException indicates null was passed // ok
      */
-    public void doSomething(String properties) throws IllegalArgumentException {
+    public void doSomething(String properties) throws IllegalArgumentException { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
             throw new IllegalArgumentException("cannot have char with code 0");
@@ -38,7 +42,7 @@ public class InputJavadocMethodExtraThrows {
      * @throws java.lang.IllegalArgumentException when argument is wrong // ok
      * @throws java.lang.NullPointerException indicates null was passed // ok
      */
-    public void doSomething2(String properties) throws IllegalStateException {
+    public void doSomething2(String properties) throws IllegalStateException { // violation
         // here is NPE possible
         if (properties.charAt(0) == 0) {
             throw new IllegalArgumentException("cannot have char with code 0");
@@ -50,10 +54,10 @@ public class InputJavadocMethodExtraThrows {
      * @param properties some value
      * @throws java.lang.IllegalStateException when argument is wrong // ok
      */
-    public void doSomething3(String properties) throws IllegalStateException {
+    public void doSomething3(String properties) throws IllegalStateException { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
-            throw new IllegalArgumentException("cannot have char with code 0");
+            throw new IllegalArgumentException("cannot have char with code 0"); // violation
         }
     }
 
@@ -62,10 +66,10 @@ public class InputJavadocMethodExtraThrows {
      * @param properties some value
      * @throws java.lang.IllegalStateException when argument is wrong // ok
      */
-    public void doSomething4(String properties) {
+    public void doSomething4(String properties) { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
-            throw new IllegalArgumentException("cannot have char with code 0");
+            throw new IllegalArgumentException("cannot have char with code 0"); // violation
         }
     }
 
@@ -77,7 +81,8 @@ public class InputJavadocMethodExtraThrows {
     public void doSomething5(String properties) {
         // here is NPE possible
         if (properties.charAt(0) == 0) {
-            throw new java.lang.IllegalArgumentException("cannot have char with code 0");
+            throw new java.lang.IllegalArgumentException( // violation
+                    "cannot have char with code 0");
         }
     }
 
@@ -86,7 +91,7 @@ public class InputJavadocMethodExtraThrows {
      * @param properties some value
      * @throws IllegalArgumentException when argument is wrong // ok
      */
-    public void doSomething6(String properties) {
+    public void doSomething6(String properties) { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
             throw new java.lang.IllegalArgumentException("cannot have char with code 0");
@@ -97,11 +102,11 @@ public class InputJavadocMethodExtraThrows {
      * expicitly throwed  but throwed as variable, we do not catch this for now // ok
      * @param properties some value
      */
-    public void doSomething7(String properties) {
+    public void doSomething7(String properties) { // ok
         // here is NPE possible
         if (properties.charAt(0) == 0) {
             IllegalArgumentException exception =
-                    new IllegalArgumentException("cannot have char with code 0");
+                    new IllegalArgumentException("cannot have char with code 0"); // ok
             throw exception;
         }
     }
@@ -114,9 +119,9 @@ public class InputJavadocMethodExtraThrows {
      * @param file some file
      * @throws IOException if some problem
      */
-    public void doSomething8(File file) throws IOException {
+    public void doSomething8(File file) throws IOException { // ok
         if (file == null) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(); // violation
         }
     }
 
@@ -128,9 +133,9 @@ public class InputJavadocMethodExtraThrows {
     * @throws IOException if some problem
     * @throws FileNotFoundException if file is not found
     */
-    public void doSomething9(File file) throws IOException {
+    public void doSomething9(File file) throws IOException { // ok
         if (file == null) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException(); // ok
         }
     }
 }

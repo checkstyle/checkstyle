@@ -1,5 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
+/**
+ * Config:
+ * validateThrows = true
+ */
 public class InputJavadocMethodGenerics <E extends java.lang.Exception,
                            RE extends RuntimeException & java.io.Serializable>
 {
@@ -14,7 +18,7 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
     /**
      * RuntimeException is not declared.
      */
-    public void method2() throws RE
+    public void method2() throws RE // violation
     {
     }
 
@@ -22,7 +26,7 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @throws E in some cases
      * @throws RE in other cases
      */
-    public void method3() throws E, RE
+    public void method3() throws E, RE // ok
     {
     }
 
@@ -30,7 +34,7 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @throws RE in some cases
      * @throws NPE in some other cases
      */
-    public <NPE extends NullPointerException> void method4() throws NPE, RE
+    public <NPE extends NullPointerException> void method4() throws NPE, RE // violation
     {
     }
 
@@ -40,8 +44,8 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
          * @throws E in some case
          * @throws RE in some other cases
          */
-        public void method1() throws RuntimeException, RE,
-            java.lang.RuntimeException
+        public void method1() throws RuntimeException, RE, // violation
+            java.lang.RuntimeException // violation
         {
         }
     }
@@ -50,19 +54,19 @@ public class InputJavadocMethodGenerics <E extends java.lang.Exception,
      * @param <T> some parameter
      * @param <E2> some exception parameter
      */
-    public interface InnerInterface<T, E2 extends Throwable> {
+    public interface InnerInterface<T, E2 extends Throwable> { // ok
         /**
          * Some javadoc.
          * @param t a parameter
          * @throws E2 in some case.
          * @return some string
          */
-        public abstract String doStuff(T t) throws E2;
+        public abstract String doStuff(T t) throws E2; // ok
     }
 
     /**
      * @param <P> some parameter
      */
-    public interface InvalidParameterInJavadoc<T> {}
+    public interface InvalidParameterInJavadoc<T> {} // ok
 }
 
