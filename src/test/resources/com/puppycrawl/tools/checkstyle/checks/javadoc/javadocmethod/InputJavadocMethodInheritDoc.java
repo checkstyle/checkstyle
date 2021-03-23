@@ -1,49 +1,52 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
+/**
+ * Config: default
+ */
 public class InputJavadocMethodInheritDoc
 {
     /** {@inheritDoc} */
-    InputJavadocMethodInheritDoc()
+    InputJavadocMethodInheritDoc() // violation
     {
     }
 
     /** {@inheritDoc} */
-    private void privateMethod()
+    private void privateMethod() // violation
     {
     }
 
     /** {@inheritDoc} */
-    void packageMethod()
+    void packageMethod() // ok
     {
     }
 
     /** {@inheritDoc} */
-    protected void protectedMethod()
+    protected void protectedMethod() // ok
     {
     }
 
     /** {@inheritDoc} */
-    public void publicMethod()
+    public void publicMethod() // ok
     {
     }
 
     /** {@inheritDoc} */
-    private static void privateStaticMethod()
+    private static void privateStaticMethod() // violation
     {
     }
 
     /** {@inheritDoc} */
-    static void packageStaticMethod()
+    static void packageStaticMethod() // violation
     {
     }
 
     /** {@inheritDoc} */
-    protected static void protectedStaticMethod()
+    protected static void protectedStaticMethod() // violation
     {
     }
 
     /** {@inheritDoc} */
-    public static void publicStaticMethod()
+    public static void publicStaticMethod() // violation
     {
     }
 }
