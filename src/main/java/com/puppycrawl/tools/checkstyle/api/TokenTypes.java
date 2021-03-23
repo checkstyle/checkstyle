@@ -4359,39 +4359,39 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      * return switch (day) {
-     *     case SAT, SUN {@code ->} "Weekend";
-     *     default {@code ->} "Working day";
+     *     case SAT, SUN -&gt; "Weekend";
+     *     default -&gt; "Working day";
      * };
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     *  LITERAL_RETURN (return)
-     *   |--EXPR
-     *   |   `--LITERAL_SWITCH (switch)
-     *   |       |--LPAREN (()
-     *   |       |--EXPR
-     *   |       |   `--IDENT (day)
-     *   |       |--RPAREN ())
-     *   |       |--LCURLY ({)
-     *   |       |--SWITCH_RULE
-     *   |       |   |--LITERAL_CASE (case)
-     *   |       |   |   |--EXPR
-     *   |       |   |   |   `--IDENT (SAT)
-     *   |       |   |   |--COMMA (,)
-     *   |       |   |   `--EXPR
-     *   |       |   |       `--IDENT (SUN)
-     *   |       |   |--LAMBDA {@code ->}
-     *   |       |   |--EXPR
-     *   |       |   |   `--STRING_LITERAL ("Weekend")
-     *   |       |   `--SEMI (;)
-     *   |       |--SWITCH_RULE
-     *   |       |   |--LITERAL_DEFAULT (default)
-     *   |       |   |--LAMBDA {@code ->}
-     *   |       |   |--EXPR
-     *   |       |   |   `--STRING_LITERAL ("Working day")
-     *   |       |   `--SEMI (;)
-     *   |       `--RCURLY (})
-     *   `--SEMI (;)
+     * LITERAL_RETURN -&gt; return
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_SWITCH -&gt; switch
+     *  |       |--LPAREN -&gt; (
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--IDENT -&gt; day
+     *  |       |--RPAREN -&gt; )
+     *  |       |--LCURLY -&gt; {
+     *  |       |--SWITCH_RULE -&gt; SWITCH_RULE
+     *  |       |   |--LITERAL_CASE -&gt; case
+     *  |       |   |   |--EXPR -&gt; EXPR
+     *  |       |   |   |   `--IDENT -&gt; SAT
+     *  |       |   |   |--COMMA -&gt; ,
+     *  |       |   |   `--EXPR -&gt; EXPR
+     *  |       |   |       `--IDENT -&gt; SUN
+     *  |       |   |--LAMBDA -&gt; -&gt;
+     *  |       |   |--EXPR -&gt; EXPR
+     *  |       |   |   `--STRING_LITERAL -&gt; "Weekend"
+     *  |       |   `--SEMI -&gt; ;
+     *  |       |--SWITCH_RULE -&gt; SWITCH_RULE
+     *  |       |   |--LITERAL_DEFAULT -&gt; default
+     *  |       |   |--LAMBDA -&gt; -&gt;
+     *  |       |   |--EXPR -&gt; EXPR
+     *  |       |   |   `--STRING_LITERAL -&gt; "Working day"
+     *  |       |   `--SEMI -&gt; ;
+     *  |       `--RCURLY -&gt; }
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #LITERAL_CASE
