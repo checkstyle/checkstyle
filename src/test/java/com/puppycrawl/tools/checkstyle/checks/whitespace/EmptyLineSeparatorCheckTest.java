@@ -180,6 +180,17 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testClassDefinitionNotSeparatedFromPackageWithImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "//"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorSingleLineCommentAfterPackage.java"),
+                expected);
+    }
+
+    @Test
     public void testClassDefinitionAndCommentNotSeparatedFromPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
