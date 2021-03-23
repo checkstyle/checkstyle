@@ -4119,33 +4119,35 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * public record myRecord (Comp x, Comp... comps) { }
+     * public record MyRecord(Comp x, Comp... comps) {
+     *
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * RECORD_DEF
-     * |--MODIFIERS
-     * |   `--LITERAL_PUBLIC (public)
-     * |--LITERAL_RECORD (record)
-     * |--IDENT (myRecord)
-     * |--LPAREN (()
-     * |--RECORD_COMPONENTS
-     * |   |--RECORD_COMPONENT_DEF
-     * |   |   |--ANNOTATIONS
-     * |   |   |--TYPE
-     * |   |   |   `--IDENT (Comp)
-     * |   |   `--IDENT (x)
-     * |   |--COMMA (,)
-     * |   `--RECORD_COMPONENT_DEF
-     * |       |--ANNOTATIONS
-     * |       |--TYPE
-     * |       |   `--IDENT (Comp)
-     * |       |--ELLIPSIS (...)
-     * |       `--IDENT (comps)
-     * |--RPAREN ())
-     * `--OBJBLOCK
-     *      |--LCURLY ({)
-     *       `--RCURLY (})
+     * RECORD_DEF -&gt; RECORD_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_RECORD -&gt; record
+     * |--IDENT -&gt; MyRecord
+     * |--LPAREN -&gt; (
+     * |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |   |--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |   |   |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |   |   |--TYPE -&gt; TYPE
+     * |   |   |   `--IDENT -&gt; Comp
+     * |   |   `--IDENT -&gt; x
+     * |   |--COMMA -&gt; ,
+     * |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |       |--TYPE -&gt; TYPE
+     * |       |   `--IDENT -&gt; Comp
+     * |       |--ELLIPSIS -&gt; ...
+     * |       `--IDENT -&gt; comps
+     * |--RPAREN -&gt; )
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @since 8.36
