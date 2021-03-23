@@ -575,9 +575,25 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
             }
         }
+        if (isSingleLineCommentAfterPackage(ast)) {
+            final DetailAST commentAST = ast.getNextSibling();
+            log(commentAST, MSG_SHOULD_BE_SEPARATED, commentAST.getText());
+        }
         if (!hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
+    }
+
+    /**
+     * Checks if there is single line comment just after package declaration.
+     *
+     * @param ast Package ast.
+     * @return true, if there is a comment.
+     */
+    private static boolean isSingleLineCommentAfterPackage(DetailAST ast) {
+        final DetailAST commentAST = ast.getNextSibling();
+        return commentAST.getType() == TokenTypes.SINGLE_LINE_COMMENT
+                && commentAST.getLineNo() == ast.getLastChild().getLineNo() + 1;
     }
 
     /**
