@@ -4051,21 +4051,23 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * public record myRecord () {}
+     * public record MyRecord () {
+     *
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * RECORD_DEF
-     * |--MODIFIERS
-     * |   `--LITERAL_PUBLIC (public)
-     * |--LITERAL_RECORD (record)
-     * |--IDENT (myRecord)
-     * |--LPAREN (()
-     * |--RECORD_COMPONENTS
-     * |--RPAREN ())
-     * `--OBJBLOCK
-     *     |--LCURLY ({)
-     *      `--RCURLY (})
+     * RECORD_DEF -&gt; RECORD_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_RECORD -&gt; record
+     * |--IDENT -&gt; MyRecord
+     * |--LPAREN -&gt; (
+     * |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |--RPAREN -&gt; )
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @since 8.35
