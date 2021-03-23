@@ -5,13 +5,13 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
- * Tests having inner types
- * @author Oliver Burn
- **/
-/* Config:
+ * Config:
  * scope = private
  * excludeScope =null
  *
+ *
+ * Tests having inner types
+ * @author Oliver Burn
  */
 class InputJavadocVariableInner
 {

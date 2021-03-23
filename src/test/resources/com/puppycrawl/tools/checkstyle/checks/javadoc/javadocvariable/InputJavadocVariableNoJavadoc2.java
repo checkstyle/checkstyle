@@ -1,8 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;// violation
-/* Config:
+/**
+ *  Config:
  * scope = protected
  * excludeScope = null
- *
  */
 public class InputJavadocVariableNoJavadoc2 //comment test
 {
