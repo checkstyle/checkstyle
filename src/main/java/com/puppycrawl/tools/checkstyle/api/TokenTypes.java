@@ -4353,57 +4353,57 @@ public final class TokenTypes {
     public static final int LITERAL_YIELD =
             GeneratedJavaTokenTypes.LITERAL_yield;
 
-    /**
-     * Switch Expressions.
-     *
-     * <p>For example:</p>
-     * <pre>
-     * return switch (day) {
-     *     case SAT, SUN {@code ->} "Weekend";
-     *     default {@code ->} "Working day";
-     * };
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     *  LITERAL_RETURN (return)
-     *   |--EXPR
-     *   |   `--LITERAL_SWITCH (switch)
-     *   |       |--LPAREN (()
-     *   |       |--EXPR
-     *   |       |   `--IDENT (day)
-     *   |       |--RPAREN ())
-     *   |       |--LCURLY ({)
-     *   |       |--SWITCH_RULE
-     *   |       |   |--LITERAL_CASE (case)
-     *   |       |   |   |--EXPR
-     *   |       |   |   |   `--IDENT (SAT)
-     *   |       |   |   |--COMMA (,)
-     *   |       |   |   `--EXPR
-     *   |       |   |       `--IDENT (SUN)
-     *   |       |   |--LAMBDA {@code ->}
-     *   |       |   |--EXPR
-     *   |       |   |   `--STRING_LITERAL ("Weekend")
-     *   |       |   `--SEMI (;)
-     *   |       |--SWITCH_RULE
-     *   |       |   |--LITERAL_DEFAULT (default)
-     *   |       |   |--LAMBDA {@code ->}
-     *   |       |   |--EXPR
-     *   |       |   |   `--STRING_LITERAL ("Working day")
-     *   |       |   `--SEMI (;)
-     *   |       `--RCURLY (})
-     *   `--SEMI (;)
-     * </pre>
-     *
-     * @see #LITERAL_CASE
-     * @see #LITERAL_DEFAULT
-     * @see #LITERAL_SWITCH
-     * @see #LITERAL_YIELD
-     *
-     * @see <a href="https://docs.oracle.com/javase/specs/jls/se13/preview/switch-expressions.html">
-     * Java Language Specification, &sect;14.21</a>
-     *
-     * @since 8.36
-     */
+  /**
+   * Switch Expressions.
+   *
+   * <p>For example:</p>
+   * <pre>
+   * return switch (day) {
+   *     case SAT, SUN {@code ->} "Weekend";
+   *     default {@code ->} "Working day";
+   * };
+   * </pre>
+   * <p>parses as:</p>
+   * <pre>
+   *  LITERAL_RETURN -&gt; return
+   *   |--EXPR -&gt; EXPR
+   *   |   `--LITERAL_SWITCH -&gt; switch
+   *   |       |--LPAREN -&gt; (
+   *   |       |--EXPR -&gt; EXPR
+   *   |       |   `--IDENT -&gt; day
+   *   |       |--RPAREN -&gt; )
+   *   |       |--LCURLY -&gt; {
+   *   |       |--SWITCH_RULE -&gt; SWITCH_RULE
+   *   |       |   |--LITERAL_CASE -&gt; case
+   *   |       |   |   |--EXPR -&gt; EXPR
+   *   |       |   |   |   `--IDENT -&gt; SAT
+   *   |       |   |   |--COMMA -&gt; ,
+   *   |       |   |   `--EXPR -&gt; EXPR
+   *   |       |   |       `--IDENT -&gt; SUN
+   *   |       |   |--LAMBDA -&gt; ->
+   *   |       |   |--EXPR -&gt; EXPR
+   *   |       |   |   `--STRING_LITERAL -&gt; "Weekend"
+   *   |       |   `--SEMI -&gt; ;
+   *   |       |--SWITCH_RULE -&gt; SWITCH_RULE
+   *   |       |   |--LITERAL_DEFAULT -&gt; default
+   *   |       |   |--LAMBDA -&gt; ->
+   *   |       |   |--EXPR -&gt; EXPR
+   *   |       |   |   `--STRING_LITERAL -&gt; "Working day"
+   *   |       |   `--SEMI -&gt; ;
+   *   |       `--RCURLY -&gt; }
+   *   `--SEMI -&gt; ;
+   * </pre>
+   *
+   * @see #LITERAL_CASE
+   * @see #LITERAL_DEFAULT
+   * @see #LITERAL_SWITCH
+   * @see #LITERAL_YIELD
+   *
+   * @see <a href="https://docs.oracle.com/javase/specs/jls/se13/preview/switch-expressions.html">
+   * Java Language Specification, &sect;14.21</a>
+   *
+   * @since 8.36
+   */
     public static final int SWITCH_RULE =
             GeneratedJavaTokenTypes.SWITCH_RULE;
 
