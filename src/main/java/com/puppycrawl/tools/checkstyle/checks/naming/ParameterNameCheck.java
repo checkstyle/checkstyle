@@ -25,7 +25,6 @@ import java.util.Optional;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CheckUtil;
-import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
  * <p>
@@ -230,38 +229,16 @@ public class ParameterNameCheck extends AbstractNameCheck {
     @Override
     protected boolean mustCheckName(DetailAST ast) {
         boolean checkName = true;
+        final DetailAST parent = ast.getParent();
         if (ignoreOverridden && isOverriddenMethod(ast)
-                || ast.getParent().getType() == TokenTypes.LITERAL_CATCH
-                || ast.getParent().getParent().getType() == TokenTypes.LAMBDA
+                || parent.getType() == TokenTypes.LITERAL_CATCH
+                || parent.getParent().getType() == TokenTypes.LAMBDA
                 || CheckUtil.isReceiverParameter(ast)
-                || !matchAccessModifiers(getAccessModifier(ast))) {
+                || !matchAccessModifiers(
+                        CheckUtil.getAccessModifierFromModifiersToken(parent.getParent()))) {
             checkName = false;
         }
         return checkName;
-    }
-
-    /**
-     * Returns the access modifier of the method/constructor at the specified AST. If
-     * the method is in an interface or annotation block, the access modifier is assumed
-     * to be public.
-     *
-     * @param ast the token of the method/constructor.
-     * @return the access modifier of the method/constructor.
-     */
-    private static AccessModifierOption getAccessModifier(final DetailAST ast) {
-        final AccessModifierOption accessModifier;
-
-        if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-            accessModifier = AccessModifierOption.PUBLIC;
-        }
-        else {
-            final DetailAST params = ast.getParent();
-            final DetailAST meth = params.getParent();
-            final DetailAST modsToken = meth.findFirstToken(TokenTypes.MODIFIERS);
-            accessModifier = CheckUtil.getAccessModifierFromModifiersToken(modsToken);
-        }
-
-        return accessModifier;
     }
 
     /**
