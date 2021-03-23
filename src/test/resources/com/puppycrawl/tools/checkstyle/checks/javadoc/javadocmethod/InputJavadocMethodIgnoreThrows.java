@@ -24,13 +24,13 @@ public class InputJavadocMethodIgnoreThrows {
         try {
             int value = Integer.parseInt(s);
             if (value <= 0) {
-                throw new NumberFormatException(value + " is negative/zero"); // ok, try
+                throw new NumberFormatException(value + " is negative/zero"); // ok
             }
             return value;
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException("Invalid number", ex); // violation, catch
         } finally {
-            throw new IllegalStateException("Should never reach here"); // violation, finally
+            throw new IllegalStateException("Should never reach here");  // violation, finally
         }
     }
 
@@ -80,7 +80,7 @@ public class InputJavadocMethodIgnoreThrows {
             if (o == null) {
                 ex = new NullPointerException("");
             }
-            throw ex; // no violation
+            throw ex; // ok
         }
     }
 
@@ -93,7 +93,7 @@ public class InputJavadocMethodIgnoreThrows {
     private static Function<String, String> getTruncateFunction(int maxLength) {
         return s -> {
             if (s == null) {
-                throw new IllegalArgumentException("Cannot truncate null"); // ok, inside lambda
+                throw new IllegalArgumentException("Cannot truncate null");  // ok, inside lambda
             }
             return s.length() > maxLength ? s.substring(0, maxLength) : s;
         };
