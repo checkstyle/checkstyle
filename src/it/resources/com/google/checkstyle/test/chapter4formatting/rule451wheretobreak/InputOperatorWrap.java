@@ -39,8 +39,13 @@ class InputOperatorWrap
             0;
     }
 
+    <T extends Comparable & java.io.Serializable>
+    void testNoWrap()
+    {
+    }
+
     <
-    T extends Comparable &
+    /*warn*/ T extends Comparable &
         java.io.Serializable
     >
     void testGenerics1()
