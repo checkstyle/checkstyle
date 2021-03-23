@@ -1,6 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypeNoJavadoc //comment test
+/*
+ * Config:
+ * scope = private
+ * excludeScope = null
+ * skipAnnotations = Generated
+ */
+public class InputMissingJavadocTypeNoJavadoc1 // violation
 {
     public int i1;
     protected int i2;
@@ -12,7 +18,7 @@ public class InputMissingJavadocTypeNoJavadoc //comment test
     void foo3() {}
     private void foo4() {}
 
-    protected class ProtectedInner {
+    protected class ProtectedInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -24,7 +30,7 @@ public class InputMissingJavadocTypeNoJavadoc //comment test
         private void foo4() {}
     }
 
-    class PackageInner {
+    class PackageInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -36,7 +42,7 @@ public class InputMissingJavadocTypeNoJavadoc //comment test
         private void foo4() {}
     }
 
-    private class PrivateInner {
+    private class PrivateInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -49,7 +55,7 @@ public class InputMissingJavadocTypeNoJavadoc //comment test
     }
 }
 
-class PackageClass {
+class PackageClass1 { // violation
     public int i1;
     protected int i2;
     int i3;
@@ -60,7 +66,7 @@ class PackageClass {
     void foo3() {}
     private void foo4() {}
 
-    public class PublicInner {
+    public class PublicInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -72,7 +78,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    protected class ProtectedInner {
+    protected class ProtectedInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -84,7 +90,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    class PackageInner {
+    class PackageInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -96,7 +102,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    private class PrivateInner {
+    private class PrivateInner { // violation
         public int i1;
         protected int i2;
         int i3;
@@ -108,7 +114,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    class IgnoredName {
+    class IgnoredName { // violation
         // ignore by name
         private int logger;
         // no warning, 'serialVersionUID' fields do not require Javadoc
