@@ -371,6 +371,15 @@ public @interface Test {
     private MyClass() { }
   }
 }
+
+class TestAnonymousInnerClasses { // OK, class has an anonymous inner class.
+    public static final TestAnonymousInnerClasses ONE = new TestAnonymousInnerClasses() {
+
+    };
+
+    private TestAnonymousInnerClasses() {
+    }
+}
         </source>
       </subsection>
 
