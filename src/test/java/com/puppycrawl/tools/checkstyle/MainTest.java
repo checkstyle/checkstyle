@@ -108,9 +108,10 @@ public class MainTest {
                   + "                              allowed.%n"
                   + "  -E, --executeIgnoredModules%n"
                   + "                            Allows ignored modules to be run.%n"
-                  + "  -f=<format>               Specifies the output format. Valid values: xml,"
-                  + " plain for XMLLogger and%n"
-                  + "                              DefaultLogger respectively. Defaults to plain.%n"
+                  + "  -f=<format>               Specifies the output format. Valid values: "
+                  + "xml, sarif, plain for%n"
+                  + "                              XMLLogger and DefaultLogger respectively. "
+                  + "Defaults to plain.%n"
                   + "  -g, --generate-xpath-suppression%n"
                   + "                            Generates to output a suppression xml to use"
                   + " to suppress all violations%n"
@@ -347,7 +348,7 @@ public class MainTest {
             invokeMain("-c", "/google_checks.xml", "-f", "xmlp", getPath("InputMain.java"));
         });
         assertEquals("", systemOut.getCapturedData(), "Unexpected output log");
-        assertEquals("Invalid value for option '-f': expected one of [XML, PLAIN]"
+        assertEquals("Invalid value for option '-f': expected one of [XML, SARIF, PLAIN]"
                     + " (case-insensitive) but was 'xmlp'" + EOL + SHORT_USAGE,
                 systemErr.getCapturedData(), "Unexpected system error log");
     }
@@ -1546,6 +1547,14 @@ public class MainTest {
         final AuditListener listener = Main.OutputFormat.XML.createListener(out,
                 AutomaticBean.OutputStreamOptions.CLOSE);
         assertTrue(listener instanceof XMLLogger, "listener is XMLLogger");
+    }
+
+    @Test
+    public void testSarifOutputFormatCreateListener() {
+        final ByteArrayOutputStream out = new ByteArrayOutputStream();
+        final AuditListener listener = Main.OutputFormat.SARIF.createListener(out,
+                AutomaticBean.OutputStreamOptions.CLOSE);
+        assertTrue(listener instanceof SarifLogger, "listener is SarifLogger");
     }
 
     @Test

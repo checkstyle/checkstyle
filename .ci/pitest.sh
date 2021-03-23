@@ -94,6 +94,8 @@ pitest-common)
   "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class=''>                    changed = true;</span></pre></td></tr>"
   "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class=''>        catch (final IOException | NoSuchAlgorithmException ex) {</span></pre></td></tr>"
   "PropertyCacheFile.java.html:<td class='uncovered'><pre><span  class='survived'>            throw new IllegalStateException(&#34;Unable to calculate hashcode.&#34;, ex);</span></pre></td></tr>"
+  "SarifLogger.java.html:<td class='covered'><pre><span  class='survived'>                    if (chr &#60;= UNICODE_ESCAPE_UPPER_LIMIT) {</span></pre></td></tr>"
+  "SarifLogger.java.html:<td class='covered'><pre><span  class='survived'>        writer.flush();</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
