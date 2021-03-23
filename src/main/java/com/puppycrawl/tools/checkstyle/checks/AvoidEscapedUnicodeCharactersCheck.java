@@ -208,6 +208,7 @@ public class AvoidEscapedUnicodeCharactersCheck
             + "|\\\\b"
             + "|\\\\f"
             + "|\\\\n"
+            + "|\\n"
             + "|\\\\r"
             + "|\\\\s"
             + "|\\\\t"
