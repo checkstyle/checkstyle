@@ -3994,19 +3994,19 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     *--VARIABLE_DEF -> VARIABLE_DEF
-     *   |--MODIFIERS -> MODIFIERS
-     *   |--TYPE -> TYPE
-     *   |   |--IDENT -> List
-     *   |   `--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
-     *   |       |--GENERIC_START -> <
-     *   |       |--TYPE_ARGUMENT -> TYPE_ARGUMENT
-     *   |       |   |--WILDCARD_TYPE -> ?
-     *   |       |   `--TYPE_LOWER_BOUNDS -> super
-     *   |       |       `--IDENT -> List
-     *   |       `--GENERIC_END -> >
-     *   |--IDENT -> list
-     *   `--SEMI -> ;
+     *--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *   |--MODIFIERS -&gt; MODIFIERS
+     *   |--TYPE -&gt; TYPE
+     *   |   |--IDENT -&gt; List
+     *   |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *   |       |--GENERIC_START -&gt; &lt;
+     *   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *   |       |   |--WILDCARD_TYPE -&gt; ?
+     *   |       |   `--TYPE_LOWER_BOUNDS -&gt; super
+     *   |       |       `--IDENT -&gt; List
+     *   |       `--GENERIC_END -&gt; &gt;
+     *   |--IDENT -&gt; list
+     *   `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
