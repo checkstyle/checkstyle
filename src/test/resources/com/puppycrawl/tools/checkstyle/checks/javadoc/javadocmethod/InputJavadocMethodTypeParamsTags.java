@@ -1,14 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 /**
- * Some explanation.
+ * Config: default
+ *
  * @param <A> A type param
  * @param <B1> Another type param
  * @param <D123> The wrong type param
  * @author Nobody
  * @version 1.0
  */
-public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable>
+public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable> // ok
 {
     /**
      * Some explanation.
@@ -24,8 +25,8 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable>
     /**
      * Some explanation.
      * @param <BB> The wrong type param
-     */
-    public <Z> void doSomethingElse()
+     */ // violation above line
+    public <Z> void doSomethingElse() // violation
     {
     }
 
@@ -34,7 +35,7 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable>
      * @param aAnEl A parameter
      * @param <L> A type parameter
      */
-    public <L> void doSomethingElse2(L aAnEl)
+    public <L> void doSomethingElse2(L aAnEl) // ok
     {
     }
 
@@ -44,18 +45,18 @@ public class InputJavadocMethodTypeParamsTags<A,B1,C456 extends Comparable>
      * @param <C> extra parameter
      */
 
-    public static class InnerClass<A,B>
+    public static class InnerClass<A,B> // ok
     {
     }
 
     /**
      * Some explanation.
      * @param <Z The wrong type param
-     */
+     */ // violation above line
     public <Z> void unclosedGenericParam()
     {
     }
 }
 
 /** @param x */
-class Test {}
+class Test {} // ok
