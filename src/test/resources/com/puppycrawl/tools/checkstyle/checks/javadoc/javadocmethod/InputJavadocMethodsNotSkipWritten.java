@@ -1,5 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
+/**
+ * Config:
+ * allowedAnnotations = MyAnnotation
+ */
 public class InputJavadocMethodsNotSkipWritten {
     /**
      * Description.
@@ -8,7 +12,7 @@ public class InputJavadocMethodsNotSkipWritten {
      *            This param doesn't exist.
      */
     @MyAnnotation
-    public void InputJavadocMethodsNotSkipWritten() {
+    public void InputJavadocMethodsNotSkipWritten() { // violation at line 11
     }
 
     /**
@@ -18,17 +22,17 @@ public class InputJavadocMethodsNotSkipWritten {
      *            This param doesn't exist.
      */
     @MyAnnotation
-    public void test() {
+    public void test() { // violation at line 21
     }
 
     /** Description. */
     @MyAnnotation
-    public void test2() {
+    public void test2() { // ok
     }
 
     /** Description. */
     @MyAnnotation
-    public String test3(int a) throws Exception {
+    public String test3(int a) throws Exception { // ok
         return "";
     }
 }
