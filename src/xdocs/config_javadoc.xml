@@ -609,11 +609,7 @@ public void method();
       <p>Since Checkstyle 3.0</p>
       <subsection name="Description" id="JavadocMethod_Description">
         <p>
-          Checks the Javadoc of a method or constructor. The scope
-          to verify is specified using the <code>Scope</code> class and
-          defaults to <code>Scope.PRIVATE</code>. To verify another
-          scope, set property scope to a different
-          <a href="property_types.html#Scope">scope</a>.
+          Checks the Javadoc of a method or constructor.
         </p>
 
         <p>
@@ -711,18 +707,11 @@ public int checkReturnTag(final int aTagIndex,
               <td>6.0</td>
             </tr>
             <tr>
-              <td>scope</td>
-              <td>Specify the visibility scope where Javadoc comments are checked.</td>
-              <td><a href="property_types.html#Scope">Scope</a></td>
-              <td><code>private</code></td>
-              <td>3.0</td>
-            </tr>
-            <tr>
-              <td>excludeScope</td>
-              <td>Specify the visibility scope where Javadoc comments are not checked.</td>
-              <td><a href="property_types.html#Scope">Scope</a></td>
-              <td><code>null</code></td>
-              <td>3.4</td>
+              <td>accessModifiers</td>
+              <td>Specify the access modifiers where Javadoc comments are checked.</td>
+              <td><a href="property_types.html#access_modifiers">AccessModifierOption[]</a></td>
+              <td><code>public, protected, package, private</code></td>
+              <td>8.42</td>
             </tr>
             <tr>
               <td>allowMissingParamTags</td>
@@ -782,25 +771,24 @@ public int checkReturnTag(final int aTagIndex,
         </source>
 
         <p>
-          To configure the check for <code>public</code>
-          scope, ignoring any missing param tags is:
+          To configure the check for only <code>public</code>
+          modifier, ignoring any missing param tags is:
         </p>
 
         <source>
 &lt;module name=&quot;JavadocMethod&quot;&gt;
-  &lt;property name=&quot;scope&quot; value=&quot;public&quot;/&gt;
+  &lt;property name=&quot;accessModifiers&quot; value=&quot;public&quot;/&gt;
   &lt;property name=&quot;allowMissingParamTags&quot; value=&quot;true&quot;/&gt;
 &lt;/module&gt;
         </source>
 
         <p>
-          To configure the check for methods which are in <code>private</code>,
-          but not in <code>protected</code> scope:
+          To configure the check for methods which are in <code>private</code>
+          and <code>package</code>, but not any other modifier:
         </p>
         <source>
 &lt;module name="JavadocMethod"&gt;
-  &lt;property name="scope" value="private"/&gt;
-  &lt;property name="excludeScope" value="protected"/&gt;
+  &lt;property name="accessModifiers" value="private, package"/&gt;
 &lt;/module&gt;
         </source>
 
