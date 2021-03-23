@@ -1,14 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2004
-////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Config:
- * tag = &#64;author
+ * tag = &#64;todo
  * tagFormat = \\S
+ * tokens = INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF
+ * severity = ignore
  *
  * Testing tag writing
  * @author Daniel Grenner
@@ -17,12 +14,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTag // violation at 14
+class InputWriteTagMethod // ok
 {
     /**
      * @todo Add a constructor comment
-     */
-    public InputWriteTag() // ok
+     */ // violation at line above
+    public InputWriteTagMethod()
     {
     }
 
@@ -32,8 +29,9 @@ class InputWriteTag // violation at 14
 
     /**
      * @todo Add a comment
-     */
-    public void anotherMethod() // ok
+     */ // violation at line above
+    public void anotherMethod()
     {
     }
 }
+
