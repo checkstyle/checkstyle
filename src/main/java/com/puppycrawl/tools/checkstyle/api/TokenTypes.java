@@ -1415,6 +1415,17 @@ public final class TokenTypes {
      * The {@code interface} keyword. This token appears in
      * interface definition.
      *
+     * <p>For example:</p>
+     * <pre> int.class
+     * </pre>
+     * <p>parses as:</p>
+     * <pre> 
+     * |`--EXPR -> EXPR
+     * |    `--DOT -> .
+     * |        |--LITERAL_INT -> int
+     * |        `--LITERAL_CLASS -> class
+     * </pre>
+     * 
      * @see #INTERFACE_DEF
      **/
     public static final int LITERAL_INTERFACE =
@@ -1460,6 +1471,21 @@ public final class TokenTypes {
     /**
      * A right parenthesis ({@code )}).
      *
+     * <p>For example:</p>
+     * <pre> check()
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--METHOD_DEF -> METHOD_DEF
+     * |   |--MODIFIERS -> MODIFIERS
+     * |   |--TYPE -> TYPE
+     * |   |   `--LITERAL_VOID -> void 
+     * |   |--IDENT -> check 
+     * |   |--LPAREN -> ( 
+     * |   |--PARAMETERS -> PARAMETERS 
+     * |   |--RPAREN -> )
+     * </pre>
+     * 
      * @see #LITERAL_FOR
      * @see #LITERAL_NEW
      * @see #METHOD_CALL
