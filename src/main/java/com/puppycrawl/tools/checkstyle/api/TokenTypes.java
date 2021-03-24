@@ -3691,18 +3691,29 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     A extends Collection
+     * public class MyClass &lt;A extends Collection&gt; {
+     *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--TYPE_PARAMETER
-     *     |
-     *     +--IDENT (A)
-     *     +--TYPE_UPPER_BOUNDS
-     *         |
-     *         +--IDENT (Collection)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; MyClass
+     * |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     * |   |--GENERIC_START -&gt; &lt;
+     * |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |   |--IDENT -&gt; A
+     * |   |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     * |   |       `--IDENT -&gt; Collection
+     * |   `--GENERIC_END -&gt; &gt;
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
