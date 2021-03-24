@@ -2222,6 +2222,33 @@ public final class TokenTypes {
      * A list of resources in the Java 7 try-with-resources construct.
      * This is a child of RESOURCE_SPECIFICATION.
      *
+     * <p>For example:</p>
+     * <pre>try (FileReader fr = new FileReader("config.xml")) {}</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_TRY -&gt; try
+     *    |--RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *    |   |--LPAREN -&gt; (
+     *    |   |--RESOURCES -&gt; RESOURCES
+     *    |   |   `--RESOURCE -&gt; RESOURCE
+     *    |   |       |--MODIFIERS -&gt; MODIFIERS
+     *    |   |       |--TYPE -&gt; TYPE
+     *    |   |       |   `--IDENT -&gt; FileReader
+     *    |   |       |--IDENT -&gt; fr
+     *    |   |       `--ASSIGN -&gt; =
+     *    |   |           `--EXPR -&gt; EXPR
+     *    |   |               `--LITERAL_NEW -&gt; new
+     *    |   |                   |--IDENT -&gt; FileReader
+     *    |   |                   |--LPAREN -&gt; (
+     *    |   |                   |--ELIST -&gt; ELIST
+     *    |   |                   |   `--EXPR -&gt; EXPR
+     *    |   |                   |       `--STRING_LITERAL -&gt; "config.xml"
+     *    |   |                   `--RPAREN -&gt; )
+     *    |   `--RPAREN -&gt; )
+     *    |--SLIST -&gt; {
+     *    |   `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #RESOURCE_SPECIFICATION
      **/
     public static final int RESOURCES =
