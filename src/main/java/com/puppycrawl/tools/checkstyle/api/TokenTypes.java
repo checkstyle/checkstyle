@@ -1891,6 +1891,17 @@ public final class TokenTypes {
      *     `--RCURLY -&gt; }
      * </pre>
      *
+     * <p>For example:</p>
+     * <pre> int.class
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * EXPR -&gt; EXPR
+     *  `--DOT -&gt; .
+     *      |--LITERAL_INT -&gt; int
+     *      `--LITERAL_CLASS -&gt; class
+     * </pre>
+     *
      * @see #DOT
      * @see #IDENT
      * @see #CLASS_DEF
