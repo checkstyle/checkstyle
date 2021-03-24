@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * Handler for class definitions.
@@ -90,7 +91,51 @@ public class ClassDefHandler extends BlockParentHandler {
         else {
             checkWrappingIndentation(getMainAst(), getListChild());
         }
+        if (getMainAst().getType() == TokenTypes.ENUM_DEF) {
+            TokenUtil.forEachChild(getListChild(), TokenTypes.ENUM_CONSTANT_DEF,
+                    this::checkEnumConstantDefIndentation);
+        }
         super.checkIndentation();
+    }
+
+    /**
+     * Checks enum constant definition.
+     *
+     * @param ast enum constat definition to examine
+     */
+    private void checkEnumConstantDefIndentation(DetailAST ast) {
+        final DetailAstSet astSet = new DetailAstSet(getIndentCheck());
+        findSubtreeAst(astSet, ast, true);
+        final IndentLevel expectedIndent =
+            new IndentLevel(getIndent(), getIndentCheck().getBasicOffset());
+        // check first line
+        final DetailAST firstLine = astSet.firstLine();
+        if (isOnStartOfLine(firstLine)
+                && !expectedIndent.isAcceptable(firstLine.getColumnNo())) {
+            String subtypeName = "";
+            if (firstLineIsAnnotation(firstLine)) {
+                subtypeName = "annotation";
+            }
+            logError(firstLine, subtypeName, firstLine.getColumnNo(), expectedIndent);
+        }
+        // check rest of lines
+        if (firstLine != astSet.getAst(astSet.lastLine())) {
+            checkWrappingIndentation(firstLine,
+                    firstLine.getLastChild(),
+                    getIndentCheck().getLineWrappingIndentation(),
+                    expectedIndent.getFirstIndentLevel(),
+                    true);
+        }
+    }
+
+    /**
+     * Examines if first line of enum constant definition is an annotation.
+     *
+     * @param enumConstantDef Node to examine
+     * @return true if first line is an annotation
+     */
+    private static boolean firstLineIsAnnotation(DetailAST enumConstantDef) {
+        return enumConstantDef.getFirstChild().getFirstChild() != null;
     }
 
     @Override
