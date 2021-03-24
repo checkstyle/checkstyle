@@ -1243,16 +1243,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadoctype[\\/]InputJavadocTypeWhitespace.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableInner.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadoc.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableNoJavadocNeededInLambda.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariablePublicOnly.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocvariable[\\/]InputJavadocVariableTags.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethod_01.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]missingjavadocmethod[\\/]InputMissingJavadocMethod_02.java"/>
