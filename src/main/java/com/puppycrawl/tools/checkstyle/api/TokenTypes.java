@@ -1460,6 +1460,22 @@ public final class TokenTypes {
     /**
      * A right parenthesis ({@code )}).
      *
+     * <p>For example:</p>
+     * <pre> 
+     * check();
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--METHOD_DEF -&gt; METHOD_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_VOID -&gt; void 
+     * |   |--IDENT -&gt; check 
+     * |   |--LPAREN -&gt; ( 
+     * |   |--PARAMETERS -&gt; PARAMETERS 
+     * |   |--RPAREN -&gt; )
+     * </pre>
+     * 
      * @see #LITERAL_FOR
      * @see #LITERAL_NEW
      * @see #METHOD_CALL
