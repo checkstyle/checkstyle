@@ -175,12 +175,158 @@ public class LineWrappingHandler {
             final int currentType = node.getType();
 
             if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
+                logWarningMessage(node, new IndentLevel(firstNodeIndent));
             }
             else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+                final int[] offsets =
+                    additionalOffsets(firstNode, node, currentIndent);
+                logWarningMessage(node, new IndentLevel(
+                        new IndentLevel(currentIndent), offsets));
             }
         }
+    }
+
+    /**
+     * Returns possible offsets in addition to baseIndent for {@code node}.
+     *
+     * @param firstNode Node on the highest line.
+     * @param node Node to examine.
+     * @param baseIndent Current indentation level.
+     * @return Indentation offsets.
+     */
+    private int[] additionalOffsets(final DetailAST firstNode, DetailAST node, int baseIndent) {
+        int[] result = {0};
+        if (indentCheck.isForceStrictCondition()) {
+            final int additionalOffset = expressionStartsBetween(firstNode, node)
+                * indentCheck.getLineWrappingIndentation();
+            final int previousOffset = getPreviousElementIndentation(node) - baseIndent;
+            if (additionalOffset >= previousOffset) {
+                result = new int[] {additionalOffset};
+            }
+            else {
+                result = new int[] {additionalOffset, previousOffset};
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns indentation level of previous element.
+     *
+     * @param node Node to start examining.
+     * @return Indentation level of previous element or zero.
+     */
+    private static int getPreviousElementIndentation(DetailAST node) {
+        int result = 0;
+        if (node != null) {
+            if (node.getType() == TokenTypes.PARAMETERS) {
+                result = node.getPreviousSibling().getColumnNo() + 1;
+            }
+            else if (node.getType() == TokenTypes.ELIST) {
+                if (node.getPreviousSibling() != null
+                        && node.getPreviousSibling().getType() == TokenTypes.LPAREN) {
+                    result = node.getPreviousSibling().getColumnNo() + 1;
+                }
+                else if (node.getParent().getType() == TokenTypes.METHOD_CALL) {
+                    result = node.getParent().getColumnNo() + 1;
+                }
+                else {
+                    result = 0;
+                }
+            }
+            else if (node.getType() == TokenTypes.ARRAY_INIT) {
+                result = node.getColumnNo() + 1;
+            }
+            else {
+                result = getPreviousElementIndentation(node.getParent());
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Counts the beginnings of expressions in previous lines between {@code firstNode} and
+     * {@code node}.
+     *
+     * @param firstNode Node on the highest line.
+     * @param node Node to start examining.
+     * @return Number of expression starts (negative, if there are more expression ends than starts
+     *            between {@code firstNode} and {@code node}.
+     */
+    public static int expressionStartsBetween(final DetailAST firstNode, DetailAST node) {
+        final int result;
+        if (node == firstNode) {
+            result = 0;
+        }
+        else if (node.getType() == TokenTypes.LPAREN
+                || node.getType() == TokenTypes.GENERIC_START) {
+            // lparen / generic_start is in own line -> skip
+            result = expressionStartsBetween(firstNode, node.getParent());
+        }
+        else {
+            result = numberOfSingleLparenPreviousSiblings(node)
+                + expressionStartsBetween(firstNode, node.getParent());
+        }
+        return result;
+    }
+
+    /**
+     * Counts the number of previous siblings starting new expressions.
+     *
+     * @param node Node to start examining.
+     * @return Number of previous siblings starting new expressions.
+     */
+    private static int numberOfSingleLparenPreviousSiblings(DetailAST node) {
+        int previousSiblings = 0;
+        if (node.getPreviousSibling() == null) {
+            previousSiblings = firstNodeIsLparen(node);
+        }
+        else if (shouldExamineNodeType(node)) {
+            if (node.getType() == TokenTypes.LPAREN) {
+                previousSiblings =
+                        numberOfSingleLparenPreviousSiblings(node.getPreviousSibling()) + 1;
+            }
+            else if (node.getType() == TokenTypes.RPAREN) {
+                previousSiblings =
+                        numberOfSingleLparenPreviousSiblings(node.getPreviousSibling()) - 1;
+            }
+            else {
+                previousSiblings = numberOfSingleLparenPreviousSiblings(node.getPreviousSibling());
+            }
+        }
+        else if (node.getType() == TokenTypes.ELIST
+                && node.getParent().getType() == TokenTypes.METHOD_CALL
+                && node.getLineNo() != node.getParent().getLineNo()) {
+            previousSiblings = 1;
+        }
+        return previousSiblings;
+    }
+
+    /**
+     * Decides if node should be examined in
+     * {@link #numberOfSingleLparenPreviousSiblings(DetailAST)}.
+     *
+     * @param node Actual node.
+     * @return true, if node should be examined.
+     */
+    private static boolean shouldExamineNodeType(DetailAST node) {
+        return node.getType() != TokenTypes.FOR_INIT && node.getType() != TokenTypes.ELIST
+            && (node.getType() != TokenTypes.PARAMETERS
+                    || node.getParent().getType() == TokenTypes.LAMBDA);
+    }
+
+    /**
+     * Checks if node is lparen or generic_start.
+     *
+     * @param node Node to examine.
+     * @return 1 if node is lparen or generic_start, otherwise 0.
+     */
+    private static int firstNodeIsLparen(DetailAST node) {
+        int previousSiblings = 0;
+        if (node.getType() == TokenTypes.LPAREN || node.getType() == TokenTypes.GENERIC_START) {
+            previousSiblings = 1;
+        }
+        return previousSiblings;
     }
 
     /**
@@ -224,7 +370,7 @@ public class LineWrappingHandler {
             final DetailAST firstTokenOnLine = result.get(curNode.getLineNo());
 
             if (firstTokenOnLine == null
-                || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
+                    || expandedTabsColumnNo(firstTokenOnLine) >= expandedTabsColumnNo(curNode)) {
                 result.put(curNode.getLineNo(), curNode);
             }
             curNode = getNextCurNode(curNode);
@@ -279,14 +425,14 @@ public class LineWrappingHandler {
                     && isEndOfScope(lastAnnotationNode, node);
             if (!isArrayInitPresentInAncestors
                     && (isCurrentNodeCloseAnnotationAloneInLine
-                    || node.getType() == TokenTypes.AT
-                    && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
-                        || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
-                    || TokenUtil.areOnSameLine(node, atNode))) {
-                logWarningMessage(node, firstNodeIndent);
+                        || node.getType() == TokenTypes.AT
+                        && (parentNode.getParent().getType() == TokenTypes.MODIFIERS
+                            || parentNode.getParent().getType() == TokenTypes.ANNOTATIONS)
+                        || TokenUtil.areOnSameLine(node, atNode))) {
+                logWarningMessage(node, new IndentLevel(firstNodeIndent));
             }
             else if (!isArrayInitPresentInAncestors) {
-                logWarningMessage(node, currentIndent);
+                logWarningMessage(node, new IndentLevel(currentIndent));
             }
             itr.remove();
         }
@@ -388,21 +534,22 @@ public class LineWrappingHandler {
      * @param currentIndent
      *            correct indentation.
      */
-    private void logWarningMessage(DetailAST currentNode, int currentIndent) {
+    private void logWarningMessage(DetailAST currentNode, IndentLevel currentIndent) {
         if (indentCheck.isForceStrictCondition()) {
-            if (expandedTabsColumnNo(currentNode) != currentIndent) {
+            if (!currentIndent.isAcceptable(expandedTabsColumnNo(currentNode))) {
                 indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
+                        AbstractExpressionHandler.getIndentErrorMessage(currentIndent),
+                        currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
         else {
-            if (expandedTabsColumnNo(currentNode) < currentIndent) {
+            if (currentIndent.isGreaterThan(expandedTabsColumnNo(currentNode))) {
                 indentCheck.indentationLog(currentNode,
-                        IndentationCheck.MSG_ERROR, currentNode.getText(),
+                        AbstractExpressionHandler.getIndentErrorMessage(currentIndent),
+                        currentNode.getText(),
                         expandedTabsColumnNo(currentNode), currentIndent);
             }
         }
     }
-
 }
