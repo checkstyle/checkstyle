@@ -180,6 +180,28 @@ public class EmptyLineSeparatorCheckTest
     }
 
     @Test
+    public void testCommentAfterPackageWithImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "//"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorSingleLineCommentAfterPackage.java"),
+                expected);
+    }
+
+    @Test
+    public void testJavadocCommentAfterPackageWithImports() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorJavadocCommentAfterPackage.java"),
+                expected);
+    }
+
+    @Test
     public void testClassDefinitionAndCommentNotSeparatedFromPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
         final String[] expected = {
@@ -207,6 +229,18 @@ public class EmptyLineSeparatorCheckTest
         verify(checkConfig,
             getPath("InputEmptyLineSeparatorSingleCommentSeparatedFromPackage.java"),
             expected);
+    }
+
+    @Test
+    public void testPackageImportsClassInSingleLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
+        final String[] expected = {
+            "1:79: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
+            "1:101: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
+        };
+        verify(checkConfig,
+                getPath("InputEmptyLineSeparatorPackageImportClassInOneLine.java"),
+                expected);
     }
 
     @Test
