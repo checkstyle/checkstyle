@@ -1415,6 +1415,17 @@ public final class TokenTypes {
      * The {@code interface} keyword. This token appears in
      * interface definition.
      *
+     * <p>For example:</p>
+     * <pre> int.class
+     * </pre>
+     * <p>parses as:</p>
+     * <pre> 
+     * |`--EXPR -> EXPR
+     * |    `--DOT -> .
+     * |        |--LITERAL_INT -> int
+     * |        `--LITERAL_CLASS -> class
+     * </pre>
+     * 
      * @see #INTERFACE_DEF
      **/
     public static final int LITERAL_INTERFACE =
