@@ -575,9 +575,24 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
             }
         }
+        if (isLineEmptyAfterPackage(ast)) {
+            final DetailAST commentAST = ast.getNextSibling();
+            log(commentAST, MSG_SHOULD_BE_SEPARATED, commentAST.getText());
+        }
         if (!hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
+    }
+
+    /**
+     * Checks if there is empty line after package declaration.
+     *
+     * @param ast Package ast.
+     * @return true, if there is a comment.
+     */
+    private static boolean isLineEmptyAfterPackage(DetailAST ast) {
+        final DetailAST nextElement = ast.getNextSibling();
+        return nextElement.getLineNo() == ast.getLastChild().getLineNo() + 1;
     }
 
     /**
