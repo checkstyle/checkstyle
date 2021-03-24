@@ -1549,7 +1549,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * if(optimistic)
+     * if (optimistic)
      * {
      *   message = "half full";
      * }
@@ -1560,35 +1560,26 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_IF (if)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--IDENT (optimistic)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--IDENT (message)
-     *                 +--STRING_LITERAL ("half full")
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     *     +--LITERAL_ELSE (else)
-     *         |
-     *         +--SLIST ({)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--ASSIGN (=)
-     *                     |
-     *                     +--IDENT (message)
-     *                     +--STRING_LITERAL ("half empty")
-     *             +--SEMI (;)
-     *             +--RCURLY (})
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--IDENT -&gt; optimistic
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       |--IDENT -&gt; message
+     *  |   |       `--STRING_LITERAL -&gt; "half full"
+     *  |   |--SEMI -&gt; ;
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_ELSE -&gt; else
+     *      `--SLIST -&gt; {
+     *          |--EXPR -&gt; EXPR
+     *          |   `--ASSIGN -&gt; =
+     *          |       |--IDENT -&gt; message
+     *          |       `--STRING_LITERAL -&gt; "half empty"
+     *          |--SEMI -&gt; ;
+     *          `--RCURLY -&gt; }
      * </pre>
      *
      * @see #LPAREN
