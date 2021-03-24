@@ -1254,6 +1254,20 @@ public final class TokenTypes {
     /**
      * The <code>&#46;</code> (dot) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * return person.name;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_RETURN -&gt; return
+     *    |--EXPR -&gt; EXPR
+     *    |   `--DOT -&gt; .
+     *    |       |--IDENT -&gt; person
+     *    |       `--IDENT -&gt; name
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see FullIdent
      * @noinspection HtmlTagCanBeJavadocTag
      **/
