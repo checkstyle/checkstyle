@@ -108,19 +108,6 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testTagsWithResolver() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
-                MissingJavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", "private");
-        final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputMissingJavadocMethodTags.java"), expected);
-    }
-
-    @Test
     public void testStrictJavadoc() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(
                 MissingJavadocMethodCheck.class);
@@ -198,28 +185,6 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "37:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "51:13: " + getCheckMessage(MSG_JAVADOC_MISSING), };
         verify(checkConfig, getPath("InputMissingJavadocMethodScopeAnonInner2.java"), expected);
-    }
-
-    @Test
-    public void testScopeAnonInnerWithResolver() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
-                MissingJavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", "private");
-        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMissingJavadocMethodScopeAnonInner3.java"), expected);
-    }
-
-    @Test
-    public void testTagsWithSubclassesAllowed() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
-                MissingJavadocMethodCheck.class);
-        checkConfig.addAttribute("scope", "private");
-        final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "328:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "337:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
-        };
-        verify(checkConfig, getPath("InputMissingJavadocMethodTags.java"), expected);
     }
 
     @Test
