@@ -1161,6 +1161,23 @@ public final class TokenTypes {
      * The statement terminator ({@code ;}).  Depending on the
      * context, this make occur as a sibling, a child, or not at all.
      *
+     * <p>For example:</p>
+     * <pre>
+     * for(;;);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_INIT -&gt; FOR_INIT
+     *  |--SEMI -&gt; ;
+     *  |--FOR_CONDITION -&gt; FOR_CONDITION
+     *  |--SEMI -&gt; ;
+     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  |--RPAREN -&gt; )
+     *  `--EMPTY_STAT -&gt; ;
+     * </pre>
+     *
      * @see #PACKAGE_DEF
      * @see #IMPORT
      * @see #SLIST
