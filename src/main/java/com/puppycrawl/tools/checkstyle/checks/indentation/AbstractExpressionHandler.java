@@ -300,7 +300,8 @@ public abstract class AbstractExpressionHandler {
                 // checked by a child expression)
 
                 if (col != null) {
-                    checkLineIndent(astSet.getAst(i), theLevel, false);
+                    checkLineIndent(astSet.getAst(i), theLevel,
+                        indentCheck.isForceStrictCondition());
                 }
             }
         }
