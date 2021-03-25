@@ -17,32 +17,6 @@
 
   <!-- Suppress older check UT input files -->
   <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationAnnotation.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationClass.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationCorrect.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationCustomAnnotationsDeclared.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationDeprecatedAndCustom.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationEmpty.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationEnum.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationIncorrect.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationMultiple.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationParameterized.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationSingleParameterless.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationWithoutAnnotations.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="annotation[\\/]annotationlocation[\\/]inputs[\\/]PackageAnnotations.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="annotation[\\/]annotationusestyle[\\/]InputAnnotationUseStyleCustomAnnotation.java"/>
@@ -1671,32 +1645,7 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]whitespacearound[\\/]InputWhitespaceAroundVarargs.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationAnnotation.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationClass.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationCorrect.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationCustomAnnotationsDeclared.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationDeprecatedAndCustom.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationEmpty.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationEnum.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationIncorrect.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationInterface.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationMultiple.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationParameterized.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationSingleParameterless.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="annotation[\\/]annotationlocation[\\/]InputAnnotationLocationWithoutAnnotations.java"/>
+
   <suppress id="StyleValidationCommentInInputs"
             files="annotation[\\/]annotationlocation[\\/]inputs[\\/]PackageAnnotations.java"/>
   <suppress id="StyleValidationCommentInInputs"
