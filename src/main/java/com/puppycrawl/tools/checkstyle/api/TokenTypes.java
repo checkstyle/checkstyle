@@ -3387,27 +3387,26 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * --LITERAL_FOR (for)
-     *    |--LPAREN (()
-     *    |--FOR_EACH_CLAUSE
-     *    |   |--VARIABLE_DEF
-     *    |   |   |--MODIFIERS
-     *    |   |   |--TYPE
-     *    |   |   |   `--LITERAL_INT (int)
-     *    |   |   `--IDENT (value)
-     *    |   |--COLON (:)
-     *    |   `--EXPR
-     *    |       `--IDENT (values
-     *    |--RPAREN ())
-     *    `--SLIST ({)
-     *        |--EXPR
-     *        |   `--METHOD_CALL (()
-     *        |       |--IDENT (doSmth)
-     *        |       |--ELIST
-     *        |       `--RPAREN ())
-     *        |--SEMI (;)
-     *        `--RCURLY (})
-     *
+     * --LITERAL_FOR -&gt; for
+     *    |--LPAREN -&gt; (
+     *    |--FOR_EACH_CLAUSE -&gt; FOR_EACH_CLAUSE
+     *    |   |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |   |   |--MODIFIERS -&gt; MODIFIERS
+     *    |   |   |--TYPE -&gt; TYPE
+     *    |   |   |   `--LITERAL_INT -&gt; int
+     *    |   |   `--IDENT -&gt; value
+     *    |   |--COLON -&gt; :
+     *    |   `--EXPR -&gt; EXPR
+     *    |       `--IDENT -&gt; values
+     *    |--RPAREN -&gt; )
+     *    `--SLIST -&gt; {
+     *        |--EXPR -&gt; EXPR
+     *        |   `--METHOD_CALL -&gt; (
+     *        |       |--IDENT -&gt; doSmth
+     *        |       |--ELIST -&gt; ELIST
+     *        |       `--RPAREN -&gt; )
+     *        |--SEMI -&gt; ;
+     *        `--RCURLY -&gt; }
      * </pre>
      *
      * @see #VARIABLE_DEF
