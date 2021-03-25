@@ -1,106 +1,106 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
+/* Config: default */
 
 
-
-@MyAnnotation2 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn //warn
+@MyAnn_21 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn // violation
 (value = "")
 class InputAnnotationLocationIncorrect
 {
 
-    @MyAnnotation2 @MyAnnotation1(value = "")
+    @MyAnn_21 @MyAnnotation1(value = "") // violation
     public int a;
 
-    @MyAnnotation1(value = "") public int b; //warn
+    @MyAnnotation1(value = "") public int b; // violation
 
-    @MyAnnotation2
-        @MyAnnotation1 //warn
+    @MyAnn_21 // ok
+        @MyAnnotation1 // violation
 (value = "")
     public int c;
 
-    @MyAnnotation1(value = "")
+    @MyAnnotation1(value = "") // ok
     public int d;
 
-    @MyAnnotation2
-        @MyAnnotation1 //warn
+    @MyAnn_21 // ok
+        @MyAnnotation1 // violation
 (value = "")
     public InputAnnotationLocationIncorrect() {}
 
-    @MyAnnotation1("foo") @MyAnnotation2 void foo1() {} //warn
+    @MyAnnotation1("foo") @MyAnn_21 void foo1() {} // violation
 
-    @MyAnnotation1(value = "")
-       @MyAnnotation2 //warn
+    @MyAnnotation1(value = "") // ok
+       @MyAnn_21 // violation
     void foo2() {}
 
-    @MyAnnotation1(value = "")
-        @MyAnnotation2 //warn
-      @MyAnnotation3 //warn
-          @MyAnnotation4 //warn
+    @MyAnnotation1(value = "") // ok
+        @MyAnn_21 // violation
+      @MyAnnotation3 // violation
+          @MyAnnotation4 // violation
     class InnerClass
     {
-        @MyAnnotation2 @MyAnnotation1 //warn
+        @MyAnn_21 @MyAnnotation1 // violation
 (value = "")
         public int a;
 
-        @MyAnnotation1(value = "") public int b; //warn
+        @MyAnnotation1(value = "") public int b; // violation
 
-        @MyAnnotation2
-            @MyAnnotation1 //warn
+        @MyAnn_21 // ok
+            @MyAnnotation1 // violation
 (value = "")
         public int c;
 
-        @MyAnnotation1(value = "")
+        @MyAnnotation1(value = "") // ok
         public int d;
 
-        @MyAnnotation2
-        @MyAnnotation1(value = "") public InnerClass() //warn
+        @MyAnn_21 // ok
+        @MyAnnotation1(value = "") public InnerClass() // violation
         {
             // comment
         }
         @MyAnnotation1(value = "")
-            @MyAnnotation2 //warn
+            @MyAnn_21 // violation
         void foo1() {}
 
         @MyAnnotation1(value = "")
-            @MyAnnotation2 //warn
+            @MyAnn_21 // violation
         void foo2() {}
     }
 
     @MyAnnotation1(value = "")
-       @MyAnnotation2 //warn
+       @MyAnn_21 // violation
     InnerClass anon = new InnerClass()
     {
-        @MyAnnotation2 @MyAnnotation1(value = "") public int a;
+        @MyAnn_21 @MyAnnotation1(value = "") public int a; // violation
 
-        @MyAnnotation1(value = "") public int b; //warn
+        @MyAnnotation1(value = "") public int b; // violation
 
-        @MyAnnotation2
-        @MyAnnotation1(value = "")
+        @MyAnn_21 // ok
+        @MyAnnotation1(value = "") // ok
         public int c;
 
-        @MyAnnotation1(value = "")
+        @MyAnnotation1(value = "") // ok
         public int d;
 
-        @MyAnnotation1(value = "")
-           @MyAnnotation2 void foo1() {} //warn
+        @MyAnnotation1(value = "") // ok
+           @MyAnn_21 void foo1() {} // violation
 
-        @MyAnnotation1(value = "")
-          @MyAnnotation2 //warn
+        @MyAnnotation1(value = "") // ok
+          @MyAnn_21 // violation
         void foo2() {}
 
-        @MyAnnotation1(value = "") void foo42() {} //warn
+        @MyAnnotation1(value = "") void foo42() {} // violation
     };
 
 }
 
-   @MyAnnotation1 //warn
+   @MyAnnotation1 // ok
 (value = "")
-@MyAnnotation2
+@MyAnn_21 // violation
 class Foo {
-    public void method1(@MyAnnotation3 @MyAnnotation2 Object param1) {
+    public void method1(@MyAnnotation3 @MyAnn_21 Object param1) {
         try {
         }
-        catch (@MyAnnotation3 @MyAnnotation2 Exception e) {
+        catch (@MyAnnotation3 @MyAnn_21 Exception e) {
         }
         return;
     }
@@ -110,7 +110,7 @@ class Foo {
 
         String value();}
 
-@interface MyAnnotation2 {}
+@interface MyAnn_21 {}
 
 @interface MyAnnotation3 {}
 
