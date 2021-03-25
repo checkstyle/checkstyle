@@ -1389,18 +1389,14 @@ public final class TokenTypes {
      * class object.
      *
      * <p>For example:</p>
-     *
-     * <pre>
-     * int.class
+     * <pre> int.class
      * </pre>
      * <p>parses as:</p>
-     * <pre>
-     * +--EXPR
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--LITERAL_INT (int)
-     *         +--LITERAL_CLASS (class)
+     * <pre> 
+     * `--EXPR -&gt; EXPR
+     *     `--DOT -&gt; .
+     *         |--LITERAL_INT -&gt; int
+     *         `--LITERAL_CLASS -&gt; class
      * </pre>
      *
      * @see #DOT
