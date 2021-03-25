@@ -73,6 +73,18 @@ public final class TokenTypes {
      * annotation and enum constant declarations.
      * Also, object blocks are children of the new keyword when defining
      * anonymous inner types.
+     * <p>For example:</p>
+     * <pre>class Test {}</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #LCURLY
      * @see #INSTANCE_INIT
