@@ -3,15 +3,28 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
+/* Config:
+
+ * tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,
+            CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF
+
+
+ *
+ * allowSamelineMultipleAnnotations = false
+ * allowSamelineSingleParameterlessAnnotation = true
+ * allowSamelineParameterizedAnnotation =  false
+
+ */
+
 public class InputAnnotationLocationDeprecatedAndCustom {
-    @Deprecated // <--class, separate line
+    @Deprecated // ok
     public class Annotation
     {
         @Deprecated // <--method, separate line
-        public void test(@MyAnnotation String s) { // <--parameter, same line
+        public void test(@MyAnnotation String s) { // ok
             @MyAnnotation // <--variable, separate line
             Integer i;
-            for (@MyAnnotation char c : s.toCharArray()) { // <--variable in for each, same line
+            for (@MyAnnotation char c : s.toCharArray()) { // ok
             }
         }
     }

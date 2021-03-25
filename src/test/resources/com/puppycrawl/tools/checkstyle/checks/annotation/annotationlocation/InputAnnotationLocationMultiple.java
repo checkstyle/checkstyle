@@ -2,17 +2,18 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 import java.lang.annotation.Repeatable;
 
-/**
- * This test-input is intended to be checked using following configuration:
+
+/* Config:
  *
  * allowSamelineSingleParameterlessAnnotation = false
  * allowSamelineParameterizedAnnotation = false
  * allowSamelineMultipleAnnotations = true
+ *
  */
 
 class InputAnnotationLocationMultiple {
 
-    @Annotation void singleParameterless() {}
+    @Annotation void singleParameterless() {} // ok
 
     @Annotation @Annotation void multipleParameterless() {}
 

@@ -4,8 +4,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
-/**
- * This test-input is intended to be checked using following configuration:
+
+/* Config :
  *
  * allowSamelineSingleParameterlessAnnotation = true
  * allowSamelineParameterizedAnnotation = false
@@ -16,15 +16,15 @@ class InputAnnotationLocationSingleParameterless {
 
     @Annotation void singleParameterless() {}
 
-    @Annotation @Annotation void multipleParameterless() {} //warn
+    @Annotation @Annotation void multipleParameterless() {} // violation
 
-    @Annotation("") void parameterized() {} //warn
+    @Annotation("") void parameterized() {} // violation
 
-    @Annotation(value = "") void namedParameterized() {} //warn
+    @Annotation(value = "") void namedParameterized() {} // violation
 
-    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} //warn
+    @Annotation @Annotation("") @Annotation(value = "") void multiple() {} // violation
 
-    @Annotation("") @Annotation(value = "") void multipleParametrized() {} //warn
+    @Annotation("") @Annotation(value = "") void multipleParametrized() {} // violation
 
     void parameterlessSamelineInForEach() {
         for (@Annotation Object o : new Object[0]) break; //ok
