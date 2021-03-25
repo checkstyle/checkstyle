@@ -886,6 +886,13 @@
             to use.</td>
           </tr>
           <tr>
+            <td><a href="config_javadoc.html#JavadocParamOrder">JavadocParamOrder</a></td>
+            <td>
+              Checks that validate method parameter order in javadoc to match parameter
+              order in method.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_coding.html#SuperClone">SuperClone</a></td>
             <td>
             Checks that an overriding clone() method invokes super.clone().</td>
