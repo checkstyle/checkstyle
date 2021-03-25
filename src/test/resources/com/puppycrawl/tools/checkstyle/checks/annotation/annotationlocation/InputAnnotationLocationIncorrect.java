@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 
 
-@MyAnnotation2 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn //warn
+@MyAnnotation2 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn
 (value = "")
 class InputAnnotationLocationIncorrect
 {
@@ -11,10 +11,10 @@ class InputAnnotationLocationIncorrect
     @MyAnnotation2 @MyAnnotation1(value = "")
     public int a;
 
-    @MyAnnotation1(value = "") public int b; //warn
+    @MyAnnotation1(value = "") public int b;
 
     @MyAnnotation2
-        @MyAnnotation1 //warn
+        @MyAnnotation1
 (value = "")
     public int c;
 
@@ -22,30 +22,30 @@ class InputAnnotationLocationIncorrect
     public int d;
 
     @MyAnnotation2
-        @MyAnnotation1 //warn
+        @MyAnnotation1
 (value = "")
     public InputAnnotationLocationIncorrect() {}
 
-    @MyAnnotation1("foo") @MyAnnotation2 void foo1() {} //warn
+    @MyAnnotation1("foo") @MyAnnotation2 void foo1() {}
 
     @MyAnnotation1(value = "")
-       @MyAnnotation2 //warn
+       @MyAnnotation2
     void foo2() {}
 
     @MyAnnotation1(value = "")
-        @MyAnnotation2 //warn
-      @MyAnnotation3 //warn
-          @MyAnnotation4 //warn
+        @MyAnnotation2
+      @MyAnnotation3
+          @MyAnnotation4
     class InnerClass
     {
-        @MyAnnotation2 @MyAnnotation1 //warn
+        @MyAnnotation2 @MyAnnotation1
 (value = "")
         public int a;
 
-        @MyAnnotation1(value = "") public int b; //warn
+        @MyAnnotation1(value = "") public int b;
 
         @MyAnnotation2
-            @MyAnnotation1 //warn
+            @MyAnnotation1
 (value = "")
         public int c;
 
@@ -53,26 +53,26 @@ class InputAnnotationLocationIncorrect
         public int d;
 
         @MyAnnotation2
-        @MyAnnotation1(value = "") public InnerClass() //warn
+        @MyAnnotation1(value = "") public InnerClass()
         {
             // comment
         }
         @MyAnnotation1(value = "")
-            @MyAnnotation2 //warn
+            @MyAnnotation2
         void foo1() {}
 
         @MyAnnotation1(value = "")
-            @MyAnnotation2 //warn
+            @MyAnnotation2
         void foo2() {}
     }
 
     @MyAnnotation1(value = "")
-       @MyAnnotation2 //warn
+       @MyAnnotation2
     InnerClass anon = new InnerClass()
     {
         @MyAnnotation2 @MyAnnotation1(value = "") public int a;
 
-        @MyAnnotation1(value = "") public int b; //warn
+        @MyAnnotation1(value = "") public int b;
 
         @MyAnnotation2
         @MyAnnotation1(value = "")
@@ -82,18 +82,18 @@ class InputAnnotationLocationIncorrect
         public int d;
 
         @MyAnnotation1(value = "")
-           @MyAnnotation2 void foo1() {} //warn
+           @MyAnnotation2 void foo1() {}
 
         @MyAnnotation1(value = "")
-          @MyAnnotation2 //warn
+          @MyAnnotation2
         void foo2() {}
 
-        @MyAnnotation1(value = "") void foo42() {} //warn
+        @MyAnnotation1(value = "") void foo42() {}
     };
 
 }
 
-   @MyAnnotation1 //warn
+   @MyAnnotation1
 (value = "")
 @MyAnnotation2
 class Foo {
