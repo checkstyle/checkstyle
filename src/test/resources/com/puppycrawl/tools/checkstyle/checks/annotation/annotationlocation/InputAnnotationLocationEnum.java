@@ -4,22 +4,22 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
-/**
- * This test-input is intended to be checked using following configuration:
+
+/* Config :
  *
  * tokens = ["ENUM_DEF", "ENUM_CONSTANT_DEF"]
  * allowSamelineSingleParameterlessAnnotation = true
  * allowSamelineParameterizedAnnotation = false
  * allowSamelineMultipleAnnotations = false
- *
  */
+
 @EnumAnnotation(value = "foo")
-  @EnumAnnotation //warn
-@EnumAnnotation("bar") enum InputAnnotationLocationEnum { //warn
+  @EnumAnnotation // violation
+@EnumAnnotation("bar") enum InputAnnotationLocationEnum { // violation
 
     @EnumAnnotation(value = "foo")
-      @EnumAnnotation //warn
-    @EnumAnnotation("bar") ENUM_VALUE(); //warn
+      @EnumAnnotation // violation
+    @EnumAnnotation("bar") ENUM_VALUE(); // violation
 
     InputAnnotationLocationEnum() {
     }

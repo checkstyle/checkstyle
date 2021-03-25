@@ -4,22 +4,22 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
-/**
- * This test-input is intended to be checked using following configuration:
+
+/* Config :
  *
  * tokens = ["INTERFACE_DEF", "METHOD_DEF", "PARAMETER_DEF"]
  * allowSamelineSingleParameterlessAnnotation = true
  * allowSamelineParameterizedAnnotation = false
  * allowSamelineMultipleAnnotations = false
- *
  */
+
 @InterfaceAnnotation(value = "foo")
-  @InterfaceAnnotation //warn
-@InterfaceAnnotation("bar") interface InputAnnotationLocationInterface { //warn
+  @InterfaceAnnotation // violation
+@InterfaceAnnotation("bar") interface InputAnnotationLocationInterface { // violation
 
     @InterfaceAnnotation(value = "foo")
-      @InterfaceAnnotation //warn
-    @InterfaceAnnotation("bar") void method( //warn
+      @InterfaceAnnotation // violation
+    @InterfaceAnnotation("bar") void method( // violation
         int param1,
         @InterfaceAnnotation(value = "foo")
           @InterfaceAnnotation
