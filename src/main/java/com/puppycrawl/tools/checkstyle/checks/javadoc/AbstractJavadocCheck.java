@@ -186,7 +186,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
         }
         else {
             final int[] acceptableJavadocTokens = getAcceptableJavadocTokens();
-            Arrays.sort(acceptableJavadocTokens);
             for (Integer javadocTokenId : javadocTokens) {
                 if (Arrays.binarySearch(acceptableJavadocTokens, javadocTokenId) < 0) {
                     final String message = String.format(Locale.ROOT, "Javadoc Token \"%s\" was "
