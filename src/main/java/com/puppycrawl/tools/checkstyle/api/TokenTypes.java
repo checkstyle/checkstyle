@@ -4237,18 +4237,18 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * LITERAL_IF (if)
-     *  |--LPAREN (()
-     *  |--EXPR
-     *  |   `--LITERAL_INSTANCEOF (instanceof)
-     *  |       |--IDENT (obj)
-     *  |       `--PATTERN_VARIABLE_DEF
-     *  |            |--TYPE
-     *  |            |   `--IDENT (String)
-     *  |            `--IDENT (str)
-     *  |--RPAREN ())
-     *  `--SLIST ({)
-     *      `--RCURLY (})
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     *  |       |--IDENT -&gt; obj
+     *  |       `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     *  |           |--TYPE -&gt; TYPE
+     *  |           |   `--IDENT -&gt; String
+     *  |           `--IDENT -&gt; str
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #LITERAL_INSTANCEOF
