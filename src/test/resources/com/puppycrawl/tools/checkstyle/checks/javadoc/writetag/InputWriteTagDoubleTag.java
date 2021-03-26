@@ -1,13 +1,8 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2004
-////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Config:
- * tag = &#64;author
+ * tag = &#64;doubletag
  * tagFormat = \\S
  *
  * Testing tag writing
@@ -16,13 +11,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  * @doubletag first text
  * @doubletag second text
  * @emptytag
- */
-class InputWriteTag // violation at 14
+ */ // violation at 11
+class InputWriteTagDoubleTag // violation at 12
 {
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTag() // ok
+    public InputWriteTagDoubleTag() // ok
     {
     }
 
