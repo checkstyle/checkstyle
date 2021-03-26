@@ -68,6 +68,9 @@
  RequireEmptyLineBeforeBlockTagGroup
  &lt;/li&gt;
  &lt;li&gt;
+ JavadocParamOrder
+ &lt;/li&gt;
+ &lt;li&gt;
  SingleLineJavadoc
  &lt;/li&gt;
  &lt;li&gt;
