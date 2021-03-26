@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
- * scope = private
+ * scope = Scope.PROTECTED.getName()
  */
-public class InputMissingJavadocMethodNoJavadoc //comment test
+public class InputMissingJavadocMethodNoJavadoc2 //comment test
 {
     public int i1;
     protected int i2;
@@ -12,8 +12,8 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
 
     public void foo1() {} // violation
     protected void foo2() {} // violation
-    void foo3() {} // violation
-    private void foo4() {} // violation
+    void foo3() {} // ok
+    private void foo4() {} // ok
 
     protected class ProtectedInner {
         public int i1;
@@ -23,8 +23,8 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
 
         public void foo1() {} // violation
         protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 
     class PackageInner {
@@ -33,10 +33,10 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // ok
+        protected void foo2() {} // ok
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 
     private class PrivateInner {
@@ -45,23 +45,23 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // ok
+        protected void foo2() {} // ok
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 }
 
-class PackageClass {
+class PackageClass2 {
     public int i1;
     protected int i2;
     int i3;
     private int i4;
 
-    public void foo1() {} // violation
-    protected void foo2() {} // violation
-    void foo3() {} // violation
-    private void foo4() {} // violation
+    public void foo1() {} // ok
+    protected void foo2() {} // ok
+    void foo3() {} // ok
+    private void foo4() {} // ok
 
     public class PublicInner {
         public int i1;
@@ -69,10 +69,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // ok
+        protected void foo2() {} // ok
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 
     protected class ProtectedInner {
@@ -81,10 +81,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // ok
+        protected void foo2() {} // ok
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 
     class PackageInner {
@@ -93,10 +93,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // ok
+        protected void foo2() {} // ok
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 
     private class PrivateInner {
@@ -105,10 +105,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {} // violation
-        protected void foo2() {} // violation
-        void foo3() {} // violation
-        private void foo4() {} // violation
+        public void foo1() {} // ok
+        protected void foo2() {} // ok
+        void foo3() {} // ok
+        private void foo4() {} // ok
     }
 
     class IgnoredName {
@@ -119,5 +119,5 @@ class PackageClass {
     }
 
     /**/
-    void methodWithTwoStarComment() {} // violation
+    void methodWithTwoStarComment() {} // ok
 }
