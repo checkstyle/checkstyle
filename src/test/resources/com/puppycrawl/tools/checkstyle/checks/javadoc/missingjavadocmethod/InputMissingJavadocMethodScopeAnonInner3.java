@@ -10,16 +10,16 @@ import javax.swing.JButton;
 /**
  * Tests for anonymous inner types
  */
-public class InputMissingJavadocMethodScopeAnonInner
+public class InputMissingJavadocMethodScopeAnonInner3
 {
     /**
-       button.
-    */
+     * button.
+     */
     private JButton mButton = new JButton();
 
     /**
-       anon inner in member variable initialization.
-    */
+     * anon inner in member variable initialization.
+     */
     private Runnable mRunnable = new Runnable() { // ok
         public void run() // ok
         {
@@ -28,9 +28,9 @@ public class InputMissingJavadocMethodScopeAnonInner
     };
 
     /**
-       anon inner in constructor.
-    */
-    InputMissingJavadocMethodScopeAnonInner() // ok
+     * anon inner in constructor.
+     */
+    InputMissingJavadocMethodScopeAnonInner3() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
         {
@@ -42,8 +42,8 @@ public class InputMissingJavadocMethodScopeAnonInner
     }
 
     /**
-       anon inner in method
-    */
+     * anon inner in method
+     */
     public void addInputAnonInner() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
