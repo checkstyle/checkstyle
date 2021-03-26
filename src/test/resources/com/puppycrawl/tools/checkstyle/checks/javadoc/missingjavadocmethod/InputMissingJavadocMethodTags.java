@@ -1,7 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-//Test case file for checkstyle.
-//Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 import java.io.IOException;
 // Tests for Javadoc tags.
@@ -344,6 +340,9 @@ enum InputJavadocMethodTagsEnum
     String someField3();
 }
 
+/* Config:
+ * scope = "private"
+ */
 /**
  * Some javadoc.
  */
