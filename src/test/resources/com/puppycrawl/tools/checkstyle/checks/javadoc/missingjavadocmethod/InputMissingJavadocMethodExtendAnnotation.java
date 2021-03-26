@@ -25,6 +25,11 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
+/* Config:
+ * allowedAnnotations = MyAnnotation, Override
+ * scope = private
+ * minLineCount = 2
+ */
 /**
  * Common superclass for {@link MultisetSetCountUnconditionallyTester} and
  * {@link MultisetSetCountConditionallyTester}. It is used by those testers to

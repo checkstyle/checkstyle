@@ -2,17 +2,18 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
  * scope = private
+ * allowMissingPropertyJavadoc = true
  */
-public class InputMissingJavadocMethodSetterGetter
+public class InputMissingJavadocMethodSetterGetter2
 {
     private int mNumber;
 
-    public void setNumber(final int number) // violation
+    public void setNumber(final int number) // ok
     {
         mNumber = number;
     }
 
-    public int getNumber() // violation
+    public int getNumber() // ok
     {
         return mNumber;
     }
@@ -48,7 +49,7 @@ public class InputMissingJavadocMethodSetterGetter
         return 666;
     }
 
-    public boolean isSomething() // violation
+    public boolean isSomething() // ok
     {
         return false;
     }
@@ -67,13 +68,13 @@ public class InputMissingJavadocMethodSetterGetter
         object.notify();
     }
 
-    InputMissingJavadocMethodSetterGetter() {} // violation
+    InputMissingJavadocMethodSetterGetter2() {} // violation
 
-    public InputMissingJavadocMethodSetterGetter(Object object) throws Exception {} // violation
+    public InputMissingJavadocMethodSetterGetter2(Object object) throws Exception {} // violation
 
 }
 
-interface TestInterface {
+interface TestInterface2 {
     void setObject(Object object); // violation
 
     Object getObject(); // violation
