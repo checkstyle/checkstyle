@@ -1672,6 +1672,26 @@ public final class TokenTypes {
     /**
      * A right curly brace (<code>}</code>).
      *
+     * <p>For example:</p>
+     * <pre>
+     * {@code
+     * void foo(){}
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; foo
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
