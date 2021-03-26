@@ -1179,6 +1179,19 @@ public final class TokenTypes {
     /**
      * The {@code void} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * {@code void literal_void(){}}
+     * </pre>
+     * <p>'void' parses as:</p>
+     * <pre>
+     * --METHOD_DEF -&gt; METHOD_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |--TYPE -&gt; TYPE
+     *    |   `--LITERAL_VOID -&gt; void
+     *    |--IDENT -&gt; literal_void
+     * </pre>
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_VOID =
