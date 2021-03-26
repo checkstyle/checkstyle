@@ -1,5 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
+/* Config:
+ * scope = "private"
+ */
 public class InputMissingJavadocMethodConstructor {
     private int field;
     public InputMissingJavadocMethodConstructor() {}
