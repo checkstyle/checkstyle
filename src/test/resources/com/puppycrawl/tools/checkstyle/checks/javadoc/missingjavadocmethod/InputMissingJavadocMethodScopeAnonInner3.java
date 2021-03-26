@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
-// Created: 2001
+// Created: 2021
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
@@ -9,12 +9,12 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 
 /* Config:
- * scope = Scope.PRIVATE.getName()
+ * scope = private
  */
 /**
  * Tests for anonymous inner types
  */
-public class InputMissingJavadocMethodScopeAnonInner
+public class InputMissingJavadocMethodScopeAnonInner3
 {
     /**
      * button.
@@ -34,7 +34,7 @@ public class InputMissingJavadocMethodScopeAnonInner
     /**
      * anon inner in constructor.
      */
-    InputMissingJavadocMethodScopeAnonInner() // ok
+    InputMissingJavadocMethodScopeAnonInner3() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
         {

@@ -1,35 +1,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
-// Created: 2001
+// Created: 2021
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
- * scope = private
+ * scope = Scope.NOTHING.getName()
  */
-public class InputMissingJavadocMethodPublicOnly // ignore - need javadoc
+public class InputMissingJavadocMethodPublicOnly2 // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
-        void method(); // ignore - when not relaxed about Javadoc
+        void method(); // ignore - when not relaxed about Javadoc // ok
 
         class InnerInnerClass // ignore - when not relaxed about Javadoc
         {
             private int mData; // ignore - when not relaxed about Javadoc
 
-            private InnerInnerClass()
+            private InnerInnerClass() // ok
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};
-                    };
+                    public void run() {}; // ok
+                };
             }
 
-            void method2() // ignore - when not relaxed about Javadoc
+            void method2() // ignore - when not relaxed about Javadoc // ok
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};
-                    };
+                    public void run() {};
+                };
             }
         }
     }
@@ -38,7 +38,7 @@ public class InputMissingJavadocMethodPublicOnly // ignore - need javadoc
     {
         private int mDiff; // ignore - when not relaxed about Javadoc
 
-        void method() // ignore - when not relaxed about Javadoc
+        void method() // ignore - when not relaxed about Javadoc // ok
         {
         }
     }
@@ -49,57 +49,57 @@ public class InputMissingJavadocMethodPublicOnly // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputMissingJavadocMethodPublicOnly(int aA)
+    private InputMissingJavadocMethodPublicOnly2(int aA) // ok
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputMissingJavadocMethodPublicOnly(String aA)
+    InputMissingJavadocMethodPublicOnly2(String aA) // ok
     {
     }
 
     // ignore - always need javadoc
-    protected InputMissingJavadocMethodPublicOnly(Object aA)
+    protected InputMissingJavadocMethodPublicOnly2(Object aA) // ok
     {
     }
 
     // ignore - always need javadoc
-    public InputMissingJavadocMethodPublicOnly(Class<Object> aA)
+    public InputMissingJavadocMethodPublicOnly2(Class<Object> aA) // ok
     {
     }
 
     // ignore - when not relaxed about Javadoc
-    private void method(int aA)
+    private void method(int aA) // ok
     {
     }
 
     // ignore - when not relaxed about Javadoc
-    void method(Long aA)
+    void method(Long aA) // ok
     {
     }
 
     // ignore - need javadoc
-    protected void method(Class<Object> aA)
+    protected void method(Class<Object> aA) // ok
     {
     }
 
     // ignore - need javadoc
-    public void method(StringBuffer aA)
+    public void method(StringBuffer aA) // ok
     {
     }
 
 
     /**
-       A param tag should not be required here when relaxed about Javadoc.
-       Writing a little documentation should not be worse than not
-       writing any documentation at all.
+     A param tag should not be required here when relaxed about Javadoc.
+     Writing a little documentation should not be worse than not
+     writing any documentation at all.
      */
     private void method(String aA)
     {
     }
 
     /**
-       This inner class has no author tag, which is OK.
+     This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor
     {

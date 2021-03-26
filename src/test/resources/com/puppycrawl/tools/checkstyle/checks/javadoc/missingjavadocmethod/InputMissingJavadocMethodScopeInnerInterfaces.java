@@ -4,6 +4,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
+/* Config:
+ * scope = public
+ */
 public class InputMissingJavadocMethodScopeInnerInterfaces
 {
     // inner interfaces with different scopes

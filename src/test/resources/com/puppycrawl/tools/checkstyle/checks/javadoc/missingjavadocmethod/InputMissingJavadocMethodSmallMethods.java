@@ -1,5 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
+/* Config:
+ * allowedAnnotations = MyAnnotation, Override
+ * scope = private
+ * minLineCount = 2
+ */
 /**
  * The following is a bad tag.
  * @mytag Hello

@@ -2,19 +2,19 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
  * scope = private
- * ignoreMethodNamesRegex = ^foo.*$
+ * ignoreMethodNamesRegex = regexThatDoesNotMatch
  */
-public class InputMissingJavadocMethodIgnoreNameRegex
+public class InputMissingJavadocMethodIgnoreNameRegex2
 {
-    private void foo() { // ok
+    private void foo() { // violation
 
     }
 
-    private void foo88() { // ok
+    private void foo88() { // violation
 
     }
 
-    private void foo2() { // ok
+    private void foo2() { // violation
         int x = 0;
         int k = x >> 2;
         String s = String.valueOf(k);
