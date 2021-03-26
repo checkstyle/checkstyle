@@ -1335,12 +1335,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]writetag[\\/]InputWriteTag2.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]writetag[\\/]InputWriteTag3.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]writetag[\\/]InputWriteTag.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexity.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexityNPE.java"/>
@@ -3096,12 +3090,6 @@
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriodAtEnd.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]summaryjavadoc[\\/]InputSummaryJavadocPeriod.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]writetag[\\/]InputWriteTag2.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]writetag[\\/]InputWriteTag3.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]writetag[\\/]InputWriteTag.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="metrics[\\/]booleanexpressioncomplexity[\\/]InputBooleanExpressionComplexity.java"/>
   <suppress id="StyleValidationCommentInInputs"
