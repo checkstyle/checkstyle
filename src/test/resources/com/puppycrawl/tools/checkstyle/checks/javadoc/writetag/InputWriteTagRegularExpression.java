@@ -1,41 +1,35 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2004
-////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
  * Config:
  * tag = &#64;author
- * tagFormat = \\S
+ * tagFormat = 0*
  */
 
 /**
  * Testing tag writing
- * @author Daniel Grenner // violation
+ * @author Daniel Grenner
  * @incomplete This class needs more code...
  * @doubletag first text
  * @doubletag second text
  * @emptytag
  */
-class InputWriteTag
-{
+public class InputWriteTagRegularExpression { // ok
     /**
      * @todo Add a constructor comment
      */
-    public InputWriteTag()
+    public InputWriteTagRegularExpression() // ok
     {
     }
 
-    public void method()
+    public void method() // ok
     {
     }
 
     /**
      * @todo Add a comment
      */
-    public void anotherMethod()
+    public void anotherMethod() // ok
     {
     }
 }
