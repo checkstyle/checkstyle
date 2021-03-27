@@ -173,7 +173,9 @@ public class LineWrappingHandler {
 
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
-
+            if (checkForNullParameterChild(node)) {
+                continue;
+            }
             if (currentType == TokenTypes.RPAREN) {
                 logWarningMessage(node, firstNodeIndent);
             }
@@ -181,6 +183,28 @@ public class LineWrappingHandler {
                 logWarningMessage(node, currentIndent);
             }
         }
+    }
+
+    /**
+     * Checks whether the method lparen starts from a new line or parameter node has any child
+     * or not.
+     *
+     * @param node the node for which to check there is a child or not.
+     * @return true if method lparen starts from a new line or parameter has no child
+     */
+    public static boolean checkForNullParameterChild(DetailAST node) {
+        boolean result = false;
+        final int parentType = node.getParent().getType();
+        if (node.getFirstChild() == null
+                && node.getType() == TokenTypes.PARAMETERS) {
+            result = true;
+        }
+        else if (parentType == TokenTypes.METHOD_DEF
+                && node.getType() == TokenTypes.LPAREN) {
+            result = true;
+        }
+
+        return result;
     }
 
     /**
