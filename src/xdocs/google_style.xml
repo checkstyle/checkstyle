@@ -990,6 +990,13 @@
                     NoWhitespaceBefore</a>
                   <br />
                   <br />
+                  <span class="wrapper inline">
+                    <img src="images/ok_green.png" alt="" />
+                  </span>
+                  <a href="config_whitespace.html#NoWhitespaceBeforeCaseDefaultColon">
+                    NoWhitespaceBeforeCaseDefaultColon</a>
+                  <br />
+                  <br />
                   Between a type annotation and "[]" or "..." cannot be checked
                   yet and actually "NoWhitespaceBefore" configuration checks the
                   opposite for ellipsis. This will be addressed in the issue
@@ -1031,6 +1038,11 @@
                     config</a>
                   <br />
                   <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/NoWhitespaceBeforeTest.java">
+                    test</a>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Agoogle_checks.xml+repo%3Acheckstyle%2Fcheckstyle+NoWhitespaceBeforeCaseDefaultColon">
+                    config</a>
+                  <br />
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/google/checkstyle/test/chapter4formatting/rule462horizontalwhitespace/NoWhitespaceBeforeCaseDefaultColonTest.java">
                     test</a>
 
                 </td>

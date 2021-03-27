@@ -780,6 +780,7 @@
       <property name="tokens" value="METHOD_REF"/>
     </module>
     <module name="NoWhitespaceBefore"/>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="DOT"/>
       <property name="tokens" value="METHOD_REF"/>
