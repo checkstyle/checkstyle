@@ -477,12 +477,66 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (isClassMemberBlock(astType)) {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
-
             for (Integer lineNo : emptyLinesToLog) {
                 // Checkstyle counts line numbers from 0 but IDE from 1
-                log(lineNo + 1, MSG_MULTIPLE_LINES_INSIDE);
+                log(getLastElementBeforeEmptyLines(ast, lineNo), MSG_MULTIPLE_LINES_INSIDE,
+                        lineNo + 2);
             }
         }
+    }
+
+    /**
+     * Returns the element after which empty lines exist.
+     *
+     * @param ast the ast to check.
+     * @param line the empty line which gives violation.
+     * @return The DetailAST after which empty lines are present.
+     */
+    private static DetailAST getLastElementBeforeEmptyLines(DetailAST ast, int line) {
+        DetailAST travelAST = ast;
+        if (ast.getFirstChild().getLineNo() <= line) {
+            travelAST = ast.getFirstChild();
+            while (travelAST.getNextSibling() != null
+                    && travelAST.getNextSibling().getLineNo() <= line) {
+                travelAST = travelAST.getNextSibling();
+            }
+            if (travelAST.hasChildren()) {
+                travelAST = getLastElementBeforeEmptyLines(travelAST, line);
+            }
+        }
+
+        if (travelAST.getNextSibling() != null) {
+            final boolean isASTPostFix = isAstPostFixType(travelAST.getNextSibling());
+            if (isASTPostFix) {
+                // A post fix AST will always have a sibling METHOD CALL
+                // METHOD CALL will at least have two children
+                // The first first child is DOT in case of POSTFIX which have at least 2 children
+                // First child of DOT again puts us back to normal AST tree which will
+                // recurse down below from here
+                final DetailAST firstChildAfterPostFix = travelAST.getNextSibling()
+                        .getFirstChild().getFirstChild();
+                travelAST = getLastElementBeforeEmptyLines(firstChildAfterPostFix, line);
+            }
+        }
+        return travelAST;
+    }
+
+    /**
+     * Checks if ast is postfix type.
+     *
+     * @param ast the ast to check.
+     * @return true, if ast is of type postfix.
+     */
+    private static boolean isAstPostFixType(DetailAST ast) {
+        boolean isPostFix = false;
+        if (ast.getType() == TokenTypes.EXPR
+            // EXPR always has at least one child
+            && ast.getFirstChild().getType() == TokenTypes.METHOD_CALL
+            // METHOD CALL always has at two least child
+            && ast.getFirstChild().getFirstChild().getType() == TokenTypes.DOT) {
+            isPostFix = true;
+        }
+        return isPostFix;
     }
 
     /**
@@ -534,7 +588,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             int previousEmptyLineNo = emptyLines.get(0);
             for (int emptyLineNo : emptyLines) {
                 if (previousEmptyLineNo + 1 == emptyLineNo) {
-                    emptyLinesToLog.add(emptyLineNo);
+                    emptyLinesToLog.add(previousEmptyLineNo);
                 }
                 previousEmptyLineNo = emptyLineNo;
             }
