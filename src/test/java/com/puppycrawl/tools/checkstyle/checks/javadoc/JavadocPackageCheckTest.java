@@ -94,8 +94,8 @@ public class JavadocPackageCheckTest
         };
         verify(createChecker(checkConfig),
             getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
-            getPath("bothfiles"
-            + File.separator + "InputJavadocPackageBothIgnored.java"), expected);
+            getPath("bothfiles" + File.separator + "InputJavadocPackageBothIgnored.java"),
+            expected);
     }
 
     @Test
