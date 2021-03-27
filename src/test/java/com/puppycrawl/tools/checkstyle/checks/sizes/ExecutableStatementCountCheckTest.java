@@ -75,6 +75,7 @@ public class ExecutableStatementCountCheckTest
             "71:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "80:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "83:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "94:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig, getPath("InputExecutableStatementCountMaxZero.java"), expected);
