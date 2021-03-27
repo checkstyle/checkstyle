@@ -75,6 +75,7 @@ public class ExecutableStatementCountCheckTest
             "71:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "80:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "83:13: " + getCheckMessage(MSG_KEY, 1, 0),
+            "94:29: " + getCheckMessage(MSG_KEY, 1, 0),
         };
 
         verify(checkConfig, getPath("InputExecutableStatementCountMaxZero.java"), expected);
@@ -208,6 +209,25 @@ public class ExecutableStatementCountCheckTest
         verify(checkConfig,
                 getNonCompilablePath("InputExecutableStatementCountRecords.java"),
                 expected);
+    }
+
+    @Test
+    public void testExecutableStatementCountLambdas() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ExecutableStatementCountCheck.class);
+        checkConfig.addAttribute("max", "1");
+        checkConfig.addAttribute("tokens", "LAMBDA");
+
+        final int max = 1;
+
+        final String[] expected = {
+            "13:22: " + getCheckMessage(MSG_KEY, 6, max),
+            "22:22: " + getCheckMessage(MSG_KEY, 2, max),
+            "23:26: " + getCheckMessage(MSG_KEY, 2, max),
+            "27:26: " + getCheckMessage(MSG_KEY, 4, max),
+        };
+
+        verify(checkConfig, getPath("InputExecutableStatementCountLambdas.java"), expected);
     }
 
 }
