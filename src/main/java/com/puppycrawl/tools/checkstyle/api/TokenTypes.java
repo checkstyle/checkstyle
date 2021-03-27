@@ -259,6 +259,24 @@ public final class TokenTypes {
      * modifiers, type, the identifier name, and an optional
      * assignment statement.
      *
+     * <p>For example:</p>
+     * <pre>
+     * final int PI = 3.14;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--FINAL -> final
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; PI
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_FLOAT -&gt; 3.14
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
