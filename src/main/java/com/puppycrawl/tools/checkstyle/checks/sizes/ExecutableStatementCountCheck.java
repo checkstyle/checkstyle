@@ -26,6 +26,7 @@ import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -51,7 +52,9 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#STATIC_INIT">
  * STATIC_INIT</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
- * COMPACT_CTOR_DEF</a>.
+ * COMPACT_CTOR_DEF</a>,
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+ * LAMBDA</a>.
  * </li>
  * </ul>
  * <p>
@@ -119,6 +122,7 @@ public final class ExecutableStatementCountCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -136,6 +140,7 @@ public final class ExecutableStatementCountCheck
             TokenTypes.STATIC_INIT,
             TokenTypes.SLIST,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LAMBDA,
         };
     }
 
@@ -162,7 +167,8 @@ public final class ExecutableStatementCountCheck
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
             case TokenTypes.COMPACT_CTOR_DEF:
-                visitMemberDef(ast);
+            case TokenTypes.LAMBDA:
+                visitContainerNode(ast);
                 break;
             case TokenTypes.SLIST:
                 visitSlist(ast);
@@ -180,7 +186,8 @@ public final class ExecutableStatementCountCheck
             case TokenTypes.INSTANCE_INIT:
             case TokenTypes.STATIC_INIT:
             case TokenTypes.COMPACT_CTOR_DEF:
-                leaveMemberDef(ast);
+            case TokenTypes.LAMBDA:
+                leaveContainerNode(ast);
                 break;
             case TokenTypes.SLIST:
                 // Do nothing
@@ -195,7 +202,7 @@ public final class ExecutableStatementCountCheck
      *
      * @param ast the token representing the member definition.
      */
-    private void visitMemberDef(DetailAST ast) {
+    private void visitContainerNode(DetailAST ast) {
         contextStack.push(context);
         context = new Context(ast);
     }
@@ -205,7 +212,7 @@ public final class ExecutableStatementCountCheck
      *
      * @param ast the token representing the member definition.
      */
-    private void leaveMemberDef(DetailAST ast) {
+    private void leaveContainerNode(DetailAST ast) {
         final int count = context.getCount();
         if (count > max) {
             log(ast, MSG_KEY, count, max);
@@ -219,33 +226,27 @@ public final class ExecutableStatementCountCheck
      * @param ast the token representing the statement list.
      */
     private void visitSlist(DetailAST ast) {
-        if (context.getAST() != null) {
-            // find member AST for the statement list
-            final DetailAST contextAST = context.getAST();
-            DetailAST parent = ast.getParent();
-            int type = parent.getType();
-            while (type != TokenTypes.METHOD_DEF
-                && !isConstructorOrInit(type)) {
-                parent = parent.getParent();
-                type = parent.getType();
-            }
-            if (parent == contextAST) {
-                context.addCount(ast.getChildCount() / 2);
-            }
+        final DetailAST contextAST = context.getAST();
+        DetailAST parent = ast.getParent();
+        while (!isContainerNode(parent)) {
+            parent = parent.getParent();
+        }
+        if (parent == contextAST) {
+            context.addCount(ast.getChildCount() / 2);
         }
     }
 
     /**
-     * Check if token type is a ctor (compact or canonical) or instance/ static initializer.
+     * Check if the node is of type ctor (compact or canonical),
+     * instance/ static initializer, method definition or lambda.
      *
-     * @param tokenType type of token we are checking
-     * @return true if token type is constructor or initializer
+     * @param node AST node we are checking
+     * @return true if node is of the given types
      */
-    private static boolean isConstructorOrInit(int tokenType) {
-        return tokenType == TokenTypes.CTOR_DEF
-                || tokenType == TokenTypes.INSTANCE_INIT
-                || tokenType == TokenTypes.STATIC_INIT
-                || tokenType == TokenTypes.COMPACT_CTOR_DEF;
+    private static boolean isContainerNode(DetailAST node) {
+        return TokenUtil.isOfType(node, TokenTypes.METHOD_DEF,
+                TokenTypes.LAMBDA, TokenTypes.CTOR_DEF, TokenTypes.INSTANCE_INIT,
+                TokenTypes.STATIC_INIT, TokenTypes.COMPACT_CTOR_DEF);
     }
 
     /**
