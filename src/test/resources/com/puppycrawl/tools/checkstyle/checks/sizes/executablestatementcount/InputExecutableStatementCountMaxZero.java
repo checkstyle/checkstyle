@@ -91,7 +91,7 @@ public class InputExecutableStatementCountMaxZero {
     /** Empty constructor */
     public InputExecutableStatementCountMaxZero(String someString) {} // ok
 
-    static Runnable r1 = () -> { // ok
+    static Runnable r1 = () -> { // violation
         String.valueOf("Hello world one!");
     };
 }
