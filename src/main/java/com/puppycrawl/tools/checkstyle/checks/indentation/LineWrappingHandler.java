@@ -173,12 +173,13 @@ public class LineWrappingHandler {
 
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
-
-            if (currentType == TokenTypes.RPAREN) {
-                logWarningMessage(node, firstNodeIndent);
-            }
-            else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
-                logWarningMessage(node, currentIndent);
+            if(currentType != TokenTypes.PARAMETERS
+                    || node.getFirstChild() != null) {
+                if (currentType == TokenTypes.RPAREN) {
+                    logWarningMessage(node, firstNodeIndent);
+                } else if (!TokenUtil.isOfType(currentType, IGNORED_LIST)) {
+                    logWarningMessage(node, currentIndent);
+                }
             }
         }
     }
