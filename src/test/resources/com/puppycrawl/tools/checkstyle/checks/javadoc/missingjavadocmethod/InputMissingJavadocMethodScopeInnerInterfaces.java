@@ -1,9 +1,8 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
+/* Config:
+ * scope = "public"
+ */
 public class InputMissingJavadocMethodScopeInnerInterfaces
 {
     // inner interfaces with different scopes

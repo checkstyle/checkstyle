@@ -3,6 +3,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
+/* Config:
+ * scope = public
+ */
 public interface InputMissingJavadocMethodInterfacePrivateMethod {
 
     private static void myPrivateMethod() {

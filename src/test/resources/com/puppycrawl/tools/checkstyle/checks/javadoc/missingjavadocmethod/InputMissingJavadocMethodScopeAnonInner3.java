@@ -10,7 +10,7 @@ import javax.swing.JButton;
 /**
  * Tests for anonymous inner types
  */
-public class InputMissingJavadocMethodScopeAnonInner
+public class InputMissingJavadocMethodScopeAnonInner3
 {
     /**
      * button.
@@ -30,7 +30,7 @@ public class InputMissingJavadocMethodScopeAnonInner
     /**
      * anon inner in constructor.
      */
-    InputMissingJavadocMethodScopeAnonInner() // ok
+    InputMissingJavadocMethodScopeAnonInner3() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
         {

@@ -5,12 +5,12 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 
 /* Config:
- * scope = "private"
+ * scope = "anoninner"
  */
 /**
  * Tests for anonymous inner types
  */
-public class InputMissingJavadocMethodScopeAnonInner
+public class InputMissingJavadocMethodScopeAnonInner2
 {
     /**
      * button.
@@ -21,7 +21,7 @@ public class InputMissingJavadocMethodScopeAnonInner
      * anon inner in member variable initialization.
      */
     private Runnable mRunnable = new Runnable() { // ok
-        public void run() // ok
+        public void run() // violation
         {
             System.identityHashCode("running");
         }
@@ -30,11 +30,11 @@ public class InputMissingJavadocMethodScopeAnonInner
     /**
      * anon inner in constructor.
      */
-    InputMissingJavadocMethodScopeAnonInner() // ok
+    InputMissingJavadocMethodScopeAnonInner2() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
         {
-            public void mouseClicked( MouseEvent aEv ) // ok
+            public void mouseClicked( MouseEvent aEv ) // violation
             {
                 System.identityHashCode("click");
             }
@@ -48,7 +48,7 @@ public class InputMissingJavadocMethodScopeAnonInner
     {
         mButton.addMouseListener( new MouseAdapter()
         {
-            public void mouseClicked( MouseEvent aEv ) // ok
+            public void mouseClicked( MouseEvent aEv ) // violation
             {
                 System.identityHashCode("click");
             }
