@@ -1,7 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator;
 
 public class InputEmptyLineSeparatorPreviousLineEmptiness {
-    private static final int MULTIPLICATOR;
+    private static final int MULTIPLICATOR ;
 
     private int base;
 
@@ -30,5 +30,14 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
 
 
         return value * MULTIPLICATOR + 1;
+    }
+
+    void foo2() {
+    }
+
+
+    void foo3() {
+
+
     }
 }
