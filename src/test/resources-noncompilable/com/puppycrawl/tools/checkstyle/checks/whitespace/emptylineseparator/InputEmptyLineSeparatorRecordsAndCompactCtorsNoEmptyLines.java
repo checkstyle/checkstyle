@@ -11,15 +11,15 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.emptylineseparator; //
  *
  */
 public class InputEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines {
-    public void foo() {
+    public void foo() { // violation
 
 
-    } // ^ violation
+    }
 
     public record MyRecord1(){
-        public MyRecord1{
+        public MyRecord1{ // violation
 
 
-        } // ^ violation
+        }
     }
 }
