@@ -11,7 +11,7 @@
             <property default-value="30" name="max" type="int">
                <description>Specify the maximum threshold allowed.</description>
             </property>
-            <property default-value="CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,COMPACT_CTOR_DEF"
+            <property default-value="CTOR_DEF,METHOD_DEF,INSTANCE_INIT,STATIC_INIT,COMPACT_CTOR_DEF,LAMBDA"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
