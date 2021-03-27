@@ -143,6 +143,8 @@
                   STATIC_INIT</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                 COMPACT_CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>
                 .
               </td>
               <td>
@@ -156,6 +158,8 @@
                   STATIC_INIT</a>
                 , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#COMPACT_CTOR_DEF">
                 COMPACT_CTOR_DEF</a>
+                , <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAMBDA">
+                  LAMBDA</a>
                 .
               </td>
               <td>3.2</td>
