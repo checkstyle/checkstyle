@@ -1770,53 +1770,25 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * while(line != null)
-     * {
-     *   process(line);
-     *   line = in.readLine();
+     * while (i &lt; 5) {
+     *     i++;
      * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_WHILE (while)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--NOT_EQUAL (!=)
-     *             |
-     *             +--IDENT (line)
-     *             +--LITERAL_NULL (null)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--METHOD_CALL (()
-     *                 |
-     *                 +--IDENT (process)
-     *                 +--ELIST
-     *                     |
-     *                     +--EXPR
-     *                         |
-     *                         +--IDENT (line)
-     *                 +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--IDENT (line)
-     *                 +--METHOD_CALL (()
-     *                     |
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (in)
-     *                         +--IDENT (readLine)
-     *                     +--ELIST
-     *                     +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--RCURLY (})
+     * LITERAL_WHILE -&gt; while
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LT -&gt; &lt;
+     *  |       |--IDENT -&gt; i
+     *  |       `--NUM_INT -&gt; 5
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--POST_INC -&gt; ++
+     *      |       `--IDENT -&gt; i
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      **/
     public static final int LITERAL_WHILE =
