@@ -1436,8 +1436,29 @@ public final class TokenTypes {
      * @see #SLIST
      **/
     public static final int RCURLY = GeneratedJavaTokenTypes.RCURLY;
+
     /**
      * The {@code ,} (comma) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * int a, b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -> VARIABLE_DEF
+     * |   |--MODIFIERS -> MODIFIERS
+     * |   |--TYPE -> TYPE
+     * |   |   `--LITERAL_INT -> int
+     * |   `--IDENT -> a
+     * |--COMMA -> ,
+     * |--VARIABLE_DEF -> VARIABLE_DEF
+     * |   |--MODIFIERS -> MODIFIERS
+     * |   |--TYPE -> TYPE
+     * |   |   `--LITERAL_INT -> int
+     * |   `--IDENT -> b
+     * |--SEMI -> ;
+     * </pre>
      *
      * @see #ARRAY_INIT
      * @see #FOR_INIT
