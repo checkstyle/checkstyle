@@ -3,9 +3,9 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 import java.io.Serializable;
 
 /* Config:
- * javaFiveCompatibility = "false"
+ * javaFiveCompatibility = "true"
  */
-public class InputMissingOverrideGoodOverrideFromOther implements IFoo1
+public class InputMissingOverrideGoodOverrideFromOtherJava5 implements IFoo1Java5
 {
     public void doFoo() {}
 
@@ -13,17 +13,17 @@ public class InputMissingOverrideGoodOverrideFromOther implements IFoo1
 
 }
 
-interface IFoo1 {
+interface IFoo1Java5 {
 
     void doFoo();
 }
 
-interface IBar1 extends IFoo1 {
+interface IBar1Java5 extends IFoo1Java5 {
 
     public void doFoo();
 }
 
-class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
+class MoreJunk1Java5 extends InputMissingOverrideGoodOverrideFromOtherJava5 {
 
     /**
      * {@inheritDoc}
@@ -37,7 +37,7 @@ class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
     @Override       // ok
     public void doFoo2() {}
 
-    class EvenMoreJunk extends MoreJunk1 implements Serializable {
+    class EvenMoreJunk extends MoreJunk1Java5 implements Serializable {
 
         /**
          * {@inheritDoc}
@@ -52,7 +52,7 @@ class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
         public void doFoo2() {}
     }
 
-    class EvenMoreMoreJunk extends MoreJunk1 implements Serializable {
+    class EvenMoreMoreJunk extends MoreJunk1Java5 implements Serializable {
 
         /**
          * {@inheritDoc}
@@ -68,7 +68,7 @@ class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
     }
 }
 
-enum Football1 implements IFoo1, IBar1 {
+enum Football1Java5 implements IFoo1Java5, IBar1Java5 {
     Detroit_Lions;
 
     public void doFoo() {}
