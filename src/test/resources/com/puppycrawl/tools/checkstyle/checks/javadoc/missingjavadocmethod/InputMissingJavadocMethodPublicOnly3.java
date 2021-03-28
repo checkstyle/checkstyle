@@ -1,31 +1,31 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
- * scope = "private"
+ * scope = "protected"
  */
-public class InputMissingJavadocMethodPublicOnly
+public class InputMissingJavadocMethodPublicOnly3
 {
     private interface InnerInterface
     {
         String CONST = "InnerInterface";
-        void method(); // violation
+        void method(); // ok
 
         class InnerInnerClass
         {
             private int mData;
 
-            private InnerInnerClass() // violation
+            private InnerInnerClass() // ok
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};
-                    };
+                    public void run() {};
+                };
             }
 
-            void method2() // violation
+            void method2() // ok
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};
-                    };
+                    public void run() {};
+                };
             }
         }
     }
@@ -34,7 +34,7 @@ public class InputMissingJavadocMethodPublicOnly
     {
         private int mDiff;
 
-        void method() // violation
+        void method() // ok
         {
         }
     }
@@ -44,27 +44,27 @@ public class InputMissingJavadocMethodPublicOnly
     protected int mDeer;
     public int aFreddo;
 
-    private InputMissingJavadocMethodPublicOnly(int aA) // violation
+    private InputMissingJavadocMethodPublicOnly3(int aA) // ok
     {
     }
 
-    InputMissingJavadocMethodPublicOnly(String aA) // violation
+    InputMissingJavadocMethodPublicOnly3(String aA) // ok
     {
     }
 
-    protected InputMissingJavadocMethodPublicOnly(Object aA) // violation
+    protected InputMissingJavadocMethodPublicOnly3(Object aA) // violation
     {
     }
 
-    public InputMissingJavadocMethodPublicOnly(Class<Object> aA) // violation
+    public InputMissingJavadocMethodPublicOnly3(Class<Object> aA) // violation
     {
     }
 
-    private void method(int aA) // violation
+    private void method(int aA) // ok
     {
     }
 
-    void method(Long aA) // violation
+    void method(Long aA) // ok
     {
     }
 
