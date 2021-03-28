@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
-// Created: 2001
+// Created: 2021
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*; // violation
 
-import java.io.*; // violation
-import java.lang.*; // violation
+import java.io.*; // ok as excluded in checks
+import java.lang.*; // ok as excluded in checks
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
@@ -22,8 +22,8 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*; // violation
-import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // ok as excluded in checks
+import static javax.swing.WindowConstants.*; // ok as excluded in checks
 import static java.io.File.createTempFile;
 import static java.io.File.*; // violation
 
@@ -43,7 +43,10 @@ import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 
-/* Config: default
+/* Config:
+ * excludes = java.io,java.lang,javax.swing.WindowConstants.*
+ * allowClassImports = false
+ * allowStaticMemberImports = false
  */
 /**
  * Test case for imports
@@ -53,7 +56,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputAvoidStarImportDefault
+class InputAvoidStarImportExcludes
 {
     /** ignore **/
     private Class mUse1 = Connection.class;
