@@ -225,6 +225,10 @@ public class JavadocTagContinuationIndentationCheck extends AbstractJavadocCheck
         final List<DetailNode> textNodes = new ArrayList<>();
         DetailNode node = JavadocUtil.getFirstChild(descriptionNode);
         while (JavadocUtil.getNextSibling(node) != null) {
+            if (node.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                DetailNode descriptionNodeChild = JavadocUtil.getFirstChild(node);
+                textNodes.addAll(getAllNewlineNodes(descriptionNodeChild));
+            }
             if (node.getType() == JavadocTokenTypes.LEADING_ASTERISK) {
                 textNodes.add(node);
             }
