@@ -1403,7 +1403,7 @@ public final class TokenTypes {
      *  |--IDENT -&gt; x
      *  `--SEMI -&gt; ;
      * </pre>
-     * 
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PRIVATE =
