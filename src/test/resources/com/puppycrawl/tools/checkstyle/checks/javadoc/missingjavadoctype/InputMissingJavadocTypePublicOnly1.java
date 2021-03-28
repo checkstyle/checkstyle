@@ -1,13 +1,19 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
-public class InputMissingJavadocTypePublicOnly // ignore - need javadoc
+/*
+ * Config:
+ * scope = private
+ * excludeScope = null
+ * skipAnnotation = Generated
+ */
+public class InputMissingJavadocTypePublicOnly1 // violation
 {
-    private interface InnerInterface // ignore - when not relaxed about Javadoc
+    private interface InnerInterface // violation
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
 
-        class InnerInnerClass // ignore - when not relaxed about Javadoc
+        class InnerInnerClass // violation
         {
             private int mData; // ignore - when not relaxed about Javadoc
 
@@ -27,7 +33,7 @@ public class InputMissingJavadocTypePublicOnly // ignore - need javadoc
         }
     }
 
-    private class InnerClass // ignore
+    private class InnerClass // violation
     {
         private int mDiff; // ignore - when not relaxed about Javadoc
 
@@ -42,22 +48,22 @@ public class InputMissingJavadocTypePublicOnly // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputMissingJavadocTypePublicOnly(int aA)
+    private InputMissingJavadocTypePublicOnly1(int aA)
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputMissingJavadocTypePublicOnly(String aA)
+    InputMissingJavadocTypePublicOnly1(String aA)
     {
     }
 
     // ignore - always need javadoc
-    protected InputMissingJavadocTypePublicOnly(Object aA)
+    protected InputMissingJavadocTypePublicOnly1(Object aA)
     {
     }
 
     // ignore - always need javadoc
-    public InputMissingJavadocTypePublicOnly(Class<Object> aA)
+    public InputMissingJavadocTypePublicOnly1(Class<Object> aA)
     {
     }
 
@@ -94,7 +100,7 @@ public class InputMissingJavadocTypePublicOnly // ignore - need javadoc
     /**
        This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor
+    public class InnerWithoutAuthor // ok
     {
 
     }

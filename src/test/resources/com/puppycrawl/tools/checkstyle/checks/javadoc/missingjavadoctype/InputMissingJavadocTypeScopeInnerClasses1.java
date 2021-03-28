@@ -1,5 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
 
+/*
+ * Config:
+ * scope = package
+ * excludeScope = null
+ * skipAnnotations = Generated
+ */
+
 /**
    Checks javadoc scoping for inner classes.
 
@@ -7,26 +14,26 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadoctype;
    all inner elements should not be reported as violation,
    even if they belong to the checkscope if isolated.
  */
-public class InputMissingJavadocTypeScopeInnerClasses
+public class InputMissingJavadocTypeScopeInnerClasses1 // ok
 {
-    public class InnerPublic
+    public class InnerPublic // violation
     {
-        protected class InnerProtected
+        protected class InnerProtected // violation
         {
-            class InnerPackage
+            class InnerPackage // violation
             {
                 private class InnerPrivate
                 {
                     // no javadoc required for package scope
-                    class PrivateHiddenPackage
+                    class PrivateHiddenPackage // ok
                     {
                     }
 
-                    protected class PrivateHiddenProtected
+                    protected class PrivateHiddenProtected // ok
                     {
                     }
 
-                    public class PrivateHiddenPublic
+                    public class PrivateHiddenPublic // ok
                     {
                     }
                 }
