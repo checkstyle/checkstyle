@@ -1389,6 +1389,21 @@ public final class TokenTypes {
     /**
      * The {@code private} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * private int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PRIVATE -&gt; private
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     * 
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PRIVATE =
