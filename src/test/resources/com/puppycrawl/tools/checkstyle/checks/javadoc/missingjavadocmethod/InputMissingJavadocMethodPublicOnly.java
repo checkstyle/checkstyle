@@ -77,16 +77,16 @@ public class InputMissingJavadocMethodPublicOnly
     }
 
     /**
-       A param tag should not be required here when relaxed about Javadoc.
-       Writing a little documentation should not be worse than not
-       writing any documentation at all.
+     * A param tag should not be required here when relaxed about Javadoc.
+     * Writing a little documentation should not be worse than not
+     * writing any documentation at all.
      */
     private void method(String aA)
     {
     }
 
     /**
-       This inner class has no author tag, which is OK.
+     * This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor
     {
