@@ -2380,6 +2380,46 @@ public final class TokenTypes {
      * A resource in the Java 7 try-with-resources construct.
      * This is a child of RESOURCES.
      *
+     * <p>For example:</p>
+     * <pre>
+     * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--LITERAL_TRY -> try [4:5]
+     *     |   |--RESOURCE_SPECIFICATION -> RESOURCE_SPECIFICATION [4:9]
+     *     |   |   |--LPAREN -> ( [4:9]
+     *     |   |   |--RESOURCES -> RESOURCES [4:10]
+     *     |   |   |   |--RESOURCE -> RESOURCE [4:10]
+     *     |   |   |   |   |--MODIFIERS -> MODIFIERS [4:10]
+     *     |   |   |   |   |--TYPE -> TYPE [4:10]
+     *     |   |   |   |   |   `--IDENT -> Foo [4:10]
+     *     |   |   |   |   |--IDENT -> foo [4:14]
+     *     |   |   |   |   `--ASSIGN -> = [4:18]
+     *     |   |   |   |       `--EXPR -> EXPR [4:20]
+     *     |   |   |   |           `--LITERAL_NEW -> new [4:20]
+     *     |   |   |   |               |--IDENT -> Foo [4:24]
+     *     |   |   |   |               |--LPAREN -> ( [4:27]
+     *     |   |   |   |               |--ELIST -> ELIST [4:28]
+     *     |   |   |   |               `--RPAREN -> ) [4:28]
+     *     |   |   |   |--SEMI -> ; [4:29]
+     *     |   |   |   `--RESOURCE -> RESOURCE [4:31]
+     *     |   |   |       |--MODIFIERS -> MODIFIERS [4:31]
+     *     |   |   |       |--TYPE -> TYPE [4:31]
+     *     |   |   |       |   `--IDENT -> Bar [4:31]
+     *     |   |   |       |--IDENT -> bar [4:35]
+     *     |   |   |       `--ASSIGN -> = [4:39]
+     *     |   |   |           `--EXPR -> EXPR [4:41]
+     *     |   |   |               `--LITERAL_NEW -> new [4:41]
+     *     |   |   |                   |--IDENT -> Bar [4:45]
+     *     |   |   |                   |--LPAREN -> ( [4:48]
+     *     |   |   |                   |--ELIST -> ELIST [4:49]
+     *     |   |   |                   `--RPAREN -> ) [4:49]
+     *     |   |   `--RPAREN -> ) [4:50]
+     *     |   `--SLIST -> { [4:52]
+     *     |       `--RCURLY -> } [4:54]
+     * </pre>
+     *
      * @see #RESOURCES
      * @see #RESOURCE_SPECIFICATION
      **/
