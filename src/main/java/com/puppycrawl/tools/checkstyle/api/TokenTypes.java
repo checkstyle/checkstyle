@@ -2602,24 +2602,26 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * (quantity == 1) ? "": "s"
+     * String variable=(quantity==1)?"true":"false";
      * </pre>
-     * <p>
-     * parses as:
-     * </p>
+     * <p>parses as:</p>
      * <pre>
-     * +--QUESTION (?)
-     *     |
-     *     +--LPAREN (()
-     *     +--EQUAL (==)
-     *         |
-     *         +--IDENT (quantity)
-     *         +--NUM_INT (1)
-     *     +--RPAREN ())
-     *     +--STRING_LITERAL ("")
-     *     +--COLON (:)
-     *     +--STRING_LITERAL ("s")
-     * </pre>
+     * |--TYPE -&gt; TYPE
+     * |   `--IDENT -&gt; String
+     * |--IDENT -&gt; variable
+     *     `--ASSIGN -&gt; =
+     *     `--EXPR -&gt; EXPR
+     *     `--QUESTION -&gt; ?
+     *  |--LPAREN -&gt; (
+     *  |--EQUAL -&gt; ==
+     *  |   |--IDENT -&gt; quantity
+     *  |   `--NUM_INT -&gt; 1
+     *  |--RPAREN -&gt; )
+     *  |--STRING_LITERAL -&gt; "true"
+     *  |--COLON -&gt; :
+     *      `--STRING_LITERAL -&gt; "false"
+     *  --SEMI -&gt; ;
+   </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">Java
