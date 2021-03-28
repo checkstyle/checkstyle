@@ -4051,6 +4051,16 @@ public final class TokenTypes {
      *         |
      *         +--COMMENT_CONTENT
      * </pre>
+     *
+     * <p>For example:</p>
+     * <pre>
+     * // Comment content
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * SINGLE_LINE_COMMENT -&gt; //
+     *  `--COMMENT_CONTENT -&gt;  Comment Content\n
+     * </pre>
      */
     public static final int SINGLE_LINE_COMMENT =
             GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT;
