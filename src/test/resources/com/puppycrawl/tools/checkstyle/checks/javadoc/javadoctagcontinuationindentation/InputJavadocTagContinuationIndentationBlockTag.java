@@ -86,18 +86,24 @@ public class InputJavadocTagContinuationIndentationBlockTag {
      * if the commandline is initially null, the function is a noop
      * otherwise the function append to the commandline arguments concerning
      * <ul> // violation, not correctly indented
-     * <li> // ok, inside a HTML element
-     * cvs package // ok, inside a HTML element
-     * </li> // ok, inside a HTML element
-     * <li> // ok, inside a HTML element
-     * compression // ok, inside a HTML element
-     * </li> // ok, inside a HTML element
-     * <li> // ok, inside a HTML element
-     * quiet or reallyquiet // ok, inside a HTML element
-     * </li> // ok, inside a HTML element
-     * <li>cvsroot</li> // ok, inside a HTML element
-     * <li>noexec</li> // ok, inside a HTML element
-     * </ul> // ok, inside a HTML element
+     * <li> // violation, not correctly indented
+     * cvs package // violation, not correctly indented
+     * </li> // violation, not correctly indented
+     * <li> // violation, not correctly indented
+     * compression // violation, not correctly indented
+     * </li> // violation, not correctly indented
+     * <li> // violation, not correctly indented
+     * quiet or reallyquiet // violation, not correctly indented
+     * </li> // violation, not correctly indented
+     * <li>cvsroot</li> // violation, not correctly indented
+     * <li>noexec</li> // violation, not correctly indented
+     *     <li>
+     *     another item // ok
+     *     </li>
+     *     <li> yet another item </li> // ok
+     * </ul> // violation, not correctly indented
+     * some text <i>word</i> more text. // violation
+     *     some text <i>word</i> more text. // ok
      */
     public String regressionNestedHtml(CharSequence c) {
         return "";
