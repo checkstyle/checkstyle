@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 /* Config:
- * javaFiveCompatibility = "false"
+ * javaFiveCompatibility = "true"
  */
-public class InputMissingOverrideBadOverrideFromObject
+public class InputMissingOverrideBadOverrideFromObjectJava5
 {
     /**
      * {@inheritDoc}
@@ -32,7 +32,7 @@ public class InputMissingOverrideBadOverrideFromObject
     }
 }
 
-interface HashEq2 {
+interface HashEq2Java5 {
 
     /**
      * {@inheritDoc}
@@ -40,7 +40,7 @@ interface HashEq2 {
     public int hashCode();      // violation
 }
 
-enum enum3 {
+enum enum3Java5 {
     B;
 
     /**
