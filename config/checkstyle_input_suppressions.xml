@@ -733,8 +733,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="header[\\/]regexpheader[\\/]InputRegexpHeaderSmallHeader.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]avoidstarimport[\\/]InputAvoidStarImportDefault.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportNestedClass.java"/>
@@ -2659,8 +2657,6 @@
             files="header[\\/]regexpheader[\\/]InputRegexpHeaderMulti6.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="header[\\/]regexpheader[\\/]InputRegexpHeaderSmallHeader.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]avoidstarimport[\\/]InputAvoidStarImportDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]avoidstaticimport[\\/]InputAvoidStaticImportDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"

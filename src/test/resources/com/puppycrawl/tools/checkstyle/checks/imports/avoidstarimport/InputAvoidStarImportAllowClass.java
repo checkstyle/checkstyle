@@ -1,13 +1,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Test case file for checkstyle.
-// Created: 2001
+// Created: 2021
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*; // violation
+import com.puppycrawl.tools.checkstyle.checks.imports.*; // ok as all class star imports allowed
 
-import java.io.*; // violation
-import java.lang.*; // violation
+import java.io.*; // ok as all class star imports allowed
+import java.lang.*; // ok as all class star imports allowed
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
@@ -43,7 +43,9 @@ import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 
-/* Config: default
+/* Config:
+ * allowClassImports = true
+ * allowStaticMemberImports = false
  */
 /**
  * Test case for imports
@@ -53,7 +55,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
  * @author Michael Studman
  * @see Calendar Should avoid unused import for Calendar
  **/
-class InputAvoidStarImportDefault
+class InputAvoidStarImportAllowClass
 {
     /** ignore **/
     private Class mUse1 = Connection.class;
