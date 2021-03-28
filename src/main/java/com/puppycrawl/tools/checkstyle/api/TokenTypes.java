@@ -1419,6 +1419,20 @@ public final class TokenTypes {
 
     /**
      * The {@code protected} keyword.
+     * <p>For example:</p>
+     * <pre>
+     * protected int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PROTECTED -&gt; protected
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #MODIFIERS
      **/
