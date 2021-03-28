@@ -432,27 +432,22 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *   public interface MyInterface
-     *   {
-     *   }
+     * public interface MyInterface {
      *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--INTERFACE_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--LITERAL_INTERFACE (interface)
-     *     +--IDENT (MyInterface)
-     *     +--EXTENDS_CLAUSE
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--RCURLY (})
+     * INTERFACE_DEF -&gt; INTERFACE_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_INTERFACE -&gt; interface
+     * |--IDENT -&gt; MyInterface
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
