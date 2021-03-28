@@ -2602,23 +2602,27 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * (quantity == 1) ? "": "s"
+     * String variable=(quantity==1)?"true":"false";
      * </pre>
-     * <p>
-     * parses as:
-     * </p>
+     * <p>parses as:</p>
      * <pre>
-     * +--QUESTION (?)
-     *     |
-     *     +--LPAREN (()
-     *     +--EQUAL (==)
-     *         |
-     *         +--IDENT (quantity)
-     *         +--NUM_INT (1)
-     *     +--RPAREN ())
-     *     +--STRING_LITERAL ("")
-     *     +--COLON (:)
-     *     +--STRING_LITERAL ("s")
+     * |--VARIABLE_DEF -> VARIABLE_DEF
+     * |   |--MODIFIERS -> MODIFIERS
+     * |   |--TYPE -> TYPE
+     * |   |   `--IDENT -> String
+     * |   |--IDENT -> variable
+     * |   `--ASSIGN -> =
+     * |       `--EXPR -> EXPR
+     * |           `--QUESTION -> ?
+     * |               |--LPAREN -> (
+     * |               |--EQUAL -> ==
+     * |               |   |--IDENT -> quantity
+     * |               |   `--NUM_INT -> 1
+     * |               |--RPAREN -> )
+     * |               |--STRING_LITERAL -> "true"
+     * |               |--COLON -> :
+     * |               `--STRING_LITERAL -> "false"
+     * |--SEMI -> ;
      * </pre>
      *
      * @see <a
