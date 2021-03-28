@@ -3,13 +3,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
  *
- * minLineCount = 2
- * allowedAnnotations = Override
- * scope = public
- * excludeScope = null
- * allowMissingPropertyJavadoc = false
- * ignoreMethodNamesRegex = null
- * tokens = {METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF}
+ * minLineCount = "2"
+ * allowedAnnotations = "Override"
+ * scope = "public"
+ * excludeScope = "null"
+ * allowMissingPropertyJavadoc = "false"
+ * ignoreMethodNamesRegex = "null"
+ * tokens = "{METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF}"
  */
 public class InputMissingJavadocMethodRecordsAndCtorsMinLineCount {
     public record MyRecord(Integer number) {

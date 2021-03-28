@@ -2,8 +2,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 /* Config:
  * scope = "private"
+ * excludeScope = "protected"
  */
-public class InputMissingJavadocMethodNoJavadoc //comment test
+public class InputMissingJavadocMethodNoJavadoc3 //comment test
 {
     public int i1;
     protected int i2;
@@ -11,7 +12,7 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
     private int i4;
 
     public void foo1() {} // violation
-    protected void foo2() {} // violation
+    protected void foo2() {} // ok
     void foo3() {} // violation
     private void foo4() {} // violation
 
@@ -22,7 +23,7 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -34,7 +35,7 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -46,20 +47,20 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
 }
 
-class PackageClass {
+class PackageClass3 {
     public int i1;
     protected int i2;
     int i3;
     private int i4;
 
     public void foo1() {} // violation
-    protected void foo2() {} // violation
+    protected void foo2() {} // ok
     void foo3() {} // violation
     private void foo4() {} // violation
 
@@ -70,7 +71,7 @@ class PackageClass {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -82,7 +83,7 @@ class PackageClass {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -94,7 +95,7 @@ class PackageClass {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
@@ -106,7 +107,7 @@ class PackageClass {
         private int i4;
 
         public void foo1() {} // violation
-        protected void foo2() {} // violation
+        protected void foo2() {} // ok
         void foo3() {} // violation
         private void foo4() {} // violation
     }
