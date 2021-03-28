@@ -2380,6 +2380,46 @@ public final class TokenTypes {
      * A resource in the Java 7 try-with-resources construct.
      * This is a child of RESOURCES.
      *
+     * <p>For example:</p>
+     * <pre>
+     * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_TRY -&gt; try
+     * RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *  |--LPAREN -&gt; (
+     *  |--RESOURCES -&gt; RESOURCES
+     *  |   |--RESOURCE -&gt; RESOURCE
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--IDENT -&gt; Foo
+     *  |   |   |--IDENT -&gt; foo
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       `--EXPR -&gt;
+     *  |   |           `--LITERAL_NEW -&gt; new
+     *  |   |               |--IDENT -&gt; Foo
+     *  |   |               |--LPAREN -&gt; (
+     *  |   |               |--ELIST -&gt; ELIST
+     *  |   |               `--RPAREN -&gt; )
+     *  |   |--SEMI -&gt; ;
+     *  |   `--RESOURCE -&gt; RESOURCE
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--IDENT -&gt; Bar
+     *  |       |--IDENT -&gt; bar
+     *  |       `--ASSIGN -&gt; =
+     *  |           `--EXPR -&gt; EXPR
+     *  |               `--LITERAL_NEW -&gt; new
+     *  |                   |--IDENT -&gt; Bar
+     *  |                   |--LPAREN -&gt; (
+     *  |                   |--ELIST -&gt; ELIST
+     *  |                   `--RPAREN -&gt; )
+     *  `--RPAREN -&gt; )
+     * SLIST -&gt; {
+     *  `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #RESOURCES
      * @see #RESOURCE_SPECIFICATION
      **/
