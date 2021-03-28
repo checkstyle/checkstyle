@@ -2335,6 +2335,56 @@ public final class TokenTypes {
      * A resource in the Java 7 try-with-resources construct.
      * This is a child of RESOURCES.
      *
+     * <p>For example:</p>
+     * <pre>
+     * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * +--LITERAL_TRY (try)
+     *     |
+     *     +--RESOURCE_SPECIFICATION
+     *         |
+     *         +--LPAREN (()
+     *         +--RESOURCES
+     *             |
+     *             +--RESOURCE
+     *                 |
+     *                 +--MODIFIERS
+     *                 +--TYPE
+     *                     |
+     *                     +--IDENT (Foo)
+     *                 +--IDENT (foo)
+     *                 +--ASSIGN (=)
+     *                 +--EXPR
+     *                    |
+     *                    +--LITERAL_NEW (new)
+     *                       |
+     *                       +--IDENT (Foo)
+     *                       +--LPAREN (()
+     *                       +--ELIST
+     *                       +--RPAREN ())
+     *             +--SEMI (;)
+     *             +--RESOURCE
+     *                 |
+     *                 +--MODIFIERS
+     *                 +--TYPE
+     *                     |
+     *                     +--IDENT (Bar)
+     *                 +--IDENT (bar)
+     *                 +--ASSIGN (=)
+     *                 +--EXPR
+     *                    |
+     *                    +--LITERAL_NEW (new)
+     *                       |
+     *                       +--IDENT (Bar)
+     *                       +--LPAREN (()
+     *                       +--ELIST
+     *                       +--RPAREN ())
+     *         +--RPAREN ())
+     *     +--SLIST ({)
+     *         +--RCURLY (})
+     * </pre>
      * @see #RESOURCES
      * @see #RESOURCE_SPECIFICATION
      **/
