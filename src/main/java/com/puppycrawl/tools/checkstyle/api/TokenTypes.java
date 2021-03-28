@@ -1530,6 +1530,27 @@ public final class TokenTypes {
      * The {@code interface} keyword. This token appears in
      * interface definition.
      *
+     * <p>For example:</p>
+     *
+     * <pre>
+     * public interface MyInterface {
+     *
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * INTERFACE_DEF -&gt; INTERFACE_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_INTERFACE -&gt; interface
+     * |--IDENT -&gt; MyInterface
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #INTERFACE_DEF
      **/
     public static final int LITERAL_INTERFACE =
