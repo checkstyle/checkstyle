@@ -158,54 +158,40 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--CTOR_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--IDENT (SpecialEntry)
-     *     +--LPAREN (()
-     *     +--PARAMETERS
-     *         |
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (value)
-     *         +--COMMA (,)
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--IDENT (String)
-     *             +--IDENT (text)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--DOT (.)
-     *                     |
-     *                     +--LITERAL_THIS (this)
-     *                     +--IDENT (value)
-     *                 +--IDENT (value)
-     *         +--SEMI (;)
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--DOT (.)
-     *                     |
-     *                     +--LITERAL_THIS (this)
-     *                     +--IDENT (text)
-     *                 +--IDENT (text)
-     *         +--SEMI (;)
-     *         +--RCURLY (})
+     * CTOR_DEF -&gt; CTOR_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--IDENT -&gt; SpecialEntry
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--LITERAL_INT -&gt; int
+     *  |   |   `--IDENT -&gt; value
+     *  |   |--COMMA -&gt; ,
+     *  |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--IDENT -&gt; String
+     *  |       `--IDENT -&gt; text
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--DOT -&gt; .
+     *      |   |--LITERAL_THIS -&gt; this
+     *      |       |   `--IDENT -&gt; value
+     *      |       `--IDENT -&gt; value
+     *      |--SEMI -&gt; ;
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--DOT -&gt; .
+     *      |       |   |--LITERAL_THIS -&gt; this
+     *      |       |   `--IDENT -&gt; text
+     *      |       `--IDENT -&gt; text
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #OBJBLOCK
