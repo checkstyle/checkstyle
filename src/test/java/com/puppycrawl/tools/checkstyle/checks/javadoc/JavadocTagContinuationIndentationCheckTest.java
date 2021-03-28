@@ -126,6 +126,18 @@ public class JavadocTagContinuationIndentationCheckTest
             "82: " + getCheckMessage(MSG_KEY, 4),
             "83: " + getCheckMessage(MSG_KEY, 4),
             "84: " + getCheckMessage(MSG_KEY, 4),
+            "85: " + getCheckMessage(MSG_KEY, 4),
+            "86: " + getCheckMessage(MSG_KEY, 4),
+            "87: " + getCheckMessage(MSG_KEY, 4),
+            "88: " + getCheckMessage(MSG_KEY, 4),
+            "89: " + getCheckMessage(MSG_KEY, 4),
+            "90: " + getCheckMessage(MSG_KEY, 4),
+            "91: " + getCheckMessage(MSG_KEY, 4),
+            "92: " + getCheckMessage(MSG_KEY, 4),
+            "93: " + getCheckMessage(MSG_KEY, 4),
+            "94: " + getCheckMessage(MSG_KEY, 4),
+            "95: " + getCheckMessage(MSG_KEY, 4),
+            "100: " + getCheckMessage(MSG_KEY, 4),
         };
         verify(checkConfig, getPath("InputJavadocTagContinuationIndentationBlockTag.java"),
                 expected);
