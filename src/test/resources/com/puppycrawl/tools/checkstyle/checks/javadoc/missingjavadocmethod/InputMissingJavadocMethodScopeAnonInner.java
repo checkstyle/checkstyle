@@ -13,13 +13,13 @@ import javax.swing.JButton;
 public class InputMissingJavadocMethodScopeAnonInner
 {
     /**
-       button.
-    */
+     * button.
+     */
     private JButton mButton = new JButton();
 
     /**
-       anon inner in member variable initialization.
-    */
+     * anon inner in member variable initialization.
+     */
     private Runnable mRunnable = new Runnable() { // ok
         public void run() // ok
         {
@@ -28,8 +28,8 @@ public class InputMissingJavadocMethodScopeAnonInner
     };
 
     /**
-       anon inner in constructor.
-    */
+     * anon inner in constructor.
+     */
     InputMissingJavadocMethodScopeAnonInner() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
@@ -42,8 +42,8 @@ public class InputMissingJavadocMethodScopeAnonInner
     }
 
     /**
-       anon inner in method
-    */
+     * anon inner in method
+     */
     public void addInputAnonInner() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
