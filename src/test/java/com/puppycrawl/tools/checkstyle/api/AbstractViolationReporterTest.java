@@ -88,7 +88,7 @@ public class AbstractViolationReporterTest {
 
         emptyCheck.log(1, "msgKey");
 
-        final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
+        final SortedSet<Violation> messages = emptyCheck.getMessages();
 
         assertEquals(1, messages.size(), "Amount of messages differs from expected");
         assertEquals("This is a custom message.", messages.first().getMessage(),
@@ -102,7 +102,7 @@ public class AbstractViolationReporterTest {
         emptyCheck.configure(config);
 
         emptyCheck.log(1, "msgKey", "TestParam");
-        final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
+        final SortedSet<Violation> messages = emptyCheck.getMessages();
 
         assertEquals(1, messages.size(), "Amount of messages differs from expected");
 

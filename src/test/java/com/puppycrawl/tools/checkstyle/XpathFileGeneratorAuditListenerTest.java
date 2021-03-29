@@ -37,9 +37,9 @@ import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.blocks.LeftCurlyCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.NestedForDepthCheck;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheck;
@@ -52,16 +52,16 @@ public class XpathFileGeneratorAuditListenerTest {
     /** OS specific line separator. */
     private static final String EOL = System.getProperty("line.separator");
 
-    private static final LocalizedMessage FIRST_MESSAGE = createLocalizedMessage(3, 51,
+    private static final Violation FIRST_MESSAGE = createViolation(3, 51,
             TokenTypes.LCURLY, null, LeftCurlyCheck.class);
 
-    private static final LocalizedMessage SECOND_MESSAGE = createLocalizedMessage(15, 5,
+    private static final Violation SECOND_MESSAGE = createViolation(15, 5,
             TokenTypes.METHOD_DEF, "MyModule", MethodParamPadCheck.class);
 
-    private static final LocalizedMessage THIRD_MESSAGE = createLocalizedMessage(17, 13,
+    private static final Violation THIRD_MESSAGE = createViolation(17, 13,
             TokenTypes.LITERAL_FOR, null, NestedForDepthCheck.class);
 
-    private static final LocalizedMessage FOURTH_MESSAGE = createLocalizedMessage(5, 5,
+    private static final Violation FOURTH_MESSAGE = createViolation(5, 5,
             TokenTypes.VARIABLE_DEF, "JavadocModuleId", JavadocVariableCheck.class);
 
     private final CloseAndFlushTestByteArrayOutputStream outStream =
@@ -131,8 +131,8 @@ public class XpathFileGeneratorAuditListenerTest {
         final XpathFileGeneratorAuditListener logger =
                 new XpathFileGeneratorAuditListener(out, AutomaticBean.OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
 
@@ -254,30 +254,30 @@ public class XpathFileGeneratorAuditListenerTest {
 
     private AuditEvent createAuditEvent(String fileName, int lineNumber, int columnNumber,
                                         Class<?> sourceClass) {
-        final LocalizedMessage message =
-                new LocalizedMessage(lineNumber, columnNumber, "messages.properties", null,
+        final Violation message =
+                new Violation(lineNumber, columnNumber, "messages.properties", null,
                         null, null, sourceClass, null);
 
         return new AuditEvent(this,
                 getPath(fileName), message);
     }
 
-    private AuditEvent createAuditEvent(String fileName, LocalizedMessage message) {
+    private AuditEvent createAuditEvent(String fileName, Violation message) {
         return new AuditEvent(this,
                 getPath(fileName), message);
     }
 
-    private static LocalizedMessage createLocalizedMessage(int lineNumber,
+    private static Violation createViolation(int lineNumber,
                                                                    int columnNumber, int tokenType,
                                                                    String moduleId,
                                                                    Class<?> sourceClass) {
-        return new LocalizedMessage(lineNumber, columnNumber, tokenType,
+        return new Violation(lineNumber, columnNumber, tokenType,
                 "messages.properties", null, null,
                 SeverityLevel.ERROR, moduleId, sourceClass, null);
     }
 
     private static TreeWalkerAuditEvent createTreeWalkerAuditEvent(String fileName,
-                                                                   LocalizedMessage message)
+                                                                   Violation message)
             throws Exception {
         final File file = new File(getPath(fileName));
         final FileText fileText = new FileText(
