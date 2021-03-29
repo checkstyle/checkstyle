@@ -77,16 +77,16 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final SortedSet<LocalizedMessage> process(File file, FileText fileText)
+    public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
-        final SortedSet<LocalizedMessage> messages = context.get().messages;
+        final SortedSet<Violation> messages = context.get().messages;
         context.get().fileContents = new FileContents(fileText);
         messages.clear();
         // Process only what interested in
         if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
-        final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
+        final SortedSet<Violation> result = new TreeSet<>(messages);
         messages.clear();
         return result;
     }
@@ -112,11 +112,11 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Returns the sorted set of {@link LocalizedMessage}.
+     * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link LocalizedMessage}.
+     * @return the sorted set of {@link Violation}.
      */
-    public SortedSet<LocalizedMessage> getMessages() {
+    public SortedSet<Violation> getMessages() {
         return new TreeSet<>(context.get().messages);
     }
 
@@ -191,18 +191,18 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Adds the sorted set of {@link LocalizedMessage} to the message collector.
+     * Adds the sorted set of {@link Violation} to the message collector.
      *
-     * @param messages the sorted set of {@link LocalizedMessage}.
+     * @param messages the sorted set of {@link Violation}.
      */
-    protected void addMessages(SortedSet<LocalizedMessage> messages) {
+    protected void addMessages(SortedSet<Violation> messages) {
         context.get().messages.addAll(messages);
     }
 
     @Override
     public final void log(int line, String key, Object... args) {
         context.get().messages.add(
-                new LocalizedMessage(line,
+                new Violation(line,
                         getMessageBundle(),
                         key,
                         args,
@@ -218,7 +218,7 @@ public abstract class AbstractFileSetCheck
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 context.get().fileContents.getLine(lineNo - 1), colNo, tabWidth);
         context.get().messages.add(
-                new LocalizedMessage(lineNo,
+                new Violation(lineNo,
                         col,
                         getMessageBundle(),
                         key,
@@ -237,7 +237,7 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = new TreeSet<>(context.get().messages);
+        final SortedSet<Violation> errors = new TreeSet<>(context.get().messages);
         context.get().messages.clear();
         messageDispatcher.fireErrors(fileName, errors);
     }
@@ -248,7 +248,7 @@ public abstract class AbstractFileSetCheck
     private static class FileContext {
 
         /** The sorted set for collecting messages. */
-        private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+        private final SortedSet<Violation> messages = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
