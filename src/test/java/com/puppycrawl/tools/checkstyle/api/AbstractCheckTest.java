@@ -272,17 +272,17 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         check.clearMessages();
         check.visitToken(null);
 
-        final SortedSet<LocalizedMessage> internalMessages = check.getMessages();
+        final SortedSet<Violation> internalMessages = check.getMessages();
 
         assertEquals(2, internalMessages.size(), "Internal message should only have 2");
 
-        final Iterator<LocalizedMessage> iterator = internalMessages.iterator();
+        final Iterator<Violation> iterator = internalMessages.iterator();
 
-        final LocalizedMessage firstMessage = iterator.next();
+        final Violation firstMessage = iterator.next();
         assertEquals(1, firstMessage.getLineNo(), "expected line");
         assertEquals(0, firstMessage.getColumnNo(), "expected column");
 
-        final LocalizedMessage secondMessage = iterator.next();
+        final Violation secondMessage = iterator.next();
         assertEquals(1, secondMessage.getLineNo(), "expected line");
         assertEquals(6, secondMessage.getColumnNo(), "expected column");
     }
@@ -302,11 +302,11 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         ast.setColumnNo(4);
         check.visitToken(ast);
 
-        final SortedSet<LocalizedMessage> internalMessages = check.getMessages();
+        final SortedSet<Violation> internalMessages = check.getMessages();
 
         assertEquals(1, internalMessages.size(), "Internal message should only have 1");
 
-        final LocalizedMessage firstMessage = internalMessages.iterator().next();
+        final Violation firstMessage = internalMessages.iterator().next();
         assertEquals(1, firstMessage.getLineNo(), "expected line");
         assertEquals(5, firstMessage.getColumnNo(), "expected column");
     }

@@ -38,8 +38,8 @@ import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
@@ -447,7 +447,7 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
 
     @Test
     public void testConstructorWithTreeWalkerAuditEvent() {
-        final LocalizedMessage message = new LocalizedMessage(12, 1, "messages.properties", null,
+        final Violation message = new Violation(12, 1, "messages.properties", null,
                 null, null, null, null, null);
         final TreeWalkerAuditEvent event = new TreeWalkerAuditEvent(new FileContents(fileText),
                 "InputXpathQueryGenerator", message, rootAst);
