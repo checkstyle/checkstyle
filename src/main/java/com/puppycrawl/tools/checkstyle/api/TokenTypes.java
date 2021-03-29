@@ -1596,6 +1596,21 @@ public final class TokenTypes {
     /**
      * A right curly brace (<code>}</code>).
      *
+     * <p>For example:</p>
+     * <pre>
+     * {@code
+     * public class Test{
+     *     void foo(){}
+     * } // -Right Curly Brace
+     * }
+     * </pre>
+     * <p>'}' parses as:</p>
+     * <pre>
+     * |--RCURLY -&gt; }
+     * `--SINGLE_LINE_COMMENT -&gt; //
+     *     `--COMMENT_CONTENT -&gt;  -Right Curly Brace
+     * </pre>
+     *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
