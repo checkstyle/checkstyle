@@ -541,15 +541,19 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
             fileExtensions = null;
         }
         else {
-            fileExtensions = new String[extensions.length];
-            for (int i = 0; i < extensions.length; i++) {
-                final String extension = extensions[i];
-                if (CommonUtil.startsWithChar(extension, '.')) {
-                    fileExtensions[i] = extension;
-                }
-                else {
-                    fileExtensions[i] = "." + extension;
-                }
+            doFileExt(extensions);
+        }
+    }
+
+    public void doFileExt(String[] extensions) {
+        fileExtensions = new String[extensions.length];
+        for (int i = 0; i < extensions.length; i++) {
+            final String extension = extensions[i];
+            if (CommonUtil.startsWithChar(extension, '.')) {
+                fileExtensions[i] = extension;
+            }
+            else {
+                fileExtensions[i] = "." + extension;
             }
         }
     }
