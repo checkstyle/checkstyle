@@ -2606,22 +2606,24 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--TYPE -&gt; TYPE
-     * |   `--IDENT -&gt; String
-     * |--IDENT -&gt; variable
-     *     `--ASSIGN -&gt; =
-     *     `--EXPR -&gt; EXPR
-     *     `--QUESTION -&gt; ?
-     *  |--LPAREN -&gt; (
-     *  |--EQUAL -&gt; ==
-     *  |   |--IDENT -&gt; quantity
-     *  |   `--NUM_INT -&gt; 1
-     *  |--RPAREN -&gt; )
-     *  |--STRING_LITERAL -&gt; "true"
-     *  |--COLON -&gt; :
-     *      `--STRING_LITERAL -&gt; "false"
-     *  --SEMI -&gt; ;
-   </pre>
+     * |--VARIABLE_DEF -> VARIABLE_DEF
+     * |   |--MODIFIERS -> MODIFIERS
+     * |   |--TYPE -> TYPE
+     * |   |   `--IDENT -> String
+     * |   |--IDENT -> variable
+     * |   `--ASSIGN -> =
+     * |       `--EXPR -> EXPR
+     * |           `--QUESTION -> ?
+     * |               |--LPAREN -> (
+     * |               |--EQUAL -> ==
+     * |               |   |--IDENT -> quantity
+     * |               |   `--NUM_INT -> 1
+     * |               |--RPAREN -> )
+     * |               |--STRING_LITERAL -> "true"
+     * |               |--COLON -> :
+     * |               `--STRING_LITERAL -> "false"
+     * |--SEMI -> ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.25">Java
