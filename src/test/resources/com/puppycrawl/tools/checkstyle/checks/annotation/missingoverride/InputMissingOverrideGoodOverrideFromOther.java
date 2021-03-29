@@ -2,74 +2,77 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 import java.io.Serializable;
 
-/* Config:
- * javaFiveCompatibility = "false"
- */
-public class InputMissingOverrideGoodOverrideFromOther implements IFoo1
+public class InputMissingOverrideGoodOverrideFromOther implements IFoo
 {
-    public void doFoo() {}
+    public void doFoo() { }
 
-    public void doFoo2() {}
+    public void doFoo2() { }
 
 }
 
-interface IFoo1 {
+interface IFoo {
 
     void doFoo();
 }
 
-interface IBar1 extends IFoo1 {
+interface IBar extends IFoo {
 
     public void doFoo();
 }
 
-class MoreJunk1 extends InputMissingOverrideGoodOverrideFromOther {
+class MoreJunk extends InputMissingOverrideGoodOverrideFromOther {
 
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
-    public void doFoo() {}
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override       // ok
-    public void doFoo2() {}
-
-    class EvenMoreJunk extends MoreJunk1 implements Serializable {
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override       // ok
-        public void doFoo() {}
-
-        /**
-         * {@inheritDoc}
-         */
-        @Override       // ok
-        public void doFoo2() {}
+    @Override
+    public void doFoo() {
     }
 
-    class EvenMoreMoreJunk extends MoreJunk1 implements Serializable {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void doFoo2() { }
+
+    class EvenMoreJunk extends MoreJunk implements Serializable {
 
         /**
          * {@inheritDoc}
          */
-        @java.lang.Override     // ok
-        public void doFoo() {}
+        @Override
+        public void doFoo() {
+        }
 
         /**
          * {@inheritDoc}
          */
-        @java.lang.Override     // ok
-        public void doFoo2() {}
+        @Override
+        public void doFoo2() { }
+    }
+
+    class EvenMoreMoreJunk extends MoreJunk implements Serializable {
+
+        /**
+         * {@inheritDoc}
+         */
+        @java.lang.Override
+        public void doFoo() {
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @java.lang.Override
+        public void doFoo2() { }
     }
 }
 
-enum Football1 implements IFoo1, IBar1 {
+enum Football implements IFoo, IBar {
     Detroit_Lions;
 
-    public void doFoo() {}
+    public void doFoo()
+    {
+
+    }
 }

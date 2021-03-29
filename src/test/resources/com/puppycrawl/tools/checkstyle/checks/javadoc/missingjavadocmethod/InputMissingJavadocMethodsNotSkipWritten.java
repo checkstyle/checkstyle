@@ -1,9 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-/* Config:
- * scope = "private"
- * allowedAnnotations = "MyAnnotation"
- */
 public class InputMissingJavadocMethodsNotSkipWritten {
     /**
      * Description.

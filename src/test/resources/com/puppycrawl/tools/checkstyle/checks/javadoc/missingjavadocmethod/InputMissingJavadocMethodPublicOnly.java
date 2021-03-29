@@ -1,27 +1,28 @@
+////////////////////////////////////////////////////////////////////////////////
+// Test case file for checkstyle.
+// Created: 2001
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-/* Config:
- * scope = "private"
- */
-public class InputMissingJavadocMethodPublicOnly
+public class InputMissingJavadocMethodPublicOnly // ignore - need javadoc
 {
-    private interface InnerInterface
+    private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
-        String CONST = "InnerInterface";
-        void method(); // violation
+        String CONST = "InnerInterface"; // ignore - w.n.r.a.j
+        void method(); // ignore - when not relaxed about Javadoc
 
-        class InnerInnerClass
+        class InnerInnerClass // ignore - when not relaxed about Javadoc
         {
-            private int mData;
+            private int mData; // ignore - when not relaxed about Javadoc
 
-            private InnerInnerClass() // violation
+            private InnerInnerClass()
             {
                 final Runnable r = new Runnable() {
                         public void run() {};
                     };
             }
 
-            void method2() // violation
+            void method2() // ignore - when not relaxed about Javadoc
             {
                 final Runnable r = new Runnable() {
                         public void run() {};
@@ -30,63 +31,72 @@ public class InputMissingJavadocMethodPublicOnly
         }
     }
 
-    private class InnerClass
+    private class InnerClass // ignore
     {
-        private int mDiff;
+        private int mDiff; // ignore - when not relaxed about Javadoc
 
-        void method() // violation
+        void method() // ignore - when not relaxed about Javadoc
         {
         }
     }
 
-    private int mSize;
-    int mLen;
-    protected int mDeer;
-    public int aFreddo;
+    private int mSize; // ignore - when not relaxed about Javadoc
+    int mLen; // ignore - when not relaxed about Javadoc
+    protected int mDeer; // ignore
+    public int aFreddo; // ignore
 
-    private InputMissingJavadocMethodPublicOnly(int aA) // violation
+    // ignore - need Javadoc
+    private InputMissingJavadocMethodPublicOnly(int aA)
     {
     }
 
-    InputMissingJavadocMethodPublicOnly(String aA) // violation
+    // ignore - need Javadoc when not relaxed
+    InputMissingJavadocMethodPublicOnly(String aA)
     {
     }
 
-    protected InputMissingJavadocMethodPublicOnly(Object aA) // violation
+    // ignore - always need javadoc
+    protected InputMissingJavadocMethodPublicOnly(Object aA)
     {
     }
 
-    public InputMissingJavadocMethodPublicOnly(Class<Object> aA) // violation
+    // ignore - always need javadoc
+    public InputMissingJavadocMethodPublicOnly(Class<Object> aA)
     {
     }
 
-    private void method(int aA) // violation
+    // ignore - when not relaxed about Javadoc
+    private void method(int aA)
     {
     }
 
-    void method(Long aA) // violation
+    // ignore - when not relaxed about Javadoc
+    void method(Long aA)
     {
     }
 
-    protected void method(Class<Object> aA) // violation
+    // ignore - need javadoc
+    protected void method(Class<Object> aA)
     {
     }
 
-    public void method(StringBuffer aA) // violation
+    // ignore - need javadoc
+    public void method(StringBuffer aA)
     {
     }
+
 
     /**
-     * A param tag should not be required here when relaxed about Javadoc.
-     * Writing a little documentation should not be worse than not
-     * writing any documentation at all.
+       A param tag should not be required here when relaxed about Javadoc.
+       Writing a little documentation should not be worse than not
+       writing any documentation at all.
      */
     private void method(String aA)
     {
     }
 
     /**
-     * This inner class has no author tag, which is OK.
+       This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor
     {

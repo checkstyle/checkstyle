@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////////////////
+//Test case file for checkstyle.
+//Created: 2001
+////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 import java.io.IOException;
 // Tests for Javadoc tags.
@@ -25,7 +29,7 @@ class InputJavadocMethodTags1
     /**
      * <p>missing return
      * @param aOne ignored
-     */
+     **/
     int method4(int aOne)
     {
         return aOne;
@@ -40,7 +44,7 @@ class InputJavadocMethodTags1
     /**
      * @see missing throws
      * @see need to see tags to avoid shortcut logic
-     */
+     **/
     void method6()
         throws Exception
     {
@@ -60,7 +64,7 @@ class InputJavadocMethodTags1
     /**
      * @see missing param
      * @see need to see tags to avoid shortcut logic
-     */
+     **/
     void method9(int aOne)
     {
     }
@@ -73,7 +77,7 @@ class InputJavadocMethodTags1
     /**
      * @param Unneeded parameter
      * @return also unneeded
-     */
+     **/
     void method11()
     {
     }
@@ -81,7 +85,7 @@ class InputJavadocMethodTags1
     /**
      * @return first one
      * @return duplicate
-     */
+     **/
     int method12()
     {
         return 0;
@@ -101,7 +105,7 @@ class InputJavadocMethodTags1
 
      *
      * @param aFive
-     */
+     **/
     void method13(int aOne, int aTwo, int aThree, int aFour, int aFive)
     {
     }
@@ -142,7 +146,7 @@ class InputJavadocMethodTags1
      *
      * @throws java.io.IOException if A happens
      * @throws java.io.IOException if B happens
-     */
+     **/
     void method15()
        throws java.io.IOException
     {
@@ -340,9 +344,6 @@ enum InputJavadocMethodTagsEnum
     String someField3();
 }
 
-/* Config:
- * scope = "private"
- */
 /**
  * Some javadoc.
  */

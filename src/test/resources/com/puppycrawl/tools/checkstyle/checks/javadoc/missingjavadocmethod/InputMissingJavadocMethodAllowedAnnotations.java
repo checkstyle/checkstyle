@@ -1,9 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-/* Config:
- * allowedAnnotations = "Override, ThisIsOk, \t\n\t ThisIsOkToo"
- * scope = "private"
- */
 /**
  * Some javadoc.
  */

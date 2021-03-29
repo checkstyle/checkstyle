@@ -1,80 +1,77 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-/* Config:
- * scope = "private"
- */
 public class InputMissingJavadocMethodSetterGetter
 {
     private int mNumber;
 
-    public void setNumber(final int number) // violation
+    public void setNumber(final int number)
     {
         mNumber = number;
     }
 
-    public int getNumber() // violation
+    public int getNumber()
     {
         return mNumber;
     }
 
-    public void setNumber1() // violation
+    public void setNumber1()
     {
         mNumber = mNumber;
     }
 
-    public void setNumber2(int number) // violation
+    public void setNumber2(int number)
     {
         mNumber = number;
         firePropertyChanged();
     }
 
-    public void getNumber2() // violation
+    public void getNumber2()
     {
     }
 
-    public int getCost1(int forMe) // violation
-    {
-        return 666;
-    }
-
-    public int getCost2() // violation
-    {
-        mNumber = 4;
-        return 666;
-    }
-
-    public int getCost3() throws Exception // violation
+    public int getCost1(int forMe)
     {
         return 666;
     }
 
-    public boolean isSomething() // violation
+    public int getCost2()
+    {
+            mNumber = 4;
+        return 666;
+    }
+
+    public int getCost3() throws Exception
+    {
+        return 666;
+    }
+
+    public boolean isSomething()
     {
         return false;
     }
 
-    private void firePropertyChanged(){} // violation
+    private void firePropertyChanged(){}
 
-    Object setObject(Object object) { // violation
+    Object setObject(Object object) {
         return new Object();
     }
 
-    Object getNext() { // violation
+    Object getNext() {
         throw new UnsupportedOperationException();
     }
 
-    public void setWithoutAssignment(Object object) { // violation
+    public void setWithoutAssignment(Object object) {
         object.notify();
     }
 
-    InputMissingJavadocMethodSetterGetter() {} // violation
+    InputMissingJavadocMethodSetterGetter() {}
 
-    public InputMissingJavadocMethodSetterGetter(Object object) throws Exception {} // violation
+    public InputMissingJavadocMethodSetterGetter(Object object) throws Exception {}
 
 }
 
 interface TestInterface {
-    void setObject(Object object); // violation
+    void setObject(Object object);
 
-    Object getObject(); // violation
+    Object getObject();
 }

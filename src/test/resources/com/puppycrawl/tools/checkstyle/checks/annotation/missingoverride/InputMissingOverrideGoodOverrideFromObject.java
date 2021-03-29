@@ -1,15 +1,13 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
-/* Config:
- * javaFiveCompatibility = "false"
- */
 public class InputMissingOverrideGoodOverrideFromObject
 {
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
-    public boolean equals(Object obj) {
+    @Override
+    public boolean equals(Object obj)
+    {
         return false;
     }
 
@@ -20,8 +18,9 @@ public class InputMissingOverrideGoodOverrideFromObject
      *
      * {@inheritDoc
      */
-    @Override       // ok
-    public int hashCode() {
+    @Override
+    public int hashCode()
+    {
         return 1;
     }
 
@@ -30,8 +29,10 @@ public class InputMissingOverrideGoodOverrideFromObject
         /**
          * {@inheritDoc}
          */
-        @Override       // ok
-        protected void finalize() throws Throwable {}
+        @Override
+        protected void finalize() throws Throwable
+        {
+        }
     }
 }
 
@@ -40,29 +41,29 @@ interface HashEq {
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public int hashCode();
 }
 
-enum enum1 {
+enum Bleh1 {
     B;
 
     /**
      * {@inheritDoc}
      */
-    @Override       // ok
+    @Override
     public String toString() {
         return "B";
     }
 }
 
-enum enum2 {
+enum Bleh22 {
     B;
 
     /**
      * {@inheritDoc}
      */
-    @java.lang.Override     // ok
+    @java.lang.Override
     public String toString() {
         return "B";
     }

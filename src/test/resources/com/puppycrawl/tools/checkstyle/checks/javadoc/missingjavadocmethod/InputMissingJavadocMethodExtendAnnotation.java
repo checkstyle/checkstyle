@@ -25,17 +25,14 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
 
-/* Config:
- * allowedAnnotations = "MyAnnotation, Override"
- * scope = "private"
- * minLineCount = "2"
- */
 /**
  * Common superclass for {@link MultisetSetCountUnconditionallyTester} and
  * {@link MultisetSetCountConditionallyTester}. It is used by those testers to
  * test calls to the unconditional {@code setCount()} method and calls to the
  * conditional {@code setCount()} method when the expected present count is
  * correct.
+ *
+ * @author Chris Povirk
  */
 @SuppressWarnings(value = "unchecked")
 public abstract class InputMissingJavadocMethodExtendAnnotation<E>
