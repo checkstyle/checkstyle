@@ -325,9 +325,9 @@
   </rule>
   <rule ref="category/java/design.xml/ExcessiveParameterList">
     <properties>
-      <!-- The class LocalizedMessage has a constructor with many parameters by design. -->
+      <!-- The class Violation has a constructor with many parameters by design. -->
       <property name="violationSuppressXPath"
-                value="//ClassOrInterfaceDeclaration[@SimpleName='LocalizedMessage']"/>
+                value="//ClassOrInterfaceDeclaration[@SimpleName='Violation']"/>
     </properties>
   </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">

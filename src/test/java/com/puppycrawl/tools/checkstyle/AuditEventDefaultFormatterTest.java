@@ -27,14 +27,14 @@ import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class AuditEventDefaultFormatterTest {
 
     @Test
     public void testFormatFullyQualifiedModuleNameContainsCheckSuffix() {
-        final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
+        final Violation message = new Violation(1, 1, null, null, null,
                 SeverityLevel.WARNING, null, TestModuleCheck.class, "Mocked message.");
         final AuditEvent event = new AuditEvent("", "InputMockFile.java", message);
         final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
@@ -47,7 +47,7 @@ public class AuditEventDefaultFormatterTest {
 
     @Test
     public void testFormatFullyQualifiedModuleNameDoesNotContainCheckSuffix() {
-        final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
+        final Violation message = new Violation(1, 1, null, null, null,
                 SeverityLevel.WARNING, null, TestModule.class, "Mocked message.");
         final AuditEvent event = new AuditEvent("", "InputMockFile.java", message);
         final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
@@ -60,7 +60,7 @@ public class AuditEventDefaultFormatterTest {
 
     @Test
     public void testFormatModuleWithModuleId() {
-        final LocalizedMessage message = new LocalizedMessage(1, 1, null, null, null,
+        final Violation message = new Violation(1, 1, null, null, null,
                 SeverityLevel.WARNING, "ModuleId", TestModule.class, "Mocked message.");
         final AuditEvent event = new AuditEvent("", "InputMockFile.java", message);
         final AuditEventFormatter formatter = new AuditEventDefaultFormatter();
@@ -75,10 +75,10 @@ public class AuditEventDefaultFormatterTest {
         final Method calculateBufferLengthMethod =
                 Whitebox.getMethod(AuditEventDefaultFormatter.class,
                         "calculateBufferLength", AuditEvent.class, int.class);
-        final LocalizedMessage localizedMessage = new LocalizedMessage(1, 1,
+        final Violation violation = new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                 getClass(), null);
-        final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", localizedMessage);
+        final AuditEvent auditEvent = new AuditEvent(new Object(), "fileName", violation);
         final int result = (int) calculateBufferLengthMethod.invoke(null,
                 auditEvent, SeverityLevel.ERROR.ordinal());
 
