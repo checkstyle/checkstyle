@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import com.puppycrawl.tools.checkstyle.Checker;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.SortedSet;
 import java.util.TreeSet;
-
-import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
  * Provides common functionality for many FileSetChecks.
@@ -32,8 +33,8 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @noinspection NoopMethodInAbstractClass
  */
 public abstract class AbstractFileSetCheck
-    extends AbstractViolationReporter
-    implements FileSetCheck {
+        extends AbstractViolationReporter
+        implements FileSetCheck {
 
     /**
      * The check context.
@@ -42,19 +43,25 @@ public abstract class AbstractFileSetCheck
      */
     private final ThreadLocal<FileContext> context = ThreadLocal.withInitial(FileContext::new);
 
-    /** The dispatcher errors are fired to. */
+    /**
+     * The dispatcher errors are fired to.
+     */
     private MessageDispatcher messageDispatcher;
 
-    /** Specify the file type extension of files to process. */
-    private String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
+    /**
+     * Specify the file type extension of files to process.
+     */
+    private final String[] fileExtensions = CommonUtil.EMPTY_STRING_ARRAY;
 
-    /** The tab width for column reporting. */
+    /**
+     * The tab width for column reporting.
+     */
     private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
     /**
      * Called to process a file that matches the specified file extensions.
      *
-     * @param file the file to be processed
+     * @param file     the file to be processed
      * @param fileText the contents of the file.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      */
@@ -142,7 +149,7 @@ public abstract class AbstractFileSetCheck
      * Makes copy of file extensions and returns them.
      *
      * @return file extensions that identify the files that pass the
-     *     filter of this FileSetCheck.
+     * filter of this FileSetCheck.
      */
     public String[] getFileExtensions() {
         return Arrays.copyOf(fileExtensions, fileExtensions.length);
@@ -152,25 +159,19 @@ public abstract class AbstractFileSetCheck
      * Setter to specify the file type extension of files to process.
      *
      * @param extensions the set of file extensions. A missing
-     *         initial '.' character of an extension is automatically added.
+     *                   initial '.' character of an extension is automatically added.
      * @throws IllegalArgumentException is argument is null
      */
     public final void setFileExtensions(String... extensions) {
         if (extensions == null) {
             throw new IllegalArgumentException("Extensions array can not be null");
-        }
+        } else {
 
-        fileExtensions = new String[extensions.length];
-        for (int i = 0; i < extensions.length; i++) {
-            final String extension = extensions[i];
-            if (CommonUtil.startsWithChar(extension, '.')) {
-                fileExtensions[i] = extension;
-            }
-            else {
-                fileExtensions[i] = "." + extension;
-            }
+            Checker checker = new Checker();
+            checker.doFileExt(extensions);
         }
     }
+
 
     /**
      * Get tab width to report audit events with.
@@ -214,7 +215,7 @@ public abstract class AbstractFileSetCheck
 
     @Override
     public final void log(int lineNo, int colNo, String key,
-            Object... args) {
+                          Object... args) {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 context.get().fileContents.getLine(lineNo - 1), colNo, tabWidth);
         context.get().messages.add(
@@ -247,10 +248,14 @@ public abstract class AbstractFileSetCheck
      */
     private static class FileContext {
 
-        /** The sorted set for collecting messages. */
+        /**
+         * The sorted set for collecting messages.
+         */
         private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
 
-        /** The current file contents. */
+        /**
+         * The current file contents.
+         */
         private FileContents fileContents;
 
     }
