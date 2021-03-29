@@ -53,6 +53,7 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             TokenTypes.PATTERN_VARIABLE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.RECORD_COMPONENT_DEF,
+            TokenTypes.LAMBDA,
         };
 
         assertArrayEquals(expected, illegalIdentifierNameCheck.getAcceptableTokens(),
@@ -146,5 +147,21 @@ public class IllegalIdentifierNameCheckTest extends AbstractModuleTestSupport {
             };
         verify(checkConfig,
             getNonCompilablePath("InputIllegalIdentifierNameUnderscore.java"), expected);
+    }
+
+    @Test
+    public void testIllegalIdentifierNameLambda() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(IllegalIdentifierNameCheck.class);
+        final String format = "(?i)^(?!(record|yield|var|permits|sealed|_)$).+$";
+
+        final String[] expected = {
+            "11:39: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "12:40: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+            "26:9: " + getCheckMessage(MSG_INVALID_PATTERN, "yield", format),
+            "32:47: " + getCheckMessage(MSG_INVALID_PATTERN, "var", format),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputIllegalIdentifierNameLambda.java"), expected);
     }
 }
