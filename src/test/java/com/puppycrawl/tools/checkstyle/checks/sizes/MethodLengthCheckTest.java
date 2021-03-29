@@ -28,9 +28,13 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
 
 public class MethodLengthCheckTest extends AbstractModuleTestSupport {
-
+    @TempDir
+    public File temporaryFolder;
     @Override
     protected String getPackageLocation() {
         return "com/puppycrawl/tools/checkstyle/checks/sizes/methodlength";
@@ -94,8 +98,10 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
     public void testAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
+        final String pathToEmptyFile =
+                File.createTempFile("empty", ".java", temporaryFolder).getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMethodLengthModifier.java"), expected);
+        verify(checkConfig, pathToEmptyFile, expected);
     }
 
     @Test
