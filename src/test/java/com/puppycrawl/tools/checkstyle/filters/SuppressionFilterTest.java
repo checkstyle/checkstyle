@@ -37,8 +37,8 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class SuppressionFilterTest extends AbstractModuleTestSupport {
@@ -69,7 +69,7 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
         final boolean optional = false;
         final SuppressionFilter filter = createSuppressionFilter(fileName, optional);
 
-        final LocalizedMessage message = new LocalizedMessage(1, 1, null, "msg", null,
+        final Violation message = new Violation(1, 1, null, "msg", null,
                 SeverityLevel.ERROR, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "ATest.java", message);
 

@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 /**
  * Raw {@code TreeWalker} event for audit.
@@ -34,7 +34,7 @@ public class TreeWalkerAuditEvent {
     /** The file contents. */
     private final FileContents fileContents;
     /** Message associated with the event. **/
-    private final LocalizedMessage localizedMessage;
+    private final Violation violation;
     /** Root ast element. **/
     private final DetailAST rootAst;
 
@@ -43,14 +43,14 @@ public class TreeWalkerAuditEvent {
      *
      * @param fileContents contents of the file associated with the event
      * @param fileName file associated with the event
-     * @param localizedMessage the actual message
+     * @param violation the actual message
      * @param rootAst root AST element {@link DetailAST} of the file
      */
     public TreeWalkerAuditEvent(FileContents fileContents, String fileName,
-                                LocalizedMessage localizedMessage, DetailAST rootAst) {
+                                Violation violation, DetailAST rootAst) {
         this.fileContents = fileContents;
         this.fileName = fileName;
-        this.localizedMessage = localizedMessage;
+        this.violation = violation;
         this.rootAst = rootAst;
     }
 
@@ -78,8 +78,8 @@ public class TreeWalkerAuditEvent {
      *
      * @return the localized message
      */
-    public LocalizedMessage getLocalizedMessage() {
-        return localizedMessage;
+    public Violation getViolation() {
+        return violation;
     }
 
     /**
@@ -89,7 +89,7 @@ public class TreeWalkerAuditEvent {
      * @return an integer representing the line number in the file source code.
      */
     public int getLine() {
-        return localizedMessage.getLineNo();
+        return violation.getLineNo();
     }
 
     /**
@@ -98,7 +98,7 @@ public class TreeWalkerAuditEvent {
      * @return the event message
      */
     public String getMessage() {
-        return localizedMessage.getMessage();
+        return violation.getMessage();
     }
 
     /**
@@ -107,7 +107,7 @@ public class TreeWalkerAuditEvent {
      * @return the column associated with the message
      */
     public int getColumn() {
-        return localizedMessage.getColumnNo();
+        return violation.getColumnNo();
     }
 
     /**
@@ -116,7 +116,7 @@ public class TreeWalkerAuditEvent {
      * @return the column char index associated with the message
      */
     public int getColumnCharIndex() {
-        return localizedMessage.getColumnCharIndex();
+        return violation.getColumnCharIndex();
     }
 
     /**
@@ -126,7 +126,7 @@ public class TreeWalkerAuditEvent {
      *         null.
      */
     public String getModuleId() {
-        return localizedMessage.getModuleId();
+        return violation.getModuleId();
     }
 
     /**
@@ -135,7 +135,7 @@ public class TreeWalkerAuditEvent {
      * @return the name of the source for the message
      */
     public String getSourceName() {
-        return localizedMessage.getSourceName();
+        return violation.getSourceName();
     }
 
     /**
@@ -144,7 +144,7 @@ public class TreeWalkerAuditEvent {
      * @return the token type of the message
      */
     public int getTokenType() {
-        return localizedMessage.getTokenType();
+        return violation.getTokenType();
     }
 
     /**

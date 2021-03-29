@@ -33,8 +33,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 
 /**
@@ -172,8 +172,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testAddError() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation message =
+            new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                     getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
@@ -188,8 +188,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testAddErrorWithNullFileName() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
@@ -203,8 +203,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testAddErrorModuleId() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation message =
+            new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, "module",
                     getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
@@ -217,8 +217,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testAddErrorOnZeroColumns() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 0,
+        final Violation message =
+                new Violation(1, 0,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
@@ -234,8 +234,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testAddIgnored() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.IGNORE, null,
                         getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
@@ -249,8 +249,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation message =
+            new Violation(1, 1,
                 "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
@@ -264,8 +264,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, null, message);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
@@ -283,8 +283,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
         logger.fileStarted(fileStartedEvent);
 
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
@@ -300,8 +300,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent ev = new AuditEvent(this, "Test.java", message);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
@@ -317,8 +317,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
         logger.fileStarted(fileStartedEvent);
@@ -338,8 +338,8 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
         logger.fileStarted(fileStartedEvent);
 
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation message =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
         final AuditEvent errorEvent = new AuditEvent(this, "Test.java", message);

@@ -47,8 +47,8 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.GlobalStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -318,7 +318,7 @@ public class TranslationCheck extends AbstractFileSetCheck {
     private void validateUserSpecifiedLanguageCodes(Set<String> languageCodes) {
         for (String code : languageCodes) {
             if (!isValidLanguageCode(code)) {
-                final LocalizedMessage msg = new LocalizedMessage(1, TRANSLATION_BUNDLE,
+                final Violation msg = new Violation(1, TRANSLATION_BUNDLE,
                         WRONG_LANGUAGE_CODE_KEY, new Object[] {code}, getId(), getClass(), null);
                 final String exceptionMessage = String.format(Locale.ROOT,
                         "%s [%s]", msg.getMessage(), TranslationCheck.class.getSimpleName());
@@ -625,15 +625,15 @@ public class TranslationCheck extends AbstractFileSetCheck {
             args = new String[] {exception.getMessage()};
             key = "general.exception";
         }
-        final LocalizedMessage message =
-            new LocalizedMessage(
+        final Violation message =
+            new Violation(
                 0,
                 Definitions.CHECKSTYLE_BUNDLE,
                 key,
                 args,
                 getId(),
                 getClass(), null);
-        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+        final SortedSet<Violation> messages = new TreeSet<>();
         messages.add(message);
         getMessageDispatcher().fireErrors(file.getPath(), messages);
         log.debug("Exception occurred.", exception);
