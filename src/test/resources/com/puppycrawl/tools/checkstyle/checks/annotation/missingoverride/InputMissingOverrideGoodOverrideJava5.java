@@ -1,9 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 /* Config:
- * javaFiveCompatibility = "false"
+ * javaFiveCompatibility = "true"
  */
-public class InputMissingOverrideGoodOverride
+public class InputMissingOverrideGoodOverrideJava5
 {
     Runnable r = new Runnable() {
 

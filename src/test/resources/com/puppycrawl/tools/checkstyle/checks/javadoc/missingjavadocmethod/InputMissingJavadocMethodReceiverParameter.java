@@ -6,6 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.nio.ByteBuffer;
 
+/* Config:
+ * scope = "private"
+ */
 public class InputMissingJavadocMethodReceiverParameter {
 
     @Retention(RetentionPolicy.RUNTIME)
