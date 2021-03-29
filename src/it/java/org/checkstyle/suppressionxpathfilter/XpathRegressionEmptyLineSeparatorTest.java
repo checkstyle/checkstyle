@@ -122,21 +122,38 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         moduleConfig.addAttribute("allowMultipleEmptyLines", "false");
 
         final String[] expectedViolation = {
-            "12:5: " + getCheckMessage(EmptyLineSeparatorCheck.class,
-                    EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER, "METHOD_DEF"),
+            "12:25: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_AFTER, "}"),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
+        final List<String> expectedXpathQueries = Collections.singletonList(
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator4']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]",
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/RCURLY"
+        );
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator4']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]"
-                        + "/MODIFIERS",
+        runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
+    }
 
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator4']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]"
-                        + "/MODIFIERS/LITERAL_PUBLIC"
+    @Test
+    public void testFive() throws Exception {
+        final File fileToProcess = new File(
+                getPath("SuppressionXpathRegressionEmptyLineSeparator5.java")
+        );
+
+        final DefaultConfiguration moduleConfig =
+                createModuleConfig(EmptyLineSeparatorCheck.class);
+        moduleConfig.addAttribute("allowMultipleEmptyLines", "false");
+        moduleConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+
+        final String[] expectedViolation = {
+            "14:15: " + getCheckMessage(EmptyLineSeparatorCheck.class,
+                    EmptyLineSeparatorCheck.MSG_MULTIPLE_LINES_INSIDE),
+        };
+
+        final List<String> expectedXpathQueries = Collections.singletonList(
+                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator5']]"
+                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/LITERAL_TRY/SLIST"
+                        + "/SINGLE_LINE_COMMENT/COMMENT_CONTENT"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
