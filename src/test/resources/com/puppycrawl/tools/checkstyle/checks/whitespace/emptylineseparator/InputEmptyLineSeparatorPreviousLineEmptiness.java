@@ -6,7 +6,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
     private int base;
 
     static {
-        MULTIPLICATOR = 5;
+        MULTIPLICATOR = 5; // violation
 
 
     }
@@ -17,7 +17,7 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
         base = 33;
     }
 
-    public InputEmptyLineSeparatorPreviousLineEmptiness(int base) {
+    public InputEmptyLineSeparatorPreviousLineEmptiness(int base) { // violation
 
 
         this.base = base;
@@ -26,9 +26,18 @@ public class InputEmptyLineSeparatorPreviousLineEmptiness {
     public InputEmptyLineSeparatorPreviousLineEmptiness() {
     }
 
-    public static int increment(int value) {
+    public static int increment(int value) { // violation
 
 
         return value * MULTIPLICATOR + 1;
+    }
+
+    void foo2() {
+    }
+
+
+    void foo3() { // violation
+
+
     }
 }
