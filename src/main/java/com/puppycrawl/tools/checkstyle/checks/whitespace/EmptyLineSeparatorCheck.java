@@ -444,7 +444,9 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             default:
                 if (nextToken.getType() == TokenTypes.RCURLY) {
                     if (hasNotAllowedTwoEmptyLinesBefore(nextToken)) {
-                        log(ast, MSG_MULTIPLE_LINES_AFTER, ast.getText());
+                        final DetailAST result = getLastElementBeforeEmptyLines(ast,
+                                nextToken.getLineNo());
+                        log(result, MSG_MULTIPLE_LINES_AFTER, result.getText());
                     }
                 }
                 else if (!hasEmptyLineAfter(ast)) {
@@ -477,12 +479,65 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
         if (isClassMemberBlock(astType)) {
             final List<Integer> emptyLines = getEmptyLines(ast);
             final List<Integer> emptyLinesToLog = getEmptyLinesToLog(emptyLines);
-
             for (Integer lineNo : emptyLinesToLog) {
-                // Checkstyle counts line numbers from 0 but IDE from 1
-                log(lineNo + 1, MSG_MULTIPLE_LINES_INSIDE);
+                log(getLastElementBeforeEmptyLines(ast, lineNo), MSG_MULTIPLE_LINES_INSIDE);
             }
         }
+    }
+
+    /**
+     * Returns the element after which empty lines exist.
+     *
+     * @param ast the ast to check.
+     * @param line the empty line which gives violation.
+     * @return The DetailAST after which empty lines are present.
+     */
+    private static DetailAST getLastElementBeforeEmptyLines(DetailAST ast, int line) {
+        DetailAST result = ast;
+        if (ast.getFirstChild().getLineNo() <= line) {
+            result = ast.getFirstChild();
+            while (result.getNextSibling() != null
+                    && result.getNextSibling().getLineNo() <= line) {
+                result = result.getNextSibling();
+            }
+            if (result.hasChildren()) {
+                result = getLastElementBeforeEmptyLines(result, line);
+            }
+        }
+
+        if (result.getNextSibling() != null) {
+            final Optional<DetailAST> postFixNode = getPostFixNode(result.getNextSibling());
+            if (postFixNode.isPresent()) {
+                // A post fix AST will always have a sibling METHOD CALL
+                // METHOD CALL will at least have two children
+                // The first first child is DOT in case of POSTFIX which have at least 2 children
+                // First child of DOT again puts us back to normal AST tree which will
+                // recurse down below from here
+                final DetailAST firstChildAfterPostFix = postFixNode.get();
+                result = getLastElementBeforeEmptyLines(firstChildAfterPostFix, line);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Gets post fix if present, from AST.
+     *
+     * @param ast the ast to check.
+     * @return true, if ast is of type postfix.
+     */
+    private static Optional<DetailAST> getPostFixNode(DetailAST ast) {
+        Optional<DetailAST> result = Optional.empty();
+        if (ast.getType() == TokenTypes.EXPR
+            // EXPR always has at least one child
+            && ast.getFirstChild().getType() == TokenTypes.METHOD_CALL) {
+            // METHOD CALL always has at two least child
+            final DetailAST node = ast.getFirstChild().getFirstChild();
+            if (node.getType() == TokenTypes.DOT) {
+                result = Optional.of(node);
+            }
+        }
+        return result;
     }
 
     /**
@@ -534,7 +589,7 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             int previousEmptyLineNo = emptyLines.get(0);
             for (int emptyLineNo : emptyLines) {
                 if (previousEmptyLineNo + 1 == emptyLineNo) {
-                    emptyLinesToLog.add(emptyLineNo);
+                    emptyLinesToLog.add(previousEmptyLineNo);
                 }
                 previousEmptyLineNo = emptyLineNo;
             }
