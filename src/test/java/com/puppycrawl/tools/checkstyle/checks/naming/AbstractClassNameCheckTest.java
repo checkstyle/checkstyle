@@ -65,6 +65,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "^NonAbstract.+$");
         final String pattern = "^NonAbstract.+$";
         final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
+                "InputAbstractClassNameCustom", pattern),
             "14:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
             "17:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther",
@@ -100,6 +102,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
+            "14:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
+                "InputAbstractClassNameAllVariants", pattern),
             "17:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
             "20:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
@@ -119,6 +123,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expected = {
+            "11:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME,
+                "InputAbstractClassNameFormerFalsePositive", "^Abstract.+$"),
             "14:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
         };
 
