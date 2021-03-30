@@ -4,10 +4,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.*; // violation
 
-import java.io.*;
-import java.lang.*;
+import java.io.*; // violation
+import java.lang.*; // violation
 import java.sql.Connection;
 import java.util.List;
 import java.util.List;
@@ -22,10 +22,10 @@ import javax.swing.ScrollPaneLayout;
 import javax.swing.BorderFactory;
 import static java.io.File.listRoots;
 
-import static javax.swing.WindowConstants.*;
-import static javax.swing.WindowConstants.*;
+import static javax.swing.WindowConstants.*; // violation
+import static javax.swing.WindowConstants.*; // violation
 import static java.io.File.createTempFile;
-import static java.io.File.*;
+import static java.io.File.*; // violation
 
 import java.awt.Component;
 import java.awt.Graphics2D;
@@ -43,6 +43,8 @@ import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 
+/* Config: default
+ */
 /**
  * Test case for imports
  * Here's an import used only by javadoc: {@link Date}.

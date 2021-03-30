@@ -1,10 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.executablestatementcount;
 
-public class InputExecutableStatementCount {
-    public void foo() {
+/* Config:
+ * max = 0
+ */
+
+public class InputExecutableStatementCountMaxZero {
+    public void foo() { // violation
         while (true) {
             Runnable runnable = new Runnable() {
-                public void run() {
+                public void run() { // violation
                     while (true) {
                     }
                 }
@@ -14,7 +18,7 @@ public class InputExecutableStatementCount {
         }
     }
 
-    public void bar() {
+    public void bar() { // violation
         if (System.currentTimeMillis() == 0) {
             if (System.currentTimeMillis() == 0 && System.currentTimeMillis() == 0) {
             }
@@ -24,14 +28,14 @@ public class InputExecutableStatementCount {
         }
     }
 
-    public void simpleElseIf() {
+    public void simpleElseIf() { // violation
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
         } else {
         }
     }
 
-    public void stupidElseIf() {
+    public void stupidElseIf() { // violation
         if (System.currentTimeMillis() == 0) {
         } else {
             if (System.currentTimeMillis() == 0) {
@@ -45,7 +49,7 @@ public class InputExecutableStatementCount {
         }
     }
 
-    public InputExecutableStatementCount()
+    public InputExecutableStatementCountMaxZero() // violation
     {
         int i = 1;
         if (System.currentTimeMillis() == 0) {
@@ -55,7 +59,7 @@ public class InputExecutableStatementCount {
     }
 
     // STATIC_INIT
-    static {
+    static { // violation
         int i = 1;
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
@@ -64,7 +68,7 @@ public class InputExecutableStatementCount {
     }
 
     // INSTANCE_INIT
-    {
+    { // violation
         int i = 1;
         if (System.currentTimeMillis() == 0) {
         } else if (System.currentTimeMillis() == 0) {
@@ -73,10 +77,10 @@ public class InputExecutableStatementCount {
     }
 
     /** Inner */
-    public InputExecutableStatementCount(int aParam)
+    public InputExecutableStatementCountMaxZero(int aParam) // violation
     {
         Runnable runnable = new Runnable() {
-            public void run() {
+            public void run() { // violation
                 while (true) {
                 }
             }
@@ -85,9 +89,9 @@ public class InputExecutableStatementCount {
     }
 
     /** Empty constructor */
-    public InputExecutableStatementCount(String someString) {}
+    public InputExecutableStatementCountMaxZero(String someString) {} // ok
 
-    static Runnable r1 = () -> {
+    static Runnable r1 = () -> { // ok
         String.valueOf("Hello world one!");
     };
 }

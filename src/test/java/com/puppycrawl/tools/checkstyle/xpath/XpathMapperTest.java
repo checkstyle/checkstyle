@@ -31,13 +31,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import net.sf.saxon.om.NodeInfo;
 
-public class XpathMapperTest extends AbstractPathTestSupport {
+public class XpathMapperTest extends AbstractModuleTestSupport {
 
     @Override
     protected String getPackageLocation() {
@@ -971,8 +971,31 @@ public class XpathMapperTest extends AbstractPathTestSupport {
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
+    @Test
+    public void testTextBlockByItsValue() throws Exception {
+        final String xpath = "//TEXT_BLOCK_LITERAL_BEGIN[./TEXT_BLOCK_CONTENT"
+                + "[@text='\\n        &1line\\n        >2line\\n        <3line\\n        ']]";
+        final RootNode rootNode = getRootNodeForNonCompilable("InputXpathMapperTextBlock.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.VARIABLE_DEF)
+                .findFirstToken(TokenTypes.ASSIGN)
+                .findFirstToken(TokenTypes.EXPR)
+                .findFirstToken(TokenTypes.TEXT_BLOCK_LITERAL_BEGIN);
+        final DetailAST[] expected = {expectedVariableDefNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
     private RootNode getRootNode(String fileName) throws Exception {
         final File file = new File(getPath(fileName));
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+        return new RootNode(rootAst);
+    }
+
+    private RootNode getRootNodeForNonCompilable(String fileName) throws Exception {
+        final File file = new File(getNonCompilablePath(fileName));
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
         return new RootNode(rootAst);
     }

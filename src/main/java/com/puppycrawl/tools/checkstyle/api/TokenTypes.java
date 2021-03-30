@@ -73,6 +73,20 @@ public final class TokenTypes {
      * annotation and enum constant declarations.
      * Also, object blocks are children of the new keyword when defining
      * anonymous inner types.
+     * <p>For example:</p>
+     * <pre>
+     * class Test {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #LCURLY
      * @see #INSTANCE_INIT
@@ -91,6 +105,30 @@ public final class TokenTypes {
     public static final int OBJBLOCK = GeneratedJavaTokenTypes.OBJBLOCK;
     /**
      * A list of statements.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * if (c == 1) {
+     *     c = 0;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--EQUAL -&gt; ==
+     *  |       |--IDENT -&gt; c
+     *  |       `--NUM_INT -&gt; 1
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--IDENT -&gt; c
+     *      |       `--NUM_INT -&gt; 0
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #RCURLY
      * @see #EXPR
@@ -120,54 +158,40 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--CTOR_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--IDENT (SpecialEntry)
-     *     +--LPAREN (()
-     *     +--PARAMETERS
-     *         |
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (value)
-     *         +--COMMA (,)
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--IDENT (String)
-     *             +--IDENT (text)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--DOT (.)
-     *                     |
-     *                     +--LITERAL_THIS (this)
-     *                     +--IDENT (value)
-     *                 +--IDENT (value)
-     *         +--SEMI (;)
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--DOT (.)
-     *                     |
-     *                     +--LITERAL_THIS (this)
-     *                     +--IDENT (text)
-     *                 +--IDENT (text)
-     *         +--SEMI (;)
-     *         +--RCURLY (})
+     * CTOR_DEF -&gt; CTOR_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--IDENT -&gt; SpecialEntry
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--LITERAL_INT -&gt; int
+     *  |   |   `--IDENT -&gt; value
+     *  |   |--COMMA -&gt; ,
+     *  |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--IDENT -&gt; String
+     *  |       `--IDENT -&gt; text
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--DOT -&gt; .
+     *      |   |--LITERAL_THIS -&gt; this
+     *      |       |   `--IDENT -&gt; value
+     *      |       `--IDENT -&gt; value
+     *      |--SEMI -&gt; ;
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--DOT -&gt; .
+     *      |       |   |--LITERAL_THIS -&gt; this
+     *      |       |   `--IDENT -&gt; text
+     *      |       `--IDENT -&gt; text
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #OBJBLOCK
@@ -235,6 +259,24 @@ public final class TokenTypes {
      * modifiers, type, the identifier name, and an optional
      * assignment statement.
      *
+     * <p>For example:</p>
+     * <pre>
+     * final int PI = 3.14;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--FINAL -&gt; final
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; PI
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_FLOAT -&gt; 3.14
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
@@ -263,6 +305,24 @@ public final class TokenTypes {
      * or enum declaration (interfaces cannot have static initializers).  The
      * first and only child is a statement list.
      *
+     * <p>For Example:</p>
+     * <pre>
+     * static {
+     *   num = 10;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * STATIC_INIT -&gt; STATIC_INIT
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--ASSIGN -&gt; =
+     *      |       |--IDENT -&gt; num
+     *      |       `--NUM_INT -&gt; 10
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.7">Java
      * Language Specification, &sect;8.7</a>
@@ -278,6 +338,21 @@ public final class TokenTypes {
      * actual type.  This may be a primitive type, an identifier, a
      * dot which is the root of a fully qualified type, or an array of
      * any of these. The second child may be type arguments to the type.
+     *
+     * <p>For example:</p>
+     * <pre>boolean var = true;</pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; var
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_TRUE -&gt; true
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see #VARIABLE_DEF
      * @see #METHOD_DEF
@@ -343,27 +418,22 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *   public interface MyInterface
-     *   {
-     *   }
+     * public interface MyInterface {
      *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--INTERFACE_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--LITERAL_INTERFACE (interface)
-     *     +--IDENT (MyInterface)
-     *     +--EXTENDS_CLAUSE
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--RCURLY (})
+     * INTERFACE_DEF -&gt; INTERFACE_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_INTERFACE -&gt; interface
+     * |--IDENT -&gt; MyInterface
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
@@ -889,16 +959,13 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--IMPORT (import)
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (java)
-     *             +--IDENT (io)
-     *         +--IDENT (IOException)
-     *     +--SEMI (;)
+     * IMPORT -&gt; import
+     * |--DOT -&gt; .
+     * |   |--DOT -&gt; .
+     * |   |   |--IDENT -&gt; java
+     * |   |   `--IDENT -&gt; io
+     * |   `--IDENT -&gt; IOException
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a
@@ -1149,6 +1216,23 @@ public final class TokenTypes {
      * The statement terminator ({@code ;}).  Depending on the
      * context, this make occur as a sibling, a child, or not at all.
      *
+     * <p>For example:</p>
+     * <pre>
+     * for(;;);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_INIT -&gt; FOR_INIT
+     *  |--SEMI -&gt; ;
+     *  |--FOR_CONDITION -&gt; FOR_CONDITION
+     *  |--SEMI -&gt; ;
+     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  |--RPAREN -&gt; )
+     *  `--EMPTY_STAT -&gt; ;
+     * </pre>
+     *
      * @see #PACKAGE_DEF
      * @see #IMPORT
      * @see #SLIST
@@ -1166,6 +1250,19 @@ public final class TokenTypes {
     public static final int RBRACK = GeneratedJavaTokenTypes.RBRACK;
     /**
      * The {@code void} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * {@code void literal_void(){}}
+     * </pre>
+     * <p>'void' parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; literal_void
+     * </pre>
      *
      * @see #TYPE
      **/
@@ -1207,6 +1304,21 @@ public final class TokenTypes {
     /**
      * The {@code int} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_INT = GeneratedJavaTokenTypes.LITERAL_int;
@@ -1220,6 +1332,21 @@ public final class TokenTypes {
 
     /**
      * The {@code long} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public long x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_LONG -&gt; long
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #TYPE
      **/
@@ -1241,6 +1368,20 @@ public final class TokenTypes {
     public static final int IDENT = GeneratedJavaTokenTypes.IDENT;
     /**
      * The <code>&#46;</code> (dot) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * return person.name;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_RETURN -&gt; return
+     *    |--EXPR -&gt; EXPR
+     *    |   `--DOT -&gt; .
+     *    |       |--IDENT -&gt; person
+     *    |       `--IDENT -&gt; name
+     *    `--SEMI -&gt; ;
+     * </pre>
      *
      * @see FullIdent
      * @noinspection HtmlTagCanBeJavadocTag
@@ -1285,6 +1426,21 @@ public final class TokenTypes {
     /**
      * The {@code public} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PUBLIC =
@@ -1292,6 +1448,21 @@ public final class TokenTypes {
 
     /**
      * The {@code protected} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * protected int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PROTECTED -&gt; protected
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #MODIFIERS
      **/
@@ -1339,23 +1510,18 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--LITERAL_SYNCHRONIZED (synchronized)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--LITERAL_THIS (this)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--POST_INC (++)
-     *                 |
-     *                 +--IDENT (x)
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     * +--RCURLY (})
+     * |--LITERAL_SYNCHRONIZED -&gt; synchronized
+     * |   |--LPAREN -&gt; (
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_THIS -&gt; this
+     * |   |--RPAREN -&gt; )
+     * |   `--SLIST -&gt; {
+     * |       |--EXPR -&gt; EXPR
+     * |       |   `--POST_INC -&gt; ++
+     * |       |       `--IDENT -&gt; x
+     * |       |--SEMI -&gt; ;
+     * |       `--RCURLY -&gt; }
+     * `--RCURLY -&gt; }
      * </pre>
      *
      * @see #MODIFIERS
@@ -1408,6 +1574,27 @@ public final class TokenTypes {
      * The {@code interface} keyword. This token appears in
      * interface definition.
      *
+     * <p>For example:</p>
+     *
+     * <pre>
+     * public interface MyInterface {
+     *
+     * }
+     * </pre>
+     *
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * INTERFACE_DEF -&gt; INTERFACE_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_INTERFACE -&gt; interface
+     * |--IDENT -&gt; MyInterface
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #INTERFACE_DEF
      **/
     public static final int LITERAL_INTERFACE =
@@ -1429,8 +1616,29 @@ public final class TokenTypes {
      * @see #SLIST
      **/
     public static final int RCURLY = GeneratedJavaTokenTypes.RCURLY;
+
     /**
      * The {@code ,} (comma) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * int a, b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_INT -&gt; int
+     * |   `--IDENT -&gt; a
+     * |--COMMA -&gt; ,
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_INT -&gt; int
+     * |   `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see #ARRAY_INIT
      * @see #FOR_INIT
@@ -1542,7 +1750,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * if(optimistic)
+     * if (optimistic)
      * {
      *   message = "half full";
      * }
@@ -1553,35 +1761,26 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_IF (if)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--IDENT (optimistic)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--IDENT (message)
-     *                 +--STRING_LITERAL ("half full")
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     *     +--LITERAL_ELSE (else)
-     *         |
-     *         +--SLIST ({)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--ASSIGN (=)
-     *                     |
-     *                     +--IDENT (message)
-     *                     +--STRING_LITERAL ("half empty")
-     *             +--SEMI (;)
-     *             +--RCURLY (})
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--IDENT -&gt; optimistic
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       |--IDENT -&gt; message
+     *  |   |       `--STRING_LITERAL -&gt; "half full"
+     *  |   |--SEMI -&gt; ;
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_ELSE -&gt; else
+     *      `--SLIST -&gt; {
+     *          |--EXPR -&gt; EXPR
+     *          |   `--ASSIGN -&gt; =
+     *          |       |--IDENT -&gt; message
+     *          |       `--STRING_LITERAL -&gt; "half empty"
+     *          |--SEMI -&gt; ;
+     *          `--RCURLY -&gt; }
      * </pre>
      *
      * @see #LPAREN
@@ -1681,53 +1880,25 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * while(line != null)
-     * {
-     *   process(line);
-     *   line = in.readLine();
+     * while (i &lt; 5) {
+     *     i++;
      * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_WHILE (while)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--NOT_EQUAL (!=)
-     *             |
-     *             +--IDENT (line)
-     *             +--LITERAL_NULL (null)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--METHOD_CALL (()
-     *                 |
-     *                 +--IDENT (process)
-     *                 +--ELIST
-     *                     |
-     *                     +--EXPR
-     *                         |
-     *                         +--IDENT (line)
-     *                 +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--IDENT (line)
-     *                 +--METHOD_CALL (()
-     *                     |
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (in)
-     *                         +--IDENT (readLine)
-     *                     +--ELIST
-     *                     +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--RCURLY (})
+     * LITERAL_WHILE -&gt; while
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LT -&gt; &lt;
+     *  |       |--IDENT -&gt; i
+     *  |       `--NUM_INT -&gt; 5
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--POST_INC -&gt; ++
+     *      |       `--IDENT -&gt; i
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      **/
     public static final int LITERAL_WHILE =
@@ -1792,6 +1963,27 @@ public final class TokenTypes {
     public static final int LITERAL_DO = GeneratedJavaTokenTypes.LITERAL_do;
     /**
      * Literal {@code while} in do-while loop.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * do {
+     *
+     * } while (a &gt; 0);
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_DO -&gt; do
+     *    |--SLIST -&gt; {
+     *    |   `--RCURLY -&gt; }
+     *    |--DO_WHILE -&gt; while
+     *    |--LPAREN -&gt; (
+     *    |--EXPR -&gt; EXPR
+     *    |   `--GT -&gt; &gt;
+     *    |       |--IDENT -&gt; a
+     *    |       `--NUM_INT -&gt; 0
+     *    |--RPAREN -&gt; )
+     *    `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #LITERAL_DO
      */
@@ -2203,6 +2395,46 @@ public final class TokenTypes {
      * A resource in the Java 7 try-with-resources construct.
      * This is a child of RESOURCES.
      *
+     * <p>For example:</p>
+     * <pre>
+     * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_TRY -&gt; try
+     *  |--RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *  |   |--LPAREN -&gt; (
+     *  |   |--RESOURCES -&gt; RESOURCES
+     *  |   |   |--RESOURCE -&gt; RESOURCE
+     *  |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   |   `--IDENT -&gt; Foo
+     *  |   |   |   |--IDENT -&gt; foo
+     *  |   |   |   `--ASSIGN -&gt; =
+     *  |   |   |       `--EXPR -&gt; EXPR
+     *  |   |   |           `--LITERAL_NEW -&gt; new
+     *  |   |   |               |--IDENT -&gt; Foo
+     *  |   |   |               |--LPAREN -&gt; (
+     *  |   |   |               |--ELIST -&gt; ELIST
+     *  |   |   |               `--RPAREN -&gt; )
+     *  |   |   |--SEMI -&gt; ;
+     *  |   |   `--RESOURCE -&gt; RESOURCE
+     *  |   |       |--MODIFIERS -&gt; MODIFIERS
+     *  |   |       |--TYPE -&gt; TYPE
+     *  |   |       |   `--IDENT -&gt; Bar
+     *  |   |       |--IDENT -&gt; bar
+     *  |   |       `--ASSIGN -&gt; =
+     *  |   |           `--EXPR -&gt; EXPR
+     *  |   |               `--LITERAL_NEW -&gt; new
+     *  |   |                   |--IDENT -&gt; Bar
+     *  |   |                   |--LPAREN -&gt; (
+     *  |   |                   |--ELIST -&gt; ELIST
+     *  |   |                   `--RPAREN -&gt; )
+     *  |   `--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #RESOURCES
      * @see #RESOURCE_SPECIFICATION
      **/
@@ -2559,12 +2791,38 @@ public final class TokenTypes {
     /**
      * The <code>&#33;=</code> (not equal) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a != b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--NOT_EQUAL -&gt; !=
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #EXPR
      * @noinspection HtmlTagCanBeJavadocTag
      **/
     public static final int NOT_EQUAL = GeneratedJavaTokenTypes.NOT_EQUAL;
     /**
      * The {@code ==} (equal) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * return a == b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--EQUAL -&gt; ==
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #EXPR
      **/
@@ -2662,6 +2920,19 @@ public final class TokenTypes {
     /**
      * The {@code >>>} (unsigned shift right) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * a &gt;&gt;&gt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--BSR -&gt; &gt;&gt;&gt;
+     * |       |--IDENT -&gt; a
+     * |       `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.19">Java
      * Language Specification, &sect;15.19</a>
@@ -2679,6 +2950,21 @@ public final class TokenTypes {
     public static final int PLUS = GeneratedJavaTokenTypes.PLUS;
     /**
      * The {@code -} (subtraction) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * c = a - b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; c
+     * |       `--MINUS -&gt; -
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.18">Java
@@ -2980,6 +3266,18 @@ public final class TokenTypes {
      * A character literal.  This is a (possibly escaped) character
      * enclosed in single quotes.
      *
+     * <p>For example:</p>
+     * <pre>
+     * return 'a';
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --LITERAL_RETURN -&gt; return
+     *    |--EXPR -&gt; EXPR
+     *    |   `--CHAR_LITERAL -&gt; 'a'
+     *    `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.4">Java
      * Language Specification, &sect;3.10.4</a>
@@ -3121,25 +3419,19 @@ public final class TokenTypes {
      * declaration.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     *   import static java.io.IOException;
+     * import static java.io.IOException;
      * </pre>
-     *
      * <p>parses as:</p>
-     *
      * <pre>
-     * +--STATIC_IMPORT (import)
-     *     |
-     *     +--LITERAL_STATIC
-     *     +--DOT (.)
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (java)
-     *             +--IDENT (io)
-     *         +--IDENT (IOException)
-     *     +--SEMI (;)
+     * STATIC_IMPORT -&gt; import
+     * |--LITERAL_STATIC -&gt; static
+     * |--DOT -&gt; .
+     * |   |--DOT -&gt; .
+     * |   |   |--IDENT -&gt; java
+     * |   |   `--IDENT -&gt; io
+     * |   `--IDENT -&gt; IOException
+     * `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
@@ -3308,27 +3600,26 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * --LITERAL_FOR (for)
-     *    |--LPAREN (()
-     *    |--FOR_EACH_CLAUSE
-     *    |   |--VARIABLE_DEF
-     *    |   |   |--MODIFIERS
-     *    |   |   |--TYPE
-     *    |   |   |   `--LITERAL_INT (int)
-     *    |   |   `--IDENT (value)
-     *    |   |--COLON (:)
-     *    |   `--EXPR
-     *    |       `--IDENT (values
-     *    |--RPAREN ())
-     *    `--SLIST ({)
-     *        |--EXPR
-     *        |   `--METHOD_CALL (()
-     *        |       |--IDENT (doSmth)
-     *        |       |--ELIST
-     *        |       `--RPAREN ())
-     *        |--SEMI (;)
-     *        `--RCURLY (})
-     *
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_EACH_CLAUSE -&gt; FOR_EACH_CLAUSE
+     *  |   |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--LITERAL_INT -&gt; int
+     *  |   |   `--IDENT -&gt; value
+     *  |   |--COLON -&gt; :
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--IDENT -&gt; values
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--EXPR -&gt; EXPR
+     *      |   `--METHOD_CALL -&gt; (
+     *      |       |--IDENT -&gt; doSmth
+     *      |       |--ELIST -&gt; ELIST
+     *      |       `--RPAREN -&gt; )
+     *      |--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #VARIABLE_DEF
@@ -3569,39 +3860,30 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     public class Blah&lt;A, B&gt;
-     *     {
-     *     }
+     * public class MyClass&lt;A, B&gt; {
+     *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--CLASS_DEF ({)
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--LITERAL_CLASS (class)
-     *     +--IDENT (Blah)
-     *     +--TYPE_PARAMETERS
-     *         |
-     *         +--GENERIC_START (&lt;)
-     *         +--TYPE_PARAMETER
-     *             |
-     *             +--IDENT (A)
-     *         +--COMMA (,)
-     *         +--TYPE_PARAMETER
-     *             |
-     *             +--IDENT (B)
-     *         +--GENERIC_END (&gt;)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *     +--NUM_INT (1)
-     *     +--COMMA (,)
-     *     +--NUM_INT (2)
-     *     +--RCURLY (})
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; MyClass
+     * |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     * |   |--GENERIC_START -&gt; &lt;
+     * |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |   `--IDENT -&gt; A
+     * |   |--COMMA -&gt; ,
+     * |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |   `--IDENT -&gt; B
+     * |   `--GENERIC_END -&gt; &gt;
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
@@ -3621,18 +3903,29 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     A extends Collection
+     * public class MyClass &lt;A extends Collection&gt; {
+     *
+     * }
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--TYPE_PARAMETER
-     *     |
-     *     +--IDENT (A)
-     *     +--TYPE_UPPER_BOUNDS
-     *         |
-     *         +--IDENT (Collection)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; MyClass
+     * |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     * |   |--GENERIC_START -&gt; &lt;
+     * |   |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     * |   |   |--IDENT -&gt; A
+     * |   |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     * |   |       `--IDENT -&gt; Collection
+     * |   `--GENERIC_END -&gt; &gt;
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
@@ -3821,35 +4114,35 @@ public final class TokenTypes {
      * <p>Generic type bounds extension:
      * {@code class Comparable<T extends Serializable & CharSequence>}</p>
      * <pre>
-     * CLASS_DEF
-     * |--MODIFIERS
-     * |--LITERAL_CLASS (class)
-     * |--IDENT (Comparable)
-     * +--TYPE_PARAMETERS
-     *     |--GENERIC_START (&lt;)
-     *     |--TYPE_PARAMETER
-     *     |   |--IDENT (T)
-     *     |   +--TYPE_UPPER_BOUNDS (extends)
-     *     |       |--IDENT (Serializable)
-     *     |       |--TYPE_EXTENSION_AND (&amp;)
-     *     |       +--IDENT (CharSequence)
-     *     +--GENERIC_END (&gt;)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Comparable
+     * |--TYPE_PARAMETERS -&gt; TYPE_PARAMETERS
+     *     |--GENERIC_START -&gt; &lt;
+     *     |--TYPE_PARAMETER -&gt; TYPE_PARAMETER
+     *     |   |--IDENT -&gt; T
+     *     |   `--TYPE_UPPER_BOUNDS -&gt; extends
+     *     |       |--IDENT -&gt; Serializable
+     *     |       |--TYPE_EXTENSION_AND -&gt; &#38;
+     *     |       `--IDENT -&gt; CharSequence
+     *     `--GENERIC_END -&gt; &gt;
      * </pre>
      *
      * <p>Type cast extension:
-     * {@code return (CheckedFunction & Serializable) null;}</p>
+     * {@code return (Serializable & CharSequence) null;}</p>
      * <pre>
-     * LITERAL_RETURN (return)
-     * |--EXPR
-     * |   +--TYPECAST (()
-     * |       |--TYPE
-     * |       |   +--IDENT (CheckedFunction)
-     * |       |--TYPE_EXTENSION_AND (&amp;)
-     * |       |--TYPE
-     * |       |   +--IDENT (Serializable)
-     * |       |--RPAREN ())
-     * |       +--LITERAL_NULL (null)
-     * +--SEMI (;)
+     * --LITERAL_RETURN -&gt; return
+     *    |--EXPR -&gt; EXPR
+     *    |   `--TYPECAST -&gt; (
+     *    |       |--TYPE -&gt; TYPE
+     *    |       |   `--IDENT -&gt; Serializable
+     *    |       |--TYPE_EXTENSION_AND -&gt; &#38;
+     *    |       |--TYPE -&gt; TYPE
+     *    |       |   `--IDENT -&gt; CharSequence
+     *    |       |--RPAREN -&gt; )
+     *    |       `--LITERAL_NULL -&gt; null
+     *    `--SEMI -&gt; ;
      * </pre>
      *
      * @see #EXTENDS_CLAUSE
@@ -3886,18 +4179,32 @@ public final class TokenTypes {
      *         |
      *         +--COMMENT_CONTENT
      * </pre>
+     *
+     * <p>For example:</p>
+     * <pre>
+     * // Comment content
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * SINGLE_LINE_COMMENT -&gt; //
+     *  `--COMMENT_CONTENT -&gt;  Comment Content\n
+     * </pre>
      */
     public static final int SINGLE_LINE_COMMENT =
             GeneratedJavaTokenTypes.SINGLE_LINE_COMMENT;
 
     /**
      * Beginning of block comment: '/*'.
-     *
+     * <p>For example:</p>
      * <pre>
-     * +--BLOCK_COMMENT_BEGIN
-     *         |
-     *         +--COMMENT_CONTENT
-     *         +--BLOCK_COMMENT_END
+     * /&#42; Comment content
+     * &#42;/
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * --BLOCK_COMMENT_BEGIN -&gt; /&#42;
+     *    |--COMMENT_CONTENT -&gt;  Comment content\r\n
+     *    `--BLOCK_COMMENT_END -&gt; &#42;/
      * </pre>
      */
     public static final int BLOCK_COMMENT_BEGIN =
@@ -3945,18 +4252,18 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * LITERAL_IF (if)
-     *  |--LPAREN (()
-     *  |--EXPR
-     *  |   `--LITERAL_INSTANCEOF (instanceof)
-     *  |       |--IDENT (obj)
-     *  |       `--PATTERN_VARIABLE_DEF
-     *  |            |--TYPE
-     *  |            |   `--IDENT (String)
-     *  |            `--IDENT (str)
-     *  |--RPAREN ())
-     *  `--SLIST ({)
-     *      `--RCURLY (})
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_INSTANCEOF -&gt; instanceof
+     *  |       |--IDENT -&gt; obj
+     *  |       `--PATTERN_VARIABLE_DEF -&gt; PATTERN_VARIABLE_DEF
+     *  |           |--TYPE -&gt; TYPE
+     *  |           |   `--IDENT -&gt; String
+     *  |           `--IDENT -&gt; str
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #LITERAL_INSTANCEOF
@@ -3981,21 +4288,23 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * public record myRecord () {}
+     * public record MyRecord () {
+     *
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * RECORD_DEF
-     * |--MODIFIERS
-     * |   `--LITERAL_PUBLIC (public)
-     * |--LITERAL_RECORD (record)
-     * |--IDENT (myRecord)
-     * |--LPAREN (()
-     * |--RECORD_COMPONENTS
-     * |--RPAREN ())
-     * `--OBJBLOCK
-     *     |--LCURLY ({)
-     *      `--RCURLY (})
+     * RECORD_DEF -&gt; RECORD_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_RECORD -&gt; record
+     * |--IDENT -&gt; MyRecord
+     * |--LPAREN -&gt; (
+     * |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |--RPAREN -&gt; )
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @since 8.35
@@ -4013,28 +4322,28 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * RECORD_DEF
-     * |--MODIFIERS
-     * |   `--LITERAL_PUBLIC (public)
-     * |--LITERAL_RECORD (record)
-     * |--IDENT (myRecord)
-     * |--LPAREN (()
-     * |--RECORD_COMPONENTS
-     * |   |--RECORD_COMPONENT_DEF
-     * |   |   |--ANNOTATIONS
-     * |   |   |--TYPE
-     * |   |   |   `--IDENT (Comp)
-     * |   |   `--IDENT (x)
-     * |   |--COMMA (,)
-     * |   `--RECORD_COMPONENT_DEF
-     * |       |--ANNOTATIONS
-     * |       |--TYPE
-     * |       |   `--IDENT (Comp)
-     * |       `--IDENT (y)
-     * |--RPAREN ())
-     * `--OBJBLOCK
-     *      |--LCURLY ({)
-     *       `--RCURLY (})
+     * RECORD_DEF -&gt; RECORD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--LITERAL_RECORD -&gt; record
+     *  |--IDENT -&gt; myRecord
+     *  |--LPAREN -&gt; (
+     *  |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     *  |   |--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     *  |   |   |--ANNOTATIONS -&gt; ANNOTATIONS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--IDENT -&gt; Comp
+     *  |   |   `--IDENT -&gt; x
+     *  |   |--COMMA -&gt; ,
+     *  |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     *  |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--IDENT -&gt; Comp
+     *  |       `--IDENT -&gt; y
+     *  |--RPAREN -&gt; )
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @since 8.36
@@ -4049,33 +4358,35 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * public record myRecord (Comp x, Comp... comps) { }
+     * public record MyRecord(Comp x, Comp... comps) {
+     *
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * RECORD_DEF
-     * |--MODIFIERS
-     * |   `--LITERAL_PUBLIC (public)
-     * |--LITERAL_RECORD (record)
-     * |--IDENT (myRecord)
-     * |--LPAREN (()
-     * |--RECORD_COMPONENTS
-     * |   |--RECORD_COMPONENT_DEF
-     * |   |   |--ANNOTATIONS
-     * |   |   |--TYPE
-     * |   |   |   `--IDENT (Comp)
-     * |   |   `--IDENT (x)
-     * |   |--COMMA (,)
-     * |   `--RECORD_COMPONENT_DEF
-     * |       |--ANNOTATIONS
-     * |       |--TYPE
-     * |       |   `--IDENT (Comp)
-     * |       |--ELLIPSIS (...)
-     * |       `--IDENT (comps)
-     * |--RPAREN ())
-     * `--OBJBLOCK
-     *      |--LCURLY ({)
-     *       `--RCURLY (})
+     * RECORD_DEF -&gt; RECORD_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_RECORD -&gt; record
+     * |--IDENT -&gt; MyRecord
+     * |--LPAREN -&gt; (
+     * |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |   |--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |   |   |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |   |   |--TYPE -&gt; TYPE
+     * |   |   |   `--IDENT -&gt; Comp
+     * |   |   `--IDENT -&gt; x
+     * |   |--COMMA -&gt; ,
+     * |   `--RECORD_COMPONENT_DEF -&gt; RECORD_COMPONENT_DEF
+     * |       |--ANNOTATIONS -&gt; ANNOTATIONS
+     * |       |--TYPE -&gt; TYPE
+     * |       |   `--IDENT -&gt; Comp
+     * |       |--ELLIPSIS -&gt; ...
+     * |       `--IDENT -&gt; comps
+     * |--RPAREN -&gt; )
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @since 8.36
@@ -4162,17 +4473,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF
-     * |   |--MODIFIERS
-     * |   |--TYPE
-     * |   |   `--IDENT (String)
-     * |   |--IDENT (hello)
-     * |   |--ASSIGN (=)
-     * |   |   `--EXPR
-     * |   |       `--TEXT_BLOCK_LITERAL_BEGIN (""")
-     * |   |           |--TEXT_BLOCK_CONTENT (\n                Hello, world!\n                    )
-     * |   |           `--TEXT_BLOCK_LITERAL_END (""")
-     * |   `--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--IDENT -&gt; String
+     * |   |--IDENT -&gt; hello
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @since 8.36
@@ -4289,39 +4600,39 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      * return switch (day) {
-     *     case SAT, SUN {@code ->} "Weekend";
-     *     default {@code ->} "Working day";
+     *     case SAT, SUN -&gt; "Weekend";
+     *     default -&gt; "Working day";
      * };
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     *  LITERAL_RETURN (return)
-     *   |--EXPR
-     *   |   `--LITERAL_SWITCH (switch)
-     *   |       |--LPAREN (()
-     *   |       |--EXPR
-     *   |       |   `--IDENT (day)
-     *   |       |--RPAREN ())
-     *   |       |--LCURLY ({)
-     *   |       |--SWITCH_RULE
-     *   |       |   |--LITERAL_CASE (case)
-     *   |       |   |   |--EXPR
-     *   |       |   |   |   `--IDENT (SAT)
-     *   |       |   |   |--COMMA (,)
-     *   |       |   |   `--EXPR
-     *   |       |   |       `--IDENT (SUN)
-     *   |       |   |--LAMBDA {@code ->}
-     *   |       |   |--EXPR
-     *   |       |   |   `--STRING_LITERAL ("Weekend")
-     *   |       |   `--SEMI (;)
-     *   |       |--SWITCH_RULE
-     *   |       |   |--LITERAL_DEFAULT (default)
-     *   |       |   |--LAMBDA {@code ->}
-     *   |       |   |--EXPR
-     *   |       |   |   `--STRING_LITERAL ("Working day")
-     *   |       |   `--SEMI (;)
-     *   |       `--RCURLY (})
-     *   `--SEMI (;)
+     * LITERAL_RETURN -&gt; return
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LITERAL_SWITCH -&gt; switch
+     *  |       |--LPAREN -&gt; (
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--IDENT -&gt; day
+     *  |       |--RPAREN -&gt; )
+     *  |       |--LCURLY -&gt; {
+     *  |       |--SWITCH_RULE -&gt; SWITCH_RULE
+     *  |       |   |--LITERAL_CASE -&gt; case
+     *  |       |   |   |--EXPR -&gt; EXPR
+     *  |       |   |   |   `--IDENT -&gt; SAT
+     *  |       |   |   |--COMMA -&gt; ,
+     *  |       |   |   `--EXPR -&gt; EXPR
+     *  |       |   |       `--IDENT -&gt; SUN
+     *  |       |   |--LAMBDA -&gt; -&gt;
+     *  |       |   |--EXPR -&gt; EXPR
+     *  |       |   |   `--STRING_LITERAL -&gt; "Weekend"
+     *  |       |   `--SEMI -&gt; ;
+     *  |       |--SWITCH_RULE -&gt; SWITCH_RULE
+     *  |       |   |--LITERAL_DEFAULT -&gt; default
+     *  |       |   |--LAMBDA -&gt; -&gt;
+     *  |       |   |--EXPR -&gt; EXPR
+     *  |       |   |   `--STRING_LITERAL -&gt; "Working day"
+     *  |       |   `--SEMI -&gt; ;
+     *  |       `--RCURLY -&gt; }
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #LITERAL_CASE
