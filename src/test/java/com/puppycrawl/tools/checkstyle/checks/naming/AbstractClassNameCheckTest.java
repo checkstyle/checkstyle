@@ -110,7 +110,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "29:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputAbstractClassNameAllVariants.java"), expected);
+        verify(checkConfig, 
+                getNonCompilablePath("InputAbstractClassNameAllVariants.java"), expected);
     }
 
     @Test
@@ -121,7 +122,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
             "14:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
         };
 
-        verify(checkConfig, getNonCompilablePath("InputAbstractClassNameFormerFalsePositive.java"), expected);
+        verify(checkConfig, 
+             getNonCompilablePath("InputAbstractClassNameFormerFalsePositive.java"), expected);
     }
 
     @Test
