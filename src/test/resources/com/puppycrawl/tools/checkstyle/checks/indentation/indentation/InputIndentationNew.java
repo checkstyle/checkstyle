@@ -17,6 +17,7 @@ package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent
 import java.io.BufferedReader; //indent:0 exp:0
 import java.io.IOException; //indent:0 exp:0
 import java.io.InputStreamReader; //indent:0 exp:0
+import java.lang.Integer; //indent:0 exp:0
 
 public class InputIndentationNew { //indent:0 exp:0
     void test() throws IOException  { //indent:4 exp:4
@@ -25,5 +26,17 @@ public class InputIndentationNew { //indent:0 exp:0
                         new InputStreamReader(System.in) {  //indent:24 exp:24
                             int a = 0; //indent:28 exp:28
                         }); //indent:24 exp:24
+    } //indent:4 exp:4
+    public void foo() { //indent:4 exp:4
+        boolean flag = true; //indent:8 exp:8
+        Integer result = flag ? //indent:8 exp:8
+                new Integer(1) : //indent:16 exp:16
+                new Integer(2); //indent:16 exp:16
+    } //indent:4 exp:4
+
+    public Integer bar() { //indent:4 exp:4
+        boolean flag = true; //indent:8 exp:8
+        return flag ? //indent:8 exp:8
+                new Integer(1) : new Integer(2); //indent:16 exp:16
     } //indent:4 exp:4
 }  //indent:0 exp:0
