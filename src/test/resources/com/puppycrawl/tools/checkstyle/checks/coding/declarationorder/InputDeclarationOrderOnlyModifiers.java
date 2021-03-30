@@ -1,9 +1,11 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
 /*
- * Config: default
+ * Config:
+ * ignoreConstructors = true
+ * ignoreModifiers = false
  */
-public class InputDeclarationOrder
+public class InputDeclarationOrderOnlyModifiers
 {
     static final int FOO2 = 3;
 
@@ -60,8 +62,7 @@ public class InputDeclarationOrder
         return mFoo;
     }
 
-    //  ctors before methods
-    public InputDeclarationOrder() // violation
+    public InputDeclarationOrderOnlyModifiers()
     {
         String foo = ERROR;
         foo += ERROR1;
@@ -90,7 +91,7 @@ public class InputDeclarationOrder
     private int mFoo = 0; // violation
 }
 
-enum InputDeclarationOrderEnum
+enum InputDeclarationOrderEnum3
 {
     ENUM_VALUE_1,
     ENUM_VALUE_2,
@@ -158,8 +159,7 @@ enum InputDeclarationOrderEnum
         return mFoo;
     }
 
-    //  ctors before methods
-    InputDeclarationOrderEnum() // violation
+    InputDeclarationOrderEnum3()
     {
         String foo = ERROR;
         foo += ERROR1;
@@ -190,7 +190,6 @@ enum InputDeclarationOrderEnum
     class AsyncProcess {
         private final int startLogErrorsCnt = 0;
 
-        // violation
-        protected final int maxTotalConcurrentTasks = 0;
+        protected final int maxTotalConcurrentTasks = 0; // violation
     }
 }
