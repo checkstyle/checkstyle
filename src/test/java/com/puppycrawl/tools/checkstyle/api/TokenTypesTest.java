@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.api;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,10 +30,14 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class TokenTypesTest {
 
@@ -59,32 +64,22 @@ public class TokenTypesTest {
         assertEquals(Collections.emptySet(), badDescriptions, "Malformed TokenType descriptions");
     }
 
-    @Test
-    public void testGetShortDescription() {
-        assertEquals(
-                "The <code>==</code> (equal) operator.",
-                TokenUtil.getShortDescription("EQUAL"), "short description for EQUAL");
-
-        assertEquals(
-                "The <code>&&</code> (conditional AND) operator.",
-                TokenUtil.getShortDescription("LAND"), "short description for LAND");
-
-        assertEquals(
-                "A left curly brace (<code>{</code>).",
-                TokenUtil.getShortDescription("LCURLY"), "short description for LCURLY");
-
-        assertEquals(
-                "The <code>>>=</code> (signed right shift assignment) operator.",
-                TokenUtil.getShortDescription("SR_ASSIGN"), "short description for SR_ASSIGN");
-
-        assertEquals(
-                "The <code><<</code> (shift left) operator.",
-                TokenUtil.getShortDescription("SL"), "short description for SL");
-
-        assertEquals(
-                "The <code>>>></code> (unsigned shift right) operator.",
-                TokenUtil.getShortDescription("BSR"), "short description for BSR");
+    @ParameterizedTest(name = "{index} => expected: ''{0}'', token: ''{1}''")
+    @MethodSource("testGetShortDescriptionProvider")
+    public void testGetShortDescription(String expected, String token) {
+        assertEquals(expected, TokenUtil.getShortDescription(token), "short description for " + token);
     }
+
+    static Stream<Arguments> testGetShortDescriptionProvider() {
+    return Stream.of(
+            arguments("The <code>==</code> (equal) operator.", "EQUAL"),
+            arguments("The <code>&&</code> (conditional AND) operator.", "LAND"),
+            arguments("A left curly brace (<code>{</code>).", "LCURLY"),
+            arguments("The <code>>>=</code> (signed right shift assignment) operator.", "SR_ASSIGN"),
+            arguments("The <code><<</code> (shift left) operator.", "SL"),
+            arguments("The <code>>>></code> (unsigned shift right) operator.", "BSR")
+    );
+}
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
