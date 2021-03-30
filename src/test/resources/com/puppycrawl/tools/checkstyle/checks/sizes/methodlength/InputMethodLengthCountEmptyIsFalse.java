@@ -8,7 +8,7 @@ import java.io.*;
 /*
  * Config:
  * max = 19
- * countEmpty = true
+ * countEmpty = false
  */
 /**
  * Contains simple mistakes:
@@ -18,7 +18,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputMethodLengthSimple
+final class InputMethodLengthCountEmptyIsFalse
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -104,7 +104,7 @@ final class InputMethodLengthSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputMethodLengthSimple()
+    private InputMethodLengthCountEmptyIsFalse()
     {
         // a line
         // a line
@@ -203,7 +203,7 @@ final class InputMethodLengthSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputSimple3
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -217,7 +217,7 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,

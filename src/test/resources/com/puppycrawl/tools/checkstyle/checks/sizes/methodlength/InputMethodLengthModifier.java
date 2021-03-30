@@ -5,6 +5,9 @@
 
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
+/*
+ * Config: default
+ */
 strictfp final class InputMethodLengthModifier
 {
 
