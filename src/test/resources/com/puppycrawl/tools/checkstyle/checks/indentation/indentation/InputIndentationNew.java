@@ -26,4 +26,16 @@ public class InputIndentationNew { //indent:0 exp:0
                             int a = 0; //indent:28 exp:28
                         }); //indent:24 exp:24
     } //indent:4 exp:4
+    public void foo() { //indent:4 exp:4
+        boolean flag = true; //indent:8 exp:8
+        Integer result = flag ? //indent:8 exp:8
+                new Integer(1) : //indent:16 exp:16
+                new Integer(2); //indent:16 exp:16
+    } //indent:4 exp:4
+
+    public Integer bar() { //indent:4 exp:4
+        boolean flag = false; //indent:8 exp:8
+        return flag ? //indent:8 exp:8
+                new Integer(1) : new Integer(2); //indent:16 exp:16
+    } //indent:4 exp:4
 }  //indent:0 exp:0
