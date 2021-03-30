@@ -1057,6 +1057,44 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testValidNewKeywordWithForceStrictConditionWithTernaryOp() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+            "36:9: " + getCheckMessage(MSG_ERROR, "new", 8, 12),
+            "39:21: " + getCheckMessage(MSG_ERROR, "new", 20, 12),
+            "49:25: " + getCheckMessage(MSG_ERROR, "new", 24, 16),
+            "52:5: " + getCheckMessage(MSG_ERROR, "new", 4, 12),
+            "55:9: " + getCheckMessage(MSG_ERROR, "new", 8, 12),
+            "58:25: " + getCheckMessage(MSG_ERROR, "new", 24, 12),
+            "61:33: " + getCheckMessage(MSG_ERROR, "new", 32, 12),
+            "68:9: " + getCheckMessage(MSG_ERROR, "new", 8, 16),
+            "70:19: " + getCheckMessage(MSG_ERROR, "new", 18, 16),
+            "71:21: " + getCheckMessage(MSG_ERROR, "new", 20, 16),
+            "75:10: " + getCheckMessage(MSG_ERROR, "new", 9, 12),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTernaryOp.java"), expected);
+    }
+
+    @Test
+    public void testValidNewKeywordWithWithTernaryOpDefaultConfig() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "4");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "4");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTernaryOp2.java"), expected);
+    }
+
+    @Test
     public void testInvalidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
