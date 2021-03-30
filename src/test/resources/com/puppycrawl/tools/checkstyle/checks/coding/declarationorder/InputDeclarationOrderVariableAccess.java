@@ -6,12 +6,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+/*
+ * Config: default
+ */
 public class InputDeclarationOrderVariableAccess {
 
     public static final String TYPE = new String("significant_terms");
 
     private static final Map<String, String> BUCKETS_MAP = Collections.emptyMap();
 
+    // violation
     public static final InputDeclarationOrderVariableAccess.Stream STREAM =
             new InputDeclarationOrderVariableAccess.Stream() {
         @Override
