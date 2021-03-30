@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+/*
+ * Config: default
+ */
 public class InputDeclarationOrderForwardReference {
 
     public static final int TAB_LENGTH = 4;

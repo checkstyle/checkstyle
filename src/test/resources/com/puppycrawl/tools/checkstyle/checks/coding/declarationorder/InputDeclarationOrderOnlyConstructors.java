@@ -3,40 +3,33 @@ package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 /*
  * Config:
  * ignoreConstructors = false
- * ignoreModifiers = false
+ * ignoreModifiers = true
  */
-public class InputDeclarationOrder
+public class InputDeclarationOrderOnlyConstructors
 {
     static final int FOO2 = 3;
 
-    // public before package
-    public static final int FOO = 3; // violation
+    public static final int FOO = 3;
 
     private static final int FOO3 = 3;
 
-    // public before package and private
-    public static final int FOO4 = 3; // violation
+    public static final int FOO4 = 3;
 
     private static final String ERROR = "error";
 
-    // protected before private
-    protected static final String ERROR1 = "error"; // violation
+    protected static final String ERROR1 = "error";
 
-    // public before private
-    public static final String WARNING = "warning"; // violation
+    public static final String WARNING = "warning";
 
     private int mMaxInitVars = 3;
 
-    // statics should be before instance members
-    // publics before private
-    public static final int MAX_ITER_VARS = 3; // violation
+    public static final int MAX_ITER_VARS = 3;
 
     private class InnerClass
     {
         private static final int INNER_FOO = 2;
 
-        // public before private
-        public static final int INNER_FOO2 = 2; // violation
+        public static final int INNER_FOO2 = 2;
 
         public InnerClass()
         {
@@ -63,7 +56,7 @@ public class InputDeclarationOrder
     }
 
     //  ctors before methods
-    public InputDeclarationOrder() // violation
+    public InputDeclarationOrderOnlyConstructors() // violation
     {
         String foo = ERROR;
         foo += ERROR1;
@@ -92,7 +85,7 @@ public class InputDeclarationOrder
     private int mFoo = 0; // violation
 }
 
-enum InputDeclarationOrderEnum
+enum InputDeclarationOrderEnum2
 {
     ENUM_VALUE_1,
     ENUM_VALUE_2,
@@ -100,8 +93,7 @@ enum InputDeclarationOrderEnum
     {
         private static final int INNER_FOO = 2;
 
-        // public before private
-        public static final int INNER_FOO2 = 2; // violation
+        public static final int INNER_FOO2 = 2;
 
         public void doIt()
         {
@@ -114,34 +106,27 @@ enum InputDeclarationOrderEnum
 
     static final int FOO2 = 3;
 
-    // public before package
-    public static final int FOO = 3; // violation
+    public static final int FOO = 3;
 
     private static final int FOO3 = 3;
 
-    // public before package and private
-    public static final int FOO4 = 3; // violation
+    public static final int FOO4 = 3;
 
     private static final String ERROR = "error";
 
-    // protected before private
-    protected static final String ERROR1 = "error"; // violation
+    protected static final String ERROR1 = "error";
 
-    // public before private
-    public static final String WARNING = "warning"; // violation
+    public static final String WARNING = "warning";
 
     private int mMaxInitVars = 3;
 
-    // statics should be before instance members
-    // publics before private
-    public static final int MAX_ITER_VARS = 3; // violation
+    public static final int MAX_ITER_VARS = 3;
 
     private class InnerClass
     {
         private static final int INNER_FOO = 2;
 
-        // public before private
-        public static final int INNER_FOO2 = 2; // violation
+        public static final int INNER_FOO2 = 2;
 
         public InnerClass()
         {
@@ -161,7 +146,7 @@ enum InputDeclarationOrderEnum
     }
 
     //  ctors before methods
-    InputDeclarationOrderEnum() // violation
+    InputDeclarationOrderEnum2() // violation
     {
         String foo = ERROR;
         foo += ERROR1;
@@ -191,8 +176,6 @@ enum InputDeclarationOrderEnum
 
     class AsyncProcess {
         private final int startLogErrorsCnt = 0;
-
-        // violation
         protected final int maxTotalConcurrentTasks = 0;
     }
 }
