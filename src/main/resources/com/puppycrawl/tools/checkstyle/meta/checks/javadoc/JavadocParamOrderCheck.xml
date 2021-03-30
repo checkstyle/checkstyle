@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocParamOrderCheck"
+             name="JavadocParamOrder"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks that the parameter order in javadoc is matching with the parameter order in method.
+ It includes both method parameter and type parameters of generic method.
+ This check expects the user to provide same number of parameter tag in javadoc as
+ parameters in method.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Examples:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ Example of method parameters:
+ &lt;pre&gt;
+ class methodParams {
+   &amp;#47;**
+    * Description
+    *
+    * @param input description
+    * @param output desc
+    *&amp;#47;
+   public void method(String input, int output) {
+   }
+ }
+ &lt;/pre&gt;
+ &lt;/li&gt;
+ &lt;li&gt;
+ Example of type parameters of generic method:
+ &lt;pre&gt;
+ class genericMethodParams {
+   &amp;#47;**
+    * Description.
+    *
+    * @version Some number
+    * @param &amp;lt;T&amp;gt; description
+    * @param p1 desc
+    * @return p1 desc
+    * @see more link.
+    *&amp;#47;
+   public &amp;lt;T&amp;gt; String genericMethod (T p1) {
+     return p1;
+   }
+ }
+ &lt;/pre&gt;
+ &lt;/li&gt;
+ &lt;/ul&gt;
+ &lt;p&gt;
+ Notes:
+ &lt;/p&gt;
+ &lt;ul&gt;
+ &lt;li&gt;
+ This check will only report if the parameter in method did not match the
+ parameter in javadoc.
+ &lt;/li&gt;
+ &lt;li&gt;
+ This check will expect from user to provide same number of parameter in method
+ and in javadoc.
+ &lt;/li&gt;
+ &lt;li&gt;
+ This check will not report any violations for any other tag in between param
+ tags in javadoc.
+ &lt;/li&gt;
+ &lt;li&gt;
+ This check will not report any violations for missing parameter in javadoc.
+ &lt;/li&gt;
+ &lt;li&gt;
+ This check will not report any violations for extra parameter in javadoc.
+ &lt;/li&gt;
+ &lt;/ul&gt;</description>
+         <message-keys>
+            <message-key key="javadoc.tag.order"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
