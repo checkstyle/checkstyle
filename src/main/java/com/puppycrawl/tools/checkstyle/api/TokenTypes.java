@@ -3828,18 +3828,19 @@ public final class TokenTypes {
      * <p>For example:</p>
      *
      * <pre>
-     *     { 1, 2 }
+     * &#64;Annotation({1, 2})
      * </pre>
      *
      * <p>parses as:</p>
      *
      * <pre>
-     * +--ANNOTATION_ARRAY_INIT ({)
-     *     |
-     *     +--NUM_INT (1)
-     *     +--COMMA (,)
-     *     +--NUM_INT (2)
-     *     +--RCURLY (})
+     * ANNOTATION_ARRAY_INIT -&gt; {
+     *  |--EXPR -&gt; EXPR
+     *  |   `--NUM_INT -&gt; 1
+     *  |--COMMA -&gt; ,
+     *  |--EXPR -&gt; EXPR
+     *  |   `--NUM_INT -&gt; 2
+     *  `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
