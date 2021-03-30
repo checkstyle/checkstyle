@@ -10,6 +10,529 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.41.1">
+      <div class="releaseDate">28.03.2021</div>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            reevaluate tokens in google config for OperatorWrapCheck.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/4122">#4122</a>
+          </li>
+          <li>
+            FinalClass should exempt private-only constructor classes that also
+            have nested subclasses.
+            Author: VyomYadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9357">#9357</a>
+          </li>
+          <li>
+            Problem to match content of textblock by xpath to suppress violation.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9359">#9359</a>
+          </li>
+          <li>
+            Checkstyle 8.41 introduces regression on indentation rules when the
+            line starts with new after try {.
+            Author: Abhishek-kumar09
+            <a href="https://github.com/checkstyle/checkstyle/issues/9341">#9341</a>
+          </li>
+          <li>
+            TrailingComment report violation on comment at the begining of line.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9010">#9010</a>
+          </li>
+          <li>
+            False negative with validateThrows in JavadocMethod.
+            Author: wltan
+            <a href="https://github.com/checkstyle/checkstyle/issues/8117">#8117</a>
+          </li>
+          <li>
+            Generated xpath suppressions should escape xml symbols.
+            Author: Akash Mondal
+            <a href="https://github.com/checkstyle/checkstyle/issues/6893">#6893</a>
+          </li>
+          <li>
+            SingleLineJavadoc update for new requirements what tags are allowed
+            in singleline javadoc.
+            Author: Himanshu Rijal
+            <a href="https://github.com/checkstyle/checkstyle/issues/4052">#4052</a>
+          </li>
+          <li>
+            Fix escaped char pattern in AvoidEscapedUnicodeCharactersCheck.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9314">#9314</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update MissingOverrideCheckTest to use unique Input file in each test method.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9523">#9523</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_INTERFACE.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9483">#9483</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.INTERFACE_DEF.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9456">#9456</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SINGLE_LINE_COMMENT.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9568">#9568</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.OBJBLOCK.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9548">#9548</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.FOR_EACH_CLAUSE.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9443">#9443</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_PUBLIC.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9490">#9490</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.COMMA.
+            Author: jz20
+            <a href="https://github.com/checkstyle/checkstyle/issues/9410">#9410</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_WHILE.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9506">#9506</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.STATIC_INIT.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9576">#9576</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.VARIABLE_DEF.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9595">#9595</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.MINUS.
+            Author: shubham11941140
+            <a href="https://github.com/checkstyle/checkstyle/issues/9515">#9515</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.BLOCK_COMMENT_BEGIN.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9399">#9399</a>
+          </li>
+          <li>
+            update SingleLineJavadocCheckTest to use unique Input file in each test method.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9532">#9532</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SLIST.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9570">#9570</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SEMI.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9567">#9567</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.DOT.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9418">#9418</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.STATIC_IMPORT.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9575">#9575</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TEXT_BLOCK_CONTENT.
+            Author: VyomYadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9581">#9581</a>
+          </li>
+          <li>
+            Resolve Pitest Issue - AbstractJavadocCheck.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9722">#9722</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RECORD_DEF.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9562">#9562</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_IF.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9480">#9480</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RECORD_COMPONENT_DEF.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9560">#9560</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_PARAMETER.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9589">#9589</a>
+          </li>
+          <li>
+            Update doc for EmptyForIteratorPad.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/7618">#7618</a>
+          </li>
+          <li>
+            update JavadocMethodCheckTest to use unique Input file in each test method.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9529">#9529</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.DO_WHILE.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9417">#9417</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.CHAR_LITERAL.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9407">#9407</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_PARAMETERS.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9590">#9590</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RECORD_COMPONENTS.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9561">#9561</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.BSR.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9404">#9404</a>
+          </li>
+          <li>
+            Create MatchXPath instance to forbid usage of &quot;@Issue&quot; annotation.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9138">#9138</a>
+          </li>
+          <li>
+            update doc for MissingDeprecated.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/7572">#7572</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9584">#9584</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_EXTENSION_AND.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9587">#9587</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.IMPORT.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9452">#9452</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_SYNCHRONIZED.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9497">#9497</a>
+          </li>
+          <li>
+            after mport projec to IDEA there is build problem at InputIllegalImportDefault.java.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9678">#9678</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.NOT_EQUAL.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9543">#9543</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.EQUAL.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9427">#9427</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TEXT_BLOCK_LITERAL_END.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9583">#9583</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.PACKAGE_DEF.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9549">#9549</a>
+          </li>
+          <li>
+            Update doc for JavadocVariable.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/7602">#7602</a>
+          </li>
+          <li>
+            TrailingComment: correction for description in documentation.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9643">#9643</a>
+          </li>
+          <li>
+            update AtclauseOrderCheckTest to use unique Input file in each test method.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9533">#9533</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.UNARY_PLUS.
+            Author: hiron1999
+            <a href="https://github.com/checkstyle/checkstyle/issues/9594">#9594</a>
+          </li>
+          <li>
+            update JavadocParagraphCheckTest to use unique Input file in each test method.
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/9535">#9535</a>
+          </li>
+          <li>
+            Add example of AST for TokenTypes.ABSTRACT.
+            Author: 20001LastOrder
+            <a href="https://github.com/checkstyle/checkstyle/issues/9371">#9371</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.METHOD_DEF.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9513">#9513</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.STAR.
+            Author: edwardlee
+            <a href="https://github.com/checkstyle/checkstyle/issues/9573">#9573</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.POST_INC.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9556">#9556</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.METHOD_CALL.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9512">#9512</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPECAST.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9592">#9592</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ARRAY_DECLARATOR.
+            Author: vivek286
+            <a href="https://github.com/checkstyle/checkstyle/issues/9394">#9394</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.MOD_ASSIGN.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9518">#9518</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_LOWER_BOUNDS.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9588">#9588</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.POST_DEC.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9554">#9554</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.NUM_LONG.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9547">#9547</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.NUM_INT.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9546">#9546</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.NUM_FLOAT.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9545">#9545</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.MINUS_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9516">#9516</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.STAR_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9574">#9574</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SR.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9571">#9571</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SL.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9569">#9569</a>
+          </li>
+          <li>
+            Add example of AST for TokenTypes.BAND_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9398">#9398</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.BSR_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9405">#9405</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.DIV_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9416">#9416</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.PLUS_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9555">#9555</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.STRING_LITERAL.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9578">#9578</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.NUM_DOUBLE.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9544">#9544</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SR_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9572">#9572</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.STRICTFP.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9577">#9577</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_UPPER_BOUNDS.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9591">#9591</a>
+          </li>
+          <li>
+            Update doc for ModifiedControlVariable.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/7649">#7649</a>
+          </li>
+          <li>
+            Add default config and code examples for EmptyCatchBlock.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/7581">#7581</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.DEC.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9414">#9414</a>
+          </li>
+          <li>
+            Add example of AST for TokenTypes.ASSIGN.
+            Author: Anshuman Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9373">#9373</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.BOR.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9402">#9402</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.DIV.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9415">#9415</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.BNOT.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9401">#9401</a>
+          </li>
+          <li>
+            create example of AST for TokenTypes.BOR_ASSIGN.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9403">#9403</a>
+          </li>
+          <li>
+            Sonar violation: &quot;Character classes should be preferred over
+            reluctant quantifiers in regular expressions&quot;.
+            Author: martin-mfg
+            <a href="https://github.com/checkstyle/checkstyle/issues/8548">#8548</a>
+          </li>
+          <li>
+            Add example of AST for TokenTypes.BAND.
+            Author: Anshuman Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9397">#9397</a>
+          </li>
+          <li>
+            Add new prefix &quot;supplemental:&quot; to commit validation.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/8928">#8928</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ARRAY_INIT.
+            Author: Anshuman Singh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9395">#9395</a>
+          </li>
+          <li>
+            Extract common bash CI functions into util.sh.
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/9348">#9348</a>
+          </li>
+          <li>
+            Generated link is incorrect if fork branch name has hash sign.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9323">#9323</a>
+          </li>
+          <li>
+            Sonar violation: Disable access to external entities in XML parsing..
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9342">#9342</a>
+          </li>
+          <li>
+            Update doc for SingleLineJavadoc.
+            Author: the-first-avenger
+            <a href="https://github.com/checkstyle/checkstyle/issues/7605">#7605</a>
+          </li>
+          <li>
+            Add Method Name to Logger outputs for MethodLengthCheck.
+            Author: Butch Howard
+            <a href="https://github.com/checkstyle/checkstyle/issues/9353">#9353</a>
+          </li>
+          <li>
+            Remove DetailAstImpl usages from main code.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9271">#9271</a>
+          </li>
+          <li>
+            update CI executions to not fails if testing sources already cloned.
+            Author: rnveach
+            <a href="https://github.com/checkstyle/checkstyle/issues/9268">#9268</a>
+          </li>
+          <li>
+            Remove downlaod progress from maven executions.
+            Author: Andrei Paikin
+            <a href="https://github.com/checkstyle/checkstyle/issues/9343">#9343</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.41">
       <div class="releaseDate">28.02.2021</div>
       <p>New:</p>

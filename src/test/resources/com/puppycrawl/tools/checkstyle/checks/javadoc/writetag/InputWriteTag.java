@@ -6,8 +6,14 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
 /**
+ * Config:
+ * tag = &#64;author
+ * tagFormat = \\S
+ */
+
+/**
  * Testing tag writing
- * @author Daniel Grenner
+ * @author Daniel Grenner // violation
  * @incomplete This class needs more code...
  * @doubletag first text
  * @doubletag second text
@@ -15,12 +21,12 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
  */
 class InputWriteTag
 {
-        /**
-         * @todo Add a constructor comment
-         */
-        public InputWriteTag()
-        {
-        }
+    /**
+     * @todo Add a constructor comment
+     */
+    public InputWriteTag()
+    {
+    }
 
     public void method()
     {

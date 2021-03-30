@@ -1,13 +1,18 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodMissingJavadocTags {
+/**
+ * Config:
+ * allowMissingParamTags = true
+ * allowMissingReturnTag = true
+ */
+public class InputJavadocMethodMissingJavadocNoMissingTags {
     /**
      * Missing return.
      *
      * @param number to return
      * @throws ThreadDeath sometimes
      */
-    int missingReturn(int number) throws ThreadDeath {
+    int missingReturn(int number) throws ThreadDeath { // ok
         return number;
     }
 
@@ -17,7 +22,7 @@ public class InputJavadocMethodMissingJavadocTags {
      * @return number
      * @throws ThreadDeath sometimes
      */
-    int missingParam(int number) throws ThreadDeath {
+    int missingParam(int number) throws ThreadDeath { // ok
         return number;
     }
 
@@ -27,7 +32,7 @@ public class InputJavadocMethodMissingJavadocTags {
      * @param number to return
      * @return number
      */
-    int missingThrows(int number) throws ThreadDeath {
+    int missingThrows(int number) throws ThreadDeath { // ok
         return number;
     }
 
@@ -36,7 +41,7 @@ public class InputJavadocMethodMissingJavadocTags {
      *
      * @param number to return
      * @throws java.util.NoSuchElementException sometimes
-     */
+     */   // ok
     int missingReturnButInheritDocPresent(int number) throws java.util.NoSuchElementException {
         return number;
     }
@@ -48,7 +53,7 @@ public class InputJavadocMethodMissingJavadocTags {
      * @return
      * @throws java.util.NoSuchElementException sometimes
      */
-    private int missingReturnInTheMiddle(int number) {
+    private int missingReturnInTheMiddle(int number) { // ok
         return number;
     }
 
@@ -58,7 +63,7 @@ public class InputJavadocMethodMissingJavadocTags {
      * @param number to return
      * @return
      */
-    private int missingReturnAtTheEnd(int number) {
+    private int missingReturnAtTheEnd(int number) { // ok
         return number;
     }
 
@@ -69,7 +74,7 @@ public class InputJavadocMethodMissingJavadocTags {
      * @return
      *
      */
-    private int missingReturnAtTheEndFollowedByEmptyLine(int number) {
+    private int missingReturnAtTheEndFollowedByEmptyLine(int number) { // ok
         return number;
     }
 }

@@ -1,5 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
+/* Config:
+ * javaFiveCompatibility = "false"
+ */
 public class InputMissingOverrideBadAnnotation
 {
     Runnable r = new Runnable() {
@@ -7,13 +10,13 @@ public class InputMissingOverrideBadAnnotation
         /**
          * {@inheritDoc}
          */
-        public void run() {
+        public void run() {     // ok
             Throwable t = new Throwable() {
 
                 /**
                  * {@inheritDoc}
                  */
-                public String toString() {
+                public String toString() {      // ok
                     return "junk";
                 }
             };
@@ -26,13 +29,13 @@ public class InputMissingOverrideBadAnnotation
             /**
              * {@inheritDoc}
              */
-            public void run() {
+            public void run() {     // ok
                 Throwable t = new Throwable() {
 
                     /**
                      * {@inheritDoc}
                      */
-                    public String toString() {
+                    public String toString() {      // ok
                         return "junk";
                     }
                 };

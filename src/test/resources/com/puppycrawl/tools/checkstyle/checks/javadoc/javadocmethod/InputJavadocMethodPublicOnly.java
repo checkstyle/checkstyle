@@ -4,6 +4,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
+/**
+ * Config: default
+ */
 public class InputJavadocMethodPublicOnly // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
@@ -25,7 +28,7 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
             void method2() // ignore - when not relaxed about Javadoc
             {
                 final Runnable r = new Runnable() {
-                        public void run() {};
+                        public void run() {}; // ok
                     };
             }
         }
@@ -46,42 +49,42 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputJavadocMethodPublicOnly(int aA)
+    private InputJavadocMethodPublicOnly(int aA) // ok
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocMethodPublicOnly(String aA)
+    InputJavadocMethodPublicOnly(String aA) // ok
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocMethodPublicOnly(Object aA)
+    protected InputJavadocMethodPublicOnly(Object aA) // ok
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocMethodPublicOnly(Class<Object> aA)
+    public InputJavadocMethodPublicOnly(Class<Object> aA) // ok
     {
     }
 
-    // ignore - when not relaxed about Javadoc
-    private void method(int aA)
+    /** Here should be an error, In scope */
+    private void method(int aA) // violation
     {
     }
 
-    // ignore - when not relaxed about Javadoc
-    void method(Long aA)
+    /** Here should be an error, In scope */
+    void method(Long aA) // violation
     {
     }
 
-    // ignore - need javadoc
-    protected void method(Class<Object> aA)
+    /** Here should be an error, In scope */
+    protected void method(Class<Object> aA) // violation
     {
     }
 
-    // ignore - need javadoc
-    public void method(StringBuffer aA)
+    /** Here should be an error, In scope */
+    public void method(StringBuffer aA) // violation
     {
     }
 
@@ -91,26 +94,26 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
        Writing a little documentation should not be worse than not
        writing any documentation at all.
      */
-    private void method(String aA)
+    private void method(String aA) // violation
     {
     }
 
     /**
        This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor
+    public class InnerWithoutAuthor // ok
     {
 
     }
 
     /** {@inheritDoc} */
-    public String toString()
+    public String toString() // ok
     {
         return super.toString();
     }
 
     @Deprecated @Override
-    public int hashCode()
+    public int hashCode() // ok
     {
         return super.hashCode();
     }

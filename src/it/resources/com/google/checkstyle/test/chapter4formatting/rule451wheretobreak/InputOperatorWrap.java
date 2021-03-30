@@ -40,7 +40,7 @@ class InputOperatorWrap
     }
 
     <
-    T extends Comparable &
+    /*warn*/ T extends Comparable &
         java.io.Serializable
     >
     void testGenerics1()
@@ -357,4 +357,10 @@ class AssignClass {
                 <<= 2;
         }
     };
+
+    <T extends Comparable
+            & java.io.Serializable>
+    void testWrapBeforeOperator()
+    {
+    }
 }

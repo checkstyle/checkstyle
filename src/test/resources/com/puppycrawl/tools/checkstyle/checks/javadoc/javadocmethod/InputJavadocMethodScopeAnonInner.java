@@ -9,20 +9,19 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 
 /**
- * Tests for anonymous inner types
- * @author Lars Kühne
+ * Config: default
  **/
 public class InputJavadocMethodScopeAnonInner
 {
     /**
        button.
     */
-    private JButton mButton = new JButton();
+    private JButton mButton = new JButton(); // ok
 
     /**
        anon inner in member variable initialization.
     */
-    private Runnable mRunnable = new Runnable() {
+    private Runnable mRunnable = new Runnable() { // ok
         public void run() // should not have to be documented, class is anon.
         {
             System.identityHashCode("running");
@@ -32,7 +31,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in constructor.
     */
-    InputJavadocMethodScopeAnonInner()
+    InputJavadocMethodScopeAnonInner() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
             {
@@ -46,7 +45,7 @@ public class InputJavadocMethodScopeAnonInner
     /**
        anon inner in method
     */
-    public void addInputAnonInner()
+    public void addInputAnonInner() // ok
     {
         mButton.addMouseListener( new MouseAdapter()
             {

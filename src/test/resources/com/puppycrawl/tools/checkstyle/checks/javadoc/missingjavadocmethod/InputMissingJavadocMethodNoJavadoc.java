@@ -1,5 +1,8 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
+/* Config:
+ * scope = "private"
+ */
 public class InputMissingJavadocMethodNoJavadoc //comment test
 {
     public int i1;
@@ -7,10 +10,10 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
     int i3;
     private int i4;
 
-    public void foo1() {}
-    protected void foo2() {}
-    void foo3() {}
-    private void foo4() {}
+    public void foo1() {} // violation
+    protected void foo2() {} // violation
+    void foo3() {} // violation
+    private void foo4() {} // violation
 
     protected class ProtectedInner {
         public int i1;
@@ -18,10 +21,10 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 
     class PackageInner {
@@ -30,10 +33,10 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 
     private class PrivateInner {
@@ -42,10 +45,10 @@ public class InputMissingJavadocMethodNoJavadoc //comment test
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 }
 
@@ -55,10 +58,10 @@ class PackageClass {
     int i3;
     private int i4;
 
-    public void foo1() {}
-    protected void foo2() {}
-    void foo3() {}
-    private void foo4() {}
+    public void foo1() {} // violation
+    protected void foo2() {} // violation
+    void foo3() {} // violation
+    private void foo4() {} // violation
 
     public class PublicInner {
         public int i1;
@@ -66,10 +69,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 
     protected class ProtectedInner {
@@ -78,10 +81,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 
     class PackageInner {
@@ -90,10 +93,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 
     private class PrivateInner {
@@ -102,10 +105,10 @@ class PackageClass {
         int i3;
         private int i4;
 
-        public void foo1() {}
-        protected void foo2() {}
-        void foo3() {}
-        private void foo4() {}
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
+        void foo3() {} // violation
+        private void foo4() {} // violation
     }
 
     class IgnoredName {
@@ -116,5 +119,5 @@ class PackageClass {
     }
 
     /**/
-    void methodWithTwoStarComment() {}
+    void methodWithTwoStarComment() {} // violation
 }

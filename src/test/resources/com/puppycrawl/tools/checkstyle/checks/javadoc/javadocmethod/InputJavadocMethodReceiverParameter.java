@@ -6,6 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.nio.ByteBuffer;
 
+/**
+ * Config: default
+ */
 public class InputJavadocMethodReceiverParameter {
 
     @Retention(RetentionPolicy.RUNTIME)
@@ -16,7 +19,7 @@ public class InputJavadocMethodReceiverParameter {
          *
          * @return a class
          */
-        Class<?> value() default Object.class;
+        Class<?> value() default Object.class; // ok
     }
 
     /**
@@ -24,7 +27,7 @@ public class InputJavadocMethodReceiverParameter {
      *
      * @param buffer dummy argument
      */
-    public void foo(@Ann(Object.class) InputJavadocMethodReceiverParameter this,
+    public void foo(@Ann(Object.class) InputJavadocMethodReceiverParameter this, // ok
             final ByteBuffer buffer) {
         buffer.putInt(1);
     }

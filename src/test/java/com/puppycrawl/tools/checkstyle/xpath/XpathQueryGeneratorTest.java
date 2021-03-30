@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.xpath;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -514,17 +515,70 @@ public class XpathQueryGeneratorTest extends AbstractModuleTestSupport {
                 JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
         final int tabWidth = 8;
 
-        final int lineNumberOne = 6;
-        final int columnNumberOne = 25;
-        final XpathQueryGenerator queryGeneratorOne = new XpathQueryGenerator(detailAst,
-                lineNumberOne, columnNumberOne, testFileText, tabWidth);
-        final List<String> actualTestOne = queryGeneratorOne.generate();
-        final List<String> expectedTestOne = Collections.singletonList(
+        final int lineNumber = 6;
+        final int columnNumber = 25;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
+                lineNumber, columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTextBlock']]/OBJBLOCK/"
                     + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
-                    + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT"
+                    + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT[@text='\\n        "
+                    + "&amp;1line\\n        &gt;2line\\n        &lt;3line\\n        ']"
             );
-        assertEquals(expectedTestOne, actualTestOne,
-                "Generated queries do not match expected ones");
+        assertWithMessage("Generated queries do not match expected ones")
+                .that(expected).isEqualTo(actual);
     }
+
+    @Test
+    public void testTextBlocksWithNewLine() throws Exception {
+        final File testFile = new File(getNonCompilablePath(
+                "InputXpathQueryGeneratorTextBlockNewLine.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+        final int tabWidth = 8;
+
+        final int lineNumber = 6;
+        final int columnNumber = 25;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
+                lineNumber, columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Collections.singletonList(
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTextBlockNewLine']]/OBJBLOCK/"
+                        + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
+                        + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT[@text='\\n        "
+                        + "&amp;1line\\n\\n        &gt;2line\\n        &lt;3line\\n        ']"
+        );
+        assertWithMessage("Generated queries do not match expected ones")
+                .that(expected).isEqualTo(actual);
+    }
+
+    @Test
+    public void testTextBlocksWithNewCrlf() throws Exception {
+        final File testFile = new File(getNonCompilablePath(
+                "InputXpathQueryGeneratorTextBlockCrlf.java"));
+        final FileText testFileText = new FileText(testFile,
+                StandardCharsets.UTF_8.name());
+        final DetailAST detailAst =
+                JavaParser.parseFile(testFile, JavaParser.Options.WITHOUT_COMMENTS);
+        final int tabWidth = 8;
+
+        final int lineNumber = 6;
+        final int columnNumber = 25;
+        final XpathQueryGenerator queryGenerator = new XpathQueryGenerator(detailAst,
+                lineNumber, columnNumber, testFileText, tabWidth);
+        final List<String> actual = queryGenerator.generate();
+        final List<String> expected = Collections.singletonList(
+                "/CLASS_DEF[./IDENT[@text='InputXpathQueryGeneratorTextBlockCrlf']]/OBJBLOCK/"
+                        + "VARIABLE_DEF[./IDENT[@text='testOne']]/ASSIGN/EXPR/"
+                        + "TEXT_BLOCK_LITERAL_BEGIN/TEXT_BLOCK_CONTENT[@text='\\r\\n        "
+                        + "&amp;1line\\r\\n\\r\\n        &gt;2line\\r\\n        &lt;3line\\r\\n"
+                        + "        ']"
+        );
+        assertWithMessage("Generated queries do not match expected ones")
+                .that(expected).isEqualTo(actual);
+    }
+
 }
