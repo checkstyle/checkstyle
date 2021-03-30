@@ -1413,10 +1413,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abstractclassname[\\/]InputAbstractClassNameFormerFalsePositive.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]abstractclassname[\\/]InputAbstractClassName.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]catchparametername[\\/]InputCatchParameterName.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]catchparametername[\\/]InputCatchParameterNameSimple.java"/>
@@ -3130,10 +3126,6 @@
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameReceiver.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abstractclassname[\\/]InputAbstractClassNameFormerFalsePositive.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]abstractclassname[\\/]InputAbstractClassName.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]catchparametername[\\/]InputCatchParameterName.java"/>
   <suppress id="StyleValidationCommentInInputs"
