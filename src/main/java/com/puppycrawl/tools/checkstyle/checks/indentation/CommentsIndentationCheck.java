@@ -332,7 +332,8 @@ public class CommentsIndentationCheck extends AbstractCheck {
             else if (isCommentAtTheEndOfTheCodeBlock(nextStmt)) {
                 handleCommentAtTheEndOfTheCodeBlock(prevStmt, comment, nextStmt);
             }
-            else if (nextStmt != null && !areSameLevelIndented(comment, nextStmt, nextStmt)) {
+            else if (nextStmt != null && !areSameLevelIndented(comment, nextStmt, nextStmt)
+                    && !areInSameMethodCallWithSameIndent(comment)) {
                 log(comment, getMessageKey(comment), nextStmt.getLineNo(),
                     comment.getColumnNo(), nextStmt.getColumnNo());
             }
@@ -1171,6 +1172,46 @@ public class CommentsIndentationCheck extends AbstractCheck {
         final DetailAST nextSibling = blockComment.getNextSibling();
         return !CommonUtil.hasWhitespaceBefore(commentColumnNo, commentLine)
             || nextSibling != null && TokenUtil.areOnSameLine(nextSibling, blockComment);
+    }
+
+    /**
+     * Checks if the comment is inside a method call with same indentation of
+     * first expression. e.g:
+     * <p>
+     * {@code
+     * private final boolean myList = someMethod(
+     *     // Some comment here
+     *     s1,
+     *     s2,
+     *     s3
+     *     // ok
+     * );
+     * }
+     * </p>
+     *
+     * @param comment comment to check.
+     * @return true, if comment is inside inside a method call with same indentation.
+     */
+    private static boolean areInSameMethodCallWithSameIndent(DetailAST comment) {
+        return comment.getParent() != null
+                && comment.getParent().getType() == TokenTypes.METHOD_CALL
+                && comment.getColumnNo()
+                     == getFirstExpressionNodeFromMethodCall(comment.getParent()).getColumnNo();
+    }
+
+    /**
+     * Returns the first EXPR DetailAST child from parent of comment.
+     *
+     * @param methodCall methodCall DetailAst from which node to be extracted.
+     * @return first EXPR DetailAST child from parent of comment.
+     */
+    private static DetailAST getFirstExpressionNodeFromMethodCall(DetailAST methodCall) {
+        DetailAST result = methodCall.getFirstChild();
+        // Method call always has ELIST
+        while (result.getType() != TokenTypes.ELIST) {
+            result = result.getNextSibling();
+        }
+        return result;
     }
 
 }
