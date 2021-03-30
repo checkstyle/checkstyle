@@ -1485,12 +1485,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodlength[\\/]InputMethodLengthComments.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodlength[\\/]InputMethodLengthModifier.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="sizes[\\/]methodlength[\\/]InputMethodLengthSimple.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberSimple.java"/>
@@ -3104,12 +3098,6 @@
             files="sizes[\\/]methodcount[\\/]InputMethodCount7.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]methodcount[\\/]InputMethodCount.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodlength[\\/]InputMethodLengthComments.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodlength[\\/]InputMethodLengthModifier.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="sizes[\\/]methodlength[\\/]InputMethodLengthSimple.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="sizes[\\/]outertypenumber[\\/]InputOuterTypeNumberEmptyInner.java"/>
   <suppress id="StyleValidationCommentInInputs"
