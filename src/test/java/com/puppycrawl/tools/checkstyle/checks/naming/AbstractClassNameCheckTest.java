@@ -46,11 +46,11 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
-            "14:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "14:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "17:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
+            "17:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
                 pattern),
-            "20:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
+            "20:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
                 pattern),
         };
         
@@ -66,11 +66,11 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "^NonAbstract.+$");
         final String pattern = "^NonAbstract.+$";
         final String[] expected = {
-            "14:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "14:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "17:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther",
+            "17:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassOther",
                 pattern),
-            "20:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2",
+            "20:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "AbstractClassName2",
                 pattern),
         };
 
@@ -84,8 +84,8 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("ignoreModifier", "false");
 
         final String[] expected = {
-            "14:6: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
-            "17:6: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
+            "14:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "17:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
         verify(checkConfig, getNonCompilablePath("InputAbstractClassNameClassType.java"), expected);
@@ -100,14 +100,14 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final String pattern = "^Abstract.+$";
 
         final String[] expected = {
-            "17:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
+            "17:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "InputAbstractClassName",
                 pattern),
-            "20:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
+            "20:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractClassName",
                 pattern),
-            "23:15: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
+            "23:1: " + getCheckMessage(MSG_ILLEGAL_ABSTRACT_CLASS_NAME, "NonAbstractInnerClass",
                 pattern),
-            "26:6: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
-            "29:6: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
+            "26:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "29:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractInnerClass"),
         };
 
         verify(checkConfig, getNonCompilablePath("InputAbstractClassNameAllVariants.java"), expected);
@@ -118,7 +118,7 @@ public class AbstractClassNameCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(AbstractClassNameCheck.class);
 
         final String[] expected = {
-            "14:6: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
+            "14:1: " + getCheckMessage(MSG_NO_ABSTRACT_CLASS_MODIFIER, "AbstractClass"),
         };
 
         verify(checkConfig, getNonCompilablePath("InputAbstractClassNameFormerFalsePositive.java"), expected);
