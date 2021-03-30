@@ -4,7 +4,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 import java.io.IOException;
-// Tests for Javadoc tags.
+
+/**
+ * Config:
+ * validateThrows = true
+ */
 class InputJavadocMethodTags1
 {
     // Invalid - should be Javadoc
@@ -15,13 +19,13 @@ class InputJavadocMethodTags1
     {
     }
 
-    /** @param unused asd **/
+    /** @param unused asd **/ // violation
     void method2()
     {
     }
 
     /** missing return **/
-    int method3()
+    int method3() // violation
     {
         return 3;
     }
@@ -30,14 +34,14 @@ class InputJavadocMethodTags1
      * <p>missing return
      * @param aOne ignored
      **/
-    int method4(int aOne)
+    int method4(int aOne) // violation
     {
         return aOne;
     }
 
     /** missing throws **/
     void method5()
-        throws Exception
+        throws Exception // violation
     {
     }
 
@@ -46,18 +50,18 @@ class InputJavadocMethodTags1
      * @see need to see tags to avoid shortcut logic
      **/
     void method6()
-        throws Exception
+        throws Exception // violation
     {
     }
 
     /** @throws WrongException problem **/
     void method7()
-        throws Exception, NullPointerException
+        throws Exception, NullPointerException // violation
     {
     }
 
     /** missing param **/
-    void method8(int aOne)
+    void method8(int aOne) // violation
     {
     }
 
@@ -65,12 +69,12 @@ class InputJavadocMethodTags1
      * @see missing param
      * @see need to see tags to avoid shortcut logic
      **/
-    void method9(int aOne)
+    void method9(int aOne) // violation
     {
     }
 
-    /** @param WrongParam problem **/
-    void method10(int aOne, int aTwo)
+    /** @param WrongParam problem **/ // violation
+    void method10(int aOne, int aTwo) // violation
     {
     }
 
@@ -78,7 +82,7 @@ class InputJavadocMethodTags1
      * @param Unneeded parameter
      * @return also unneeded
      **/
-    void method11()
+    void method11() // violation at line 82,83
     {
     }
 
@@ -86,7 +90,7 @@ class InputJavadocMethodTags1
      * @return first one
      * @return duplicate
      **/
-    int method12()
+    int method12() // violation
     {
         return 0;
     }
@@ -106,17 +110,17 @@ class InputJavadocMethodTags1
      *
      * @param aFive
      **/
-    void method13(int aOne, int aTwo, int aThree, int aFour, int aFive)
+    void method13(int aOne, int aTwo, int aThree, int aFour, int aFive) // ok
     {
     }
 
-    /** @param aOne Perfectly legal **/
+    /** @param aOne Perfectly legal **/ // ok
     void method14(int aOne)
     {
     }
 
     /** @throws java.io.IOException
-     *               just to see if this is also legal **/
+     *               just to see if this is also legal **/ // ok
     void method14()
        throws java.io.IOException
     {
@@ -135,7 +139,7 @@ class InputJavadocMethodTags1
         int z = 2; // should not require any javadoc
     }
 
-    /** handle where variable declaration over several lines **/
+    /** handle where variable declaration over several lines **/ // ok
     private static final int
         ON_SECOND_LINE = 2;
 
@@ -147,18 +151,18 @@ class InputJavadocMethodTags1
      * @throws java.io.IOException if A happens
      * @throws java.io.IOException if B happens
      **/
-    void method15()
+    void method15() // ok
        throws java.io.IOException
     {
     }
 
-    /** {@inheritDoc} **/
+    /** {@inheritDoc} **/ // ok
     public String toString()
     {
         return super.toString();
     }
 
-    /** getting code coverage up **/
+    /** getting code coverage up **/ // ok
     static final int serialVersionUID = 666;
 
     //**********************************************************************/
@@ -169,7 +173,7 @@ class InputJavadocMethodTags1
      * @param aOne valid parameter content
      */
     //**********************************************************************/
-    void method16(int aOne)
+    void method16(int aOne) // ok
     {
     }
 
@@ -179,7 +183,7 @@ class InputJavadocMethodTags1
      * @throws ArrayStoreException another r/t subclass
      * @throws IllegalMonitorStateException should be told to remove from throws
      */
-    void method17()
+    void method17() // ok
         throws IllegalMonitorStateException
     {
     }
@@ -189,7 +193,7 @@ class InputJavadocMethodTags1
      * the full class name is OK (bug 658805).
      * @throws java.io.IOException if bad things happen.
      */
-    void method18()
+    void method18() // ok
         throws IOException
     {
         throw new IOException("to make compiler happy");
@@ -199,7 +203,7 @@ class InputJavadocMethodTags1
      * reverse of bug 658805.
      * @throws IOException if bad things happen.
      */
-    void method19()
+    void method19() // ok
         throws java.io.IOException
     {
         throw new IOException("to make compiler happy");
@@ -213,7 +217,7 @@ class InputJavadocMethodTags1
      * @return
      *   the bug that states that linebreak should be legal
      */
-    int method20()
+    int method20() // ok
     {
         return 579190;
     }
@@ -224,7 +228,7 @@ class InputJavadocMethodTags1
      * @exception java.io.IOException for some reasons
      * @exception IOException for another reason
      */
-    void method21()
+    void method21() // ok
        throws IOException
     {
     }
@@ -235,7 +239,7 @@ class InputJavadocMethodTags1
      * @exception IOException for some reasons
      * @exception java.io.FileNotFoundException for another reasons
      */
-    void method22()
+    void method22() // ok
        throws IOException
     {
     }
@@ -243,7 +247,7 @@ class InputJavadocMethodTags1
     /**
      * @exception WrongException exception w/o class info but matched by name
      */
-    void method23() throws WrongException
+    void method23() throws WrongException // ok
     {
     }
 
@@ -253,7 +257,7 @@ class InputJavadocMethodTags1
      * no exception tag for IOException, but here is a tag for its subclass.
      * @exception java.io.FileNotFoundException for another reasons
      */
-    void method24() throws IOException
+    void method24() throws IOException // violation
     {
     }
 
@@ -263,11 +267,11 @@ class InputJavadocMethodTags1
      * The problem should be reported with correct line number.
      */
 
-    void method25()
+    void method25() // violation
     {
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} */ // ok
     int method26()
     { return 0;
     }
@@ -276,7 +280,7 @@ class InputJavadocMethodTags1
      * {@inheritDoc}
      * @return something very important.
      */
-    int method27(int aParam)
+    int method27(int aParam) // ok
     { return 0;
     }
 
@@ -284,7 +288,7 @@ class InputJavadocMethodTags1
      * @return something very important.
      * {@inheritDoc}
      */
-    int method28(int aParam)
+    int method28(int aParam) // ok
     { return 0;
     }
 
@@ -293,7 +297,7 @@ class InputJavadocMethodTags1
      *
      * @return 1
      */
-    public int foo(Object _arg) {
+    public int foo(Object _arg) { // ok
 
         return 1;
     }
@@ -302,7 +306,7 @@ class InputJavadocMethodTags1
      * misplaced @param aParam
      * misplaced @return something very important.
      */
-    int method29(int aParam)
+    int method29(int aParam) // violation
     { return 0;
     }
 }
@@ -314,18 +318,18 @@ enum InputJavadocMethodTagsEnum
     /**
      *
      */
-    CONSTANT_B,
+    CONSTANT_B, // ok
 
     CONSTANT_C
     {
         /**
          *
          */
-        public void someMethod()
+        public void someMethod() // ok
         {
         }
 
-        public void someOtherMethod()
+        public void someOtherMethod() // ok
         {
 
         }
@@ -340,19 +344,19 @@ enum InputJavadocMethodTagsEnum
     int B_CONSTANT = 1;
     /** @return This tag is valid here and expected with Java 8 */
     String someField2();
-    /** {@inheritDoc} */
+    /** {@inheritDoc} */ // violation
     String someField3();
 }
 
 /**
  * Some javadoc.
  */
-public class InputJavadocMethodTags {
+public class InputJavadocMethodTags { // ok
 
     /**
      * Constructor.
      */
-    public InputJavadocMethodTags() {
+    public InputJavadocMethodTags() { // ok
     }
 
    /**
@@ -362,7 +366,7 @@ public class InputJavadocMethodTags {
     * @return java.lang.String      the result string
     * @throws java.lang.Exception   in case of problem
     */
-    public final String myMethod(final String arg1,
+    public final String myMethod(final String arg1, // ok
                                  final Object arg2)
       throws Exception
     {
@@ -373,7 +377,7 @@ public class InputJavadocMethodTags {
 /**
  *  Added to make this file compilable.
  */
-class WrongException extends RuntimeException
+class WrongException extends RuntimeException // ok
 {
 }
 
@@ -382,9 +386,9 @@ class WrongException extends RuntimeException
      * nothing
      * @return
      * oops */
-    String[] results() default {};
+    String[] results() default {}; // violation
 }
 class MoreExamples {
-    /** @param algorithm*/
+    /** @param algorithm*/ // ok
     public void setAlgorithm(String algorithm) {}
 }

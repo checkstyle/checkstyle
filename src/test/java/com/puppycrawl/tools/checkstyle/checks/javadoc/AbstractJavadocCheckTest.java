@@ -27,6 +27,7 @@ import static com.puppycrawl.tools.checkstyle.checks.javadoc.SummaryJavadocCheck
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -247,6 +248,29 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
                 "Invalid acceptable javadoc tokens");
         assertNotEquals(defaultJavadocTokens, check.getRequiredJavadocTokens(),
                 "Invalid required javadoc tokens");
+    }
+
+    @Test
+    public void testTokensFail() {
+        final int[] defaultJavadocTokens = {JavadocTokenTypes.JAVADOC,
+            JavadocTokenTypes.AREA_HTML_TAG_NAME,
+            JavadocTokenTypes.PARAGRAPH,
+            JavadocTokenTypes.HR_TAG,
+            JavadocTokenTypes.RETURN_LITERAL,
+            JavadocTokenTypes.BR_TAG};
+        final AbstractJavadocCheck check = new AbstractJavadocCheck() {
+            @Override
+            public void visitJavadocToken(DetailNode ast) {
+                // no code necessary
+            }
+
+            @Override
+            public int[] getDefaultJavadocTokens() {
+                return defaultJavadocTokens;
+            }
+        };
+        check.setJavadocTokens("RETURN_LITERAL");
+        assertDoesNotThrow(check::init);
     }
 
     @Test

@@ -1,39 +1,40 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
 /**
- * Some javadoc.
+ * Config:
+ * allowedAnnotations = Override,ThisIsOk, \t\n\t ThisIsOkToo
  */
 public class InputJavadocMethodAllowedAnnotations implements SomeInterface {
 
     @ThisIsOk
-    public void allowed1() {}
+    public void allowed1() {} // ok
 
     @ThisIsOkToo
-    public void allowed2() {}
+    public void allowed2() {} // ok
 
     @com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod.ThisIsOk
-    public void allowed3() {}
+    public void allowed3() {} // ok
 
     @Override
-    public void method() {}
+    public void method() {} // ok
 }
 
 /**
  * Documented.
  */
-interface SomeInterface {
+interface SomeInterface { // ok
     /**
      * Documented.
      */
-    void method();
+    void method(); // ok
 }
 
 /**
  * Some javadoc.
  */
-@interface ThisIsOk {}
+@interface ThisIsOk {} // ok
 
 /**
  * Some javadoc.
  */
-@interface ThisIsOkToo {}
+@interface ThisIsOkToo {} // ok

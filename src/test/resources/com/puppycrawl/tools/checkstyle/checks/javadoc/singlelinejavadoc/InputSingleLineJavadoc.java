@@ -1,4 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.singlelinejavadoc;
+
+/* Config:
+ * violateExecutionOnNonTightHtml = false
+ * ignoreInlineTags = true
+ */
+
 class InputSingleLineJavadoc {
 
         /** As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)} */
@@ -9,7 +15,7 @@ class InputSingleLineJavadoc {
      */
     void foo1() {}
 
-    /** @throws CheckstyleException if an problem occurs */
+    /** @throws CheckstyleException if an problem occurs */ // violation
     void foo2() {}
 
     /**
@@ -25,7 +31,7 @@ class InputSingleLineJavadoc {
      */
     void foo5() {}
 
-    /** @inheritDoc */
+    /** @inheritDoc */ // violation
     void foo6() {}
 
     /** {@inheritDoc} */
@@ -37,15 +43,15 @@ class InputSingleLineJavadoc {
     /** {@inheritDoc}  {@link #bar} */
     void foo9() {}
 
-    /** @customTag */
+    /** @customTag */ // violation
     void bar() {}
 
-    /** @ignoredCustomTag */
+    /** @ignoredCustomTag */ // violation
     void bar1() {}
 
     /** <h1> Some header </h1> {@inheritDoc} {@code bar1} text*/
     void bar2() {}
 
-    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/
+    /** @customTag <a> href="https://github.com/checkstyle/checkstyle/"</a> text*/ // violation
     void bar3() {}
 }

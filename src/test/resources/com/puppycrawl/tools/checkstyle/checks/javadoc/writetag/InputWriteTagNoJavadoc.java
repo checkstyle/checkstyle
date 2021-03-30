@@ -1,6 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.writetag;
 
-class InputWriteTag3
+/* Config: default */
+class InputWriteTagNoJavadoc // violation
 {
     public void method()
     {
