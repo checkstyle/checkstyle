@@ -8,7 +8,7 @@ import org.w3c.dom.Node;
 /* Config:
  * pattern = "^NonAbstract.+$"
  */
-abstract class NonAbstractClassName { // ok
+public abstract class InputAbstractClassNameCustom { // violation
 }
 
 abstract class InputAbstractClassName { // violation
@@ -18,4 +18,7 @@ abstract class AbstractClassOther { // violation
 }
 
 abstract class AbstractClassName2 { // violation
+}
+
+abstract class NonAbstractClassName{ // ok
 }

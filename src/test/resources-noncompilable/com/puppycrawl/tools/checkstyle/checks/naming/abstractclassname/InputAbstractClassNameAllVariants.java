@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
  * pattern = "^Abstract.+$"
  * modifier = abstract
  */
-abstract class AbstractClassName { // ok
+public abstract class InputAbstractClassNameAllVariants { // violation
 }
 
 abstract class InputAbstractClassName { // violation
@@ -27,4 +27,7 @@ class AbstractClass { // violation
 }
 
 class AbstractInnerClass { // violation
+}
+
+abstract class AbstractClassName{ // ok
 }

@@ -8,7 +8,7 @@ import org.w3c.dom.Node;
 /* Config:
  * modifier = abstract
  */
-abstract class AbstractClassName { // ok
+public abstract class InputAbstractClassNameFormerFalsePositive { // ok
 }
 
 class AbstractClass { // violation

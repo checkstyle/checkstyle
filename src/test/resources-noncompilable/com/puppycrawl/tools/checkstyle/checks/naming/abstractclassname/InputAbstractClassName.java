@@ -8,14 +8,17 @@ import org.w3c.dom.Node;
 /* Config:
  * pattern = "^Abstract.+$"
  */
-abstract class AbstractClassName { // ok
-}
 
-abstract class InputAbstractClassName { // violation
+
+
+public abstract class InputAbstractClassName { // violation
 }
 
 abstract class NonAbstractClassName { // violation
 }
 
 abstract class NonAbstractInnerClass { // violation
+}
+
+abstract class AbstractClassName{   //ok
 }
