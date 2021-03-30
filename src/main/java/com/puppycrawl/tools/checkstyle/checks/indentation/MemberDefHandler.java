@@ -19,6 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.indentation;
 
+import java.util.Optional;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
@@ -51,11 +53,36 @@ public class MemberDefHandler extends AbstractExpressionHandler {
             checkType();
         }
         final DetailAST firstNode = getMainAst();
-        final DetailAST lastNode = getVarDefStatementSemicolon(firstNode);
+        DetailAST lastNode = getVarDefStatementSemicolon(firstNode);
 
-        if (lastNode != null && !isArrayDeclaration(firstNode)) {
+        if (lastNode != null) {
+            lastNode = getArrayInitNode(firstNode).orElse(lastNode);
             checkWrappingIndentation(firstNode, lastNode);
         }
+    }
+
+    /**
+     * Finds the array init node.
+     *
+     * @param firstNode Node to begin searching
+     * @return array init node
+     */
+    private static Optional<DetailAST> getArrayInitNode(DetailAST firstNode) {
+        Optional<DetailAST> result = Optional.empty();
+        final DetailAST assign = firstNode.findFirstToken(TokenTypes.ASSIGN);
+        if (assign != null) {
+            final DetailAST expr = assign.findFirstToken(TokenTypes.EXPR);
+            if (expr == null) {
+                result = Optional.ofNullable(assign.findFirstToken(TokenTypes.ARRAY_INIT));
+            }
+            else {
+                final DetailAST literalNew = expr.findFirstToken(TokenTypes.LITERAL_NEW);
+                if (literalNew != null) {
+                    result = Optional.ofNullable(literalNew.findFirstToken(TokenTypes.ARRAY_INIT));
+                }
+            }
+        }
+        return result;
     }
 
     @Override
@@ -82,17 +109,6 @@ public class MemberDefHandler extends AbstractExpressionHandler {
         if (isOnStartOfLine(ident) && !getIndent().isAcceptable(columnNo)) {
             logError(ident, "type", columnNo);
         }
-    }
-
-    /**
-     * Checks if variable_def node is array declaration.
-     *
-     * @param variableDef current variable_def.
-     * @return true if variable_def node is array declaration.
-     */
-    private static boolean isArrayDeclaration(DetailAST variableDef) {
-        return variableDef.findFirstToken(TokenTypes.TYPE)
-            .findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
     }
 
     /**
