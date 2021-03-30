@@ -639,8 +639,8 @@ public final class TokenTypes {
      *      |   `--LITERAL_PUBLIC -> public
      *      |--TYPE -> TYPE
      *      |   `--LITERAL_INT -> int
-     *      |--IDENT -> add [2:15]
-     *      |--LPAREN -> ( [2:18]
+     *      |--IDENT -> add
+     *      |--LPAREN -> (
      *      |--PARAMETERS -> PARAMETERS
      *      |   |--PARAMETER_DEF -> PARAMETER_DEF
      *      |   |   |--MODIFIERS -> MODIFIERS
@@ -653,7 +653,7 @@ public final class TokenTypes {
      *      |       |--TYPE -> TYPE
      *      |       |   `--LITERAL_INT -> int
      *      |       `--IDENT -> num2
-     *   +--RPAREN -> ) [2:37]
+     *   +--RPAREN -> )
      * </pre>
      *
      * @see #MODIFIERS
