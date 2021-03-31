@@ -628,6 +628,34 @@ public final class TokenTypes {
      * be variable length (indicated by the ELLIPSIS child node immediately
      * after the TYPE child).
      *
+     * <p>For example</p>
+     * <pre>
+     *  public int add(int num1, int num2)
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     *  +--METHOD_DEF -> METHOD_DEF
+     *      |--MODIFIERS -> MODIFIERS
+     *      |   `--LITERAL_PUBLIC -> public
+     *      |--TYPE -> TYPE
+     *      |   `--LITERAL_INT -> int
+     *      |--IDENT -> add
+     *      |--LPAREN -> (
+     *      |--PARAMETERS -> PARAMETERS
+     *      |   |--PARAMETER_DEF -> PARAMETER_DEF
+     *      |   |   |--MODIFIERS -> MODIFIERS
+     *      |   |   |--TYPE -> TYPE
+     *      |   |   |   `--LITERAL_INT -> int
+     *      |   |   `--IDENT -> num1
+     *      |   |--COMMA -> ,
+     *      |   `--PARAMETER_DEF -> PARAMETER_DEF
+     *      |       |--MODIFIERS -> MODIFIERS
+     *      |       |--TYPE -> TYPE
+     *      |       |   `--LITERAL_INT -> int
+     *      |       `--IDENT -> num2
+     *   +--RPAREN -> )
+     * </pre>
+     *
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
