@@ -2,10 +2,10 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
- * option = top
+ * option = bottom
  * groups = {org, java}
  * ordered = true
- * separated = true
+ * separated = false
  * separatedStaticGroups = false
  * caseSensitive = true
  * staticGroups = {}
@@ -14,12 +14,12 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  */
 import org.antlr.v4.runtime.*; // ok
 
+import java.util.Set; // violation
+
 import static java.lang.Math.PI; // violation
 import static org.antlr.v4.runtime.Recognizer.EOF; // ok
 
-import java.util.Set; // ok
-
-public class InputImportOrderStaticGroupOrderBottom_Negative2
+public class InputImportOrderStaticGroupOrderBottom1
 {
 
 }
