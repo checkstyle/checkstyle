@@ -4,18 +4,20 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 /*
  * Config:
  * option = top
- * groups = {java, org}
+ * groups = {/^javax?\./, org}
  * ordered = true
  * separated = true
  * separatedStaticGroups = false
- * caseSensitive = true
+ * caseSensitive = false
  * staticGroups = {}
  * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = true
  */
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // ok
-import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // ok
+import static io.netty.handler.codec.http.HttpConstants.COLON; // ok
+import static io.netty.handler.codec.http.HttpHeaders.addHeader; // ok
+import static io.netty.handler.codec.http.HttpHeaders.setHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.Names.addDate; // ok
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // ok
 
-public class InputImportOrderEclipseStaticRepetition {
+public class InputImportOrderEclipseStatic1 {
 }
