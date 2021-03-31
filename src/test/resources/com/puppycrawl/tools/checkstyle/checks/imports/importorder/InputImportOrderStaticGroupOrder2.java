@@ -1,11 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-import java.util.LinkedList; // ok
-import java.util.HashMap; // violation
+
+import static java.lang.Math.abs; // ok
+import static org.antlr.v4.runtime.Recognizer.EOF; // ok
+
+import org.antlr.v4.runtime.*; // violation
+
+import java.util.Set; // violation
 
 /*
  * Config:
- * option = bottom
- * groups = {}
+ * option = top
+ * groups = {org, java}
  * ordered = true
  * separated = false
  * separatedStaticGroups = false
@@ -14,7 +19,7 @@ import java.util.HashMap; // violation
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
  */
-class InputImportOrderNonStaticWrongSequence {
+public class InputImportOrderStaticGroupOrder2
+{
+
 }
-
-
