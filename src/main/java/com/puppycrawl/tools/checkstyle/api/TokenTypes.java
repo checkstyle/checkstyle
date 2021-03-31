@@ -3156,6 +3156,23 @@ public final class TokenTypes {
     /**
      * The {@code true} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * boolean a = true;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; a
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_TRUE -&gt; true
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
      * Language Specification, &sect;3.10.3</a>
