@@ -5,21 +5,22 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * option = top
  * groups = {org, java}
  * ordered = true
- * separated = true
+ * separated = false
  * separatedStaticGroups = false
  * caseSensitive = true
  * staticGroups = {}
  * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = false
  */
-import org.antlr.v4.runtime.*; // ok
+import static java.lang.Math.*; // ok
+import static org.antlr.v4.runtime.CommonToken.*; // ok
 
-import static java.lang.Math.PI; // violation
-import static org.antlr.v4.runtime.Recognizer.EOF; // ok
+import org.antlr.v4.runtime.*; // violation
 
-import java.util.Set; // ok
+import java.util.Set; // violation
+import org.junit.Test; // violation
 
-public class InputImportOrderStaticGroupOrderBottom_Negative2
+public class InputImportOrderStaticOnDemandGroupOrder2
 {
 
 }
