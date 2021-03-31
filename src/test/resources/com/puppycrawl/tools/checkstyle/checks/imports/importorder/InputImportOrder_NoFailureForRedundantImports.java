@@ -1,5 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-public class InputImportOrder_NoFailureForRedundantImports {
+/*
+ * Config:
+ * option = under
+ * groups = {}
+ * ordered = true
+ * separated = false
+ * separatedStaticGroups = false
+ * caseSensitive = true
+ * staticGroups = {}
+ * sortStaticImportsAlphabetically = false
+ * useContainerOrderingForStatic = false
+ */
+public class InputImportOrder_NoFailureForRedundantImports { // ok
 }
-
