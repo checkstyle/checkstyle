@@ -12,14 +12,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = false
  */
-import org.antlr.v4.runtime.*; // ok
-
-import static java.lang.Math.PI; // violation
-import static org.antlr.v4.runtime.Recognizer.EOF; // ok
+import static java.lang.Math.*; // ok
+import static org.antlr.v4.runtime.CommonToken.*; // ok
+import static org.antlr.v4.runtime.CommonToken.*;  // ok
 
 import java.util.Set; // ok
 
-public class InputImportOrderStaticGroupOrderBottom_Negative2
-{
+import org.junit.Test; // ok
 
+public class InputImportOrderStaticRepetition1 {
 }
