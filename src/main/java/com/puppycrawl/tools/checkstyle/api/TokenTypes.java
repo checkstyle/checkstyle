@@ -2003,6 +2003,44 @@ public final class TokenTypes {
      * The {@code continue} keyword.  The first child is an
      * optional identifier and the last child is a semicolon.
      *
+     * <p>For example:</p>
+     * <pre>
+     * for (int i = 0; i < 5; i++) {
+     *     continue;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_INIT -&gt; FOR_INIT
+     *  |   `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--LITERAL_INT -&gt; int
+     *  |       |--IDENT -&gt; i
+     *  |       `--ASSIGN -&gt; =
+     *  |           `--EXPR -&gt; EXPR
+     *  |               `--NUM_INT -&gt; 0
+     *  |--SEMI -&gt; ;
+     *  |--FOR_CONDITION -&gt; FOR_CONDITION
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LT -&gt; &lt;
+     *  |           |--IDENT -&gt; i
+     *  |           `--NUM_INT -&gt; 5
+     *  |--SEMI -&gt; ;
+     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  |   `--ELIST -&gt; ELIST
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--POST_INC -&gt; ++
+     *  |               `--IDENT -&gt; i
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--LITERAL_CONTINUE -&gt; continue
+     *      |   `--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #IDENT
      * @see #SEMI
      * @see #SLIST
