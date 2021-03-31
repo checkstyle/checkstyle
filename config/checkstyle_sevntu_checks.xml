@@ -198,6 +198,9 @@
       <property name="ignoreEmptyReturns" value="false"/>
     </module>
     <module name="MoveVariableInsideIfCheck" />
+    <module name="com.github.sevntu.checkstyle.checks.coding.PreferMethodReferenceCheck">
+      <property name="detectForExpression" value="true" />
+    </module>
     <module name="RequireFailForTryCatchInJunit" />
     <!-- we are not ready to activate this Check, too much violations
        and it requires bunch of refactoring -->
