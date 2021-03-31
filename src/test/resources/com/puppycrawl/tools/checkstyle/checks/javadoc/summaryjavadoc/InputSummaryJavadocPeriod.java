@@ -19,4 +19,14 @@ public class InputSummaryJavadocPeriod
      * An especially short bit of Javadoc_
      */
     void foo6() {}
+
+    /**
+     * {@summary An especially short bit of Javadoc_}
+     */
+    void foo7(){}
+
+    /**
+     * {@summary An especially short bit of Javadoc}
+     */
+    void foo8() {}
 }
