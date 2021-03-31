@@ -2,7 +2,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
- * option = above
+ * option = top
  * groups = {}
  * ordered = true
  * separated = false
@@ -12,21 +12,24 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
  */
+import static java.io.File.createTempFile; // ok
 import static java.awt.Button.ABORT; // ok
 import static javax.swing.WindowConstants.*; // ok
-import static java.awt.Button.ABORT; // violation
-import java.awt.Button; // ok
+
+import java.awt.Button; // violation
+import java.awt.Dialog; // ok
 import java.awt.Frame; // ok
-import java.awt.Dialog; // violation
 import java.awt.event.ActionEvent; // ok
-import javax.swing.JComponent; // ok
+/***comment test***/
+import java.io.IOException; // violation
+import java.io.InputStream; // ok
+
+import javax.swing.JComponent; // violation
 import javax.swing.JTable; // ok
 
-import java.io.File; // violation
-import static java.io.File.createTempFile; // violation
-import java.io.IOException; // ok
-import java.io.InputStream; // ok
+import static java.io.File.*; // violation
+import java.io.File; // ok
 import java.io.Reader; // ok
 
-public class InputImportOrder_Above {
+public class InputImportOrder_Top2 {
 }
