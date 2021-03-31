@@ -1,22 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import java.io.File; // ok
-import java.io.IOException; // ok
-import java.util.Iterator; // ok
-
-import com.puppycrawl.tools.checkstyle.checks.imports.importorder.InputImportOrderBug; // violation
+import static org.junit.Assert.fail; // ok
+import static javax.xml.transform.TransformerFactory.newInstance; // ok
+import static java.lang.Math.cos; // ok
+import static java.lang.Math.abs; // ok
 
 /*
  * Config:
- * option = under
+ * option = top
  * groups = {java, javax, org}
  * ordered = true
- * separated = false
+ * separated = true
  * separatedStaticGroups = false
  * caseSensitive = true
  * staticGroups = {}
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
  */
-public class InputImportOrder_WildcardUnspecified {
+public class InputImportOrderSortStaticImportsAlphabetically1 {
 }
