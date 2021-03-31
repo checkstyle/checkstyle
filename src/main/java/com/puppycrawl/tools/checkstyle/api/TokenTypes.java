@@ -1296,21 +1296,6 @@ public final class TokenTypes {
     /**
      * The {@code short} keyword.
      *
-     * <p>For example:</p>
-     * <pre>
-     * public short x;
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * VARIABLE_DEF -&gt; VARIABLE_DEF
-     *  |--MODIFIERS -&gt; MODIFIERS
-     *  |   `--LITERAL_PUBLIC -&gt; public
-     *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_SHORT -&gt; short
-     *  |--IDENT -&gt; x
-     *  `--SEMI -&gt; ;
-     * </pre>
-     *
      * @see #TYPE
      **/
     public static final int LITERAL_SHORT =
@@ -1339,21 +1324,6 @@ public final class TokenTypes {
     public static final int LITERAL_INT = GeneratedJavaTokenTypes.LITERAL_int;
     /**
      * The {@code float} keyword.
-     *
-     * <p>For example:</p>
-     * <pre>
-     * public float x;
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * VARIABLE_DEF -&gt; VARIABLE_DEF
-     *  |--MODIFIERS -&gt; MODIFIERS
-     *  |   `--LITERAL_PUBLIC -&gt; public
-     *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_FLOAT -&gt; float
-     *  |--IDENT -&gt; x
-     *  `--SEMI -&gt; ;
-     * </pre>
      *
      * @see #TYPE
      **/
@@ -1501,22 +1471,6 @@ public final class TokenTypes {
 
     /**
      * The {@code static} keyword.
-     *
-     * <p>For example:</p>
-     * <pre>
-     * public static int x;
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * VARIABLE_DEF -&gt; VARIABLE_DEF
-     *  |--MODIFIERS -&gt; MODIFIERS
-     *  |   |--LITERAL_PUBLIC -&gt; public
-     *  |   `--LITERAL_STATIC -&gt; static
-     *  |--TYPE -&gt; TYPE
-     *  |   `--LITERAL_INT -&gt; int
-     *  |--IDENT -&gt; x
-     *  `--SEMI -&gt; ;
-     * </pre>
      *
      * @see #MODIFIERS
      **/
@@ -3133,6 +3087,23 @@ public final class TokenTypes {
     public static final int LNOT = GeneratedJavaTokenTypes.LNOT;
     /**
      * The {@code true} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * boolean a = true;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; a
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_TRUE -&gt; true
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
