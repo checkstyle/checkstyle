@@ -1502,6 +1502,22 @@ public final class TokenTypes {
     /**
      * The {@code static} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public static int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--LITERAL_PUBLIC -&gt; public
+     *  |   `--LITERAL_STATIC -&gt; static
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_STATIC =
