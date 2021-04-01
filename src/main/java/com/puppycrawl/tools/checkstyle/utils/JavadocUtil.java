@@ -417,4 +417,38 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
 
+    /**
+     * Returns inline tag Node inside html tags from an HTML tag.
+     *
+     * @param ast html tag node.
+     * @return DetailNode of inline tag.
+     */
+    public static DetailNode getInlineTagNodeWithinHtmlElement(DetailNode ast) {
+        DetailNode inlineNode = null;
+        if (ast.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+            for (DetailNode nodeChild : ast.getChildren()[0].getChildren()) {
+                if (nodeChild.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                    inlineNode = nodeChild;
+                    break;
+                }
+                else if (nodeChild.getType() == JavadocTokenTypes.HTML_TAG
+                        || nodeChild.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                    inlineNode = getInlineTagNodeWithinHtmlElement(nodeChild);
+                }
+            }
+        }
+
+        if (ast.getType() == JavadocTokenTypes.HTML_TAG) {
+            for (DetailNode child : ast.getChildren()) {
+                if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                    inlineNode = child;
+                    break;
+                }
+                else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                    inlineNode = getInlineTagNodeWithinHtmlElement(child);
+                }
+            }
+        }
+        return inlineNode;
+    }
 }
