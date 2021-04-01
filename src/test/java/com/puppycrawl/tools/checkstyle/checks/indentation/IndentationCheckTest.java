@@ -1057,6 +1057,21 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testValidNewKeywordWithForceStrictConditionWithTernaryOp() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+        checkConfig.addAttribute("lineWrappingIndentation", "8");
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        final String[] expected = {
+            "40:25: " + getCheckMessage(MSG_ERROR, "new", 24, 16),
+        };
+        verifyWarns(checkConfig, getPath("InputIndentationNewWithTernaryOp.java"), expected);
+    }
+
+    @Test
     public void testInvalidNewKeywordWithForceStrictCondition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
 
