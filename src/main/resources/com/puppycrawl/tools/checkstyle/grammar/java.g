@@ -226,7 +226,7 @@ tokens {
 compilationUnit
     :    // A compilation unit starts with an optional package definition
         // semantic check because package definitions can be annotated
-        // which causes possible non-determinism in Antrl
+        // which causes possible non-determinism in Antlr
         (    (annotations "package")=> packageDefinition
         |    /* nothing */
         )
