@@ -90,7 +90,8 @@ public class NewHandler extends AbstractExpressionHandler {
             result = super.getIndentImpl();
 
             final boolean isLineWrappedNew = TokenUtil.isOfType(mainAst.getParent().getParent(),
-                                        TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+                                        TokenTypes.ASSIGN, TokenTypes.QUESTION,
+                                        TokenTypes.LITERAL_RETURN);
 
             if (isLineWrappedNew || doesChainedMethodNeedsLineWrapping()) {
                 result = new IndentLevel(result, getLineWrappingIndent());
@@ -132,7 +133,8 @@ public class NewHandler extends AbstractExpressionHandler {
             ast = ast.getParent();
         }
 
-        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.LITERAL_RETURN);
+        return TokenUtil.isOfType(ast, TokenTypes.ASSIGN, TokenTypes.QUESTION,
+            TokenTypes.LITERAL_RETURN);
     }
 
 }
