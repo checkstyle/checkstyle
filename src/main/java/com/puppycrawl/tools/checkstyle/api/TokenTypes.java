@@ -630,16 +630,15 @@ public final class TokenTypes {
      *
      * <p>For example</p>
      * <pre>
-     * public int add(int num1, int num2)
+     * public void add(int num1, int num2){}
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     *
-     *  +--METHOD_DEF -> METHOD_DEF
+     *+--METHOD_DEF -> METHOD_DEF
      *      |--MODIFIERS -> MODIFIERS
      *      |   `--LITERAL_PUBLIC -> public
      *      |--TYPE -> TYPE
-     *      |   `--LITERAL_INT -> int
+     *      |   `--LITERAL_INT -> void
      *      |--IDENT -> add
      *      |--LPAREN -> (
      *      |--PARAMETERS -> PARAMETERS
@@ -655,8 +654,10 @@ public final class TokenTypes {
      *      |       |   `--LITERAL_INT -> int
      *      |       `--IDENT -> num2
      *      |--RPAREN -> )
-     *
+     *      `--SLIST -> {
+     *       `--RCURLY -> }
      * </pre>
+     *
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
