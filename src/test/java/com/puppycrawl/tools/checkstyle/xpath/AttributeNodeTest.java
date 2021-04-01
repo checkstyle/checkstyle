@@ -54,9 +54,7 @@ public class AttributeNodeTest {
     @Test
     public void testGetDepth() {
         final UnsupportedOperationException exception =
-            assertThrows(UnsupportedOperationException.class, () -> {
-                attributeNode.getDepth();
-            });
+            assertThrows(UnsupportedOperationException.class, attributeNode::getDepth);
         assertWithMessage("Invalid exception message")
             .that(exception)
             .hasMessageThat()
@@ -85,9 +83,7 @@ public class AttributeNodeTest {
     @Test
     public void testGetChildren() {
         final UnsupportedOperationException exception =
-            assertThrows(UnsupportedOperationException.class, () -> {
-                attributeNode.getChildren();
-            });
+            assertThrows(UnsupportedOperationException.class, attributeNode::getChildren);
         assertWithMessage("Invalid exception message")
             .that(exception)
             .hasMessageThat()
