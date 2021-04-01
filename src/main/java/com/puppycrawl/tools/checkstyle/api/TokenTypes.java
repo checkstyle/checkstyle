@@ -2215,6 +2215,21 @@ public final class TokenTypes {
      * The {@code default} keyword.  This element has no
      * children.
      *
+     * <p>For example:</p>
+     * <pre>
+     * default int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_DEFAULT -&gt; default
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #CASE_GROUP
      * @see #MODIFIERS
      * @see #SWITCH_RULE
