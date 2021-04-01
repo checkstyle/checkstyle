@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -256,6 +257,118 @@ public class JavadocUtilTest {
         secondChild.setType(JavadocTokenTypes.AUTHOR_LITERAL);
         assertTrue(JavadocUtil.containsInBranch(node, JavadocTokenTypes.AUTHOR_LITERAL),
                 "Should return true when branch contains node passed");
+    }
+
+    @Test
+    public void testGetInlineJavadocTagWithinParagraphHtmlElement() {
+        final JavadocNodeImpl node = new JavadocNodeImpl();
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl thirdChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fourthChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        node.setType(JavadocTokenTypes.HTML_ELEMENT);
+        firstChild.setType(JavadocTokenTypes.PARAGRAPH);
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        thirdChild.setType(JavadocTokenTypes.HTML_ELEMENT);
+        fourthChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+        node.setChildren(firstChild);
+        firstChild.setChildren(secondChild);
+        secondChild.setChildren(thirdChild);
+        thirdChild.setChildren(fourthChild);
+        fourthChild.setChildren(fifthChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(node);
+        assertEquals(JavadocTokenTypes.JAVADOC_INLINE_TAG, expected.getType(), "Invalid Tag");
+    }
+
+    @Test
+    public void testGetInlineJavadocTagWithinHtmlTags() {
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl thirdChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fourthChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        firstChild.setType(JavadocTokenTypes.HTML_ELEMENT);
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        thirdChild.setType(JavadocTokenTypes.HTML_ELEMENT);
+        fourthChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+        firstChild.setChildren(secondChild);
+        secondChild.setChildren(thirdChild);
+        thirdChild.setChildren(fourthChild);
+        fourthChild.setChildren(fifthChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(firstChild);
+        assertEquals(JavadocTokenTypes.JAVADOC_INLINE_TAG, expected.getType(), "Invalid Tag");
+    }
+
+    @Test
+    public void testGetInlineJavadocTagWithinSingleHtmlTag() {
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+        secondChild.setChildren(fifthChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(secondChild);
+        assertEquals(JavadocTokenTypes.JAVADOC_INLINE_TAG, expected.getType(), "Invalid Tag");
+    }
+
+    @Test
+    public void testGetInlineJavadocTagWithinSingleHtmlElement() {
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        firstChild.setType(JavadocTokenTypes.HTML_ELEMENT);
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+        secondChild.setChildren(fifthChild);
+        firstChild.setChildren(secondChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(secondChild);
+        assertEquals(JavadocTokenTypes.JAVADOC_INLINE_TAG, expected.getType(), "Invalid Tag");
+    }
+
+    @Test
+    public void testGetInlineJavadocTagWithinSingleHtmlElementWithNoInlineTag() {
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        firstChild.setType(JavadocTokenTypes.HTML_ELEMENT);
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.INPUT_TAG);
+
+        secondChild.setChildren(fifthChild);
+        firstChild.setChildren(secondChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(secondChild);
+        assertNull(expected, "Invalid Tag");
+    }
+
+    @Test
+    public void testGetInlineJavadocTagWithinHtmlTagWithNoInlineJavadocTag() {
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.INPUT_TAG);
+
+        fifthChild.setParent(secondChild);
+        secondChild.setChildren(fifthChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(secondChild);
+        assertNull(expected, "No node to be returned");
     }
 
     @Test
