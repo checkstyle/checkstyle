@@ -3,7 +3,9 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 import java.lang.SuppressWarnings;
 
-@ThisIsOk
+/* Config: default*/
+
+@ThisIsOk // ok
 class InputJavadocTypeAllowedAnnotations {
 }
 

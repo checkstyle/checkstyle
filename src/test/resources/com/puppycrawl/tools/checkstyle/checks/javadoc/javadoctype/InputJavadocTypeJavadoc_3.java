@@ -7,7 +7,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /* Config:
  *
- * authorFormat = "0*"
+ * versionFormat = "^\p{Digit}+\.\p{Digit}+$"
  */
 
 /**
@@ -15,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
  ****    @author Oliver Burn
  * @version 1.0
  */
-class InputJavadocTypeJavadoc // violation
+class InputJavadocTypeJavadoc_3
 {
 }
 
@@ -24,7 +24,7 @@ class InputJavadocTypeJavadoc // violation
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-class InputJavadocTypeJavadoc1 // violation
+class InputJavadocTypeJavadoc_13 // violation
 {
 }
 
@@ -33,16 +33,16 @@ class InputJavadocTypeJavadoc1 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-class InputJavadocTypeJavadoc2
+class InputJavadocTypeJavadoc_23
 {
 }
 
-//Testing tag on first comment line
+
 /**
 * @author ABC
 * @version 1.1
 */
-class InputJavadocType
+class InputJavadocType_3
 {
 }
 
@@ -51,7 +51,7 @@ class InputJavadocType
  ****    @author Oliver Burn
  * @version 1.0
  */
-enum InputJavadocTypeEnum
+enum InputJavadocTypeEnum_3
 {
 }
 
@@ -60,7 +60,7 @@ enum InputJavadocTypeEnum
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-enum InputJavadocTypeEnum1 // violation
+enum InputJavadocTypeEnum_13 // violation
 {
 }
 
@@ -69,16 +69,16 @@ enum InputJavadocTypeEnum1 // violation
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-enum InputJavadocTypeEnum2
+enum InputJavadocTypeEnum_23
 {
 }
 
-//Testing tag on first comment line
+
 /**
 * @author ABC
 * @version 1.1
 */
-@interface InputJavadocInterfaceType
+@interface InputJavadocInterfaceType_3
 {
 }
 
@@ -87,7 +87,7 @@ enum InputJavadocTypeEnum2
  ****    @author Oliver Burn
  * @version 1.0
  */
-@interface InputJavadocInterface
+@interface InputJavadocInterface_3
 {
 }
 
@@ -96,7 +96,7 @@ enum InputJavadocTypeEnum2
  * SomeText @author Oliver Burn
  * *@version 1.0
  */
-@interface InputJavadocInterface1 // violation
+@interface InputJavadocInterface_13 // violation
 {
 }
 
@@ -105,15 +105,15 @@ enum InputJavadocTypeEnum2
  * tags are multi line ones
  * @author Oliver Burn
  * @version 1.0 */
-@interface InputJavadocInterface2
+@interface InputJavadocInterface_23
 {
 }
 
-//Testing tag on first comment line
+
 /**
 * @author ABC
 * @version 1.1
 */
-@interface InputJavadocInterfaceType1
+@interface InputJavadocInterfaceType_13
 {
 }

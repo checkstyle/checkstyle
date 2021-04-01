@@ -6,7 +6,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /* Config:
  *
- * scope = package
+ * scope = public
  */
 
 /**
@@ -18,7 +18,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
    @author lkuehne
  */
-public class InputJavadocTypeScopeInnerClasses
+public class InputJavadocTypeScopeInnerClasses1 // ok
 {
     public class InnerPublic
     {
@@ -28,7 +28,7 @@ public class InputJavadocTypeScopeInnerClasses
             {
                 private class InnerPrivate
                 {
-                    // no javadoc required for package scope
+
                     class PrivateHiddenPackage
                     {
                     }
@@ -45,7 +45,7 @@ public class InputJavadocTypeScopeInnerClasses
         }
     }
     /** */
-    protected class InnerPublic2<T> // violation
+    protected class InnerPublic2<T> // ok
     {
     }
 }
