@@ -8,14 +8,14 @@ package com . puppycrawl
 
 /* Config:
  *
- * authorFormat = "\\S"
+ * versionFormat = "\S"
  */
 
 /**
  * Class for testing javadoc issues.
  * violation missing author tag
  **/
-class InputJavadocTypeWhitespace // violation
+class InputJavadocTypeWhitespace_1 // violation
 {
     /** another check */
     void donBradman(Runnable aRun)
@@ -34,7 +34,7 @@ class InputJavadocTypeWhitespace // violation
     /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputJavadocTypeWhitespace() {
+        Object o = new InputJavadocTypeWhitespace_1() {
             private int j ;
         };
     }
@@ -45,7 +45,7 @@ class InputJavadocTypeWhitespace // violation
  * @author o_sukhodolsky
  * @version 1.0
  */
-interface IFoo
+interface IFoo_1
 {
     void foo() ;
 }
@@ -55,7 +55,7 @@ interface IFoo
  * @author lkuehne
  * @version 1.0
  */
-class SpecialCasesInForLoop
+class SpecialCasesInForLoop_1
 {
     public void myMethod() {
         new Thread() {

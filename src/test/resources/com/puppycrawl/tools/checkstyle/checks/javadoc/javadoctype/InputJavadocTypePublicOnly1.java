@@ -4,18 +4,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-/* Config: default */
+/* Config:
+ *
+ * scope = protected
+ */
 
-public class InputJavadocTypePublicOnly // ok
+public class InputJavadocTypePublicOnly1 // ok
 {
     private interface InnerInterface // ok
     {
-        String CONST = "InnerInterface"; // ok
-        void method(); // ok
+        String CONST = "InnerInterface";
+        void method();
 
         class InnerInnerClass // ok
         {
-            private int mData; // ok
+            private int mData;
 
             private InnerInnerClass()
             {
@@ -42,48 +45,48 @@ public class InputJavadocTypePublicOnly // ok
         }
     }
 
-    private int mSize; // ok
-    int mLen; // ok
-    protected int mDeer; // ok
-    public int aFreddo; // ok
+    private int mSize;
+    int mLen;
+    protected int mDeer;
+    public int aFreddo;
 
-    // ok
-    private InputJavadocTypePublicOnly(int aA)
+
+    private InputJavadocTypePublicOnly1(int aA) // ok
     {
     }
 
-    // ignore - need Javadoc when not relaxed
-    InputJavadocTypePublicOnly(String aA)
+
+    InputJavadocTypePublicOnly1(String aA) // ok
     {
     }
 
-    // ignore - always need javadoc
-    protected InputJavadocTypePublicOnly(Object aA)
+
+    protected InputJavadocTypePublicOnly1(Object aA)
     {
     }
 
-    // ignore - always need javadoc
-    public InputJavadocTypePublicOnly(Class<Object> aA)
+
+    public InputJavadocTypePublicOnly1(Class<Object> aA)
     {
     }
 
-    // ignore - when not relaxed about Javadoc
-    private void method(int aA)
+
+    private void method(int aA) // ok
     {
     }
 
-    // ignore - when not relaxed about Javadoc
-    void method(Long aA)
+
+    void method(Long aA) // ok
     {
     }
 
-    // ignore - need javadoc
-    protected void method(Class<Object> aA)
+
+    protected void method(Class<Object> aA) // ok
     {
     }
 
-    // ignore - need javadoc
-    public void method(StringBuffer aA)
+
+    public void method(StringBuffer aA) // ok
     {
     }
 
@@ -93,14 +96,14 @@ public class InputJavadocTypePublicOnly // ok
        Writing a little documentation should not be worse than not
        writing any documentation at all.
      */
-    private void method(String aA)
+    private void method(String aA) // ok
     {
     }
 
     /**
        This inner class has no author tag, which is OK.
      */
-    public class InnerWithoutAuthor
+    public class InnerWithoutAuthor // ok
     {
 
     }
@@ -109,11 +112,11 @@ public class InputJavadocTypePublicOnly // ok
     public String toString()
     {
         return super.toString();
-    }
+    } // ok
 
     @Deprecated @Override
     public int hashCode()
     {
         return super.hashCode();
-    }
+    } // ok
 }

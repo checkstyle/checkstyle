@@ -1,19 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-/* Config:
- *
- * allowMissingParamTags = true
- */
+/* Config: default */
 
 /**
  * Some explanation.
  * @param <A> A type param
  * @param <B1> Another type param
- * @param <D123> The wrong type param   // violation
+ * @param <D123> The wrong type param  // violation
  * @author Nobody
  * @version 1.0
  */
-public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
+public class InputJavadocTypeTypeParamsTags_1<A,B1,C456 extends Comparable> // violation
 {
     /**
      * Some explanation.
@@ -46,10 +43,10 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
     /**
      * Example inner class.
      * @param <A> documented parameter
-     * @param <C> extra parameter  // violation
+     * @param <C> extra parameter    // violation
      */
 
-    public static class InnerClass<A,B>
+    public static class InnerClass_1<A,B> // violation
     {
     }
 
@@ -62,5 +59,5 @@ public class InputJavadocTypeTypeParamsTags<A,B1,C456 extends Comparable>
     }
 }
 
-/** @param x */ // violation
-class Test {}
+/** @param x */  // violation
+class Test_1 {}
