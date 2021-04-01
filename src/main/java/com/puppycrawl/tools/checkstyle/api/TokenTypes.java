@@ -1244,6 +1244,19 @@ public final class TokenTypes {
     /**
      * The {@code ]} symbol.
      *
+     * <p>For example:</p>
+     * <pre>
+     * int a[];
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--TYPE -&gt; TYPE
+     * |   `--ARRAY_DECLARATOR -&gt; [
+     * |       |--LITERAL_INT -&gt; int
+     * |       `--RBRACK -&gt; ]
+     * `--IDENT -&gt; a
+     * </pre>
+     *
      * @see #INDEX_OP
      * @see #ARRAY_DECLARATOR
      **/
