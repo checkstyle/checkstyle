@@ -6,10 +6,10 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
 /* Config:
  *
- * scope = public
+ * scope = protected
  */
 
-public class InputJavadocTypeScopeInnerInterfaces // ok
+public class InputJavadocTypeScopeInnerInterfaces1
 {
 
 
@@ -60,20 +60,20 @@ public class InputJavadocTypeScopeInnerInterfaces // ok
 
     private
     interface
-    MyInterface1 {
+    MyInterface1 { // ok
     }
 
     interface
-    MyInterface2 {
+    MyInterface2 { // ok
     }
 
     protected
     enum
-    MyEnum {
+    MyEnum { // ok
     }
 
     private
     @interface
-    MyAnnotation {
+    MyAnnotation { // ok
     }
 }

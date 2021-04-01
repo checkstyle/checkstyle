@@ -1,9 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-/* Config : default */
+/* Config :
+ *
+ * scope = PROTECTED
+ */
 
 /** */
-public class InputJavadocTypeNoJavadoc<T> // violation
+public class InputJavadocTypeNoJavadoc_2<T> // violation
 {
     public int i1;
     protected int i2;
@@ -15,7 +18,7 @@ public class InputJavadocTypeNoJavadoc<T> // violation
     void foo3() {}
     private void foo4() {}
 
-    protected class ProtectedInner {
+    protected class ProtectedInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -27,7 +30,7 @@ public class InputJavadocTypeNoJavadoc<T> // violation
         private void foo4() {}
     }
 
-    class PackageInner {
+    class PackageInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -39,7 +42,7 @@ public class InputJavadocTypeNoJavadoc<T> // violation
         private void foo4() {}
     }
 
-    private class PrivateInner {
+    private class PrivateInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -52,7 +55,7 @@ public class InputJavadocTypeNoJavadoc<T> // violation
     }
 }
 
-class PackageClass {
+class PackageClass_2 {
     public int i1;
     protected int i2;
     int i3;
@@ -63,7 +66,7 @@ class PackageClass {
     void foo3() {}
     private void foo4() {}
 
-    public class PublicInner {
+    public class PublicInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -75,7 +78,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    protected class ProtectedInner {
+    protected class ProtectedInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -87,7 +90,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    class PackageInner {
+    class PackageInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -99,7 +102,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    private class PrivateInner {
+    private class PrivateInner_2 {
         public int i1;
         protected int i2;
         int i3;
@@ -111,7 +114,7 @@ class PackageClass {
         private void foo4() {}
     }
 
-    class IgnoredName {
+    class IgnoredName_2 {
         // ignore by name
         private int logger;
         // no warning, 'serialVersionUID' fields do not require Javadoc
@@ -122,6 +125,6 @@ class PackageClass {
     void methodWithTwoStarComment() {}
 
     /** */
-    protected class ProtectedInner2<T> { // violation
+    protected class ProtectedInner2_2<T> {
     }
 }

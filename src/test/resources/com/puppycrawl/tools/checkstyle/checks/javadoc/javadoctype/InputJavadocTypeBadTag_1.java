@@ -1,11 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
-/* Config: default*/
+/* Config:
+ *
+ * allowUnknownTag = true
+ */
 
 /**
  * The following is a bad tag.
- * @mytag Hello   // violation
+ * @mytag Hello // ok
  */
-public class InputJavadocTypeBadTag
+public class InputJavadocTypeBadTag_1 // ok
 {
 }

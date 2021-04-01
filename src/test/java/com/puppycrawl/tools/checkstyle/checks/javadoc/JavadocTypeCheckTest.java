@@ -93,7 +93,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavadocTypePublicOnly.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypePublicOnly1.java"), expected);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-               getPath("InputJavadocTypeScopeInnerInterfaces.java"),
+               getPath("InputJavadocTypeScopeInnerInterfaces1.java"),
                expected);
     }
 
@@ -126,7 +126,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "scope",
             Scope.PACKAGE.getName());
         final String[] expected = {
-            "43:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "48:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
         verify(checkConfig, getPath("InputJavadocTypeScopeInnerClasses.java"), expected);
     }
@@ -139,7 +139,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             "scope",
             Scope.PUBLIC.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputJavadocTypeScopeInnerClasses.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypeScopeInnerClasses1.java"), expected);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "\\S");
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "18:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verify(checkConfig, getPath("InputJavadocTypeWhitespace.java"), expected);
     }
@@ -160,9 +160,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "0*");
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "58:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "94:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "27:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "99:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
         };
         verify(checkConfig, getPath("InputJavadocTypeJavadoc.java"), expected);
     }
@@ -174,17 +174,17 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("authorFormat", "ABC");
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "31:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "49:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "58:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "67:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "85:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
-            "94:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
-            "103:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "18:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "27:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "36:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "54:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "72:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "90:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
+            "99:1: " + getCheckMessage(MSG_MISSING_TAG, "@author"),
+            "108:1: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
-        verify(checkConfig, getPath("InputJavadocTypeJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypeJavadoc_1.java"), expected);
     }
 
     @Test
@@ -194,9 +194,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\S");
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "18:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
         };
-        verify(checkConfig, getPath("InputJavadocTypeWhitespace.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypeWhitespace_1.java"), expected);
     }
 
     @Test
@@ -206,11 +206,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "^\\p{Digit}+\\.\\p{Digit}+$");
         final String[] expected = {
-            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "58:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "94:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "27:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "99:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
         };
-        verify(checkConfig, getPath("InputJavadocTypeJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypeJavadoc_3.java"), expected);
     }
 
     @Test
@@ -220,20 +220,20 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("versionFormat", "\\$Revision.*\\$");
         final String[] expected = {
-            "13:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "22:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "31:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "40:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "49:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "58:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "67:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "76:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "85:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "94:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
-            "103:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
-            "112:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "18:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "27:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "36:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "45:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "54:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "63:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "72:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "81:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "90:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "99:1: " + getCheckMessage(MSG_MISSING_TAG, "@version"),
+            "108:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
+            "117:1: " + getCheckMessage(MSG_TAG_FORMAT, "@version", "\\$Revision.*\\$"),
         };
-        verify(checkConfig, getPath("InputJavadocTypeJavadoc.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypeJavadoc_2.java"), expected);
     }
 
     @Test
@@ -241,8 +241,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "4:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
-            "123:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "6:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "125:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeNoJavadoc.java"),
@@ -266,10 +266,10 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "4:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "9:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
         verify(checkConfig,
-               getPath("InputJavadocTypeNoJavadoc.java"),
+               getPath("InputJavadocTypeNoJavadoc_2.java"),
                expected);
     }
 
@@ -280,10 +280,10 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("scope", Scope.PRIVATE.getName());
         checkConfig.addAttribute("excludeScope", Scope.PROTECTED.getName());
         final String[] expected = {
-            "123:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
+            "129:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <T>"),
         };
         verify(checkConfig,
-               getPath("InputJavadocTypeNoJavadoc.java"),
+               getPath("InputJavadocTypeNoJavadoc_1.java"),
                expected);
     }
 
@@ -292,13 +292,13 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-            "11:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
-            "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "47:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "9:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+            "13:1: " + getCheckMessage(MSG_MISSING_TAG, "@param <C456>"),
+            "46:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "49:5: " + getCheckMessage(MSG_MISSING_TAG, "@param <B>"),
+            "62:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
-        verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags.java"), expected);
+        verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags_1.java"), expected);
     }
 
     @Test
@@ -307,9 +307,9 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute("allowMissingParamTags", "true");
         final String[] expected = {
-            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
-            "44:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
-            "60:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
+            "12:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<D123>"),
+            "49:8: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<C>"),
+            "65:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "x"),
         };
         verify(checkConfig, getPath("InputJavadocTypeTypeParamsTags.java"), expected);
     }
@@ -319,8 +319,8 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "6:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
-            "7:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
+            "8:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "BAD"),
+            "9:4: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<BAD>"),
         };
         verify(checkConfig,
                 getPath("InputJavadocTypeUnusedParamInJavadocForClass.java"),
@@ -332,7 +332,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
         final String[] expected = {
-            "5:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
+            "7:4: " + getCheckMessage(MSG_UNKNOWN_TAG, "mytag"),
         };
         verify(checkConfig,
                getPath("InputJavadocTypeBadTag.java"),
@@ -346,7 +346,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("allowUnknownTags", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("InputJavadocTypeBadTag.java"),
+                getPath("InputJavadocTypeBadTag_1.java"),
                 expected);
     }
 
@@ -367,11 +367,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(JavadocTypeCheck.class);
         checkConfig.addAttribute(
             "allowedAnnotations",
-            "com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk");
+            "com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype.ThisIsOk_1");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-                getPath("InputJavadocTypeAllowedAnnotations.java"),
+                getPath("InputJavadocTypeAllowedAnnotations_1.java"),
                 expected);
     }
 
@@ -379,11 +379,11 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
     public void testAllowedAnnotationsAllowed() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(JavadocTypeCheck.class);
-        checkConfig.addAttribute("allowedAnnotations", "SuppressWarnings, ThisIsOk");
+        checkConfig.addAttribute("allowedAnnotations", "SuppressWarnings, ThisIsOk_2");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            getPath("InputJavadocTypeAllowedAnnotations_2.java"),
             expected);
     }
 
@@ -395,7 +395,7 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
-            getPath("InputJavadocTypeAllowedAnnotations.java"),
+            getPath("InputJavadocTypeAllowedAnnotations_3.java"),
             expected);
     }
 

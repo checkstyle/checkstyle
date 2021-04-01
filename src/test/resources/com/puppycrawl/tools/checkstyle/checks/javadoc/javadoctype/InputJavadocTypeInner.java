@@ -4,29 +4,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoctype;
 
+/* Config: default*/
+
 /**
  * Tests having inner types
  * @author Oliver Burn
  **/
-class InputJavadocTypeInner
+class InputJavadocTypeInner // ok
 {
-    // Ignore - two violations
+    // ok , two violations
     class InnerInner2
     {
-        // Ignore
+        // ok , Ignore
         public int fData;
     }
 
-    // Ignore - 2 violations
+
     interface InnerInterface2
     {
-        // Ignore - should be all upper case
+
         String data = "zxzc";
 
-        // Ignore
+
         class InnerInterfaceInnerClass
         {
-            // Ignore - need Javadoc and made private
+
             public int rData;
 
             /** needs to be made private unless allowProtected. */
