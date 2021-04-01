@@ -411,7 +411,11 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
             processMultipleLinesInside(ast);
         }
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            checkCommentInModifiers(ast);
+            // Check if package def is separated from the comment in modifier
+            final Optional<DetailAST> comment = findCommentUnder(ast);
+            if (comment.isPresent()) {
+                log(comment.get(), MSG_SHOULD_BE_SEPARATED, comment.get().getText());
+            }
         }
         DetailAST nextToken = ast.getNextSibling();
         while (isComment(nextToken)) {
@@ -453,18 +457,6 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                     log(nextToken, MSG_SHOULD_BE_SEPARATED,
                         nextToken.getText());
                 }
-        }
-    }
-
-    /**
-     * Checks that packageDef token is separated from comment in modifiers.
-     *
-     * @param packageDef package def token
-     */
-    private void checkCommentInModifiers(DetailAST packageDef) {
-        final Optional<DetailAST> comment = findCommentUnder(packageDef);
-        if (comment.isPresent()) {
-            log(comment.get(), MSG_SHOULD_BE_SEPARATED, comment.get().getText());
         }
     }
 
@@ -630,9 +622,44 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
                 log(ast, MSG_SHOULD_BE_SEPARATED, ast.getText());
             }
         }
-        if (!hasEmptyLineAfter(ast)) {
+        if (isLineEmptyAfterPackage(ast)) {
+            final DetailAST elementAst = getViolationAstForPackage(ast);
+            log(elementAst, MSG_SHOULD_BE_SEPARATED, elementAst.getText());
+        }
+        else if (!hasEmptyLineAfter(ast)) {
             log(nextToken, MSG_SHOULD_BE_SEPARATED, nextToken.getText());
         }
+    }
+
+    /**
+     * Checks if there is another element at next line of package declaration.
+     *
+     * @param ast Package ast.
+     * @return true, if there is an element.
+     */
+    private static boolean isLineEmptyAfterPackage(DetailAST ast) {
+        DetailAST nextElement = ast.getNextSibling();
+        final int lastChildLineNo = ast.getLastChild().getLineNo();
+        while (nextElement.getLineNo() < lastChildLineNo + 1
+                && nextElement.getNextSibling() != null) {
+            nextElement = nextElement.getNextSibling();
+        }
+        return nextElement.getLineNo() == lastChildLineNo + 1;
+    }
+
+    /**
+     * Gets the Ast on which violation is to be given for package declaration.
+     *
+     * @param ast Package ast.
+     * @return Violation ast.
+     */
+    private static DetailAST getViolationAstForPackage(DetailAST ast) {
+        DetailAST nextElement = ast.getNextSibling();
+        final int lastChildLineNo = ast.getLastChild().getLineNo();
+        while (nextElement.getLineNo() < lastChildLineNo + 1) {
+            nextElement = nextElement.getNextSibling();
+        }
+        return nextElement;
     }
 
     /**
