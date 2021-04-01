@@ -259,6 +259,36 @@ public class JavadocUtilTest {
     }
 
     @Test
+    public void testGetInlineJavadocTagWithinHtmlElement() {
+        final JavadocNodeImpl node = new JavadocNodeImpl();
+        final JavadocNodeImpl firstChild = new JavadocNodeImpl();
+        final JavadocNodeImpl secondChild = new JavadocNodeImpl();
+        final JavadocNodeImpl thirdChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fourthChild = new JavadocNodeImpl();
+        final JavadocNodeImpl fifthChild = new JavadocNodeImpl();
+
+        node.setType(JavadocTokenTypes.HTML_ELEMENT);
+        firstChild.setType(JavadocTokenTypes.PARAGRAPH);
+        secondChild.setType(JavadocTokenTypes.HTML_TAG);
+        thirdChild.setType(JavadocTokenTypes.HTML_ELEMENT);
+        fourthChild.setType(JavadocTokenTypes.HTML_TAG);
+        fifthChild.setType(JavadocTokenTypes.JAVADOC_INLINE_TAG);
+
+        fifthChild.setParent(fourthChild);
+        fourthChild.setParent(thirdChild);
+        thirdChild.setParent(secondChild);
+        secondChild.setParent(node);
+
+        node.setChildren(secondChild);
+        secondChild.setChildren(thirdChild);
+        thirdChild.setChildren(fourthChild);
+        fourthChild.setChildren(fifthChild);
+
+        final DetailNode expected = JavadocUtil.getInlineTagNodeWithinHtmlElement(node);
+        assertEquals(JavadocTokenTypes.JAVADOC_INLINE_TAG, expected.getType(), "Invalid Tag");
+    }
+
+    @Test
     public void testGetTokenNameForId() {
         assertEquals("EOF", JavadocUtil.getTokenName(JavadocTokenTypes.EOF),
                 "Invalid token name");
