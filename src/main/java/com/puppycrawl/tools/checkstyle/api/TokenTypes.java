@@ -1164,6 +1164,25 @@ public final class TokenTypes {
     /**
      * The {@code final} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public final int x = 0;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--LITERAL_PUBLIC -&gt; public
+     *  |   `--FINAL -&gt; final
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_INT -&gt; 0
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int FINAL = GeneratedJavaTokenTypes.FINAL;
