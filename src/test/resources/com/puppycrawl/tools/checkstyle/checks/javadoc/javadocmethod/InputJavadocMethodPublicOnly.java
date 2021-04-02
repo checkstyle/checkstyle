@@ -117,4 +117,34 @@ public class InputJavadocMethodPublicOnly // ignore - need javadoc
     {
         return super.hashCode();
     }
+
+    public Thread anonymousClassInMethod() {
+        return new Thread() {
+            @Override
+            public void run() {
+                privateMethod(null, null);
+            }
+
+            /**
+             * Javadoc
+             */
+            private String privateMethod(String a, String b) {
+                return null;
+            }
+        };
+    }
+
+    private final Thread anonymousClassInField = new Thread() {
+        @Override
+        public void run() {
+            publicMethod(null, null);
+        }
+
+        /**
+         * Javadoc
+         */
+        public String publicMethod(String a, String b) {
+            return null;
+        }
+    };
 }

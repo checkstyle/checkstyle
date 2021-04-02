@@ -198,10 +198,8 @@ public class RecordComponentNumberCheck extends AbstractCheck {
 
     @Override
     public void visitToken(DetailAST ast) {
-        final DetailAST modifiers =
-            ast.findFirstToken(TokenTypes.MODIFIERS);
         final AccessModifierOption accessModifier =
-            CheckUtil.getAccessModifierFromModifiersToken(modifiers);
+            CheckUtil.getAccessModifierFromModifiersToken(ast);
 
         if (matchAccessModifiers(accessModifier)) {
             final DetailAST recordComponents =
