@@ -45,8 +45,8 @@ import java.util.ResourceBundle.Control;
  *
  * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
  */
-public final class LocalizedMessage
-    implements Comparable<LocalizedMessage>, Serializable {
+public final class Violation
+    implements Comparable<Violation>, Serializable {
 
     private static final long serialVersionUID = 5675176836184862150L;
 
@@ -91,14 +91,14 @@ public final class LocalizedMessage
     /** Name of the resource bundle to get messages from. **/
     private final String bundle;
 
-    /** Class of the source for this LocalizedMessage. */
+    /** Class of the source for this Violation. */
     private final Class<?> sourceClass;
 
     /** A custom message overriding the default message from the bundle. */
     private final String customMessage;
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
      * @param lineNo line number associated with the message
      * @param columnNo column number associated with the message
@@ -114,7 +114,7 @@ public final class LocalizedMessage
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             int columnCharIndex,
                             int tokenType,
@@ -145,7 +145,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
      * @param lineNo line number associated with the message
      * @param columnNo column number associated with the message
@@ -160,7 +160,7 @@ public final class LocalizedMessage
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             int tokenType,
                             String bundle,
@@ -175,7 +175,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
      * @param lineNo line number associated with the message
      * @param columnNo column number associated with the message
@@ -189,7 +189,7 @@ public final class LocalizedMessage
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             String bundle,
                             String key,
@@ -203,7 +203,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
      * @param lineNo line number associated with the message
      * @param columnNo column number associated with the message
@@ -216,7 +216,7 @@ public final class LocalizedMessage
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             String bundle,
                             String key,
@@ -236,7 +236,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
      * @param lineNo line number associated with the message
      * @param bundle resource bundle name
@@ -249,7 +249,7 @@ public final class LocalizedMessage
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             String bundle,
                             String key,
                             Object[] args,
@@ -262,7 +262,7 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance. The column number
+     * Creates a new {@code Violation} instance. The column number
      * defaults to 0.
      *
      * @param lineNo line number associated with the message
@@ -273,7 +273,7 @@ public final class LocalizedMessage
      * @param sourceClass the name of the source for the message
      * @param customMessage optional custom message overriding the default
      */
-    public LocalizedMessage(
+    public Violation(
         int lineNo,
         String bundle,
         String key,
@@ -350,9 +350,9 @@ public final class LocalizedMessage
     }
 
     /**
-     * Gets the name of the source for this LocalizedMessage.
+     * Gets the name of the source for this Violation.
      *
-     * @return the name of the source for this LocalizedMessage
+     * @return the name of the source for this Violation
      */
     public String getSourceName() {
         return sourceClass.getName();
@@ -393,18 +393,18 @@ public final class LocalizedMessage
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
-        return Objects.equals(lineNo, localizedMessage.lineNo)
-                && Objects.equals(columnNo, localizedMessage.columnNo)
-                && Objects.equals(columnCharIndex, localizedMessage.columnCharIndex)
-                && Objects.equals(tokenType, localizedMessage.tokenType)
-                && Objects.equals(severityLevel, localizedMessage.severityLevel)
-                && Objects.equals(moduleId, localizedMessage.moduleId)
-                && Objects.equals(key, localizedMessage.key)
-                && Objects.equals(bundle, localizedMessage.bundle)
-                && Objects.equals(sourceClass, localizedMessage.sourceClass)
-                && Objects.equals(customMessage, localizedMessage.customMessage)
-                && Arrays.equals(args, localizedMessage.args);
+        final Violation violation = (Violation) object;
+        return Objects.equals(lineNo, violation.lineNo)
+                && Objects.equals(columnNo, violation.columnNo)
+                && Objects.equals(columnCharIndex, violation.columnCharIndex)
+                && Objects.equals(tokenType, violation.tokenType)
+                && Objects.equals(severityLevel, violation.severityLevel)
+                && Objects.equals(moduleId, violation.moduleId)
+                && Objects.equals(key, violation.key)
+                && Objects.equals(bundle, violation.bundle)
+                && Objects.equals(sourceClass, violation.sourceClass)
+                && Objects.equals(customMessage, violation.customMessage)
+                && Arrays.equals(args, violation.args);
     }
 
     @Override
@@ -418,7 +418,7 @@ public final class LocalizedMessage
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public int compareTo(LocalizedMessage other) {
+    public int compareTo(Violation other) {
         final int result;
 
         if (lineNo == other.lineNo) {

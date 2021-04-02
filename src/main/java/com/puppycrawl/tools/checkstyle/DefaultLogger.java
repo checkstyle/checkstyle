@@ -28,8 +28,8 @@ import java.nio.charset.StandardCharsets;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 /**
  * Simple plain logger for text output.
@@ -159,10 +159,10 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
     @Override
     public void addException(AuditEvent event, Throwable throwable) {
         synchronized (errorWriter) {
-            final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
-                Definitions.CHECKSTYLE_BUNDLE, ADD_EXCEPTION_MESSAGE,
-                new String[] {event.getFileName()}, null,
-                LocalizedMessage.class, null);
+            final Violation addExceptionMessage = new Violation(1,
+                    Definitions.CHECKSTYLE_BUNDLE, ADD_EXCEPTION_MESSAGE,
+                    new String[] {event.getFileName()}, null,
+                    Violation.class, null);
             errorWriter.println(addExceptionMessage.getMessage());
             throwable.printStackTrace(errorWriter);
         }
@@ -170,18 +170,18 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
     @Override
     public void auditStarted(AuditEvent event) {
-        final LocalizedMessage auditStartMessage = new LocalizedMessage(1,
-            Definitions.CHECKSTYLE_BUNDLE, AUDIT_STARTED_MESSAGE, null, null,
-            LocalizedMessage.class, null);
+        final Violation auditStartMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, AUDIT_STARTED_MESSAGE, null, null,
+                Violation.class, null);
         infoWriter.println(auditStartMessage.getMessage());
         infoWriter.flush();
     }
 
     @Override
     public void auditFinished(AuditEvent event) {
-        final LocalizedMessage auditFinishMessage = new LocalizedMessage(1,
-            Definitions.CHECKSTYLE_BUNDLE, AUDIT_FINISHED_MESSAGE, null, null,
-            LocalizedMessage.class, null);
+        final Violation auditFinishMessage = new Violation(1,
+                Definitions.CHECKSTYLE_BUNDLE, AUDIT_FINISHED_MESSAGE, null, null,
+                Violation.class, null);
         infoWriter.println(auditFinishMessage.getMessage());
         closeStreams();
     }
