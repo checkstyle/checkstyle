@@ -106,16 +106,16 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Returns the sorted set of {@link LocalizedMessage}.
+     * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link LocalizedMessage}.
+     * @return the sorted set of {@link Violation}.
      */
-    public SortedSet<LocalizedMessage> getMessages() {
+    public SortedSet<Violation> getMessages() {
         return new TreeSet<>(context.get().messages);
     }
 
     /**
-     * Clears the sorted set of {@link LocalizedMessage} of the check.
+     * Clears the sorted set of {@link Violation} of the check.
      */
     public final void clearMessages() {
         context.get().messages.clear();
@@ -214,7 +214,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     @Override
     public final void log(int line, String key, Object... args) {
         context.get().messages.add(
-            new LocalizedMessage(
+            new Violation(
                 line,
                 getMessageBundle(),
                 key,
@@ -231,7 +231,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
         context.get().messages.add(
-            new LocalizedMessage(
+            new Violation(
                 lineNo,
                 col,
                 getMessageBundle(),
@@ -244,7 +244,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Helper method to log a LocalizedMessage.
+     * Helper method to log a Violation.
      *
      * @param ast a node to get line id column numbers associated
      *             with the message
@@ -261,7 +261,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
         context.get().messages.add(
-                new LocalizedMessage(
+                new Violation(
                         ast.getLineNo(),
                         col,
                         ast.getColumnNo(),
@@ -300,7 +300,7 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     private static class FileContext {
 
         /** The sorted set for collecting messages. */
-        private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+        private final SortedSet<Violation> messages = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;
