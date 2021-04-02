@@ -290,6 +290,38 @@ public final class TokenTypes {
      * may appear in class and enum definitions.  This token will be a child
      * of the object block of the declaring type.
      *
+     * <p>For example:</p>
+     * <pre>
+     * CLASS_DEF -> CLASS_DEF [1:0]
+     * |--MODIFIERS -> MODIFIERS [1:0]
+     * |   `--LITERAL_PUBLIC -> public [1:0]
+     * |--LITERAL_CLASS -> class [1:7]
+     * |--IDENT -> Student [1:13]
+     * `--OBJBLOCK -> OBJBLOCK [2:0]
+     *     |--LCURLY -> { [2:0]
+     *     |--VARIABLE_DEF -> VARIABLE_DEF [3:4]
+     *     |   |--MODIFIERS -> MODIFIERS [3:4]
+     *     |   |   `--LITERAL_PRIVATE -> private [3:4]
+     *     |   |--TYPE -> TYPE [3:12]
+     *     |   |   `--LITERAL_INT -> int [3:12]
+     *     |   |--IDENT -> id [3:16]
+     *     |   `--SEMI -> ; [3:18]
+     *     `--RCURLY -> } [4:0]
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--FINAL -&gt; final
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; PI
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_FLOAT -&gt; 3.14
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.6">Java
      * Language Specification&sect;8.6</a>
