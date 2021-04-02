@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
+
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
