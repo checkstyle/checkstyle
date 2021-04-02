@@ -3180,6 +3180,23 @@ public final class TokenTypes {
     /**
      * The {@code null} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * String s = null;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--IDENT -&gt; String
+     *  |--IDENT -&gt; s
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LITERAL_NULL -&gt; null
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.7">Java
      * Language Specification, &sect;3.10.7</a>
