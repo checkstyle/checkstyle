@@ -195,7 +195,7 @@ public class SuppressFilterElement
     private boolean isFileNameAndModuleNameMatching(AuditEvent event) {
         return event.getFileName() != null
                 && (fileRegexp == null || fileRegexp.matcher(event.getFileName()).find())
-                && event.getLocalizedMessage() != null
+                && event.getViolation() != null
                 && (moduleId == null || moduleId.equals(event.getModuleId()))
                 && (checkRegexp == null || checkRegexp.matcher(event.getSourceName()).find());
     }
