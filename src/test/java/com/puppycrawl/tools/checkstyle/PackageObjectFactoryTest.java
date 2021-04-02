@@ -49,7 +49,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.annotation.AnnotationLocationCheck;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
 
@@ -138,7 +138,7 @@ public class PackageObjectFactoryTest {
             fail("Exception is expected");
         }
         catch (CheckstyleException ex) {
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
+            final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, null}, null, factory.getClass(), null);
             assertEquals(exceptionMessage.getMessage(), ex.getMessage(),
@@ -158,7 +158,7 @@ public class PackageObjectFactoryTest {
                 final String attemptedNames = BASE_PACKAGE + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + name + CHECK_SUFFIX + STRING_SEPARATOR
                     + BASE_PACKAGE + PACKAGE_SEPARATOR + name + CHECK_SUFFIX;
-                final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
+                final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, factory.getClass(), null);
                 assertEquals(exceptionMessage.getMessage(), ex.getMessage(),
@@ -222,7 +222,7 @@ public class PackageObjectFactoryTest {
         catch (CheckstyleException ex) {
             final String optionalNames = barPackage + PACKAGE_SEPARATOR + name
                     + STRING_SEPARATOR + fooPackage + PACKAGE_SEPARATOR + name;
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
+            final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, AMBIGUOUS_MODULE_NAME_EXCEPTION_MESSAGE,
                     new String[] {name, optionalNames}, null, getClass(), null);
             assertEquals(
@@ -249,7 +249,7 @@ public class PackageObjectFactoryTest {
                     + checkName + STRING_SEPARATOR
                     + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + checkName;
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
+            final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
             assertEquals(
@@ -277,7 +277,7 @@ public class PackageObjectFactoryTest {
                     + checkName + STRING_SEPARATOR
                     + package1 + PACKAGE_SEPARATOR + checkName + STRING_SEPARATOR
                     + package2 + PACKAGE_SEPARATOR + checkName;
-            final LocalizedMessage exceptionMessage = new LocalizedMessage(1,
+            final Violation exceptionMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, UNABLE_TO_INSTANTIATE_EXCEPTION_MESSAGE,
                     new String[] {name, attemptedNames}, null, getClass(), null);
             assertEquals(

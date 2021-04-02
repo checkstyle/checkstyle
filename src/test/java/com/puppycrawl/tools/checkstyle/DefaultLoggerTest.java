@@ -34,15 +34,15 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DefaultLoggerTest {
 
-    private final LocalizedMessage auditStartMessage = new LocalizedMessage(1,
+    private final Violation auditStartMessage = new Violation(1,
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
             getClass(), null);
 
-    private final LocalizedMessage auditFinishMessage = new LocalizedMessage(1,
+    private final Violation auditFinishMessage = new Violation(1,
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
             getClass(), null);
 
@@ -55,7 +55,7 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
+        final Violation addExceptionMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,
                 getClass(), null);
@@ -127,7 +127,7 @@ public class DefaultLoggerTest {
                 AutomaticBean.OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",
+        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, null, getClass(), "customMessage")));
         dl.auditFinished(null);
         assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
@@ -145,7 +145,7 @@ public class DefaultLoggerTest {
                 errorStream, OutputStreamOptions.CLOSE);
         dl.finishLocalSetup();
         dl.auditStarted(null);
-        dl.addError(new AuditEvent(this, "fileName", new LocalizedMessage(1, 2, "bundle", "key",
+        dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customMessage")));
         dl.auditFinished(null);
         assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
