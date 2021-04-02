@@ -6333,7 +6333,7 @@ used in the MT mode.
             Boolean flag in Javadoc Checks that shows a current Javadoc comment has unclosed HTML tags. Author: Piyush Sharma <a href="https://github.com/checkstyle/checkstyle/issues/3311">#3311</a>
           </li>
           <li>
-            Add columnCharIndex field to LocalizedMessage. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/4998">#4998</a>
+            Add columnCharIndex field to Violation. Author: Timur Tibeyev <a href="https://github.com/checkstyle/checkstyle/issues/4998">#4998</a>
           </li>
         </ul>
       <p>Bug fixes:</p>
@@ -6501,7 +6501,7 @@ used in the MT mode.
             UnnecessaryParentheses: Reject parentheses around single parameters in lambdas. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/4639">#4639</a>
           </li>
           <li>
-            Add token type to LocalizedMessage. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4419">#4419</a>
+            Add token type to Violation. Author: Timur <a href="https://github.com/checkstyle/checkstyle/issues/4419">#4419</a>
           </li>
         </ul>
       <p>Bug fixes:</p>
@@ -6711,7 +6711,7 @@ used in the MT mode.
             Move DetailAST log away from AbstractViolationReporter. Author: rnveach <a href="https://github.com/checkstyle/checkstyle/issues/3574">#3574</a>
           </li>
           <li>
-            api: LocalizedMessages class should be removed. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3545">#3545</a>
+            api: Violations class should be removed. Author: Andrei Selkin <a href="https://github.com/checkstyle/checkstyle/issues/3545">#3545</a>
           </li>
         </ul>
       <p>Bug fixes:</p>
@@ -10318,7 +10318,7 @@ used in the MT mode.
           Fix <a href="config_blocks.html#NeedBraces">NeedBraces</a> check not requiring braces in multiline statements when using allowSingleLineStatement option. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/895">#895</a>
         </li>
         <li>
-          Fix equals and hashCode in SuppressionFilter, SuppressElement, IntRangeFilter, LocalizedMessage and remove obsolete toString. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
+          Fix equals and hashCode in SuppressionFilter, SuppressElement, IntRangeFilter, Violation and remove obsolete toString. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1088">#1088</a>
         </li>
         <li>
           Add "/", "+" and "-" to list of allowed tokens in <a href="config_coding.html#MagicNumber">MagicNumber</a> check. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1113">#1113</a>
@@ -11202,7 +11202,7 @@ used in the MT mode.
           Added enum processing to TypeNameCheck. Author: Pavel Baranchikov
         </li>
         <li>
-          Added method to clear cache to LocalizedMessage. Author: Joni Salmi. <a href="https://github.com/checkstyle/checkstyle/pull/156">#156</a>
+          Added method to clear cache to Violation. Author: Joni Salmi. <a href="https://github.com/checkstyle/checkstyle/pull/156">#156</a>
         </li>
         <li>
           New: AvoidEscapedUnicodeCharacters check. Author: Max Vetrenko. <a href="https://github.com/checkstyle/checkstyle/issues/194">#194</a>
