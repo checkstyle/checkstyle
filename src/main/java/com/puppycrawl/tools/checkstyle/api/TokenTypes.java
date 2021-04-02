@@ -2272,6 +2272,49 @@ public final class TokenTypes {
      * The {@code default} keyword.  This element has no
      * children.
      *
+     * <p>For example:</p>
+     * <pre>
+     * switch (type) {
+     *   case 1:
+     *     x = 1;
+     *     break;
+     *   default:
+     *     x = 3;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_SWITCH -&gt; switch
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--IDENT -&gt; type
+     *  |--RPAREN -&gt; )
+     *  |--LCURLY -&gt; {
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_CASE -&gt; case
+     *  |   |   |--EXPR -&gt; EXPR
+     *  |   |   |   `--NUM_INT -&gt; 1
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; x
+     *  |       |       `--NUM_INT -&gt; 1
+     *  |       |   |       |--SEMI -&gt; ;
+     *  |       `--LITERAL_BREAK -&gt; break
+     *  |           `--SEMI -&gt; ;
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_DEFAULT -&gt; default
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; x
+     *  |       |       `--NUM_INT -&gt; 3
+     *  |       `--SEMI -&gt; ;
+     *  `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #CASE_GROUP
      * @see #MODIFIERS
      * @see #SWITCH_RULE
@@ -3994,20 +4037,23 @@ public final class TokenTypes {
      * member value pair.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     *     { 1, 2 }
+     * &#64;Annotation({1, 2})
      * </pre>
-     *
      * <p>parses as:</p>
-     *
      * <pre>
-     * +--ANNOTATION_ARRAY_INIT ({)
-     *     |
-     *     +--NUM_INT (1)
-     *     +--COMMA (,)
-     *     +--NUM_INT (2)
-     *     +--RCURLY (})
+     * ANNOTATION -&gt; ANNOTATION
+     *  |--AT -&gt; &#64;
+     *  |--IDENT -&gt; Annotation
+     *  |--LPAREN -&gt; (
+     *  |--ANNOTATION_ARRAY_INIT -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 1
+     *  |   |--COMMA -&gt; ,
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 2
+     *  |   `--RCURLY -&gt; }
+     *  `--RPAREN -&gt; )
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">

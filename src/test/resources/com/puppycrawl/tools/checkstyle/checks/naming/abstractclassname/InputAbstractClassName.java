@@ -1,24 +1,27 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.abstractclassname;
-
-abstract public class InputAbstractClassName {
+/*
+ * Config: pattern = "^Abstract.+$"
+ *
+ */
+abstract public class InputAbstractClassName { // violation
 }
-// abstract --> ^Abstract.*$
-abstract class NonAbstractClassName {
+
+abstract class NonAbstractClassName { // violation
 }
 
-abstract class AbstractClassOther {
-    abstract class NonAbstractInnerClass {
+abstract class AbstractClassOther { // ok
+    abstract class NonAbstractInnerClass { // violation
     }
 }
 
-class NonAbstractClass {
+class NonAbstractClass { // ok
 }
 
-//^Abstract.*$ --> abstract
-class AbstractClass {
+
+class AbstractClass { // ok
 }
 
-abstract class AbstractClassName2 {
-    class AbstractInnerClass {
+abstract class AbstractClassName2 { // ok
+    class AbstractInnerClass { // ok
     }
 }
