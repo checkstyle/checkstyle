@@ -2236,7 +2236,9 @@ public final class TokenTypes {
     /**
      * The {@code default} keyword.  This element has no
      * children.
+     *
      *<p>For example:</p>
+     * <pre>
      * switch (3){
      *   case 1 :
      *     x=1;
@@ -2244,7 +2246,7 @@ public final class TokenTypes {
      *   default:
      *     x=3;
      * }
-     *</pre>
+     * </pre>
      *<p>parses as:</p>
      * <pre>
      * |--LITERAL_SWITCH -&gt; switch
