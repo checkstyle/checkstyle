@@ -568,15 +568,22 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * implements Serializable, Comparable
+     * public class MyClass implements Collection {
+     *
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--IMPLEMENTS_CLAUSE
-     *     |
-     *     +--IDENT (Serializable)
-     *     +--COMMA (,)
-     *     +--IDENT (Comparable)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; MyClass
+     * |--IMPLEMENTS_CLAUSE -&gt; implements
+     * |   `--IDENT -&gt; Collection
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see #IDENT
