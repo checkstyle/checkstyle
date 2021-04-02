@@ -290,6 +290,31 @@ public final class TokenTypes {
      * may appear in class and enum definitions.  This token will be a child
      * of the object block of the declaring type.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public class Student {
+     *     private int id;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -> CLASS_DEF
+     * |--MODIFIERS -> MODIFIERS
+     * |   `--LITERAL_PUBLIC -> public
+     * |--LITERAL_CLASS -> class
+     * |--IDENT -> Student
+     * `--OBJBLOCK -> OBJBLOCK
+     *     |--LCURLY -> {
+     *     |--VARIABLE_DEF -> VARIABLE_DEF
+     *     |   |--MODIFIERS -> MODIFIERS
+     *     |   |   `--LITERAL_PRIVATE -> private
+     *     |   |--TYPE -> TYPE
+     *     |   |   `--LITERAL_INT -> int
+     *     |   |--IDENT -> id
+     *     |   `--SEMI -> ;
+     *     `--RCURLY -> }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.6">Java
      * Language Specification&sect;8.6</a>
