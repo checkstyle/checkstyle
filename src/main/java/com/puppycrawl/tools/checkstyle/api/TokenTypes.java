@@ -4359,6 +4359,27 @@ public final class TokenTypes {
      * The {@code record} keyword.  This element appears
      * as part of a record declaration.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public record MyRecord () {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF -&gt; RECORD_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_RECORD -&gt; record
+     * |--IDENT -&gt; MyRecord
+     * |--LPAREN -&gt; (
+     * |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |--RPAREN -&gt; )
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
      * @since 8.35
      **/
     public static final int LITERAL_RECORD =
