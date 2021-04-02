@@ -1081,7 +1081,7 @@
           1273903 from Lars Koedderitzsch.
         </li>
         <li>
-          Added patch The LocalizedMessage already gets the Class of the
+          Added patch The Violation already gets the Class of the
           check that triggers the message (to output the name of the
           check). Instead of storing just the name of this class, store
           the class itself. With this the name can be retrieved and the
@@ -2197,7 +2197,7 @@
         (allowThrowsTagsForSubclasses, request 540383)</li>
 
         <li>Added sourceName property to AuditEvent and
-        LocalizedMessage; and &quot;source&quot; attribute to
+        Violation; and &quot;source&quot; attribute to
         &quot;error&quot; element of XMLLogger output (request 686336).</li>
 
         <li>Added line and column numbers to configuration
