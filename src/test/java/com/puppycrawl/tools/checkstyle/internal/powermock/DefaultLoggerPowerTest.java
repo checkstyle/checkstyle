@@ -34,7 +34,7 @@ import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class DefaultLoggerPowerTest {
@@ -50,15 +50,15 @@ public class DefaultLoggerPowerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final LocalizedMessage addExceptionMessage = new LocalizedMessage(1,
+        final Violation addExceptionMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,
                 getClass(), null);
-        final LocalizedMessage startMessage = new LocalizedMessage(1,
+        final Violation startMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_STARTED_MESSAGE,
                 CommonUtil.EMPTY_STRING_ARRAY, null,
                 getClass(), null);
-        final LocalizedMessage finishMessage = new LocalizedMessage(1,
+        final Violation finishMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.AUDIT_FINISHED_MESSAGE,
                 CommonUtil.EMPTY_STRING_ARRAY, null,
                 getClass(), null);

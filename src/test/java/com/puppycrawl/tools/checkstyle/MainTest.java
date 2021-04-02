@@ -66,7 +66,7 @@ import org.powermock.reflect.Whitebox;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ChainedPropertyUtil;
@@ -189,11 +189,11 @@ public class MainTest {
     @TempDir
     public File temporaryFolder;
 
-    private final LocalizedMessage auditStartMessage = new LocalizedMessage(1,
+    private final Violation auditStartMessage = new Violation(1,
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
             getClass(), null);
 
-    private final LocalizedMessage auditFinishMessage = new LocalizedMessage(1,
+    private final Violation auditFinishMessage = new Violation(1,
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
             getClass(), null);
 
@@ -445,11 +445,11 @@ public class MainTest {
     public void testExistingTargetFileWithViolations(@SysErr Capturable systemErr,
             @SysOut Capturable systemOut) throws IOException {
         Main.main("-c", getPath("InputMainConfig-classname2.xml"), getPath("InputMain.java"));
-        final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(1,
+        final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
                 null, getClass(), null);
-        final LocalizedMessage invalidPatternMessageMainInner = new LocalizedMessage(1,
+        final Violation invalidPatternMessageMainInner = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
                 null, getClass(), null);
@@ -496,14 +496,14 @@ public class MainTest {
             invokeMain("-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain.java"));
         });
-        final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
+        final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(2)}, null, getClass(), null);
-        final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(1,
+        final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain", "^[a-z0-9]*$"},
                 null, getClass(), null);
-        final LocalizedMessage invalidPatternMessageMainInner = new LocalizedMessage(1,
+        final Violation invalidPatternMessageMainInner = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMainInner", "^[a-z0-9]*$"},
                 null, getClass(), null);
@@ -534,10 +534,10 @@ public class MainTest {
             invokeMain("-c", getPath("InputMainConfig-classname2-error.xml"),
                     getPath("InputMain1.java"));
         });
-        final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
+        final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(1)}, null, getClass(), null);
-        final LocalizedMessage invalidPatternMessageMain = new LocalizedMessage(1,
+        final Violation invalidPatternMessageMain = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.naming.messages",
                 "name.invalidPattern", new String[] {"InputMain1", "^[a-z0-9]*$"},
                 null, getClass(), null);
@@ -558,10 +558,10 @@ public class MainTest {
         assertExitWithStatus(1, () -> {
             invokeMain("-c", "/sun_checks.xml", getPath("InputMain1.java"));
         });
-        final LocalizedMessage errorCounterTwoMessage = new LocalizedMessage(1,
+        final Violation errorCounterTwoMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, Main.ERROR_COUNTER,
                 new String[] {String.valueOf(1)}, null, getClass(), null);
-        final LocalizedMessage message = new LocalizedMessage(1,
+        final Violation message = new Violation(1,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 "javadoc.packageInfo", new String[] {},
                 null, getClass(), null);
@@ -713,18 +713,18 @@ public class MainTest {
             // We do separate validation for message as in Windows
             // disk drive letter appear in message,
             // so we skip that drive letter for compatibility issues
-            final LocalizedMessage loadPropertiesMessage = new LocalizedMessage(1,
+            final Violation loadPropertiesMessage = new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, Main.LOAD_PROPERTIES_EXCEPTION,
                     new String[] {""}, null, getClass(), null);
             final String causeMessage = ex.getCause().getLocalizedMessage();
-            final String localizedMessage = loadPropertiesMessage.getMessage();
+            final String violation = loadPropertiesMessage.getMessage();
             final boolean samePrefix = causeMessage.substring(0, causeMessage.indexOf(' '))
-                    .equals(localizedMessage
-                            .substring(0, localizedMessage.indexOf(' ')));
+                    .equals(violation
+                            .substring(0, violation.indexOf(' ')));
             final boolean sameSuffix =
                     causeMessage.substring(causeMessage.lastIndexOf(' '))
-                    .equals(localizedMessage
-                            .substring(localizedMessage.lastIndexOf(' ')));
+                    .equals(violation
+                            .substring(violation.lastIndexOf(' ')));
             assertTrue(samePrefix || sameSuffix, "Invalid error message");
             assertTrue(causeMessage.contains(".'"), "Invalid error message");
         }
@@ -751,10 +751,10 @@ public class MainTest {
         final String format = "[WARN] " + expectedPath + outputValues[0][0] + ".java:"
                 + outputValues[0][1] + ": ";
         for (String[] outputValue : outputValues) {
-            final String localizedMessage = new LocalizedMessage(1, bundle,
+            final String violation = new Violation(1, bundle,
                     msgKey, new Integer[] {Integer.valueOf(outputValue[2]), allowedLength},
                     null, getClass(), null).getMessage();
-            final String line = format + localizedMessage + " [FileLength]";
+            final String line = format + violation + " [FileLength]";
             sb.append(line).append(EOL);
         }
         sb.append(auditFinishMessage.getMessage())
@@ -1477,7 +1477,7 @@ public class MainTest {
                 getPath("InputMain.java"));
         });
         final String checkstylePackage = "com.puppycrawl.tools.checkstyle.";
-        final LocalizedMessage unableToInstantiateExceptionMessage = new LocalizedMessage(1,
+        final Violation unableToInstantiateExceptionMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE,
                 "PackageObjectFactory.unableToInstantiateExceptionMessage",
                 new String[] {"TestRootModuleChecker", checkstylePackage

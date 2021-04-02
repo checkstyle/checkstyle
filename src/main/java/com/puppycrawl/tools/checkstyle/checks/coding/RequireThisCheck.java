@@ -477,7 +477,7 @@ public class RequireThisCheck extends AbstractCheck {
     }
 
     /**
-     * Helper method to log a LocalizedMessage.
+     * Helper method to log a Violation.
      *
      * @param ast a node to get line id column numbers associated with the message.
      * @param msgKey key to locale message format.

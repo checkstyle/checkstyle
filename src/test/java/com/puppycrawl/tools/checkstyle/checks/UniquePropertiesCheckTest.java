@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
@@ -131,10 +131,10 @@ public class UniquePropertiesCheckTest extends AbstractModuleTestSupport {
                 getPath("InputUniquePropertiesCheckNotExisting.properties");
         final File file = new File(fileName);
         final FileText fileText = new FileText(file, Collections.emptyList());
-        final SortedSet<LocalizedMessage> messages =
+        final SortedSet<Violation> messages =
                 check.process(file, fileText);
         assertEquals(1, messages.size(), "Wrong messages count: " + messages.size());
-        final LocalizedMessage message = messages.iterator().next();
+        final Violation message = messages.iterator().next();
         final String retrievedMessage = messages.iterator().next().getKey();
         assertEquals("unable.open.cause", retrievedMessage,
                 "Message key '" + retrievedMessage + "' is not valid");

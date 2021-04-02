@@ -68,19 +68,19 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         check.configure(new DefaultConfiguration("filesetcheck"));
         check.setFileExtensions("tmp");
         final File firstFile = new File("inputAbstractFileSetCheck.tmp");
-        final SortedSet<LocalizedMessage> firstFileMessages =
+        final SortedSet<Violation> firstFileMessages =
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
         assertEquals("File should not be empty.",
             firstFileMessages.first().getMessage(), "Invalid message");
 
-        final SortedSet<LocalizedMessage> internalMessages =
+        final SortedSet<Violation> internalMessages =
                 check.getMessages();
         assertTrue(internalMessages.isEmpty(), "Internal message should be empty, but was not");
 
         final File secondFile = new File("inputAbstractFileSetCheck.txt");
         final List<String> lines = Arrays.asList("key=value", "ext=tmp");
-        final SortedSet<LocalizedMessage> secondFileMessages =
+        final SortedSet<Violation> secondFileMessages =
             check.process(secondFile, new FileText(secondFile, lines));
 
         assertTrue(secondFileMessages.isEmpty(), "Message should be empty, but was not");
@@ -94,7 +94,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
-        final SortedSet<LocalizedMessage> internalMessages =
+        final SortedSet<Violation> internalMessages =
                 check.getMessages();
         assertTrue(internalMessages.isEmpty(), "Internal message should be empty");
     }
@@ -116,7 +116,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
             assertEquals("Test", ex.getMessage(), "Invalid exception message");
         }
 
-        final SortedSet<LocalizedMessage> internalMessages =
+        final SortedSet<Violation> internalMessages =
                 check.getMessages();
         assertEquals(1, internalMessages.size(), "Internal message should only have 1");
 
@@ -132,7 +132,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
             assertEquals("Test", ex.getMessage(), "Invalid exception message");
         }
 
-        final SortedSet<LocalizedMessage> internalMessages2 =
+        final SortedSet<Violation> internalMessages2 =
             check.getMessages();
         assertEquals(1, internalMessages2.size(), "Internal message should only have 1 again");
     }
@@ -169,11 +169,11 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final File file = new File(getPath("InputAbstractFileSetLineColumn.txt"));
         final FileText theText = new FileText(file.getAbsoluteFile(),
                 StandardCharsets.UTF_8.name());
-        final SortedSet<LocalizedMessage> internalMessages = check.process(file, theText);
+        final SortedSet<Violation> internalMessages = check.process(file, theText);
 
         assertEquals(1, internalMessages.size(), "Internal message should only have 1");
 
-        final LocalizedMessage message = internalMessages.iterator().next();
+        final Violation message = internalMessages.iterator().next();
         assertEquals(1, message.getLineNo(), "expected line");
         assertEquals(6, message.getColumnNo(), "expected column");
     }
@@ -210,7 +210,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         assertEquals(1, dispatcher.errorList.size(), "errors should only have 1");
 
-        final LocalizedMessage message = dispatcher.errorList.iterator().next();
+        final Violation message = dispatcher.errorList.iterator().next();
         assertEquals(1, message.getLineNo(), "expected line");
         assertEquals(0, message.getColumnNo(), "expected column");
 
@@ -284,7 +284,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
     public static class ViolationDispatcher implements MessageDispatcher {
         private String name;
-        private SortedSet<LocalizedMessage> errorList;
+        private SortedSet<Violation> errorList;
 
         @Override
         public void fireFileStarted(String fileName) {
@@ -297,7 +297,7 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         }
 
         @Override
-        public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
+        public void fireErrors(String fileName, SortedSet<Violation> errors) {
             name = fileName;
             errorList = new TreeSet<>(errors);
         }

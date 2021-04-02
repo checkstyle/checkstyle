@@ -41,7 +41,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.CheckstyleAntTaskLogStub;
 import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.CheckstyleAntTaskStub;
 import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.MessageLevelPair;
@@ -73,11 +73,11 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
 
         antTask.execute();
 
-        final LocalizedMessage auditStartedMessage = new LocalizedMessage(1,
+        final Violation auditStartedMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
                 null, null,
                 getClass(), null);
-        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(1,
+        final Violation auditFinishedMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
                 null, null,
                 getClass(), null);
