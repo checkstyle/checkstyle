@@ -63,19 +63,19 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         final String[] expected = {
-            "79:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
+            "84:5: " + getCheckMessage(MSG_KEY, 20, 19, "longMethod"),
         };
         verify(checkConfig, getPath("InputMethodLengthSimple.java"), expected);
     }
 
     @Test
-    public void testCountEmpty() throws Exception {
+    public void testCountEmptyIsFalse() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodLengthCheck.class);
         checkConfig.addAttribute("max", "19");
         checkConfig.addAttribute("countEmpty", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputMethodLengthSimple.java"), expected);
+        verify(checkConfig, getPath("InputMethodLengthCountEmptyIsFalse.java"), expected);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class MethodLengthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("max", "7");
         checkConfig.addAttribute("countEmpty", "false");
         final String[] expected = {
-            "25:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
+            "30:5: " + getCheckMessage(MSG_KEY, 8, 7, "visit"),
         };
         verify(checkConfig, getPath("InputMethodLengthComments.java"), expected);
     }
