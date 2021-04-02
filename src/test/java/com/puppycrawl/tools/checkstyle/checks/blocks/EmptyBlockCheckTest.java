@@ -55,16 +55,16 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyBlockCheck.class);
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "37:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "35:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "37:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "39:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "42:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "65:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "73:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "75:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "86:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic_1.java"), expected);
     }
 
     @Test
@@ -74,13 +74,13 @@ public class EmptyBlockCheckTest
             createModuleConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
+            "40:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
+            "89:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic_2.java"), expected);
     }
 
     @Test
