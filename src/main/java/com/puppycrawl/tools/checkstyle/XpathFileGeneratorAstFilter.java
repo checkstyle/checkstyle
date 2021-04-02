@@ -25,7 +25,7 @@ import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
 /**
@@ -39,8 +39,8 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
     /** The delimiter between xpath queries. */
     private static final String DELIMITER = " | \n";
 
-    /** Map from {@code LocalizedMessage} objects to xpath queries. */
-    private static final Map<LocalizedMessage, String> MESSAGE_QUERY_MAP = new HashMap<>();
+    /** Map from {@code Violation} objects to xpath queries. */
+    private static final Map<Violation, String> MESSAGE_QUERY_MAP = new HashMap<>();
 
     /** The distance between tab stop position. */
     private int tabWidth;
@@ -63,7 +63,7 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
      * @return returns corresponding xpath query
      */
     public static String findCorrespondingXpathQuery(AuditEvent event) {
-        return MESSAGE_QUERY_MAP.get(event.getLocalizedMessage());
+        return MESSAGE_QUERY_MAP.get(event.getViolation());
     }
 
     @Override
@@ -79,7 +79,7 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
             final List<String> xpathQueries = xpathQueryGenerator.generate();
             if (!xpathQueries.isEmpty()) {
                 final String query = String.join(DELIMITER, xpathQueries);
-                MESSAGE_QUERY_MAP.put(event.getLocalizedMessage(), query);
+                MESSAGE_QUERY_MAP.put(event.getViolation(), query);
             }
         }
         return true;

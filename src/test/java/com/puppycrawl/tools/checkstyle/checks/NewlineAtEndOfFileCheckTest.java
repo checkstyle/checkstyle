@@ -41,7 +41,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NewlineAtEndOfFileCheckTest
@@ -215,9 +215,9 @@ public class NewlineAtEndOfFileCheckTest
         lines.add("txt");
         final File impossibleFile = new File("");
         final FileText fileText = new FileText(impossibleFile, lines);
-        final Set<LocalizedMessage> messages = check.process(impossibleFile, fileText);
+        final Set<Violation> messages = check.process(impossibleFile, fileText);
         assertEquals(1, messages.size(), "Amount of messages is unexpected");
-        final Iterator<LocalizedMessage> iterator = messages.iterator();
+        final Iterator<Violation> iterator = messages.iterator();
         assertEquals(getCheckMessage(MSG_KEY_UNABLE_OPEN, ""), iterator.next().getMessage(),
                 "Violation message differs from expected");
     }

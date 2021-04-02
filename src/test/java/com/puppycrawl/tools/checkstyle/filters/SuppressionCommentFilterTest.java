@@ -44,7 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -393,7 +393,7 @@ public class SuppressionCommentFilterTest
     }
 
     @Test
-    public void testAcceptNullLocalizedMessage() {
+    public void testAcceptNullViolation() {
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         final FileContents contents = new FileContents(new FileText(new File("filename"),
                 Arrays.asList("//CHECKSTYLE:OFF: ConstantNameCheck", "line2")));
@@ -409,7 +409,7 @@ public class SuppressionCommentFilterTest
         final SuppressionCommentFilter filter = new SuppressionCommentFilter();
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
-                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
+                new Violation(1, null, null, null, null, Object.class, null), null);
         assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
     }
 
@@ -617,7 +617,7 @@ public class SuppressionCommentFilterTest
                 Arrays.asList("//CHECKSTYLE:OFF: ConstantNameCheck", "line2")));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, "filename",
-                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
+                new Violation(1, null, null, null, null, Object.class, null), null);
         final boolean result = suppressionCommentFilter.accept(dummyEvent);
         assertFalse(result, "Filter should not accept event");
     }
@@ -657,7 +657,7 @@ public class SuppressionCommentFilterTest
             }
         }
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
-                new LocalizedMessage(1, null, null, null, null, Object.class, ""), null);
+                new Violation(1, null, null, null, null, Object.class, ""), null);
         filter.accept(dummyEvent);
         return Whitebox.getInternalState(filter, "tags");
     }
