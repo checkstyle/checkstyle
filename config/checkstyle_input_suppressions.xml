@@ -301,11 +301,7 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]innerassignment[\\/]InputInnerAssignmentLambdaExpressions.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]magicnumber[\\/]InputMagicNumberAnnotationElement.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]magicnumber[\\/]InputMagicNumberIntMethodAnnotation.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]magicnumber[\\/]InputMagicNumber.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]missingctor[\\/]InputMissingCtor2.java"/>
   <suppress id="ConfigCommentOnTopInputs"
@@ -1935,11 +1931,7 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]innerassignment[\\/]InputInnerAssignmentLambdaExpressions.java"/>
   <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]magicnumber[\\/]InputMagicNumberAnnotationElement.java"/>
-  <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]magicnumber[\\/]InputMagicNumberIntMethodAnnotation.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]magicnumber[\\/]InputMagicNumber.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]missingctor[\\/]InputMissingCtor2.java"/>
   <suppress id="StyleValidationCommentInInputs"
