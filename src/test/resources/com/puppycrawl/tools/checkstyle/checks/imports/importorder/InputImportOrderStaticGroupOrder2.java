@@ -2,8 +2,8 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
- * option = under
- * groups = {}
+ * option = top
+ * groups = {org, java}
  * ordered = true
  * separated = false
  * separatedStaticGroups = false
@@ -11,12 +11,15 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * staticGroups = {}
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
- * tokens = IMPORT
  */
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; // ok
-import static java.awt.Button.ABORT; // ok
-import java.awt.Dialog; // ok
-import java.awt.Button; // violation
+import static java.lang.Math.abs; // ok
+import static org.antlr.v4.runtime.Recognizer.EOF; // ok
 
-public class InputImportOrder_HonorsTokensProperty {
+import org.antlr.v4.runtime.*; // violation
+
+import java.util.Set; // violation
+
+public class InputImportOrderStaticGroupOrder2
+{
+
 }

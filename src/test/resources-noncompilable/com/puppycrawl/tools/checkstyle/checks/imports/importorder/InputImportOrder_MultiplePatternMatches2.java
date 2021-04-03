@@ -1,9 +1,10 @@
+//non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
  * option = bottom
- * groups = {java, javax, org}
+ * groups = {/^javax\./, com}
  * ordered = true
  * separated = true
  * separatedStaticGroups = false
@@ -12,10 +13,10 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
  */
-import static java.lang.Math.abs; // ok
-import static java.lang.Math.cos; // ok
-import static javax.xml.transform.TransformerFactory.newInstance; // ok
-import static org.junit.Assert.fail; // ok
+import java.io.File; // ok
 
-public class InputImportOrderNoGapBetweenStaticImports {
+import org.*; // violation
+import org.myOrgorgan.Test; // ok
+
+public class InputImportOrder_MultiplePatternMatches2 {
 }
