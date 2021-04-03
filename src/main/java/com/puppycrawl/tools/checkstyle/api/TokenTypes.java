@@ -4155,7 +4155,30 @@ public final class TokenTypes {
 
     /**
      * The type that refers to all types. This node has no children.
-     *
+     * <p> For example: </p>
+     * 
+     * <pre>
+     * List&lt;?&gt; list;
+     * </pre>
+     * 
+     * <p>parses as:</p>
+     * 
+     * <pre>
+     *|--VARIABLE_DEF -> VARIABLE_DEF
+     *|   |--MODIFIERS -> MODIFIERS
+     *|   |--TYPE -> TYPE
+     *|   |   |--IDENT -> List 
+     *|   |   |`--TYPE_ARGUMENTS -> TYPE_ARGUMENTS
+     *|   |        |--GENERIC_START -> &lt;
+     *|   |        |--TYPE_ARGUMENT -> TYPE_ARGUMENT
+     *|   |        |  `--WILDCARD_TYPE -> ? 
+     *|   |        `--GENERIC_END -> &gt;
+     *|   `--IDENT -> list 
+     *|--SEMI -> ; 
+
+     * 
+     * </pre>
+     * 
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=14">
      * JSR14</a>
      * @see #TYPE_ARGUMENT
