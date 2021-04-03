@@ -74,6 +74,14 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * To configure the filter to ignore some Checks in maven test folder by modifying
+ * {@code config/suppressions.xml}:
+ * </p>
+ *
+ * <pre>
+ * &lt;suppress checks=&quot;EmptyBlock&quot; files=&quot;.*[\\/]src[\\/]test[\\/]&quot;/&gt;
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  *
