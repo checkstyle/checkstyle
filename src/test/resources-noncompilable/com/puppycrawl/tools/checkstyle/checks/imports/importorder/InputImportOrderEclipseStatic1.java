@@ -4,19 +4,19 @@ import static io.netty.handler.codec.http.HttpConstants.COLON; // ok
 import static io.netty.handler.codec.http.HttpHeaders.addHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.setHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.Names.addDate; // ok
-import static io.netty.handler.codec.http.HttpHeaders.NAMES.DATE; // ok
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // ok
 
 /*
  * Config:
  * option = top
- * groups = {}
+ * groups = {/^javax?\./, org}
  * ordered = true
- * separated = false
+ * separated = true
  * separatedStaticGroups = false
  * caseSensitive = false
  * staticGroups = {}
- * sortStaticImportsAlphabetically = false
+ * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = true
  */
-public class InputImportOrderEclipseStaticCaseSensitive {
+public class InputImportOrderEclipseStatic1 {
 }
