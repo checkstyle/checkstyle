@@ -1,9 +1,10 @@
+//non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
  * option = under
- * groups = {}
+ * groups = {/java/, /rga/, /myO/, /org/, /organ./}
  * ordered = true
  * separated = false
  * separatedStaticGroups = false
@@ -11,12 +12,11 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * staticGroups = {}
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
- * tokens = IMPORT
  */
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE; // ok
-import static java.awt.Button.ABORT; // ok
-import java.awt.Dialog; // ok
-import java.awt.Button; // violation
+import java.io.File; // ok
 
-public class InputImportOrder_HonorsTokensProperty {
+import org.*; // violation
+import org.myOrgorgan.Test; // ok
+
+public class InputImportOrder_MultiplePatternMatches1 {
 }

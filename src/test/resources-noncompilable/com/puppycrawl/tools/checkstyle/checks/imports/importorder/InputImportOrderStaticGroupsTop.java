@@ -1,34 +1,35 @@
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-/**
- * This test-input is intended to be checked using following configuration:
- *
- * groups = {org, com, java, javax}
- * staticGroups = {org, com, java, javax}
+
+/*
+ * Config:
  * option = top
+ * groups = {org, com, java, javax}
  * ordered = true
  * separated = true
+ * separatedStaticGroups = false
+ * caseSensitive = true
+ * staticGroups = {org, com, java, javax}
  * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = false
- *
  */
-import static org.infinispan.test.TestingUtil.extractComponent;
-import static org.junit.Assert.fail;
-import static com.google.common.truth.Truth.assertThat;
-import static java.lang.String.format;
-import static javax.lang.model.SourceVersion;
+import static org.infinispan.test.TestingUtil.extractComponent; // ok
+import static org.junit.Assert.fail; // ok
+import static com.google.common.truth.Truth.assertThat; // ok
+import static java.lang.String.format; // ok
+import static javax.lang.model.SourceVersion; // ok
 
-import org.infinispan.Cache;
-import org.infinispan.commons.api.BasicCacheContainer;
+import org.infinispan.Cache; // ok
+import org.infinispan.commons.api.BasicCacheContainer; // ok
 
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Doubles;
+import com.google.common.collect.Lists; // ok
+import com.google.common.primitives.Doubles; // ok
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
+import java.util.Arrays; // ok
+import java.util.Objects; // ok
+import java.util.concurrent.TimeUnit; // ok
 
-import javax.lang.model.type.ArrayType;
+import javax.lang.model.type.ArrayType; // ok
 
 public class InputImportOrderStaticGroupsTop {
 }

@@ -1,24 +1,36 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
-import java.awt.Button;
-import java.awt.Dialog;
-import java.awt.Frame;
-import java.awt.event.ActionEvent;
+/*
+ * Config:
+ * option = bottom
+ * groups = {}
+ * ordered = true
+ * separated = false
+ * separatedStaticGroups = false
+ * caseSensitive = true
+ * staticGroups = {}
+ * sortStaticImportsAlphabetically = false
+ * useContainerOrderingForStatic = false
+ */
+import java.awt.Button; // ok
+import java.awt.Dialog; // ok
+import java.awt.Frame; // ok
+import java.awt.event.ActionEvent; // ok
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.IOException; // violation
+import java.io.InputStream; // ok
 
-import javax.swing.JComponent;
-import javax.swing.JTable;
+import javax.swing.JComponent; // violation
+import javax.swing.JTable; // ok
 
-import static java.io.File.*;
-import java.io.File;
+import static java.io.File.*; // violation
+import java.io.File; // violation
 
-import static java.io.File.createTempFile;
-import static java.awt.Button.ABORT;
-import static javax.swing.WindowConstants.*;
+import static java.io.File.createTempFile; // violation
+import static java.awt.Button.ABORT; // ok
+import static javax.swing.WindowConstants.*; // ok
 
-import java.io.Reader;
+import java.io.Reader; // violation
 
 public class InputImportOrder_Bottom {
 }

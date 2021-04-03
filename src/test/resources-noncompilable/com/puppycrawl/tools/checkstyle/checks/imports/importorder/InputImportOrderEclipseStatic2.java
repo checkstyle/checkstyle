@@ -3,22 +3,21 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
- * option = under
- * groups = {}
+ * option = top
+ * groups = {/^javax?\./, org}
  * ordered = true
- * separated = false
+ * separated = true
  * separatedStaticGroups = false
- * caseSensitive = true
+ * caseSensitive = false
  * staticGroups = {}
  * sortStaticImportsAlphabetically = true
- * useContainerOrderingForStatic = true
+ * useContainerOrderingForStatic = false
  */
 import static io.netty.handler.codec.http.HttpConstants.COLON; // ok
 import static io.netty.handler.codec.http.HttpHeaders.addHeader; // ok
 import static io.netty.handler.codec.http.HttpHeaders.setHeader; // ok
-import static io.netty.handler.Codec.HTTP.HttpHeaders.tmp.same; // violation
-import static io.netty.handler.Codec.HTTP.HttpHeaders.TKN.same; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.addDate; // violation
+import static io.netty.handler.codec.http.HttpHeaders.Names.DATE; // ok
 
-public class InputImportOrderContainerOrdering {
-
+public class InputImportOrderEclipseStatic2 {
 }

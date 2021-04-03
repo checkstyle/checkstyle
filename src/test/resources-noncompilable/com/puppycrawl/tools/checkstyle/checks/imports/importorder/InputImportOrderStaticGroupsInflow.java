@@ -1,26 +1,31 @@
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-/**
- * This test-input is intended to be checked using following configuration:
- *
- * groups = {}
- * staticGroups = {}
+
+/*
+ * Config:
  * option = inflow
- *
+ * groups = {}
+ * ordered = true
+ * separated = false
+ * separatedStaticGroups = false
+ * caseSensitive = true
+ * staticGroups = {}
+ * sortStaticImportsAlphabetically = false
+ * useContainerOrderingForStatic = false
  */
-import com.google.common.collect.Lists;
-import com.google.common.primitives.Doubles;
-import static com.google.common.truth.Truth.assertThat;
-import static java.lang.String.format;
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import static javax.lang.model.SourceVersion;
-import javax.lang.model.type.ArrayType;
-import org.infinispan.Cache;
-import org.infinispan.commons.api.BasicCacheContainer;
-import static org.infinispan.test.TestingUtil.extractComponent;
-import static org.junit.Assert.fail;
+import com.google.common.collect.Lists; // ok
+import com.google.common.primitives.Doubles; // ok
+import static com.google.common.truth.Truth.assertThat; // ok
+import static java.lang.String.format; // ok
+import java.util.Arrays; // ok
+import java.util.Objects; // ok
+import java.util.concurrent.TimeUnit; // ok
+import static javax.lang.model.SourceVersion; // ok
+import javax.lang.model.type.ArrayType; // ok
+import org.infinispan.Cache; // ok
+import org.infinispan.commons.api.BasicCacheContainer; // ok
+import static org.infinispan.test.TestingUtil.extractComponent; // ok
+import static org.junit.Assert.fail; // ok
 
 public class InputImportOrderStaticGroupsInflow {
 }

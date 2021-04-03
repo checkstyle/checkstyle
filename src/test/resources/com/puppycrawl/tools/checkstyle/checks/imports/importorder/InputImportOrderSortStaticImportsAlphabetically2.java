@@ -2,20 +2,20 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 
 /*
  * Config:
- * option = bottom
+ * option = top
  * groups = {java, javax, org}
  * ordered = true
  * separated = true
  * separatedStaticGroups = false
  * caseSensitive = true
  * staticGroups = {}
- * sortStaticImportsAlphabetically = false
+ * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = false
  */
-import static java.lang.Math.abs; // ok
-import static java.lang.Math.cos; // ok
-import static javax.xml.transform.TransformerFactory.newInstance; // ok
 import static org.junit.Assert.fail; // ok
+import static javax.xml.transform.TransformerFactory.newInstance; // violation
+import static java.lang.Math.cos; // violation
+import static java.lang.Math.abs; // violation
 
-public class InputImportOrderNoGapBetweenStaticImports {
+public class InputImportOrderSortStaticImportsAlphabetically2 {
 }

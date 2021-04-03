@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
 /*
  * Config:
  * option = top
- * groups = {java, org}
+ * groups = {org, java}
  * ordered = true
  * separated = true
  * separatedStaticGroups = false
@@ -12,14 +12,13 @@ package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
  * sortStaticImportsAlphabetically = false
  * useContainerOrderingForStatic = false
  */
-import static java.lang.Math.abs; // ok
+import static java.lang.Math.*; // ok
+import static org.antlr.v4.runtime.CommonToken.*; // violation
+import static org.antlr.v4.runtime.CommonToken.*;  // ok
 
-import static java.lang.Math.cos; // violation
+import java.util.Set; // violation
 
-import static org.junit.Assert.assertEquals; // violation
-import static org.junit.Assert.fail; // ok
+import org.junit.Test; // ok
 
-public class InputImportOrderStaticGroupSeparated {
-    void method() {
-    }
+public class InputImportOrderStaticRepetition2 {
 }

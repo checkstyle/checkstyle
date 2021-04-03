@@ -1,41 +1,41 @@
 //non-compiled with javac: contains specially crafted set of imports for testing
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-/**
- * This test-input is intended to be checked using following configuration:
- *
- * groups = {android, androidx, java}
- * staticGroups = {android, androidx, java}
+
+/*
+ * Config:
  * option = top
+ * groups = {android, androidx, java}
  * ordered = true
- * sortStaticImportsAlphabetically = true
  * separated = false
  * separatedStaticGroups = true
+ * caseSensitive = true
+ * staticGroups = {android, androidx, java}
+ * sortStaticImportsAlphabetically = true
  * useContainerOrderingForStatic = false
- *
  */
-import static android.app.slice.Slice.HINT_ACTIONS;
-import static android.app.slice.Slice.HINT_ERROR;
-import static android.app.slice.Slice.HINT_SUMMARY;
-import static android.app.slice.Slice.HINT_TITLE;
-import static android.app.slice.SliceItem.FORMAT_TEXT;
+import static android.app.slice.Slice.HINT_ACTIONS; // ok
+import static android.app.slice.Slice.HINT_ERROR; // ok
+import static android.app.slice.Slice.HINT_SUMMARY; // ok
+import static android.app.slice.Slice.HINT_TITLE; // ok
+import static android.app.slice.SliceItem.FORMAT_TEXT; // ok
 
-import static androidx.annotation.RestrictTo.Scope.LIBRARY;
-import static androidx.slice.builders.ListBuilder.ICON_IMAGE;
-import static androidx.slice.builders.ListBuilder.INFINITY;
-import static androidx.slice.builders.ListBuilder.LARGE_IMAGE;
-import static androidx.slice.core.SliceHints.SUBTYPE_MIN;
+import static androidx.annotation.RestrictTo.Scope.LIBRARY; // ok
+import static androidx.slice.builders.ListBuilder.ICON_IMAGE; // ok
+import static androidx.slice.builders.ListBuilder.INFINITY; // ok
+import static androidx.slice.builders.ListBuilder.LARGE_IMAGE; // ok
+import static androidx.slice.core.SliceHints.SUBTYPE_MIN; // ok
 
-import android.app.PendingIntent;
-import android.net.Uri;
-import androidx.annotation.ColorInt;
-import androidx.annotation.NonNull;
-import androidx.core.graphics.drawable.IconCompat;
-import androidx.slice.Clock;
-import androidx.slice.Slice;
-import androidx.slice.builders.SliceAction;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
+import android.app.PendingIntent; // ok
+import android.net.Uri; // ok
+import androidx.annotation.ColorInt; // ok
+import androidx.annotation.NonNull; // ok
+import androidx.core.graphics.drawable.IconCompat; // ok
+import androidx.slice.Clock; // ok
+import androidx.slice.Slice; // ok
+import androidx.slice.builders.SliceAction; // ok
+import java.time.Duration; // ok
+import java.util.ArrayList; // ok
+import java.util.List; // ok
 
 public class InputImportOrderStaticGroupsTopSeparated {
 }
