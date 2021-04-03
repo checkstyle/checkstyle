@@ -2274,7 +2274,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * switch (3){
+     * switch (type){
      *   case 1 :
      *     x=1;
      *     break;
@@ -2284,35 +2284,35 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--LITERAL_SWITCH -&gt; switch
-     * |   |--LPAREN -&gt; (
-     * |   |--EXPR -&gt; EXPR
-     * |   |   `--NUM_INT -&gt; 3
-     * |   |--RPAREN -&gt; )
-     * |   |--LCURLY -&gt; {
-     * |   |--CASE_GROUP -&gt; CASE_GROUP
-     * |   |   |--LITERAL_CASE -&gt; case
-     * |   |   |   |--EXPR -&gt; EXPR
-     * |   |   |   |   `--NUM_INT -&gt; 1
-     * |   |   |   `--COLON -&gt; :
-     * |   |   `--SLIST -&gt; SLIST
-     * |   |       |--EXPR -&gt; EXPR
-     * |   |       |   `--ASSIGN -&gt; =
-     * |   |       |       |--IDENT -&gt; x
-     * |   |       |       `--NUM_INT -&gt; 1
-     * |   |       |   |       |--SEMI -&gt; ;
-     * |   |       `--LITERAL_BREAK -&gt; break
-     * |   |           `--SEMI -&gt; ;
-     * |   |--CASE_GROUP -&gt; CASE_GROUP
-     * |   |   |--LITERAL_DEFAULT -&gt; default
-     * |   |   |   `--COLON -&gt; :
-     * |   |   `--SLIST -&gt; SLIST
-     * |   |       |--EXPR -&gt; EXPR
-     * |   |       |   `--ASSIGN -&gt; =
-     * |   |       |       |--IDENT -&gt; x
-     * |   |       |       `--NUM_INT -&gt; 3
-     * |   |       `--SEMI -&gt; ;
-     * |   `--RCURLY -&gt; }
+     * LITERAL_SWITCH -&gt; switch
+     *   |--LPAREN -&gt; (
+     *   |--EXPR -&gt; EXPR
+     *   |   `--IDENT -&gt; type
+     *   |--RPAREN -&gt; )
+     *   |--LCURLY -&gt; {
+     *   |--CASE_GROUP -&gt; CASE_GROUP
+     *   |   |--LITERAL_CASE -&gt; case
+     *   |   |   |--EXPR -&gt; EXPR
+     *   |   |   |   `--NUM_INT -&gt; 1
+     *   |   |   `--COLON -&gt; :
+     *   |   `--SLIST -&gt; SLIST
+     *   |       |--EXPR -&gt; EXPR
+     *   |       |   `--ASSIGN -&gt; =
+     *   |       |       |--IDENT -&gt; x
+     *   |       |       `--NUM_INT -&gt; 1
+     *   |       |   |       |--SEMI -&gt; ;
+     *   |       `--LITERAL_BREAK -&gt; break
+     *   |           `--SEMI -&gt; ;
+     *   |--CASE_GROUP -&gt; CASE_GROUP
+     *   |   |--LITERAL_DEFAULT -&gt; default
+     *   |   |   `--COLON -&gt; :
+     *   |   `--SLIST -&gt; SLIST
+     *   |       |--EXPR -&gt; EXPR
+     *   |       |   `--ASSIGN -&gt; =
+     *   |       |       |--IDENT -&gt; x
+     *   |       |       `--NUM_INT -&gt; 3
+     *   |       `--SEMI -&gt; ;
+     *   `--RCURLY -&gt; }
      * </pre>
      *
      * @see #CASE_GROUP
