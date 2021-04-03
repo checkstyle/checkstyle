@@ -79,6 +79,14 @@
     value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          To configure the filter to ignore some Checks in maven test folder by Checkstyle config:
+        </p>
+        <source>
+&lt;suppress checks=&quot;EmptyBlock&quot; files=&quot;.*[\\/]src[\\/]test[\\/]&quot;/&gt;
+
+        </source>
+
       </subsection>
       <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
         <ul>
