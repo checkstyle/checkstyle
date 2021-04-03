@@ -79,6 +79,13 @@
     value=&quot;^(?!.*(Remote\.java|Client\.java|[\\/]Remote\.java|[\\/]Client\.java)).*$&quot;/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          To configure the filter to ignore some Checks in maven test folder by modifying
+          <code>config/suppressions.xml</code>:
+        </p>
+        <source><![CDATA[
+<suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
+        ]]></source>
       </subsection>
       <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
         <ul>
