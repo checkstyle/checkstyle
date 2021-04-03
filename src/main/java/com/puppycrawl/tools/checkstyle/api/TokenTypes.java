@@ -2832,6 +2832,26 @@ public final class TokenTypes {
     /**
      * The {@code ||} (conditional OR) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * if (a || b){
+     * }
+     * </pre>
+     * <p>
+     * parses as:
+     * </p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LOR -&gt; ||
+     *  |       |--LITERAL_TRUE -&gt; a
+     *  |       `--LITERAL_TRUE -&gt; b
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   |--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
      * Language Specification, &sect;15.24</a>
