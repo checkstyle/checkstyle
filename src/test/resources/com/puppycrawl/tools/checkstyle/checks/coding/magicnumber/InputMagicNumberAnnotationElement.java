@@ -1,5 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.magicnumber;
 
+/* Config:
+ *
+ * ignoreAnnotationElementDefaults = false
+ */
+
 /**
  * ignoreAnnotationElementDefaults = false
  */
