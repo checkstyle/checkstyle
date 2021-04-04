@@ -2840,7 +2840,7 @@ public final class TokenTypes {
     public static final int LOR = GeneratedJavaTokenTypes.LOR;
     /**
      * The {@code &&} (conditional AND) operator.
-     * 
+     *
      * <p>For example:</p>
      * <pre>
      * if (true || true)
