@@ -1699,10 +1699,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorStartOfTheLine.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]typecastparenpad[\\/]InputTypecastParenPadWhitespaceAround.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]typecastparenpad[\\/]InputTypecastParenPadWhitespace.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAround.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterBraces.java"/>
@@ -3330,10 +3326,6 @@
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorNoErrors.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]singlespaceseparator[\\/]InputSingleSpaceSeparatorStartOfTheLine.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]typecastparenpad[\\/]InputTypecastParenPadWhitespaceAround.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]typecastparenpad[\\/]InputTypecastParenPadWhitespace.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]whitespaceafter[\\/]InputWhitespaceAfterAround.java"/>
   <suppress id="StyleValidationCommentInInputs"
