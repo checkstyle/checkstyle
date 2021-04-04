@@ -496,6 +496,51 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * public class SomeClass { }
  * </pre>
  * <p>
+ * To configure the Check with groups of static imports when staticGroups=&quot;&quot; represents
+ * only one group. In below example the static imports {@code com...} should be before
+ * {@code java...}:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *   &lt;property name=&quot;staticGroups&quot; value=&quot;&quot;/&gt;
+ *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * import static java.io.File.listRoots;
+ * import static javax.swing.WindowConstants.*; // OK
+ * import static java.io.File.createTempFile; // violation should be before javax
+ * import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+ * .InputAvoidStaticImportNestedClass.InnerClass;  // violation should be before java and javax
+ * import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+ * .InputAvoidStaticImportNestedClass.InnerClass.one; // violation should be before java and javax
+ *
+ * public class SomeClass { }
+ * </pre>
+ * <p>
+ * To configure the Check with groups of static imports when
+ * staticGroups=&quot;java, javax, org&quot;
+ * represents three groups i.e java*, org* and * (everything else). In below example the static
+ * imports {@code com...} should be in last group:
+ * </p>
+ * <pre>
+ * &lt;module name=&quot;ImportOrder&quot;&gt;
+ *   &lt;property name=&quot;staticGroups&quot; value=&quot;java, javax, org&quot;/&gt;
+ *   &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * import static java.io.File.listRoots; //OK
+ * import static javax.swing.WindowConstants.*; // OK
+ * import static java.io.File.createTempFile; // violation should be before javax
+ * import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+ * .InputAvoidStaticImportNestedClass.InnerClass;  // OK
+ * import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+ * .InputAvoidStaticImportNestedClass.InnerClass.one; // OK
+ *
+ * public class SomeClass { }
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
  * <p>

@@ -2110,7 +2110,7 @@ public class SomeClass { }
           There is always a wildcard group to which everything not in a named group
           belongs. If an import does not match a named group, the group belongs to
           this wildcard group. The wildcard group position can be specified using the
-          {@code *} character.
+          <code>*</code> character.
         </p>
         <p>
           Check also has on option making it more flexible:
@@ -2239,6 +2239,54 @@ import static javax.swing.JComponent; // violation, should be separated from pre
 import static javax.WindowConstants.*; // OK
 
 import java.net.URL;
+
+public class SomeClass { }
+        </source>
+        <p>
+          To configure the Check with groups of static imports when staticGroups=&quot;&quot;
+          represents only one group. In below example the static imports <code> com...</code>
+          should be before <code> java...</code>:
+        </p>
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+  &lt;property name=&quot;staticGroups&quot; value=&quot;&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+import static java.io.File.listRoots;
+import static javax.swing.WindowConstants.*; // OK
+import static java.io.File.createTempFile; // violation should be before javax
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+.InputAvoidStaticImportNestedClass.InnerClass;  // violation should be before java and javax
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+.InputAvoidStaticImportNestedClass.InnerClass.one; // violation should be before java and javax
+
+public class SomeClass { }
+        </source>
+        <p>
+          To configure the Check with groups of static imports when
+          staticGroups=&quot;java, javax, org&quot; represents three groups i.e java*, org*
+          and * (everything else). In below example the static imports <code> com...</code>
+          should be in last group:
+        </p>
+
+        <source>
+&lt;module name=&quot;ImportOrder&quot;&gt;
+  &lt;property name=&quot;staticGroups&quot; value=&quot;java, javax, org&quot;/&gt;
+  &lt;property name=&quot;sortStaticImportsAlphabetically&quot; value=&quot;true&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <source>
+import static java.io.File.listRoots; //OK
+import static javax.swing.WindowConstants.*; // OK
+import static java.io.File.createTempFile; // violation should be before javax
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+.InputAvoidStaticImportNestedClass.InnerClass;  // OK
+import static com.puppycrawl.tools.checkstyle.checks.imports.avoidstaticimport
+.InputAvoidStaticImportNestedClass.InnerClass.one; // OK
 
 public class SomeClass { }
         </source>
