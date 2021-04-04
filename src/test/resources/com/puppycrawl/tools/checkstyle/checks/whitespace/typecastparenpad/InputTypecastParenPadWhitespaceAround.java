@@ -1,11 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
-@SuppressWarnings({"this", "that"})
+/*
+ * Config:
+ * option = PadOption.SPACE
+ */
 class InputTypecastParenPadWhitespaceAround
 {
     protected InputTypecastParenPadWhitespaceAround ( int i )
     {
-        this (); //whitespace
+        this (); // violation
         toString ();
     }
     protected InputTypecastParenPadWhitespaceAround ()
