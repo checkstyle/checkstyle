@@ -1,9 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.typecastparenpad;
 
 /*
- * Config: default
+ * Config:
+ * option = PadOption.SPACE
  */
-class InputTypecastParenPadWhitespace
+class InputTypecastParenPadWhitespaceTestSpace
 {
     /** ignore assignment **/
     private int mVar1=1;
@@ -79,7 +80,7 @@ class InputTypecastParenPadWhitespace
     {
         Object o = (Object) new Object(); // ok
         o = (Object)o; // violation
-        o = ( Object ) o; // ok
+        o = ( Object ) o;
         o = (Object)
             o; // ok
     }
@@ -184,7 +185,7 @@ class InputTypecastParenPadWhitespace
     /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputTypecastParenPadWhitespace() {
+        Object o = new InputTypecastParenPadWhitespaceTestSpace() {
             private int j ;
             //           ^ whitespace
         };
@@ -199,7 +200,7 @@ class InputTypecastParenPadWhitespace
  * @author o_sukhodolsky
  * @version 1.0
  */
-interface IFoo_TypecastParenPad
+interface IFoo_TypecastParenPad2
 {
     void foo() ;
     //        ^ whitespace
@@ -210,7 +211,7 @@ interface IFoo_TypecastParenPad
  * @author lkuehne
  * @version 1.0
  */
-class SpecialCasesInForLoop_TypecastParenPad
+class SpecialCasesInForLoop_TypecastParenPad2
 {
     void forIterator()
     {
@@ -231,7 +232,7 @@ class SpecialCasesInForLoop_TypecastParenPad
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 );
+        int i = (int) ( 2 / 3 ); // ok
         return null;
     }
 
