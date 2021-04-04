@@ -80,12 +80,14 @@
 &lt;/module&gt;
         </source>
         <p>
-          To configure the filter to ignore some Checks in maven test folder by modifying
-          <code>config/suppressions.xml</code>:
+          To configure the filter to exclude all Test folder files:
         </p>
-        <source><![CDATA[
-<suppress checks="EmptyBlock" files=".*[\\/]src[\\/]test[\\/]"/>
-        ]]></source>
+        <source>
+&lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
+  &lt;property name=&quot;fileNamePattern&quot;
+    value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
+&lt;/module&gt;
+        </source>
       </subsection>
       <subsection name="Example of Usage" id="BeforeExecutionExclusionFileFilter_Example_of_Usage">
         <ul>
