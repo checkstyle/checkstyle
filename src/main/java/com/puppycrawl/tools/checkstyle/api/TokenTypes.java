@@ -2841,6 +2841,33 @@ public final class TokenTypes {
     /**
      * The {@code &&} (conditional AND) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * if (true || true)
+     * {
+     * message = "Returns True";
+     * }
+     * </pre>
+     * <p>
+     * parses as:
+     * </p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LOR -&gt; ||
+     *  |       |--LITERAL_TRUE -&gt; true
+     *  |       `--LITERAL_TRUE -&gt; true
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       |--IDENT -&gt; message
+     *  |   |       `--STRING_LITERAL -&gt; "Returns True"
+     *  |   |--SEMI -&gt; ;
+     *  |   |--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
      * Language Specification, &sect;15.23</a>
