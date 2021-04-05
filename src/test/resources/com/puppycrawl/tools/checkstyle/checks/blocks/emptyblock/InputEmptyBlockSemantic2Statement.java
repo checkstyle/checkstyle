@@ -1,25 +1,26 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
-class InputEmptyBlockSemantic2
+/* Config:
+ * option = "statement"
+ * tokens = "LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, LITERAL_IF, LITERAL_ELSE, INSTANCE_INIT,
+ *           STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED"
+ */
+class InputEmptyBlockSemantic2Statement
 {
         public void fooMethod()
         {
                 int a = 1;
-                if (a == 1) {} //is not OK
+                if (a == 1) {}  // violation
                 char[] s = {'1', '2'};
                 int index = 2;
-                if (doSideEffect() == 1) {} //is not OK,
-                while ((a = index - 1) != 0) {} // is OK
-                for (; index < s.length && s[index] != 'x'; index++) {} // is OK
-                if (a == 1) {} else {System.identityHashCode("a");} // is not OK
+                if (doSideEffect() == 1) {} // violation
+                while ((a = index - 1) != 0) {} // ok
+                for (; index < s.length && s[index] != 'x'; index++) {} // violation
+                if (a == 1) {} else {System.identityHashCode("a");} // violation
                 switch (a) {} //warn
                 switch (a) { //ok
         case 1:
