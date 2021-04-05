@@ -2832,20 +2832,9 @@ public final class TokenTypes {
     /**
      * The {@code ||} (conditional OR) operator.
      *
-     * @see <a
-     * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
-     * Language Specification, &sect;15.24</a>
-     * @see #EXPR
-     **/
-    public static final int LOR = GeneratedJavaTokenTypes.LOR;
-    /**
-     * The {@code &&} (conditional AND) operator.
-     *
      * <p>For example:</p>
      * <pre>
-     * if (true || true)
-     * {
-     * message = "Returns True";
+     * if (a || b){
      * }
      * </pre>
      * <p>
@@ -2856,17 +2845,21 @@ public final class TokenTypes {
      *  |--LPAREN -&gt; (
      *  |--EXPR -&gt; EXPR
      *  |   `--LOR -&gt; ||
-     *  |       |--LITERAL_TRUE -&gt; true
-     *  |       `--LITERAL_TRUE -&gt; true
+     *  |       |--LITERAL_TRUE -&gt; a
+     *  |       `--LITERAL_TRUE -&gt; b
      *  |--RPAREN -&gt; )
      *  |--SLIST -&gt; {
-     *  |   |--EXPR -&gt; EXPR
-     *  |   |   `--ASSIGN -&gt; =
-     *  |   |       |--IDENT -&gt; message
-     *  |   |       `--STRING_LITERAL -&gt; "Returns True"
-     *  |   |--SEMI -&gt; ;
      *  |   |--RCURLY -&gt; }
      * </pre>
+     *
+     * @see <a
+     * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
+     * Language Specification, &sect;15.24</a>
+     * @see #EXPR
+     **/
+    public static final int LOR = GeneratedJavaTokenTypes.LOR;
+    /**
+     * The {@code &&} (conditional AND) operator.
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
