@@ -1,26 +1,29 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-/* Config: default
+/* Config:
+ * closingParens = ignore
+ * elementStyle = COMPACT_NO_ARRAY
+ * trailingArrayComma = ignore
  */
 @Deprecated
 @SomeArrays(pooches={DOGS.LEO}) // violation
 @SuppressWarnings({""}) // violation
-public class InputAnnotationUseStyleDifferentStyles
+public class InputAnnotationUseStyleCompactNoArray
 {
 
 }
 
 @SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"}) // violation
 @SuppressWarnings("") //compact_no_array
-@Deprecated() // violation
-class Dep {
+@Deprecated()
+class Dep6 {
 
 }
 
 @Deprecated
 @SomeArrays(pooches={DOGS.LEO}) // violation
 @SuppressWarnings({""}) // violation
-enum SON {
+enum SON6 {
 
     @Deprecated
     @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"}) // violation
@@ -29,15 +32,15 @@ enum SON {
     ETHAN
 }
 
-@InputAnnotationUseStyleCustomAnnotation() // violation
-enum DOGS {
+@InputAnnotationUseStyleCustomAnnotation()
+enum DOGS6 {
 
-    @Deprecated() // violation
+    @Deprecated()
     LEO,
     HERBIE
 }
 
-@interface SomeArrays {
+@interface SomeArrays6 {
     @Another("") //compact
     String[] um() default {};
     @Another({""}) //compact // violation
@@ -47,15 +50,15 @@ enum DOGS {
 }
 
 @Another(value={""}) //expanded // violation
-enum E {
+enum E6 {
 
 }
 
-@interface APooch {
+@interface APooch6 {
     DOGS dog();
 }
 
-@interface Another {
+@interface Another6 {
     String[] value() default {};
     @Another({"foo", "bar"}) //compact style
     String value1() default "";
@@ -63,7 +66,7 @@ enum E {
 
 @SomeArrays(pooches = {})
 @Another({})
-class Closing {
+class Closing6 {
     static final String UN_U = "UN_U";
 
     @SuppressWarnings(value = UN_U)
@@ -71,18 +74,18 @@ class Closing {
 }
 
 @AnnotationWithAnnotationValue(@Another)
-class Example1 {}
+class Example21 {}
 @AnnotationWithAnnotationValue(value = @Another)
-class Example2 {}
-@AnnotationWithAnnotationValue(@Another()) // violation
-class Example3 {}
-@AnnotationWithAnnotationValue(value = @Another()) // violation
-class Example4 {}
+class Example22 {}
+@AnnotationWithAnnotationValue(@Another())
+class Example23 {}
+@AnnotationWithAnnotationValue(value = @Another())
+class Example24 {}
 
-class Foo {
-   Foo(@Another String par1, @Another int par2) {}
+class Foo6 {
+   Foo6(@Another String par1, @Another int par2) {}
 }
 
-@interface AnnotationWithAnnotationValue {
+@interface AnnotationWithAnnotationValue6 {
     Another value();
 }

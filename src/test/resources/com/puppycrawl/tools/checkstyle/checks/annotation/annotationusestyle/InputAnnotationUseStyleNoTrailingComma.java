@@ -1,19 +1,24 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
-// suppress
-@SuppressWarnings({})
+
+/* Config:
+ * closingParens = ignore
+ * elementStyle = ignore
+ * trailingArrayComma = ALWAYS
+ */
+@SuppressWarnings({}) // violation
 public class InputAnnotationUseStyleNoTrailingComma
 {
-  @SuppressWarnings({"common"})
+  @SuppressWarnings({"common"}) // violation
   public void foo() {
 
       /** Suppress warnings */
-      @SuppressWarnings({"common","foo"})
+      @SuppressWarnings({"common","foo"}) // violation
       Object o = new Object() {
 
-          @SuppressWarnings(value={"common"})
+          @SuppressWarnings(value={"common"}) // violation
           public String toString() {
 
-              @SuppressWarnings(value={"leo","herbie"})
+              @SuppressWarnings(value={"leo","herbie"}) // violation
               final String pooches = "leo.herbie";
 
               return pooches;
@@ -21,15 +26,15 @@ public class InputAnnotationUseStyleNoTrailingComma
       };
   }
 
-  @Test2(value={"foo"}, more={"bar"})
+  @Test2(value={"foo"}, more={"bar"}) // violation
 
-  @Pooches2(tokens={},other={})
+  @Pooches2(tokens={},other={}) // violation
   enum P {
 
-      @Pooches2(tokens={Pooches2.class},other={1})
+      @Pooches2(tokens={Pooches2.class},other={1}) // violation
       L, // annotation in enum
 
-      @Test2(value={}, more={"unchecked"})
+      @Test2(value={}, more={"unchecked"}) // violation
       Y;
   }
 
