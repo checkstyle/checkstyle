@@ -1,18 +1,18 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
+/* Config:
+ * option = "invalid_option"
+ * tokens = "LITERAL_WHILE, LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, LITERAL_IF, LITERAL_ELSE,
+ *           LITERAL_FOR, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED"
+ */
 /**
  * Test case for detecting empty block statements.
- * @author Lars Kühne
  **/
-class InputEmptyBlockSemantic
+class InputEmptyBlockSemanticStatementInvalid
 {
     static {
         Boolean x = new Boolean(true);
@@ -35,7 +35,7 @@ class InputEmptyBlockSemantic
         finally {
         }
         try {
-        // something
+            // something
         }
         finally {
             // something
@@ -68,18 +68,18 @@ class InputEmptyBlockSemantic
     }
 
     synchronized void foo() {
-        synchronized (this) {} // not OK
-        synchronized (Class.class) { // OK
+        synchronized (this) {}
+        synchronized (Class.class) {
             synchronized (new Object()) {
-                // not OK if checking statements
+                // comment
             }
         }
     }
 
 
     static {
-
-    int a = 0;}
+        int a = 0;
+    }
 
     static {
 
