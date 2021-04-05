@@ -13,24 +13,22 @@ public class InputEmptyBlockDefaultText {
             default:
         }
         switch (a) {
-            default:    // violation
-            {}
+            default: {}     // violation
         }
         switch (a) {
-            default:    // ok
-            { // text
-            }
+            default: {/* text */}   // ok
         }
     }
 
     void method2(int a) {
         switch (a) {
             case 1:a++;
+
             case 2:a++;
+
             default:    // ok
                 switch (a) {
                     default: {  // ok
-
                     }
                 }
         }
@@ -47,7 +45,10 @@ public class InputEmptyBlockDefaultText {
             default: method2(b); {} // ok
         }
 
-        switch (a+b) {case 1: break; default: {} ; }    // violation
+        switch (a+b) {
+            case 1: break;
+            default: {} ;   // violation
+        }
     }
 
     void method4(int a, int b) {
@@ -69,7 +70,6 @@ public class InputEmptyBlockDefaultText {
         switch (a-b) {
             case 1:
             default: {     // ok
-
             } ;
             case 2: { }
         }
@@ -80,15 +80,13 @@ public class InputEmptyBlockDefaultText {
             case 1:
             case 2:
             case 3:
-            default:       // violation
-            {
-            }
+            default: {}     // violation
         }
 
         switch (b) {
             default:       // ok
             case 1:
-            case 2: { } method2(b);
+            case 2: {} method2(b);
             case 3:
         }
     }

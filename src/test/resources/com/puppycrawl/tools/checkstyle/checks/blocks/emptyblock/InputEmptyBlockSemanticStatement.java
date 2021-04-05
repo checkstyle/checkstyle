@@ -30,21 +30,19 @@ class InputEmptyBlockSemanticStatement
 
     void exHandlerTest()
     {
-        try {   // violation
-        }
-        finally {   // violation
-        }
-        try {   // violation
-            // something
-        }
-        finally {   // violation
-            // something
-        }
+        try {}  // violation
+
+        finally {}  // violation
+
+        try {/* something */}   // violation
+
+        finally {/* something */}   // violation
+
         try {   // ok
-            ; // something
+            ;   // something
         }
         finally {   // ok
-            ; // statement
+            ;   // statement
         }
     }
 
@@ -60,28 +58,20 @@ class InputEmptyBlockSemanticStatement
     }
 
     // empty instance initializer
-    {   // violation
-    }
+    {}  // violation
 
-    private class InputBraces { // ok
-
-    }
+    private class InputBraces {}    // ok
 
     synchronized void foo() {
         synchronized (this) {}  // violation
         synchronized (Class.class) {    // ok
-            synchronized (new Object()) {   // violation
-                // comment
-            }
+            synchronized (new Object()) {/* something */}   // violation
         }
     }
-
 
     static {    // ok
         int a = 0;
     }
 
-    static {    // violation
-
-    }
+    static {}   // violation
 }
