@@ -31,19 +31,19 @@ public class AuditEventTest {
         final AuditEvent event = new AuditEvent(getClass());
 
         assertNull(event.getFileName(), "invalid file name");
-        assertNull(event.getLocalizedMessage(), "invalid localized message");
+        assertNull(event.getViolation(), "invalid violation");
         assertEquals(getClass(), event.getSource(), "invalid source");
         assertEquals(SeverityLevel.INFO, event.getSeverityLevel(), "invalid severity");
     }
 
     @Test
     public void testFullConstructor() {
-        final LocalizedMessage message = new LocalizedMessage(1, 2, 3, "bundle", "key", null,
+        final Violation message = new Violation(1, 2, 3, "bundle", "key", null,
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
         final AuditEvent event = new AuditEvent(getClass(), "fileName", message);
 
         assertEquals("fileName", event.getFileName(), "invalid file name");
-        assertEquals(message, event.getLocalizedMessage(), "invalid localized message");
+        assertEquals(message, event.getViolation(), "invalid violation");
         assertEquals("customMessage", event.getMessage(), "invalid message");
         assertEquals(getClass(), event.getSource(), "invalid source");
         assertEquals(1, event.getLine(), "invalid line");
