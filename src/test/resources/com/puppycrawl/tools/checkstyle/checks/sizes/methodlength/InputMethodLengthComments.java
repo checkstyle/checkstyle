@@ -1,5 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
+/*
+ * Config:
+ * max = 7
+ * countEmpty = false
+ */
 public class InputMethodLengthComments {
     static class DetailClass {
         public DetailClass find(int type) {
@@ -22,7 +27,7 @@ public class InputMethodLengthComments {
 
     }
 
-    public DetailClass visit(DetailClass ast) {
+    public DetailClass visit(DetailClass ast) { // violation
         final DetailClass openingBrace = ast.find(Tokens.ZERO);
         DetailClass closingBrace = null;
 
