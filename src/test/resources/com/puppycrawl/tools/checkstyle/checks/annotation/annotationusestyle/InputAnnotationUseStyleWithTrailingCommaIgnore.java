@@ -2,23 +2,21 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 //this file compiles in eclipse 3.4 but not with Sun's JDK 1.6.0.11
 
 /* Config:
- * closingParens = ignore
- * elementStyle = ignore
- * trailingArrayComma = ALWAYS
+ * trailingArrayComma = ignore
  */
-public class InputAnnotationUseStyleWithTrailingComma
+public class InputAnnotationUseStyleWithTrailingCommaIgnore
 {
-    @SuppressWarnings({"common",}) // ok
+    @SuppressWarnings({"common",}) // violation
     public void foo() {
 
 
-        @SuppressWarnings({"common","foo",}) // ok
+        @SuppressWarnings({"common","foo",})
         Object o = new Object() {
 
-            @SuppressWarnings(value={"common",}) // ok
+            @SuppressWarnings(value={"common",}) // violation
             public String toString() {
 
-                @SuppressWarnings(value={"leo","herbie",}) // ok
+                @SuppressWarnings(value={"leo","herbie",})
                 final String pooches = "leo.herbie";
 
                 return pooches;
@@ -26,13 +24,13 @@ public class InputAnnotationUseStyleWithTrailingComma
         };
     }
 
-    @Test(value={"foo",}, more={"bar",}) // ok
+    @Test3(value={"foo",}, more={"bar",}) // violation
     /**
 
     */
     enum P {
 
-        @Pooches(tokens={Pooches.class,},other={1,}) // ok
+        @Pooches3(tokens={Pooches3.class,},other={1,}) // violation
         L,
 
         /**
@@ -43,12 +41,12 @@ public class InputAnnotationUseStyleWithTrailingComma
 
 }
 
-@interface Test {
+@interface Test3 {
     String[] value();
     String[] more() default {};
 }
 
-@interface Pooches {
+@interface Pooches3 {
 
     Class<?>[] tokens();
     int[] other();
