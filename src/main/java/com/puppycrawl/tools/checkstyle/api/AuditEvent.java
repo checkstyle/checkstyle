@@ -45,8 +45,8 @@ public final class AuditEvent
     private static final long serialVersionUID = -3774725606973812736L;
     /** Filename event associated with. **/
     private final String fileName;
-    /** Message associated with the event. **/
-    private final LocalizedMessage localizedMessage;
+    /** Violation associated with the event. **/
+    private final Violation violation;
 
     /**
      * Creates a new instance.
@@ -72,12 +72,12 @@ public final class AuditEvent
      *
      * @param src source of the event
      * @param fileName file associated with the event
-     * @param localizedMessage the actual message
+     * @param violation the actual message
      */
-    public AuditEvent(Object src, String fileName, LocalizedMessage localizedMessage) {
+    public AuditEvent(Object src, String fileName, Violation violation) {
         super(src);
         this.fileName = fileName;
-        this.localizedMessage = localizedMessage;
+        this.violation = violation;
     }
 
     /**
@@ -97,7 +97,7 @@ public final class AuditEvent
      * @return an integer representing the line number in the file source code.
      */
     public int getLine() {
-        return localizedMessage.getLineNo();
+        return violation.getLineNo();
     }
 
     /**
@@ -106,7 +106,7 @@ public final class AuditEvent
      * @return the event message
      */
     public String getMessage() {
-        return localizedMessage.getMessage();
+        return violation.getMessage();
     }
 
     /**
@@ -115,7 +115,7 @@ public final class AuditEvent
      * @return the column associated with the message
      */
     public int getColumn() {
-        return localizedMessage.getColumnNo();
+        return violation.getColumnNo();
     }
 
     /**
@@ -125,8 +125,8 @@ public final class AuditEvent
      */
     public SeverityLevel getSeverityLevel() {
         SeverityLevel severityLevel = SeverityLevel.INFO;
-        if (localizedMessage != null) {
-            severityLevel = localizedMessage.getSeverityLevel();
+        if (violation != null) {
+            severityLevel = violation.getSeverityLevel();
         }
         return severityLevel;
     }
@@ -138,7 +138,7 @@ public final class AuditEvent
      *         null.
      */
     public String getModuleId() {
-        return localizedMessage.getModuleId();
+        return violation.getModuleId();
     }
 
     /**
@@ -147,16 +147,16 @@ public final class AuditEvent
      * @return the name of the source for the message
      */
     public String getSourceName() {
-        return localizedMessage.getSourceName();
+        return violation.getSourceName();
     }
 
     /**
-     * Gets the localized message.
+     * Gets the violation.
      *
-     * @return the localized message
+     * @return the violation
      */
-    public LocalizedMessage getLocalizedMessage() {
-        return localizedMessage;
+    public Violation getViolation() {
+        return violation;
     }
 
 }

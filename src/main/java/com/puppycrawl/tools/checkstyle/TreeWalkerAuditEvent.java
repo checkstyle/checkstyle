@@ -21,7 +21,7 @@ package com.puppycrawl.tools.checkstyle;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 /**
  * Raw {@code TreeWalker} event for audit.
@@ -34,7 +34,7 @@ public class TreeWalkerAuditEvent {
     /** The file contents. */
     private final FileContents fileContents;
     /** Message associated with the event. **/
-    private final LocalizedMessage localizedMessage;
+    private final Violation violation;
     /** Root ast element. **/
     private final DetailAST rootAst;
 
@@ -43,14 +43,14 @@ public class TreeWalkerAuditEvent {
      *
      * @param fileContents contents of the file associated with the event
      * @param fileName file associated with the event
-     * @param localizedMessage the actual message
+     * @param violation the actual violation
      * @param rootAst root AST element {@link DetailAST} of the file
      */
     public TreeWalkerAuditEvent(FileContents fileContents, String fileName,
-                                LocalizedMessage localizedMessage, DetailAST rootAst) {
+                                Violation violation, DetailAST rootAst) {
         this.fileContents = fileContents;
         this.fileName = fileName;
-        this.localizedMessage = localizedMessage;
+        this.violation = violation;
         this.rootAst = rootAst;
     }
 
@@ -74,12 +74,12 @@ public class TreeWalkerAuditEvent {
     }
 
     /**
-     * Gets the localized message.
+     * Gets the violation.
      *
-     * @return the localized message
+     * @return the violation
      */
-    public LocalizedMessage getLocalizedMessage() {
-        return localizedMessage;
+    public Violation getViolation() {
+        return violation;
     }
 
     /**
@@ -89,34 +89,34 @@ public class TreeWalkerAuditEvent {
      * @return an integer representing the line number in the file source code.
      */
     public int getLine() {
-        return localizedMessage.getLineNo();
+        return violation.getLineNo();
     }
 
     /**
-     * Return the message associated to the event.
+     * Return the violation associated to the event.
      *
-     * @return the event message
+     * @return the violation message
      */
     public String getMessage() {
-        return localizedMessage.getMessage();
+        return violation.getMessage();
     }
 
     /**
-     * Gets the column associated with the message.
+     * Gets the column associated with the violation.
      *
-     * @return the column associated with the message
+     * @return the column associated with the violation
      */
     public int getColumn() {
-        return localizedMessage.getColumnNo();
+        return violation.getColumnNo();
     }
 
     /**
-     * Gets the column char index associated with the message.
+     * Gets the column char index associated with the violation.
      *
-     * @return the column char index associated with the message
+     * @return the column char index associated with the violation
      */
     public int getColumnCharIndex() {
-        return localizedMessage.getColumnCharIndex();
+        return violation.getColumnCharIndex();
     }
 
     /**
@@ -126,25 +126,25 @@ public class TreeWalkerAuditEvent {
      *         null.
      */
     public String getModuleId() {
-        return localizedMessage.getModuleId();
+        return violation.getModuleId();
     }
 
     /**
-     * Gets the name of the source for the message.
+     * Gets the name of the source for the violation.
      *
-     * @return the name of the source for the message
+     * @return the name of the source for the violation
      */
     public String getSourceName() {
-        return localizedMessage.getSourceName();
+        return violation.getSourceName();
     }
 
     /**
-     * Gets the token type of the message.
+     * Gets the token type of the violation.
      *
-     * @return the token type of the message
+     * @return the token type of the violation
      */
     public int getTokenType() {
-        return localizedMessage.getTokenType();
+        return violation.getTokenType();
     }
 
     /**

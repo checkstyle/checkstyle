@@ -39,8 +39,8 @@ import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.Context;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -303,12 +303,12 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
 
         npathComplexityCheckObj.visitToken(ast);
-        final SortedSet<LocalizedMessage> messages1 = npathComplexityCheckObj.getMessages();
+        final SortedSet<Violation> messages1 = npathComplexityCheckObj.getViolations();
 
         assertEquals(0, messages1.size(), "No exception messages expected");
 
         npathComplexityCheckObj.leaveToken(ast);
-        final SortedSet<LocalizedMessage> messages2 = npathComplexityCheckObj.getMessages();
+        final SortedSet<Violation> messages2 = npathComplexityCheckObj.getViolations();
 
         assertEquals(0, messages2.size(), "No exception messages expected");
     }
@@ -360,13 +360,13 @@ public class NPathComplexityCheckTest extends AbstractModuleTestSupport {
 
         // visiting first ast, set expressionSpatialRange to [2,2 - 4,4]
         npathComplexityCheckObj.visitToken(astIf);
-        final SortedSet<LocalizedMessage> messages1 = npathComplexityCheckObj.getMessages();
+        final SortedSet<Violation> messages1 = npathComplexityCheckObj.getViolations();
 
         assertEquals(0, messages1.size(), "No exception messages expected");
 
         // visiting ternary, it lies before expressionSpatialRange
         npathComplexityCheckObj.visitToken(astTernary);
-        final SortedSet<LocalizedMessage> messages2 = npathComplexityCheckObj.getMessages();
+        final SortedSet<Violation> messages2 = npathComplexityCheckObj.getViolations();
 
         assertEquals(0, messages2.size(), "No exception messages expected");
     }

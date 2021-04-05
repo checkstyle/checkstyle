@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.coding.IllegalCatchCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.ConstantNameCheck;
@@ -425,14 +425,14 @@ public class SuppressWithNearbyCommentFilterTest
     }
 
     @Test
-    public void testAcceptNullLocalizedMessage() {
+    public void testAcceptNullViolation() {
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final FileContents contents = new FileContents(new FileText(new File("filename"),
                 Collections.singletonList("//SUPPRESS CHECKSTYLE ignore")));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent auditEvent =
                 new TreeWalkerAuditEvent(contents, null, null, null);
-        assertTrue(filter.accept(auditEvent), "Filter should accept null localized message");
+        assertTrue(filter.accept(auditEvent), "Filter should accept null violation");
     }
 
     @Test
@@ -440,7 +440,7 @@ public class SuppressWithNearbyCommentFilterTest
         final SuppressWithNearbyCommentFilter filter = new SuppressWithNearbyCommentFilter();
         final FileContents contents = null;
         final TreeWalkerAuditEvent auditEvent = new TreeWalkerAuditEvent(contents, null,
-                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
+                new Violation(1, null, null, null, null, Object.class, null), null);
         assertTrue(filter.accept(auditEvent), "Filter should accept audit event");
     }
 
@@ -751,7 +751,7 @@ public class SuppressWithNearbyCommentFilterTest
                 new FileText(new File(filename), Arrays.asList(lines)));
         contents.reportSingleLineComment(1, 0);
         final TreeWalkerAuditEvent dummyEvent = new TreeWalkerAuditEvent(contents, filename,
-                new LocalizedMessage(1, null, null, null, null, Object.class, null), null);
+                new Violation(1, null, null, null, null, Object.class, null), null);
         filter.accept(dummyEvent);
         return Whitebox.getInternalState(filter, "tags");
     }
