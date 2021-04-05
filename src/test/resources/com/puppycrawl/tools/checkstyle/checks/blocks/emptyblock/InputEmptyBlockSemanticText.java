@@ -34,9 +34,9 @@ class InputEmptyBlockSemanticText
 
         finally {}   // violation
 
-        try { /* something */ }   // ok
+        try {/* something */}   // ok
 
-        finally { /* something */ }   // ok
+        finally {/* something */}   // ok
 
     }
 
@@ -59,15 +59,13 @@ class InputEmptyBlockSemanticText
     synchronized void foo() {
         synchronized (this) {}  // violation
         synchronized (Class.class) {    // ok
-            synchronized (new Object()) { /* something */ } // ok
+            synchronized (new Object()) {/* something */} // ok
         }
     }
-
 
     static {    // ok
         int a = 0;
     }
 
     static {}    // violation
-
 }
