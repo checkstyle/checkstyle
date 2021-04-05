@@ -1735,7 +1735,7 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      *   String str = new String();
-     *   for (int i = 0; i < 2; i++) {
+     *   for (int i = 0; i &lt; 2; i++) {
      * 	        str += (i*((5 + 7) - 3));
      *   }
      * </pre>
@@ -1768,7 +1768,7 @@ public final class TokenTypes {
      *  |   |--SEMI -&gt; ;
      *  |   |--FOR_CONDITION -&gt; FOR_CONDITION
      *  |   |   `--EXPR -&gt; EXPR
-     *  |   |       `--LT -&gt; <
+     *  |   |       `--LT -&gt; &lt;
      *  |   |           |--IDENT -&gt; i
      *  |   |           `--NUM_INT -&gt; 2
      *  |   |--SEMI -&gt; ;
