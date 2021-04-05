@@ -43,7 +43,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
@@ -72,7 +72,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
     private final Set<TreeWalkerFilter> filters = new HashSet<>();
 
     /** The sorted set of messages. */
-    private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+    private final SortedSet<Violation> messages = new TreeSet<>();
 
     /** Context of child components. */
     private Context childContext;
@@ -158,29 +158,29 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
                 walk(astWithComments, contents, AstState.WITH_COMMENTS);
             }
             if (filters.isEmpty()) {
-                addMessages(messages);
+                addViolations(messages);
             }
             else {
-                final SortedSet<LocalizedMessage> filteredMessages =
+                final SortedSet<Violation> filteredMessages =
                     getFilteredMessages(file.getAbsolutePath(), contents, rootAST);
-                addMessages(filteredMessages);
+                addViolations(filteredMessages);
             }
             messages.clear();
         }
     }
 
     /**
-     * Returns filtered set of {@link LocalizedMessage}.
+     * Returns filtered set of {@link Violation}.
      *
      * @param fileName path to the file
      * @param fileContents the contents of the file
      * @param rootAST root AST element {@link DetailAST} of the file
      * @return filtered set of messages
      */
-    private SortedSet<LocalizedMessage> getFilteredMessages(
+    private SortedSet<Violation> getFilteredMessages(
             String fileName, FileContents fileContents, DetailAST rootAST) {
-        final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
-        for (LocalizedMessage element : messages) {
+        final SortedSet<Violation> result = new TreeSet<>(messages);
+        for (Violation element : messages) {
             final TreeWalkerAuditEvent event =
                     new TreeWalkerAuditEvent(fileContents, fileName, element, rootAST);
             for (TreeWalkerFilter filter : filters) {
@@ -294,7 +294,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         for (AbstractCheck check : checks) {
             check.setFileContents(contents);
-            check.clearMessages();
+            check.clearViolations();
             check.beginTree(rootAST);
         }
     }
@@ -317,7 +317,7 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         for (AbstractCheck check : checks) {
             check.finishTree(rootAST);
-            messages.addAll(check.getMessages());
+            messages.addAll(check.getViolations());
         }
     }
 

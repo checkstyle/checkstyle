@@ -43,7 +43,7 @@ import java.util.stream.Collectors;
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
@@ -437,7 +437,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 messageBundle,
                 Locale.getDefault(),
                 Thread.currentThread().getContextClassLoader(),
-                new LocalizedMessage.Utf8Control());
+                new Violation.Utf8Control());
         final String pattern = resourceBundle.getString(messageKey);
         final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
         return formatter.format(arguments);
