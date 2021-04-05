@@ -256,9 +256,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(1, "key", "args");
-        assertEquals(1, check.getMessages().size(), "Invalid message size");
-        check.clearMessages();
-        assertEquals(0, check.getMessages().size(), "Invalid message size");
+        assertEquals(1, check.getViolations().size(), "Invalid message size");
+        check.clearViolations();
+        assertEquals(0, check.getViolations().size(), "Invalid message size");
     }
 
     @Test
@@ -269,20 +269,20 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
         check.setFileContents(new FileContents(theText));
-        check.clearMessages();
+        check.clearViolations();
         check.visitToken(null);
 
-        final SortedSet<LocalizedMessage> internalMessages = check.getMessages();
+        final SortedSet<Violation> internalMessages = check.getViolations();
 
         assertEquals(2, internalMessages.size(), "Internal message should only have 2");
 
-        final Iterator<LocalizedMessage> iterator = internalMessages.iterator();
+        final Iterator<Violation> iterator = internalMessages.iterator();
 
-        final LocalizedMessage firstMessage = iterator.next();
+        final Violation firstMessage = iterator.next();
         assertEquals(1, firstMessage.getLineNo(), "expected line");
         assertEquals(0, firstMessage.getColumnNo(), "expected column");
 
-        final LocalizedMessage secondMessage = iterator.next();
+        final Violation secondMessage = iterator.next();
         assertEquals(1, secondMessage.getLineNo(), "expected line");
         assertEquals(6, secondMessage.getColumnNo(), "expected column");
     }
@@ -295,18 +295,18 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
         check.setFileContents(new FileContents(theText));
-        check.clearMessages();
+        check.clearViolations();
 
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setLineNo(1);
         ast.setColumnNo(4);
         check.visitToken(ast);
 
-        final SortedSet<LocalizedMessage> internalMessages = check.getMessages();
+        final SortedSet<Violation> internalMessages = check.getViolations();
 
         assertEquals(1, internalMessages.size(), "Internal message should only have 1");
 
-        final LocalizedMessage firstMessage = internalMessages.iterator().next();
+        final Violation firstMessage = internalMessages.iterator().next();
         assertEquals(1, firstMessage.getLineNo(), "expected line");
         assertEquals(5, firstMessage.getColumnNo(), "expected column");
     }
