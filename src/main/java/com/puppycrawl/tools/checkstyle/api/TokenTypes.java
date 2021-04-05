@@ -1448,6 +1448,21 @@ public final class TokenTypes {
     /**
      * The {@code private} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * private int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PRIVATE -&gt; private
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_PRIVATE =
@@ -1656,6 +1671,26 @@ public final class TokenTypes {
     public static final int LCURLY = GeneratedJavaTokenTypes.LCURLY;
     /**
      * A right curly brace (<code>}</code>).
+     *
+     * <p>For example:</p>
+     * <pre>
+     * {@code
+     * void foo(){}
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; foo
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
@@ -2497,6 +2532,39 @@ public final class TokenTypes {
      * A list of resources in the Java 7 try-with-resources construct.
      * This is a child of RESOURCE_SPECIFICATION.
      *
+     * <p>For example:</p>
+     * <pre>
+     *     try (FileReader fr = new FileReader("config.xml")) {
+     *     } finally {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_TRY -&gt; try
+     *  |--RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *  |   |--LPAREN -&gt; (
+     *  |   |--RESOURCES -&gt; RESOURCES
+     *  |   |   `--RESOURCE -&gt; RESOURCE
+     *  |   |       |--MODIFIERS -&gt; MODIFIERS
+     *  |   |       |--TYPE -&gt; TYPE
+     *  |   |       |   `--IDENT -&gt; FileReader
+     *  |   |       |--IDENT -&gt; fr
+     *  |   |       `--ASSIGN -&gt; =
+     *  |   |           `--EXPR -&gt; EXPR
+     *  |   |               `--LITERAL_NEW -&gt; new
+     *  |   |                   |--IDENT -&gt; FileReader
+     *  |   |                   |--LPAREN -&gt; (
+     *  |   |                   |--ELIST -&gt; ELIST
+     *  |   |                   |   `--EXPR -&gt; EXPR
+     *  |   |                   |       `--STRING_LITERAL -&gt; "config.xml"
+     *  |   |                   `--RPAREN -&gt; )
+     *  |   `--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_FINALLY -&gt; finally
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #RESOURCE_SPECIFICATION
      **/
     public static final int RESOURCES =
@@ -3198,6 +3266,23 @@ public final class TokenTypes {
     public static final int LNOT = GeneratedJavaTokenTypes.LNOT;
     /**
      * The {@code true} keyword.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * boolean a = true;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; a
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_TRUE -&gt; true
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-3.html#jls-3.10.3">Java
@@ -3952,20 +4037,23 @@ public final class TokenTypes {
      * member value pair.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     *     { 1, 2 }
+     * &#64;Annotation({1, 2})
      * </pre>
-     *
      * <p>parses as:</p>
-     *
      * <pre>
-     * +--ANNOTATION_ARRAY_INIT ({)
-     *     |
-     *     +--NUM_INT (1)
-     *     +--COMMA (,)
-     *     +--NUM_INT (2)
-     *     +--RCURLY (})
+     * ANNOTATION -&gt; ANNOTATION
+     *  |--AT -&gt; &#64;
+     *  |--IDENT -&gt; Annotation
+     *  |--LPAREN -&gt; (
+     *  |--ANNOTATION_ARRAY_INIT -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 1
+     *  |   |--COMMA -&gt; ,
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 2
+     *  |   `--RCURLY -&gt; }
+     *  `--RPAREN -&gt; )
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
@@ -4078,24 +4166,18 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--VARIABLE_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--TYPE
-     *         |
-     *         +--IDENT (Collection)
-     *             |
-     *             +--TYPE_ARGUMENTS
-     *                 |
-     *                 +--GENERIC_START (&lt;)
-     *                 +--TYPE_ARGUMENT
-     *                     |
-     *                     +--WILDCARD_TYPE (?)
-     *                 +--GENERIC_END (&gt;)
-     *     +--IDENT (a)
-     *     +--SEMI (;)
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   |--IDENT -&gt; Collection
+     *  |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |       |--GENERIC_START -&gt; &lt;
+     *  |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     *  |       |   `--WILDCARD_TYPE -&gt; ?
+     *  |       `--GENERIC_END -&gt; &gt;
+     *  |--IDENT -&gt; a
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #GENERIC_START
@@ -4401,6 +4483,27 @@ public final class TokenTypes {
     /**
      * The {@code record} keyword.  This element appears
      * as part of a record declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public record MyRecord () {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * RECORD_DEF -&gt; RECORD_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_RECORD -&gt; record
+     * |--IDENT -&gt; MyRecord
+     * |--LPAREN -&gt; (
+     * |--RECORD_COMPONENTS -&gt; RECORD_COMPONENTS
+     * |--RPAREN -&gt; )
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
      *
      * @since 8.35
      **/

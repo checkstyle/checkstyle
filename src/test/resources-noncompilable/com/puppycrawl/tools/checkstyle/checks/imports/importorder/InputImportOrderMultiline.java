@@ -1,39 +1,40 @@
 package com.puppycrawl.tools.checkstyle.checks.imports.importorder;
-/**
- * This test-input is intended to be checked using following configuration:
- *
- * caseSensitive = true
- * groups = {}
- * option = UNDER
- * ordered = true
- * separated = false
- * sortStaticImportsAlphabetically = false
- * useContainerOrderingForStatic = false
- *
- */
 import
-    java.awt.Button;
+    java.awt.Button; // ok
 import java.awt.Dialog
-    ;
+    ; // ok
 import
-java.awt.Frame;
+java.awt.Frame; // ok
 import java
     .awt.event.
     ActionEvent
-    ;
+    ; // ok
 import
 java.io.File
-;
+; // ok
 import java.
     io.
-    IOException;
-import java.io.InputStream;
+    IOException; // ok
+import java.io.InputStream; // ok
 import
-  static java.awt.Button.ABORT;
+  static java.awt.Button.ABORT; // ok
 import static
- java.io.File.createTempFile;
+ java.io.File.createTempFile; // ok
 import static javax.swing
     .WindowConstants.*
-    ;
+    ; // ok
+
+/*
+ * Config:
+ * option = under
+ * groups = {}
+ * ordered = true
+ * separated = false
+ * separatedStaticGroups = false
+ * caseSensitive = true
+ * staticGroups = {}
+ * sortStaticImportsAlphabetically = false
+ * useContainerOrderingForStatic = false
+ */
 public class InputImportOrderMultiline {
 }
