@@ -72,7 +72,7 @@ public interface FileSetCheck
      * @return the sorted set of messages to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs
      */
-    SortedSet<LocalizedMessage> process(File file, FileText fileText) throws CheckstyleException;
+    SortedSet<Violation> process(File file, FileText fileText) throws CheckstyleException;
 
     /**
      * Called when all the files have been processed. This is the time to
