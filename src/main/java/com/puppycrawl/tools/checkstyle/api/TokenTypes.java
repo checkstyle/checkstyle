@@ -800,15 +800,27 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * String::compareToIgnoreCase
+     * Comparator&lt;String&gt; compare = String::compareToIgnoreCase;
      * </pre>
      *
      * <p>parses as:
      * <pre>
-     * +--METHOD_REF (::)
-     *     |
-     *     +--IDENT (String)
-     *     +--IDENT (compareToIgnoreCase)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   |--IDENT -&gt; Comparator
+     * |   |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     * |   |       |--GENERIC_START -&gt; &lt;
+     * |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     * |   |       |   `--IDENT -&gt; String
+     * |   |       `--GENERIC_END -&gt; &gt;
+     * |   |--IDENT -&gt; compare
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--METHOD_REF -&gt; ::
+     * |               |--IDENT -&gt; String
+     * |               `--IDENT -&gt; compareToIgnoreCase
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @see #IDENT
