@@ -2973,7 +2973,7 @@ public final class TokenTypes {
      * The {@code >} (greater than) operator.
      *
      * <pre>
-     * c=a>b;
+     * c=a &gt; b;
      * </pre>
      * <p>parses as:</p>
      * <pre>
