@@ -165,4 +165,15 @@ public class InputSummaryJavadocInlineForbidden {
     public void validInlineJavadoc() // violation
     {
     }
+
+    /**
+     * {@summary This code {@code Javadoc} is wrong {@throw exception} as throw is here.}
+     */
+    private void foo16() {} // violation
+
+
+    /**
+     * {@summary This code {@throw Javadoc} is wrong {@code exception} as throw is here.}
+     */
+    private void foo17() {} // violation
 }

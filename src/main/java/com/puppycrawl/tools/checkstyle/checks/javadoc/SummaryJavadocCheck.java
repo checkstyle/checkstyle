@@ -19,9 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.ListIterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -592,8 +594,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         final int endOfInlineSentence = inlineFirstSentence.lastIndexOf(period);
         return containsForbiddenFragment(inlineFirstSentence.substring(0,
                 endOfInlineSentence))
-                || !containsCorrectInlineTags(ast)
-                || !validInlineTagInsideHtmlFormat(ast);
+                || !containsCorrectInlineTags(ast);
     }
 
     /**
@@ -604,18 +605,31 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private static boolean containsCorrectInlineTags(DetailNode ast) {
         boolean found = true;
-        for (DetailNode node : ast.getChildren()) {
-            final DetailNode[] child = node.getChildren();
-            if (child.length > 1
-                    && child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
-                    && getInlineTagOfTypeCustomName(node) != null
-                    && !ALLOWED_INLINE_TAGS.contains(getInlineTagOfTypeCustomName(node)
-                        .getText())) {
-                found = false;
-                break;
-            }
+        final DetailNode node = getFirstInlineTag(ast);
+        final ListIterator<DetailNode> inlineNodes = getNestedInlineJavadocTagNodes(node);
+        while (found && inlineNodes.hasNext()) {
+            // node.next() is an inline tag node and its second child is the name of it
+            found = ALLOWED_INLINE_TAGS.contains(inlineNodes.next().getChildren()[1].getText());
         }
         return found;
+    }
+
+    /**
+     * Gets list iterator for inline javadoc tag nodes which are present in other javadoc tag node.
+     *
+     * @param javadoc Inline tag DetailNode.
+     * @return List iterator of type DetailNode.
+     */
+    private static ListIterator<DetailNode> getNestedInlineJavadocTagNodes(DetailNode javadoc) {
+        final ArrayList<DetailNode> inlineNode = new ArrayList<>();
+        final DetailNode inlineTagNode = JavadocUtil.findFirstToken(javadoc,
+                JavadocTokenTypes.DESCRIPTION);
+        for (DetailNode child : inlineTagNode.getChildren()) {
+            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                inlineNode.add(child);
+            }
+        }
+        return inlineNode.listIterator();
     }
 
     /**
@@ -941,72 +955,4 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         return result.toString();
     }
 
-    /**
-     * Finds and return if the HTML format inline tag has allowed inline tags.
-     *
-     * @param ast Javadoc root Node.
-     * @return true, if first sentence contains allowed tags.
-     */
-    private static boolean validInlineTagInsideHtmlFormat(DetailNode ast) {
-        boolean contains = true;
-        final DetailNode inlineTagNode = getInlineTagNodeInsideHtmlTagsOnly(ast);
-        if (inlineTagNode != null) {
-            final DetailNode node = JavadocUtil.findFirstToken(inlineTagNode,
-                    JavadocTokenTypes.DESCRIPTION);
-            contains = checkInlineTagInsideDescription(node);
-        }
-        return contains;
-    }
-
-    /**
-     * Finds and return if the inline tag in description node has allowed inline tags.
-     *
-     * @param description Description node.
-     * @return true, if first sentence contains allowed tags.
-     */
-    private static boolean checkInlineTagInsideDescription(DetailNode description) {
-        boolean checks = true;
-        final DetailNode[] nodeChildren = description.getChildren();
-        for (DetailNode node : nodeChildren) {
-            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                final DetailNode[] child = node.getChildren();
-
-                // Checking size of child is not required, since child contains
-                // children of Inline Tag, as at least 2 children will be present which are
-                // RCURLY and LCURLY.
-                if (child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
-                        && !ALLOWED_INLINE_TAGS.contains(child[1].getText())) {
-                    checks = false;
-                    break;
-                }
-            }
-        }
-        return checks;
-    }
-
-    /**
-     * Gets inline tag of type type CUSTOM_NAME.
-     *
-     * @param javadoc Inline tag DetailNode.
-     * @return Inline tag of type CUSTOM_NAME, or null if not present.
-     */
-    private static DetailNode getInlineTagOfTypeCustomName(DetailNode javadoc) {
-        DetailNode node = null;
-        final DetailNode inlineTagNode = getFirstInlineTagNodeInsideInlineTag(javadoc);
-        if (inlineTagNode != null) {
-            node = JavadocUtil.findFirstToken(inlineTagNode, JavadocTokenTypes.CUSTOM_NAME);
-        }
-        return node;
-    }
-
-    /**
-     * Get inline tag nodes which are inside another inline tag detail node.
-     *
-     * @param javadoc Inline tag DetailNode.
-     * @return Javadoc inline tag node;
-     */
-    private static DetailNode getFirstInlineTagNodeInsideInlineTag(DetailNode javadoc) {
-        final DetailNode node = JavadocUtil.findFirstToken(javadoc, JavadocTokenTypes.DESCRIPTION);
-        return JavadocUtil.findFirstToken(node, JavadocTokenTypes.JAVADOC_INLINE_TAG);
-    }
 }

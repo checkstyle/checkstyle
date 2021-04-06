@@ -16,6 +16,11 @@ class InputSummaryJavadocInlineCorrect {
     private void foo2() {} // ok
 
     /**
+     * {@summary {@code ABC} Javadoc {@code some defination}.}
+     */
+    private void foo3() {} // ok
+
+    /**
      * {@summary first sentence is normally the summary.
      * Use of html tags:
      * <ul>

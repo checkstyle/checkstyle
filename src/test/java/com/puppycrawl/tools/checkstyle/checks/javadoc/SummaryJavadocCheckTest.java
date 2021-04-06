@@ -109,8 +109,11 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "103: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "122: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "128: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+            "141: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "147: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "154: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
+            "169: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
+            "175: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
         };
         verify(checkConfig, getPath("InputSummaryJavadocInlineForbidden.java"), expected);
     }
