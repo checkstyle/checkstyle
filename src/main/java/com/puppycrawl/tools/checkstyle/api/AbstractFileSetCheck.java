@@ -77,17 +77,17 @@ public abstract class AbstractFileSetCheck
     }
 
     @Override
-    public final SortedSet<LocalizedMessage> process(File file, FileText fileText)
+    public final SortedSet<Violation> process(File file, FileText fileText)
             throws CheckstyleException {
-        final SortedSet<LocalizedMessage> messages = context.get().messages;
+        final SortedSet<Violation> violations = context.get().violations;
         context.get().fileContents = new FileContents(fileText);
-        messages.clear();
+        violations.clear();
         // Process only what interested in
         if (CommonUtil.matchesFileExtension(file, fileExtensions)) {
             processFiltered(file, fileText);
         }
-        final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
-        messages.clear();
+        final SortedSet<Violation> result = new TreeSet<>(violations);
+        violations.clear();
         return result;
     }
 
@@ -102,7 +102,7 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * A message dispatcher is used to fire violation messages to
+     * A message dispatcher is used to fire violations to
      * interested audit listeners.
      *
      * @return the current MessageDispatcher.
@@ -112,12 +112,12 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Returns the sorted set of {@link LocalizedMessage}.
+     * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link LocalizedMessage}.
+     * @return the sorted set of {@link Violation}.
      */
-    public SortedSet<LocalizedMessage> getMessages() {
-        return new TreeSet<>(context.get().messages);
+    public SortedSet<Violation> getViolations() {
+        return new TreeSet<>(context.get().violations);
     }
 
     /**
@@ -191,18 +191,18 @@ public abstract class AbstractFileSetCheck
     }
 
     /**
-     * Adds the sorted set of {@link LocalizedMessage} to the message collector.
+     * Adds the sorted set of {@link Violation} to the message collector.
      *
-     * @param messages the sorted set of {@link LocalizedMessage}.
+     * @param violations the sorted set of {@link Violation}.
      */
-    protected void addMessages(SortedSet<LocalizedMessage> messages) {
-        context.get().messages.addAll(messages);
+    protected void addViolations(SortedSet<Violation> violations) {
+        context.get().violations.addAll(violations);
     }
 
     @Override
     public final void log(int line, String key, Object... args) {
-        context.get().messages.add(
-                new LocalizedMessage(line,
+        context.get().violations.add(
+                new Violation(line,
                         getMessageBundle(),
                         key,
                         args,
@@ -217,8 +217,8 @@ public abstract class AbstractFileSetCheck
             Object... args) {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 context.get().fileContents.getLine(lineNo - 1), colNo, tabWidth);
-        context.get().messages.add(
-                new LocalizedMessage(lineNo,
+        context.get().violations.add(
+                new Violation(lineNo,
                         col,
                         getMessageBundle(),
                         key,
@@ -237,8 +237,8 @@ public abstract class AbstractFileSetCheck
      * @param fileName the audited file
      */
     protected final void fireErrors(String fileName) {
-        final SortedSet<LocalizedMessage> errors = new TreeSet<>(context.get().messages);
-        context.get().messages.clear();
+        final SortedSet<Violation> errors = new TreeSet<>(context.get().violations);
+        context.get().violations.clear();
         messageDispatcher.fireErrors(fileName, errors);
     }
 
@@ -247,8 +247,8 @@ public abstract class AbstractFileSetCheck
      */
     private static class FileContext {
 
-        /** The sorted set for collecting messages. */
-        private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+        /** The sorted set for collecting violations. */
+        private final SortedSet<Violation> violations = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;

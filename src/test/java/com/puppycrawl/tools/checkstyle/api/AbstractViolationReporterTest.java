@@ -55,13 +55,13 @@ public class AbstractViolationReporterTest {
     public void testGetMessageBundleWithPackage() throws Exception {
         assertEquals("com.mycompany.checks.messages",
             getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"),
-            "Message bundle differs from expected");
+            "violation bundle differs from expected");
     }
 
     @Test
     public void testGetMessageBundleWithoutPackage() throws Exception {
         assertEquals("messages", getGetMessageBundleMethod().invoke(null, "MyCoolCheck"),
-                "Message bundle differs from expected");
+                "violation bundle differs from expected");
     }
 
     @Test
@@ -83,37 +83,37 @@ public class AbstractViolationReporterTest {
     @Test
     public void testCustomMessage() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
-        config.addMessage("msgKey", "This is a custom message.");
+        config.addMessage("msgKey", "This is a custom violation.");
         emptyCheck.configure(config);
 
         emptyCheck.log(1, "msgKey");
 
-        final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
+        final SortedSet<Violation> messages = emptyCheck.getViolations();
 
         assertEquals(1, messages.size(), "Amount of messages differs from expected");
-        assertEquals("This is a custom message.", messages.first().getMessage(),
-                "Message differs from expected");
+        assertEquals("This is a custom violation.", messages.first().getViolation(),
+                "violation differs from expected");
     }
 
     @Test
     public void testCustomMessageWithParameters() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
-        config.addMessage("msgKey", "This is a custom message with {0}.");
+        config.addMessage("msgKey", "This is a custom violation with {0}.");
         emptyCheck.configure(config);
 
         emptyCheck.log(1, "msgKey", "TestParam");
-        final SortedSet<LocalizedMessage> messages = emptyCheck.getMessages();
+        final SortedSet<Violation> messages = emptyCheck.getViolations();
 
         assertEquals(1, messages.size(), "Amount of messages differs from expected");
 
-        assertEquals("This is a custom message with TestParam.",
-                messages.first().getMessage(), "Message differs from expected");
+        assertEquals("This is a custom violation with TestParam.",
+                messages.first().getViolation(), "violation differs from expected");
     }
 
     @Test
     public void testCustomMessageWithParametersNegative() throws Exception {
         final DefaultConfiguration config = createModuleConfig(emptyCheck.getClass());
-        config.addMessage("msgKey", "This is a custom message {0.");
+        config.addMessage("msgKey", "This is a custom violation {0.");
         emptyCheck.configure(config);
 
         try {
@@ -122,7 +122,7 @@ public class AbstractViolationReporterTest {
         }
         catch (IllegalArgumentException ex) {
             assertEquals("Unmatched braces in the pattern.", ex.getMessage(),
-                    "Error message is unexpected");
+                    "Error violation is unexpected");
         }
     }
 

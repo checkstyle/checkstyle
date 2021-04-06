@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * Serves as an abstract base class for all modules that report inspection
  * findings. Such modules have a Severity level which is used for the
- * {@link LocalizedMessage localized messages} that are created by the module.
+ * {@link Violation violations} that are created by the module.
  *
  * @noinspection NoopMethodInAbstractClass
  */
@@ -42,7 +42,7 @@ public abstract class AbstractViolationReporter
      *
      * @return the severity level
      * @see SeverityLevel
-     * @see LocalizedMessage#getSeverityLevel
+     * @see Violation#getSeverityLevel
      * @noinspection WeakerAccess
      */
     public final SeverityLevel getSeverityLevel() {

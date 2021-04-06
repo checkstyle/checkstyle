@@ -41,11 +41,11 @@ public interface MessageDispatcher {
     void fireFileFinished(String fileName);
 
     /**
-     * Notify all listeners about the errors in a file.
+     * Notify all listeners about the violations in a file.
      *
      * @param fileName the audited file
-     * @param errors the audit errors from the file
+     * @param errors the violations from the file
      */
-    void fireErrors(String fileName, SortedSet<LocalizedMessage> errors);
+    void fireErrors(String fileName, SortedSet<Violation> errors);
 
 }
