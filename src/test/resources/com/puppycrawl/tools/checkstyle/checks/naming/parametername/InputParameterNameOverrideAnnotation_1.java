@@ -3,13 +3,13 @@ package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 /* Config:
  *
  * format = "^h$"
- * ignoreOverridden = true
+ * ignoreOverridden = false
  */
 
-public class InputParameterNameOverrideAnnotation {
+public class InputParameterNameOverrideAnnotation_1 {
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) { // violation
         return super.equals(o);
     }
 
@@ -22,16 +22,16 @@ public class InputParameterNameOverrideAnnotation {
 
     void foo3() {} // No NPE here! // ok
 
-    void foo4(int abc, int bd) {} // No NPE here! // violation
+    void foo4(int abc, int bd) {} // violation
 
-    int foo5(int abc) {return 1;} // No NPE here! // violation
+    int foo5(int abc) {return 1;} // violation
 
     private int field;
     private java.util.Set<String> packageNames;
 
-    InputParameterNameOverrideAnnotation() {} // No NPE here! // ok
+    InputParameterNameOverrideAnnotation_1() {} // No NPE here! // ok
 
-    InputParameterNameOverrideAnnotation(int fie, java.util.Set<String> pkgNames) {} // violation
+    InputParameterNameOverrideAnnotation_1(int fie, java.util.Set<String> pkgNames) {} // violation
 
 
 }

@@ -1,53 +1,59 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
+/* Config:
+ *
+ * format = "^h$"
+ * accessModifiers = public
+ */
+
 public class InputParameterNameAccessModifier {
 
-    public InputParameterNameAccessModifier(int pubconstr) {}
+    public InputParameterNameAccessModifier(int pubconstr) {} // violation
 
-    public void v1(int h) {
+    public void v1(int h) { // ok
         new Object () {
-            public void i(int inner) {}
+            public void i(int inner) {} // violation
         };
     }
 
-    protected void v4(int h) {}
+    protected void v4(int h) {} // ok
 
-    void v2(int h) {}
+    void v2(int h) {} // ok
 
-    private void v3(int h) {}
+    private void v3(int h) {} // ok
 
-    public void i1(int pubpub) {}
+    public void i1(int pubpub) {} // violation
 
-    protected void i4(int pubprot) {}
+    protected void i4(int pubprot) {} // ok
 
-    void i2(int pubpack) {}
+    void i2(int pubpack) {} // ok
 
-    private void i3(int pubpriv) {}
+    private void i3(int pubpriv) {} // ok
 
     public interface InterfaceScope {
         void v1(int h);
 
-        void i1(int pubifc);
+        void i1(int pubifc); // violation
     }
 }
 
 class PrivateScope {
 
-    public void v1(int h) {}
+    public void v1(int h) {} // ok
 
-    protected void v4(int h) {}
+    protected void v4(int h) {} // ok
 
-    void v2(int h) {}
+    void v2(int h) {} // ok
 
-    private void v3(int h) {}
+    private void v3(int h) {} // ok
 
-    public void i1(int packpub) {}
+    public void i1(int packpub) {} // violation
 
-    protected void i4(int packprot) {}
+    protected void i4(int packprot) {} // ok
 
-    void i2(int packpack) {}
+    void i2(int packpack) {} // ok
 
-    private void i3(int packpriv) {
+    private void i3(int packpriv) { // ok
         try {
             /* Make sure catch var is ignored */
         } catch (Exception exc) {
@@ -55,16 +61,16 @@ class PrivateScope {
     }
 
     interface InterfaceScope {
-        void v1(int h);
+        void v1(int h); // ok
 
-        void i1(int packifc);
+        void i1(int packifc); // violation
     }
 
     interface FuncIfc {
-        void a(int h);
+        void a(int h); // ok
     }
 
-    public void l() {
+    public void l() { // ok
         FuncIfc l1 = (int lexp)->{};
 
         FuncIfc l2 = (limp)->{};
