@@ -4876,6 +4876,109 @@ public final class TokenTypes {
     public static final int SWITCH_RULE =
             GeneratedJavaTokenTypes.SWITCH_RULE;
 
+    /**
+     * The {@code non-sealed} keyword.  This element appears
+     * as part of a class or interface declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * non-sealed class Square extends InputAstRegressionSealedAndPermits { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_NON_SEALED -&gt; non-sealed
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Square
+     * |--EXTENDS_CLAUSE -&gt; extends
+     * |   `--IDENT -&gt; InputAstRegressionSealedAndPermits
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/en/java/javase/15/docs/specs/sealed-classes-jls.html>
+     * Java Language Specification, &sect;8</a>
+     * @see #MODIFIERS
+     *
+     * @since 8.43
+     */
+    public static final int LITERAL_NON_SEALED =
+        GeneratedJavaTokenTypes.LITERAL_non_sealed;
+
+    /**
+     * The {@code sealed} restricted identifier.  This element appears
+     * as part of a class or interface declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public sealed class InputAstRegressionSealedAndPermits permits Circle, Square, Rectangle { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_PUBLIC -&gt; public
+     * |   `--LITERAL_SEALED -&gt; sealed
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; InputAstRegressionSealedAndPermits
+     * |--LITERAL_PERMITS -&gt; permits
+     * |   |--IDENT -&gt; Circle
+     * |   |--COMMA -&gt; ,
+     * |   |--IDENT -&gt; Square
+     * |   |--COMMA -&gt; ,
+     * |   `--IDENT -&gt; Rectangle
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/en/java/javase/15/docs/specs/sealed-classes-jls.html>
+     * Java Language Specification, &sect;8</a>
+     * @see #MODIFIERS
+     *
+     * @since 8.43
+     */
+    public static final int LITERAL_SEALED =
+        GeneratedJavaTokenTypes.LITERAL_sealed;
+
+    /**
+     * The {@code permits} restricted identifier.  This element appears
+     * as part of a class or interface declaration.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * public sealed class InputAstRegressionSealedAndPermits permits Circle, Square, Rectangle { }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_PUBLIC -&gt; public
+     * |   `--LITERAL_SEALED -&gt; sealed
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; InputAstRegressionSealedAndPermits
+     * |--LITERAL_PERMITS -&gt; permits
+     * |   |--IDENT -&gt; Circle
+     * |   |--COMMA -&gt; ,
+     * |   |--IDENT -&gt; Square
+     * |   |--COMMA -&gt; ,
+     * |   `--IDENT -&gt; Rectangle
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
+     * @see <a href="https://docs.oracle.com/en/java/javase/15/docs/specs/sealed-classes-jls.html>
+     * Java Language Specification, &sect;8</a>
+     * @see #MODIFIERS
+     *
+     * @since 8.43
+     */
+    public static final int LITERAL_PERMITS =
+        GeneratedJavaTokenTypes.LITERAL_permits;
+
     /** Prevent instantiation. */
     private TokenTypes() {
     }
