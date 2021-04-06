@@ -34,12 +34,12 @@ import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser.ParseErrorMessage;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
 
     // [REFLECTION]
-    // DetailNodeTreeStringPrinter#getParseErrorMessage is used for creating error messages
+    // DetailNodeTreeStringPrinter#getParseErrorMessage is used for creating violations
     // for validating those obtained in UTs against the ones created.
     private static final Method GET_PARSE_ERROR_MESSAGE = Whitebox.getMethod(
             DetailNodeTreeStringPrinter.class, "getParseErrorMessage", ParseErrorMessage.class);
@@ -88,7 +88,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
     public void testMissedHtmlTagParseErrorMessage() throws Exception {
         final String actual = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
                 new ParseErrorMessage(35, MSG_JAVADOC_MISSED_HTML_CLOSE, 7, "xyz"));
-        final LocalizedMessage localizedMessage = new LocalizedMessage(
+        final Violation violation = new Violation(
                 35,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 MSG_JAVADOC_MISSED_HTML_CLOSE,
@@ -96,9 +96,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);
-        final String expected = "[ERROR:35] " + localizedMessage.getMessage();
+        final String expected = "[ERROR:35] " + violation.getViolation();
         assertEquals(expected, actual,
-                "Javadoc parse error message for missed HTML tag doesn't meet expectations");
+                "Javadoc parse error violation for missed HTML tag doesn't meet expectations");
     }
 
     @Test
@@ -106,7 +106,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String actual = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
                 new ParseErrorMessage(10, MSG_JAVADOC_PARSE_RULE_ERROR,
                         9, "no viable alternative at input ' xyz'", "SOME_JAVADOC_ELEMENT"));
-        final LocalizedMessage localizedMessage = new LocalizedMessage(
+        final Violation violation = new Violation(
                 10,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 MSG_JAVADOC_PARSE_RULE_ERROR,
@@ -114,8 +114,8 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);
-        final String expected = "[ERROR:10] " + localizedMessage.getMessage();
-        assertEquals(expected, actual, "Javadoc parse error message doesn't meet expectations");
+        final String expected = "[ERROR:10] " + violation.getViolation();
+        assertEquals(expected, actual, "Javadoc parse error violation doesn't meet expectations");
     }
 
     @Test
@@ -123,7 +123,7 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
         final String actual = (String) GET_PARSE_ERROR_MESSAGE.invoke(null,
                 new ParseErrorMessage(100, MSG_JAVADOC_WRONG_SINGLETON_TAG,
                         9, "tag"));
-        final LocalizedMessage localizedMessage = new LocalizedMessage(
+        final Violation violation = new Violation(
                 100,
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 MSG_JAVADOC_WRONG_SINGLETON_TAG,
@@ -131,9 +131,9 @@ public class DetailNodeTreeStringPrinterTest extends AbstractTreeTestSupport {
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);
-        final String expected = "[ERROR:100] " + localizedMessage.getMessage();
+        final String expected = "[ERROR:100] " + violation.getViolation();
         assertEquals(expected, actual,
-                "Javadoc parse error message for void elements with close tag "
+                "Javadoc parse error violation for void elements with close tag "
                     + "doesn't meet expectations");
     }
 

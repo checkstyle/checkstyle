@@ -35,8 +35,8 @@ import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class SuppressionXpathSingleFilterTest
         extends AbstractModuleTestSupport {
@@ -193,7 +193,7 @@ public class SuppressionXpathSingleFilterTest
     }
 
     @Test
-    public void testNullLocalizedMessage() {
+    public void testNullViolation() {
         final String xpath = "NON_MATCHING_QUERY";
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
@@ -209,8 +209,8 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, "id19", xpath);
-        final LocalizedMessage message =
-                new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "", "",
+        final Violation message =
+                new Violation(3, 0, TokenTypes.CLASS_DEF, "", "",
                         null, null, "id20",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
@@ -224,8 +224,8 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter", "Test",
                         null, "id19", xpath);
-        final LocalizedMessage message =
-                new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "",
+        final Violation message =
+                new Violation(3, 0, TokenTypes.CLASS_DEF, "",
                         "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
@@ -239,8 +239,8 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter = createSuppressionXpathSingleFilter(
                 "InputSuppressionXpathSingleFilter", "NonMatchingRegexp",
                 null, "id19", xpath);
-        final LocalizedMessage message =
-                new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "",
+        final Violation message =
+                new Violation(3, 0, TokenTypes.CLASS_DEF, "",
                         "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
@@ -271,7 +271,7 @@ public class SuppressionXpathSingleFilterTest
 
     @Test
     public void testDecideByMessage() throws Exception {
-        final LocalizedMessage message = new LocalizedMessage(0, 0,
+        final Violation message = new Violation(0, 0,
                 TokenTypes.CLASS_DEF, "", "",
                 null, null, null, getClass(), "Test");
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents, file.getName(),
@@ -290,8 +290,8 @@ public class SuppressionXpathSingleFilterTest
         final SuppressionXpathSingleFilter filter =
                 createSuppressionXpathSingleFilter("InputSuppressionXpathSingleFilter",
                         "Test", null, null, xpath);
-        final LocalizedMessage message =
-                new LocalizedMessage(3, 0, TokenTypes.CLASS_DEF, "",
+        final Violation message =
+                new Violation(3, 0, TokenTypes.CLASS_DEF, "",
                         "", null, null, "id19",
                         getClass(), null);
         final TreeWalkerAuditEvent ev = new TreeWalkerAuditEvent(fileContents,
@@ -320,8 +320,8 @@ public class SuppressionXpathSingleFilterTest
 
     private TreeWalkerAuditEvent createEvent(int line, int column, int tokenType)
             throws Exception {
-        final LocalizedMessage message =
-                new LocalizedMessage(line, column, tokenType, "", "", null, null, null,
+        final Violation message =
+                new Violation(line, column, tokenType, "", "", null, null, null,
                         getClass(), null);
         return new TreeWalkerAuditEvent(fileContents, file.getName(), message,
                 JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS));
