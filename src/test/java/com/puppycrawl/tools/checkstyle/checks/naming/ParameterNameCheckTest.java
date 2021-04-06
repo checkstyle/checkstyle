@@ -65,11 +65,11 @@ public class ParameterNameCheckTest
         final String pattern = "^a[A-Z][a-zA-Z0-9]*$";
 
         final String[] expected = {
-            "71:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
-            "71:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
-            "72:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
+            "77:19: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat1", pattern),
+            "77:34: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat2", pattern),
+            "78:25: " + getCheckMessage(MSG_INVALID_PATTERN, "badFormat3", pattern),
         };
-        verify(checkConfig, getPath("InputParameterName.java"), expected);
+        verify(checkConfig, getPath("InputParameterName_1.java"), expected);
     }
 
     @Test
@@ -102,13 +102,13 @@ public class ParameterNameCheckTest
         final String pattern = "^h$";
 
         final String[] expected = {
-            "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
-            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
-            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
-            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "28:46: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
-            "28:73: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
+            "17:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
+            "21:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "25:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
+            "27:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "34:46: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
+            "34:73: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
             };
         verify(checkConfig, getPath("InputParameterNameOverrideAnnotation.java"), expected);
     }
@@ -124,16 +124,16 @@ public class ParameterNameCheckTest
         final String pattern = "^h$";
 
         final String[] expected = {
-            "6:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
-            "11:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
-            "15:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
-            "19:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "19:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
-            "21:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
-            "28:46: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
-            "28:73: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
+            "12:34: " + getCheckMessage(MSG_INVALID_PATTERN, "o", pattern),
+            "17:28: " + getCheckMessage(MSG_INVALID_PATTERN, "object", pattern),
+            "21:30: " + getCheckMessage(MSG_INVALID_PATTERN, "aaaa", pattern),
+            "25:19: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "25:28: " + getCheckMessage(MSG_INVALID_PATTERN, "bd", pattern),
+            "27:18: " + getCheckMessage(MSG_INVALID_PATTERN, "abc", pattern),
+            "34:48: " + getCheckMessage(MSG_INVALID_PATTERN, "fie", pattern),
+            "34:75: " + getCheckMessage(MSG_INVALID_PATTERN, "pkgNames", pattern),
             };
-        verify(checkConfig, getPath("InputParameterNameOverrideAnnotation.java"), expected);
+        verify(checkConfig, getPath("InputParameterNameOverrideAnnotation_1.java"), expected);
     }
 
     @Test
@@ -147,12 +147,12 @@ public class ParameterNameCheckTest
         final String pattern = "^h$";
 
         final String[] expected = {
-            "5:49: " + getCheckMessage(MSG_INVALID_PATTERN, "pubconstr", pattern),
-            "9:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
-            "19:24: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpub", pattern),
-            "30:21: " + getCheckMessage(MSG_INVALID_PATTERN, "pubifc", pattern),
-            "44:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
-            "60:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
+            "11:49: " + getCheckMessage(MSG_INVALID_PATTERN, "pubconstr", pattern),
+            "15:31: " + getCheckMessage(MSG_INVALID_PATTERN, "inner", pattern),
+            "25:24: " + getCheckMessage(MSG_INVALID_PATTERN, "pubpub", pattern),
+            "36:21: " + getCheckMessage(MSG_INVALID_PATTERN, "pubifc", pattern),
+            "50:24: " + getCheckMessage(MSG_INVALID_PATTERN, "packpub", pattern),
+            "66:21: " + getCheckMessage(MSG_INVALID_PATTERN, "packifc", pattern),
             };
         verify(checkConfig, getPath("InputParameterNameAccessModifier.java"), expected);
     }

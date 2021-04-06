@@ -1,5 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
+/* Config:
+ *
+ * format = "^NO_WAY_MATEY$"
+ */
+
 /**
  * Test case for skipping over catch names.
  **/
@@ -20,14 +25,14 @@ public class InputParameterNameCatchOnly {
         }
     }
 
-    public InputParameterNameCatchOnly()
+    public InputParameterNameCatchOnly() // ok
     {
         return;
     }
 
     class InnerFoo
     {
-        public void fooInnerMethod ()
+        public void fooInnerMethod () // ok
         {
         }
     }
