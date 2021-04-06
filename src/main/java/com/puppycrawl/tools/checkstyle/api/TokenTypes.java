@@ -2977,6 +2977,21 @@ public final class TokenTypes {
     public static final int EQUAL = GeneratedJavaTokenTypes.EQUAL;
     /**
      * The {@code <} (less than) operator.
+     * 
+     * <p>For example:</p>
+     * <pre>
+     * c = a &lt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; c
+     * |       `--LT -&gt; &lt;
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see #EXPR
      **/
