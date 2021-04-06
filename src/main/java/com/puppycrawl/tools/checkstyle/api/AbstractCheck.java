@@ -106,19 +106,19 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Returns the sorted set of {@link LocalizedMessage}.
+     * Returns the sorted set of {@link Violation}.
      *
-     * @return the sorted set of {@link LocalizedMessage}.
+     * @return the sorted set of {@link Violation}.
      */
-    public SortedSet<LocalizedMessage> getMessages() {
-        return new TreeSet<>(context.get().messages);
+    public SortedSet<Violation> getViolations() {
+        return new TreeSet<>(context.get().violations);
     }
 
     /**
-     * Clears the sorted set of {@link LocalizedMessage} of the check.
+     * Clears the sorted set of {@link Violation} of the check.
      */
-    public final void clearMessages() {
-        context.get().messages.clear();
+    public final void clearViolations() {
+        context.get().violations.clear();
     }
 
     /**
@@ -213,8 +213,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
     @Override
     public final void log(int line, String key, Object... args) {
-        context.get().messages.add(
-            new LocalizedMessage(
+        context.get().violations.add(
+            new Violation(
                 line,
                 getMessageBundle(),
                 key,
@@ -230,8 +230,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
             Object... args) {
         final int col = 1 + CommonUtil.lengthExpandedTabs(
             getLines()[lineNo - 1], colNo, tabWidth);
-        context.get().messages.add(
-            new LocalizedMessage(
+        context.get().violations.add(
+            new Violation(
                 lineNo,
                 col,
                 getMessageBundle(),
@@ -244,11 +244,11 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     }
 
     /**
-     * Helper method to log a LocalizedMessage.
+     * Helper method to log a Violation.
      *
      * @param ast a node to get line id column numbers associated
-     *             with the message
-     * @param key key to locale message format
+     *             with the violation
+     * @param key key to locale violation format
      * @param args arguments to format
      */
     public final void log(DetailAST ast, String key, Object... args) {
@@ -260,8 +260,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
 
         final int col = 1 + CommonUtil.lengthExpandedTabs(
                 getLines()[ast.getLineNo() - 1], ast.getColumnNo(), tabWidth);
-        context.get().messages.add(
-                new LocalizedMessage(
+        context.get().violations.add(
+                new Violation(
                         ast.getLineNo(),
                         col,
                         ast.getColumnNo(),
@@ -299,8 +299,8 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      */
     private static class FileContext {
 
-        /** The sorted set for collecting messages. */
-        private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+        /** The sorted set for collecting violations. */
+        private final SortedSet<Violation> violations = new TreeSet<>();
 
         /** The current file contents. */
         private FileContents fileContents;

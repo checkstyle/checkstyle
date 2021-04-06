@@ -33,8 +33,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.CloseAndFlushTestByteArrayOutputStream;
 
 /**
@@ -172,73 +172,74 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
     public void testAddError() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation violation =
+            new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                     getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.fileStarted(ev);
         logger.addError(ev);
         logger.fileFinished(ev);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, message.getMessage());
+        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
     }
 
     @Test
     public void testAddErrorWithNullFileName() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, null, message);
+        final AuditEvent ev = new AuditEvent(this, null, violation);
         logger.addError(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerErrorNullFileName.xml"), outStream,
-                message.getMessage());
+                violation.getViolation());
     }
 
     @Test
     public void testAddErrorModuleId() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation violation =
+            new Violation(1, 1,
                 "messages.properties", "key", null, SeverityLevel.ERROR, "module",
                     getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addError(ev);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerErrorModuleId.xml"), outStream, message.getMessage());
+        verifyXml(getPath("ExpectedXMLLoggerErrorModuleId.xml"), outStream,
+                violation.getViolation());
     }
 
     @Test
     public void testAddErrorOnZeroColumns() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 0,
+        final Violation violation =
+                new Violation(1, 0,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.fileStarted(ev);
         logger.addError(ev);
         logger.fileFinished(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerErrorZeroColumn.xml"), outStream,
-                message.getMessage());
+                violation.getViolation());
     }
 
     @Test
     public void testAddIgnored() throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.IGNORE, null,
                         getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addError(ev);
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerEmpty.xml"), outStream);
@@ -249,10 +250,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-            new LocalizedMessage(1, 1,
+        final Violation violation =
+            new Violation(1, 1,
                 "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerException.xml"), outStream);
@@ -264,10 +265,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, null, message);
+        final AuditEvent ev = new AuditEvent(this, null, violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         logger.auditFinished(null);
         verifyXml(getPath("ExpectedXMLLoggerExceptionNullFileName.xml"), outStream);
@@ -283,10 +284,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
         logger.fileStarted(fileStartedEvent);
 
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
 
         logger.fileFinished(ev);
@@ -300,10 +301,10 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
         logger.fileFinished(fileFinishedEvent);
@@ -317,12 +318,12 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
             throws Exception {
         final XMLLogger logger = new XMLLogger(outStream, OutputStreamOptions.CLOSE);
         logger.auditStarted(null);
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", null, null, null, getClass(), null);
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
         logger.fileStarted(fileStartedEvent);
-        final AuditEvent ev = new AuditEvent(this, "Test.java", message);
+        final AuditEvent ev = new AuditEvent(this, "Test.java", violation);
         logger.addException(ev, new TestException("msg", new RuntimeException("msg")));
         final AuditEvent fileFinishedEvent = new AuditEvent(this, "Test.java");
         logger.fileFinished(fileFinishedEvent);
@@ -338,16 +339,16 @@ public class XMLLoggerTest extends AbstractXmlTestSupport {
         final AuditEvent fileStartedEvent = new AuditEvent(this, "Test.java");
         logger.fileStarted(fileStartedEvent);
 
-        final LocalizedMessage message =
-                new LocalizedMessage(1, 1,
+        final Violation violation =
+                new Violation(1, 1,
                         "messages.properties", "key", null, SeverityLevel.ERROR, null,
                         getClass(), null);
-        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", message);
+        final AuditEvent errorEvent = new AuditEvent(this, "Test.java", violation);
         logger.addError(errorEvent);
 
         logger.fileFinished(errorEvent);
         logger.auditFinished(null);
-        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, message.getMessage());
+        verifyXml(getPath("ExpectedXMLLoggerError.xml"), outStream, violation.getViolation());
     }
 
     @Test

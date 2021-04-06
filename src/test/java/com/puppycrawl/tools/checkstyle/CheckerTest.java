@@ -75,9 +75,9 @@ import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.NewlineAtEndOfFileCheck;
 import com.puppycrawl.tools.checkstyle.checks.TranslationCheck;
 import com.puppycrawl.tools.checkstyle.checks.coding.HiddenFieldCheck;
@@ -136,10 +136,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final File tempFile = File.createTempFile("junit", null, temporaryFolder);
         checker.process(Collections.singletonList(tempFile));
-        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
-        messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors("Some File Name", violations);
 
         assertFalse(auditAdapter.wasCalled(), "Checker.destroy() doesn't remove listeners.");
         assertFalse(fileSet.wasCalled(), "Checker.destroy() doesn't remove file sets.");
@@ -174,10 +174,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertTrue(auditAdapter.wasEventPassed(), "Checker.fireFileFinished() doesn't pass event");
 
         auditAdapter.resetListener();
-        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
-        messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors("Some File Name", violations);
         assertTrue(auditAdapter.wasCalled(), "Checker.fireErrors() doesn't call listener");
         assertTrue(auditAdapter.wasEventPassed(), "Checker.fireErrors() doesn't pass event");
     }
@@ -216,10 +216,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 "Checker.fireFileFinished() does call removed listener");
 
         aa2.resetListener();
-        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
-        messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors("Some File Name", violations);
         assertTrue(aa2.wasCalled(), "Checker.fireErrors() doesn't call listener");
         assertFalse(auditAdapter.wasCalled(), "Checker.fireErrors() does call removed listener");
     }
@@ -259,10 +259,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.addFilter(filter);
 
         filter.resetFilter();
-        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
-        messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors("Some File Name", violations);
         assertTrue(filter.wasCalled(), "Checker.fireErrors() doesn't call filter");
     }
 
@@ -276,10 +276,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         checker.removeFilter(filter);
 
         f2.resetFilter();
-        final SortedSet<LocalizedMessage> messages = new TreeSet<>();
-        messages.add(new LocalizedMessage(1, 0, "a Bundle", "message.key",
+        final SortedSet<Violation> violations = new TreeSet<>();
+        violations.add(new Violation(1, 0, "a Bundle", "message.key",
                 new Object[] {"arg"}, null, getClass(), null));
-        checker.fireErrors("Some File Name", messages);
+        checker.fireErrors("Some File Name", violations);
         assertTrue(f2.wasCalled(), "Checker.fireErrors() doesn't call filter");
         assertFalse(filter.wasCalled(), "Checker.fireErrors() does call removed filter");
     }
@@ -421,7 +421,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         assertEquals("error", context.get("severity"), "Severity is set to unexpected value");
         assertEquals("testBaseDir", context.get("basedir"), "Basedir is set to unexpected value");
 
-        final Field sLocale = LocalizedMessage.class.getDeclaredField("sLocale");
+        final Field sLocale = Violation.class.getDeclaredField("sLocale");
         sLocale.setAccessible(true);
         final Locale locale = (Locale) sLocale.get(null);
         assertEquals(Locale.ITALY, locale, "Locale is set to unexpected value");
