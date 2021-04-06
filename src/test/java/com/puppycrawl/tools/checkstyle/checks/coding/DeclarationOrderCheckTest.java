@@ -33,8 +33,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DeclarationOrderCheckTest
     extends AbstractModuleTestSupport {
@@ -147,14 +147,14 @@ public class DeclarationOrderCheckTest
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
 
         check.visitToken(method);
-        final SortedSet<LocalizedMessage> messages1 = check.getMessages();
+        final SortedSet<Violation> violations1 = check.getViolations();
 
-        assertEquals(0, messages1.size(), "No exception messages expected");
+        assertEquals(0, violations1.size(), "No exception violations expected");
 
         check.visitToken(ctor);
-        final SortedSet<LocalizedMessage> messages2 = check.getMessages();
+        final SortedSet<Violation> violations2 = check.getViolations();
 
-        assertEquals(0, messages2.size(), "No exception messages expected");
+        assertEquals(0, violations2.size(), "No exception violations expected");
     }
 
     @Test
@@ -168,9 +168,9 @@ public class DeclarationOrderCheckTest
         final DeclarationOrderCheck check = new DeclarationOrderCheck();
 
         check.visitToken(array);
-        final SortedSet<LocalizedMessage> messages = check.getMessages();
+        final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, messages.size(), "No exception messages expected");
+        assertEquals(0, violations.size(), "No exception violations expected");
     }
 
     @Test
