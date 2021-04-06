@@ -46,8 +46,8 @@ import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.naming.AbstractNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.MemberNameCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.AbstractParenPadCheck;
@@ -235,23 +235,23 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         populateHolder("all", 100, 100, 350, 350);
 
         final Checker source = new Checker();
-        final LocalizedMessage firstMessageForTest =
-            new LocalizedMessage(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
+        final Violation firstViolationForTest =
+            new Violation(100, 10, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent firstEventForTest =
-            new AuditEvent(source, "fileName", firstMessageForTest);
+            new AuditEvent(source, "fileName", firstViolationForTest);
         assertFalse(SuppressWarningsHolder.isSuppressed(firstEventForTest), "Event is suppressed");
 
-        final LocalizedMessage secondMessageForTest =
-            new LocalizedMessage(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
+        final Violation secondViolationForTest =
+            new Violation(100, 150, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent secondEventForTest =
-            new AuditEvent(source, "fileName", secondMessageForTest);
+            new AuditEvent(source, "fileName", secondViolationForTest);
         assertTrue(SuppressWarningsHolder.isSuppressed(secondEventForTest),
                 "Event is not suppressed");
 
-        final LocalizedMessage thirdMessageForTest =
-            new LocalizedMessage(200, 1, null, null, null, "id", MemberNameCheck.class, "msg");
+        final Violation thirdViolationForTest =
+            new Violation(200, 1, null, null, null, "id", MemberNameCheck.class, "msg");
         final AuditEvent thirdEventForTest =
-            new AuditEvent(source, "fileName", thirdMessageForTest);
+            new AuditEvent(source, "fileName", thirdViolationForTest);
         assertTrue(SuppressWarningsHolder.isSuppressed(thirdEventForTest),
                 "Event is not suppressed");
     }
@@ -433,9 +433,9 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
 
     private static AuditEvent createAuditEvent(String moduleId, int line, int column) {
         final Checker source = new Checker();
-        final LocalizedMessage message = new LocalizedMessage(line, column, null, null, null,
-                moduleId, MemberNameCheck.class, "message");
-        return new AuditEvent(source, "filename", message);
+        final Violation violation = new Violation(line, column, null, null, null,
+                moduleId, MemberNameCheck.class, "violation");
+        return new AuditEvent(source, "filename", violation);
     }
 
     @Test

@@ -64,20 +64,20 @@ public interface FileSetCheck
      * that checks java files should ignore HTML or properties files.
      * </p>
      * <p>
-     * The method should return the set of messages to be logged.
+     * The method should return the set of violations to be logged.
      * </p>
      *
      * @param file the file to be processed
      * @param fileText the contents of the file.
-     * @return the sorted set of messages to be logged.
+     * @return the sorted set of violations to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs
      */
-    SortedSet<LocalizedMessage> process(File file, FileText fileText) throws CheckstyleException;
+    SortedSet<Violation> process(File file, FileText fileText) throws CheckstyleException;
 
     /**
      * Called when all the files have been processed. This is the time to
      * perform any checks that need to be done across a set of files. In this
-     * method, the implementation is responsible for the logging of messages.
+     * method, the implementation is responsible for the logging of violations.
      */
     void finishProcessing();
 

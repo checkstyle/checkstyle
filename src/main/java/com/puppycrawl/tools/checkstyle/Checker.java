@@ -51,11 +51,11 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -286,7 +286,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                     cacheFile.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<LocalizedMessage> fileMessages = processFile(file);
+                final SortedSet<Violation> fileMessages = processFile(file);
                 fireErrors(fileName, fileMessages);
                 fireFileFinished(fileName);
             }
@@ -320,8 +320,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
      */
-    private SortedSet<LocalizedMessage> processFile(File file) throws CheckstyleException {
-        final SortedSet<LocalizedMessage> fileMessages = new TreeSet<>();
+    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
+        final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
@@ -330,7 +330,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         }
         catch (final IOException ioe) {
             log.debug("IOException occurred.", ioe);
-            fileMessages.add(new LocalizedMessage(1,
+            fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {ioe.getMessage()}, null, getClass(), null));
         }
@@ -347,7 +347,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
             ex.printStackTrace(pw);
 
-            fileMessages.add(new LocalizedMessage(1,
+            fileMessages.add(new Violation(1,
                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
                     new String[] {sw.getBuffer().toString()},
                     null, getClass(), null));
@@ -389,10 +389,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @param errors the audit errors from the file
      */
     @Override
-    public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
+    public void fireErrors(String fileName, SortedSet<Violation> errors) {
         final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
         boolean hasNonFilteredViolations = false;
-        for (final LocalizedMessage element : errors) {
+        for (final Violation element : errors) {
             final AuditEvent event = new AuditEvent(this, stripped, element);
             if (filters.accept(event)) {
                 hasNonFilteredViolations = true;
@@ -424,7 +424,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     @Override
     protected void finishLocalSetup() throws CheckstyleException {
         final Locale locale = new Locale(localeLanguage, localeCountry);
-        LocalizedMessage.setLocale(locale);
+        Violation.setLocale(locale);
 
         if (moduleFactory == null) {
             if (moduleClassLoader == null) {
