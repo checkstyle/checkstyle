@@ -252,13 +252,13 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testClearMessages() {
+    public void testClearViolations() {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(1, "key", "args");
-        assertEquals(1, check.getMessages().size(), "Invalid message size");
-        check.clearMessages();
-        assertEquals(0, check.getMessages().size(), "Invalid message size");
+        assertEquals(1, check.getViolations().size(), "Invalid violation size");
+        check.clearViolations();
+        assertEquals(0, check.getViolations().size(), "Invalid violation size");
     }
 
     @Test
@@ -269,22 +269,22 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
         check.setFileContents(new FileContents(theText));
-        check.clearMessages();
+        check.clearViolations();
         check.visitToken(null);
 
-        final SortedSet<LocalizedMessage> internalMessages = check.getMessages();
+        final SortedSet<Violation> internalViolations = check.getViolations();
 
-        assertEquals(2, internalMessages.size(), "Internal message should only have 2");
+        assertEquals(2, internalViolations.size(), "Internal violation should only have 2");
 
-        final Iterator<LocalizedMessage> iterator = internalMessages.iterator();
+        final Iterator<Violation> iterator = internalViolations.iterator();
 
-        final LocalizedMessage firstMessage = iterator.next();
-        assertEquals(1, firstMessage.getLineNo(), "expected line");
-        assertEquals(0, firstMessage.getColumnNo(), "expected column");
+        final Violation firstViolation = iterator.next();
+        assertEquals(1, firstViolation.getLineNo(), "expected line");
+        assertEquals(0, firstViolation.getColumnNo(), "expected column");
 
-        final LocalizedMessage secondMessage = iterator.next();
-        assertEquals(1, secondMessage.getLineNo(), "expected line");
-        assertEquals(6, secondMessage.getColumnNo(), "expected column");
+        final Violation secondViolation = iterator.next();
+        assertEquals(1, secondViolation.getLineNo(), "expected line");
+        assertEquals(6, secondViolation.getColumnNo(), "expected column");
     }
 
     @Test
@@ -295,20 +295,20 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final FileText theText = new FileText(file, Collections.singletonList("test123"));
 
         check.setFileContents(new FileContents(theText));
-        check.clearMessages();
+        check.clearViolations();
 
         final DetailAstImpl ast = new DetailAstImpl();
         ast.setLineNo(1);
         ast.setColumnNo(4);
         check.visitToken(ast);
 
-        final SortedSet<LocalizedMessage> internalMessages = check.getMessages();
+        final SortedSet<Violation> internalViolations = check.getViolations();
 
-        assertEquals(1, internalMessages.size(), "Internal message should only have 1");
+        assertEquals(1, internalViolations.size(), "Internal violation should only have 1");
 
-        final LocalizedMessage firstMessage = internalMessages.iterator().next();
-        assertEquals(1, firstMessage.getLineNo(), "expected line");
-        assertEquals(5, firstMessage.getColumnNo(), "expected column");
+        final Violation firstViolation = internalViolations.iterator().next();
+        assertEquals(1, firstViolation.getLineNo(), "expected line");
+        assertEquals(5, firstViolation.getColumnNo(), "expected column");
     }
 
     @Test

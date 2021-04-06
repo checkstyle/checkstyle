@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class FileTabCharacterCheckTest
     extends AbstractModuleTestSupport {
@@ -75,12 +75,12 @@ public class FileTabCharacterCheckTest
         checkConfig.addAttribute("eachLine", "false");
         final String path = getPath("Claira");
         final String exceptionMessage = " (No such file or directory)";
-        final LocalizedMessage localizedMessage = new LocalizedMessage(1,
+        final Violation violation = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "general.exception",
                 new String[] {path + exceptionMessage}, null, getClass(), null);
 
         final String[] expected = {
-            "1: " + localizedMessage.getMessage(),
+            "1: " + violation.getViolation(),
         };
         verify(createChecker(checkConfig), path, expected);
     }
