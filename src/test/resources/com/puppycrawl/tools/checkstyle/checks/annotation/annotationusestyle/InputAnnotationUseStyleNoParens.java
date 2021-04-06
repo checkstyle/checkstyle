@@ -1,61 +1,64 @@
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-/* Config: default
+/* Config:
+ * closingParens = NEVER
+ * elementStyle = ignore
+ * trailingArrayComma = ignore
  */
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO}) // violation
-@SuppressWarnings({""}) // violation
-public class InputAnnotationUseStyleDifferentStyles
+@SomeArrays(pooches={DOGS.LEO})
+@SuppressWarnings({""})
+public class InputAnnotationUseStyleNoParens
 {
 
 }
 
-@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"}) // violation
+@SomeArrays(pooches={DOGS.LEO}, um={}, duh={"bleh"})
 @SuppressWarnings("") //compact_no_array
 @Deprecated() // violation
-class Dep {
+class Dep3 {
 
 }
 
 @Deprecated
-@SomeArrays(pooches={DOGS.LEO}) // violation
-@SuppressWarnings({""}) // violation
-enum SON {
+@SomeArrays(pooches={DOGS.LEO})
+@SuppressWarnings({""})
+enum SON3 {
 
     @Deprecated
-    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"}) // violation
+    @SomeArrays(pooches={DOGS.LEO}, um={""}, duh={"bleh"})
     @APooch(dog=DOGS.HERBIE)
     @Another("") //compact_no_array
     ETHAN
 }
 
 @InputAnnotationUseStyleCustomAnnotation() // violation
-enum DOGS {
+enum DOGS3 {
 
     @Deprecated() // violation
     LEO,
     HERBIE
 }
 
-@interface SomeArrays {
+@interface SomeArrays3 {
     @Another("") //compact
     String[] um() default {};
-    @Another({""}) //compact // violation
+    @Another({""}) //compact
     String[] duh() default {};
-    @Another(value={""}) //expanded // violation
+    @Another(value={""}) //expanded
     DOGS[] pooches();
 }
 
-@Another(value={""}) //expanded // violation
-enum E {
+@Another(value={""}) //expanded
+enum E3 {
 
 }
 
-@interface APooch {
+@interface APooch3 {
     DOGS dog();
 }
 
-@interface Another {
+@interface Another3 {
     String[] value() default {};
     @Another({"foo", "bar"}) //compact style
     String value1() default "";
@@ -63,7 +66,7 @@ enum E {
 
 @SomeArrays(pooches = {})
 @Another({})
-class Closing {
+class Closing3 {
     static final String UN_U = "UN_U";
 
     @SuppressWarnings(value = UN_U)
@@ -71,18 +74,18 @@ class Closing {
 }
 
 @AnnotationWithAnnotationValue(@Another)
-class Example1 {}
+class Example9 {}
 @AnnotationWithAnnotationValue(value = @Another)
-class Example2 {}
+class Example10 {}
 @AnnotationWithAnnotationValue(@Another()) // violation
-class Example3 {}
+class Example11 {}
 @AnnotationWithAnnotationValue(value = @Another()) // violation
-class Example4 {}
+class Example12 {}
 
-class Foo {
-   Foo(@Another String par1, @Another int par2) {}
+class Foo3 {
+   Foo3(@Another String par1, @Another int par2) {}
 }
 
-@interface AnnotationWithAnnotationValue {
+@interface AnnotationWithAnnotationValue3 {
     Another value();
 }
