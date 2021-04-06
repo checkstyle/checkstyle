@@ -277,6 +277,29 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testCommentsInSameMethodCallWithSameIndent() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "19:7: " + getCheckMessage(MSG_KEY_SINGLE, 20, 6, 4),
+            "26:11: " + getCheckMessage(MSG_KEY_SINGLE, 27, 10, 4),
+        };
+        verify(checkConfig,
+                getPath("InputCommentsIndentationWithInMethodCallWithSameIndent.java"),
+                expected);
+    }
+
+    @Test
+    public void testCommentsBlockCommentBeforePackage() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "1:1: " + getCheckMessage(MSG_KEY_BLOCK, 4, 0, 1),
+        };
+        verify(checkConfig,
+                getPath("InputCommentsIndentationBlockCommentBeforePackage.java"),
+                expected);
+    }
+
+    @Test
     public void testCommentsAfterRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
         final String[] expected = {
