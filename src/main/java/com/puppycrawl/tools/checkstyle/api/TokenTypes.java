@@ -2984,6 +2984,21 @@ public final class TokenTypes {
     /**
      * The {@code >} (greater than) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * c= a &gt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; c
+     * |       `--BAND -&gt; &gt;
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #EXPR
      **/
     public static final int GT = GeneratedJavaTokenTypes.GT;
