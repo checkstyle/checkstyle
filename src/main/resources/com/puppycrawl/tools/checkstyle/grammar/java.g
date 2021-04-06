@@ -122,6 +122,8 @@ tokens {
     RECORD_COMPONENTS; RECORD_COMPONENT_DEF; COMPACT_CTOR_DEF;
     TEXT_BLOCK_LITERAL_BEGIN; TEXT_BLOCK_CONTENT; TEXT_BLOCK_LITERAL_END;
     LITERAL_yield="yield"; SWITCH_RULE;
+
+    LITERAL_non_sealed="non-sealed"; LITERAL_sealed="sealed"; LITERAL_permits="permits";
 }
 
 {
@@ -492,6 +494,16 @@ modifier
     |    "volatile"
     |    "strictfp"
     |    "default"
+    |    nonSealed
+    |    LITERAL_sealed
+    ;
+
+// Below rule was created because significant changes in the lexer would be required
+// to accomodate "non-sealed" as a keyword due to 'isValidJavaIdentifier' usage.
+nonSealed
+    :   !ns:"non" MINUS "sealed" // did not use token here for readability
+        {#ns.setType(LITERAL_non_sealed);#ns.setText("non-sealed");}
+        {##=#(ns);}
     ;
 
 annotation!
@@ -623,10 +635,11 @@ classDefinition![AST modifiers]
         sc:superClassClause
         // it might implement some interfaces...
         ic:implementsClause
+        ps:permittedSubclassesAndInterfaces
         // now parse the body of the class
         cb:classBlock
         {#classDefinition = #(#[CLASS_DEF,"CLASS_DEF"],
-                               modifiers, c, id, tp, sc, ic, cb);}
+                               modifiers, c, id, tp, sc, ic, ps, cb);}
     ;
 
 superClassClause
@@ -642,9 +655,10 @@ interfaceDefinition![AST modifiers]
         // it might extend some other interfaces
         ie:interfaceExtends
         // now parse the body of the interface (looks like a class...)
+        ps:permittedSubclassesAndInterfaces
         cb:classBlock
         {#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
-                                    modifiers, i, id,tp,ie,cb);}
+                                    modifiers, i, id,tp,ie,ps,cb);}
     ;
 
 enumDefinition![AST modifiers]
@@ -1816,12 +1830,23 @@ textBlock
             c,TEXT_BLOCK_LITERAL_END);}
     ;
 
+
+permittedSubclassesAndInterfaces
+    :    (
+            p:LITERAL_permits^
+            classOrInterfaceType[false] ( COMMA classOrInterfaceType[false] )*
+         )?
+    ;
+
 // This rule was created to remedy the "keyword as identifier" problem
 // See: https://github.com/checkstyle/checkstyle/issues/8308
-id: IDENT | recordKey | yieldKey;
+id: IDENT | recordKey | yieldKey | nonKey | sealedKey | permitsKey;
 
 recordKey: "record" {#recordKey.setType(IDENT);};
 yieldKey:  "yield" {#yieldKey.setType(IDENT);};
+nonKey:  "non" {#nonKey.setType(IDENT);};
+sealedKey:  "sealed" {#sealedKey.setType(IDENT);};
+permitsKey: "permits" {#permitsKey.setType(IDENT);};
 
 
 //----------------------------------------------------------------------------
