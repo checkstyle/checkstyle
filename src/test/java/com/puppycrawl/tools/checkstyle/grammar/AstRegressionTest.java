@@ -262,6 +262,18 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testInputSealedAndPermits() throws Exception {
+        verifyAst(getPath("java15/InputAstRegressionSealedAndPermits.txt"),
+            getNonCompilablePath("java15/InputAstRegressionSealedAndPermits.java"));
+    }
+
+    @Test
+    public void testInputTopLevelNonSealed() throws Exception {
+        verifyAst(getPath("java15/InputTopLevelNonSealed.txt"),
+            getNonCompilablePath("java15/InputTopLevelNonSealed.java"));
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);
