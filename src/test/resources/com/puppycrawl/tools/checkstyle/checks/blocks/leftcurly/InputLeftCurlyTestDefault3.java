@@ -5,33 +5,35 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 /**
+ * Config: default
+ *
  * Test case for correct use of braces.
  * @author Oliver Burn
  **/
-class InputLeftCurlyDefault3
-{
+class InputLeftCurlyTestDefault3
+{ // violation
     /** @see test method **/
     int foo() throws InterruptedException
-    {
+    { // violation
         int x = 1;
         int a = 2;
         while (true)
-        {
+        { // violation
             try
-            {
+            { // violation
                 if (x > 0)
-                {
+                { // violation
                     break;
                 }
-                else if (x < 0) {
+                else if (x < 0) { // ok
                     ;
                 }
                 else
-                {
+                { // violation
                     break;
                 }
                 switch (a)
-                {
+                { // violation
                 case 0:
                     break;
                 default:
@@ -39,19 +41,19 @@ class InputLeftCurlyDefault3
                 }
             }
             catch (Exception e)
-            {
+            { // violation
                 break;
             }
             finally
-            {
+            { // violation
                 break;
             }
         }
 
         synchronized (this)
-        {
+        { // violation
             do
-            {
+            { // violation
                 x = 2;
             } while (x == 2);
         }
@@ -60,7 +62,7 @@ class InputLeftCurlyDefault3
                  ); // Bizarre, but legal
 
         for (int k = 0; k < 1; k++)
-        {
+        { // violation
             String innerBlockVariable = "";
         }
 
@@ -73,28 +75,28 @@ class InputLeftCurlyDefault3
 
     // Test static initialiser
     static
-    {
+    { // violation
         int x = 1; // should not require any javadoc
     }
 
 
 
     public enum GreetingsEnum
-    {
+    { // violation
         HELLO,
         GOODBYE
     };
 
     void method2()
-    {
+    { // violation
         boolean flag = true;
-        if (flag) {
+        if (flag) { // ok
             System.identityHashCode("heh");
             flag = !flag; } String.CASE_INSENSITIVE_ORDER.
               equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // violation
     }
 }
 
@@ -103,10 +105,10 @@ class InputLeftCurlyDefault3
  * a statement or the body of a constructor.
  */
 class FooCtor
-{
+{ // violation
         int i;
         public FooCtor()
-    {
+    { // violation
                 i = 1;
     }}
 
@@ -115,9 +117,9 @@ class FooCtor
 * a statement or the body of a method.
 */
 class FooMethod
-{
+{ // violation
         public void fooMethod()
-    {
+    { // violation
                 int i = 1;
     }}
 
@@ -126,11 +128,11 @@ class FooMethod
 * a statement or the body of a named class.
 */
 class FooInner
-{
+{ // violation
         class InnerFoo
-    {
+    { // violation
                 public void fooInnerMethod ()
-        {
+        { // violation
 
                 }
     }}
@@ -139,13 +141,13 @@ class FooInner
  * False positive
  *
  */
-class Absent_CustomFieldSerializer3 {
+class Absent_CustomFieldSerializer3 { // ok
 
     public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
 }
 
 class Absent_CustomFieldSerializer4
-{
+{ // violation
     public Absent_CustomFieldSerializer4() {}
 }
 
@@ -154,15 +156,15 @@ class EmptyClass2 {}
 interface EmptyInterface3 {}
 
 class ClassWithStaticInitializers
-{
-    static {
+{ // violation
+    static { // ok
     }
     static
     {}
 
     static class Inner
-    {
-        static {
+    { // violation
+        static { // ok
             int i = 1;
         }
     }

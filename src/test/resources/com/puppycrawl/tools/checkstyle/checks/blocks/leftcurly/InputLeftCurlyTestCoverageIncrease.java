@@ -4,12 +4,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-public class InputLeftCurlyCoverageIncrease {
+/*
+ * Config:
+ * option = nlow
+ */
+public class InputLeftCurlyTestCoverageIncrease {
     // inner interfaces with different scopes
 
 
     private interface PrivateInterface
-    {
+    { // violation
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -18,7 +22,7 @@ public class InputLeftCurlyCoverageIncrease {
     }
 
     interface PackageInnerInterface
-    {
+    { // violation
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -27,7 +31,7 @@ public class InputLeftCurlyCoverageIncrease {
     }
 
     protected interface ProtectedInnerInterface
-    {
+    { // violation
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -36,7 +40,7 @@ public class InputLeftCurlyCoverageIncrease {
     }
 
     public interface PublicInnerInterface
-    {
+    { // violation
         public String CA = "CONST A";
         String CB = "CONST b";
 
@@ -50,25 +54,25 @@ public class InputLeftCurlyCoverageIncrease {
   {
     }
     class
-    MyClass2 {
+    MyClass2 { // violation
     }
 
     private
     interface
-    MyInterface1 {
+    MyInterface1 { // violation
     }
 
     interface
-    MyInterface2 {
+    MyInterface2 { // violation
     }
 
     protected
     enum
-    MyEnum {
+    MyEnum { // violation
     }
 
     private
     @interface
-    MyAnnotation {
+    MyAnnotation { // violation
     }
 }

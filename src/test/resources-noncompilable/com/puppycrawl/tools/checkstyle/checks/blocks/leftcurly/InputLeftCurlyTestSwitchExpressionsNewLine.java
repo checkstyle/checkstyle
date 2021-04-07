@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
  * LITERAL_FOR , LITERAL_IF , LITERAL_SWITCH , LITERAL_SYNCHRONIZED ,
  *  LITERAL_TRY , LITERAL_WHILE , METHOD_DEF , OBJBLOCK , STATIC_INIT }
  */
-public class InputLeftCurlyCheckSwitchExpressionsNewLine { // violation
+public class InputLeftCurlyTestSwitchExpressionsNewLine { // violation
     int howMany1(int k) { // violation
         switch (k)
         {

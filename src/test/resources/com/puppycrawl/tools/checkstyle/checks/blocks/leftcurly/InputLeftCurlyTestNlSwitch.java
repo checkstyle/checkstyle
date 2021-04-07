@@ -2,10 +2,10 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 /**
   * This test-input is intended to be checked using following configuration:
   *
+  * Config:
   * option = NL
-  *
   */
-public class InputLeftCurlyNlSwitch
+public class InputLeftCurlyTestNlSwitch
 {
 
     public void doStuff()
@@ -13,7 +13,7 @@ public class InputLeftCurlyNlSwitch
         int x = 1;
         switch (x)
         {
-            case 0: { // warn
+            case 0: { // violation
                 break;
             }
             case (1
@@ -45,7 +45,7 @@ public class InputLeftCurlyNlSwitch
         switch (x)
         {
             case 0
-            :{ // warn
+            :{ // violation
                 break;
             }
             default:

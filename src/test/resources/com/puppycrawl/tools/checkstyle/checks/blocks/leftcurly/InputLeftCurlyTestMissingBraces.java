@@ -5,20 +5,22 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 /**
+ * Config: default
+ *
  * Test case for correct use of braces.
  * @author Oliver Burn
  **/
-class InputLeftCurlyMissingBraces
-{
+class InputLeftCurlyTestMissingBraces
+{ // violation
     /** @return helper func **/
     boolean condition()
-    {
+    { // violation
         return false;
     }
 
     /** Test do/while loops **/
     void testDoWhile()
-    {
+    { // violation
         // Valid
         do {
             testDoWhile();
@@ -31,7 +33,7 @@ class InputLeftCurlyMissingBraces
 
     /** Test while loops **/
     void testWhile()
-    {
+    { // violation
         // Valid
         while (condition()) {
             testWhile();
@@ -48,7 +50,7 @@ class InputLeftCurlyMissingBraces
 
     /** Test for loops **/
     void testFor()
-    {
+    { // violation
         // Valid
         for (int i = 1; i < 5; i++) {
             testFor();
@@ -66,7 +68,7 @@ class InputLeftCurlyMissingBraces
 
     /** Test if constructs **/
     public void testIf()
-    {
+    { // violation
         // Valid
         if (condition()) {
             testIf();
@@ -102,7 +104,7 @@ class InputLeftCurlyMissingBraces
     }
 
     void whitespaceAfterSemi()
-    {
+    { // violation
         //reject
         int i = 1;int j = 2;
 
@@ -112,7 +114,7 @@ class InputLeftCurlyMissingBraces
     }
 
     /** Empty constructor block. **/
-    public InputLeftCurlyMissingBraces() {}
+    public InputLeftCurlyTestMissingBraces() {}
 
     /** Empty method block. **/
     public void emptyImplementation() {}
