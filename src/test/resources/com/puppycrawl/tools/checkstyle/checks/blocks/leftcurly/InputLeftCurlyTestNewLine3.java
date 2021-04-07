@@ -1,0 +1,173 @@
+////////////////////////////////////////////////////////////////////////////////
+// Test case file for checkstyle.
+// Created: 2001
+////////////////////////////////////////////////////////////////////////////////
+package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
+
+/**
+ * Config:
+ * option = nl
+ *
+ * Test case for correct use of braces.
+ * @author Oliver Burn
+ **/
+class InputLeftCurlyTestNewLine3
+{ // ok
+    /** @see test method **/
+    int foo() throws InterruptedException
+    { // ok
+        int x = 1;
+        int a = 2;
+        while (true)
+        { // ok
+            try
+            { // ok
+                if (x > 0)
+                { // ok
+                    break;
+                }
+                else if (x < 0) { // violation
+                    ;
+                }
+                else
+                { // ok
+                    break;
+                }
+                switch (a)
+                { // ok
+                case 0:
+                    break;
+                default:
+                    break;
+                }
+            }
+            catch (Exception e)
+            { // ok
+                break;
+            }
+            finally
+            { // ok
+                break;
+            }
+        }
+
+        synchronized (this)
+        { // ok
+            do
+            { // ok
+                x = 2;
+            } while (x == 2);
+        }
+
+        this.wait(666
+                 ); // Bizarre, but legal
+
+        for (int k = 0; k < 1; k++)
+        { // ok
+            String innerBlockVariable = "";
+        }
+
+        // test input for bug reported by Joe Comuzzi
+        if (System.currentTimeMillis() > 1000)
+            return 1;
+        else
+            return 2;
+    }
+
+    // Test static initialiser
+    static
+    { // ok
+        int x = 1; // should not require any javadoc
+    }
+
+
+
+    public enum GreetingsEnum
+    { // ok
+        HELLO,
+        GOODBYE
+    };
+
+    void method2()
+    { // ok
+        boolean flag = true;
+        if (flag) { // violation
+            System.identityHashCode("heh");
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER.
+              equals("Xe-xe");
+        // it is ok to have rcurly on the same line as previous
+        // statement if lcurly on the same line.
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // violation
+    }
+}
+
+/**
+ * Test input for closing brace if that brace terminates
+ * a statement or the body of a constructor.
+ */
+class FooCtorTestNewLine3
+{ // ok
+        int i;
+        public void FooCtor()
+    { // ok
+                i = 1;
+    }}
+
+/**
+* Test input for closing brace if that brace terminates
+* a statement or the body of a method.
+*/
+class FooMethodTestNewLine3
+{ // ok
+        public void fooMethod()
+    { // ok
+                int i = 1;
+    }}
+
+/**
+* Test input for closing brace if that brace terminates
+* a statement or the body of a named class.
+*/
+class FooInnerTestNewLine3
+{ // ok
+        class InnerFoo
+    { // ok
+                public void fooInnerMethod ()
+        { // ok
+
+                }
+    }}
+
+/**
+ * False positive
+ *
+ */
+class Absent_CustomFieldSerializer3TestNewLine3 { // violation
+
+    public static void serialize() {} // Expected nothing but was "'}' should be alone on a line."
+}
+
+class Absent_CustomFieldSerializer4TestNewLine3
+{ // ok
+    public void Absent_CustomFieldSerializer4() {}
+}
+
+class EmptyClass2TestNewLine3 {}
+
+interface EmptyInterface3TestNewLine3 {}
+
+class ClassWithStaticInitializersTestNewLine3
+{ // ok
+    static { // violation
+    }
+    static
+    {}
+
+    static class Inner
+    { // ok
+        static { // violation
+            int i = 1;
+        }
+    }
+
+}

@@ -12,7 +12,7 @@ import org.w3c.dom.Node;
  *  LITERAL_WHILE , METHOD_DEF , OBJBLOCK , STATIC_INIT}
  *
  */
-public class InputLeftCurlyRecordsAndCompactCtors {
+public class InputLeftCurlyTestRecordsAndCompactCtors {
 
     record MyTestRecord(String string, Record rec)
     { // violation
