@@ -2812,7 +2812,9 @@ public final class TokenTypes {
      * <pre>
      * a |= b;
      * </pre>
-     * <p>parses as:</p>
+     * <p>
+     * parses as:
+     * </p>
      * <pre>
      * |--EXPR -&gt; EXPR
      * |   `--BOR_ASSIGN -&gt; |=
