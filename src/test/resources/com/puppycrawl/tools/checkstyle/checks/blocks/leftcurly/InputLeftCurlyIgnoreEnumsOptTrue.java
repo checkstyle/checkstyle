@@ -1,11 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
-public class InputLeftCurlyIgnoreEnums {
-    enum Colors {RED,
+/*
+ * Config:
+ * option = eol
+ * ignoreEnums = true
+ */
+public class InputLeftCurlyIgnoreEnumsOptTrue {
+    enum Colors {RED, // ok
         BLUE,
         GREEN;
 
-        @Override public String toString() { return ""; };
+        @Override public String toString() { return ""; }; // violation
     }
 
     enum Languages {

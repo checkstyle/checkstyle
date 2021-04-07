@@ -1,85 +1,85 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
 
 /*
- * Config: default
+ * Config:
+ * option = nl
  */
-class InputLeftCurlyMethod
-{ // violation
-    InputLeftCurlyMethod() {}
-    InputLeftCurlyMethod(String aOne) { // ok
+class InputLeftCurlyMethodTestNewLine2
+{ // ok
+    void InputLeftCurlyMethod() {}
+    void InputLeftCurlyMethod(String aOne) { // violation
     }
-    InputLeftCurlyMethod(int aOne)
-    { // violation
+    void InputLeftCurlyMethod(int aOne)
+    { // ok
     }
 
     void method1() {}
-    void method2() { // ok
+    void method2() { // violation
     }
     void method3()
-    { // violation
+    { // ok
     }
     void                                                               method4()
-    { // violation
+    { // ok
     }
     void method5(String aOne,
                  String aTwo)
-    { // violation
+    { // ok
     }
     void method6(String aOne,
-                 String aTwo) { // ok
+                 String aTwo) { // violation
     }
 }
 
-enum InputLeftCurlyMethodEnum
-{ // violation
-    CONSTANT1("hello")
-    { // violation
+enum InputLeftCurlyMethodEnumTestNewLine2
+{ // ok
+    CONSTANT1()
+    { // ok
         void method1() {}
-        void method2() { // ok
+        void method2() { // violation
         }
         void method3()
-        { // violation
+        { // ok
         }
         void                                                               method4()
-        { // violation
+        { // ok
         }
         void method5(String aOne,
                      String aTwo)
-        { // violation
+        { // ok
         }
         void method6(String aOne,
-                     String aTwo) { // ok
+                     String aTwo) { // violation
         }
     },
 
-    CONSTANT2("hello") { // ok
+    CONSTANT2() { // violation
 
     },
 
-    CONSTANT3("hellohellohellohellohellohellohellohellohellohellohellohellohellohello")
-    { // violation
+    CONSTANT3()
+    { // ok
     };
 
-    private InputLeftCurlyMethodEnum(String value)
-    { // violation
+    private void InputLeftCurlyMethodEnum(String value)
+    { // ok
 
     }
 
     void method1() {}
-    void method2() { // ok
+    void method2() { // violation
     }
     void method3()
-    { // violation
+    { // ok
     }
     void                                                               method4()
-    { // violation
+    { // ok
     }
     void method5(String aOne,
                  String aTwo)
-    { // violation
+    { // ok
     }
     void method6(String aOne,
-                 String aTwo) { // ok
+                 String aTwo) { // violation
     }
 }
-
