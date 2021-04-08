@@ -3040,6 +3040,21 @@ public final class TokenTypes {
     /**
      * The {@code <=} (less than or equal) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * c = a &lt;= b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; c
+     * |       `--LE -&gt; &lt;=
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #EXPR
      **/
     public static final int LE = GeneratedJavaTokenTypes.LE;
