@@ -12,14 +12,14 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
  *  ENUM_DEF , INTERFACE_DEF , METHOD_DEF , PACKAGE_DEF , VARIABLE_DEF, RECORD_DEF,
  *  COMPACT_CTOR_DEF}
  */
-public class InputJavadocStyleRecordsAndCompactCtors {
+public class InputJavadocStyleRecordsAndCompactCtors { // ok
 
-    public record MyRecord() {
+    public record MyRecord() { // ok
 
         /**
          * This Javadoc is missing an ending period
-         */ // violation
-        private static String second;
+         */
+        private static String second; // violation
 
         /**
          * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
@@ -27,20 +27,20 @@ public class InputJavadocStyleRecordsAndCompactCtors {
          *
          * @see Something
          */
-        public MyRecord() {
+        public MyRecord() { // ok
         }
 
         /**
          * This is ok!
          */
-        private void method1() {
+        private void method1() { // ok
         }
 
         /**
          * // violation
          * This should fail even.though.there are embedded periods
          */
-        private void method4() {
+        private void method4() { // violation
         }
 
         /**
@@ -54,7 +54,7 @@ public class InputJavadocStyleRecordsAndCompactCtors {
          *
          * @param arg1 <code>dummy. // violation
          */
-        private void method5(int arg1) {
+        private void method5(int arg1) { // violation
         }
     }
 
@@ -69,38 +69,38 @@ public class InputJavadocStyleRecordsAndCompactCtors {
          * Public check should fail</code> // violation and line below, too
          * should fail <
          */
-        public void method8() {
+        public void method8() { // violation
         }
     }
 
     /**
      *
      */
-    public record MyThirdRecord(String myString) {
+    public record MyThirdRecord(String myString) { // ok
     }
 
-    public record MyFourthRecord(String myString) {
+    public record MyFourthRecord(String myString) { // ok
         /**
          * This Javadoc contains unclosed tag.
          * <code>unclosed 'code' tag<code> // violation
          */
-        private static void unclosedTag() {
+        private static void unclosedTag() { // violation
             System.out.println("stuff");
         }
 
-        public MyFourthRecord {
+        public MyFourthRecord { // ok
             /**
-             * No period at the end of this sentence // violation
+             * No period at the end of this sentence // ok
              */
-            String myOtherString = "mystring";
+            String myOtherString = "mystring"; // ok
         }
     }
 
-    public record MyFifthRecord() {
+    public record MyFifthRecord() { // ok
         /**
          * No period here on compact ctor // violation
          */
-        public MyFifthRecord {
+        public MyFifthRecord { // violation
         }
     }
 }

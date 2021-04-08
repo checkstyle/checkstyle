@@ -1,61 +1,48 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
-
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
-/**
- * Test input for the JavadocStyleCheck.  This check is used to perform
- * some additional Javadoc validations.
- *
- * @author Chris Stillwell
- * @version 1.0
+/*
+ * Config:
+ * scope = public
+ * excludeScope = null
+ * checkFirstSentence = true
+ * endOfSentenceFormat = "([.?!][ \t\n\r\f<])|([.?!]$)"
+ * checkEmptyJavadoc = true
+ * checkHtml = true
  */
-public class InputJavadocStyle
+public class InputJavadocStyle5 // ok
 {
    // This is OK. We don't flag missing javadoc.  That's left for other checks.
-   private String first;
+   private String first; // ok
 
    /** This Javadoc is missing an ending period */
-   private String second;
+   private String second; // ok
 
    /**
     * We don't want {@link com.puppycrawl.tools.checkstyle.checks.JavadocStyleCheck}
     * tags to stop the scan for the end of sentence.
     * @see Something
     */
-   public InputJavadocStyle()
-   {
-   }
+   public InputJavadocStyle5() {} // ok
 
    /**
     * This is ok!
     */
-   private void method1()
-   {
-   }
+   private void method1() {} // ok
 
    /**
     * This is ok?
     */
-   private void method2()
-   {
-   }
+   private void method2() {} // ok
 
    /**
     * And This is ok.<br>
     */
-   private void method3()
-   {
-   }
+   private void method3() {} // ok
 
    /**
     * This should fail even.though.there are embedded periods
     */
-   private void method4()
-   {
-   }
+   private void method4() {} // ok
 
    /**
     * Test HTML in Javadoc comment
@@ -67,37 +54,26 @@ public class InputJavadocStyle
     * <style>this tag isn't supported in Javadoc</style>
     * @param arg1 <code>dummy.
     */
-   private void method5(int arg1)
-   {
-   }
+   private void method5(int arg1) {} // ok
 
    /**
     * Protected check <b>should fail
     */
-   protected void method6()
-   {
-   }
+   protected void method6() {} // ok
 
    /**
     * Package protected check <b>should fail
     */
-   void method7()
-   {
-   }
+   void method7() {} // ok
 
    /**
-    * Public check should fail</code>
+    * Public check should fail</code> // violation and line below, too
     * should fail <
     */
-   public void method8()
-   {
-   }
+   public void method8() {} // violation
 
    /** {@inheritDoc} **/
-   public void method9()
-   {
-   }
-
+   public void method9() {} // ok
 
     // Testcases to exercise the Tag parser (bug 843887)
 
@@ -108,9 +84,7 @@ public class InputJavadocStyle
      * < br/>
      * <img src="schattenparker.jpg"/></img>
      */
-    private void method10()
-    { // </img> should be the only error
-    }
+    private void method10() {} // ok
 
     /**
      * Tag content can be really mean.
@@ -127,18 +101,14 @@ public class InputJavadocStyle
      * <img src="slashesCanOccurWithin/attributes.jpg">
      * <!-- comments <div> should not be checked. -->
      */
-    private void method11()
-    { // JavadocStyle should not report any error for this method
-    }
+    private void method11() {} // ok
 
     /**
      * Tags for two lines.
      * <a href="some_link"
      * >Link Text</a>
      */
-    private void method12()
-    {// JavadocStyle should not report any error for this method
-    }
+    private void method12() {} // ok
 
     /**
      * First sentence.
@@ -177,73 +147,57 @@ public class InputJavadocStyle
      *     +--SEMI (;)
      * </pre>
      */
-    private void method13()
-    {// JavadocStyle should not report any error for this method
-    }
+    private void method13() {} // ok
 
     /**
      * Some problematic javadoc. Sample usage:
      * <blockquote>
      */
 
-    private void method14()
-    { // empty line between javadoc and method is critical (bug 841942)
-    }
+    private void method14() {} // ok
 
     /**
      * Empty line between javadoc and method declaration cause wrong
      * line number for reporting error (bug 841942)
      */
 
-    private void method15()
-    { // should report unended first sentence (check line number of the error)
-    }
+    private void method15() {} // ok
 
     /** Description of field: {@value}. */
-    public static final int dummy = 4911;
+    public static final int dummy = 4911; // ok
 
     /**
      */
-    public void method16()
-    { // should report empty javadoc
-    }
+    public void method16() {} // violation
 
     /**
      * @param a A parameter
      */
-    protected void method17(String a)
-    { // should report empty javadoc (no text before parameter)
-    }
+    protected void method17(String a) {} // ok
 
     /**
      * @exception RuntimeException should be thrown
      */
-    void method18(String a)
-    { // should report empty javadoc (no text before exception)
-    }
+    void method18(String a) {} // ok
 
     /**
      */
-    private static int ASDF = 0;
-    // should report empty javadoc
+    private static int ASDF = 0; // ok
 
-    /** @see java.lang.Object */
-    public void method19()
-    {  // should report empty javadoc (no text before see tag)
-    }
+    /** @see Object */
+    public void method19() {} // violation
 
     public enum Test
-        //Should complain about no javadoc
     {
         /**
          * Value 1 without a period
          */
-        value1,
+        value1, // violation
 
         /**
          * Value 2 with a period.
          */
-        value2,
+        value2, // ok
     }
 
     /**
@@ -252,13 +206,13 @@ public class InputJavadocStyle
     * @param <KEY_T> for bug 1649020.
     * @author <a href="mailto:foo@nomail.com">Foo Bar</a>
     */
-    public class TestClass<T1, KEY_T>
+    public class TestClass<T1, KEY_T> // ok
     {
         /**
         * Retrieves X.
         * @return a value
         */
-        public T1 getX()
+        public T1 getX() // ok
         {
             return null;
         }
@@ -268,7 +222,7 @@ public class InputJavadocStyle
         * @param <V> this is not an unclosed V tag
         * @return a value
         */
-        public <V> V getY()
+        public <V> V getY() // ok
         {
             return null;
         }
@@ -279,7 +233,7 @@ public class InputJavadocStyle
          * @param <KEY_T1> this is not an unclosed KEY_T tag
          * @return a value
          */
-        public <KEY_T1> KEY_T getZ_1649020_1()
+        public <KEY_T1> KEY_T getZ_1649020_1() // ok
         {
             return null;
         }
@@ -290,7 +244,7 @@ public class InputJavadocStyle
          * @param <KEY_T_$_1_t> strange type
          * @return a value
          */
-        public <KEY_T_$_1_t> KEY_T_$_1_t getEh_1649020_2() {
+        public <KEY_T_$_1_t> KEY_T_$_1_t getEh_1649020_2() { // ok
             return null;
         }
 
@@ -300,7 +254,7 @@ public class InputJavadocStyle
          * @param <$_12_xY_z> strange type
          * @return a value
          */
-        public <$_12_xY_z> $_12_xY_z getUmmm_1649020_3() {
+        public <$_12_xY_z> $_12_xY_z getUmmm_1649020_3() { // ok
             return null;
         }
     }
@@ -309,123 +263,115 @@ public class InputJavadocStyle
      * Checks if the specified IClass needs to be
      * annotated with the @Type annotation.
      */
-    public void foo_1291847_1() {
-    }
+    public void foo_1291847_1() {} // ok
 
     /**
      * Returns the string containing the properties of
      * <code>@Type</code> annotation.
      */
-    public void foo_1291847_2() {
+    public void foo_1291847_2() {} // ok
+
+    /**
+     * Checks generics javadoc.
+     *
+     * @param strings this is a List<String>
+     * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
+     */
+    public void method20() {} // ok
+
+    /**
+     * Checks HTML tags in javadoc.
+     *
+     * HTML no good tag
+     * <string>Tests</string> // violation
+     *
+     */
+    public void method21() {} // violation
+
+    /**
+     * First sentence.
+     * <
+     * /a>
+     */
+    void tagClosedInNextLine() {} // ok
+
+    /**
+     * Link to some page in two lines.
+     * <a
+     * href="someLink"/>
+     */
+    void tagInTwoLines() {} // ok
+
+    /**
+     * This Javadoc contains unclosed tag.
+     * <code>unclosed 'code' tag<code>
+     */
+    private void unclosedTag() {} // ok
+
+    void javadocLikeCommentInMethod() { // ok
+        /**
+         * It pretends to be Javadoc without dot, but it's just comment in method
+         */
+        final int i = 0; // ok
     }
 
-		/**
-		 * Checks generics javadoc.
-		 *
-		 * @param strings this is a List<String>
-		 * @param test Map<String, List<String>> a map indexed on String of Lists of Strings.
-		 */
-		public void method20() {
-		}
+    /**
+     * {@inheritDoc}
+     */
+    private void inheritDoc() {} // ok
 
-		/**
-		 * Checks HTML tags in javadoc.
-		 *
-		 * HTML no good tag
-		 * <string>Tests</string>
-		 *
-		 */
-		public void method21() {
-		}
+    /**
+     * <p><b>Note:<b> it's unterminated tag.</p>
+     */
+    private void unterminatedTag() {} // ok
 
-        /**
-         * First sentence.
-         * <
-         * /a>
-         */
-        void tagClosedInNextLine() {
-
-        }
-
-        /**
-         * Link to some page in two lines.
-         * <a
-         * href="someLink"/>
-         */
-        void tagInTwoLines() {
-
-        }
-
-        /**
-         * This Javadoc contains unclosed tag.
-         * <code>unclosed 'code' tag<code>
-         */
-        private void unclosedTag() {}
-
-        void javadocLikeCommentInMethod() {
-            /**
-             * It pretends to be Javadoc without dot, but it's just comment in method
-             */
-            final int i = 0;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        private void inheritDoc() {}
-
-        /**
-         * <p><b>Note:<b> it's unterminated tag.</p>
-         */
-        private void unterminatedTag() {}
-
+    /**
+     * Javadoc without dot
+     */
+    public interface TestInterface { // violation
         /**
          * Javadoc without dot
          */
-        public interface TestInterface {
-            /**
-             * Javadoc without dot
-             */
-            void method();
-        }
+        void method(); // violation
+    }
 
-        static class TestStaticClass {
-            /**
-             * Javadoc without dot
-             */
-            public int field;
-        }
-
+    static class TestStaticClass { // ok
         /**
-         * .
-         * @throws Exception if an error occurs
+         * Javadoc without dot
          */
-        void foo() throws Exception {}
+        public int field; // ok
+    }
 
-        /**
-         * text /
-         * @throws Exception if an error occurs
-         */
-        void bar() throws Exception {}
+    /**
+     * .
+     * @throws Exception if an error occurs
+     */
+    void foo() throws Exception {} // ok
 
-        /**
-         * {@inheritDoc}
-         * <p>
-         * @throws IllegalArgumentException with errMsg as its message
-         */
-        void inheritDocWithThrows() {}
+    /**
+     * text /
+     * @throws Exception if an error occurs
+     */
+    void bar() throws Exception {} // ok
 
-        /**
-         * /
-         *
-         **
-         * @param s
-         * @return Return
-         */
-        public int test(String s) { return 0; }
+    /**
+     * {@inheritDoc}
+     * <p>
+     * @throws IllegalArgumentException with errMsg as its message
+     */
+    void inheritDocWithThrows() {} // ok
+
+    /**
+     * /
+     *
+     **
+     * @param s
+     * @return Return
+     */
+    public int test(String s) { return 0; } // violation
 
     /** Set of all class field names.*/
-    public String field;
+    public String field; // ok
 
     /**
      * <p>Test.</p>
@@ -434,7 +380,7 @@ public class InputJavadocStyle
           ; i &lt; j; i++, j--) {}
        </pre>
      */
-    public void test2() {}
+    public void test2() {} // ok
 
     /**
      * <p>Test.</p>
@@ -442,5 +388,5 @@ public class InputJavadocStyle
 public class SampleTest {
 }</code></pre>
      */
-    public void test3() {}
+    public void test3() {} // ok
 }
