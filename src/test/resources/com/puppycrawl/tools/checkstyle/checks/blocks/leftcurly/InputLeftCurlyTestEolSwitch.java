@@ -1,28 +1,27 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.leftcurly;
-/**
-  * This test-input is intended to be checked using following configuration:
-  *
+
+/*
+  * Config:
   * option = EOL
-  *
   */
-public class InputLeftCurlyEolSwitch {
+public class InputLeftCurlyTestEolSwitch {
 
     public void doStuff() {
         int x = 1;
         switch (x) {
             case 0:
-            { // warn
+            { // violation
                 break;
             }
             case (1+0):
-            { // warn
+            { // violation
                 break;
             }
             case 2: {
                 break;
             }
             default:
-            { // warn
+            { // violation
                 break;
             }
             case 3:
@@ -36,12 +35,12 @@ public class InputLeftCurlyEolSwitch {
                 break;
             case (5
                 +1):
-            { // warn
+            { // violation
                 break;
             }
             case 7
                 :
-            { // warn
+            { // violation
                 break;
             }
         }
