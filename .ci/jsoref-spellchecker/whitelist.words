@@ -883,7 +883,9 @@ nonnull
 nonrequiredjavadoc
 nonvalidating
 noparentfile
+NOPMD
 noscript
+NOSONAR
 nospace
 Nothin
 notjava
