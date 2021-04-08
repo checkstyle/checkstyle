@@ -12,7 +12,13 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
  * @author Tobias Geyer
  * @version 1.0
  */
-public class InputJavadocStyleHtmlComment
+
+/*
+ * Config:
+ * checkFirstSentence = false
+ * checkHtml = true
+ */
+public class InputJavadocStyleHtmlComment // ok
 {
     /**
      * sometimes a tag starts
@@ -22,9 +28,7 @@ public class InputJavadocStyleHtmlComment
      * and ends afterwards
      * </pre>
      */
-    private void method1()
-    { // JavadocStyle should not report any error for this method
-    }
+    private void method1() {} // ok
 
     /**
      * sometimes a tag starts
@@ -36,9 +40,7 @@ public class InputJavadocStyleHtmlComment
      * and ends afterwards
      * </pre>
      */
-    private void method2()
-    { // JavadocStyle should not report any error for this method
-    }
+    private void method2() {} // ok
 
     /**
      * sometimes a tag starts
@@ -49,9 +51,7 @@ public class InputJavadocStyleHtmlComment
      * multiple lines --></pre>
      * and ends on the same line
      */
-    private void method3()
-    { // JavadocStyle should not report any error for this method
-    }
+    private void method3() {} // ok
 
     /**
      * sometimes a tag starts
@@ -61,22 +61,18 @@ public class InputJavadocStyleHtmlComment
      * and ends afterwards
      * </pre>
      */
-    private void method4()
-    { // JavadocStyle should not report any error for this method
-    }
+    private void method4() {} // ok
 
     /**
      * sometimes a tag starts
      * <pre><!-- ignore this --></pre>
      * and ends with a comment in the middle
      */
-    private void method5()
-    { // JavadocStyle should not report any error for this method
-    }
+    private void method5() {} // ok
 
     /**
      * Parameterized interface.
      * @param <I>
      */
-    interface Interface<I> {}
+    interface Interface<I> {} // ok
 }

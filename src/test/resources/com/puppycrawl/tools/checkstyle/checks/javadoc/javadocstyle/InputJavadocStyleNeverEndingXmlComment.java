@@ -1,6 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
 
+/*
+ * Config: default
+ */
 public class InputJavadocStyleNeverEndingXmlComment {
-    /** DTD: <!--. */
+    /** DTD: <!--. */ // ok
     public int i;
 }
