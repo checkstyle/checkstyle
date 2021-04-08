@@ -988,9 +988,28 @@ public class XpathMapperTest extends AbstractModuleTestSupport {
         assertThat("Result nodes differ from expected", actual, equalTo(expected));
     }
 
+    @Test
+    public void testSingleLineCommentByCommentContent() throws Exception {
+        final String xpath = "//SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' some comment\\n']]";
+        final RootNode rootNode = getRootNodeWithComments("InputXpathMapperSingleLineComment.java");
+        final DetailAST[] actual = convertToArray(getXpathItems(xpath, rootNode));
+        final DetailAST expectedVariableDefNode = getSiblingByType(rootNode.getUnderlyingNode(),
+                TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.SINGLE_LINE_COMMENT);
+        final DetailAST[] expected = {expectedVariableDefNode};
+        assertThat("Result nodes differ from expected", actual, equalTo(expected));
+    }
+
     private RootNode getRootNode(String fileName) throws Exception {
         final File file = new File(getPath(fileName));
         final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITHOUT_COMMENTS);
+        return new RootNode(rootAst);
+    }
+
+    private RootNode getRootNodeWithComments(String fileName) throws Exception {
+        final File file = new File(getPath(fileName));
+        final DetailAST rootAst = JavaParser.parseFile(file, JavaParser.Options.WITH_COMMENTS);
         return new RootNode(rootAst);
     }
 

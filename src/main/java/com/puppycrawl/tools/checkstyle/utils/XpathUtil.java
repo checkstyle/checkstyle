@@ -106,7 +106,7 @@ public final class XpathUtil {
         Stream.of(
             TokenTypes.IDENT, TokenTypes.STRING_LITERAL, TokenTypes.CHAR_LITERAL,
             TokenTypes.NUM_LONG, TokenTypes.NUM_INT, TokenTypes.NUM_DOUBLE, TokenTypes.NUM_FLOAT,
-            TokenTypes.TEXT_BLOCK_CONTENT)
+            TokenTypes.TEXT_BLOCK_CONTENT, TokenTypes.COMMENT_CONTENT)
         .collect(Collectors.toSet());
 
     /**
