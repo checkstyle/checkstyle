@@ -39,8 +39,8 @@ import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -210,9 +210,9 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
 
         check.visitToken(ast);
-        final SortedSet<LocalizedMessage> messages = check.getMessages();
+        final SortedSet<Violation> violations = check.getViolations();
 
-        assertEquals(0, messages.size(), "No exception messages expected");
+        assertEquals(0, violations.size(), "No exception violations expected");
     }
 
     @Test

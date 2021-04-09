@@ -387,7 +387,7 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
     @Override
     public boolean accept(AuditEvent event) {
         boolean accepted = true;
-        if (event.getLocalizedMessage() != null) {
+        if (event.getViolation() != null) {
             final FileText fileText = getFileText(event.getFileName());
             if (fileText != null) {
                 final List<Suppression> suppressions = getSuppressions(fileText);
