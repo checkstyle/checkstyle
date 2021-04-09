@@ -1734,66 +1734,38 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     *   String str = new String();
-     *   for (int i = 0; i &lt; 2; i++) {
-     * 	        str += (i*((5 + 7) - 3));
-     *   }
+     * Integer val = new Integer();
+     * while (false) {
+     *     val += (-3);
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
      *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
      *  |   |--MODIFIERS -&gt; MODIFIERS
      *  |   |--TYPE -&gt; TYPE
-     *  |   |   `--IDENT -&gt; String
-     *  |   |--IDENT -&gt; str
+     *  |   |   `--IDENT -&gt; Integer
+     *  |   |--IDENT -&gt; val
      *  |   `--ASSIGN -&gt; =
      *  |       `--EXPR -&gt; EXPR
      *  |           `--LITERAL_NEW -&gt; new
-     *  |               |--IDENT -&gt; String
+     *  |               |--IDENT -&gt; Integer
      *  |               |--LPAREN -&gt; (
      *  |               |--ELIST -&gt; ELIST
      *  |               `--RPAREN -&gt; )
      *  |--SEMI -&gt; ;
-     *  |--LITERAL_FOR -&gt; for
+     *  |--LITERAL_WHILE -&gt; while
      *  |   |--LPAREN -&gt; (
-     *  |   |--FOR_INIT -&gt; FOR_INIT
-     *  |   |   `--VARIABLE_DEF -&gt; VARIABLE_DEF
-     *  |   |       |--MODIFIERS -&gt; MODIFIERS
-     *  |   |       |--TYPE -&gt; TYPE
-     *  |   |       |   `--LITERAL_INT -&gt; int
-     *  |   |       |--IDENT -&gt; i
-     *  |   |       `--ASSIGN -&gt; =
-     *  |   |           `--EXPR -&gt; EXPR
-     *  |   |               `--NUM_INT -&gt; 0
-     *  |   |--SEMI -&gt; ;
-     *  |   |--FOR_CONDITION -&gt; FOR_CONDITION
-     *  |   |   `--EXPR -&gt; EXPR
-     *  |   |       `--LT -&gt; &lt;
-     *  |   |           |--IDENT -&gt; i
-     *  |   |           `--NUM_INT -&gt; 2
-     *  |   |--SEMI -&gt; ;
-     *  |   |--FOR_ITERATOR -&gt; FOR_ITERATOR
-     *  |   |   `--ELIST -&gt; ELIST
-     *  |   |       `--EXPR -&gt; EXPR
-     *  |   |           `--POST_INC -&gt; ++
-     *  |   |               `--IDENT -&gt; i
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--LITERAL_FALSE -&gt; false
      *  |   |--RPAREN -&gt; )
      *  |   `--SLIST -&gt; {
      *  |       |--EXPR -&gt; EXPR
      *  |       |   `--PLUS_ASSIGN -&gt; +=
-     *  |       |       |--IDENT -&gt; str
+     *  |       |       |--IDENT -&gt; val
      *  |       |       |--LPAREN -&gt; (
-     *  |       |       |--STAR -&gt; *
-     *  |       |       |   |--IDENT -&gt; i
-     *  |       |       |   |--LPAREN -&gt; (
-     *  |       |       |   |--MINUS -&gt; -
-     *  |       |       |   |   |--LPAREN -&gt; (
-     *  |       |       |   |   |--PLUS -&gt; +
-     *  |       |       |   |   |   |--NUM_INT -&gt; 1
-     *  |       |       |   |   |   `--NUM_INT -&gt; 3
-     *  |       |       |   |   |--RPAREN -&gt; )
-     *  |       |       |   |   `--NUM_INT -&gt; 2
-     *  |       |       |   `--RPAREN -&gt; )
+     *  |       |       |--UNARY_MINUS -&gt; -
+     *  |       |       |   `--NUM_INT -&gt; 3
      *  |       |       `--RPAREN -&gt; )
      *  |       |--SEMI -&gt; ;
      *  |       `--RCURLY -&gt; }
