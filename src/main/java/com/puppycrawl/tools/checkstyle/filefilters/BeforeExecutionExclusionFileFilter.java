@@ -74,6 +74,16 @@ import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
  * &lt;/module&gt;
  * </pre>
  * <p>
+ * To configure the filter to exclude all Test folder files:
+ * </p>
+ *
+ * <pre>
+ * &lt;module name=&quot;BeforeExecutionExclusionFileFilter&quot;&gt;
+ *   &lt;property name=&quot;fileNamePattern&quot;
+ *     value=&quot;.*[\\/]src[\\/]test[\\/].*$&quot;/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.Checker}
  * </p>
  *

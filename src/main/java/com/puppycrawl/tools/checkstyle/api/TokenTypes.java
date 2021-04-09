@@ -800,15 +800,27 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * String::compareToIgnoreCase
+     * Comparator&lt;String&gt; compare = String::compareToIgnoreCase;
      * </pre>
      *
      * <p>parses as:
      * <pre>
-     * +--METHOD_REF (::)
-     *     |
-     *     +--IDENT (String)
-     *     +--IDENT (compareToIgnoreCase)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   |--IDENT -&gt; Comparator
+     * |   |   `--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     * |   |       |--GENERIC_START -&gt; &lt;
+     * |   |       |--TYPE_ARGUMENT -&gt; TYPE_ARGUMENT
+     * |   |       |   `--IDENT -&gt; String
+     * |   |       `--GENERIC_END -&gt; &gt;
+     * |   |--IDENT -&gt; compare
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--METHOD_REF -&gt; ::
+     * |               |--IDENT -&gt; String
+     * |               `--IDENT -&gt; compareToIgnoreCase
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @see #IDENT
@@ -2311,6 +2323,49 @@ public final class TokenTypes {
      * The {@code default} keyword.  This element has no
      * children.
      *
+     * <p>For example:</p>
+     * <pre>
+     * switch (type) {
+     *   case 1:
+     *     x = 1;
+     *     break;
+     *   default:
+     *     x = 3;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_SWITCH -&gt; switch
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--IDENT -&gt; type
+     *  |--RPAREN -&gt; )
+     *  |--LCURLY -&gt; {
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_CASE -&gt; case
+     *  |   |   |--EXPR -&gt; EXPR
+     *  |   |   |   `--NUM_INT -&gt; 1
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; x
+     *  |       |       `--NUM_INT -&gt; 1
+     *  |       |   |       |--SEMI -&gt; ;
+     *  |       `--LITERAL_BREAK -&gt; break
+     *  |           `--SEMI -&gt; ;
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_DEFAULT -&gt; default
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; x
+     *  |       |       `--NUM_INT -&gt; 3
+     *  |       `--SEMI -&gt; ;
+     *  `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #CASE_GROUP
      * @see #MODIFIERS
      * @see #SWITCH_RULE
@@ -2891,6 +2946,26 @@ public final class TokenTypes {
     /**
      * The {@code ||} (conditional OR) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * if (a || b) {
+     * }
+     * </pre>
+     * <p>
+     * parses as:
+     * </p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LOR -&gt; ||
+     *  |       |--IDENT -&gt; a
+     *  |       `--IDENT -&gt; b
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   |--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.24">Java
      * Language Specification, &sect;15.24</a>
@@ -3005,11 +3080,41 @@ public final class TokenTypes {
     /**
      * The {@code <} (less than) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * c = a &lt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; c
+     * |       `--LT -&gt; &lt;
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #EXPR
      **/
     public static final int LT = GeneratedJavaTokenTypes.LT;
     /**
      * The {@code >} (greater than) operator.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * c = a &gt; b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; c
+     * |       `--BAND -&gt; &gt;
+     * |           |--IDENT -&gt; a
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see #EXPR
      **/
@@ -4033,20 +4138,23 @@ public final class TokenTypes {
      * member value pair.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     *     { 1, 2 }
+     * &#64;Annotation({1, 2})
      * </pre>
-     *
      * <p>parses as:</p>
-     *
      * <pre>
-     * +--ANNOTATION_ARRAY_INIT ({)
-     *     |
-     *     +--NUM_INT (1)
-     *     +--COMMA (,)
-     *     +--NUM_INT (2)
-     *     +--RCURLY (})
+     * ANNOTATION -&gt; ANNOTATION
+     *  |--AT -&gt; &#64;
+     *  |--IDENT -&gt; Annotation
+     *  |--LPAREN -&gt; (
+     *  |--ANNOTATION_ARRAY_INIT -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 1
+     *  |   |--COMMA -&gt; ,
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 2
+     *  |   `--RCURLY -&gt; }
+     *  `--RPAREN -&gt; )
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
