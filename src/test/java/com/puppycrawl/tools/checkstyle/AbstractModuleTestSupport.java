@@ -461,5 +461,4 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
         return messageBundle;
     }
-
 }
