@@ -29,7 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
@@ -85,13 +85,13 @@ public final class DetailNodeTreeStringPrinter {
     }
 
     /**
-     * Builds error message base on ParseErrorMessage's message key, its arguments, etc.
+     * Builds violation base on ParseErrorMessage's violation key, its arguments, etc.
      *
      * @param parseErrorMessage ParseErrorMessage
-     * @return error message
+     * @return error violation
      */
     private static String getParseErrorMessage(ParseErrorMessage parseErrorMessage) {
-        final LocalizedMessage lmessage = new LocalizedMessage(
+        final Violation lmessage = new Violation(
                 parseErrorMessage.getLineNumber(),
                 "com.puppycrawl.tools.checkstyle.checks.javadoc.messages",
                 parseErrorMessage.getMessageKey(),
@@ -99,7 +99,7 @@ public final class DetailNodeTreeStringPrinter {
                 "",
                 DetailNodeTreeStringPrinter.class,
                 null);
-        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getMessage();
+        return "[ERROR:" + parseErrorMessage.getLineNumber() + "] " + lmessage.getViolation();
     }
 
     /**

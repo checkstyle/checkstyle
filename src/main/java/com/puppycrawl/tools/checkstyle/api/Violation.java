@@ -39,14 +39,14 @@ import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
 
 /**
- * Represents a message that can be localised. The translations come from
+ * Represents a violation that can be localised. The translations come from
  * message.properties files. The underlying implementation uses
  * java.text.MessageFormat.
  *
  * @noinspection SerializableHasSerializationMethods, ClassWithTooManyConstructors
  */
-public final class LocalizedMessage
-    implements Comparable<LocalizedMessage>, Serializable {
+public final class Violation
+    implements Comparable<Violation>, Serializable {
 
     private static final long serialVersionUID = 5675176836184862150L;
 
@@ -60,7 +60,7 @@ public final class LocalizedMessage
     /** The default severity level if one is not specified. */
     private static final SeverityLevel DEFAULT_SEVERITY = SeverityLevel.ERROR;
 
-    /** The locale to localise messages to. **/
+    /** The locale to localise violations to. **/
     private static Locale sLocale = Locale.getDefault();
 
     /** The line number. **/
@@ -75,10 +75,10 @@ public final class LocalizedMessage
     /** The severity level. **/
     private final SeverityLevel severityLevel;
 
-    /** The id of the module generating the message. */
+    /** The id of the module generating the violation. */
     private final String moduleId;
 
-    /** Key for the message format. **/
+    /** Key for the violation format. **/
     private final String key;
 
     /**
@@ -88,33 +88,33 @@ public final class LocalizedMessage
      */
     private final Object[] args;
 
-    /** Name of the resource bundle to get messages from. **/
+    /** Name of the resource bundle to get violations from. **/
     private final String bundle;
 
-    /** Class of the source for this LocalizedMessage. */
+    /** Class of the source for this Violation. */
     private final Class<?> sourceClass;
 
-    /** A custom message overriding the default message from the bundle. */
+    /** A custom violation overriding the default violation from the bundle. */
     private final String customMessage;
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the message
-     * @param columnNo column number associated with the message
-     * @param columnCharIndex column char index associated with the message
-     * @param tokenType token type of the event associated with the message. See {@link TokenTypes}
+     * @param lineNo line number associated with the violation
+     * @param columnNo column number associated with the violation
+     * @param columnCharIndex column char index associated with the violation
+     * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
-     * @param severityLevel severity level for the message
-     * @param moduleId the id of the module the message is associated with
-     * @param sourceClass the Class that is the source of the message
-     * @param customMessage optional custom message overriding the default
+     * @param severityLevel severity level for the violation
+     * @param moduleId the id of the module the violation is associated with
+     * @param sourceClass the Class that is the source of the violation
+     * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             int columnCharIndex,
                             int tokenType,
@@ -145,22 +145,22 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the message
-     * @param columnNo column number associated with the message
-     * @param tokenType token type of the event associated with the message. See {@link TokenTypes}
+     * @param lineNo line number associated with the violation
+     * @param columnNo column number associated with the violation
+     * @param tokenType token type of the event associated with violation. See {@link TokenTypes}
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
-     * @param severityLevel severity level for the message
-     * @param moduleId the id of the module the message is associated with
-     * @param sourceClass the Class that is the source of the message
-     * @param customMessage optional custom message overriding the default
+     * @param severityLevel severity level for the violation
+     * @param moduleId the id of the module the violation is associated with
+     * @param sourceClass the Class that is the source of the violation
+     * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             int tokenType,
                             String bundle,
@@ -175,21 +175,21 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the message
-     * @param columnNo column number associated with the message
+     * @param lineNo line number associated with the violation
+     * @param columnNo column number associated with the violation
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
-     * @param severityLevel severity level for the message
-     * @param moduleId the id of the module the message is associated with
-     * @param sourceClass the Class that is the source of the message
-     * @param customMessage optional custom message overriding the default
+     * @param severityLevel severity level for the violation
+     * @param moduleId the id of the module the violation is associated with
+     * @param sourceClass the Class that is the source of the violation
+     * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             String bundle,
                             String key,
@@ -203,20 +203,20 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the message
-     * @param columnNo column number associated with the message
+     * @param lineNo line number associated with the violation
+     * @param columnNo column number associated with the violation
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
-     * @param moduleId the id of the module the message is associated with
-     * @param sourceClass the Class that is the source of the message
-     * @param customMessage optional custom message overriding the default
+     * @param moduleId the id of the module the violation is associated with
+     * @param sourceClass the Class that is the source of the violation
+     * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             int columnNo,
                             String bundle,
                             String key,
@@ -236,20 +236,20 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance.
+     * Creates a new {@code Violation} instance.
      *
-     * @param lineNo line number associated with the message
+     * @param lineNo line number associated with the violation
      * @param bundle resource bundle name
      * @param key the key to locate the translation
      * @param args arguments for the translation
-     * @param severityLevel severity level for the message
-     * @param moduleId the id of the module the message is associated with
-     * @param sourceClass the source class for the message
-     * @param customMessage optional custom message overriding the default
+     * @param severityLevel severity level for the violation
+     * @param moduleId the id of the module the violation is associated with
+     * @param sourceClass the source class for the violation
+     * @param customMessage optional custom violation overriding the default
      * @noinspection ConstructorWithTooManyParameters
      */
     // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-    public LocalizedMessage(int lineNo,
+    public Violation(int lineNo,
                             String bundle,
                             String key,
                             Object[] args,
@@ -262,18 +262,18 @@ public final class LocalizedMessage
     }
 
     /**
-     * Creates a new {@code LocalizedMessage} instance. The column number
+     * Creates a new {@code Violation} instance. The column number
      * defaults to 0.
      *
-     * @param lineNo line number associated with the message
-     * @param bundle name of a resource bundle that contains audit event messages
+     * @param lineNo line number associated with the violation
+     * @param bundle name of a resource bundle that contains audit event violations
      * @param key the key to locate the translation
      * @param args arguments for the translation
-     * @param moduleId the id of the module the message is associated with
-     * @param sourceClass the name of the source for the message
-     * @param customMessage optional custom message overriding the default
+     * @param moduleId the id of the module the violation is associated with
+     * @param sourceClass the name of the source for the violation
+     * @param customMessage optional custom violation overriding the default
      */
-    public LocalizedMessage(
+    public Violation(
         int lineNo,
         String bundle,
         String key,
@@ -340,19 +340,19 @@ public final class LocalizedMessage
     }
 
     /**
-     * Returns the message key to locate the translation, can also be used
-     * in IDE plugins to map audit event messages to corrective actions.
+     * Returns the violation key to locate the translation, can also be used
+     * in IDE plugins to map audit event violations to corrective actions.
      *
-     * @return the message key
+     * @return the violation key
      */
     public String getKey() {
         return key;
     }
 
     /**
-     * Gets the name of the source for this LocalizedMessage.
+     * Gets the name of the source for this Violation.
      *
-     * @return the name of the source for this LocalizedMessage
+     * @return the name of the source for this Violation
      */
     public String getSourceName() {
         return sourceClass.getName();
@@ -393,18 +393,18 @@ public final class LocalizedMessage
         if (object == null || getClass() != object.getClass()) {
             return false;
         }
-        final LocalizedMessage localizedMessage = (LocalizedMessage) object;
-        return Objects.equals(lineNo, localizedMessage.lineNo)
-                && Objects.equals(columnNo, localizedMessage.columnNo)
-                && Objects.equals(columnCharIndex, localizedMessage.columnCharIndex)
-                && Objects.equals(tokenType, localizedMessage.tokenType)
-                && Objects.equals(severityLevel, localizedMessage.severityLevel)
-                && Objects.equals(moduleId, localizedMessage.moduleId)
-                && Objects.equals(key, localizedMessage.key)
-                && Objects.equals(bundle, localizedMessage.bundle)
-                && Objects.equals(sourceClass, localizedMessage.sourceClass)
-                && Objects.equals(customMessage, localizedMessage.customMessage)
-                && Arrays.equals(args, localizedMessage.args);
+        final Violation violation = (Violation) object;
+        return Objects.equals(lineNo, violation.lineNo)
+                && Objects.equals(columnNo, violation.columnNo)
+                && Objects.equals(columnCharIndex, violation.columnCharIndex)
+                && Objects.equals(tokenType, violation.tokenType)
+                && Objects.equals(severityLevel, violation.severityLevel)
+                && Objects.equals(moduleId, violation.moduleId)
+                && Objects.equals(key, violation.key)
+                && Objects.equals(bundle, violation.bundle)
+                && Objects.equals(sourceClass, violation.sourceClass)
+                && Objects.equals(customMessage, violation.customMessage)
+                && Arrays.equals(args, violation.args);
     }
 
     @Override
@@ -418,13 +418,13 @@ public final class LocalizedMessage
     ////////////////////////////////////////////////////////////////////////////
 
     @Override
-    public int compareTo(LocalizedMessage other) {
+    public int compareTo(Violation other) {
         final int result;
 
         if (lineNo == other.lineNo) {
             if (columnNo == other.columnNo) {
                 if (Objects.equals(moduleId, other.moduleId)) {
-                    result = getMessage().compareTo(other.getMessage());
+                    result = getViolation().compareTo(other.getViolation());
                 }
                 else if (moduleId == null) {
                     result = -1;
@@ -447,14 +447,14 @@ public final class LocalizedMessage
     }
 
     /**
-     * Gets the translated message.
+     * Gets the translated violation.
      *
-     * @return the translated message
+     * @return the translated violation
      */
-    public String getMessage() {
-        String message = getCustomMessage();
+    public String getViolation() {
+        String violation = getCustomViolation();
 
-        if (message == null) {
+        if (violation == null) {
             try {
                 // Important to use the default class loader, and not the one in
                 // the GlobalProperties object. This is because the class loader in
@@ -463,37 +463,37 @@ public final class LocalizedMessage
                 final ResourceBundle resourceBundle = getBundle(bundle);
                 final String pattern = resourceBundle.getString(key);
                 final MessageFormat formatter = new MessageFormat(pattern, Locale.ROOT);
-                message = formatter.format(args);
+                violation = formatter.format(args);
             }
             catch (final MissingResourceException ignored) {
                 // If the Check author didn't provide i18n resource bundles
-                // and logs audit event messages directly, this will return
-                // the author's original message
+                // and logs audit event violations directly, this will return
+                // the author's original violation
                 final MessageFormat formatter = new MessageFormat(key, Locale.ROOT);
-                message = formatter.format(args);
+                violation = formatter.format(args);
             }
         }
-        return message;
+        return violation;
     }
 
     /**
-     * Returns the formatted custom message if one is configured.
+     * Returns the formatted custom violation if one is configured.
      *
-     * @return the formatted custom message or {@code null}
-     *          if there is no custom message
+     * @return the formatted custom violation or {@code null}
+     *          if there is no custom violation
      */
-    private String getCustomMessage() {
-        String message = null;
+    private String getCustomViolation() {
+        String violation = null;
         if (customMessage != null) {
             final MessageFormat formatter = new MessageFormat(customMessage, Locale.ROOT);
-            message = formatter.format(args);
+            violation = formatter.format(args);
         }
-        return message;
+        return violation;
     }
 
     /**
      * Find a ResourceBundle for a given bundle name. Uses the classloader
-     * of the class emitting this message, to be sure to get the correct
+     * of the class emitting this violation, to be sure to get the correct
      * bundle.
      *
      * @param bundleName the bundle name

@@ -56,7 +56,7 @@ import nl.jqno.equalsverifier.EqualsVerifierReport;
  *
  * @noinspection ClassLoaderInstantiation
  */
-public class LocalizedMessageTest {
+public class ViolationTest {
 
     private static final Locale DEFAULT_LOCALE = Locale.getDefault();
 
@@ -86,21 +86,21 @@ public class LocalizedMessageTest {
 
     /**
      * Verifies that if the language is specified explicitly (and it is not English),
-     * the message does not use the default value.
+     * the violation does not use the default value.
      */
     @Test
     public void testLocaleIsSupported() {
         final String language = DEFAULT_LOCALE.getLanguage();
         if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
-            final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+            final Violation violation = createSampleViolation();
             assertThat("Unsupported language: " + DEFAULT_LOCALE,
-                    localizedMessage.getMessage(), not("Empty statement."));
+                    violation.getViolation(), not("Empty statement."));
         }
     }
 
     @Test
     public void testEqualsAndHashCode() {
-        final EqualsVerifierReport ev = EqualsVerifier.forClass(LocalizedMessage.class)
+        final EqualsVerifierReport ev = EqualsVerifier.forClass(Violation.class)
                 .usingGetClass().report();
         assertWithMessage("Error: " + ev.getMessage())
                 .that(ev.isSuccessful())
@@ -109,38 +109,38 @@ public class LocalizedMessageTest {
 
     @Test
     public void testGetSeverityLevel() {
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final Violation violation = createSampleViolation();
 
         assertEquals(SeverityLevel.ERROR,
-                localizedMessage.getSeverityLevel(), "Invalid severity level");
+                violation.getSeverityLevel(), "Invalid severity level");
     }
 
     @Test
     public void testGetModuleId() {
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final Violation violation = createSampleViolation();
 
-        assertEquals("module", localizedMessage.getModuleId(), "Invalid module id");
+        assertEquals("module", violation.getModuleId(), "Invalid module id");
     }
 
     @Test
     public void testGetSourceName() {
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        final Violation violation = createSampleViolation();
 
-        assertEquals("com.puppycrawl.tools.checkstyle.api.LocalizedMessage",
-                localizedMessage.getSourceName(), "Invalid source name");
+        assertEquals("com.puppycrawl.tools.checkstyle.api.Violation",
+                violation.getSourceName(), "Invalid source name");
     }
 
     @Test
     public void testMessageInEnglish() {
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
-        LocalizedMessage.setLocale(Locale.ENGLISH);
+        final Violation violation = createSampleViolation();
+        Violation.setLocale(Locale.ENGLISH);
 
-        assertEquals("Empty statement.", localizedMessage.getMessage(), "Invalid message");
+        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
     }
 
     @Test
     public void testBundleReloadUrlNull() throws IOException {
-        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final Violation.Utf8Control control = new Violation.Utf8Control();
         final ResourceBundle bundle = control.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
@@ -186,7 +186,7 @@ public class LocalizedMessageTest {
             }
         });
 
-        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final Violation.Utf8Control control = new Violation.Utf8Control();
         final ResourceBundle bundle = control.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), true);
@@ -234,7 +234,7 @@ public class LocalizedMessageTest {
             }
         });
 
-        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final Violation.Utf8Control control = new Violation.Utf8Control();
         final ResourceBundle bundle = control.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
                 "java.class", new TestUrlsClassLoader(url), false);
@@ -253,7 +253,7 @@ public class LocalizedMessageTest {
             }
         });
 
-        final LocalizedMessage.Utf8Control control = new LocalizedMessage.Utf8Control();
+        final Violation.Utf8Control control = new Violation.Utf8Control();
         final ResourceBundle bundle = control.newBundle(
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages",
                 Locale.ENGLISH, "java.class",
@@ -263,84 +263,84 @@ public class LocalizedMessageTest {
 
     @Test
     public void testMessageInFrench() {
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
-        LocalizedMessage.setLocale(Locale.FRENCH);
+        final Violation violation = createSampleViolation();
+        Violation.setLocale(Locale.FRENCH);
 
-        assertEquals("Instruction vide.", localizedMessage.getMessage(), "Invalid message");
+        assertEquals("Instruction vide.", violation.getViolation(), "Invalid violation");
     }
 
     @DefaultLocale("fr")
     @Test
     public void testEnforceEnglishLanguageBySettingUnitedStatesLocale() {
-        LocalizedMessage.setLocale(Locale.US);
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        Violation.setLocale(Locale.US);
+        final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", localizedMessage.getMessage(), "Invalid message");
+        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
     }
 
     @DefaultLocale("fr")
     @Test
     public void testEnforceEnglishLanguageBySettingRootLocale() {
-        LocalizedMessage.setLocale(Locale.ROOT);
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        Violation.setLocale(Locale.ROOT);
+        final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", localizedMessage.getMessage(), "Invalid message");
+        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
     }
 
     @DefaultLocale("fr")
     @Test
     public void testGetKey() {
-        LocalizedMessage.setLocale(Locale.US);
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        Violation.setLocale(Locale.US);
+        final Violation violation = createSampleViolation();
 
-        assertEquals("empty.statement", localizedMessage.getKey(), "Invalid message key");
+        assertEquals("empty.statement", violation.getKey(), "Invalid violation key");
     }
 
     @DefaultLocale("fr")
     @Test
     public void testCleatBundleCache() {
-        LocalizedMessage.setLocale(Locale.ROOT);
-        final LocalizedMessage localizedMessage = createSampleLocalizedMessage();
+        Violation.setLocale(Locale.ROOT);
+        final Violation violation = createSampleViolation();
 
-        assertEquals("Empty statement.", localizedMessage.getMessage(), "Invalid message");
+        assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
 
         final Map<String, ResourceBundle> bundleCache =
-                Whitebox.getInternalState(LocalizedMessage.class, "BUNDLE_CACHE");
+                Whitebox.getInternalState(Violation.class, "BUNDLE_CACHE");
 
         assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
 
-        LocalizedMessage.setLocale(Locale.CHINA);
+        Violation.setLocale(Locale.CHINA);
 
         assertEquals(0, bundleCache.size(), "Invalid bundle cache size");
     }
 
     @Test
     public void testTokenType() {
-        final LocalizedMessage localizedMessage1 = new LocalizedMessage(1, 1, TokenTypes.CLASS_DEF,
+        final Violation violation1 = new Violation(1, 1, TokenTypes.CLASS_DEF,
                 "messages.properties", "key", null, SeverityLevel.ERROR, null,
                 getClass(), null);
-        final LocalizedMessage localizedMessage2 = new LocalizedMessage(1, 1, TokenTypes.OBJBLOCK,
+        final Violation violation2 = new Violation(1, 1, TokenTypes.OBJBLOCK,
                 "messages.properties", "key", EMPTY_OBJECT_ARRAY, SeverityLevel.ERROR, null,
                 getClass(), null);
 
-        assertEquals(TokenTypes.CLASS_DEF, localizedMessage1.getTokenType(), "Invalid token type");
-        assertEquals(TokenTypes.OBJBLOCK, localizedMessage2.getTokenType(), "Invalid token type");
+        assertEquals(TokenTypes.CLASS_DEF, violation1.getTokenType(), "Invalid token type");
+        assertEquals(TokenTypes.OBJBLOCK, violation2.getTokenType(), "Invalid token type");
     }
 
     @Test
     public void testGetColumnCharIndex() {
-        final LocalizedMessage localizedMessage1 = new LocalizedMessage(1, 1, 123,
+        final Violation violation1 = new Violation(1, 1, 123,
                 TokenTypes.CLASS_DEF, "messages.properties", "key", null, SeverityLevel.ERROR,
                 null, getClass(), null);
 
-        assertEquals(123, localizedMessage1.getColumnCharIndex(), "Invalid column char index");
+        assertEquals(123, violation1.getColumnCharIndex(), "Invalid column char index");
     }
 
     @Test
     public void testCompareToWithDifferentModuleId() {
-        final LocalizedMessage message1 = createSampleLocalizedMessageWithId("module1");
-        final LocalizedMessage message2 = createSampleLocalizedMessageWithId("module2");
-        final LocalizedMessage messageNull = createSampleLocalizedMessageWithId(null);
+        final Violation message1 = createSampleViolationWithId("module1");
+        final Violation message2 = createSampleViolationWithId("module2");
+        final Violation messageNull = createSampleViolationWithId(null);
 
         assertTrue(message1.compareTo(messageNull) > 0, "Invalid comparing result");
         assertTrue(messageNull.compareTo(message1) < 0, "Invalid comparing result");
@@ -349,9 +349,9 @@ public class LocalizedMessageTest {
 
     @Test
     public void testCompareToWithDifferentLines() {
-        final LocalizedMessage message1 = createSampleLocalizedMessageWithLine(1);
-        final LocalizedMessage message1a = createSampleLocalizedMessageWithLine(1);
-        final LocalizedMessage message2 = createSampleLocalizedMessageWithLine(2);
+        final Violation message1 = createSampleViolationWithLine(1);
+        final Violation message1a = createSampleViolationWithLine(1);
+        final Violation message2 = createSampleViolationWithLine(2);
 
         assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
         assertTrue(message2.compareTo(message1) > 0, "Invalid comparing result");
@@ -361,9 +361,9 @@ public class LocalizedMessageTest {
 
     @Test
     public void testCompareToWithDifferentColumns() {
-        final LocalizedMessage message1 = createSampleLocalizedMessageWithColumn(1);
-        final LocalizedMessage message1a = createSampleLocalizedMessageWithColumn(1);
-        final LocalizedMessage message2 = createSampleLocalizedMessageWithColumn(2);
+        final Violation message1 = createSampleViolationWithColumn(1);
+        final Violation message1a = createSampleViolationWithColumn(1);
+        final Violation message2 = createSampleViolationWithColumn(2);
 
         assertTrue(message1.compareTo(message2) < 0, "Invalid comparing result");
         assertTrue(message2.compareTo(message1) > 0, "Invalid comparing result");
@@ -371,30 +371,30 @@ public class LocalizedMessageTest {
         assertEquals(0, actual, "Invalid comparing result");
     }
 
-    private static LocalizedMessage createSampleLocalizedMessage() {
-        return createSampleLocalizedMessageWithId("module");
+    private static Violation createSampleViolation() {
+        return createSampleViolationWithId("module");
     }
 
-    private static LocalizedMessage createSampleLocalizedMessageWithId(String id) {
-        return new LocalizedMessage(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", EMPTY_OBJECT_ARRAY, id, LocalizedMessage.class, null);
+    private static Violation createSampleViolationWithId(String id) {
+        return new Violation(1, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                "empty.statement", EMPTY_OBJECT_ARRAY, id, Violation.class, null);
     }
 
-    private static LocalizedMessage createSampleLocalizedMessageWithLine(int line) {
-        return new LocalizedMessage(line, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
-                "empty.statement", EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
+    private static Violation createSampleViolationWithLine(int line) {
+        return new Violation(line, "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                "empty.statement", EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
     }
 
-    private static LocalizedMessage createSampleLocalizedMessageWithColumn(int column) {
-        return new LocalizedMessage(1, column,
+    private static Violation createSampleViolationWithColumn(int column) {
+        return new Violation(1, column,
                 "com.puppycrawl.tools.checkstyle.checks.coding.messages", "empty.statement",
-                EMPTY_OBJECT_ARRAY, "module", LocalizedMessage.class, null);
+                EMPTY_OBJECT_ARRAY, "module", Violation.class, null);
     }
 
     @AfterEach
     public void tearDown() {
-        LocalizedMessage.clearCache();
-        LocalizedMessage.setLocale(DEFAULT_LOCALE);
+        Violation.clearCache();
+        Violation.setLocale(DEFAULT_LOCALE);
     }
 
     /**
