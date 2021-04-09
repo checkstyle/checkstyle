@@ -627,7 +627,35 @@ public final class TokenTypes {
      * A parameter declaration. The last parameter in a list of parameters may
      * be variable length (indicated by the ELLIPSIS child node immediately
      * after the TYPE child).
-     *
+     * <p>For example</p>
+     * <pre>
+     *      void foo(int firstParameter, int... secondParameter) {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *     |--MODIFIERS -&gt; MODIFIERS
+     *     |--TYPE -&gt; TYPE
+     *     |   `--LITERAL_VOID -&gt; void
+     *     |--IDENT -&gt; foo
+     *     |--LPAREN -&gt; (
+     *     |--PARAMETERS -&gt; PARAMETERS
+     *     |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *     |   |   |--MODIFIERS -&gt; MODIFIERS
+     *     |   |   |--TYPE -&gt; TYPE
+     *     |   |   |   `--LITERAL_INT -&gt; int
+     *     |   |   `--IDENT -&gt; firstParameter
+     *     |   |--COMMA -&gt; ,
+     *     |   `--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *     |       |--MODIFIERS -&gt; MODIFIERS
+     *     |       |--TYPE -&gt; TYPE
+     *     |       |   `--LITERAL_INT -&gt; int
+     *     |       |--ELLIPSIS -&gt; ...
+     *     |       `--IDENT -&gt; secondParameter
+     *     |--RPAREN -&gt; )
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
+     * </pre>
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
