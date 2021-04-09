@@ -656,6 +656,7 @@ public final class TokenTypes {
      *      `--SLIST -&gt; {
      *          `--RCURLY -&gt; }
      * </pre>
+	 *
      * @see #MODIFIERS
      * @see #TYPE
      * @see #IDENT
