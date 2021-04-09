@@ -1393,10 +1393,10 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre> 
-     * `--EXPR -&gt; EXPR
-     *     `--DOT -&gt; .
-     *         |--LITERAL_INT -&gt; int
-     *         `--LITERAL_CLASS -&gt; class
+     * EXPR -&gt; EXPR
+     *  `--DOT -&gt; .
+     *      |--LITERAL_INT -&gt; int
+     *      `--LITERAL_CLASS -&gt; class
      * </pre>
      *
      * @see #DOT
