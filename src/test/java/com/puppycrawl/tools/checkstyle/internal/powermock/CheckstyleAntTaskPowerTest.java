@@ -41,7 +41,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.ant.CheckstyleAntTask;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.CheckstyleAntTaskLogStub;
 import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.CheckstyleAntTaskStub;
 import com.puppycrawl.tools.checkstyle.internal.powermock.testmodules.MessageLevelPair;
@@ -73,11 +73,11 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
 
         antTask.execute();
 
-        final LocalizedMessage auditStartedMessage = new LocalizedMessage(1,
+        final Violation auditStartedMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
                 null, null,
                 getClass(), null);
-        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(1,
+        final Violation auditFinishedMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
                 null, null,
                 getClass(), null);
@@ -88,8 +88,8 @@ public class CheckstyleAntTaskPowerTest extends AbstractPathTestSupport {
                 new MessageLevelPair("To locate the files took 0 ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Running Checkstyle ", Project.MSG_INFO),
                 new MessageLevelPair("Using configuration ", Project.MSG_VERBOSE),
-                new MessageLevelPair(auditStartedMessage.getMessage(), Project.MSG_DEBUG),
-                new MessageLevelPair(auditFinishedMessage.getMessage(), Project.MSG_DEBUG),
+                new MessageLevelPair(auditStartedMessage.getViolation(), Project.MSG_DEBUG),
+                new MessageLevelPair(auditFinishedMessage.getViolation(), Project.MSG_DEBUG),
                 new MessageLevelPair("To process the files took 0 ms.", Project.MSG_VERBOSE),
                 new MessageLevelPair("Total execution took 0 ms.", Project.MSG_VERBOSE)
         );

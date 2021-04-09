@@ -53,7 +53,7 @@ import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
@@ -361,18 +361,18 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addFormatter(formatter);
         antTask.execute();
 
-        final LocalizedMessage auditStartedMessage = new LocalizedMessage(1,
+        final Violation auditStartedMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted",
                 null, null,
                 getClass(), null);
-        final LocalizedMessage auditFinishedMessage = new LocalizedMessage(1,
+        final Violation auditFinishedMessage = new Violation(1,
                 Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished",
                 null, null,
                 getClass(), null);
 
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final String errorMessage = "Content of file with violations differs from expected";
-        assertThat(errorMessage, output.get(0), is(auditStartedMessage.getMessage()));
+        assertThat(errorMessage, output.get(0), is(auditStartedMessage.getViolation()));
         assertThat(errorMessage, output.get(1), allOf(
                 startsWith("[WARN]"),
                 containsString("InputCheckstyleAntTaskError.java:4: "),
@@ -385,7 +385,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 startsWith("[ERROR]"),
                 endsWith("InputCheckstyleAntTaskError.java:9: "
                     + "Line is longer than 70 characters (found 81). [LineLength]")));
-        assertThat(errorMessage, output.get(4), is(auditFinishedMessage.getMessage()));
+        assertThat(errorMessage, output.get(4), is(auditFinishedMessage.getViolation()));
     }
 
     @Test
