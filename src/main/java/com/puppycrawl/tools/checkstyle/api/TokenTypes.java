@@ -1569,6 +1569,21 @@ public final class TokenTypes {
     /**
      * The {@code transient} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * transient int a;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_TRANSIENT -&gt; transient
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_INT -&gt; int
+     *  |--IDENT -&gt; a
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #MODIFIERS
      **/
     public static final int LITERAL_TRANSIENT =
