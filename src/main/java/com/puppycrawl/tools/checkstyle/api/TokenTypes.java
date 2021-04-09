@@ -1466,7 +1466,7 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--METHOD_DEF -&gt; METHOD_DEF
+     * |--METHOD_CALL -&gt; METHOD_CALL
      * |   |--MODIFIERS -&gt; MODIFIERS
      * |   |--TYPE -&gt; TYPE
      * |   |   `--LITERAL_VOID -&gt; void 
