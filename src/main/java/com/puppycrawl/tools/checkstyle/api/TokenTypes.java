@@ -1114,6 +1114,19 @@ public final class TokenTypes {
      * {@code LITERAL_FOR}.  The child of this element is an
      * optional expression list.
      *
+     * <p>For example:</p>
+     * <pre>
+     * for (int i = 0; i &lt; arr.length; i++) {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  `--ELIST -&gt; ELIST
+     *        `--EXPR -&gt; EXPR
+     *            `--POST_INC -&gt; ++
+     *                `--IDENT -&gt; i
+     * </pre>
+     *
      * @see #ELIST
      * @see #LITERAL_FOR
      **/
