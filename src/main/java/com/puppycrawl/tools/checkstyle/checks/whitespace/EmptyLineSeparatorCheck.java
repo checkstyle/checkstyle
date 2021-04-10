@@ -35,9 +35,13 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
- * Checks for empty line separators after header, package, all import declarations,
+ * Checks for empty line separators before package, all import declarations,
  * fields, constructors, methods, nested classes,
  * static initializers and instance initializers.
+ * </p>
+ * <p>
+ * Checks for empty line separators before not only above mentioned statements but
+ * implementation and documentation comments, blocks as well.
  * </p>
  * <p>
  * ATTENTION: empty line separator is required between token siblings,
@@ -114,11 +118,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * ///////////////////////////////////////////////////
  * //HEADER
  * ///////////////////////////////////////////////////
- * package com.puppycrawl.tools.checkstyle.whitespace;
- * import java.io.Serializable;
- * class Foo {
+ * package com.whitespace; // violation, 'package' should be separated from previous line.
+ * import java.io.Serializable; // violation, 'import' should be separated from previous line.
+ * class Foo { // violation, 'CLASS_DEF' should be separated from previous line.
  *   public static final int FOO_CONST = 1;
- *   public void foo() {} //should be separated from previous statement.
+ *   public void foo() {} // violation, 'METHOD_DEF' should be separated from previous line.
  * }
  * </pre>
  *
@@ -143,7 +147,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
- * To check empty line after
+ * To check empty line before
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
  * VARIABLE_DEF</a> and
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -198,7 +202,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *
  *
  *
- *   public void foo() {} //should be separated from previous statement.
+ *   public void foo() {} // OK
  * }
  * </pre>
  * <p>
@@ -208,6 +212,25 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * &lt;module name=&quot;EmptyLineSeparator&quot;&gt;
  *   &lt;property name=&quot;allowMultipleEmptyLines&quot; value=&quot;false&quot;/&gt;
  * &lt;/module&gt;
+ * </pre>
+ * <pre>
+ * ///////////////////////////////////////////////////
+ * //HEADER
+ * ///////////////////////////////////////////////////
+ *
+ *
+ * package com.checkstyle.whitespace; // violation, more than 1 empty lines before.
+ *
+ *
+ * import java.io.Serializable;&#10; // violation, 'import' has more than 1 empty lines before.
+ *
+ * class Foo { // violation, 'CLASS_DEF' has more than 1 empty lines before.
+ *   public static final int FOO_CONST = 1;
+ *
+ *
+ *
+ *   public void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
+ * }
  * </pre>
  *
  * <p>
@@ -252,7 +275,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   public void foo() {
  *
  *
- *     System.out.println(1); // violation since method has 2 empty lines subsequently
+ *     System.out.println(1); // violation, There is more than 1 empty line one after another
+ *                            // in previous line.
  *   }
  * }
  * </pre>
@@ -273,7 +297,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *     private int k;
  *
  *
- *     private static void foo() {} // violation, before this like there two empty lines
+ *     private static void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
  *
  * }
  * </pre>
