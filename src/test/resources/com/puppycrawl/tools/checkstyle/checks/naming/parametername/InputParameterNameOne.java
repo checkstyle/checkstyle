@@ -1,9 +1,12 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 import java.io.*;
 
-/* Config: default */
+/* Config:
+ *
+ * format = "^a[A-Z][a-zA-Z0-9]*$"
+ */
 
-final class InputParameterName
+final class InputParameterNameOne
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -58,8 +61,8 @@ final class InputParameterName
      * @param badFormat3 bad format
      * @throws java.lang.Exception abc
      **/
-    int test1(int badFormat1,int badFormat2, // ok
-              final int badFormat3)          // ok
+    int test1(int badFormat1,int badFormat2, // violation
+              final int badFormat3)          // violation
         throws java.lang.Exception
     {
         return 0;
@@ -89,7 +92,7 @@ final class InputParameterName
     }
 
     /** constructor that is 10 lines long **/
-    private InputParameterName()  // ok
+    private InputParameterNameOne() // ok
     {
         // a line
         // a line
@@ -124,7 +127,7 @@ final class InputParameterName
     }
 
     /** test method pattern */
-    void ALL_UPPERCASE_METHOD()  // ok
+    void ALL_UPPERCASE_METHOD()
     {
     }
 
@@ -136,7 +139,7 @@ final class InputParameterName
     // tabs that count as one char because of their position ->        <-   ->        <-, OK
 
     /** some lines to test the violation column after tabs */
-    void errorColumnAfterTabs()  // ok
+    void errorColumnAfterTabs()
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
@@ -157,7 +160,7 @@ final class InputParameterName
     /* YES */ /* MEMME: x */ /* YES!! */
 
     /** test long comments **/
-    void veryLong()  // ok
+    void veryLong() // ok
     {
         /*
           blah blah blah blah
@@ -181,17 +184,17 @@ final class InputParameterName
     /**
      * @see to lazy to document all args. Testing excessive # args
      **/
-    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,  // ok
-                    int aArg6, int aArg7, int aArg8, int aArg9)  // ok
+    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,   // ok
+                    int aArg6, int aArg7, int aArg8, int aArg9)              // ok
     {
     }
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputParameterName2
+class InputParameterNameOne2
 {
     /** Some more Javadoc. */
-    public void doSomething()  // ok
+    public void doSomething() // ok
     {
         //"O" should be named "o"
         for (Object O : new java.util.ArrayList())
@@ -202,7 +205,7 @@ class InputParameterName2
 }
 
 /** Test enum for member naming check */
-enum InputParameterNameEnum1
+enum InputParameterNameEnumOne1
 {
     /** ABC constant */
     ABC,
