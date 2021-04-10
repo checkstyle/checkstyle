@@ -4,26 +4,26 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
 
-/**
- * This test-input is intended to be checked using following configuration:
+
+/* Config :
  *
  * tokens = ["CLASS_DEF", "CTOR_DEF", "VARIABLE_DEF"]
  * allowSamelineSingleParameterlessAnnotation = true
  * allowSamelineParameterizedAnnotation = false
  * allowSamelineMultipleAnnotations = false
- *
  */
+
 @ClassAnnotation(value = "foo")
-  @ClassAnnotation //warn
-@ClassAnnotation("bar") class InputAnnotationLocationClass { //warn
+  @ClassAnnotation // violation
+@ClassAnnotation("bar") class InputAnnotationLocationClass { // violation
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation //warn
-    @ClassAnnotation("bar") Object field; //warn
+      @ClassAnnotation // violation
+    @ClassAnnotation("bar") Object field; // violation
 
     @ClassAnnotation(value = "foo")
-      @ClassAnnotation //warn
-    @ClassAnnotation("bar") InputAnnotationLocationClass() { //warn
+      @ClassAnnotation // violation
+    @ClassAnnotation("bar") InputAnnotationLocationClass() { // violation
     }
 
 }
