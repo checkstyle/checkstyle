@@ -212,7 +212,7 @@
           <tr>
             <td><a href="config_whitespace.html#EmptyLineSeparator">EmptyLineSeparator</a></td>
             <td>
-              Checks for empty line separators after header, package,
+              Checks for empty line separators before package,
               all import declarations, fields, constructors, methods, nested classes,
               static initializers and instance initializers.
             </td>
