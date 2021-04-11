@@ -1672,6 +1672,26 @@ public final class TokenTypes {
     /**
      * A right curly brace (<code>}</code>).
      *
+     * <p>For example:</p>
+     * <pre>
+     * {@code
+     * void foo(){}
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; foo
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
@@ -1711,6 +1731,45 @@ public final class TokenTypes {
 
     /**
      * A left parenthesis ({@code (}).
+     *
+     * <p>For example:</p>
+     * <pre>
+     * Integer val = new Integer();
+     * while (false) {
+     *     val += (-3);
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--TYPE -&gt; TYPE
+     *  |   |   `--IDENT -&gt; Integer
+     *  |   |--IDENT -&gt; val
+     *  |   `--ASSIGN -&gt; =
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--LITERAL_NEW -&gt; new
+     *  |               |--IDENT -&gt; Integer
+     *  |               |--LPAREN -&gt; (
+     *  |               |--ELIST -&gt; ELIST
+     *  |               `--RPAREN -&gt; )
+     *  |--SEMI -&gt; ;
+     *  |--LITERAL_WHILE -&gt; while
+     *  |   |--LPAREN -&gt; (
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--LITERAL_FALSE -&gt; false
+     *  |   |--RPAREN -&gt; )
+     *  |   `--SLIST -&gt; {
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--PLUS_ASSIGN -&gt; +=
+     *  |       |       |--IDENT -&gt; val
+     *  |       |       |--LPAREN -&gt; (
+     *  |       |       |--UNARY_MINUS -&gt; -
+     *  |       |       |   `--NUM_INT -&gt; 3
+     *  |       |       `--RPAREN -&gt; )
+     *  |       |--SEMI -&gt; ;
+     *  |       `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #LITERAL_FOR
      * @see #LITERAL_NEW
@@ -2468,6 +2527,39 @@ public final class TokenTypes {
     /**
      * A list of resources in the Java 7 try-with-resources construct.
      * This is a child of RESOURCE_SPECIFICATION.
+     *
+     * <p>For example:</p>
+     * <pre>
+     *     try (FileReader fr = new FileReader("config.xml")) {
+     *     } finally {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_TRY -&gt; try
+     *  |--RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *  |   |--LPAREN -&gt; (
+     *  |   |--RESOURCES -&gt; RESOURCES
+     *  |   |   `--RESOURCE -&gt; RESOURCE
+     *  |   |       |--MODIFIERS -&gt; MODIFIERS
+     *  |   |       |--TYPE -&gt; TYPE
+     *  |   |       |   `--IDENT -&gt; FileReader
+     *  |   |       |--IDENT -&gt; fr
+     *  |   |       `--ASSIGN -&gt; =
+     *  |   |           `--EXPR -&gt; EXPR
+     *  |   |               `--LITERAL_NEW -&gt; new
+     *  |   |                   |--IDENT -&gt; FileReader
+     *  |   |                   |--LPAREN -&gt; (
+     *  |   |                   |--ELIST -&gt; ELIST
+     *  |   |                   |   `--EXPR -&gt; EXPR
+     *  |   |                   |       `--STRING_LITERAL -&gt; "config.xml"
+     *  |   |                   `--RPAREN -&gt; )
+     *  |   `--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_FINALLY -&gt; finally
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
+     * </pre>
      *
      * @see #RESOURCE_SPECIFICATION
      **/
