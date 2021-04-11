@@ -130,6 +130,30 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     }
 
     /**
+     * Returns list of {@link Configuration} instance for the list of module name.
+     * This implementation uses {@link #getModuleConfig(String)} method inside.
+     *
+     * @param moduleName list of module name.
+     * @param moduleId list of module id.
+     * @return list of {@link Configuration} instance for the given module name.
+     * @throws IllegalStateException if there is a problem retrieving the module or config.
+     */
+    protected static List<Configuration>
+        getModuleConfig(List<String> moduleName, List<String> moduleId) {
+        final int totalModule = moduleName.size();
+        final int totalModuleId = moduleId.size();
+        if (totalModule != totalModuleId) {
+            throw new IllegalStateException("no of id found: "
+                     + totalModuleId + " but no of module found " + totalModule);
+        }
+        final List<Configuration> result = new ArrayList<>();
+        for (int index = 0; index < totalModule; index++) {
+            result.add(getModuleConfig(moduleName.get(index), moduleId.get(index)));
+        }
+        return result;
+    }
+
+    /**
      * Returns a list of all {@link Configuration} instances for the given module name.
      *
      * @param moduleName module name.

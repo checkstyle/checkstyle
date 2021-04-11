@@ -132,6 +132,31 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
+     * Creates {@link Checker} instance for list  of  {@link Configuration} instances
+     * with parent {@link TreeWalker}.
+     *
+     * @param moduleConfig {@link Configuration} instances.
+     * @return {@link Checker} instance.
+     * @throws Exception if an exception occurs during checker configuration.
+     */
+    protected final Checker createChecker(List<Configuration> moduleConfig)
+            throws Exception {
+        final Configuration dc;
+        dc = createTreeWalkerConfig(moduleConfig);
+        final Checker checker = new Checker();
+
+        // make sure the tests always run with English error messages
+        // so the tests don't fail in supported locales like German
+        final Locale locale = Locale.ENGLISH;
+        checker.setLocaleCountry(locale.getCountry());
+        checker.setLocaleLanguage(locale.getLanguage());
+        checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
+        checker.configure(dc);
+        checker.addListener(getBriefUtLogger());
+        return checker;
+    }
+
+    /**
      * Creates {@link Checker} instance based on specified {@link Configuration}.
      *
      * @param moduleConfig {@link Configuration} instance.
@@ -186,6 +211,26 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
     }
 
     /**
+     * Creates {@link DefaultConfiguration} or the {@link Checker}.
+     * based on the the list of {@link Configuration}.
+     *
+     * @param configs list of {@link Configuration} instances.
+     * @return {@link DefaultConfiguration} for the {@link Checker}.
+     */
+    protected final DefaultConfiguration createTreeWalkerConfig(List<Configuration> configs) {
+        final DefaultConfiguration dc =
+                new DefaultConfiguration("configuration");
+        final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
+        // make sure that the tests always run with this charset
+        dc.addAttribute("charset", "iso-8859-1");
+        dc.addChild(twConf);
+        for (Configuration conf: configs) {
+            twConf.addChild(conf);
+        }
+        return dc;
+    }
+
+    /**
      * Creates {@link DefaultConfiguration} for the given {@link Configuration} instance.
      *
      * @param config {@link Configuration} instance.
@@ -213,6 +258,27 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected final void verify(Configuration config, String fileName, String[] expected,
             Integer... warnsExpected) throws Exception {
+        verify(createChecker(config),
+                new File[] {new File(fileName)},
+                fileName, expected, warnsExpected);
+    }
+
+    /**
+     * Performs verification of the file with given file name. Uses specified configuration.
+     * Expected messages are represented by the array of strings, warning line numbers are
+     * represented by the array of integers.
+     * This implementation uses overloaded
+     * {@link AbstractItModuleTestSupport#verify(Checker, File[], String, String[], Integer...)}
+     * method inside.
+     *
+     * @param config list of configuration.
+     * @param fileName file name to verify.
+     * @param expected an array of expected messages.
+     * @param warnsExpected an array of expected warning numbers.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verify(List<Configuration> config, String fileName, String[] expected,
+                                Integer... warnsExpected) throws Exception {
         verify(createChecker(config),
                 new File[] {new File(fileName)},
                 fileName, expected, warnsExpected);
