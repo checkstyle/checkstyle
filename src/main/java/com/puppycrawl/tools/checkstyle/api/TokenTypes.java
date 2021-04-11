@@ -293,7 +293,9 @@ public final class TokenTypes {
      * <p>For example:</p>
      * <pre>
      * public class Student {
-     *     private int id;
+     *     int id;
+     * 
+     *     { id = 100; }
      * }
      * </pre>
      * <p>parses as:</p>
@@ -307,11 +309,18 @@ public final class TokenTypes {
      *     |--LCURLY -&gt; {
      *     |--VARIABLE_DEF -&gt; VARIABLE_DEF
      *     |   |--MODIFIERS -&gt; MODIFIERS
-     *     |   |   `--LITERAL_PRIVATE -&gt; private
      *     |   |--TYPE -&gt; TYPE
      *     |   |   `--LITERAL_INT -&gt; int
      *     |   |--IDENT -&gt; id
      *     |   `--SEMI -&gt; ;
+     *     |--INSTANCE_INIT -&gt; INSTANCE_INIT
+     *     |   `--SLIST -&gt; {
+     *     |       |--EXPR -&gt; EXPR
+     *     |       |   `--ASSIGN -&gt; =
+     *     |       |       |--IDENT -&gt; id
+     *     |       |       `--NUM_INT -&gt; 100
+     *     |       |--SEMI -&gt; ;
+     *     |       `--RCURLY -&gt; }
      *     `--RCURLY -&gt; }
      * </pre>
      *
