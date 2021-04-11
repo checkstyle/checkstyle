@@ -2119,69 +2119,38 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * for(int i = 0, n = myArray.length; i &lt; n; i++)
-     * {
-     * }
+     * for (int i = 0; i &lt; arr.length; i++) {}
      * </pre>
-     *
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_FOR (for)
-     *     |
-     *     +--LPAREN (()
-     *     +--FOR_INIT
-     *         |
-     *         +--VARIABLE_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (i)
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--EXPR
-     *                     |
-     *                     +--NUM_INT (0)
-     *         +--COMMA (,)
-     *         +--VARIABLE_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (n)
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--EXPR
-     *                     |
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (myArray)
-     *                         +--IDENT (length)
-     *     +--SEMI (;)
-     *     +--FOR_CONDITION
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--LT (&lt;)
-     *                 |
-     *                 +--IDENT (i)
-     *                 +--IDENT (n)
-     *     +--SEMI (;)
-     *     +--FOR_ITERATOR
-     *         |
-     *         +--ELIST
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--POST_INC (++)
-     *                     |
-     *                     +--IDENT (i)
-     *     +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--RCURLY (})
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_INIT -&gt; FOR_INIT
+     *  |   `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--LITERAL_INT -&gt; int
+     *  |       |--IDENT -&gt; i
+     *  |       `--ASSIGN -&gt; =
+     *  |           `--EXPR -&gt; EXPR
+     *  |               `--NUM_INT -&gt; 0
+     *  |--SEMI -&gt; ;
+     *  |--FOR_CONDITION -&gt; FOR_CONDITION
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LT -&gt; &lt;
+     *  |           |--IDENT -&gt; i
+     *  |           `--DOT -&gt; .
+     *  |               |--IDENT -&gt; arr
+     *  |               `--IDENT -&gt; length
+     *  |--SEMI -&gt; ;
+     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  |   `--ELIST -&gt; ELIST
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--POST_INC -&gt; ++
+     *  |               `--IDENT -&gt; i
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #LPAREN
