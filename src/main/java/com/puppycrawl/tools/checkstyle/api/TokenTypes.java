@@ -1844,6 +1844,45 @@ public final class TokenTypes {
     /**
      * A left parenthesis ({@code (}).
      *
+     * <p>For example:</p>
+     * <pre>
+     * Integer val = new Integer();
+     * while (false) {
+     *     val += (-3);
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     *  |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--TYPE -&gt; TYPE
+     *  |   |   `--IDENT -&gt; Integer
+     *  |   |--IDENT -&gt; val
+     *  |   `--ASSIGN -&gt; =
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--LITERAL_NEW -&gt; new
+     *  |               |--IDENT -&gt; Integer
+     *  |               |--LPAREN -&gt; (
+     *  |               |--ELIST -&gt; ELIST
+     *  |               `--RPAREN -&gt; )
+     *  |--SEMI -&gt; ;
+     *  |--LITERAL_WHILE -&gt; while
+     *  |   |--LPAREN -&gt; (
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--LITERAL_FALSE -&gt; false
+     *  |   |--RPAREN -&gt; )
+     *  |   `--SLIST -&gt; {
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--PLUS_ASSIGN -&gt; +=
+     *  |       |       |--IDENT -&gt; val
+     *  |       |       |--LPAREN -&gt; (
+     *  |       |       |--UNARY_MINUS -&gt; -
+     *  |       |       |   `--NUM_INT -&gt; 3
+     *  |       |       `--RPAREN -&gt; )
+     *  |       |--SEMI -&gt; ;
+     *  |       `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #LITERAL_FOR
      * @see #LITERAL_NEW
      * @see #EXPR
