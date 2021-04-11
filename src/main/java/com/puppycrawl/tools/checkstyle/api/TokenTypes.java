@@ -1877,7 +1877,6 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-<<<<<<< HEAD
      * super.toString()；
      * </pre>
      * <p>parses as:</p>
@@ -1890,19 +1889,6 @@ public final class TokenTypes {
      * |       |--ELIST -&gt; ELIST
      * |       `--RPAREN -&gt; )
      * |--SEMI -&gt; ;
-=======
-     * super.toString()
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * |--EXPR -> EXPR
-     * |  +--METHOD_CALL -> (
-     * |     |--DOT -> .
-     * |     |  |--LITERAL_SUPER -> super
-     * |     |  +--IDENT -> toString
-     * |     |--ELIST -> ELIST
-     * |     +--RPAREN -> )
->>>>>>> 2ea788f8b... issue#9495: update example of AST for TokenTypes.LITERAL_SUPER
      * </pre>
      *
      * @see #EXPR
