@@ -1875,6 +1875,21 @@ public final class TokenTypes {
     /**
      * The {@code super} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * super.toString()
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -> EXPR
+     * |  +--METHOD_CALL -> (
+     * |     |--DOT -> .
+     * |     |  |--LITERAL_SUPER -> super
+     * |     |  +--IDENT -> toString
+     * |     |--ELIST -> ELIST
+     * |     +--RPAREN -> )
+     * </pre>
+     *
      * @see #EXPR
      * @see #SUPER_CTOR_CALL
      **/
