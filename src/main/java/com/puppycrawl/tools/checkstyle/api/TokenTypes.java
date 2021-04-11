@@ -1143,6 +1143,42 @@ public final class TokenTypes {
      * a comma separated list of variable declarations, an expression
      * list, or empty.
      *
+     * <p>For example:</p>
+     * <pre>
+     * for (int i = 0; i &lt; arr.length; i++) {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_FOR -&gt; for
+     *  |--LPAREN -&gt; (
+     *  |--FOR_INIT -&gt; FOR_INIT
+     *  |   `--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |       |--MODIFIERS -&gt; MODIFIERS
+     *  |       |--TYPE -&gt; TYPE
+     *  |       |   `--LITERAL_INT -&gt; int
+     *  |       |--IDENT -&gt; i
+     *  |       `--ASSIGN -&gt; =
+     *  |           `--EXPR -&gt; EXPR
+     *  |               `--NUM_INT -&gt; 0
+     *  |--SEMI -&gt; ;
+     *  |--FOR_CONDITION -&gt; FOR_CONDITION
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LT -&gt; &lt;
+     *  |           |--IDENT -&gt; i
+     *  |           `--DOT -&gt; .
+     *  |               |--IDENT -&gt; arr
+     *  |               `--IDENT -&gt; length
+     *  |--SEMI -&gt; ;
+     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
+     *  |   `--ELIST -&gt; ELIST
+     *  |       `--EXPR -&gt; EXPR
+     *  |           `--POST_INC -&gt; ++
+     *  |               `--IDENT -&gt; i
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #VARIABLE_DEF
      * @see #ELIST
      * @see #LITERAL_FOR
