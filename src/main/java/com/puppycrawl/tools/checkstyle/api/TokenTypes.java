@@ -1877,17 +1877,18 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * super.toString()
+     * super.toString()；
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--EXPR -> EXPR
-     * |  +--METHOD_CALL -> (
-     * |     |--DOT -> .
-     * |     |  |--LITERAL_SUPER -> super
-     * |     |  +--IDENT -> toString
-     * |     |--ELIST -> ELIST
-     * |     +--RPAREN -> )
+     * |--EXPR -&gt; EXPR
+     * |   `--METHOD_CALL -&gt; (
+     * |       |--DOT -&gt; .
+     * |       |  |--LITERAL_SUPER -&gt; super
+     * |       |  `--IDENT -&gt; toString
+     * |       |--ELIST -&gt; ELIST
+     * |       `--RPAREN -&gt; )
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @see #EXPR
