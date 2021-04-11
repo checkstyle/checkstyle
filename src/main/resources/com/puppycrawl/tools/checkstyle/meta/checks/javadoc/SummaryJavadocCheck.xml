@@ -8,8 +8,31 @@
  Checks that
  &lt;a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence"&gt;
  Javadoc summary sentence&lt;/a&gt; does not contain phrases that are not recommended to use.
- Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
- Check also violate Javadoc that does not contain first sentence.
+ Summaries that contain only the {@code {@inheritDoc}} tag are skipped for normal summary javadoc
+ but are violations for inline summary javadoc. Check also violate Javadoc that does not contain
+ first sentence. &lt;/p&gt;&lt;p&gt; According to
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#general-syntax"&gt;
+ Documentation Comment Specification for the Standard Doclet&lt;/a&gt; "The first sentence of the
+ initial description should be a summary sentence that contains a concise but complete description
+ of the declared entity. Descriptive text may include HTML tags and entities, and inline tags
+ as described below."
+ &lt;/p&gt;
+ &lt;p&gt;
+ Allowed tags inside inline summary javadoc are
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#code"&gt;
+ {&amp;#64;code}&lt;/a&gt;,
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#link"&gt;
+ {&amp;#64;link}&lt;/a&gt;,
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#docroot"&gt;
+ {&amp;#64;docRoot}&lt;/a&gt;,
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#linkplain"&gt;
+ {&amp;#64;linkplain}&lt;/a&gt;,
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#literal"&gt;
+ {&amp;#64;literal}&lt;/a&gt;,
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#value"&gt;
+ {&amp;#64;value}&lt;/a&gt;,
+ &lt;a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#index"&gt;
+ {&amp;#64;index}&lt;/a&gt;
  &lt;/p&gt;</description>
          <properties>
             <property default-value="false"
@@ -35,6 +58,7 @@
             <message-key key="summary.first.sentence"/>
             <message-key key="summary.javaDoc"/>
             <message-key key="summary.javaDoc.missing"/>
+            <message-key key="summary.javaDoc.missing.period"/>
          </message-keys>
       </check>
    </module>
