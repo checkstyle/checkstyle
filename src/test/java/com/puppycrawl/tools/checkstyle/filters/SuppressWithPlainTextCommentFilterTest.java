@@ -23,24 +23,36 @@ import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_CONTAINS_TAB;
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck.MSG_FILE_CONTAINS_TAB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
+import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AuditListener;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.FilterSet;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -83,6 +95,94 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
             removeSuppressed(violationMessages, suppressed),
             filterCfg, checkCfg
         );
+    }
+
+    @Test
+    public void testCheckTwiceByIde() throws Exception {
+        final DefaultConfiguration filterCfg =
+                createModuleConfig(SuppressWithPlainTextCommentFilter.class);
+        filterCfg.addAttribute("onCommentFormat", "never-on");
+        filterCfg.addAttribute("offCommentFormat", "never-off");
+
+        final DefaultConfiguration checkCfg =
+                createModuleConfig(FileTabCharacterCheck.class);
+        checkCfg.addAttribute("eachLine", "true");
+
+        final String[] suppressed = {};
+
+        final String[] violationMessages = {
+            "5:7: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_CONTAINS_TAB),
+            "8:7: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_CONTAINS_TAB),
+            "10:1: " + getCheckMessage(FileTabCharacterCheck.class,
+                MSG_CONTAINS_TAB),
+        };
+
+        verifySuppressedTwice(
+                "InputSuppressWithPlainTextCommentFilterWithDefaultCfg.java",
+                removeSuppressed(violationMessages, suppressed), filterCfg,
+                checkCfg);
+    }
+
+    private void verifySuppressedTwice(String fileNameWithExtension,
+            String[] violationMessages, Configuration... childConfigs)
+            throws Exception {
+        final DefaultConfiguration checkerConfig = createRootConfig(null);
+
+        Arrays.stream(childConfigs).forEach(checkerConfig::addChild);
+
+        final String fileExtension =
+                CommonUtil.getFileExtension(fileNameWithExtension);
+        checkerConfig.addAttribute("fileExtensions", fileExtension);
+
+        verifyTwice(checkerConfig, getPath(fileNameWithExtension),
+                violationMessages);
+    }
+
+    private void verifyTwice(Configuration aConfig, String fileName,
+        String... expected) throws Exception {
+        setInfoStreamOptions(OutputStreamOptions.NONE);
+        final Checker checker = createChecker(aConfig);
+
+        final FilterSet filters = Whitebox.getInternalState(checker, "filters");
+        final List<Object> listeners =
+            Whitebox.getInternalState(checker, "listeners");
+
+        final SuppressWithPlainTextCommentFilter suppFilter =
+            (SuppressWithPlainTextCommentFilter) filters.getFilters().stream()
+                .filter(
+                    filter -> filter instanceof SuppressWithPlainTextCommentFilter)
+                .findAny().orElseThrow(NoSuchElementException::new);
+        final Object cache =
+            Whitebox.getInternalState(suppFilter, "suppressionsCache");
+
+        final ErrListener errListener = new ErrListener(cache);
+        checker.addListener(errListener);
+        final List<Object> suppressions = errListener.suppressions;
+
+        verifyNoDestroy(checker, new File[] {new File(fileName)
+        }, fileName, expected);
+
+        assertNotNull(suppressions.get(0), "Suppressions should be cached");
+        assertSame(suppressions.get(0), suppressions.get(1),
+            "Suppressions should not be recalculated on second error");
+        assertSame(suppressions.get(0), suppressions.get(2),
+            "Suppressions should not be recalculated on third error");
+
+        assertNotEquals(-1, listeners.indexOf(cache),
+            "Suppressions cache should listen to fileStarted");
+        assertEquals(listeners.indexOf(cache), listeners.lastIndexOf(cache),
+            "The listener should be added only once");
+
+        verifyNoDestroy(checker, new File[] {new File(fileName)
+        }, fileName, expected);
+
+        assertNotNull(suppressions.get(0), "Suppressions should be cached");
+        assertNotSame(suppressions.get(0), suppressions.get(3),
+            "Suppressions should be recalculated on second run");
+
+        checker.destroy();
     }
 
     @Test
@@ -584,6 +684,18 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
     }
 
     @Test
+    public void testIsAuditListener() throws Exception {
+        verifyAuditListenerNotThrows();
+    }
+
+    private static void verifyAuditListenerNotThrows() throws Exception {
+        final AuditListener suppressionsCache =
+            (AuditListener) Whitebox.newInstance(Whitebox.getInnerClassType(
+                SuppressWithPlainTextCommentFilter.class, "SuppressionsCache"));
+        suppressionsCache.addException(null, null);
+    }
+
+    @Test
     public void testAcceptThrowsIllegalStateExceptionAsFileNotFound() {
         final LocalizedMessage message = new LocalizedMessage(1, 1, 1, TokenTypes.CLASS_DEF,
             "messages.properties", "key", null, SeverityLevel.ERROR, null, getClass(), null);
@@ -741,6 +853,52 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
         final Collection<String> coll = Arrays.stream(from).collect(Collectors.toList());
         coll.removeAll(Arrays.asList(remove));
         return coll.toArray(CommonUtil.EMPTY_STRING_ARRAY);
+    }
+
+    /** Listener to collect current suppressions when an error is accepted. */
+    private static final class ErrListener implements AuditListener {
+
+        /** Private field "suppressionsCache" of the filter. */
+        private final Object cache;
+
+        /** List of suppressions. */
+        private final List<Object> suppressions = new ArrayList<>();
+
+        /** Constructor. */
+        /* package */ ErrListener(Object cache) {
+            this.cache = cache;
+        }
+
+        @Override
+        public void fileStarted(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void fileFinished(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void auditStarted(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void auditFinished(AuditEvent event) {
+            //
+        }
+
+        @Override
+        public void addException(AuditEvent event, Throwable throwable) {
+            //
+        }
+
+        @Override
+        public void addError(AuditEvent event) {
+            suppressions.add(
+                    Whitebox.getInternalState(cache, "currentSuppressions"));
+        }
     }
 
 }

@@ -42,6 +42,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
@@ -70,6 +71,26 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private static final String ROOT_MODULE_NAME = "root";
 
     private final ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+    private OutputStreamOptions infoStreamOptions = OutputStreamOptions.CLOSE;
+
+    /**
+     * Get the value used by {@link #createChecker(Configuration, ModuleCreationOption)} to call
+     * {@link BriefUtLogger#BriefUtLogger(java.io.OutputStream, OutputStreamOptions,
+     * java.io.OutputStream, OutputStreamOptions) }.
+     */
+    public OutputStreamOptions getInfoStreamOptions() {
+        return infoStreamOptions;
+    }
+
+    /**
+     * Set the value used by {@link #createChecker(Configuration, ModuleCreationOption)} to call
+     * {@link BriefUtLogger#BriefUtLogger(java.io.OutputStream, OutputStreamOptions,
+     * java.io.OutputStream, OutputStreamOptions) }.
+     */
+    public void setInfoStreamOptions(OutputStreamOptions infoStreamOptions) {
+        this.infoStreamOptions = infoStreamOptions;
+    }
 
     /**
      * Returns log stream.
@@ -147,7 +168,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             final Configuration dc = createRootConfig(moduleConfig);
             checker.configure(dc);
         }
-        checker.addListener(new BriefUtLogger(stream));
+        checker.addListener(new BriefUtLogger(stream, infoStreamOptions, stream,
+                OutputStreamOptions.NONE));
         return checker;
     }
 
@@ -284,30 +306,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                           String messageFileName,
                           String... expected)
             throws Exception {
-        stream.flush();
-        stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
-
-        // process each of the lines
-        try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            final List<String> actuals = lnr.lines().limit(expected.length)
-                    .sorted().collect(Collectors.toList());
-            Arrays.sort(expected);
-
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = messageFileName + ":" + expected[i];
-                assertEquals("error message " + i, expectedResult, actuals.get(i));
-            }
-
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
-        }
-
+        verifyNoDestroy(checker, processedFiles, messageFileName, expected);
         checker.destroy();
     }
 
@@ -366,6 +365,41 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                         && differingViolations.isEmpty());
 
         checker.destroy();
+    }
+
+    /**
+     * Same as {@link #verify(Checker, File[], String, String...)}, but does not
+     * destroy the Checker.
+     */
+    protected void verifyNoDestroy(Checker checker, File[] processedFiles,
+        String messageFileName, String... expected) throws Exception {
+        stream.flush();
+        stream.reset();
+        final List<File> theFiles = new ArrayList<>();
+        Collections.addAll(theFiles, processedFiles);
+        final int errs = checker.process(theFiles);
+
+        // process each of the lines
+        try (
+            ByteArrayInputStream inputStream =
+                new ByteArrayInputStream(stream.toByteArray());
+            LineNumberReader lnr = new LineNumberReader(
+                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
+            final List<String> actuals = lnr.lines().limit(expected.length)
+                .sorted().collect(Collectors.toList());
+            Arrays.sort(expected);
+
+            for (int i = 0; i < expected.length; i++) {
+                final String expectedResult =
+                    messageFileName + ":" + expected[i];
+                assertEquals("error message " + i, expectedResult,
+                    actuals.get(i));
+            }
+
+            assertEquals("unexpected output: " + lnr.readLine(),
+                expected.length, errs);
+        }
+
     }
 
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
