@@ -6,7 +6,7 @@
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
  Checks that the order of modifiers conforms to the suggestions in the
- &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html"&gt;
+ &lt;a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html"&gt;
  Java Language specification, &amp;#167; 8.1.1, 8.3.1, 8.4.3&lt;/a&gt; and
  &lt;a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html"&gt;9.4&lt;/a&gt;.
  The correct order is:
@@ -18,6 +18,8 @@
  &lt;li&gt; {@code abstract} &lt;/li&gt;
  &lt;li&gt; {@code default} &lt;/li&gt;
  &lt;li&gt; {@code static} &lt;/li&gt;
+ &lt;li&gt; {@code sealed} &lt;/li&gt;
+ &lt;li&gt; {@code non-sealed} &lt;/li&gt;
  &lt;li&gt; {@code final} &lt;/li&gt;
  &lt;li&gt; {@code transient} &lt;/li&gt;
  &lt;li&gt; {@code volatile} &lt;/li&gt;
