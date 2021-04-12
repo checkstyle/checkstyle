@@ -90,7 +90,7 @@ public class InputSummaryJavadocInlineForbidden {
          * {@summary @return the
          * customer ID some javadoc.}
          */
-        int geId() { // violation
+        int geId() { // ok
             return 666;
         }
 
