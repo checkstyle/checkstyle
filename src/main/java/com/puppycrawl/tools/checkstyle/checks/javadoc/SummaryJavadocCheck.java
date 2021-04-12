@@ -25,13 +25,15 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Objects;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
@@ -284,9 +286,19 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
 
     /**
-     * This regexp is used to remove html tags from string.
+     * This regexp is used to remove html tags, string between end of line and new line
+     * in javadoc (, *) and asterisks from string.
      */
-    private static final Pattern HTML_TAG_PATTERN = Pattern.compile("<[^>]*>");
+    private static final Pattern REDUNDANT_ELEMENTS_PATTERN =
+            Pattern.compile("<[^>]*>|(, + *)|(\\*)");
+    /**
+     * This regexp is used to extract content inside summary javadoc tag from a string.
+     */
+    private static final Pattern SUMMARY_PATTERN = Pattern.compile("\\{@summary ([\\S\\s]+)}");
+    /**
+     * This regexp is used to remove javadoc inline tags from string.
+     */
+    private static final Pattern INLINE_TAG_NODE_PATTERN = Pattern.compile("\\{@[\\s\\S]+}");
     /** Period literal. */
     private static final String PERIOD = ".";
 
@@ -319,15 +331,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                     "@linkplain",
                     "@literal",
                     "@value"
-            ))
-    );
-
-    /**
-     * Set of html tags that define the tag is of list type.
-     */
-    private static final Set<String> HTML_LIST_TAGS = Collections.unmodifiableSet(
-            new HashSet<>(Arrays.asList(
-                    "ul", "ol", "dl"
             ))
     );
 
@@ -483,57 +486,48 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      */
     private void validateSummaryTag(DetailNode ast) {
         final String inlineSummary = getInlineSummary(ast);
-        if (inlineSummary.isEmpty()) {
+        final String summaryVisible = getVisibleContent(inlineSummary);
+        if (summaryVisible.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final boolean isPeriodAbsent = isPeriodAtEnd(inlineSummary, period);
-            if (isPeriodAbsent) {
+            if (isPeriodAtEnd(summaryVisible, period)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
             }
-            else if (isSummaryValid(ast)) {
+            else if (!containsCorrectInlineTags(ast)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
     }
 
     /**
-     * Get summary sentence for inline type summary javadoc.
+     * Gets whole content of summary tag.
      *
      * @param javadoc javadoc root node.
-     * @return Summary sentence of javadoc root node.
+     * @return Whole content of summary tag.
      */
-    private static String getInlineSummary(DetailNode javadoc) {
-        final String summary;
-        final DetailNode descriptionNode = getDescriptionNode(javadoc);
-        final boolean isSummaryTagWithinHtml = isSummaryTagWithinHtmlTag(javadoc);
-        if (isSummaryTagWithinHtml) {
-            summary = getInlineHtmlSentence(javadoc);
-        }
-        else if (descriptionNode == null) {
-            summary = "";
-
-        }
-        else {
-            final String summarySentence = getDefaultInlineSummarySentence(descriptionNode);
-            summary = removeHtmlTagsFromString(summarySentence);
-        }
-        return summary;
+    private String getInlineSummary(DetailNode javadoc) {
+        final FileContents file = getFileContents();
+        final DetailNode[] children = javadoc.getChildren();
+        final int javadocEndLineNo = children[children.length - 1].getLineNumber();
+        final TextBlock textBlock = file.getJavadocBefore(javadocEndLineNo + 1);
+        return Arrays.toString(textBlock.getText());
     }
 
     /**
-     * Checks if summary tag present as HTML format.
+     * Gets the string that is visible to user in javadoc.
      *
-     * @param javadoc Javadoc root node.
-     * @return true, if first sentence contains @summary tag.
+     * @param summary Whole content of summary javadoc.
+     * @return string that is visible to user in javadoc.
      */
-    private static boolean isSummaryTagWithinHtmlTag(DetailNode javadoc) {
-        boolean found = false;
-        final DetailNode summaryNode = getInlineTagNodeInsideHtmlTagsOnly(javadoc);
-        if (summaryNode != null) {
-            found = isSummaryTag(summaryNode);
+    private static String getVisibleContent(String summary) {
+        final Matcher matcher = SUMMARY_PATTERN.matcher(summary);
+        String comment = "";
+        if (matcher.find()) {
+            comment = removeRedundantElementsFromString(matcher.group(1));
+            comment = INLINE_TAG_NODE_PATTERN.matcher(comment).replaceAll("");
         }
-        return found;
+        return comment;
     }
 
     /**
@@ -546,20 +540,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     private static boolean isPeriodAtEnd(String sentence, String period) {
         final String summarySentence = sentence.trim();
         return summarySentence.lastIndexOf(period) != summarySentence.length() - 1;
-    }
-
-    /**
-     * Checks if the summary is valid.
-     *
-     * @param ast Javadoc root node.
-     * @return true, if sentence is invalid.
-     */
-    private boolean isSummaryValid(DetailNode ast) {
-        final String inlineFirstSentence = getInlineSummary(ast);
-        final int endOfInlineSentence = inlineFirstSentence.lastIndexOf(period);
-        final String summary = inlineFirstSentence.substring(0, endOfInlineSentence);
-        return containsForbiddenFragment(summary)
-                || !containsCorrectInlineTags(ast);
     }
 
     /**
@@ -598,23 +578,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Finds and returns only those inline tag nodes which are inside html tags from an ast node.
-     *
-     * @param ast Root node.
-     * @return DetailNode of inline tag.
-     */
-    private static DetailNode getInlineTagNodeInsideHtmlTagsOnly(DetailNode ast) {
-        DetailNode node = null;
-        for (DetailNode child: ast.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                node = getInlineTagNodeWithinHtmlElement(child);
-                break;
-            }
-        }
-        return node;
-    }
-
-    /**
      * Remove html tags from string.
      * This is required as ANTLR does not parses html lists sometimes as HTML Elements.
      * The issue link to this issue is
@@ -623,103 +586,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param summarySentence string to clean.
      * @return string without html tags.
      */
-    private static String removeHtmlTagsFromString(String summarySentence) {
-        return HTML_TAG_PATTERN.matcher(summarySentence).replaceAll("");
-    }
-
-    /**
-     * Gets summary sentence for default inline type summary.
-     * Default inline summary sentence are not wrapped within html elements.
-     *
-     * @param ast javadoc description node.
-     * @return Summary sentence of AST.
-     */
-    private static String getDefaultInlineSummarySentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(250);
-        for (DetailNode child : ast.getChildren()) {
-            if (ALLOWED_TYPES.contains(child.getType())) {
-                result.append(child.getText());
-            }
-
-            if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                // Get inside the HTML Element which will always have at least one child
-                final String stringInsideHtmlTags =
-                        getStringInsideHtmlElement(child.getChildren()[0]);
-                result.append(stringInsideHtmlTags);
-                final boolean isHtmlList = HTML_LIST_TAGS.contains(getHtmlTagName(child));
-                if (isHtmlList) {
-                    for (DetailNode nodeChild : child.getChildren()[0].getChildren()) {
-                        if (nodeChild.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                            result.append(nodeChild.getChildren()[0].getChildren()[1].getText());
-                        }
-                    }
-                }
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Get html tag name.
-     *
-     * @param htmlNode html element node.
-     * @return Name of html tag.
-     */
-    private static String getHtmlTagName(DetailNode htmlNode) {
-        // This will never return NPE as htmlNode will at have least one child
-        // This child will have at least 3 children
-        // The first child is of type HTML_ELEMENT_START which always have at least 2 elements.
-        return htmlNode.getChildren()[0].getChildren()[0].getChildren()[1].getText();
-    }
-
-    /**
-     * Get text inside html elements.
-     *
-     * @param htmlNode html element node.
-     * @return text inside html element.
-     */
-    private static String getStringInsideHtmlElement(DetailNode htmlNode) {
-        final StringBuilder htmlString = new StringBuilder(250);
-        // This will never return NPE as htmlNode will at have least one child
-        // This child will have at least 3 children
-        for (DetailNode child: htmlNode.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.TEXT) {
-                htmlString.append(child.getText());
-            }
-        }
-        return htmlString.toString();
-    }
-
-    /**
-     * Gets summary sentence for html inline type summary.
-     * Html type summary sentence are wrapped within paragraph tag.
-     *
-     * @param ast Javadoc root node.
-     * @return first sentence.
-     */
-    private static String getInlineHtmlSentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(256);
-        final DetailNode node = getInlineTagNodeInsideHtmlTagsOnly(ast);
-        result.append(getTextFromInlineTagNode(
-                Objects.requireNonNull(node)));
-        return result.toString();
-    }
-
-    /**
-     * Finds and returns description node.
-     *
-     * @param ast Javadoc root node.
-     * @return Description DetailNode.
-     */
-    private static DetailNode getDescriptionNode(DetailNode ast) {
-        DetailNode node = null;
-        for (DetailNode child : ast.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                node = JavadocUtil.findFirstToken(child, JavadocTokenTypes.DESCRIPTION);
-                break;
-            }
-        }
-        return node;
+    private static String removeRedundantElementsFromString(String summarySentence) {
+        return REDUNDANT_ELEMENTS_PATTERN.matcher(summarySentence).replaceAll("");
     }
 
     /**
@@ -763,52 +631,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
 
         return result.toString();
-    }
-
-    /**
-     * Gets text from a DetailNode of inline form.
-     *
-     * @param node JavaDoc Inline node.
-     * @return first sentence.
-     */
-    private static String getTextFromInlineTagNode(DetailNode node) {
-        final StringBuilder result = new StringBuilder(256);
-        for (DetailNode child : node.getChildren()) {
-            if (ALLOWED_TYPES.contains(child.getType())) {
-                final String text;
-                if (child.getChildren().length == 0) {
-                    text = child.getText();
-                }
-                else {
-                    text = getTextFromDescription(child);
-                }
-
-                result.append(text);
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Returns the text from an InlineTag Description.
-     *
-     * @param ast InlineTag Node.
-     * @return text of InlineTag Description.
-     */
-    private static String getTextFromDescription(DetailNode ast) {
-        final DetailNode[] child = ast.getChildren();
-        StringBuilder inlineText = null;
-        for (DetailNode nodeChild : child) {
-            if (nodeChild.getType() == JavadocTokenTypes.TEXT) {
-                if (inlineText == null) {
-                    inlineText = new StringBuilder(nodeChild.getText());
-                }
-                else {
-                    inlineText.append(nodeChild.getText());
-                }
-            }
-        }
-        return inlineText.toString();
     }
 
     /**
