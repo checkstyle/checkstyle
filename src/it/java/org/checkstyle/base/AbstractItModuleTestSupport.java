@@ -148,7 +148,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         if (moduleCreationOption == ModuleCreationOption.IN_TREEWALKER) {
             dc = createTreeWalkerConfig(moduleConfig);
         }
-        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())) {
+        else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())
+                || "configuration".equals(moduleConfig.getName())) {
             dc = moduleConfig;
         }
         else {
@@ -182,6 +183,26 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
         dc.addAttribute("charset", "iso-8859-1");
         dc.addChild(twConf);
         twConf.addChild(config);
+        return dc;
+    }
+
+    /**
+     * Creates {@link DefaultConfiguration} or the {@link Checker}.
+     * based on the the list of {@link Configuration}.
+     *
+     * @param configs list of {@link Configuration} instances.
+     * @return {@link DefaultConfiguration} for the {@link Checker}.
+     */
+    protected final DefaultConfiguration createTreeWalkerConfig(List<Configuration> configs) {
+        final DefaultConfiguration dc =
+                new DefaultConfiguration("configuration");
+        final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
+        // make sure that the tests always run with this charset
+        dc.addAttribute("charset", "iso-8859-1");
+        dc.addChild(twConf);
+        for (Configuration conf: configs) {
+            twConf.addChild(conf);
+        }
         return dc;
     }
 
