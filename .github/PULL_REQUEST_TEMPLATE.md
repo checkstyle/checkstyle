@@ -16,6 +16,18 @@ Rules:
 To avoid multiple iterations of fixes and CIs failures, please read
 https://checkstyle.org/contributing.html
 
+_______________________________________________________
+
+Check regression report generation template (see details [here](https://github.com/checkstyle/contribution/tree/master/checkstyle-tester#report-generation)):
+
+Diff Regression config: {{URI to my_checks.xml}
+
+Diff Regression patch config: {{URI to patch_config.xml}} (optional)
+
+Diff Regression projects: {{URI to projects-to-test-on.properties}} (optional)
+
+_______________________________________________________
+
 ATTENTION: We are not merging Pull Requests that are not passing our CIs,
 but we will help to resolve issues.
 
