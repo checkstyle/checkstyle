@@ -3618,8 +3618,33 @@ public int foobar() {
           Checks that
           <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
-          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped. Check also
-          violate Javadoc that does not contain first sentence.
+          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped for normal
+          summary javadoc but are violations for inline summary javadoc. Check also violate Javadoc
+          that does not contain first sentence.
+        </p>
+        <p>
+          According to <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#general-syntax">
+          Documentation Comment Specification for the Standard Doclet</a> "The first sentence of
+          the initial description should be a summary sentence that contains a concise but complete
+          description of the declared entity. Descriptive text may include HTML tags and entities,
+          and inline tags as described below."
+        </p>
+        <p>
+          Allowed tags inside inline summary javadoc are
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#code">
+            {@code}</a>,
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#link">
+            {@link}</a>,
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#docroot">
+            {@docRoot}</a>,
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#linkplain">
+            {@linkplain}</a>,
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#literal">
+            {@literal}</a>,
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#value">
+            {@value}</a>,
+          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#index">
+            {@index}</a>
         </p>
       </subsection>
 
@@ -3692,6 +3717,27 @@ public class Test extends Exception {
 }
         </source>
         <p>
+              Example of <code>{@inheritDoc}</code> is not permitted for Inline Summary Javadoc.
+        </p>
+        <source>
+public class Test extends Exception {
+  //Violation
+  /**
+   * {@summary {@inheritDoc}.}
+   */
+  public String InvalidFunctionOne(){
+    return "";
+  }
+  //Violation
+  /**
+   * {@summary }
+   */
+  public String InvalidFunctionTwo(){
+    return "";
+  }
+}
+        </source>
+        <p>
           To ensure that summary do not contain phrase like "This method returns", use
           following config:
         </p>
@@ -3715,15 +3761,65 @@ public class Test extends Exception {
 
         <source>
 public class TestClass {
-  /**
+ /**
   * This is invalid java doc.
   */
   void invalidJavaDocMethod() {
   }
-  /**
+ /**
   * This is valid java doc。
   */
   void validJavaDocMethod() {
+  }
+}
+        </source>
+        <p>
+          Example of period property for inline summary javadoc.
+        </p>
+        <source>
+public class TestClass {
+ /**
+  * {@summary This is invalid java doc.}
+  */
+  public void invalidJavaDocMethod() { // violation
+  }
+ /**
+  * {@summary This is valid java doc。}
+  */
+  public void validJavaDocMethod() { // ok
+  }
+}
+        </source>
+        <p>
+          Example of inline summary javadoc with inline tags.
+        </p>
+        <source>
+public class TestClass {
+ /**
+  * {@summary {@code someCode} valid inline javadoc.}
+  */
+  public void validJavaDoc() {} // ok
+ /**
+  * {@summary {@inheritDoc} invalid inline javadoc.}
+  */
+  public void invalidJavaDocMethod() { // violation
+  }
+}
+        </source>
+        <p>
+          Example of inline summary javadoc with HTML tags.
+        </p>
+        <source>
+public class Test {
+ /**
+  * {@summary first sentence is normally the summary.
+  * Use of html tags:
+  * &lt;ul&gt;
+  * &lt;li&gt;Item one.&lt;/li&gt;
+  * &lt;li&gt;Item two.&lt;/li&gt;
+  * &lt;/ul&gt;}
+  */
+  public void validInlineJavadoc() { // ok
   }
 }
         </source>
@@ -3766,6 +3862,10 @@ public class TestClass {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc.missing%22">
               summary.javaDoc.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc.missing.period%22">
+              summary.javaDoc.missing.period</a>
           </li>
         </ul>
         <p>
