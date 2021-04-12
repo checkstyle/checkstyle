@@ -93,6 +93,17 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     }
 
     /**
+     * Returns {@link Configuration} instance for the given module configuration.
+     * This implementation uses {@link #getModuleConfig(String, String)} method inside.
+     *
+     * @param moduleConfig module configuration.
+     * @return {@link Configuration} instance for the given module configuration.
+     */
+    protected static Configuration getModuleConfig(DefaultConfiguration moduleConfig) {
+        return moduleConfig;
+    }
+
+    /**
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link #getModuleConfig(String)} method inside.
      *
@@ -126,6 +137,30 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
             .orElseThrow(() -> new IllegalStateException("problem with module config"));
         }
 
+        return result;
+    }
+
+    /**
+     * Returns list of {@link Configuration} instance for the list of module name.
+     * This implementation uses {@link #getModuleConfig(String)} method inside.
+     *
+     * @param moduleName list of module name.
+     * @param moduleId list of module id.
+     * @return list of {@link Configuration} instance for the given module name.
+     * @throws IllegalStateException if there is a problem retrieving the module or config.
+     */
+    protected static List<Configuration>
+        getModuleConfig(List<String> moduleName, List<String> moduleId) {
+        final int totalModule = moduleName.size();
+        final int totalModuleId = moduleId.size();
+        if (totalModule != totalModuleId) {
+            throw new IllegalStateException("no of id found: "
+                     + totalModuleId + " but no of module found " + totalModule);
+        }
+        final List<Configuration> result = new ArrayList<>();
+        for (int index = 0; index < totalModule; index++) {
+            result.add(getModuleConfig(moduleName.get(index), moduleId.get(index)));
+        }
         return result;
     }
 
