@@ -391,28 +391,18 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * public class MyClass
-     *   implements Serializable
-     * {
-     * }
+     * public class Test {}
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--CLASS_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--LITERAL_CLASS (class)
-     *     +--IDENT (MyClass)
-     *     +--EXTENDS_CLAUSE
-     *     +--IMPLEMENTS_CLAUSE
-     *         |
-     *         +--IDENT (Serializable)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--RCURLY (})
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
