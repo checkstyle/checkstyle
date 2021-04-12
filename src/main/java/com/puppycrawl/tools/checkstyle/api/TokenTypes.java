@@ -547,22 +547,22 @@ public final class TokenTypes {
      * is an optional identifier.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     * extends java.util.LinkedList
+     * public class Test extends ArrayList {
+     * }
      * </pre>
-     *
      * <p>parses as:</p>
      * <pre>
-     * +--EXTENDS_CLAUSE
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--DOT (.)
-     *             |
-     *             +--IDENT (java)
-     *             +--IDENT (util)
-     *         +--IDENT (LinkedList)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   `--LITERAL_PUBLIC -&gt; public
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * |--EXTENDS_CLAUSE -&gt; extends
+     * |   `--IDENT -&gt; ArrayList
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see #IDENT
