@@ -644,7 +644,7 @@ interfaceDefinition![AST modifiers]
         // now parse the body of the interface (looks like a class...)
         cb:classBlock
         {#interfaceDefinition = #(#[INTERFACE_DEF,"INTERFACE_DEF"],
-                                    modifiers, i, id,tp,ie,cb);}
+                                    modifiers, i, id, tp, ie, cb);}
     ;
 
 enumDefinition![AST modifiers]
