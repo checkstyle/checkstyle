@@ -1816,7 +1816,23 @@ public final class TokenTypes {
         GeneratedJavaTokenTypes.LITERAL_synchronized;
 
     /**
-     * The {@code volatile} keyword.
+     * The {@code volatile} keyword. This may be used as a
+     * modifier of a field.
+     * <p>For example:</p>
+     * <pre>
+     * private volatile int x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |   |--LITERAL_PRIVATE -&gt; private
+     * |   `--LITERAL_VOLATILE -&gt; volatile
+     * |--TYPE -&gt; TYPE
+     * |   `--LITERAL_INT -&gt; int
+     * |--IDENT -&gt; x
+     * `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #MODIFIERS
      **/
