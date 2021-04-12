@@ -3347,6 +3347,27 @@ public final class TokenTypes {
      * The {@code instanceof} operator.  The first child is an
      * object reference or something that evaluates to an object
      * reference.  The second child is a reference type.
+     * <p> For example: </p>
+     * <pre>
+     * boolean isBuilder = text instanceof StringBuilder;
+     *
+     * </pre>
+     * <p>parses as:</p>
+     *
+     * <pre>
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_BOOLEAN -&gt; boolean
+     * |   |--IDENT -&gt; isBuilder
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--LITERAL_INSTANCEOF -&gt; instanceof
+     * |               |--IDENT -&gt; text
+     * |               `--TYPE -&gt; TYPE
+     * |                   `--IDENT -&gt; StringBuilder
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.20.2">Java
