@@ -266,51 +266,51 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <br/>
         <b>
           Run checkstyle with configuration file at
-          <code>docs/sun_checks.xml</code> on a filesystem
+          <code>/sun_checks.xml</code> on a filesystem
         </b>
       </p>
       <div class="wrap-content">
         <source>
-          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml Check.java
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml Check.java
         </source>
       </div>
 
       <p>
         <b>
           Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on all Java files in a directory
+          <code>/sun_checks.xml</code> on all Java files in a directory
         </b>
       </p>
       <div class="wrap-content">
         <source>
-          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml src/
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml src/
         </source>
       </div>
 
       <p>
         <b>
           Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on a file and provide a system
+          <code>/sun_checks.xml</code> on a file and provide a system
           property
         </b>
       </p>
       <div class="wrap-content">
         <source>
           java -Dcheckstyle.cache.file=target/cachefile com.puppycrawl.tools.checkstyle.Main \
-          &#xa0;&#xa0;&#xa0;&#xa0;-c docs/sun_checks.xml Check.java
+          &#xa0;&#xa0;&#xa0;&#xa0;-c /sun_checks.xml Check.java
         </source>
       </div>
 
       <p>
         <b>
           Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on a file and use properties in a
+          <code>/sun_checks.xml</code> on a file and use properties in a
           file
         </b>
       </p>
       <div class="wrap-content">
         <source>
-          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml \
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-p myCheckstyle.properties Check.java
         </source>
       </div>
@@ -318,13 +318,13 @@ java -D&lt;property&gt;=&lt;value&gt;  \
       <p>
         <b>
           Run checkstyle with configuration file
-          <code>docs/sun_checks.xml</code> on a file and output to a file in
+          <code>/sun_checks.xml</code> on a file and output to a file in
           XML format
         </b>
       </p>
       <div class="wrap-content">
         <source>
-          java com.puppycrawl.tools.checkstyle.Main -c docs/sun_checks.xml -f xml \
+          java com.puppycrawl.tools.checkstyle.Main -c /sun_checks.xml -f xml \
           &#xa0;&#xa0;&#xa0;&#xa0;-o build/checkstyle_errors.xml Check.java
         </source>
       </div>
@@ -350,4 +350,3 @@ java -D&lt;property&gt;=&lt;value&gt;  \
     </section>
   </body>
 </document>
-
