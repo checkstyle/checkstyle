@@ -7,6 +7,7 @@ case $1 in
 
 guava-with-google-checks)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -21,7 +22,7 @@ guava-with-google-checks)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
       --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}" -p master -r ../../..
+      -Dcheckstyle.version=${CS_POM_VERSION}" -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm google_checks.*
@@ -29,6 +30,7 @@ guava-with-google-checks)
 
 guava-with-sun-checks)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
+  BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo CS_version: $CS_POM_VERSION
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
@@ -43,7 +45,7 @@ guava-with-sun-checks)
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
       --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p master -r ../../..
+      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm sun_checks.*
