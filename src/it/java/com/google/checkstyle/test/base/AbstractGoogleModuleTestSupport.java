@@ -93,17 +93,6 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     }
 
     /**
-     * Returns {@link Configuration} instance for the given module configuration.
-     * This implementation uses {@link #getModuleConfig(String, String)} method inside.
-     *
-     * @param moduleConfig module configuration.
-     * @return {@link Configuration} instance for the given module configuration.
-     */
-    protected static Configuration getModuleConfig(DefaultConfiguration moduleConfig) {
-        return moduleConfig;
-    }
-
-    /**
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link #getModuleConfig(String)} method inside.
      *

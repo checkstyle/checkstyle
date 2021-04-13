@@ -101,9 +101,8 @@ public class EmptyBlockTest extends AbstractGoogleModuleTestSupport {
         final String[] modules = {"RightCurly", "SuppressionXpathSingleFilter"};
         final String[] id = {"RightCurlyAlone", "RightCurlyAlone"};
         final Configuration checkConfig =
-               getModuleConfig(
-                       createTreeWalkerConfig(
-                               getModuleConfig(Arrays.asList(modules), Arrays.asList(id))));
+                        createTreeWalkerConfig(
+                               getModuleConfig(Arrays.asList(modules), Arrays.asList(id)));
         final String filePath = getPath("InputRightCurlyAloneOrEmptyNoViolations.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
