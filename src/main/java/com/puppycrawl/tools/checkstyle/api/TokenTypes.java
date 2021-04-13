@@ -2070,6 +2070,22 @@ public final class TokenTypes {
      * The {@code throws} keyword.  The children are a number of
      * one or more identifiers separated by commas.
      *
+     * <p>For example:</p>
+     * <pre>
+     * new throw ArithmeticException();
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--LITERAL_THROW -&gt; throw
+     * |   |--EXPR -&gt; EXPR
+     * |   |   `--LITERAL_NEW -&gt; new
+     * |   |       |--IDENT -&gt; ArithmeticException
+     * |   |       |--LPAREN -&gt; (
+     * |   |       |--ELIST -&gt; ELIST
+     * |   |       `--RPAREN -&gt; )
+     * |   `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.4">Java
      * Language Specification, &sect;8.4.4</a>
