@@ -49,7 +49,7 @@ class InputSummaryJavadocInlineDefault {
     /**
      * {@summary As of , replaced by {@link #setBounds(int,int,int,int)}}
      */
-    void foo11() {} // ok
+    void foo11() {} // violation
 
     /**
      * {@summary {@throws Exception if a problem occurs}}
@@ -233,7 +233,7 @@ class InputSummaryJavadocInlineDefault {
      * <li>Period here.</li>
      * </ul>}
      */
-    private void invalidInlineJavadocTwo() // violation
+    private void invalidInlineJavadocTwo() // ok
     {
     }
 
@@ -249,17 +249,4 @@ class InputSummaryJavadocInlineDefault {
     private void invalidInlineJavadocList() // violation
     {
     }
-
-    /**
-     * {@summary first does have period.
-     * Use of html tags:
-     * {@code makes tree parse properly}
-     * <p>
-     * No period here
-     * </p>}
-     */
-    private void invalidInlineJavadocThree() // violation
-    {
-    }
-
 }

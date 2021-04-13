@@ -181,9 +181,7 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "144: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "149: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "154: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
-            "159: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "165: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "178: " + getCheckMessage(MSG_SUMMARY_JAVADOC),
             "183: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "188: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "193: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
@@ -192,7 +190,6 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
             "208: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
             "216: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
             "240: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
-            "253: " + getCheckMessage(MSG_SUMMARY_MISSING_PERIOD),
         };
 
         createChecker(checkConfig);

@@ -74,5 +74,8 @@ public class InputSummaryJavadocHtmlFormat {
      * <b>{@summary Normal Javadoc.}</b>
      */
     private void foo15() {} // ok
+
+    /** <b>{@summary Normal single line Javadoc.}</b> */
+    private void foo16() {} // ok
 }
 
