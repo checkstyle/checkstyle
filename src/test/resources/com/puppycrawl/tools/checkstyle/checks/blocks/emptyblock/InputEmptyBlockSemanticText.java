@@ -4,11 +4,15 @@ import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
-/* Config = default */
+/* Config:
+ * option = "text"
+ * tokens = "LITERAL_WHILE, LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, LITERAL_IF, LITERAL_ELSE,
+ *           LITERAL_FOR, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED"
+ */
 /**
  * Test case for detecting empty block statements.
-**/
-class InputEmptyBlockSemantic
+ **/
+class InputEmptyBlockSemanticText
 {
     static {
         Boolean x = new Boolean(true);
@@ -26,14 +30,14 @@ class InputEmptyBlockSemantic
 
     void exHandlerTest()
     {
-        try {   // violation
+        try {
         }
-        finally {   // violation
+        finally {
         }
-        try {   // violation
-        // something
+        try {   // ok
+            // something
         }
-        finally {   // violation
+        finally {   // ok
             // something
         }
         try {   // ok
@@ -56,7 +60,7 @@ class InputEmptyBlockSemantic
     }
 
     // empty instance initializer
-    {   // violation
+    {
     }
 
     private class InputBraces {
@@ -66,18 +70,17 @@ class InputEmptyBlockSemantic
     synchronized void foo() {
         synchronized (this) {}  // violation
         synchronized (Class.class) { // OK
-            synchronized (new Object()) {   // violation
+            synchronized (new Object()) {   // ok
                 // text
             }
         }
     }
 
-
     static {
 
-    int a = 0;}
+        int a = 0;}
 
-    static {    // violation
+    static {
 
     }
 }
