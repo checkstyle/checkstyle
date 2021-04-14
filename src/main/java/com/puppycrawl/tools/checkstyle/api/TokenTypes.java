@@ -2656,117 +2656,79 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * try (Foo foo = new Foo(); Bar bar = new Bar()) { }
+     * try (Foo foo = new Foo(); Bar bar = new Bar()) {
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_TRY (try)
-     *     |
-     *     +--RESOURCE_SPECIFICATION
-     *         |
-     *         +--LPAREN (()
-     *         +--RESOURCES
-     *             |
-     *             +--RESOURCE
-     *                 |
-     *                 +--MODIFIERS
-     *                 +--TYPE
-     *                     |
-     *                     +--IDENT (Foo)
-     *                 +--IDENT (foo)
-     *                 +--ASSIGN (=)
-     *                 +--EXPR
-     *                    |
-     *                    +--LITERAL_NEW (new)
-     *                       |
-     *                       +--IDENT (Foo)
-     *                       +--LPAREN (()
-     *                       +--ELIST
-     *                       +--RPAREN ())
-     *             +--SEMI (;)
-     *             +--RESOURCE
-     *                 |
-     *                 +--MODIFIERS
-     *                 +--TYPE
-     *                     |
-     *                     +--IDENT (Bar)
-     *                 +--IDENT (bar)
-     *                 +--ASSIGN (=)
-     *                 +--EXPR
-     *                    |
-     *                    +--LITERAL_NEW (new)
-     *                       |
-     *                       +--IDENT (Bar)
-     *                       +--LPAREN (()
-     *                       +--ELIST
-     *                       +--RPAREN ())
-     *         +--RPAREN ())
-     *     +--SLIST ({)
-     *         +--RCURLY (})
+     * LITERAL_TRY -&gt; try
+     *  |--RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *  |   |--LPAREN -&gt; (
+     *  |   |--RESOURCES -&gt; RESOURCES
+     *  |   |   |--RESOURCE -&gt; RESOURCE
+     *  |   |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   |   `--IDENT -&gt; Foo
+     *  |   |   |   |--IDENT -&gt; foo
+     *  |   |   |   `--ASSIGN -&gt; =
+     *  |   |   |       `--EXPR -&gt; EXPR
+     *  |   |   |           `--LITERAL_NEW -&gt; new
+     *  |   |   |               |--IDENT -&gt; Foo
+     *  |   |   |               |--LPAREN -&gt; (
+     *  |   |   |               |--ELIST -&gt; ELIST
+     *  |   |   |               `--RPAREN -&gt; )
+     *  |   |   |--SEMI -&gt; ;
+     *  |   |   `--RESOURCE -&gt; RESOURCE
+     *  |   |       |--MODIFIERS -&gt; MODIFIERS
+     *  |   |       |--TYPE -&gt; TYPE
+     *  |   |       |   `--IDENT -&gt; Bar
+     *  |   |       |--IDENT -&gt; bar
+     *  |   |       `--ASSIGN -&gt; =
+     *  |   |           `--EXPR -&gt; EXPR
+     *  |   |               `--LITERAL_NEW -&gt; new
+     *  |   |                   |--IDENT -&gt; Bar
+     *  |   |                   |--LPAREN -&gt; (
+     *  |   |                   |--ELIST -&gt; ELIST
+     *  |   |                   `--RPAREN -&gt; )
+     *  |   `--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * <p>Also consider:</p>
      * <pre>
-     * try (BufferedReader br = new BufferedReader(new FileReader(path)))
-     * {
-     *  return br.readLine();
+     * try (BufferedReader br = new BufferedReader(new FileReader(path))) {
      * }
      * </pre>
      * <p>which parses as:</p>
      * <pre>
-     * +--LITERAL_TRY (try)
-     *     |
-     *     +--RESOURCE_SPECIFICATION
-     *         |
-     *         +--LPAREN (()
-     *         +--RESOURCES
-     *             |
-     *             +--RESOURCE
-     *                 |
-     *                 +--MODIFIERS
-     *                 +--TYPE
-     *                     |
-     *                     +--IDENT (BufferedReader)
-     *                 +--IDENT (br)
-     *                 +--ASSIGN (=)
-     *                 +--EXPR
-     *                     |
-     *                     +--LITERAL_NEW (new)
-     *                         |
-     *                         +--IDENT (FileReader)
-     *                         +--LPAREN (()
-     *                         +--ELIST
-     *                             |
-     *                             +--EXPR
-     *                                 |
-     *                                 +--LITERAL_NEW (new)
-     *                                     |
-     *                                     +--IDENT (BufferedReader)
-     *                                     +--LPAREN (()
-     *                                     +--ELIST
-     *                                         |
-     *                                         +--EXPR
-     *                                             |
-     *                                             +--IDENT (path)
-     *                                     +--RPAREN ())
-     *                         +--RPAREN ())
-     *         +--RPAREN ())
-     *     +--SLIST ({)
-     *         |
-     *         +--LITERAL_RETURN (return)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--METHOD_CALL (()
-     *                     |
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (br)
-     *                         +--IDENT (readLine)
-     *                     +--ELIST
-     *                     +--RPAREN ())
-     *             +--SEMI (;)
-     *         +--RCURLY (})
+     * LITERAL_TRY -&gt; try
+     *  |--RESOURCE_SPECIFICATION -&gt; RESOURCE_SPECIFICATION
+     *  |   |--LPAREN -&gt; (
+     *  |   |--RESOURCES -&gt; RESOURCES
+     *  |   |   `--RESOURCE -&gt; RESOURCE
+     *  |   |       |--MODIFIERS -&gt; MODIFIERS
+     *  |   |       |--TYPE -&gt; TYPE
+     *  |   |       |   `--IDENT -&gt; BufferedReader
+     *  |   |       |--IDENT -&gt; br
+     *  |   |       `--ASSIGN -&gt; =
+     *  |   |           `--EXPR -&gt; EXPR
+     *  |   |               `--LITERAL_NEW -&gt; new
+     *  |   |                   |--IDENT -&gt; BufferedReader
+     *  |   |                   |--LPAREN -&gt; (
+     *  |   |                   |--ELIST -&gt; ELIST
+     *  |   |                   |   `--EXPR -&gt; EXPR
+     *  |   |                   |       `--LITERAL_NEW -&gt; new
+     *  |   |                   |           |--IDENT -&gt; FileReader
+     *  |   |                   |           |--LPAREN -&gt; (
+     *  |   |                   |           |--ELIST -&gt; ELIST
+     *  |   |                   |           |   `--EXPR -&gt; EXPR
+     *  |   |                   |           |       `--IDENT -&gt; path
+     *  |   |                   |           `--RPAREN -&gt; )
+     *  |   |                   `--RPAREN -&gt; )
+     *  |   `--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see #LPAREN
