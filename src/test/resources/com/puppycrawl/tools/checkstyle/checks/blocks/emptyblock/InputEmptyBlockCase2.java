@@ -1,10 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 /* Config:
- * option = "text"
+ * option = "statement"
  * tokens = "LITERAL_CASE"
  */
-class InputEmptyBlockCase
+class InputEmptyBlockCase2
 {
     void method1(int a) {
         switch (a) {}
@@ -19,7 +19,7 @@ class InputEmptyBlockCase
         }
         switch (a) {
             case 1:
-            {   // ok
+            {   // violation
             }
         }
     }
