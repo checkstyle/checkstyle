@@ -875,48 +875,37 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * x = 4 + 3 * 5 + (30 + 26) / 4 + 5 % 4 + (1&lt;&lt;3);
+     * int x = 4 + 2 * (5 % 3) + (1 &lt;&lt; 3) - 4 * 5;
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--EXPR
-     *     |
-     *     +--ASSIGN (=)
-     *         |
-     *         +--IDENT (x)
-     *         +--PLUS (+)
-     *             |
-     *             +--PLUS (+)
-     *                 |
-     *                 +--PLUS (+)
-     *                     |
-     *                     +--PLUS (+)
-     *                         |
-     *                         +--NUM_INT (4)
-     *                         +--STAR (*)
-     *                             |
-     *                             +--NUM_INT (3)
-     *                             +--NUM_INT (5)
-     *                     +--DIV (/)
-     *                         |
-     *                         +--LPAREN (()
-     *                         +--PLUS (+)
-     *                             |
-     *                             +--NUM_INT (30)
-     *                             +--NUM_INT (26)
-     *                         +--RPAREN ())
-     *                         +--NUM_INT (4)
-     *                 +--MOD (%)
-     *                     |
-     *                     +--NUM_INT (5)
-     *                     +--NUM_INT (4)
-     *             +--LPAREN (()
-     *             +--SL (&lt;&lt;)
-     *                 |
-     *                 +--NUM_INT (1)
-     *                 +--NUM_INT (3)
-     *             +--RPAREN ())
-     * +--SEMI (;)
+     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     * |   |--MODIFIERS -&gt; MODIFIERS
+     * |   |--TYPE -&gt; TYPE
+     * |   |   `--LITERAL_INT -&gt; int
+     * |   |--IDENT -&gt; x
+     * |   `--ASSIGN -&gt; =
+     * |       `--EXPR -&gt; EXPR
+     * |           `--MINUS -&gt; -
+     * |               |--PLUS -&gt; +
+     * |               |   |--PLUS -&gt; +
+     * |               |   |   |--NUM_INT -&gt; 4
+     * |               |   |   `--STAR -&gt; *
+     * |               |   |       |--NUM_INT -&gt; 2
+     * |               |   |       |--LPAREN -&gt; (
+     * |               |   |       |--MOD -&gt; %
+     * |               |   |       |   |--NUM_INT -&gt; 5
+     * |               |   |       |   `--NUM_INT -&gt; 3
+     * |               |   |       `--RPAREN -&gt; )
+     * |               |   |--LPAREN -&gt; (
+     * |               |   |--SL -&gt; &lt;&lt;
+     * |               |   |   |--NUM_INT -&gt; 1
+     * |               |   |   `--NUM_INT -&gt; 3
+     * |               |   `--RPAREN -&gt; )
+     * |               `--STAR -&gt; *
+     * |                   |--NUM_INT -&gt; 4
+     * |                   `--NUM_INT -&gt; 5
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @see #ELIST
