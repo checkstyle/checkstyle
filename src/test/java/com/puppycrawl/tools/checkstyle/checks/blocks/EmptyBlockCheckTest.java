@@ -111,10 +111,10 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "19:42: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "22:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "23:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "16:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "19:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "22:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "23:20: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemantic2.java"), expected);
     }
@@ -128,10 +128,10 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "19:42: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "22:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "23:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
+            "16:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "19:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "22:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "23:20: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemantic2.java"), expected);
     }
