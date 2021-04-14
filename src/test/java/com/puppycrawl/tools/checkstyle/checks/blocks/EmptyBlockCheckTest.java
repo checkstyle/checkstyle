@@ -55,14 +55,14 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyBlockCheck.class);
         final String[] expected = {
+            "29:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "31:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "33:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "37:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "36:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "59:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "67:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "69:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "80:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
     }
@@ -78,9 +78,9 @@ public class EmptyBlockCheckTest
             "35:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
             "63:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
             "71:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
+            "83:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemanticText.java"), expected);
     }
 
     @Test
@@ -99,7 +99,7 @@ public class EmptyBlockCheckTest
             "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemanticStatement.java"), expected);
     }
 
     @Test
@@ -111,12 +111,12 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "19:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "22:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "23:20: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "17:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "20:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "23:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "24:20: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic2.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic2Statement.java"), expected);
     }
 
     @Test
@@ -128,12 +128,12 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "16:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "19:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "22:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "23:20: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
+            "17:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "20:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "23:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "24:20: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockSemantic2.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockSemantic2Text.java"), expected);
     }
 
     @Test
@@ -144,7 +144,7 @@ public class EmptyBlockCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
+            verify(checkConfig, getPath("InputEmptyBlockSemanticInvalid.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
@@ -185,7 +185,7 @@ public class EmptyBlockCheckTest
             "32:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "32:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockCase.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockCase2.java"), expected);
     }
 
     @Test
@@ -194,12 +194,12 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "7:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "13:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "38:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "46:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "52:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "80:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "11:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "17:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "42:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "50:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "56:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "84:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
         };
         verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
@@ -210,17 +210,17 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "7:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "13:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "11:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
             "17:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "28:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "38:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "46:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "52:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "67:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "80:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "21:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "32:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "42:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "50:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "56:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "71:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "84:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
-        verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
+        verify(checkConfig, getPath("InputEmptyBlockDefault2.java"), expected);
     }
 
     @Test
