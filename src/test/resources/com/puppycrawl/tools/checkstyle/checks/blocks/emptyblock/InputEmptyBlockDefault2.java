@@ -1,10 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 /* Config:
- * option = "text"
+ * option = "statement"
  * tokens = "LITERAL_DEFAULT"
  */
-public class InputEmptyBlockDefault {
+public class InputEmptyBlockDefault2 {
     void method1(int a) {
         switch (a) {}
         switch (a) {default: ; }    // ok
@@ -18,7 +18,7 @@ public class InputEmptyBlockDefault {
         }
         switch (a) {
             default:
-            {   // ok
+            {   // violation
             }
         }
     }
@@ -29,7 +29,7 @@ public class InputEmptyBlockDefault {
             case 2:a++;
             default:    // ok
                 switch (a) {
-                    default: {  // ok
+                    default: {  // violation
 
                     }
                 }
@@ -68,7 +68,7 @@ public class InputEmptyBlockDefault {
 
         switch (a-b) {
             case 1:
-            default: {      // ok
+            default: {      // violation
 
             } ;
             case 2: { }
@@ -80,8 +80,8 @@ public class InputEmptyBlockDefault {
             case 1:
             case 2:
             case 3:
-            default:        // violation on next line
-            {
+            default:
+            {               // violation
             }
         }
 
