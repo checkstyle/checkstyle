@@ -10,7 +10,7 @@ import java.awt.Color;
 
 /**
  * Test case for detecting empty block statements.
- * @author Lars Kühne
+ *
  **/
 class InputEmptyBlockSemantic
 {
