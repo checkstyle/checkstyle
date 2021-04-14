@@ -683,14 +683,40 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * outside: ;
+     * outer:
+     * while (i &lt; 10) {
+     *     if (i == 5)
+     *         continue outer;
+     *     i++;
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LABELED_STAT (:)
-     *     |
-     *     +--IDENT (outside)
-     *     +--EMPTY_STAT (;)
+     * LABELED_STAT -&gt; :
+     *  |--IDENT -&gt; outer
+     *  `--LITERAL_WHILE -&gt; while
+     *      |--LPAREN -&gt; (
+     *      |--EXPR -&gt; EXPR
+     *      |   `--LT -&gt; &lt;
+     *      |       |--IDENT -&gt; i
+     *      |       `--NUM_INT -&gt; 10
+     *      |--RPAREN -&gt; )
+     *      `--SLIST -&gt; {
+     *          |--LITERAL_IF -&gt; if
+     *          |   |--LPAREN -&gt; (
+     *          |   |--EXPR -&gt; EXPR
+     *          |   |   `--EQUAL -&gt; ==
+     *          |   |       |--IDENT -&gt; i
+     *          |   |       `--NUM_INT -&gt; 5
+     *          |   |--RPAREN -&gt; )
+     *          |   `--LITERAL_CONTINUE -&gt; continue
+     *          |       |--IDENT -&gt; outer
+     *          |       `--SEMI -&gt; ;
+     *          |--EXPR -&gt; EXPR
+     *          |   `--POST_INC -&gt; ++
+     *          |       `--IDENT -&gt; i
+     *          |--SEMI -&gt; ;
+     *          `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
