@@ -4,11 +4,15 @@ import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
-/* Config = default */
+/* Config:
+ * option = "invalid_option"
+ * tokens = "LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, LITERAL_IF, LITERAL_ELSE, INSTANCE_INIT,
+ *           STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_CATCH"
+ */
 /**
  * Test case for detecting empty block statements.
-**/
-class InputEmptyBlockSemantic
+ **/
+class InputEmptyBlockSemanticInvalid
 {
     static {
         Boolean x = new Boolean(true);
@@ -31,7 +35,7 @@ class InputEmptyBlockSemantic
         finally {   // violation
         }
         try {   // violation
-        // something
+            // something
         }
         finally {   // violation
             // something
@@ -75,7 +79,7 @@ class InputEmptyBlockSemantic
 
     static {
 
-    int a = 0;}
+        int a = 0;}
 
     static {    // violation
 
