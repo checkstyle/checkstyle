@@ -49,9 +49,9 @@ import net.sf.saxon.trans.XPathException;
  * </p>
  * <p>
  * Please read more about Xpath syntax at
- * <a href="https://www.saxonica.com/html/documentation/expressions/">Xpath Syntax</a>.
+ * <a href="https://www.saxonica.com/html/documentation10/expressions/">Xpath Syntax</a>.
  * Information regarding Xpath functions can be found at
- * <a href="https://www.saxonica.com/html/documentation/functions/fn/">XSLT/XPath Reference</a>.
+ * <a href="https://www.saxonica.com/html/documentation10/functions/fn/">XSLT/XPath Reference</a>.
  * Note, that <b>@text</b> attribute can used only with token types that are listed in
  * <a href="https://github.com/checkstyle/checkstyle/search?q=%22TOKEN_TYPES_WITH_TEXT_ATTRIBUTE+%3D+Arrays.asList%22">
  *     XpathUtil</a>.
