@@ -3,12 +3,12 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import org.w3c.dom.Node;
 
-/* Config:
+/*
+ * Config:
  * option = same
- * tokens = {RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF}
- *
+ * tokens = { RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF }
  */
-public class InputRightCurlyRecordsAndCompactCtors {
+public class InputRightCurlyTestRecordsAndCompactCtors {
 
     record MyTestRecord(String string, Record rec) {
         private boolean inRecord(Object obj) {
