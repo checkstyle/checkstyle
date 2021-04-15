@@ -3,7 +3,11 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputRightCurlyAloneOrSinglelineLambda {
+/*
+ * Config:
+ * option = alone_or_singleline
+ */
+public class InputRightCurlyTestIsAloneOrSinglelineLambda {
 
     static Runnable r1 = () -> {
         String.valueOf("Test rightCurly one!");
@@ -14,7 +18,7 @@ public class InputRightCurlyAloneOrSinglelineLambda {
     static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};
 
     static Runnable r4 = () -> {
-        String.valueOf("Test rightCurly four!");};    //violation
+        String.valueOf("Test rightCurly four!");}; // ok
 
     static Runnable r5 = () ->
     {
@@ -32,7 +36,7 @@ public class InputRightCurlyAloneOrSinglelineLambda {
 
     static Runnable r9 = () -> {
         String.valueOf("Test rightCurly nine!");
-    }; int i;       // violation
+    }; int i; // ok
 
     void foo1() {
         Stream.of("Hello").filter(s -> {
@@ -42,8 +46,8 @@ public class InputRightCurlyAloneOrSinglelineLambda {
 
         Stream.of("Hello").filter(s -> {
                 return s != null;
-        }).collect(Collectors.toList());    // violation
+        }).collect(Collectors.toList()); // ok
 
-        Stream.of("H").filter(s -> {return s != null;}).collect(Collectors.toList());   // violation
+        Stream.of("H").filter(s -> {return s != null;}).collect(Collectors.toList()); // ok
     }
 }

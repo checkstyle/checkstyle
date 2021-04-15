@@ -1,28 +1,27 @@
+package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
+
 /*
  * Config:
  * option = alone_or_singleline
- * tokens = CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF
+ * tokens = { CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF }
  */
+public class InputRightCurlyTestOptAloneOrSingleLineBlocksWithSemi {
 
-package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
-
-public class InputRightCurlyAloneOrSingleLineBlocksWithSemi {
-
-    public void testMethod() {};
+    public void testMethod() {}; // ok
 
     public void testMethod1() {
-    }; //violation
+    }; // violation
 
-    public class TestClass {};
+    public class TestClass {}; // ok
 
     public class TestClass1 {
-    }; //violation
+    }; // violation
 
     public class TestClass2 {
-        public TestClass2() {};
+        public TestClass2() {}; // ok
 
         public TestClass2(String someValue) {
-        }; //violation
+        }; // violation
     }
 
     public void testMethod11() {
@@ -30,32 +29,32 @@ public class InputRightCurlyAloneOrSingleLineBlocksWithSemi {
     ;
 
     public @interface TestAnnnotation5 {
-        String someValue(); }; //violation
+        String someValue(); }; // violation
 
-    public @interface TestAnnotation6 {};
+    public @interface TestAnnotation6 {}; // ok
 
     public @interface TestAnnotation7 {
         String someValue();
-    }; //violation
+    }; // violation
 
     public @interface TestAnnotation8 { String someValue();
-    }; //violation
+    }; // violation
 
-    public @interface TestAnnotation9 { String someValue(); };
+    public @interface TestAnnotation9 { String someValue(); }; // ok
 
-    enum TestEnum{};
+    enum TestEnum{}; // ok
 
     enum TestEnum1{
-        SOME_VALUE;}; //violation
+        SOME_VALUE;}; // violation
 
-    enum TestEnum2 { SOME_VALUE; };
+    enum TestEnum2 { SOME_VALUE; }; // ok
 
     enum TestEnum3{
         SOME_VALUE;
-    }; //violation
+    }; // violation
 
     enum TestEnum4{ SOME_VALUE;
-    }; //violation
+    }; // violation
 
     interface Interface1
     {
@@ -69,9 +68,9 @@ public class InputRightCurlyAloneOrSingleLineBlocksWithSemi {
         void display();
         interface Interface4 {
             void myMethod();
-        };}; // violation - for both of the right curly braces
+        };}; // 2 violations
 
     interface InterfaceEndingWithSemiColon2 {
         public void fooEmpty();
-    }; // ok until #7541
+    }; // violation
 }
