@@ -5,9 +5,13 @@
              name="EmptyLineSeparator"
              parent="com.puppycrawl.tools.checkstyle.TreeWalker">
          <description>&lt;p&gt;
- Checks for empty line separators after header, package, all import declarations,
+ Checks for empty line separators before package, all import declarations,
  fields, constructors, methods, nested classes,
  static initializers and instance initializers.
+ &lt;/p&gt;
+ &lt;p&gt;
+ Checks for empty line separators before not only statements but
+ implementation and documentation comments and blocks as well.
  &lt;/p&gt;
  &lt;p&gt;
  ATTENTION: empty line separator is required between token siblings,
