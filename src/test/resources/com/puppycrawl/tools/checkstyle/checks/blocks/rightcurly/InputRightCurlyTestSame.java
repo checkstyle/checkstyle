@@ -1,10 +1,16 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-public class InputRightCurlySame {
+/*
+ * Config:
+ * option = same
+ * tokens = { LITERAL_DO, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT,
+ * CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF }
+ */
+public class InputRightCurlyTestSame {
     static {
     }
 
-    public InputRightCurlySame() {
+    public InputRightCurlyTestSame() {
         Thread t = new Thread(new Runnable() {
             {
             }
@@ -12,7 +18,7 @@ public class InputRightCurlySame {
             @Override
             public void run() {
             }
-        });
+        }); // ok
     }
 
     public void doLoop() {

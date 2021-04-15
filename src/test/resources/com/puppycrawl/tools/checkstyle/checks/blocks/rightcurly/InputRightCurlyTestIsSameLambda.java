@@ -3,7 +3,11 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputRightCurlySameLambda {
+/*
+ * Config:
+ * option = same
+ */
+public class InputRightCurlyTestIsSameLambda {
 
     static Runnable r1 = () -> {
         String.valueOf("Test rightCurly one!");
@@ -14,7 +18,7 @@ public class InputRightCurlySameLambda {
     static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};
 
     static Runnable r4 = () -> {
-        String.valueOf("Test rightCurly four!");};    //violation
+        String.valueOf("Test rightCurly four!");}; // ok
 
     static Runnable r5 = () ->
     {
@@ -32,12 +36,12 @@ public class InputRightCurlySameLambda {
 
     static Runnable r9 = () -> {
         String.valueOf("Test rightCurly nine!");
-    }; int i;       // violation
+    }; int i; // ok
 
     void foo1() {
         Stream.of("Hello").filter(s -> {
                 return s != null;
-            }       // violation
+            } // ok
         ).collect(Collectors.toList());
 
         Stream.of("Hello").filter(s -> {
@@ -50,7 +54,7 @@ public class InputRightCurlySameLambda {
         Stream.of("Hello").filter(s -> {return s != null;}).collect(Collectors.toList());
 
         Stream.of("Hello").filter(s -> {
-            return s != null;}).collect(Collectors.toList()); // violation
+            return s != null;}).collect(Collectors.toList()); // ok
 
         bar(() -> {return;}, () -> {return;});
 
@@ -65,12 +69,12 @@ public class InputRightCurlySameLambda {
         });
 
         bar(() -> {
-            return;}, () -> {return;}); // violation
+            return;}, () -> {return;}); // ok
 
         bar(() -> {
             return;
         }, () -> {
-            return;}); // violation
+            return;}); // ok
 
     }
 
