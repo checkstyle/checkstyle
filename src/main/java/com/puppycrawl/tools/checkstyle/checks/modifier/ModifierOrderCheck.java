@@ -31,7 +31,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * <p>
  * Checks that the order of modifiers conforms to the suggestions in the
- * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-8.html">
+ * <a href="https://docs.oracle.com/javase/specs/jls/se16/preview/specs/sealed-classes-jls.html">
  * Java Language specification, &#167; 8.1.1, 8.3.1, 8.4.3</a> and
  * <a href="https://docs.oracle.com/javase/specs/jls/se11/html/jls-9.html">9.4</a>.
  * The correct order is:
@@ -43,6 +43,8 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * <li> {@code abstract} </li>
  * <li> {@code default} </li>
  * <li> {@code static} </li>
+ * <li> {@code sealed} </li>
+ * <li> {@code non-sealed} </li>
  * <li> {@code final} </li>
  * <li> {@code transient} </li>
  * <li> {@code volatile} </li>
@@ -108,7 +110,8 @@ public class ModifierOrderCheck
      */
     private static final String[] JLS_ORDER = {
         "public", "protected", "private", "abstract", "default", "static",
-        "final", "transient", "volatile", "synchronized", "native", "strictfp",
+        "sealed", "non-sealed", "final", "transient", "volatile",
+        "synchronized", "native", "strictfp",
     };
 
     @Override

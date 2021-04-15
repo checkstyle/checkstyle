@@ -125,4 +125,27 @@ public class ModifierOrderCheckTest
         verify(checkConfig, getPath("InputModifierOrderAnnotationDeclaration.java"), expected);
     }
 
+    @Test
+    public void testModifierOrderSealedAndNonSealed() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
+        final String[] expected = {
+            "8:8: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "24:12: " + getCheckMessage(MSG_MODIFIER_ORDER, "private"),
+            "37:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "sealed"),
+            "43:11: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "46:14: " + getCheckMessage(MSG_MODIFIER_ORDER, "public"),
+            "50:10: " + getCheckMessage(MSG_MODIFIER_ORDER, "non-sealed"),
+        };
+        verify(checkConfig,
+            getNonCompilablePath("InputModifierOrderSealedAndNonSealed.java"), expected);
+    }
+
+    @Test
+    public void testModifierOrderSealedAndNonSealedNoViolation() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(ModifierOrderCheck.class);
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+            getNonCompilablePath("InputModifierOrderSealedAndNonSealedNoViolation.java"), expected);
+    }
+
 }
