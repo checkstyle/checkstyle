@@ -72,6 +72,8 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
 
     protected static final String ROOT_MODULE_NAME = "root";
 
+    private static final String CUSTOM_MODULE = "configuration";
+
     private static final Pattern WARN_PATTERN = CommonUtil
             .createPattern(".*[ ]*//[ ]*warn[ ]*|/[*]\\*?\\s?warn\\s?[*]/");
 
@@ -149,7 +151,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
             dc = createTreeWalkerConfig(moduleConfig);
         }
         else if (ROOT_MODULE_NAME.equals(moduleConfig.getName())
-                || "configuration".equals(moduleConfig.getName())) {
+                || CUSTOM_MODULE.equals(moduleConfig.getName())) {
             dc = moduleConfig;
         }
         else {
@@ -177,7 +179,7 @@ public abstract class AbstractItModuleTestSupport extends AbstractPathTestSuppor
      */
     protected final DefaultConfiguration createTreeWalkerConfig(Configuration config) {
         final DefaultConfiguration dc =
-                new DefaultConfiguration("configuration");
+                new DefaultConfiguration(CUSTOM_MODULE);
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
         dc.addAttribute("charset", "iso-8859-1");
