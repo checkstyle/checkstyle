@@ -1,14 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/**
- * Test case for correct use of braces.
- * @author Oliver Burn
- **/
-class InputRightCurlyLeft
+/*
+ * Config:
+ * option = same
+ * tokens = { LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF,
+ *            LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, ANNOTATION_DEF, ENUM_DEF }
+ */
+class InputRightCurlyLeftTestSame
 {
     /** @see test method **/
     int foo() throws InterruptedException
@@ -22,10 +20,10 @@ class InputRightCurlyLeft
                 if (x > 0)
                 {
                     break;
-                }
+                } // violation
                 else if (x < 0) {
                     ;
-                }
+                } // violation
                 else
                 {
                     break;
@@ -37,11 +35,11 @@ class InputRightCurlyLeft
                 default:
                     break;
                 }
-            }
+            } // violation
             catch (Exception e)
             {
                 break;
-            }
+            } // violation
             finally
             {
                 break;
@@ -53,7 +51,7 @@ class InputRightCurlyLeft
             do
             {
                 x = 2;
-            } while (x == 2);
+            } while (x == 2); // ok
         }
 
         this.wait(666
@@ -83,18 +81,18 @@ class InputRightCurlyLeft
     {
         HELLO,
         GOODBYE
-    }; //violation
+    }; // violation
 
     void method2()
     {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER.
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // violation
               equals("Xe-xe");
         // it is ok to have rcurly on the same line as previous
         // statement if lcurly on the same line.
-        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); }
+        if (flag) { String.CASE_INSENSITIVE_ORDER.equals("it is ok."); } // ok
     }
 }
 
@@ -102,30 +100,30 @@ class InputRightCurlyLeft
  * Test input for closing brace if that brace terminates
  * a statement or the body of a constructor.
  */
-class FooCtor
+class FooCtorTestSame
 {
         int i;
-        public FooCtor()
+        public void FooCtor()
     {
                 i = 1;
-    }}
+    }} // ok
 
 /**
 * Test input for closing brace if that brace terminates
 * a statement or the body of a method.
 */
-class FooMethod
+class FooMethodTestSame
 {
         public void fooMethod()
     {
                 int i = 1;
-    }}
+    }} // ok
 
 /**
 * Test input for closing brace if that brace terminates
 * a statement or the body of a named class.
 */
-class FooInner
+class FooInnerTestSame
 {
         class InnerFoo
     {
@@ -133,27 +131,27 @@ class FooInner
         {
 
                 }
-    }}
+    }} // ok
 
 /**
  * False positive
  *
  */
-class Absent_CustomFieldSerializer3 {
+class Absent_CustomFieldSerializer3TestSame {
 
-    public static void serialize() {} //empty body - violation
+    public static void serialize() {} // ok
 }
 
-class Absent_CustomFieldSerializer4
+class Absent_CustomFieldSerializer4TestSame
 {
-    public Absent_CustomFieldSerializer4() {} //empty body - violation
+    public void Absent_CustomFieldSerializer4() {} // ok
 }
 
-class EmptyClass2 {} //empty body - violation
+class EmptyClass2TestSame {} // ok
 
-interface EmptyInterface3 {}
+interface EmptyInterface3TestSame {} // ok
 
-class ClassWithStaticInitializers
+class ClassWithStaticInitializersTestSame
 {
     static {
     }
@@ -170,17 +168,17 @@ class ClassWithStaticInitializers
     public void emptyBlocks() {
         try {
             // comment
-        } catch (RuntimeException e) { // violation except for SAME
+        } catch (RuntimeException e) { // ok
             new Object();
-        } catch (Exception e) { // violation except for SAME
+        } catch (Exception e) { // ok
             // comment
-        } catch (Throwable e) { // violation except for SAME
-        } finally { // violation except for SAME
+        } catch (Throwable e) { // ok
+        } finally { // ok
             // comment
         }
 
         do {
-        } while (true); // violation except for SAME
+        } while (true); // ok
     }
 
     public void codeAfterLastRightCurly() {
@@ -194,19 +192,19 @@ class ClassWithStaticInitializers
         @Override
         public Thread newThread(final Runnable r) {
             return new Thread(r);
-        }}; // violation
+        }}; // ok
 
     interface Interface1
     {
         int i = 1;
-        public void meth1(); } // violation
+        public void meth1(); } // ok
 
     interface Interface2
-    { int i = 1; public void meth1(); } // violation
+    { int i = 1; public void meth1(); } // ok
 
     interface Interface3 {
         void display();
         interface Interface4 {
             void myMethod();
-        }} // violation - for both right curly brace
+        }} // ok
 }

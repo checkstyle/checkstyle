@@ -1,11 +1,11 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
-import java.util.ArrayList;
-import java.util.List;
-
-class InputRightCurlyLineBreakBefore
+/*
+ * Config:
+ * option = alone
+ * tokens = { LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT }
+ */
+class InputRightCurlyTestForceLineBreakBefore
 {
     /** @see test method **/
     int foo() throws InterruptedException
@@ -32,19 +32,19 @@ class InputRightCurlyLineBreakBefore
             } catch (Exception e) { break; } finally { break; }
         }
 
-        synchronized (this) { do { x = 2; } while (x == 2); }
+        synchronized (this) { do { x = 2; } while (x == 2); } // violation
 
         synchronized (this) {
-            do {} while (x == 2);
+            do {} while (x == 2); // violation
         }
 
-        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; }
+        for (int k = 0; k < 1; k++) { String innerBlockVariable = ""; } // violation
 
-        for (int k = 0; k < 1; k++) {}
+        for (int k = 0; k < 1; k++) {} // violation
                 return a;
     }
 
-    static { int x = 1; }
+    static { int x = 1; } // violation
 
     void method2()
     {
