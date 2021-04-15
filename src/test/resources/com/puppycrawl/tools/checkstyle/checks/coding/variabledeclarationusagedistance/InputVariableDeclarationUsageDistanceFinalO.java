@@ -2,12 +2,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 import java.util.*;
 /*
  * Config:
- * allowedDistance = 3
+ * allowedDistance = 1
  * ignoreVariablePattern = ""
  * validateBetweenScopes = true
- * ignoreFinal = false
+ * ignoreFinal = true
  */
-public class InputVariableDeclarationUsageDistance {
+public class InputVariableDeclarationUsageDistanceFinalO {
 
     private static int test1 = 0;
 
@@ -34,22 +34,22 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     static {
-        int a = -1;
+        int a = -1; // violation
         int b = 2;
         b++;
         int c = --b;
         a = b; // DECLARATION OF VARIABLE 'a' SHOULD BE HERE (distance = 2)
     }
 
-    public InputVariableDeclarationUsageDistance(int test1) {
-        int temp = -1;
+    public InputVariableDeclarationUsageDistanceFinalO(int test1) {
+        int temp = -1; // violation
         this.test1 = test1;
         temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
     }
 
     public boolean testMethod() {
-        int temp = 7;
-        new InputVariableDeclarationUsageDistance(2);
+        int temp = 7; // violation
+        new InputVariableDeclarationUsageDistanceFinalO(2);
         String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
         boolean result = false;
         String str = "";
@@ -61,7 +61,7 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     public void testMethod2() {
-        int count;
+        int count; // violation
         int a = 3;
         int b = 2;
         {
@@ -100,7 +100,7 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     public void testMethod5() {
-        int arg = 7;
+        int arg = 7; // violation
         boolean b = true;
         boolean bb = false;
         if (b)
@@ -148,8 +148,8 @@ public class InputVariableDeclarationUsageDistance {
     public void testMethod8() {
         int b = 0;
         int c = 0;
-        int m = 0;
-        int n = 0;
+        int m = 0; // violation
+        int n = 0; // violation
         {
             c++;
             b++;
@@ -188,7 +188,7 @@ public class InputVariableDeclarationUsageDistance {
     public void testMethod11() {
         int a = 0;
         int b = 10;
-        boolean result;
+        boolean result; // violation
         try {
             b--;
         } catch (Exception e) {
@@ -226,8 +226,8 @@ public class InputVariableDeclarationUsageDistance {
         Transaction t = s.beginTransaction(); // violation
         A a = new A();
         E d1 = new E();
-        C1 c = new C1();
-        E d2 = new E();
+        C1 c = new C1(); // violation
+        E d2 = new E(); // violation
         a.setForward(d1);
         d1.setReverse(a);
         c.setForward(d2); // DECLARATION OF VARIABLE 'c' SHOULD BE HERE (distance = 3)
@@ -264,8 +264,8 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     public int[] getSelectedIndices() {
-        int[] sel = new int[5];
-        String model = "";
+        int[] sel = new int[5]; // violation
+        String model = ""; // violation
         int a = 0;
         a++;
         for (int index = 0; index < 5; ++index) {
@@ -291,7 +291,7 @@ public class InputVariableDeclarationUsageDistance {
             k++;
         }
 
-        int sw;
+        int sw; // violation
         switch (i) {
         case 0:
             k++;
@@ -304,7 +304,7 @@ public class InputVariableDeclarationUsageDistance {
             b = true;
         }
 
-        int wh = 0;
+        int wh = 0; // violation
         b = true;
         do {
             k--;
@@ -347,8 +347,8 @@ public class InputVariableDeclarationUsageDistance {
 
     public static Color darker(Color color, double fraction) {
         int red = (int) Math.round(color.getRed() * (1.0 - fraction));
-        int green = (int) Math.round(color.getGreen() * (1.0 - fraction));
-        int blue = (int) Math.round(color.getBlue() * (1.0 - fraction));
+        int green = (int) Math.round(color.getGreen() * (1.0 - fraction)); // violation
+        int blue = (int) Math.round(color.getBlue() * (1.0 - fraction)); // violation
 
         if (red < 0) {
             red = 0;
@@ -458,7 +458,7 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     public void testIssue32_6() {
-        Option aOpt = null;
+        Option aOpt = null; // violation
         Option bOpt = null;
         Option cOpt = null;
         isNull(cOpt); // distance = 1
@@ -475,7 +475,7 @@ public class InputVariableDeclarationUsageDistance {
     }
 
     public void testIssue32_8(Writer w1, Writer w2, Writer w3) {
-        String l1="1", l2="2", l3="3";
+        String l1="1", l2="2", l3="3"; // violation
         w1.write(l3); //distance=1
         w2.write(l2); //distance=2
         w3.write(l1); //distance=3
@@ -495,7 +495,7 @@ public class InputVariableDeclarationUsageDistance {
 
     public void testIssue32_10() {
         Options options = new Options();
-        Option myOption = null; // violation
+        Option myOption = null;
         options.addBindFile(null);
         options.addBindFile(null);
         options.addBindFile(null);
@@ -509,7 +509,7 @@ public class InputVariableDeclarationUsageDistance {
             throws Exception
     {
         int count = 0; // violation
-        String[] files = {};
+        String[] files = {}; // violation
 
         System.identityHashCode("Data archival started");
         files.notify();
@@ -544,9 +544,9 @@ public class InputVariableDeclarationUsageDistance {
         tree.notify();
         TreeMapNode root = null;
         for (Object[] s : tree) {
-            Integer id = (Integer) s[0];
+            Integer id = (Integer) s[0]; // violation
             String label = (String) s[1];
-            Integer parentId = (Integer) s[2]; ///!!!!!!!!
+            Integer parentId = (Integer) s[2]; // violation
             Number weight = (Number) s[3];
             Number value = (Number) s[4];
             Integer childCount = (Integer) s[5];
@@ -845,7 +845,7 @@ public class InputVariableDeclarationUsageDistance {
 
 }
 
-class New2 {
+class New5 {
     void a() {
         int a = 1;
         System.lineSeparator();
@@ -993,7 +993,7 @@ class New2 {
     }
 
     void test() {
-        int a = 0;
+        int a = 0; // violation
 
         System.lineSeparator();
         System.lineSeparator();
@@ -1028,7 +1028,7 @@ class New2 {
             System.identityHashCode(b);
         }
 
-        int c = 0;
+        int c = 0; // violation
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -1060,10 +1060,10 @@ class New2 {
     private void n() {
         long a = 0; // violation
 
-        New2.field = 1;
-        New2.field = 2;
-        New2.field = 3;
-        New2.field = (int)a;
+        New5.field = 1;
+        New5.field = 2;
+        New5.field = 3;
+        New5.field = (int)a;
     }
 
 }
