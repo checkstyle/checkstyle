@@ -445,12 +445,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessarysemicolonintrywithresources[\\/]InputUnnecessarySemicolonInTryWithResourcesNoBraceAfterAllowed.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceAnonymous.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistance.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceLabels.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenIllegalTokens.java"/>

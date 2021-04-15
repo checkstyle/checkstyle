@@ -1,13 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 import java.util.*;
 /*
- * Config:
- * allowedDistance = 3
- * ignoreVariablePattern = ""
- * validateBetweenScopes = true
- * ignoreFinal = false
+ * Config: default
  */
-public class InputVariableDeclarationUsageDistance {
+public class InputVariableDeclarationUsageDistanceDConfig {
 
     private static int test1 = 0;
 
@@ -41,7 +37,7 @@ public class InputVariableDeclarationUsageDistance {
         a = b; // DECLARATION OF VARIABLE 'a' SHOULD BE HERE (distance = 2)
     }
 
-    public InputVariableDeclarationUsageDistance(int test1) {
+    public InputVariableDeclarationUsageDistanceDConfig(int test1) {
         int temp = -1;
         this.test1 = test1;
         temp = test1; // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
@@ -49,7 +45,7 @@ public class InputVariableDeclarationUsageDistance {
 
     public boolean testMethod() {
         int temp = 7;
-        new InputVariableDeclarationUsageDistance(2);
+        new InputVariableDeclarationUsageDistanceDConfig(2);
         String.valueOf(temp); // DECLARATION OF VARIABLE 'temp' SHOULD BE HERE (distance = 2)
         boolean result = false;
         String str = "";
@@ -508,7 +504,7 @@ public class InputVariableDeclarationUsageDistance {
     public int testIssue32_11(String toDir)
             throws Exception
     {
-        int count = 0; // violation
+        int count = 0;
         String[] files = {};
 
         System.identityHashCode("Data archival started");
@@ -546,7 +542,7 @@ public class InputVariableDeclarationUsageDistance {
         for (Object[] s : tree) {
             Integer id = (Integer) s[0];
             String label = (String) s[1];
-            Integer parentId = (Integer) s[2]; ///!!!!!!!!
+            Integer parentId = (Integer) s[2]; // violation
             Number weight = (Number) s[3];
             Number value = (Number) s[4];
             Integer childCount = (Integer) s[5];
@@ -845,7 +841,7 @@ public class InputVariableDeclarationUsageDistance {
 
 }
 
-class New2 {
+class New6 {
     void a() {
         int a = 1;
         System.lineSeparator();
@@ -895,7 +891,7 @@ class New2 {
     }
 
     void f() {
-        int a = 1; // violation
+        int a = 1;
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -905,7 +901,7 @@ class New2 {
     }
 
     void h() {
-        int a = 1; // violation
+        int a = 1;
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -971,7 +967,7 @@ class New2 {
     }
 
     void tryWithoutFinally() {
-        int a = 1; // violation
+        int a = 1;
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -1028,7 +1024,7 @@ class New2 {
             System.identityHashCode(b);
         }
 
-        int c = 0;
+        int c = 0; // violation
         System.lineSeparator();
         System.lineSeparator();
         System.lineSeparator();
@@ -1060,10 +1056,10 @@ class New2 {
     private void n() {
         long a = 0; // violation
 
-        New2.field = 1;
-        New2.field = 2;
-        New2.field = 3;
-        New2.field = (int)a;
+        New6.field = 1;
+        New6.field = 2;
+        New6.field = 3;
+        New6.field = (int)a;
     }
 
 }
