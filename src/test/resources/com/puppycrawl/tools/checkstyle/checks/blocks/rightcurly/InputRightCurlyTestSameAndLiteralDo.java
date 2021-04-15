@@ -2,11 +2,15 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.util.Scanner;
 
-/**
+/*
+ * Config:
+ * option = same
+ * tokens = { LITERAL_DO }
+ *
  * Test input for GitHub issue #3090.
  * https://github.com/checkstyle/checkstyle/issues/3090
  */
-public class InputRightCurlyDoWhile {
+public class InputRightCurlyTestSameAndLiteralDo {
 
     public void foo1() {
         do {
