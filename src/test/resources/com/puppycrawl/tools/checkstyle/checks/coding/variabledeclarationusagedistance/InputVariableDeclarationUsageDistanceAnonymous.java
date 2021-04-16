@@ -3,10 +3,12 @@ package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedi
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuItem;
-
+/*
+ * Config: default
+ */
 public class InputVariableDeclarationUsageDistanceAnonymous {
     public void method() {
-        JMenuItem prefs = new JMenuItem("Preferences...");
+        JMenuItem prefs = new JMenuItem("Preferences..."); // violation
 
         nothing();
         nothing();
