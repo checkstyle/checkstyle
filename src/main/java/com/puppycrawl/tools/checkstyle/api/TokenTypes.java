@@ -1597,6 +1597,21 @@ public final class TokenTypes {
     /**
      * The {@code double} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public double x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_DOUBLE -&gt; double
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_DOUBLE =
