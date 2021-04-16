@@ -133,7 +133,7 @@ public class EmptyForInitializerPadCheck
             // don't check if semi at beginning of line
             if (!CommonUtil.hasWhitespaceBefore(before, line)) {
                 if (option == PadOption.NOSPACE
-                    && Character.isWhitespace(line.charAt(before))) {
+                        && Character.isWhitespace(line.charAt(before))) {
                     log(ast, MSG_PRECEDED, SEMICOLON);
                 }
                 else if (option == PadOption.SPACE

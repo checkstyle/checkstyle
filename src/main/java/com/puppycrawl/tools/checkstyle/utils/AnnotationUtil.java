@@ -145,7 +145,7 @@ public final class AnnotationUtil {
         final DetailAST annotationHolder;
 
         if (ast.getType() == TokenTypes.ENUM_CONSTANT_DEF
-            || ast.getType() == TokenTypes.PACKAGE_DEF) {
+                || ast.getType() == TokenTypes.PACKAGE_DEF) {
             annotationHolder = ast.findFirstToken(TokenTypes.ANNOTATIONS);
         }
         else {

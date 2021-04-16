@@ -318,7 +318,7 @@ public final class OneStatementPerLineCheck extends AbstractCheck {
                 lastVariableResourceStatementEnd = currentStatement.getLineNo();
             }
             if (nextNode.findFirstToken(TokenTypes.ASSIGN) != null
-                && nextNode.getLineNo() == lastVariableResourceStatementEnd) {
+                    && nextNode.getLineNo() == lastVariableResourceStatementEnd) {
                 log(currentStatement, MSG_KEY);
             }
         }

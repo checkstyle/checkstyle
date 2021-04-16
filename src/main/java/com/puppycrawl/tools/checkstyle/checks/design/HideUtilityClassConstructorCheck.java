@@ -280,7 +280,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
                     final DetailAST modifiers =
                         child.findFirstToken(TokenTypes.MODIFIERS);
                     if (modifiers.findFirstToken(TokenTypes.LITERAL_PRIVATE) == null
-                        && modifiers.findFirstToken(TokenTypes.LITERAL_PROTECTED) == null) {
+                            && modifiers.findFirstToken(TokenTypes.LITERAL_PROTECTED) == null) {
                         // treat package visible as public
                         // for the purpose of this Check
                         hasPublicCtor = true;
