@@ -1,6 +1,14 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-public class InputRightCurlyAloneOrSingleline {
+/*
+ * Config:
+ * option = alone_or_singleline
+ * tokens = { LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY,
+ *            LITERAL_IF, LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR,
+ *            LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF,
+ *            ENUM_DEF, INTERFACE_DEF }
+ */
+public class InputRightCurlyTestAloneOrSingleline {
 
     public boolean equals(Object other) { boolean flag = true; return flag; }
 
@@ -22,8 +30,8 @@ public class InputRightCurlyAloneOrSingleline {
 
     private int var1;
     private int var2;
-    public InputRightCurlyAloneOrSingleline() { this.var1 = 1; }
-    public InputRightCurlyAloneOrSingleline(int v1, int v2) { this.var1 = v1; this.var2 = v2; }
+    public InputRightCurlyTestAloneOrSingleline() { this.var1 = 1; }
+    public InputRightCurlyTestAloneOrSingleline(int v1, int v2) { this.var1 = v1; this.var2 = v2; }
 
     private void foo4() { ;; }
 
@@ -57,7 +65,7 @@ public class InputRightCurlyAloneOrSingleline {
     }
 
     private void foo15() {
-        class A { int a; } var1++; //violation
+        class A { int a; } var1++; // violation
         class B {  }
         if(true) {
 
@@ -66,15 +74,15 @@ public class InputRightCurlyAloneOrSingleline {
     }
 
     private void foo16() {
-        if (true) { return; } else { } //violation
+        if (true) { return; } else { }
         if (false) {
         }
     }
 
-    void f17() { int var1 = 5; var2 = 6; } private void f18() {int var1 = 5; var2 = 6; } //violation
+    void f17() { int var1 = 5; var2 = 6; } private void f18() {int var1 = 5; var2 = 6; }//violation
 
     private void foo19() {int var1 = 5;
-        var2 = 6;} //violation
+        var2 = 6;} // violation
 
     private String foo20() {
         do { var2 ++; }
@@ -82,7 +90,7 @@ public class InputRightCurlyAloneOrSingleline {
 
         while (var1 < 10) { var1++; }
 
-        do { var2++; var1++; } while (var2 < 15); return ""+0xCAFEBABE; //violation
+        do { var2++; var1++; } while (var2 < 15); return ""+0xCAFEBABE; // violation
     }
 
     private void foo21() {
@@ -94,9 +102,9 @@ public class InputRightCurlyAloneOrSingleline {
         try {
             int a = 5;
             toString();
-        } catch (Exception e) { //violation
+        } catch (Exception e) { // violation
             throw new RuntimeException(e);
-        } finally { toString(); } //violation
+        } finally { toString(); } // violation
     }
 
     void doDoubleBraceInitialization() {
@@ -107,23 +115,26 @@ public class InputRightCurlyAloneOrSingleline {
             put("alpha", "betical");
         }}; //NO violation
 
-        Thread t = new Thread() {@Override public void run() {super.run();}};
+        Thread t = new Thread() {@Override public void run() {super.run();}}; // violation
+        // violation
         new Object() { @Override protected void finalize() { "".toString(); }  { int a = 5; }};
+        // violation
         new Object() { @Override protected void finalize() { "".toString(); }  int b = 10; };
+        // violation
         new Object() { protected void finalize() { hashCode(); }  { int c = 5; } int d = 8; };
 
         java.util.Map<String, String> map2 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-            put("alpha", "betical");}  //violation
+            put("alpha", "betical");}  // violation
         };
 
         java.util.Map<String, String> map3 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
             put("first", "second");
             put("polygene", "lubricants");
-            put("alpha", "betical");}}; //violation
+            put("alpha", "betical");}}; // violation
 
         java.util.Map<String, String> map4 = new java.util.LinkedHashMap<String, String>() {{
             put("Hello", "World");
@@ -138,14 +149,14 @@ public class InputRightCurlyAloneOrSingleline {
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});  //violation
+        }});  // violation
 
         foo23(new java.util.HashSet<String>() {{
             add("XZ13s");
             add("AB21/X");
             add("YYLEX");
             add("AR5E");
-        }});} //2 violations
+        }});} // 2 violations
 
 
     void foo23(java.util.HashSet<String> set) {
@@ -154,14 +165,14 @@ public class InputRightCurlyAloneOrSingleline {
     void foo25() {
         for (int i = 0; i < 10; i++) {
             System.identityHashCode("Hello, world!");
-        }} //violation
+        }} // violation
 
     void foo26() {
         for (int i = 0; i < 10; i++) {
-            System.identityHashCode("Hello, world!");}} //violation
+            System.identityHashCode("Hello, world!");}} // violation
 
     void foo27() {
-        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} //violation
+        for (int i = 0; i < 10; i++) {for (int j = 0; j < 15; j++) {int a;}}} // violation
 
     private java.util.ArrayList<Integer> foo28(int delta) {
         return new java.util.ArrayList<Integer>() {
@@ -173,7 +184,7 @@ public class InputRightCurlyAloneOrSingleline {
         boolean flag = true;
         if (flag) {
             System.identityHashCode("heh");
-            flag = !flag; } String.CASE_INSENSITIVE_ORDER. //violation
+            flag = !flag; } String.CASE_INSENSITIVE_ORDER. // violation
             equals("Xe-xe");
     }
 
@@ -215,7 +226,7 @@ public class InputRightCurlyAloneOrSingleline {
     public @interface TestAnnotation1{ String value(); }
 
     public @interface TestAnnotation2 {
-        String value();} //violation
+        String value();} // violation
 
     public @interface TestAnnotation3 {
         String value();
