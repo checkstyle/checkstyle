@@ -1401,8 +1401,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="todocomment[\\/]InputTodoCommentSimple.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="trailingcomment[\\/]InputTrailingComment.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="uncommentedmain[\\/]InputUncommentedMain2.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="uncommentedmain[\\/]InputUncommentedMain3.java"/>
