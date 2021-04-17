@@ -1048,6 +1048,19 @@ public final class TokenTypes {
     public static final int IMPORT = GeneratedJavaTokenTypes.IMPORT;
     /**
      * The {@code -} (unary minus) operator.
+     * <p>For example:</p>
+     * <pre>
+     * a = -b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--IDENT -&gt; a
+     * |       `--UNARY_MINUS -&gt; -
+     * |           `--IDENT -&gt; b
+     * |--SEMI -&gt; ;
+     * </pre>
      *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.4">Java
