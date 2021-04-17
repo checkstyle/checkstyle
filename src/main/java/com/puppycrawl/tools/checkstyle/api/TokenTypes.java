@@ -2620,66 +2620,16 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * try
-     * {
-     *   FileReader in = new FileReader("abc.txt");
-     * }
-     * catch(IOException ioe)
-     * {
-     * }
-     * finally
-     * {
-     * }
+     * try { } finally {}
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_TRY (try)
-     *     |
-     *     +--SLIST ({)
-     *         |
-     *         +--VARIABLE_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--IDENT (FileReader)
-     *             +--IDENT (in)
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--EXPR
-     *                     |
-     *                     +--LITERAL_NEW (new)
-     *                         |
-     *                         +--IDENT (FileReader)
-     *                         +--LPAREN (()
-     *                         +--ELIST
-     *                             |
-     *                             +--EXPR
-     *                                 |
-     *                                 +--STRING_LITERAL ("abc.txt")
-     *                         +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     *     +--LITERAL_CATCH (catch)
-     *         |
-     *         +--LPAREN (()
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--IDENT (IOException)
-     *             +--IDENT (ioe)
-     *         +--RPAREN ())
-     *         +--SLIST ({)
-     *             |
-     *             +--RCURLY (})
-     *     +--LITERAL_FINALLY (finally)
-     *         |
-     *         +--SLIST ({)
-     *             |
-     *             +--RCURLY (})
-     * +--RCURLY (})
+     * LITERAL_TRY -&gt; try
+     *  |--SLIST -&gt; {
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_FINALLY -&gt; finally
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
