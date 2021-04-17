@@ -2608,53 +2608,37 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_TRY (try)
-     *     |
-     *     +--SLIST ({)
-     *         |
-     *         +--VARIABLE_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--IDENT (FileReader)
-     *             +--IDENT (in)
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--EXPR
-     *                     |
-     *                     +--LITERAL_NEW (new)
-     *                         |
-     *                         +--IDENT (FileReader)
-     *                         +--LPAREN (()
-     *                         +--ELIST
-     *                             |
-     *                             +--EXPR
-     *                                 |
-     *                                 +--STRING_LITERAL ("abc.txt")
-     *                         +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     *     +--LITERAL_CATCH (catch)
-     *         |
-     *         +--LPAREN (()
-     *         +--PARAMETER_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--IDENT (IOException)
-     *             +--IDENT (ioe)
-     *         +--RPAREN ())
-     *         +--SLIST ({)
-     *             |
-     *             +--RCURLY (})
-     *     +--LITERAL_FINALLY (finally)
-     *         |
-     *         +--SLIST ({)
-     *             |
-     *             +--RCURLY (})
-     * +--RCURLY (})
+     * LITERAL_TRY -&gt; try
+     *  |--SLIST -&gt; {
+     *  |   |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--IDENT -&gt; FileReader
+     *  |   |   |--IDENT -&gt; in
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       `--EXPR -&gt; EXPR
+     *  |   |           `--LITERAL_NEW -&gt; new
+     *  |   |               |--IDENT -&gt; FileReader
+     *  |   |               |--LPAREN -&gt; (
+     *  |   |               |--ELIST -&gt; ELIST
+     *  |   |               |   `--EXPR -&gt; EXPR
+     *  |   |               |       `--STRING_LITERAL -&gt; "abc.txt"
+     *  |   |               `--RPAREN -&gt; )
+     *  |   |--SEMI -&gt; ;
+     *  |   `--RCURLY -&gt; }
+     *  |--LITERAL_CATCH -&gt; catch
+     *  |   |--LPAREN -&gt; (
+     *  |   |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--IDENT -&gt; IOException
+     *  |   |   `--IDENT -&gt; ioe
+     *  |   |--RPAREN -&gt; )
+     *  |   `--SLIST -&gt; {
+     *  |       `--RCURLY -&gt; }
+     *  `--LITERAL_FINALLY -&gt; finally
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
