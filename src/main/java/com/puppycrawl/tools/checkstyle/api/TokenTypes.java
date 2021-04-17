@@ -2399,6 +2399,29 @@ public final class TokenTypes {
      * optional expression for the return value.  The last child is a
      * semi colon.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public void foo() {
+     *     return;
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; foo
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |--RPAREN -&gt; )
+     *  `--SLIST -&gt; {
+     *      |--LITERAL_RETURN -&gt; return
+     *      |   `--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #EXPR
      * @see #SEMI
      * @see #SLIST
