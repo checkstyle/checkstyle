@@ -337,7 +337,7 @@ public class InputJavadocStyle5 // ok
         /**
          * Javadoc without dot
          */
-        public int field; // ok
+        public int field; // violation
     }
 
     /**
@@ -387,4 +387,41 @@ public class SampleTest {
 }</code></pre>
      */
     public void test3() {} // ok
+}
+
+
+class Package1 {
+
+    /**
+     * Package protected check
+     */
+    void method7 () {
+    } // violation
+
+    /**
+     * Javadoc without dot
+     */
+    public interface TestInterface { // violation
+        /**
+         * Javadoc without dot
+         */
+        void method (); // violation
+    }
+
+    static class TestStaticClass {
+        /**
+         * Javadoc without dot
+         */
+        public int field; // violation
+    }
+
+    /**
+     * Javadoc without dot
+     */
+    private interface SubInterface { // violation
+        /**
+         * Javadoc without dot
+         */
+        void method (); // violation
+    }
 }

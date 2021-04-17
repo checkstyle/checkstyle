@@ -25,8 +25,8 @@ public class InputJavadocVariableNoJavadoc //comment test
     }
 
     class PackageInner {
-        public int i1;
-        protected int i2;
+        public int i1; // violation
+        protected int i2; // violation
         int i3;
         private int i4;
 
