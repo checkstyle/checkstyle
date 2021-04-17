@@ -336,7 +336,7 @@ public class InputJavadocStyle9 // ok
         /**
          * Javadoc without dot
          */
-        public int field; // violation
+        public int field; // ok
     }
 
     /**

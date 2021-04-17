@@ -33,8 +33,8 @@ public class InputMissingJavadocMethodNoJavadoc2 //comment test
         int i3;
         private int i4;
 
-        public void foo1() {} // ok
-        protected void foo2() {} // ok
+        public void foo1() {} // violation
+        protected void foo2() {} // violation
         void foo3() {} // ok
         private void foo4() {} // ok
     }
