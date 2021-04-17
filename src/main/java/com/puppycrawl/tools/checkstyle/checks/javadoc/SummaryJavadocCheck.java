@@ -19,17 +19,15 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Objects;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -40,31 +38,8 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * Checks that
  * <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
  * Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
- * Summaries that contain only the {@code {@inheritDoc}} tag are skipped for normal summary javadoc
- * but are violations for inline summary javadoc. Check also violate Javadoc that does not contain
- * first sentence. </p><p> According to
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#general-syntax">
- * Documentation Comment Specification for the Standard Doclet</a> "The first sentence of the
- * initial description should be a summary sentence that contains a concise but complete description
- * of the declared entity. Descriptive text may include HTML tags and entities, and inline tags
- * as described below."
- * </p>
- * <p>
- * Allowed tags inside inline summary javadoc are
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#code">
- * {&#64;code}</a>,
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#link">
- * {&#64;link}</a>,
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#docroot">
- * {&#64;docRoot}</a>,
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#linkplain">
- * {&#64;linkplain}</a>,
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#literal">
- * {&#64;literal}</a>,
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#value">
- * {&#64;value}</a>,
- * <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#index">
- * {&#64;index}</a>
+ * Summaries that contain only the {@code {@inheritDoc}} tag are skipped.
+ * Check also violate Javadoc that does not contain first sentence.
  * </p>
  * <ul>
  * <li>
@@ -114,22 +89,20 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * }
  * </pre>
  * <p>
- * Example of {@code {@inheritDoc}} is not permitted for Inline Summary Javadoc.
+ * Example of non permitted empty javadoc for Inline Summary Javadoc.
  * </p>
  * <pre>
  * public class Test extends Exception {
- *   //Violation
  *   &#47;**
- *    * {&#64;summary {&#64;inheritDoc}.}
+ *    * {&#64;summary  }
  *    *&#47;
- *   public String InvalidFunctionOne(){
+ *   public String InvalidFunctionOne(){ // violation
  *     return "";
  *   }
- *   //Violation
  *   &#47;**
- *    * {&#64;summary }
+ *    * {&#64;summary &lt;p&gt; &lt;p/&gt;}
  *    *&#47;
- *   public String InvalidFunctionTwo(){
+ *   public String InvalidFunctionTwo(){ // violation
  *     return "";
  *   }
  * }
@@ -183,22 +156,6 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  *   * {&#64;summary This is valid java doc。}
  *   *&#47;
  *   public void validJavaDocMethod() { // ok
- *   }
- * }
- * </pre>
- * <p>
- * Example of inline summary javadoc with inline tags.
- * </p>
- * <pre>
- * public class TestClass {
- *  &#47;**
- *   * {&#64;summary {&#64;code someCode} valid inline javadoc.}
- *   *&#47;
- *   public void validJavaDoc() {} // ok
- *  &#47;**
- *   * {&#64;summary {&#64;inheritDoc} invalid inline javadoc.}
- *   *&#47;
- *   public void invalidJavaDocMethod() { // violation
  *   }
  * }
  * </pre>
@@ -284,9 +241,14 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
 
     /**
-     * This regexp is used to remove html tags from string.
+     * This regexp is used to remove html tags, whitespaces and asterisks from string.
      */
-    private static final Pattern HTML_TAG_PATTERN = Pattern.compile("<[^>]*>");
+    private static final Pattern REDUNDANT_ELEMENTS_PATTERN =
+            Pattern.compile("<[^>]*>|(, + *)|(\\*)");
+    /**
+     * This regexp is used to extract content inside summary javadoc tag from a string.
+     */
+    private static final Pattern SUMMARY_PATTERN = Pattern.compile("\\{@summary ([\\S\\s]+)}");
     /** Period literal. */
     private static final String PERIOD = ".";
 
@@ -299,36 +261,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                     JavadocTokenTypes.WS,
                     JavadocTokenTypes.DESCRIPTION,
                     JavadocTokenTypes.TEXT))
-    );
-
-    /**
-     * Set of allowed inline tags in summary java doc.
-     *
-     * <p>These tags are allowed with respect to
-     * https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#general-syntax .
-     * According to which all the HTML tags and inline tags described in it are allowed.
-     * "@inheritDoc" is not included as it is forbidden by check.</p>
-     */
-    private static final Set<String> ALLOWED_INLINE_TAGS = Collections.unmodifiableSet(
-            new HashSet<>(Arrays.asList(
-                    "@code",
-                    "@link",
-                    "@input",
-                    "@docRoot",
-                    "@index",
-                    "@linkplain",
-                    "@literal",
-                    "@value"
-            ))
-    );
-
-    /**
-     * Set of html tags that define the tag is of list type.
-     */
-    private static final Set<String> HTML_LIST_TAGS = Collections.unmodifiableSet(
-            new HashSet<>(Arrays.asList(
-                    "ul", "ol", "dl"
-            ))
     );
 
     /**
@@ -482,58 +414,44 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param ast Javadoc root Node.
      */
     private void validateSummaryTag(DetailNode ast) {
-        final String inlineSummary = getInlineSummary(ast);
-        if (inlineSummary.isEmpty()) {
+        final String inlineSummary = getInlineSummary();
+        final String summaryVisible = getVisibleContent(inlineSummary);
+        if (summaryVisible.isEmpty()) {
             log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
         }
         else if (!period.isEmpty()) {
-            final boolean isPeriodAbsent = isPeriodAtEnd(inlineSummary, period);
-            if (isPeriodAbsent) {
+            if (isPeriodAtEnd(summaryVisible, period)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
             }
-            else if (isSummaryValid(ast)) {
+            else if (containsForbiddenFragment(summaryVisible)) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
             }
         }
     }
 
     /**
-     * Get summary sentence for inline type summary javadoc.
+     * Gets whole content of summary tag.
      *
-     * @param javadoc javadoc root node.
      * @return Summary sentence of javadoc root node.
      */
-    private static String getInlineSummary(DetailNode javadoc) {
-        final String summary;
-        final DetailNode descriptionNode = getDescriptionNode(javadoc);
-        final boolean isSummaryTagWithinHtml = isSummaryTagWithinHtmlTag(javadoc);
-        if (isSummaryTagWithinHtml) {
-            summary = getInlineHtmlSentence(javadoc);
-        }
-        else if (descriptionNode == null) {
-            summary = "";
-
-        }
-        else {
-            final String summarySentence = getDefaultInlineSummarySentence(descriptionNode);
-            summary = removeHtmlTagsFromString(summarySentence);
-        }
-        return summary;
+    private String getInlineSummary() {
+        final DetailAST blockCommentAst = getBlockCommentAst();
+        return blockCommentAst.getFirstChild().getText();
     }
 
     /**
-     * Checks if summary tag present as HTML format.
+     * Gets the string that is visible to user in javadoc.
      *
-     * @param javadoc Javadoc root node.
-     * @return true, if first sentence contains @summary tag.
+     * @param summary Whole content of summary javadoc.
+     * @return string that is visible to user in javadoc.
      */
-    private static boolean isSummaryTagWithinHtmlTag(DetailNode javadoc) {
-        boolean found = false;
-        final DetailNode summaryNode = getInlineTagNodeInsideHtmlTagsOnly(javadoc);
-        if (summaryNode != null) {
-            found = isSummaryTag(summaryNode);
+    private static String getVisibleContent(String summary) {
+        final Matcher matcher = SUMMARY_PATTERN.matcher(summary);
+        String comment = "";
+        if (matcher.find()) {
+            comment = removeRedundantElementsFromString(matcher.group(1));
         }
-        return found;
+        return comment.trim();
     }
 
     /**
@@ -549,72 +467,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if the summary is valid.
-     *
-     * @param ast Javadoc root node.
-     * @return true, if sentence is invalid.
-     */
-    private boolean isSummaryValid(DetailNode ast) {
-        final String inlineFirstSentence = getInlineSummary(ast);
-        final int endOfInlineSentence = inlineFirstSentence.lastIndexOf(period);
-        final String summary = inlineFirstSentence.substring(0, endOfInlineSentence);
-        return containsForbiddenFragment(summary)
-                || !containsCorrectInlineTags(ast);
-    }
-
-    /**
-     * Finds and return if the summary sentence has allowed Inline Tags.
-     *
-     * @param ast Children of javadoc Inline Tag DetailNode[].
-     * @return true, if first sentence contains allowed tags.
-     */
-    private static boolean containsCorrectInlineTags(DetailNode ast) {
-        boolean found = true;
-        final DetailNode node = getFirstInlineTag(ast);
-        final ListIterator<DetailNode> inlineNodes = getNestedInlineJavadocTagNodes(node);
-        while (found && inlineNodes.hasNext()) {
-            // node.next() is an inline tag node and its second child is the name of it
-            found = ALLOWED_INLINE_TAGS.contains(inlineNodes.next().getChildren()[1].getText());
-        }
-        return found;
-    }
-
-    /**
-     * Gets list iterator for inline javadoc tag nodes which are present in other javadoc tag node.
-     *
-     * @param javadoc Inline tag DetailNode.
-     * @return List iterator of type DetailNode.
-     */
-    private static ListIterator<DetailNode> getNestedInlineJavadocTagNodes(DetailNode javadoc) {
-        final List<DetailNode> inlineNode = new ArrayList<>();
-        final DetailNode inlineTagNode = JavadocUtil.findFirstToken(javadoc,
-                JavadocTokenTypes.DESCRIPTION);
-        for (DetailNode child : inlineTagNode.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                inlineNode.add(child);
-            }
-        }
-        return inlineNode.listIterator();
-    }
-
-    /**
-     * Finds and returns only those inline tag nodes which are inside html tags from an ast node.
-     *
-     * @param ast Root node.
-     * @return DetailNode of inline tag.
-     */
-    private static DetailNode getInlineTagNodeInsideHtmlTagsOnly(DetailNode ast) {
-        DetailNode node = null;
-        for (DetailNode child: ast.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                node = getInlineTagNodeWithinHtmlElement(child);
-                break;
-            }
-        }
-        return node;
-    }
-
-    /**
      * Remove html tags from string.
      * This is required as ANTLR does not parses html lists sometimes as HTML Elements.
      * The issue link to this issue is
@@ -623,103 +475,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param summarySentence string to clean.
      * @return string without html tags.
      */
-    private static String removeHtmlTagsFromString(String summarySentence) {
-        return HTML_TAG_PATTERN.matcher(summarySentence).replaceAll("");
-    }
-
-    /**
-     * Gets summary sentence for default inline type summary.
-     * Default inline summary sentence are not wrapped within html elements.
-     *
-     * @param ast javadoc description node.
-     * @return Summary sentence of AST.
-     */
-    private static String getDefaultInlineSummarySentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(250);
-        for (DetailNode child : ast.getChildren()) {
-            if (ALLOWED_TYPES.contains(child.getType())) {
-                result.append(child.getText());
-            }
-
-            if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                // Get inside the HTML Element which will always have at least one child
-                final String stringInsideHtmlTags =
-                        getStringInsideHtmlElement(child.getChildren()[0]);
-                result.append(stringInsideHtmlTags);
-                final boolean isHtmlList = HTML_LIST_TAGS.contains(getHtmlTagName(child));
-                if (isHtmlList) {
-                    for (DetailNode nodeChild : child.getChildren()[0].getChildren()) {
-                        if (nodeChild.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                            result.append(nodeChild.getChildren()[0].getChildren()[1].getText());
-                        }
-                    }
-                }
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Get html tag name.
-     *
-     * @param htmlNode html element node.
-     * @return Name of html tag.
-     */
-    private static String getHtmlTagName(DetailNode htmlNode) {
-        // This will never return NPE as htmlNode will at have least one child
-        // This child will have at least 3 children
-        // The first child is of type HTML_ELEMENT_START which always have at least 2 elements.
-        return htmlNode.getChildren()[0].getChildren()[0].getChildren()[1].getText();
-    }
-
-    /**
-     * Get text inside html elements.
-     *
-     * @param htmlNode html element node.
-     * @return text inside html element.
-     */
-    private static String getStringInsideHtmlElement(DetailNode htmlNode) {
-        final StringBuilder htmlString = new StringBuilder(250);
-        // This will never return NPE as htmlNode will at have least one child
-        // This child will have at least 3 children
-        for (DetailNode child: htmlNode.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.TEXT) {
-                htmlString.append(child.getText());
-            }
-        }
-        return htmlString.toString();
-    }
-
-    /**
-     * Gets summary sentence for html inline type summary.
-     * Html type summary sentence are wrapped within paragraph tag.
-     *
-     * @param ast Javadoc root node.
-     * @return first sentence.
-     */
-    private static String getInlineHtmlSentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(256);
-        final DetailNode node = getInlineTagNodeInsideHtmlTagsOnly(ast);
-        result.append(getTextFromInlineTagNode(
-                Objects.requireNonNull(node)));
-        return result.toString();
-    }
-
-    /**
-     * Finds and returns description node.
-     *
-     * @param ast Javadoc root node.
-     * @return Description DetailNode.
-     */
-    private static DetailNode getDescriptionNode(DetailNode ast) {
-        DetailNode node = null;
-        for (DetailNode child : ast.getChildren()) {
-            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                node = JavadocUtil.findFirstToken(child, JavadocTokenTypes.DESCRIPTION);
-                break;
-            }
-        }
-        return node;
+    private static String removeRedundantElementsFromString(String summarySentence) {
+        return REDUNDANT_ELEMENTS_PATTERN.matcher(summarySentence).replaceAll("");
     }
 
     /**
@@ -763,52 +520,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
         }
 
         return result.toString();
-    }
-
-    /**
-     * Gets text from a DetailNode of inline form.
-     *
-     * @param node JavaDoc Inline node.
-     * @return first sentence.
-     */
-    private static String getTextFromInlineTagNode(DetailNode node) {
-        final StringBuilder result = new StringBuilder(256);
-        for (DetailNode child : node.getChildren()) {
-            if (ALLOWED_TYPES.contains(child.getType())) {
-                final String text;
-                if (child.getChildren().length == 0) {
-                    text = child.getText();
-                }
-                else {
-                    text = getTextFromDescription(child);
-                }
-
-                result.append(text);
-            }
-        }
-        return result.toString();
-    }
-
-    /**
-     * Returns the text from an InlineTag Description.
-     *
-     * @param ast InlineTag Node.
-     * @return text of InlineTag Description.
-     */
-    private static String getTextFromDescription(DetailNode ast) {
-        final DetailNode[] child = ast.getChildren();
-        StringBuilder inlineText = null;
-        for (DetailNode nodeChild : child) {
-            if (nodeChild.getType() == JavadocTokenTypes.TEXT) {
-                if (inlineText == null) {
-                    inlineText = new StringBuilder(nodeChild.getText());
-                }
-                else {
-                    inlineText.append(nodeChild.getText());
-                }
-            }
-        }
-        return inlineText.toString();
     }
 
     /**

@@ -11,22 +11,6 @@ class InputSummaryJavadocInlineDefault {
     void foo1() {} // ok
 
     /**
-     * {@summary {@throws Exception}}
-     * @return Some Javadoc the customer ID.
-     */
-    int foo2(){return 666;} // violation
-
-    /**
-     * {@summary This code {@input Javadoc} is right.}
-     */
-    void foo3(){} // ok
-
-    /**
-     * {@summary This code {@throws Exception} is wrong.}
-     */
-    void foo4(){} // violation
-
-    /**
      * {@summary This code is wrong }
      */
     void foo5(){} // violation
@@ -37,19 +21,19 @@ class InputSummaryJavadocInlineDefault {
     void foo6(){} // violation
 
     /**
-     * {@summary <p>This code is right.</p>}
+     * {@sometag This code {@see Javadoc} is wrong }
      */
-    void foo7(){} // ok
+    void foo7(){} // violation
 
     /**
-     * {@summary This code {@code Javadoc} is wrong }
+     * {@summary <p>This code is right.</p>}
      */
-    void foo8(){} // violation
+    void foo8(){} // ok
 
     /**
      * {@summary As of , replaced by {@link #setBounds(int,int,int,int)}}
      */
-    void foo11() {} // ok
+    void foo11() {} // violation
 
     /**
      * {@summary {@throws Exception if a problem occurs}}
@@ -58,11 +42,6 @@ class InputSummaryJavadocInlineDefault {
 
     /** {@summary An especially short bit of Javadoc.} */
     void foo13() {} // ok
-
-    /**
-     * {@summary An especially short bit of Javadoc.}
-     */
-    void foo() {} // ok
 
     /**
      * {@summary Some Javadoc.}
@@ -85,15 +64,10 @@ class InputSummaryJavadocInlineDefault {
         public static final byte NUL_2 = 0; // ok
 
         /**
-         * {@summary his method
+         * {@summary This method
          * returns some javadoc. Some javadoc.}
          */
         boolean emulated() {return false;} // ok
-
-        /**
-         * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
-         */
-        void foo2() {} // violation
 
         /**
          * {@summary @return the
@@ -102,14 +76,9 @@ class InputSummaryJavadocInlineDefault {
         int geId() {return 666;} // ok
 
         /**
-         * {@summary As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.}
+         * {@summary from {@link #setBounds(int,int,int,int)}.}
          */
         void foo3() {} // ok
-
-        /**
-         * {@summary {@throws Exception}}
-         */
-        void foo4() throws Exception {} // violation
 
         /** {@summary  An especially short bit of Javadoc.} */
         void foo5() {} // ok
@@ -137,7 +106,7 @@ class InputSummaryJavadocInlineDefault {
         void emulated(String s) {} // ok
 
         /**
-         * As of JDK 1.1, replaced by {@link #setBounds(int,int,int,int)}.
+         * from {@link #setBounds(int,int,int,int)}.
          */
         void foo3() {} // ok
 
@@ -183,26 +152,6 @@ class InputSummaryJavadocInlineDefault {
     /**
      * {@summary}
      */
-    void foo18() {} // violation
-
-    /**
-     * {@summary {@code}}
-     */
-    void foo19() {} // violation
-
-    /**
-     * {@summary {@throws}}
-     */
-    void foo20() {} // violation
-
-    /**
-     * {@author}
-     */
-    void foo21() {} // violation
-
-    /**
-     * {@summary}
-     */
     void foo22() {} // violation
 
     /** */
@@ -214,18 +163,6 @@ class InputSummaryJavadocInlineDefault {
     void foo23(){} // ok
 
     /**
-     * {@summary first contains period.
-     * Use of html tags:
-     * <ul>
-     * <li>Item one.</li>
-     * <li>No period here</li>
-     * </ul>}
-     */
-    private void invalidInlineJavadocOne() // violation
-    {
-    }
-
-    /**
      * {@summary first doesn't have period
      * Use of html tags:
      * <ul>
@@ -233,7 +170,7 @@ class InputSummaryJavadocInlineDefault {
      * <li>Period here.</li>
      * </ul>}
      */
-    private void invalidInlineJavadocTwo() // violation
+    private void invalidInlineJavadocTwo() // ok
     {
     }
 
@@ -249,17 +186,4 @@ class InputSummaryJavadocInlineDefault {
     private void invalidInlineJavadocList() // violation
     {
     }
-
-    /**
-     * {@summary first does have period.
-     * Use of html tags:
-     * {@code makes tree parse properly}
-     * <p>
-     * No period here
-     * </p>}
-     */
-    private void invalidInlineJavadocThree() // violation
-    {
-    }
-
 }

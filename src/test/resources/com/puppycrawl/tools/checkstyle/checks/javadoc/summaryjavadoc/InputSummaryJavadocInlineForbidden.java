@@ -12,28 +12,13 @@ public class InputSummaryJavadocInlineForbidden {
     /**
      * {@summary A simple correct Javadoc.}
      */
-    void foo1() {
-    }
-
-    /**
-     * {@summary {@throws Exception}.}
-     *
-     * @return Some Javadoc the customer ID.
-     */
-    int foo2() { // violation
-        return 666;
+    void foo1() { // ok
     }
 
     /**
      * {@summary This code {@input Javadoc} is right.}
      */
     void foo3() { // ok
-    }
-
-    /**
-     * {@summary This code {@throws Exception} is wrong.}
-     */
-    void foo4() { // violation
     }
 
     /**
@@ -49,27 +34,15 @@ public class InputSummaryJavadocInlineForbidden {
     }
 
     /**
-     * {@summary This code {@code Javadoc} is wrong }
-     */
-    void foo8() { // violation
-    }
-
-    /**
      * {@summary As of , replaced by {@link #setBounds(int, int, int, int)}}
      */
     void foo11() { // violation
     }
 
     /**
-     * {@summary {@throws Exception if a problem occurs}}
+     * {@summary This method returns something.}
      */
-    void foo12() throws Exception { // violation
-    }
-
-    /**
-     * {@summary Some Javadoc.}
-     */
-    public static final byte NUL = 0; // ok
+    public static final byte NUL = 0; // violation
 
     /**
      * {@summary <a href="mailto:vlad@htmlbook.ru"/>}
@@ -100,17 +73,6 @@ public class InputSummaryJavadocInlineForbidden {
         void foo3() {
         } // ok
 
-        /**
-         * {@summary {@throws Exception}}
-         */
-        void foo4() throws Exception { // violation
-        }
-
-        /**
-         * {@summary An especially short bit of Javadoc.}
-         */
-        void foo6() {
-        } // ok
     }
 
     /**
@@ -118,12 +80,6 @@ public class InputSummaryJavadocInlineForbidden {
      */
     InputSummaryJavadocInlineForbidden.InnerInputCorrectJavaDocParagraphCheck anon =
             new InputSummaryJavadocInlineForbidden.InnerInputCorrectJavaDocParagraphCheck() {
-
-                /**
-                 * {@summary {@throws Exception} if a problem occurs.}
-                 */
-                void foo4() throws Exception { // violation
-                }
 
                 /**
                  * mm{@inheritDoc}
@@ -134,22 +90,9 @@ public class InputSummaryJavadocInlineForbidden {
                 /**
                  * {@summary {@code see}.}
                  */
-                void foo10() {
-                } // ok
+                void foo10() { // ok
+                }
             };
-
-    /**
-     * {@summary {@inheritDoc}.}
-     */
-    void foo14() {
-    } // violation
-
-    /**
-     * {@summary This summary is {@author Author} forbidden.}
-     */
-    int foo15() { // violation
-        return 0;
-    }
 
     /**
      * {@summary first sentence is normally the summary.
@@ -166,14 +109,4 @@ public class InputSummaryJavadocInlineForbidden {
     {
     }
 
-    /**
-     * {@summary This code {@code Javadoc} is wrong {@throw exception} as throw is here.}
-     */
-    private void foo16() {} // violation
-
-
-    /**
-     * {@summary This code {@throw Javadoc} is wrong {@code exception} as throw is here.}
-     */
-    private void foo17() {} // violation
 }
