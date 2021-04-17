@@ -1,10 +1,9 @@
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 /*
- * Config:
- * legalComment = "^NOI18N$"
+ * Config : default
  */
-public class InputTrailingComment {
-    int i; // don't use trailing comments :) // violation
+public class InputTrailingCommentDefault {
+    int i; // violation // don't use trailing comments :)
     // it fine to have comment w/o any statement
     /* good c-style comment. */
     int j; // violation /* bad c-style comment. */
@@ -29,8 +28,8 @@ public class InputTrailingComment {
     /**
      * comment with trailing space.
      */
-    final static public String NAME="Some Name"; // NOI18N
-    final static public String NAME2="Some Name"; /*NOI18N*/
+    final static public String NAME="Some Name"; // violation // NOI18N
+    final static public String NAME2="Some Name"; // violation /*NOI18N*/
     String NAME3="Some Name"; /*NOI18N // violation
 */
     /* package */ void method3() {
