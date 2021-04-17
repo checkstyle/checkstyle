@@ -23,9 +23,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
@@ -87,6 +89,25 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * }
  * </pre>
  * <p>
+ * Example of non permitted empty javadoc for Inline Summary Javadoc.
+ * </p>
+ * <pre>
+ * public class Test extends Exception {
+ *   &#47;**
+ *    * {&#64;summary  }
+ *    *&#47;
+ *   public String InvalidFunctionOne(){ // violation
+ *     return "";
+ *   }
+ *   &#47;**
+ *    * {&#64;summary &lt;p&gt; &lt;p/&gt;}
+ *    *&#47;
+ *   public String InvalidFunctionTwo(){ // violation
+ *     return "";
+ *   }
+ * }
+ * </pre>
+ * <p>
  * To ensure that summary do not contain phrase like "This method returns",
  * use following config:
  * </p>
@@ -109,15 +130,49 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * </p>
  * <pre>
  * public class TestClass {
- *   &#47;**
+ *  &#47;**
  *   * This is invalid java doc.
  *   *&#47;
  *   void invalidJavaDocMethod() {
  *   }
- *   &#47;**
+ *  &#47;**
  *   * This is valid java doc。
  *   *&#47;
  *   void validJavaDocMethod() {
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Example of period property for inline summary javadoc.
+ * </p>
+ * <pre>
+ * public class TestClass {
+ *  &#47;**
+ *   * {&#64;summary This is invalid java doc.}
+ *   *&#47;
+ *   public void invalidJavaDocMethod() { // violation
+ *   }
+ *  &#47;**
+ *   * {&#64;summary This is valid java doc。}
+ *   *&#47;
+ *   public void validJavaDocMethod() { // ok
+ *   }
+ * }
+ * </pre>
+ * <p>
+ * Example of inline summary javadoc with HTML tags.
+ * </p>
+ * <pre>
+ * public class Test {
+ *  &#47;**
+ *   * {&#64;summary first sentence is normally the summary.
+ *   * Use of html tags:
+ *   * &lt;ul&gt;
+ *   * &lt;li&gt;Item one.&lt;/li&gt;
+ *   * &lt;li&gt;Item two.&lt;/li&gt;
+ *   * &lt;/ul&gt;}
+ *   *&#47;
+ *   public void validInlineJavadoc() { // ok
  *   }
  * }
  * </pre>
@@ -146,6 +201,9 @@ import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
  * <li>
  * {@code summary.javaDoc.missing}
  * </li>
+ * <li>
+ * {@code summary.javaDoc.missing.period}
+ * </li>
  * </ul>
  *
  * @since 6.0
@@ -164,30 +222,55 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * file.
      */
     public static final String MSG_SUMMARY_JAVADOC = "summary.javaDoc";
+
     /**
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
     public static final String MSG_SUMMARY_JAVADOC_MISSING = "summary.javaDoc.missing";
+
+    /**
+     * A key is pointing to the warning message text in "messages.properties" file.
+     */
+    public static final String MSG_SUMMARY_MISSING_PERIOD = "summary.javaDoc.missing.period";
+
     /**
      * This regexp is used to convert multiline javadoc to single line without stars.
      */
     private static final Pattern JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN =
             Pattern.compile("\n[ ]+(\\*)|^[ ]+(\\*)");
 
+    /**
+     * This regexp is used to remove html tags, whitespaces and asterisks from string.
+     */
+    private static final Pattern REDUNDANT_ELEMENTS_PATTERN =
+            Pattern.compile("<[^>]*>|(, + *)|(\\*)");
+    /**
+     * This regexp is used to extract content inside summary javadoc tag from a string.
+     */
+    private static final Pattern SUMMARY_PATTERN = Pattern.compile("\\{@summary ([\\S\\s]+)}");
     /** Period literal. */
     private static final String PERIOD = ".";
+
+    /** Summary tag text. */
+    private static final String SUMMARY_TEXT = "@summary";
 
     /** Set of allowed Tokens tags in summary java doc. */
     private static final Set<Integer> ALLOWED_TYPES = Collections.unmodifiableSet(
             new HashSet<>(Arrays.asList(JavadocTokenTypes.TEXT,
-                    JavadocTokenTypes.WS))
+                    JavadocTokenTypes.WS,
+                    JavadocTokenTypes.DESCRIPTION,
+                    JavadocTokenTypes.TEXT))
     );
 
-    /** Specify the regexp for forbidden summary fragments. */
+    /**
+     * Specify the regexp for forbidden summary fragments.
+     */
     private Pattern forbiddenSummaryFragments = CommonUtil.createPattern("^$");
 
-    /** Specify the period symbol at the end of first javadoc sentence. */
+    /**
+     * Specify the period symbol at the end of first javadoc sentence.
+     */
     private String period = PERIOD;
 
     /**
@@ -222,7 +305,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
-        if (!startsWithInheritDoc(ast)) {
+        if (containsSummaryTag(ast)) {
+            validateSummaryTag(ast);
+        }
+        else if (!startsWithInheritDoc(ast)) {
             final String summaryDoc = getSummarySentence(ast);
             if (summaryDoc.isEmpty()) {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
@@ -239,6 +325,201 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 }
             }
         }
+    }
+
+    /**
+     * Checks if summary tag present.
+     *
+     * @param javadoc Javadoc root node.
+     * @return true, if first sentence contains @summary tag.
+     */
+    private static boolean containsSummaryTag(DetailNode javadoc) {
+        final DetailNode node = getFirstInlineTag(javadoc);
+        return node != null && isSummaryTag(node);
+    }
+
+    /**
+     * Finds and return first inline tag node from a javadoc root node.
+     *
+     * @param javadoc Javadoc root node.
+     * @return First inline tag node or null if no node is found.
+     */
+    private static DetailNode getFirstInlineTag(DetailNode javadoc) {
+        DetailNode node = null;
+        final DetailNode[] children = javadoc.getChildren();
+        for (DetailNode child: children) {
+            // If present as a children of javadoc
+            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                node = child;
+            }
+            // If nested inside html tag
+            else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
+                node = getInlineTagNodeWithinHtmlElement(child);
+            }
+
+            if (node != null) {
+                break;
+            }
+        }
+        return node;
+    }
+
+    /**
+     * Returns inline javadoc tag node inside html tags from a HTML tag.
+     *
+     * @param ast html tag node.
+     * @return Inline summary javadoc tag node or null if no node is found.
+     */
+    private static DetailNode getInlineTagNodeWithinHtmlElement(DetailNode ast) {
+        DetailNode node = ast;
+        DetailNode result = null;
+        // node can never be null as it is always called when there is HTML element
+        if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+            result = node;
+        }
+        else if (node.getType() == JavadocTokenTypes.HTML_TAG) {
+            // HTML_TAG always has more than 2 children.
+            node = node.getChildren()[1];
+            result = getInlineTagNodeWithinHtmlElement(node);
+        }
+        else if (node.getType() == JavadocTokenTypes.HTML_ELEMENT
+                // Condition for SINGLETON html element which cannot contain summary node
+                && node.getChildren()[0].getChildren().length > 1) {
+            // Html elements have one tested tag before actual content inside it
+            node = node.getChildren()[0].getChildren()[1];
+            result = getInlineTagNodeWithinHtmlElement(node);
+        }
+        return result;
+    }
+
+    /**
+     * Checks if the first tag inside ast is summary tag.
+     *
+     * @param javadoc root node.
+     * @return true, if first tag is summary tag.
+     */
+    private static boolean isSummaryTag(DetailNode javadoc) {
+        final DetailNode[] child = javadoc.getChildren();
+
+        // Checking size of ast is not required, since ast contains
+        // children of Inline Tag, as at least 2 children will be present which are
+        // RCURLY and LCURLY.
+        return child[1].getType() == JavadocTokenTypes.CUSTOM_NAME
+                && SUMMARY_TEXT.equals(child[1].getText());
+    }
+
+    /**
+     * Check the summary of inline form.
+     *
+     * @param ast Javadoc root Node.
+     */
+    private void validateSummaryTag(DetailNode ast) {
+        final String inlineSummary = getInlineSummary();
+        final String summaryVisible = getVisibleContent(inlineSummary);
+        if (summaryVisible.isEmpty()) {
+            log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
+        }
+        else if (!period.isEmpty()) {
+            if (isPeriodAtEnd(summaryVisible, period)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_MISSING_PERIOD);
+            }
+            else if (containsForbiddenFragment(summaryVisible)) {
+                log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC);
+            }
+        }
+    }
+
+    /**
+     * Gets whole content of summary tag.
+     *
+     * @return Summary sentence of javadoc root node.
+     */
+    private String getInlineSummary() {
+        final DetailAST blockCommentAst = getBlockCommentAst();
+        return blockCommentAst.getFirstChild().getText();
+    }
+
+    /**
+     * Gets the string that is visible to user in javadoc.
+     *
+     * @param summary Whole content of summary javadoc.
+     * @return string that is visible to user in javadoc.
+     */
+    private static String getVisibleContent(String summary) {
+        final Matcher matcher = SUMMARY_PATTERN.matcher(summary);
+        String comment = "";
+        if (matcher.find()) {
+            comment = removeRedundantElementsFromString(matcher.group(1));
+        }
+        return comment.trim();
+    }
+
+    /**
+     * Checks if the string ends with period.
+     *
+     * @param sentence string to check for period at end.
+     * @param period String to check within sentence.
+     * @return true, is sentence ends with period.
+     */
+    private static boolean isPeriodAtEnd(String sentence, String period) {
+        final String summarySentence = sentence.trim();
+        return summarySentence.lastIndexOf(period) != summarySentence.length() - 1;
+    }
+
+    /**
+     * Remove html tags from string.
+     * This is required as ANTLR does not parses html lists sometimes as HTML Elements.
+     * The issue link to this issue is
+     * <a href="https://github.com/checkstyle/checkstyle/issues/9703">Issue #9703</a>
+     *
+     * @param summarySentence string to clean.
+     * @return string without html tags.
+     */
+    private static String removeRedundantElementsFromString(String summarySentence) {
+        return REDUNDANT_ELEMENTS_PATTERN.matcher(summarySentence).replaceAll("");
+    }
+
+    /**
+     * Tests if first sentence contains forbidden summary fragment.
+     *
+     * @param firstSentence String with first sentence.
+     * @return true, if first sentence contains forbidden summary fragment.
+     */
+    private boolean containsForbiddenFragment(String firstSentence) {
+        final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
+                .matcher(firstSentence).replaceAll(" ").trim();
+        return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
+    }
+
+    /**
+     * Trims the given {@code text} of duplicate whitespaces.
+     *
+     * @param text The text to transform.
+     * @return The finalized form of the text.
+     */
+    private static String trimExcessWhitespaces(String text) {
+        final StringBuilder result = new StringBuilder(256);
+        boolean previousWhitespace = true;
+
+        for (char letter : text.toCharArray()) {
+            final char print;
+            if (Character.isWhitespace(letter)) {
+                if (previousWhitespace) {
+                    continue;
+                }
+
+                previousWhitespace = true;
+                print = ' ';
+            }
+            else {
+                previousWhitespace = false;
+                print = letter;
+            }
+
+            result.append(print);
+        }
+
+        return result.toString();
     }
 
     /**
@@ -267,7 +548,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Checks if period is at the end of sentence.
+     * Finds and returns summary sentence.
      *
      * @param ast Javadoc root node.
      * @return violation string
@@ -295,7 +576,7 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
     }
 
     /**
-     * Concatenates string within text of html tags.
+     * Get concatenated string within text of html tags.
      *
      * @param result javadoc string
      * @param detailNode javadoc tag node
@@ -338,49 +619,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
 
             result.append(text);
         }
-        return result.toString();
-    }
-
-    /**
-     * Tests if first sentence contains forbidden summary fragment.
-     *
-     * @param firstSentence String with first sentence.
-     * @return true, if first sentence contains forbidden summary fragment.
-     */
-    private boolean containsForbiddenFragment(String firstSentence) {
-        final String javadocText = JAVADOC_MULTILINE_TO_SINGLELINE_PATTERN
-                .matcher(firstSentence).replaceAll(" ").trim();
-        return forbiddenSummaryFragments.matcher(trimExcessWhitespaces(javadocText)).find();
-    }
-
-    /**
-     * Trims the given {@code text} of duplicate whitespaces.
-     *
-     * @param text The text to transform.
-     * @return The finalized form of the text.
-     */
-    private static String trimExcessWhitespaces(String text) {
-        final StringBuilder result = new StringBuilder(100);
-        boolean previousWhitespace = true;
-
-        for (char letter : text.toCharArray()) {
-            final char print;
-            if (Character.isWhitespace(letter)) {
-                if (previousWhitespace) {
-                    continue;
-                }
-
-                previousWhitespace = true;
-                print = ' ';
-            }
-            else {
-                previousWhitespace = false;
-                print = letter;
-            }
-
-            result.append(print);
-        }
-
         return result.toString();
     }
 
