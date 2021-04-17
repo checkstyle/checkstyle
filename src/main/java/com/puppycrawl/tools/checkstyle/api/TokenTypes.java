@@ -762,22 +762,19 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * ar[2] = 5;
+     * arr[0] = 10;
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--EXPR
-     *     |
-     *     +--ASSIGN (=)
-     *         |
-     *         +--INDEX_OP ([)
-     *             |
-     *             +--IDENT (ar)
-     *             +--EXPR
-     *                 |
-     *                 +--NUM_INT (2)
-     *         +--NUM_INT (5)
-     * +--SEMI (;)
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--INDEX_OP -&gt; [
+     * |       |   |--IDENT -&gt; arr
+     * |       |   |--EXPR -&gt; EXPR
+     * |       |   |   `--NUM_INT -&gt; 0
+     * |       |   `--RBRACK -&gt; ]
+     * |       `--NUM_INT -&gt; 10
+     * |--SEMI -&gt; ;
      * </pre>
      *
      * @see #EXPR
