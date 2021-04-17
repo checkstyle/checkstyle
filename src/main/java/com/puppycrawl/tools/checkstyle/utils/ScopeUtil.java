@@ -74,7 +74,8 @@ public final class ScopeUtil {
                 final DetailAST mods =
                     token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = getScopeFromMods(mods);
-                if (returnValue == null || returnValue.isIn(modScope)) {
+                if (returnValue == null || returnValue.isIn(modScope)
+                        || isSurroundedWithinHigherScope(returnValue, modScope)) {
                     returnValue = modScope;
                 }
             }
@@ -86,6 +87,20 @@ public final class ScopeUtil {
         }
 
         return returnValue;
+    }
+
+    /**
+     * Checks if type declaration is of package or protected scope and is surrounded
+     * with higher scope.
+     *
+     * @param typeDecScope Scope of type declaration.
+     * @param surroundingScope Surrounding scope of type declaration.
+     * @return true, if type declaration is of package scope and is surrounded with higher scope.
+     */
+    public static boolean isSurroundedWithinHigherScope(Scope typeDecScope,
+                                                        Scope surroundingScope) {
+        return (typeDecScope == Scope.PACKAGE || typeDecScope == Scope.PROTECTED)
+                && typeDecScope.compareTo(surroundingScope) > 0;
     }
 
     /**

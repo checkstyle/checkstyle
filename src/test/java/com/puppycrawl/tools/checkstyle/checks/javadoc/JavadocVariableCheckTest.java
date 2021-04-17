@@ -185,6 +185,8 @@ public class JavadocVariableCheckTest
             "6:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "16:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "17:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig,
                getPath("InputJavadocVariableNoJavadoc.java"),
@@ -202,8 +204,6 @@ public class JavadocVariableCheckTest
             "8:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "18:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "19:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "29:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "31:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "40:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
