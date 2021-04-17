@@ -279,6 +279,22 @@ public class ScopeUtilTest {
                 "Should return false when node is not in interface or annotation block");
     }
 
+    @Test
+    public void testIsSurroundedWithinHigherScope() {
+        assertTrue(ScopeUtil.isSurroundedWithinHigherScope(Scope.PROTECTED, Scope.PUBLIC),
+            "Should return true when node is surrounded by higher scope");
+        assertFalse(ScopeUtil.isSurroundedWithinHigherScope(Scope.PRIVATE, Scope.PUBLIC),
+            "Should return false when node is not package or protected");
+        assertFalse(ScopeUtil.isSurroundedWithinHigherScope(Scope.PACKAGE, Scope.PRIVATE),
+            "Should return false when node is not surrounded by higher scope");
+        assertFalse(ScopeUtil.isSurroundedWithinHigherScope(Scope.PACKAGE, Scope.PRIVATE),
+                "Should return false when node is not surrounded by higher scope");
+        assertFalse(ScopeUtil.isSurroundedWithinHigherScope(Scope.PROTECTED, Scope.PROTECTED),
+                "Should return false when node is not surrounded by higher scope");
+        assertFalse(ScopeUtil.isSurroundedWithinHigherScope(Scope.PACKAGE, Scope.PACKAGE),
+                "Should return false when node is not surrounded by higher scope");
+    }
+
     private static DetailAstImpl getNode(int... nodeTypes) {
         DetailAstImpl ast = new DetailAstImpl();
         ast.setType(nodeTypes[0]);

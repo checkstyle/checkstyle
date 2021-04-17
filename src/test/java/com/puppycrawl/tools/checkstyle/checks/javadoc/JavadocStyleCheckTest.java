@@ -229,6 +229,7 @@ public class JavadocStyleCheckTest
             "284:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
             "326: " + getCheckMessage(MSG_NO_PERIOD),
             "330: " + getCheckMessage(MSG_NO_PERIOD),
+            "337: " + getCheckMessage(MSG_NO_PERIOD),
             "362: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
@@ -258,6 +259,7 @@ public class JavadocStyleCheckTest
             "285:21: " + getCheckMessage(MSG_EXTRA_HTML, "</string> // violation"),
             "327: " + getCheckMessage(MSG_NO_PERIOD),
             "331: " + getCheckMessage(MSG_NO_PERIOD),
+            "338: " + getCheckMessage(MSG_NO_PERIOD),
             "363: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
@@ -340,11 +342,24 @@ public class JavadocStyleCheckTest
             "315: " + getCheckMessage(MSG_NO_PERIOD),
             "321:11: " + getCheckMessage(MSG_UNCLOSED_HTML,
                 "<b>Note:<b> it's unterminated tag.</p> // violation"),
-            "336: " + getCheckMessage(MSG_NO_PERIOD),
             "348: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle9.java"), expected);
+    }
+
+    @Test
+    public void testStyleWithHigherSurrounding() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("scope", "private");
+        checkConfig.addAttribute("excludeScope", "package");
+        final String[] expected = {
+            "23: " + getCheckMessage(MSG_NO_PERIOD),
+            "32: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleHigherSurroundingScope.java"), expected);
     }
 
     @Test
