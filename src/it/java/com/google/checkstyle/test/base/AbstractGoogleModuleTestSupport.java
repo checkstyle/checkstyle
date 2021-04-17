@@ -82,6 +82,16 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
     }
 
     /**
+     * Returns {@link Configuration} instance for {@link DefaultConfiguration} instance.
+     *
+     * @param moduleName  {@link DefaultConfiguration} instance.
+     * @return {@link Configuration} instance for {@link DefaultConfiguration} instance
+     */
+    protected static Configuration getModuleConfig(DefaultConfiguration moduleName) {
+        return moduleName;
+    }
+
+    /**
      * Returns {@link Configuration} instance for the given module name.
      * This implementation uses {@link #getModuleConfig(String, String)} method inside.
      *
@@ -127,6 +137,54 @@ public abstract class AbstractGoogleModuleTestSupport extends AbstractItModuleTe
         }
 
         return result;
+    }
+
+    /**
+     * Returns list of {@link Configuration} instance for the list of module name.
+     * This implementation uses {@link #getModuleById(String)} method inside.
+     *
+     * @param moduleIds list of module id.
+     * @return list of {@link Configuration} instances present inside TreeWalker.
+     * @throws CheckstyleException if there is a problem retrieving the module by id.
+     */
+    protected static List<Configuration>
+        getModuleById(List<String> moduleIds) throws CheckstyleException {
+        final List<Configuration> result = new ArrayList<>();
+        for (String moduleId: moduleIds) {
+            result.addAll(getModuleById(moduleId));
+        }
+        return result;
+    }
+
+    /**
+     * Returns list of {@link Configuration} instances for the the modules
+     * matching id inside TreeWalker.
+     *
+     * @param moduleId list of module id.
+     * @return list of {@link Configuration} instances inside TreeWalker for the given module ids.
+     * @throws CheckstyleException if there is a problem retrieving the module or config.
+     */
+    protected static List<Configuration>
+        getModuleById(String moduleId) throws CheckstyleException {
+        final List<Configuration> result = new ArrayList<>();
+        boolean flag = false;
+        for (Configuration currentConfig : CONFIGURATION.getChildren()) {
+            if ("TreeWalker".equals(currentConfig.getName())) {
+                for (Configuration moduleConfig : currentConfig.getChildren()) {
+                    if (moduleConfig.containsAttribute("id")
+                            && moduleConfig.getAttribute("id").equals(moduleId)) {
+                        result.add(moduleConfig);
+                        flag = true;
+                    }
+                }
+            }
+        }
+        if (flag) {
+            return result;
+        }
+        else {
+            throw new CheckstyleException("Id not found" + moduleId);
+        }
     }
 
     /**
