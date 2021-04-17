@@ -40,6 +40,14 @@ public interface Configuration extends Serializable {
      * The attribute value for an attribute name.
      *
      * @param name the attribute name
+     * @return true if attribute is present else false.
+     */
+    boolean containsAttribute(String name);
+
+    /**
+     * The attribute value for an attribute name.
+     *
+     * @param name the attribute name
      * @return the value that is associated with name
      * @throws CheckstyleException if name is not a valid attribute name
      */
