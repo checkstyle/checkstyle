@@ -238,9 +238,13 @@ for (Iterator foo = very.long.line.iterator();
       <p>Since Checkstyle 5.8</p>
       <subsection name="Description" id="EmptyLineSeparator_Description">
         <p>
-          Checks for empty line separators after header, package, all import declarations,
+          Checks for empty line separators before package, all import declarations,
           fields, constructors, methods, nested classes,
           static initializers and instance initializers.
+        </p>
+        <p>
+          Checks for empty line separators before not only statements but
+          implementation and documentation comments and blocks as well.
         </p>
         <p>
           ATTENTION: empty line separator is required between token siblings,
@@ -367,11 +371,11 @@ for (Iterator foo = very.long.line.iterator();
 ///////////////////////////////////////////////////
 //HEADER
 ///////////////////////////////////////////////////
-package com.puppycrawl.tools.checkstyle.whitespace;
-import java.io.Serializable;
-class Foo {
+package com.whitespace; // violation, 'package' should be separated from previous line.
+import java.io.Serializable; // violation, 'import' should be separated from previous line.
+class Foo { // violation, 'CLASS_DEF' should be separated from previous line.
   public static final int FOO_CONST = 1;
-  public void foo() {} //should be separated from previous statement.
+  public void foo() {} // violation, 'METHOD_DEF' should be separated from previous line.
 }
         </source>
         <p>
@@ -394,7 +398,7 @@ class Foo {
 }
         </source>
         <p>
-          To check empty line after
+          To check empty line before
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#VARIABLE_DEF">
                   VARIABLE_DEF</a> and
           <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
@@ -439,7 +443,7 @@ import java.io.Serializable;&#10;
 class Foo {
   public static final int FOO_CONST = 1;&#10;&#10;
 
-  public void foo() {} //should be separated from previous statement.
+  public void foo() {} // OK
 }
         </source>
         <p>
@@ -449,6 +453,21 @@ class Foo {
 &lt;module name="EmptyLineSeparator"&gt;
   &lt;property name="allowMultipleEmptyLines" value="false"/&gt;
 &lt;/module&gt;
+        </source>
+        <source>
+///////////////////////////////////////////////////
+//HEADER
+///////////////////////////////////////////////////&#10;
+
+package com.checkstyle.whitespace; // violation, 'package' has more than 1 empty lines before.&#10;
+
+import java.io.Serializable; // violation, 'import' has more than 1 empty lines before.&#10;
+
+class Foo { // violation, 'CLASS_DEF' has more than 1 empty lines before.
+  public static final int FOO_CONST = 1;&#10;&#10;
+
+  public void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
+}
         </source>
         <p>
           To disallow multiple empty lines inside constructor,
@@ -492,7 +511,8 @@ class Foo {
 
   public void foo() {&#10;
 
-    System.out.println(1); // violation since method has 2 empty lines subsequently
+    System.out.println(1); // violation, There is more than 1 empty line one after another
+                           // in previous line.
   }
 }
         </source>
@@ -511,7 +531,7 @@ package com.puppycrawl.tools.checkstyle.whitespace;
 class Test {
     private int k;&#10;
 
-    private static void foo() {} // violation, before this like there two empty lines
+    private static void foo() {} // violation, 'METHOD_DEF' has more than 1 empty lines before.
 
 }
         </source>

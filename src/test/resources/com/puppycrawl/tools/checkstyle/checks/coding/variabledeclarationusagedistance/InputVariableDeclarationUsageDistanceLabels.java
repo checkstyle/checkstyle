@@ -1,5 +1,7 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
-
+/*
+ * Config: default
+ */
 public class InputVariableDeclarationUsageDistanceLabels {
     public void method() {
         boolean eol = false;

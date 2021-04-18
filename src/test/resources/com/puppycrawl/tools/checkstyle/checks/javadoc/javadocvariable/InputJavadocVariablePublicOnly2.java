@@ -1,25 +1,19 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocvariable;
 
 /**
  * Config:
- * scope = private
+ * scope = public
  */
-public class InputJavadocVariablePublicOnly // ignore - need javadoc
+public class InputJavadocVariablePublicOnly2 // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
-
-        String CONST = "InnerInterface"; // violation - Nested types within interface are public
-
+        String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
 
         class InnerInnerClass // ignore - when not relaxed about Javadoc
         {
-            private int mData; // ignore - when not relaxed about Javadoc // violation
+            private int mData; // ignore - when not relaxed about Javadoc
 
             private InnerInnerClass()
             {
@@ -39,35 +33,35 @@ public class InputJavadocVariablePublicOnly // ignore - need javadoc
 
     private class InnerClass // ignore
     {
-        private int mDiff; // ignore - when not relaxed about Javadoc // violation
+        private int mDiff; // ignore - when not relaxed about Javadoc
 
         void method() // ignore - when not relaxed about Javadoc
         {
         }
     }
 
-    private int mSize; // ignore - when not relaxed about Javadoc // violation
-    int mLen; // ignore - when not relaxed about Javadoc // violation
-    protected int mDeer; // ignore // violation
+    private int mSize; // ignore - when not relaxed about Javadoc
+    int mLen; // ignore - when not relaxed about Javadoc
+    protected int mDeer; // ignore
     public int aFreddo; // ignore // violation
 
     // ignore - need Javadoc
-    private InputJavadocVariablePublicOnly(int aA)
+    private InputJavadocVariablePublicOnly2(int aA)
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocVariablePublicOnly(String aA)
+    InputJavadocVariablePublicOnly2(String aA)
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocVariablePublicOnly(Object aA)
+    protected InputJavadocVariablePublicOnly2(Object aA)
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocVariablePublicOnly(Class<Object> aA)
+    public InputJavadocVariablePublicOnly2(Class<Object> aA)
     {
     }
 
