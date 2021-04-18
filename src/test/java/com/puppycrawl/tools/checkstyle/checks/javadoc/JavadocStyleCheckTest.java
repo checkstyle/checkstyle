@@ -230,6 +230,8 @@ public class JavadocStyleCheckTest
             "326: " + getCheckMessage(MSG_NO_PERIOD),
             "330: " + getCheckMessage(MSG_NO_PERIOD),
             "362: " + getCheckMessage(MSG_NO_PERIOD),
+            "405: " + getCheckMessage(MSG_NO_PERIOD),
+            "422: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle5.java"), expected);
@@ -345,6 +347,22 @@ public class JavadocStyleCheckTest
         };
 
         verify(checkConfig, getPath("InputJavadocStyle9.java"), expected);
+    }
+
+    @Test
+    public void testStyleWithHigherSurrounding() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_NO_PERIOD),
+            "16: " + getCheckMessage(MSG_NO_PERIOD),
+            "22: " + getCheckMessage(MSG_NO_PERIOD),
+            "31: " + getCheckMessage(MSG_NO_PERIOD),
+            "37: " + getCheckMessage(MSG_NO_PERIOD),
+            "43: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleHigherSurroundingScope.java"), expected);
     }
 
     @Test
