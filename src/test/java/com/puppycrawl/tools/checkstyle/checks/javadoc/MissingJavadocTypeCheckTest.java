@@ -107,6 +107,7 @@ public class MissingJavadocTypeCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
             "9:1: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputMissingJavadocTypePublicOnly2.java"), expected);
     }
