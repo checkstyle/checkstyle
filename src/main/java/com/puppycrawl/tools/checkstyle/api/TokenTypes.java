@@ -294,7 +294,7 @@ public final class TokenTypes {
      * <pre>
      * public class Student {
      *     int id;
-     * 
+     *
      *     { id = 100; }
      * }
      * </pre>
