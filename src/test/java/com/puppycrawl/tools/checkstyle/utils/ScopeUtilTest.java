@@ -222,6 +222,27 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testSurroundingScopeForInterFace() {
+        final DetailAstImpl methodAstWithNoModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF, TokenTypes.MODIFIERS);
+        final Scope publicScopeOne = ScopeUtil.getSurroundingScope(
+                methodAstWithNoModifier.getParent());
+        assertEquals(Scope.PUBLIC, publicScopeOne, "Surrounding scope should be public");
+
+        final DetailAstImpl methodAstWithPrivateModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF);
+        final DetailAstImpl privateMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PRIVATE);
+        privateMod.setText("private");
+        methodAstWithPrivateModifier.addChild(privateMod);
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAst = (DetailAstImpl) methodAstWithPrivateModifier
+                .getParent().getParent();
+        interfaceAst.addChild(getNode(TokenTypes.MODIFIERS));
+        final Scope publicScopeTwo = ScopeUtil.getSurroundingScope(methodAstWithPrivateModifier);
+        assertFalse(Scope.PUBLIC.equals(publicScopeTwo), "Surrounding scope should not be public");
+    }
+
+    @Test
     public void testIsInScope() {
         assertTrue(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
                 "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC),
