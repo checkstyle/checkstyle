@@ -230,6 +230,9 @@ public class JavadocStyleCheckTest
             "326: " + getCheckMessage(MSG_NO_PERIOD),
             "330: " + getCheckMessage(MSG_NO_PERIOD),
             "362: " + getCheckMessage(MSG_NO_PERIOD),
+            "404: " + getCheckMessage(MSG_NO_PERIOD),
+            "411: " + getCheckMessage(MSG_NO_PERIOD),
+            "421: " + getCheckMessage(MSG_NO_PERIOD),
         };
 
         verify(checkConfig, getPath("InputJavadocStyle5.java"), expected);
@@ -468,6 +471,22 @@ public class JavadocStyleCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
         verify(checkConfig, getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
+    }
+
+    @Test
+    public void testStyleWithInterfaceBlock() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        final String[] expected = {
+            "10: " + getCheckMessage(MSG_NO_PERIOD),
+            "17: " + getCheckMessage(MSG_NO_PERIOD),
+            "24: " + getCheckMessage(MSG_NO_PERIOD),
+            "33: " + getCheckMessage(MSG_NO_PERIOD),
+            "41: " + getCheckMessage(MSG_NO_PERIOD),
+            "49: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleInterfaceScope.java"), expected);
     }
 
 }
