@@ -3,7 +3,11 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class InputRightCurlyAloneLambda {
+/*
+ * Config:
+ * option = alone
+ */
+public class InputRightCurlyTestIsAloneLambda {
 
     static Runnable r1 = () -> {
         String.valueOf("Test rightCurly one!");
@@ -11,10 +15,10 @@ public class InputRightCurlyAloneLambda {
 
     static Runnable r2 = () -> String.valueOf("Test rightCurly two!");
 
-    static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");};   //violation
+    static Runnable r3 = () -> {String.valueOf("Test rightCurly three!");}; // ok
 
     static Runnable r4 = () -> {
-        String.valueOf("Test rightCurly four!");};    //violation
+        String.valueOf("Test rightCurly four!");}; // ok
 
     static Runnable r5 = () ->
     {
@@ -32,7 +36,7 @@ public class InputRightCurlyAloneLambda {
 
     static Runnable r9 = () -> {
         String.valueOf("Test rightCurly nine!");
-    }; int i;       // violation
+    }; int i; // ok
 
     void foo1() {
         Stream.of("Hello").filter(s -> {
@@ -42,6 +46,6 @@ public class InputRightCurlyAloneLambda {
 
         Stream.of("Hello").filter(s -> {
                 return s != null;
-        }).collect(Collectors.toList());    // violation
+        }).collect(Collectors.toList()); // ok
     }
 }
