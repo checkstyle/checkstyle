@@ -1876,18 +1876,19 @@ public final class TokenTypes {
      * class object.
      *
      * <p>For example:</p>
-     *
      * <pre>
-     * int.class
+     * class Test {
+     * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--EXPR
-     *     |
-     *     +--DOT (.)
-     *         |
-     *         +--LITERAL_INT (int)
-     *         +--LITERAL_CLASS (class)
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; Test
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     `--RCURLY -&gt; }
      * </pre>
      *
      * @see #DOT
