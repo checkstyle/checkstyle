@@ -2118,6 +2118,29 @@ public final class TokenTypes {
      * The {@code throws} keyword.  The children are a number of
      * one or more identifiers separated by commas.
      *
+     * <p>For example:</p>
+     * <pre>
+     * void test() throws FileNotFoundException, EOFException {
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * METHOD_DEF -&gt; METHOD_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_VOID -&gt; void
+     *  |--IDENT -&gt; test
+     *  |--LPAREN -&gt; (
+     *  |--PARAMETERS -&gt; PARAMETERS
+     *  |--RPAREN -&gt; )
+     *  |--LITERAL_THROWS -&gt; throws
+     *  |   |--IDENT -&gt; FileNotFoundException
+     *  |   |--COMMA -&gt; ,
+     *  |   `--IDENT -&gt; EOFException
+     *  `--SLIST -&gt; {
+     *      `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-8.html#jls-8.4.4">Java
      * Language Specification, &sect;8.4.4</a>
