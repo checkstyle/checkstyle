@@ -66,22 +66,30 @@ public final class ScopeUtil {
      */
     public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
-        for (DetailAST token = node.getParent();
-             token != null;
-             token = token.getParent()) {
-            final int type = token.getType();
-            if (TokenUtil.isTypeDeclaration(type)) {
-                final DetailAST mods =
-                    token.findFirstToken(TokenTypes.MODIFIERS);
-                final Scope modScope = getScopeFromMods(mods);
-                if (returnValue == null || returnValue.isIn(modScope)) {
-                    returnValue = modScope;
+        final DetailAST nodeModifier = node.findFirstToken(TokenTypes.MODIFIERS);
+        if (nodeModifier != null
+                && getScopeFromMods(nodeModifier) != Scope.PRIVATE
+                && isInInterfaceBlock(node)) {
+            returnValue = Scope.PUBLIC;
+        }
+        else {
+            for (DetailAST token = node.getParent();
+                 token != null;
+                 token = token.getParent()) {
+                final int type = token.getType();
+                if (TokenUtil.isTypeDeclaration(type)) {
+                    final DetailAST mods =
+                            token.findFirstToken(TokenTypes.MODIFIERS);
+                    final Scope modScope = getScopeFromMods(mods);
+                    if (returnValue == null || returnValue.isIn(modScope)) {
+                        returnValue = modScope;
+                    }
                 }
-            }
-            else if (type == TokenTypes.LITERAL_NEW) {
-                returnValue = Scope.ANONINNER;
-                // because Scope.ANONINNER is not in any other Scope
-                break;
+                else if (type == TokenTypes.LITERAL_NEW) {
+                    returnValue = Scope.ANONINNER;
+                    // because Scope.ANONINNER is not in any other Scope
+                    break;
+                }
             }
         }
 
