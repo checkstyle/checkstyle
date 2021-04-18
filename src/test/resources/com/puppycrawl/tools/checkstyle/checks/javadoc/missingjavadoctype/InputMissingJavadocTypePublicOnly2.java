@@ -13,7 +13,7 @@ public class InputMissingJavadocTypePublicOnly2 // violation
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
 
-        class InnerInnerClass // OK
+        class InnerInnerClass // violation - Nested types within interface are always public static
         {
             private int mData; // ignore - when not relaxed about Javadoc
 

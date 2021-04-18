@@ -1,0 +1,48 @@
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocstyle;
+
+/*
+ * Config:
+ * "scope" = "private"
+ * "excludedScope" = "package"
+ */
+public class InputJavadocStyleHigherSurroundingScope {
+    interface SubClass1 {
+        /**
+         * Javadoc without dot
+         */
+        public static void foo1() {} // ok
+    }
+    protected interface SubClass2{
+        /**
+         * Javadoc without dot
+         */
+        public static void foo2() {} // ok
+    }
+    private interface SubClass3 {
+        /**
+         * Javadoc without dot
+         */
+        public static void foo3() {} // violation
+    }
+}
+
+class PackageClass2 {
+    private interface SubClass {
+        /**
+         * Javadoc without dot
+         */
+        public static void foo3 () {} // violation
+    }
+    protected interface SubClass1 {
+        /**
+         * Javadoc without dot
+         */
+        public static void foo4() {} // ok
+    }
+    interface SubClass2 {
+        /**
+         * Javadoc without dot
+         */
+        public static void foo5 () {} // ok
+    }
+}

@@ -145,6 +145,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 MissingJavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "55:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "59:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "71:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -159,6 +160,12 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 MissingJavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "33:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "42:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "43:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -243,7 +250,8 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "13:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "14:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
-            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING), };
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
         verify(checkConfig, getPath("InputMissingJavadocMethodNoJavadoc2.java"), expected);
     }
 
@@ -342,6 +350,23 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             "80:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
         verify(checkConfig, getPath("InputMissingJavadocMethodSetterGetter2.java"), expected);
+    }
+
+    @Test
+    public void testStyleWithHigherSurroundingPrivate() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
+        config.addAttribute("scope", Scope.PRIVATE.getName());
+        config.addAttribute("excludeScope", Scope.PACKAGE.getName());
+        final String[] expected = {
+            "10:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "13:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "17:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "23:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "27:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "31:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+
+        verify(config, getPath("InputMissingJavadocMethodHigherSurroundingScope.java"), expected);
     }
 
     @Test

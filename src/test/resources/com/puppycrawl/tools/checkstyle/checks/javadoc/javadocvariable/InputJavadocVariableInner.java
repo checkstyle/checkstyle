@@ -20,7 +20,7 @@ class InputJavadocVariableInner
     // Ignore - 2 violations
     interface InnerInterface2
     {
-        // Ignore - should be all upper case
+        // violation - Nested types within an interface are always public static
         String data = "zxzc";
 
         // Ignore

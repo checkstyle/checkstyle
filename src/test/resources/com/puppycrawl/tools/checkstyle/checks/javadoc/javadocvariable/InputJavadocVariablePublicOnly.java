@@ -8,7 +8,7 @@ public class InputJavadocVariablePublicOnly // ignore - need javadoc
 {
     private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
-        String CONST = "InnerInterface"; // ignore - w.n.r.a.j
+        String CONST = "InnerInterface"; // violation - Nested types within interface are public
         void method(); // ignore - when not relaxed about Javadoc
 
         class InnerInnerClass // ignore - when not relaxed about Javadoc

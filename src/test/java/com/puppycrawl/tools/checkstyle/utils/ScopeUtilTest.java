@@ -222,6 +222,24 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testSurroundingScopeForInterFace() {
+        final DetailAstImpl nodeOne = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
+                TokenTypes.METHOD_DEF);
+        final Scope publicScopeOne = ScopeUtil.getSurroundingScope(nodeOne);
+        assertEquals(Scope.PUBLIC, publicScopeOne, "Invalid surrounding scope");
+
+        final DetailAstImpl nodeTwo = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.MODIFIERS,
+                TokenTypes.METHOD_DEF);
+        final Scope publicScopeTwo = ScopeUtil.getSurroundingScope(nodeTwo);
+        assertEquals(Scope.PACKAGE, publicScopeTwo, "Invalid surrounding scope");
+
+        final DetailAstImpl nodeThree = getNode(TokenTypes.CLASS_DEF, TokenTypes.MODIFIERS,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF);
+        final Scope publicScopeThree = ScopeUtil.getSurroundingScope(nodeThree);
+        assertEquals(Scope.PACKAGE, publicScopeThree, "Invalid surrounding scope");
+    }
+
+    @Test
     public void testIsInScope() {
         assertTrue(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
                 "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC),
