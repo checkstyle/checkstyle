@@ -2894,6 +2894,20 @@ public final class TokenTypes {
     /**
      * The {@code finally} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * try {} finally {}
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_TRY -&gt; try
+     *  |--SLIST -&gt; {
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_FINALLY -&gt; finally
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #SLIST
      * @see #LITERAL_TRY
      **/
