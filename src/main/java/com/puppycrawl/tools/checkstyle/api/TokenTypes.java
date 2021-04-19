@@ -3540,6 +3540,21 @@ public final class TokenTypes {
     /**
      * The {@code %} (remainder) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * c = a % b;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * EXPR -&gt; EXPR
+     *  `--ASSIGN -&gt; =
+     *      |--IDENT -&gt; c
+     *      `--MOD -&gt; %
+     *          |--IDENT -&gt; a
+     *          `--IDENT -&gt; b
+     * SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.17.3">Java
      * Language Specification, &sect;15.17.3</a>
