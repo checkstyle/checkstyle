@@ -577,6 +577,7 @@ interfaceistype
 interfacememberimpliedmodifier
 interfacetypeparametername
 intqueue
+intum
 invalidformat
 invalidinherit
 invalidjavadocposition
@@ -1328,6 +1329,7 @@ Webflow
 webjar
 Weblogic
 Webp
+webpack
 website
 webtoolkit
 Wellformedness
