@@ -274,6 +274,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testPatternVariableWithModifiers() throws Exception {
+        verifyAst(getPath("java16/InputPatternVariableWithModifiers.txt"),
+                getNonCompilablePath("java16/InputPatternVariableWithModifiers.java"));
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);
