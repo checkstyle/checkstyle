@@ -121,6 +121,7 @@
           <exclude name="**/InputJava14Records.txt"/>
           <exclude name="**/InputJava14TextBlocks.txt"/>
           <exclude name="**/InputJava14SwitchExpression.txt"/>
+          <exclude name="**/InputPatternVariableWithModifiers.txt"/>
 
         </fileset>
       </path>
