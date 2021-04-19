@@ -1,49 +1,42 @@
-
-
-
-
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
-import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*;
+import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok
 
-import java.io.*;
-import java.lang.*;
-import java.sql.Connection;
-import java.util.List;
-import java.util.List;
-import java.lang.ArithmeticException;
-import org.junit.jupiter.api.*;
-import java.util.Enumeration;
-import java.util.Arrays;
+import java.io.*; // ok
+import java.lang.*; // ok
+import java.sql.Connection; // violation
+import java.util.List; // ok
+import java.util.List; // ok
+import java.lang.ArithmeticException; // ok
+import org.junit.jupiter.api.*; // violation
+import java.util.Enumeration; // ok
+import java.util.Arrays; // ok
 
-import javax.swing.JToolBar;
-import javax.swing.JToggleButton;
-import javax.swing.ScrollPaneLayout;
-import javax.swing.BorderFactory;
-import static java.io.File.listRoots;
+import javax.swing.JToolBar; // ok
+import javax.swing.JToggleButton; // ok
+import javax.swing.ScrollPaneLayout; // ok
+import javax.swing.BorderFactory; // ok
+import static java.io.File.listRoots; // ok
 
-import static javax.swing.WindowConstants.*;
-import static javax.swing.WindowConstants.*;
-import static java.io.File.createTempFile;
-import org.junit.jupiter.api.*;
+import static javax.swing.WindowConstants.*; // ok
+import static javax.swing.WindowConstants.*; // ok
+import static java.io.File.createTempFile; // ok
+import org.junit.jupiter.api.*; // violation
 
-import java.awt.Component;
-import java.awt.Graphics2D;
-import java.awt.HeadlessException;
-import java.awt.Label;
-import java.util.Date;
-import java.util.Calendar;
-import java.util.BitSet;
+import java.awt.Component; // ok
+import java.awt.Graphics2D; // ok
+import java.awt.HeadlessException; // ok
+import java.awt.Label; // ok
+import java.util.Date; // ok
+import java.util.Calendar; // ok
+import java.util.BitSet; // ok
 
-/**
- * Test case for imports
- * Here's an import used only by javadoc: {@link Date}.
- * @author Oliver Burn
- * @author lkuehne
- * @author Michael Studman
- * @see Calendar Should avoid unused import for Calendar
- **/
-class InputIllegalImportDefault
+/*
+ * Config:
+ * illegalClasses = "java.sql.Connection"
+ * illegalPkgs = "org.junit.jupiter.api"
+ */
+class InputIllegalImportDefault3
 {
     /** ignore **/
     private Class mUse1 = Connection.class;
