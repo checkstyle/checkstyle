@@ -200,6 +200,20 @@ no-error-spring-integration)
   removeFolderWithProtectedFiles spring-integration
   ;;
 
+no-error-artemis)
+  set -e
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from https://github.com/ls1intum/Artemis.git
+  cd .ci-temp/Artemis
+  PROP_MAVEN_LOCAL="mavenLocal"
+  PROP_CS_VERSION="checkstyleVersion"
+  ./gradlew checkstyleMain -x yarn -x webpack \
+      -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION}
+  cd ../
+  removeFolderWithProtectedFiles Artemis
+  ;;
+
 no-error-spring-cloud-gcp)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
