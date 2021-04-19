@@ -151,6 +151,20 @@ javac15)
   fi
   ;;
 
+javac16)
+  files=($(grep -Rl --include='*.java' ': Compilable with Java16' \
+        src/test/resources-noncompilable || true))
+  if [[  ${#files[@]} -eq 0 ]]; then
+    echo "No Java16 files to process"
+  else
+      mkdir -p target
+      for file in "${files[@]}"
+      do
+        javac --release 16 --enable-preview -d target "${file}"
+      done
+  fi
+  ;;
+
 jdk14-assembly-site)
   mvn -e --no-transfer-progress package -Passembly
   mvn -e --no-transfer-progress site -Pno-validations
@@ -415,6 +429,21 @@ spotbugs-and-pmd)
 
 markdownlint)
   mdl -g . && echo "All .md files verified"
+  ;;
+
+no-error-artemis)
+  set -e
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from "-b checkstyle-patch https://github.com/nmancus1/Artemis.git"
+  cd .ci-temp/Artemis
+  PROP_MAVEN_LOCAL="mavenLocal"
+  PROP_CS_VERSION="checkstyleVersion"
+  ./gradlew checkstyleMain -x yarn -x webpack \
+      -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION} --stacktrace
+  cd ../
+  removeFolderWithProtectedFiles Artemis
   ;;
 
 *)
