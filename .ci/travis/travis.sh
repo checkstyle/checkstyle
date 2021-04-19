@@ -293,6 +293,7 @@ no-error-xwiki)
   checkout_from https://github.com/xwiki/xwiki-rendering.git
   cd .ci-temp/xwiki-rendering
   # Validate xwiki-rendering
+  git reset --hard HEAD~3
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
