@@ -91,6 +91,11 @@ steps:
   commands:
   - ./.ci/travis/travis.sh javac16
 
+ - name: no-error-artemis
+   image: maven:3.8.1-openjdk-16
+   commands:
+   - ./.ci/travis/travis.sh no-error-artemis
+
 - name: no-error-test-sbe
   image: maven:3.6.3-adoptopenjdk-8
   commands:
