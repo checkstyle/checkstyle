@@ -651,8 +651,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]customimportorder[\\/]InputCustomImportOrderViolationsSameLine.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="imports[\\/]illegalimport[\\/]InputIllegalImportDefault.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]importcontrol[\\/]InputImportControl_Blacklist.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="imports[\\/]importcontrol[\\/]InputImportControlDisallowClassOfAllowPackage.java"/>
@@ -2226,8 +2224,6 @@
             files="imports[\\/]customimportorder[\\/]InputCustomImportOrderThirdPartyPackage.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]customimportorder[\\/]InputCustomImportOrderViolationsSameLine.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="imports[\\/]illegalimport[\\/]InputIllegalImportDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="imports[\\/]importcontrol[\\/]InputImportControl_Blacklist.java"/>
   <suppress id="StyleValidationCommentInInputs"
