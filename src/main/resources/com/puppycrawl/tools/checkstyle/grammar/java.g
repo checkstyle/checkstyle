@@ -1526,7 +1526,7 @@ equalityExpression
 relationalExpression
     :    shiftExpression
         ( "instanceof"^
-            (   (typeSpec[true] IDENT)=> patternDefinition
+            (   (modifiers typeSpec[true] IDENT)=> patternDefinition
             |   instanceofTypeSpec
             )
         )?
@@ -1551,8 +1551,8 @@ patternDefinition!
     ;
 
 patternVariableDefinition!
-    :   t:typeSpec[true] i:IDENT
-        {## = #(#[PATTERN_VARIABLE_DEF,"PATTERN_VARIABLE_DEF"], t, i);}
+    :   m:modifiers t:typeSpec[true] i:IDENT
+        {## = #(#[PATTERN_VARIABLE_DEF,"PATTERN_VARIABLE_DEF"], m, t, i);}
     ;
 
 // bit shift expressions (level 4)
