@@ -86,6 +86,12 @@ class InputSummaryJavadocInlineCorrect {
      */
     private void voidValidJavadoc() {} // ok
 
+    /**
+     * Sentence starts as a plain text sentence
+     * {@summary ... but ends in the summary tag.}
+     */
+    public class TestClass {}
+
     private static class InputSummaryJavadocInlineParagraphCheck {
         /**
          * {@summary foo.}
