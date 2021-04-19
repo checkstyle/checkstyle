@@ -124,6 +124,16 @@ build:
           echo "build is skipped ..."
         fi
 
+  - script:
+      name: NoErrorTest - Artemis
+      code: |
+        if [[ $RUN_JOB == 1 ]]; then
+          echo "Command: ./.ci/wercker.sh no-error-artemis"
+          ./.ci/wercker.sh no-error-artemis
+        else
+          echo "build is skipped ..."
+        fi
+
   # disabled as build is unstable for long time
   # - script:
   #     name: NoErrorTest - Spring Integration
