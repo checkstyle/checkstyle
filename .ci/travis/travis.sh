@@ -431,6 +431,21 @@ markdownlint)
   mdl -g . && echo "All .md files verified"
   ;;
 
+no-error-artemis)
+  set -e
+  CS_POM_VERSION="$(getCheckstylePomVersion)"
+  mvn -e --no-transfer-progress clean install -Pno-validations
+  echo CS_version: ${CS_POM_VERSION}
+  checkout_from "-b checkstyle-patch https://github.com/nmancus1/Artemis.git"
+  cd .ci-temp/Artemis
+  PROP_MAVEN_LOCAL="mavenLocal"
+  PROP_CS_VERSION="checkstyleVersion"
+  ./gradlew checkstyleMain -x yarn -x webpack \
+      -P$PROP_MAVEN_LOCAL -P$PROP_CS_VERSION=${CS_POM_VERSION} --stacktrace
+  cd ../
+  removeFolderWithProtectedFiles Artemis
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
