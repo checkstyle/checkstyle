@@ -21,7 +21,7 @@ public class InputSummaryJavadocHtmlFormat {
     private void foo3() {} // violation
 
     /**
-     * {@summary <p>Normal Javadoc.</p>}
+     * {@summary <p> .</p>}
      */
     private void foo4() {} // ok
 
@@ -31,34 +31,9 @@ public class InputSummaryJavadocHtmlFormat {
     private void foo6() {} // violation
 
     /**
-     * <p>{@summary Some {@code Code.} javadoc.}</p>
-     */
-    private void foo7() {} // ok
-
-    /**
-     * <p>{@summary Some {@author Code.} javadoc.}</p>
-     */
-    private void foo8() {} // violation
-
-    /**
-     * <p>{@throws Some {@author Code.} javadoc.}</p>
-     */
-    private void foo9() {} // violation
-
-    /**
-     * <p>{@summary Some {@input Input Code.} javadoc.}</p>
-     */
-    private void foo10() {} // ok
-
-    /**
      * <p>{@summary}</p>
      */
     private void foo11() {} // violation
-
-    /**
-     * <b>{@summary Normal Javadoc.}</b>
-     */
-    private void foo12() {} // ok
 
     /**
      * <b><p>{@summary Normal Javadoc.}</p></b>
@@ -70,9 +45,7 @@ public class InputSummaryJavadocHtmlFormat {
      */
     private void foo14() {} // ok
 
-    /**
-     * <b>{@summary Normal Javadoc.}</b>
-     */
-    private void foo15() {} // ok
+    /** <b>{@summary Normal single line Javadoc.}</b> */
+    private void foo16() {} // ok
 }
 
