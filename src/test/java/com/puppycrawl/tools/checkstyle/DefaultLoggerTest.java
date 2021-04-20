@@ -34,17 +34,18 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean.OutputStreamOptions;
+import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DefaultLoggerTest {
 
-    private final Violation auditStartMessage = new Violation(1,
+    private final LocalizedMessage auditStartMessage = new LocalizedMessage(
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
-            getClass(), null);
+            getClass());
 
-    private final Violation auditFinishMessage = new Violation(1,
+    private final LocalizedMessage auditFinishMessage = new LocalizedMessage(
             Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
-            getClass(), null);
+            getClass());
 
     @Test
     public void testCtor() throws UnsupportedEncodingException {
@@ -55,12 +56,12 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final Violation addExceptionMessage = new Violation(1,
+        final LocalizedMessage addExceptionMessage = new LocalizedMessage(
                 Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
                 new String[] {"myfile"}, null,
-                getClass(), null);
+                getClass());
 
-        assertTrue(output.contains(addExceptionMessage.getViolation()), "Invalid exception");
+        assertTrue(output.contains(addExceptionMessage.getMessage()), "Invalid exception");
         assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
                 "Invalid exception class");
     }
@@ -92,7 +93,8 @@ public class DefaultLoggerTest {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's 'The allocated object is never used'
+            // LocalizedMessage
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -108,7 +110,8 @@ public class DefaultLoggerTest {
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream,
                 AutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's 'The allocated object is never used'
+            // LocalizedMessage
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -130,8 +133,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, null, getClass(), "customViolation")));
         dl.auditFinished(null);
-        assertEquals(auditStartMessage.getViolation() + System.lineSeparator()
-                + auditFinishMessage.getViolation() + System.lineSeparator(), infoStream.toString(),
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
                 "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
                 + System.lineSeparator(), errorStream.toString(), "expected output");
@@ -148,8 +151,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customViolation")));
         dl.auditFinished(null);
-        assertEquals(auditStartMessage.getViolation() + System.lineSeparator()
-                + auditFinishMessage.getViolation() + System.lineSeparator(), infoStream.toString(),
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
                 "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [moduleId]"
                 + System.lineSeparator(), errorStream.toString(), "expected output");
