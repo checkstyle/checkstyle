@@ -2059,7 +2059,39 @@ public final class TokenTypes {
      **/
     public static final int RPAREN = GeneratedJavaTokenTypes.RPAREN;
     /**
-     * The {@code this} keyword.
+     * The {@code this} keyword use to refer the current object. This can also be used to call the constructor.
+     *
+     * <p>For example:</p>
+     * <pre>
+     * this.name = name;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--ASSIGN -&gt; =
+     * |       |--DOT -&gt; .
+     * |       |   |--LITERAL_THIS -&gt; this
+     * |       |   `--IDENT -&gt; name
+     * |       `--IDENT -&gt; name
+     * |--SEMI -&gt; ;
+     * </pre>
+     * <p>Also consider:</p>
+     * <pre>
+     * this(1, "NULL");
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CTOR_CALL -&gt; this
+     *  |--LPAREN -&gt; (
+     *  |--ELIST -&gt; ELIST
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--NUM_INT -&gt; 1
+     *  |   |--COMMA -&gt; ,
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--STRING_LITERAL -&gt; "NULL"
+     *  |--RPAREN -&gt; )
+     *  `--SEMI -&gt; ;
+     * </pre>
      *
      * @see #EXPR
      * @see #CTOR_CALL
