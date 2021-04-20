@@ -3618,33 +3618,8 @@ public int foobar() {
           Checks that
           <a href="https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html#firstsentence">
           Javadoc summary sentence</a> does not contain phrases that are not recommended to use.
-          Summaries that contain only the <code>{@inheritDoc}</code> tag are skipped for normal
-          summary javadoc but are violations for inline summary javadoc. Check also violate Javadoc
-          that does not contain first sentence.
-        </p>
-        <p>
-          According to <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#general-syntax">
-          Documentation Comment Specification for the Standard Doclet</a> "The first sentence of
-          the initial description should be a summary sentence that contains a concise but complete
-          description of the declared entity. Descriptive text may include HTML tags and entities,
-          and inline tags as described below."
-        </p>
-        <p>
-          Allowed tags inside inline summary javadoc are
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#code">
-            {@code}</a>,
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#link">
-            {@link}</a>,
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#docroot">
-            {@docRoot}</a>,
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#linkplain">
-            {@linkplain}</a>,
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#literal">
-            {@literal}</a>,
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#value">
-            {@value}</a>,
-          <a href="https://docs.oracle.com/javase/11/docs/specs/doc-comment-spec.html#index">
-            {@index}</a>
+          Summaries that contain only the {@code {@inheritDoc}} tag are skipped. Check also
+          violate Javadoc that does not contain first sentence.
         </p>
       </subsection>
 
@@ -3717,22 +3692,20 @@ public class Test extends Exception {
 }
         </source>
         <p>
-              Example of <code>{@inheritDoc}</code> is not permitted for Inline Summary Javadoc.
+              Example of non permitted empty javadoc for Inline Summary Javadoc.
         </p>
         <source>
 public class Test extends Exception {
-  //Violation
   /**
-   * {@summary {@inheritDoc}.}
+   * {@summary  }
    */
-  public String InvalidFunctionOne(){
+  public String InvalidFunctionOne(){ // violation
     return "";
   }
-  //Violation
   /**
-   * {@summary }
+   * {@summary &lt;p&gt; &lt;p/&gt;}
    */
-  public String InvalidFunctionTwo(){
+  public String InvalidFunctionTwo(){ // violation
     return "";
   }
 }
@@ -3791,28 +3764,12 @@ public class TestClass {
 }
         </source>
         <p>
-          Example of inline summary javadoc with inline tags.
-        </p>
-        <source>
-public class TestClass {
- /**
-  * {@summary {@code someCode} valid inline javadoc.}
-  */
-  public void validJavaDoc() {} // ok
- /**
-  * {@summary {@inheritDoc} invalid inline javadoc.}
-  */
-  public void invalidJavaDocMethod() { // violation
-  }
-}
-        </source>
-        <p>
           Example of inline summary javadoc with HTML tags.
         </p>
         <source>
 public class Test {
  /**
-  * {@summary first sentence is normally the summary.
+  * {@summary First sentence is normally the summary.
   * Use of html tags:
   * &lt;ul&gt;
   * &lt;li&gt;Item one.&lt;/li&gt;
