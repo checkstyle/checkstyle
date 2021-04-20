@@ -86,6 +86,11 @@ steps:
   commands:
   - ./.ci/travis/travis.sh javac15
 
+- name: javac16
+  image: maven:3.6.3-adoptopenjdk-16
+  commands:
+  - ./.ci/travis/travis.sh javac16
+
 - name: no-error-test-sbe
   image: maven:3.6.3-adoptopenjdk-8
   commands:
