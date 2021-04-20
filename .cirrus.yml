@@ -18,10 +18,10 @@ task:
     folder: .m2
   matrix:
     # add more JDK versions here
-    - name: Cirrus - JDK15
+    - name: Cirrus - JDK16
       env:
-        OPENJDK_VERSION: "15.0.0"
-        OPENJDK_PATH: "jdk-15"
+        OPENJDK_VERSION: "16.0.0"
+        OPENJDK_PATH: "jdk-16"
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
