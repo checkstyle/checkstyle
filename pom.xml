@@ -204,6 +204,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <surefire.options/>
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.9.2</antlr4.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
@@ -1350,7 +1351,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.22.2</version>
         <configuration>
-          <argLine>-Dfile.encoding=UTF-8</argLine>
+          <argLine>-Dfile.encoding=UTF-8 @{surefire.options}</argLine>
           <systemPropertyVariables>
             <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
           </systemPropertyVariables>
@@ -1862,6 +1863,17 @@
   </reporting>
 
   <profiles>
+
+    <!-- Till https://github.com/powermock/powermock/issues/1094 -->
+    <profile>
+      <id>java16</id>
+      <activation>
+        <jdk>[16,)</jdk>
+      </activation>
+      <properties>
+        <surefire.options>--illegal-access=warn</surefire.options>
+      </properties>
+    </profile>
 
     <profile>
       <!-- To be used during development. Run the command -->
