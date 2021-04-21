@@ -111,7 +111,7 @@ nondex)
 no-error-pmd)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo "CS_version: ${CS_POM_VERSION}"
-  checkout_from "-b checkstyle-7417 https://github.com/nmancus1/build-tools.git"
+  checkout_from "-b checkstyle-7417 https://github.com/checkstyle/build-tools.git"
   cd .ci-temp/build-tools/
   PMD_POM_VERSION=$(mvn -e --no-transfer-progress -q -Dexec.executable='echo' \
     -Dexec.args='${project.version}' \
