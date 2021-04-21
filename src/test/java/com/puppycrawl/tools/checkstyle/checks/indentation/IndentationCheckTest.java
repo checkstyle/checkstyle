@@ -2779,6 +2779,35 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationMethodParenthesisOnNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine1() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "11:10: " + getCheckMessage(MSG_ERROR, "2", 9, 12),
+            "17:8: " + getCheckMessage(MSG_ERROR, "int", 7, 8),
+            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine1.java"),
+                expected);
+    }
+
+    @Test
     public void testIndentationLineWrappedRecordDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
