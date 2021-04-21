@@ -30,7 +30,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
  * Since <code>==</code> will compare the object references, not the actual value of the strings,
  * <code>String.equals()</code> should be used.
  * More information can be found
- * <a href="http://www.thejavageek.com/2013/07/27/string-comparison-with-equals-and-assignment-operator/">
+ * <a href="https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/">
  * in this article</a>.
  * </p>
  * <p>
