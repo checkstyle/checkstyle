@@ -9,7 +9,7 @@
  Since &lt;code&gt;==&lt;/code&gt; will compare the object references, not the actual value of the strings,
  &lt;code&gt;String.equals()&lt;/code&gt; should be used.
  More information can be found
- &lt;a href="http://www.thejavageek.com/2013/07/27/string-comparison-with-equals-and-assignment-operator/"&gt;
+ &lt;a href="https://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java/"&gt;
  in this article&lt;/a&gt;.
  &lt;/p&gt;
  &lt;p&gt;
