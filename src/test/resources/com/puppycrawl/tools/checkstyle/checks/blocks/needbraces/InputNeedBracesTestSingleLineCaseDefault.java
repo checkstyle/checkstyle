@@ -3,8 +3,9 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 /*
  * Config:
  * allowSingleLineStatement = true
+ * tokens = { LITERAL_CASE, LITERAL_DEFAULT }
  */
-public class InputNeedBracesSingleLineStatements
+public class InputNeedBracesTestSingleLineCaseDefault
 {
     private static class SomeClass {
         boolean flag = true;
@@ -24,13 +25,13 @@ public class InputNeedBracesSingleLineStatements
     }
 
     private int foo2() {
-        if (SomeClass.test(true) == true) // violation
+        if (SomeClass.test(true) == true) // ok
             return 4;
         return 0;
     }
 
     private int foo3() {
-        if (SomeClass.test(true) == true) if (true) return 4; // violation
+        if (SomeClass.test(true) == true) if (true) return 4; // ok
         return 0;
     }
 
@@ -39,7 +40,7 @@ public class InputNeedBracesSingleLineStatements
     }
 
     private void foo2(Object o) {
-        if (o != null) // violation
+        if (o != null) // ok
             this.notify();
     }
 
@@ -47,23 +48,23 @@ public class InputNeedBracesSingleLineStatements
         while (o != null) {
             this.notify();
         }
-        while (o != null) // violation
+        while (o != null) // ok
             this.notify();
         while (o != null) this.notify();
         do {
             this.notify();
         } while (o != null);
         do this.notify(); while (o != null);
-        do // violation
+        do // ok
             this.notify();
         while (o != null);
-        for (;;) // violation
+        for (;;) // ok
             break;
         for (;;) break;
         for (int i = 0; i < 10; i++) {
              this.notify();
         }
-        for (int i = 0; i < 10; i++) // violation
+        for (int i = 0; i < 10; i++) // ok
              this.notify();
         for (int i = 0; ; ) this.notify();
     }
@@ -73,10 +74,10 @@ public class InputNeedBracesSingleLineStatements
         int counter = 0;
         switch (num) {
             case 1: counter++; break;
-            case 2: // ok
+            case 2: // violation
                 counter += 2;
                 break;
-            case 3: // ok
+            case 3: // violation
                 counter += 3;
                 break;
             case 6: counter += 10; break;
@@ -92,11 +93,11 @@ public class InputNeedBracesSingleLineStatements
     }
 
     private int testMissingWarnings() {
-        if (true) // violation
+        if (true) // ok
             throw new RuntimeException();
         if (true) {
             return 1;
-        } else // violation
+        } else // ok
             return 2;
     }
 
@@ -108,14 +109,14 @@ public class InputNeedBracesSingleLineStatements
 
     private class StateInfo {
         public boolean isInitial() {
-            for (int locator: sourceLocators) if (locator != 0) return false; // violation
+            for (int locator: sourceLocators) if (locator != 0) return false; // ok
             return true;
         }
     }
 
     private void forEachLoop() {
         for (String s: new String[]{""}) break;
-        for (String s: new String[]{""}) // violation
+        for (String s: new String[]{""}) // ok
             break;
         for (;;)
         ;
@@ -123,9 +124,9 @@ public class InputNeedBracesSingleLineStatements
     private void method(){
         if(false) {
             switch (0) {
-                case -1: // ok
+                case -1: // violation
                     return;
-                default: // ok
+                default: // violation
                     return;
             }
         }
