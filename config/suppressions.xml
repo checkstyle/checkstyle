@@ -112,5 +112,38 @@
 
   <!-- Usage of unicode characters to assert the functioning of Xpath on escape character.  -->
   <suppress id="RegexpSinglelineJava" files="[\\/]XpathQueryGeneratorTest.java"/>
+  
+  <!-- these are allowed and legacy usecases -->
+  <suppress id="RegexpSinglelineJava" files="AbstractFileSetCheckTest.java"/>
+  <suppress id="RegexpSinglelineJava" files="AbstractCheckTest.java"/>
+  <suppress id="RegexpSinglelineJava" files="CheckerTest.java"/>
+  <suppress id="RegexpSinglelineJava" files="SuppressionCommentFilter.java"/>
+  <suppress id="RegexpSinglelineJava" files="SuppressWithNearbyCommentFilter.java"/>
+  <suppress id="RegexpSinglelineJava" files="XpathQueryGenerator.java"/>
+  <suppress id="RegexpSinglelineJava" files="AbstractFileSetCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="AbstractCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="JavadocMetadataScraper.java"/>
+  <suppress id="RegexpSinglelineJava" files="TreeWalker.java"/>
+  <suppress id="RegexpSinglelineJava" files="RegexpSinglelineJavaCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="RegexpCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="MethodLengthCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="OuterTypeFilenameCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="AvoidEscapedUnicodeCharactersCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="PackageDeclarationCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="FallThroughCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="UnusedImportsCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="ImportControlCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="EmptyLineSeparatorCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="MissingJavadocMethodCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="MissingJavadocPackageCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="JavadocVariableCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="JavadocTypeCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="JavadocStyleCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="JavadocMethodCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="MissingJavadocTypeCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="WriteTagCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="PackageAnnotationCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="MissingOverrideCheck.java"/>
+  <suppress id="RegexpSinglelineJava" files="TreeWalkerAuditEvent.java"/>
 
 </suppressions>
