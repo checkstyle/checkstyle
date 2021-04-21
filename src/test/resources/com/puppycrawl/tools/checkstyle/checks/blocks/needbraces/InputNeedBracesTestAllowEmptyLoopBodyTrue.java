@@ -1,70 +1,74 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-public class InputNeedBracesNoBodyLoops {
+/*
+ * Config:
+ * allowEmptyLoopBody = true
+ */
+public class InputNeedBracesTestAllowEmptyLoopBodyTrue {
 
     private int value;
-    private InputNeedBracesNoBodyLoops fco = new InputNeedBracesNoBodyLoops();
+    private InputNeedBracesTestAllowEmptyLoopBodyTrue fco = new InputNeedBracesTestAllowEmptyLoopBodyTrue();
 
     {
         value = 0;
-        while(incrementValue() < 5);;
+        while(incrementValue() < 5);; // ok
     }
 
     public void foo() {
-        while(incrementValue() < 5);
+        while(incrementValue() < 5); // ok
     }
 
     public void foo2() {
-        for(int i = 0; i < 10; incrementValue());
-        for(int i = 0; incrementValue() < 8; i++);
+        for(int i = 0; i < 10; incrementValue()); // ok
+        for(int i = 0; incrementValue() < 8; i++); // ok
     }
 
     public void foo3() {
-        while(incrementValue()
+        while(incrementValue() // ok
             < 5);
     }
 
     public void foo4() {
-        while(incrementValue() < 5)
+        while(incrementValue() < 5) // ok
             ;
     }
 
     public void foo5() {
-        while(incrementValue()
+        while(incrementValue() // ok
             < 5)
             ;
     }
 
     public void foo6() {
-        while(
+        while( // ok
             incrementValue() < 5
             );
     }
 
     public void foo7() {
-        while(
+        while( // ok
             incrementValue() < 5);
     }
 
     public void foo8() {
-        for(int i = 0; incrementValue() < 8; i++);
+        for(int i = 0; incrementValue() < 8; i++); // ok
     }
 
     public void foo9() {
-        for(int i = 0;
+        for(int i = 0; // ok
             incrementValue() < 8;
             i++);
     }
 
     public void foo10() {
-        for(
+        for( // ok
             int i = 0;
             incrementValue() < 8;
             i++);
     }
 
     public void foo11() {
-        for
+        for // ok
             (
             int i = 0;
             incrementValue() < 8;
@@ -86,15 +90,15 @@ public class InputNeedBracesNoBodyLoops {
     }
 
     public void foo15() {
-        while (true);
+        while (true); // ok
     }
 
     public void foo16() {
-        for (;;);
+        for (;;); // ok
     }
 
     public void foo17() {
-        if(true);
+        if(true); // violation
     }
 
     public void foo18() {
@@ -105,11 +109,11 @@ public class InputNeedBracesNoBodyLoops {
 
     @Override
     public String toString(){
-        while(fco.removeAssignedRole(this));
+        while(fco.removeAssignedRole(this)); // ok
         return "";
     }
 
-    private boolean removeAssignedRole(InputNeedBracesNoBodyLoops inputNeedBracesNoBodyLoops) {
+    private boolean removeAssignedRole(InputNeedBracesTestAllowEmptyLoopBodyTrue inputNeedBracesNoBodyLoops) {
         return true;
     }
 

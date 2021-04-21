@@ -1,6 +1,11 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-public class InputNeedBracesConditional
+/*
+ * Config:
+ * allowSingleLineStatement = true
+ * tokens = { LITERAL_WHILE, LITERAL_DO, LITERAL_FOR }
+ */
+public class InputNeedBracesTestCycles
 {
     public void method() {
         if (false)
@@ -38,10 +43,10 @@ public class InputNeedBracesConditional
         case 3: {
             break;}
 
-        case 4:
+        case 4: // ok
             break;
 
-        case 5:  System.lineSeparator();
+        case 5:  System.lineSeparator(); // ok
             break;
         }
 
@@ -53,7 +58,7 @@ public class InputNeedBracesConditional
         }
 
         switch(1) {
-        default:
+        default: // ok
          break;
     }
 

@@ -1,12 +1,12 @@
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/* Config:
- *
- * tokens = {LITERAL_CASE, LITERAL_DEFAULT, LAMBDA}
+/*
+ * Config:
  * allowSingleLineStatement = false
+ * tokens = { LITERAL_CASE, LITERAL_DEFAULT, LAMBDA }
  */
-public class InputNeedBracesCheckSwitchExpressionNoSingleLine {
+public class InputNeedBracesTestSwitchExpressionNoSingleLine {
     void howMany1(Nums k) {
         switch (k) {
             case ONE: // violation
@@ -62,15 +62,15 @@ public class InputNeedBracesCheckSwitchExpressionNoSingleLine {
      */
     int howMany4(Nums k) {
         return switch (k) {
-            case ONE -> { // ok
+            case ONE -> {
                 yield 4;
             }
-            case TWO, THREE -> { // ok
+            case TWO, THREE -> {
                 MathOperation2 case5 = (a, b) -> // violation
                     (a + b);
                 yield 42;
             }
-            case FOUR -> { // ok
+            case FOUR -> {
                 yield 99;
             }
             default -> throw new IllegalStateException("Not a Nums"); // violation

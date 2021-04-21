@@ -1,14 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/**
- * Test case for correct use of braces.
- * @author Oliver Burn
- **/
-class InputNeedBraces
+/*
+ * Config: default
+ */
+class InputNeedBracesTestIt
 {
     /** @return helper func **/
     boolean condition()
@@ -26,7 +21,7 @@ class InputNeedBraces
         while (condition());
 
         // Invalid
-        do testDoWhile(); while (condition());
+        do testDoWhile(); while (condition()); // violation
     }
 
     /** Test while loops **/
@@ -38,11 +33,11 @@ class InputNeedBraces
         }
 
         // Invalid
-        while(condition());
-        while (condition())
+        while(condition()); // violation
+        while (condition()) // violation
             testWhile();
-        while (condition())
-            if (condition())
+        while (condition()) // violation
+            if (condition()) // violation
                 testWhile();
     }
 
@@ -55,12 +50,12 @@ class InputNeedBraces
         }
 
         // Invalid
-        for(int i = 1;i < 5;i++);
-        for (int i = 1; i < 5; i++)
+        for(int i = 1;i < 5;i++); // violation
+        for (int i = 1; i < 5; i++) // violation
             testFor();
-        for (int i = 1; i < 5;
+        for (int i = 1; i < 5; // violation
              i++)
-            if (i > 2)
+            if (i > 2) // violation
                 testFor();
     }
 
@@ -79,14 +74,14 @@ class InputNeedBraces
         }
 
         // Invalid
-        if (condition());
-        if (condition())
+        if (condition()); // violation
+        if (condition()) // violation
             testIf();
-        if (condition())
+        if (condition()) // violation
             testIf();
-        else
+        else // violation
             testIf();
-        if (condition())
+        if (condition()) // violation
             testIf();
         else {
             testIf();
@@ -94,18 +89,18 @@ class InputNeedBraces
         if (condition()) {
             testIf();
         }
-        else
+        else // violation
             testIf();
-        if (condition())
-            if (condition())
+        if (condition()) // violation
+            if (condition()) // violation
                 testIf();
 
-        if (condition())
-            while (condition()) testWhile();
-        if (condition())
-            do testDoWhile(); while (condition());
-        if (condition())
-            for (int i = 0; i < 1; i++) testFor();
+        if (condition()) // violation
+            while (condition()) testWhile(); // violation
+        if (condition()) // violation
+            do testDoWhile(); while (condition()); // violation
+        if (condition()) // violation
+            for (int i = 0; i < 1; i++) testFor(); // violation
         int a = 0;
         switch (a) {default: {}}
     }
@@ -121,7 +116,7 @@ class InputNeedBraces
     }
 
     /** Empty constructor block. **/
-    public InputNeedBraces() {}
+    public InputNeedBracesTestIt() {}
 
     /** Empty method block. **/
     public void emptyImplementation() {}
