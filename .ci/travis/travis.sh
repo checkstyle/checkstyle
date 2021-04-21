@@ -293,12 +293,14 @@ no-error-xwiki)
   checkout_from https://github.com/xwiki/xwiki-rendering.git
   cd .ci-temp/xwiki-rendering
   # Validate xwiki-rendering
+  git reset --hard 27c4d8ad4207abeea0bf088c10fdd01b46dc8aef
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
   removeFolderWithProtectedFiles xwiki-rendering
   cd ..
   checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
+  git reset --hard 27799642a9d86065908fcbea530c23bb691effe1
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
