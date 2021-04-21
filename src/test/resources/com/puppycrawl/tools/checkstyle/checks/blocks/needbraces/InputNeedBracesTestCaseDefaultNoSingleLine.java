@@ -1,11 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/**
- * Config:
- * tokens = LITERAL_CASE, LITERAL_DEFAULT
- * allowSingleLineStatement = false
+/*
+ * Config: default
+ * tokens = { LITERAL_CASE, LITERAL_DEFAULT }
  */
-public class InputNeedBracesCaseDefaultNoSingleLine {
+public class InputNeedBracesTestCaseDefaultNoSingleLine {
 
     public String aMethod(int val) {
         switch (val){
