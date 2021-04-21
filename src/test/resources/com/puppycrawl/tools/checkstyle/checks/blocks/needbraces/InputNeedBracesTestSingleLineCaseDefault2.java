@@ -1,6 +1,11 @@
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-public class InputNeedBracesEmptyDefault {
+/*
+ * Config:
+ * allowSingleLineStatement = true
+ * tokens = { LITERAL_CASE, LITERAL_DEFAULT }
+ */
+public class InputNeedBracesTestSingleLineCaseDefault2 {
     int value;
     private void main() {
         switch (value) {
@@ -15,7 +20,7 @@ public class InputNeedBracesEmptyDefault {
 }
 
 @interface Example {
-    String priority() default "value";
+    String priority() default "value"; // ok
 }
 
 interface IntefaceWithDefaultMethod {
