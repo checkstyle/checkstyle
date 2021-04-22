@@ -2529,92 +2529,67 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * switch(type)
-     * {
-     *   case 0:
-     *     background = Color.blue;
-     *     break;
-     *   case 1:
-     *     background = Color.red;
-     *     break;
-     *   default:
-     *     background = Color.green;
-     *     break;
+     * switch (type) {
+     *      case 0:
+     *          background = Color.red;
+     *          break;
+     *      case 1:
+     *          background = Color.blue;
+     *          break;
+     *      default:
+     *          background = Color.green;
      * }
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_SWITCH (switch)
-     *     |
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--IDENT (type)
-     *     +--RPAREN ())
-     *     +--LCURLY ({)
-     *     +--CASE_GROUP
-     *         |
-     *         +--LITERAL_CASE (case)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--NUM_INT (0)
-     *         +--SLIST
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--ASSIGN (=)
-     *                     |
-     *                     +--IDENT (background)
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (Color)
-     *                         +--IDENT (blue)
-     *             +--SEMI (;)
-     *             +--LITERAL_BREAK (break)
-     *                 |
-     *                 +--SEMI (;)
-     *     +--CASE_GROUP
-     *         |
-     *         +--LITERAL_CASE (case)
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--NUM_INT (1)
-     *         +--SLIST
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--ASSIGN (=)
-     *                     |
-     *                     +--IDENT (background)
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (Color)
-     *                         +--IDENT (red)
-     *             +--SEMI (;)
-     *             +--LITERAL_BREAK (break)
-     *                 |
-     *                 +--SEMI (;)
-     *     +--CASE_GROUP
-     *         |
-     *         +--LITERAL_DEFAULT (default)
-     *         +--SLIST
-     *             |
-     *             +--EXPR
-     *                 |
-     *                 +--ASSIGN (=)
-     *                     |
-     *                     +--IDENT (background)
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (Color)
-     *                         +--IDENT (green)
-     *             +--SEMI (;)
-     *             +--LITERAL_BREAK (break)
-     *                 |
-     *                 +--SEMI (;)
-     *     +--RCURLY (})
+     * LITERAL_SWITCH -&gt; switch
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--IDENT -&gt; type
+     *  |--RPAREN -&gt; )
+     *  |--LCURLY -&gt; {
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_CASE -&gt; case
+     *  |   |   |--EXPR -&gt; EXPR
+     *  |   |   |   `--NUM_INT -&gt; 0
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; background
+     *  |       |       `--DOT -&gt; .
+     *  |       |           |--IDENT -&gt; Color
+     *  |       |           `--IDENT -&gt; red
+     *  |       |--SEMI -&gt; ;
+     *  |       `--LITERAL_BREAK -&gt; break
+     *  |           `--SEMI -&gt; ;
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_CASE -&gt; case
+     *  |   |   |--EXPR -&gt; EXPR
+     *  |   |   |   `--NUM_INT -&gt; 1
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; background
+     *  |       |       `--DOT -&gt; .
+     *  |       |           |--IDENT -&gt; Color
+     *  |       |           `--IDENT -&gt; blue
+     *  |       |--SEMI -&gt; ;
+     *  |       `--LITERAL_BREAK -&gt; break
+     *  |           `--SEMI -&gt; ;
+     *  |--CASE_GROUP -&gt; CASE_GROUP
+     *  |   |--LITERAL_DEFAULT -&gt; default
+     *  |   |   `--COLON -&gt; :
+     *  |   `--SLIST -&gt; SLIST
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--ASSIGN -&gt; =
+     *  |       |       |--IDENT -&gt; background
+     *  |       |       `--DOT -&gt; .
+     *  |       |           |--IDENT -&gt; Color
+     *  |       |           `--IDENT -&gt; green
+     *  |       `--SEMI -&gt; ;
+     *  `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a
