@@ -45,6 +45,13 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         ast.setLineNo(15);
         ast.setText("MyTest");
 
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setType(TokenTypes.OBJBLOCK);
+        parent.setColumnNo(4);
+        parent.setLineNo(4);
+        parent.setText("MyParent");
+        parent.setFirstChild(ast);
+
         final FullIdent indent = FullIdent.createFullIdent(ast);
         assertEquals("MyTest[15x14]", indent.toString(), "Invalid full indent");
         assertEquals("MyTest", indent.getText(), "Invalid text");
