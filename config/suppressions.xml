@@ -113,7 +113,4 @@
   <!-- Usage of unicode characters to assert the functioning of Xpath on escape character.  -->
   <suppress id="RegexpSinglelineJava" files="[\\/]XpathQueryGeneratorTest.java"/>
 
-  <!-- Usage of getFirstSentence in SummaryJavadocCheck. -->
-  <suppress id="RegexpSinglelineJava" files="SummaryJavadocCheck.java"/>
-
 </suppressions>

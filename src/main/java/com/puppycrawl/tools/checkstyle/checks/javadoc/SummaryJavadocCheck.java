@@ -19,9 +19,11 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
@@ -228,7 +230,32 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
                 log(ast.getLineNumber(), MSG_SUMMARY_JAVADOC_MISSING);
             }
             else if (!period.isEmpty()) {
-                final String firstSentence = getFirstSentence(ast);
+                List<DetailNode> stack = new ArrayList<>(Arrays.asList(ast.getChildren()));
+                Collections.reverse(stack);
+                boolean periodFound = false;
+                final StringBuilder result = new StringBuilder(256);
+                final String periodSuffix = PERIOD + ' ';
+                while (!stack.isEmpty() && !periodFound) {
+                    DetailNode element = stack.get(stack.size() - 1);
+                    List<DetailNode> children = Arrays.asList(element.getChildren());
+                    if (children.isEmpty()) {
+                        final String text = element.getText();
+                        stack.remove(stack.size() - 1);
+                        if (text.contains(periodSuffix)) {
+                            result.append(text, 0, text.indexOf(periodSuffix) + 1);
+                            periodFound = true;
+                        }
+                        else {
+                            result.append(text);
+                        }
+                    }
+                    else {
+                        Collections.reverse(children);
+                        stack.remove(stack.size() - 1);
+                        stack.addAll(children);
+                    }
+                }
+                final String firstSentence = result.toString();
                 final int endOfSentence = firstSentence.lastIndexOf(period);
                 if (!summaryDoc.contains(period)) {
                     log(ast.getLineNumber(), MSG_SUMMARY_FIRST_SENTENCE);
@@ -311,34 +338,6 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             tempNode = JavadocUtil.getNextSibling(tempNode);
         }
         return contents.toString();
-    }
-
-    /**
-     * Finds and returns first sentence.
-     *
-     * @param ast Javadoc root node.
-     * @return first sentence.
-     */
-    private static String getFirstSentence(DetailNode ast) {
-        final StringBuilder result = new StringBuilder(256);
-        final String periodSuffix = PERIOD + ' ';
-        for (DetailNode child : ast.getChildren()) {
-            final String text;
-            if (child.getChildren().length == 0) {
-                text = child.getText();
-            }
-            else {
-                text = getFirstSentence(child);
-            }
-
-            if (text.contains(periodSuffix)) {
-                result.append(text, 0, text.indexOf(periodSuffix) + 1);
-                break;
-            }
-
-            result.append(text);
-        }
-        return result.toString();
     }
 
     /**
