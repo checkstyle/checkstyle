@@ -76,7 +76,7 @@
              files="(Checker|Main|CheckstyleAntTask|JavadocDetailNodeParser)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling"
              files="(CheckerTest|AbstractModuleTestSupport|AbstractItModuleTestSupport|
-                    |CheckstyleAntTaskTest|
+                    |CheckstyleAntTaskTest|LocalizedMessageTest|
                     |TranslationCheckTest|ViolationTest|AbstractFileSetCheckTest|
                     |AbstractCheckTest|AutomaticBeanTest)\.java"/>
   <suppress checks="ClassDataAbstractionCoupling" files="PropertyCacheFileTest\.java"/>
