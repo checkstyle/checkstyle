@@ -77,17 +77,37 @@ public final class FullIdent {
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
+
+            final DetailAST firstChild = ast.getFirstChild();
+            final DetailAST nextSibling = ast.getNextSibling();
+            final String brackets = "[]";
+
+            // Here we want type declaration, but not initialization
+            final boolean isArrayTypeDeclarationStart = nextSibling != null
+                    && nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
+                    && !nextSibling.branchContains(TokenTypes.EXPR);
+
             if (ast.getType() == TokenTypes.DOT) {
-                extractFullIdent(full, ast.getFirstChild());
+                extractFullIdent(full, firstChild);
                 full.append(".");
-                extractFullIdent(
-                    full, ast.getFirstChild().getNextSibling());
+                extractFullIdent(full, firstChild.getNextSibling());
+            }
+            else if (isArrayTypeDeclarationStart) {
+                // Beginning of array type declaration
+                full.append(ast);
+                extractFullIdent(full, nextSibling);
+            }
+            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR
+                    && firstChild.getType() != TokenTypes.RBRACK) {
+                // Multidimensional array type declaration, not last '[]'
+                extractFullIdent(full, firstChild);
+                full.append(brackets);
             }
             else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                extractFullIdent(full, ast.getFirstChild());
-                full.append("[]");
+                // Single or last '[]' in array type declaration
+                full.append(brackets);
             }
-            else {
+            else if (ast.getType() != TokenTypes.ANNOTATIONS) {
                 full.append(ast);
             }
         }
