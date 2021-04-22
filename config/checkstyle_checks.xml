@@ -740,6 +740,12 @@
       <property name="format" value="[^\p{ASCII}]"/>
       <property name="ignoreComments" value="true"/>
     </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="noUsageOfGetFileContents()Method"/>
+      <property name="format" value="getFileContents()|getFileContents\s+(\s+)"/>
+      <property name="ignoreComments" value="true"/>
+      <property name="message" value="The usage of getFileContents() method is not allowed"/>
+    </module>
 
     <!-- Size Violations -->
     <module name="AnonInnerLength"/>
