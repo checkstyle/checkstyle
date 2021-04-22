@@ -277,7 +277,7 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(ClassFanOutComplexityCheck.class);
         checkConfig.addAttribute("max", "0");
         final String[] expected = {
-            "9:1: " + getCheckMessage(MSG_KEY, 2, 0),
+            "9:1: " + getCheckMessage(MSG_KEY, 3, 0),
             "25:5: " + getCheckMessage(MSG_KEY, 2, 0),
             "34:5: " + getCheckMessage(MSG_KEY, 3, 0),
             "44:5: " + getCheckMessage(MSG_KEY, 2, 0),
