@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -340,7 +341,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                     final DetailAST ident = getIdentLastToken(ast);
                     if (ident == null) {
                         // i.e. int[]::new
-                        previousElement = ast.getFirstChild();
+                        previousElement = ast.getParent().getFirstChild();
                     }
                     else {
                         previousElement = ident;
@@ -418,14 +419,31 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         if (result == null) {
             result = getIdentLastToken(ast);
             if (result == null) {
-                // primitive literal expected
-                result = ast.getFirstChild();
+                result = getArrayType(ast);
             }
         }
         else {
             result = result.findFirstToken(TokenTypes.GENERIC_END);
         }
         return result;
+    }
+
+    /**
+     * Ascends through array type declarations to get type,
+     * e.g. 'char' literal from 'char [][]'.
+     *
+     * @param parameter the method or type parameter to find primitive type of
+     * @return primitive type of parameter
+     */
+    private static DetailAST getArrayType(DetailAST parameter) {
+        DetailAST typeAst = parameter.getFirstChild();
+        if (typeAst.getType() == TokenTypes.RBRACK) {
+            while (!TokenUtil.isOfType(typeAst, TokenTypes.TYPE_ARGUMENT, TokenTypes.TYPE)) {
+                typeAst = typeAst.getParent();
+            }
+            typeAst = typeAst.getFirstChild();
+        }
+        return typeAst;
     }
 
     /**
