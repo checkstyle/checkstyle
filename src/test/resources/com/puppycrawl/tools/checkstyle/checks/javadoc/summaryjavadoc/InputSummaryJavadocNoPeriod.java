@@ -14,4 +14,9 @@ public class InputSummaryJavadocNoPeriod
 
     /** An especially short bit of Javadoc */
     void foo5() {}
+
+    /**
+     * {@summary No Period in end}
+     */
+    void foo6(){}
 }
