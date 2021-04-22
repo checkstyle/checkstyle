@@ -35,6 +35,7 @@
             <message-key key="summary.first.sentence"/>
             <message-key key="summary.javaDoc"/>
             <message-key key="summary.javaDoc.missing"/>
+            <message-key key="summary.javaDoc.missing.period"/>
          </message-keys>
       </check>
    </module>
