@@ -112,5 +112,38 @@
 
   <!-- Usage of unicode characters to assert the functioning of Xpath on escape character.  -->
   <suppress id="RegexpSinglelineJava" files="[\\/]XpathQueryGeneratorTest.java"/>
+  
+  <!-- these are allowed and legacy usecases -->
+  <suppress id="noUsageOfgetFileContents()Method" files="AbstractFileSetCheckTest.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="AbstractCheckTest.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="CheckerTest.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="SuppressionCommentFilter.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="SuppressWithNearbyCommentFilter.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="XpathQueryGenerator.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="AbstractFileSetCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="AbstractCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="JavadocMetadataScraper.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="TreeWalker.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="RegexpSinglelineJavaCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="RegexpCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="MethodLengthCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="OuterTypeFilenameCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="AvoidEscapedUnicodeCharactersCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="PackageDeclarationCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="FallThroughCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="UnusedImportsCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="ImportControlCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="EmptyLineSeparatorCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="MissingJavadocMethodCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="MissingJavadocPackageCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="JavadocVariableCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="JavadocTypeCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="JavadocStyleCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="JavadocMethodCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="MissingJavadocTypeCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="WriteTagCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="PackageAnnotationCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="MissingOverrideCheck.java"/>
+  <suppress id="noUsageOfgetFileContents()Method" files="TreeWalkerAuditEvent.java"/>
 
 </suppressions>
