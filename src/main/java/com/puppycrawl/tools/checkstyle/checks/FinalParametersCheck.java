@@ -242,7 +242,10 @@ public class FinalParametersCheck extends AbstractCheck {
         if (ignorePrimitiveTypes) {
             final DetailAST parameterType = paramDef
                 .findFirstToken(TokenTypes.TYPE).getFirstChild();
-            if (primitiveDataTypes.contains(parameterType.getType())) {
+            final boolean isParamArrayType = paramDef.findFirstToken(TokenTypes.TYPE)
+                    .branchContains(TokenTypes.ARRAY_DECLARATOR);
+            if (!isParamArrayType
+                    && primitiveDataTypes.contains(parameterType.getType())) {
                 result = true;
             }
         }
