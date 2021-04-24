@@ -44,25 +44,25 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("allowLineBreaks", "false");
         final String[] expected = {
-            "5:13: " + getCheckMessage(MSG_KEY, "."),
-            "6:11: " + getCheckMessage(MSG_KEY, "."),
-            "29:13: " + getCheckMessage(MSG_KEY, "-"),
-            "29:20: " + getCheckMessage(MSG_KEY, "+"),
-            "31:13: " + getCheckMessage(MSG_KEY, "++"),
-            "31:20: " + getCheckMessage(MSG_KEY, "--"),
-            "111:21: " + getCheckMessage(MSG_KEY, "!"),
-            "112:22: " + getCheckMessage(MSG_KEY, "~"),
-            "129:23: " + getCheckMessage(MSG_KEY, "."),
-            "132:10: " + getCheckMessage(MSG_KEY, "."),
-            "136:11: " + getCheckMessage(MSG_KEY, "."),
-            "264:1: " + getCheckMessage(MSG_KEY, "."),
-            "289:5: " + getCheckMessage(MSG_KEY, "@"),
-            "290:5: " + getCheckMessage(MSG_KEY, "@"),
-            "291:5: " + getCheckMessage(MSG_KEY, "@"),
-            "296:28: " + getCheckMessage(MSG_KEY, "int"),
-            "308:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
+            "1:13: " + getCheckMessage(MSG_KEY, "."),
+            "2:11: " + getCheckMessage(MSG_KEY, "."),
+            "25:13: " + getCheckMessage(MSG_KEY, "-"),
+            "25:20: " + getCheckMessage(MSG_KEY, "+"),
+            "27:13: " + getCheckMessage(MSG_KEY, "++"),
+            "27:20: " + getCheckMessage(MSG_KEY, "--"),
+            "107:21: " + getCheckMessage(MSG_KEY, "!"),
+            "108:22: " + getCheckMessage(MSG_KEY, "~"),
+            "125:23: " + getCheckMessage(MSG_KEY, "."),
+            "128:10: " + getCheckMessage(MSG_KEY, "."),
+            "132:11: " + getCheckMessage(MSG_KEY, "."),
+            "260:1: " + getCheckMessage(MSG_KEY, "."),
+            "285:5: " + getCheckMessage(MSG_KEY, "@"),
+            "286:5: " + getCheckMessage(MSG_KEY, "@"),
+            "287:5: " + getCheckMessage(MSG_KEY, "@"),
+            "292:28: " + getCheckMessage(MSG_KEY, "int"),
+            "304:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestDefault.java"), expected);
     }
 
     @Test
@@ -70,11 +70,11 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "DOT");
         final String[] expected = {
-            "5:13: " + getCheckMessage(MSG_KEY, "."),
-            "129:23: " + getCheckMessage(MSG_KEY, "."),
-            "136:11: " + getCheckMessage(MSG_KEY, "."),
+            "1:13: " + getCheckMessage(MSG_KEY, "."),
+            "125:23: " + getCheckMessage(MSG_KEY, "."),
+            "132:11: " + getCheckMessage(MSG_KEY, "."),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestAllowLineBreaks.java"), expected);
     }
 
     @Test
@@ -82,11 +82,11 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "TYPECAST");
         final String[] expected = {
-            "87:20: " + getCheckMessage(MSG_KEY, ")"),
-            "89:13: " + getCheckMessage(MSG_KEY, ")"),
-            "241:17: " + getCheckMessage(MSG_KEY, ")"),
+            "83:20: " + getCheckMessage(MSG_KEY, ")"),
+            "85:13: " + getCheckMessage(MSG_KEY, ")"),
+            "237:17: " + getCheckMessage(MSG_KEY, ")"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestTypecast.java"), expected);
     }
 
     @Test
@@ -95,27 +95,27 @@ public class NoWhitespaceAfterCheckTest
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         checkConfig.addAttribute("tokens", "INDEX_OP");
         final String[] expected = {
-            "6:12: " + getCheckMessage(MSG_KEY, "Object"),
-            "8:23: " + getCheckMessage(MSG_KEY, "someStuff3"),
-            "9:9: " + getCheckMessage(MSG_KEY, "int"),
-            "10:14: " + getCheckMessage(MSG_KEY, "s"),
-            "11:14: " + getCheckMessage(MSG_KEY, "d"),
-            "16:15: " + getCheckMessage(MSG_KEY, "get"),
-            "18:9: " + getCheckMessage(MSG_KEY, "int"),
-            "19:35: " + getCheckMessage(MSG_KEY, "get1"),
-            "28:9: " + getCheckMessage(MSG_KEY, "int"),
-            "29:13: " + getCheckMessage(MSG_KEY, "cba"),
-            "31:27: " + getCheckMessage(MSG_KEY, "String"),
-            "32:28: " + getCheckMessage(MSG_KEY, "String"),
-            "39:12: " + getCheckMessage(MSG_KEY, "ar"),
-            "39:25: " + getCheckMessage(MSG_KEY, "int"),
-            "40:17: " + getCheckMessage(MSG_KEY, "int"),
-            "43:65: " + getCheckMessage(MSG_KEY, "getLongMultiArray"),
-            "47:27: " + getCheckMessage(MSG_KEY, "}"),
-            "49:23: " + getCheckMessage(MSG_KEY, "int"),
-            "50:25: " + getCheckMessage(MSG_KEY, "]"),
-            "51:36: " + getCheckMessage(MSG_KEY, "}"),
-            "52:39: " + getCheckMessage(MSG_KEY, "]"),
+            "10:12: " + getCheckMessage(MSG_KEY, "Object"),
+            "12:23: " + getCheckMessage(MSG_KEY, "someStuff3"),
+            "13:9: " + getCheckMessage(MSG_KEY, "int"),
+            "14:14: " + getCheckMessage(MSG_KEY, "s"),
+            "15:14: " + getCheckMessage(MSG_KEY, "d"),
+            "20:15: " + getCheckMessage(MSG_KEY, "get"),
+            "22:9: " + getCheckMessage(MSG_KEY, "int"),
+            "23:35: " + getCheckMessage(MSG_KEY, "get1"),
+            "32:9: " + getCheckMessage(MSG_KEY, "int"),
+            "33:13: " + getCheckMessage(MSG_KEY, "cba"),
+            "35:27: " + getCheckMessage(MSG_KEY, "String"),
+            "36:28: " + getCheckMessage(MSG_KEY, "String"),
+            "43:12: " + getCheckMessage(MSG_KEY, "ar"),
+            "43:25: " + getCheckMessage(MSG_KEY, "int"),
+            "44:17: " + getCheckMessage(MSG_KEY, "int"),
+            "47:65: " + getCheckMessage(MSG_KEY, "getLongMultiArray"),
+            "51:27: " + getCheckMessage(MSG_KEY, "}"),
+            "53:23: " + getCheckMessage(MSG_KEY, "int"),
+            "54:25: " + getCheckMessage(MSG_KEY, "]"),
+            "55:36: " + getCheckMessage(MSG_KEY, "}"),
+            "56:39: " + getCheckMessage(MSG_KEY, "]"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations.java"), expected);
     }
@@ -126,48 +126,48 @@ public class NoWhitespaceAfterCheckTest
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         checkConfig.addAttribute("tokens", "INDEX_OP");
         final String[] expected = {
-            "12:31: " + getCheckMessage(MSG_KEY, "]"),
-            "17:41: " + getCheckMessage(MSG_KEY, "create"),
-            "18:32: " + getCheckMessage(MSG_KEY, "int"),
-            "29:26: " + getCheckMessage(MSG_KEY, "]"),
-            "30:29: " + getCheckMessage(MSG_KEY, "int"),
-            "30:42: " + getCheckMessage(MSG_KEY, "]"),
-            "30:66: " + getCheckMessage(MSG_KEY, "]"),
-            "35:47: " + getCheckMessage(MSG_KEY, "int"),
-            "35:57: " + getCheckMessage(MSG_KEY, "]"),
-            "36:19: " + getCheckMessage(MSG_KEY, "e"),
-            "36:24: " + getCheckMessage(MSG_KEY, "]"),
-            "36:44: " + getCheckMessage(MSG_KEY, "]"),
-            "37:15: " + getCheckMessage(MSG_KEY, "e"),
-            "37:19: " + getCheckMessage(MSG_KEY, "]"),
-            "42:31: " + getCheckMessage(MSG_KEY, "Integer"),
-            "43:21: " + getCheckMessage(MSG_KEY, "]"),
-            "48:29: " + getCheckMessage(MSG_KEY, ">"),
-            "48:32: " + getCheckMessage(MSG_KEY, "]"),
-            "48:35: " + getCheckMessage(MSG_KEY, "]"),
-            "52:35: " + getCheckMessage(MSG_KEY, "int"),
-            "54:15: " + getCheckMessage(MSG_KEY, "g"),
-            "55:18: " + getCheckMessage(MSG_KEY, "]"),
-            "56:15: " + getCheckMessage(MSG_KEY, "g"),
-            "56:19: " + getCheckMessage(MSG_KEY, "]"),
-            "56:23: " + getCheckMessage(MSG_KEY, "]"),
-            "62:55: " + getCheckMessage(MSG_KEY, "create"),
-            "62:63: " + getCheckMessage(MSG_KEY, "]"),
-            "67:33: " + getCheckMessage(MSG_KEY, "boolean"),
-            "69:48: " + getCheckMessage(MSG_KEY, "String"),
-            "69:52: " + getCheckMessage(MSG_KEY, "]"),
-            "70:37: " + getCheckMessage(MSG_KEY, "String"),
-            "81:41: " + getCheckMessage(MSG_KEY, "Integer"),
-            "85:15: " + getCheckMessage(MSG_KEY, "char"),
-            "86:53: " + getCheckMessage(MSG_KEY, "A"),
-            "87:70: " + getCheckMessage(MSG_KEY, "Object"),
-            "90:43: " + getCheckMessage(MSG_KEY, ")"),
-            "90:52: " + getCheckMessage(MSG_KEY, "]"),
-            "92:37: " + getCheckMessage(MSG_KEY, "Object"),
-            "94:46: " + getCheckMessage(MSG_KEY, ")"),
-            "97:43: " + getCheckMessage(MSG_KEY, "Object"),
-            "100:45: " + getCheckMessage(MSG_KEY, "]"),
-            "108:33: " + getCheckMessage(MSG_KEY, "Object"),
+            "16:31: " + getCheckMessage(MSG_KEY, "]"),
+            "21:41: " + getCheckMessage(MSG_KEY, "create"),
+            "22:32: " + getCheckMessage(MSG_KEY, "int"),
+            "33:26: " + getCheckMessage(MSG_KEY, "]"),
+            "34:29: " + getCheckMessage(MSG_KEY, "int"),
+            "34:42: " + getCheckMessage(MSG_KEY, "]"),
+            "34:66: " + getCheckMessage(MSG_KEY, "]"),
+            "39:47: " + getCheckMessage(MSG_KEY, "int"),
+            "39:57: " + getCheckMessage(MSG_KEY, "]"),
+            "40:19: " + getCheckMessage(MSG_KEY, "e"),
+            "40:24: " + getCheckMessage(MSG_KEY, "]"),
+            "40:44: " + getCheckMessage(MSG_KEY, "]"),
+            "41:15: " + getCheckMessage(MSG_KEY, "e"),
+            "41:19: " + getCheckMessage(MSG_KEY, "]"),
+            "46:31: " + getCheckMessage(MSG_KEY, "Integer"),
+            "47:21: " + getCheckMessage(MSG_KEY, "]"),
+            "52:29: " + getCheckMessage(MSG_KEY, ">"),
+            "52:32: " + getCheckMessage(MSG_KEY, "]"),
+            "52:35: " + getCheckMessage(MSG_KEY, "]"),
+            "56:35: " + getCheckMessage(MSG_KEY, "int"),
+            "58:15: " + getCheckMessage(MSG_KEY, "g"),
+            "59:18: " + getCheckMessage(MSG_KEY, "]"),
+            "60:15: " + getCheckMessage(MSG_KEY, "g"),
+            "60:19: " + getCheckMessage(MSG_KEY, "]"),
+            "60:23: " + getCheckMessage(MSG_KEY, "]"),
+            "66:55: " + getCheckMessage(MSG_KEY, "create"),
+            "66:63: " + getCheckMessage(MSG_KEY, "]"),
+            "71:33: " + getCheckMessage(MSG_KEY, "boolean"),
+            "73:48: " + getCheckMessage(MSG_KEY, "String"),
+            "73:52: " + getCheckMessage(MSG_KEY, "]"),
+            "74:37: " + getCheckMessage(MSG_KEY, "String"),
+            "85:41: " + getCheckMessage(MSG_KEY, "Integer"),
+            "89:15: " + getCheckMessage(MSG_KEY, "char"),
+            "90:53: " + getCheckMessage(MSG_KEY, "A"),
+            "91:70: " + getCheckMessage(MSG_KEY, "Object"),
+            "94:43: " + getCheckMessage(MSG_KEY, ")"),
+            "94:52: " + getCheckMessage(MSG_KEY, "]"),
+            "96:37: " + getCheckMessage(MSG_KEY, "Object"),
+            "98:46: " + getCheckMessage(MSG_KEY, ")"),
+            "101:43: " + getCheckMessage(MSG_KEY, "Object"),
+            "104:45: " + getCheckMessage(MSG_KEY, "]"),
+            "112:33: " + getCheckMessage(MSG_KEY, "Object"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarations2.java"), expected);
     }
@@ -185,25 +185,25 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "LITERAL_SYNCHRONIZED");
         final String[] expected = {
-            "14:9: " + getCheckMessage(MSG_KEY, "synchronized"),
+            "18:9: " + getCheckMessage(MSG_KEY, "synchronized"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfterSynchronized.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestSynchronized.java"), expected);
     }
 
     @Test
     public void testNpe() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
-        verify(checkConfig, getPath("InputNoWhitespaceAfterFormerNpe.java"));
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestNpe.java"));
     }
 
     @Test
     public void testMethodReference() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         final String[] expected = {
-            "9:41: " + getCheckMessage(MSG_KEY, "int"),
-            "10:62: " + getCheckMessage(MSG_KEY, "String"),
+            "11:41: " + getCheckMessage(MSG_KEY, "int"),
+            "12:62: " + getCheckMessage(MSG_KEY, "String"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfterMethodRef.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestMethodRef.java"), expected);
     }
 
     @Test
@@ -211,10 +211,10 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "METHOD_REF");
         final String[] expected = {
-            "17:35: " + getCheckMessage(MSG_KEY, "::"),
-            "18:64: " + getCheckMessage(MSG_KEY, "::"),
+            "21:35: " + getCheckMessage(MSG_KEY, "::"),
+            "22:64: " + getCheckMessage(MSG_KEY, "::"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfterBadMethodRef.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestMethodRefAfter.java"), expected);
     }
 
     @Test
@@ -222,9 +222,9 @@ public class NoWhitespaceAfterCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
         checkConfig.addAttribute("tokens", "ARRAY_DECLARATOR");
         final String[] expected = {
-            "11:32: " + getCheckMessage(MSG_KEY, "Entry"),
+            "15:32: " + getCheckMessage(MSG_KEY, "Entry"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfterArrayDeclarator.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestArrayDeclarator.java"), expected);
     }
 
     @Test
@@ -256,30 +256,30 @@ public class NoWhitespaceAfterCheckTest
                 + "METHOD_REF");
         checkConfig.addAttribute("allowLineBreaks", "false");
         final String[] expected = {
-            "5:13: " + getCheckMessage(MSG_KEY, "."),
-            "6:11: " + getCheckMessage(MSG_KEY, "."),
-            "29:13: " + getCheckMessage(MSG_KEY, "-"),
-            "29:20: " + getCheckMessage(MSG_KEY, "+"),
-            "31:13: " + getCheckMessage(MSG_KEY, "++"),
-            "31:20: " + getCheckMessage(MSG_KEY, "--"),
-            "87:20: " + getCheckMessage(MSG_KEY, ")"),
+            "1:13: " + getCheckMessage(MSG_KEY, "."),
+            "2:11: " + getCheckMessage(MSG_KEY, "."),
+            "28:13: " + getCheckMessage(MSG_KEY, "-"),
+            "28:20: " + getCheckMessage(MSG_KEY, "+"),
+            "30:13: " + getCheckMessage(MSG_KEY, "++"),
+            "30:20: " + getCheckMessage(MSG_KEY, "--"),
+            "86:20: " + getCheckMessage(MSG_KEY, ")"),
+            "88:13: " + getCheckMessage(MSG_KEY, ")"),
             "89:13: " + getCheckMessage(MSG_KEY, ")"),
-            "90:13: " + getCheckMessage(MSG_KEY, ")"),
-            "111:21: " + getCheckMessage(MSG_KEY, "!"),
-            "112:22: " + getCheckMessage(MSG_KEY, "~"),
-            "129:23: " + getCheckMessage(MSG_KEY, "."),
-            "132:10: " + getCheckMessage(MSG_KEY, "."),
-            "136:11: " + getCheckMessage(MSG_KEY, "."),
-            "241:17: " + getCheckMessage(MSG_KEY, ")"),
-            "264:1: " + getCheckMessage(MSG_KEY, "."),
+            "110:21: " + getCheckMessage(MSG_KEY, "!"),
+            "111:22: " + getCheckMessage(MSG_KEY, "~"),
+            "128:23: " + getCheckMessage(MSG_KEY, "."),
+            "131:10: " + getCheckMessage(MSG_KEY, "."),
+            "135:11: " + getCheckMessage(MSG_KEY, "."),
+            "240:17: " + getCheckMessage(MSG_KEY, ")"),
+            "263:1: " + getCheckMessage(MSG_KEY, "."),
+            "288:5: " + getCheckMessage(MSG_KEY, "@"),
             "289:5: " + getCheckMessage(MSG_KEY, "@"),
             "290:5: " + getCheckMessage(MSG_KEY, "@"),
-            "291:5: " + getCheckMessage(MSG_KEY, "@"),
-            "296:28: " + getCheckMessage(MSG_KEY, "int"),
-            "300:18: " + getCheckMessage(MSG_KEY, ")"),
-            "308:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
+            "295:28: " + getCheckMessage(MSG_KEY, "int"),
+            "299:18: " + getCheckMessage(MSG_KEY, ")"),
+            "307:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
-        verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
+        verify(checkConfig, getPath("InputNoWhitespaceAfterTestAllTokens.java"), expected);
     }
 
     /**
