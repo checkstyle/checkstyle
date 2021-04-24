@@ -1,16 +1,15 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
 package com . puppycrawl
     .tools.
-    checkstyle.checks.whitespace.nowhitespaceafter;
+    checkstyle.checks.whitespace.nowhitespaceafter; // ^ 2 violations above
 
-/**
- * Class for testing whitespace issues.
- * violation missing author tag
- **/
-class InputNoWhitespaceAfter
+/*
+ * Config:
+ * allowLineBreaks = false
+ * tokens = { ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS,
+ *            BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP,
+ *            LITERAL_SYNCHRONIZED, METHOD_REF }
+ */
+class InputNoWhitespaceAfterTestAllTokens
 {
     /** ignore assignment **/
     private int mVar1=1;
@@ -26,9 +25,9 @@ class InputNoWhitespaceAfter
         int b= 1; // Ignore 1
         b=1; // Ignore 1
         b+=1; // Ignore 1
-        b -=- 1 + (+ b); // Ignore 2
+        b -=- 1 + (+ b); // violation
         b = b ++ + b --; // Ignore 1
-        b = ++ b - -- b; // Ignore 1
+        b = ++ b - -- b; // violation
     }
 
     /** method **/
@@ -84,11 +83,11 @@ class InputNoWhitespaceAfter
     /** test casts **/
     private void testCasts()
     {
-        Object o = (Object) new Object(); // ok
-        o = (Object)o; // violation
-        o = ( Object ) o; // ok
-        o = (Object)
-            o; // ok
+        Object o = (Object) new Object(); // violation
+        o = (Object)o;
+        o = ( Object ) o; // violation
+        o = (Object) // violation
+            o;
     }
 
     /** test questions **/
@@ -108,8 +107,8 @@ class InputNoWhitespaceAfter
     private void boolTest()
     {
         boolean a = true;
-        boolean x = ! a;
-        int z = ~1 + ~ 2;
+        boolean x = ! a; // violation
+        int z = ~1 + ~ 2; // violation
     }
 
     /** division test **/
@@ -126,14 +125,14 @@ class InputNoWhitespaceAfter
     }
 
     /** @return dot test **/
-    private java .lang.  String dotTest()
+    private java .lang.  String dotTest() // violation
     {
-        Object o = new java.lang.Object();
-        o.
+        Object o = new Object();
+        o. // violation
             toString();
         o
             .toString();
-        o . toString();
+        o . toString(); // violation
         return o.toString();
     }
 
@@ -191,7 +190,7 @@ class InputNoWhitespaceAfter
     /** bug 806243 (NoWhitespaceBeforeCheck violation for anonymous inner class) */
     void bug806243()
     {
-        Object o = new InputNoWhitespaceAfter() {
+        Object o = new InputNoWhitespaceAfterTestAllTokens() {
             private int j ;
             //           ^ whitespace
         };
@@ -206,7 +205,7 @@ class InputNoWhitespaceAfter
  * @author o_sukhodolsky
  * @version 1.0
  */
-interface IFoo
+interface IFooTestAllTokens
 {
     void foo() ;
     //        ^ whitespace
@@ -217,7 +216,7 @@ interface IFoo
  * @author lkuehne
  * @version 1.0
  */
-class SpecialCasesInForLoop
+class SpecialCasesInForLoopTestAllTokens
 {
     void forIterator()
     {
@@ -238,7 +237,7 @@ class SpecialCasesInForLoop
     }
 
     int[] getSomeInts() {
-        int i = (int) ( 2 / 3 );
+        int i = (int) ( 2 / 3 ); // violation
         return null;
     }
 
@@ -261,7 +260,7 @@ class SpecialCasesInForLoop
                 }
             }};
         runs[0]
-.
+. // violation
  run()
 ;
     }
@@ -286,24 +285,24 @@ class SpecialCasesInForLoop
 
     public static void testNoWhitespaceBeforeEllipses(String ... args) {
     }
-    @ interface BAD{}
-    @   interface BAD2{}
-    @
+    @ interface BAD{} // violation
+    @   interface BAD2{} // violation
+    @ // violation
     interface BAD3{}
     @interface Ok{}
 
     static {
-        int[]err = new int [50];
+        int[]err = new int [50]; // violation
     }
 
     Object foo() {
         return ( (Object
-                ) "");
+                ) ""); // ^ violation
     }
 
     public Object[]
         variable;
 
     int someStuff8
-    [];
+    []; // violation
 }
