@@ -5,7 +5,7 @@ import java.util.TreeSet;
 /*
  * Config: default
  */
-public class InputIllegalType implements InputIllegalTypeSuper {
+public class InputIllegalTypeTestDefaults implements InputIllegalTypeSuper {
     private AbstractClass a = null; // ok
     private NotAnAbstractClass b = null; /*another comment*/
 
@@ -13,20 +13,20 @@ public class InputIllegalType implements InputIllegalTypeSuper {
         c = null; //WARNING
     private java.util.List d = null;
 
-    public abstract class AbstractClass {/*one more comment*/}
+    private abstract class AbstractClass {/*one more comment*/}
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet table1() { return null; } //WARNING
-    private TreeSet table2() { return null; } //WARNING
+    private java.util.TreeSet table1() { return null; } // violation
+    private TreeSet table2() { return null; } // violation
     static class SomeStaticClass {
 
     }
 
-    InputIllegalType(Integer i) {}
+    InputIllegalTypeTestDefaults(Integer i) {}
     private void table2(Integer i) {}
 
-    private void getInitialContext(java.util.TreeSet v) {} // ignore method by default
+    private void getInitialContext(java.util.TreeSet v) {} // ok
 
     @Override
     public void foo(HashMap<?, ?> buffer) {} // ignore
@@ -42,10 +42,10 @@ public class InputIllegalType implements InputIllegalTypeSuper {
     }
 }
 
-interface InputIllegalTypeSuper {
-    void foo(HashMap<?, ?> buffer); //WARNING
+interface InputIllegalTypeSuperTestDefaults {
+    void foo(HashMap<?, ?> buffer); // violation
 
-    HashMap<?, ?> foo(); //WARNING
+    HashMap<?, ?> foo(); // violation
 
     Object bar();
 }
