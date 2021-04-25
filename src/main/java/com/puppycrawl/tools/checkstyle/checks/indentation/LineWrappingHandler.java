@@ -174,6 +174,11 @@ public class LineWrappingHandler {
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
 
+            if (currentType == TokenTypes.LITERAL_CASE
+                || currentType == TokenTypes.LITERAL_DEFAULT) {
+                continue;
+            }
+
             if (currentType == TokenTypes.RPAREN) {
                 logWarningMessage(node, firstNodeIndent);
             }
