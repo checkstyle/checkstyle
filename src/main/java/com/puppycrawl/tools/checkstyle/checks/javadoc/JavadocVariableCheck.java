@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
@@ -28,6 +29,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
 import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
 
 /**
@@ -36,15 +38,10 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * </p>
  * <ul>
  * <li>
- * Property {@code scope} - Specify the visibility scope where Javadoc comments are checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code private}.
- * </li>
- * <li>
- * Property {@code excludeScope} - Specify the visibility scope where Javadoc
- * comments are not checked.
- * Type is {@code com.puppycrawl.tools.checkstyle.api.Scope}.
- * Default value is {@code null}.
+ * Property {@code accessModifiers} - Specify the access modifiers where Javadoc comments are
+ * checked.
+ * Type is {@code com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption[]}.
+ * Default value is {@code public, protected, package, private}.
  * </li>
  * <li>
  * Property {@code ignoreNamePattern} - Specify the regexp to define variable names to ignore.
@@ -67,8 +64,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;module name="JavadocVariable"/&gt;
  * </pre>
  * <p>
- * By default, this setting will report a violation if
- * there is no javadoc for any scope member.
+ * By default, this setting will report a violation
+ * if there is no javadoc for a member with any access modifier.
  * </p>
  * <pre>
  * public class Test {
@@ -84,40 +81,16 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * }
  * </pre>
  * <p>
- * To configure the check for {@code public} scope:
+ * To configure the check for {@code package} and {@code private} variables:
  * </p>
  * <pre>
  * &lt;module name="JavadocVariable"&gt;
- *   &lt;property name="scope" value="public"/&gt;
- * &lt;/module&gt;
- * </pre>
- * <p>This setting will report a violation if there is no javadoc for {@code public} member.</p>
- * <pre>
- * public class Test {
- *   private int a; // OK
- *
- *   &#47;**
- *    * Some description here
- *    *&#47;
- *   private int b; // OK
- *   protected int c; // OK
- *   public int d; // violation, missing javadoc for public member
- *   &#47;*package*&#47; int e; // OK
- * }
- * </pre>
- * <p>
- * To configure the check for members which are in {@code private},
- * but not in {@code protected} scope:
- * </p>
- * <pre>
- * &lt;module name="JavadocVariable"&gt;
- *   &lt;property name="scope" value="private"/&gt;
- *   &lt;property name="excludeScope" value="protected"/&gt;
+ *   &lt;property name="accessModifiers" value="package,private"/&gt;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * This setting will report a violation if there is no javadoc for {@code private}
- * member and ignores {@code protected} member.
+ * This setting will report a violation if there is no javadoc for {@code package}
+ * or {@code private} members.
  * </p>
  * <pre>
  * public class Test {
@@ -141,8 +114,8 @@ import com.puppycrawl.tools.checkstyle.utils.ScopeUtil;
  * &lt;/module&gt;
  * </pre>
  * <p>
- * This setting will report a violation if there is no javadoc for any scope
- * member and ignores members with name {@code log} or {@code logger}.
+ * This setting will report a violation if there is no javadoc for a
+ * member with any scope and ignores members with name {@code log} or {@code logger}.
  * </p>
  * <pre>
  * public class Test {
@@ -183,31 +156,25 @@ public class JavadocVariableCheck
      */
     public static final String MSG_JAVADOC_MISSING = "javadoc.missing";
 
-    /** Specify the visibility scope where Javadoc comments are checked. */
-    private Scope scope = Scope.PRIVATE;
-
-    /** Specify the visibility scope where Javadoc comments are not checked. */
-    private Scope excludeScope;
+    /** Specify the access modifiers where Javadoc comments are checked. */
+    private AccessModifierOption[] accessModifiers = {
+        AccessModifierOption.PUBLIC,
+        AccessModifierOption.PROTECTED,
+        AccessModifierOption.PACKAGE,
+        AccessModifierOption.PRIVATE,
+    };
 
     /** Specify the regexp to define variable names to ignore. */
     private Pattern ignoreNamePattern;
 
     /**
-     * Setter to specify the visibility scope where Javadoc comments are checked.
+     * Setter to specify the access modifiers where Javadoc comments are checked.
      *
-     * @param scope a scope.
+     * @param accessModifiers access modifiers of variables which should be checked.
      */
-    public void setScope(Scope scope) {
-        this.scope = scope;
-    }
-
-    /**
-     * Setter to specify the visibility scope where Javadoc comments are not checked.
-     *
-     * @param excludeScope a scope.
-     */
-    public void setExcludeScope(Scope excludeScope) {
-        this.excludeScope = excludeScope;
+    public void setAccessModifiers(AccessModifierOption... accessModifiers) {
+        this.accessModifiers =
+            Arrays.copyOf(accessModifiers, accessModifiers.length);
     }
 
     /**
@@ -285,12 +252,54 @@ public class JavadocVariableCheck
             }
 
             final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
-            result = customScope.isIn(scope) && surroundingScope.isIn(scope)
-                && (excludeScope == null
-                    || !customScope.isIn(excludeScope)
-                    || !surroundingScope.isIn(excludeScope));
+
+            final Scope effectiveScope;
+            if (surroundingScope.isIn(customScope)) {
+                effectiveScope = customScope;
+            }
+            else {
+                effectiveScope = surroundingScope;
+            }
+            result = matchAccessModifiers(toAccessModifier(effectiveScope));
         }
         return result;
+    }
+
+    /**
+     * Checks whether a variable has the correct access modifier to be checked.
+     *
+     * @param accessModifier the access modifier of the variable.
+     * @return whether the variable matches the expected access modifier.
+     */
+    private boolean matchAccessModifiers(final AccessModifierOption accessModifier) {
+        return Arrays.stream(accessModifiers)
+            .anyMatch(modifier -> modifier == accessModifier);
+    }
+
+    /**
+     * Converts a {@link Scope} to {@link AccessModifierOption}. {@code Scope.NOTHING} and {@code
+     * Scope.ANONINNER} are converted to {@code AccessModifierOption.PUBLIC}.
+     *
+     * @param scope Scope to be converted.
+     * @return the corresponding AccessModifierOption.
+     */
+    private static AccessModifierOption toAccessModifier(Scope scope) {
+        final AccessModifierOption accessModifier;
+        switch (scope) {
+            case PROTECTED:
+                accessModifier = AccessModifierOption.PROTECTED;
+                break;
+            case PACKAGE:
+                accessModifier = AccessModifierOption.PACKAGE;
+                break;
+            case PRIVATE:
+                accessModifier = AccessModifierOption.PRIVATE;
+                break;
+            // $CASES-OMITTED$
+            default:
+                accessModifier = AccessModifierOption.PUBLIC;
+        }
+        return accessModifier;
     }
 
 }
