@@ -10,6 +10,532 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.42">
+      <div class="releaseDate">25.04.2021</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Rename LocalizedMessage to Violation.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/4465">#4465</a>
+          </li>
+          <li>
+            JavadocMethodCheck: swap scope to access modifiers.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/7417">#7417</a>
+          </li>
+        </ul>
+      <p>New:</p>
+        <ul>
+          <li>
+            Checkstyle 8.37 parser crashes processing sealed classes or interfaces.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/8989">#8989</a>
+          </li>
+          <li>
+            UnnecessaryParentheses: no violation on parenthesis in if statement
+            between || and &amp;&amp;.
+            Author: VyomYadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/5779">#5779</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            EmptyLineSeparator: fix message and documentation.
+            Author: Aryaniiit002
+            <a href="https://github.com/checkstyle/checkstyle/issues/9803">#9803</a>
+          </li>
+          <li>
+            ModiferOrderCheck should support &#39;sealed&#39; and &#39;non-sealed&#39;.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9854">#9854</a>
+          </li>
+          <li>
+            WhitespaceAround ignores empty constructor whitespaces.
+            Author: VyomYadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/8237">#8237</a>
+          </li>
+          <li>
+            Java: CommentsIndentation false positive for comments in multiline arguments.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/8010">#8010</a>
+          </li>
+          <li>
+            EmptyLineSeparator skips single line comments under package.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/7297">#7297</a>
+          </li>
+          <li>
+            IllegalIdentifierName doesn&#39;t check single no-parentheses lambda parameter.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9756">#9756</a>
+          </li>
+          <li>
+            EmptyLineSeparator: Inability to use xpath for violation on empty line.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/8179">#8179</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CLASS.
+            Author: Mitrajit Chandra Chandra, Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9469">#9469</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_SWITCH.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9496">#9496</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_THIS.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9498">#9498</a>
+          </li>
+          <li>
+            update NeedBracesCheckTest to use unique input file for each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9887">#9887</a>
+          </li>
+          <li>
+            update IllegalImportCheckTest to use unique input file for each test method.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9896">#9896</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RPAREN.
+            Author: Mitrajit Chandra Chandra
+            <a href="https://github.com/checkstyle/checkstyle/issues/9566">#9566</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_FINALLY.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9476">#9476</a>
+          </li>
+          <li>
+            update MagicNumberCheckTest to use unique Input file in each test method.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9796">#9796</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.MOD.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9517">#9517</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_THROWS.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9500">#9500</a>
+          </li>
+          <li>
+            update RightCurlyCheckTest to use unique Input file in each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9768">#9768</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_RETURN.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9492">#9492</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_TRY.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9503">#9503</a>
+          </li>
+          <li>
+            update JavadocVariableCheckTest to use unique Input file in each test method.
+            Author: theexplorist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9530">#9530</a>
+          </li>
+          <li>
+            update EmptyBlockCheckTest.java to use unique input file in each test method.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9816">#9816</a>
+          </li>
+          <li>
+            update coding/VariableDeclarationUsageDistanceCheckTest to use unique
+            input file for each test method.
+            Author: Amr Bumadian
+            <a href="https://github.com/checkstyle/checkstyle/issues/9864">#9864</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.INDEX_OP.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9454">#9454</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.UNARY_MINUS.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9593">#9593</a>
+          </li>
+          <li>
+            CI Check links step fails.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9873">#9873</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_DOUBLE.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9473">#9473</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LABELED_STAT.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9457">#9457</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.EXPR.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9428">#9428</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RESOURCE_SPECIFICATION.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/9564">#9564</a>
+          </li>
+          <li>
+            update AnnotationUseStyleCheckTest to use unique Input file in each test method.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/9520">#9520</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.CLASS_DEF.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9408">#9408</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.EXTENDS_CLAUSE.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9429">#9429</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_VOLATILE.
+            Author: Amr Bumadian
+            <a href="https://github.com/checkstyle/checkstyle/issues/9505">#9505</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_INSTANCEOF.
+            Author: Amr Bumadian
+            <a href="https://github.com/checkstyle/checkstyle/issues/9481">#9481</a>
+          </li>
+          <li>
+            update AnnotationLocationCheckTest to use unique Input file in each test method.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9437">#9437</a>
+          </li>
+          <li>
+            doc: removes unknown docs folder for sun config.
+            Author: rnveach
+          </li>
+          <li>
+            update example of AST for TokenTypes.QUESTION.
+            Author: Ruchi Sahu
+            <a href="https://github.com/checkstyle/checkstyle/issues/9557">#9557</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.FOR_ITERATOR.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9445">#9445</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_FOR.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9479">#9479</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.FOR_INIT.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9444">#9444</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_SUPER.
+            Author: Soist
+            <a href="https://github.com/checkstyle/checkstyle/issues/9495">#9495</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.FOR_CONDITION.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9442">#9442</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LPAREN.
+            Author: stonefix
+            <a href="https://github.com/checkstyle/checkstyle/issues/9510">#9510</a>
+          </li>
+          <li>
+            update ParameterNameCheckTest.java to use unique input file in each test method .
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9824">#9824</a>
+          </li>
+          <li>
+            update JavadocStyleCheckTest to use unique Input file in each test method.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9525">#9525</a>
+          </li>
+          <li>
+            update JavadocTypeCheckTest to use unique Input file in each test method.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9526">#9526</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_ARGUMENT.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/9585">#9585</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.MODIFIERS.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9519">#9519</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.IMPLEMENTS_CLAUSE.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9451">#9451</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_NULL.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9487">#9487</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.FINAL.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9441">#9441</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LE.
+            Author: Abhijeet Sinha
+            <a href="https://github.com/checkstyle/checkstyle/issues/9461">#9461</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.PARAMETER_DEF.
+            Author: Amr Bumadian
+            <a href="https://github.com/checkstyle/checkstyle/issues/9550">#9550</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.WILDCARD_TYPE.
+            Author: Mehmet
+            <a href="https://github.com/checkstyle/checkstyle/issues/9596">#9596</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_TRANSIENT.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9501">#9501</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LNOT.
+            Author: Ansuman Behera
+            <a href="https://github.com/checkstyle/checkstyle/issues/9508">#9508</a>
+          </li>
+          <li>
+            update LeftCurlyCheckTest to use unique Input file in each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9767">#9767</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RBRACK.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9558">#9558</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_DEFAULT.
+            Author: Ritik2604
+            <a href="https://github.com/checkstyle/checkstyle/issues/9471">#9471</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LOR.
+            Author: Ansuman Behera
+            <a href="https://github.com/checkstyle/checkstyle/issues/9509">#9509</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LT.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9511">#9511</a>
+          </li>
+          <li>
+            update MethodLengthCheckTest.java to use unique Input file in each test method.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9749">#9749</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.GT.
+            Author: Ansuman Behera
+            <a href="https://github.com/checkstyle/checkstyle/issues/9449">#9449</a>
+          </li>
+          <li>
+            Update documentation for BeforeExecutionExclusionFileFilter.
+            Author: Ritik2604
+            <a href="https://github.com/checkstyle/checkstyle/issues/8269">#8269</a>
+          </li>
+          <li>
+            update DeclarationOrderCheckTest.java to use unique Input file in each test method.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9773">#9773</a>
+          </li>
+          <li>
+            update TypecastParenPadCheckTest.java to use unique input file in each test method.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9814">#9814</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.METHOD_REF.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9514">#9514</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ANNOTATION_ARRAY_INIT.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9390">#9390</a>
+          </li>
+          <li>
+            update AbstractClassNameCheckTest.java to use unique Input file in each test method.
+            Author: Ritik2604
+            <a href="https://github.com/checkstyle/checkstyle/issues/9746">#9746</a>
+          </li>
+          <li>
+            update ImportOrderCheckTest.java to use unique input file in each test method.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9780">#9780</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RCURLY.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9559">#9559</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RESOURCES.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9565">#9565</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_PRIVATE.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9488">#9488</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_TRUE.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9502">#9502</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TYPE_ARGUMENTS.
+            Author: djzenma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9586">#9586</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_RECORD.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9491">#9491</a>
+          </li>
+          <li>
+            Prefer Method Reference above lambda expressions.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9784">#9784</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CONTINUE.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9470">#9470</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_STATIC.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9494">#9494</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_FLOAT.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9477">#9477</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_SHORT.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9493">#9493</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.PLUS.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9553">#9553</a>
+          </li>
+          <li>
+            update WriteTagCheckTest to use unique Input file in each test method.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9531">#9531</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_PROTECTED.
+            Author: Ritik2604
+            <a href="https://github.com/checkstyle/checkstyle/issues/9489">#9489</a>
+          </li>
+          <li>
+            update MissingJavadocTypeCheckTest to use unique Input file in each test method.
+            Author: Saransh
+            <a href="https://github.com/checkstyle/checkstyle/issues/9527">#9527</a>
+          </li>
+          <li>
+            update ExecutableStatementCountCheckTest to use unique Input file in each test method.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9736">#9736</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.SWITCH_RULE.
+            Author: jz20
+            <a href="https://github.com/checkstyle/checkstyle/issues/9580">#9580</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.PATTERN_VARIABLE_DEF.
+            Author: jz20
+            <a href="https://github.com/checkstyle/checkstyle/issues/9552">#9552</a>
+          </li>
+          <li>
+            update AnnotationOnSameLineCheckTest to use unique Input file in each test method.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9522">#9522</a>
+          </li>
+          <li>
+            update JavadocPackageCheckTest to use unique Input file in each test method.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9528">#9528</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.RESOURCE.
+            Author: MahmoudAbdelazim
+            <a href="https://github.com/checkstyle/checkstyle/issues/9563">#9563</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_LONG.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9484">#9484</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.CTOR_DEF.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9413">#9413</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_INT.
+            Author: theanmolsharma
+            <a href="https://github.com/checkstyle/checkstyle/issues/9482">#9482</a>
+          </li>
+          <li>
+            update AvoidStarImportCheckTest to use unique Input file in each test method.
+            Author: jz20
+            <a href="https://github.com/checkstyle/checkstyle/issues/9741">#9741</a>
+          </li>
+          <li>
+            update MissingJavadocMethodCheckTest to use unique Input file in each test method.
+            Author: Ayushman Sachan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9524">#9524</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_VOID.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9504">#9504</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.41.1">
       <div class="releaseDate">28.03.2021</div>
       <p>Bug fixes:</p>
