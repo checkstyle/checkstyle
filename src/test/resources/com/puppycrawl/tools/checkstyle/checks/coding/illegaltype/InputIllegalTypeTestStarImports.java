@@ -4,8 +4,12 @@ import java.net.*;
 import java.util.*;
 import org.antlr.v4.runtime.*;
 import com.puppycrawl.tools.checkstyle.*;
-//configuration "illegalClassNames": List
-public class InputIllegalTypeStarImports
+
+/*
+ * Config:
+ * illegalClassNames = { List }
+ */
+public class InputIllegalTypeTestStarImports
 {
-    List<Integer> l = new LinkedList<>(); //WARNING
+    List<Integer> l = new LinkedList<>(); // violation
 }

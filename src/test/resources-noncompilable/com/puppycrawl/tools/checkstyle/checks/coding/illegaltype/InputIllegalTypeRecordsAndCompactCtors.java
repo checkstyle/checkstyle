@@ -5,18 +5,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.TreeSet;
 
-/* Config:
- *
- * validateAbstractClassNames = false
- * illegalClassNames = {HashMap, HashSet, LinkedHashMap, LinkedHashSet, TreeMap,
- *  TreeSet, java.util.HashMap, java.util.HashSet, java.util.LinkedHashMap,
- *  java.util.LinkedHashSet, java.util.TreeMap, java.util.TreeSet, Cloneable}
- * legalAbstractClassNames = {}
- * ignoredMethodNames = {getEnvironment, getInitialContext}
- * illegalAbstractClassNameFormat ={"^(.*[.])?Abstract.*$"}
- * memberModifiers = {}
- * tokens = {ANNOTATION_FIELD_DEF , CLASS_DEF , INTERFACE_DEF , METHOD_CALL ,
- *  METHOD_DEF , METHOD_REF , PARAMETER_DEF , VARIABLE_DEF}
+/*
+ * Config:
+ * illegalClassNames = { HashMap, HashSet, LinkedHashMap,LinkedHashSet, TreeMap, TreeSet,
+                         java.util.HashMap, java.util.HashSet, java.util.TreeMap,
+                         java.util.TreeSet, Cloneable }
  */
 public class InputIllegalTypeRecordsAndCompactCtors {
     record MyTestRecord
