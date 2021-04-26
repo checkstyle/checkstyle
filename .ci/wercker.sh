@@ -133,7 +133,7 @@ no-error-sevntu-checks)
   set -e
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/sevntu-checkstyle/sevntu.checkstyle.git
+  checkout_from "-b checkstyle-9936 https://github.com/nmancus1/sevntu.checkstyle.git"
   cd .ci-temp/sevntu.checkstyle/sevntu-checks
   mvn -e --no-transfer-progress -Pno-validations verify  -Dcheckstyle.skip=false \
      -Dcheckstyle.version=${CS_POM_VERSION} \
