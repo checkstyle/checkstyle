@@ -77,20 +77,59 @@ public final class FullIdent {
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
+
+            final DetailAST firstChild = ast.getFirstChild();
+            final DetailAST nextSibling = ast.getNextSibling();
+
+            // Here we want type declaration, but not initialization
+            final boolean isArrayTypeDeclarationStart = nextSibling != null
+                    && nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
+                    && isArrayTypeDeclaration(nextSibling);
+            final String brackets = "[]";
+
             if (ast.getType() == TokenTypes.DOT) {
-                extractFullIdent(full, ast.getFirstChild());
+                extractFullIdent(full, firstChild);
                 full.append(".");
-                extractFullIdent(
-                    full, ast.getFirstChild().getNextSibling());
+                extractFullIdent(full, firstChild.getNextSibling());
+            }
+            else if (isArrayTypeDeclarationStart) {
+                // Beginning of array type declaration
+                full.append(ast);
+                extractFullIdent(full, nextSibling);
+            }
+            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR
+                    && firstChild.getType() != TokenTypes.RBRACK) {
+                // Multidimensional array type declaration, not last '[]'
+                extractFullIdent(full, firstChild);
+                full.append(brackets);
             }
             else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                extractFullIdent(full, ast.getFirstChild());
-                full.append("[]");
+                // Single or last '[]' in array type declaration
+                full.append(brackets);
             }
-            else {
+            else if (ast.getType() != TokenTypes.ANNOTATIONS) {
                 full.append(ast);
             }
         }
+    }
+
+    /**
+     * Checks an `ARRAY_DECLARATOR` ast to verify that it is not a
+     * array initialization, i.e. 'new int [2][2]'. We do this by
+     * making sure that no 'EXPR' token exists in this branch.
+     *
+     * @param arrayDeclarator the first ARRAY_DECLARATOR token in the ast
+     * @return true if ast is an array type declaration
+     */
+    private static boolean isArrayTypeDeclaration(DetailAST arrayDeclarator) {
+        DetailAST expression = arrayDeclarator.getFirstChild();
+        while (expression != null) {
+            if (expression.getType() == TokenTypes.EXPR) {
+                break;
+            }
+            expression = expression.getFirstChild();
+        }
+        return expression == null;
     }
 
     /**
