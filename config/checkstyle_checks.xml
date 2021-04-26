@@ -417,6 +417,13 @@
       <property name="query" value="//ANNOTATION[./IDENT[@text='Issue']]"/>
       <message key="matchxpath.match" value="Avoid using @Issue annotation."/>
     </module>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
+    <module name="MatchXpath">
+      <property name="id" value="MatchXPathBranchContains"/>
+      <property name="query" value="//EXPR/METHOD_CALL/DOT//IDENT[@text='branchContains']"/>
+      <message key="matchxpath.match"
+               value="Avoid using deprecated method 'DetailAst.branchContains()'."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
