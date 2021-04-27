@@ -2580,7 +2580,7 @@ class MyClass {
             <tr>
               <td>format</td>
               <td>Specifies valid identifiers.</td>
-              <td><a href="property_types.html#regexp">Pattern</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>"^[a-z][a-zA-Z0-9]*$"</code></td>
               <td>8.36</td>
             </tr>
