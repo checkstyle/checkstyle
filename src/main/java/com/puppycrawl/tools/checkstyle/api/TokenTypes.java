@@ -2635,6 +2635,28 @@ public final class TokenTypes {
      * The {@code else} keyword.  This appears as a child of an
      * {@code if} statement.
      *
+     * <p>For example:</p>
+     * <pre>
+     * if (flag) {
+     *
+     * } else {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--IDENT -&gt; flag
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_ELSE -&gt; else
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #SLIST
      * @see #EXPR
      * @see #EMPTY_STAT
