@@ -2816,6 +2816,27 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             expected);
     }
 
+    @Test
+    public void testIndentationAnnotationFieldDefinition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 4, 8),
+            "18:13: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 12, 8),
+            "25:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 8),
+            "26:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 8),
+        };
+
+        verifyWarns(checkConfig, getPath("InputIndentationAnnotationFieldDefinition.java"),
+                expected);
+    }
+
     private static final class IndentAudit implements AuditListener {
 
         private final IndentComment[] comments;
