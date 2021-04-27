@@ -72,6 +72,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "336:1: " + getCheckMessage(MSG_KEY_SINGLE, 333, 0, 8),
             "355:10: " + getCheckMessage(MSG_KEY_SINGLE, 352, 9, 8),
             "380:13: " + getCheckMessage(MSG_KEY_BLOCK, 381, 12, 8),
+            "383:13: " + getCheckMessage(MSG_KEY_SINGLE, 381, 12, 8),
             "393:13: " + getCheckMessage(MSG_KEY_SINGLE, 392, 12, 8),
             "400:9: " + getCheckMessage(MSG_KEY_SINGLE, 401, 8, 10),
             "457:1: " + getCheckMessage(MSG_KEY_SINGLE, 455, 0, 8),
