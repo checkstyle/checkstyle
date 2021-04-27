@@ -1588,6 +1588,31 @@
         <artifactId>nondex-maven-plugin</artifactId>
         <version>1.1.2</version>
       </plugin>
+
+      <plugin>
+        <groupId>com.groupon.maven.plugin.json</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>1.2.0</version>
+        <executions>
+          <execution>
+            <phase>verify</phase>
+            <goals>
+              <goal>validate</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <validations>
+            <validation>
+              <directory>${basedir}/src/test/resources/com/puppycrawl/tools/checkstyle/sariflogger</directory>
+              <jsonSchema>https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json</jsonSchema>
+              <includes>
+                <include>**/*.sarif</include>
+              </includes>
+            </validation>
+          </validations>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
@@ -2821,6 +2846,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.Definitions*</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLogger*</param>
+                <param>com.puppycrawl.tools.checkstyle.SarifLogger*</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactory*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpander*</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFile*</param>
@@ -2843,6 +2869,7 @@
                 <param>com.puppycrawl.tools.checkstyle.DefaultLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.DefinitionsTest</param>
                 <param>com.puppycrawl.tools.checkstyle.XMLLoggerTest</param>
+                <param>com.puppycrawl.tools.checkstyle.SarifLoggerTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PackageObjectFactoryTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertiesExpanderTest</param>
                 <param>com.puppycrawl.tools.checkstyle.PropertyCacheFileTest</param>
