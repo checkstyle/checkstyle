@@ -24,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
+import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -236,8 +237,12 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             if (sibling.getType() == TokenTypes.ANNOTATIONS) {
                 checkWhitespace = false;
             }
-            else if (sibling.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                checkWhitespace = sibling.getFirstChild().getType() != TokenTypes.ANNOTATIONS;
+            else {
+                DetailAST firstChild = sibling.getFirstChild();
+                while (firstChild != null && firstChild.getType() != TokenTypes.ANNOTATIONS) {
+                    firstChild = firstChild.getFirstChild();
+                }
+                checkWhitespace = firstChild == null;
             }
         }
         return checkWhitespace;
@@ -340,7 +345,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
                     final DetailAST ident = getIdentLastToken(ast);
                     if (ident == null) {
                         // i.e. int[]::new
-                        previousElement = ast.getFirstChild();
+                        previousElement = ast.getParent().getFirstChild();
                     }
                     else {
                         previousElement = ident;
@@ -418,14 +423,32 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         if (result == null) {
             result = getIdentLastToken(ast);
             if (result == null) {
-                // primitive literal expected
-                result = ast.getFirstChild();
+                result = getArrayType(ast);
             }
         }
         else {
             result = result.findFirstToken(TokenTypes.GENERIC_END);
         }
         return result;
+    }
+
+    /**
+     * Ascends through array type declarations to get type,
+     * e.g. 'char' literal from 'char [][]'.
+     *
+     * @param ast the method or type parameter to find type of
+     * @return primitive type of parameter
+     */
+    private static DetailAST getArrayType(DetailAST ast) {
+        DetailAST typeAst = ast.getFirstChild();
+        if (TokenUtil.isOfType(typeAst, TokenTypes.RBRACK, TokenTypes.ANNOTATIONS)) {
+            while (!TokenUtil.isOfType(typeAst, TokenTypes.TYPE_ARGUMENT, TokenTypes.TYPE)
+                    && typeAst.getParent() != null) {
+                typeAst = typeAst.getParent();
+            }
+            typeAst = typeAst.getFirstChild();
+        }
+        return typeAst;
     }
 
     /**
