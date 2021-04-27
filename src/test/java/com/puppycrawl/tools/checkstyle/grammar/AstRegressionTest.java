@@ -280,6 +280,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testInputMethodDefArrayDeclarator() throws Exception {
+        verifyAst(getPath("InputAstRegressionMethodDefArrayDeclarator.txt"),
+                getPath("InputAstRegressionMethodDefArrayDeclarator.java"));
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);
