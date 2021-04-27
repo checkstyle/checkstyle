@@ -161,8 +161,8 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * </pre>
  * <p>
- * To configure the check with policy {@code alone_or_singleline} for {@code if}
- * and <a href="apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
+ * To configure the check with policy {@code alone_or_singleline} for {@code if} and
+ * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#METHOD_DEF">
  * METHOD_DEF</a>
  * tokens:
  * </p>

@@ -61,10 +61,9 @@ java -D&lt;property&gt;=&lt;value&gt;  \
         <li>
           <code>-f format</code> - Specifies the output
           format. Valid values: <code>xml</code>, <code>plain</code> for <a
-          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a>
-          and <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger
-          .html">DefaultLogger</a> respectively.
-          Defaults to <code>plain</code>.
+          href="apidocs/com/puppycrawl/tools/checkstyle/XMLLogger.html">XMLLogger</a> and
+          <a href="apidocs/com/puppycrawl/tools/checkstyle/DefaultLogger.html">DefaultLogger</a>
+          respectively. Defaults to <code>plain</code>.
         </li>
         <li>
           <code>-p propertiesFile</code> - Sets the property files to load.
