@@ -18,19 +18,19 @@ task:
     folder: .m2
   matrix:
     # add more JDK versions here
-    - name: Cirrus - JDK15
+    - name: Cirrus - JDK16
       env:
-        OPENJDK_VERSION: "15.0.0"
-        OPENJDK_PATH: "jdk-15"
+        OPENJDK_VERSION: "16.0.0"
+        OPENJDK_PATH: "jdk-16"
+        MAVEN_OPTS: "%MAVEN_OPTS% --illegal-access=warn"
   env:
     # disable ANSI output for picocli (may affect tests)
     NO_COLOR: "1"
     # https://stackoverflow.com/questions/42024619/maven-build-gets-connection-reset-when-downloading-artifacts
-    MAVEN_OPTS:
-      - -Dhttp.keepAlive=false
-        -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2
-        -Dmaven.wagon.http.retryHandler.count=3
-    MAVEN_VERSION: "3.6.3"
+    MAVEN_OPTS: "-Dhttp.keepAlive=false \
+      -Dmaven.repo.local=%CIRRUS_WORKING_DIR%/.m2 \
+      -Dmaven.wagon.http.retryHandler.count=3"
+    MAVEN_VERSION: "3.8.1"
     PATH: "%PATH%;C:/Program Files/OpenJDK/%OPENJDK_PATH%/bin;\
       C:/ProgramData/chocolatey/lib/maven/apache-maven-%MAVEN_VERSION%/bin;\
       C:/ProgramData/chocolatey/bin"
