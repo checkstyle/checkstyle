@@ -2942,6 +2942,46 @@ public final class TokenTypes {
     /**
      * The {@code catch} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * try {
+     *     FileReader fr = new FileReader("Test.txt");
+     * } catch (FileNotFoundException e) {
+     *
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_TRY -&gt; try
+     *  |--SLIST -&gt; {
+     *  |   |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |   |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |   |--TYPE -&gt; TYPE
+     *  |   |   |   `--IDENT -&gt; FileReader
+     *  |   |   |--IDENT -&gt; fr
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       `--EXPR -&gt; EXPR
+     *  |   |           `--LITERAL_NEW -&gt; new
+     *  |   |               |--IDENT -&gt; FileReader
+     *  |   |               |--LPAREN -&gt; (
+     *  |   |               |--ELIST -&gt; ELIST
+     *  |   |               |   `--EXPR -&gt; EXPR
+     *  |   |               |       `--STRING_LITERAL -&gt; "Test.txt"
+     *  |   |               `--RPAREN -&gt; )
+     *  |   |--SEMI -&gt; ;
+     *  |   `--RCURLY -&gt; }
+     *  `--LITERAL_CATCH -&gt; catch
+     *      |--LPAREN -&gt; (
+     *      |--PARAMETER_DEF -&gt; PARAMETER_DEF
+     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |--TYPE -&gt; TYPE
+     *      |   |   `--IDENT -&gt; FileNotFoundException
+     *      |   `--IDENT -&gt; e
+     *      |--RPAREN -&gt; )
+     *      `--SLIST -&gt; {
+     *          `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #LPAREN
      * @see #PARAMETER_DEF
      * @see #RPAREN
