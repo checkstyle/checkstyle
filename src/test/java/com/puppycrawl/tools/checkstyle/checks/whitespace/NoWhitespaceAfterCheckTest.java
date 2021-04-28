@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoWhitespaceAfterCheckTest
     extends AbstractModuleTestSupport {
@@ -280,6 +281,17 @@ public class NoWhitespaceAfterCheckTest
             "308:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfter.java"), expected);
+    }
+
+    @Test
+    public void testArrayDeclarationsAndAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+                + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
+                + "METHOD_REF");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"), expected);
     }
 
     /**
