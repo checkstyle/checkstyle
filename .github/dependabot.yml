@@ -1,0 +1,37 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: net.sf.saxon:Saxon-HE
+    versions:
+    - ">= 10.1.a, < 10.2"
+  - dependency-name: net.sourceforge.pmd:pmd-core
+    versions:
+    - ">= 6.27.a, < 6.28"
+  - dependency-name: net.sourceforge.pmd:pmd-java
+    versions:
+    - ">= 6.27.a, < 6.28"
+  - dependency-name: net.sourceforge.pmd:pmd-javascript
+    versions:
+    - ">= 6.27.a, < 6.28"
+  - dependency-name: net.sourceforge.pmd:pmd-jsp
+    versions:
+    - ">= 6.27.a, < 6.28"
+  - dependency-name: org.apache.maven.plugins:maven-release-plugin
+    versions:
+    - "> 2.1"
+  - dependency-name: org.pitest:pitest-junit5-plugin
+    versions:
+    - ">= 0.11.a, < 0.12"
+  - dependency-name: org.pitest:pitest-maven
+    versions:
+    - "> 1.4.9, < 1.5"
+  - dependency-name: org.pitest:pitest-maven
+    versions:
+    - ">= 1.5.a, < 1.6"
+  commit-message:
+    prefix: dependency
