@@ -418,6 +418,7 @@
       <message key="matchxpath.match" value="Avoid using @Issue annotation."/>
     </module>
     <module name="MissingCtor">
+    <module name="MatchXpath"/>
       <!--
         we will not use that fanatic validation, extra code is not good
         But this Check will exists as it was created by community demand.
