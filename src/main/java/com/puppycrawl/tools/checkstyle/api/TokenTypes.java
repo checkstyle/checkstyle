@@ -1509,6 +1509,23 @@ public final class TokenTypes {
     /**
      * The {@code char} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * char a = 'A';
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_CHAR -&gt; char
+     *  |--IDENT -&gt; a
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--CHAR_LITERAL -&gt; 'A'
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_CHAR =
