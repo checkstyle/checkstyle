@@ -2369,47 +2369,33 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * do
-     * {
-     *   x = rand.nextInt(10);
-     * }
-     * while(x &lt; 5);
+     * do {
+     *   x = rand.nextInt();
+     * } while (x &lt; 5);
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_DO (do)
-     *     |
-     *     +--SLIST ({)
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--ASSIGN (=)
-     *                 |
-     *                 +--IDENT (x)
-     *                 +--METHOD_CALL (()
-     *                     |
-     *                     +--DOT (.)
-     *                         |
-     *                         +--IDENT (rand)
-     *                         +--IDENT (nextInt)
-     *                     +--ELIST
-     *                         |
-     *                         +--EXPR
-     *                             |
-     *                             +--NUM_INT (10)
-     *                     +--RPAREN ())
-     *         +--SEMI (;)
-     *         +--RCURLY (})
-     *     +--DO_WHILE (while)
-     *     +--LPAREN (()
-     *     +--EXPR
-     *         |
-     *         +--LT (&lt;)
-     *             |
-     *             +--IDENT (x)
-     *             +--NUM_INT (5)
-     *     +--RPAREN ())
-     *     +--SEMI (;)
+     * LITERAL_DO -&gt; do
+     *  |--SLIST -&gt; {
+     *  |   |--EXPR -&gt; EXPR
+     *  |   |   `--ASSIGN -&gt; =
+     *  |   |       |--IDENT -&gt; x
+     *  |   |       `--METHOD_CALL -&gt; (
+     *  |   |           |--DOT -&gt; .
+     *  |   |           |   |--IDENT -&gt; rand
+     *  |   |           |   `--IDENT -&gt; nextInt
+     *  |   |           |--ELIST -&gt; ELIST
+     *  |   |           `--RPAREN -&gt; )
+     *  |   |--SEMI -&gt; ;
+     *  |   `--RCURLY -&gt; }
+     *  |--DO_WHILE -&gt; while
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LT -&gt; &lt;
+     *  |       |--IDENT -&gt; x
+     *  |       `--NUM_INT -&gt; 5
+     *  |--RPAREN -&gt; )
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #SLIST
