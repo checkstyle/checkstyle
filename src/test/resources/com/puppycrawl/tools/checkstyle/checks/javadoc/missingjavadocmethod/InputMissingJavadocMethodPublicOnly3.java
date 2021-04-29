@@ -8,7 +8,7 @@ public class InputMissingJavadocMethodPublicOnly3
     private interface InnerInterface
     {
         String CONST = "InnerInterface";
-        void method(); // ok
+        void method(); // violation
 
         class InnerInnerClass
         {
