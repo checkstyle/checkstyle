@@ -27,6 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       branch: ${{ steps.branch.outputs.ref }}
+      commit_sha: ${{ steps.branch.outputs.commit_sha }}
 
     steps:
       - uses: khan/pull-request-comment-trigger@master
@@ -42,11 +43,13 @@ jobs:
         run: |
           wget -q "${{github.event.issue.pull_request.url}}" -O info.json
           jq .head.ref info.json > branch
+          jq .head.sha info.json > commit_sha
 
       - name: Set branch
         id: branch
         run: |
           echo ::set-output name=ref::$(cat branch | xargs)
+          echo ::set-output name=commit_sha::$(cat commit_sha | xargs | cut -c 1-7)
 
   generate_site:
     needs: parse_pr_info
@@ -91,7 +94,7 @@ jobs:
         run: |
           bash
           TIME=`date +%Y%H%M%S`
-          FOLDER="${{needs.parse_pr_info.outputs.branch}}_$TIME"
+          FOLDER="${{needs.parse_pr_info.outputs.commit_sha}}_$TIME"
           SITE="./checkstyle/target/site"
           LINK="https://${{env.AWS_BUCKET_NAME}}.s3.${{env.AWS_REGION}}.amazonaws.com"
           aws s3 cp $SITE s3://${{env.AWS_BUCKET_NAME}}/$FOLDER/ --recursive
