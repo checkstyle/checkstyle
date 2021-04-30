@@ -145,6 +145,7 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 MissingJavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PROTECTED.getName());
         final String[] expected = {
+            "11:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "55:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "59:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "71:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
@@ -159,6 +160,12 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
                 MissingJavadocMethodCheck.class);
         checkConfig.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "25:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "33:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "34:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "42:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
             "43:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
         };
@@ -456,6 +463,43 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMissingJavadocMethodWithInterfaceDef() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
+        config.addAttribute("scope", Scope.PRIVATE.getName());
+        config.addAttribute("excludeScope", Scope.PACKAGE.getName());
+        final String[] expected = {
+            "10:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "14:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "18:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "24:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "28:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "32:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(config, getPath("InputMissingJavadocMethodInterfaceScope.java"), expected);
+    }
+
+    @Test
+    public void testMissingJavadocMethodWithInterface() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
+        config.addAttribute("scope", Scope.PUBLIC.getName());
+        final String[] expected = {
+            "9:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(config, getPath("InputMissingJavadocMethodInterfaceFields.java"), expected);
+    }
+
+    @Test
+    public void testMissingJavadocMethodRecordsAndCompactCtorsMinLineCount() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(
+                MissingJavadocMethodCheck.class);
+        checkConfig.addAttribute("minLineCount", "2");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"),
+                expected);
+    }
+
+    @Test
     public void testMissingJavadocMethodRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(
             MissingJavadocMethodCheck.class);
@@ -472,15 +516,12 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
-    public void testMissingJavadocMethodRecordsAndCompactCtorsMinLineCount() throws Exception {
-        final DefaultConfiguration checkConfig = createModuleConfig(
-            MissingJavadocMethodCheck.class);
-        checkConfig.addAttribute("minLineCount", "2");
-
+    public void testMissingJavadocMethodInterfaceDefWithPrivateMethods() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
+        config.addAttribute("scope", Scope.PUBLIC.getName());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-
-        verify(checkConfig,
-            getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"),
-            expected);
+        verify(config, getNonCompilablePath("InputMissingJavadocMethodInterfacePrivateScope.java"),
+                expected);
     }
+
 }
