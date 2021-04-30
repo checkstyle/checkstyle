@@ -140,7 +140,4 @@
   <suppress id="noUsageOfGetFileContents()Method" files="PackageAnnotationCheck.java"/>
   <suppress id="noUsageOfGetFileContents()Method" files="MissingOverrideCheck.java"/>
 
-  <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
-  <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
-
 </suppressions>
