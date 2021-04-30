@@ -90,6 +90,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
             "557:1: " + getCheckMessage(MSG_KEY_SINGLE, 555, 0, 8),
             "562:1: " + getCheckMessage(MSG_KEY_SINGLE, 561, 0, 8),
             "577:1: " + getCheckMessage(MSG_KEY_SINGLE, 574, 0, 8),
+            "589:13: " + getCheckMessage(MSG_KEY_SINGLE, 587, 12, 8),
         };
         final String testInputFile = "InputCommentsIndentationCommentIsAtTheEndOfBlock.java";
         verify(checkConfig, getPath(testInputFile), expected);
@@ -313,6 +314,17 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getNonCompilablePath("InputCommentsIndentationRecordsAndCompactCtors.java"),
             expected);
+    }
+
+    @Test
+    public void testCommentsAtTheEndOfMethodCall() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(CommentsIndentationCheck.class);
+        final String[] expected = {
+            "18:16: " + getCheckMessage(MSG_KEY_SINGLE, 14, 15, 8),
+        };
+        verify(checkConfig,
+                getPath("InputCommentsIndentationCommentsAfterMethodCall.java"),
+                expected);
     }
 
 }
