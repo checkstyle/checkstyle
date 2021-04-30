@@ -79,7 +79,7 @@ public class SuppressByMessageFilter
         extends AutomaticBean
         implements Filter {
 
-    /** Define the RegExp for matching against Check name which throws a violation. */
+    /** Define the RegExp for matching against Check name which throws a violation.*/
     private Pattern checkFormat;
 
     /** Define the RegExp for matching against the violation message thrown by a check. */
