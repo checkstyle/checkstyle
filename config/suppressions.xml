@@ -115,5 +115,29 @@
 
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
+  
+  <!-- these are allowed and legacy use cases -->
+  <suppress id="noUsageOfGetFileContents()Method" files="JavadocMetadataScraper.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="TreeWalker.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="RegexpSinglelineJavaCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="RegexpCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="MethodLengthCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="OuterTypeFilenameCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="AvoidEscapedUnicodeCharactersCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="PackageDeclarationCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="FallThroughCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="UnusedImportsCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="ImportControlCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="EmptyLineSeparatorCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="MissingJavadocMethodCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="MissingJavadocPackageCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="JavadocVariableCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="JavadocTypeCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="JavadocStyleCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="JavadocMethodCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="MissingJavadocTypeCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="WriteTagCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="PackageAnnotationCheck.java"/>
+  <suppress id="noUsageOfGetFileContents()Method" files="MissingOverrideCheck.java"/>
 
 </suppressions>
