@@ -164,6 +164,24 @@ no-violation-test-josm)
   if [[ ${RESULT} != 0 ]]; then false; fi
   ;;
 
+verify-regexp-id)
+  cd config
+  RESULT=0
+  for FILE in *_checks.xml
+  do
+    a=$(grep -c "<module name=\"Regexp.*" $FILE)
+    b=$(grep "<module name=\"Regexp" -A 1 $FILE | grep -c "<property name=\"id\"")
+    res="$(($a-$b))"
+    if [[ ${res} != 0 ]]
+    then
+      echo "Error: $FILE has Regexp instances without id property"
+      RESULT=1
+    fi
+  done
+  cd ..
+  exit $RESULT
+  ;;
+
 *)
   echo "Unexpected argument: $1"
   sleep 5s
