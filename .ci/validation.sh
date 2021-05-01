@@ -262,6 +262,21 @@ verify-no-exception-configs)
   exit $fail
   ;;
 
+verify-regexp-id)
+  fail=0
+  for FILE in config/*_checks.xml
+  do
+    a=$(grep -c "<module name=\"Regexp.*" $FILE) || a=0
+    b=$(grep "<module name=\"Regexp" -A 1 $FILE | grep -c "<property name=\"id\"") || b=0
+    if [ ${a} != ${b} ]
+    then
+      echo "Error: $FILE has Regexp modules without id property immediately after module name."
+      fail=1
+    fi
+  done
+  cd ..
+  exit $fail
+  ;;
 
 *)
   echo "Unexpected argument: $1"
