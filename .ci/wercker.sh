@@ -88,9 +88,8 @@ no-error-apex-core)
 no-error-equalsverifier)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo CS_version: ${CS_POM_VERSION}
-  checkout_from https://github.com/checkstyle/equalsverifier.git
+  checkout_from https://github.com/jqno/equalsverifier.git
   cd .ci-temp/equalsverifier
-  git checkout checkstyle_7417
   mvn -e --no-transfer-progress compile checkstyle:check -Dcheckstyle.version=${CS_POM_VERSION}
   cd ../
   removeFolderWithProtectedFiles equalsverifier
