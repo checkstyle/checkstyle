@@ -262,6 +262,22 @@ verify-no-exception-configs)
   exit $fail
   ;;
 
+verify-regexp-id)
+  cd config
+  RESULT=0
+  for FILE in *_checks.xml
+  do
+    a=$(grep -c "<module name=\"Regexp.*" $FILE) || a=0
+    b=$(grep "<module name=\"Regexp" -A 1 $FILE | grep -c "<property name=\"id\"") || a=0
+    if [ ${a} != ${b} ]
+    then
+      echo "Error: $FILE has Regexp instances without id property"
+      RESULT=1
+    fi
+  done
+  cd ..
+  exit $RESULT
+  ;;
 
 *)
   echo "Unexpected argument: $1"
