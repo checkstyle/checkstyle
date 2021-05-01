@@ -66,26 +66,50 @@ public final class ScopeUtil {
      */
     public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
-        for (DetailAST token = node.getParent();
-             token != null;
-             token = token.getParent()) {
-            final int type = token.getType();
-            if (TokenUtil.isTypeDeclaration(type)) {
-                final DetailAST mods =
-                    token.findFirstToken(TokenTypes.MODIFIERS);
-                final Scope modScope = getScopeFromMods(mods);
-                if (returnValue == null || returnValue.isIn(modScope)) {
-                    returnValue = modScope;
+        final DetailAST nodeModifier = node.findFirstToken(TokenTypes.MODIFIERS);
+        // Inside interface scope can be either public or private
+        // all non-private methods are treated as public
+        final boolean isScopePubicForInterface = nodeModifier != null
+                && getScopeFromMods(nodeModifier) != Scope.PRIVATE;
+        if (isPublicFieldInInterfaceBlock(node, isScopePubicForInterface)) {
+            returnValue = Scope.PUBLIC;
+        }
+        else {
+            for (DetailAST token = node.getParent();
+                 token != null;
+                 token = token.getParent()) {
+                final int type = token.getType();
+                if (TokenUtil.isTypeDeclaration(type)) {
+                    final DetailAST mods =
+                            token.findFirstToken(TokenTypes.MODIFIERS);
+                    final Scope modScope = getScopeFromMods(mods);
+                    if (returnValue == null || returnValue.isIn(modScope)) {
+                        returnValue = modScope;
+                    }
                 }
-            }
-            else if (type == TokenTypes.LITERAL_NEW) {
-                returnValue = Scope.ANONINNER;
-                // because Scope.ANONINNER is not in any other Scope
-                break;
+                else if (type == TokenTypes.LITERAL_NEW) {
+                    returnValue = Scope.ANONINNER;
+                    // because Scope.ANONINNER is not in any other Scope
+                    break;
+                }
+                if (isPublicFieldInInterfaceBlock(token, isScopePubicForInterface)) {
+                    returnValue = Scope.PUBLIC;
+                }
             }
         }
 
         return returnValue;
+    }
+
+    /**
+     * Checks if the field is inside a interface block and does not have private modifier.
+     *
+     * @param ast the ast to check if directly contained within an interface block.
+     * @param isScopePubic the boolean specifying field is public for interface.
+     * @return true, if field is non-private and is within interface block.
+     */
+    private static boolean isPublicFieldInInterfaceBlock(DetailAST ast, boolean isScopePubic) {
+        return isScopePubic && isInInterfaceBlock(ast);
     }
 
     /**
