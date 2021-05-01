@@ -163,4 +163,21 @@ public class DesignForExtensionCheckTest
         verify(checkConfig, getPath("InputDesignForExtensionRequiredJavadocPhraseMultiLine.java"),
             expected);
     }
+
+    @Test
+    public void testDesignForInterfaceType() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DesignForExtensionCheck.class);
+        checkConfig.addAttribute("requiredJavadocPhrase", "This implementation");
+        final String[] expected = {
+            "9:9: " + getCheckMessage(MSG_KEY, "A", "foo1"),
+            "12:9: " + getCheckMessage(MSG_KEY, "A", "foo2"),
+            "20:9: " + getCheckMessage(MSG_KEY, "B", "foo4"),
+            "23:9: " + getCheckMessage(MSG_KEY, "B", "foo5"),
+            "31:9: " + getCheckMessage(MSG_KEY, "C", "foo7"),
+            "33:9: " + getCheckMessage(MSG_KEY, "C", "foo8"),
+            "41:9: " + getCheckMessage(MSG_KEY, "LocalClass", "test"),
+        };
+        verify(checkConfig, getPath("InputDesignForExtensionInterfaceType.java"),
+                expected);
+    }
 }
