@@ -388,3 +388,39 @@ public class SampleTest {
      */
     public void test3() {} // ok
 }
+
+class SubClass {
+
+    /**
+     * Package protected check
+     */
+    void method7 () { // ok
+    }
+
+    /**
+     * Javadoc without dot
+     */
+    public interface TestInterface { // ok
+        /**
+         * Javadoc without dot
+         */
+        void method (); // violation
+    }
+
+    static interface TestStaticClass {
+        /**
+         * Javadoc without dot
+         */
+        public static int field = 0; // violation
+    }
+
+    /**
+     * Javadoc without dot
+     */
+    private interface SubInterface { // ok
+        /**
+         * Javadoc without dot
+         */
+        void method (); // violation
+    }
+}
