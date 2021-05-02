@@ -24,7 +24,7 @@ no-exception-openjdk7-openjdk8)
   sed -i'' 's/#openjdk8/openjdk8/' projects-for-circle.properties
   groovy diff.groovy --listOfProjects projects-for-circle.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
-    --allowExcludes -xm "-Dcheckstyle.failsOnError=false"
+    --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles .ci-temp/contribution
   ;;
@@ -44,7 +44,7 @@ no-exception-openjdk9-lucene-and-others)
   sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties
   groovy diff.groovy --listOfProjects projects-for-circle.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
-    --allowExcludes -xm "-Dcheckstyle.failsOnError=false"
+    --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -61,7 +61,7 @@ no-exception-cassandra-storm-tapestry)
   sed -i'' 's/#cassandra/cassandra/' projects-for-circle.properties
   groovy diff.groovy --listOfProjects projects-for-circle.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
-    --allowExcludes -xm "-Dcheckstyle.failsOnError=false"
+    --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -79,7 +79,7 @@ no-exception-hadoop-apache-groovy-scouter)
   sed -i'' 's/#scouter/scouter/' projects-for-circle.properties
   groovy diff.groovy --listOfProjects projects-for-circle.properties \
     --config checks-nonjavadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
-    --allowExcludes -xm "-Dcheckstyle.failsOnError=false"
+    --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
@@ -98,7 +98,7 @@ no-exception-only-javadoc)
   sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
   groovy diff.groovy --listOfProjects projects-to-test-on.properties \
     --config checks-only-javadoc-error.xml --checkstyleVersion ${CS_POM_VERSION} \
-    --allowExcludes -xm "-Dcheckstyle.failsOnError=false"
+    --allowExcludes
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
