@@ -67,6 +67,12 @@ public abstract class AbstractPathTestSupport {
                 + filename).getCanonicalPath();
     }
 
+    /**
+     * Returns the path for resources for the given file name.
+     *
+     * @param filename Name of the file.
+     * @return the path for resources for the given file based on its package location.
+     */
     protected final String getResourcePath(String filename) {
         return "/" + getPackageLocation() + "/" + filename;
     }
@@ -93,6 +99,13 @@ public abstract class AbstractPathTestSupport {
         return Stream.of(strings).collect(Collectors.joining(EOL, "", EOL));
     }
 
+    /**
+     * Returns a string containing "\r\n" converted to "\n" and "\\r\\n" converted to "\\n"
+     * by replacing with empty string.
+     *
+     * @param text the text string.
+     * @return the converted text string.
+     */
     protected static String toLfLineEnding(String text) {
         return text.replaceAll(CR_FOLLOWED_BY_LF_REGEX, "");
     }

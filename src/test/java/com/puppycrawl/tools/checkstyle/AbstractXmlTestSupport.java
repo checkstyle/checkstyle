@@ -39,6 +39,14 @@ import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 
 public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
 
+    /**
+     * Returns the output stream xml. This implementation uses
+     * {@link XmlUtil#getRawXml(String, String, String)} method inside to get xml doc.
+     *
+     * @param outputStream The byte array output stream.
+     * @return returns a raw xml document of the interface {@link Document}.
+     * @throws ParserConfigurationException can cause exception when parsing output stream.
+     */
     protected static Document getOutputStreamXml(ByteArrayOutputStream outputStream)
             throws ParserConfigurationException {
         final String xml = new String(outputStream.toByteArray(), StandardCharsets.UTF_8);
@@ -46,11 +54,32 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         return XmlUtil.getRawXml("audit output", xml, xml);
     }
 
+    /**
+     * Verifies the generated xml.
+     *
+     * @param expectedOutputFile The expected output file.
+     * @param actualOutputStream The byte array output stream.
+     * @param messages An array of expected messages/content of xml document.
+     * @throws Exception can throw ComparisonFailure exception if xml encoding,
+     *     version don't match.
+     */
     protected static void verifyXml(String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream, String... messages) throws Exception {
         verifyXml(expectedOutputFile, actualOutputStream, null, messages);
     }
 
+    /**
+     * Verifies the actual generated xml document by comparing with expected document.
+     * This implementation uses {@link #getOutputStreamXml(ByteArrayOutputStream)},
+     * {@link #verifyXmlNode(Node, Node, String, BiPredicate)} methods inside.
+     *
+     * @param expectedOutputFile The expected output file.
+     * @param actualOutputStream The actual byte array output stream.
+     * @param ordered an ordered predicate for xml nodes.
+     * @param messages An array of expected messages/content of xml document.
+     * @throws Exception can throw ComparisonFailure exception if xml encoding,
+     *     version do not match.
+     */
     protected static void verifyXml(String expectedOutputFile,
             ByteArrayOutputStream actualOutputStream,
             BiPredicate<Node, Node> ordered, String... messages) throws Exception {
@@ -71,6 +100,16 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         verifyXmlNode(expectedDocument, actualDocument, "/", ordered);
     }
 
+    /**
+     * Verifies if xml nodes in actual generated xml document and expected xml document match
+     * or not. This implementation uses {@link #verifyXmlNode(Node, Node, String, BiPredicate)}
+     * method inside.
+     *
+     * @param expected the expected xml node. A {@link Node} interface.
+     * @param actual the actual xml node. A {@link Node} interface.
+     * @param path the path to the current xml node that are compared.
+     * @param ordered an ordered predicate for xml nodes.
+     */
     private static void verifyXmlNodes(Node expected, Node actual, String path,
             BiPredicate<Node, Node> ordered) {
         final Node expectedFirstChild = expected.getFirstChild();
@@ -122,6 +161,17 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         }
     }
 
+    /**
+     * Verifies if a xml node in actual xml document and expected xml document match or not based on
+     * their name, type, and attributes. This implementation uses
+     * {@link #verifyXmlAttributes(NamedNodeMap, NamedNodeMap, String)}, and
+     * {@link #verifyXmlNodes(Node, Node, String, BiPredicate)} methods inside.
+     *
+     * @param expected the expected xml node. A {@link Node} interface.
+     * @param actual the actual xml node. A {@link Node} interface.
+     * @param path the path to the current xml nodes that are compared.
+     * @param ordered an ordered predicate for xml nodes.
+     */
     private static void verifyXmlNode(Node expected, Node actual, String path,
             BiPredicate<Node, Node> ordered) {
         if (expected == null) {
@@ -144,6 +194,15 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         }
     }
 
+    /**
+     * Verifies xml attributes of collection of actual nodes by comparing with collection
+     * of expected node attributes. This implementation uses
+     * {@link #verifyXmlAttribute(Node, Node, String)} method inside.
+     *
+     * @param expected collection of expected nodes. A {@link NamedNodeMap} interface.
+     * @param actual collection of actual nodes. A {@link NamedNodeMap} interface.
+     * @param path the path to these xml nodes that are compared.
+     */
     private static void verifyXmlAttributes(NamedNodeMap expected, NamedNodeMap actual,
             String path) {
         if (expected == null) {
@@ -161,6 +220,14 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         }
     }
 
+    /**
+     * Verifies xml attributes of actual node(like name, and node value) by comparing with
+     * expected node attributes.
+     *
+     * @param expected the expected xml node. A {@link Node} interface.
+     * @param actual the actual xml node. A {@link Node} interface.
+     * @param path the path to the current xml nodes that are compared.
+     */
     private static void verifyXmlAttribute(Node expected, Node actual, String path) {
         final String expectedName = expected.getNodeName();
 
