@@ -24,31 +24,12 @@ install:
 jobs:
   fast_finish: true
   include:
-    # moved to azure-pipelines.yml
-    # testing age of pr
-    # - env:
-    #     - DESC="test Commits Since Latest Master"
-    #     - CMD="./.ci/travis/travis.sh pr-age"
-    #     - SKIP_JOB_BY_FILES="false"
 
     # testing of PR format
     - env:
        - DESC="test Issue ref in PR description"
        - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/travis.sh pr-description"
        - SKIP_JOB_BY_FILES="false"
-
-    # moved to azure-pipelines.yml
-    # new questionably spelled words
-    # - env:
-    #     - DESC="spell checker"
-    #     - CMD="./.ci/test-spelling-unknown-words.sh"
-    #     - SKIP_JOB_BY_FILES="false"
-
-    # moved to azure-pipelines.yml
-    # lint for .md files
-    # - env:
-    #     - DESC="markdown lint"
-    #     - CMD="./.ci/travis/travis.sh markdownlint"
 
     # this job do deploy maven repository
     # unit tests (openjdk8)
@@ -60,240 +41,12 @@ jobs:
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
-    # moved to drone.yml
-    # checkstyle (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="checkstyle and sevntu-checkstyle"
-    #     - CMD="./.ci/travis/travis.sh checkstyle-and-sevntu"
-    #     - SKIP_JOB_BY_FILES="false"
-    #     - USE_MAVEN_REPO="true"
-
-    # deprecated, we do not need it as coverage is already 100%
-    # jacoco and codecov (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="jacoco and codecov"
-    #     - CMD="./.ci/travis/travis.sh jacoco"
-    #     - CMD_AFTER_SUCCESS="bash <(curl -s https://codecov.io/bash)"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to drone.yml
-    # spotbugs and pmd (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="spotbugs,pmd"
-    #     - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to azure-pipelines.yml (as part of general 'verify')
-    # spotbugs and pmd (openjdk11)
-    # - jdk: openjdk11
-    #   env:
-    #     - DESC="spotbugs,pmd"
-    #     - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to azure-pipelines.yml to run in OSX
-    # spotbugs and pmd (openjdk14)
-    # - jdk: openjdk14
-    #   env:
-    #     - DESC="spotbugs,pmd"
-    #     - CMD="./.ci/travis/travis.sh spotbugs-and-pmd"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to drone.yml
-    # Releasenotes generation - validation
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="Releasenotes generation"
-    #     - CMD="./.ci/travis/travis.sh releasenotes-gen"
-    #     - SKIP_JOB_BY_FILES="false"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to drone.yml
-    # site
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="site without validations"
-    #     - CMD="./.ci/travis/travis.sh site"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to azure-pipelines.yml
-    # unit tests in German locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests de"
-    #     - CMD="./.ci/travis/travis.sh test-de"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in Spanish locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests es"
-    #     - CMD="./.ci/travis/travis.sh test-es"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in Finnish locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests fi"
-    #     - CMD="./.ci/travis/travis.sh test-fi"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in French locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests fr"
-    #     - CMD="./.ci/travis/travis.sh test-fr"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in Chinese locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests zh"
-    #     - CMD="./.ci/travis/travis.sh test-zh"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in Japanese locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests ja"
-    #     - CMD="./.ci/travis/travis.sh test-ja"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in Portuguese locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests pt"
-    #     - CMD="./.ci/travis/travis.sh test-pt"
-    #     - USE_MAVEN_REPO="true"
-    # unit tests in Turkish locale (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="tests tr"
-    #     - CMD="./.ci/travis/travis.sh test-tr"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to drone.yml
-    # assembly (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="assembly & run '-all' jar"
-    #     - CMD="./.ci/travis/travis.sh assembly-run-all-jar"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to drone.yml
-    # release dry run (openjdk8)
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="release dry run"
-    #     - CMD="./.ci/travis/travis.sh release-dry-run"
-    #     - USE_MAVEN_REPO="true"
-
-    # moved to drone.yml
-    # Check the chmod on files.
-    # - env:
-    #     - DESC="check permissions on all files"
-    #     - CMD="./.ci/travis/travis.sh check-chmod"
-    #     - SKIP_JOB_BY_FILES="false"
-
-    # moved to azure-pipelines.yml
-    # MacOS JDK8 verify (till cache is not working, we can not do verify)
-    # - os: osx
-    #   osx_image: xcode9.3
-    #   env:
-    #     - DESC="MacOS JDK8 verify, site, assembly"
-    #     - CMD1="./.ci/travis/travis.sh osx-package"
-    #     - CMD2="./.ci/travis/travis.sh osx-assembly"
-    #     - CMD="$CMD1 && $CMD2"
-    # MacOS JDK11 verify (till cache is not working, we can not do verify)
-    # - os: osx
-    #   osx_image: xcode10.1
-    #   env:
-    #     - DESC="MacOS JDK11 verify, site, assembly"
-    #     - CMD1="./.ci/travis/travis.sh osx-package"
-    #     - CMD2="./.ci/travis/travis.sh osx-assembly"
-    #     - CMD="$CMD1 && $CMD2"
-    # MacOS JDK13 verify (till cache is not working, we can not do verify)
-    # - os: osx
-    #   osx_image: xcode11.2
-    #   env:
-    #     - DESC="MacOS JDK13 verify, site, assembly"
-    #     - CMD1="./.ci/travis/travis.sh osx-jdk13-package"
-    #     - CMD2="./.ci/travis/travis.sh osx-jdk13-assembly"
-    #     - CMD="$CMD1 && $CMD2"
-
-    # moved to drone.yml
-    # No error testing - simple-binary-encoding
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="no error test on simple-binary-encoding"
-    #     - USE_MAVEN_REPO="true"
-    #     - CMD="./.ci/travis/travis.sh no-error-test-sbe"
-
     # No error testing - XWiki project non regression
     - jdk: openjdk8
       env:
         - DESC="non regression on XWiki project"
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh no-error-xwiki"
-
-    # moved to azure-pipelines.yml
-    # versions to update
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="print versions to update"
-    #     - USE_MAVEN_REPO="true"
-    #     - CMD="./.ci/travis/travis.sh versions"
-    #     - SKIP_JOB_BY_FILES="false"
-
-    # moved to azure-pipelines.yml
-    # OpenJDK11 verify
-    # - jdk: openjdk11
-    #   env:
-    #     - DESC="verify with OpenJDK11"
-    #     - USE_MAVEN_REPO="true"
-    #     - CMD="mvn -e verify"
-
-    # moved to drone.yml
-    # OpenJDK11 assembly/site
-    # - jdk: openjdk11
-    #   env:
-    #     - DESC="assembly/site with OpenJDK11"
-    #     - USE_MAVEN_REPO="true"
-    #     - CMD="mvn -e package -Passembly && mvn -e site -Dlinkcheck.skip=true"
-
-    # moved to drone.yml
-    # OpenJDK14 build
-    # - jdk: openjdk14
-    #   env:
-    #     - DESC="build with OpenJDK14"
-    #     - USE_MAVEN_REPO="true"
-    #     - CMD="./.ci/travis/travis.sh jdk14-assembly-site"
-
-    # moved to azure-pipelines.yml as part of OSX verify
-    # OpenJDK14 verify limited
-    # - jdk: openjdk14
-    #   env:
-    #     - DESC="verify limited with OpenJDK14"
-    #     - USE_MAVEN_REPO="true"
-    #     - CMD="./.ci/travis/travis.sh jdk14-verify-limited"
-
-    # moved to drone.yml
-    # OpenJDK11 compile input files with jdk9 specific syntax
-    # - jdk: openjdk11
-    #   env:
-    #     - DESC="compile input files with jdk9 specific syntax"
-    #     - CMD="./.ci/travis/travis.sh javac9"
-
-    # moved to drone.yml
-    # compile input files compilation that are not compiled by eclipse
-    # - jdk: openjdk8
-    #   env:
-    #     - DESC="compile input files that are not compiled by eclipse"
-    #     - CMD="./.ci/travis/travis.sh javac8"
-
-    # moved to drone.yml
-    # OpenJDK14 compile input files with jdk14 specific syntax
-    # - jdk: openjdk14
-    #   env:
-    #     - DESC="compile input files with jdk14 specific syntax"
-    #     - CMD="./.ci/travis/travis.sh javac14"
 
     # Ensure that all modules are used in no exception configs
     - env:
@@ -302,15 +55,42 @@ jobs:
         - CMD2="./.ci/travis/travis.sh verify-no-exception-configs"
         - CMD="$CMD1 && $CMD2"
 
-    # moved to drone.yml
-    # - env:
-    #     - DESC="validate since javadoc tag if new module is created"
-    #     - CMD="./.ci/travis/travis.sh check-since-version"
+    - jdk: openjdk8
+      env:
+        - DESC="no-exception-openjdk9-lucene-and-others"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/validation.sh no-exception-openjdk9-lucene-and-others"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="no-exception-cassandra-storm-tapestry"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/validation.sh no-exception-cassandra-storm-tapestry"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="no-exception-hadoop-apache-groovy-scouter"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/validation.sh no-exception-hadoop-apache-groovy-scouter"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="no-exception-openjdk9-lucene-and-others"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/validation.sh no-exception-only-javadoc"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
 
 script:
   - SKIP_FILES1=".github|codeship-*|appveyor.yml|circleci"
   - SKIP_FILES2="|fast-forward-merge.sh|LICENSE|LICENSE.apache20|README.md|release.sh|RIGHTS.antlr"
-  - SKIP_FILES3="|shippable.yml|shippable.sh|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
+  - SKIP_FILES3="|wercker.yml|wercker.sh|intellij-idea-inspections.xml"
   - SKIP_FILES4="|Jenkinsfile"
   - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
   - export RUN_JOB=1
