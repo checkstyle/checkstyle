@@ -406,12 +406,6 @@ public class CommentsIndentationCheck extends AbstractCheck {
                 while (currentToken.getFirstChild() != null) {
                     currentToken = currentToken.getFirstChild();
                 }
-                if (currentToken.getType() == TokenTypes.COMMENT_CONTENT) {
-                    currentToken = currentToken.getParent();
-                    while (isComment(currentToken)) {
-                        currentToken = currentToken.getNextSibling();
-                    }
-                }
                 if (!TokenUtil.areOnSameLine(previousSibling, currentToken)) {
                     isDistributed = true;
                 }
@@ -503,7 +497,12 @@ public class CommentsIndentationCheck extends AbstractCheck {
         if (currentToken.getType() == TokenTypes.SEMI) {
             currentToken = currentToken.getPreviousSibling();
             while (currentToken.getFirstChild() != null) {
-                currentToken = currentToken.getFirstChild();
+                if (isComment(currentToken)) {
+                    currentToken = currentToken.getNextSibling();
+                }
+                else {
+                    currentToken = currentToken.getFirstChild();
+                }
             }
             previousStatement = currentToken;
         }
