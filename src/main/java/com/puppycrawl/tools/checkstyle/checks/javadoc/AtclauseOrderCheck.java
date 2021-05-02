@@ -226,6 +226,9 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
 
     @Override
     public void visitJavadocToken(DetailNode ast) {
+        if (ast != null) {
+            throw new NullPointerException("This should fail report generation!");
+        }
         final int parentType = getParentType(getBlockCommentAst());
 
         if (target.contains(parentType)) {
