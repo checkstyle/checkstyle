@@ -3,33 +3,31 @@ package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 import java.io.Serializable;
 import java.util.*;
 
-/**
- * This test-input is intended to be checked using following configuration:
- *
- * illegalClassNames = {Boolean, Foo, Hashtable, Serializable}
- * memberModifiers = {LITERAL_PUBLIC}
- *
+/*
+ * Config:
+ * illegalClassNames = { Boolean, Foo, Hashtable, Serializable }
+ * memberModifiers = { LITERAL_PUBLIC }
  */
-public abstract class InputIllegalTypeExtendsImplements {
+public abstract class InputIllegalTypeTestExtendsImplements {
 
     public abstract class Bar
-        extends Hashtable // warn
-            <Boolean, // warn
+        extends Hashtable // violation
+            <Boolean, // violation
                 Bar> { // OK
     }
 
     public abstract class Foo<
-            T extends Boolean> // warn
+            T extends Boolean> // violation
         implements Cloneable, // OK
-            Serializable, // warn
+            Serializable, // violation
             Comparator, // OK
-            Comparable<Foo< // warn
-                ? extends Boolean>> { // warn
+            Comparable<Foo< // violation
+                ? extends Boolean>> { // violation
     }
 
-    public interface Interface<Foo>
-        extends Comparable<Boolean>, // warn
-            Serializable { // warn
+    public interface Interface<Foo> // violation
+        extends Comparable<Boolean>, // violation
+            Serializable { // violation
     }
 
     abstract class NonPublicBar
