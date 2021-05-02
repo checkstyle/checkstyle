@@ -110,9 +110,6 @@
   <suppress id="noIndentationConfigExamples"
     files="[\\/]src[\\/]xdocs[\\/]beginning_development.xml"/>
 
-  <!-- Usage of unicode characters to assert the functioning of Xpath on escape character.  -->
-  <suppress id="RegexpSinglelineJava" files="[\\/]XpathQueryGeneratorTest.java"/>
-
   <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
   <suppress id="MatchXPathBranchContains" files="[\\/]DetailAstImplTest.java"/>
 
