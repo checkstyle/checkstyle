@@ -32,9 +32,9 @@
         <ignoreVersion type="regex">.*</ignoreVersion>
       </ignoreVersions>
     </rule>
-    <rule groupId="org.pitest" artifactId="pitest-maven">
+    <rule groupId="org.itsallcode" artifactId="junit5-system-extensions">
       <ignoreVersions>
-        <!-- till https://github.com/hcoles/pitest/issues/673 -->
+        <!-- util https://github.com/checkstyle/checkstyle/issues/9146 -->
         <ignoreVersion type="regex">.*</ignoreVersion>
       </ignoreVersions>
     </rule>
