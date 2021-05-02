@@ -71,7 +71,7 @@ openjdk14-with-checks-nonjavadoc-error)
   removeFolderWithProtectedFiles contribution
   ;;
 
-no-exception-lucene-and-others)
+no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
@@ -91,7 +91,7 @@ no-exception-lucene-and-others)
   removeFolderWithProtectedFiles contribution
   ;;
 
-no-exception-cassandra-storm-tapestry)
+no-exception-cassandra-storm-tapestry-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -110,7 +110,7 @@ no-exception-cassandra-storm-tapestry)
   removeFolderWithProtectedFiles contribution
   ;;
 
-no-exception-hadoop-apache-groovy-scouter)
+no-exception-hadoop-apache-groovy-scouter-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
