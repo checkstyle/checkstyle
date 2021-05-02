@@ -21,7 +21,7 @@ guava-with-google-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}" -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -44,7 +44,7 @@ guava-with-sun-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -62,7 +62,7 @@ openjdk14-with-checks-nonjavadoc-error)
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk14-excluded.files' checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
-      --mode single \
+      --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
       --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
@@ -71,7 +71,7 @@ openjdk14-with-checks-nonjavadoc-error)
   removeFolderWithProtectedFiles contribution
   ;;
 
-no-exception-lucene-and-others)
+no-exception-lucene-and-others-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
@@ -83,15 +83,15 @@ no-exception-lucene-and-others)
   sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
   sed -i'' 's/#lucene-solr/lucene-solr/' projects-for-circle.properties
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+  groovy ./diff.groovy --listOfProjects projects-for-circle.properties \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
 
-no-exception-cassandra-storm-tapestry)
+no-exception-cassandra-storm-tapestry-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -102,15 +102,15 @@ no-exception-cassandra-storm-tapestry)
   sed -i'' 's/#storm/storm/' projects-for-circle.properties
   sed -i'' 's/#cassandra/cassandra/' projects-for-circle.properties
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+  groovy ./diff.groovy --listOfProjects projects-for-circle.properties \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes  -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   ;;
 
-no-exception-hadoop-apache-groovy-scouter)
+no-exception-hadoop-apache-groovy-scouter-javadoc)
   CS_POM_VERSION="$(getCheckstylePomVersion)"
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
@@ -122,9 +122,9 @@ no-exception-hadoop-apache-groovy-scouter)
   sed -i'' 's/#groovy/groovy/' projects-for-circle.properties
   sed -i'' 's/#scouter/scouter/' projects-for-circle.properties
   export MAVEN_OPTS="-Xmx2048m"
-  groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
+  groovy ./diff.groovy --listOfProjects projects-for-circle.properties \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
