@@ -21,8 +21,8 @@ guava-with-google-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}" -p "$BRANCH" -r ../../..
+      --mode single -xm "-Dcheckstyle.version=${CS_POM_VERSION}" \
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm google_checks.*
@@ -44,8 +44,8 @@ guava-with-sun-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
-      -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
+      --mode single -xm "-Dcheckstyle.version=${CS_POM_VERSION}" \
+      -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
   rm sun_checks.*
@@ -65,7 +65,7 @@ openjdk14-with-checks-nonjavadoc-error)
       --mode single \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
-      --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
+      --patchBranch "$BRANCH"
 
   cd ../../
   removeFolderWithProtectedFiles contribution
