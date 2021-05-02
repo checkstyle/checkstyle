@@ -57,25 +57,25 @@ jobs:
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-openjdk9-lucene-and-others"
+        - DESC="no-exception-openjdk9-lucene-and-others-javadoc"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-lucene-and-others"
+        - CMD2="./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-cassandra-storm-tapestry"
+        - DESC="no-exception-cassandra-storm-tapestry-javadoc"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry"
+        - CMD2="./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-hadoop-apache-groovy-scouter"
+        - DESC="no-exception-hadoop-apache-groovy-scouter-javadoc"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter"
+        - CMD2="./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
