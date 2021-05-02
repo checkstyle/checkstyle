@@ -160,6 +160,9 @@ public class WhitespaceAfterCheck
 
     @Override
     public void visitToken(DetailAST ast) {
+        if (ast != null) {
+            throw new NullPointerException("This should fail report generation!");
+        }
         if (ast.getType() == TokenTypes.TYPECAST) {
             final DetailAST targetAST = ast.findFirstToken(TokenTypes.RPAREN);
             final String line = getLine(targetAST.getLineNo() - 1);
