@@ -140,11 +140,11 @@ no-exception-only-javadoc)
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   sed -i.'' 's/#nbia-dcm4che-tools/nbia-dcm4che-tools/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
-  #sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
-  #sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
+  sed -i.'' 's/#pmd/pmd/' projects-to-test-on.properties
+  sed -i.'' 's/#apache-ant/apache-ant/' projects-to-test-on.properties
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
-      --patchConfig checks-only-javadoc-error.xml \
+      --patchConfig checks-only-javadoc-error.xml --allowExcludes \
       --mode single -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
