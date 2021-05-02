@@ -90,6 +90,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return new BriefUtLogger(stream);
     }
 
+    /**
+     * Creates a default module configuration {@link DefaultConfiguration} for a given object
+     * of type {@link Class}.
+     *
+     * @param clazz a {@link Class} type object.
+     * @return default module configuration for the given {@link Class} instance.
+     */
     protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
@@ -350,6 +357,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @param testConfig hardcoded test config.
      * @param parsedConfig parsed config from input file.
+     * @param inputConfiguration input config.
+     * @throws CheckstyleException if parsed config and test config properties differ.
      */
     private static void verifyConfig(Configuration testConfig, Configuration parsedConfig,
                                      InputConfiguration inputConfiguration)
@@ -372,6 +381,15 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         }
     }
 
+    /**
+     * Returns the actual violations for each file that has been checked against {@link Checker}.
+     * Each file is mapped to their corresponding violation messages. Reads input stream for these
+     * messages using instance of {@link InputStreamReader}.
+     *
+     * @param errorCount count of errors after checking set of files against {@link Checker}.
+     * @return A {@link Map} object containing file names and the corresponding violation messages.
+     * @throws IOException exception can occur when reading input stream.
+     */
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
         // process each of the lines
         try (ByteArrayInputStream inputStream =
@@ -447,11 +465,22 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         return formatter.format(arguments);
     }
 
+    /**
+     * Returns message bundle for a class specified by its class name.
+     *
+     * @return A String of message bundles for the class using class name.
+     */
     private String getMessageBundle() {
         final String className = getClass().getName();
         return getMessageBundle(className);
     }
 
+    /**
+     * Returns message bundles for a class by providing class name.
+     *
+     * @param className Name of the class.
+     * @return message bundles containing package name.
+     */
     private static String getMessageBundle(String className) {
         final String messageBundle;
         final String messages = "messages";
