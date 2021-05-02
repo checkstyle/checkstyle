@@ -1,6 +1,10 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nowhitespaceafter;
 
-class InputNoWhitespaceAfterSynchronized {
+/*
+ * Config: default
+ * tokens = { LITERAL_SYNCHRONIZED }
+ */
+class InputNoWhitespaceAfterTestSynchronized {
     void method2()
     {
         synchronized(this) {
@@ -11,6 +15,6 @@ class InputNoWhitespaceAfterSynchronized {
         synchronized(this) {}
         synchronized
             (this) {}
-        synchronized (this) {}
+        synchronized (this) {} // violation
     }
 }
