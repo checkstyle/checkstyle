@@ -12,8 +12,8 @@ public class InputMissingJavadocMethodScopeInnerInterfaces
         public String CA = "CONST A";
         String CB = "CONST b";
 
-        public void ma();
-        void mb();
+        public void ma(); // violation
+        void mb(); // violation
     }
 
     interface PackageInnerInterface
@@ -21,8 +21,8 @@ public class InputMissingJavadocMethodScopeInnerInterfaces
         public String CA = "CONST A";
         String CB = "CONST b";
 
-        public void ma();
-        void mb();
+        public void ma(); // violation
+        void mb(); // violation
     }
 
     protected interface ProtectedInnerInterface
@@ -30,8 +30,8 @@ public class InputMissingJavadocMethodScopeInnerInterfaces
         public String CA = "CONST A";
         String CB = "CONST b";
 
-        public void ma();
-        void mb();
+        public void ma(); // violation
+        void mb(); // violation
     }
 
     public interface PublicInnerInterface
