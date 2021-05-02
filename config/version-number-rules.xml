@@ -32,5 +32,11 @@
         <ignoreVersion type="regex">.*</ignoreVersion>
       </ignoreVersions>
     </rule>
+    <rule groupId="org.itsallcode" artifactId="junit5-system-extensions">
+      <ignoreVersions>
+        <!-- utill https://github.com/checkstyle/checkstyle/issues/9146 -->
+        <ignoreVersion type="regex">.*</ignoreVersion>
+      </ignoreVersions>
+    </rule>
   </rules>
 </ruleset>
