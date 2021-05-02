@@ -9,7 +9,6 @@ or set of validation rules (best practices).
 [![][circleci img]][circleci]
 [![][cirrusci img]][cirrusci]
 [![][wercker img]][wercker]
-[![][shippable img]][shippable]
 [![][coverage img]][coverage]
 [![][snyk img]][snyk]
 [![][semaphoreci img]][semaphoreci]
@@ -150,9 +149,6 @@ are in the file named "LICENSE.apache20" in this directory.
 
 [wercker]: https://app.wercker.com/project/bykey/cd383127330ff96f89f1a78e8fd1a557
 [wercker img]: https://app.wercker.com/status/cd383127330ff96f89f1a78e8fd1a557/s/master
-
-[shippable]: https://app.shippable.com/projects/577032be3be4f4faa56adb38
-[shippable img]: https://img.shields.io/shippable/577032be3be4f4faa56adb38/master.svg?label=shippable
 
 [snyk]: https://snyk.io/test/github/checkstyle/checkstyle?targetFile=pom.xml
 [snyk img]: https://snyk.io/test/github/checkstyle/checkstyle/badge.svg
