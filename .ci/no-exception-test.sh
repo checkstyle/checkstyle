@@ -77,7 +77,6 @@ no-exception-lucene-and-others)
   echo 'CS_POM_VERSION='${CS_POM_VERSION}
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#infinispan/infinispan/' projects-for-circle.properties
   sed -i'' 's/#protonpack/protonpack/' projects-for-circle.properties
   sed -i'' 's/#jOOL/jOOL/' projects-for-circle.properties
@@ -116,7 +115,6 @@ no-exception-hadoop-apache-groovy-scouter)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i'' 's/^guava/#guava/' projects-for-circle.properties
   sed -i'' 's/#apache-commons/apache-commons/' projects-for-circle.properties
   sed -i'' 's/#hadoop/hadoop/' projects-for-circle.properties
   sed -i'' 's/#groovy/groovy/' projects-for-circle.properties
@@ -136,7 +134,6 @@ no-exception-only-javadoc)
   BRANCH=$(git rev-parse --abbrev-ref HEAD)
   checkout_from https://github.com/checkstyle/contribution
   cd .ci-temp/contribution/checkstyle-tester
-  sed -i.'' 's/^guava/#guava/' projects-to-test-on.properties
   sed -i.'' 's/#spring-framework/spring-framework/' projects-to-test-on.properties
   sed -i.'' 's/#nbia-dcm4che-tools/nbia-dcm4che-tools/' projects-to-test-on.properties
   sed -i.'' 's/#spotbugs/spotbugs/' projects-to-test-on.properties
