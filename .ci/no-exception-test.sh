@@ -21,7 +21,7 @@ guava-with-google-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../google_checks.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}" -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -44,7 +44,7 @@ guava-with-sun-checks)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig ../../sun_checks.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -62,7 +62,7 @@ openjdk14-with-checks-nonjavadoc-error)
   sed -i '/  <!-- Filters -->/r ../../../.ci/openjdk14-excluded.files' checks-nonjavadoc-error.xml
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects openjdk-projects-to-test-on.config \
-      --mode single \
+      --mode single --allowExcludes \
       --patchConfig checks-nonjavadoc-error.xml \
       --localGitRepo  "$LOCAL_GIT_REPO" \
       --patchBranch "$BRANCH" -xm "-Dcheckstyle.failsOnError=false"
@@ -85,7 +85,7 @@ no-exception-lucene-and-others)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -104,7 +104,7 @@ no-exception-cassandra-storm-tapestry)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes  -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
@@ -124,7 +124,7 @@ no-exception-hadoop-apache-groovy-scouter)
   export MAVEN_OPTS="-Xmx2048m"
   groovy ./diff.groovy --listOfProjects projects-to-test-on.properties \
       --patchConfig checks-only-javadoc-error.xml \
-      --mode single -xm "-Dcheckstyle.failsOnError=false \
+      --mode single --allowExcludes -xm "-Dcheckstyle.failsOnError=false \
       -Dcheckstyle.version=${CS_POM_VERSION}"  -p "$BRANCH" -r ../../..
   cd ../..
   removeFolderWithProtectedFiles contribution
