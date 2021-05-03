@@ -25,12 +25,6 @@ jobs:
   fast_finish: true
   include:
 
-    # testing of PR format
-    - env:
-       - DESC="test Issue ref in PR description"
-       - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/travis.sh pr-description"
-       - SKIP_JOB_BY_FILES="false"
-
     # this job do deploy maven repository
     # unit tests (openjdk8)
     - jdk: openjdk8
