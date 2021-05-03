@@ -230,10 +230,6 @@ releasenotes-gen)
   .ci/travis/xtr_releasenotes-gen.sh
   ;;
 
-pr-description)
-  .ci/travis/xtr_pr-description.sh
-  ;;
-
 pr-age)
   # Travis merges the PR commit into origin/master
   # This command undoes that to work with the original branch
