@@ -42,12 +42,13 @@ jobs:
         - USE_MAVEN_REPO="true"
         - CMD="./.ci/travis/travis.sh no-error-xwiki"
 
+    # until https://github.com/checkstyle/checkstyle/issues/9984
     # Ensure that all modules are used in no exception configs
-    - env:
-        - DESC="ensure that all modules are used in no exception configs"
-        - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-        - CMD2="./.ci/travis/travis.sh verify-no-exception-configs"
-        - CMD="$CMD1 && $CMD2"
+    # - env:
+    #    - DESC="ensure that all modules are used in no exception configs"
+    #    - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
+    #    - CMD2="./.ci/travis/travis.sh verify-no-exception-configs"
+    #    - CMD="$CMD1 && $CMD2"
 
     - jdk: openjdk8
       env:
