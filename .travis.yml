@@ -28,7 +28,7 @@ jobs:
     # testing of PR format
     - env:
        - DESC="test Issue ref in PR description"
-       - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/travis.sh pr-description"
+       - CMD="export PULL_REQUEST=$TRAVIS_PULL_REQUEST && ./.ci/travis/xtr_pr-description.sh"
        - SKIP_JOB_BY_FILES="false"
 
     # this job do deploy maven repository
@@ -46,13 +46,13 @@ jobs:
       env:
         - DESC="non regression on XWiki project"
         - USE_MAVEN_REPO="true"
-        - CMD="./.ci/travis/travis.sh no-error-xwiki"
+        - CMD="./.ci/validation.sh no-error-xwiki"
 
     # Ensure that all modules are used in no exception configs
     - env:
         - DESC="ensure that all modules are used in no exception configs"
         - CMD1="export PULL_REQUEST=$TRAVIS_PULL_REQUEST"
-        - CMD2="./.ci/travis/travis.sh verify-no-exception-configs"
+        - CMD2="./.ci/validation.sh verify-no-exception-configs"
         - CMD="$CMD1 && $CMD2"
 
     - jdk: openjdk8
