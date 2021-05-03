@@ -165,13 +165,6 @@
 
   <mailingLists>
     <mailingList>
-      <name>checkstyle-announce</name>
-      <archive>https://groups.google.com/forum/#!forum/checkstyle-announce</archive>
-      <subscribe>mailto:checkstyle-announce%2Bsubscribe@googlegroups.com</subscribe>
-      <unsubscribe>mailto:checkstyle-announce%2Bunsubscribe@googlegroups.com</unsubscribe>
-      <post>privilege of admins</post>
-    </mailingList>
-    <mailingList>
       <name>checkstyle</name>
       <archive>https://groups.google.com/forum/#!forum/checkstyle</archive>
       <subscribe>mailto:checkstyle%2Bsubscribe@googlegroups.com</subscribe>
@@ -1621,7 +1614,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>3.1.2</version>
       </plugin>
 
       <plugin>
