@@ -174,6 +174,7 @@ public class DesignForExtensionCheckTest
             "31:9: " + getCheckMessage(MSG_KEY, "C", "foo7"),
             "41:9: " + getCheckMessage(MSG_KEY, "LocalClass", "test"),
         };
+
         verify(checkConfig, getPath("InputDesignForExtensionInterfaceType.java"),
                 expected);
     }
