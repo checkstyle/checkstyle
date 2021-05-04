@@ -73,6 +73,16 @@
           </tr>
           <tr>
             <td>
+              <a href="javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
+                JavadocLeadingAsteriskAlign
+              </a>
+            </td>
+            <td>
+              Checks the alignment of leading asterisks in a Javadoc comment.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="javadocmissingwhitespaceafterasterisk.html#JavadocMissingWhitespaceAfterAsterisk">
                 JavadocMissingWhitespaceAfterAsterisk
               </a>
