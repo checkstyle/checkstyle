@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 https://maven.apache.org/xsd/xdoc-2.0.xsd">
+  <head>
+    <title>JavadocLeadingAsteriskAlign</title>
+  </head>
+  <body>
+    <section name="JavadocLeadingAsteriskAlign">
+      <p>Since Checkstyle 10.18.0</p>
+      <subsection name="Description" id="Description">
+        <p>
+          Checks the alignment of
+          <a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks">
+          leading asterisks</a> in a Javadoc comment. The Check ensures that leading asterisks
+          are aligned vertically under the first asterisk ( * )
+          of opening Javadoc tag. The alignment of closing Javadoc tag ( */ ) is also checked.
+          If a closing Javadoc tag contains non-whitespace character before it
+          then it's alignment will be ignored.
+          If the ending javadoc line contains a leading asterisk,
+          then that leading asterisk's alignment will be considered,
+          the closing Javadoc tag will be ignored.
+        </p>
+        <p>
+          If you're using tabs then specify the the tab width in the
+          <a href="../../config.html#tabWidth">tabWidth</a> property.
+        </p>
+      </subsection>
+
+      <subsection name="Properties" id="Properties">
+        <div class="wrapper">
+          <table>
+            <tr>
+              <th>name</th>
+              <th>description</th>
+              <th>type</th>
+              <th>default value</th>
+              <th>since</th>
+            </tr>
+            <tr>
+              <td>violateExecutionOnNonTightHtml</td>
+              <td>Control when to print violations if the Javadoc being examined by this check violates the tight html rules defined at <a href="../../writingjavadocchecks.html#Tight-HTML_rules">
+     Tight-HTML Rules</a>.</td>
+              <td><a href="../../property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>10.18</td>
+            </tr>
+          </table>
+        </div>
+      </subsection>
+
+      <subsection name="Examples" id="Examples">
+        <p id="Example1-config">
+          To configure the check:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocLeadingAsteriskAlign&quot; /&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example1-code">
+          Example with correct alignment:
+        </p>
+        <source>
+/** Title
+ * Javadoc for class
+ */
+public class Example1 {
+
+  /** javadoc for instance variable. */
+  private int ball;
+
+  /**
+   * Javadoc for instance variable
+   */
+  private int age;
+
+  /**
+   Javadoc for method. */
+  private void foo() {}
+
+  /**
+    Javadoc for Constructor.
+    This javadoc is allowed because there is no leading asterisk.
+   */
+  public Example1() {}
+
+  /**
+   * Javadoc for enum.
+   */
+  private enum correctJavadocEnum {
+    /**
+     * Correct Indentation for leading asterisk */
+    ONE,
+
+    /**
+     Allowed because there are non-whitespace characters before the ending block. */
+    TWO
+  }
+}
+        </source>
+
+        <p id="Example2-code">
+          Example with incorrect alignment:
+        </p>
+        <source>
+/** Title
+* Javadoc for class // violation
+    */ // violation
+public class Example2 {
+  /**
+    *  Javadoc for instance variable. // violation
+    */ // violation
+  private String name;
+
+  /**
+  *  Javadoc for method. // violation
+  */ // violation
+  private void foo() {}
+
+  /**
+   Javadoc for Constructor.
+*/ // violation
+  private Example2() {}
+
+  /**
+    * Javadoc for enum. // violation
+   */
+  private enum incorrectJavadocEnum {
+
+    /**
+    *  // violation
+     */
+    ONE,
+
+    /**
+        * Incorrect indentation for leading asterisk. */ // violation
+    TWO,
+
+    /**
+ *    // violation
+     */
+    THREE
+  }
+}
+        </source>
+
+        <p id="Example3-config">
+          To configure the check with <code>tabWidth</code> property:
+        </p>
+        <source>
+&lt;module name=&quot;Checker&quot;&gt;
+  &lt;module name=&quot;TreeWalker&quot;&gt;
+    &lt;module name=&quot;JavadocLeadingAsteriskAlign&quot;&gt;
+      &lt;property name=&quot;tabWidth&quot; value=&quot;2&quot;/&gt;
+    &lt;/module&gt;
+  &lt;/module&gt;
+&lt;/module&gt;
+        </source>
+        <p id="Example3-code">
+          Example:
+        </p>
+        <source>
+/**
+ * Example with `tabWidth` property.
+ * This example contains Tabs as well as Spaces.
+ */
+public class Example3 {
+  /** &lt;- Preceded with Tabs.
+   * &lt;- Preceded with Tabs &amp; Spaces.
+   */ // &lt;- Preceded with Tabs &amp; Spaces.
+  private String name;
+
+  /** &lt;- Preceded with Spaces.
+   * &lt;- Preceded with Tabs.
+   */ // &lt;- Preceded with Tabs.
+  private void foo() {}
+
+  /**
+    * // violation
+  */ // violation
+  private Example3() {}
+
+  private enum tabsExample {
+    /**
+       * Incorrect indentation for leading asterisk. // violation */
+    ONE,
+
+    /**
+      This javadoc is allowed because there is no leading asterisk.
+     */
+    TWO
+  }
+}
+        </source>
+      </subsection>
+
+      <subsection name="Example of Usage" id="Example_of_Usage">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Aconfig%20path%3A**%2Fcheckstyle-checks.xml+repo%3Acheckstyle%2Fcheckstyle+JavadocLeadingAsteriskAlign">
+            Checkstyle Style</a>
+          </li>
+        </ul>
+      </subsection>
+
+      <subsection name="Violation Messages" id="Violation_Messages">
+        <ul>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.asterisk.indentation%22">
+              javadoc.asterisk.indentation
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.missed.html.close%22">
+              javadoc.missed.html.close
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.parse.rule.error%22">
+              javadoc.parse.rule.error
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.unclosedHtml%22">
+              javadoc.unclosedHtml
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc%20path%3A**%2Fmessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22javadoc.wrong.singleton.html.tag%22">
+              javadoc.wrong.singleton.html.tag
+            </a>
+          </li>
+        </ul>
+        <p>
+          All messages can be customized if the default message doesn't suit you.
+          Please <a href="../../config.html#Custom_messages">see the documentation</a>
+          to learn how to.
+        </p>
+      </subsection>
+
+      <subsection name="Package" id="Package">
+        <p>
+          com.puppycrawl.tools.checkstyle.checks.javadoc
+        </p>
+      </subsection>
+
+      <subsection name="Parent Module" id="Parent_Module">
+        <p>
+          <a href="../../config.html#TreeWalker">TreeWalker</a>
+        </p>
+      </subsection>
+    </section>
+  </body>
+</document>
