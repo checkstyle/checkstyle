@@ -162,7 +162,7 @@ public class HideUtilityClassConstructorCheck extends AbstractCheck {
          * C-tor.
          *
          * @param ast class ast
-         * */
+         */
         private Details(DetailAST ast) {
             this.ast = ast;
         }
