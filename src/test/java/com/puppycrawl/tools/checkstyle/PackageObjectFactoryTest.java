@@ -494,11 +494,11 @@ public class PackageObjectFactoryTest {
     }
 
     /**
-    * This test case is designed to verify the behavior of the PackageObjectFactory's
-    * createModule method when it is provided with a fully qualified class name
-    * (containing a package separator).
-    * It ensures that ModuleReflectionUtil.getCheckstyleModules is not executed in this case.
-    */
+     * This test case is designed to verify the behavior of the PackageObjectFactory's
+     * createModule method when it is provided with a fully qualified class name
+     * (containing a package separator).
+     * It ensures that ModuleReflectionUtil.getCheckstyleModules is not executed in this case.
+     */
     @Test
     public void testCreateObjectWithNameContainingPackageSeparatorWithoutSearch() throws Exception {
         final ClassLoader classLoader = ClassLoader.getSystemClassLoader();
