@@ -644,7 +644,11 @@
             <td>Checks lambda parameter names.</td>
           </tr>
           <tr>
-            <td><a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a></td>
+            <td><a href="config_misc.html#LeadingAsteriskAlign">LeadingAsteriskAlign</a></td>
+            <td>Checks alignment of leading asterisks in block comments and javadocs.</td>
+          </tr>
+          <tr>
+            <td><a href="config_blocks.html#LeftCurly">LeftCurly</a></td>
             <td>
               Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
             </td>
