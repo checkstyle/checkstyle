@@ -157,6 +157,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputInnerTypeLastClass\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputJavadocLeadingAsteriskAlignTabs\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputAbbreviationAsWordInNameOverridableMethod\.java"/>
