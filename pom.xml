@@ -1793,6 +1793,7 @@
                 <exclude>**/AbstractJavadocCheck.class</exclude>
                 <exclude>**/AtclauseOrderCheck.class</exclude>
                 <exclude>**/JavadocBlockTagLocationCheck.class</exclude>
+                <exclude>**/JavadocLeadingAsteriskAlignCheck.class</exclude>
                 <exclude>**/JavadocMethodCheck.class</exclude>
                 <exclude>**/JavadocMissingLeadingAsteriskCheck.class</exclude>
                 <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheck.class</exclude>
