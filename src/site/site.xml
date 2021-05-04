@@ -194,6 +194,8 @@
           <item name="JavadocMethod" href="checks/javadoc/javadocmethod.html"/>
           <item name="JavadocMissingLeadingAsterisk"
                 href="checks/javadoc/javadocmissingleadingasterisk.html"/>
+          <item name="JavadocLeadingAsteriskAlign"
+                href="checks/javadoc/javadocleadingasteriskalign.html"/>
           <item name="JavadocMissingWhitespaceAfterAsterisk"
                 href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html"/>
           <item name="JavadocPackage" href="checks/javadoc/javadocpackage.html"/>
