@@ -470,4 +470,30 @@ public class JavadocStyleCheckTest
         verify(checkConfig, getPath("InputJavadocStyleNeverEndingXmlComment.java"), expected);
     }
 
+    @Test
+    public void testStyleWithInterfaceBlock() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_NO_PERIOD),
+            "15: " + getCheckMessage(MSG_NO_PERIOD),
+            "22: " + getCheckMessage(MSG_NO_PERIOD),
+            "31: " + getCheckMessage(MSG_NO_PERIOD),
+            "38: " + getCheckMessage(MSG_NO_PERIOD),
+            "45: " + getCheckMessage(MSG_NO_PERIOD),
+        };
+
+        verify(checkConfig, getPath("InputJavadocStyleInterfaceScope.java"), expected);
+    }
+
+    @Test
+    public void testStyleWithInterfaceBlockWithPrivateScopeMethods() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(JavadocStyleCheck.class);
+        checkConfig.addAttribute("scope", "public");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig, getNonCompilablePath(
+                "InputJavadocStyleInterfacePrivateScopeMethods.java"), expected);
+    }
+
 }
