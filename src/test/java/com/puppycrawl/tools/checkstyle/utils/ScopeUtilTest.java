@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -219,6 +220,49 @@ public class ScopeUtilTest {
         final Scope staticScope = ScopeUtil.getSurroundingScope(getNodeWithParentScope(
                 TokenTypes.LITERAL_STATIC, "static", TokenTypes.CLASS_DEF));
         assertEquals(Scope.PACKAGE, staticScope, "Invalid surrounding scope");
+    }
+
+    @Test
+    public void testSurroundingScopeForInterFace() {
+        final DetailAstImpl methodAstWithNoModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF, TokenTypes.MODIFIERS);
+        final Scope publicScopeOne = ScopeUtil.getSurroundingScope(
+                methodAstWithNoModifier.getParent());
+        assertEquals(Scope.PUBLIC, publicScopeOne, "Surrounding scope should be public");
+
+        final DetailAstImpl methodAstWithPrivateModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF);
+        final DetailAstImpl privateMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PRIVATE);
+        privateMod.setText("private");
+        methodAstWithPrivateModifier.addChild(privateMod);
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAst = (DetailAstImpl) methodAstWithPrivateModifier
+                .getParent().getParent();
+        interfaceAst.addChild(getNode(TokenTypes.MODIFIERS));
+        final Scope publicScopeTwo = ScopeUtil.getSurroundingScope(methodAstWithPrivateModifier);
+        assertNotSame(Scope.PUBLIC, publicScopeTwo, "Surrounding scope should not be public");
+    }
+
+    @Test
+    public void testSurroundingScopeForNestedTypeDef() {
+        final DetailAstImpl methodAst = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF, TokenTypes.METHOD_DEF);
+        final DetailAstImpl packageMod = getNode(TokenTypes.MODIFIERS);
+        methodAst.addChild((DetailAstImpl) packageMod);
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAst = (DetailAstImpl) methodAst
+                .getParent().getParent().getParent().getParent().getParent();
+        final DetailAstImpl classNodeOne = (DetailAstImpl) methodAst.getParent();
+        final DetailAstImpl classNodeTwo = (DetailAstImpl) methodAst
+                .getParent().getParent().getParent();
+        final DetailAstImpl publicMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PUBLIC);
+        publicMod.setText("public");
+        interfaceAst.addChild((DetailAstImpl) publicMod.getParent());
+        classNodeOne.addChild((DetailAstImpl) publicMod.getParent());
+        classNodeTwo.addChild(getNode(TokenTypes.MODIFIERS));
+        final Scope publicScopeThree = ScopeUtil.getSurroundingScope(methodAst);
+        assertEquals(Scope.PACKAGE, publicScopeThree, "Surrounding scope should not be public");
     }
 
     @Test
