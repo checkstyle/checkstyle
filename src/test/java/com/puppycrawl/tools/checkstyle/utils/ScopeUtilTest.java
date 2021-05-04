@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -222,6 +223,103 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testSurroundingScopeForMethodInsideInterface() {
+        final DetailAstImpl privateMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PRIVATE);
+        privateMod.setText("private");
+        final DetailAstImpl publicMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PUBLIC);
+        publicMod.setText("public");
+
+        final DetailAstImpl methodAstWithNoModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF, TokenTypes.MODIFIERS);
+        final DetailAstImpl interfaceAstOne = (DetailAstImpl) methodAstWithNoModifier
+                .getParent().getParent().getParent();
+        interfaceAstOne.addChild((DetailAstImpl) publicMod.getParent());
+        final Scope publicScopeOne = ScopeUtil.getSurroundingScope(
+                methodAstWithNoModifier.getParent());
+        assertEquals(Scope.PUBLIC, publicScopeOne, "Surrounding scope should be public");
+
+        final DetailAstImpl methodAstWithPrivateModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF);
+
+        methodAstWithPrivateModifier.addChild(privateMod);
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAst = (DetailAstImpl) methodAstWithPrivateModifier
+                .getParent().getParent();
+        interfaceAst.addChild(getNode(TokenTypes.MODIFIERS));
+        final Scope publicScopeTwo = ScopeUtil.getSurroundingScope(methodAstWithPrivateModifier);
+        assertNotSame(Scope.PUBLIC, publicScopeTwo, "Surrounding scope should not be public");
+    }
+
+    @Test
+    public void testSurroundingScopeForNestedTypeDef() {
+        final DetailAstImpl methodAst = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF, TokenTypes.METHOD_DEF);
+        final DetailAstImpl packageMod = getNode(TokenTypes.MODIFIERS);
+        methodAst.addChild((DetailAstImpl) packageMod);
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAst = (DetailAstImpl) methodAst
+                .getParent().getParent().getParent().getParent().getParent();
+        final DetailAstImpl classNodeOne = (DetailAstImpl) methodAst.getParent();
+        final DetailAstImpl classNodeTwo = (DetailAstImpl) methodAst
+                .getParent().getParent().getParent();
+        final DetailAstImpl publicMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PUBLIC);
+        publicMod.setText("public");
+        interfaceAst.addChild((DetailAstImpl) publicMod.getParent());
+        classNodeOne.addChild((DetailAstImpl) publicMod.getParent());
+        classNodeTwo.addChild(getNode(TokenTypes.MODIFIERS));
+        final Scope nodeScope = ScopeUtil.getSurroundingScope(methodAst);
+        assertEquals(Scope.PACKAGE, nodeScope, "Surrounding scope should be package");
+    }
+
+    @Test
+    public void testSurroundingScopeForInterface() {
+        final DetailAstImpl packageMod = getNode(TokenTypes.MODIFIERS);
+        final DetailAstImpl publicMod = getNode(TokenTypes.MODIFIERS, TokenTypes.LITERAL_PUBLIC);
+        publicMod.setText("public");
+
+        final DetailAstImpl methodAstWithNoModifier = getNode(TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.METHOD_DEF);
+        final DetailAstImpl parentInterface = (DetailAstImpl) methodAstWithNoModifier
+                .getParent().getParent();
+        parentInterface.addChild((DetailAstImpl) publicMod.getParent());
+        final Scope scopeOne = ScopeUtil.getSurroundingScope(methodAstWithNoModifier);
+        assertEquals(Scope.PUBLIC, scopeOne, "Surrounding scope should be null");
+
+        final DetailAstImpl methodAst = getNode(TokenTypes.CLASS_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF, TokenTypes.METHOD_DEF);
+        methodAst.addChild((DetailAstImpl) publicMod.getParent());
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAst = (DetailAstImpl) methodAst
+                .getParent().getParent().getParent();
+        final DetailAstImpl topClassNode = (DetailAstImpl) methodAst
+                .getParent().getParent().getParent().getParent().getParent();
+        final DetailAstImpl classNodeTwo = (DetailAstImpl) methodAst.getParent();
+        interfaceAst.addChild(packageMod);
+        topClassNode.addChild((DetailAstImpl) publicMod.getParent());
+        classNodeTwo.addChild((DetailAstImpl) publicMod.getParent());
+        final Scope scopeTwo = ScopeUtil.getSurroundingScope(methodAst);
+        assertEquals(Scope.PACKAGE, scopeTwo, "Surrounding scope should be package");
+
+        final DetailAstImpl methodAstTwo = getNode(TokenTypes.CLASS_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.INTERFACE_DEF,
+                TokenTypes.OBJBLOCK, TokenTypes.CLASS_DEF, TokenTypes.METHOD_DEF);
+        methodAstTwo.addChild((DetailAstImpl) publicMod.getParent());
+        // Getting and then adding modifier child to interface def
+        final DetailAstImpl interfaceAstTwo = (DetailAstImpl) methodAstTwo
+                .getParent().getParent().getParent();
+        final DetailAstImpl topClass = (DetailAstImpl) methodAstTwo
+                .getParent().getParent().getParent().getParent().getParent();
+        final DetailAstImpl classNode = (DetailAstImpl) methodAstTwo.getParent();
+        interfaceAstTwo.addChild((DetailAstImpl) publicMod.getParent());
+        topClass.addChild(packageMod);
+        classNode.addChild((DetailAstImpl) publicMod.getParent());
+        final Scope scopeThree = ScopeUtil.getSurroundingScope(methodAstTwo);
+        assertEquals(Scope.PACKAGE, scopeThree, "Surrounding scope should be package");
+    }
+
+    @Test
     public void testIsInScope() {
         assertTrue(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
                 "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC),
@@ -236,6 +334,13 @@ public class ScopeUtilTest {
         final Scope scope =
                 ScopeUtil.getSurroundingScope(getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT));
         assertEquals(Scope.ANONINNER, scope, "Invalid surrounding scope");
+
+        final DetailAstImpl node = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
+                TokenTypes.LITERAL_NEW, TokenTypes.IDENT, TokenTypes.MODIFIERS,
+                TokenTypes.LITERAL_PUBLIC);
+        node.setText("public");
+        final Scope scopeTwo = ScopeUtil.getSurroundingScope(node.getParent().getParent());
+        assertEquals(Scope.ANONINNER, scopeTwo, "Invalid surrounding scope");
     }
 
     @Test
