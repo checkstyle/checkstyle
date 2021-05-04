@@ -578,6 +578,16 @@
           </tr>
           <tr>
             <td>
+              <a href="checks/javadoc/javadocleadingasteriskalign.html#JavadocLeadingAsteriskAlign">
+                JavadocLeadingAsteriskAlign
+              </a>
+            </td>
+            <td>
+              Checks the alignment of leading asterisks in a Javadoc comment.
+            </td>
+          </tr>
+          <tr>
+            <td>
               <a href="checks/javadoc/javadocmissingwhitespaceafterasterisk.html#JavadocMissingWhitespaceAfterAsterisk">
                 JavadocMissingWhitespaceAfterAsterisk
               </a>
@@ -644,7 +654,7 @@
             <td>Checks lambda parameter names.</td>
           </tr>
           <tr>
-            <td><a href="checks/blocks/leftcurly.html#LeftCurly">LeftCurly</a></td>
+            <td><a href="checks/blocks/leftcurly#LeftCurly">LeftCurly</a></td>
             <td>
               Checks for the placement of left curly braces (<code>'{'</code>) for code blocks.
             </td>
