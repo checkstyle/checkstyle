@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck"
+             name="JavadocLeadingAsteriskAlign"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the alignment of
+ &lt;a href="https://docs.oracle.com/en/java/javase/14/docs/specs/javadoc/doc-comment-spec.html#leading-asterisks"&gt;
+ leading asterisks&lt;/a&gt; in a Javadoc comment. The Check ensures that leading asterisks
+ are aligned vertically under the first asterisk ( &amp;#42; )
+ of opening Javadoc tag. The alignment of closing Javadoc tag ( &amp;#42;/ ) is also checked.
+ If a closing Javadoc tag contains non-whitespace character before it
+ then it's alignment will be ignored.
+ If the ending javadoc line contains a leading asterisk, then that leading asterisk's alignment
+ will be considered, the closing Javadoc tag will be ignored.
+ &lt;/p&gt;
+ &lt;p&gt;
+ If you're using tabs then specify the the tab width in the
+ &lt;a href="https://checkstyle.org/config.html#tabWidth"&gt;tabWidth&lt;/a&gt; property.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="false"
+                      name="violateExecutionOnNonTightHtml"
+                      type="boolean">
+               <description>Control when to print violations if the
+ Javadoc being examined by this check violates the tight html rules defined at
+ &lt;a href="https://checkstyle.org/writingjavadocchecks.html#Tight-HTML_rules"&gt;Tight-HTML Rules&lt;/a&gt;.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="javadoc.asterisk.indentation"/>
+            <message-key key="javadoc.missed.html.close"/>
+            <message-key key="javadoc.parse.rule.error"/>
+            <message-key key="javadoc.unclosedHtml"/>
+            <message-key key="javadoc.wrong.singleton.html.tag"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
