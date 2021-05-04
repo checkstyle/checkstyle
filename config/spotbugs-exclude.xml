@@ -106,6 +106,8 @@
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.RegexpCheck" />
       <!-- createJavadocNode is private and can not be launched without visitToken -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck" />
+      <Class name=
+             "com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck" />
       <!-- has only one public method and all initialized in that method -->
       <Class name="com.puppycrawl.tools.checkstyle.checks.regexp.MultilineDetector" />
       <!-- beginProcessing() is kind of c-tor -->
