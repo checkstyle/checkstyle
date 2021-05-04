@@ -1796,6 +1796,7 @@
                 <exclude>**/JavadocMethodCheck.class</exclude>
                 <exclude>**/JavadocMissingLeadingAsteriskCheck.class</exclude>
                 <exclude>**/JavadocMissingWhitespaceAfterAsteriskCheck.class</exclude>
+                <exclude>**/JavadocLeadingAsteriskAlignCheck.class</exclude>
                 <exclude>**/JavadocParagraphCheck.class</exclude>
                 <exclude>**/JavadocStyleCheck.class</exclude>
                 <exclude>**/JavadocTagContinuationIndentationCheck.class</exclude>
