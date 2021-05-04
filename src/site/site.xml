@@ -242,6 +242,7 @@
           <item name="UncommentedMain" href="checks/misc/uncommentedmain.html"/>
           <item name="UniqueProperties" href="checks/misc/uniqueproperties.html"/>
           <item name="UpperEll" href="checks/misc/upperell.html"/>
+          <item name="LeadingAsteriskAlign" href="checks/misc/leadingasteriskalign.html"/>
         </item>
         <item name="Modifiers" href="checks/modifier/index.html" collapse="true">
           <item name="ClassMemberImpliedModifier"
