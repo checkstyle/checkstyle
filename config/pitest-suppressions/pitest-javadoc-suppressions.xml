@@ -242,4 +242,31 @@
     <description>replaced call to com/puppycrawl/tools/checkstyle/checks/javadoc/TagParser::findChar with argument</description>
     <lineContent>toPoint = findChar(text, &apos;&gt;&apos;, getNextPoint(text, toPoint));</lineContent>
   </mutation>
+
+  <mutation unstable="false">
+    <sourceFile>JavadocLeadingAsteriskAlignCheck.java</sourceFile>
+    <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck</mutatedClass>
+    <mutatedMethod>getColumnForCommentText</mutatedMethod>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <description>changed conditional boundary</description>
+    <lineContent>while (index &lt; charLine.length) {</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+   <sourceFile>JavadocLeadingAsteriskAlignCheck.java</sourceFile>
+   <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck</mutatedClass>
+   <mutatedMethod>visitJavadocToken</mutatedMethod>
+   <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.NakedReceiverMutator</mutator>
+   <description>replaced call to com/puppycrawl/tools/checkstyle/api/DetailNode::getParent with receiver</description>
+   <lineContent>DetailNode parent = ast.getParent();</lineContent>
+  </mutation>
+
+  <mutation unstable="false">
+   <sourceFile>JavadocLeadingAsteriskAlignCheck.java</sourceFile>
+   <mutatedClass>com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocLeadingAsteriskAlignCheck</mutatedClass>
+   <mutatedMethod>visitJavadocToken</mutatedMethod>
+   <mutator>org.pitest.mutationtest.engine.gregor.mutators.experimental.MemberVariableMutator</mutator>
+   <description>Removed assignment to member variable isOneLineJavadoc</description>
+   <lineContent>isOneLineJavadoc = false;</lineContent>
+  </mutation>
 </suppressedMutations>
