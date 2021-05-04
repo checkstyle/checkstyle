@@ -345,11 +345,11 @@ public class DescendantTokenCheck extends AbstractCheck {
     }
 
     /**
-      * Setter to specify a maximum count for descendants.
-      *
-      * @param maximumNumber the maximum count for descendants.
-      * @since 3.2
-      */
+     * Setter to specify a maximum count for descendants.
+     *
+     * @param maximumNumber the maximum count for descendants.
+     * @since 3.2
+     */
     public void setMaximumNumber(int maximumNumber) {
         this.maximumNumber = maximumNumber;
     }
