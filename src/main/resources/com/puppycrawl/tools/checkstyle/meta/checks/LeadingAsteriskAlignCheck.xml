@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle-metadata>
+   <module>
+      <check fully-qualified-name="com.puppycrawl.tools.checkstyle.checks.LeadingAsteriskAlignCheck"
+             name="LeadingAsteriskAlign"
+             parent="com.puppycrawl.tools.checkstyle.TreeWalker">
+         <description>&lt;p&gt;
+ Checks the alignment of leading asterisks in block comments and javadocs.
+ If asterisks is not aligned properly or
+ if there are consecutive asterisks then it will produce violation.
+ If no leading asterisk is used then that line will be ignored.
+ &lt;/p&gt;
+ &lt;p&gt;By default the leading asterisk should be aligned under the forward slash ( &amp;#47; ).&lt;/p&gt;
+ &lt;p&gt;
+ For {@code Block comments} the check will work like this:
+ &lt;/p&gt;
+ &lt;p&gt;
+ If {@code option} property is set to default ( RIGHT ) then the leading asterisk
+ should be aligned under the forward slash ( &amp;#47; ) and if it is set to {@code left} then
+ the leading asterisk should be aligned under the asterisk ( &amp;#42; )
+ &lt;/p&gt;
+ &lt;p&gt;
+ For {@code Javadoc comments} the check will work like this:
+ &lt;/p&gt;
+ &lt;p&gt;
+ If {@code option} property is set to default ( RIGHT ) then the leading asterisk
+ should be aligned under the forward slash ( &amp;#47; ) and if it is set to {@code left} then
+ the leading asterisk should be aligned under the first asterisk ( &amp;#42; ) but if the leading
+ is aligned under the second asterisk then the check will throw an error.
+ &lt;/p&gt;</description>
+         <properties>
+            <property default-value="RIGHT" name="option" type="java.lang.String">
+               <description>Specify the alignment direction of the asterisk.</description>
+            </property>
+         </properties>
+         <message-keys>
+            <message-key key="leading.asterisk.duplicate"/>
+            <message-key key="leading.asterisk.indentation"/>
+         </message-keys>
+      </check>
+   </module>
+</checkstyle-metadata>
