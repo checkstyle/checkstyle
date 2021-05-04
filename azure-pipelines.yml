@@ -20,59 +20,59 @@ strategy:
   matrix:
     # testing age of pr
     'pr-age':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh pr-age"
       skipCache: true
 
     # spelling
     'spelling':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/test-spelling-unknown-words.sh"
       skipCache: true
 
     # unit tests (openjdk8)
     'test':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test"
 
-    # unit tests in German locale (openjdk8)
+    # unit tests in German locale (openjdk11)
     'test-de':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-de"
 
-    # unit tests in Spanish locale (openjdk8)
+    # unit tests in Spanish locale (openjdk11)
     'test-es':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-es"
 
-    # unit tests in Finnish locale (openjdk8)
+    # unit tests in Finnish locale (openjdk11)
     'test-fi':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-fi"
 
-    # unit tests in French locale (openjdk8)
+    # unit tests in French locale (openjdk11)
     'test-fr':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-fr"
 
-    # unit tests in Chinese locale (openjdk8)
+    # unit tests in Chinese locale (openjdk11)
     'test-zh':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-zh"
 
-    # unit tests in Japanese locale (openjdk8)
+    # unit tests in Japanese locale (openjdk11)
     'test-ja':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-ja"
 
-    # unit tests in Portuguese locale (openjdk8)
+    # unit tests in Portuguese locale (openjdk11)
     'test-pt':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-pt"
 
-    # unit tests in Turkish locale (openjdk8)
+    # unit tests in Turkish locale (openjdk11)
     'test-tr':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh test-tr"
 
     # OpenJDK11 verify
@@ -103,14 +103,14 @@ strategy:
     # moved back to Travis till we find a way to keep secrets in azure
     # ensure that all modules are used in no exception configs
     # 'verify-no-exception-configs':
-    #   image: 'ubuntu-16.04'
+    #   image: 'ubuntu-20.04'
     #   cmd: "./.ci/travis/travis.sh verify-no-exception-configs"
     #   skipCache: true
     #   needXmlstarlet: true
 
     # versions to update
     'versions':
-      image: 'ubuntu-16.04'
+      image: 'ubuntu-20.04'
       cmd: "./.ci/travis/travis.sh versions"
       onCronOnly: true
 
