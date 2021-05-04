@@ -637,6 +637,7 @@ javadoc
 javadocblocktaglocation
 javadoccontentlocation
 javadocdetailnodeparser
+javadocleadingasteriskalign
 javadocmetadatascraper
 javadocmethod
 javadocmissingleadingasterisk
