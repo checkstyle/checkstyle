@@ -24,15 +24,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import antlr.collections.AST;
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ScopeUtilTest {
+public class ScopeUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/scopeutil";
+    }
 
     @Test
     public void testIsProperUtilsClass() throws ReflectiveOperationException {
@@ -222,6 +231,61 @@ public class ScopeUtilTest {
     }
 
     @Test
+    public void testSurroundingScopeForNestedTypeDef() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(new File(getPath(
+                "InputScopeUtilInterface.java")), JavaParser.Options.WITH_COMMENTS);
+
+        final DetailAST firstInterfaceAst = ast.getNextSibling().findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.INTERFACE_DEF);
+
+        final DetailAST methodAst = firstInterfaceAst.findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CLASS_DEF).findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CLASS_DEF).findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF);
+        final Scope nodeScope = ScopeUtil.getSurroundingScope(methodAst);
+        assertEquals(Scope.PACKAGE, nodeScope, "Surrounding scope should be package");
+
+        final DetailAST methodAstTwo = ast.getNextSibling().getNextSibling()
+                .findFirstToken(TokenTypes.OBJBLOCK).findFirstToken(TokenTypes.INTERFACE_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK).findFirstToken(TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK).findFirstToken(TokenTypes.METHOD_DEF);
+        final Scope scopeThree = ScopeUtil.getSurroundingScope(methodAstTwo);
+        assertEquals(Scope.PACKAGE, scopeThree, "Surrounding scope should be package");
+
+        final DetailAST firstMethod = ast.getNextSibling().findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF);
+        final Scope scopeOne = ScopeUtil.getSurroundingScope(firstMethod);
+        assertEquals(Scope.PUBLIC, scopeOne, "Surrounding scope should be public");
+
+        final DetailAST secondMethod = firstInterfaceAst.getNextSibling()
+                .findFirstToken(TokenTypes.OBJBLOCK).findFirstToken(TokenTypes.CLASS_DEF)
+                .findFirstToken(TokenTypes.OBJBLOCK).findFirstToken(TokenTypes.METHOD_DEF);
+        final Scope scopeTwo = ScopeUtil.getSurroundingScope(secondMethod);
+        assertEquals(Scope.PACKAGE, scopeTwo, "Surrounding scope should be package");
+    }
+
+    @Test
+    public void testNestedType() throws Exception {
+        final DetailAST ast = JavaParser.parseFile(new File(
+                getPath("InputScopeUtilNestedType.java")), JavaParser.Options.WITH_COMMENTS);
+
+        final DetailAST methodAst = ast.getNextSibling().findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CLASS_DEF).findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CLASS_DEF).findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CLASS_DEF).findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CTOR_DEF);
+
+        final Scope scope = ScopeUtil.getSurroundingScope(methodAst);
+        assertEquals(Scope.PRIVATE, scope, "Surrounding scope should be private");
+
+        final DetailAST methodAstTwo = ast.getNextSibling().findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.CLASS_DEF).findFirstToken(TokenTypes.OBJBLOCK)
+                .findFirstToken(TokenTypes.METHOD_DEF);
+        final Scope scopeTwo = ScopeUtil.getSurroundingScope(methodAstTwo);
+        assertEquals(Scope.PUBLIC, scopeTwo, "Surrounding scope should be public");
+    }
+
+    @Test
     public void testIsInScope() {
         assertTrue(ScopeUtil.isInScope(getNodeWithParentScope(TokenTypes.LITERAL_PUBLIC,
                 "public", TokenTypes.ANNOTATION_DEF), Scope.PUBLIC),
@@ -236,6 +300,13 @@ public class ScopeUtilTest {
         final Scope scope =
                 ScopeUtil.getSurroundingScope(getNode(TokenTypes.LITERAL_NEW, TokenTypes.IDENT));
         assertEquals(Scope.ANONINNER, scope, "Invalid surrounding scope");
+
+        final DetailAstImpl node = getNode(TokenTypes.INTERFACE_DEF, TokenTypes.OBJBLOCK,
+                TokenTypes.LITERAL_NEW, TokenTypes.IDENT, TokenTypes.MODIFIERS,
+                TokenTypes.LITERAL_PUBLIC);
+        node.setText("public");
+        final Scope scopeTwo = ScopeUtil.getSurroundingScope(node.getParent().getParent());
+        assertEquals(Scope.ANONINNER, scopeTwo, "Invalid surrounding scope");
     }
 
     @Test
