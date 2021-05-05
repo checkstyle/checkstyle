@@ -116,4 +116,10 @@ public class InputMissingJavadocTypePublicOnly2 // violation
     {
         return super.hashCode();
     }
+
+    public interface InnerInterfaceTwo { // violation
+
+        class InnerInnerClassTwo { // violation
+        }
+    }
 }
