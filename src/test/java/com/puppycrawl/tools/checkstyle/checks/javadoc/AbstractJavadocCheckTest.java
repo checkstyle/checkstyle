@@ -163,17 +163,17 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             @SysErr Capturable systemErr) throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TempCheck.class);
         final Map<String, List<String>> expectedMessages = new LinkedHashMap<>(2);
-        expectedMessages.put(getPath("InputAbstractJavadocParsingErrors.java"), asList(
+        expectedMessages.put(getPath("InputAbstractJavadocParsingErrors2.java"), asList(
             "4: " + getCheckMessage(MSG_JAVADOC_MISSED_HTML_CLOSE, 4, "unclosedTag"),
             "8: " + getCheckMessage(MSG_JAVADOC_WRONG_SINGLETON_TAG, 35, "img")
         ));
-        expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference.java"),
+        expectedMessages.put(getPath("InputAbstractJavadocInvalidAtSeeReference2.java"),
             singletonList("4: " + getCheckMessage(MSG_JAVADOC_PARSE_RULE_ERROR, 78,
                     "mismatched input '(' expecting <EOF>", "JAVADOC")
         ));
         verify(createChecker(checkConfig), new File[] {
-            new File(getPath("InputAbstractJavadocParsingErrors.java")),
-            new File(getPath("InputAbstractJavadocInvalidAtSeeReference.java")), },
+            new File(getPath("InputAbstractJavadocParsingErrors2.java")),
+            new File(getPath("InputAbstractJavadocInvalidAtSeeReference2.java")), },
                 expectedMessages);
         assertEquals("", systemErr.getCapturedData(), "Error is unexpected");
     }
@@ -280,7 +280,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(TokenIsNotInAcceptablesJavadocCheck.class);
         checkConfig.addAttribute("javadocTokens", "RETURN_LITERAL");
 
-        final String path = getPath("InputAbstractJavadocMain.java");
+        final String path = getPath("InputAbstractJavadocTokensFail.java");
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
             verify(checkConfig, path, expected);
@@ -303,7 +303,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("javadocTokens", "DEPRECATED_LITERAL");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocMain.java"), expected);
+        verify(checkConfig, getPath("InputAbstractJavadocTokensPass.java"), expected);
     }
 
     @Test
@@ -333,7 +333,7 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         JavadocVisitLeaveCheck.clearCounter();
         final DefaultConfiguration checkConfig = createModuleConfig(JavadocVisitLeaveCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocPosition.java"), expected);
+        verify(checkConfig, getPath("InputAbstractJavadocLeaveToken.java"), expected);
         assertTrue(JavadocVisitLeaveCheck.visitCount > 0,
                 "Javadoc visit count should be greater than zero");
         assertEquals(JavadocVisitLeaveCheck.visitCount, JavadocVisitLeaveCheck.leaveCount,
@@ -410,7 +410,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NonTightHtmlTagIntolerantCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
-        verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTags.java"), expected);
+        verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTagsNoViolation.java"),
+                expected);
     }
 
     @Test
@@ -437,7 +438,8 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "109:8: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
             "124: " + getCheckMessage(MSG_UNCLOSED_HTML_TAG, "p"),
         };
-        verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTags.java"), expected);
+        verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTagsVisitCount.java"),
+                expected);
     }
 
     @Test

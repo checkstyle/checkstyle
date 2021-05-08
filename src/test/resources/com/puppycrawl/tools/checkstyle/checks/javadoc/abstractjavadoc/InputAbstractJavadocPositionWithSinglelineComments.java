@@ -247,7 +247,7 @@ enum XXXXXXX {
     /**nope*/
 }
 
-class MyTemp2 {
+class MyTemp3 {
     /**Javadoc*/ //noise
     private @interface/**nope*/ MyAnnotation3/**nope*/ {/**nope*/
     }
