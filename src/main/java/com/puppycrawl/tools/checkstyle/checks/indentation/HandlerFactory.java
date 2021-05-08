@@ -91,11 +91,11 @@ public class HandlerFactory {
     /**
      * Registers a handler.
      *
+     * @param <T> type of the handler class object.
      * @param type
      *                type from TokenTypes
      * @param handlerClass
      *                the handler to register
-     * @param <T> type of the handler class object.
      */
     private <T> void register(int type, Class<T> handlerClass) {
         final Constructor<T> ctor = CommonUtil.getConstructor(handlerClass,
