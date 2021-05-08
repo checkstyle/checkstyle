@@ -3,6 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 /*
  * Config: NonTightHtmlTagIntolerantCheck
  * violateExecutionOnNonTightHtml = true
+ * reportVisitJavadocToken = true
  */
 
 /**
@@ -14,7 +15,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
-public class InputAbstractJavadocNonTightHtmlTags {
+public class InputAbstractJavadocNonTightHtmlTagsVisitCount {
     /** <p> <p> paraception </p> </p> */ // violation
     private int field1;
 
@@ -43,7 +44,7 @@ public class InputAbstractJavadocNonTightHtmlTags {
     /**
      * <th> !isNonTight </th>
      * <th> th with <base/> singletonElement </th>
-     * <body> body with <br/> singletonElement </body>
+     * <body> body with <br/> singletonElement </body> // violation
      * <colgroup><col><col><col></colgroup>
      * <dd> dd with <hr> singletonElement </dd>
      * <dt> dt with <img src="~/singletonElement.jpg" alt="" width="100" height="150"/>
@@ -64,7 +65,7 @@ public class InputAbstractJavadocNonTightHtmlTags {
     int getField2() {return field2;} //method with empty javadoc
 
     /**
-     * <tr> <li> list is going to be nested in the parse tree </li> </tr>
+     * <tr> <li> list is going to be nested in the parse tree </li> </tr> // violation
      *
      * @param field1 {@code <p> paraTag will not be recognized} in javadoc tree </p>
      */
@@ -101,17 +102,17 @@ public class InputAbstractJavadocNonTightHtmlTags {
     /**
      * <thead> <br> </thead>
      * <tfoot> <AREA ALT="alt" COORDS="100,0,200,50" HREF="/href/"> </tfoot>
-     * <p> </p>
+     * <p> </p> // violation
      * @param field4 value to which {@link #field4} is to be set to
      */
     private void setField4(int field4) {this.field4 = field4;}
 
     /**
-     * <li> </li>
+     * <li> </li> // violation
      * <TR> </tr>
      * <Td> </td>
      * <tH> </th>
-     * <body> </body>
+     * <body> </body> // violation
      * <colGROUP> </COLgroup>
      * <DD> </dd>
      * <dt> </dt>
