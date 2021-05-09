@@ -39,10 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * int x = (y / 2 + 1); // parens around assignment rhs
  * for (int i = (0); i &lt; 10; i++) {  // parens around literal
  * t -= (z + 1);                     // parens around assignment rhs
- * boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
- *             || z &lt; 9;
- * boolean b = (~a) &gt; -27            // parens around ~a
- *             &amp;&amp; (a-- &lt; 30);        // parens around expression
+ * boolean b = (~a) &gt; -27;            // parens around ~a
  * </pre>
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
@@ -170,11 +167,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
  *   .forEach(System.out::println);
  * int a = 10, b = 12, c = 15;
- * if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
- *          || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
- *          || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
- *     return;
- * }
  * if ((-a) != -27 // violation, unnecessary parenthesis
  *          &amp;&amp; b &gt; 5) {
  *     return;
@@ -299,11 +291,15 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
         TokenTypes.STAR_ASSIGN,
     };
 
-    /** Token types for conditional and relational operators. */
-    private static final int[] CONDITIONALS_AND_RELATIONAL = {
+    /** Token types for conditional operators. */
+    private static final int[] CONDITIONAL = {
         TokenTypes.LOR,
         TokenTypes.LAND,
         TokenTypes.LITERAL_INSTANCEOF,
+    };
+
+    /** Token types for relational operators. */
+    private static final int[] RELATIONAL = {
         TokenTypes.GT,
         TokenTypes.LT,
         TokenTypes.GE,
@@ -565,10 +561,17 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean checkAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
-        return (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                    || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
-                && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
-                && isSurrounded(ast);
+        final boolean result;
+        if ((TokenUtil.isOfType(type, RELATIONAL)
+                || TokenUtil.isOfType(type, CONDITIONAL))
+                && TokenUtil.isOfType(parent.getType(), CONDITIONAL)) {
+            result = true;
+        }
+        else {
+            result = TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
+                && TokenUtil.isOfType(parent.getType(), RELATIONAL);
+        }
+        return result && isSurrounded(ast);
     }
 
     /**
