@@ -14,10 +14,7 @@
  int x = (y / 2 + 1); // parens around assignment rhs
  for (int i = (0); i &amp;lt; 10; i++) {  // parens around literal
  t -= (z + 1);                     // parens around assignment rhs
- boolean a = (x &amp;gt; 7 &amp;amp;&amp;amp; y &amp;gt; 5)      // parens around expression
-             || z &amp;lt; 9;
- boolean b = (~a) &amp;gt; -27            // parens around ~a
-             &amp;amp;&amp;amp; (a-- &amp;lt; 30);        // parens around expression
+ boolean b = (~a) &amp;gt; -27;            // parens around ~a
  &lt;/pre&gt;
  &lt;p&gt;
  The check is not "type aware", that is to say, it can't tell if parentheses
@@ -33,7 +30,7 @@
  are not needed.
  &lt;/p&gt;</description>
          <properties>
-            <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
+            <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
                       name="tokens"
                       type="java.lang.String[]"
                       validation-type="tokenSet">
