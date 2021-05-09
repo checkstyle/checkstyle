@@ -22,60 +22,59 @@ public class InputUnnecessaryParenthesesIfStatement {
 
         z = (x < y) ? x : y; // ok
 
-        if ((x < y)           // violation, unnecessary parenthesis
-                && (x > z)) { // violation, unnecessary parenthesis
+        if ((x < y)           // ok
+                && (x > z)) { // ok
             return;
         }
 
         if (((x < y)           // violation, unnecessary parenthesis
-                && (x > z))) { // violation, unnecessary parenthesis
+                && (x > z))) { // ok
             return;
         }
 
         if (!(x <= y)          // ok
-                || (x >= z)) { // violation, unnecessary parenthesis
+                || (x >= z)) { // ok
             return;
         }
 
-        if ((x == y)           // violation, unnecessary parenthesis
-                || (x != z)) { // violation, unnecessary parenthesis
+        if ((x == y)           // ok
+                || (x != z)) { // ok
             return;
         }
 
         if ((                       // violation, unnecessary parenthesis
-                (x == y)            // violation, unnecessary parenthesis
-                        || (x != z) // violation, unnecessary parenthesis
+                (x == y)            // ok
+                        || (x != z) // ok
         )) {
             return;
         }
 
-        if ((Integer.valueOf(x) instanceof Integer) // violation, unnecessary parenthesis
+        if ((Integer.valueOf(x) instanceof Integer) // ok
                 || Integer.valueOf(y) instanceof Integer) { // ok
             return;
         }
         if (x == ((y<z) ? y : z) &&
-            ((x>y && y>z)                  // violation, unnecessary parenthesis before 'x>y'
-                    || (!(x<z) && y>z))) { // violation, unnecessary parenthesis before '!'
+            ((x>y && y>z)                  // ok
+                    || (!(x<z) && y>z))) { // ok
             return;
         }
-        if ((x >= 0 && y <= 9)            // violation, unnecessary parenthesis
-                 || (z >= 5 && y <= 5)    // violation, unnecessary parenthesis
-                 || (z >= 3 && x <= 7)) { // violation, unnecessary parenthesis
+        if ((x >= 0 && y <= 9)            // ok
+                 || (z >= 5 && y <= 5)    // ok
+                 || (z >= 3 && x <= 7)) { // ok
             return;
         }
         if(x>= 0 && (x<=8 || y<=11) && y>=8) { // ok
             return;
         }
-        if((y>=11 && x<=5)            // violation, unnecessary parenthesis
-                || (x<=12 && y>=8)) { // violation, unnecessary parenthesis
+        if((y>=11 && x<=5)            // ok
+                || (x<=12 && y>=8)) { // ok
             return;
         }
     }
     private void check() {
         String sectionName = "Some String";
         if ("Some content".equals(sectionName) || "Some overview".equals(sectionName) // ok
-                || (!"AbbreviationAsWordInName".equals(sectionName) // violation, unnecessary
-                                                                    // parenthesis
+                || (!"AbbreviationAsWordInName".equals(sectionName) // ok
                 && !"AbstractClassName".equals(sectionName) // ok
         )) {
             return;
@@ -96,12 +95,36 @@ public class InputUnnecessaryParenthesesIfStatement {
             return;
         }
         if ((~a) > -27            // violation, unnecessary parenthesis around '~a'
-                 && (a-- < 30)) { // violation, unnecessary parenthesis
+                 && (a-- < 30)) { // ok
             return;
         }
         if ((-a) != -27 // violation, unnecessary parenthesis around '-a'
                  && x) {
             return;
+        }
+    }
+
+    public void checkBooleanStatements() {
+        boolean a = true;
+        int b = 42;
+        int c = 42;
+        int d = 32;
+        if((b == c) == a
+                && (( // ok
+                                (b==c)==(d>=b)==a!=(c==d))
+                || (b<=c)!=a==(c>=d))) {
+            return;
+        }
+
+        if ((a!=(b==c) && (a && (b==c))) // ok
+                 || (a || a!=(b<=c))     // ok
+                 || (a==(b!=d==(c==b) && a!=(b<=c)))) { // ok
+            return;
+        }
+
+        if (a==(b>=c || a==(c==d && d!=b))
+                && a==c<=d) {
+           return;
         }
     }
 

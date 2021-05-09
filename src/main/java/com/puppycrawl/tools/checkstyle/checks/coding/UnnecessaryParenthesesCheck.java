@@ -39,10 +39,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * int x = (y / 2 + 1); // parens around assignment rhs
  * for (int i = (0); i &lt; 10; i++) {  // parens around literal
  * t -= (z + 1);                     // parens around assignment rhs
- * boolean a = (x &gt; 7 &amp;&amp; y &gt; 5)      // parens around expression
- *             || z &lt; 9;
- * boolean b = (~a) &gt; -27            // parens around ~a
- *             &amp;&amp; (a-- &lt; 30);        // parens around expression
+ * boolean b = (~a) &gt; -27;            // parens around ~a
  * </pre>
  * <p>
  * The check is not "type aware", that is to say, it can't tell if parentheses
@@ -111,22 +108,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * LAMBDA</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#TEXT_BLOCK_LITERAL_BEGIN">
  * TEXT_BLOCK_LITERAL_BEGIN</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LAND">
- * LAND</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LITERAL_INSTANCEOF">
- * LITERAL_INSTANCEOF</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GT">
- * GT</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LT">
- * LT</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#GE">
- * GE</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#LE">
- * LE</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#EQUAL">
- * EQUAL</a>,
- * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#NOT_EQUAL">
- * NOT_EQUAL</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_MINUS">
  * UNARY_MINUS</a>,
  * <a href="https://checkstyle.org/apidocs/com/puppycrawl/tools/checkstyle/api/TokenTypes.html#UNARY_PLUS">
@@ -170,11 +151,6 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
  *   .forEach(System.out::println);
  * int a = 10, b = 12, c = 15;
- * if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
- *          || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
- *          || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
- *     return;
- * }
  * if ((-a) != -27 // violation, unnecessary parenthesis
  *          &amp;&amp; b &gt; 5) {
  *     return;
@@ -359,14 +335,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
-            TokenTypes.LAND,
-            TokenTypes.LITERAL_INSTANCEOF,
-            TokenTypes.GT,
-            TokenTypes.LT,
-            TokenTypes.GE,
-            TokenTypes.LE,
-            TokenTypes.EQUAL,
-            TokenTypes.NOT_EQUAL,
             TokenTypes.UNARY_MINUS,
             TokenTypes.UNARY_PLUS,
             TokenTypes.INC,
@@ -405,14 +373,6 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             TokenTypes.STAR_ASSIGN,
             TokenTypes.LAMBDA,
             TokenTypes.TEXT_BLOCK_LITERAL_BEGIN,
-            TokenTypes.LAND,
-            TokenTypes.LITERAL_INSTANCEOF,
-            TokenTypes.GT,
-            TokenTypes.LT,
-            TokenTypes.GE,
-            TokenTypes.LE,
-            TokenTypes.EQUAL,
-            TokenTypes.NOT_EQUAL,
             TokenTypes.UNARY_MINUS,
             TokenTypes.UNARY_PLUS,
             TokenTypes.INC,
@@ -565,8 +525,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean checkAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
-        return (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                    || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
+        return TokenUtil.isOfType(type, UNARY_AND_POSTFIX)
                 && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
                 && isSurrounded(ast);
     }
