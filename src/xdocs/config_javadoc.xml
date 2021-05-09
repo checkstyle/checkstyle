@@ -3693,6 +3693,25 @@ public class Test extends Exception {
 }
         </source>
         <p>
+              Example of non permitted empty javadoc for Inline Summary Javadoc.
+        </p>
+        <source>
+public class Test extends Exception {
+  /**
+   * {@summary  }
+   */
+  public String InvalidFunctionOne(){ // violation
+    return "";
+  }
+  /**
+   * {@summary &lt;p&gt; &lt;p/&gt;}
+   */
+  public String InvalidFunctionTwo(){ // violation
+    return "";
+  }
+}
+        </source>
+        <p>
           To ensure that summary do not contain phrase like "This method returns", use
           following config:
         </p>
@@ -3716,15 +3735,49 @@ public class Test extends Exception {
 
         <source>
 public class TestClass {
-  /**
+ /**
   * This is invalid java doc.
   */
   void invalidJavaDocMethod() {
   }
-  /**
+ /**
   * This is valid java doc。
   */
   void validJavaDocMethod() {
+  }
+}
+        </source>
+        <p>
+          Example of period property for inline summary javadoc.
+        </p>
+        <source>
+public class TestClass {
+ /**
+  * {@summary This is invalid java doc.}
+  */
+  public void invalidJavaDocMethod() { // violation
+  }
+ /**
+  * {@summary This is valid java doc。}
+  */
+  public void validJavaDocMethod() { // ok
+  }
+}
+        </source>
+        <p>
+          Example of inline summary javadoc with HTML tags.
+        </p>
+        <source>
+public class Test {
+ /**
+  * {@summary First sentence is normally the summary.
+  * Use of html tags:
+  * &lt;ul&gt;
+  * &lt;li&gt;Item one.&lt;/li&gt;
+  * &lt;li&gt;Item two.&lt;/li&gt;
+  * &lt;/ul&gt;}
+  */
+  public void validInlineJavadoc() { // ok
   }
 }
         </source>
@@ -3767,6 +3820,10 @@ public class TestClass {
           <li>
             <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc.missing%22">
               summary.javaDoc.missing</a>
+          </li>
+          <li>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fjavadoc+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22summary.javaDoc.missing.period%22">
+              summary.javaDoc.missing.period</a>
           </li>
         </ul>
         <p>
