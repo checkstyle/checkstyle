@@ -51,11 +51,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * something like
  * </p>
  * <pre>
- *     int x = (a + b) + c;</pre>
+ * int x = (a + b) + c; // 1st Case
+ * boolean p = true; // 2nd Case
+ * int q = 4;
+ * int r = 3;
+ * if (p == (q &lt;= r)) {}</pre>
  * <p>
- * In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
+ * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
  * all {@code int} variables, the parentheses around {@code a + b}
  * are not needed.
+ * In the second case, parentheses are required as <em>q</em>, <em>r</em> are
+ * of type {@code int} and <em>p</em> is of type {@code boolean}
+ * and removing parentheses will give a compile time error. Even if <em>q</em>
+ * and <em>r</em> were {@code boolean} still there will be no violation
+ * raised as check is not "type aware".
  * </p>
  * <ul>
  * <li>
@@ -156,20 +165,21 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <pre>
  * public int square(int a, int b){
- *   int square = (a * b); //violation
- *   return (square);      //violation
+ *   int square = (a * b); // violation
+ *   return (square);      // violation
  * }
  * int sumOfSquares = 0;
- * for(int i=(0); i&lt;10; i++){          //violation
- *   int x = (i + 1);                  //violation
- *   sumOfSquares += (square(x * x));  //violation
+ * for(int i=(0); i&lt;10; i++){          // violation
+ *   int x = (i + 1);                  // violation
+ *   sumOfSquares += (square(x * x));  // violation
  * }
  * double num = (10.0); //violation
  * List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
  * myList.stream()
- *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
+ *   .filter((s) -&gt; s.startsWith(&quot;c&quot;)) // violation
  *   .forEach(System.out::println);
  * int a = 10, b = 12, c = 15;
+ * boolean x = true, y = false, z= true;
  * if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
  *          || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
  *          || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
@@ -177,6 +187,12 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * }
  * if ((-a) != -27 // violation, unnecessary parenthesis
  *          &amp;&amp; b &gt; 5) {
+ *     return;
+ * }
+ * if (x==(a &lt;= 15)) { // ok
+ *     return;
+ * }
+ * if (x==(y == z)) { // ok
  *     return;
  * }
  * </pre>
@@ -565,10 +581,19 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean checkAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
-        return (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                    || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
-                && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
-                && isSurrounded(ast);
+        final boolean result;
+        if (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                && TokenUtil.isOfType(parent.getType(), TokenTypes.EQUAL, TokenTypes.NOT_EQUAL)
+                && isSurrounded(ast)) {
+            result = false;
+        }
+        else {
+            result = (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                        || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
+                    && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
+                    && isSurrounded(ast);
+        }
+        return result;
     }
 
     /**

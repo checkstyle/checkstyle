@@ -6857,11 +6857,21 @@ boolean b = (~a) &gt; -27            // parens around ~a
           operator precedence and associativity; therefore it won't catch something like
         </p>
         <source>
-int x = (a + b) + c;
+int x = (a + b) + c; // 1st Case
+boolean p = true; // 2nd Case
+int q = 4;
+int r = 3;
+if (p == (q &lt;= r)) {}
         </source>
         <p>
-          In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
-          <code>int</code> variables, the parentheses around <code>a + b</code> are not needed.
+          In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
+          <code>int</code> variables, the parentheses around <code>a + b</code>
+          are not needed.
+          In the second case, parentheses are required as <em>q</em>, <em>r</em> are
+          of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
+          and removing parentheses will give a compile time error. Even if <em>q</em>
+          and <em>r</em> were <code>boolean</code> still there will be no violation
+          raised as check is not "type aware".
         </p>
       </subsection>
 
@@ -7063,20 +7073,21 @@ int x = (a + b) + c;
         </p>
         <source>
 public int square(int a, int b){
-  int square = (a * b); //violation
-  return (square);      //violation
+  int square = (a * b); // violation
+  return (square);      // violation
 }
 int sumOfSquares = 0;
-for(int i=(0); i&lt;10; i++){          //violation
-  int x = (i + 1);                  //violation
-  sumOfSquares += (square(x * x));  //violation
+for(int i=(0); i&lt;10; i++){          // violation
+  int x = (i + 1);                  // violation
+  sumOfSquares += (square(x * x));  // violation
 }
 double num = (10.0); //violation
 List&lt;String&gt; list = Arrays.asList(&quot;a1&quot;, &quot;b1&quot;, &quot;c1&quot;);
 myList.stream()
-  .filter((s) -&gt; s.startsWith(&quot;c&quot;)) //violation
+  .filter((s) -&gt; s.startsWith(&quot;c&quot;)) // violation
   .forEach(System.out::println);
 int a = 10, b = 12, c = 15;
+boolean x = true, y = false, z= true;
 if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parenthesis
          || (c &gt;= 5 &amp;&amp; b &lt;= 5)    // violation, unnecessary parenthesis
          || (c &gt;= 3 &amp;&amp; a &lt;= 7)) { // violation, unnecessary parenthesis
@@ -7084,6 +7095,12 @@ if ((a &gt;= 0 &amp;&amp; b &lt;= 9)            // violation, unnecessary parent
 }
 if ((-a) != -27 // violation, unnecessary parenthesis
          &amp;&amp; b &gt; 5) {
+    return;
+}
+if (x==(a &lt;= 15)) { // ok
+    return;
+}
+if (x==(y == z)) { // ok
     return;
 }
         </source>
