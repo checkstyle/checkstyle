@@ -26,11 +26,20 @@
  something like
  &lt;/p&gt;
  &lt;pre&gt;
-     int x = (a + b) + c;&lt;/pre&gt;
+ int x = (a + b) + c; // 1st Case
+ boolean p = true; // 2nd Case
+ int q = 4;
+ int r = 3;
+ if (p == (q &amp;lt;= r)) {}&lt;/pre&gt;
  &lt;p&gt;
- In the above case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
+ In the first case, given that &lt;em&gt;a&lt;/em&gt;, &lt;em&gt;b&lt;/em&gt;, and &lt;em&gt;c&lt;/em&gt; are
  all {@code int} variables, the parentheses around {@code a + b}
  are not needed.
+ In the second case, parentheses are required as &lt;em&gt;q&lt;/em&gt;, &lt;em&gt;r&lt;/em&gt; are
+ of type {@code int} and &lt;em&gt;p&lt;/em&gt; is of type {@code boolean}
+ and removing parentheses will give a compile time error. Even if &lt;em&gt;q&lt;/em&gt;
+ and &lt;em&gt;r&lt;/em&gt; were {@code boolean} still there will be no violation
+ raised as check is not "type aware".
  &lt;/p&gt;</description>
          <properties>
             <property default-value="EXPR,IDENT,NUM_DOUBLE,NUM_FLOAT,NUM_INT,NUM_LONG,STRING_LITERAL,LITERAL_NULL,LITERAL_FALSE,LITERAL_TRUE,ASSIGN,BAND_ASSIGN,BOR_ASSIGN,BSR_ASSIGN,BXOR_ASSIGN,DIV_ASSIGN,MINUS_ASSIGN,MOD_ASSIGN,PLUS_ASSIGN,SL_ASSIGN,SR_ASSIGN,STAR_ASSIGN,LAMBDA,TEXT_BLOCK_LITERAL_BEGIN,LAND,LITERAL_INSTANCEOF,GT,LT,GE,LE,EQUAL,NOT_EQUAL,UNARY_MINUS,UNARY_PLUS,INC,DEC,LNOT,BNOT,POST_INC,POST_DEC"
