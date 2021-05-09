@@ -215,6 +215,12 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
             "98:13: " + getCheckMessage(MSG_EXPR),
             "99:21: " + getCheckMessage(MSG_EXPR),
             "102:13: " + getCheckMessage(MSG_EXPR),
+            "114:21: " + getCheckMessage(MSG_EXPR),
+            "120:13: " + getCheckMessage(MSG_EXPR),
+            "121:30: " + getCheckMessage(MSG_EXPR),
+            "122:28: " + getCheckMessage(MSG_EXPR),
+            "124:21: " + getCheckMessage(MSG_EXPR),
+            "135:20: " + getCheckMessage(MSG_EXPR),
         };
 
         verify(checkConfig, getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
