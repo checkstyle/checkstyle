@@ -190,31 +190,11 @@ public class UnnecessaryParenthesesCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(UnnecessaryParenthesesCheck.class);
 
         final String[] expected = {
-            "10:20: " + getCheckMessage(MSG_EXPR),
-            "25:13: " + getCheckMessage(MSG_EXPR),
-            "26:20: " + getCheckMessage(MSG_EXPR),
             "30:13: " + getCheckMessage(MSG_EXPR),
-            "30:14: " + getCheckMessage(MSG_EXPR),
-            "31:20: " + getCheckMessage(MSG_EXPR),
-            "36:20: " + getCheckMessage(MSG_EXPR),
-            "40:13: " + getCheckMessage(MSG_EXPR),
-            "41:20: " + getCheckMessage(MSG_EXPR),
             "45:13: " + getCheckMessage(MSG_EXPR),
-            "46:17: " + getCheckMessage(MSG_EXPR),
-            "47:28: " + getCheckMessage(MSG_EXPR),
-            "52:13: " + getCheckMessage(MSG_EXPR),
-            "57:14: " + getCheckMessage(MSG_EXPR),
-            "58:24: " + getCheckMessage(MSG_EXPR),
-            "61:13: " + getCheckMessage(MSG_EXPR),
-            "62:21: " + getCheckMessage(MSG_EXPR),
-            "63:21: " + getCheckMessage(MSG_EXPR),
-            "69:12: " + getCheckMessage(MSG_EXPR),
-            "70:20: " + getCheckMessage(MSG_EXPR),
-            "77:20: " + getCheckMessage(MSG_EXPR),
-            "95:13: " + getCheckMessage(MSG_EXPR),
-            "98:13: " + getCheckMessage(MSG_EXPR),
-            "99:21: " + getCheckMessage(MSG_EXPR),
-            "102:13: " + getCheckMessage(MSG_EXPR),
+            "94:13: " + getCheckMessage(MSG_EXPR),
+            "97:13: " + getCheckMessage(MSG_EXPR),
+            "101:13: " + getCheckMessage(MSG_EXPR),
         };
 
         verify(checkConfig, getPath("InputUnnecessaryParenthesesIfStatement.java"), expected);
