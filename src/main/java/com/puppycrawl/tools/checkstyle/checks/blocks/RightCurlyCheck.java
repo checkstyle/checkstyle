@@ -292,6 +292,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
     }
 
@@ -514,6 +515,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
 
         /** Right curly. */
