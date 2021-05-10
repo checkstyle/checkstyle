@@ -63,6 +63,7 @@
     <property name="id" value="header"/>
   </module>
   <module name="RegexpHeader">
+    <property name="id" value="regexpHeader"/>
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java"/>
   </module>
@@ -741,9 +742,14 @@
     <module name="IllegalIdentifierName"/>
 
     <!-- Regexp -->
-    <module name="Regexp"/>
-    <module name="RegexpSinglelineJava"/>
+    <module name="Regexp">
+      <property name="id" value="regexpDefault"/>
+    </module>
     <module name="RegexpSinglelineJava">
+      <property name="id" value="regexpSingleLineDefault"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="checkASCII"/>
       <property name="format" value="[^\p{ASCII}]"/>
       <property name="ignoreComments" value="true"/>
     </module>
