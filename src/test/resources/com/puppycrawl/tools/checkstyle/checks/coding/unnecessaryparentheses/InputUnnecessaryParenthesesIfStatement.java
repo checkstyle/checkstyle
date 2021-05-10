@@ -105,6 +105,38 @@ public class InputUnnecessaryParenthesesIfStatement {
         }
     }
 
+    public void checkBooleanStatements() {
+        boolean a = true;
+        int b = 42;
+        int c = 42;
+        int d = 32;
+        if((b == c) == a
+                && (( // violation, unnecessary parenthesis, the latter one
+                                (b==c)==(d>=b)==a!=(c==d))
+                || (b<=c)!=a==(c>=d))) {
+            return;
+        }
+
+        if (( // violation, unnecessary parenthesis
+                a!=(b==c) && (a // violation, unnecessary parenthesis, before 'a'
+                        && (b==c))) // violation, unnecessary parenthesis, before 'b'
+                 || (a || a!=(b<=c))     // ok
+                 || (a==(b!=d==(c==b) && a!=(b<=c)))) { // violation, unnecessary parenthesis,
+                                                        // after '||'
+            return;
+        }
+
+        if (a==(b>=c && a==(c==d && d!=b)) // ok
+                && a==(c<=d)) { // ok
+           return;
+        }
+
+        if(a && a==(b<=c)==(a
+                && (b<=c))) { // violation, unnecessary parenthesis, before 'b'
+            return;
+        }
+    }
+
 
 }
 
