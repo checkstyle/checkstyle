@@ -10832,7 +10832,7 @@ used in the MT mode.
           Do not verify overriding methods in <a href="config_design.html#ThrowsCount">ThrowsCount</a> check. Author: Vladislav Lisetskii <a href="https://github.com/checkstyle/checkstyle/issues/1085">#1085</a>
         </li>
         <li>
-          Fix <a href="config_misc.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
+          Fix <a href="config_regexp.html#Regexp">Regexp</a> check causing exception on file with newline on top. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>
         </li>
         <li>
           Fix <a href="config_regexp.html#RegexpMultiline">RegexpMultiline</a> check causing exception with default config. Author: Michal Kordas <a href="https://github.com/checkstyle/checkstyle/issues/1129">#1129</a>

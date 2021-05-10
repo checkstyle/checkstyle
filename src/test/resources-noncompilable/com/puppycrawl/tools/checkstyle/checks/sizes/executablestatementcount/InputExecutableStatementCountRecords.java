@@ -71,4 +71,20 @@ public class InputExecutableStatementCountRecords {
             return R76.class;
         }
     }
+
+    private int id(int i) {
+        return i;
+    }
+
+    private final int value = 2;
+
+    private final int field = id(switch(value) {
+        case 0 -> -1;
+        case 2 -> {
+            int temp = 0;
+            temp += 3;
+            yield temp;
+        }
+        default -> throw new IllegalStateException();
+    });
 }

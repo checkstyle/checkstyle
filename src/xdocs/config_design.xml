@@ -163,7 +163,7 @@ public abstract class Plant {
                 Specify the comment text pattern which qualifies a method as designed for
                 extension. Supports multi-line regex.
               </td>
-              <td><a href="property_types.html#pattern">Pattern</a></td>
+              <td><a href="property_types.html#Pattern">Pattern</a></td>
               <td><code>&quot;.*&quot;</code></td>
               <td>8.40</td>
             </tr>
