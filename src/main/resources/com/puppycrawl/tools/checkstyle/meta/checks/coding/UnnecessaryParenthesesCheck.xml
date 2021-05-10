@@ -14,10 +14,7 @@
  int x = (y / 2 + 1); // parens around assignment rhs
  for (int i = (0); i &amp;lt; 10; i++) {  // parens around literal
  t -= (z + 1);                     // parens around assignment rhs
- boolean a = (x &amp;gt; 7 &amp;amp;&amp;amp; y &amp;gt; 5)      // parens around expression
-             || z &amp;lt; 9;
- boolean b = (~a) &amp;gt; -27            // parens around ~a
-             &amp;amp;&amp;amp; (a-- &amp;lt; 30);        // parens around expression
+ boolean b = (~a) &amp;gt; -27;            // parens around ~a
  &lt;/pre&gt;
  &lt;p&gt;
  The check is not "type aware", that is to say, it can't tell if parentheses
