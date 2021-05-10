@@ -32,7 +32,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 /**
  * <p>
  * Checks the placement of right curly braces ({@code '}'}) for code blocks. This check supports
- * if-else, try-catch-finally blocks, while-loops, for-loops,
+ * if-else, try-catch-finally blocks, switch-case statements, while-loops, for-loops,
  * method definitions, class definitions, constructor definitions,
  * instance, static initialization blocks, annotation definitions and enum definitions.
  * For right curly brace of expression blocks of arrays, lambdas and class instances
@@ -292,6 +292,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
             TokenTypes.COMPACT_CTOR_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
     }
 
@@ -514,6 +515,7 @@ public class RightCurlyCheck extends AbstractCheck {
             TokenTypes.ANNOTATION_DEF,
             TokenTypes.INTERFACE_DEF,
             TokenTypes.RECORD_DEF,
+            TokenTypes.LITERAL_SWITCH,
         };
 
         /** Right curly. */
