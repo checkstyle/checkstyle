@@ -565,10 +565,19 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean checkAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
-        return (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                    || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
-                && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
-                && isSurrounded(ast);
+        final boolean result;
+        if (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                && TokenUtil.isOfType(parent.getType(), TokenTypes.EQUAL, TokenTypes.NOT_EQUAL)
+                && isSurrounded(ast)) {
+            result = false;
+        }
+        else {
+            result = (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                        || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
+                    && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
+                    && isSurrounded(ast);
+        }
+        return result;
     }
 
     /**
