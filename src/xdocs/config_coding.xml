@@ -6857,11 +6857,21 @@ boolean b = (~a) &gt; -27            // parens around ~a
           operator precedence and associativity; therefore it won't catch something like
         </p>
         <source>
-int x = (a + b) + c;
+int x = (a + b) + c; // 1st Case
+boolean p = true; // 2nd Case
+int q = 4;
+int r = 3;
+if (p == (q &lt;= r)) {}
         </source>
         <p>
-          In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
-          <code>int</code> variables, the parentheses around <code>a + b</code> are not needed.
+          In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are all
+          <code>int</code> variables, the parentheses around <code>a + b</code>
+          are not needed.
+          In the second case, parentheses are required as <em>q</em>, <em>r</em> are
+          of type <code>int</code> and <em>p</em> is of type <code>boolean</code>
+          and removing parentheses will give a compile time error. Even if <em>q</em>
+          and <em>r</em> were <code>boolean</code> still there will be no violation
+          raised as check is not "type aware".
         </p>
       </subsection>
 

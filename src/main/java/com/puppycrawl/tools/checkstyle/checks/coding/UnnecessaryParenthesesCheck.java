@@ -51,11 +51,20 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * something like
  * </p>
  * <pre>
- *     int x = (a + b) + c;</pre>
+ * int x = (a + b) + c; // 1st Case
+ * boolean p = true; // 2nd Case
+ * int q = 4;
+ * int r = 3;
+ * if (p == (q &lt;= r)) {}</pre>
  * <p>
- * In the above case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
+ * In the first case, given that <em>a</em>, <em>b</em>, and <em>c</em> are
  * all {@code int} variables, the parentheses around {@code a + b}
  * are not needed.
+ * In the second case, parentheses are required as <em>q</em>, <em>r</em> are
+ * of type {@code int} and <em>p</em> is of type {@code boolean}
+ * and removing parentheses will give a compile time error. Even if <em>q</em>
+ * and <em>r</em> were {@code boolean} still there will be no violation
+ * raised as check is not "type aware".
  * </p>
  * <ul>
  * <li>
@@ -565,10 +574,19 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
     private static boolean checkAroundOperators(DetailAST ast) {
         final int type = ast.getType();
         final DetailAST parent = ast.getParent();
-        return (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                    || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
-                && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
-                && isSurrounded(ast);
+        final boolean result;
+        if (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                && TokenUtil.isOfType(parent.getType(), TokenTypes.EQUAL, TokenTypes.NOT_EQUAL)
+                && isSurrounded(ast)) {
+            result = false;
+        }
+        else {
+            result = (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
+                        || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
+                    && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
+                    && isSurrounded(ast);
+        }
+        return result;
     }
 
     /**
