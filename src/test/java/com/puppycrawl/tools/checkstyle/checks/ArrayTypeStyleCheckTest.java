@@ -51,12 +51,12 @@ public class ArrayTypeStyleCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
-            "14:23: " + getCheckMessage(MSG_KEY),
-            "15:18: " + getCheckMessage(MSG_KEY),
-            "21:44: " + getCheckMessage(MSG_KEY),
-            "45:33: " + getCheckMessage(MSG_KEY),
-            "50:36: " + getCheckMessage(MSG_KEY),
-            "56:29: " + getCheckMessage(MSG_KEY),
+            "13:23: " + getCheckMessage(MSG_KEY),
+            "14:18: " + getCheckMessage(MSG_KEY),
+            "20:44: " + getCheckMessage(MSG_KEY),
+            "44:33: " + getCheckMessage(MSG_KEY),
+            "49:36: " + getCheckMessage(MSG_KEY),
+            "55:29: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
     }
@@ -68,15 +68,15 @@ public class ArrayTypeStyleCheckTest
             createModuleConfig(ArrayTypeStyleCheck.class);
         checkConfig.addAttribute("javaStyle", "false");
         final String[] expected = {
-            "13:16: " + getCheckMessage(MSG_KEY),
-            "17:39: " + getCheckMessage(MSG_KEY),
-            "23:18: " + getCheckMessage(MSG_KEY),
-            "31:20: " + getCheckMessage(MSG_KEY),
-            "45:33: " + getCheckMessage(MSG_KEY),
-            "50:36: " + getCheckMessage(MSG_KEY),
-            "56:29: " + getCheckMessage(MSG_KEY),
+            "12:16: " + getCheckMessage(MSG_KEY),
+            "16:39: " + getCheckMessage(MSG_KEY),
+            "22:18: " + getCheckMessage(MSG_KEY),
+            "30:20: " + getCheckMessage(MSG_KEY),
+            "44:33: " + getCheckMessage(MSG_KEY),
+            "49:36: " + getCheckMessage(MSG_KEY),
+            "55:29: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
+        verify(checkConfig, getPath("InputArrayTypeStyleOff.java"), expected);
     }
 
     @Test

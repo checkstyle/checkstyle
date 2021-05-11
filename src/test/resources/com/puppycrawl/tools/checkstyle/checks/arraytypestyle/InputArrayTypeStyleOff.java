@@ -5,21 +5,21 @@
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
 /* Config:
- * javaStyle = true
+ * javaStyle = false
  */
-public class InputArrayTypeStyle
+public class InputArrayTypeStyleOff
 {
-    private int[] javaStyle = new int[0];
-    private int cStyle[] = new int[0]; // violation
-    private int c[] = new int[0]; // violation
+    private int[] javaStyle = new int[0]; // violation
+    private int cStyle[] = new int[0];
+    private int c[] = new int[0];
 
-    public static void mainJava(String[] aJavaStyle)
+    public static void mainJava(String[] aJavaStyle) // violation
     {
     }
 
-    public static void mainC(String aCStyle[]) // violation
+    public static void mainC(String aCStyle[])
     {
-        final int[] blah = new int[0];
+        final int[] blah = new int[0]; // violation
         final boolean isOK1 = aCStyle instanceof String[];
         final boolean isOK2 = aCStyle instanceof java.lang.String[];
         final boolean isOK3 = blah instanceof int[];
@@ -27,7 +27,7 @@ public class InputArrayTypeStyle
 
     public class Test
     {
-        public Test[]
+        public Test[] // violation
             variable;
 
         public Test[]
@@ -41,18 +41,18 @@ public class InputArrayTypeStyle
             return null;
         }
 
-        public Test getOldTest()[] // violation
+        public Test getOldTest()[] // ok
         {
             return null;
         }
 
-        public Test getOldTests()[][] // violation
+        public Test getOldTests()[][] // ok
         {
             return null;
         }
 
         public Test[]
-            getMoreTests()[][] // violation
+            getMoreTests()[][] // ok
         {
             return null;
         }
