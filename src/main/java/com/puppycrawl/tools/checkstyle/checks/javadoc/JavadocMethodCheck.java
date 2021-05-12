@@ -33,8 +33,10 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
+import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TextBlock;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
@@ -287,7 +289,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * @since 3.0
  */
 @FileStatefulCheck
-public class JavadocMethodCheck extends AbstractCheck {
+public class JavadocMethodCheck extends AbstractJavadocCheck {
 
     /**
      * A key is pointing to the warning message text in "messages.properties"
@@ -435,6 +437,21 @@ public class JavadocMethodCheck extends AbstractCheck {
      */
     public void setAllowMissingReturnTag(boolean flag) {
         allowMissingReturnTag = flag;
+    }
+    
+    @Override
+    public int[] getDefaultJavadocTokens() {
+        return new int[] {
+            JavadocTokenTypes.INHERIT_DOC_LITERAL,
+            JavadocTokenTypes.PARAM_LITERAL,
+            JavadocTokenTypes.RETURN_LITERAL,
+            JavadocTokenTypes.THROWS_LITERAL,
+        };
+    }
+    
+    @Override
+    public void visitJavadocToken(DetailNode ast) {
+
     }
 
     @Override
