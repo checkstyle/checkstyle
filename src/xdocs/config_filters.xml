@@ -1807,6 +1807,60 @@ public class TestClass {
 &lt;/module&gt;
           </pre>
         </div>
+
+        <p>
+          Example for trailing comments check to suppress specific trailing comment:
+        </p>
+
+        <div class="wrapper">
+          <pre>
+public class Test {
+  int a; // SUPPRESS CHECKSTYLE, OK
+  int b; // NOPMD, OK
+  int c; // NOSONAR, OK
+  int d; // violation, not suppressed
+}
+          </pre>
+        </div>
+
+        <p>
+          To configure check so that trailing comment with exact comments like
+          &quot;SUPPRESS CHECKSTYLE, OK&quot;, &quot;NOPMD, OK&quot;, &quot;NOSONAR, OK&quot;
+          are suppressed:
+        </p>
+
+        <div class="wrapper">
+          <pre>
+&lt;module name=&quot;TrailingComment&quot;/&gt;
+&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+  &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+      [./COMMENT_CONTENT[@text=&apos; NOSONAR, OK\n&apos; or @text=&apos; NOPMD, OK\n&apos;
+      or @text=&apos; SUPPRESS CHECKSTYLE, OK\n&apos;]]&quot;/&gt;
+&lt;/module&gt;
+          </pre>
+        </div>
+
+        <p>
+          To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
+          &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
+        </p>
+
+        <div class="wrapper">
+          <pre>
+&lt;module name=&quot;TrailingComment&quot;/&gt;
+&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+  &lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+      [./COMMENT_CONTENT[starts-with(@text, &apos; NOPMD&apos;)]]&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+      [./COMMENT_CONTENT[starts-with(@text, &apos; SUPPRESS CHECKSTYLE&apos;)]]&quot;/&gt;
+  &lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+      [./COMMENT_CONTENT[starts-with(@text, &apos; NOSONAR&apos;)]]&quot;/&gt;
+&lt;/module&gt;
+          </pre>
+        </div>
+
       </subsection>
       <subsection name="Example of Usage" id="SuppressionXpathSingleFilter_Example_of_Usage">
         <ul>
