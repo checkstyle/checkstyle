@@ -53,7 +53,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/INTERFACE_DEF[./IDENT[@text='SuppressionXpathRegressionJavadocContentLocationOne']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
-
+                + "[./COMMENT_CONTENT[@text='* Text. // warn\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -78,8 +78,8 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/INTERFACE_DEF[./IDENT"
                     + "[@text='SuppressionXpathRegressionJavadocContentLocationTwo']]"
-                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN[2]"
-
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='test']]/TYPE/BLOCK_COMMENT_BEGIN"
+                    + "[./COMMENT_CONTENT[@text='*\\n     * Text.\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
