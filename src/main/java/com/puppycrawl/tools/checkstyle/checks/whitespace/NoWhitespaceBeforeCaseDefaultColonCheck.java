@@ -52,11 +52,11 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *         case 2: // OK
  *             break;
  *         case 3, 4
- *                  : break; // violation, ':' should not be in separate line
+ *                  : break; // violation, whitespace before ':' is not allowed here
  *         case 4,
  *               5: break; // ok
  *         default
- *               : // violation, ':' should not be in separate line
+ *               : // violation, whitespace before ':' is not allowed here
  *             break;
  *     }
  *
@@ -74,10 +74,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  * </p>
  * <ul>
  * <li>
- * {@code ws.colonInSeparateLine}
- * </li>
- * <li>
- * {@code ws.preceded}
+ * {@code ws.preceded.nonPrintableSymbol}
  * </li>
  * </ul>
  *
@@ -91,13 +88,7 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
      * A key is pointing to the warning message text in "messages.properties"
      * file.
      */
-    public static final String MSG_KEY = "ws.preceded";
-
-    /**
-     * A key is pointing to the warning message text in "messages.properties"
-     * file.
-     */
-    public static final String MSG_KEY_ON_SEPARATE = "ws.colonInSeparateLine";
+    public static final String MSG_KEY = "ws.preceded.nonPrintableSymbol";
 
     @Override
     public int[] getDefaultTokens() {
@@ -121,13 +112,8 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
 
     @Override
     public void visitToken(DetailAST ast) {
-        if (isInSwitch(ast)) {
-            if (isColonOnDifferentLine(ast)) {
-                log(ast, MSG_KEY_ON_SEPARATE);
-            }
-            else if (isWhiteSpaceBeforeColon(ast)) {
-                log(ast, MSG_KEY, ast.getText());
-            }
+        if (isInSwitch(ast) && isWhiteSpaceBeforeColon(ast)) {
+            log(ast, MSG_KEY, ast.getText());
         }
     }
 
@@ -143,24 +129,6 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
     }
 
     /**
-     * Checks if the colon is on same line as of case or default.
-     *
-     * @param colonAst DetailAST to check.
-     * @return true, if colon case is in different line as of case or default.
-     */
-    private static boolean isColonOnDifferentLine(DetailAST colonAst) {
-        final DetailAST previousToken;
-        final DetailAST parent = colonAst.getParent();
-        if (parent.getType() == TokenTypes.LITERAL_CASE) {
-            previousToken = colonAst.getPreviousSibling();
-        }
-        else {
-            previousToken = colonAst.getParent();
-        }
-        return !TokenUtil.areOnSameLine(previousToken, colonAst);
-    }
-
-    /**
      * Checks if there is a whitespace before the colon of a switch case or switch default.
      *
      * @param colonAst DetailAST to check.
@@ -171,7 +139,8 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
         final boolean isColonOfCase = parent.getType() == TokenTypes.LITERAL_CASE;
         final boolean isColonOfDefault = parent.getType() == TokenTypes.LITERAL_DEFAULT;
         return isColonOfCase && isWhitespaceBeforeColonOfCase(colonAst)
-                || isColonOfDefault && isWhitespaceBeforeColonOfDefault(colonAst);
+                || isColonOfDefault && isWhitespaceBeforeColonOfDefault(colonAst)
+                || isColonOnDifferentLine(colonAst);
     }
 
     /**
@@ -208,6 +177,24 @@ public class NoWhitespaceBeforeCaseDefaultColonCheck
                     colonAst.getColumnNo() != getLastColumnNumberOf(commentBlock) + 1;
         }
         return horizontalWhitespace;
+    }
+
+    /**
+     * Checks if the colon is on same line as of case or default.
+     *
+     * @param colonAst DetailAST to check.
+     * @return true, if colon case is in different line as of case or default.
+     */
+    private static boolean isColonOnDifferentLine(DetailAST colonAst) {
+        final DetailAST previousToken;
+        final DetailAST parent = colonAst.getParent();
+        if (parent.getType() == TokenTypes.LITERAL_CASE) {
+            previousToken = colonAst.getPreviousSibling();
+        }
+        else {
+            previousToken = colonAst.getParent();
+        }
+        return !TokenUtil.areOnSameLine(previousToken, colonAst);
     }
 
     /**

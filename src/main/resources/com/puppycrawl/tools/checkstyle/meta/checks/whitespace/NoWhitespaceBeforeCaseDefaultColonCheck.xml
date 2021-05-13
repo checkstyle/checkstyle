@@ -8,8 +8,7 @@
  Checks that there is no whitespace before the colon in a switch block.
  &lt;/p&gt;</description>
          <message-keys>
-            <message-key key="ws.colonInSeparateLine"/>
-            <message-key key="ws.preceded"/>
+            <message-key key="ws.preceded.nonPrintableSymbol"/>
          </message-keys>
       </check>
    </module>

@@ -98,7 +98,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final String[] expectedViolation = {
             "7:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
-                        NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY_ON_SEPARATE),
+                        NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
@@ -123,7 +123,7 @@ public class XpathRegressionNoWhitespaceBeforeCaseDefaultColonTest
 
         final String[] expectedViolation = {
             "11:21: " + getCheckMessage(NoWhitespaceBeforeCaseDefaultColonCheck.class,
-                        NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY_ON_SEPARATE),
+                        NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY, ":"),
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(

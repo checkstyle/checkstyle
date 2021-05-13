@@ -1719,11 +1719,11 @@ class Test {
         case 2: // OK
             break;
         case 3, 4
-                 : break; // violation, ':' should not be in separate line
+                 : break; // violation, whitespace before ':' is not allowed here
         case 4,
               5: break; // ok
         default
-              : // violation, ':' should not be in separate line
+              : // violation, whitespace before ':' is not allowed here
             break;
     }
 
@@ -1752,12 +1752,8 @@ class Test {
                   id="NoWhitespaceBeforeCaseDefaultColon_Violation_Messages">
         <ul>
           <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.colonInSeparateLine%22">
-              ws.colonInSeparateLine</a>
-          </li>
-          <li>
-            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded%22">
-            ws.preceded</a>
+            <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources%2Fcom%2Fpuppycrawl%2Ftools%2Fcheckstyle%2Fchecks%2Fwhitespace+filename%3Amessages*.properties+repo%3Acheckstyle%2Fcheckstyle+%22ws.preceded.nonPrintableSymbol%22">
+              ws.preceded.nonPrintableSymbol</a>
           </li>
         </ul>
         <p>

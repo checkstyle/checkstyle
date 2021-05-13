@@ -20,7 +20,6 @@
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
 import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY;
-import static com.puppycrawl.tools.checkstyle.checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck.MSG_KEY_ON_SEPARATE;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
@@ -46,16 +45,16 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
             "11:20: " + getCheckMessage(MSG_KEY, ":"),
             "15:21: " + getCheckMessage(MSG_KEY, ":"),
             "28:37: " + getCheckMessage(MSG_KEY, ":"),
-            "36:21: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "36:21: " + getCheckMessage(MSG_KEY, ":"),
             "40:28: " + getCheckMessage(MSG_KEY, ":"),
-            "43:1: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
-            "46:27: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "43:1: " + getCheckMessage(MSG_KEY, ":"),
+            "46:27: " + getCheckMessage(MSG_KEY, ":"),
             "57:38: " + getCheckMessage(MSG_KEY, ":"),
             "62:38: " + getCheckMessage(MSG_KEY, ":"),
             "75:24: " + getCheckMessage(MSG_KEY, ":"),
-            "78:21: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "78:21: " + getCheckMessage(MSG_KEY, ":"),
             "85:38: " + getCheckMessage(MSG_KEY, ":"),
-            "88:35: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "88:35: " + getCheckMessage(MSG_KEY, ":"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceBeforeCaseDefaultColon.java"),
                 expected);
@@ -67,13 +66,13 @@ public class NoWhitespaceBeforeCaseDefaultColonCheckTest
                 NoWhitespaceBeforeCaseDefaultColonCheck.class);
         final String[] expected = {
             "33:22: " + getCheckMessage(MSG_KEY, ":"),
-            "36:21: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "36:21: " + getCheckMessage(MSG_KEY, ":"),
             "39:25: " + getCheckMessage(MSG_KEY, ":"),
-            "58:20: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "58:20: " + getCheckMessage(MSG_KEY, ":"),
             "71:32: " + getCheckMessage(MSG_KEY, ":"),
-            "88:17: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "88:17: " + getCheckMessage(MSG_KEY, ":"),
             "91:20: " + getCheckMessage(MSG_KEY, ":"),
-            "94:21: " + getCheckMessage(MSG_KEY_ON_SEPARATE),
+            "94:21: " + getCheckMessage(MSG_KEY, ":"),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputNoWhitespaceBeforeCaseDefaultColonEnumAndStrings.java"),

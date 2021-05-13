@@ -35,7 +35,7 @@ public class NoWhitespaceBeforeCaseDefaultColonTest extends AbstractGoogleModule
     @Test
     public void test() throws Exception {
         final Class<NoWhitespaceBeforeCheck> clazz = NoWhitespaceBeforeCheck.class;
-        final String messageKeyPreceded = "ws.preceded";
+        final String messageKeyPreceded = "ws.preceded.nonPrintableSymbol";
 
         final String[] expected = {
             "6:20: " + getCheckMessage(clazz, messageKeyPreceded, ":"),
