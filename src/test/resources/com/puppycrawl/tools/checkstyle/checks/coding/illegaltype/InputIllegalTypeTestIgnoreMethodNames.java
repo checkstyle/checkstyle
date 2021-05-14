@@ -3,30 +3,32 @@ import java.util.HashMap;
 import java.util.TreeSet;
 
 /*
- * Config: default
+ * Config:
+ * ignoredMethodNames = table2
+ * validateAbstractClassNames = true
  */
-public class InputIllegalType implements InputIllegalTypeSuper {
-    private AbstractClass a = null; // ok
+public class InputIllegalTypeTestIgnoreMethodNames implements InputIllegalTypeSuper {
+    private AbstractClass a = null; // violation
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
-        c = null; //WARNING
+        c = null; // ^ violation above
     private java.util.List d = null;
 
-    public abstract class AbstractClass {/*one more comment*/}
+    private abstract class AbstractClass {/*one more comment*/}
 
     private class NotAnAbstractClass {}
 
-    private java.util.TreeSet table1() { return null; } //WARNING
-    private TreeSet table2() { return null; } //WARNING
+    private java.util.TreeSet table1() { return null; } // violation
+    private TreeSet table2() { return null; } // ok
     static class SomeStaticClass {
 
     }
 
-    InputIllegalType(Integer i) {}
+    InputIllegalTypeTestIgnoreMethodNames(Integer i) {}
     private void table2(Integer i) {}
 
-    private void getInitialContext(java.util.TreeSet v) {} // ignore method by default
+    private void getInitialContext(java.util.TreeSet v) {} // violation
 
     @Override
     public void foo(HashMap<?, ?> buffer) {} // ignore
@@ -42,10 +44,10 @@ public class InputIllegalType implements InputIllegalTypeSuper {
     }
 }
 
-interface InputIllegalTypeSuper {
-    void foo(HashMap<?, ?> buffer); //WARNING
+interface InputIllegalTypeSuperTestIgnoreMethodNames {
+    void foo(HashMap<?, ?> buffer); // violation
 
-    HashMap<?, ?> foo(); //WARNING
+    HashMap<?, ?> foo(); // violation
 
     Object bar();
 }
