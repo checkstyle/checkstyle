@@ -637,6 +637,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.indentation.CommentsIndentationCheck");
         NAME_TO_FULL_MODULE_NAME.put("IndentationCheck",
                 BASE_PACKAGE + ".checks.indentation.IndentationCheck");
+        NAME_TO_FULL_MODULE_NAME.put("LeadingAsteriskAlignCheck",
+                BASE_PACKAGE + ".checks.indentation.LeadingAsteriskAlignCheck");
     }
 
     /**
