@@ -312,11 +312,11 @@ public final class CommonUtil {
     /**
      * Gets constructor of targetClass.
      *
+     * @param <T> type of the target class object.
      * @param targetClass
      *            from which constructor is returned
      * @param parameterTypes
      *            of constructor
-     * @param <T> type of the target class object.
      * @return constructor of targetClass
      * @throws IllegalStateException if any exception occurs
      * @see Class#getConstructor(Class[])
@@ -334,12 +334,12 @@ public final class CommonUtil {
     /**
      * Returns new instance of a class.
      *
+     * @param <T>
+     *            type of constructor
      * @param constructor
      *            to invoke
      * @param parameters
      *            to pass to constructor
-     * @param <T>
-     *            type of constructor
      * @return new instance of class
      * @throws IllegalStateException if any exception occurs
      * @see Constructor#newInstance(Object...)
