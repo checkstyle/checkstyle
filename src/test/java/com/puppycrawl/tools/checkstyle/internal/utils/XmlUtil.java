@@ -99,6 +99,7 @@ public final class XmlUtil {
      * Returns the {@code Node} that has an id attribute with the given value.
      * The id should be unique within the Xml Document.
      *
+     * @param node to retrieve information.
      * @param id the unique {@code id} value for a node.
      * @return the matching node or {@code null} if none matches.
      */
