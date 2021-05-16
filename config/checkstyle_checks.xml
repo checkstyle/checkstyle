@@ -424,6 +424,19 @@
       <message key="matchxpath.match"
                value="Avoid using deprecated method 'DetailAst.branchContains()'."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="noUsageOfGetFileContentsMethod"/>
+      <property name="query" value="//CLASS_DEF[
+               ./EXTENDS_CLAUSE[./IDENT[@text='AbstractCheck'
+                                     or @text='AbstractSuperCheck'
+                                     or @text='AbstractJavadocCheck'
+                                     or @text='AbstractClassCouplingCheck'
+                                     or @text='AbstractNameCheck'
+                                     or @text='AbstractParenPadCheck']]
+               and .//METHOD_CALL[.//IDENT[@text = 'getFileContents']]]"/>
+      <message key="matchxpath.match" value="Avoid using getFileContents method in
+                                            AbstractCheck subclasses."/>
+    </module>
     <module name="MissingCtor">
       <!--
         we will not use that fanatic validation, extra code is not good
