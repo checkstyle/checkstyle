@@ -417,4 +417,42 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
 
+    public static ArrayList<String> getContentOfInlineCustomTag(DetailNode javadoc) {
+        ArrayList<String> summaryTagContent = null;
+        DetailNode[] children = javadoc.getChildren();
+        if(children.length != 0) {
+            for (DetailNode node : children) {
+                if (node.getType() == JavadocTokenTypes.CUSTOM_NAME
+                        && getPreviousSibling(node).getType()
+                        == JavadocTokenTypes.JAVADOC_INLINE_TAG_START) {
+                    summaryTagContent = getInlineTagContent(node);
+                }
+            }
+        }
+        return summaryTagContent;
+    }
+
+    public static ArrayList<String> getInlineTagContent(DetailNode node) {
+        DetailNode nextSibling;
+        DetailNode nodeToBeProcessed = node;
+        DetailNode[] children;
+        ArrayList<String> content = new ArrayList<>();
+        while (nodeToBeProcessed.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG_END
+                && nodeToBeProcessed.getParent().getChildren()[1] != node) {
+            nextSibling = getNextSibling(nodeToBeProcessed);
+            children = nextSibling.getChildren();
+            if (children.length != 0) {
+                for (DetailNode child : children) {
+                    if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                        content.add(child.getText());
+                    }
+                }
+            } else {
+                content.add(nextSibling.getText());
+            }
+            nodeToBeProcessed = getNextSibling(nodeToBeProcessed);
+        }
+        return content;
+    }
+
 }
