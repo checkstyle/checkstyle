@@ -417,4 +417,52 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
 
+    /**
+     * Gets the content of inline custom tag.
+     *
+     * @param javadoc root javadoc node of javadoc ast.
+     * @return String comprising of the content of inline custom tag.
+     */
+    public static String getContentOfInlineCustomTag(DetailNode javadoc) {
+        String customTagContent = null;
+        final DetailNode[] children = javadoc.getChildren();
+        DetailNode nodeToBeProcessed = null;
+        DetailNode endingNode = null;
+        for (DetailNode node : children) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                final DetailNode[] childrenOfJavadocInlineTag = node.getChildren();
+                nodeToBeProcessed = childrenOfJavadocInlineTag[2];
+                endingNode = childrenOfJavadocInlineTag[childrenOfJavadocInlineTag.length - 1];
+                customTagContent = "";
+            }
+        }
+        while (nodeToBeProcessed != null && nodeToBeProcessed != endingNode) {
+            customTagContent = customTagContent
+                    .concat(extractContentInlineCustomTag(nodeToBeProcessed));
+            nodeToBeProcessed = getNextSibling(nodeToBeProcessed);
+        }
+        return customTagContent;
+    }
+
+    /**
+     * Extracts the content of inline custom tag recursively.
+     *
+     * @param node DetailNode
+     * @return Text of the node supplied, concatenated text if that node has children.
+     */
+    private static String extractContentInlineCustomTag(DetailNode node) {
+        String result = "";
+        final DetailNode[] children = node.getChildren();
+        if (children.length == 0) {
+            result = node.getText();
+        } else {
+            for (DetailNode child : children) {
+                if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    result = result.concat(extractContentInlineCustomTag(child));
+                }
+            }
+        }
+        return result;
+    }
+
 }
