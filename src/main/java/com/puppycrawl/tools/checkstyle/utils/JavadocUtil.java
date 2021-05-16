@@ -408,4 +408,45 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
 
+    /**
+     * Gets the content of inline custom tag.
+     *
+     * @param inlineTag inline tag node.
+     * @return String consisting of the content of inline custom tag.
+     */
+    public static String getContentOfInlineCustomTag(DetailNode inlineTag) {
+        final DetailNode[] childrenOfInlineTag = inlineTag.getChildren();
+        final StringBuilder customTagContent = new StringBuilder(256);
+        final int numOfChildrenEmptyInlineTag = 3;
+        if (childrenOfInlineTag.length != numOfChildrenEmptyInlineTag) {
+            final int indexOfContentOfSummaryTag = 3;
+            DetailNode currentNode = childrenOfInlineTag[indexOfContentOfSummaryTag];
+            while (currentNode.getType() != JavadocTokenTypes.JAVADOC_INLINE_TAG_END) {
+                extractInlineTagContent(currentNode, customTagContent);
+                currentNode = getNextSibling(currentNode);
+            }
+        }
+        return customTagContent.toString();
+    }
+
+    /**
+     * Extracts the content of inline custom tag recursively.
+     *
+     * @param node DetailNode
+     * @param customTagContent content of custom tag
+     */
+    private static void extractInlineTagContent(DetailNode node,
+                                                StringBuilder customTagContent) {
+        final DetailNode[] children = node.getChildren();
+        if (children.length == 0) {
+            customTagContent.append(node.getText());
+        }
+        else {
+            for (DetailNode child : children) {
+                if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    extractInlineTagContent(child, customTagContent);
+                }
+            }
+        }
+    }
 }
