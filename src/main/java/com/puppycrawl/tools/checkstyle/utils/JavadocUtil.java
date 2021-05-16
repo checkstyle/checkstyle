@@ -408,4 +408,46 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
 
+    /**
+     * Gets the content of inline custom tag.
+     *
+     * @param javadocInlineTag javadoc inline tag node.
+     * @return String consisting of the content of inline custom tag.
+     */
+    public static String getContentOfInlineCustomTag(DetailNode javadocInlineTag) {
+        final DetailNode[] childrenOfJavadocInlineTag = javadocInlineTag.getChildren();
+        DetailNode nodeToBeProcessed = childrenOfJavadocInlineTag[2];
+        final DetailNode endingNode =
+                childrenOfJavadocInlineTag[childrenOfJavadocInlineTag.length - 1];
+        StringBuilder customTagContent = new StringBuilder();
+
+        while (nodeToBeProcessed != endingNode) {
+            customTagContent.append(extractContentInlineCustomTag(nodeToBeProcessed));
+            nodeToBeProcessed = getNextSibling(nodeToBeProcessed);
+        }
+        return customTagContent.toString();
+    }
+
+    /**
+     * Extracts the content of inline custom tag recursively.
+     *
+     * @param node DetailNode
+     * @return Text of the node supplied, concatenated text if that node has children.
+     */
+    private static String extractContentInlineCustomTag(DetailNode node) {
+        StringBuilder result = new StringBuilder();
+        final DetailNode[] children = node.getChildren();
+        if (children.length == 0) {
+            result.append(node.getText());
+        }
+        else {
+            for (DetailNode child : children) {
+                if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    result.append(extractContentInlineCustomTag(child));
+                }
+            }
+        }
+        return result.toString();
+    }
+
 }
