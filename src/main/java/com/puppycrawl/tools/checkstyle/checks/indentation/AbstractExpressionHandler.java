@@ -319,8 +319,8 @@ public abstract class AbstractExpressionHandler {
         final int start = getLineStart(line);
         final int columnNumber = expandedTabsColumnNo(ast);
         // if must match is set, it is a violation if the line start is not
-        // at the correct indention level; otherwise, it is an only an
-        // violation if this statement starts the line and it is less than
+        // at the correct indention level; otherwise, a violation
+        // can only occur if this statement starts the line and it is less than
         // the correct indentation level
         if (mustMatch && !indentLevel.isAcceptable(start)
                 || !mustMatch && columnNumber == start && indentLevel.isGreaterThan(start)) {
