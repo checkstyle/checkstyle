@@ -290,7 +290,7 @@ CLASS_DEF -> CLASS_DEF [5:0]
 
       <p>
         It is important to understand that the individual
-        Checks do no drive the AST traversal (it possible to traverse itself, but not recommended).
+        Checks do not drive the AST traversal (it possible to traverse itself, but not recommended).
         Instead, the TreeWalker initiates
         a recursive descend from the root of the AST to the leaf nodes and calls
         the Check methods. The traversal is done using a
