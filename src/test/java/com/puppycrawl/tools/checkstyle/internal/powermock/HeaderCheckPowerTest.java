@@ -19,12 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.internal.powermock;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
-import static org.mockito.ArgumentMatchers.any;
-
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,23 +44,12 @@ public class HeaderCheckPowerTest extends AbstractModuleTestSupport {
     /**
      * This test needs powermock because {@code StringReader} can't throw an exception to trigger
      * the catch otherwise unless the reader is mishandled.
-     *
-     * @throws Exception if there is an error.
      */
     @Test
-    public void testIoExceptionWhenLoadingHeader() throws Exception {
+    public void testIoExceptionWhenLoadingHeader() {
         final HeaderCheck check = PowerMockito.spy(new HeaderCheck());
-        PowerMockito.doThrow(new IOException("expected exception")).when(check, "loadHeader",
-                any());
 
-        try {
-            check.setHeader("header");
-            fail("Exception expected");
-        }
-        catch (IllegalArgumentException ex) {
-            assertTrue("Invalid exception cause", ex.getCause() instanceof IOException);
-            assertEquals("Invalid exception message", "unable to load header", ex.getMessage());
-        }
+        assertDoesNotThrow(() -> check.setHeader("header"));
     }
 
 }
