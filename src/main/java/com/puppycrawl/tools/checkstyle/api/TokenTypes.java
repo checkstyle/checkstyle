@@ -3304,6 +3304,25 @@ public final class TokenTypes {
     /**
      * The {@code &&} (conditional AND) operator.
      *
+     *
+     * <p>For example:</p>
+     * <pre>
+     * if (a &amp;&amp; b) {
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * LITERAL_IF -&gt; if
+     *  |--LPAREN -&gt; (
+     *  |--EXPR -&gt; EXPR
+     *  |   `--LAND -&gt; &amp;&amp;
+     *  |       |--IDENT -&gt; a
+     *  |       `--IDENT -&gt; b
+     *  |--RPAREN -&gt; )
+     *  |--SLIST -&gt; {
+     *  |   |--RCURLY -&gt; }
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
      * Language Specification, &sect;15.23</a>
@@ -3855,18 +3874,18 @@ public final class TokenTypes {
      * </pre>
      *
      * <p>parses as:</p>
-     * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--IDENT (ArrayList)
-     *     +--LPAREN (()
-     *     +--ELIST
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--NUM_INT (50)
-     *     +--RPAREN ())
-     * </pre>
+     *       <pre>
+     * LITERAL_NEW -&gt; new
+     *  |--IDENT -&gt; ArrayList
+     *  |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |   |--GENERIC_START -&gt; &lt;
+     *  |   `--GENERIC_END -&gt; &gt;
+     *  |--LPAREN -&gt; (
+     *  |--ELIST -&gt; ELIST
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_INT -&gt; 50
+     *  `--RPAREN -&gt; )
+     *       </pre>
      *
      * <p>For example:</p>
      * <pre>
