@@ -3307,7 +3307,7 @@ public final class TokenTypes {
      *
      * <p>For example:</p>
      * <pre>
-     * if (a && b) {
+     * if (a &amp;&amp; b) {
      * }
      * </pre>
      * <p>parses as:</p>
@@ -3315,7 +3315,7 @@ public final class TokenTypes {
      * LITERAL_IF -&gt; if
      *  |--LPAREN -&gt; (
      *  |--EXPR -&gt; EXPR
-     *  |   `--LAND -&gt; &&
+     *  |   `--LAND -&gt; &amp;&amp;
      *  |       |--IDENT -&gt; a
      *  |       `--IDENT -&gt; b
      *  |--RPAREN -&gt; )
