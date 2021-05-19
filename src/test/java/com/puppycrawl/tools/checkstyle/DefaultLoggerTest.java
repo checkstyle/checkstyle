@@ -20,14 +20,24 @@
 package com.puppycrawl.tools.checkstyle;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLStreamHandler;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,13 +48,11 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DefaultLoggerTest {
 
-    private final Violation auditStartMessage = new Violation(1,
-            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
-            getClass(), null);
+    private final DefaultLogger.LocalizedMessage auditStartMessage =
+            new DefaultLogger.LocalizedMessage("DefaultLogger.auditStarted", null);
 
-    private final Violation auditFinishMessage = new Violation(1,
-            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
-            getClass(), null);
+    private final DefaultLogger.LocalizedMessage auditFinishMessage =
+            new DefaultLogger.LocalizedMessage("DefaultLogger.auditFinished", null);
 
     @Test
     public void testCtor() throws UnsupportedEncodingException {
@@ -55,12 +63,11 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final Violation addExceptionMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
-                new String[] {"myfile"}, null,
-                getClass(), null);
+        final DefaultLogger.LocalizedMessage addExceptionMessage =
+                new DefaultLogger.LocalizedMessage(DefaultLogger.ADD_EXCEPTION_MESSAGE,
+                new String[] {"myfile"});
 
-        assertTrue(output.contains(addExceptionMessage.getViolation()), "Invalid exception");
+        assertTrue(output.contains(addExceptionMessage.getMessage()), "Invalid exception");
         assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
                 "Invalid exception class");
     }
@@ -92,7 +99,8 @@ public class DefaultLoggerTest {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's 'The allocated object is never used'
+            // DefaultLogger.LocalizedMessage
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -108,7 +116,8 @@ public class DefaultLoggerTest {
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream,
                 AutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's 'The allocated object is never used'
+            // DefaultLogger.LocalizedMessage
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -130,8 +139,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, null, getClass(), "customViolation")));
         dl.auditFinished(null);
-        assertEquals(auditStartMessage.getViolation() + System.lineSeparator()
-                + auditFinishMessage.getViolation() + System.lineSeparator(), infoStream.toString(),
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
                 "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
                 + System.lineSeparator(), errorStream.toString(), "expected output");
@@ -148,8 +157,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customViolation")));
         dl.auditFinished(null);
-        assertEquals(auditStartMessage.getViolation() + System.lineSeparator()
-                + auditFinishMessage.getViolation() + System.lineSeparator(), infoStream.toString(),
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
                 "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [moduleId]"
                 + System.lineSeparator(), errorStream.toString(), "expected output");
@@ -166,4 +175,150 @@ public class DefaultLoggerTest {
         assertNotNull(dl, "instance should not be null");
     }
 
+    @Test
+    public void testBundleReloadUrlNull() throws IOException {
+        final DefaultLogger.LocalizedMessage.Utf8Control control =
+                new DefaultLogger.LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ENGLISH, "java.class",
+                Thread.currentThread().getContextClassLoader(), true);
+        assertNull(bundle, "Bundle should be null when reload is true and URL is null");
+    }
+
+    /**
+     * Ignore resource errors for testing.
+     *
+     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     */
+    @Test
+    public void testBundleReloadUrlNotNull() throws IOException {
+        final AtomicBoolean closed = new AtomicBoolean();
+
+        final InputStream inputStream = new InputStream() {
+            @Override
+            public int read() {
+                return -1;
+            }
+
+            @Override
+            public void close() {
+                closed.set(true);
+            }
+        };
+        final URLConnection urlConnection = new URLConnection(null) {
+            @Override
+            public void connect() {
+                // no code
+            }
+
+            @Override
+            public InputStream getInputStream() {
+                return inputStream;
+            }
+        };
+        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(URL u) {
+                return urlConnection;
+            }
+        });
+
+        final DefaultLogger.LocalizedMessage.Utf8Control control =
+                new DefaultLogger.LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
+                "java.class", new TestUrlsClassLoader(url), true);
+
+        assertNotNull(bundle, "Bundle should not be null when stream is not null");
+        assertFalse(urlConnection.getUseCaches(), "connection should not be using caches");
+        assertTrue(closed.get(), "connection should be closed");
+    }
+
+    /**
+     * Ignore resource errors for testing.
+     *
+     * @noinspection resource, IOResourceOpenedButNotSafelyClosed
+     */
+    @Test
+    public void testBundleReloadUrlNotNullFalseReload() throws IOException {
+        final AtomicBoolean closed = new AtomicBoolean();
+
+        final InputStream inputStream = new InputStream() {
+            @Override
+            public int read() {
+                return -1;
+            }
+
+            @Override
+            public void close() {
+                closed.set(true);
+            }
+        };
+        final URLConnection urlConnection = new URLConnection(null) {
+            @Override
+            public void connect() {
+                // no code
+            }
+
+            @Override
+            public InputStream getInputStream() {
+                return inputStream;
+            }
+        };
+        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(URL u) {
+                return urlConnection;
+            }
+        });
+
+        final DefaultLogger.LocalizedMessage.Utf8Control control =
+                new DefaultLogger.LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages", Locale.ENGLISH,
+                "java.class", new TestUrlsClassLoader(url), false);
+
+        assertNotNull(bundle, "Bundle should not be null when stream is not null");
+        assertTrue(urlConnection.getUseCaches(), "connection should not be using caches");
+        assertTrue(closed.get(), "connection should be closed");
+    }
+
+    @Test
+    public void testBundleReloadUrlNotNullStreamNull() throws IOException {
+        final URL url = new URL("test", null, 0, "", new URLStreamHandler() {
+            @Override
+            protected URLConnection openConnection(URL u) {
+                return null;
+            }
+        });
+
+        final DefaultLogger.LocalizedMessage.Utf8Control control =
+                new DefaultLogger.LocalizedMessage.Utf8Control();
+        final ResourceBundle bundle = control.newBundle(
+                "com.puppycrawl.tools.checkstyle.checks.coding.messages",
+                Locale.ENGLISH, "java.class",
+                new TestUrlsClassLoader(url), true);
+        assertNull(bundle, "Bundle should be null when stream is null");
+    }
+
+    /**
+     * Custom class loader is needed to pass URLs to pretend these are loaded from the classpath
+     * though we can't add/change the files for testing.
+     *
+     * @noinspection CustomClassloader
+     */
+    private static class TestUrlsClassLoader extends ClassLoader {
+
+        private final URL url;
+
+        /* package */ TestUrlsClassLoader(URL url) {
+            this.url = url;
+        }
+
+        @Override
+        public URL getResource(String name) {
+            return url;
+        }
+    }
 }
