@@ -487,9 +487,9 @@ public class JavadocMethodCheck extends AbstractCheck {
     @Override
     public final void leaveToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.CLASS_DEF
-            || ast.getType() == TokenTypes.INTERFACE_DEF
-            || ast.getType() == TokenTypes.ENUM_DEF
-            || ast.getType() == TokenTypes.RECORD_DEF) {
+                || ast.getType() == TokenTypes.INTERFACE_DEF
+                || ast.getType() == TokenTypes.ENUM_DEF
+                || ast.getType() == TokenTypes.RECORD_DEF) {
             // perhaps it was inner class
             final int dotIdx = currentClassName.lastIndexOf('$');
             currentClassName = currentClassName.substring(0, dotIdx);
@@ -688,7 +688,7 @@ public class JavadocMethodCheck extends AbstractCheck {
         final List<JavadocTag> tags = new ArrayList<>();
         final String lFin = multilineCont.group(1);
         if (!lFin.equals(NEXT_TAG)
-            && !lFin.equals(END_JAVADOC)) {
+                && !lFin.equals(END_JAVADOC)) {
             final String param1 = noargMultilineStart.group(1);
             final int col = noargMultilineStart.start(1) - 1;
 

@@ -457,9 +457,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
             final int instanceOfSize = 13;
             // +2 because ast has `[]` after the ident
             if (ident.getColumnNo() >= ast.getColumnNo() + 2
-                // +13 because ident (at most 1 character) is followed by
-                // ' instanceof ' (12 characters)
-                || lastTypeNode.getColumnNo() >= ident.getColumnNo() + instanceOfSize) {
+                    // +13 because ident (at most 1 character) is followed by
+                    // ' instanceof ' (12 characters)
+                    || lastTypeNode.getColumnNo() >= ident.getColumnNo() + instanceOfSize) {
                 previousElement = lastTypeNode;
             }
             else {

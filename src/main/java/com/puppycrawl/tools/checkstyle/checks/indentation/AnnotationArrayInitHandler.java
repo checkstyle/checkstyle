@@ -93,8 +93,11 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
 
     @Override
     protected IndentLevel getChildrenExpectedIndent() {
+        final int additionalIndent = getBasicOffset()
+            * LineWrappingHandler.expressionStartsBetween(getParent().getMainAst(), getMainAst());
         IndentLevel expectedIndent =
-            new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
+            new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation(),
+                    additionalIndent + getArrayInitIndentation());
 
         final int firstLine = getFirstLine(getListChild());
         final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
