@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -341,8 +342,8 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if first sentence contains @summary tag.
      */
     private static boolean containsSummaryTag(DetailNode javadoc) {
-        final DetailNode node = getFirstInlineTag(javadoc);
-        return node != null && isSummaryTag(node);
+        final Optional<DetailNode> node = getFirstInlineTag(javadoc);
+        return node.isPresent() && isSummaryTag(node.get());
     }
 
     /**
@@ -351,22 +352,16 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @param javadoc javadoc root node.
      * @return first inline tag node or null if no node is found.
      */
-    private static DetailNode getFirstInlineTag(DetailNode javadoc) {
-        DetailNode node = null;
-        final DetailNode[] children = javadoc.getChildren();
-        for (DetailNode child: children) {
-            // If present as a children of javadoc
-            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                node = child;
-            }
-            // If nested inside html tag
-            else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                node = getInlineTagNodeWithinHtmlElement(child);
-            }
-
-            if (node != null) {
-                break;
-            }
+    private static Optional<DetailNode> getFirstInlineTag(DetailNode javadoc) {
+        // If present as a children of javadoc
+        Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
+                .filter(child -> child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG)
+                .findFirst();
+        // If nested inside html tag
+        if (!node.isPresent()) {
+            node = Arrays.stream(javadoc.getChildren())
+                    .filter(child -> child.getType() == JavadocTokenTypes.HTML_ELEMENT)
+                    .findFirst().map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
         }
         return node;
     }
