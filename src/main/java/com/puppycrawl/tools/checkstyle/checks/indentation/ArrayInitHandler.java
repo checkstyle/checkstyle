@@ -94,11 +94,6 @@ public class ArrayInitHandler extends BlockParentHandler {
     }
 
     @Override
-    protected boolean canChildrenBeNested() {
-        return true;
-    }
-
-    @Override
     protected DetailAST getListChild() {
         return getMainAst();
     }
