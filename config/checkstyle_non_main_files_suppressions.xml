@@ -60,6 +60,8 @@
          files="src[\\/]test[\\/]resources[\\/].*[\\/]asttreestringprinter[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocPosition.*\.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/].*[\\/]abstractjavadoc[\\/]InputAbstractJavadocLeaveToken.*\.java"/>
 
   <!-- we can not change expected as it will require change of main class logic -->
   <suppress id="lineLength"
