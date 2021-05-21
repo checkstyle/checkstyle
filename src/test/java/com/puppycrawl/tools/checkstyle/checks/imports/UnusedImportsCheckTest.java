@@ -50,7 +50,7 @@ public class UnusedImportsCheckTest extends AbstractModuleTestSupport {
         final List<String> expectedSecondInput = Arrays.asList(
                 "3:8: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
                 "4:8: " + getCheckMessage(MSG_KEY, "java.util.List"),
-                "5:8: " + getCheckMessage(MSG_KEY, "java.util.Set")
+                "5:7: " + getCheckMessage(MSG_KEY, "java.util.Set")
         );
         final File[] inputsWithWarningsFirst =
             {new File(inputWithWarnings), new File(inputWithoutWarnings)};
