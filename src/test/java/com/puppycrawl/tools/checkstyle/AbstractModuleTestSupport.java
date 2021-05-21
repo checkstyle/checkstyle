@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -286,8 +285,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
+        final List<File> theFiles = Arrays.asList(processedFiles);
         final int errs = checker.process(theFiles);
 
         // process each of the lines
@@ -301,11 +299,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
-                assertEquals("error message " + i, expectedResult, actuals.get(i));
+                assertWithMessage("error message %s", i)
+                        .that(actuals.get(i))
+                        .isEqualTo(expectedResult);
             }
 
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
+            assertWithMessage("unexpected output: " + lnr.readLine())
+                    .that(errs)
+                    .isEqualTo(expected.length);
         }
 
         checker.destroy();
@@ -343,27 +344,29 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Map<String, MapDifference.ValueDifference<List<String>>> differingViolations =
                 violationDifferences.entriesDiffering();
 
-        final StringBuilder message = new StringBuilder(256);
+        final StringBuilder messageMissing = new StringBuilder(256);
         if (!missingViolations.isEmpty()) {
-            message.append("missing violations: ").append(missingViolations);
+            messageMissing.append("missing violations: ").append(missingViolations);
         }
-        if (!unexpectedViolations.isEmpty()) {
-            if (message.length() > 0) {
-                message.append('\n');
-            }
-            message.append("unexpected violations: ").append(unexpectedViolations);
-        }
-        if (!differingViolations.isEmpty()) {
-            if (message.length() > 0) {
-                message.append('\n');
-            }
-            message.append("differing violations: ").append(differingViolations);
-        }
+        assertWithMessage(messageMissing.toString())
+                .that(missingViolations)
+                .isEmpty();
 
-        assertTrue(message.toString(),
-                missingViolations.isEmpty()
-                        && unexpectedViolations.isEmpty()
-                        && differingViolations.isEmpty());
+        final StringBuilder messageUnexpected = new StringBuilder(256);
+        if (!unexpectedViolations.isEmpty()) {
+            messageUnexpected.append("unexpected violations: ").append(unexpectedViolations);
+        }
+        assertWithMessage(messageUnexpected.toString())
+                .that(unexpectedViolations)
+                .isEmpty();
+
+        final StringBuilder messageDiffering = new StringBuilder(256);
+        if (!differingViolations.isEmpty()) {
+            messageDiffering.append("differing violations: ").append(differingViolations);
+        }
+        assertWithMessage(messageDiffering.toString())
+                .that(differingViolations)
+                .isEmpty();
 
         checker.destroy();
     }
