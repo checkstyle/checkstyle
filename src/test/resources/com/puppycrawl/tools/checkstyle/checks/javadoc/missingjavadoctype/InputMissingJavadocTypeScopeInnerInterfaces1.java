@@ -37,7 +37,7 @@ public class InputMissingJavadocTypeScopeInnerInterfaces1 // violation
         void mb();
     }
 
-    public interface PublicInnerInterface // ok
+    public interface PublicInnerInterface // violation
     {
         public String CA = "CONST A";
         String CB = "CONST b";
