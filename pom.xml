@@ -381,6 +381,11 @@
         </exclusion>
       </exclusions>
     </dependency>
+      <dependency>
+          <groupId>com.puppycrawl.tools</groupId>
+          <artifactId>checkstyle</artifactId>
+          <version>8.40</version>
+      </dependency>
   </dependencies>
 
   <!-- that repositories are required for testing plugin's snapshot version -->

@@ -3875,16 +3875,16 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      *       <pre>
-     * LITERAL_NEW -&t; new
-     *  |--IDENT -&t; ArrayList
-     *  |--TYPE_ARGUMENTS -&t; TYPE_ARGUMENTS
-     *  |   |--GENERIC_START -&t;
-     *  |   `--GENERIC_END -&t;
-     *  |--LPAREN -&t; (
-     *  |--ELIST -&t; ELIST
-     *  |       |   `--EXPR -&t; EXPR
-     *  |       |       `--NUM_INT -&t; 50
-     *  `--RPAREN -&t; )
+     * LITERAL_NEW -&gt; new
+     *  |--IDENT -&gt; ArrayList
+     *  |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |   |--GENERIC_START -&gt;
+     *  |   `--GENERIC_END -&gt;
+     *  |--LPAREN -&gt; (
+     *  |--ELIST -&gt; ELIST
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_INT -&gt; 50
+     *  `--RPAREN -&gt; )
      *       </pre>
      *
      * <p>For example:</p>
