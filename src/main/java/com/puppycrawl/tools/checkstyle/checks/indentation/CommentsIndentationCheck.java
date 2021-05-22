@@ -404,13 +404,11 @@ public class CommentsIndentationCheck extends AbstractCheck {
                     && isOnPreviousLineIgnoringComments(comment, previousSibling)) {
                 DetailAST currentToken = previousSibling.getPreviousSibling();
                 while (currentToken.getFirstChild() != null) {
-                    currentToken = currentToken.getFirstChild();
-                }
-                if (currentToken.getType() == TokenTypes.COMMENT_CONTENT) {
-                    currentToken = currentToken.getParent();
-                    while (isComment(currentToken)) {
-                        currentToken = currentToken.getNextSibling();
+                    DetailAST child = currentToken.getFirstChild();
+                    while (isComment(child)) {
+                        child = child.getNextSibling();
                     }
+                    currentToken = child;
                 }
                 if (!TokenUtil.areOnSameLine(previousSibling, currentToken)) {
                     isDistributed = true;
