@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -301,11 +300,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
-                assertEquals("error message " + i, expectedResult, actuals.get(i));
+                assertWithMessage("error message %s", i)
+                        .that(actuals.get(i))
+                        .isEqualTo(expectedResult);
             }
 
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
+            assertWithMessage("unexpected output: " + lnr.readLine())
+                    .that(errs)
+                    .isEqualTo(expected.length);
         }
 
         checker.destroy();
@@ -348,22 +350,23 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             message.append("missing violations: ").append(missingViolations);
         }
         if (!unexpectedViolations.isEmpty()) {
-            if (message.length() > 0) {
+            if (!message.isEmpty()) {
                 message.append('\n');
             }
             message.append("unexpected violations: ").append(unexpectedViolations);
         }
         if (!differingViolations.isEmpty()) {
-            if (message.length() > 0) {
+            if (!message.isEmpty()) {
                 message.append('\n');
             }
             message.append("differing violations: ").append(differingViolations);
         }
 
-        assertTrue(message.toString(),
-                missingViolations.isEmpty()
+        assertWithMessage(message.toString())
+                .that(missingViolations.isEmpty()
                         && unexpectedViolations.isEmpty()
-                        && differingViolations.isEmpty());
+                        && differingViolations.isEmpty())
+                .isTrue();
 
         checker.destroy();
     }
