@@ -89,7 +89,7 @@ public abstract class AbstractParenPadCheck
         final int after = ast.getColumnNo() + 1;
         if (after < line.length()) {
             if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(after))) {
+                    && Character.isWhitespace(line.charAt(after))) {
                 log(ast, MSG_WS_FOLLOWED, OPEN_PARENTHESIS);
             }
             else if (option == PadOption.SPACE
@@ -110,13 +110,13 @@ public abstract class AbstractParenPadCheck
         if (before >= 0) {
             final String line = getLines()[ast.getLineNo() - 1];
             if (option == PadOption.NOSPACE
-                && Character.isWhitespace(line.charAt(before))
-                && !CommonUtil.hasWhitespaceBefore(before, line)) {
+                    && Character.isWhitespace(line.charAt(before))
+                    && !CommonUtil.hasWhitespaceBefore(before, line)) {
                 log(ast, MSG_WS_PRECEDED, CLOSE_PARENTHESIS);
             }
             else if (option == PadOption.SPACE
-                && !Character.isWhitespace(line.charAt(before))
-                && line.charAt(before) != OPEN_PARENTHESIS) {
+                    && !Character.isWhitespace(line.charAt(before))
+                    && line.charAt(before) != OPEN_PARENTHESIS) {
                 log(ast, MSG_WS_NOT_PRECEDED, CLOSE_PARENTHESIS);
             }
         }

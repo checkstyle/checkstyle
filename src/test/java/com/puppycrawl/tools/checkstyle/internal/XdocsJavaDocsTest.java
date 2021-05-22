@@ -370,7 +370,7 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
         final String result;
         if (!isSpecialAllTokensType
                 && (propertyName.endsWith("token") || propertyName.endsWith(
-                "tokens"))) {
+                    "tokens"))) {
             result = " Default value is: ";
         }
         else {
@@ -397,8 +397,8 @@ public class XdocsJavaDocsTest extends AbstractModuleTestSupport {
                                                 boolean isPropertyTokenType) {
         String defaultValueText = getNodeText(defaultValueNode);
         if ("{@code {}}".equals(defaultValueText)
-            || "{@code all files}".equals(defaultValueText)
-            || isPropertyTokenType && "{@code empty}".equals(defaultValueText)) {
+                || "{@code all files}".equals(defaultValueText)
+                || isPropertyTokenType && "{@code empty}".equals(defaultValueText)) {
             defaultValueText = "{@code \"\"}";
         }
         return defaultValueText;

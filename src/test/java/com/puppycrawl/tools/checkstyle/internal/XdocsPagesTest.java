@@ -366,9 +366,9 @@ public class XdocsPagesTest {
                         .replace("...", "").trim();
 
                 if (unserializedSource.length() > 1 && (unserializedSource.charAt(0) != '<'
-                        || unserializedSource.charAt(unserializedSource.length() - 1) != '>'
-                        // no dtd testing yet
-                        || unserializedSource.contains("<!"))) {
+                            || unserializedSource.charAt(unserializedSource.length() - 1) != '>'
+                            // no dtd testing yet
+                            || unserializedSource.contains("<!"))) {
                     continue;
                 }
 
@@ -971,16 +971,16 @@ public class XdocsPagesTest {
         String result = null;
         final String checkProperty = sectionName + ":" + propertyName;
         if (("SuppressionCommentFilter".equals(sectionName)
-                || "SuppressWithNearbyCommentFilter".equals(sectionName)
-                || "SuppressWithPlainTextCommentFilter".equals(sectionName))
-                    && ("checkFormat".equals(propertyName)
-                        || "messageFormat".equals(propertyName)
-                        || "idFormat".equals(propertyName)
-                        || "influenceFormat".equals(propertyName))
+                    || "SuppressWithNearbyCommentFilter".equals(sectionName)
+                    || "SuppressWithPlainTextCommentFilter".equals(sectionName))
+                && ("checkFormat".equals(propertyName)
+                    || "messageFormat".equals(propertyName)
+                    || "idFormat".equals(propertyName)
+                    || "influenceFormat".equals(propertyName))
                 || ("RegexpMultiline".equals(sectionName)
                     || "RegexpSingleline".equals(sectionName)
                     || "RegexpSinglelineJava".equals(sectionName))
-                    && "format".equals(propertyName)) {
+                && "format".equals(propertyName)) {
             // dynamic custom expression
             result = "Regular Expression";
         }
@@ -1027,10 +1027,10 @@ public class XdocsPagesTest {
         }
         else if (fieldClass == Pattern.class) {
             if ("SuppressionSingleFilter:checks".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:files".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:message".equals(checkProperty)
-                || "IllegalTokenText:format".equals(checkProperty)) {
+                    || "SuppressionXpathSingleFilter:files".equals(checkProperty)
+                    || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
+                    || "SuppressionXpathSingleFilter:message".equals(checkProperty)
+                    || "IllegalTokenText:format".equals(checkProperty)) {
                 result = "Regular Expression";
             }
             else {
@@ -1039,9 +1039,9 @@ public class XdocsPagesTest {
         }
         else if (fieldClass == Pattern[].class) {
             if ("ImportOrder:groups".equals(checkProperty)
-                || "ImportOrder:staticGroups".equals(checkProperty)
-                || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
-                || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
+                    || "ImportOrder:staticGroups".equals(checkProperty)
+                    || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
+                    || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
                 result = "Regular Expressions";
             }
             else {

@@ -485,8 +485,8 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
                 TokenTypes.ANNOTATION_MEMBER_VALUE_PAIR);
 
         if (valuePairCount == 1
-            && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
-                valuePair.getFirstChild().getText())) {
+                && ANNOTATION_ELEMENT_SINGLE_NAME.equals(
+                    valuePair.getFirstChild().getText())) {
             log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyleOption.COMPACT);
         }
@@ -503,7 +503,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
 
         // in compact style with one value
         if (arrayInit != null
-            && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
+                && arrayInit.getChildCount(TokenTypes.EXPR) == 1) {
             log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                 ElementStyleOption.COMPACT_NO_ARRAY);
         }
@@ -514,7 +514,7 @@ public final class AnnotationUseStyleCheck extends AbstractCheck {
                 final DetailAST nestedArrayInit =
                     ast.findFirstToken(TokenTypes.ANNOTATION_ARRAY_INIT);
                 if (nestedArrayInit != null
-                    && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
+                        && nestedArrayInit.getChildCount(TokenTypes.EXPR) == 1) {
                     log(annotation, MSG_KEY_ANNOTATION_INCORRECT_STYLE,
                         ElementStyleOption.COMPACT_NO_ARRAY);
                 }

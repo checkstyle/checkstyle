@@ -317,11 +317,11 @@ public class RedundantModifierCheck
 
             final int type = modifier.getType();
             if (type == TokenTypes.LITERAL_PUBLIC
-                || type == TokenTypes.LITERAL_STATIC
+                    || type == TokenTypes.LITERAL_STATIC
                         && ast.getType() != TokenTypes.METHOD_DEF
-                || type == TokenTypes.ABSTRACT
+                    || type == TokenTypes.ABSTRACT
                         && ast.getType() != TokenTypes.CLASS_DEF
-                || type == TokenTypes.FINAL
+                    || type == TokenTypes.FINAL
                         && ast.getType() != TokenTypes.CLASS_DEF) {
                 log(modifier, MSG_KEY, modifier.getText());
                 break;

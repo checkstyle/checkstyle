@@ -509,8 +509,8 @@ public class SuppressionCommentFilter
         Tag result = null;
         for (Tag tag : tags) {
             if (tag.getLine() > event.getLine()
-                || tag.getLine() == event.getLine()
-                    && tag.getColumn() > event.getColumn()) {
+                    || tag.getLine() == event.getLine()
+                        && tag.getColumn() > event.getColumn()) {
                 break;
             }
             if (tag.isMatch(event)) {

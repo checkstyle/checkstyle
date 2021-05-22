@@ -14,7 +14,7 @@
 package com.puppycrawl.tools.checkstyle.checks.indentation.indentation; //indent:0 exp:0
 
 @InputIndentationAnnArrInit2.Foo({ //indent:0 exp:0
-    @InputIndentationAnnArrInit2.Bar, //indent:4 exp:0,33,35 warn
+    @InputIndentationAnnArrInit2.Bar, //indent:4 exp:0,2,33,35 warn
 @InputIndentationAnnArrInit2.Bar, //indent:0 exp:0
 }) //indent:0 exp:0
 
@@ -46,7 +46,7 @@ interface SomeInterface2 { //indent:0 exp:0
   @SomeAnnotation(values =  //indent:2 exp:2
       { //indent:6 exp:2 warn
   Info.A, //indent:2 exp:2
-    Info.B //indent:4 exp:2,6,8 warn
+    Info.B //indent:4 exp:2,4,6,8
   } //indent:2 exp:2
   ) //indent:2 exp:2
   void works(); //indent:2 exp:2

@@ -156,7 +156,7 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         final DetailAST lcurly = getLeftCurly();
         IndentLevel expIndentLevel = new IndentLevel(getIndent(), getBraceAdjustment());
         if (!isOnStartOfLine(lcurly)
-            || lcurly.getParent().getType() == TokenTypes.INSTANCE_INIT) {
+                || lcurly.getParent().getType() == TokenTypes.INSTANCE_INIT) {
             expIndentLevel = new IndentLevel(getIndent(), 0);
         }
 

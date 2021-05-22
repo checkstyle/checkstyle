@@ -373,7 +373,7 @@ public class EmptyCatchBlockCheck extends AbstractCheck {
         DetailAST catchBlockStmt = slistToken.getFirstChild();
         while (catchBlockStmt.getType() != TokenTypes.RCURLY) {
             if (catchBlockStmt.getType() != TokenTypes.SINGLE_LINE_COMMENT
-                 && catchBlockStmt.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
+                    && catchBlockStmt.getType() != TokenTypes.BLOCK_COMMENT_BEGIN) {
                 result = false;
                 break;
             }

@@ -147,7 +147,7 @@ public class AvoidDoubleBraceInitializationCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getParent().getType() == TokenTypes.LITERAL_NEW
-            && hasOnlyInitialization(ast)) {
+                && hasOnlyInitialization(ast)) {
             log(ast, MSG_KEY);
         }
     }

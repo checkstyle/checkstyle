@@ -288,7 +288,7 @@ public class DeclarationOrderCheck extends AbstractCheck {
                 break;
             case TokenTypes.MODIFIERS:
                 if (parentType == TokenTypes.VARIABLE_DEF
-                    && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
+                        && ast.getParent().getParent().getType() == TokenTypes.OBJBLOCK) {
                     processModifiers(ast);
                 }
                 break;

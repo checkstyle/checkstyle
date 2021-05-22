@@ -174,7 +174,7 @@ public class ConstantNameCheck
             // which are used for Serialization. Cannot enforce rules on it. :-)
             final DetailAST nameAST = ast.findFirstToken(TokenTypes.IDENT);
             if (!"serialVersionUID".equals(nameAST.getText())
-                && !"serialPersistentFields".equals(nameAST.getText())) {
+                    && !"serialPersistentFields".equals(nameAST.getText())) {
                 returnValue = true;
             }
         }

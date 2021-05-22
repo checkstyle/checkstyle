@@ -342,7 +342,7 @@ public class EmptyBlockCheck
         final DetailAST leftCurly;
         final DetailAST slistAST = ast.findFirstToken(TokenTypes.SLIST);
         if ((ast.getType() == TokenTypes.LITERAL_CASE
-                || ast.getType() == TokenTypes.LITERAL_DEFAULT)
+                    || ast.getType() == TokenTypes.LITERAL_DEFAULT)
                 && ast.getNextSibling() != null
                 && ast.getNextSibling().getFirstChild() != null
                 && ast.getNextSibling().getFirstChild().getType() == TokenTypes.SLIST) {

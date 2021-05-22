@@ -99,10 +99,10 @@ public abstract class AbstractSuperCheck
         boolean superCall = false;
 
         if (literalSuperAst.getType() == TokenTypes.LITERAL_SUPER
-            && !isSameNameMethod(literalSuperAst)) {
+                && !isSameNameMethod(literalSuperAst)) {
             final DetailAST parent = literalSuperAst.getParent();
             if (parent.getType() == TokenTypes.METHOD_REF
-                || !hasArguments(parent)) {
+                    || !hasArguments(parent)) {
                 superCall = isSuperCallInOverridingMethod(parent);
             }
         }
@@ -151,7 +151,7 @@ public abstract class AbstractSuperCheck
         DetailAST sibling = ast.getNextSibling();
         // ignore type parameters
         if (sibling != null
-            && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
+                && sibling.getType() == TokenTypes.TYPE_ARGUMENTS) {
             sibling = sibling.getNextSibling();
         }
         return sibling == null || !getMethodName().equals(sibling.getText());

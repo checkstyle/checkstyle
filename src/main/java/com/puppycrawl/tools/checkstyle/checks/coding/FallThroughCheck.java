@@ -253,7 +253,7 @@ public class FallThroughCheck extends AbstractCheck {
             final DetailAST slist = ast.findFirstToken(TokenTypes.SLIST);
 
             if (slist != null && !isTerminated(slist, true, true)
-                && !hasFallThroughComment(ast, nextGroup)) {
+                    && !hasFallThroughComment(ast, nextGroup)) {
                 if (isLastGroup) {
                     log(ast, MSG_FALL_THROUGH_LAST);
                 }

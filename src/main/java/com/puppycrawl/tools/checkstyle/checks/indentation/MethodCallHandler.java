@@ -124,7 +124,7 @@ public class MethodCallHandler extends AbstractExpressionHandler {
         final DetailAST target1 = dot1.getFirstChild();
 
         if (dot1.getType() == TokenTypes.DOT
-            && target1.getType() == TokenTypes.METHOD_CALL) {
+                && target1.getType() == TokenTypes.METHOD_CALL) {
             result = true;
         }
         return result;

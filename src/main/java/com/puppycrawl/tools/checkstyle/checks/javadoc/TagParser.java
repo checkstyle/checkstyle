@@ -270,8 +270,8 @@ class TagParser {
                            || currentLine.charAt(column) == '*')) {
                     column++;
                     if (column < currentLine.length()
-                        && currentLine.charAt(column - 1) == '*'
-                        && currentLine.charAt(column) == '/') {
+                            && currentLine.charAt(column - 1) == '*'
+                            && currentLine.charAt(column) == '/') {
                         // this is end of comment
                         column = currentLine.length();
                     }

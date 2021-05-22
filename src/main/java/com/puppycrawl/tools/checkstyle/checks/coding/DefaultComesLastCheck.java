@@ -192,8 +192,8 @@ public class DefaultComesLastCheck extends AbstractCheck {
                 log(ast, MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE);
             }
             else if (ast.getPreviousSibling() == null
-                && Objects.nonNull(findNextSibling(defaultGroupAST,
-                                                   TokenTypes.CASE_GROUP))) {
+                    && Objects.nonNull(findNextSibling(defaultGroupAST,
+                                                       TokenTypes.CASE_GROUP))) {
                 log(ast, MSG_KEY);
             }
         }

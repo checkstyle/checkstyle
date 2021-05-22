@@ -20,11 +20,11 @@ import java.util.function.Supplier; //indent:0 exp:0
 public class InputIndentationLambda7 { //indent:0 exp:0
     public static void someFunction(SomeUtilClass util) { //indent:4 exp:4
         util.myLambdaUtil("FIRST_ARG", //indent:8 exp:8
-                (string) //indent:16 exp:12 warn
-                -> //indent:16 exp:12 warn
+                (string) //indent:16 exp:12,26 warn
+                -> //indent:16 exp:12,26 warn
             System.out.println(string.trim()), //indent:12 exp:12
-                          "SECOND_ARG", //indent:26 exp:12 warn
-                         () -> "WHAT WHAT!"); //indent:25 exp:12 warn
+                          "SECOND_ARG", //indent:26 exp:26
+                         () -> "WHAT WHAT!"); //indent:25 exp:12,26 warn
 
         Function<String, String> someFunction1 = //indent:8 exp:8
                 (string) -> { //indent:16 exp:12 warn

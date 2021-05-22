@@ -97,7 +97,7 @@ public class LambdaHandler extends AbstractExpressionHandler {
         final boolean isSwitchRuleLambda = firstChild == null;
 
         if (!isSwitchRuleLambda
-            && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
+                && getLineStart(firstChild) == expandedTabsColumnNo(firstChild)) {
             final int firstChildColumnNo = expandedTabsColumnNo(firstChild);
             final IndentLevel level = getIndent();
 
