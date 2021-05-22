@@ -3874,18 +3874,18 @@ public final class TokenTypes {
      * </pre>
      *
      * <p>parses as:</p>
-     * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--IDENT (ArrayList)
-     *     +--LPAREN (()
-     *     +--ELIST
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--NUM_INT (50)
-     *     +--RPAREN ())
-     * </pre>
+     *       <pre>
+     * LITERAL_NEW -&t; new
+     *  |--IDENT -&t; ArrayList
+     *  |--TYPE_ARGUMENTS -&t; TYPE_ARGUMENTS
+     *  |   |--GENERIC_START -&t;
+     *  |   `--GENERIC_END -&t;
+     *  |--LPAREN -&t; (
+     *  |--ELIST -&t; ELIST
+     *  |       |   `--EXPR -&t; EXPR
+     *  |       |       `--NUM_INT -&t; 50
+     *  `--RPAREN -&t; )
+     *       </pre>
      *
      * <p>For example:</p>
      * <pre>
