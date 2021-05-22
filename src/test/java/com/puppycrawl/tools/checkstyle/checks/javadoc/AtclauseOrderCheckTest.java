@@ -19,8 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc;
 
-import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.javadoc.AtclauseOrderCheck.MSG_KEY;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,18 +40,16 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertWithMessage("Default acceptable tokens are invalid")
-                .that(checkObj.getAcceptableTokens())
-                .isEqualTo(expected);
+        assertArrayEquals(expected, checkObj.getAcceptableTokens(),
+                "Default acceptable tokens are invalid");
     }
 
     @Test
     public void testGetRequiredTokens() {
         final AtclauseOrderCheck checkObj = new AtclauseOrderCheck();
         final int[] expected = {TokenTypes.BLOCK_COMMENT_BEGIN};
-        assertWithMessage("Default acceptable tokens are invalid")
-                .that(checkObj.getAcceptableTokens())
-                .isEqualTo(expected);
+        assertArrayEquals(expected, checkObj.getRequiredTokens(),
+                "Default required tokens are invalid");
     }
 
     @Test
