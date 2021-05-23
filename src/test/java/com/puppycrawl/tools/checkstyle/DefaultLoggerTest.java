@@ -19,6 +19,9 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,8 +31,15 @@ import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.DefaultLocale;
+import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -38,13 +48,13 @@ import com.puppycrawl.tools.checkstyle.api.Violation;
 
 public class DefaultLoggerTest {
 
-    private final Violation auditStartMessage = new Violation(1,
-            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditStarted", null, null,
-            getClass(), null);
+    private static final Locale DEFAULT_LOCALE = Locale.getDefault();
 
-    private final Violation auditFinishMessage = new Violation(1,
-            Definitions.CHECKSTYLE_BUNDLE, "DefaultLogger.auditFinished", null, null,
-            getClass(), null);
+    private final DefaultLogger.LocalizedMessage auditStartMessage =
+            new DefaultLogger.LocalizedMessage(null, "DefaultLogger.auditStarted");
+
+    private final DefaultLogger.LocalizedMessage auditFinishMessage =
+            new DefaultLogger.LocalizedMessage(null, "DefaultLogger.auditFinished");
 
     @Test
     public void testCtor() throws UnsupportedEncodingException {
@@ -55,12 +65,11 @@ public class DefaultLoggerTest {
         dl.addException(new AuditEvent(5000, "myfile"), new IllegalStateException("upsss"));
         dl.auditFinished(new AuditEvent(6000, "myfile"));
         final String output = errorStream.toString(StandardCharsets.UTF_8.name());
-        final Violation addExceptionMessage = new Violation(1,
-                Definitions.CHECKSTYLE_BUNDLE, DefaultLogger.ADD_EXCEPTION_MESSAGE,
-                new String[] {"myfile"}, null,
-                getClass(), null);
+        final DefaultLogger.LocalizedMessage addExceptionMessage =
+                new DefaultLogger.LocalizedMessage(new String[] {"myfile"},
+                        DefaultLogger.ADD_EXCEPTION_MESSAGE);
 
-        assertTrue(output.contains(addExceptionMessage.getViolation()), "Invalid exception");
+        assertTrue(output.contains(addExceptionMessage.getMessage()), "Invalid exception");
         assertTrue(output.contains("java.lang.IllegalStateException: upsss"),
                 "Invalid exception class");
     }
@@ -92,7 +101,8 @@ public class DefaultLoggerTest {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's 'The allocated object is never used'
+            // DefaultLogger.LocalizedMessage
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -108,7 +118,8 @@ public class DefaultLoggerTest {
         try {
             final DefaultLogger logger = new DefaultLogger(outputStream,
                 AutomaticBean.OutputStreamOptions.CLOSE, outputStream, null);
-            // assert required to calm down eclipse's 'The allocated object is never used' violation
+            // assert required to calm down eclipse's 'The allocated object is never used'
+            // DefaultLogger.LocalizedMessage
             assertNotNull(logger, "Null instance");
             fail("Exception was expected");
         }
@@ -130,8 +141,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, null, getClass(), "customViolation")));
         dl.auditFinished(null);
-        assertEquals(auditStartMessage.getViolation() + System.lineSeparator()
-                + auditFinishMessage.getViolation() + System.lineSeparator(), infoStream.toString(),
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
                 "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [DefaultLoggerTest]"
                 + System.lineSeparator(), errorStream.toString(), "expected output");
@@ -148,8 +159,8 @@ public class DefaultLoggerTest {
         dl.addError(new AuditEvent(this, "fileName", new Violation(1, 2, "bundle", "key",
                 null, "moduleId", getClass(), "customViolation")));
         dl.auditFinished(null);
-        assertEquals(auditStartMessage.getViolation() + System.lineSeparator()
-                + auditFinishMessage.getViolation() + System.lineSeparator(), infoStream.toString(),
+        assertEquals(auditStartMessage.getMessage() + System.lineSeparator()
+                + auditFinishMessage.getMessage() + System.lineSeparator(), infoStream.toString(),
                 "expected output");
         assertEquals("[ERROR] fileName:1:2: customViolation [moduleId]"
                 + System.lineSeparator(), errorStream.toString(), "expected output");
@@ -166,4 +177,78 @@ public class DefaultLoggerTest {
         assertNotNull(dl, "instance should not be null");
     }
 
+    /**
+     * Verifies that the language specified with the system property {@code user.language} exists.
+     */
+    @Test
+    public void testLanguageIsValid() {
+        final String language = DEFAULT_LOCALE.getLanguage();
+        if (!language.isEmpty()) {
+            assertThat("Invalid language",
+                    Arrays.asList(Locale.getISOLanguages()), hasItem(language));
+        }
+    }
+
+    /**
+     * Verifies that the country specified with the system property {@code user.country} exists.
+     */
+    @Test
+    public void testCountryIsValid() {
+        final String country = DEFAULT_LOCALE.getCountry();
+        if (!country.isEmpty()) {
+            assertThat("Invalid country",
+                    Arrays.asList(Locale.getISOCountries()), hasItem(country));
+        }
+    }
+
+    /**
+     * Verifies that if the language is specified explicitly (and it is not English),
+     * the message does not use the default value.
+     */
+    @Test
+    public void testLocaleIsSupported() {
+        final String language = DEFAULT_LOCALE.getLanguage();
+        if (!language.isEmpty() && !Locale.ENGLISH.getLanguage().equals(language)) {
+            final DefaultLogger.LocalizedMessage message = createSampleLocalizedMessage();
+            assertThat("Unsupported language: " + DEFAULT_LOCALE,
+                    message.getMessage(), not("Error auditing {0}"));
+        }
+    }
+
+    @DefaultLocale("fr")
+    @Test
+    public void testCleatBundleCache() {
+        final DefaultLogger.LocalizedMessage message = createSampleLocalizedMessage();
+
+        assertEquals("Une erreur est survenue {0}", message.getMessage(), "Invalid message");
+
+        final Map<String, ResourceBundle> bundleCache =
+                Whitebox.getInternalState(DefaultLogger.LocalizedMessage.class, "BUNDLE_CACHE");
+
+        assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
+    }
+
+    @Test
+    public void testNullArgs() {
+        final DefaultLogger.LocalizedMessage message = new DefaultLogger.LocalizedMessage(
+                new String[] {"myfile"}, DefaultLogger.ADD_EXCEPTION_MESSAGE);
+        final String output = message.getMessage();
+        assertTrue(output.contains("Error auditing myfile"),
+                "Violation should contain exception info, but was " + output);
+
+        final DefaultLogger.LocalizedMessage messageWithNullArgs =
+                new DefaultLogger.LocalizedMessage(null, DefaultLogger.ADD_EXCEPTION_MESSAGE);
+        final String outputForNullArgs = messageWithNullArgs.getMessage();
+        assertTrue(outputForNullArgs.contains("Error auditing {0}"),
+                "Violation should contain exception info, but was " + outputForNullArgs);
+    }
+
+    private static DefaultLogger.LocalizedMessage createSampleLocalizedMessage() {
+        return new DefaultLogger.LocalizedMessage(null, DefaultLogger.ADD_EXCEPTION_MESSAGE);
+    }
+
+    @AfterEach
+    public void tearDown() {
+        DefaultLogger.LocalizedMessage.clearCache();
+    }
 }
