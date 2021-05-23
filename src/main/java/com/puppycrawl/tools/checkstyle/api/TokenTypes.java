@@ -2473,18 +2473,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * LITERAL_FOR -&gt; for
-     *  |--LPAREN -&gt; (
-     *  |--FOR_INIT -&gt; FOR_INIT
-     *  |--SEMI -&gt; ;
-     *  |--FOR_CONDITION -&gt; FOR_CONDITION
-     *  |--SEMI -&gt; ;
-     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
-     *  |--RPAREN -&gt; )
-     *  `--SLIST -&gt; {
-     *      |--LITERAL_CONTINUE -&gt; continue
-     *      |   `--SEMI -&gt; ;
-     *      `--RCURLY -&gt; }
+     * LITERAL_IF -&gt if
+     *  |--LPAREN -&gt (
+     *  |--EXPR -&gt EXPR
+     *  |   `--EQUAL -&gt ==
+     *  |       |--IDENT -&gti
+     *  |       `--NUM_INT -> 4
+     *  |--RPAREN -&gt )
+     *   `--SLIST -&gt {
+     *      |--LITERAL_BREAK -&gt break
+     *      |    `--SEMI -&gt ;
+     *       `--RCURLY -&gt }
      * </pre>
      *
      * @see #IDENT
@@ -5274,10 +5273,10 @@ public final class TokenTypes {
      * |   |   `--IDENT -&gt; String
      * |   |--IDENT -&gt; hello
      * |   `--ASSIGN -&gt; =
-     * |       `--EXPR -&gt; EXPR
-     * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
-     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
-     * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
+     * |      `--EXPR -&gt; EXPR
+     * |          `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
+     * |              |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |              `--TEXT_BLOCK_LITERAL_END -&gt; """
      * |--SEMI -&gt; ;
      * </pre>
      *
