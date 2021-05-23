@@ -417,4 +417,52 @@ public final class JavadocUtil {
                 || BlockCommentPosition.isOnPackage(blockComment));
     }
 
+    /**
+     * Gets the content of inline custom tag.
+     *
+     * @param javadoc root javadoc node of javadoc ast.
+     * @return An array list of String comprising of the content of inline custom tag.
+     */
+    public static ArrayList<String> getContentOfInlineCustomTag(DetailNode javadoc) {
+        ArrayList<String> customTagContent = null;
+        final DetailNode[] children = javadoc.getChildren();
+        DetailNode nodeToBeProcessed = null;
+        DetailNode endingNode = null;
+        for (DetailNode node : children) {
+            if (node.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
+                final DetailNode[] childrenOfJavadocInlineTag = node.getChildren();
+                nodeToBeProcessed = childrenOfJavadocInlineTag[2];
+                endingNode = childrenOfJavadocInlineTag[childrenOfJavadocInlineTag.length - 1];
+                customTagContent = new ArrayList<>();
+            }
+        }
+        while (nodeToBeProcessed != endingNode) {
+            customTagContent.add(extractContentInlineCustomTag(nodeToBeProcessed));
+            nodeToBeProcessed = getNextSibling(nodeToBeProcessed);
+        }
+        return customTagContent;
+    }
+
+    /**
+     * Extracts the content of inline custom tag recursively.
+     *
+     * @param node DetailNode
+     * @return Text of the node supplied, concatenated text if that node has children.
+     */
+    private static String extractContentInlineCustomTag(DetailNode node) {
+        String result = "";
+        final DetailNode[] children = node.getChildren();
+        if (children.length != 0) {
+            for (DetailNode child : children) {
+                if (child.getType() != JavadocTokenTypes.LEADING_ASTERISK) {
+                    result = result.concat(extractContentInlineCustomTag(child));
+                }
+            }
+        }
+        else {
+            result = node.getText();
+        }
+        return result;
+    }
+
 }
