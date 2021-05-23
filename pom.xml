@@ -227,7 +227,7 @@
     <pitest.plugin.threads>4</pitest.plugin.threads>
     <pitest.junit5.plugin.version>0.14</pitest.junit5.plugin.version>
     <sonar.test.exclusions>**/test/resources/**/*,**/it/resources/**/*</sonar.test.exclusions>
-    <junit.version>5.7.1</junit.version>
+    <junit.version>5.7.2</junit.version>
   </properties>
 
   <dependencies>
@@ -335,7 +335,7 @@
     <dependency>
       <groupId>org.javassist</groupId>
       <artifactId>javassist</artifactId>
-      <version>3.27.0-GA</version>
+      <version>3.28.0-GA</version>
       <scope>test</scope>
     </dependency>
     <!-- till https://github.com/checkstyle/checkstyle/issues/7368 -->
@@ -354,7 +354,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.11.0.202103091610-r</version>
+      <version>5.11.1.202105131744-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
