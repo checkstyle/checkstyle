@@ -22,15 +22,23 @@ package com.puppycrawl.tools.checkstyle.utils;
 import static com.puppycrawl.tools.checkstyle.internal.utils.TestUtil.isUtilsClassHasPrivateConstructor;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
+import com.puppycrawl.tools.checkstyle.JavaParser;
+import com.puppycrawl.tools.checkstyle.JavadocDetailNodeParser;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Comment;
+import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
@@ -40,7 +48,12 @@ import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTag;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTagInfo;
 import com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocTags;
 
-public class JavadocUtilTest {
+public class JavadocUtilTest extends AbstractModuleTestSupport {
+
+    @Override
+    protected String getPackageLocation() {
+        return "com/puppycrawl/tools/checkstyle/utils/javadocutil";
+    }
 
     @Test
     public void testTags() {
@@ -377,6 +390,38 @@ public class JavadocUtilTest {
         assertEquals("abc", JavadocUtil.escapeAllControlChars("abc"), "invalid result");
         assertEquals("1\\r2\\n3\\t",
                 JavadocUtil.escapeAllControlChars("1\\r2\\n3\\t"), "invalid result");
+    }
+
+    @Test
+    public void testGetContentOfInlineCustomTag() throws CheckstyleException, IOException {
+        final File testFile = new File("src/test/resources/com/"
+                + "puppycrawl/tools/checkstyle/utils/javadocutil/"
+                + "InputJavadocUtilTest_ContentOfInlineCustomTag.java");
+        final DetailAST root = JavaParser.parseFile(testFile, JavaParser.Options.WITH_COMMENTS);
+        final DetailAST javadocCommentAST = root.getNextSibling().getFirstChild().getFirstChild()
+                .getNextSibling();
+        final JavadocDetailNodeParser detailNodeParser = new JavadocDetailNodeParser();
+        final DetailNode node = detailNodeParser
+                .parseJavadocAsDetailNode(javadocCommentAST).getTree();
+        final String actual = JavadocUtil.getContentOfInlineCustomTag(node);
+        final String expected = " This is the summary of the class.\n"
+                + " <ul>\n"
+                + " <li>This class does great things.</li>\n"
+                + " <li>This class is a test class.</li>\n"
+                + " </ul>";
+        assertEquals(expected, actual, "invalid result");
+        final DetailAST secondJavadocCommentAST = root.getNextSibling().getLastChild()
+                .getFirstChild().getNextSibling().getFirstChild()
+                .getFirstChild().getNextSibling();
+        final DetailNode nodeTwo = detailNodeParser
+                .parseJavadocAsDetailNode(secondJavadocCommentAST).getTree();
+        final String actualTwo = JavadocUtil.getContentOfInlineCustomTag(nodeTwo);
+        final String expectedTwo = " This is a custom tag\n"
+                + " {@tag A nested inline custom tag {@tag2 another nested tag}}\n"
+                + " This method is a test method.";
+        assertEquals(expectedTwo, actualTwo, "invalid result");
+        assertNull(JavadocUtil.getContentOfInlineCustomTag
+                (JavadocUtil.getFirstChild(node)), "Not Null, pass the wrong node");
     }
 
     private static void assertTag(String message, InvalidJavadocTag expected,
