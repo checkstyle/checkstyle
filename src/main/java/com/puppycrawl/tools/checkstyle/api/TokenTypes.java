@@ -2473,18 +2473,17 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * LITERAL_FOR -&gt; for
-     *  |--LPAREN -&gt; (
-     *  |--FOR_INIT -&gt; FOR_INIT
-     *  |--SEMI -&gt; ;
-     *  |--FOR_CONDITION -&gt; FOR_CONDITION
-     *  |--SEMI -&gt; ;
-     *  |--FOR_ITERATOR -&gt; FOR_ITERATOR
-     *  |--RPAREN -&gt; )
-     *  `--SLIST -&gt; {
-     *      |--LITERAL_CONTINUE -&gt; continue
-     *      |   `--SEMI -&gt; ;
-     *      `--RCURLY -&gt; }
+     * LITERAL_IF -&gt if
+     *  |--LPAREN -&gt (
+     *  |--EXPR -&gt EXPR
+     *  |   `--EQUAL -&gt ==
+     *  |       |--IDENT -&gti
+     *  |       `--NUM_INT -> 4
+     *  |--RPAREN -&gt )
+     *   `--SLIST -&gt {
+     *      |--LITERAL_BREAK -&gt break
+     *      |    `--SEMI -&gt ;
+     *       `--RCURLY -&gt }
      * </pre>
      *
      * @see #IDENT
