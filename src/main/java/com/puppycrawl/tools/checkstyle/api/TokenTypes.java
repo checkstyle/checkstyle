@@ -3875,16 +3875,16 @@ public final class TokenTypes {
      *
      * <p>parses as:</p>
      * <pre>
-     * +--LITERAL_NEW (new)
-     *     |
-     *     +--IDENT (ArrayList)
-     *     +--LPAREN (()
-     *     +--ELIST
-     *         |
-     *         +--EXPR
-     *             |
-     *             +--NUM_INT (50)
-     *     +--RPAREN ())
+     * LITERAL_NEW -&gt; new
+     *  |--IDENT -&gt; ArrayList
+     *  |--TYPE_ARGUMENTS -&gt; TYPE_ARGUMENTS
+     *  |   |--GENERIC_START -&gt; &lt;
+     *  |   `--GENERIC_END -&gt; &gt;
+     *  |--LPAREN -&gt; (
+     *  |--ELIST -&gt; ELIST
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--NUM_INT -&gt; 50
+     *  `--RPAREN -&gt; )
      * </pre>
      *
      * <p>For example:</p>
@@ -5274,10 +5274,10 @@ public final class TokenTypes {
      * |   |   `--IDENT -&gt; String
      * |   |--IDENT -&gt; hello
      * |   `--ASSIGN -&gt; =
-     * |       `--EXPR -&gt; EXPR
-     * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
-     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
-     * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
+     * |      `--EXPR -&gt; EXPR
+     * |          `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
+     * |              |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |              `--TEXT_BLOCK_LITERAL_END -&gt; """
      * |--SEMI -&gt; ;
      * </pre>
      *
