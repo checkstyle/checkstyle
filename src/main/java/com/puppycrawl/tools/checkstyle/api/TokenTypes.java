@@ -1494,6 +1494,20 @@ public final class TokenTypes {
      * The {@code boolean} keyword.
      *
      * @see #TYPE
+     * <pre>
+     *--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *    |--MODIFIERS -&gt; MODIFIERS
+     *    |   `--LITERAL_PUBLIC -&gt; public
+     *    |--TYPE -&gt; TYPE
+     *    |   `--LITERAL_BOOLEAN -&gt; boolean
+     *    |--IDENT -&gt; x
+     *     `--SEMI -&gt; ;
+     * </pre>
+     *
+     *
+     *
+     *
+     *
      **/
     public static final int LITERAL_BOOLEAN =
         GeneratedJavaTokenTypes.LITERAL_boolean;
