@@ -51,6 +51,7 @@ blocks:
                 - .ci/validation.sh eclipse-static-analysis
                 - .ci/validation.sh eclipse-static-analysis-java11
                 - .ci/validation.sh java11-verify
+                - .ci/validation.sh verify-regexp-id
                 - mvn -e --no-transfer-progress clean install -Pno-validations
                     && .ci/no-exception-test.sh guava-with-google-checks
                 - mvn -e --no-transfer-progress clean install -Pno-validations
