@@ -4400,26 +4400,25 @@ public final class TokenTypes {
      * <p>parses as:</p>
      * <pre>
      * ANNOTATION_DEF -&gt ANNOTATION_DEF
-     *  |   |--MODIFIERS -&gt MODIFIERS
-     *  |   |   `--LITERAL_PUBLIC -&gt public
-     *  |   |--AT -&gt @
-     *  |   |--LITERAL_INTERFACE -&gt interface
-     *  |   |--IDENT -&gt MyAnnotation
-     *  |   `--OBJBLOCK -&gt OBJBLOCK
-     *  |       |--LCURLY -&gt {
-     *  |       |--ANNOTATION_FIELD_DEF -&gt ANNOTATION_FIELD_DEF
-     *  |       |   |--MODIFIERS -&gt MODIFIERS
-     *  |       |   |--TYPE -&gt TYPE
-     *  |       |   |   `--LITERAL_INT -&gt int
-     *  |       |   |--IDENT -&gt value
-     *  |       |   |--LPAREN -&gt (
-     *  |       |   |--RPAREN -&gt )
-     *  |       |   |--LITERAL_DEFAULT -&gt default
-     *  |       |   |   `--EXPR -&gt EXPR
-     *  |       |   |       `--NUM_INT -&gt 1
-     *  |       |   `--SEMI -&gt ;
-     *  |       `--RCURLY -&gt }
-     *  `--RCURLY -&gt }
+     *      |--MODIFIERS -&gt MODIFIERS
+     *      |   `--LITERAL_PUBLIC -&gt public
+     *      |--AT -&gt @
+     *      |--LITERAL_INTERFACE -&gt interface
+     *      |--IDENT -&gt MyAnnotation
+     *      `--OBJBLOCK -&gt OBJBLOCK
+     *          |--LCURLY -&gt {
+     *          |--ANNOTATION_FIELD_DEF -&gt ANNOTATION_FIELD_DEF
+     *          |   |--MODIFIERS -&gt MODIFIERS
+     *          |   |--TYPE -&gt TYPE
+     *          |   |   `--LITERAL_INT -&gt int
+     *          |   |--IDENT -&gt value
+     *          |   |--LPAREN -&gt (
+     *          |   |--RPAREN -&gt )
+     *          |   |--LITERAL_DEFAULT -&gt default
+     *          |   |   `--EXPR -&gt EXPR
+     *          |   |       `--NUM_INT -&gt 1
+     *          |   `--SEMI -&gt ;
+     *          `--RCURLY -&gt }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
