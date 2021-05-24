@@ -2,71 +2,67 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.Serializable;
 
-/*
- * Config: TempCheck
- */
-
-/**@author*/ // violation
+/**@author*/
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{
-    /**@serial*/ // ok
+    /**@serial*/
     private static final long serialVersionUID = 7556448691029650757L;
 
-    /**@see*/ // violation
+    /**@see*/
     private static int field2;
 
-    /**@since*/ // violation
+    /**@since*/
     private static String field3;
 
-    /**@version*/ // violation
+    /**@version*/
     private static Object field4;
 
-    /**serialField*/ // ok
+    /**serialField*/
     private static Object field5;
 
-    /**@exception*/ // violation
+    /**@exception*/
     public static void method1() {
 
     }
 
-    /**@throws*/ // violation
+    /**@throws*/
     public static void method2() {
 
     }
 
-    /**@return*/ // violation
+    /**@return*/
     public static int method3() {
         return -1;
     }
 
-    /**@param*/ // violation
+    /**@param*/
     public static void method4(int a) {
 
     }
 
-    /**@customTag*/ // ok
+    /**@customTag*/
     public static void method5(int a) {
 
     }
 
-    /**@deprecated*/ // ok
+    /**@deprecated*/
     public static void method6(int a) {
 
     }
 
-    /**@serialData*/ // ok
+    /**@serialData*/
     private void readObject(java.io.ObjectInputStream inputStream) {
 
     }
 
     /**
-     * {@link} // violation
+     * {@link}
      */
     public void method7() {
 
     }
 
     /**
-     * {@linkplain } // violation
+     * {@linkplain }
      */
     public void method8() {
 

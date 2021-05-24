@@ -3304,25 +3304,6 @@ public final class TokenTypes {
     /**
      * The {@code &&} (conditional AND) operator.
      *
-     *
-     * <p>For example:</p>
-     * <pre>
-     * if (a &amp;&amp; b) {
-     * }
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * LITERAL_IF -&gt; if
-     *  |--LPAREN -&gt; (
-     *  |--EXPR -&gt; EXPR
-     *  |   `--LAND -&gt; &amp;&amp;
-     *  |       |--IDENT -&gt; a
-     *  |       `--IDENT -&gt; b
-     *  |--RPAREN -&gt; )
-     *  |--SLIST -&gt; {
-     *  |   |--RCURLY -&gt; }
-     * </pre>
-     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.23">Java
      * Language Specification, &sect;15.23</a>
@@ -3490,21 +3471,6 @@ public final class TokenTypes {
     public static final int LE = GeneratedJavaTokenTypes.LE;
     /**
      * The {@code >=} (greater than or equal) operator.
-     *
-     * <p>For example:</p>
-     * <pre>
-     * c = a &gt;= b;
-     * </pre>
-     * <p>parses as:</p>
-     * <pre>
-     * |--EXPR -&gt; EXPR
-     * |   `--ASSIGN -&gt; =
-     * |       |--IDENT -&gt; c
-     * |       `--GE -&gt; &gt;=
-     * |           |--IDENT -&gt; a
-     * |           `--IDENT -&gt; b
-     * |--SEMI -&gt; ;
-     * </pre>
      *
      * @see #EXPR
      **/

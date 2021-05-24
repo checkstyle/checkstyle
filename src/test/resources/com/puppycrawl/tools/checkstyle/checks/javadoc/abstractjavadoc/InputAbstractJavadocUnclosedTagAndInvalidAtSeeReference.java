@@ -1,15 +1,11 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
-/*
- * Config: TempCheck
- */
-
 /**
- * <unclosedTag> // violation
+ * <unclosedTag>
  */
 class InputAbstractJavadocUnclosedTagAndInvalidAtSeeReference {
     /**
-     * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent() // violation
+     * @see javax.swing.tree.DefaultTreeCellRenderer.getTreeCellRendererComponent()
      */
     void invalidAtSeeReference() {
     }
