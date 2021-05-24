@@ -1494,6 +1494,20 @@ public final class TokenTypes {
      * The {@code boolean} keyword.
      *
      * @see #TYPE
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_BOOLEAN -&gt; boolean
+     *  |--IDENT -&gt; x
+     *   `--SEMI -&gt; ;
+     * </pre>
+     *
+     *
+     *
+     *
+     *
      **/
     public static final int LITERAL_BOOLEAN =
         GeneratedJavaTokenTypes.LITERAL_boolean;
@@ -4399,28 +4413,26 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--ANNOTATION_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--AT (@)
-     *     +--LITERAL_INTERFACE (interface)
-     *     +--IDENT (MyAnnotation)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--ANNOTATION_FIELD_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (someValue)
-     *             +--LPAREN (()
-     *             +--RPAREN ())
-     *             +--SEMI (;)
-     *         +--RCURLY (})
+     * ANNOTATION_DEF -&gt; ANNOTATION_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--AT -&gt; @
+     *  |--LITERAL_INTERFACE -&gt; interface
+     *  |--IDENT -&gt; MyAnnotation
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      |--ANNOTATION_FIELD_DEF -&gt; ANNOTATION_FIELD_DEF
+     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |--TYPE -&gt; TYPE
+     *      |   |   `--LITERAL_INT -&gt; int
+     *      |   |--IDENT -&gt; value
+     *      |   |--LPAREN -&gt; (
+     *      |   |--RPAREN -&gt; )
+     *      |   |--LITERAL_DEFAULT -&gt; default
+     *      |   |   `--EXPR -&gt; EXPR
+     *      |   |       `--NUM_INT -&gt; 1
+     *      |   `--SEMI -&gt; ;
+     *       `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
