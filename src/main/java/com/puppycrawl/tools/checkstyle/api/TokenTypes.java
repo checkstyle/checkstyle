@@ -1495,13 +1495,13 @@ public final class TokenTypes {
      *
      * @see #TYPE
      * <pre>
-     *--VARIABLE_DEF -&gt; VARIABLE_DEF
-     *    |--MODIFIERS -&gt; MODIFIERS
-     *    |   `--LITERAL_PUBLIC -&gt; public
-     *    |--TYPE -&gt; TYPE
-     *    |   `--LITERAL_BOOLEAN -&gt; boolean
-     *    |--IDENT -&gt; x
-     *     `--SEMI -&gt; ;
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_BOOLEAN -&gt; boolean
+     *  |--IDENT -&gt; x
+     *   `--SEMI -&gt; ;
      * </pre>
      *
      *
