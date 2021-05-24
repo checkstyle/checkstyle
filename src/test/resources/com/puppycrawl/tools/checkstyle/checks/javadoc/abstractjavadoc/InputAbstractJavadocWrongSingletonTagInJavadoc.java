@@ -1,32 +1,28 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
-/*
- * Config: TempCheck
- */
-
 public class InputAbstractJavadocWrongSingletonTagInJavadoc {
     /**
-     * </embed> // violation
+     * </embed>
      */
     private int field1;
 
     /**
-     * </keygen> // violation
+     * </keygen>
      */
     private int field2;
 
     /**
-     * </SOURCE> // violation
+     * </SOURCE>
      */
     private int field3;
 
     /**
-     * </TRACK> // violation
+     * </TRACK>
      */
     private int field4;
 
     /**
-     * </WBR> // violation
+     * </WBR>
      */
     private int field5;
 }

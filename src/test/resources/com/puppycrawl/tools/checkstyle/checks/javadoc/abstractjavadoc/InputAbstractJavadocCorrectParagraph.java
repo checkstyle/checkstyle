@@ -1,11 +1,5 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
-/*
- * Config: AtClauseOrderCheck
- *
- * Config: JavadocParagraphCheck
- */
-
 /**
  * Some Javadoc.
  *
@@ -111,7 +105,7 @@ class InputAbstractJavadocCorrectParagraph {
 }
 
 /*
- *  This comment has paragraph without '<p>' tag. // ok
+ *  This comment has paragraph without '<p>' tag.
  *
  *  It's fine, because this is plain comment.
  */
