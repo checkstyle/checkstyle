@@ -193,7 +193,7 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
         final String expectedContent = "EOF1=The end of file token." + EOL
             + "EOF2=The end of file token." + EOL
             + "TYPE_EXTENSION_AND='&amp;' symbol when used in a generic upper or lower bounds"
-            + " constrain e.g&#46;"
+            + " constraine.g&#46;"
             + " <code>Comparable<T extends Serializable & CharSequence></code>!" + EOL
             + "LCURLY=A left curly brace (<code>{</code>)." + EOL
             + "DEPRECATED_LITERAL='@deprecated' literal in @deprecated Javadoc tag?" + EOL;

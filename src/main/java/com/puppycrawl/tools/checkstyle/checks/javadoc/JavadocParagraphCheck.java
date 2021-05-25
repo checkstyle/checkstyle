@@ -212,8 +212,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
      */
     private void checkEmptyLine(DetailNode newline) {
         final DetailNode nearestToken = getNearestNode(newline);
-        if (nearestToken.getType() == JavadocTokenTypes.TEXT
-                && !CommonUtil.isBlank(nearestToken.getText())) {
+        if (nearestToken.getType() == JavadocTokenTypes.TEXT) {
             log(newline.getLineNumber(), MSG_TAG_AFTER);
         }
     }
@@ -245,7 +244,8 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
     private static DetailNode getNearestNode(DetailNode node) {
         DetailNode tag = JavadocUtil.getNextSibling(node);
         while (tag.getType() == JavadocTokenTypes.LEADING_ASTERISK
-                || tag.getType() == JavadocTokenTypes.NEWLINE) {
+                || tag.getType() == JavadocTokenTypes.NEWLINE
+                || tag.getType() == JavadocTokenTypes.WS) {
             tag = JavadocUtil.getNextSibling(tag);
         }
         return tag;
@@ -262,8 +262,7 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode previousSibling = JavadocUtil.getPreviousSibling(newLine);
         if (previousSibling != null
                 && previousSibling.getParent().getType() == JavadocTokenTypes.JAVADOC) {
-            if (previousSibling.getType() == JavadocTokenTypes.TEXT
-                    && CommonUtil.isBlank(previousSibling.getText())) {
+            if (previousSibling.getType() == JavadocTokenTypes.WS) {
                 previousSibling = JavadocUtil.getPreviousSibling(previousSibling);
             }
             result = previousSibling != null
@@ -283,10 +282,9 @@ public class JavadocParagraphCheck extends AbstractJavadocCheck {
         DetailNode previousNode = JavadocUtil.getPreviousSibling(paragraphTag);
         while (previousNode != null) {
             if (previousNode.getType() == JavadocTokenTypes.TEXT
-                    && !CommonUtil.isBlank(previousNode.getText())
                 || previousNode.getType() != JavadocTokenTypes.LEADING_ASTERISK
                     && previousNode.getType() != JavadocTokenTypes.NEWLINE
-                    && previousNode.getType() != JavadocTokenTypes.TEXT) {
+                    && previousNode.getType() != JavadocTokenTypes.WS) {
                 result = false;
                 break;
             }
