@@ -4408,7 +4408,7 @@ public final class TokenTypes {
      *  `--OBJBLOCK -&gt; OBJBLOCK
      *      |--LCURLY -&gt; {
      *      |--ANNOTATION_FIELD_DEF -&gt; ANNOTATION_FIELD_DEF
-     *      |   |--MODIFIERS -> MODIFIERS
+     *      |   |--MODIFIERS -&gt; MODIFIERS
      *      |   |--TYPE -&gt; TYPE
      *      |   |   `--LITERAL_INT -&gt; int
      *      |   |--IDENT -&gt; somevalue
