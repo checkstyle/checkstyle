@@ -116,6 +116,9 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static final String PROP_DEFAULT_VALUE_MISSING =
         "Default value for property '%s' is missing";
 
+    /** String representing a whitespace.  */
+    private static final String WS = " ";
+
     /** ModuleDetails instance for each module AST traversal. */
     private ModuleDetails moduleDetails;
 
@@ -479,7 +482,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
         return Arrays.stream(parentNode.getChildren())
                 .filter(child -> child.getType() == JavadocTokenTypes.TEXT)
                 .map(node -> QUOTE_PATTERN.matcher(node.getText().trim()).replaceAll(""))
-                .collect(Collectors.joining(" "));
+                .collect(Collectors.joining(WS));
     }
 
     /**
@@ -492,7 +495,7 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static Optional<DetailNode> getFirstChildOfMatchingText(DetailNode node,
                                                                     Pattern pattern) {
         return Arrays.stream(node.getChildren())
-                .filter(child -> pattern.matcher(child.getText()).matches())
+                .filter(child -> pattern.matcher(WS + child.getText()).matches())
                 .findFirst();
     }
 

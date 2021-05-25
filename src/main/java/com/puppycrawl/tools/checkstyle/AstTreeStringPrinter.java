@@ -85,7 +85,7 @@ public final class AstTreeStringPrinter {
      * @param ast root DetailAST
      * @return Full tree
      */
-    private static String printJavaAndJavadocTree(DetailAST ast) {
+    public static String printJavaAndJavadocTree(DetailAST ast) {
         final StringBuilder messageBuilder = new StringBuilder(1024);
         DetailAST node = ast;
         while (node != null) {
