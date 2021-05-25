@@ -105,7 +105,6 @@ public class XpathRegressionTest extends AbstractModuleTestSupport {
             "ConstantName",
             "DescendantToken",
             "DesignForExtension",
-            "EmptyBlock",
             "EqualsAvoidNull",
             "EqualsHashCode",
             "ExecutableStatementCount",
