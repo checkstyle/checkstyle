@@ -4399,28 +4399,23 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--ANNOTATION_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--AT (@)
-     *     +--LITERAL_INTERFACE (interface)
-     *     +--IDENT (MyAnnotation)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--ANNOTATION_FIELD_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (someValue)
-     *             +--LPAREN (()
-     *             +--RPAREN ())
-     *             +--SEMI (;)
-     *         +--RCURLY (})
+     * ANNOTATION_DEF -&gt; ANNOTATION_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--AT -&gt; @
+     *  |--LITERAL_INTERFACE -&gt; interface
+     *  |--IDENT -&gt; MyAnnotation
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      |--ANNOTATION_FIELD_DEF -&gt; ANNOTATION_FIELD_DEF
+     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |--TYPE -&gt; TYPE
+     *      |   |   `--LITERAL_INT -&gt; int
+     *      |   |--IDENT -&gt; someValue
+     *      |   |--LPAREN -&gt; (
+     *      |   |--RPAREN -&gt; )
+     *      |   `--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
