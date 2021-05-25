@@ -4408,17 +4408,14 @@ public final class TokenTypes {
      *  `--OBJBLOCK -&gt; OBJBLOCK
      *      |--LCURLY -&gt; {
      *      |--ANNOTATION_FIELD_DEF -&gt; ANNOTATION_FIELD_DEF
-     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |--MODIFIERS -> MODIFIERS
      *      |   |--TYPE -&gt; TYPE
      *      |   |   `--LITERAL_INT -&gt; int
-     *      |   |--IDENT -&gt; value
+     *      |   |--IDENT -&gt; somevalue
      *      |   |--LPAREN -&gt; (
      *      |   |--RPAREN -&gt; )
-     *      |   |--LITERAL_DEFAULT -&gt; default
-     *      |   |   `--EXPR -&gt; EXPR
-     *      |   |       `--NUM_INT -&gt; 1
      *      |   `--SEMI -&gt; ;
-     *       `--RCURLY -&gt; }
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
