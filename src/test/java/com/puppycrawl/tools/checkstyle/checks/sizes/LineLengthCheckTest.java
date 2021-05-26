@@ -118,4 +118,34 @@ public class LineLengthCheckTest extends AbstractModuleTestSupport {
 
     }
 
+    @Test
+    public void testValidateImportStatements() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("validateImport", "true");
+        checkConfig.addAttribute("max", "60");
+
+        final String[] expected = {
+            "8: " + getCheckMessage(MSG_KEY, 60, 99),
+            "9: " + getCheckMessage(MSG_KEY, 60, 111),
+            "14: " + getCheckMessage(MSG_KEY, 60, 107),
+        };
+
+        verify(checkConfig, getPath("InputLineLengthValidateImportStatements.java"), expected);
+    }
+
+    @Test
+    public void testValidatePackageStatements() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(LineLengthCheck.class);
+        checkConfig.addAttribute("validatePackage", "true");
+        checkConfig.addAttribute("max", "60");
+        final String[] expected = {
+            "1: " + getCheckMessage(MSG_KEY, 60, 64),
+            "15: " + getCheckMessage(MSG_KEY, 60, 108),
+        };
+
+        verify(checkConfig, getPath("InputLineLengthValidatePackageStatements.java"), expected);
+    }
+
 }
