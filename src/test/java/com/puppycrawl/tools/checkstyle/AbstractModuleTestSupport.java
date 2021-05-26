@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -301,11 +300,14 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
 
             for (int i = 0; i < expected.length; i++) {
                 final String expectedResult = messageFileName + ":" + expected[i];
-                assertEquals("error message " + i, expectedResult, actuals.get(i));
+                assertWithMessage("error message %s", i)
+                        .that(actuals.get(i))
+                        .isEqualTo(expectedResult);
             }
 
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
+            assertWithMessage("unexpected output: " + lnr.readLine())
+                    .that(errs)
+                    .isEqualTo(expected.length);
         }
 
         checker.destroy();
@@ -360,10 +362,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             message.append("differing violations: ").append(differingViolations);
         }
 
-        assertTrue(message.toString(),
-                missingViolations.isEmpty()
-                        && unexpectedViolations.isEmpty()
-                        && differingViolations.isEmpty());
+        String messageString = message.toString();
+
+        assertWithMessage(messageString)
+                .that(missingViolations)
+                .isEmpty();
+
+        assertWithMessage(messageString)
+                .that(unexpectedViolations)
+                .isEmpty();
+
+        assertWithMessage(messageString)
+                .that(differingViolations)
+                .isEmpty();
 
         checker.destroy();
     }
