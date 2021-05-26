@@ -524,6 +524,20 @@ class Test {
               <td><code>80</code></td>
               <td>3.0</td>
             </tr>
+            <tr>
+              <td>validateImport</td>
+              <td>Validate checking of import statements.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.44</td>
+            </tr>
+            <tr>
+              <td>validatePackage</td>
+              <td>Validate checking of package statements.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.44</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -573,6 +587,41 @@ class Test {
   &lt;property name="fileExtensions" value="xml, properties"/&gt;
 &lt;/module&gt;
         </source>
+        <p>
+          To configure the check to validate the use of check on import statements.
+        </p>
+        <source>
+&lt;module name="LineLength"&gt;
+  &lt;property name="validateImport" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+import com.puppycrawl.tools.checkstyle.grammar.InputFullOfSinglelineComments; // Violation
+import static com.puppycrawl.tools.checkstyle.grammar
+          .comments.InputFullOfSinglelineComments.main;
+                                                ^-- // ok
+import java.io.File; // ok
+        </source>
+        <p>
+          To configure the check to validate the use of check on package statements.
+        </p>
+        <source>
+&lt;module name="LineLength"&gt;
+  &lt;property name="validatePackage" value="true"/&gt;
+&lt;/module&gt;
+        </source>
+        <p>
+          Example:
+        </p>
+        <source>
+package com.puppycrawl.tools.checkstyle.checks.sizes.linelength; // Violation
+package com.puppycrawl.tools.checkstyle.checks
+            .sizes.linelength; // ok
+package com.puppycrawl.tools.checkstyle.checks.sizes; // ok
+        </source>
       </subsection>
 
       <subsection name="Notes" id="LineLength_Notes">
@@ -584,11 +633,6 @@ class Test {
             <a href="config.html#TreeWalker"><code>TreeWalker</code></a> property
             <code>tabWidth</code> which applies to all Checks, including <code>LineLength</code>;
             or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
-          </li>
-          <li>
-            Package and import statements (lines matching pattern
-            <code>^(package|import) .*</code>) are not verified by
-            this check.
           </li>
         </ul>
       </subsection>
