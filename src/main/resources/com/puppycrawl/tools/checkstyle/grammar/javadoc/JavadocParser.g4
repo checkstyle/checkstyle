@@ -45,6 +45,7 @@ javadoc: (
             | ({!isNextJavadocTag()}? LEADING_ASTERISK)
             | htmlComment
             | NEWLINE
+            | WS
             | text
             | javadocInlineTag
          )*
@@ -121,12 +122,13 @@ htmlElementStart:  START HTML_TAG_NAME (attribute | NEWLINE | LEADING_ASTERISK |
 htmlElementEnd: START SLASH HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)* END;
 attribute:    HTML_TAG_NAME (NEWLINE | LEADING_ASTERISK | WS)*
               EQUALS (NEWLINE | LEADING_ASTERISK | WS)*
-              (ATTR_VALUE | text | HTML_TAG_NAME);
+              (ATTR_VALUE | WS| text | HTML_TAG_NAME);
 
 htmlTag: htmlElementStart (htmlElement
                               | ({!isNextJavadocTag()}? LEADING_ASTERISK)
                               | htmlComment
                               | NEWLINE
+                              | WS
                               | text
                               | javadocInlineTag)* htmlElementEnd
                               {isSameTagNames($htmlElementStart.ctx, $htmlElementEnd.ctx)}?
@@ -188,6 +190,7 @@ paragraph: pTagStart[false]
             | ({!isNextJavadocTag()}? LEADING_ASTERISK)
             | htmlComment
             | NEWLINE
+            | WS
             | text
             | javadocInlineTag)*
         pTagEnd
@@ -246,6 +249,7 @@ li: liTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     liTagEnd
@@ -304,6 +308,7 @@ tr: trTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     trTagEnd
@@ -362,6 +367,7 @@ td: tdTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     tdTagEnd
@@ -420,6 +426,7 @@ th: thTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     thTagEnd
@@ -478,6 +485,7 @@ body: bodyTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     bodyTagEnd
@@ -536,6 +544,7 @@ colgroup: colgroupTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     colgroupTagEnd
@@ -594,6 +603,7 @@ dd: ddTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     ddTagEnd
@@ -652,6 +662,7 @@ dt: dtTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     dtTagEnd
@@ -710,6 +721,7 @@ head: headTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     headTagEnd
@@ -768,6 +780,7 @@ html: htmlTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     htmlTagEnd
@@ -826,6 +839,7 @@ option: optionTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     optionTagEnd
@@ -884,6 +898,7 @@ tbody: tbodyTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     tbodyTagEnd
@@ -942,6 +957,7 @@ tfoot: tfootTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     tfootTagEnd
@@ -1000,6 +1016,7 @@ thead: theadTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     theadTagEnd
@@ -1235,6 +1252,7 @@ optgroup: optgroupTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     optgroupTagEnd
@@ -1283,6 +1301,7 @@ rb: rbTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     rbTagEnd
@@ -1331,6 +1350,7 @@ rt: rtTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     rtTagEnd
@@ -1379,6 +1399,7 @@ rtc: rtcTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     rtcTagEnd
@@ -1427,6 +1448,7 @@ rp: rpTagStart[false]
         | ({!isNextJavadocTag()}? LEADING_ASTERISK)
         | htmlComment
         | NEWLINE
+        | WS
         | text
         | javadocInlineTag)*
     rpTagEnd
