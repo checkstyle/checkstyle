@@ -38,6 +38,9 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 
 public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
@@ -300,6 +303,86 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         public void fireErrors(String fileName, SortedSet<Violation> errors) {
             name = fileName;
             errorList = new TreeSet<>(errors);
+        }
+
+        @Override
+        public void fireCheckStarted(AbstractCheck check) {
+            // no code needed
+        }
+
+        @Override
+        public void fireCheckFinished(AbstractCheck check) {
+            // no code needed
+        }
+
+        @Override
+        public void fireParseStarted(TreeWalker treeWalker) {
+            // no code needed
+        }
+
+        @Override
+        public void fireParseFinished(TreeWalker treeWalker) {
+            // no code needed
+        }
+
+        @Override
+        public void fireParseJavaDocStarted(AbstractJavadocCheck abstractJavadocCheck) {
+            // no code needed
+        }
+
+        @Override
+        public void fireParseJavaDocFinished(AbstractJavadocCheck abstractJavadocCheck) {
+            // no code needed
+        }
+
+        @Override
+        public void fireCustomStarted(String source) {
+            // no code needed
+        }
+
+        @Override
+        public void fireCustomFinished(String source) {
+            // no code needed
+        }
+
+        @Override
+        public void fireFilterStarted(Filter filter) {
+            // no code needed
+        }
+
+        @Override
+        public void fireFilterFinished(Filter filter) {
+            // no code needed
+        }
+
+        @Override
+        public void fireBeforeExecutionFileFilterStarted(BeforeExecutionFileFilter filter) {
+            // no code needed
+        }
+
+        @Override
+        public void fireBeforeExecutionFileFilterFinished(BeforeExecutionFileFilter filter) {
+            // no code needed
+        }
+
+        @Override
+        public void fireFileSetStarted(FileSetCheck fsc, String fileName) {
+            // no code needed
+        }
+
+        @Override
+        public void fireFileSetFinished(FileSetCheck fsc, String fileName) {
+            // no code needed
+        }
+
+        @Override
+        public void fireTreeWalkerFilterStarted(TreeWalkerFilter filter) {
+            // no code needed
+        }
+
+        @Override
+        public void fireTreeWalkerFilterFinished(TreeWalkerFilter filter) {
+            // no code needed
         }
 
     }

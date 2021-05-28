@@ -27,17 +27,18 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AuditListener;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
@@ -51,11 +52,12 @@ import com.puppycrawl.tools.checkstyle.api.FileSetCheck;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.api.FilterSet;
+import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.RootModule;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
 import com.puppycrawl.tools.checkstyle.api.SeverityLevelCounter;
-import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -130,6 +132,8 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     /** The tab width for column reporting. */
     private int tabWidth = CommonUtil.DEFAULT_TAB_WIDTH;
 
+    public static Checker GLOBAL_DISPATCHER;
+
     /**
      * Creates a new {@code Checker} instance.
      * The instance needs to be contextualized and configured.
@@ -137,6 +141,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
     public Checker() {
         addListener(counter);
         log = LogFactory.getLog(Checker.class);
+        GLOBAL_DISPATCHER = this;
     }
 
     /**
@@ -212,7 +217,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         // Prepare to start
         fireAuditStarted();
         for (final FileSetCheck fsc : fileSetChecks) {
+            fireFileSetStarted(fsc, null);
             fsc.beginProcessing(charset);
+            fireFileSetFinished(fsc, null);
         }
 
         final List<File> targetFiles = files.stream()
@@ -222,10 +229,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
 
         // Finish up
         // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::finishProcessing);
+        for (final FileSetCheck fsc : fileSetChecks) {
+            fireFileSetStarted(fsc, null);
+            fsc.finishProcessing();
+            fireFileSetFinished(fsc, null);
+        }
 
         // It may also log!!!
-        fileSetChecks.forEach(FileSetCheck::destroy);
+        for (final FileSetCheck fsc : fileSetChecks) {
+            fireFileSetStarted(fsc, null);
+            fsc.destroy();
+            fireFileSetFinished(fsc, null);
+        }
 
         final int errorCount = counter.getCount();
         fireAuditFinished();
@@ -240,11 +255,20 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      *         checks and filters.
      */
     private Set<String> getExternalResourceLocations() {
-        return Stream.concat(fileSetChecks.stream(), filters.getFilters().stream())
-            .filter(ExternalResourceHolder.class::isInstance)
-            .map(ExternalResourceHolder.class::cast)
-            .flatMap(resource -> resource.getExternalResourceLocations().stream())
-            .collect(Collectors.toSet());
+        final Set<String> externalResources = new HashSet<>();
+        fileSetChecks.stream().filter(check -> check instanceof ExternalResourceHolder)
+                .forEach(check -> {
+                    final Set<String> locations =
+                            ((ExternalResourceHolder) check).getExternalResourceLocations();
+                    externalResources.addAll(locations);
+                });
+        filters.getFilters().stream().filter(filter -> filter instanceof ExternalResourceHolder)
+                .forEach(filter -> {
+                    final Set<String> locations =
+                            ((ExternalResourceHolder) filter).getExternalResourceLocations();
+                    externalResources.addAll(locations);
+                });
+        return externalResources;
     }
 
     /** Notify all listeners about the audit start. */
@@ -286,7 +310,7 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
                     cacheFile.put(fileName, timestamp);
                 }
                 fireFileStarted(fileName);
-                final SortedSet<Violation> fileMessages = processFile(file);
+                final SortedSet<Violation> fileMessages = processFile(file, fileName);
                 fireErrors(fileName, fileMessages);
                 fireFileFinished(fileName);
             }
@@ -316,16 +340,18 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * Processes a file with all FileSetChecks.
      *
      * @param file a file to process.
-     * @return a sorted set of violations to be logged.
+     * @return a sorted set of messages to be logged.
      * @throws CheckstyleException if error condition within Checkstyle occurs.
      * @noinspection ProhibitedExceptionThrown
      */
-    private SortedSet<Violation> processFile(File file) throws CheckstyleException {
+    private SortedSet<Violation> processFile(File file, String fileName) throws CheckstyleException {
         final SortedSet<Violation> fileMessages = new TreeSet<>();
         try {
             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
             for (final FileSetCheck fsc : fileSetChecks) {
+                fireFileSetStarted(fsc, fileName);
                 fileMessages.addAll(fsc.process(file, theText));
+                fireFileSetFinished(fsc, fileName);
             }
         }
         catch (final IOException ioe) {
@@ -364,7 +390,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      */
     private boolean acceptFileStarted(String fileName) {
         final String stripped = CommonUtil.relativizeAndNormalizePath(basedir, fileName);
-        return beforeExecutionFileFilters.accept(stripped);
+        fireBeforeExecutionFileFilterStarted(beforeExecutionFileFilters);
+        final boolean acceptance = beforeExecutionFileFilters.accept(stripped);
+        fireBeforeExecutionFileFilterFinished(beforeExecutionFileFilters);
+        return acceptance;
     }
 
     /**
@@ -394,7 +423,10 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         boolean hasNonFilteredViolations = false;
         for (final Violation element : errors) {
             final AuditEvent event = new AuditEvent(this, stripped, element);
-            if (filters.accept(event)) {
+            fireFilterStarted(filters);
+            final boolean acceptance = filters.accept(event);
+            fireFilterFinished(filters);
+            if (acceptance) {
                 hasNonFilteredViolations = true;
                 for (final AuditListener listener : listeners) {
                     listener.addError(event);
@@ -418,6 +450,134 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         final AuditEvent event = new AuditEvent(this, stripped);
         for (final AuditListener listener : listeners) {
             listener.fileFinished(event);
+        }
+    }
+
+    @Override
+    public void fireFilterStarted(Filter filter) {
+        final AuditEvent event = new AuditEvent(filter);
+        for (final AuditListener listener : listeners) {
+            listener.filterStarted(event);
+        }
+    }
+
+    @Override
+    public void fireFilterFinished(Filter filter) {
+        final AuditEvent event = new AuditEvent(filter);
+        for (final AuditListener listener : listeners) {
+            listener.filterFinished(event);
+        }
+    }
+
+    @Override
+    public void fireTreeWalkerFilterStarted(TreeWalkerFilter filter) {
+        final AuditEvent event = new AuditEvent(filter);
+        for (final AuditListener listener : listeners) {
+            listener.treeWalkerFilterStarted(event);
+        }
+    }
+
+    @Override
+    public void fireTreeWalkerFilterFinished(TreeWalkerFilter filter) {
+        final AuditEvent event = new AuditEvent(filter);
+        for (final AuditListener listener : listeners) {
+            listener.treeWalkerFilterFinished(event);
+        }
+    }
+
+    @Override
+    public void fireBeforeExecutionFileFilterStarted(BeforeExecutionFileFilter filter) {
+        final AuditEvent event = new AuditEvent(filter);
+        for (final AuditListener listener : listeners) {
+            listener.beforeExecutionFileFilterStarted(event);
+        }
+    }
+
+    @Override
+    public void fireBeforeExecutionFileFilterFinished(BeforeExecutionFileFilter filter) {
+        final AuditEvent event = new AuditEvent(filter);
+        for (final AuditListener listener : listeners) {
+            listener.beforeExecutionFileFilterFinished(event);
+        }
+    }
+
+    @Override
+    public void fireFileSetFinished(FileSetCheck fsc, String fileName) {
+        final AuditEvent event = new AuditEvent(fsc, fileName);
+        for (final AuditListener listener : listeners) {
+            listener.fileSetFinished(event);
+        }
+    }
+
+    @Override
+    public void fireCheckStarted(AbstractCheck check) {
+        final AuditEvent event = new AuditEvent(check);
+        for (final AuditListener listener : listeners) {
+            listener.checkStarted(event);
+        }
+    }
+
+    @Override
+    public void fireCheckFinished(AbstractCheck check) {
+        final AuditEvent event = new AuditEvent(check);
+        for (final AuditListener listener : listeners) {
+            listener.checkFinished(event);
+        }
+    }
+
+    @Override
+    public void fireFileSetStarted(FileSetCheck fsc, String fileName) {
+        final AuditEvent event = new AuditEvent(fsc, fileName);
+        for (final AuditListener listener : listeners) {
+            listener.fileSetStarted(event);
+        }
+    }
+
+    @Override
+    public void fireParseStarted(TreeWalker treeWalker) {
+        final AuditEvent event = new AuditEvent(treeWalker);
+        for (final AuditListener listener : listeners) {
+            listener.parseStarted(event);
+        }
+    }
+
+    @Override
+    public void fireParseFinished(TreeWalker treeWalker) {
+        final AuditEvent event = new AuditEvent(treeWalker);
+        for (final AuditListener listener : listeners) {
+            listener.parseFinished(event);
+        }
+    }
+
+    @Override
+    public void fireParseJavaDocStarted(AbstractJavadocCheck abstractJavadocCheck) {
+        final AuditEvent event = new AuditEvent(abstractJavadocCheck);
+        for (final AuditListener listener : listeners) {
+            listener.JavaDocParseStarted(event);
+        }
+    }
+
+    @Override
+    public void fireParseJavaDocFinished(AbstractJavadocCheck abstractJavadocCheck) {
+        final AuditEvent event = new AuditEvent(abstractJavadocCheck);
+        for (final AuditListener listener : listeners) {
+            listener.JavaDocParseFinished(event);
+        }
+    }
+
+    @Override
+    public void fireCustomStarted(String source) {
+        final AuditEvent event = new AuditEvent(source);
+        for (final AuditListener listener : listeners) {
+            listener.CustomStarted(event);
+        }
+    }
+
+    @Override
+    public void fireCustomFinished(String source) {
+        final AuditEvent event = new AuditEvent(source);
+        for (final AuditListener listener : listeners) {
+            listener.CustomFinished(event);
         }
     }
 
@@ -446,6 +606,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         context.add("basedir", basedir);
         context.add("tabWidth", String.valueOf(tabWidth));
         childContext = context;
+
+        filters.setMessageDispatcher(this);
+        beforeExecutionFileFilters.setMessageDispatcher(this);
     }
 
     /**
@@ -462,6 +625,16 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         try {
             child = moduleFactory.createModule(name);
 
+            if (child instanceof FileSetCheck) {
+                ((FileSetCheck) child).setMessageDispatcher(this);
+            }
+            else if (child instanceof BeforeExecutionFileFilter) {
+                ((BeforeExecutionFileFilter) child).setMessageDispatcher(this);
+            }
+            else if (child instanceof Filter) {
+                ((Filter) child).setMessageDispatcher(this);
+            }
+
             if (child instanceof AutomaticBean) {
                 final AutomaticBean bean = (AutomaticBean) child;
                 bean.contextualize(childContext);
@@ -474,7 +647,9 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
         }
         if (child instanceof FileSetCheck) {
             final FileSetCheck fsc = (FileSetCheck) child;
+            fireFileSetStarted(fsc, null);
             fsc.init();
+            fireFileSetFinished(fsc, null);
             addFileSetCheck(fsc);
         }
         else if (child instanceof BeforeExecutionFileFilter) {
@@ -502,7 +677,6 @@ public class Checker extends AutomaticBean implements MessageDispatcher, RootMod
      * @param fileSetCheck the additional FileSetCheck
      */
     public void addFileSetCheck(FileSetCheck fileSetCheck) {
-        fileSetCheck.setMessageDispatcher(this);
         fileSetChecks.add(fileSetCheck);
     }
 

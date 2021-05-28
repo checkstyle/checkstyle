@@ -21,6 +21,10 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import java.util.SortedSet;
 
+import com.puppycrawl.tools.checkstyle.TreeWalker;
+import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
+
 /**
  * Used by FileSetChecks to distribute AuditEvents to AuditListeners.
  */
@@ -48,4 +52,35 @@ public interface MessageDispatcher {
      */
     void fireErrors(String fileName, SortedSet<Violation> errors);
 
+    void fireFilterStarted(Filter filter);
+
+    void fireFilterFinished(Filter filter);
+
+    void fireTreeWalkerFilterStarted(TreeWalkerFilter filter);
+
+    void fireTreeWalkerFilterFinished(TreeWalkerFilter filter);
+
+    void fireBeforeExecutionFileFilterStarted(BeforeExecutionFileFilter filter);
+
+    void fireBeforeExecutionFileFilterFinished(BeforeExecutionFileFilter filter);
+
+    void fireFileSetStarted(FileSetCheck fsc, String fileName);
+
+    void fireFileSetFinished(FileSetCheck fsc, String fileName);
+
+    void fireCheckStarted(AbstractCheck check);
+
+    void fireCheckFinished(AbstractCheck check);
+
+    void fireParseStarted(TreeWalker treeWalker);
+
+    void fireParseFinished(TreeWalker treeWalker);
+
+    void fireParseJavaDocStarted(AbstractJavadocCheck abstractJavadocCheck);
+
+    void fireParseJavaDocFinished(AbstractJavadocCheck abstractJavadocCheck);
+
+    void fireCustomStarted(String source);
+
+    void fireCustomFinished(String source);
 }

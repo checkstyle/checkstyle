@@ -1450,6 +1450,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
     public static class DummyFilter implements Filter {
 
         @Override
+        public void setMessageDispatcher (MessageDispatcher dispatcher) {
+        }
+
+        @Override
         public boolean accept(AuditEvent event) {
             return false;
         }

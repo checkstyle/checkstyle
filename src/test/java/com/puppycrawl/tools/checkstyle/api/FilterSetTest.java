@@ -98,6 +98,10 @@ public class FilterSetTest {
         }
 
         @Override
+        public void setMessageDispatcher (MessageDispatcher dispatcher) {
+        }
+
+        @Override
         public boolean accept(AuditEvent event) {
             return acceptValue;
         }

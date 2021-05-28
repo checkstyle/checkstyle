@@ -56,6 +56,38 @@ public interface AuditListener
      */
     void fileStarted(AuditEvent event);
 
+    void filterStarted(AuditEvent event);
+
+    void beforeExecutionFileFilterStarted(AuditEvent event);
+
+    void fileSetStarted(AuditEvent event);
+
+    void checkStarted(AuditEvent event);
+
+    void checkFinished(AuditEvent event);
+
+    void fileSetFinished(AuditEvent event);
+
+    void parseStarted(AuditEvent event);
+
+    void parseFinished(AuditEvent event);
+
+    void JavaDocParseStarted(AuditEvent event);
+
+    void JavaDocParseFinished(AuditEvent event);
+
+    void beforeExecutionFileFilterFinished(AuditEvent event);
+
+    void filterFinished(AuditEvent event);
+
+    void treeWalkerFilterStarted(AuditEvent event);
+
+    void treeWalkerFilterFinished(AuditEvent event);
+
+    void CustomStarted(AuditEvent event);
+
+    void CustomFinished(AuditEvent event);
+
     /**
      * Notify that audit is finished on a specific file.
      *

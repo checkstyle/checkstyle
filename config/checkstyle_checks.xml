@@ -16,8 +16,6 @@
   <metadata name="org.checkstyle.principle.description"
             value="In our config we should use all Checks that Checkstyle has"/>
 
-  <property name="cacheFile" value="${checkstyle.cache.file}"/>
-
   <property name="severity" value="error"/>
 
   <property name="fileExtensions" value="java, properties, xml, vm, g, g4, dtd"/>
@@ -26,6 +24,9 @@
   <module name="BeforeExecutionExclusionFileFilter">
     <property name="fileNamePattern" value="module\-info\.java$" />
   </module>
+
+  <!-- Listeners -->
+  <module name="com.puppycrawl.tools.checkstyle.api.DebugListener" />
 
   <!-- Filters -->
   <module name="SeverityMatchFilter">

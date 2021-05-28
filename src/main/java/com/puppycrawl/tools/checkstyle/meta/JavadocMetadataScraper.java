@@ -495,7 +495,14 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
     private static Optional<DetailNode> getFirstChildOfMatchingText(DetailNode node,
                                                                     Pattern pattern) {
         return Arrays.stream(node.getChildren())
-                .filter(child -> pattern.matcher(WS + child.getText()).matches())
+                .filter(child -> {
+                    String text = child.getText();
+                    final DetailNode prev = getPreviousSibling(child);
+                    if (prev != null && prev.getType() == JavadocTokenTypes.WS) {
+                        text = WS + text;
+                    }
+                    return pattern.matcher(text).matches();
+                })
                 .findFirst();
     }
 
@@ -677,5 +684,22 @@ public class JavadocMetadataScraper extends AbstractJavadocCheck {
                 .map(pattern::matcher)
                 .map(Matcher::matches)
                 .orElse(false);
+    }
+
+    /**
+     * Gets previous sibling of specified node.
+     *
+     * @param node DetailNode
+     * @return previous sibling
+     */
+    private static DetailNode getPreviousSibling(DetailNode node) {
+        DetailNode previousSibling = null;
+        final int previousSiblingIndex = node.getIndex() - 1;
+        if (previousSiblingIndex >= 0) {
+            final DetailNode parent = node.getParent();
+            final DetailNode[] children = parent.getChildren();
+            previousSibling = children[previousSiblingIndex];
+        }
+        return previousSibling;
     }
 }

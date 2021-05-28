@@ -34,6 +34,9 @@ public class FilterSet
     /** Filter set. */
     private final Set<Filter> filters = new HashSet<>();
 
+    /** The dispatcher errors are fired to. */
+    private MessageDispatcher messageDispatcher;
+
     /**
      * Adds a Filter to the set.
      *
@@ -70,7 +73,10 @@ public class FilterSet
     public boolean accept(AuditEvent event) {
         boolean result = true;
         for (Filter filter : filters) {
-            if (!filter.accept(event)) {
+            messageDispatcher.fireFilterStarted(filter);
+            final boolean acceptance = filter.accept(event);
+            messageDispatcher.fireFilterFinished(filter);
+            if (!acceptance) {
                 result = false;
                 break;
             }
@@ -81,6 +87,15 @@ public class FilterSet
     /** Clears the FilterSet. */
     public void clear() {
         filters.clear();
+    }
+
+    @Override
+    public final void setMessageDispatcher(MessageDispatcher messageDispatcher) {
+        this.messageDispatcher = messageDispatcher;
+
+        for (Filter filter : filters) {
+            filter.setMessageDispatcher(messageDispatcher);
+        }
     }
 
 }

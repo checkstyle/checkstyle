@@ -28,21 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.util.List;
 
+import com.puppycrawl.tools.checkstyle.api.*;
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.XpathFileGeneratorAstFilter;
-import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
-import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AuditListener;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.BeforeExecutionFileFilter;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.RootModule;
 
 public class ModuleReflectionUtilTest {
 
@@ -216,6 +208,10 @@ public class ModuleReflectionUtilTest {
             return false;
         }
 
+        @Override
+        public void setMessageDispatcher(MessageDispatcher dispatcher) {
+        }
+
     }
 
     private static class FileFilterModuleClass extends AutomaticBean
@@ -229,6 +225,10 @@ public class ModuleReflectionUtilTest {
         @Override
         public boolean accept(String uri) {
             return false;
+        }
+
+        @Override
+        public void setMessageDispatcher(MessageDispatcher dispatcher) {
         }
 
     }
@@ -274,6 +274,9 @@ public class ModuleReflectionUtilTest {
             return false;
         }
 
+        @Override
+        public void setMessageDispatcher(MessageDispatcher dispatcher) {
+        }
     }
 
     private static class AuditListenerClass extends AutomaticBean implements AuditListener {
@@ -311,6 +314,80 @@ public class ModuleReflectionUtilTest {
         @Override
         public void addException(AuditEvent event, Throwable throwable) {
             // dummy method
+        }
+
+        @Override
+        public void fileSetStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void checkStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void checkFinished(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void fileSetFinished(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void parseStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void parseFinished(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void JavaDocParseStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void JavaDocParseFinished(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void filterStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void filterFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void beforeExecutionFileFilterStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void beforeExecutionFileFilterFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void treeWalkerFilterStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void treeWalkerFilterFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void CustomStarted(AuditEvent event) {
+            //dummy method
+        }
+
+        @Override
+        public void CustomFinished(AuditEvent event) {
+            //dummy method
         }
 
     }

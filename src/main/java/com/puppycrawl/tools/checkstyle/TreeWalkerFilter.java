@@ -19,12 +19,20 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
+
 /**
  * An interface for filtering {@code TreeWalkerAuditEvent}.
  *
  */
-@FunctionalInterface
 public interface TreeWalkerFilter {
+
+    /**
+     * Sets the MessageDispatcher that is used to dispatch error
+     * messages to AuditListeners during processing.
+     * @param dispatcher the dispatcher
+     */
+    void setMessageDispatcher(MessageDispatcher dispatcher);
 
     /**
      * Determines whether or not a filtered {@code TreeWalkerAuditEvent} is accepted.

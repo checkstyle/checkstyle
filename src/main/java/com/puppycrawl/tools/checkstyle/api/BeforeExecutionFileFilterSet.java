@@ -34,6 +34,9 @@ public final class BeforeExecutionFileFilterSet
     /** Filter set. */
     private final Set<BeforeExecutionFileFilter> beforeExecutionFileFilters = new HashSet<>();
 
+    /** The dispatcher errors are fired to. */
+    private MessageDispatcher messageDispatcher;
+
     /**
      * Adds a Filter to the set.
      *
@@ -70,7 +73,10 @@ public final class BeforeExecutionFileFilterSet
     public boolean accept(String uri) {
         boolean result = true;
         for (BeforeExecutionFileFilter filter : beforeExecutionFileFilters) {
-            if (!filter.accept(uri)) {
+            messageDispatcher.fireBeforeExecutionFileFilterStarted(filter);
+            final boolean acceptance = filter.accept(uri);
+            messageDispatcher.fireBeforeExecutionFileFilterFinished(filter);
+            if (!acceptance) {
                 result = false;
                 break;
             }
@@ -81,6 +87,16 @@ public final class BeforeExecutionFileFilterSet
     /** Clears the BeforeExecutionFileFilterSet. */
     public void clear() {
         beforeExecutionFileFilters.clear();
+    }
+
+
+    @Override
+    public final void setMessageDispatcher(MessageDispatcher messageDispatcher) {
+        this.messageDispatcher = messageDispatcher;
+
+        for (BeforeExecutionFileFilter filter : beforeExecutionFileFilters) {
+            filter.setMessageDispatcher(messageDispatcher);
+        }
     }
 
 }

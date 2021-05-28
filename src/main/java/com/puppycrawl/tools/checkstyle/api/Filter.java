@@ -22,8 +22,14 @@ package com.puppycrawl.tools.checkstyle.api;
 /**
  * An interface for filtering AuditEvents.
  */
-@FunctionalInterface
 public interface Filter {
+
+    /**
+     * Sets the MessageDispatcher that is used to dispatch error
+     * messages to AuditListeners during processing.
+     * @param dispatcher the dispatcher
+     */
+    void setMessageDispatcher(MessageDispatcher dispatcher);
 
     /**
      * Determines whether or not a filtered AuditEvent is accepted.

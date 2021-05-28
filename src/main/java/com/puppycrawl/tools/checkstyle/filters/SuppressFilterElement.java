@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 /**
  * This filter element is immutable and processes {@link AuditEvent}
@@ -243,6 +244,10 @@ public class SuppressFilterElement
                 && Objects.equals(moduleId, suppressElement.moduleId)
                 && Objects.equals(linesCsv, suppressElement.linesCsv)
                 && Objects.equals(columnsCsv, suppressElement.columnsCsv);
+    }
+
+    @Override
+    public void setMessageDispatcher(MessageDispatcher dispatcher) {
     }
 
 }

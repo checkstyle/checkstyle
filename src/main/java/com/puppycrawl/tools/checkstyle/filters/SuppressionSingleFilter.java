@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 /**
  * <p>
@@ -299,6 +300,11 @@ public class SuppressionSingleFilter extends AutomaticBean implements Filter {
     @Override
     public boolean accept(AuditEvent event) {
         return filter.accept(event);
+    }
+
+    @Override
+    public void setMessageDispatcher(MessageDispatcher dispatcher) {
+        // no code needed
     }
 
 }

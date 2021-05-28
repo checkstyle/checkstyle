@@ -2904,6 +2904,80 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             // No code needed
         }
 
+        @Override
+        public void fileSetStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void checkStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void checkFinished(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void fileSetFinished(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void parseStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void parseFinished(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void JavaDocParseStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void JavaDocParseFinished(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void filterStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void filterFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void beforeExecutionFileFilterStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void beforeExecutionFileFilterFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void treeWalkerFilterStarted(AuditEvent event) {
+        }
+
+        @Override
+        public void treeWalkerFilterFinished(AuditEvent event) {
+        }
+
+        @Override
+        public void CustomStarted(AuditEvent event) {
+            // No code needed
+        }
+
+        @Override
+        public void CustomFinished(AuditEvent event) {
+            // No code needed
+        }
+
     }
 
     private static final class IndentComment {

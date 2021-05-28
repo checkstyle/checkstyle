@@ -21,6 +21,7 @@ package com.puppycrawl.tools.checkstyle.internal.testmodules;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 public final class DebugFilter implements Filter {
 
@@ -38,6 +39,10 @@ public final class DebugFilter implements Filter {
 
     public void resetFilter() {
         called = false;
+    }
+
+    @Override
+    public void setMessageDispatcher(MessageDispatcher dispatcher) {
     }
 
 }

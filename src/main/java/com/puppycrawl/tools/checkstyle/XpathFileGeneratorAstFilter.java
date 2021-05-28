@@ -25,6 +25,7 @@ import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.xpath.XpathQueryGenerator;
 
@@ -83,5 +84,9 @@ public class XpathFileGeneratorAstFilter extends AutomaticBean implements TreeWa
             }
         }
         return true;
+    }
+
+    @Override
+    public void setMessageDispatcher(MessageDispatcher dispatcher) {
     }
 }
