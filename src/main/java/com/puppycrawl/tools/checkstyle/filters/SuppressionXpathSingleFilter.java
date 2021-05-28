@@ -24,6 +24,7 @@ import java.util.regex.Pattern;
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 
 /**
  * <p>
@@ -508,6 +509,10 @@ public class SuppressionXpathSingleFilter extends AutomaticBean implements
     @Override
     protected void finishLocalSetup() {
         xpathFilter = new XpathFilterElement(files, checks, message, id, query);
+    }
+
+    @Override
+    public void setMessageDispatcher (MessageDispatcher dispatcher) {
     }
 
     @Override

@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent;
 import com.puppycrawl.tools.checkstyle.TreeWalkerFilter;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import com.puppycrawl.tools.checkstyle.xpath.AbstractNode;
 import com.puppycrawl.tools.checkstyle.xpath.RootNode;
@@ -171,6 +172,10 @@ public class XpathFilterElement implements TreeWalkerFilter {
                 throw new IllegalArgumentException("Incorrect xpath query: " + xpathQuery, ex);
             }
         }
+    }
+
+    @Override
+    public void setMessageDispatcher (MessageDispatcher dispatcher) {
     }
 
     @Override

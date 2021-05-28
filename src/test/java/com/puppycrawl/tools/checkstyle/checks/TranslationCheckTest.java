@@ -41,22 +41,15 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+import com.puppycrawl.tools.checkstyle.*;
+import com.puppycrawl.tools.checkstyle.api.*;
+import com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheck;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.powermock.reflect.Whitebox;
 import org.w3c.dom.Node;
 
 import com.google.common.collect.ImmutableMap;
-import com.puppycrawl.tools.checkstyle.AbstractXmlTestSupport;
-import com.puppycrawl.tools.checkstyle.Checker;
-import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
-import com.puppycrawl.tools.checkstyle.Definitions;
-import com.puppycrawl.tools.checkstyle.XMLLogger;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.Configuration;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
-import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.XmlUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
@@ -643,6 +636,75 @@ public class TranslationCheckTest extends AbstractXmlTestSupport {
         @Override
         public void fireErrors(String fileName, SortedSet<Violation> errors) {
             savedErrors = new TreeSet<>(errors);
+        }
+
+        @Override
+        public void fireFilterStarted (Filter filter) {
+        }
+
+        @Override
+        public void fireFilterFinished (Filter filter) {
+        }
+
+        @Override
+        public void fireTreeWalkerFilterStarted (TreeWalkerFilter filter) {
+        }
+
+        @Override
+        public void fireTreeWalkerFilterFinished (TreeWalkerFilter filter) {
+
+        }
+
+        @Override
+        public void fireBeforeExecutionFileFilterStarted (BeforeExecutionFileFilter filter) {
+        }
+
+        @Override
+        public void fireBeforeExecutionFileFilterFinished (BeforeExecutionFileFilter filter) {
+        }
+
+        @Override
+        public void fireFileSetStarted (FileSetCheck fsc, String fileName) {
+        }
+
+        @Override
+        public void fireFileSetFinished (FileSetCheck fsc, String fileName) {
+        }
+
+        @Override
+        public void fireCheckStarted (AbstractCheck check) {
+        }
+
+        @Override
+        public void fireCheckFinished (AbstractCheck check) {
+        }
+
+        @Override
+        public void fireParseStarted (TreeWalker treeWalker) {
+        }
+
+        @Override
+        public void fireParseFinished (TreeWalker treeWalker) {
+        }
+
+        @Override
+        public void fireParseJavaDocStarted (AbstractJavadocCheck abstractJavadocCheck) {
+
+        }
+
+        @Override
+        public void fireParseJavaDocFinished (AbstractJavadocCheck abstractJavadocCheck) {
+
+        }
+
+        @Override
+        public void fireCustomStarted (String source) {
+
+        }
+
+        @Override
+        public void fireCustomFinished (String source) {
+
         }
 
     }

@@ -1,5 +1,5 @@
 JAVADOC -> JAVADOC [0:0]
-|--TEXT ->   [0:0]
+|--WS ->   [0:0]
 |--HTML_ELEMENT -> HTML_ELEMENT [0:1]
 |   `--DD_TAG_START -> DD_TAG_START [0:1]
 |       |--START -> < [0:1]

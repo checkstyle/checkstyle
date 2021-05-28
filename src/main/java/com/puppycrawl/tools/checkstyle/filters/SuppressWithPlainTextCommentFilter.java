@@ -30,10 +30,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.FileText;
-import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.*;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -382,6 +379,10 @@ public class SuppressWithPlainTextCommentFilter extends AutomaticBean implements
      */
     public final void setIdFormat(String format) {
         idFormat = format;
+    }
+
+    @Override
+    public void setMessageDispatcher (MessageDispatcher dispatcher) {
     }
 
     @Override

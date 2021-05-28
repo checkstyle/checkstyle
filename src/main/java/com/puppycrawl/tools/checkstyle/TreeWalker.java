@@ -117,6 +117,14 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         try {
             module = moduleFactory.createModule(name);
+
+            if (module instanceof AbstractCheck) {
+                ((AbstractCheck) module).setMessageDispatcher(getMessageDispatcher());
+            }
+            else if (module instanceof TreeWalkerFilter) {
+                ((TreeWalkerFilter) module).setMessageDispatcher(getMessageDispatcher());
+            }
+
             if (module instanceof AutomaticBean) {
                 final AutomaticBean bean = (AutomaticBean) module;
                 bean.contextualize(childContext);
@@ -129,7 +137,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         }
         if (module instanceof AbstractCheck) {
             final AbstractCheck check = (AbstractCheck) module;
+            getMessageDispatcher().fireCheckStarted(check);
             check.init();
+            getMessageDispatcher().fireCheckFinished(check);
             registerCheck(check);
         }
         else if (module instanceof TreeWalkerFilter) {
@@ -149,7 +159,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         // check if already checked and passed the file
         if (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty()) {
             final FileContents contents = getFileContents();
+            getMessageDispatcher().fireParseStarted(this);
             final DetailAST rootAST = JavaParser.parse(contents);
+            getMessageDispatcher().fireParseFinished(this);
             if (!ordinaryChecks.isEmpty()) {
                 walk(rootAST, contents, AstState.ORDINARY);
             }
@@ -184,7 +196,10 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
             final TreeWalkerAuditEvent event =
                     new TreeWalkerAuditEvent(fileContents, fileName, element, rootAST);
             for (TreeWalkerFilter filter : filters) {
-                if (!filter.accept(event)) {
+                getMessageDispatcher().fireTreeWalkerFilterStarted(filter);
+                final boolean acceptance = filter.accept(event);
+                getMessageDispatcher().fireTreeWalkerFilterFinished(filter);
+                if (acceptance) {
                     result.remove(element);
                     break;
                 }
@@ -295,7 +310,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         for (AbstractCheck check : checks) {
             check.setFileContents(contents);
             check.clearViolations();
+            getMessageDispatcher().fireCheckStarted(check);
             check.beginTree(rootAST);
+            getMessageDispatcher().fireCheckFinished(check);
         }
     }
 
@@ -316,7 +333,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         }
 
         for (AbstractCheck check : checks) {
+            getMessageDispatcher().fireCheckStarted(check);
             check.finishTree(rootAST);
+            getMessageDispatcher().fireCheckFinished(check);
             violations.addAll(check.getViolations());
         }
     }
@@ -349,7 +368,9 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
         if (visitors != null) {
             for (AbstractCheck check : visitors) {
-                check.leaveToken(ast);
+                getMessageDispatcher().fireCheckStarted(check);
+                check.visitToken(ast);
+                getMessageDispatcher().fireCheckFinished(check);
             }
         }
     }
@@ -378,8 +399,17 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
 
     @Override
     public void destroy() {
-        ordinaryChecks.forEach(AbstractCheck::destroy);
-        commentChecks.forEach(AbstractCheck::destroy);
+        for (AbstractCheck check : ordinaryChecks) {
+            getMessageDispatcher().fireCheckStarted(check);
+            check.destroy();
+            getMessageDispatcher().fireCheckFinished(check);
+        }
+        for (AbstractCheck check : commentChecks) {
+            getMessageDispatcher().fireCheckStarted(check);
+            check.destroy();
+            getMessageDispatcher().fireCheckFinished(check);
+        }
+        super.destroy();
         super.destroy();
     }
 

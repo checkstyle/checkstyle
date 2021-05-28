@@ -22,8 +22,14 @@ package com.puppycrawl.tools.checkstyle.api;
 /**
  * An interface for before execution file filtering events.
  */
-@FunctionalInterface
 public interface BeforeExecutionFileFilter {
+
+    /**
+     * Sets the MessageDispatcher that is used to dispatch error
+     * messages to AuditListeners during processing.
+     * @param dispatcher the dispatcher
+     */
+    void setMessageDispatcher(MessageDispatcher dispatcher);
 
     /**
      * Determines whether or not a before execution file filtered event is accepted.

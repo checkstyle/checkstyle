@@ -146,4 +146,78 @@ public class XpathFileGeneratorAuditListener extends AutomaticBean implements Au
     protected void finishLocalSetup() {
         // No code by default
     }
+    @Override
+    public void fileSetStarted(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void checkStarted(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void checkFinished(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void fileSetFinished(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void parseStarted(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void parseFinished(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void JavaDocParseStarted(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void JavaDocParseFinished(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void filterStarted(AuditEvent event) {
+    }
+
+    @Override
+    public void filterFinished(AuditEvent event) {
+    }
+
+    @Override
+    public void beforeExecutionFileFilterStarted(AuditEvent event) {
+    }
+
+    @Override
+    public void beforeExecutionFileFilterFinished(AuditEvent event) {
+    }
+
+    @Override
+    public void treeWalkerFilterStarted(AuditEvent event) {
+    }
+
+    @Override
+    public void treeWalkerFilterFinished(AuditEvent event) {
+    }
+
+    @Override
+    public void CustomStarted(AuditEvent event) {
+        //dummy method
+    }
+
+    @Override
+    public void CustomFinished(AuditEvent event) {
+        //dummy method
+    }
+
 }

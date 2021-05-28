@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.filters;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
 import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Filter;
+import com.puppycrawl.tools.checkstyle.api.MessageDispatcher;
 import com.puppycrawl.tools.checkstyle.checks.SuppressWarningsHolder;
 
 /**
@@ -126,6 +127,10 @@ public class SuppressWarningsFilter
     @Override
     protected void finishLocalSetup() {
         // No code by default
+    }
+
+    @Override
+    public void setMessageDispatcher (MessageDispatcher dispatcher) {
     }
 
     @Override

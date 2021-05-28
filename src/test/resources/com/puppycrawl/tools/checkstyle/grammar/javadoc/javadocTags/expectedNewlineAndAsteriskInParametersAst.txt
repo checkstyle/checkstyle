@@ -1,6 +1,6 @@
 JAVADOC -> JAVADOC [0:0]
 |--LEADING_ASTERISK ->   * [0:0]
-|--TEXT ->   [0:3]
+|--WS ->   [0:3]
 |--JAVADOC_INLINE_TAG -> JAVADOC_INLINE_TAG [0:4]
 |   |--JAVADOC_INLINE_TAG_START -> { [0:4]
 |   |--LINK_LITERAL -> @link [0:5]

@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.filters;
 
-import com.puppycrawl.tools.checkstyle.api.AuditEvent;
-import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
-import com.puppycrawl.tools.checkstyle.api.Filter;
-import com.puppycrawl.tools.checkstyle.api.SeverityLevel;
+import com.puppycrawl.tools.checkstyle.api.*;
 
 /**
  * <p>
@@ -114,4 +111,7 @@ public class SeverityMatchFilter
         return acceptOnMatch == severityMatches;
     }
 
+    @Override
+    public void setMessageDispatcher(MessageDispatcher dispatcher) {
+    }
 }
