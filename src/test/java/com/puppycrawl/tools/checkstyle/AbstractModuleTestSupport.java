@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -38,9 +37,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
-import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -270,8 +267,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
-     *  We keep two verify methods with separate logic only for convenience of debugging.
-     *  We have minimum amount of multi-file test cases.
+     *  Performs verification of the given files with the given file name.
+     *  Uses provided {@link Checker} instance.
+     *  Expected messages are represented by the array of strings.
+     *  This implementation uses overloaded
+     *  {@link AbstractModuleTestSupport#verify(Checker, File[], Map)}
+     *  method inside.
      *
      *  @param checker {@link Checker} instance.
      *  @param processedFiles list of files to verify.
@@ -284,31 +285,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                           String messageFileName,
                           String... expected)
             throws Exception {
-        stream.flush();
-        stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
-        final int errs = checker.process(theFiles);
-
-        // process each of the lines
-        try (ByteArrayInputStream inputStream =
-                new ByteArrayInputStream(stream.toByteArray());
-            LineNumberReader lnr = new LineNumberReader(
-                new InputStreamReader(inputStream, StandardCharsets.UTF_8))) {
-            final List<String> actuals = lnr.lines().limit(expected.length)
-                    .sorted().collect(Collectors.toList());
-            Arrays.sort(expected);
-
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = messageFileName + ":" + expected[i];
-                assertEquals("error message " + i, expectedResult, actuals.get(i));
-            }
-
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
-        }
-
-        checker.destroy();
+        final Map<String, List<String>> expectedViolations = new HashMap<>();
+        expectedViolations.put(messageFileName, Arrays.asList(expected));
+        verify(checker, processedFiles, expectedViolations);
     }
 
     /**
@@ -333,37 +312,16 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
         final Map<String, List<String>> realExpectedViolations =
                 Maps.filterValues(expectedViolations, input -> !input.isEmpty());
-        final MapDifference<String, List<String>> violationDifferences =
-                Maps.difference(realExpectedViolations, actualViolations);
 
-        final Map<String, List<String>> missingViolations =
-                violationDifferences.entriesOnlyOnLeft();
-        final Map<String, List<String>> unexpectedViolations =
-                violationDifferences.entriesOnlyOnRight();
-        final Map<String, MapDifference.ValueDifference<List<String>>> differingViolations =
-                violationDifferences.entriesDiffering();
+        assertWithMessage("Files in expected and actual differ.")
+            .that(actualViolations.keySet())
+            .isEqualTo(realExpectedViolations.keySet());
 
-        final StringBuilder message = new StringBuilder(256);
-        if (!missingViolations.isEmpty()) {
-            message.append("missing violations: ").append(missingViolations);
-        }
-        if (!unexpectedViolations.isEmpty()) {
-            if (message.length() > 0) {
-                message.append('\n');
-            }
-            message.append("unexpected violations: ").append(unexpectedViolations);
-        }
-        if (!differingViolations.isEmpty()) {
-            if (message.length() > 0) {
-                message.append('\n');
-            }
-            message.append("differing violations: ").append(differingViolations);
-        }
-
-        assertTrue(message.toString(),
-                missingViolations.isEmpty()
-                        && unexpectedViolations.isEmpty()
-                        && differingViolations.isEmpty());
+        realExpectedViolations.forEach((fileName, violationList) -> {
+            assertWithMessage("Violations for %s differ.", fileName)
+                .that(actualViolations.get(fileName))
+                .containsExactlyElementsIn(violationList);
+        });
 
         checker.destroy();
     }
