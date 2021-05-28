@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -40,7 +39,6 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
@@ -286,8 +284,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         stream.flush();
         stream.reset();
-        final List<File> theFiles = new ArrayList<>();
-        Collections.addAll(theFiles, processedFiles);
+        final List<File> theFiles = Arrays.asList(processedFiles);
         final int errs = checker.process(theFiles);
 
         // process each of the lines
@@ -299,13 +296,9 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     .sorted().collect(Collectors.toList());
             Arrays.sort(expected);
 
-            for (int i = 0; i < expected.length; i++) {
-                final String expectedResult = messageFileName + ":" + expected[i];
-                assertEquals("error message " + i, expectedResult, actuals.get(i));
-            }
-
-            assertEquals("unexpected output: " + lnr.readLine(),
-                    expected.length, errs);
+            Map<String, List<String>> expectedViolations = new HashMap<>();
+            expectedViolations.put(messageFileName, Arrays.asList(expected));
+            verify(checker, processedFiles, expectedViolations);
         }
 
         checker.destroy();
@@ -333,37 +326,17 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         final Map<String, List<String>> actualViolations = getActualViolations(errs);
         final Map<String, List<String>> realExpectedViolations =
                 Maps.filterValues(expectedViolations, input -> !input.isEmpty());
-        final MapDifference<String, List<String>> violationDifferences =
-                Maps.difference(realExpectedViolations, actualViolations);
 
-        final Map<String, List<String>> missingViolations =
-                violationDifferences.entriesOnlyOnLeft();
-        final Map<String, List<String>> unexpectedViolations =
-                violationDifferences.entriesOnlyOnRight();
-        final Map<String, MapDifference.ValueDifference<List<String>>> differingViolations =
-                violationDifferences.entriesDiffering();
+        assertWithMessage("Files in expected and actual differ.")
+            .that(actualViolations.keySet())
+            .isEqualTo(realExpectedViolations.keySet());
 
-        final StringBuilder message = new StringBuilder(256);
-        if (!missingViolations.isEmpty()) {
-            message.append("missing violations: ").append(missingViolations);
-        }
-        if (!unexpectedViolations.isEmpty()) {
-            if (message.length() > 0) {
-                message.append('\n');
-            }
-            message.append("unexpected violations: ").append(unexpectedViolations);
-        }
-        if (!differingViolations.isEmpty()) {
-            if (message.length() > 0) {
-                message.append('\n');
-            }
-            message.append("differing violations: ").append(differingViolations);
-        }
-
-        assertTrue(message.toString(),
-                missingViolations.isEmpty()
-                        && unexpectedViolations.isEmpty()
-                        && differingViolations.isEmpty());
+        realExpectedViolations.forEach((fileName, violationList) -> {
+            assertWithMessage("Violations for %s differ.", fileName)
+                .that(actualViolations.get(fileName))
+                .containsExactlyElementsIn(violationList)
+                .inOrder();
+        });
 
         checker.destroy();
     }
