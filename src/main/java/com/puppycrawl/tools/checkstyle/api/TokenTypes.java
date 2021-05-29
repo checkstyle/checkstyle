@@ -3700,6 +3700,18 @@ public final class TokenTypes {
     /**
      * The {@code ++} (prefix increment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * ++a;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--INC -&gt; ++
+     * |       `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.1">Java
      * Language Specification, &sect;15.15.1</a>
