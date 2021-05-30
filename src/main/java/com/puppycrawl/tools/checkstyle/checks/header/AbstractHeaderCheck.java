@@ -140,7 +140,7 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
      * must be separated by '\n' characters.
      *
      * @param header header content to check against.
-     * @throws IllegalArgumentException if the header cannot be interpreted
+     * @throws IllegalArgumentException if the header has already been set
      */
     public void setHeader(String header) {
         if (!CommonUtil.isBlank(header)) {
@@ -152,8 +152,10 @@ public abstract class AbstractHeaderCheck extends AbstractFileSetCheck
             try (Reader headerReader = new StringReader(headerExpandedNewLines)) {
                 loadHeader(headerReader);
             }
-            catch (final IOException ex) {
-                throw new IllegalArgumentException("unable to load header", ex);
+            catch (final IOException ignored) {
+                // ATTENTION! This exception is ignored because we have to handle IOException
+                // by loadHeader() even if it is not going to be thrown inside this method
+                // (concluded after brainstorming, and testing this method on different cases).
             }
         }
     }
