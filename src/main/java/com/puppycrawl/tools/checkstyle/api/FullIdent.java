@@ -60,9 +60,11 @@ public final class FullIdent {
     /**
      * Creates a new FullIdent starting from the specified node.
      *
+     * @deprecated 'createFullIdent' will be replaced by 'extractFullIdent' in a future release
      * @param ast the node to start from
      * @return a {@code FullIdent} value
      */
+    @Deprecated
     public static FullIdent createFullIdent(DetailAST ast) {
         final FullIdent ident = new FullIdent();
         extractFullIdent(ident, ast);
