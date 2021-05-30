@@ -10,6 +10,157 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.43">
+      <div class="releaseDate">30.05.2021</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add support summary Javadoc tag in SummaryJavadoc.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/7202">#7202</a>
+          </li>
+          <li>
+            Add SARIF as a supported output format.
+            Author: Chao Zhang
+            <a href="https://github.com/checkstyle/checkstyle/issues/8905">#8905</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            UnnecessaryParentheses false positives in 8.42.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9957">#9957</a>
+          </li>
+          <li>
+            Unresolvable indentation violation for method definition parenthesis.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9269">#9269</a>
+          </li>
+          <li>
+            JDK16: final after instanceof.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9897">#9897</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update example of AST for TokenTypes.INC.
+            Author: Aastha Chauhan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9453">#9453</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ANNOTATION_DEF.
+            Author: rahulkhinchirk7@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9391">#9391</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_NEW.
+            Author: Rahulkhinchi03
+            <a href="https://github.com/checkstyle/checkstyle/issues/9486">#9486</a>
+          </li>
+          <li>
+            Validate sure that all Regexp modules has id property.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8886">#8886</a>
+          </li>
+          <li>
+            update AbstractJavadocCheckTest to use unique Input file in each test method.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9534">#9534</a>
+          </li>
+          <li>
+            Infra: migrate to Truth in tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9142">#9142</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LAND.
+            Author: angeljiang0927@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9459">#9459</a>
+          </li>
+          <li>
+            doc: fix typo in writingchecks.xml.
+            Author: Joshua Kuan
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            ExecutableStatementCount should allow LAMBDA token.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8971">#8971</a>
+          </li>
+          <li>
+            Linkcheck plugin detected several problems with links.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9930">#9930</a>
+          </li>
+          <li>
+            update NoWhitespaceAfterCheckTest to use unique input file for each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9888">#9888</a>
+          </li>
+          <li>
+            Travis is failing on xwiki-platform validation.
+            Author: Shashwat Jaiswal, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9967">#9967</a>
+          </li>
+          <li>
+            Migrate shippable CI jobs to other place(s).
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9266">#9266</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CATCH.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9467">#9467</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CHAR.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9468">#9468</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_DO.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9472">#9472</a>
+          </li>
+          <li>
+            Set up JDK 16 build in CI.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9907">#9907</a>
+          </li>
+          <li>
+            update IllegalThrowsCheckTest to use unique input file for each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9920">#9920</a>
+          </li>
+          <li>
+            Replace branch name with commit sha in site generation action.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9954">#9954</a>
+          </li>
+          <li>
+            Deprecate DetailAST.branchContains method.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9936">#9936</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_ELSE.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9474">#9474</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_FALSE.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9475">#9475</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.42">
       <div class="releaseDate">25.04.2021</div>
       <p>Breaking backward compatibility:</p>
