@@ -45,6 +45,13 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         ast.setLineNo(15);
         ast.setText("MyTest");
 
+        final DetailAstImpl parent = new DetailAstImpl();
+        parent.setType(TokenTypes.OBJBLOCK);
+        parent.setColumnNo(4);
+        parent.setLineNo(4);
+        parent.setText("MyParent");
+        parent.setFirstChild(ast);
+
         final FullIdent indent = FullIdent.createFullIdent(ast);
         assertEquals("MyTest[15x14]", indent.toString(), "Invalid full indent");
         assertEquals("MyTest", indent.getText(), "Invalid text");
@@ -96,6 +103,51 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getFirstChild();
         final FullIdent ident = FullIdent.createFullIdent(arrayDeclarator);
         assertEquals("int[][][5x12]", ident.toString(), "Invalid full indent");
+    }
+
+    @Test
+    public void testFullIdentAnnotation() throws Exception {
+        final FileText testFileText = new FileText(
+                new File(getPath("InputFullIdentAnnotation.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST methodDef = packageDefinitionNode
+                .getNextSibling()
+                .getNextSibling()
+                .getNextSibling()
+                .getLastChild()
+                .findFirstToken(TokenTypes.METHOD_DEF);
+
+        final DetailAST parameter = methodDef
+                .findFirstToken(TokenTypes.PARAMETERS)
+                .getFirstChild()
+                .getFirstChild()
+                .getNextSibling()
+                .getFirstChild();
+
+        final FullIdent ident = FullIdent.createFullIdent(parameter);
+        assertEquals("char[][7x29]", ident.toString(), "Invalid full indent");
+    }
+
+    @Test
+    public void testFullIdentArrayInit() throws Exception {
+        final FileText testFileText = new FileText(
+                new File(getPath("InputFullIdentArrayInit.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST variableDef = packageDefinitionNode
+                .getNextSibling()
+                .getLastChild()
+                .findFirstToken(TokenTypes.VARIABLE_DEF);
+
+        final DetailAST literalInt = variableDef
+                .findFirstToken(TokenTypes.ASSIGN)
+                .getFirstChild()
+                .getFirstChild()
+                .getFirstChild();
+
+        final FullIdent ident = FullIdent.createFullIdent(literalInt);
+        assertEquals("int[4x32]", ident.toString(), "Invalid full indent");
     }
 
     private static FullIdent prepareFullIdentWithCoordinates(int columnNo, int lineNo) {
