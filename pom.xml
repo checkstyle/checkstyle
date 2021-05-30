@@ -12,7 +12,7 @@
 
   <groupId>com.puppycrawl.tools</groupId>
   <artifactId>checkstyle</artifactId>
-  <version>8.43-SNAPSHOT</version>
+  <version>8.43</version>
   <packaging>jar</packaging>
 
   <name>checkstyle</name>
@@ -204,7 +204,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <surefire.options/>
+    <surefire.options />
     <projectVersion>${project.version}</projectVersion>
     <antlr4.version>4.9.2</antlr4.version>
     <maven.site.plugin.version>3.9.1</maven.site.plugin.version>
