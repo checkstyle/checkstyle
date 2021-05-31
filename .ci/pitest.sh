@@ -41,7 +41,8 @@ pitest-annotation|pitest-design \
 |pitest-main \
 |pitest-coding \
 |pitest-regexp \
-|pitest-meta)
+|pitest-meta \
+|pitest-tree-walker)
   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
   declare -a ignoredItems=();
   checkPitestReport "${ignoredItems[@]}"
@@ -151,16 +152,6 @@ pitest-javadoc)
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        finishJavadocTree(root);</span></pre></td></tr>"
   "AbstractJavadocCheck.java.html:<td class='covered'><pre><span  class='survived'>        javadocTokens.clear();</span></pre></td></tr>"
   "TagParser.java.html:<td class='covered'><pre><span  class='survived'>                while (column &#60; currentLine.length()</span></pre></td></tr>"
-  );
-  checkPitestReport "${ignoredItems[@]}"
-  ;;
-
-pitest-tree-walker)
-  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
-  declare -a ignoredItems=(
-  "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!commentChecks.isEmpty()) {</span></pre></td></tr>"
-  "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (!ordinaryChecks.isEmpty()) {</span></pre></td></tr>"
-  "TreeWalker.java.html:<td class='covered'><pre><span  class='survived'>            if (filters.isEmpty()) {</span></pre></td></tr>"
   );
   checkPitestReport "${ignoredItems[@]}"
   ;;
