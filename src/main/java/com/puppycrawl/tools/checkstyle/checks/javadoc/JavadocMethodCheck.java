@@ -687,8 +687,8 @@ public class JavadocMethodCheck extends AbstractCheck {
 
         final List<JavadocTag> tags = new ArrayList<>();
         final String lFin = multilineCont.group(1);
-        if (!lFin.equals(NEXT_TAG)
-            && !lFin.equals(END_JAVADOC)) {
+        if (!NEXT_TAG.equals(lFin)
+            && !END_JAVADOC.equals(lFin)) {
             final String param1 = noargMultilineStart.group(1);
             final int col = noargMultilineStart.start(1) - 1;
 
