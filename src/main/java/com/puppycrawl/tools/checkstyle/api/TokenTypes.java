@@ -507,14 +507,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     * |   |--MODIFIERS -&gt; MODIFIERS
-     * |   |--TYPE -&gt; TYPE
-     * |   |   `--ARRAY_DECLARATOR -&gt; [
-     * |   |       |--LITERAL_INT -&gt; int
-     * |   |       `--RBRACK -&gt; ]
-     * |   |--IDENT -&gt; x
-     * |--SEMI -&gt; ;
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--LITERAL_INT -&gt; int
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--RBRACK -&gt; ]
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * <p>The array declaration may also represent an inline array
