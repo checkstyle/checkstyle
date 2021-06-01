@@ -44,6 +44,7 @@ public final class ConfigurationUtil {
         props.setProperty("checkstyle.regexp.header.file", "file");
         props.setProperty("checkstyle.importcontrol.file", "file");
         props.setProperty("checkstyle.importcontroltest.file", "file");
+        props.setProperty("checkstyle.importcontrolassertions.file", "file");
 
         return loadConfiguration(path, props);
     }
