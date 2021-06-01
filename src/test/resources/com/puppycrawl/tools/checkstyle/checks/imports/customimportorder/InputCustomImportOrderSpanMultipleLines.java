@@ -43,9 +43,9 @@ import com.puppycrawl.tools.checkstyle.*; // warn
 
 
 // comment between import groups
-import antlr.*; // warn
+import picocli.*; // warn
 
 // comment within import group
-import antlr.Token;
+import picocli.CommandLine;
 
 class InputCustomImportOrderSpanMultipleLines {}
