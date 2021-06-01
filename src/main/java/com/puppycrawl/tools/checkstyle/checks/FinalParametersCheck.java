@@ -240,9 +240,12 @@ public class FinalParametersCheck extends AbstractCheck {
     private boolean isIgnoredParam(DetailAST paramDef) {
         boolean result = false;
         if (ignorePrimitiveTypes) {
-            final DetailAST parameterType = paramDef
-                .findFirstToken(TokenTypes.TYPE).getFirstChild();
-            if (primitiveDataTypes.contains(parameterType.getType())) {
+            final DetailAST type = paramDef.findFirstToken(TokenTypes.TYPE);
+            final DetailAST parameterType = type.getFirstChild();
+            final DetailAST arrayDeclarator = type
+                    .findFirstToken(TokenTypes.ARRAY_DECLARATOR);
+            if (arrayDeclarator == null
+                    && primitiveDataTypes.contains(parameterType.getType())) {
                 result = true;
             }
         }
