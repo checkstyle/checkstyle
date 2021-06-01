@@ -165,7 +165,9 @@ public final class JavadocPropertiesGenerator {
         boolean result = ast.getType() == TokenTypes.VARIABLE_DEF;
         if (result) {
             final DetailAST type = ast.findFirstToken(TokenTypes.TYPE);
-            result = type.getFirstChild().getType() == TokenTypes.LITERAL_INT;
+            final DetailAST arrayDeclarator = type.getFirstChild().getNextSibling();
+            result = arrayDeclarator == null
+                    && type.getFirstChild().getType() == TokenTypes.LITERAL_INT;
             if (result) {
                 final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
                 result = modifiers.findFirstToken(TokenTypes.LITERAL_PUBLIC) != null
