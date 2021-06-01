@@ -405,16 +405,24 @@ typeArgumentBounds[boolean addImagNode]
 // A builtin type specification is a builtin type with possible brackets
 // afterwards (which would make it an array type).
 builtInTypeSpec[boolean addImagNode]
-     :    builtInType
-         (options{greedy=true; }:
-            ({LA(1) == AT}? annotations
-            | )
-                lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+     :    b: builtInType
+          a: typeSpecBracketsAndAnnotations
         {
             if ( addImagNode ) {
                 #builtInTypeSpec = #(#[TYPE,"TYPE"], #builtInTypeSpec);
             }
+            else if (#a != null) {
+                #builtInTypeSpec = #(b);
+            }
         }
+    ;
+
+typeSpecBracketsAndAnnotations
+    :
+     (options{greedy=true; }:
+        ({LA(1) == AT}? annotations
+        | )
+            (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} rb:RBRACK)  )*
     ;
 
 // A type name. which is either a (possibly qualified and parameterized)
@@ -990,8 +998,9 @@ variableDefinitions[AST mods, AST t]
  * It can also include possible initialization.
  */
 variableDeclarator![AST mods, AST t]
-    :    id:id d:declaratorBrackets[t] v:varInitializer
-        {#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
+    :    id:id d:typeSpecBracketsAndAnnotations v:varInitializer
+        {#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"],
+            mods, #(#[TYPE,"TYPE"], t ,d), id, v);}
     ;
 
 declaratorBrackets![AST typ]
