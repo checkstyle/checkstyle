@@ -557,6 +557,12 @@
       <property name="file" value="${checkstyle.importcontroltest.file}"/>
       <property name="path" value="^.*[\\/]src[\\/]test[\\/].*$"/>
     </module>
+    <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
+    <module name="ImportControl">
+      <property name="id" value="ImportControlAssertions"/>
+      <property name="file" value="${checkstyle.importcontrolassertions.file}"/>
+      <property name="path" value="^.*[\\/]src[\\/](it|test)[\\/]java[\\/].*$"/>
+    </module>
     <module name="ImportOrder">
       <property name="groups" value="/^java\./,javax,org"/>
       <property name="ordered" value="true"/>
