@@ -162,6 +162,17 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMethodReturningArrayType() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
+                + " @since, @serial, @serialField, @serialData, @deprecated]";
+        final String[] expected = {
+            "11: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+        verify(checkConfig, getPath("InputAtclauseOrderMethodReturningArrayType.java"), expected);
+    }
+
+    @Test
     public void testAtclauseOrderLotsOfRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
         checkConfig.addAttribute("target", "CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF ,"
