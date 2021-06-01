@@ -34,7 +34,7 @@
       <fileset dir="src"
                includes="**/*"
                excludes="it/resources/**/*,it/resources-noncompilable/**/*,
-               ,test/resources/**/*,test/resources-noncompilable/**/*"/>
+               test/resources/**/*,test/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
       <classpath path="${mvn.runtime_classpath}"/>
@@ -43,6 +43,8 @@
       <property key="checkstyle.regexp.header.file" file="config/java_regexp.header"/>
       <property key="checkstyle.importcontrol.file" file="config/import-control.xml"/>
       <property key="checkstyle.importcontroltest.file" file="config/import-control-test.xml"/>
+      <property key="checkstyle.importcontrolassertions.file"
+                file="config/import-control-assertions.xml"/>
       <property key="checkstyle.suppressions.file"
                 file="config/suppressions.xml"/>
       <property key="checkstyle.suppressions-xpath.file"
