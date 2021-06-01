@@ -846,7 +846,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "13:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "antlr.*"),
         };
-        verify(checkConfig, getPath("InputCustomImportOrderSingleLine.java"),
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSingleLine.java"),
             expected);
     }
 
@@ -944,7 +944,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "46:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "antlr.*"),
             "49:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "antlr.Token"),
         };
-        verify(checkConfig, getPath("InputCustomImportOrderSpanMultipleLines.java"), expected);
+        verify(checkConfig, getNonCompilablePath("InputCustomImportOrderSpanMultipleLines.java"),
+                expected);
     }
 
     @Test
