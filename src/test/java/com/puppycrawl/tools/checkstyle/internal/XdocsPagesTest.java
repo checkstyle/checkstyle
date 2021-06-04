@@ -970,89 +970,27 @@ public class XdocsPagesTest {
         final String instanceName = instance.getClass().getSimpleName();
         String result = null;
         final String checkProperty = sectionName + ":" + propertyName;
-        if (("SuppressionCommentFilter".equals(sectionName)
-                || "SuppressWithNearbyCommentFilter".equals(sectionName)
-                || "SuppressWithPlainTextCommentFilter".equals(sectionName))
-                    && ("checkFormat".equals(propertyName)
-                        || "messageFormat".equals(propertyName)
-                        || "idFormat".equals(propertyName)
-                        || "influenceFormat".equals(propertyName))
-                || ("RegexpMultiline".equals(sectionName)
-                    || "RegexpSingleline".equals(sectionName)
-                    || "RegexpSinglelineJava".equals(sectionName))
-                    && "format".equals(propertyName)) {
+        if (isDynamicCustomExpression(sectionName, propertyName)) {
             // dynamic custom expression
             result = "Regular Expression";
         }
-        else if (fieldClass == boolean.class) {
-            result = "boolean";
-        }
-        else if (fieldClass == int.class) {
-            result = "int";
-        }
         else if (fieldClass == int[].class) {
-            if (isPropertyTokenType(sectionName, propertyName)) {
-                result = "subset of tokens TokenTypes";
-            }
-            else {
-                result = "int[]";
-            }
-        }
-        else if (fieldClass == double[].class) {
-            result = "double[]";
+            result = propertyTypeNameForIntArray(sectionName, propertyName);
         }
         else if (fieldClass == String.class) {
-            result = "String";
-
-            if ("Checker".equals(sectionName) && "localeCountry".equals(propertyName)) {
-                result += " (either the empty string or an uppercase ISO 3166 2-letter code)";
-            }
-            else if ("Checker".equals(sectionName) && "localeLanguage".equals(propertyName)) {
-                result += " (either the empty string or a lowercase ISO 639 code)";
-            }
+            result = propertyTypeNameForString(sectionName, propertyName);
         }
         else if (fieldClass == String[].class) {
-            if (propertyName.endsWith("Tokens") || propertyName.endsWith("Token")
-                    || "AtclauseOrderCheck".equals(instanceName) && "target".equals(propertyName)
-                    || "MultipleStringLiteralsCheck".equals(instanceName)
-                            && "ignoreOccurrenceContext".equals(propertyName)) {
-                result = "subset of tokens TokenTypes";
-            }
-            else {
-                result = "String[]";
-            }
-        }
-        else if (fieldClass == URI.class) {
-            result = "URI";
+            result = propertyTypeNameForStringArray(propertyName, instanceName);
         }
         else if (fieldClass == Pattern.class) {
-            if ("SuppressionSingleFilter:checks".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:files".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
-                || "SuppressionXpathSingleFilter:message".equals(checkProperty)
-                || "IllegalTokenText:format".equals(checkProperty)) {
-                result = "Regular Expression";
-            }
-            else {
-                result = "Pattern";
-            }
+            result = propertyTypeNameForPattern(checkProperty);
         }
         else if (fieldClass == Pattern[].class) {
-            if ("ImportOrder:groups".equals(checkProperty)
-                || "ImportOrder:staticGroups".equals(checkProperty)
-                || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
-                || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
-                result = "Regular Expressions";
-            }
-            else {
-                result = "Pattern[]";
-            }
+            result = propertyTypeNameForPatternArray(checkProperty);
         }
         else if (fieldClass == Scope.class) {
             result = "Scope";
-        }
-        else if (fieldClass == AccessModifierOption[].class) {
-            result = "AccessModifierOption[]";
         }
         else if ("PropertyCacheFile".equals(fieldClass.getSimpleName())) {
             result = "File";
@@ -1061,7 +999,26 @@ public class XdocsPagesTest {
             result = fieldClass.getSimpleName();
         }
         else {
-            fail("Unknown property type: " + fieldClass.getSimpleName());
+            switch (fieldClass.getSimpleName()) {
+                case "int":
+                    result = "int";
+                    break;
+                case "boolean":
+                    result = "boolean";
+                    break;
+                case "double[]":
+                    result = "double[]";
+                    break;
+                case "URI":
+                    result = "URI";
+                    break;
+                case "AccessModifierOption[]":
+                    result = "AccessModifierOption[]";
+                    break;
+                default:
+                    fail("Unknown property type: " + fieldClass.getSimpleName());
+                    break;
+            }
         }
 
         if ("SuppressWarningsHolder".equals(instanceName)) {
@@ -1069,6 +1026,116 @@ public class XdocsPagesTest {
                     + "attribute is the fully qualified name of the Check and value is its alias.";
         }
 
+        return result;
+    }
+
+    /**
+     * Checks whether property is a dynamic custom expression.
+     *
+     * @param sectionName The name of the section/module being worked on.
+     * @param propertyName The property name to work with.
+     * @return true if it is a dynamic custom expression.
+     */
+    private static boolean isDynamicCustomExpression(String sectionName, String propertyName) {
+        return ("SuppressionCommentFilter".equals(sectionName)
+                || "SuppressWithNearbyCommentFilter".equals(sectionName)
+                || "SuppressWithPlainTextCommentFilter".equals(sectionName))
+                && ("checkFormat".equals(propertyName)
+                || "messageFormat".equals(propertyName)
+                || "idFormat".equals(propertyName)
+                || "influenceFormat".equals(propertyName))
+                || ("RegexpMultiline".equals(sectionName)
+                || "RegexpSingleline".equals(sectionName)
+                || "RegexpSinglelineJava".equals(sectionName))
+                && "format".equals(propertyName);
+    }
+
+    /**
+     * Get's the name of the bean property's type for the Int[] class.
+     *
+     * @param sectionName The name of the section/module being worked on.
+     * @param propertyName The property name to work with.
+     * @return String form of property's type.
+     */
+    private static String propertyTypeNameForIntArray(String sectionName, String propertyName) {
+        String result = "int[]";
+        if (isPropertyTokenType(sectionName, propertyName)) {
+            result = "subset of tokens TokenTypes";
+        }
+        return result;
+    }
+
+    /**
+     * Get's the name of the bean property's type for the String class.
+     *
+     * @param sectionName The name of the section/module being worked on.
+     * @param propertyName The property name to work with.
+     * @return String form of property's type.
+     */
+    private static String propertyTypeNameForString(String sectionName, String propertyName) {
+        String result = "String";
+
+        if ("Checker".equals(sectionName) && "localeCountry".equals(propertyName)) {
+            result += " (either the empty string or an uppercase ISO 3166 2-letter code)";
+        }
+         else if ("Checker".equals(sectionName) && "localeLanguage".equals(propertyName)) {
+            result += " (either the empty string or a lowercase ISO 639 code)";
+        }
+        return result;
+    }
+
+    /**
+     * Get's the name of the bean property's type for the String[] class.
+     *
+     * @param propertyName The property name to work with.
+     * @param instanceName The simple name of class instance to work with.
+     * @return String form of property's type.
+     */
+    private static String propertyTypeNameForStringArray(String propertyName, String instanceName) {
+        String result = "String[]";
+        if (propertyName.endsWith("Tokens") || propertyName.endsWith("Token")
+                || "AtclauseOrderCheck".equals(instanceName) && "target".equals(propertyName)
+                || "MultipleStringLiteralsCheck".equals(instanceName)
+                && "ignoreOccurrenceContext".equals(propertyName)) {
+            result = "subset of tokens TokenTypes";
+        }
+        return result;
+    }
+
+    /**
+     * Get's the name of the bean property's type for the Pattern class.
+     *
+     * @param checkProperty "sectionName:propertyName" of the current check under process.
+     * @return String form of property's type.
+     */
+    private static String propertyTypeNameForPattern(String checkProperty) {
+        String result;
+        result = "Pattern";
+        if ("SuppressionSingleFilter:checks".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:files".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:checks".equals(checkProperty)
+                || "SuppressionXpathSingleFilter:message".equals(checkProperty)
+                || "IllegalTokenText:format".equals(checkProperty)) {
+            result = "Regular Expression";
+        }
+        return result;
+    }
+
+    /**
+     * Get's the name of the bean property's type for the Pattern[] class.
+     *
+     * @param checkProperty "sectionName:propertyName" of the current check under process.
+     * @return String form of property's type.
+     */
+    private static String propertyTypeNameForPatternArray(String checkProperty) {
+        String result;
+        result = "Pattern[]";
+        if ("ImportOrder:groups".equals(checkProperty)
+                || "ImportOrder:staticGroups".equals(checkProperty)
+                || "ClassDataAbstractionCoupling:excludeClassesRegexps".equals(checkProperty)
+                || "ClassFanOutComplexity:excludeClassesRegexps".equals(checkProperty)) {
+            result = "Regular Expressions";
+        }
         return result;
     }
 
