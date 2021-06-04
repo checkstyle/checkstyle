@@ -66,6 +66,11 @@ class InputIndentationArrays { //indent:0 exp:0
         (byte) (hash >> 48), //indent:8 exp:8
         (byte) (hash >> 56)}; //indent:8 exp:8
   } //indent:2 exp:2
+
+  public String[] foo() { //indent:2 exp:2
+    return new String[] {"1".toString(), "2".toString(), //indent:4 exp:4
+    "3".toString()}; //indent:4 exp:6,8,25,28 warn
+  } //indent:2 exp:2
 } //indent:0 exp:0
 
 @interface VisibleForTesting {} //indent:0 exp:0

@@ -255,53 +255,52 @@ public abstract class AbstractExpressionHandler {
      * @param indentLevel        the indentation level
      * @param firstLineMatches   whether or not the first line has to match
      * @param firstLine          first line of whole expression
-     * @param allowNesting       whether or not subtree nesting is allowed
      */
     private void checkLinesIndent(DetailAstSet astSet,
                                   IndentLevel indentLevel,
                                   boolean firstLineMatches,
-                                  int firstLine,
-                                  boolean allowNesting) {
-        if (!astSet.isEmpty()) {
-            // check first line
-            final DetailAST startLineAst = astSet.firstLine();
-            final int endLine = astSet.lastLine();
-            int startCol = expandedTabsColumnNo(astSet.firstLine());
+                                  int firstLine) {
+        // check first line
+        final DetailAST startLineAst = astSet.firstLine();
+        final int endLine = astSet.lastLine();
+        int startCol = expandedTabsColumnNo(astSet.firstLine());
 
-            final int realStartCol =
-                getLineStart(indentCheck.getLine(startLineAst.getLineNo() - 1));
+        final int realStartCol =
+            getLineStart(indentCheck.getLine(startLineAst.getLineNo() - 1));
 
-            if (firstLineMatches && !allowNesting) {
-                startCol = realStartCol;
-            }
+        if (firstLineMatches) {
+            startCol = realStartCol;
+        }
 
-            if (realStartCol == startCol) {
-                checkLineIndent(startLineAst, indentLevel,
-                    firstLineMatches);
-            }
+        if (realStartCol == startCol
+                && CommonUtil.hasWhitespaceBefore(startLineAst.getColumnNo(),
+                        indentCheck.getLine(startLineAst.getLineNo() - 1))) {
+            checkLineIndent(startLineAst, indentLevel,
+                firstLineMatches);
+        }
 
-            // if first line starts the line, following lines are indented
-            // one level; but if the first line of this expression is
-            // nested with the previous expression (which is assumed if it
-            // doesn't start the line) then don't indent more, the first
-            // indentation is absorbed by the nesting
+        // if first line starts the line, following lines are indented
+        // one level; but if the first line of this expression is
+        // nested with the previous expression (which is assumed if it
+        // doesn't start the line) then don't indent more, the first
+        // indentation is absorbed by the nesting
 
-            IndentLevel theLevel = indentLevel;
-            if (firstLineMatches
-                || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
-                theLevel = new IndentLevel(indentLevel, getBasicOffset());
-            }
+        IndentLevel theLevel = indentLevel;
+        if (firstLineMatches
+            || firstLine > mainAst.getLineNo() && shouldIncreaseIndent()) {
+            theLevel = new IndentLevel(indentLevel, getBasicOffset());
+        }
 
-            // check following lines
-            for (int i = startLineAst.getLineNo() + 1; i <= endLine; i++) {
-                final Integer col = astSet.getStartColumn(i);
-                // startCol could be null if this line didn't have an
-                // expression that was required to be checked (it could be
-                // checked by a child expression)
+        // check following lines
+        for (int i = startLineAst.getLineNo() + 1; i <= endLine; i++) {
+            final Integer col = astSet.getStartColumn(i);
+            // startCol could be null if this line didn't have an
+            // expression that was required to be checked (it could be
+            // checked by a child expression)
 
-                if (col != null) {
-                    checkLineIndent(astSet.getAst(i), theLevel, false);
-                }
+            if (col != null) {
+                checkLineIndent(astSet.getAst(i), theLevel,
+                    indentCheck.isForceStrictCondition());
             }
         }
     }
@@ -322,7 +321,7 @@ public abstract class AbstractExpressionHandler {
         // at the correct indention level; otherwise, it is an only an
         // violation if this statement starts the line and it is less than
         // the correct indentation level
-        if (mustMatch && !indentLevel.isAcceptable(start)
+        if (mustMatch && columnNumber == start && !indentLevel.isAcceptable(start)
                 || !mustMatch && columnNumber == start && indentLevel.isGreaterThan(start)) {
             logChildError(ast, start, indentLevel);
         }
@@ -397,14 +396,16 @@ public abstract class AbstractExpressionHandler {
         boolean allowNesting
     ) {
         final DetailAstSet subtreeAst = new DetailAstSet(indentCheck);
-        final int firstLine = getFirstLine(tree);
         if (firstLineMatches && !allowNesting) {
             final DetailAST firstAst = getFirstAstNode(tree);
             subtreeAst.addAst(firstAst);
         }
         findSubtreeAst(subtreeAst, tree, allowNesting);
 
-        checkLinesIndent(subtreeAst, indentLevel, firstLineMatches, firstLine, allowNesting);
+        if (!subtreeAst.isEmpty()) {
+            final int firstLine = getFirstLine(tree);
+            checkLinesIndent(subtreeAst, indentLevel, firstLineMatches, firstLine);
+        }
     }
 
     /**

@@ -44,7 +44,7 @@ class InputIndentationFromGuava<K, V> extends AbstractMap<K, V> //indent:0 exp:0
       } //indent:6 exp:6
 
       @Override //indent:6 exp:6
-     <K, V> ValueReference<K, V> referenceValue(Segment<K, V> segment, //indent:5 exp:5
+     <K, V> ValueReference<K, V> referenceValue(Segment<K, V> segment, //indent:5 exp:6 warn
     		    ReferenceEntry<K, V> entry, V value, int weight) { //indent:16 exp:>=10
 
         return null; //indent:8 exp:8

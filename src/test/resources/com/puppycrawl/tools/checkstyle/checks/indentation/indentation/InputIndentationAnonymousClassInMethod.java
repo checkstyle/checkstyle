@@ -18,10 +18,10 @@ import java.io.FileFilter; //indent:0 exp:0
 public class InputIndentationAnonymousClassInMethod { //indent:0 exp:0
 	private void walkDir(File dir, FileFilter fileFilter) { //indent:8 exp:2 warn
 		walkDir( dir, new FileFilter() { //indent:16 exp:4 warn
-			@Override //indent:24 exp:18,20,22 warn
-			public boolean accept(File path) { //indent:24 exp:24
-				return ( path.isDirectory() ); //indent:32 exp:20,22,24 warn
-			} //indent:24 exp:18,20,22 warn
+			@Override //indent:24 exp:18,20 warn
+			public boolean accept(File path) { //indent:24 exp:18 warn
+				return ( path.isDirectory() ); //indent:32 exp:20,22 warn
+			} //indent:24 exp:18,20 warn
 		} ); //indent:16 exp:16
 	} //indent:8 exp:2 warn
 } //indent:0 exp:0

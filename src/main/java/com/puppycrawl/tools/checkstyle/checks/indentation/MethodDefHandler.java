@@ -47,15 +47,6 @@ public class MethodDefHandler extends BlockParentHandler {
         return null;
     }
 
-    @Override
-    protected void checkModifiers() {
-        final DetailAST modifier = getMainAst().findFirstToken(TokenTypes.MODIFIERS);
-        if (isOnStartOfLine(modifier)
-            && !getIndent().isAcceptable(expandedTabsColumnNo(modifier))) {
-            logError(modifier, "modifier", expandedTabsColumnNo(modifier));
-        }
-    }
-
     /**
      * Check the indentation level of the throws clause.
      */
@@ -63,8 +54,9 @@ public class MethodDefHandler extends BlockParentHandler {
         final DetailAST throwsAst = getMainAst().findFirstToken(TokenTypes.LITERAL_THROWS);
 
         if (throwsAst != null) {
-            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), getIndentCheck()
-                    .getThrowsIndent(), getLineStart(getMethodDefLineStart(getMainAst())),
+            checkWrappingIndentation(throwsAst, throwsAst.getNextSibling(), 0,
+                    getLineStart(getMethodDefLineStart(getMainAst()))
+                        + getIndentCheck().getThrowsIndent(),
                     !isOnStartOfLine(throwsAst));
         }
     }
@@ -107,11 +99,24 @@ public class MethodDefHandler extends BlockParentHandler {
 
     @Override
     public void checkIndentation() {
-        checkModifiers();
+        final int firstNodeColumnNo = expandedTabsColumnNo(getMainAst());
+        final boolean indentationAcceptable = getIndent().isAcceptable(firstNodeColumnNo);
+        final int expectedFirstNodeIndent;
+        if (indentationAcceptable) {
+            expectedFirstNodeIndent = firstNodeColumnNo;
+        }
+        else {
+            expectedFirstNodeIndent = getIndent().getFirstIndentLevel();
+        }
+        if (!indentationAcceptable && isOnStartOfLine(getMainAst())) {
+            logError(getMainAst(), "modifier", firstNodeColumnNo);
+        }
         checkThrows();
 
         if (getMethodDefParamRightParen(getMainAst()) != null) {
-            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()));
+            checkWrappingIndentation(getMainAst(), getMethodDefParamRightParen(getMainAst()),
+                    getIndentCheck().getLineWrappingIndentation(),
+                    expectedFirstNodeIndent, true);
         }
         // abstract method def -- no body
         if (getLeftCurly() != null) {

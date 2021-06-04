@@ -199,5 +199,7 @@ public class InputIndentationValidMethodIndent extends Object { //indent:0 exp:0
 		value="" //indent:8 exp:8
 	) //indent:4 exp:4
 	public void testStartOfSequence() { //indent:4 exp:4
+        System.out.print(new Object[][] { { "A".toString(), "B", //indent:8 exp:8
+            "C".toString(), }, }); //indent:12 exp:>=12
 	} //indent:4 exp:4
 } //indent:0 exp:0
