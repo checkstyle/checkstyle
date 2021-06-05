@@ -31,8 +31,7 @@ import java.util.regex.Pattern;
 class PkgImportControl extends AbstractImportControl {
     /** The package separator: "." */
     private static final String DOT = ".";
-    /** A pattern matching the package separator: "." */
-    private static final Pattern DOT_PATTERN = Pattern.compile(DOT, Pattern.LITERAL);
+
     /** The regex for the package separator: "\\.". */
     private static final String DOT_REGEX = "\\.";
 
@@ -159,7 +158,7 @@ class PkgImportControl extends AbstractImportControl {
      * @return a regex string.
      */
     private static String toRegex(String input) {
-        return DOT_PATTERN.matcher(input).replaceAll(DOT_REGEX);
+        return input.replace(DOT, DOT_REGEX);
     }
 
     /**
