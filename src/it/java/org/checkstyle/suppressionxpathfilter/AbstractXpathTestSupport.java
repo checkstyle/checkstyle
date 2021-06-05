@@ -58,6 +58,11 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
     @TempDir
     public Path temporaryFolder;
 
+    /**
+     * Returns name of the check.
+     *
+     * @return name of the check as a String.
+     */
     protected abstract String getCheckName();
 
     @Override
@@ -67,6 +72,14 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         return "org/checkstyle/suppressionxpathfilter/" + subpackage;
     }
 
+    /**
+     * Returns a list of XPath queries to locate the violation nodes in a Java file.
+     *
+     * @param fileToProcess The Java file to be processed. {@link File} type object.
+     * @param position The position of violation in the file. {@link ViolationPosition} object.
+     * @return A List of Strings containing XPath queries for locating violation nodes.
+     * @throws Exception can throw exceptions while accessing file contents.
+     */
     private static List<String> generateXpathQueries(File fileToProcess,
                                                      ViolationPosition position)
             throws Exception {
@@ -81,12 +94,28 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         return queryGenerator.generate();
     }
 
+    /**
+     * Verify generated XPath queries by comparing with expected queries.
+     *
+     * @param generatedXpathQueries A List of generated Xpath queries.
+     * @param expectedXpathQueries A List of expected Xpath queries.
+     */
     private static void verifyXpathQueries(List<String> generatedXpathQueries,
                                            List<String> expectedXpathQueries) {
         assertEquals(expectedXpathQueries,
                 generatedXpathQueries, "Generated queries do not match expected ones");
     }
 
+    /**
+     * Returns the path to the generated Suppressions XPath config file.
+     * This method creates a Suppressions config file containing the Xpath queries for
+     * any check and returns the path to that file.
+     *
+     * @param checkName The name of the check that is run.
+     * @param xpathQueries A List of generated XPath queries for violations in a file.
+     * @return path(String) to the generated Suppressions config file.
+     * @throws Exception can throw exceptions when writing/creating the config file.
+     */
     private String createSuppressionsXpathConfigFile(String checkName,
                                                      List<String> xpathQueries)
             throws Exception {
@@ -114,6 +143,14 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         return suppressionsXpathConfigPath.toString();
     }
 
+    /**
+     * Returns the config {@link DefaultConfiguration} for the created Suppression XPath filter.
+     *
+     * @param checkName The name of the check that is run.
+     * @param xpathQueries A List of generated XPath queries for violations in a file.
+     * @return the default config for Suppressions XPath filter based on check and xpath queries.
+     * @throws Exception can throw exceptions when creating config.
+     */
     private DefaultConfiguration createSuppressionXpathFilter(String checkName,
                                            List<String> xpathQueries) throws Exception {
         final DefaultConfiguration suppressionXpathFilterConfig =
@@ -124,6 +161,12 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         return suppressionXpathFilterConfig;
     }
 
+    /**
+     * Extract line no and column nos from String of expected violations.
+     *
+     * @param expectedViolations The expected violations generated for the check.
+     * @return instance of type {@link ViolationPosition} which contains the line and column nos.
+     */
     private static ViolationPosition extractLineAndColumnNumber(String... expectedViolations) {
         ViolationPosition violation = null;
         final Matcher matcher =
@@ -176,6 +219,12 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
         private final int violationLineNumber;
         private final int violationColumnNumber;
 
+        /**
+         * Constructor of the class.
+         *
+         * @param violationLineNumber line no of the violation produced for the check.
+         * @param violationColumnNumber column no of the violation produced for the check.
+         */
         /* package */ ViolationPosition(int violationLineNumber,
                               int violationColumnNumber) {
             this.violationLineNumber = violationLineNumber;
