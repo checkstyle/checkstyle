@@ -31,6 +31,8 @@ public class PkgImportControlTest {
             "com.kazgroup.courtlink", false, MismatchStrategy.DISALLOWED);
     private final PkgImportControl icCommon = new PkgImportControl(icRoot,
             "common", false, MismatchStrategy.DELEGATE_TO_PARENT);
+    private final PkgImportControl icUncommon = new PkgImportControl(icRoot,
+            "uncommon", true, MismatchStrategy.DELEGATE_TO_PARENT);
 
     private final PkgImportControl icRootRegexpChild = new PkgImportControl(
             "com.kazgroup.courtlink", false, MismatchStrategy.DELEGATE_TO_PARENT);
@@ -67,6 +69,13 @@ public class PkgImportControlTest {
             new PkgImportRule(true, false, "org\\.h.*", false, true));
 
         icRootRegexpParent.addChild(icBootRegexpParen);
+    }
+
+    @Test
+    public void testRegexp() {
+        // . replaced with x to avoid matching with regexp meta-character .
+        assertNull(icUncommon.locateFinest("comxkazgroup.courtlink.uncommon.regexp", "MyClass"),
+                "Unexpected response");
     }
 
     @Test
