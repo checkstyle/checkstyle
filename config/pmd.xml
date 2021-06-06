@@ -345,6 +345,18 @@
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask']"/>
     </properties>
   </rule>
+  <rule ref="category/java/design.xml/CognitiveComplexity">
+    <properties>
+      <property name="reportLevel" value="22"/>
+      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                    //MethodDeclaration[@Name='getModulePropertyExpectedValue'
+                      or @Name='getModulePropertyExpectedTypeName']
+                  | //ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest']
+                    //MethodDeclaration[@Name='validateAllCheckTokensAreReferencedInConfigFile']"/>
+    </properties>
+  </rule>
 
   <rule ref="category/java/multithreading.xml">
     <!-- Checkstyle is not thread safe till https://github.com/checkstyle/checkstyle/projects/5. -->
