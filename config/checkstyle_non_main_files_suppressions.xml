@@ -49,6 +49,8 @@
   <suppress id="lineLength" files="pom.xml"/>
   <!-- this file is created by Appveyor CI after checkout -->
   <suppress id="lineLength" files="appveyor.cmd"/>
+  <!--  long regexp, no way to wrap -->
+  <suppress id="lineLength" files="config[\\/]import-control-test\.xml" lines="7"/>
   <!-- test resources are weird by design, no validations in them -->
   <suppress id="lineLength"
          files="src[\\/]it[\\/]resources[\\/].*[\\/]InputLineLength.*\.java"/>
