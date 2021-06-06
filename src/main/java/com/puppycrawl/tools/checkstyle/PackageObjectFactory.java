@@ -829,6 +829,8 @@ public class PackageObjectFactory implements ModuleFactory {
                 BASE_PACKAGE + ".checks.whitespace.NoWhitespaceAfterCheck");
         NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceBeforeCheck",
                 BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCheck");
+        NAME_TO_FULL_MODULE_NAME.put("NoWhitespaceBeforeCaseDefaultColonCheck",
+                BASE_PACKAGE + ".checks.whitespace.NoWhitespaceBeforeCaseDefaultColonCheck");
         NAME_TO_FULL_MODULE_NAME.put("OperatorWrapCheck",
                 BASE_PACKAGE + ".checks.whitespace.OperatorWrapCheck");
         NAME_TO_FULL_MODULE_NAME.put("ParenPadCheck",
