@@ -16,16 +16,7 @@
   </module>
 
   <module name="TreeWalker">
-    <!-- Check to make sure check UT input files have config and trailing comments -->
-    <module name="Regexp">
-      <property name="id" value="ConfigCommentOnTopInputs"/>
-      <property name="format"
-               value="(\* Config)"/>
-      <message key="required.regexp"
-             value="All check input files in the ''src/(it|test)/resources*/'' folder must
-                   have a comment at the top of the file specifying the check configuration used to
-                   produce the violations, that begins with &quot;/* Config:&quot;."/>
-    </module>
+    <!-- Check to make sure check UT input files have trailing comments -->
     <module name="Regexp">
       <property name="id" value="StyleValidationCommentInInputs"/>
       <property name="format"
