@@ -578,6 +578,10 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
             if (tempNode.getType() == JavadocTokenTypes.TEXT) {
                 contents.append(tempNode.getText());
             }
+            else if (tempNode.getType() == JavadocTokenTypes.HTML_TAG){
+                String tempAppendString = getSummarySentence(tempNode);
+                contents.append(tempAppendString);
+            }
             tempNode = JavadocUtil.getNextSibling(tempNode);
         }
         return contents.toString();
