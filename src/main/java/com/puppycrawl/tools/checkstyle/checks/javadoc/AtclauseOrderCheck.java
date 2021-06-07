@@ -272,6 +272,10 @@ public class AtclauseOrderCheck extends AbstractJavadocCheck {
             if (result == TokenTypes.TYPE || result == TokenTypes.MODIFIERS) {
                 result = parentNode.getParent().getType();
             }
+            else if (parentNode.getParent() != null
+                    && parentNode.getParent().getType() == TokenTypes.MODIFIERS) {
+                result = parentNode.getParent().getParent().getType();
+            }
         }
         return result;
     }
