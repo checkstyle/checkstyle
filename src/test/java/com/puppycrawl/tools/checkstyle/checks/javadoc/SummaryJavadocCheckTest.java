@@ -227,4 +227,16 @@ public class SummaryJavadocCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getPath("inputs/package-info.java"), expected);
     }
 
+    @Test
+    public void testHtmlFormatSummaryNoTag() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(SummaryJavadocCheck.class);
+        final String[] expected = {
+                "18: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                "28: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                "33: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
+                "38: " + getCheckMessage(MSG_SUMMARY_JAVADOC_MISSING),
+        };
+        verify(checkConfig, getPath("InputSummaryJavadocHtmlNoTag.java"), expected);
+    }
+
 }
