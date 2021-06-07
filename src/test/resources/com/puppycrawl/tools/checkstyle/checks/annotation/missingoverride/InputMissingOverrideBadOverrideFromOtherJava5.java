@@ -1,10 +1,14 @@
+/*
+MissingOverride
+javaFiveCompatibility = true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingoverride;
 
 import java.io.Serializable;
 
-/* Config:
- * javaFiveCompatibility = "true"
- */
 public class InputMissingOverrideBadOverrideFromOtherJava5 implements IFoo2Java5
 {
     /**
