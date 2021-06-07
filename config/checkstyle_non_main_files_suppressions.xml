@@ -71,6 +71,16 @@
   <suppress id="lineLength"
          files="src[\\/]test[\\/]resources[\\/].*[\\/]checks[\\/]translation[\\/]Expected.*\.xml"/>
 
+  <!-- config attributes cannot be wraped -->
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck2.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheck3.java"/>
+  <suppress id="lineLength"
+         files="src[\\/]test[\\/]resources[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]annotation[\\/]annotationonsameline[\\/]InputAnnotationOnSameLineCheckOnDifferentTokens.java"/>
+
   <!-- content is generated -->
   <suppress id="lineLength"
          files="src[\\/]xdocs[\\/]releasenotes_old.xml"/>
