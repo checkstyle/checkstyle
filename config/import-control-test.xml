@@ -8,6 +8,8 @@
   <!-- Disallow obsolete Junit API -->
   <disallow pkg="org.junit" exact-match="true"/>
   <disallow pkg="junit.framework" />
+  <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
+  <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
   <!-- Conflicts with normal tests and pitest.
        See examples in https://github.com/checkstyle/checkstyle/issues/6439 -->

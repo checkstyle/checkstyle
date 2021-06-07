@@ -507,14 +507,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     * |   |--MODIFIERS -&gt; MODIFIERS
-     * |   |--TYPE -&gt; TYPE
-     * |   |   `--ARRAY_DECLARATOR -&gt; [
-     * |   |       |--LITERAL_INT -&gt; int
-     * |   |       `--RBRACK -&gt; ]
-     * |   |--IDENT -&gt; x
-     * |--SEMI -&gt; ;
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--LITERAL_INT -&gt; int
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--RBRACK -&gt; ]
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * <p>The array declaration may also represent an inline array
@@ -951,23 +951,23 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     * |   |--MODIFIERS -&gt; MODIFIERS
-     * |   |--TYPE -&gt; TYPE
-     * |   |   `--ARRAY_DECLARATOR -&gt; [
-     * |   |       |--LITERAL_INT -&gt; int
-     * |   |       `--RBRACK -&gt; ]
-     * |   |--IDENT -&gt; y
-     * |   `--ASSIGN -&gt; =
-     * |       `--ARRAY_INIT -&gt; {
-     * |           |--EXPR -&gt; EXPR
-     * |           |   `--NUM_INT -&gt; 1
-     * |           |--COMMA -&gt; ,
-     * |           |--EXPR -&gt; EXPR
-     * |           |   `--NUM_INT -&gt; 2
-     * |           |--COMMA -&gt; ,
-     * |           `--RCURLY -&gt; }
-     * |--SEMI -&gt; ;
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--LITERAL_INT -&gt; int
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--RBRACK -&gt; ]
+     *  |--IDENT -&gt; y
+     *  |--ASSIGN -&gt; =
+     *  |   `--ARRAY_INIT -&gt; {
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--NUM_INT -&gt; 1
+     *  |       |--COMMA -&gt; ,
+     *  |       |--EXPR -&gt; EXPR
+     *  |       |   `--NUM_INT -&gt; 2
+     *  |       |--COMMA -&gt; ,
+     *  |       `--RCURLY -&gt; }
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * <p>Also consider:</p>
@@ -980,28 +980,28 @@ public final class TokenTypes {
      * </pre>
      * <p>which parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     * |   |--MODIFIERS -&gt; MODIFIERS
-     * |   |--TYPE -&gt; TYPE
-     * |   |   `--ARRAY_DECLARATOR -&gt; [
-     * |   |       |--LITERAL_INT -&gt; int
-     * |   |       `--RBRACK -&gt; ]
-     * |   |--IDENT -&gt; z
-     * |   `--ASSIGN -&gt; =
-     * |       `--EXPR -&gt; EXPR
-     * |           `--LITERAL_NEW -&gt; new
-     * |               |--LITERAL_INT -&gt; int
-     * |               |--ARRAY_DECLARATOR -&gt; [
-     * |               |   `--RBRACK -&gt; ]
-     * |               `--ARRAY_INIT -&gt; {
-     * |                   |--EXPR -&gt; EXPR
-     * |                   |   `--NUM_INT -&gt; 1
-     * |                   |--COMMA -&gt; ,
-     * |                   |--EXPR -&gt; EXPR
-     * |                   |   `--NUM_INT -&gt; 2
-     * |                   |--COMMA -&gt; ,
-     * |                   `--RCURLY -&gt; }
-     * |--SEMI -&gt; ;
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE [2:4]
+     *  |   |--LITERAL_INT -&gt; int
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--RBRACK -&gt; ]
+     *  |--IDENT -&gt; z
+     *  |--ASSIGN -&gt; =
+     *  |   `--EXPR -&gt; EXPR
+     *  |       `--LITERAL_NEW -&gt; new
+     *  |           |--LITERAL_INT -&gt; int
+     *  |           |--ARRAY_DECLARATOR -&gt; [
+     *  |           |   `--RBRACK -&gt; ]
+     *  |           `--ARRAY_INIT -&gt; {
+     *  |               |--EXPR -&gt; EXPR
+     *  |               |   `--NUM_INT -&gt; 1
+     *  |               |--COMMA -&gt; ,
+     *  |               |--EXPR -&gt; EXPR
+     *  |               |   `--NUM_INT -&gt; 2
+     *  |               |--COMMA -&gt; ,
+     *  |               `--RCURLY -&gt; }
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #ARRAY_DECLARATOR
@@ -1455,14 +1455,14 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * |--VARIABLE_DEF -&gt; VARIABLE_DEF
-     * |   |--MODIFIERS -&gt; MODIFIERS
-     * |   |--TYPE -&gt; TYPE
-     * |   |   `--ARRAY_DECLARATOR -&gt; [
-     * |   |       |--LITERAL_INT -&gt; int
-     * |   |       `--RBRACK -&gt; ]
-     * |   `--IDENT -&gt; a
-     * |--SEMI -&gt; ;
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |--TYPE -&gt; TYPE
+     *  |   |--LITERAL_INT -&gt; int
+     *  |   `--ARRAY_DECLARATOR -&gt; [
+     *  |       `--RBRACK -&gt; ]
+     *  |--IDENT -&gt; a
+     *  `--SEMI -&gt; ;
      * </pre>
      *
      * @see #INDEX_OP
@@ -3700,6 +3700,18 @@ public final class TokenTypes {
     /**
      * The {@code ++} (prefix increment) operator.
      *
+     * <p>For example:</p>
+     * <pre>
+     * ++a;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR
+     * |   `--INC -&gt; ++
+     * |       `--IDENT -&gt; a
+     * |--SEMI -&gt; ;
+     * </pre>
+     *
      * @see <a
      * href="https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.15.1">Java
      * Language Specification, &sect;15.15.1</a>
@@ -4399,28 +4411,23 @@ public final class TokenTypes {
      * </pre>
      * <p>parses as:</p>
      * <pre>
-     * +--ANNOTATION_DEF
-     *     |
-     *     +--MODIFIERS
-     *         |
-     *         +--LITERAL_PUBLIC (public)
-     *     +--AT (@)
-     *     +--LITERAL_INTERFACE (interface)
-     *     +--IDENT (MyAnnotation)
-     *     +--OBJBLOCK
-     *         |
-     *         +--LCURLY ({)
-     *         +--ANNOTATION_FIELD_DEF
-     *             |
-     *             +--MODIFIERS
-     *             +--TYPE
-     *                 |
-     *                 +--LITERAL_INT (int)
-     *             +--IDENT (someValue)
-     *             +--LPAREN (()
-     *             +--RPAREN ())
-     *             +--SEMI (;)
-     *         +--RCURLY (})
+     * ANNOTATION_DEF -&gt; ANNOTATION_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--AT -&gt; @
+     *  |--LITERAL_INTERFACE -&gt; interface
+     *  |--IDENT -&gt; MyAnnotation
+     *  `--OBJBLOCK -&gt; OBJBLOCK
+     *      |--LCURLY -&gt; {
+     *      |--ANNOTATION_FIELD_DEF -&gt; ANNOTATION_FIELD_DEF
+     *      |   |--MODIFIERS -&gt; MODIFIERS
+     *      |   |--TYPE -&gt; TYPE
+     *      |   |   `--LITERAL_INT -&gt; int
+     *      |   |--IDENT -&gt; someValue
+     *      |   |--LPAREN -&gt; (
+     *      |   |--RPAREN -&gt; )
+     *      |   `--SEMI -&gt; ;
+     *      `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
