@@ -96,8 +96,9 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
         IndentLevel expectedIndent =
             new IndentLevel(getIndent(), getArrayInitIndentation(), getLineWrappingIndentation());
 
+        final DetailAST leftCurly = getLeftCurly();
         final int firstLine = getFirstLine(getListChild());
-        final int lcurlyPos = expandedTabsColumnNo(getLeftCurly());
+        final int lcurlyPos = expandedTabsColumnNo(leftCurly);
         final int firstChildPos =
             getNextFirstNonBlankOnLineAfter(firstLine, lcurlyPos);
 
@@ -105,6 +106,13 @@ public class AnnotationArrayInitHandler extends BlockParentHandler {
             expectedIndent = IndentLevel.addAcceptable(expectedIndent, firstChildPos, lcurlyPos
                     + getLineWrappingIndentation());
         }
+        // the code is written with old style where curlies are given their own line,
+        // the code block should be aligned to lcurly pos + lineWrappingIndent
+        else if (lcurlyPos == getLineStart(leftCurly)) {
+            expectedIndent = IndentLevel.addAcceptable(expectedIndent,
+                        lcurlyPos + getLineWrappingIndentation());
+        }
+
         return expectedIndent;
     }
 
