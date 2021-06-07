@@ -602,6 +602,19 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testAnnotationOddStyles() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+
+        checkConfig.addProperty("tabWidth", "8");
+
+        final String fileName = getPath("InputIndentationAnnotationArrayInitOldStyle.java");
+
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+
+        verifyWarns(checkConfig, fileName, expected);
+    }
+
+    @Test
     public void testZeroAnnotationArrayInit()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
@@ -1225,8 +1238,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             // following are tests for annotation array initialisation
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "124:15: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
-                14, 12),
+            "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+                14, "12, 16"),
             "128:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
             "129:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
@@ -1312,8 +1325,8 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
             // following are tests for annotation array initialisation
             "120:13: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 12, "16, 46, 48"),
-            "124:15: " + getCheckMessage(MSG_CHILD_ERROR, "annotation array initialization",
-                14, 12),
+            "124:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
+                14, "12, 16"),
             "128:15: " + getCheckMessage(MSG_CHILD_ERROR_MULTI, "annotation array initialization",
                 14, "16, 28, 30"),
             "129:9: " + getCheckMessage(MSG_ERROR_MULTI, "annotation array initialization rcurly",
