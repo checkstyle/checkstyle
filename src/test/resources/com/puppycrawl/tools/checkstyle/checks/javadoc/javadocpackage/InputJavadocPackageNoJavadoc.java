@@ -1,9 +1,13 @@
+/*
+JavadocPackage
+allowLegacy = (default)false
+fileExtensions = (default)java
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocpackage;      // violation
 
-/* Config:
- * allowLegacy = "false"
- * fileExtensions = "java"
- */
 public class InputJavadocPackageNoJavadoc //comment test
 {
     public int i1;
