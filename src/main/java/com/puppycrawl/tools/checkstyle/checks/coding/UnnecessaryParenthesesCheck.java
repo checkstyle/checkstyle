@@ -508,7 +508,7 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
             else if (TokenUtil.isOfType(type, ASSIGNMENTS)) {
                 assignDepth--;
             }
-            else if (checkAroundOperators(ast)) {
+            else if (isSurrounded(ast) && checkAroundOperators(ast)) {
                 log(ast.getPreviousSibling(), MSG_EXPR);
             }
         }
@@ -580,18 +580,15 @@ public class UnnecessaryParenthesesCheck extends AbstractCheck {
      */
     private static boolean checkAroundOperators(DetailAST ast) {
         final int type = ast.getType();
-        final DetailAST parent = ast.getParent();
-        final boolean result;
-        if (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                && TokenUtil.isOfType(parent.getType(), TokenTypes.EQUAL, TokenTypes.NOT_EQUAL)
-                && isSurrounded(ast)) {
-            result = false;
+        final int parentType = ast.getParent().getType();
+        final boolean isConditional = TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL);
+        boolean result = TokenUtil.isOfType(parentType, CONDITIONALS_AND_RELATIONAL);
+        if (isConditional) {
+            result = result && !TokenUtil.isOfType(parentType,
+                TokenTypes.EQUAL, TokenTypes.NOT_EQUAL);
         }
         else {
-            result = (TokenUtil.isOfType(type, CONDITIONALS_AND_RELATIONAL)
-                        || TokenUtil.isOfType(type, UNARY_AND_POSTFIX))
-                    && TokenUtil.isOfType(parent.getType(), CONDITIONALS_AND_RELATIONAL)
-                    && isSurrounded(ast);
+            result = result && TokenUtil.isOfType(type, UNARY_AND_POSTFIX);
         }
         return result;
     }
