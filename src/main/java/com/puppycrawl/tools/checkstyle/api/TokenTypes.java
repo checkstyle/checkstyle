@@ -1501,6 +1501,21 @@ public final class TokenTypes {
     /**
      * The {@code byte} keyword.
      *
+     * <p>For example:</p>
+     * <pre>
+     * public byte x;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * VARIABLE_DEF -&gt; VARIABLE_DEF
+     *  |--MODIFIERS -&gt; MODIFIERS
+     *  |   `--LITERAL_PUBLIC -&gt; public
+     *  |--TYPE -&gt; TYPE
+     *  |   `--LITERAL_BYTE -&gt; byte
+     *  |--IDENT -&gt; x
+     *  `--SEMI -&gt; ;
+     * </pre>
+     *
      * @see #TYPE
      **/
     public static final int LITERAL_BYTE =
