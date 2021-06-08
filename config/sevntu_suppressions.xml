@@ -42,5 +42,6 @@
 
   <!-- Migrating to Truth -->
   <suppress checks="RequireFailForTryCatchInJunit" files="MutableExceptionCheckTest.java"/>
+  <suppress checks="RequireFailForTryCatchInJunit" files="CheckstyleAntTaskTest.java"/>
 
 </suppressions>
