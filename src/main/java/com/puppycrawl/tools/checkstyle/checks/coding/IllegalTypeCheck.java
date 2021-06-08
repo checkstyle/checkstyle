@@ -644,7 +644,7 @@ public final class IllegalTypeCheck extends AbstractCheck {
      * @param type node to check.
      */
     private void checkIdent(DetailAST type) {
-        final FullIdent ident = FullIdent.createFullIdent(type);
+        final FullIdent ident = FullIdent.extractFullIdent(null, type);
         if (isMatchingClassName(ident.getText())) {
             log(ident.getDetailAst(), MSG_KEY, ident.getText());
         }

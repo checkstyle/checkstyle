@@ -124,7 +124,7 @@ public class RedundantImportCheck
     @Override
     public void visitToken(DetailAST ast) {
         if (ast.getType() == TokenTypes.PACKAGE_DEF) {
-            pkgName = FullIdent.createFullIdent(
+            pkgName = FullIdent.extractFullIdent(null, 
                     ast.getLastChild().getPreviousSibling()).getText();
         }
         else if (ast.getType() == TokenTypes.IMPORT) {
@@ -146,7 +146,7 @@ public class RedundantImportCheck
         else {
             // Check for a duplicate static import
             final FullIdent imp =
-                FullIdent.createFullIdent(
+                FullIdent.extractFullIdent(null, 
                     ast.getLastChild().getPreviousSibling());
             staticImports.stream().filter(full -> imp.getText().equals(full.getText()))
                 .forEach(full -> log(ast, MSG_DUPLICATE, full.getLineNo(), imp.getText()));

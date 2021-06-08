@@ -1201,7 +1201,8 @@ public class CustomImportOrderCheck extends AbstractCheck {
     private static String getFullImportIdent(DetailAST token) {
         String ident = "";
         if (token != null) {
-            ident = FullIdent.createFullIdent(token.findFirstToken(TokenTypes.DOT)).getText();
+            ident = FullIdent.extractFullIdent(null,
+                    token.findFirstToken(TokenTypes.DOT)).getText();
         }
         return ident;
     }
