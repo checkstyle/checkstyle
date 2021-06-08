@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -42,6 +43,7 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
@@ -211,6 +213,45 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final String getUriString(String filename) {
         return new File("src/test/resources/" + getPackageLocation() + "/" + filename).toURI()
                 .toString();
+    }
+
+    /**
+     * Returns the absolute system path of the given file.
+     *
+     * @param filename file name.
+     * @return absolute file path.
+     */
+    protected final String getAbsolutePath(String filename) {
+        return new File("src/test/resources/" + getPackageLocation() + "/" + filename)
+                .getAbsolutePath();
+    }
+
+    /**
+     * Performs verification of the config read from input file.
+     *
+     * @param testConfig hardcoded test config.
+     * @param parsedConfig parsed config from input file.
+     */
+    protected final void verifyConfig(DefaultConfiguration testConfig,
+                                      DefaultConfiguration parsedConfig) {
+        final String errorMessage = "Test configs and parsed configs differ.";
+        assertWithMessage(errorMessage)
+                .that(testConfig.getName())
+                .contains(parsedConfig.getName());
+        assertWithMessage(errorMessage)
+                .that(parsedConfig.getAttributeNames())
+                .isEqualTo(testConfig.getAttributeNames());
+        for (String attribute : testConfig.getAttributeNames()) {
+            try {
+                assertWithMessage(errorMessage)
+                        .that(parsedConfig.getAttribute(attribute))
+                        .isEqualTo(testConfig.getAttribute(attribute));
+            }
+            catch (CheckstyleException ex) {
+                assertWithMessage(errorMessage)
+                        .fail();
+            }
+        }
     }
 
     /**
