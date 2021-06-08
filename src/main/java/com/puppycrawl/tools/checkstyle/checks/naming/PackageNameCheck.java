@@ -143,7 +143,7 @@ public class PackageNameCheck
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
-        final FullIdent full = FullIdent.createFullIdent(nameAST);
+        final FullIdent full = FullIdent.extractFullIdent(null, nameAST);
         if (!format.matcher(full.getText()).find()) {
             log(full.getDetailAst(),
                 MSG_KEY,
