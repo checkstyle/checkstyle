@@ -19,12 +19,12 @@
     <!-- Check to make sure check UT input files have config and trailing comments -->
     <module name="Regexp">
       <property name="id" value="ConfigCommentOnTopInputs"/>
-      <property name="format"
-               value="(\* Config)"/>
+      <property name="format" value="(\* Config|\A\*)"/>
       <message key="required.regexp"
              value="All check input files in the ''src/(it|test)/resources*/'' folder must
-                   have a comment at the top of the file specifying the check configuration used to
-                   produce the violations, that begins with &quot;/* Config:&quot;."/>
+                   have a comment at the top of the file specifying the check configuration
+                   used to produce the violations, that contains &quot;/* Config&quot;
+                   or begins with &quot;/*&quot;."/>
     </module>
     <module name="Regexp">
       <property name="id" value="StyleValidationCommentInInputs"/>
