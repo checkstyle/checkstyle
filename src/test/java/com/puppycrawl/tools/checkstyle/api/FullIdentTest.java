@@ -52,7 +52,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         parent.setText("MyParent");
         parent.setFirstChild(ast);
 
-        final FullIdent indent = FullIdent.extractFullIdent(null, ast);
+        final FullIdent indent = FullIdent.createFullIdent(ast);
         assertEquals("MyTest[15x14]", indent.toString(), "Invalid full indent");
         assertEquals("MyTest", indent.getText(), "Invalid text");
         assertEquals(15, indent.getLineNo(), "Invalid line");
@@ -74,7 +74,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
         final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
         final DetailAST packageName = packageDefinitionNode.getFirstChild().getNextSibling();
-        final FullIdent ident = FullIdent.extractFullIdent(null, packageName);
+        final FullIdent ident = FullIdent.createFullIdent(packageName);
         assertEquals("com[1x8]", ident.getDetailAst().toString(), "Invalid full indent");
     }
 
@@ -101,7 +101,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .findFirstToken(TokenTypes.VARIABLE_DEF)
                 .findFirstToken(TokenTypes.TYPE)
                 .getFirstChild();
-        final FullIdent ident = FullIdent.extractFullIdent(null, arrayDeclarator);
+        final FullIdent ident = FullIdent.createFullIdent(arrayDeclarator);
         assertEquals("int[][][5x12]", ident.toString(), "Invalid full indent");
     }
 
@@ -125,7 +125,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getNextSibling()
                 .getFirstChild();
 
-        final FullIdent ident = FullIdent.extractFullIdent(null, parameter);
+        final FullIdent ident = FullIdent.createFullIdent(parameter);
         assertEquals("char[][7x29]", ident.toString(), "Invalid full indent");
     }
 
@@ -146,7 +146,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
                 .getFirstChild()
                 .getFirstChild();
 
-        final FullIdent ident = FullIdent.extractFullIdent(null, literalInt);
+        final FullIdent ident = FullIdent.createFullIdent(literalInt);
         assertEquals("int[4x32]", ident.toString(), "Invalid full indent");
     }
 
@@ -172,7 +172,7 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         ast.addChild(ast1);
         ast.addChild(ast2);
 
-        return FullIdent.extractFullIdent(null, ast);
+        return FullIdent.createFullIdent(ast);
     }
 
 }

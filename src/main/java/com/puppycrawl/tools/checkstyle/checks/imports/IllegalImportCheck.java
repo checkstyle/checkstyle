@@ -384,7 +384,7 @@ public class IllegalImportCheck
             imp = FullIdent.createFullIdentBelow(ast);
         }
         else {
-            imp = FullIdent.extractFullIdent(null, 
+            imp = FullIdent.createFullIdent(
                 ast.getFirstChild().getNextSibling());
         }
         if (isIllegalImport(imp.getText())) {

@@ -315,7 +315,7 @@ public class IllegalInstantiationCheck
         final DetailAST packageNameAST = ast.getLastChild()
                 .getPreviousSibling();
         final FullIdent packageIdent =
-                FullIdent.extractFullIdent(null, packageNameAST);
+                FullIdent.createFullIdent(packageNameAST);
         pkgName = packageIdent.getText();
     }
 
@@ -341,7 +341,7 @@ public class IllegalInstantiationCheck
         final DetailAST nameSibling = typeNameAst.getNextSibling();
         if (nameSibling.getType() != TokenTypes.ARRAY_DECLARATOR) {
             // ast != "new Boolean[]"
-            final FullIdent typeIdent = FullIdent.extractFullIdent(null, typeNameAst);
+            final FullIdent typeIdent = FullIdent.createFullIdent(typeNameAst);
             final String typeName = typeIdent.getText();
             final String fqClassName = getIllegalInstantiation(typeName);
             if (fqClassName != null) {

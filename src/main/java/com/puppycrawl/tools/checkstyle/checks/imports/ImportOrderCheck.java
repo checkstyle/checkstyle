@@ -771,7 +771,7 @@ public class ImportOrderCheck
             isStatic = false;
         }
         else {
-            ident = FullIdent.extractFullIdent(null, ast.getFirstChild()
+            ident = FullIdent.createFullIdent(ast.getFirstChild()
                     .getNextSibling());
             isStatic = true;
         }

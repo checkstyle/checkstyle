@@ -179,7 +179,7 @@ public class UncommentedMainCheck
 
     @Override
     public void beginTree(DetailAST rootAST) {
-        packageName = FullIdent.extractFullIdent(null, null);
+        packageName = FullIdent.createFullIdent(null);
         currentClass = null;
         classDepth = 0;
     }
@@ -215,7 +215,7 @@ public class UncommentedMainCheck
      * @param packageDef node for package definition
      */
     private void visitPackageDef(DetailAST packageDef) {
-        packageName = FullIdent.extractFullIdent(null, packageDef.getLastChild()
+        packageName = FullIdent.createFullIdent(packageDef.getLastChild()
                 .getPreviousSibling());
     }
 
@@ -332,7 +332,7 @@ public class UncommentedMainCheck
      * @return true, if the type is java.lang.String.
      */
     private static boolean isStringType(DetailAST typeAst) {
-        final FullIdent type = FullIdent.extractFullIdent(null, typeAst);
+        final FullIdent type = FullIdent.createFullIdent(typeAst);
         return "String".equals(type.getText())
             || "java.lang.String".equals(type.getText());
     }

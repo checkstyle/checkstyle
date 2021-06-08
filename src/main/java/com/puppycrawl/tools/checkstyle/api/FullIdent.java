@@ -54,7 +54,7 @@ public final class FullIdent {
      * @return a {@code FullIdent} value
      */
     public static FullIdent createFullIdentBelow(DetailAST ast) {
-        return extractFullIdent(null, ast.getFirstChild());
+        return createFullIdent(ast.getFirstChild());
     }
 
     /**
@@ -63,7 +63,6 @@ public final class FullIdent {
      * @param ast the node to start from
      * @return a {@code FullIdent} value
      */
-    @Deprecated
     public static FullIdent createFullIdent(DetailAST ast) {
         final FullIdent ident = new FullIdent();
         extractFullIdent(ident, ast);
@@ -71,15 +70,12 @@ public final class FullIdent {
     }
 
     /**
-     * Create and recursively extract a FullIdent.
+     * Recursively extract a FullIdent.
      *
      * @param full the FullIdent to add to
      * @param ast the node to recurse from
      */
-    public static FullIdent extractFullIdent(FullIdent full, DetailAST ast) {
-        if(full == null) {
-            full = new FullIdent();
-        }
+    private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
 
             final DetailAST firstChild = ast.getFirstChild();
@@ -115,7 +111,6 @@ public final class FullIdent {
                 full.append(ast);
             }
         }
-        return full;
     }
 
     /**

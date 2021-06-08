@@ -250,7 +250,7 @@ public class AvoidStarImportCheck
      * @param startingDot the starting dot for the import statement
      */
     private void logsStarredImportViolation(DetailAST startingDot) {
-        final FullIdent name = FullIdent.extractFullIdent(null, startingDot);
+        final FullIdent name = FullIdent.createFullIdent(startingDot);
         final String importText = name.getText();
         if (importText.endsWith(STAR_IMPORT_SUFFIX) && !excludes.contains(importText)) {
             log(startingDot, MSG_KEY, importText);

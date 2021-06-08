@@ -295,7 +295,7 @@ public class UnusedImportsCheck extends AbstractCheck {
      */
     private void processStaticImport(DetailAST ast) {
         final FullIdent name =
-            FullIdent.extractFullIdent(null, 
+            FullIdent.createFullIdent(
                 ast.getFirstChild().getNextSibling());
         if (!name.getText().endsWith(STAR_IMPORT_SUFFIX)) {
             imports.add(name);

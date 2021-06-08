@@ -223,7 +223,7 @@ public class FinalClassCheck
      * @return qualified name
      */
     private static String extractQualifiedName(DetailAST ast) {
-        return FullIdent.extractFullIdent(null, ast).getText();
+        return FullIdent.createFullIdent(ast).getText();
     }
 
     /**
