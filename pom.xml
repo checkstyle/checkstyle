@@ -354,7 +354,7 @@
     <dependency>
       <groupId>org.eclipse.jgit</groupId>
       <artifactId>org.eclipse.jgit</artifactId>
-      <version>5.11.1.202105131744-r</version>
+      <version>5.12.0.202106070339-r</version>
       <scope>test</scope>
     </dependency>
     <dependency>
