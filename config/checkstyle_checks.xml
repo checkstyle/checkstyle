@@ -555,7 +555,7 @@
     <module name="ImportControl">
       <property name="id" value="ImportControlTest"/>
       <property name="file" value="${checkstyle.importcontroltest.file}"/>
-      <property name="path" value="^.*[\\/]src[\\/]test[\\/].*$"/>
+      <property name="path" value="^.*[\\/]src[\\/](test|it)[\\/].*$"/>
     </module>
     <module name="ImportOrder">
       <property name="groups" value="/^java\./,javax,org"/>
