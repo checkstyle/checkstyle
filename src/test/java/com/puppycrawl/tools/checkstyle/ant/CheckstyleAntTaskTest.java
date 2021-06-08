@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.endsWith;
@@ -52,6 +53,7 @@ import org.powermock.reflect.Whitebox;
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.Definitions;
+import com.puppycrawl.tools.checkstyle.TreeWalker;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
@@ -94,7 +96,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
     }
 
     @Test
@@ -113,12 +117,16 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         // then
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
-        assertThat("There are more files to check than expected",
-                filesToCheck.size(), is(1));
-        assertThat("The path of file differs from expected",
-                filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+        assertWithMessage("There are more files to check than expected")
+                .that(filesToCheck)
+                .hasSize(1);
+        assertWithMessage("The path of file differs from expected")
+                .that(filesToCheck.get(0).getAbsolutePath())
+                .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
     @Test
@@ -141,23 +149,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         // then
         final List<String> loggedMessages = antTask.getLoggedMessages();
 
-        assertEquals(1, loggedMessages.stream().filter(
-            msg -> msg.startsWith("1) Scanning path")).count(), "Scanning path was not logged");
+        assertWithMessage("Scanning path was not logged")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.startsWith("1) Scanning path")).count())
+                .isEqualTo(1);
 
-        assertEquals(1, loggedMessages.stream().filter(
-            msg -> msg.startsWith("1) Adding 1 files from path")).count(),
-                "Scanning path was not logged");
+        assertWithMessage("Scanning path was not logged")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.startsWith("1) Adding 1 files from path")).count())
+                .isEqualTo(1);
 
-        assertEquals(0, loggedMessages.stream().filter(
-            msg -> msg.startsWith("2) Adding 0 files from path ")).count(),
-                "Scanning empty was logged");
+        assertWithMessage("Scanning empty was logged")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.startsWith("2) Adding 0 files from path ")).count())
+                .isEqualTo(0);
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
-        assertThat("There are more files to check than expected",
-                filesToCheck.size(), is(1));
-        assertThat("The path of file differs from expected",
-                filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+        assertWithMessage("There are more files to check than expected")
+                .that(filesToCheck.size())
+                .isEqualTo(1);
+        assertWithMessage("The path of file differs from expected")
+                .that(filesToCheck.get(0).getAbsolutePath())
+                .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
     @Test
