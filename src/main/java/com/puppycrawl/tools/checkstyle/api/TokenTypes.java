@@ -4456,18 +4456,17 @@ public final class TokenTypes {
      * <p>parses as:</p>
      *
      * <pre>
-     * +--ANNOTATION_FIELD_DEF
-     *     |
-     *     +--MODIFIERS
-     *     +--TYPE
-     *         |
-     *         +--IDENT (String)
-     *     +--IDENT (someField)
-     *     +--LPAREN (()
-     *     +--RPAREN ())
-     *     +--LITERAL_DEFAULT (default)
-     *     +--STRING_LITERAL ("Hello world")
-     *     +--SEMI (;)
+     *  |--ANNOTATION_FIELD_DEF -&gt; ANNOTATION_FIELD_DEF
+     *  |   |--MODIFIERS -&gt; MODIFIERS
+     *  |   |--TYPE -&gt; TYPE
+     *  |   |   `--IDENT -&gt; String
+     *  |   |--IDENT -&gt; someField
+     *  |   |--LPAREN -&gt; (
+     *  |   |--RPAREN -&gt; )
+     *  |   |--LITERAL_DEFAULT -&gt; default
+     *  |   |   `--EXPR -&gt; EXPR
+     *  |   |       `--STRING_LITERAL -&gt; "Hello world"
+     *  |   `--SEMI -&gt; ;
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
