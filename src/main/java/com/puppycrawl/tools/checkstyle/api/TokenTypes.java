@@ -4467,7 +4467,6 @@ public final class TokenTypes {
      *  |   |   `--EXPR -&gt; EXPR
      *  |   |       `--STRING_LITERAL -&gt; "Hello world"
      *  |   `--SEMI -&gt; ;
-     *  `--RCURLY -&gt; }
      * </pre>
      *
      * @see <a href="https://www.jcp.org/en/jsr/detail?id=201">
