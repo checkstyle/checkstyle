@@ -158,6 +158,7 @@ class PkgImportControl extends AbstractImportControl {
      * @return a regex string.
      */
     private static String toRegex(String input) {
+        // noinspection DynamicRegexReplaceableByCompiledPattern
         return input.replace(DOT, DOT_REGEX);
     }
 
