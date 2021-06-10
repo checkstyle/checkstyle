@@ -40,11 +40,16 @@ public class ArrayTypeStyleTest extends AbstractGoogleModuleTestSupport {
             "9:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "15:44: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "21:20: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "22:19: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "22:21: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "22:23: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "41:33: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "46:34: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "46:36: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "52:27: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "62:16: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "63:15: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
+            "63:17: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
             "63:19: " + getCheckMessage(ArrayTypeStyleCheck.class, MSG_KEY),
         };
 
