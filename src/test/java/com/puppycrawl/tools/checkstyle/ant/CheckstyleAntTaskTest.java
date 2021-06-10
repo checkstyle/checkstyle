@@ -19,16 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.ant;
 
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.endsWith;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.startsWith;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +85,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
     }
 
     @Test
@@ -113,12 +106,16 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         // then
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
-        assertThat("There are more files to check than expected",
-                filesToCheck.size(), is(1));
-        assertThat("The path of file differs from expected",
-                filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+        assertWithMessage("There are more files to check than expected")
+                .that(filesToCheck)
+                .hasSize(1);
+        assertWithMessage("The path of file differs from expected")
+                .that(filesToCheck.get(0).getAbsolutePath())
+                .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
     @Test
@@ -141,23 +138,31 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         // then
         final List<String> loggedMessages = antTask.getLoggedMessages();
 
-        assertEquals(1, loggedMessages.stream().filter(
-            msg -> msg.startsWith("1) Scanning path")).count(), "Scanning path was not logged");
+        assertWithMessage("Scanning path was not logged")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.startsWith("1) Scanning path")).count())
+                .isEqualTo(1);
 
-        assertEquals(1, loggedMessages.stream().filter(
-            msg -> msg.startsWith("1) Adding 1 files from path")).count(),
-                "Scanning path was not logged");
+        assertWithMessage("Scanning path was not logged")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.startsWith("1) Adding 1 files from path")).count())
+                .isEqualTo(1);
 
-        assertEquals(0, loggedMessages.stream().filter(
-            msg -> msg.startsWith("2) Adding 0 files from path ")).count(),
-                "Scanning empty was logged");
+        assertWithMessage("Scanning empty was logged")
+                .that(loggedMessages.stream().filter(
+                        msg -> msg.startsWith("2) Adding 0 files from path ")).count())
+                .isEqualTo(0);
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
-        assertThat("There are more files to check than expected",
-                filesToCheck.size(), is(1));
-        assertThat("The path of file differs from expected",
-                filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+        assertWithMessage("There are more files to check than expected")
+                .that(filesToCheck.size())
+                .isEqualTo(1);
+        assertWithMessage("The path of file differs from expected")
+                .that(filesToCheck.get(0).getAbsolutePath())
+                .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
     @Test
@@ -179,14 +184,19 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.execute();
 
         // then
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
-        assertThat("There are more files to check than expected",
-                filesToCheck.size(), is(8));
-        assertThat("The path of file differs from expected",
-                filesToCheck.get(5).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
-        assertEquals(8, antTask.getLoggedMessages().size(),
-                "Amount of logged messages in unexpected");
+        assertWithMessage("There are more files to check than expected")
+                .that(filesToCheck)
+                .hasSize(8);
+        assertWithMessage("The path of file differs from expected")
+                .that(filesToCheck.get(5).getAbsolutePath())
+                .isEqualTo(getPath(FLAWLESS_INPUT));
+        assertWithMessage("Amount of logged messages in unexpected")
+                .that(antTask.getLoggedMessages())
+                .hasSize(8);
     }
 
     @Test
@@ -197,7 +207,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
     }
 
     @Test
@@ -209,12 +221,16 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addFileset(examinationFileSet);
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
         final List<File> filesToCheck = TestRootModuleChecker.getFilesToCheck();
-        assertThat("There are more files to check than expected",
-            filesToCheck.size(), is(1));
-        assertThat("The path of file differs from expected",
-            filesToCheck.get(0).getAbsolutePath(), is(getPath(FLAWLESS_INPUT)));
+        assertWithMessage("There are more files to check than expected")
+                .that(filesToCheck)
+                .hasSize(1);
+        assertWithMessage("The path of file differs from expected")
+                .that(filesToCheck.get(0).getAbsolutePath())
+                .isEqualTo(getPath(FLAWLESS_INPUT));
     }
 
     @Test
@@ -224,11 +240,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertEquals("Must specify 'config'.", ex.getMessage(),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo("Must specify 'config'.");
         }
     }
 
@@ -240,11 +258,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to create Root Module: config"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .startsWith("Unable to create Root Module: config");
         }
     }
 
@@ -256,11 +276,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFile(new File(getPath(FLAWLESS_INPUT)));
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to create Root Module: config"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .startsWith("Unable to create Root Module: config");
         }
     }
 
@@ -269,11 +291,14 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = getCheckstyleAntTask();
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertEquals("Must specify at least one of 'file' or nested 'fileset' or 'path'.",
-                ex.getMessage(), "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo(
+                            "Must specify at least one of 'file' or nested 'fileset' or 'path'.");
         }
     }
 
@@ -284,11 +309,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setMaxWarnings(0);
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertEquals("Got 0 errors and 1 warnings.", ex.getMessage(),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo("Got 0 errors and 1 warnings.");
         }
     }
 
@@ -301,7 +328,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setMaxErrors(2);
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
     }
 
     @Test
@@ -318,13 +347,15 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setFailureProperty(failurePropertyName);
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ignored) {
             final Map<String, Object> hashtable = project.getProperties();
             final Object propertyValue = hashtable.get(failurePropertyName);
-            assertEquals("Got 2 errors and 0 warnings.", propertyValue,
-                    "Number of errors is unexpected");
+            assertWithMessage("Number of errors is unexpected")
+                    .that(propertyValue)
+                    .isEqualTo("Got 2 errors and 0 warnings.");
         }
     }
 
@@ -340,7 +371,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addProperty(property);
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
     }
 
     @Test
@@ -372,20 +405,24 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final String errorMessage = "Content of file with violations differs from expected";
-        assertThat(errorMessage, output.get(0), is(auditStartedMessage.getViolation()));
-        assertThat(errorMessage, output.get(1), allOf(
-                startsWith("[WARN]"),
-                containsString("InputCheckstyleAntTaskError.java:4: "),
-                endsWith("@incomplete=Some javadoc [WriteTag]")));
-        assertThat(errorMessage, output.get(2), allOf(
-                startsWith("[ERROR]"),
-                endsWith("InputCheckstyleAntTaskError.java:7: "
-                    + "Line is longer than 70 characters (found 80). [LineLength]")));
-        assertThat(errorMessage, output.get(3), allOf(
-                startsWith("[ERROR]"),
-                endsWith("InputCheckstyleAntTaskError.java:9: "
-                    + "Line is longer than 70 characters (found 81). [LineLength]")));
-        assertThat(errorMessage, output.get(4), is(auditFinishedMessage.getViolation()));
+        assertWithMessage(errorMessage)
+                .that(output.get(0))
+                .isEqualTo(auditStartedMessage.getViolation());
+        assertWithMessage(errorMessage)
+                .that(output.get(1))
+                .matches("^\\[WARN].*InputCheckstyleAntTaskError.java:4: .*"
+                        + "@incomplete=Some javadoc \\[WriteTag]");
+        assertWithMessage(errorMessage)
+                .that(output.get(2))
+                .matches("^\\[ERROR].*InputCheckstyleAntTaskError.java:7: "
+                        + "Line is longer than 70 characters \\(found 80\\). \\[LineLength]");
+        assertWithMessage(errorMessage)
+                .that(output.get(3))
+                .startsWith("^\\[ERROR\\].*InputCheckstyleAntTaskError.java:9: "
+                        + "Line is longer than 70 characters \\(found 81\\). \\[LineLength\\]");
+        assertWithMessage(errorMessage)
+                .that(output.get(4))
+                .isEqualTo(auditFinishedMessage.getViolation());
     }
 
     @Test
@@ -409,7 +446,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final int sizeOfOutputWithNoViolations = 2;
-        assertEquals(sizeOfOutputWithNoViolations, output.size(), "No violations expected");
+        assertWithMessage("No violations expected")
+                .that(output.size())
+                .isEqualTo(sizeOfOutputWithNoViolations);
     }
 
     @Test
@@ -432,7 +471,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
         final List<String> output = FileUtils.readLines(outputFile, StandardCharsets.UTF_8);
         final int sizeOfOutputWithNoViolations = 2;
-        assertEquals(sizeOfOutputWithNoViolations, output.size(), "No violations expected");
+        assertWithMessage("No violations expected")
+                .that(output.size())
+                .isEqualTo(sizeOfOutputWithNoViolations);
     }
 
     @Test
@@ -444,11 +485,14 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setConfig(url.toString());
         try {
             antTask.setConfig("Any string value");
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
             final String expected = "Attribute 'config' has already been set";
-            assertEquals(expected, ex.getMessage(), "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo(expected);
         }
     }
 
@@ -462,7 +506,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
                 "InputCheckstyleAntTaskCheckstyleAntTest.properties")));
         antTask.execute();
 
-        assertEquals("ignore", TestRootModuleChecker.getProperty(), "Property is not set");
+        assertWithMessage("Property is not set")
+                .that(TestRootModuleChecker.getProperty())
+                .isEqualTo("ignore");
     }
 
     @Test
@@ -472,11 +518,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setProperties(new File(getPath(NOT_EXISTING_FILE)));
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Error loading Properties file"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .startsWith("Error loading Properties file");
         }
     }
 
@@ -501,8 +549,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         for (int i = 0; i < expected.size(); i++) {
             final String line = expected.get(i);
             if (!line.startsWith("<checkstyle version") && !line.startsWith("<file")) {
-                assertEquals(line, actual.get(i),
-                        "Content of file with violations differs from expected");
+                assertWithMessage("Content of file with violations differs from expected")
+                        .that(actual.get(i))
+                        .isEqualTo(line);
             }
         }
     }
@@ -517,11 +566,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addFormatter(formatter);
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to create listeners: formatters"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .startsWith("Unable to create listeners: formatters");
         }
     }
 
@@ -538,11 +589,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.addFormatter(formatter);
         try {
             antTask.execute();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertTrue(ex.getMessage().startsWith("Unable to create listeners: formatters"),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .startsWith("Unable to create listeners: formatters");
         }
     }
 
@@ -551,11 +604,13 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask.FormatterType formatterType = new CheckstyleAntTask.FormatterType();
         try {
             formatterType.setValue("foo");
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertEquals("foo is not a legal value for this attribute", ex.getMessage(),
-                    "Error message is unexpected");
+            assertWithMessage("Error message is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo("foo is not a legal value for this attribute");
         }
     }
 
@@ -564,16 +619,18 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final String filename = getPath("InputCheckstyleAntTaskCheckstyleAntTest.properties");
         final CheckstyleAntTask.Property property = new CheckstyleAntTask.Property();
         property.setFile(new File(filename));
-        assertEquals(property.getValue(), new File(filename).getAbsolutePath(),
-                "File path is unexpected");
+        assertWithMessage("File path is unexpected")
+                .that(new File(filename).getAbsolutePath())
+                .isEqualTo(property.getValue());
     }
 
     @Test
     public void testDefaultLoggerListener() throws IOException {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setUseFile(false);
-        assertTrue(formatter.createListener(null) instanceof DefaultLogger,
-                "Listener instance has unexpected type");
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(DefaultLogger.class);
     }
 
     @Test
@@ -581,8 +638,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setUseFile(false);
         formatter.setTofile(new File("target/"));
-        assertTrue(formatter.createListener(null) instanceof DefaultLogger,
-                "Listener instance has unexpected type");
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(DefaultLogger.class);
     }
 
     @Test
@@ -592,8 +650,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask.Formatter formatter = new CheckstyleAntTask.Formatter();
         formatter.setType(formatterType);
         formatter.setUseFile(false);
-        assertTrue(formatter.createListener(null) instanceof XMLLogger,
-                "Listener instance has unexpected type");
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(XMLLogger.class);
     }
 
     @Test
@@ -604,8 +663,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         formatter.setType(formatterType);
         formatter.setUseFile(false);
         formatter.setTofile(new File("target/"));
-        assertTrue(formatter.createListener(null) instanceof XMLLogger,
-                "Listener instance has unexpected type");
+        assertWithMessage("Listener instance has unexpected type")
+                .that(formatter.createListener(null))
+                .isInstanceOf(XMLLogger.class);
     }
 
     @Test
@@ -618,9 +678,16 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setClasspath(new Path(project, path2));
 
         final Path classpath = Whitebox.getInternalState(antTask, "classpath");
-        assertNotNull(classpath, "Classpath should not be null");
-        assertTrue(classpath.toString().contains(path1), "Classpath contain provided path");
-        assertTrue(classpath.toString().contains(path2), "Classpath contain provided path");
+        final String classpathString = classpath.toString();
+        assertWithMessage("Classpath should not be null")
+                .that(classpath)
+                .isNotNull();
+        assertWithMessage("Classpath does not contain provided path")
+                .that(classpathString)
+                .contains(path1);
+        assertWithMessage("Classpath does not contain provided path")
+                .that(classpathString)
+                .contains(path2);
     }
 
     @Test
@@ -628,8 +695,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
         antTask.setClasspathRef(new Reference(new Project(), "id"));
 
-        assertNotNull(Whitebox.getInternalState(antTask, "classpath"),
-                "Classpath should not be null");
+        assertWithMessage("Classpath should not be null")
+                .that((Object) Whitebox.getInternalState(antTask, "classpath"))
+                .isNotNull();
     }
 
     /** This test is created to satisfy pitest, it is hard to emulate Reference by Id. */
@@ -640,16 +708,20 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setClasspath(new Path(project, "firstPath"));
         antTask.setClasspathRef(new Reference(project, "idXX"));
 
-        assertNotNull(Whitebox.getInternalState(antTask, "classpath"),
-                "Classpath should not be null");
+        assertWithMessage("Classpath should not be null")
+                .that((Object) Whitebox.getInternalState(antTask, "classpath"))
+                .isNotNull();
+
         final Path classpath = Whitebox.getInternalState(antTask, "classpath");
         try {
             classpath.list();
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (BuildException ex) {
-            assertEquals("Reference idXX not found.", ex.getMessage(),
-                    "unexpected exception message");
+            assertWithMessage("unexpected exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("Reference idXX not found.");
         }
     }
 
@@ -657,11 +729,15 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
     public void testCreateClasspath() {
         final CheckstyleAntTask antTask = new CheckstyleAntTask();
 
-        assertEquals("", antTask.createClasspath().toString(), "Invalid classpath");
+        assertWithMessage("Invalid classpath")
+                .that(antTask.createClasspath().toString())
+                .isEmpty();
 
         antTask.setClasspath(new Path(new Project(), "/path"));
 
-        assertEquals("", antTask.createClasspath().toString(), "Invalid classpath");
+        assertWithMessage("Invalid classpath")
+                .that(antTask.createClasspath().toString())
+                .isEmpty();
     }
 
     @Test
@@ -673,7 +749,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setMaxWarnings(0);
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isDestroyed(), "Checker is not destroyed");
+        assertWithMessage("Checker is not destroyed")
+                .that(TestRootModuleChecker.isDestroyed())
+                .isTrue();
     }
 
     @Test
@@ -685,7 +763,9 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setMaxWarnings(0);
         antTask.execute();
 
-        assertTrue(TestRootModuleChecker.isProcessed(), "Checker is not processed");
+        assertWithMessage("Checker is not processed")
+                .that(TestRootModuleChecker.isProcessed())
+                .isTrue();
     }
 
     private static class CheckstyleAntTaskLogStub extends CheckstyleAntTask {
