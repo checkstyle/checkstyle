@@ -294,6 +294,26 @@ public class NoWhitespaceAfterCheckTest
                 getPath("InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"), expected);
     }
 
+    @Test
+    public void testArrayNewTypeStructure() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+                + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
+                + "METHOD_REF");
+
+        final String[] expected = {
+            "40:18: " + getCheckMessage(MSG_KEY, "cij"),
+            "41:28: " + getCheckMessage(MSG_KEY, "int"),
+            "42:16: " + getCheckMessage(MSG_KEY, "double"),
+            "43:62: " + getCheckMessage(MSG_KEY, "cZ"),
+            "47:42: " + getCheckMessage(MSG_KEY, "transformers"),
+            "48:39: " + getCheckMessage(MSG_KEY, "transformers"),
+        };
+
+        verify(checkConfig,
+                getPath("InputNoWhitespaceAfterNewTypeStructure.java"), expected);
+    }
+
     /**
      * Creates MOCK lexical token and returns AST node for this token.
      *
