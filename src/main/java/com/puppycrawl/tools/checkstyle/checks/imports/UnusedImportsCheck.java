@@ -267,11 +267,23 @@ public class UnusedImportsCheck extends AbstractCheck {
     private void processIdent(DetailAST ast) {
         final DetailAST parent = ast.getParent();
         final int parentType = parent.getType();
+
+        final boolean isPossibleDotClassOrInMethod = parentType == TokenTypes.DOT
+                || parentType == TokenTypes.METHOD_DEF;
+
+        final boolean isQualifiedIdent = parentType == TokenTypes.DOT
+                && ast.getNextSibling() != null;
+
+        final boolean isQualifiedNameArrayType = parentType == TokenTypes.DOT
+                && parent.getParent().getType() == TokenTypes.DOT
+                && ast.getNextSibling() != null
+                && ast.getNextSibling().getType() == TokenTypes.ARRAY_DECLARATOR;
+
         if (TokenUtil.isTypeDeclaration(parentType)) {
             currentFrame.addDeclaredType(ast.getText());
         }
-        else if (parentType != TokenTypes.DOT && parentType != TokenTypes.METHOD_DEF
-                || parentType == TokenTypes.DOT && ast.getNextSibling() != null) {
+        else if ((!isPossibleDotClassOrInMethod || isQualifiedIdent)
+                    && !isQualifiedNameArrayType) {
             currentFrame.addReferencedType(ast.getText());
         }
     }
