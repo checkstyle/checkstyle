@@ -21,7 +21,7 @@ public class InputIndentationNewWithForceStrictCondition { //indent:0 exp:0
         BufferedReader bf =  //indent:8 exp:8
                 new BufferedReader(  //indent:16 exp:16
                 new InputStreamReader(System.in) {  //indent:16 exp:24 warn
-                    int a = 0; //indent:20 exp:28,32,36 warn
+                    int a = 0; //indent:20 exp:28,32 warn
                 }); //indent:16 exp:24,28,32 warn
     } //indent:4 exp:4
 }  //indent:0 exp:0

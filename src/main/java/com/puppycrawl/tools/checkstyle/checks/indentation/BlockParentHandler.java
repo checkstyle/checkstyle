@@ -273,16 +273,9 @@ public class BlockParentHandler extends AbstractExpressionHandler {
         // if we have multileveled expected level then we should
         // try to suggest single level to children using curlies'
         // levels.
-        if (getIndent().isMultiLevel() && hasCurlies()) {
-            if (isOnStartOfLine(getLeftCurly())) {
-                indentLevel = new IndentLevel(expandedTabsColumnNo(getLeftCurly())
-                        + getBasicOffset());
-            }
-            else if (isOnStartOfLine(getRightCurly())) {
-                final IndentLevel level = new IndentLevel(curlyIndent(), getBasicOffset());
-                indentLevel = IndentLevel.addAcceptable(level, level.getFirstIndentLevel()
-                        + getLineWrappingIndent());
-            }
+        if (getIndent().isMultiLevel() && hasCurlies() && isOnStartOfLine(getLeftCurly())) {
+            indentLevel = new IndentLevel(expandedTabsColumnNo(getLeftCurly())
+                    + getBasicOffset());
         }
         if (hasCurlies() && isOnStartOfLine(getLeftCurly())) {
             indentLevel = IndentLevel.addAcceptable(indentLevel,
@@ -294,16 +287,6 @@ public class BlockParentHandler extends AbstractExpressionHandler {
     @Override
     public IndentLevel getSuggestedChildIndent(AbstractExpressionHandler child) {
         return getChildrenExpectedIndent();
-    }
-
-    /**
-     * A shortcut for {@code IndentationCheck} property.
-     *
-     * @return value of lineWrappingIndentation property
-     *         of {@code IndentationCheck}
-     */
-    private int getLineWrappingIndent() {
-        return getIndentCheck().getLineWrappingIndentation();
     }
 
 }
