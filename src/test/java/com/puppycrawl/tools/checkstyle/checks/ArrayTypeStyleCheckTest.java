@@ -55,7 +55,9 @@ public class ArrayTypeStyleCheckTest
             "15:18: " + getCheckMessage(MSG_KEY),
             "21:44: " + getCheckMessage(MSG_KEY),
             "45:33: " + getCheckMessage(MSG_KEY),
+            "50:34: " + getCheckMessage(MSG_KEY),
             "50:36: " + getCheckMessage(MSG_KEY),
+            "56:27: " + getCheckMessage(MSG_KEY),
             "56:29: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
@@ -73,7 +75,9 @@ public class ArrayTypeStyleCheckTest
             "23:18: " + getCheckMessage(MSG_KEY),
             "31:20: " + getCheckMessage(MSG_KEY),
             "45:33: " + getCheckMessage(MSG_KEY),
+            "50:34: " + getCheckMessage(MSG_KEY),
             "50:36: " + getCheckMessage(MSG_KEY),
+            "56:27: " + getCheckMessage(MSG_KEY),
             "56:29: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);

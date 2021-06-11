@@ -188,4 +188,21 @@ public class AtclauseOrderCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig, getNonCompilablePath("InputAtclauseOrderLotsOfRecords.java"), expected);
     }
 
+    @Test
+    public void testNewArrayDeclaratorStructure() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(AtclauseOrderCheck.class);
+        final String tagOrder = "[@author, @version, @param, @return, @throws, @exception, @see,"
+                + " @since, @serial, @serialField, @serialData, @deprecated]";
+
+        final String[] expected = {
+            "32: " + getCheckMessage(MSG_KEY, tagOrder),
+            "49: " + getCheckMessage(MSG_KEY, tagOrder),
+            "69: " + getCheckMessage(MSG_KEY, tagOrder),
+            "70: " + getCheckMessage(MSG_KEY, tagOrder),
+            "71: " + getCheckMessage(MSG_KEY, tagOrder),
+        };
+
+        verify(checkConfig,
+                getPath("InputAtclauseOrderNewArrayDeclaratorStructure.java"), expected);
+    }
 }

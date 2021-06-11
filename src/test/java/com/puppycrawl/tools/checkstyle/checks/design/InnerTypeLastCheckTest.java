@@ -128,7 +128,7 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
             "7:5: " + getCheckMessage(MSG_KEY),
             "8:5: " + getCheckMessage(MSG_KEY),
             "9:5: " + getCheckMessage(MSG_KEY),
-            "10:7: " + getCheckMessage(MSG_KEY),
+            "10:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInnerTypeLastArray.java"), expected);
     }
