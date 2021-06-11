@@ -59,8 +59,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsValuePair.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="arraytypestyle[\\/]InputArrayTypeStyle.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="asttreestringprinter[\\/]InputAstTreeStringPrinterAttributesAndMethodsJavadoc.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="asttreestringprinter[\\/]InputAstTreeStringPrinterComments.java"/>
@@ -1534,8 +1532,6 @@
             files="annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsSingle.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="annotation[\\/]suppresswarnings[\\/]InputSuppressWarningsValuePair.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="arraytypestyle[\\/]InputArrayTypeStyle.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="asttreestringprinter[\\/]InputAstTreeStringPrinterAttributesAndMethodsJavadoc.java"/>
   <suppress id="StyleValidationCommentInInputs"
