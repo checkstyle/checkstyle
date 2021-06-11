@@ -29,6 +29,7 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.bdd.BddParser;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
@@ -44,8 +45,10 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadOverrideFromObject() throws Exception {
+        final String filename = "InputMissingOverrideBadOverrideFromObject.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
-        checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -54,7 +57,12 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
             "53:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
-        verify(checkConfig, getPath("InputMissingOverrideBadOverrideFromObject.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -63,6 +71,9 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadOverrideFromObjectJ5Compatible() throws Exception {
+        final String filename = "InputMissingOverrideBadOverrideFromObjectJava5.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
@@ -73,8 +84,12 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
             "53:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
-        verify(checkConfig, getPath("InputMissingOverrideBadOverrideFromObjectJava5.java"),
-                expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -83,6 +98,9 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadOverrideFromOther() throws Exception {
+        final String filename = "InputMissingOverrideBadOverrideFromOther.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -94,7 +112,12 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
             "68:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
-        verify(checkConfig, getPath("InputMissingOverrideBadOverrideFromOther.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -103,13 +126,20 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadOverrideFromOtherJ5Compatible() throws Exception {
+        final String filename = "InputMissingOverrideBadOverrideFromOtherJava5.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideBadOverrideFromOtherJava5.java"),
-                expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -118,6 +148,9 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadAnnotationOverride() throws Exception {
+        final String filename = "InputMissingOverrideBadAnnotation.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "17:9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -126,7 +159,12 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
             "42:21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
-        verify(checkConfig, getPath("InputMissingOverrideBadAnnotation.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -135,11 +173,19 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadAnnotationOverrideJ5Compatible() throws Exception {
+        final String filename = "InputMissingOverrideBadAnnotationJava5.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideBadAnnotationJava5.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -147,13 +193,21 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testNotOverride() throws Exception {
+        final String filename = "InputMissingOverrideNotOverride.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
             "20:5: " + getCheckMessage(MSG_KEY_TAG_NOT_VALID_ON, "{@inheritDoc}"),
         };
 
-        verify(checkConfig, getPath("InputMissingOverrideNotOverride.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -162,12 +216,19 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodOverrideFromObject() throws Exception {
+        final String filename = "InputMissingOverrideGoodOverrideFromObject.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
-        checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromObject.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -176,13 +237,20 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodOverrideFromObjectJ5Compatible() throws Exception {
+        final String filename = "InputMissingOverrideGoodOverrideFromObjectJava5.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromObjectJava5.java"),
-                expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -191,10 +259,18 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodOverrideFromOther() throws Exception {
+        final String filename = "InputMissingOverrideGoodOverrideFromOther.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromOther.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -203,13 +279,20 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodOverrideFromOtherJ5Compatible() throws Exception {
+        final String filename = "InputMissingOverrideGoodOverrideFromOtherJava5.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideGoodOverrideFromOtherJava5.java"),
-                expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -218,10 +301,18 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodAnnotationOverride() throws Exception {
+        final String filename = "InputMissingOverrideGoodOverride.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideGoodOverride.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     /**
@@ -230,11 +321,19 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testGoodAnnotationOverrideJ5Compatible() throws Exception {
+        final String filename = "InputMissingOverrideGoodOverrideJava5.java";
+        final String filePath = getAbsolutePath(filename);
+
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
         checkConfig.addAttribute("javaFiveCompatibility", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputMissingOverrideGoodOverrideJava5.java"), expected);
+        final BddParser bdd = new BddParser(filename, filePath);
+        bdd.parse();
+        final DefaultConfiguration config = bdd.getCheckConfig();
+        verifyConfig(checkConfig, config);
+        verify(createChecker(config, ModuleCreationOption.IN_TREEWALKER),
+                getPath(filename), expected);
     }
 
     @Test
