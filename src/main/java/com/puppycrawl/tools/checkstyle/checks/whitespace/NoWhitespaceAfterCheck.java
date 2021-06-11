@@ -19,12 +19,13 @@
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace;
 
+import java.util.Optional;
+
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
-import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 
 /**
  * <p>
@@ -233,17 +234,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     private static boolean shouldCheckWhitespaceAfter(DetailAST ast) {
         boolean checkWhitespace = true;
         final DetailAST sibling = ast.getNextSibling();
-        if (sibling != null) {
-            if (sibling.getType() == TokenTypes.ANNOTATIONS) {
+        if (sibling != null && sibling.getType() == TokenTypes.ANNOTATIONS) {
                 checkWhitespace = false;
-            }
-            else {
-                DetailAST firstChild = sibling.getFirstChild();
-                while (firstChild != null && firstChild.getType() != TokenTypes.ANNOTATIONS) {
-                    firstChild = firstChild.getFirstChild();
-                }
-                checkWhitespace = firstChild == null;
-            }
+
         }
         return checkWhitespace;
     }
@@ -307,38 +300,29 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private static DetailAST getArrayDeclaratorPreviousElement(DetailAST ast) {
         final DetailAST previousElement;
-        final DetailAST firstChild = ast.getFirstChild();
-        if (firstChild.getType() == TokenTypes.ARRAY_DECLARATOR) {
-            // second or higher array index
-            previousElement = firstChild.findFirstToken(TokenTypes.RBRACK);
+
+        if (ast.getPreviousSibling() != null
+                && ast.getPreviousSibling().getType() == TokenTypes.ARRAY_DECLARATOR) {
+            // Covers higher dimension array declarations and initializations
+            previousElement = getPreviousElementOfMultiDimArray(ast);
         }
         else {
             // first array index, is preceded with identifier or type
-            final DetailAST parent = getFirstNonArrayDeclaratorParent(ast);
+            final DetailAST parent = ast.getParent();
             switch (parent.getType()) {
                 // generics
-                case TokenTypes.TYPE_ARGUMENT:
-                    final DetailAST wildcard = parent.findFirstToken(TokenTypes.WILDCARD_TYPE);
-                    if (wildcard == null) {
-                        // usual generic type argument like <char[]>
-                        previousElement = getTypeLastNode(ast);
-                    }
-                    else {
-                        // constructions with wildcard like <? extends String[]>
-                        previousElement = getTypeLastNode(ast.getFirstChild());
-                    }
-                    break;
-                // 'new' is a special case with its own subtree structure
+                case TokenTypes.TYPE_UPPER_BOUNDS:
+                case TokenTypes.TYPE_LOWER_BOUNDS:
                 case TokenTypes.LITERAL_NEW:
-                    previousElement = getTypeLastNode(parent);
+                    previousElement = ast.getPreviousSibling();
+                    break;
+                case TokenTypes.TYPE_ARGUMENT:
+                case TokenTypes.DOT:
+                    previousElement = getTypeLastNode(ast);
                     break;
                 // mundane array declaration, can be either java style or C style
                 case TokenTypes.TYPE:
                     previousElement = getPreviousNodeWithParentOfTypeAst(ast, parent);
-                    break;
-                // i.e. boolean[].class
-                case TokenTypes.DOT:
-                    previousElement = getTypeLastNode(ast);
                     break;
                 // java 8 method reference
                 case TokenTypes.METHOD_REF:
@@ -359,6 +343,36 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     }
 
     /**
+     * Gets the previous element of a second or higher dimension of an
+     * array declaration or initialization.
+     *
+     * @param leftBracket the token to get previous element of
+     * @return the previous element
+     */
+    private static DetailAST getPreviousElementOfMultiDimArray(DetailAST leftBracket) {
+        final DetailAST previousRightBracket = leftBracket.getPreviousSibling().getLastChild();
+
+        DetailAST ident = null;
+        DetailAST parent = leftBracket.getParent();
+        while (ident == null) {
+            ident = parent.findFirstToken(TokenTypes.IDENT);
+            parent = parent.getParent();
+        }
+
+        final DetailAST previousElement;
+        if (ident.getColumnNo() >= previousRightBracket.getColumnNo()
+                && ident.getColumnNo() <= leftBracket.getColumnNo()) {
+            // C style and Java style ' int[] arr []' in same construct
+            previousElement = ident;
+        }
+        else {
+            // 'int[][] arr' or 'int arr[][]'
+            previousElement = previousRightBracket;
+        }
+        return previousElement;
+    }
+
+    /**
      * Gets previous node for {@link TokenTypes#INDEX_OP INDEX_OP} token
      * for usage in getPositionAfter method, it is a simplified copy of
      * getArrayDeclaratorPreviousElement method.
@@ -373,6 +387,9 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         if (firstChild.getType() == TokenTypes.INDEX_OP) {
             // second or higher array index
             result = firstChild.findFirstToken(TokenTypes.RBRACK);
+        }
+        else if (firstChild.getType() == TokenTypes.IDENT) {
+            result = firstChild;
         }
         else {
             final DetailAST ident = getIdentLastToken(ast);
@@ -396,21 +413,6 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
     }
 
     /**
-     * Get node that owns {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} sequence.
-     *
-     * @param ast
-     *        , {@link TokenTypes#ARRAY_DECLARATOR ARRAY_DECLARATOR} node.
-     * @return owner node.
-     */
-    private static DetailAST getFirstNonArrayDeclaratorParent(DetailAST ast) {
-        DetailAST parent = ast.getParent();
-        while (parent.getType() == TokenTypes.ARRAY_DECLARATOR) {
-            parent = parent.getParent();
-        }
-        return parent;
-    }
-
-    /**
      * Searches parameter node for a type node.
      * Returns it or its last node if it has an extended structure.
      *
@@ -419,36 +421,24 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      * @return type node.
      */
     private static DetailAST getTypeLastNode(DetailAST ast) {
-        DetailAST result = ast.findFirstToken(TokenTypes.TYPE_ARGUMENTS);
-        if (result == null) {
-            result = getIdentLastToken(ast);
-            if (result == null) {
-                result = getArrayType(ast);
-            }
+        final DetailAST typeLastNode;
+        final DetailAST parent = ast.getParent();
+        final boolean isPrecededByTypeArgs =
+                parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS) != null;
+        final Optional<DetailAST> objectArrayType = Optional.ofNullable(getIdentLastToken(ast));
+
+        if (isPrecededByTypeArgs) {
+            typeLastNode = parent.findFirstToken(TokenTypes.TYPE_ARGUMENTS)
+                    .findFirstToken(TokenTypes.GENERIC_END);
+        }
+        else if (objectArrayType.isPresent()) {
+            typeLastNode = objectArrayType.get();
         }
         else {
-            result = result.findFirstToken(TokenTypes.GENERIC_END);
+            typeLastNode = parent.getFirstChild();
         }
-        return result;
-    }
 
-    /**
-     * Ascends through array type declarations to get type,
-     * e.g. 'char' literal from 'char [][]'.
-     *
-     * @param ast the method or type parameter to find type of
-     * @return type of parameter
-     */
-    private static DetailAST getArrayType(DetailAST ast) {
-        DetailAST typeAst = ast.getFirstChild();
-        if (TokenUtil.isOfType(typeAst, TokenTypes.RBRACK, TokenTypes.ANNOTATIONS)) {
-            while (!TokenUtil.isOfType(typeAst, TokenTypes.TYPE_ARGUMENT, TokenTypes.TYPE)
-                    && typeAst.getParent() != null) {
-                typeAst = typeAst.getParent();
-            }
-            typeAst = typeAst.getFirstChild();
-        }
-        return typeAst;
+        return typeLastNode;
     }
 
     /**
@@ -501,7 +491,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
      */
     private static DetailAST getIdentLastToken(DetailAST ast) {
         final DetailAST result;
-        final DetailAST dot = ast.findFirstToken(TokenTypes.DOT);
+        final DetailAST dot = getPrecedingDot(ast);
         // method call case
         if (dot == null) {
             final DetailAST methodCall = ast.findFirstToken(TokenTypes.METHOD_CALL);
@@ -519,4 +509,18 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         return result;
     }
 
+    /**
+     * Gets the dot preceding a class member array index operation or class
+     * reference.
+     *
+     * @param leftBracket the ast we are checking
+     * @return dot preceding the left bracket
+     */
+    private static DetailAST getPrecedingDot(DetailAST leftBracket) {
+        final DetailAST referencedClassDot =
+                leftBracket.getParent().findFirstToken(TokenTypes.DOT);
+        final DetailAST referencedMemberDot = leftBracket.findFirstToken(TokenTypes.DOT);
+        return Optional.ofNullable(referencedMemberDot).orElse(referencedClassDot);
+
+    }
 }
