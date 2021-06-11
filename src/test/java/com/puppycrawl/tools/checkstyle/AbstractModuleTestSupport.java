@@ -214,6 +214,16 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Returns the absolute system path of the given file.
+     *
+     * @param filename file name.
+     * @return absolute file path.
+     */
+    protected final File getInputFile(String filename) {
+        return new File("src/test/resources/" + getPackageLocation() + "/" + filename);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
