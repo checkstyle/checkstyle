@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
@@ -173,6 +174,18 @@ public class FullIdentTest extends AbstractModuleTestSupport {
         ast.addChild(ast2);
 
         return FullIdent.createFullIdent(ast);
+    }
+
+    @Test
+    public void testReturnNoAnnotation() throws Exception {
+        final FileText testFileText = new FileText(
+                new File(getPath("InputFullIdentReturnNoAnnotation.java")).getAbsoluteFile(),
+                System.getProperty("file.encoding", StandardCharsets.UTF_8.name()));
+        final DetailAST packageDefinitionNode = JavaParser.parse(new FileContents(testFileText));
+        final DetailAST annotationNode = packageDefinitionNode.getFirstChild();
+        final FullIdent ident = FullIdent.createFullIdent(annotationNode);
+        assertWithMessage("Full ident text should be empty.")
+                .that(ident.getText()).isEmpty();
     }
 
 }

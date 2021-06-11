@@ -310,15 +310,12 @@ public class UncommentedMainCheck
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final Optional<DetailAST> arrayDecl = Optional.ofNullable(
-                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR));
+            final boolean isArrayDeclaration =
+                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
             final Optional<DetailAST> varargs = Optional.ofNullable(
                 params.getFirstChild().findFirstToken(TokenTypes.ELLIPSIS));
 
-            if (arrayDecl.isPresent()) {
-                checkPassed = isStringType(arrayDecl.get().getFirstChild());
-            }
-            else if (varargs.isPresent()) {
+            if (isArrayDeclaration || varargs.isPresent()) {
                 checkPassed = isStringType(parameterType.getFirstChild());
             }
         }
@@ -333,7 +330,8 @@ public class UncommentedMainCheck
      */
     private static boolean isStringType(DetailAST typeAst) {
         final FullIdent type = FullIdent.createFullIdent(typeAst);
-        return "String".equals(type.getText())
+        return "String[]".equals(type.getText())
+            || "String".equals(type.getText())
             || "java.lang.String".equals(type.getText());
     }
 
