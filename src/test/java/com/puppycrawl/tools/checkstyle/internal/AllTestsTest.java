@@ -204,7 +204,9 @@ public class AllTestsTest {
                     // tests external utility XPathEvaluator
                     && !"XpathMapper.java".equals(fileName)
                     // JavadocMetadataScraper and related classes are temporarily hosted in test
-                    && !file.getPath().contains("meta")) {
+                    && !file.getPath().contains("meta")
+                    // BddParser is hosted in test
+                    && !file.getPath().contains("bdd")) {
                 final String path;
 
                 try {
