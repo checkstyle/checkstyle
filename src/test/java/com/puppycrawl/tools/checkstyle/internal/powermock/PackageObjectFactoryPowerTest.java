@@ -36,9 +36,9 @@ import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
 @RunWith(PowerMockRunner.class)
@@ -50,10 +50,10 @@ public class PackageObjectFactoryPowerTest {
      * This method is for testing the case of an exception caught inside
      * {@code PackageObjectFactory.generateThirdPartyNameToFullModuleName}, a private method used
      * to initialize private field {@code PackageObjectFactory.thirdPartyNameToFullModuleNames}.
-     * Since the method and the field both are private, the {@link Whitebox} is required to ensure
-     * that the field is changed. Also, the expected exception should be thrown from the static
-     * method {@link ModuleReflectionUtil#getCheckstyleModules}, so {@link PowerMockito#mockStatic}
-     * is required to mock this exception.
+     * Since the method and the field both are private, the {@link TestUtil#getInternalState} is
+     * required to ensure that the field is changed. Also, the expected exception should be thrown
+     * from the static method {@link ModuleReflectionUtil#getCheckstyleModules}, so
+     * {@link PowerMockito#mockStatic} is required to mock this exception.
      *
      * @throws Exception when the code tested throws an exception
      */
@@ -71,14 +71,14 @@ public class PackageObjectFactoryPowerTest {
         ModuleReflectionUtil.getCheckstyleModules(packages, classLoader);
 
         final String internalFieldName = "thirdPartyNameToFullModuleNames";
-        final Map<String, String> nullMap = Whitebox.getInternalState(objectFactory,
+        final Map<String, String> nullMap = TestUtil.getInternalState(objectFactory,
                 internalFieldName);
         assertNull("Expected uninitialized field", nullMap);
 
         final Object instance = objectFactory.createModule(name);
         assertEquals("Expected empty string", "", instance);
 
-        final Map<String, String> emptyMap = Whitebox.getInternalState(objectFactory,
+        final Map<String, String> emptyMap = TestUtil.getInternalState(objectFactory,
                 internalFieldName);
         assertEquals("Expected empty map", Collections.emptyMap(), emptyMap);
     }

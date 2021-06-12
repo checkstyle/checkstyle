@@ -35,7 +35,6 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.PackageObjectFactory;
@@ -45,6 +44,7 @@ import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.checks.indentation.CommentsIndentationCheck;
 import com.puppycrawl.tools.checkstyle.checks.naming.TypeNameCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(TreeWalker.class)
@@ -73,7 +73,7 @@ public class TreeWalkerPowerTest extends AbstractModuleTestSupport {
         lines.add("class Test {}");
         final FileText fileText = new FileText(file, lines);
         treeWalkerSpy.setFileContents(new FileContents(fileText));
-        Whitebox.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
+        TestUtil.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
         verifyPrivate(treeWalkerSpy, times(1)).invoke("walk",
                 any(DetailAST.class), any(FileContents.class), any(classAstState));
         verifyPrivate(treeWalkerSpy, times(0)).invoke("getFilteredViolations",
@@ -95,7 +95,7 @@ public class TreeWalkerPowerTest extends AbstractModuleTestSupport {
         lines.add("class Test {}");
         final FileText fileText = new FileText(file, lines);
         treeWalkerSpy.setFileContents(new FileContents(fileText));
-        Whitebox.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
+        TestUtil.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
         verifyPrivate(treeWalkerSpy, times(1)).invoke("walk",
                 any(DetailAST.class), any(FileContents.class), any(classAstState));
         verifyPrivate(treeWalkerSpy, times(0)).invoke("getFilteredViolations",
