@@ -33,12 +33,12 @@ import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel;
 import com.puppycrawl.tools.checkstyle.gui.MainFrameModel.ParseMode;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ParseMode.class)
@@ -87,7 +87,7 @@ public class MainFrameModelPowerTest extends AbstractModuleTestSupport {
     @Test
     public void testOpenFileWithUnknownParseMode() throws CheckstyleException {
         final ParseMode unknownParseMode = PowerMockito.mock(ParseMode.class);
-        Whitebox.setInternalState(unknownParseMode, "ordinal", 3);
+        TestUtil.setInternalState(unknownParseMode, "ordinal", 3);
 
         PowerMockito.when(unknownParseMode.toString()).thenReturn("Unknown parse mode");
         PowerMockito.mockStatic(ParseMode.class);

@@ -31,10 +31,10 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.internal.utils.CheckUtil;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class FileTextTest extends AbstractPathTestSupport {
 
@@ -96,7 +96,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final LineColumn lineColumn = fileText.lineColumn(100);
         final FileText copy = new FileText(fileText);
         assertWithMessage("LineBreaks not copied")
-                .that((Object) Whitebox.getInternalState(copy, "lineBreaks"))
+                .that((Object) TestUtil.getInternalState(copy, "lineBreaks"))
                 .isNotNull();
         final LineColumn actual = copy.lineColumn(100);
         assertWithMessage("Invalid linecolumn")
@@ -111,7 +111,7 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File(filepath), charset.name());
         final FileText copy = new FileText(fileText);
         assertWithMessage("LineBreaks not null")
-                .that((Object) Whitebox.getInternalState(copy, "lineBreaks"))
+                .that((Object) TestUtil.getInternalState(copy, "lineBreaks"))
                 .isNull();
         final LineColumn lineColumn = copy.lineColumn(100);
         assertWithMessage("Invalid line")
@@ -159,14 +159,14 @@ public class FileTextTest extends AbstractPathTestSupport {
         final FileText fileText = new FileText(new File("fileName"), Arrays.asList("1", "2"));
 
         assertWithMessage("Invalid line breaks")
-                .that((int[]) Whitebox.invokeMethod(fileText, "findLineBreaks"))
+                .that((int[]) TestUtil.invokeMethod(fileText, "findLineBreaks"))
                 .isEqualTo(new int[] {0, 2, 4});
 
         final FileText fileText2 = new FileText(new File("fileName"), Arrays.asList("1", "2"));
-        Whitebox.setInternalState(fileText2, "fullText", "1\n2");
+        TestUtil.setInternalState(fileText2, "fullText", "1\n2");
 
         assertWithMessage("Invalid line breaks")
-                .that((int[]) Whitebox.invokeMethod(fileText2, "findLineBreaks"))
+                .that((int[]) TestUtil.invokeMethod(fileText2, "findLineBreaks"))
                 .isEqualTo(new int[] {0, 2, 3});
     }
 
@@ -181,12 +181,12 @@ public class FileTextTest extends AbstractPathTestSupport {
     public void testFindLineBreaksCache() throws Exception {
         final FileText fileText = new FileText(new File("fileName"), Collections.emptyList());
         final int[] lineBreaks = {5};
-        Whitebox.setInternalState(fileText, "lineBreaks", lineBreaks);
+        TestUtil.setInternalState(fileText, "lineBreaks", lineBreaks);
         // produces NPE if used
-        Whitebox.setInternalState(fileText, "fullText", (Object) null);
+        TestUtil.setInternalState(fileText, "fullText", null);
 
         assertWithMessage("Invalid line breaks")
-                .that((int[]) Whitebox.invokeMethod(fileText, "findLineBreaks"))
+                .that((int[]) TestUtil.invokeMethod(fileText, "findLineBreaks"))
                 .isEqualTo(lineBreaks);
     }
 

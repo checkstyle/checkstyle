@@ -561,11 +561,9 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
      * exception that gets thrown when a unsupported option is used. The field has a value by
      * default and the setter for the property will throw it's own exception when an unsupported
      * option is given, so there is no other way to cover this code.
-     *
-     * @throws Exception if there is an error.
      */
     @Test
-    public void testVisitTokenSwitchReflection() throws Exception {
+    public void testVisitTokenSwitchReflection() {
         // Create mock ast
         final DetailAstImpl astImport = mockAST(TokenTypes.IMPORT, "import", 0, 0);
         final DetailAstImpl astIdent = mockAST(TokenTypes.IDENT, "myTestImport", 0, 0);
@@ -575,7 +573,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
         // Set unsupported option
         final ImportOrderCheck mock = new ImportOrderCheck();
-        TestUtil.getClassDeclaredField(ImportOrderCheck.class, "option").set(mock, null);
+        TestUtil.setInternalState(mock, "option", null);
 
         // expecting IllegalStateException
         try {

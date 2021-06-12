@@ -38,7 +38,6 @@ import org.apache.tools.ant.types.Path;
 import org.apache.tools.ant.types.Reference;
 import org.apache.tools.ant.types.resources.FileResource;
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractPathTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
@@ -46,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.Definitions;
 import com.puppycrawl.tools.checkstyle.XMLLogger;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.internal.testmodules.TestRootModuleChecker;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
 
@@ -676,7 +676,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setClasspath(new Path(project, path1));
         antTask.setClasspath(new Path(project, path2));
 
-        final Path classpath = Whitebox.getInternalState(antTask, "classpath");
+        final Path classpath = TestUtil.getInternalState(antTask, "classpath");
         final String classpathString = classpath.toString();
         assertWithMessage("Classpath should not be null")
                 .that(classpath)
@@ -695,7 +695,7 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setClasspathRef(new Reference(new Project(), "id"));
 
         assertWithMessage("Classpath should not be null")
-                .that((Object) Whitebox.getInternalState(antTask, "classpath"))
+                .that((Object) TestUtil.getInternalState(antTask, "classpath"))
                 .isNotNull();
     }
 
@@ -708,10 +708,10 @@ public class CheckstyleAntTaskTest extends AbstractPathTestSupport {
         antTask.setClasspathRef(new Reference(project, "idXX"));
 
         assertWithMessage("Classpath should not be null")
-                .that((Object) Whitebox.getInternalState(antTask, "classpath"))
+                .that((Object) TestUtil.getInternalState(antTask, "classpath"))
                 .isNotNull();
 
-        final Path classpath = Whitebox.getInternalState(antTask, "classpath");
+        final Path classpath = TestUtil.getInternalState(antTask, "classpath");
         try {
             classpath.list();
             assertWithMessage("Exception is expected")

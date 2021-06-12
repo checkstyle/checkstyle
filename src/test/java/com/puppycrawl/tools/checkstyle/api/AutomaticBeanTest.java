@@ -21,7 +21,6 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URI;
 import java.util.Arrays;
@@ -31,11 +30,11 @@ import org.apache.commons.beanutils.ConversionException;
 import org.apache.commons.beanutils.ConvertUtilsBean;
 import org.apache.commons.beanutils.Converter;
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultContext;
 import com.puppycrawl.tools.checkstyle.checks.naming.AccessModifierOption;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 public class AutomaticBeanTest {
 
@@ -107,13 +106,11 @@ public class AutomaticBeanTest {
     }
 
     @Test
-    public void testSetupInvalidChildFromBaseClass() throws Exception {
+    public void testSetupInvalidChildFromBaseClass() {
         final TestBean testBean = new TestBean();
         final DefaultConfiguration parentConf = new DefaultConfiguration("parentConf");
         final DefaultConfiguration childConf = new DefaultConfiguration("childConf");
-        final Field field = AutomaticBean.class.getDeclaredField("configuration");
-        field.setAccessible(true);
-        field.set(testBean, parentConf);
+        TestUtil.setInternalState(testBean, "configuration", parentConf);
 
         try {
             testBean.setupChild(childConf);
@@ -198,7 +195,7 @@ public class AutomaticBeanTest {
     @Test
     public void testRegisterIntegralTypes() throws Exception {
         final ConvertUtilsBeanStub convertUtilsBean = new ConvertUtilsBeanStub();
-        Whitebox.invokeMethod(AutomaticBean.class, "registerIntegralTypes", convertUtilsBean);
+        TestUtil.invokeStaticMethod(AutomaticBean.class, "registerIntegralTypes", convertUtilsBean);
         assertWithMessage("Number of converters registered differs from expected")
                 .that(convertUtilsBean.getRegisterCount())
                 .isEqualTo(81);

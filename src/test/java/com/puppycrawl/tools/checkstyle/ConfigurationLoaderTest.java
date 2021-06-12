@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -35,13 +36,13 @@ import java.util.List;
 import java.util.Properties;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader.IgnoredModulesOptions;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
 /**
  * Unit test for ConfigurationLoader.
@@ -462,13 +463,16 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final Object obj = constructor.newInstance(objParent);
 
         try {
-            Whitebox.invokeMethod(obj, "startElement", "", "", "hello", null);
+            TestUtil.invokeMethod(obj, "startElement", "", "", "hello", null);
 
-            fail("Exception is expected");
+            fail("InvocationTargetException is expected");
         }
-        catch (IllegalStateException ex) {
-            assertEquals("Unknown name:" + "hello" + ".", ex.getMessage(),
-                    "Invalid exception cause message");
+        catch (InvocationTargetException ex) {
+            assertWithMessage("Invalid exception cause message")
+                .that(ex)
+                .hasCauseThat()
+                    .hasMessageThat()
+                            .isEqualTo("Unknown name:" + "hello" + ".");
         }
     }
 
@@ -586,7 +590,7 @@ public class ConfigurationLoaderTest extends AbstractPathTestSupport {
         final List<String> propertyRefs = new ArrayList<>();
         final List<String> fragments = new ArrayList<>();
 
-        Whitebox.invokeMethod(ConfigurationLoader.class,
+        TestUtil.invokeStaticMethod(ConfigurationLoader.class,
                 "parsePropertyString", "$",
                fragments, propertyRefs);
         assertEquals(1, fragments.size(), "Fragments list has unexpected amount of items");
