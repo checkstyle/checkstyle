@@ -35,13 +35,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NewlineAtEndOfFileCheckTest
@@ -196,7 +196,7 @@ public class NewlineAtEndOfFileCheckTest
     public void testWrongSeparatorLength() throws Exception {
         try (RandomAccessFile file =
                      new ReadZeroRandomAccessFile(getPath("InputNewlineAtEndOfFileLf.java"), "r")) {
-            Whitebox.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
+            TestUtil.invokeMethod(new NewlineAtEndOfFileCheck(), "endsWithNewline", file,
                 LineSeparatorOption.LF);
             fail("Exception is expected");
         }

@@ -44,8 +44,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.DefaultLocale;
-import org.powermock.reflect.Whitebox;
 
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
 
@@ -305,7 +305,7 @@ public class ViolationTest {
         assertEquals("Empty statement.", violation.getViolation(), "Invalid violation");
 
         final Map<String, ResourceBundle> bundleCache =
-                Whitebox.getInternalState(Violation.class, "BUNDLE_CACHE");
+                TestUtil.getInternalState(Violation.class, "BUNDLE_CACHE");
 
         assertEquals(1, bundleCache.size(), "Invalid bundle cache size");
 

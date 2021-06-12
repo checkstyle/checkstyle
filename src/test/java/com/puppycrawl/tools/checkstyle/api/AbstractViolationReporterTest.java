@@ -21,12 +21,12 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import static com.google.common.truth.Truth.assertWithMessage;
 
-import java.lang.reflect.Method;
 import java.util.SortedSet;
 
 import org.junit.jupiter.api.Test;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 /**
@@ -37,15 +37,6 @@ public class AbstractViolationReporterTest {
 
     private final AbstractCheck emptyCheck = new EmptyCheck();
 
-    private static Method getGetMessageBundleMethod() throws Exception {
-        final Class<AbstractViolationReporter> abstractViolationReporterClass =
-            AbstractViolationReporter.class;
-        final Method getMessageBundleMethod =
-            abstractViolationReporterClass.getDeclaredMethod("getMessageBundle", String.class);
-        getMessageBundleMethod.setAccessible(true);
-        return getMessageBundleMethod;
-    }
-
     protected static DefaultConfiguration createModuleConfig(Class<?> clazz) {
         return new DefaultConfiguration(clazz.getName());
     }
@@ -53,14 +44,16 @@ public class AbstractViolationReporterTest {
     @Test
     public void testGetMessageBundleWithPackage() throws Exception {
         assertWithMessage("violation bundle differs from expected")
-                .that(getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"))
+                .that(TestUtil.<String>invokeMethod(AbstractViolationReporter.class,
+                        "getMessageBundle", "com.mycompany.checks.MyCoolCheck"))
                 .isEqualTo("com.mycompany.checks.messages");
     }
 
     @Test
     public void testGetMessageBundleWithoutPackage() throws Exception {
         assertWithMessage("violation bundle differs from expected")
-                .that(getGetMessageBundleMethod().invoke(null, "MyCoolCheck"))
+                .that(TestUtil.<String>invokeMethod(AbstractViolationReporter.class,
+                        "getMessageBundle", "MyCoolCheck"))
                 .isEqualTo("messages");
     }
 

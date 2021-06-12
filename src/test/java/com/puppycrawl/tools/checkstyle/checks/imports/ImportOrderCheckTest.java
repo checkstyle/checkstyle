@@ -575,7 +575,7 @@ public class ImportOrderCheckTest extends AbstractModuleTestSupport {
 
         // Set unsupported option
         final ImportOrderCheck mock = new ImportOrderCheck();
-        TestUtil.getClassDeclaredField(ImportOrderCheck.class, "option").set(mock, null);
+        TestUtil.setInternalState(mock, "option", null);
 
         // expecting IllegalStateException
         try {

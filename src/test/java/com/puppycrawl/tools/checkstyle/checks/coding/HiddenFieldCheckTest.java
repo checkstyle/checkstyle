@@ -478,22 +478,11 @@ public class HiddenFieldCheckTest
             boolean result = frame != null;
 
             // verify object is cleared
-            if (result) {
-                final Class<?> frameClass = frame.getClass();
-
-                try {
-                    if (TestUtil.getClassDeclaredField(frameClass, "parent").get(frame) != null
-                            || !((Boolean) TestUtil.getClassDeclaredField(frameClass, "staticType")
-                                    .get(frame))
-                            || TestUtil.getClassDeclaredField(frameClass, "frameName")
-                                    .get(frame) != null) {
-                        result = false;
-                    }
-                }
-                catch (NoSuchFieldException | IllegalArgumentException
-                        | IllegalAccessException ex) {
-                    throw new IllegalStateException(ex);
-                }
+            if (result
+                    && (TestUtil.getInternalState(frame, "parent") != null
+                        || !(TestUtil.<Boolean>getInternalState(frame, "staticType"))
+                        || TestUtil.getInternalState(frame, "frameName") != null)) {
+                result = false;
             }
 
             return result;
