@@ -34,7 +34,6 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
-import org.powermock.reflect.Whitebox;
 
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -46,6 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.checks.regexp.RegexpSinglelineCheck;
 import com.puppycrawl.tools.checkstyle.checks.whitespace.FileTabCharacterCheck;
+import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.EqualsVerifierReport;
@@ -363,7 +363,7 @@ public class SuppressWithPlainTextCommentFilterTest extends AbstractModuleTestSu
      */
     @Test
     public void testEqualsAndHashCodeOfSuppressionClass() throws ClassNotFoundException {
-        final Class<?> suppressionClass = Whitebox.getInnerClassType(
+        final Class<?> suppressionClass = TestUtil.getInnerClassType(
                 SuppressWithPlainTextCommentFilter.class, "Suppression");
         final EqualsVerifierReport ev = EqualsVerifier
                 .forClass(suppressionClass).usingGetClass()
