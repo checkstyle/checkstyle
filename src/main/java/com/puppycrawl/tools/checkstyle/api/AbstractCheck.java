@@ -186,9 +186,13 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     /**
      * Returns the file contents associated with the tree.
      *
+     * @deprecated
+     *      Usage of this method is no longer accepted.
+     *      Please use AST based methods instead.
      * @return the file contents
      * @noinspection WeakerAccess
      */
+    @Deprecated
     public final FileContents getFileContents() {
         return context.get().fileContents;
     }
