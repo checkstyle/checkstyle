@@ -78,6 +78,29 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
     public abstract int[] getRequiredTokens();
 
     /**
+     * Returns the file contents associated with the tree.
+     *
+     * @return the file contents
+     * @deprecated
+     *      Usage of this method is no longer accepted.
+     *      Please use AST based methods instead.
+     * @noinspection WeakerAccess
+     */
+    @Deprecated
+    public final FileContents getFileContents() {
+        return context.get().fileContents;
+    }
+
+    /**
+     * Set the file contents associated with the tree.
+     *
+     * @param contents the manager
+     */
+    public final void setFileContents(FileContents contents) {
+        context.get().fileContents = contents;
+    }
+
+    /**
      * Whether comment nodes are required or not.
      *
      * @return false as a default value.
@@ -172,25 +195,6 @@ public abstract class AbstractCheck extends AbstractViolationReporter {
      */
     public void leaveToken(DetailAST ast) {
         // No code by default, should be overridden only by demand at subclasses
-    }
-
-    /**
-     * Set the file contents associated with the tree.
-     *
-     * @param contents the manager
-     */
-    public final void setFileContents(FileContents contents) {
-        context.get().fileContents = contents;
-    }
-
-    /**
-     * Returns the file contents associated with the tree.
-     *
-     * @return the file contents
-     * @noinspection WeakerAccess
-     */
-    public final FileContents getFileContents() {
-        return context.get().fileContents;
     }
 
     /**
