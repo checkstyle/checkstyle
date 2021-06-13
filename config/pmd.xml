@@ -358,6 +358,7 @@
     </properties>
   </rule>
 
+
   <rule ref="category/java/multithreading.xml">
     <!-- Checkstyle is not thread safe till https://github.com/checkstyle/checkstyle/projects/5. -->
     <exclude name="UseConcurrentHashMap"/>
