@@ -1967,6 +1967,29 @@ public final class TokenTypes {
     /**
      * A left curly brace (<code>{</code>).
      *
+     * <p>For example:</p>
+     * <pre>
+     * class App{
+     *     int num; 
+     * }
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * CLASS_DEF -&gt; CLASS_DEF
+     * |--MODIFIERS -&gt; MODIFIERS
+     * |--LITERAL_CLASS -&gt; class
+     * |--IDENT -&gt; App
+     * `--OBJBLOCK -&gt; OBJBLOCK
+     *     |--LCURLY -&gt; {
+     *     |--VARIABLE_DEF -&gt; VARIABLE_DEF
+     *     |   |--MODIFIERS -&gt; MODIFIERS
+     *     |   |--TYPE -&gt; TYPE
+     *     |   |   `--LITERAL_INT -&gt; int
+     *     |   |--IDENT -&gt; num
+     *     |   `--SEMI -&gt; ;
+     *     `--RCURLY -&gt; }
+     * </pre>
+     *
      * @see #OBJBLOCK
      * @see #ARRAY_INIT
      * @see #SLIST
