@@ -292,6 +292,12 @@ public class AstRegressionTest extends AbstractTreeTestSupport {
     }
 
     @Test
+    public void testInputAnnotatedMethodVariableArityParam() throws Exception {
+        verifyAst(getPath("InputAstRegressionAnnotatedMethodVariableArityParam.txt"),
+                getPath("InputAstRegressionAnnotatedMethodVariableArityParam.java"));
+    }
+
+    @Test
     public void testImpossibleExceptions() throws Exception {
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", 'a');
         AssertGeneratedJavaLexer.verifyFail("mSTD_ESC", '0', (char) 0xFFFF);

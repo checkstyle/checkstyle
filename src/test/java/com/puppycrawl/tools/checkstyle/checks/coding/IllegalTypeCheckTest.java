@@ -364,6 +364,20 @@ public class IllegalTypeCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIllegalTypeNewArrayStructure() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IllegalTypeCheck.class);
+        checkConfig.addAttribute("illegalClassNames", "HashMap");
+
+        final String[] expected = {
+            "15:13: " + getCheckMessage(MSG_KEY, "HashMap"),
+        };
+
+        verify(checkConfig,
+            getPath("InputIllegalTypeNewArrayStructure.java"),
+            expected);
+    }
+
+    @Test
     public void testTokensNotNull() {
         final IllegalTypeCheck check = new IllegalTypeCheck();
         assertNotNull(check.getAcceptableTokens(), "Acceptable tokens should not be null");
