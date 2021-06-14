@@ -137,20 +137,19 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST typeAST = ast.getParent();
-        if (typeAST.getType() == TokenTypes.TYPE) {
-            final DetailAST variableAST = typeAST.getNextSibling();
-            if (variableAST != null) {
-                final boolean isMethod = typeAST.getParent().getType() == TokenTypes.METHOD_DEF;
-                final boolean isJavaStyle = variableAST.getLineNo() > ast.getLineNo()
-                    || variableAST.getColumnNo() - ast.getColumnNo() > -1;
+        final DetailAST identAst = typeAST.getNextSibling();
+        // If identAst is null, we have a 'LITERAL_NEW' expression, i.e. 'new int[2][2]'
+        if (identAst != null) {
+            final boolean isMethod = typeAST.getParent().getType() == TokenTypes.METHOD_DEF;
+            final boolean isJavaStyle = identAst.getLineNo() > ast.getLineNo()
+                || identAst.getColumnNo() - ast.getColumnNo() > -1;
 
-                // force all methods to be Java style (see note in top Javadoc)
-                final boolean isMethodViolation = isMethod && !isJavaStyle;
-                final boolean isVariableViolation = !isMethod && isJavaStyle != javaStyle;
+            // force all methods to be Java style (see note in top Javadoc)
+            final boolean isMethodViolation = isMethod && !isJavaStyle;
+            final boolean isVariableViolation = !isMethod && isJavaStyle != javaStyle;
 
-                if (isMethodViolation || isVariableViolation) {
-                    log(ast, MSG_KEY);
-                }
+            if (isMethodViolation || isVariableViolation) {
+                log(ast, MSG_KEY);
             }
         }
     }
