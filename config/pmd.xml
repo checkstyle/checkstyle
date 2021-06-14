@@ -351,10 +351,7 @@
       <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
-                    //MethodDeclaration[@Name='getModulePropertyExpectedValue'
-                      or @Name='getModulePropertyExpectedTypeName']
-                  | //ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest']
-                    //MethodDeclaration[@Name='validateAllCheckTokensAreReferencedInConfigFile']"/>
+                    //MethodDeclaration[@Name='getModulePropertyExpectedValue']"/>
     </properties>
   </rule>
 
