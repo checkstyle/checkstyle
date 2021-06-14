@@ -20,7 +20,6 @@
 package org.checkstyle.suppressionxpathfilter;
 
 import java.io.File;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -70,16 +69,9 @@ public class XpathRegressionArrayTypeStyleTest extends AbstractXpathTestSupport 
             "4:19: " + getCheckMessage(ArrayTypeStyleCheck.class, ArrayTypeStyleCheck.MSG_KEY),
         };
 
-        final List<String> expectedXpathQueries = Arrays.asList(
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/MODIFIERS",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE",
-                "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
-                        + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
-
+        final List<String> expectedXpathQueries = Collections.singletonList(
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionArrayTypeStyleMethodDef']]"
+                    + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='getData']]/TYPE/ARRAY_DECLARATOR"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
