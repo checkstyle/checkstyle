@@ -294,6 +294,34 @@ public class NoWhitespaceAfterCheckTest
                 getPath("InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"), expected);
     }
 
+    @Test
+    public void testArrayNewTypeStructure() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+                + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
+                + "METHOD_REF");
+        checkConfig.addAttribute("allowLineBreaks", "false");
+
+        final String[] expected = {
+            "47:17: " + getCheckMessage(MSG_KEY, "ci"),
+            "48:27: " + getCheckMessage(MSG_KEY, "int"),
+            "49:16: " + getCheckMessage(MSG_KEY, "double"),
+            "50:62: " + getCheckMessage(MSG_KEY, "cZ"),
+            "54:42: " + getCheckMessage(MSG_KEY, "transformers"),
+            "55:39: " + getCheckMessage(MSG_KEY, "transformers"),
+            "60:17: " + getCheckMessage(MSG_KEY, "a"),
+            "79:21: " + getCheckMessage(MSG_KEY, ")"),
+            "81:57: " + getCheckMessage(MSG_KEY, "KeyManager"),
+            "114:28: " + getCheckMessage(MSG_KEY, ")"),
+            "115:28: " + getCheckMessage(MSG_KEY, ")"),
+            "119:29: " + getCheckMessage(MSG_KEY, ")"),
+            "131:41: " + getCheckMessage(MSG_KEY, "class"),
+        };
+
+        verify(checkConfig,
+                getPath("InputNoWhitespaceAfterNewTypeStructure.java"), expected);
+    }
+
     /**
      * Creates MOCK lexical token and returns AST node for this token.
      *
