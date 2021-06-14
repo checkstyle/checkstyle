@@ -29,6 +29,8 @@ import org.junit.jupiter.api.Test;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.bdd.BddParser;
+import com.puppycrawl.tools.checkstyle.bdd.InputConfiguration;
 import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
@@ -44,8 +46,8 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
      */
     @Test
     public void testBadOverrideFromObject() throws Exception {
+        final String inputFileName = "InputMissingOverrideBadOverrideFromObject.java";
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
-        checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
@@ -54,7 +56,11 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
             "53:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
         };
 
-        verify(checkConfig, getPath("InputMissingOverrideBadOverrideFromObject.java"), expected);
+        final InputConfiguration inputConfiguration = BddParser.parse(getInputFile(inputFileName));
+        final DefaultConfiguration parsedConfig = inputConfiguration.createConfiguration();
+        verifyConfig(checkConfig, parsedConfig);
+
+        verify(checkConfig, getPath(inputFileName), expected);
     }
 
     /**
