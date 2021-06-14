@@ -77,35 +77,24 @@ public final class FullIdent {
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
-
-            final DetailAST firstChild = ast.getFirstChild();
             final DetailAST nextSibling = ast.getNextSibling();
 
             // Here we want type declaration, but not initialization
             final boolean isArrayTypeDeclarationStart = nextSibling != null
-                    && nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
+                    && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
+                        || nextSibling.getType() == TokenTypes.ANNOTATIONS)
                     && isArrayTypeDeclaration(nextSibling);
-            final String brackets = "[]";
 
             if (ast.getType() == TokenTypes.DOT) {
+                final DetailAST firstChild = ast.getFirstChild();
                 extractFullIdent(full, firstChild);
                 full.append(".");
                 extractFullIdent(full, firstChild.getNextSibling());
+                appendBrackets(full, ast);
             }
             else if (isArrayTypeDeclarationStart) {
-                // Beginning of array type declaration
                 full.append(ast);
-                extractFullIdent(full, nextSibling);
-            }
-            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR
-                    && firstChild.getType() != TokenTypes.RBRACK) {
-                // Multidimensional array type declaration, not last '[]'
-                extractFullIdent(full, firstChild);
-                full.append(brackets);
-            }
-            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                // Single or last '[]' in array type declaration
-                full.append(brackets);
+                appendBrackets(full, ast);
             }
             else if (ast.getType() != TokenTypes.ANNOTATIONS) {
                 full.append(ast);
@@ -130,6 +119,20 @@ public final class FullIdent {
             expression = expression.getFirstChild();
         }
         return expression == null;
+    }
+
+    /**
+     * Appends the brackets of an array type to a {@code FullIdent}.
+     *
+     * @param full the FullIdent to append brackets to
+     * @param ast the type ast we are building a {@code FullIdent} for
+     */
+    private static void appendBrackets(FullIdent full, DetailAST ast) {
+        final int bracketCount =
+                ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
+        for (int i = 0; i < bracketCount; i++) {
+            full.append("[]");
+        }
     }
 
     /**
