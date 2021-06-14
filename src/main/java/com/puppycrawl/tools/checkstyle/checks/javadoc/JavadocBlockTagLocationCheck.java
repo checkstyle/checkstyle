@@ -28,6 +28,7 @@ import java.util.stream.Collectors;
 import com.puppycrawl.tools.checkstyle.StatelessCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailNode;
 import com.puppycrawl.tools.checkstyle.api.JavadocTokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.JavadocUtil;
 
 /**
  * <p>
@@ -230,7 +231,12 @@ public class JavadocBlockTagLocationCheck extends AbstractJavadocCheck {
     @Override
     public void visitJavadocToken(DetailNode ast) {
         if (!isCommentOrInlineTag(ast.getParent())) {
-            final Matcher tagMatcher = JAVADOC_BLOCK_TAG_PATTERN.matcher(ast.getText());
+            String blockComment = ast.getText();
+            final DetailNode previousNode = JavadocUtil.getPreviousSibling(ast);
+            if (previousNode != null && previousNode.getType() == JavadocTokenTypes.WS) {
+                blockComment = " " + blockComment;
+            }
+            final Matcher tagMatcher = JAVADOC_BLOCK_TAG_PATTERN.matcher(blockComment);
             while (tagMatcher.find()) {
                 final String tagName = tagMatcher.group(1);
                 if (tags.contains(tagName)) {

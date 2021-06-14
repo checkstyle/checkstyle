@@ -162,7 +162,7 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final int type = ((DetailNode) javadoc).getType();
         assertEquals(JavadocTokenTypes.JAVADOC, type, "Invalid child token type");
         final int javadocChildCount = parseTree.getChildCount(javadoc);
-        assertEquals(5, javadocChildCount, "Invalid child count");
+        assertEquals(6, javadocChildCount, "Invalid child count");
     }
 
     @Test
@@ -177,7 +177,10 @@ public class ParseTreeTablePresentationTest extends AbstractPathTestSupport {
         final Object javadocChild = parseTree.getChild(javadoc, 2);
         assertTrue(javadocChild instanceof DetailNode, "Invalid child type");
         final int childType = ((DetailNode) javadocChild).getType();
-        assertEquals(JavadocTokenTypes.TEXT, childType, "Invalid child token type");
+        assertEquals(JavadocTokenTypes.WS, childType, "Invalid child token type");
+        final Object javadocChildSiblings = parseTree.getChild(javadoc, 3);
+        final int childSibling = ((DetailNode) javadocChildSiblings).getType();
+        assertEquals(JavadocTokenTypes.TEXT, childSibling, "Invalid child token type");
     }
 
     @Test
