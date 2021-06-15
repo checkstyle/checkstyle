@@ -1,3 +1,10 @@
+/*
+MissingDeprecated
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.missingdeprecated;
 
 import java.lang.annotation.Inherited;
