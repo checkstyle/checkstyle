@@ -70,7 +70,7 @@ public class PackageAnnotationCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(PackageAnnotationCheck.class);
 
         final String[] expected = {
-            "4:1: " + getCheckMessage(MSG_KEY),
+            "10:1: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getNonCompilablePath("InputPackageAnnotation2.java"), expected);
