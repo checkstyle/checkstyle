@@ -3,7 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
 @SuppressWarnings("unchecked")
-public class InputSuppressWarningsSingle
+public class InputSuppressWarningsSingle5
 {
     @SuppressWarnings("   ")
     class Empty {
@@ -23,7 +23,7 @@ public class InputSuppressWarningsSingle
         public static void foo() {
 
             @SuppressWarnings("unused")
-            Object o = new InputSuppressWarningsSingle() {
+            Object o = new InputSuppressWarningsSingle5() {
 
                 @Override
                 @SuppressWarnings("unchecked")
