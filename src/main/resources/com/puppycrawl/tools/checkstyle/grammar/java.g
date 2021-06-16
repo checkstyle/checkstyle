@@ -346,14 +346,14 @@ typeArguments[boolean addImagNode]
         lt:LT {#lt.setType(GENERIC_START); ;ltCounter++;}
         // (Dinesh Bolkensteyn) Added support for Java 7 diamond notation
         // (disabled ambiguous warnings since generated code seems to work)
-        (options{generateAmbigWarnings=false;}:typeArgument[addImagNode]
+        (options{generateAmbigWarnings=false;}:typeArgument[false]
         (options{greedy=true;}: // match as many as possible
             // If there are any '>' to reconcile
             // (i.e. we've recently encountered a DT, SR or BSR
             // - the end of one or more type arguments and
             // possibly an enclosing type parameter)
             // then further type arguments are not possible
-            {gtToReconcile == 0}? COMMA typeArgument[addImagNode]
+            {gtToReconcile == 0}? COMMA typeArgument[false]
         )*)?
 
         (   // turn warning off since Antlr generates the right code,
