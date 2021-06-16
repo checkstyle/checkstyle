@@ -332,6 +332,33 @@ public class NoWhitespaceAfterCheckTest
                 getPath("InputNoWhitespaceAfterNewTypeStructure.java"), expected);
     }
 
+    @Test
+    public void testArrayNewGenericTypeArgument() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+
+        final String[] expected = {
+            "56:15: " + getCheckMessage(MSG_KEY, "i"),
+            "56:21: " + getCheckMessage(MSG_KEY, "j"),
+            "57:25: " + getCheckMessage(MSG_KEY, "u"),
+            "58:27: " + getCheckMessage(MSG_KEY, "]"),
+            "59:28: " + getCheckMessage(MSG_KEY, "w"),
+            "60:21: " + getCheckMessage(MSG_KEY, "x"),
+            "60:24: " + getCheckMessage(MSG_KEY, "]"),
+            "62:24: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "62:27: " + getCheckMessage(MSG_KEY, "]"),
+            "64:27: " + getCheckMessage(MSG_KEY, "SomeClass"),
+            "64:53: " + getCheckMessage(MSG_KEY, "ImmediateSubclass"),
+            "65:13: " + getCheckMessage(MSG_KEY, "!"),
+            "65:50: " + getCheckMessage(MSG_KEY, "ImmediateSubclass"),
+            "68:13: " + getCheckMessage(MSG_KEY, "!"),
+            "68:46: " + getCheckMessage(MSG_KEY, "FinalSubclass"),
+            "71:31: " + getCheckMessage(MSG_KEY, "AnotherInterface"),
+        };
+
+        verify(checkConfig,
+                getPath("InputNoWhitespaceAfterNewGenericTypeArgument.java"), expected);
+    }
+
     /**
      * Creates MOCK lexical token and returns AST node for this token.
      *
