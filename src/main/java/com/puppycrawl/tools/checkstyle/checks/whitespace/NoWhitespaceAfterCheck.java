@@ -460,7 +460,7 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         // checked whether ident or lastTypeNode has preceding position
         // determining if it is java style or C style
 
-        if (ident == null || isTypeCast || ident.getLineNo() > ast.getLineNo()) {
+        if (isTypeCast || ident.getLineNo() > ast.getLineNo()) {
             previousElement = lastTypeNode;
         }
         else if (ident.getLineNo() < ast.getLineNo()) {
