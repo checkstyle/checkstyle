@@ -243,6 +243,8 @@ public class RegexpSinglelineJavaCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
         MatchSuppressor suppressor = null;

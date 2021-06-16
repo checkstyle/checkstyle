@@ -423,6 +423,19 @@
       <property name="query" value="//ANNOTATION[./IDENT[@text='Issue']]"/>
       <message key="matchxpath.match" value="Avoid using @Issue annotation."/>
     </module>
+    <module name="MatchXpath">
+      <property name="id" value="noUsageOfGetFileContentsMethod"/>
+      <property name="query" value="//CLASS_DEF[
+               ./EXTENDS_CLAUSE[./IDENT[@text='AbstractCheck'
+                                     or @text='AbstractJavadocCheck'
+                                     or @text='AbstractSuperCheck'
+                                     or @text='AbstractClassCouplingCheck'
+                                     or @text='AbstractNameCheck'
+                                     or @text='AbstractParenPadCheck']]
+               and .//METHOD_CALL[.//IDENT[@text = 'getFileContents']]]"/>
+      <message key="matchxpath.match" value="Avoid using getFileContents method in
+                                            AbstractCheck subclasses."/>
+    </module>
     <!-- until https://github.com/checkstyle/checkstyle/issues/5234 -->
     <module name="MatchXpath">
       <property name="id" value="MatchXPathBranchContains"/>

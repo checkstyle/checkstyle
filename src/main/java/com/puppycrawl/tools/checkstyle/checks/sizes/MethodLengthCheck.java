@@ -158,6 +158,8 @@ public class MethodLengthCheck extends AbstractCheck {
      * @param closingBrace block closing brace
      * @return number of lines with code for current block
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private int getLengthOfBlock(DetailAST openingBrace, DetailAST closingBrace) {
         int length = closingBrace.getLineNo() - openingBrace.getLineNo() + 1;
 
