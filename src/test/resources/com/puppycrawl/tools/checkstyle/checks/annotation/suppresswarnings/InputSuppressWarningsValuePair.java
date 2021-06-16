@@ -8,7 +8,7 @@ public class InputSuppressWarningsValuePair
     public static final String UNCHECKED = "unchecked";
 
     public static void test() {
-        @SuppressWarnings(value = UNCHECKED)
+        @SuppressWarnings(value = UNCHECKED) // ok
         final List<String> dummyOne = (List<String>) new ArrayList();
     }
 }
