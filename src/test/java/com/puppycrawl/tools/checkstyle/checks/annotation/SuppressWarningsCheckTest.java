@@ -53,7 +53,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "83:62: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "    "),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle1.java"), expected);
     }
 
     /**
@@ -95,7 +95,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "83:71: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle2.java"), expected);
     }
 
     /**
@@ -119,7 +119,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "82:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle3.java"), expected);
     }
 
     /**
@@ -141,7 +141,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "82:47: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle4.java"), expected);
     }
 
     /**
@@ -174,7 +174,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "83:71: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle5.java"), expected);
     }
 
     /**
@@ -204,7 +204,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "83:71: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle6.java"), expected);
     }
 
     /**
@@ -246,7 +246,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "83:71: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unused"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsSingle.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsSingle7.java"), expected);
     }
 
     /**
@@ -263,7 +263,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "53:27: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact1.java"), expected);
     }
 
     @Test
@@ -290,7 +290,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant1.java"), expected);
     }
 
     /**
@@ -321,7 +321,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact2.java"), expected);
     }
 
     @Test
@@ -380,7 +380,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant2.java"), expected);
     }
 
     /**
@@ -399,7 +399,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact3.java"), expected);
     }
 
     /**
@@ -415,7 +415,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "5:20: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact4.java"), expected);
     }
 
     @Test
@@ -432,7 +432,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant3.java"), expected);
     }
 
     /**
@@ -456,7 +456,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact5.java"), expected);
     }
 
     @Test
@@ -496,7 +496,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant4.java"), expected);
     }
 
     /**
@@ -519,7 +519,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact6.java"), expected);
     }
 
     @Test
@@ -553,7 +553,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant5.java"), expected);
     }
 
     /**
@@ -584,7 +584,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:49: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsCompact.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsCompact7.java"), expected);
     }
 
     @Test
@@ -643,7 +643,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsCompactNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsCompactNonConstant6.java"), expected);
     }
 
     /**
@@ -660,7 +660,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "53:33: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, ""),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded1.java"), expected);
     }
 
     @Test
@@ -685,7 +685,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant1.java"), expected);
     }
 
     /**
@@ -716,7 +716,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded2.java"), expected);
     }
 
     @Test
@@ -771,7 +771,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant2.java"), expected);
     }
 
     /**
@@ -790,7 +790,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded3.java"), expected);
     }
 
     @Test
@@ -816,7 +816,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant3.java"), expected);
     }
 
     /**
@@ -832,7 +832,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "5:26: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded4.java"), expected);
     }
 
     @Test
@@ -849,7 +849,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant4.java"), expected);
     }
 
     /**
@@ -873,7 +873,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded5.java"), expected);
     }
 
     @Test
@@ -909,7 +909,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant5.java"), expected);
     }
 
     /**
@@ -932,7 +932,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded6.java"), expected);
     }
 
     @Test
@@ -967,7 +967,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant6.java"), expected);
     }
 
     /**
@@ -998,7 +998,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
             "59:55: " + getCheckMessage(MSG_KEY_SUPPRESSED_WARNING_NOT_ALLOWED, "unchecked"),
         };
 
-        verify(checkConfig, getPath("InputSuppressWarningsExpanded.java"), expected);
+        verify(checkConfig, getPath("InputSuppressWarningsExpanded7.java"), expected);
     }
 
     @Test
@@ -1053,7 +1053,7 @@ public class SuppressWarningsCheckTest extends AbstractModuleTestSupport {
         };
 
         verify(checkConfig,
-                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant.java"), expected);
+                getNonCompilablePath("InputSuppressWarningsExpandedNonConstant7.java"), expected);
     }
 
     @Test
