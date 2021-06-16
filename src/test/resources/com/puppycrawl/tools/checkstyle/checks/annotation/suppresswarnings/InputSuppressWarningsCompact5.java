@@ -2,31 +2,31 @@ package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings({"unchecked", "unused"})
-public class InputSuppressWarningsCompact
+@SuppressWarnings({"unchecked", "unused"}) // violation
+public class InputSuppressWarningsCompact5
 {
     @SuppressWarnings({"   "})
     class Empty {
 
-        @SuppressWarnings({"unchecked", ""})
+        @SuppressWarnings({"unchecked", ""}) // violation
         public Empty() {
 
         }
     }
 
-    @SuppressWarnings({"unused"})
+    @SuppressWarnings({"unused"}) // violation
     enum Duh {
 
-        @SuppressWarnings({"unforgiven", "    un"})
+        @SuppressWarnings({"unforgiven", "    un"}) // violation
         D;
 
         public static void foo() {
 
-            @SuppressWarnings({"unused"})
-            Object o = new InputSuppressWarningsCompact() {
+            @SuppressWarnings({"unused"}) // violation
+            Object o = new InputSuppressWarningsCompact5() {
 
                 @Override
-                @SuppressWarnings({"unchecked"})
+                @SuppressWarnings({"unchecked"}) // violation
                 public String toString() {
                     return "";
                 }
@@ -44,7 +44,7 @@ public class InputSuppressWarningsCompact
     @SuppressWarnings({})
     @interface MoreSweetness {
 
-        @SuppressWarnings({"unused", "bleh"})
+        @SuppressWarnings({"unused", "bleh"}) // violation
         int cool();
     }
 
@@ -53,10 +53,10 @@ public class InputSuppressWarningsCompact
         @SuppressWarnings({})
         int a = 1;
 
-        @SuppressWarnings({"unchecked"})
+        @SuppressWarnings({"unchecked"}) // violation
         @Deprecated
         int b = 1;
-        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) {
+        void doFoo(String s, @SuppressWarnings({"unchecked"})String y) { // violation
 
         }
     }
