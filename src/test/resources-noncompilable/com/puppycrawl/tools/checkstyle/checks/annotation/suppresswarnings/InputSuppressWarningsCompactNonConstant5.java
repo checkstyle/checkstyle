@@ -1,9 +1,9 @@
+//non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
-
 import java.lang.annotation.Documented;
 
 @SuppressWarnings({"unchecked", "unused"})
-public class InputSuppressWarningsCompact
+public class InputSuppressWarningsCompactNonConstant5
 {
     @SuppressWarnings({"   "})
     class Empty {
@@ -23,7 +23,7 @@ public class InputSuppressWarningsCompact
         public static void foo() {
 
             @SuppressWarnings({"unused"})
-            Object o = new InputSuppressWarningsCompact() {
+            Object o = new InputSuppressWarningsCompactNonConstant5() {
 
                 @Override
                 @SuppressWarnings({"unchecked"})
@@ -61,4 +61,30 @@ public class InputSuppressWarningsCompact
         }
     }
 
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
+    class Cond {
+
+        @SuppressWarnings({(false) ? "" : "unchecked"})
+        public Cond() {
+
+        }
+
+        @SuppressWarnings({(false) ? (true) ? "   " : "unused" : "unchecked",
+            (false) ? (true) ? "   " : "unused" : "unchecked"})
+        public void aCond1() {
+
+        }
+
+        @SuppressWarnings({(false) ? "unchecked" : (true) ? "   " : "unused"})
+        public void aCond2() {
+
+        }
+
+        @java.lang.SuppressWarnings({(false) ? "unchecked" :
+                ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused",
+            (false) ? "unchecked" : ("" == "") ? (false) ? (true) ? "" : "foo" : "   " : "unused"})
+        public void seriously() {
+
+        }
+    }
 }
