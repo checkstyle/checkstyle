@@ -17,23 +17,23 @@ public class InputSuppressWarningsHolderNonConstant {
     @SuppressWarnings(value =
      com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.CustomSuppressWarnings.UN_U)
     int f;
-    @SuppressWarnings((1 != 1) ? "" : "UN_U")
+    @SuppressWarnings((1 != 1) ? "" : "UN_U") // violation
     int g;
     @SuppressWarnings("un" + "used")
     int h;
     @SuppressWarnings((String) "UN_U")
     int i;
-    @SuppressWarnings({})
+    @SuppressWarnings({}) // violation
     int j;
     @SuppressWarnings({UN_U})
     int k;
-    @SuppressWarnings({"UN_U", true ? "UN_U" : ""})
+    @SuppressWarnings({"UN_U", true ? "UN_U" : ""}) // violation
     int l;
 }
 
 class CustomSuppressWarnings {
     static final String UN_U = "UN_U";
-    @SuppressWarnings
+    @SuppressWarnings // violation
     private @interface SuppressWarnings {
     }
 }
