@@ -615,6 +615,8 @@ public class RegexpCheck extends AbstractCheck {
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void beginTree(DetailAST rootAST) {
         matcher = format.matcher(getFileContents().getText().getFullText());
@@ -624,6 +626,8 @@ public class RegexpCheck extends AbstractCheck {
     }
 
     /** Recursive method that finds the matches. */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private void findMatch() {
         final boolean foundMatch = matcher.find();
         if (foundMatch) {
@@ -669,6 +673,8 @@ public class RegexpCheck extends AbstractCheck {
      * @param start line column
      * @return true is that need to be ignored
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private boolean isIgnore(int startLine, FileText text, LineColumn start) {
         final LineColumn end;
         if (matcher.end() == 0) {

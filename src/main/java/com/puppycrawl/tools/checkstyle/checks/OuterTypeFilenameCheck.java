@@ -167,6 +167,8 @@ public class OuterTypeFilenameCheck extends AbstractCheck {
      *
      * @return source file name.
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private String getFileName() {
         String name = getFileContents().getFileName();
         name = name.substring(name.lastIndexOf(File.separatorChar) + 1);

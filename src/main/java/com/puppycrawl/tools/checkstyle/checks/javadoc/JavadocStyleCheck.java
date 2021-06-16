@@ -399,6 +399,8 @@ public class JavadocStyleCheck
         return CommonUtil.EMPTY_INT_ARRAY;
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {
@@ -419,6 +421,8 @@ public class JavadocStyleCheck
      * @param ast a given node.
      * @return whether we should check a given node.
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private boolean shouldCheck(final DetailAST ast) {
         boolean check = false;
 
@@ -448,6 +452,8 @@ public class JavadocStyleCheck
      * @see #checkFirstSentenceEnding(DetailAST, TextBlock)
      * @see #checkHtmlTags(DetailAST, TextBlock)
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private void checkComment(final DetailAST ast, final TextBlock comment) {
         if (comment == null) {
             // checking for missing docs in JavadocStyleCheck is not consistent

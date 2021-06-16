@@ -243,6 +243,8 @@ public class JavadocVariableCheck
         };
     }
 
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     @Override
     public void visitToken(DetailAST ast) {
         if (shouldCheck(ast)) {

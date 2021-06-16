@@ -179,6 +179,8 @@ public final class PackageDeclarationCheck extends AbstractCheck {
      *
      * @return Directory name.
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private String getDirectoryName() {
         final String fileName = getFileContents().getFileName();
         final int lastSeparatorPos = fileName.lastIndexOf(File.separatorChar);

@@ -314,6 +314,8 @@ public class UnusedImportsCheck extends AbstractCheck {
      *
      * @param ast node to inspect for Javadoc
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private void collectReferencesFromJavadoc(DetailAST ast) {
         final FileContents contents = getFileContents();
         final int lineNo = ast.getLineNo();

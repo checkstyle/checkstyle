@@ -583,6 +583,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast the ast to check.
      * @return list of line numbers for empty lines.
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private List<Integer> getEmptyLines(DetailAST ast) {
         final DetailAST lastToken = ast.getLastChild().getLastChild();
         int lastTokenLineNo = 0;
@@ -639,6 +641,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @param ast token
      * @param nextToken next token
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private void processPackage(DetailAST ast, DetailAST nextToken) {
         if (ast.getLineNo() > 1 && !hasEmptyLineBefore(ast)) {
             if (getFileContents().getFileName().endsWith("package-info.java")) {
@@ -858,6 +862,8 @@ public class EmptyLineSeparatorCheck extends AbstractCheck {
      * @return {@code true} if found any blank line within the range, {@code false}
      *         otherwise
      */
+    // suppress deprecation until https://github.com/checkstyle/checkstyle/issues/11166
+    @SuppressWarnings("deprecation")
     private boolean hasEmptyLine(int startLine, int endLine) {
         // Initial value is false - blank line not found
         boolean result = false;
