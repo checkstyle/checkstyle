@@ -177,8 +177,6 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]AbstractFileSetCheckTest.java"/>
   <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]AbstractViolationReporterTest.java"/>
-  <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]AuditEventTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]AutomaticBeanTest.java"/>
