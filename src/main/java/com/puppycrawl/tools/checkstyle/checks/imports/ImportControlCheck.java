@@ -568,7 +568,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
      */
     private static String getPackageText(DetailAST ast) {
         final DetailAST nameAST = ast.getLastChild().getPreviousSibling();
-        return FullIdent.createFullIdent(nameAST).getText();
+        return FullIdent.extractFullIdent(null, nameAST).getText();
     }
 
     /**
@@ -584,7 +584,7 @@ public class ImportControlCheck extends AbstractCheck implements ExternalResourc
         }
         else {
             // know it is a static import
-            imp = FullIdent.createFullIdent(ast
+            imp = FullIdent.extractFullIdent(null, ast
                     .getFirstChild().getNextSibling());
         }
         return imp.getText();

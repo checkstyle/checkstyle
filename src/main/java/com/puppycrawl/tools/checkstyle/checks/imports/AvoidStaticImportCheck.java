@@ -149,7 +149,7 @@ public class AvoidStaticImportCheck
     public void visitToken(final DetailAST ast) {
         final DetailAST startingDot =
             ast.getFirstChild().getNextSibling();
-        final FullIdent name = FullIdent.createFullIdent(startingDot);
+        final FullIdent name = FullIdent.extractFullIdent(null, startingDot);
 
         if (!isExempt(name.getText())) {
             log(startingDot, MSG_KEY, name.getText());

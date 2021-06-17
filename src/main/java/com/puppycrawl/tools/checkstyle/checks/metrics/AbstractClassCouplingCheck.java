@@ -242,7 +242,8 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param pkg package definition.
      */
     private void visitPackageDef(DetailAST pkg) {
-        final FullIdent ident = FullIdent.createFullIdent(pkg.getLastChild().getPreviousSibling());
+        final FullIdent ident = FullIdent.extractFullIdent(null,
+                pkg.getLastChild().getPreviousSibling());
         packageName = ident.getText();
     }
 
@@ -267,7 +268,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
      * @param imp import definition.
      */
     private void registerImport(DetailAST imp) {
-        final FullIdent ident = FullIdent.createFullIdent(
+        final FullIdent ident = FullIdent.extractFullIdent(null, 
             imp.getLastChild().getPreviousSibling());
         final String fullName = ident.getText();
         final int lastDot = fullName.lastIndexOf(DOT);
@@ -397,7 +398,7 @@ public abstract class AbstractClassCouplingCheck extends AbstractCheck {
          * @param ast a node which represents referenced class.
          */
         private void addReferencedClassName(DetailAST ast) {
-            final String fullIdentName = FullIdent.createFullIdent(ast).getText();
+            final String fullIdentName = FullIdent.extractFullIdent(null, ast).getText();
             final String trimmed = BRACKET_PATTERN
                     .matcher(fullIdentName).replaceAll("");
             addReferencedClassName(trimmed);

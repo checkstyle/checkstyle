@@ -776,7 +776,7 @@ public class JavadocMethodCheck extends AbstractCheck {
      * @return ExceptionInfo
      */
     private static ExceptionInfo getExceptionInfo(DetailAST ast) {
-        final FullIdent ident = FullIdent.createFullIdent(ast);
+        final FullIdent ident = FullIdent.extractFullIdent(null, ast);
         final DetailAST firstClassNameNode = getFirstClassNameNode(ast);
         return new ExceptionInfo(firstClassNameNode,
                 new ClassInfo(new Token(ident)));

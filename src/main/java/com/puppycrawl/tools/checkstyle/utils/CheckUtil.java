@@ -83,7 +83,7 @@ public final class CheckUtil {
      * @return {@code FullIdent} for given type.
      */
     public static FullIdent createFullType(final DetailAST typeAST) {
-        return FullIdent.createFullIdent(typeAST.getFirstChild());
+        return FullIdent.extractFullIdent(null, typeAST.getFirstChild());
     }
 
     /**

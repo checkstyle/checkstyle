@@ -194,7 +194,7 @@ public final class IllegalCatchCheck extends AbstractCheck {
         final List<DetailAST> excTypes = getAllExceptionTypes(excTypeParent);
 
         for (DetailAST excType : excTypes) {
-            final FullIdent ident = FullIdent.createFullIdent(excType);
+            final FullIdent ident = FullIdent.extractFullIdent(null, excType);
 
             if (illegalClassNames.contains(ident.getText())) {
                 log(detailAST, MSG_KEY, ident.getText());

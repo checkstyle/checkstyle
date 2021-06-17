@@ -195,7 +195,7 @@ public final class AnnotationUtil {
         return findFirstAnnotation(ast, annotationNode -> {
             final DetailAST firstChild = annotationNode.findFirstToken(TokenTypes.AT);
             final String name =
-                    FullIdent.createFullIdent(firstChild.getNextSibling()).getText();
+                    FullIdent.extractFullIdent(null, firstChild.getNextSibling()).getText();
             return annotation.equals(name);
         });
     }
