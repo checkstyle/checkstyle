@@ -524,6 +524,20 @@ class Test {
               <td><code>80</code></td>
               <td>3.0</td>
             </tr>
+            <tr>
+              <td>validateImport</td>
+              <td>Validate checking of import statements.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.43</td>
+            </tr>
+            <tr>
+              <td>validatePackage</td>
+              <td>Validate checking of package statements.</td>
+              <td><a href="property_types.html#boolean">boolean</a></td>
+              <td><code>false</code></td>
+              <td>8.43</td>
+            </tr>
           </table>
         </div>
       </subsection>
@@ -584,11 +598,6 @@ class Test {
             <a href="config.html#TreeWalker"><code>TreeWalker</code></a> property
             <code>tabWidth</code> which applies to all Checks, including <code>LineLength</code>;
             or can set property <code>tabWidth</code> for <code>LineLength</code> alone.
-          </li>
-          <li>
-            Package and import statements (lines matching pattern
-            <code>^(package|import) .*</code>) are not verified by
-            this check.
           </li>
         </ul>
       </subsection>
