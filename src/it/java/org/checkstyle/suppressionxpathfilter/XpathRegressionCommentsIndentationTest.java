@@ -54,7 +54,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationSingleLine']]"
-                + "/OBJBLOCK/SINGLE_LINE_COMMENT"
+                + "/OBJBLOCK/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -77,8 +77,9 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT"
-                + "[@text='SuppressionXpathRegressionCommentsIndentationBlock']]"
-                + "/OBJBLOCK/VARIABLE_DEF[./IDENT[@text='f']]/TYPE/BLOCK_COMMENT_BEGIN"
+                + "[@text='SuppressionXpathRegressionCommentsIndentationBlock']]/OBJBLOCK/"
+                + "VARIABLE_DEF[./IDENT[@text='f']]/TYPE/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text=' // warn\\n           * Javadoc comment\\n           ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -103,6 +104,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationSeparator']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/MODIFIERS/SINGLE_LINE_COMMENT"
+                + "[./COMMENT_CONTENT[@text='///////////// Comment separator // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -127,6 +129,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationDistributedStatement']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT"
+                + "[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -150,7 +153,8 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationSingleLineBlock']]"
-                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT[2]"
+                + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/SINGLE_LINE_COMMENT"
+                + "[./COMMENT_CONTENT[@text=' block Comment // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -175,7 +179,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationNonEmptyCase']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_SWITCH/"
-                + "CASE_GROUP/SINGLE_LINE_COMMENT"
+                + "CASE_GROUP/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -200,7 +204,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
             "/CLASS_DEF[./IDENT"
                 + "[@text='SuppressionXpathRegressionCommentsIndentationEmptyCase']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/LITERAL_SWITCH/"
-                + "CASE_GROUP/SINGLE_LINE_COMMENT"
+                + "CASE_GROUP/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -226,7 +230,7 @@ public class XpathRegressionCommentsIndentationTest extends AbstractXpathTestSup
                 + "[@text='SuppressionXpathRegressionCommentsIndentationWithinBlockStatement']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]/SLIST/VARIABLE_DEF"
                 + "[./IDENT[@text='s']]/ASSIGN/EXPR/PLUS[./STRING_LITERAL[@text='O']]"
-                + "/SINGLE_LINE_COMMENT"
+                + "/SINGLE_LINE_COMMENT[./COMMENT_CONTENT[@text=' Comment // warn\\n']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

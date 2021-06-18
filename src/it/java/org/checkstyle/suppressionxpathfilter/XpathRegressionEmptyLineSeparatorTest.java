@@ -153,7 +153,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
         final List<String> expectedXpathQueries = Collections.singletonList(
                 "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionEmptyLineSeparator5']]"
                         + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo1']]/SLIST/LITERAL_TRY/SLIST"
-                        + "/SINGLE_LINE_COMMENT/COMMENT_CONTENT"
+                        + "/SINGLE_LINE_COMMENT/COMMENT_CONTENT[@text=' warn\\n']"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation, expectedXpathQueries);
