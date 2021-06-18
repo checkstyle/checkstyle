@@ -19,6 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -42,8 +43,11 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.MapDifference;
 import com.google.common.collect.Maps;
+import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
+import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
+import com.puppycrawl.tools.checkstyle.bdd.InputConfiguration;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
@@ -214,6 +218,25 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     }
 
     /**
+     * Performs verification of the file with the given file path using specified configuration
+     * and the array expected messages. Also performs verification of the config specified in
+     * input file.
+     *
+     * @param aConfig configuration.
+     * @param filePath file path to verify.
+     * @param expected an array of expected messages.
+     * @throws Exception if exception occurs during verification process.
+     */
+    protected final void verifyWithInlineConfigParser(Configuration aConfig,
+                                             String filePath, String... expected)
+            throws Exception {
+        final InputConfiguration inputConfiguration = InlineConfigParser.parse(filePath);
+        final Configuration parsedConfig = inputConfiguration.createConfiguration();
+        verifyConfig(aConfig, parsedConfig);
+        verify(parsedConfig, filePath, expected);
+    }
+
+    /**
      * Performs verification of the file with the given file name. Uses specified configuration.
      * Expected messages are represented by the array of strings.
      * This implementation uses overloaded
@@ -366,6 +389,32 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                         && differingViolations.isEmpty());
 
         checker.destroy();
+    }
+
+    /**
+     * Performs verification of the config read from input file.
+     *
+     * @param testConfig hardcoded test config.
+     * @param parsedConfig parsed config from input file.
+     */
+    private static void verifyConfig(Configuration testConfig, Configuration parsedConfig) {
+        assertWithMessage("Check name differs from expected.")
+                .that(testConfig.getName())
+                .isEqualTo(parsedConfig.getName());
+        assertWithMessage("Property keys differ from expected.")
+                .that(parsedConfig.getAttributeNames())
+                .isEqualTo(testConfig.getAttributeNames());
+        for (String attribute : testConfig.getAttributeNames()) {
+            try {
+                assertWithMessage("Property value for key %s differs from expected.", attribute)
+                        .that(parsedConfig.getAttribute(attribute))
+                        .isEqualTo(testConfig.getAttribute(attribute));
+            }
+            catch (CheckstyleException ex) {
+                assertWithMessage("Property value not specified for key %s.", attribute)
+                        .fail();
+            }
+        }
     }
 
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
