@@ -40,10 +40,4 @@
   <!-- No need for constructor with cause -->
   <suppress checks="CauseParameterInException" files=".*MetadataGenerationException\.java"/>
 
-  <!-- Migrating to Truth -->
-  <suppress checks="RequireFailForTryCatchInJunit" files="MutableExceptionCheckTest.java"/>
-  <suppress checks="RequireFailForTryCatchInJunit" files="CheckstyleAntTaskTest.java"/>
-  <suppress checks="RequireFailForTryCatchInJunit" files="AbstractViolationReporterTest.java"/>
-  <suppress checks="RequireFailForTryCatchInJunit" files="AbstractFileSetCheckTest.java"/>
-
 </suppressions>
