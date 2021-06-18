@@ -673,6 +673,15 @@
             Checks that there is no whitespace before a token.</td>
           </tr>
           <tr>
+            <td>
+              <a href="config_whitespace.html#NoWhitespaceBeforeCaseDefaultColon">
+              NoWhitespaceBeforeCaseDefaultColon</a>
+            </td>
+            <td>
+              Checks that there is no whitespace before the colon of a case/default.
+            </td>
+          </tr>
+          <tr>
             <td><a href="config_metrics.html#NPathComplexity">NPathComplexity</a></td>
             <td>Checks the NPATH complexity against a specified limit.</td>
           </tr>
