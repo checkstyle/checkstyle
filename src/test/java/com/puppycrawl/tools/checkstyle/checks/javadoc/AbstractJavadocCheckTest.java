@@ -80,6 +80,15 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testSetJavadocTokens() throws Exception {
+        DefaultConfiguration checkConfig = createModuleConfig(DummyCheck.class);
+        final String[] expected = {
+            "4:8: violation",
+        };
+        verify(checkConfig, getPath("InputAbstractJavadocSetJavadocTokens.java"), expected);
+    }
+
+    @Test
     public void testJavadocTagsWithoutArgs() throws Exception {
         final DefaultConfiguration checkconfig = createModuleConfig(TempCheck.class);
         final String[] expected = {
@@ -492,6 +501,31 @@ public class AbstractJavadocCheckTest extends AbstractModuleTestSupport {
             "91:33: " + getCheckMessage(MSG_SUMMARY_FIRST_SENTENCE),
         };
         verify(checkConfig, getPath("InputAbstractJavadocNonTightHtmlTags2.java"), expected);
+    }
+
+    public static class DummyCheck extends AbstractJavadocCheck {
+
+        @Override
+        public int[] getDefaultJavadocTokens() {
+            return new int[] {
+                    JavadocTokenTypes.RETURN_LITERAL,
+            };
+        }
+
+        @Override
+        public void visitJavadocToken(DetailNode ast) {
+            log(ast.getLineNumber(), ast.getColumnNumber(), "violation");
+        }
+
+        @Override
+        public void beginJavadocTree(DetailNode rootAst) {
+            setJavadocTokens();
+        }
+
+        @Override
+        public void finishJavadocTree(DetailNode rootAst) {
+            visitJavadocToken(rootAst);
+        }
     }
 
     public static class TempCheck extends AbstractJavadocCheck {
