@@ -44,5 +44,6 @@
   <suppress checks="RequireFailForTryCatchInJunit" files="MutableExceptionCheckTest.java"/>
   <suppress checks="RequireFailForTryCatchInJunit" files="CheckstyleAntTaskTest.java"/>
   <suppress checks="RequireFailForTryCatchInJunit" files="AbstractViolationReporterTest.java"/>
+  <suppress checks="RequireFailForTryCatchInJunit" files="AutomaticBeanTest.java"/>
 
 </suppressions>
