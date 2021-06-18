@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.regex.Pattern;
 
@@ -38,7 +35,9 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilter filter = new BeforeExecutionExclusionFileFilter();
         filterSet.addBeforeExecutionFileFilter(filter);
         filterSet.removeBeforeExecutionFileFilter(filter);
-        assertEquals(0, filterSet.getBeforeExecutionFileFilters().size(), "size is the same");
+        assertWithMessage("size is the same")
+                .that(filterSet.getBeforeExecutionFileFilters())
+                .isEmpty();
     }
 
     @Test
@@ -49,7 +48,9 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet set = new BeforeExecutionFileFilterSet();
         set.addBeforeExecutionFileFilter(filter);
 
-        assertTrue(set.accept("ATest.java"), "Invalid accept state, should accept");
+        assertWithMessage("Invalid accept state, should accept")
+                .that(set.accept("ATest.java"))
+                .isTrue();
     }
 
     @Test
@@ -60,21 +61,27 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet set = new BeforeExecutionFileFilterSet();
         set.addBeforeExecutionFileFilter(filter);
 
-        assertFalse(set.accept("ATest.java"), "Invalid accept state, should not accept");
+        assertWithMessage("Invalid accept state, should not accept")
+                .that(set.accept("ATest.java"))
+                .isFalse();
     }
 
     @Test
     public void testGetFilters2() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
-        assertEquals(1, filterSet.getBeforeExecutionFileFilters().size(), "size is the same");
+        assertWithMessage("size is the same")
+                .that(filterSet.getBeforeExecutionFileFilters())
+                .hasSize(1);
     }
 
     @Test
     public void testToString2() {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
-        assertNotNull(filterSet.toString(), "size is the same");
+        assertWithMessage("size is the same")
+                .that(filterSet.toString())
+                .isNotNull();
     }
 
     @Test
@@ -82,13 +89,15 @@ public class BeforeExecutionFileFilterSetTest {
         final BeforeExecutionFileFilterSet filterSet = new BeforeExecutionFileFilterSet();
         filterSet.addBeforeExecutionFileFilter(new BeforeExecutionExclusionFileFilter());
 
-        assertEquals(1, filterSet.getBeforeExecutionFileFilters().size(),
-                "Invalid filter set size");
+        assertWithMessage("Invalid filter set size")
+                .that(filterSet.getBeforeExecutionFileFilters())
+                .hasSize(1);
 
         filterSet.clear();
 
-        assertEquals(0, filterSet.getBeforeExecutionFileFilters().size(),
-                "Invalid filter set size");
+        assertWithMessage("Invalid filter set size")
+                .that(filterSet.getBeforeExecutionFileFilters())
+                .isEmpty();
     }
 
 }
