@@ -459,7 +459,6 @@ public class NoWhitespaceAfterCheck extends AbstractCheck {
         // i.e. "(Object[]) null", but in casual case should be
         // checked whether ident or lastTypeNode has preceding position
         // determining if it is java style or C style
-
         if (ident == null || isTypeCast || ident.getLineNo() > ast.getLineNo()) {
             previousElement = lastTypeNode;
         }
