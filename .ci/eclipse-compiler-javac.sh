@@ -1,6 +1,17 @@
 #!/bin/bash
 set -e
 
+if [ "$1" == "--check-prefs" ]; then
+    ROOT=https://raw.githubusercontent.com/eclipse/eclipse.jdt.core/master
+    FILE=org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
+    curl -s "${ROOT}/${FILE}" | grep -o 'org.eclipse.jdt.core.compiler.problem.[^"]*' |
+        sort > .ci-temp/ecj.opt
+    grep -o "^[^=#]*" config/org.eclipse.jdt.core.prefs | sort > .ci-temp/cs.opt
+    diff --unified .ci-temp/cs.opt .ci-temp/ecj.opt
+    rm -f .ci-temp/cs.opt .ci-temp/ecj.opt
+    exit 0
+fi
+
 if [ -z "$1" ]; then
     echo "No parameters supplied!"
     echo "      The classpath of the project and it's libraries to compile must be supplied."
@@ -9,8 +20,11 @@ fi
 
 JAVA_RELEASE=${2:-1.8}
 
-ECJ_JAR="ecj-4.17.jar"
-ECJ_MAVEN_VERSION="R-4.17-202009021800"
+# Eclipse releases every 13 weeks: https://wiki.eclipse.org/SimRel/Simultaneous_Release_Cycle_FAQ
+# After that these two variables should be updated. In addition, the compiler settings may change.
+# To get the difference between the settings, use this script with "--check-prefs" parameter.
+ECJ_JAR="ecj-4.20.jar"
+ECJ_MAVEN_VERSION="R-4.20-202106111600"
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
 if [ ! -f $ECJ_PATH ]; then
