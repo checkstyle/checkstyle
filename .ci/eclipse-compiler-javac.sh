@@ -18,6 +18,8 @@ if [ ! -f $ECJ_PATH ]; then
     mkdir -p $(dirname "$ECJ_PATH")
     ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
     wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR -O $ECJ_PATH
+    echo "test jar after download:"
+    jar -tvf $ECJ_PATH
 fi
 
 mkdir -p target/classes target/test-classes target/eclipse
