@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -232,7 +233,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final InputConfiguration inputConfiguration = InlineConfigParser.parse(filePath);
         final Configuration parsedConfig = inputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedConfig);
+        verifyConfig(aConfig, parsedConfig, inputConfiguration);
         verify(parsedConfig, filePath, expected);
     }
 
@@ -397,23 +398,27 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * @param testConfig hardcoded test config.
      * @param parsedConfig parsed config from input file.
      */
-    private static void verifyConfig(Configuration testConfig, Configuration parsedConfig) {
+    private static void verifyConfig(Configuration testConfig, Configuration parsedConfig,
+                                     InputConfiguration inputConfiguration)
+            throws CheckstyleException {
         assertWithMessage("Check name differs from expected.")
                 .that(testConfig.getName())
                 .isEqualTo(parsedConfig.getName());
         assertWithMessage("Property keys differ from expected.")
-                .that(parsedConfig.getAttributeNames())
-                .isEqualTo(testConfig.getAttributeNames());
-        for (String attribute : testConfig.getAttributeNames()) {
-            try {
-                assertWithMessage("Property value for key %s differs from expected.", attribute)
-                        .that(parsedConfig.getAttribute(attribute))
-                        .isEqualTo(testConfig.getAttribute(attribute));
-            }
-            catch (CheckstyleException ex) {
-                assertWithMessage("Property value not specified for key %s.", attribute)
-                        .fail();
-            }
+                .that(Arrays.asList(testConfig.getAttributeNames()))
+                .containsAtLeastElementsIn(parsedConfig.getAttributeNames());
+        for (String attribute : parsedConfig.getAttributeNames()) {
+            assertWithMessage("Property value for key %s differs from expected.", attribute)
+                    .that(testConfig.getAttribute(attribute))
+                    .isEqualTo(parsedConfig.getAttribute(attribute));
+        }
+        final List<String> testAttributes =
+                new LinkedList<>(Arrays.asList(testConfig.getAttributeNames()));
+        testAttributes.removeAll(Arrays.asList(parsedConfig.getAttributeNames()));
+        for (String attribute : testAttributes) {
+            assertWithMessage("Property value for key %s differs from expected.", attribute)
+                    .that(inputConfiguration.getDefaultAttributeValue(attribute))
+                    .isEqualTo(testConfig.getAttribute(attribute));
         }
     }
 
