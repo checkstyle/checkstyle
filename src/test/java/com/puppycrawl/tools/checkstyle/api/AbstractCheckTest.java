@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertSame;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -66,8 +63,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
         };
         // Eventually it will become clear abstract method
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, check.getRequiredTokens(),
-                "Invalid number of tokens, should be empty");
+        assertWithMessage("Invalid number of tokens, should be empty")
+                .that(check.getRequiredTokens())
+                .isEmpty();
     }
 
     @Test
@@ -89,8 +87,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
         };
         // Eventually it will become clear abstract method
-        assertArrayEquals(CommonUtil.EMPTY_INT_ARRAY, check.getAcceptableTokens(),
-                "Invalid number of tokens, should be empty");
+        assertWithMessage("Invalid number of tokens, should be empty")
+                .that(check.getAcceptableTokens())
+                .isEmpty();
     }
 
     @Test
@@ -112,7 +111,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
         };
 
-        assertFalse(check.isCommentNodesRequired(), "unexpected result");
+        assertWithMessage("unexpected result")
+                .that(check.isCommentNodesRequired())
+                .isFalse();
     }
 
     @Test
@@ -135,8 +136,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         };
 
         check.setTokens("IDENT, EXPR, ELIST");
-        assertArrayEquals(new String[] {"IDENT, EXPR, ELIST"},
-            check.getTokenNames().toArray(), "unexpected result");
+        assertWithMessage("unexpected result")
+                .that(check.getTokenNames())
+                .containsExactly("IDENT, EXPR, ELIST");
     }
 
     @Test
@@ -145,7 +147,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         // Eventually it will become clear abstract method
         check.visitToken(null);
 
-        assertEquals(1, check.count, "expected call count");
+        assertWithMessage("expected call count")
+                .that(check.count)
+                .isEqualTo(1);
     }
 
     @Test
@@ -170,7 +174,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             new File(getPath("InputAbstractCheckTestFileContents.java")),
             Charset.defaultCharset().name())));
 
-        assertEquals(" * I'm a javadoc", check.getLine(3), "Invalid line content");
+        assertWithMessage("Invalid line content")
+                .that(check.getLine(3))
+                .isEqualTo(" * I'm a javadoc");
     }
 
     @Test
@@ -194,7 +200,9 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final int tabWidth = 4;
         check.setTabWidth(tabWidth);
 
-        assertEquals(tabWidth, check.getTabWidth(), "Invalid tab width");
+        assertWithMessage("Invalid tab width")
+                .that(check.getTabWidth())
+                .isEqualTo(tabWidth);
     }
 
     @Test
@@ -220,8 +228,12 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
                 new FileText(new File("filename"), Arrays.asList(lines)));
         check.setFileContents(fileContents);
 
-        assertSame(fileContents, check.getFileContents(), "Invalid file contents");
-        assertArrayEquals(lines, check.getLines(), "Invalid lines");
+        assertWithMessage("Invalid file contents")
+                .that(check.getFileContents())
+                .isEqualTo(fileContents);
+        assertWithMessage("Invalid lines")
+                .that(check.getLines())
+                .isEqualTo(lines);
     }
 
     @Test
@@ -246,9 +258,15 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
             }
         };
 
-        assertArrayEquals(defaultTokens, check.getDefaultTokens(), "Invalid default tokens");
-        assertArrayEquals(defaultTokens, check.getAcceptableTokens(), "Invalid acceptable tokens");
-        assertArrayEquals(requiredTokens, check.getRequiredTokens(), "Invalid required tokens");
+        assertWithMessage("Invalid default tokens")
+                .that(check.getDefaultTokens())
+                .isEqualTo(defaultTokens);
+        assertWithMessage("Invalid acceptable tokens")
+                .that(check.getAcceptableTokens())
+                .isEqualTo(acceptableTokens);
+        assertWithMessage("Invalid required tokens")
+                .that(check.getDefaultTokens())
+                .isEqualTo(requiredTokens);
     }
 
     @Test
@@ -256,9 +274,13 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
         final AbstractCheck check = new DummyAbstractCheck();
 
         check.log(1, "key", "args");
-        assertEquals(1, check.getViolations().size(), "Invalid violation size");
+        assertWithMessage("Invalid violation size")
+                .that(check.getViolations().size())
+                .isEqualTo(1);
         check.clearViolations();
-        assertEquals(0, check.getViolations().size(), "Invalid violation size");
+        assertWithMessage("Invalid violation size")
+                .that(check.getViolations().size())
+                .isEqualTo(0);
     }
 
     @Test
@@ -274,17 +296,27 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
         final SortedSet<Violation> internalViolations = check.getViolations();
 
-        assertEquals(2, internalViolations.size(), "Internal violation should only have 2");
+        assertWithMessage("Internal violation should only have 2")
+                .that(internalViolations.size())
+                .isEqualTo(2);
 
         final Iterator<Violation> iterator = internalViolations.iterator();
 
         final Violation firstViolation = iterator.next();
-        assertEquals(1, firstViolation.getLineNo(), "expected line");
-        assertEquals(0, firstViolation.getColumnNo(), "expected column");
+        assertWithMessage("expected line")
+                .that(firstViolation.getLineNo())
+                .isEqualTo(1);
+        assertWithMessage("expected column")
+                .that(firstViolation.getColumnNo())
+                .isEqualTo(0);
 
         final Violation secondViolation = iterator.next();
-        assertEquals(1, secondViolation.getLineNo(), "expected line");
-        assertEquals(6, secondViolation.getColumnNo(), "expected column");
+        assertWithMessage("expected line")
+                .that(secondViolation.getLineNo())
+                .isEqualTo(1);
+        assertWithMessage("expected column")
+                .that(secondViolation.getColumnNo())
+                .isEqualTo(6);
     }
 
     @Test
@@ -304,11 +336,17 @@ public class AbstractCheckTest extends AbstractModuleTestSupport {
 
         final SortedSet<Violation> internalViolations = check.getViolations();
 
-        assertEquals(1, internalViolations.size(), "Internal violation should only have 1");
+        assertWithMessage("Internal violation should only have 1")
+                .that(internalViolations.size())
+                .isEqualTo(1);
 
         final Violation firstViolation = internalViolations.iterator().next();
-        assertEquals(1, firstViolation.getLineNo(), "expected line");
-        assertEquals(5, firstViolation.getColumnNo(), "expected column");
+        assertWithMessage("expected line")
+                .that(firstViolation.getLineNo())
+                .isEqualTo(1);
+        assertWithMessage("expected column")
+                .that(firstViolation.getColumnNo())
+                .isEqualTo(5);
     }
 
     @Test
