@@ -52,6 +52,7 @@ public final class InlineConfigParser {
         final List<String> lines = readFile(filePath);
         final InputConfiguration.Builder inputConfigBuilder = new InputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
+        setCheckProperties(inputConfigBuilder, inputFilePath, lines);
         return inputConfigBuilder.build();
     }
 
@@ -85,5 +86,32 @@ public final class InlineConfigParser {
         }
         final String checkPath = getPackageFromFilePath(filePath) + "." + checkName + "Check";
         inputConfigBuilder.setCheckName(checkPath);
+    }
+
+    private static void setCheckProperties(InputConfiguration.Builder inputConfigBuilder,
+                                      String filePath, List<String> lines)
+                    throws CheckstyleException {
+        int lineNo = 2;
+        for (String line = lines.get(lineNo); !line.contains("*/"); line = lines.get(++lineNo)) {
+            if (line.isEmpty()) {
+                continue;
+            }
+            try {
+                final int equalPosition = line.indexOf('=');
+                final String property = line.substring(0, equalPosition - 1);
+                if (line.contains("(default)")) {
+                    final String value = line.substring(line.indexOf(')') + 1);
+                    inputConfigBuilder.addDefaultProperty(property, value);
+                }
+                else {
+                    final String value = line.substring(equalPosition + 2);
+                    inputConfigBuilder.addNonDefaultProperty(property, value);
+                }
+            }
+            catch (IndexOutOfBoundsException ex) {
+                throw new CheckstyleException("Config not formatted properly in file "
+                        + filePath, ex);
+            }
+        }
     }
 }
