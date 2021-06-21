@@ -33,21 +33,21 @@ public final class InputConfiguration {
     private final String checkName;
 
     /** Map of default properties. */
-    private final Map<String, String> defaultProperties;
+    private final Map<String, String> defaultAttributes;
 
     /** Map of non default properties. */
-    private final Map<String, String> nonDefaultProperties;
+    private final Map<String, String> nonDefaultAttributes;
 
     /** List of violations. */
     private final List<Integer> violations;
 
     private InputConfiguration(String checkName,
-                               Map<String, String> defaultProperties,
-                               Map<String, String> nonDefaultProperties,
+                               Map<String, String> defaultAttributes,
+                               Map<String, String> nonDefaultAttributes,
                                List<Integer> violations) {
         this.checkName = checkName;
-        this.defaultProperties = defaultProperties;
-        this.nonDefaultProperties = nonDefaultProperties;
+        this.defaultAttributes = defaultAttributes;
+        this.nonDefaultAttributes = nonDefaultAttributes;
         this.violations = violations;
     }
 
@@ -55,19 +55,19 @@ public final class InputConfiguration {
         return checkName;
     }
 
-    public Map<String, String> getAllProperties() {
+    public Map<String, String> getAllAttributes() {
         final Map<String, String> properties = new HashMap<>();
-        properties.putAll(defaultProperties);
-        properties.putAll(nonDefaultProperties);
+        properties.putAll(defaultAttributes);
+        properties.putAll(nonDefaultAttributes);
         return Collections.unmodifiableMap(properties);
     }
 
-    public Map<String, String> getDefaultProperties() {
-        return Collections.unmodifiableMap(defaultProperties);
+    public Map<String, String> getDefaultAttributes() {
+        return Collections.unmodifiableMap(defaultAttributes);
     }
 
-    public Map<String, String> getNonDefaultProperties() {
-        return Collections.unmodifiableMap(nonDefaultProperties);
+    public Map<String, String> getNonDefaultAttributes() {
+        return Collections.unmodifiableMap(nonDefaultAttributes);
     }
 
     public List<Integer> getViolations() {
@@ -75,14 +75,20 @@ public final class InputConfiguration {
     }
 
     public DefaultConfiguration createConfiguration() {
-        return new DefaultConfiguration(checkName);
+        final DefaultConfiguration parsedConfig = new DefaultConfiguration(checkName);
+        nonDefaultAttributes.forEach(parsedConfig::addAttribute);
+        return parsedConfig;
+    }
+
+    public String getDefaultAttributeValue(String attribute) {
+        return defaultAttributes.get(attribute);
     }
 
     public static final class Builder {
 
-        private final Map<String, String> defaultProperties = new HashMap<>();
+        private final Map<String, String> defaultAttributes = new HashMap<>();
 
-        private final Map<String, String> nonDefaultProperties = new HashMap<>();
+        private final Map<String, String> nonDefaultAttributes = new HashMap<>();
 
         private final List<Integer> violations = new ArrayList<>();
 
@@ -92,12 +98,12 @@ public final class InputConfiguration {
             this.checkName = checkName;
         }
 
-        public void addDefaultProperty(String property, String value) {
-            defaultProperties.put(property, value);
+        public void addDefaultAttribute(String attribute, String value) {
+            defaultAttributes.put(attribute, value);
         }
 
-        public void addNonDefaultProperty(String property, String value) {
-            nonDefaultProperties.put(property, value);
+        public void addNonDefaultAttribute(String attribute, String value) {
+            nonDefaultAttributes.put(attribute, value);
         }
 
         public void addViolation(int violationLine) {
@@ -106,7 +112,7 @@ public final class InputConfiguration {
 
         public InputConfiguration build() {
             return new InputConfiguration(checkName,
-                    defaultProperties, nonDefaultProperties, violations);
+                    defaultAttributes, nonDefaultAttributes, violations);
         }
     }
 }
