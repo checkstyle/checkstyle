@@ -45,6 +45,7 @@ public class MissingOverrideCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testBadOverrideFromObject() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingOverrideCheck.class);
+        checkConfig.addAttribute("javaFiveCompatibility", "false");
 
         final String[] expected = {
             "15:5: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_OVERRIDE),
