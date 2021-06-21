@@ -1,7 +1,6 @@
 # The list of options supported by Eclipse compiler
 # https://github.com/eclipse/eclipse.jdt.core/blame/master/org.eclipse.jdt.core/compiler/org/eclipse/jdt/internal/compiler/impl/CompilerOptions.java
 
-org.eclipse.jdt.core.compiler.annotation.inheritNullAnnotations=enabled
 org.eclipse.jdt.core.compiler.problem.APILeak=error
 org.eclipse.jdt.core.compiler.problem.annotatedTypeArgumentToUnannotated=error
 org.eclipse.jdt.core.compiler.problem.annotationSuperInterface=error
@@ -85,7 +84,6 @@ org.eclipse.jdt.core.compiler.problem.unlikelyCollectionMethodArgumentType=error
 org.eclipse.jdt.core.compiler.problem.unlikelyCollectionMethodArgumentTypeStrict=enabled
 org.eclipse.jdt.core.compiler.problem.unlikelyEqualsArgumentType=error
 org.eclipse.jdt.core.compiler.problem.unnecessaryElse=error
-org.eclipse.jdt.core.compiler.problem.unsafeTypeOperation=error
 org.eclipse.jdt.core.compiler.problem.unstableAutoModuleName=error
 org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownException=error
 org.eclipse.jdt.core.compiler.problem.unusedDeclaredThrownExceptionIncludeDocCommentReference=enabled
@@ -103,9 +101,6 @@ org.eclipse.jdt.core.compiler.problem.varargsArgumentNeedCast=error
 
 # Ignore section
 
-# We are not ready to refactor code to use non-null validation, we will try later on
-org.eclipse.jdt.core.compiler.annotation.missingNonNullByDefaultAnnotation=ignore
-org.eclipse.jdt.core.compiler.annotation.nullanalysis=ignore
 # Requires us to box and unbox all conversions manually which seems unnecessary.
 org.eclipse.jdt.core.compiler.problem.autoboxing=ignore
 # We can not enforce this rule as we are library and we keep deprecated stuff for some time
