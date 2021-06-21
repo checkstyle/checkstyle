@@ -218,10 +218,8 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
      * Represents a message that can be localised. The translations come from
      * message.properties files. The underlying implementation uses
      * java.text.MessageFormat.
-     *
-     * @noinspection SerializableHasSerializationMethods
      */
-    public static class LocalizedMessage {
+    private static class LocalizedMessage {
 
         /**
          * A cache that maps bundle names to ResourceBundles.
@@ -242,8 +240,6 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
 
         /**
          * Arguments for MessageFormat.
-         *
-         * @noinspection NonSerializableFieldInSerializableClass
          */
         private final Object[] args;
 
@@ -251,10 +247,8 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
          * Creates a new {@code LocalizedMessage} instance.
          *
          * @param key the key to locate the translation.
-         * @noinspection ConstructorWithTooManyParameters.
          */
-        // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-        public LocalizedMessage(String key) {
+        private LocalizedMessage(String key) {
             this.key = key;
             args = null;
         }
@@ -264,10 +258,8 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
          *
          * @param key the key to locate the translation.
          * @param args arguments for the translation.
-         * @noinspection ConstructorWithTooManyParameters.
          */
-        // -@cs[ParameterNumber] Class is immutable, we need that amount of arguments.
-        public LocalizedMessage(String key, Object... args) {
+        private LocalizedMessage(String key, Object... args) {
             this.key = key;
             if (args == null) {
                 this.args = null;
@@ -277,17 +269,12 @@ public class DefaultLogger extends AutomaticBean implements AuditListener {
             }
         }
 
-        /** Clears the cache. */
-        public static void clearCache() {
-            BUNDLE_CACHE.clear();
-        }
-
         /**
          * Gets the translated message.
          *
          * @return the translated message.
          */
-        public String getMessage() {
+        private String getMessage() {
             // Important to use the default class loader, and not the one in
             // the GlobalProperties object. This is because the class loader in
             // the GlobalProperties is specified by the user for resolving
