@@ -15,9 +15,12 @@ ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 
 if [ ! -f $ECJ_PATH ]; then
     echo "$ECJ_PATH is not found, downloading ..."
-    mkdir -p $(dirname "$ECJ_PATH")
     ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
-    wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR -O $ECJ_PATH
+    wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR -O target/$ECJ_JAR
+    echo "test jar after download:"
+    jar -tvf target/$ECJ_JAR > /dev/null
+    mkdir -p $(dirname "$ECJ_PATH")
+    cp target/$ECJ_JAR $ECJ_PATH
 fi
 
 mkdir -p target/classes target/test-classes target/eclipse
