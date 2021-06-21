@@ -9,6 +9,8 @@ fi
 
 JAVA_RELEASE=${2:-1.8}
 
+# Eclipse releases every 13 weeks: https://wiki.eclipse.org/SimRel/Simultaneous_Release_Cycle_FAQ
+# After that these variables should be updated.
 ECJ_MAVEN_VERSION="R-4.20-202106111600"
 ECJ_JAR="ecj-4.20.jar"
 ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
@@ -16,11 +18,26 @@ ECJ_PATH=~/.m2/repository/$ECJ_MAVEN_VERSION/$ECJ_JAR
 if [ ! -f $ECJ_PATH ]; then
     echo "$ECJ_PATH is not found, downloading ..."
     ECLIPSE_URL="http://ftp-stud.fht-esslingen.de/pub/Mirrors/eclipse/eclipse/downloads/drops4"
-    wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR -O target/$ECJ_JAR
+    cd target
+    wget $ECLIPSE_URL/$ECJ_MAVEN_VERSION/$ECJ_JAR
     echo "test jar after download:"
-    jar -tvf target/$ECJ_JAR > /dev/null
+    jar -tvf $ECJ_JAR > /dev/null
+    echo "check compiler options"
+    ECJ_OPTIONS=org/eclipse/jdt/internal/compiler/impl/CompilerOptions.class
+    ECJ_OPTIONS_PATTERN='org.eclipse.jdt.core.compiler.problem.[^"]*'
+    jar -xf $ECJ_JAR $ECJ_OPTIONS
+    javap -constants $ECJ_OPTIONS | grep -o "$ECJ_OPTIONS_PATTERN" | sort > ecj.opt
+    grep -o "^[^=#]*" ../config/org.eclipse.jdt.core.prefs | sort > cs.opt
+    OPTIONS_DIFF=$(diff --unified cs.opt ecj.opt | cat)
+    if [ "${OPTIONS_DIFF}" != "" ] ; then
+        echo "JDT compiler options diff:"
+        echo "${OPTIONS_DIFF}"
+        echo please update "config/org.eclipse.jdt.core.prefs" file
+        exit 1
+    fi
     mkdir -p $(dirname "$ECJ_PATH")
-    cp target/$ECJ_JAR $ECJ_PATH
+    cp $ECJ_JAR $ECJ_PATH
+    cd ..
 fi
 
 mkdir -p target/classes target/test-classes target/eclipse
