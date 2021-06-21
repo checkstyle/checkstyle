@@ -19,11 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -50,7 +46,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
     public void testTabWidth() {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setTabWidth(12345);
-        assertEquals(12345, check.getTabWidth(), "expected tab width");
+        assertWithMessage("expected tab width")
+                .that(check.getTabWidth())
+                .isEqualTo(12345);
     }
 
     @Test
@@ -59,7 +57,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 new FileText(new File("inputAbstractFileSetCheck.tmp"), Collections.emptyList()));
         final DummyFileSetCheck check = new DummyFileSetCheck();
         check.setFileContents(contents);
-        assertSame(contents, check.getFileContents(), "expected file contents");
+        assertWithMessage("expected file contents")
+                .that(check.getFileContents())
+                .isSameInstanceAs(contents);
     }
 
     @Test
@@ -71,19 +71,24 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final SortedSet<Violation> firstFileMessages =
             check.process(firstFile, new FileText(firstFile, Collections.emptyList()));
 
-        assertEquals("File should not be empty.",
-            firstFileMessages.first().getViolation(), "Invalid message");
+        assertWithMessage("Invalid message")
+                .that(firstFileMessages.first().getViolation())
+                .isEqualTo("File should not be empty.");
 
         final SortedSet<Violation> internalMessages =
                 check.getViolations();
-        assertTrue(internalMessages.isEmpty(), "Internal message should be empty, but was not");
+        assertWithMessage("Internal message should be empty, but was not")
+                .that(internalMessages)
+                .isEmpty();
 
         final File secondFile = new File("inputAbstractFileSetCheck.txt");
         final List<String> lines = Arrays.asList("key=value", "ext=tmp");
         final SortedSet<Violation> secondFileMessages =
             check.process(secondFile, new FileText(secondFile, lines));
 
-        assertTrue(secondFileMessages.isEmpty(), "Message should be empty, but was not");
+        assertWithMessage("Message should be empty, but was not")
+                .that(secondFileMessages)
+                .isEmpty();
     }
 
     @Test
@@ -96,7 +101,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         final SortedSet<Violation> internalMessages =
                 check.getViolations();
-        assertTrue(internalMessages.isEmpty(), "Internal message should be empty");
+        assertWithMessage("Internal message should be empty")
+                .that(internalMessages)
+                .isEmpty();
     }
 
     @Test
@@ -109,32 +116,42 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(firstFile, Collections.emptyList());
         try {
             check.process(firstFile, fileText);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                    .fail();
         }
         catch (IllegalArgumentException ex) {
             // exception is expected
-            assertEquals("Test", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("Test");
         }
 
         final SortedSet<Violation> internalViolations =
                 check.getViolations();
-        assertEquals(1, internalViolations.size(), "Internal violation should only have 1");
+        assertWithMessage("Internal violation should only have 1")
+                .that(internalViolations.size())
+                .isEqualTo(1);
 
         // again to prove only 1 violation exists
         final File secondFile = new File("inputAbstractFileSetCheck.tmp");
         final FileText fileText2 = new FileText(secondFile, Collections.emptyList());
         try {
             check.process(secondFile, fileText2);
-            fail("Exception is expected");
+            assertWithMessage("Exception is expected")
+                .fail();
         }
         catch (IllegalArgumentException ex) {
             // exception is expected
-            assertEquals("Test", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("Test");
         }
 
         final SortedSet<Violation> internalViolations2 =
             check.getViolations();
-        assertEquals(1, internalViolations2.size(), "Internal violation should only have 1 again");
+        assertWithMessage("Internal violation should only have 1 again")
+                .that(internalViolations2.size())
+                .isEqualTo(1);
     }
 
     @Test
@@ -143,7 +160,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         check.setFileExtensions("tmp", ".java");
         final String[] expectedExtensions = {".tmp", ".java"};
 
-        assertArrayEquals(expectedExtensions, check.getFileExtensions(), "Invalid extensions");
+        assertWithMessage("Invalid extensions")
+                .that(check.getFileExtensions())
+                .isEqualTo(expectedExtensions);
     }
 
     /**
@@ -154,11 +173,13 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final DummyFileSetCheck check = new DummyFileSetCheck();
         try {
             check.setFileExtensions((String[]) null);
-            fail("Expected exception.");
+            assertWithMessage("Expected exception.")
+                .fail();
         }
         catch (IllegalArgumentException exception) {
-            assertEquals("Extensions array can not be null", exception.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                    .that(exception.getMessage())
+                    .isEqualTo("Extensions array can not be null");
         }
     }
 
@@ -171,11 +192,17 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
                 StandardCharsets.UTF_8.name());
         final SortedSet<Violation> internalViolations = check.process(file, theText);
 
-        assertEquals(1, internalViolations.size(), "Internal violation should only have 1");
+        assertWithMessage("Internal violation should only have 1")
+                .that(internalViolations.size())
+                .isEqualTo(1);
 
         final Violation violation = internalViolations.iterator().next();
-        assertEquals(1, violation.getLineNo(), "expected line");
-        assertEquals(6, violation.getColumnNo(), "expected column");
+        assertWithMessage("expected line")
+                .that(violation.getLineNo())
+                .isEqualTo(1);
+        assertWithMessage("expected column")
+                .that(violation.getColumnNo())
+                .isEqualTo(6);
     }
 
     @Test
@@ -184,7 +211,9 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
         final Checker checker = new Checker();
         check.setMessageDispatcher(checker);
 
-        assertEquals(checker, check.getMessageDispatcher(), "Invalid message dispatcher");
+        assertWithMessage("Invalid message dispatcher")
+                .that(check.getMessageDispatcher())
+                .isSameInstanceAs(checker);
     }
 
     @Test
@@ -206,20 +235,32 @@ public class AbstractFileSetCheckTest extends AbstractModuleTestSupport {
 
         check.finishProcessing();
 
-        assertEquals("fileName", dispatcher.name, "Invalid fileName reported");
+        assertWithMessage("Invalid fileName reported")
+                .that(dispatcher.name)
+                .isEqualTo("fileName");
 
-        assertEquals(1, dispatcher.errorList.size(), "errors should only have 1");
+        assertWithMessage("errors should only have 1")
+                .that(dispatcher.errorList.size())
+                .isEqualTo(1);
 
         final Violation violation = dispatcher.errorList.iterator().next();
-        assertEquals(1, violation.getLineNo(), "expected line");
-        assertEquals(0, violation.getColumnNo(), "expected column");
+        assertWithMessage("expected line")
+                .that(violation.getLineNo())
+                .isEqualTo(1);
+        assertWithMessage("expected column")
+                .that(violation.getColumnNo())
+                .isEqualTo(0);
 
         // re-running erases previous errors
 
         check.finishProcessing();
 
-        assertEquals(1, dispatcher.errorList.size(), "errors should still have 1 after re-run");
-        assertEquals(2, check.finishProcessingCount, "finishProcessing was called twice");
+        assertWithMessage("errors should still have 1 after re-run")
+                .that(dispatcher.errorList.size())
+                .isEqualTo(1);
+        assertWithMessage("finishProcessing was called twice")
+                .that(check.finishProcessingCount)
+                .isEqualTo(2);
     }
 
     public static class DummyFileSetCheck extends AbstractFileSetCheck {
