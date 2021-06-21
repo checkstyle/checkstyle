@@ -75,7 +75,10 @@ public final class InputConfiguration {
     }
 
     public DefaultConfiguration createConfiguration() {
-        return new DefaultConfiguration(checkName);
+        final DefaultConfiguration parsedConfig = new DefaultConfiguration(checkName);
+        defaultProperties.forEach(parsedConfig::addAttribute);
+        nonDefaultProperties.forEach(parsedConfig::addAttribute);
+        return parsedConfig;
     }
 
     public static final class Builder {
