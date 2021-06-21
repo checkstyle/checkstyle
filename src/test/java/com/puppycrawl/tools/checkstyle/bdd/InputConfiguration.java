@@ -75,7 +75,13 @@ public final class InputConfiguration {
     }
 
     public DefaultConfiguration createConfiguration() {
-        return new DefaultConfiguration(checkName);
+        final DefaultConfiguration parsedConfig = new DefaultConfiguration(checkName);
+        nonDefaultProperties.forEach(parsedConfig::addAttribute);
+        return parsedConfig;
+    }
+
+    public String getDefaultPropertyValue(String key) {
+        return defaultProperties.get(key);
     }
 
     public static final class Builder {
@@ -92,12 +98,12 @@ public final class InputConfiguration {
             this.checkName = checkName;
         }
 
-        public void addDefaultProperty(String property, String value) {
-            defaultProperties.put(property, value);
+        public void addDefaultProperty(String key, String value) {
+            defaultProperties.put(key, value);
         }
 
-        public void addNonDefaultProperty(String property, String value) {
-            nonDefaultProperties.put(property, value);
+        public void addNonDefaultProperty(String key, String value) {
+            nonDefaultProperties.put(key, value);
         }
 
         public void addViolation(int violationLine) {
