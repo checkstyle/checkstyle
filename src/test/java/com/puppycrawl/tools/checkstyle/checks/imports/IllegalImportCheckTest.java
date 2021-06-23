@@ -50,9 +50,9 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(IllegalImportCheck.class);
         checkConfig.addAttribute("illegalPkgs", "java.io");
         final String[] expected = {
-            "5:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "19:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
-            "23:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
+            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "28:1: " + getCheckMessage(MSG_KEY, "java.io.File.listRoots"),
+            "32:1: " + getCheckMessage(MSG_KEY, "java.io.File.createTempFile"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault1.java"), expected);
     }
@@ -74,7 +74,7 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("regexp", "true");
         checkConfig.addAttribute("illegalPkgs", "sun.reflect");
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
+            "17:1: " + getCheckMessage(MSG_KEY, "sun.reflect.*"),
         };
         verify(checkConfig, getNonCompilablePath("InputIllegalImportDefault.java"), expected);
     }
@@ -97,9 +97,9 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalClasses", "java.sql.Connection");
         checkConfig.addAttribute("illegalPkgs", "org.junit.jupiter.api");
         final String[] expected = {
-            "7:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
-            "11:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
-            "24:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "16:1: " + getCheckMessage(MSG_KEY, "java.sql.Connection"),
+            "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault3.java"), expected);
     }
@@ -112,9 +112,9 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalClasses", "java.io.*");
         checkConfig.addAttribute("illegalPkgs", "org.junit.jupiter.api");
         final String[] expected = {
-            "5:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
-            "11:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
-            "24:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "14:1: " + getCheckMessage(MSG_KEY, "java.io.*"),
+            "20:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
+            "33:1: " + getCheckMessage(MSG_KEY, "org.junit.jupiter.api.*"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault4.java"), expected);
     }
@@ -127,13 +127,13 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalPkgs", "java\\.util");
         checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "9:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "12:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "13:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "30:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "31:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "32:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "39:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault5.java"), expected);
     }
@@ -147,9 +147,9 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("illegalClasses", "^java\\.util\\.(List|Arrays)");
         checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "9:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "13:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault6.java"), expected);
     }
@@ -164,17 +164,17 @@ public class IllegalImportCheckTest extends AbstractModuleTestSupport {
                 "^java\\.awt\\..*");
         checkConfig.addAttribute("regexp", "true");
         final String[] expected = {
-            "8:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "9:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
-            "12:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
-            "13:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
-            "26:1: " + getCheckMessage(MSG_KEY, "java.awt.Component"),
-            "27:1: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
-            "28:1: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
-            "29:1: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
-            "30:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
-            "31:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
-            "32:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
+            "17:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "18:1: " + getCheckMessage(MSG_KEY, "java.util.List"),
+            "21:1: " + getCheckMessage(MSG_KEY, "java.util.Enumeration"),
+            "22:1: " + getCheckMessage(MSG_KEY, "java.util.Arrays"),
+            "35:1: " + getCheckMessage(MSG_KEY, "java.awt.Component"),
+            "36:1: " + getCheckMessage(MSG_KEY, "java.awt.Graphics2D"),
+            "37:1: " + getCheckMessage(MSG_KEY, "java.awt.HeadlessException"),
+            "38:1: " + getCheckMessage(MSG_KEY, "java.awt.Label"),
+            "39:1: " + getCheckMessage(MSG_KEY, "java.util.Date"),
+            "40:1: " + getCheckMessage(MSG_KEY, "java.util.Calendar"),
+            "41:1: " + getCheckMessage(MSG_KEY, "java.util.BitSet"),
         };
         verify(checkConfig, getPath("InputIllegalImportDefault7.java"), expected);
     }

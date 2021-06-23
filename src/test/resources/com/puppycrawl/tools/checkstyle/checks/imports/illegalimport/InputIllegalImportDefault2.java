@@ -1,3 +1,12 @@
+/*
+IllegalImport
+illegalPkgs = (default)sun
+illegalClasses = (default)
+regexp = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok
@@ -31,9 +40,6 @@ import java.util.Date; // ok
 import java.util.Calendar; // ok
 import java.util.BitSet; // ok
 
-/*
- * Config: default
- */
 class InputIllegalImportDefault2
 {
     /** ignore **/
