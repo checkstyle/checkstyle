@@ -5,8 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  run:
-    name: Build
+  setup:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,17 +23,32 @@ jobs:
     - name: Install dependencies
       run: sudo apt install groovy
 
-    - name: no-exception-openjdk9-lucene-and-others-javadoc
-      run: ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
+  no-exception-lucene-and-others-javadoc:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc
 
-    - name: no-exception-cassandra-storm-tapestry-javadoc
-      run: ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
+  no-exception-cassandra-storm-tapestry-javadoc:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc
 
-    - name: no-exception-hadoop-apache-groovy-scouter-javadoc
-      run: ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
+  no-exception-hadoop-apache-groovy-scouter-javadoc:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc
 
-    - name: no-exception-openjdk9-lucene-and-other
-      run: ./.ci/no-exception-test.sh no-exception-only-javadoc
+  no-error-xwiki:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./.ci/validation.sh no-error-xwiki
 
-    - name: non regression on XWiki project
-      run: ./.ci/validation.sh no-error-xwiki
+  no-exception-only-javadoc:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: ./.ci/no-exception-test.sh no-exception-only-javadoc
