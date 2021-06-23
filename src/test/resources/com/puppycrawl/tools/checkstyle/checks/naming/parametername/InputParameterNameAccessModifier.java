@@ -1,10 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
+/*
+ParameterName
+format = ^h$
+ignoreOverridden = (default)false
+accessModifiers = public
 
-/* Config:
- *
- * format = "^h$"
- * accessModifiers = public
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 public class InputParameterNameAccessModifier {
 
