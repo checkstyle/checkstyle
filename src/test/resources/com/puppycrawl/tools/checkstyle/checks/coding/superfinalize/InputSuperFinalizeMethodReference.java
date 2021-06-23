@@ -1,6 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.superfinalize;
 
-/** Config = default */
+/* Config = default */
 public class InputSuperFinalizeMethodReference extends ClassWithFinalizer {
 
     public interface CheckedConsumer<E extends Throwable> {
