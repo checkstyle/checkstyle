@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,10 +29,18 @@ public class AuditEventTest {
     public void test() {
         final AuditEvent event = new AuditEvent(getClass());
 
-        assertNull(event.getFileName(), "invalid file name");
-        assertNull(event.getViolation(), "invalid violation");
-        assertEquals(getClass(), event.getSource(), "invalid source");
-        assertEquals(SeverityLevel.INFO, event.getSeverityLevel(), "invalid severity");
+        assertWithMessage("invalid file name")
+                .that(event.getFileName())
+                .isNull();
+        assertWithMessage("invalid violation")
+                .that(event.getViolation())
+                .isNull();
+        assertWithMessage("invalid source")
+                .that(event.getSource())
+                .isEqualTo(getClass());
+        assertWithMessage("invalid severity")
+                .that(event.getSeverityLevel())
+                .isEqualTo(SeverityLevel.INFO);
     }
 
     @Test
@@ -42,15 +49,32 @@ public class AuditEventTest {
                 SeverityLevel.ERROR, "moduleId", getClass(), "customMessage");
         final AuditEvent event = new AuditEvent(getClass(), "fileName", message);
 
-        assertEquals("fileName", event.getFileName(), "invalid file name");
-        assertEquals(message, event.getViolation(), "invalid violation");
-        assertEquals("customMessage", event.getMessage(), "invalid message");
-        assertEquals(getClass(), event.getSource(), "invalid source");
-        assertEquals(1, event.getLine(), "invalid line");
-        assertEquals(2, event.getColumn(), "invalid column");
-        assertEquals(SeverityLevel.ERROR, event.getSeverityLevel(), "invalid severity");
-        assertEquals("moduleId", event.getModuleId(), "invalid module id");
-        assertEquals("com.puppycrawl.tools.checkstyle.api.AuditEventTest",
-                event.getSourceName(), "invalid source name");
+        assertWithMessage("invalid file name")
+                .that(event.getFileName())
+                .isEqualTo("fileName");
+        assertWithMessage("invalid violation")
+                .that(event.getViolation())
+                .isEqualTo(message);
+        assertWithMessage("invalid violation")
+                .that(event.getMessage())
+                .isEqualTo("customMessage");
+        assertWithMessage("invalid source")
+                .that(event.getSource())
+                .isEqualTo(getClass());
+        assertWithMessage("invalid line")
+                .that(event.getLine())
+                .isEqualTo(1);
+        assertWithMessage("invalid column")
+                .that(event.getColumn())
+                .isEqualTo(2);
+        assertWithMessage("invalid severity")
+                .that(event.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
+        assertWithMessage("invalid module id")
+                .that(event.getModuleId())
+                .isEqualTo("moduleId");
+        assertWithMessage("invalid source name")
+                .that(event.getSourceName())
+                .isEqualTo("com.puppycrawl.tools.checkstyle.api.AuditEventTest");
     }
 }
