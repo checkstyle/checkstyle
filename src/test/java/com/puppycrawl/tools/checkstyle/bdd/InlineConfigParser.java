@@ -27,7 +27,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -71,7 +70,7 @@ public final class InlineConfigParser {
     private static List<String> readFile(Path filePath) throws CheckstyleException {
         try (BufferedReader br = Files.newBufferedReader(
                 filePath, StandardCharsets.UTF_8)) {
-            return new ArrayList<>(br.lines().collect(Collectors.toList()));
+            return br.lines().collect(Collectors.toList());
         }
         catch (IOException ex) {
             throw new CheckstyleException("Failed to read " + filePath, ex);
