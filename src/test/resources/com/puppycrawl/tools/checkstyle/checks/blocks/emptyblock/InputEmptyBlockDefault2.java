@@ -1,9 +1,13 @@
+/*
+EmptyBlock
+option = (default)statement
+tokens = LITERAL_DEFAULT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
-/* Config:
- * option = "statement"
- * tokens = "LITERAL_DEFAULT"
- */
 public class InputEmptyBlockDefault2 {
     void method1(int a) {
         switch (a) {}
