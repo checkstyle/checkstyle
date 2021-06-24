@@ -1,9 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: NonTightHtmlTagIntolerantCheck
- * violateExecutionOnNonTightHtml = true
- */
+AbstractJavadocCheckTest$NonTightHtmlTagIntolerant
+violateExecutionOnNonTightHtml = true
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 /**
  * <body>

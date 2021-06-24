@@ -1,13 +1,15 @@
+/*
+AbstractJavadocCheckTest$JavadocCatch
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-
-/*
- * Config: JavadocCatchCheck
- */
 
 /////////////
 // CLASSES //

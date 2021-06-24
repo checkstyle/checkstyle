@@ -1,10 +1,12 @@
+/*
+AbstractJavadocCheckTest$Temp
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.Serializable;
-
-/*
- * Config: TempCheck
- */
 
 /**@author*/ // violation
 public class InputAbstractJavadocJavadocTagsWithoutArgs implements Serializable{

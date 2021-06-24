@@ -1,11 +1,13 @@
+/*
+AbstractJavadocCheckTest$Temp
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 import java.io.ObjectStreamField;
 import java.io.Serializable;
-
-/*
- * Config: TempCheck
- */
 
 /**
  * @author author-name <link rel="author license" href="/about">
