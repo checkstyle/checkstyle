@@ -19,20 +19,16 @@
 
 package com.puppycrawl.tools.checkstyle.bdd;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
@@ -68,14 +64,8 @@ public final class InlineConfigParser {
         return path.substring(beginIndex, endIndex);
     }
 
-    private static List<String> readFile(Path filePath) throws CheckstyleException {
-        try (BufferedReader br = Files.newBufferedReader(
-                filePath, StandardCharsets.UTF_8)) {
-            return new ArrayList<>(br.lines().collect(Collectors.toList()));
-        }
-        catch (IOException ex) {
-            throw new CheckstyleException("Failed to read " + filePath, ex);
-        }
+    private static List<String> readFile(Path filePath) throws IOException {
+        return Files.readAllLines(filePath);
     }
 
     private static void setCheckName(InputConfiguration.Builder inputConfigBuilder,
