@@ -8,7 +8,8 @@ commentFormat = This is expected
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
 import java.io.IOException;
-public class InputEmptyCatchBlockDefaultLF
+
+public class InputEmptyCatchBlockDefault2
 {
 
     private void foo() {
@@ -22,7 +23,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void foo1() {
         try {
             throw new RuntimeException();
-        } catch (Exception e) {}
+        } catch (Exception e) {} // violation
 
     }
 
@@ -50,7 +51,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void foo5() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException e) { // singleline comment
+        } catch (IOException | NullPointerException | ArithmeticException e) { // violation
         }
     }
 
@@ -173,7 +174,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some() {
         try {
             throw new IOException();
-        } catch (IOException e) {
+        } catch (IOException e) { // violation
             /* ololo
              * blalba
              */
@@ -182,7 +183,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some1() {
         try {
             throw new IOException();
-        } catch (IOException e) {
+        } catch (IOException e) { // violation
             /* lalala
              * This is expected
              */
@@ -201,7 +202,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some3() {
         try {
             throw new IOException();
-        } catch (IOException e) {
+        } catch (IOException e) { // violation
             // some comment
             //This is expected
         }
@@ -217,7 +218,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void some5() {
         try {
             throw new IOException();
-        } catch (IOException e) {
+        } catch (IOException e) { // violation
             /* some comment */
             //This is expected
         }
@@ -226,7 +227,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void emptyMultilineComment() {
         try {
             throw new IOException();
-        } catch (IOException e) {
+        } catch (IOException e) { // violation
             /*
 */
         }
