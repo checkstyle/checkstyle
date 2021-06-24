@@ -81,10 +81,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefault.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="checker[\\/]InputCheckerClearDetailAstLazyLoadCache.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="checker[\\/]InputChecker.java"/>
@@ -1553,9 +1549,13 @@
   <suppress id="StyleValidationCommentInInputs"
             files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters.java"/>
   <suppress id="StyleValidationCommentInInputs"
+<<<<<<< HEAD
             files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF.java"/>
+=======
+            files="blocks[\\/]avoidnestedblocks[\\/]InputAvoidNestedBlocksDefault.java"/>
+>>>>>>> 24dde8068 (Issue #10157: Updated inputs for EmptyCatchBlockCheckTest)
   <suppress id="StyleValidationCommentInInputs"
             files="checker[\\/]InputCheckerClearDetailAstLazyLoadCache.java"/>
   <suppress id="StyleValidationCommentInInputs"
