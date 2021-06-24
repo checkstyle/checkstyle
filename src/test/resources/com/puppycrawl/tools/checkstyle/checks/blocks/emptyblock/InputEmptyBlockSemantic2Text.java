@@ -1,3 +1,12 @@
+/*
+EmptyBlock
+option = text
+tokens = LITERAL_CATCH, LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, LITERAL_SWITCH, \
+         LITERAL_IF, LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SYNCHRONIZED
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 import java.io.*; // star import for instantiation tests
