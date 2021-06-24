@@ -1,8 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
-
 /*
- * Config: TempCheck
- */
+AbstractJavadocCheckTest$Temp
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
 public class InputAbstractJavadocWrongSingletonTagInJavadoc {
     /**
