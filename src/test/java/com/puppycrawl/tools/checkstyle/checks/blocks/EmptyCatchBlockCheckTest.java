@@ -58,8 +58,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     public void testWithUserSetValues() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyCatchBlockCheck.class);
-        checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
-        checkConfig.addAttribute("commentFormat", "This is expected");
+        checkConfig.addProperty("exceptionVariableName", "expected|ignore|myException");
+        checkConfig.addProperty("commentFormat", "This is expected");
         final String[] expected = {
             "35:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "63:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
@@ -77,8 +77,8 @@ public class EmptyCatchBlockCheckTest extends AbstractModuleTestSupport {
     public void testLinesAreProperlySplitSystemIndependently() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyCatchBlockCheck.class);
-        checkConfig.addAttribute("exceptionVariableName", "expected|ignore|myException");
-        checkConfig.addAttribute("commentFormat", "This is expected");
+        checkConfig.addProperty("exceptionVariableName", "expected|ignore|myException");
+        checkConfig.addProperty("commentFormat", "This is expected");
         final String[] expected = {
             "35:31: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),
             "63:78: " + getCheckMessage(MSG_KEY_CATCH_BLOCK_EMPTY),

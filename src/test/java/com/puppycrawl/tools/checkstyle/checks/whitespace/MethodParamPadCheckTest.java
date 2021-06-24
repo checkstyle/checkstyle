@@ -78,7 +78,7 @@ public class MethodParamPadCheckTest
     @Test
     public void testAllowLineBreaks() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addAttribute("allowLineBreaks", "true");
+        checkConfig.addProperty("allowLineBreaks", "true");
         final String[] expected = {
             "11:32: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "13:15: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -96,7 +96,7 @@ public class MethodParamPadCheckTest
     @Test
     public void testSpaceOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addAttribute("option", "space");
+        checkConfig.addProperty("option", "space");
         final String[] expected = {
             "6:31: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
             "8:14: " + getCheckMessage(MSG_WS_NOT_PRECEDED, "("),
@@ -127,7 +127,7 @@ public class MethodParamPadCheckTest
     @Test
     public void testMethodParamPadRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addAttribute("allowLineBreaks", "true");
+        checkConfig.addProperty("allowLineBreaks", "true");
         final String[] expected = {
             "14:25: " + getCheckMessage(MSG_WS_PRECEDED, "("),
             "15:34: " + getCheckMessage(MSG_WS_PRECEDED, "("),
@@ -147,7 +147,7 @@ public class MethodParamPadCheckTest
     @Test
     public void test1322879() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputMethodParamPadWhitespaceAround.java"),
                expected);
@@ -172,7 +172,7 @@ public class MethodParamPadCheckTest
     @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodParamPadCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

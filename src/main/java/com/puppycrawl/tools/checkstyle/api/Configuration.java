@@ -30,20 +30,20 @@ import java.util.Map;
 public interface Configuration extends Serializable {
 
     /**
-     * The set of attribute names.
+     * The set of property names.
      *
-     * @return The set of attribute names, never null.
+     * @return The set of property names, never null.
      */
-    String[] getAttributeNames();
+    String[] getPropertyNames();
 
     /**
-     * The attribute value for an attribute name.
+     * The property value for an property name.
      *
-     * @param name the attribute name
+     * @param name the property name
      * @return the value that is associated with name
-     * @throws CheckstyleException if name is not a valid attribute name
+     * @throws CheckstyleException if name is not a valid property name
      */
-    String getAttribute(String name) throws CheckstyleException;
+    String getProperty(String name) throws CheckstyleException;
 
     /**
      * The set of child configurations.

@@ -63,7 +63,7 @@ public class XpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTest
             "SuppressionXpathRegressionUnnecessarySemicolonAfterTypeMemberDeclarationTokens"
                 + ".java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-        moduleConfig.addAttribute("tokens", "METHOD_DEF");
+        moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
             "4:21: " + getCheckMessage(CLASS,

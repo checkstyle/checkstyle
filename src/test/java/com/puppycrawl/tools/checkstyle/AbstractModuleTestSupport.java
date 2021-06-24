@@ -166,7 +166,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                 new DefaultConfiguration("configuration");
         final DefaultConfiguration twConf = createModuleConfig(TreeWalker.class);
         // make sure that the tests always run with this charset
-        dc.addAttribute("charset", StandardCharsets.UTF_8.name());
+        dc.addProperty("charset", StandardCharsets.UTF_8.name());
         dc.addChild(twConf);
         twConf.addChild(config);
         return dc;
@@ -362,18 +362,18 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         assertWithMessage("Check name differs from expected.")
                 .that(testConfig.getName())
                 .isEqualTo(parsedConfig.getName());
-        for (String property : parsedConfig.getAttributeNames()) {
+        for (String property : parsedConfig.getPropertyNames()) {
             assertWithMessage("Property value for key %s differs from expected.", property)
-                    .that(testConfig.getAttribute(property))
-                    .isEqualTo(parsedConfig.getAttribute(property));
+                    .that(testConfig.getProperty(property))
+                    .isEqualTo(parsedConfig.getProperty(property));
         }
         final List<String> testProperties =
-                new LinkedList<>(Arrays.asList(testConfig.getAttributeNames()));
-        testProperties.removeAll(Arrays.asList(parsedConfig.getAttributeNames()));
+                new LinkedList<>(Arrays.asList(testConfig.getPropertyNames()));
+        testProperties.removeAll(Arrays.asList(parsedConfig.getPropertyNames()));
         for (String property : testProperties) {
             assertWithMessage("Property value for key %s differs from expected.", property)
                     .that(testInputConfiguration.getDefaultPropertyValue(property))
-                    .isEqualTo(testConfig.getAttribute(property));
+                    .isEqualTo(testConfig.getProperty(property));
         }
     }
 

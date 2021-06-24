@@ -47,8 +47,8 @@ public final class DefaultConfiguration implements Configuration {
     /** The list of child Configurations. */
     private final List<Configuration> children = new ArrayList<>();
 
-    /** The map from attribute names to attribute values. */
-    private final Map<String, String> attributeMap = new HashMap<>();
+    /** The map from property names to property values. */
+    private final Map<String, String> propertyMap = new HashMap<>();
 
     /** The map containing custom messages. */
     private final Map<String, String> messages = new HashMap<>();
@@ -78,18 +78,18 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     @Override
-    public String[] getAttributeNames() {
-        final Set<String> keySet = attributeMap.keySet();
+    public String[] getPropertyNames() {
+        final Set<String> keySet = propertyMap.keySet();
         return keySet.toArray(CommonUtil.EMPTY_STRING_ARRAY);
     }
 
     @Override
-    public String getAttribute(String attributeName) throws CheckstyleException {
-        if (!attributeMap.containsKey(attributeName)) {
+    public String getProperty(String propertyName) throws CheckstyleException {
+        if (!propertyMap.containsKey(propertyName)) {
             throw new CheckstyleException(
-                    "missing key '" + attributeName + "' in " + name);
+                    "missing key '" + propertyName + "' in " + name);
         }
-        return attributeMap.get(attributeName);
+        return propertyMap.get(propertyName);
     }
 
     @Override
@@ -122,18 +122,18 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     /**
-     * Adds an attribute to this configuration.
+     * Adds an property to this configuration.
      *
-     * @param attributeName the name of the attribute.
-     * @param value the value of the attribute.
+     * @param propertyName the name of the property.
+     * @param value the value of the property.
      */
-    public void addAttribute(String attributeName, String value) {
-        final String current = attributeMap.get(attributeName);
+    public void addProperty(String propertyName, String value) {
+        final String current = propertyMap.get(propertyName);
         if (current == null) {
-            attributeMap.put(attributeName, value);
+            propertyMap.put(propertyName, value);
         }
         else {
-            attributeMap.put(attributeName, current + "," + value);
+            propertyMap.put(propertyName, current + "," + value);
         }
     }
 

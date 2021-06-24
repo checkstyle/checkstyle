@@ -68,7 +68,7 @@ public class XpathRegressionJavadocContentLocationTest extends AbstractXpathTest
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
 
-        moduleConfig.addAttribute("location", "first_line");
+        moduleConfig.addProperty("location", "first_line");
 
         final String[] expectedViolation = {
             "5:16: " + getCheckMessage(JavadocContentLocationCheck.class,
