@@ -8,7 +8,8 @@ commentFormat = This is expected
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptycatchblock;
 import java.io.IOException;
-public class InputEmptyCatchBlockDefaultLF
+
+public class InputEmptyCatchBlockDefault2
 {
 
     private void foo() {
@@ -50,7 +51,7 @@ public class InputEmptyCatchBlockDefaultLF
     private void foo5() {
         try {
             throw new IOException();
-        } catch (IOException | NullPointerException | ArithmeticException e) {  // violation
+        } catch (IOException | NullPointerException | ArithmeticException e) { // violation
         }
     }
 
@@ -84,7 +85,7 @@ public class InputEmptyCatchBlockDefaultLF
     {
         try {
         }
-        catch (Exception e) {  // violation
+        catch (Exception e) { //OK
             //This is expected
             /* This is expected */
             /**This is expected */
