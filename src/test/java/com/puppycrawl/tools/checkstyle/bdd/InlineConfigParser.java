@@ -21,12 +21,16 @@ package com.puppycrawl.tools.checkstyle.bdd;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -47,11 +51,12 @@ public final class InlineConfigParser {
      * @param inputFilePath the input file path.
      * @throws CheckstyleException if unable to read file or file not formatted properly.
      */
-    public static InputConfiguration parse(String inputFilePath) throws CheckstyleException {
+    public static InputConfiguration parse(String inputFilePath) throws Exception {
         final Path filePath = Paths.get(inputFilePath);
         final List<String> lines = readFile(filePath);
         final InputConfiguration.Builder inputConfigBuilder = new InputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
+        setCheckProperties(inputConfigBuilder, lines);
         return inputConfigBuilder.build();
     }
 
@@ -85,5 +90,30 @@ public final class InlineConfigParser {
         }
         final String checkPath = getPackageFromFilePath(filePath) + "." + checkName + "Check";
         inputConfigBuilder.setCheckName(checkPath);
+    }
+
+    private static void setCheckProperties(InputConfiguration.Builder inputConfigBuilder,
+                                           List<String> lines)
+                    throws Exception {
+        final StringBuilder stringBuilder = new StringBuilder(128);
+        int lineNo = 2;
+        for (String line = lines.get(lineNo); !line.contains("*/"); line = lines.get(++lineNo)) {
+            stringBuilder.append(line).append('\n');
+        }
+        final Properties properties = new Properties();
+        try (Reader reader = new StringReader(stringBuilder.toString())) {
+            properties.load(reader);
+        }
+        for (final Map.Entry<Object, Object> entry : properties.entrySet()) {
+            final String key = entry.getKey().toString();
+            final String value = entry.getValue().toString();
+            if (value.startsWith("(default)")) {
+                inputConfigBuilder.addDefaultProperty(key,
+                        value.substring(value.indexOf(')') + 1));
+            }
+            else {
+                inputConfigBuilder.addNonDefaultProperty(key, value);
+            }
+        }
     }
 }
