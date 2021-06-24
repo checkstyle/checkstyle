@@ -55,14 +55,14 @@ public class EmptyBlockCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyBlockCheck.class);
         final String[] expected = {
-            "29:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "31:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "36:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "59:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "67:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "69:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "80:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "42:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "45:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "78:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "89:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemantic.java"), expected);
     }
@@ -74,11 +74,11 @@ public class EmptyBlockCheckTest
             createModuleConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
-            "83:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
+            "40:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "INSTANCE_INIT"),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "synchronized"),
+            "88:12: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "STATIC_INIT"),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemanticText.java"), expected);
     }
@@ -90,14 +90,14 @@ public class EmptyBlockCheckTest
             createModuleConfig(EmptyBlockCheck.class);
         checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         final String[] expected = {
-            "33:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "35:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "37:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "63:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "71:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "73:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "84:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "42:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "45:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "68:5: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "76:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "78:41: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "89:12: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemanticStatement.java"), expected);
     }
@@ -111,10 +111,10 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "17:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "20:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "23:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
-            "24:20: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "21:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "24:34: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "27:21: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
+            "28:20: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemantic2Statement.java"), expected);
     }
@@ -128,10 +128,10 @@ public class EmptyBlockCheckTest
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
-            "17:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "20:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "23:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
-            "24:20: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
+            "26:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "29:34: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "32:21: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "if"),
+            "33:20: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "switch"),
         };
         verify(checkConfig, getPath("InputEmptyBlockSemantic2Text.java"), expected);
     }
@@ -162,11 +162,11 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_CASE");
         final String[] expected = {
-            "12:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "18:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "29:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "31:37: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
-            "32:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "16:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "33:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "35:37: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
+            "36:29: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
         };
         verify(checkConfig, getPath("InputEmptyBlockCase.java"), expected);
     }
@@ -177,13 +177,13 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_CASE");
         final String[] expected = {
-            "12:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "18:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "16:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "29:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "31:37: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "32:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
-            "32:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "26:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "33:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "35:37: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "36:29: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
+            "36:40: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
         };
         verify(checkConfig, getPath("InputEmptyBlockCase2.java"), expected);
     }
@@ -194,12 +194,12 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.TEXT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "11:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "17:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "42:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "50:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "56:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
-            "84:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "15:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "21:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "46:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "54:47: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "60:22: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
+            "88:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
         };
         verify(checkConfig, getPath("InputEmptyBlockDefault.java"), expected);
     }
@@ -210,15 +210,15 @@ public class EmptyBlockCheckTest
         checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
         checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
-            "11:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "17:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "15:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
             "21:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "32:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "42:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "50:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "56:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "71:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
-            "84:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "25:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "36:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "46:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "54:47: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "60:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "75:22: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
+            "88:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
         };
         verify(checkConfig, getPath("InputEmptyBlockDefault2.java"), expected);
     }
