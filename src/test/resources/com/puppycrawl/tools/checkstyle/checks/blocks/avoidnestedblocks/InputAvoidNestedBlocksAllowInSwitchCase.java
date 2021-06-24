@@ -1,17 +1,13 @@
 /*
 AvoidNestedBlocks
-allowInSwitchCase = (default)false
+allowInSwitchCase = true
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 
-/**
- * Test case for finding nested blocks.
- * @author lkuehne
- **/
-class InputAvoidNestedBlocksDefault
+class InputAvoidNestedBlocksAllowInSwitchCase
 {
     static
     { // ok
@@ -50,7 +46,7 @@ class InputAvoidNestedBlocksDefault
                 break;
             case 2:
                 // ok if allowInSwitchCase is true, SLIST is complete case body
-                { // violation
+                {
                     x = 1;
                     break;
                 }
