@@ -81,8 +81,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="blocks[\\/]avoidnestedblocks[\\/]InputAvoidNestedBlocksDefault.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefault.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefaultLF.java"/>
@@ -1554,8 +1552,6 @@
             files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="blocks[\\/]avoidnestedblocks[\\/]InputAvoidNestedBlocksDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="blocks[\\/]emptycatchblock[\\/]InputEmptyCatchBlockDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
