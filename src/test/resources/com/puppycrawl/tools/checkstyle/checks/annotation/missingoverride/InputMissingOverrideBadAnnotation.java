@@ -14,13 +14,13 @@ public class InputMissingOverrideBadAnnotation
         /**
          * {@inheritDoc}
          */
-        public void run() {     // ok
+        public void run() { // violation
             Throwable t = new Throwable() {
 
                 /**
                  * {@inheritDoc}
                  */
-                public String toString() {      // ok
+                public String toString() { // violation
                     return "junk";
                 }
             };
@@ -33,13 +33,13 @@ public class InputMissingOverrideBadAnnotation
             /**
              * {@inheritDoc}
              */
-            public void run() {     // ok
+            public void run() { // violation
                 Throwable t = new Throwable() {
 
                     /**
                      * {@inheritDoc}
                      */
-                    public String toString() {      // ok
+                    public String toString() { // violation
                         return "junk";
                     }
                 };
