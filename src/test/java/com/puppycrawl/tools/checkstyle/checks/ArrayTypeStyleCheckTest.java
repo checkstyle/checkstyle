@@ -51,14 +51,14 @@ public class ArrayTypeStyleCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ArrayTypeStyleCheck.class);
         final String[] expected = {
-            "12:23: " + getCheckMessage(MSG_KEY),
-            "13:18: " + getCheckMessage(MSG_KEY),
-            "19:44: " + getCheckMessage(MSG_KEY),
-            "43:33: " + getCheckMessage(MSG_KEY),
-            "48:34: " + getCheckMessage(MSG_KEY),
-            "48:36: " + getCheckMessage(MSG_KEY),
-            "54:27: " + getCheckMessage(MSG_KEY),
-            "54:29: " + getCheckMessage(MSG_KEY),
+            "13:23: " + getCheckMessage(MSG_KEY),
+            "14:18: " + getCheckMessage(MSG_KEY),
+            "20:44: " + getCheckMessage(MSG_KEY),
+            "44:33: " + getCheckMessage(MSG_KEY),
+            "49:34: " + getCheckMessage(MSG_KEY),
+            "49:36: " + getCheckMessage(MSG_KEY),
+            "55:27: " + getCheckMessage(MSG_KEY),
+            "55:29: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTypeStyle.java"), expected);
     }
