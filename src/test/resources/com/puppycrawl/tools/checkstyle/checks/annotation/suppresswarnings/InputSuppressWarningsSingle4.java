@@ -1,3 +1,11 @@
+/*
+SuppressWarnings
+format = ^unchecked$*
+tokens = CLASS_DEF, METHOD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
