@@ -38,6 +38,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -229,7 +232,8 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final InputConfiguration inputConfiguration = InlineConfigParser.parse(filePath);
         final Configuration parsedConfig = inputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedConfig, inputConfiguration);
+        verifyConfig(aConfig, expected, parsedConfig, inputConfiguration);
+        verifyViolations(parsedConfig, filePath, inputConfiguration);
         verify(parsedConfig, filePath, expected);
     }
 
@@ -349,9 +353,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Performs verification of the config read from input file.
      *
      * @param testConfig hardcoded test config.
+     * @param expected expected violation messages.
      * @param parsedConfig parsed config from input file.
+     * @param inputConfiguration InputConfiguration object.
      */
-    private static void verifyConfig(Configuration testConfig, Configuration parsedConfig,
+    private static void verifyConfig(Configuration testConfig,
+                                     String[] expected,
+                                     Configuration parsedConfig,
                                      InputConfiguration inputConfiguration)
             throws CheckstyleException {
         assertWithMessage("Check name differs from expected.")
@@ -370,6 +378,39 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     .that(inputConfiguration.getDefaultPropertyValue(property))
                     .isEqualTo(testConfig.getAttribute(property));
         }
+    }
+
+    /**
+     * Performs verification of violation lines.
+     *
+     * @param config parsed config.
+     * @param file file path.
+     * @param inputConfiguration InputConfiguration object.
+     */
+    private void verifyViolations(Configuration config,
+                                  String file,
+                                  InputConfiguration inputConfiguration) throws Exception {
+        final List<File> files = Collections.singletonList(new File(file));
+        final Checker checker = createChecker(config);
+        final int errs = checker.process(files);
+        final Map<String, List<String>> actualViolations = getActualViolations(errs);
+        checker.destroy();
+        List<Integer> expectedViolationLines;
+        try {
+            expectedViolationLines =
+                    actualViolations.get(file)
+                            .stream()
+                            .map(message -> message.substring(0, message.indexOf(':')))
+                            .map(Integer::parseInt)
+                            .distinct()
+                            .collect(Collectors.toList());
+        }
+        catch (NullPointerException ex) {
+            expectedViolationLines = new ArrayList<>();
+        }
+        assertWithMessage("Violation lines differ.")
+                .that(inputConfiguration.getViolations())
+                .isEqualTo(expectedViolationLines);
     }
 
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
