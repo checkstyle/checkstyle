@@ -1,3 +1,11 @@
+/*
+SuppressWarnings
+format = ^unchecked$*
+tokens = CLASS_DEF
+
+
+*/
+
 //non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
