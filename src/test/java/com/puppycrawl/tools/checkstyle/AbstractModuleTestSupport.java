@@ -38,6 +38,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.google.common.collect.Maps;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -229,7 +231,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
             throws Exception {
         final InputConfiguration inputConfiguration = InlineConfigParser.parse(filePath);
         final Configuration parsedConfig = inputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedConfig, inputConfiguration);
+        verifyConfig(aConfig, expected, parsedConfig, inputConfiguration);
         verify(parsedConfig, filePath, expected);
     }
 
@@ -349,9 +351,13 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      * Performs verification of the config read from input file.
      *
      * @param testConfig hardcoded test config.
+     * @param expected expected violation messages.
      * @param parsedConfig parsed config from input file.
+     * @param inputConfiguration InputConfiguration object.
      */
-    private static void verifyConfig(Configuration testConfig, Configuration parsedConfig,
+    private static void verifyConfig(Configuration testConfig,
+                                     String[] expected,
+                                     Configuration parsedConfig,
                                      InputConfiguration inputConfiguration)
             throws CheckstyleException {
         assertWithMessage("Check name differs from expected.")
@@ -370,6 +376,19 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                     .that(inputConfiguration.getDefaultPropertyValue(property))
                     .isEqualTo(testConfig.getAttribute(property));
         }
+        final Set<Integer> expectedViolationLines = new TreeSet<>();
+        for (String violationMessage : expected) {
+            expectedViolationLines.add(
+                    Integer.parseInt(
+                            violationMessage
+                                    .substring(0, violationMessage.indexOf(':'))
+                    )
+            );
+        }
+        assertWithMessage("Violation lines differ.")
+                .that(inputConfiguration.getViolations())
+                .containsExactlyElementsIn(expectedViolationLines)
+                .inOrder();
     }
 
     private Map<String, List<String>> getActualViolations(int errorCount) throws IOException {
