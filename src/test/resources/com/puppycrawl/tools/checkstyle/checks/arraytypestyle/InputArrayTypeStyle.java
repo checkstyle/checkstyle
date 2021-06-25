@@ -1,11 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+ArrayTypeStyle
+javaStyle = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.arraytypestyle;
 
-/* Config: default
- */
 public class InputArrayTypeStyle
 {
     private int[] javaStyle = new int[0];
