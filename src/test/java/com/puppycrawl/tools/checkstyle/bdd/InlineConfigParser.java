@@ -76,13 +76,10 @@ public final class InlineConfigParser {
     private static void setCheckName(InputConfiguration.Builder inputConfigBuilder,
                                      String filePath, List<String> lines)
                     throws CheckstyleException {
-        final String checkName;
-        try {
-            checkName = lines.get(1);
+        if (lines.size() < 2) {
+            throw new CheckstyleException("Config not specified in " + filePath);
         }
-        catch (IndexOutOfBoundsException ex) {
-            throw new CheckstyleException("Config not specified in " + filePath, ex);
-        }
+        final String checkName = lines.get(1);
         final String checkPath = getPackageFromFilePath(filePath) + "." + checkName + "Check";
         inputConfigBuilder.setCheckName(checkPath);
     }
@@ -92,7 +89,8 @@ public final class InlineConfigParser {
                     throws Exception {
         final StringBuilder stringBuilder = new StringBuilder(128);
         int lineNo = 2;
-        for (String line = lines.get(lineNo); !line.contains("*/"); line = lines.get(++lineNo)) {
+        for (String line = lines.get(lineNo); !line.contains("*/");
+                ++lineNo, line = lines.get(lineNo)) {
             stringBuilder.append(line).append('\n');
         }
         final Properties properties = new Properties();
