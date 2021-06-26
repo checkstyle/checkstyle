@@ -60,6 +60,10 @@
     <allow class="com.puppycrawl.tools.checkstyle.DetailAstImpl"/>
   </file>
 
+  <file name="DefaultLogger">
+    <allow class="java.text.MessageFormat"/>
+  </file>
+
   <subpackage name="utils">
 
     <allow pkg="java.lang.reflect" local-only="true" />
