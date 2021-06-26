@@ -206,22 +206,15 @@ public final class IllegalCatchCheck extends AbstractCheck {
      * Finds all exception types in current catch.
      * We need it till we can have few different exception types into one catch.
      *
-     * @param parentToken - parent node for types (TYPE or BOR)
+     * @param parentToken - parent node for types
      * @return list, that contains all exception types in current catch
      */
     private static List<DetailAST> getAllExceptionTypes(DetailAST parentToken) {
         DetailAST currentNode = parentToken.getFirstChild();
         final List<DetailAST> exceptionTypes = new LinkedList<>();
-        if (currentNode.getType() == TokenTypes.BOR) {
-            exceptionTypes.addAll(getAllExceptionTypes(currentNode));
-            currentNode = currentNode.getNextSibling();
+        while (currentNode != null) {
             exceptionTypes.add(currentNode);
-        }
-        else {
-            do {
-                exceptionTypes.add(currentNode);
-                currentNode = currentNode.getNextSibling();
-            } while (currentNode != null);
+            currentNode = currentNode.getNextSibling();
         }
         return exceptionTypes;
     }
