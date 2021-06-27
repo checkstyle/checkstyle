@@ -1,9 +1,13 @@
+/*
+EmptyBlock
+option = (default)statement
+tokens = LITERAL_CASE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
-/* Config:
- * option = "statement"
- * tokens = "LITERAL_CASE"
- */
 class InputEmptyBlockCase2
 {
     void method1(int a) {

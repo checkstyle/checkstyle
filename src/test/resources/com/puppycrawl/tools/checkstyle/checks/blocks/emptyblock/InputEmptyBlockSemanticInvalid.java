@@ -1,14 +1,19 @@
+/*
+EmptyBlock
+option = invalid_option
+tokens = (default)LITERAL_WHILE, LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, \
+         LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, INSTANCE_INIT, STATIC_INIT, \
+         LITERAL_SWITCH, LITERAL_SYNCHRONIZED
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.emptyblock;
 
 import java.io.*; // star import for instantiation tests
 import java.awt.Dimension; // explicit import for instantiation tests
 import java.awt.Color;
 
-/* Config:
- * option = "invalid_option"
- * tokens = "LITERAL_TRY, LITERAL_FINALLY, LITERAL_DO, LITERAL_IF, LITERAL_ELSE, INSTANCE_INIT,
- *           STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_CATCH"
- */
 /**
  * Test case for detecting empty block statements.
  **/
