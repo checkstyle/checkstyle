@@ -23,7 +23,7 @@ public class InputMissingJavadocMethodPublicOnly2
         String CONST = "InnerInterface";
         void method(); // ok
 
-        class InnerInnerClass
+        class InnerInnerClass // violation - Nested types within interface are always public static
         {
             private int mData;
 
