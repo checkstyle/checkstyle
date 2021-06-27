@@ -1,9 +1,17 @@
+/*
+SuppressWarnings
+format = ^unchecked$*
+tokens = CLASS_DEF, METHOD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings("unchecked")
-public class InputSuppressWarningsSingle
+@SuppressWarnings("unchecked") // violation
+public class InputSuppressWarningsSingle4
 {
     @SuppressWarnings("   ")
     class Empty {
@@ -23,10 +31,10 @@ public class InputSuppressWarningsSingle
         public static void foo() {
 
             @SuppressWarnings("unused")
-            Object o = new InputSuppressWarningsSingle() {
+            Object o = new InputSuppressWarningsSingle4() {
 
                 @Override
-                @SuppressWarnings("unchecked")
+                @SuppressWarnings("unchecked") // violation
                 public String toString() {
                     return "";
                 }
@@ -61,7 +69,7 @@ public class InputSuppressWarningsSingle
         }
     }
 
-    @SuppressWarnings((false) ? "unchecked" : "")
+    @SuppressWarnings((false) ? "unchecked" : "") // violation
     class Cond {
 
         @SuppressWarnings((false) ? "" : "unchecked")
@@ -69,17 +77,17 @@ public class InputSuppressWarningsSingle
 
         }
 
-        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked")
+        @SuppressWarnings((false) ? (true) ? "   " : "unused" : "unchecked") // violation
         public void aCond1() {
 
         }
 
-        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused")
+        @SuppressWarnings((false) ? "unchecked" : (true) ? "   " : "unused") // violation
         public void aCond2() {
 
         }
 
-        @java.lang.SuppressWarnings((false) ? "unchecked" :
+        @java.lang.SuppressWarnings((false) ? "unchecked" : // violation
                 ("" == "") ? (false) ? (true) ? "" : "foo" : "    " : "unused")
         public void seriously() {
 

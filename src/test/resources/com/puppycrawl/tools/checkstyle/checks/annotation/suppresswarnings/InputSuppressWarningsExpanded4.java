@@ -1,9 +1,17 @@
+/*
+SuppressWarnings
+format = ^unchecked$*
+tokens = CLASS_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 
 import java.lang.annotation.Documented;
 
-@SuppressWarnings(value={"unchecked", "unused"})
-public class InputSuppressWarningsExpanded
+@SuppressWarnings(value={"unchecked", "unused"}) // violation
+public class InputSuppressWarningsExpanded4
 {
     @SuppressWarnings(value={"   "})
     class Empty {
@@ -23,7 +31,7 @@ public class InputSuppressWarningsExpanded
         public static void foo() {
 
             @SuppressWarnings(value={"unused"})
-            Object o = new InputSuppressWarningsExpanded() {
+            Object o = new InputSuppressWarningsExpanded4() {
 
                 @Override
                 @SuppressWarnings(value={"unchecked"})
