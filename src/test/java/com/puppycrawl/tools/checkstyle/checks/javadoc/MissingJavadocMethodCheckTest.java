@@ -456,6 +456,18 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testMissingJavadocMethodWithInterface() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
+        config.addAttribute("scope", Scope.PUBLIC.getName());
+        final String[] expected = {
+            "9:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "15:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "16:5: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(config, getPath("InputMissingJavadocMethodInterfaceFields.java"), expected);
+    }
+
+    @Test
     public void testMissingJavadocMethodRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(
             MissingJavadocMethodCheck.class);
@@ -483,4 +495,20 @@ public class MissingJavadocMethodCheckTest extends AbstractModuleTestSupport {
             getNonCompilablePath("InputMissingJavadocMethodRecordsAndCtorsMinLineCount.java"),
             expected);
     }
+
+    @Test
+    public void testInputMissingJavadocMethodNestedScopes() throws Exception {
+        final DefaultConfiguration config = createModuleConfig(MissingJavadocMethodCheck.class);
+        config.addAttribute("scope", Scope.PUBLIC.getName());
+        final String[] expected = {
+            "15:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "30:9: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "33:13: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "35:17: " + getCheckMessage(MSG_JAVADOC_MISSING),
+            "37:21: " + getCheckMessage(MSG_JAVADOC_MISSING),
+        };
+        verify(config, getNonCompilablePath("InputMissingJavadocMethodNestedScopes.java"),
+                expected);
+    }
+
 }
