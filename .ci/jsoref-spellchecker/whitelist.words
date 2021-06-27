@@ -378,6 +378,7 @@ equalsavoidnull
 equalshashcode
 equalsverifier
 erial
+erreur
 ERRORLEVEL
 errorprone
 esac
@@ -1216,6 +1217,7 @@ suppresswarningsfilter
 suppresswarningsholder
 suppresswithnearbycommentfilter
 suppresswithplaintextcommentfilter
+survenue
 svg
 svn
 sxpath
