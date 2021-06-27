@@ -1,12 +1,14 @@
+/*
+RightCurly
+option = alone_or_singleline
+tokens = CLASS_DEF, METHOD_DEF, LITERAL_IF, LITERAL_ELSE, LITERAL_DO, LITERAL_WHILE, \
+         LITERAL_FOR, STATIC_INIT, INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone_or_singleline
- * tokens = { CLASS_DEF, METHOD_DEF, LITERAL_IF, LITERAL_ELSE,
- *            LITERAL_DO, LITERAL_WHILE, LITERAL_FOR, STATIC_INIT,
- *            INSTANCE_INIT, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF }
- */
 public class InputRightCurlyTestOptionAloneOrSingleLine {
 
     private int a;

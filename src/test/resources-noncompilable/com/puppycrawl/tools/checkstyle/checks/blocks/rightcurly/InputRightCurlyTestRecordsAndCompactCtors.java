@@ -1,13 +1,16 @@
+/*
+RightCurly
+option = (default)same
+tokens = RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import org.w3c.dom.Node;
 
-/*
- * Config:
- * option = same
- * tokens = { RECORD_DEF, COMPACT_CTOR_DEF, CTOR_DEF, METHOD_DEF }
- */
 public class InputRightCurlyTestRecordsAndCompactCtors {
 
     record MyTestRecord(String string, Record rec) {
