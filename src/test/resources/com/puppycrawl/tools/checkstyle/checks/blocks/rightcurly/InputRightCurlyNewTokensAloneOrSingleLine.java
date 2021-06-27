@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = alone_or_singleline
+tokens = ENUM_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone_or_singleline
- * tokens = { ENUM_DEF }
- */
 public class InputRightCurlyNewTokensAloneOrSingleLine {
 
     enum TestEnum{} // ok

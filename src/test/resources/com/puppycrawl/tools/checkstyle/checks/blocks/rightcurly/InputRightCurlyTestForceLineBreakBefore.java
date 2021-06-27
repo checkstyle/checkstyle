@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = alone
+tokens = LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone
- * tokens = { LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT }
- */
 class InputRightCurlyTestForceLineBreakBefore
 {
     /** @see test method **/
