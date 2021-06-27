@@ -1,11 +1,15 @@
+/*
+MethodLength
+max = 2
+countEmpty = default(true)
+tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-/* Config:
- * max = 2
- * tokens = {CTOR_DEF , METHOD_DEF , COMPACT_CTOR_DEF}
- *
- */
 public class InputMethodLengthRecordsAndCompactCtors {
 
     record MyTestRecord() {
