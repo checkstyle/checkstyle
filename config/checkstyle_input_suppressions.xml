@@ -833,10 +833,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="internal[\\/]allchecks[\\/]InputAllChecksDefaultConfig.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderCorrect.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]atclauseorder[\\/]InputAtclauseOrderIncorrect.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition.java"/>
