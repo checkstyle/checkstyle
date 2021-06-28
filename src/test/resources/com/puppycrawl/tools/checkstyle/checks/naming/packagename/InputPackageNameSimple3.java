@@ -1,6 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // violation
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename;
 
-final class InputPackageNameSimple
+/**
+  * Config: format = "[A-Z]+"
+ **/
+
+final class InputPackageNameSimple3
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -27,7 +31,7 @@ final class InputPackageNameSimple
 
     /** commas are wrong **/
     private int[] mInts = new int[] {1,2, 3,
-                                     4};
+            4};
 
     //
     // Accessor tests
@@ -57,7 +61,7 @@ final class InputPackageNameSimple
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+            throws java.lang.Exception
     {
         return 0;
     }
@@ -86,7 +90,7 @@ final class InputPackageNameSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputPackageNameSimple()
+    private InputPackageNameSimple3()
     {
         // a line
         // a line
@@ -137,12 +141,12 @@ final class InputPackageNameSimple
     {
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
-                int tab0 =1;
-                int tab1 =1;
-                 int tab2 =1;
-                int tab3 =1;
-                    int tab4 =1;
-                  int tab5 =1;
+        int tab0 =1;
+        int tab1 =1;
+        int tab2 =1;
+        int tab3 =1;
+        int tab4 =1;
+        int tab5 =1;
     }
 
     // MEMME:
@@ -178,14 +182,14 @@ final class InputPackageNameSimple
     /**
      * @see to lazy to document all args. Testing excessive # args
      **/
-     void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
+    void toManyArgs(int aArg1, int aArg2, int aArg3, int aArg4, int aArg5,
                     int aArg6, int aArg7, int aArg8, int aArg9)
     {
     }
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputPackageNameSimple2
+class InputPackageNameSimple6
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -199,7 +203,7 @@ class InputPackageNameSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,
