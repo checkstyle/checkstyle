@@ -41,10 +41,10 @@ public class ArrayTrailingCommaCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ArrayTrailingCommaCheck.class);
         final String[] expected = {
-            "16:9: " + getCheckMessage(MSG_KEY),
-            "36:9: " + getCheckMessage(MSG_KEY),
-            "75:12: " + getCheckMessage(MSG_KEY),
-            "73:9: " + getCheckMessage(MSG_KEY),
+            "23:9: " + getCheckMessage(MSG_KEY),
+            "43:9: " + getCheckMessage(MSG_KEY),
+            "80:9: " + getCheckMessage(MSG_KEY),
+            "82:12: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputArrayTrailingComma.java"), expected);
     }
@@ -63,16 +63,16 @@ public class ArrayTrailingCommaCheckTest
                 createModuleConfig(ArrayTrailingCommaCheck.class);
         checkConfig.addAttribute("alwaysDemandTrailingComma", "true");
         final String[] expected = {
-            "12:26: " + getCheckMessage(MSG_KEY),
-            "19:29: " + getCheckMessage(MSG_KEY),
-            "24:14: " + getCheckMessage(MSG_KEY),
-            "26:17: " + getCheckMessage(MSG_KEY),
-            "29:20: " + getCheckMessage(MSG_KEY),
-            "35:17: " + getCheckMessage(MSG_KEY),
-            "44:13: " + getCheckMessage(MSG_KEY),
-            "49:28: " + getCheckMessage(MSG_KEY),
-            "51:17: " + getCheckMessage(MSG_KEY),
-            "53:13: " + getCheckMessage(MSG_KEY),
+            "15:26: " + getCheckMessage(MSG_KEY),
+            "22:29: " + getCheckMessage(MSG_KEY),
+            "27:14: " + getCheckMessage(MSG_KEY),
+            "29:17: " + getCheckMessage(MSG_KEY),
+            "32:20: " + getCheckMessage(MSG_KEY),
+            "38:17: " + getCheckMessage(MSG_KEY),
+            "47:13: " + getCheckMessage(MSG_KEY),
+            "52:28: " + getCheckMessage(MSG_KEY),
+            "54:17: " + getCheckMessage(MSG_KEY),
+            "56:13: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
             getPath("InputArrayTrailingCommaAlwaysDemandTrailingComma.java"), expected);

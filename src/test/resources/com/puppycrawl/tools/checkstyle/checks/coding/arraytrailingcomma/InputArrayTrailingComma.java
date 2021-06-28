@@ -1,3 +1,10 @@
+/*
+ArrayTrailingComma
+alwaysDemandTrailingComma = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.arraytrailingcomma;
 
 public class InputArrayTrailingComma
