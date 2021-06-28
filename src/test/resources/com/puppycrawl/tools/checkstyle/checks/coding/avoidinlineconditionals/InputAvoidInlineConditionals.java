@@ -1,7 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+AvoidInlineConditionals
+
+
+*/
+
 package com . puppycrawl
     .tools.
     checkstyle.checks.coding.avoidinlineconditionals;
@@ -29,8 +31,8 @@ class InputAvoidInlineConditionals
     /** test questions **/
     private void testQuestions()
     {
-        boolean b = (1 == 2)?true:false;
-        b = (1==2) ? false : true;
+        boolean b = (1 == 2)?true:false; // violation
+        b = (1==2) ? false : true; // violation
     }
 
     /** assert statement test */
@@ -43,7 +45,7 @@ class InputAvoidInlineConditionals
         assert true : "Whups";
 
         // evil colons, should be OK
-        assert "OK".equals(null) ? false : true : "Whups";
+        assert "OK".equals(null) ? false : true : "Whups"; // violation
 
         // missing WS around assert
         assert(true);
