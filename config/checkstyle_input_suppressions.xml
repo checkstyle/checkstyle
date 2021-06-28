@@ -95,8 +95,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingComma.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]avoidinlineconditionals[\\/]InputAvoidInlineConditionals.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]avoidnoargumentsuperconstructorcall[\\/]InputAvoidNoArgumentSuperConstructorCall.java"/>
@@ -1566,8 +1564,6 @@
             files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingCommaAlwaysDemandTrailingComma.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingComma.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]avoidinlineconditionals[\\/]InputAvoidInlineConditionals.java"/>
   <suppress id="StyleValidationCommentInInputs"

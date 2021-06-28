@@ -40,19 +40,19 @@ public class AvoidDoubleBraceInitializationCheckTest extends AbstractModuleTestS
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidDoubleBraceInitializationCheck.class);
         final String[] expected = {
-            "11:53: " + getCheckMessage(MSG_KEY),
-            "16:40: " + getCheckMessage(MSG_KEY),
-            "25:40: " + getCheckMessage(MSG_KEY),
-            "31:40: " + getCheckMessage(MSG_KEY),
-            "36:40: " + getCheckMessage(MSG_KEY),
-            "42:40: " + getCheckMessage(MSG_KEY),
-            "47:40: " + getCheckMessage(MSG_KEY),
-            "53:40: " + getCheckMessage(MSG_KEY),
-            "58:40: " + getCheckMessage(MSG_KEY),
-            "66:41: " + getCheckMessage(MSG_KEY),
-            "69:33: " + getCheckMessage(MSG_KEY),
-            "73:33: " + getCheckMessage(MSG_KEY),
-            "74:33: " + getCheckMessage(MSG_KEY),
+            "14:53: " + getCheckMessage(MSG_KEY),
+            "19:40: " + getCheckMessage(MSG_KEY),
+            "28:40: " + getCheckMessage(MSG_KEY),
+            "34:40: " + getCheckMessage(MSG_KEY),
+            "39:40: " + getCheckMessage(MSG_KEY),
+            "45:40: " + getCheckMessage(MSG_KEY),
+            "50:40: " + getCheckMessage(MSG_KEY),
+            "56:40: " + getCheckMessage(MSG_KEY),
+            "61:40: " + getCheckMessage(MSG_KEY),
+            "69:41: " + getCheckMessage(MSG_KEY),
+            "72:33: " + getCheckMessage(MSG_KEY),
+            "76:33: " + getCheckMessage(MSG_KEY),
+            "77:33: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidDoubleBraceInitialization.java"),
             expected);
