@@ -146,7 +146,9 @@ public class ArrayTypeStyleCheck extends AbstractCheck {
 
             // force all methods to be Java style (see note in top Javadoc)
             final boolean isMethodViolation = isMethod && !isJavaStyle;
-            final boolean isVariableViolation = !isMethod && isJavaStyle != javaStyle;
+            final boolean isVariableViolation = !isMethod
+                    && isJavaStyle != javaStyle
+                    && typeAST.getType() != TokenTypes.TYPE_ARGUMENT;
 
             if (isMethodViolation || isVariableViolation) {
                 log(ast, MSG_KEY);
