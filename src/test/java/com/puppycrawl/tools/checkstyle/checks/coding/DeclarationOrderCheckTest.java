@@ -206,6 +206,17 @@ public class DeclarationOrderCheckTest
     }
 
     @Test
+    public void testDeclarationOrderInterfaceMemberScopeIsPublic() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
+        final String[] expected = {
+            "21:5: " + getCheckMessage(MSG_STATIC),
+        };
+        verify(checkConfig,
+            getPath("InputDeclarationOrderInterfaceMemberScopeIsPublic.java"),
+            expected);
+    }
+
+    @Test
     public void testVariableAccess() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DeclarationOrderCheck.class);
         final String[] expected = {
