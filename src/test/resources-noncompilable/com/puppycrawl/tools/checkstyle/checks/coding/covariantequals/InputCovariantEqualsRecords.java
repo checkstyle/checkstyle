@@ -1,8 +1,12 @@
+/*
+CovariantEquals
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
-/* Config:
- * default
- */
+
 public class InputCovariantEqualsRecords {
 
     public record MyRecord1() {
