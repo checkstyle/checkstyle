@@ -84,6 +84,20 @@ public class ArrayTypeStyleCheckTest
     }
 
     @Test
+    public void testNestedGenerics()
+            throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(ArrayTypeStyleCheck.class);
+        final String[] expected = {
+            "18:45: " + getCheckMessage(MSG_KEY),
+            "19:61: " + getCheckMessage(MSG_KEY),
+            "20:76: " + getCheckMessage(MSG_KEY),
+            "27:16: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputArrayTypeStyleNestedGenerics.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final int[] expected = {TokenTypes.ARRAY_DECLARATOR };
         final ArrayTypeStyleCheck check = new ArrayTypeStyleCheck();
