@@ -3703,11 +3703,19 @@
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.AbstractJavadocCheckTest
                 </param>
+                <!-- 2% mutation in ScopeUtil -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocStyleCheckTest
+                </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.SingleLineJavadocCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocVariableCheckTest
+                </param>
+                <!-- 1% mutation in ScopeUtil -->
+                <param>
+                  com.puppycrawl.tools.checkstyle.checks.coding.DeclarationOrderCheckTest
                 </param>
                 <param>
                   com.puppycrawl.tools.checkstyle.checks.coding.MultipleStringLiteralsCheckTest
