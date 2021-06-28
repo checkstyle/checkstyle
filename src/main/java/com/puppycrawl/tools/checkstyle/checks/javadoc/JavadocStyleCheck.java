@@ -426,15 +426,7 @@ public class JavadocStyleCheck
             check = getFileContents().inPackageInfo();
         }
         else if (!ScopeUtil.isInCodeBlock(ast)) {
-            final Scope customScope;
-
-            if (ScopeUtil.isInInterfaceOrAnnotationBlock(ast)
-                    || ast.getType() == TokenTypes.ENUM_CONSTANT_DEF) {
-                customScope = Scope.PUBLIC;
-            }
-            else {
-                customScope = ScopeUtil.getScopeFromMods(ast.findFirstToken(TokenTypes.MODIFIERS));
-            }
+            final Scope customScope = ScopeUtil.getScope(ast);
             final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
 
             check = customScope.isIn(scope)

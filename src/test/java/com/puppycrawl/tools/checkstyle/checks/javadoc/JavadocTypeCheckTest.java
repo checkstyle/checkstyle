@@ -453,4 +453,19 @@ public class JavadocTypeCheckTest extends AbstractModuleTestSupport {
         verify(checkConfig,
             getNonCompilablePath("InputJavadocTypeRecordComponents2.java"), expected);
     }
+
+    @Test
+    public void testJavadocTypeInterfaceMemberScopeIsPublic() throws Exception {
+        final DefaultConfiguration checkConfig =
+            createModuleConfig(JavadocTypeCheck.class);
+        checkConfig.addProperty("scope", "public");
+
+        final String[] expected = {
+            "19:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+            "24:5: " + getCheckMessage(MSG_UNUSED_TAG, "@param", "<T>"),
+        };
+        verify(checkConfig,
+            getPath("InputJavadocTypeInterfaceMemberScopeIsPublic.java"), expected);
+    }
+
 }
