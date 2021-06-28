@@ -277,13 +277,7 @@ public class JavadocVariableCheck
     private boolean shouldCheck(final DetailAST ast) {
         boolean result = false;
         if (!ScopeUtil.isInCodeBlock(ast) && !isIgnored(ast)) {
-            Scope customScope = Scope.PUBLIC;
-            if (ast.getType() != TokenTypes.ENUM_CONSTANT_DEF
-                    && !ScopeUtil.isInInterfaceOrAnnotationBlock(ast)) {
-                final DetailAST mods = ast.findFirstToken(TokenTypes.MODIFIERS);
-                customScope = ScopeUtil.getScopeFromMods(mods);
-            }
-
+            final Scope customScope = ScopeUtil.getScope(ast);
             final Scope surroundingScope = ScopeUtil.getSurroundingScope(ast);
             result = customScope.isIn(scope) && surroundingScope.isIn(scope)
                 && (excludeScope == null
