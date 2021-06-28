@@ -1,20 +1,20 @@
 /*
 ExplicitInitialization
-onlyObjectReferences = (default)false
+onlyObjectReferences = true
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.explicitinitialization;
 
-public class InputExplicitInitialization {
-    private int x = 0; // violation
+public class InputExplicitInitializationOnlyObjectReference {
+    private int x = 0;
     private Object bar = /* comment test */null; // violation
     private int y = 1;
     private long y1 = 1 - 1;
     private long y3;
-    private long y4 = 0L; // violation
-    private boolean b1 = false; // violation
+    private long y4 = 0L;
+    private boolean b1 = false;
     private boolean b2 = true;
     private boolean b3;
     private String str = "";
@@ -22,12 +22,12 @@ public class InputExplicitInitialization {
     int ar1[] = null; // violation
     int ar2[] = new int[1];
     int ar3[];
-    float f1 = 0f; // violation
-    double d1 = 0.0; // violation
+    float f1 = 0f;
+    double d1 = 0.0;
 
     static char ch;
-    static char ch1 = 0; // violation
-    static char ch2 = '\0'; // violation
+    static char ch1 = 0;
+    static char ch2 = '\0';
     static char ch3 = '\1';
 
     void method() {
@@ -36,41 +36,41 @@ public class InputExplicitInitialization {
     }
 }
 
-interface interface1{
+interface interface2 {
     int TOKEN_first = 0x00;
     int TOKEN_second = 0x01;
     int TOKEN_third = 0x02;
 }
 
-class InputExplicitInit2 {
+class InputExplicitInit4 {
     private Bar<String> bar = null; // violation
     private Bar<String>[] barArray = null; // violation
 }
 
-enum InputExplicitInit3 {
+enum InputExplicitInit5 {
     A,
     B
     {
-        private int x = 0; // violation
+        private int x = 0;
         private Bar<String> bar = null; // violation
         private Bar<String>[] barArray = null; // violation
         private int y = 1;
     };
-    private int x = 0; // violation
+    private int x = 0;
     private Bar<String> bar = null; // violation
     private Bar<String>[] barArray = null; // violation
     private int y = 1;
     private Boolean booleanAtt = false;
 }
 
-@interface annotation1{
+@interface annotation2{
     int TOKEN_first = 0x00;
     int TOKEN_second = 0x01;
     int TOKEN_third = 0x02;
 }
 
-class ForEach {
-    public ForEach(java.util.Collection<String> strings)
+class ForEach1 {
+    public ForEach1(java.util.Collection<String> strings)
     {
         for(String s : strings) //this should not even be checked
         {
@@ -79,10 +79,10 @@ class ForEach {
     }
 }
 
-class Bar<T> {
+class Bar1<T> {
 }
 
-class Chars {
+class Chars1 {
     char a;
     char b = a;
     byte c = 1;
@@ -90,9 +90,9 @@ class Chars {
     final long e = 0;
 }
 
-class Doubles {
+class Doubles1 {
     final double subZero = -0.0;
     final double nan = Double.NaN;
-    private short shortVariable = 0; // violation
-    private byte bite = 0; // violation
+    private short shortVariable = 0;
+    private byte bite = 0;
 }
