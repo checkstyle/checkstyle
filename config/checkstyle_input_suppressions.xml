@@ -99,8 +99,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]avoidinlineconditionals[\\/]InputAvoidInlineConditionals.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]avoidnoargumentsuperconstructorcall[\\/]InputAvoidNoArgumentSuperConstructorCall.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]covariantequals[\\/]InputCovariantEquals.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
@@ -1566,8 +1564,6 @@
             files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]avoidinlineconditionals[\\/]InputAvoidInlineConditionals.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]avoidnoargumentsuperconstructorcall[\\/]InputAvoidNoArgumentSuperConstructorCall.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]covariantequals[\\/]InputCovariantEquals.java"/>
   <suppress id="StyleValidationCommentInInputs"
