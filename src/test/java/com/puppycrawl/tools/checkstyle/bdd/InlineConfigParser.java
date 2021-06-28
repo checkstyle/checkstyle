@@ -37,6 +37,10 @@ public final class InlineConfigParser {
     /** A pattern matching the symbol: "/". */
     private static final Pattern SLASH_PATTERN = Pattern.compile("[\\\\/]");
 
+    /** A pattern to find the string: "// violation". */
+    private static final Pattern VIOLATION_PATTERN = Pattern
+            .compile(".*//\\s*violation[$|\\W+.*$]");
+
     /** Stop instances being created. **/
     private InlineConfigParser() {
     }
@@ -53,6 +57,7 @@ public final class InlineConfigParser {
         final InputConfiguration.Builder inputConfigBuilder = new InputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
         setCheckProperties(inputConfigBuilder, lines);
+        setViolationLineNumbers(inputConfigBuilder, lines);
         return inputConfigBuilder.build();
     }
 
@@ -106,6 +111,15 @@ public final class InlineConfigParser {
             }
             else {
                 inputConfigBuilder.addNonDefaultProperty(key, value);
+            }
+        }
+    }
+
+    private static void setViolationLineNumbers(InputConfiguration.Builder inputConfigBuilder,
+                                    List<String> lines) {
+        for (int lineNo = 2; lineNo < lines.size(); lineNo++) {
+            if (VIOLATION_PATTERN.matcher(lines.get(lineNo)).find()) {
+                inputConfigBuilder.addViolation(lineNo + 1);
             }
         }
     }
