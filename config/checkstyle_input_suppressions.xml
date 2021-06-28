@@ -73,10 +73,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="checks[\\/]nocodeinfile[\\/]InputNoCodeInFile6.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingCommaAlwaysDemandTrailingComma.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingComma.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
@@ -1414,10 +1410,6 @@
             files="checker[\\/]InputChecker.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="checks[\\/]nocodeinfile[\\/]InputNoCodeInFile6.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingCommaAlwaysDemandTrailingComma.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingComma.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
   <suppress id="StyleValidationCommentInInputs"
