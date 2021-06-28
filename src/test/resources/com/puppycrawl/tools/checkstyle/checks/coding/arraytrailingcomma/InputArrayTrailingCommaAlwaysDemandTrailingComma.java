@@ -1,9 +1,12 @@
+/*
+ArrayTrailingComma
+alwaysDemandTrailingComma = true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.arraytrailingcomma;
 
-/**
- * Config:
- * alwaysDemandTrailingComma = true
- */
 public class InputArrayTrailingCommaAlwaysDemandTrailingComma {
     public int[] test() {
         if (true) {
