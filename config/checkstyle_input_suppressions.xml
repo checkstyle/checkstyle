@@ -73,8 +73,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="checks[\\/]nocodeinfile[\\/]InputNoCodeInFile6.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCode.java"/>
@@ -1408,8 +1406,6 @@
             files="checker[\\/]InputChecker.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="checks[\\/]nocodeinfile[\\/]InputNoCodeInFile6.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
   <suppress id="StyleValidationCommentInInputs"
