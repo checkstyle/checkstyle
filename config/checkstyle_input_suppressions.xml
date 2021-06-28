@@ -109,8 +109,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]emptystatement[\\/]InputEmptyStatement.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNullMisc.java"/>
@@ -1576,8 +1574,6 @@
             files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLast.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]emptystatement[\\/]InputEmptyStatement.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalsavoidnull[\\/]InputEqualsAvoidNull.java"/>
   <suppress id="StyleValidationCommentInInputs"
