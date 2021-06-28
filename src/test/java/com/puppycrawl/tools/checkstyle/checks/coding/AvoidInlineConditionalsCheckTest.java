@@ -41,9 +41,9 @@ public class AvoidInlineConditionalsCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidInlineConditionalsCheck.class);
         final String[] expected = {
-            "32:29: " + getCheckMessage(MSG_KEY),
-            "33:20: " + getCheckMessage(MSG_KEY),
-            "46:34: " + getCheckMessage(MSG_KEY),
+            "34:29: " + getCheckMessage(MSG_KEY),
+            "35:20: " + getCheckMessage(MSG_KEY),
+            "48:34: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputAvoidInlineConditionals.java"), expected);
     }
