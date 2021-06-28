@@ -66,13 +66,20 @@ public final class ScopeUtil {
      */
     public static Scope getSurroundingScope(DetailAST node) {
         Scope returnValue = null;
+        Scope lastScope = null;
+        final DetailAST nodeModifier = node.findFirstToken(TokenTypes.MODIFIERS);
+        // Inside interface scope can be either public or private
+        // all non-private methods are treated as public
+        final boolean isScopePubic = nodeModifier != null
+                && getScopeFromMods(nodeModifier) == Scope.PUBLIC;
+        boolean flag = true;
         for (DetailAST token = node.getParent();
-             token != null;
+             token != null && flag;
              token = token.getParent()) {
             final int type = token.getType();
             if (TokenUtil.isTypeDeclaration(type)) {
                 final DetailAST mods =
-                    token.findFirstToken(TokenTypes.MODIFIERS);
+                        token.findFirstToken(TokenTypes.MODIFIERS);
                 final Scope modScope = getScopeFromMods(mods);
                 if (returnValue == null || returnValue.isIn(modScope)) {
                     returnValue = modScope;
@@ -81,11 +88,73 @@ public final class ScopeUtil {
             else if (type == TokenTypes.LITERAL_NEW) {
                 returnValue = Scope.ANONINNER;
                 // because Scope.ANONINNER is not in any other Scope
-                break;
+                flag = false;
             }
+            if (flag && isPublicForInterfaceBlock(node, token, isScopePubic, lastScope)) {
+                returnValue = getSurroundingScopeForInterface(token);
+                flag = false;
+            }
+            lastScope = returnValue;
+
         }
 
         return returnValue;
+    }
+
+    /**
+     * Returns the scope of the surrounding "block" for an interface type.
+     *
+     * @param token The Interface DetailAST.
+     * @return The surrounding scope of
+     */
+    private static Scope getSurroundingScopeForInterface(DetailAST token) {
+        final Scope returnValue;
+        final DetailAST interfaceNode = getInterfaceNode(token);
+        // InterfaceNode is never null because we have checked a parent interface if present
+        final Scope interfaceScope = getScopeFromMods(interfaceNode
+                .findFirstToken(TokenTypes.MODIFIERS));
+        final Scope interfaceSurroundingScope = getSurroundingScope(interfaceNode);
+        if (interfaceSurroundingScope == null
+                || interfaceSurroundingScope.isIn(interfaceScope)) {
+            returnValue = interfaceScope;
+        }
+        else {
+            returnValue = interfaceSurroundingScope;
+        }
+        return returnValue;
+    }
+
+    /**
+     * Returns parent interface node of interface block.
+     *
+     * @param node The node located inside interface block.
+     * @return The parent interface node of interface block.
+     */
+    private static DetailAST getInterfaceNode(DetailAST node) {
+        DetailAST interfaceNode;
+        for (DetailAST token = node.getParent(); true ; token = token.getParent()) {
+            if (token.getType() == TokenTypes.INTERFACE_DEF) {
+                interfaceNode = token;
+                break;
+            }
+        }
+        return interfaceNode;
+    }
+
+    /**
+     * Checks if the field is inside a interface block and does not have private modifier.
+     *
+     * @param node the node to return the scope for.
+     * @param ast the ast to check if directly contained within an interface block.
+     * @param scope the boolean specifying field is public for interface.
+     * @param previousScope the scope of node before interface block.
+     * @return true, if field is non-private and is within interface block.
+     */
+    private static boolean isPublicForInterfaceBlock(DetailAST node, DetailAST ast, boolean scope,
+                                                          Scope previousScope) {
+        final boolean shouldCheck = scope || isInInterfaceBlock(node);
+        return shouldCheck && (previousScope == Scope.PUBLIC || previousScope == null)
+                && isInInterfaceBlock(ast);
     }
 
     /**
