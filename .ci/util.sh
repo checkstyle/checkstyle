@@ -3,7 +3,7 @@
 set -e
 
 removeFolderWithProtectedFiles() {
-  find $1 -delete
+  find $1 #-delete
 }
 
 function getCheckstylePomVersion {
