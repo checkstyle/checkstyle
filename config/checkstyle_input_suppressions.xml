@@ -125,8 +125,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeSemantic.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]explicitinitialization[\\/]InputExplicitInitialization.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]fallthrough[\\/]InputFallThrough.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]fallthrough[\\/]InputFallThrough2.java"/>
@@ -1590,8 +1588,6 @@
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeNoEquals.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeSemantic.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]explicitinitialization[\\/]InputExplicitInitialization.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]fallthrough[\\/]InputFallThrough.java"/>
   <suppress id="StyleValidationCommentInInputs"
