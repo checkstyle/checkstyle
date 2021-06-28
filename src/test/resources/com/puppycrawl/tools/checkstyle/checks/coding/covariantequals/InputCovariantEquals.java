@@ -1,3 +1,9 @@
+/*
+CovariantEquals
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.covariantequals;
 
 /**
@@ -8,7 +14,7 @@ public class InputCovariantEquals
 {
     private class Inner
     {
-        public boolean equals(Inner aInner)
+        public boolean equals(Inner aInner) // violation
         {
             return false;
         }
@@ -27,7 +33,7 @@ public class InputCovariantEquals
         }
     }
 
-    public boolean equals(InputCovariantEquals aInputCovariantEquals)
+    public boolean equals(InputCovariantEquals aInputCovariantEquals) // violation
     {
         return false;
     }
@@ -61,7 +67,7 @@ class InputCovariant3
 
 class InputCovariant4
 {
-    public boolean equals(int i)
+    public boolean equals(int i) // violation
     {
         return false;
     }
@@ -75,7 +81,7 @@ class InputAnonymousIC
             {
                 return 0;
             }
-            public boolean equals(String aString)
+            public boolean equals(String aString) // violation
             {
                 return false;
             }
@@ -131,11 +137,11 @@ class InputGenericCovariant8
 enum InputEnumCovariant {
     EQUALS;
 
-    public boolean equals(InputEnumCovariant inputEnumCovariant) {
+    public boolean equals(InputEnumCovariant inputEnumCovariant) { // violation
         return false;
     }
 
-    int equals(Integer integer) {
+    int equals(Integer integer) { // violation
         return 0;
     }
 }
