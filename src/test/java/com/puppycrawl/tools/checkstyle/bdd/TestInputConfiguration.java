@@ -38,13 +38,13 @@ public final class TestInputConfiguration {
     /** Map of non default properties. */
     private final Map<String, String> nonDefaultProperties;
 
-    /** List of violations. */
-    private final List<Integer> violations;
+    /** List of parsed violations. */
+    private final List<TestInputViolation> violations;
 
     private TestInputConfiguration(String checkName,
-                                   Map<String, String> defaultProperties,
-                                   Map<String, String> nonDefaultProperties,
-                                   List<Integer> violations) {
+                               Map<String, String> defaultProperties,
+                               Map<String, String> nonDefaultProperties,
+                               List<TestInputViolation> violations) {
         this.checkName = checkName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
@@ -70,7 +70,7 @@ public final class TestInputConfiguration {
         return Collections.unmodifiableMap(nonDefaultProperties);
     }
 
-    public List<Integer> getViolations() {
+    public List<TestInputViolation> getViolations() {
         return Collections.unmodifiableList(violations);
     }
 
@@ -90,7 +90,7 @@ public final class TestInputConfiguration {
 
         private final Map<String, String> nonDefaultProperties = new HashMap<>();
 
-        private final List<Integer> violations = new ArrayList<>();
+        private final List<TestInputViolation> violations = new ArrayList<>();
 
         private String checkName;
 
@@ -106,13 +106,17 @@ public final class TestInputConfiguration {
             nonDefaultProperties.put(key, value);
         }
 
-        public void addViolation(int violationLine) {
-            violations.add(violationLine);
+        public void addViolation(int violationLine, String violationMessage) {
+            violations.add(new TestInputViolation(violationLine, violationMessage));
         }
 
         public TestInputConfiguration build() {
-            return new TestInputConfiguration(checkName,
-                    defaultProperties, nonDefaultProperties, violations);
+            return new TestInputConfiguration(
+                    checkName,
+                    defaultProperties,
+                    nonDefaultProperties,
+                    violations
+            );
         }
     }
 }
