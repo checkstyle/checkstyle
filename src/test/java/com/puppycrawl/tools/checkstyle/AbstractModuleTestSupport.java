@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.InputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
@@ -388,16 +389,16 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private void verifyViolations(Configuration config,
                                   String file,
                                   InputConfiguration inputConfiguration) throws Exception {
-        final List<Integer> expectedViolationLines =
-                getActualViolationsForFile(config, file)
-                        .stream()
-                        .map(message -> message.substring(0, message.indexOf(':')))
-                        .map(Integer::parseInt)
-                        .distinct()
-                        .collect(Collectors.toList());
-        assertWithMessage("Violation lines differ.")
-                .that(inputConfiguration.getViolations())
-                .isEqualTo(expectedViolationLines);
+        final List<String> actualViolations = getActualViolationsForFile(config, file);
+        final List<TestInputViolation> testInputViolations = inputConfiguration.getViolations();
+        assertWithMessage("Number of actual and expected violations differ.")
+                .that(actualViolations)
+                .hasSize(testInputViolations.size());
+        for (int index = 0; index < actualViolations.size(); index++) {
+            assertWithMessage("Actual and expected violations differ.")
+                    .that(actualViolations.get(index))
+                    .matches(testInputViolations.get(index).toRegex());
+        }
     }
 
     /**
