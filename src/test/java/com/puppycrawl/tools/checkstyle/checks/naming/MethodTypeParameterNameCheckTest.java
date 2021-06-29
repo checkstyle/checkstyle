@@ -78,7 +78,7 @@ public class MethodTypeParameterNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodTypeParameterNameCheck.class);
-        checkConfig.addAttribute("format", "^foo$");
+        checkConfig.addProperty("format", "^foo$");
 
         final String pattern = "^foo$";
 

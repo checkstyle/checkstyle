@@ -57,7 +57,7 @@ public class NoLineWrapCheckTest
     public void testCustomTokensLineWrapping()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
-        checkConfig.addAttribute(
+        checkConfig.addProperty(
                 "tokens", "IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF");
         final String[] expected = {
             "13:1: " + getCheckMessage(MSG_KEY, "import"),
@@ -73,7 +73,7 @@ public class NoLineWrapCheckTest
     public void testNoLineWrapRecordsAndCompactCtors()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoLineWrapCheck.class);
-        checkConfig.addAttribute(
+        checkConfig.addProperty(
                 "tokens", "RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF");
 
         final String[] expected = {

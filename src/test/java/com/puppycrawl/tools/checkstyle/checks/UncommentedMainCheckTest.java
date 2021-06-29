@@ -61,7 +61,7 @@ public class UncommentedMainCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(UncommentedMainCheck.class);
-        checkConfig.addAttribute("excludedClasses", "\\.Main.*$");
+        checkConfig.addProperty("excludedClasses", "\\.Main.*$");
         final String[] expected = {
             "17:5: " + getCheckMessage(MSG_KEY),
             "35:5: " + getCheckMessage(MSG_KEY),
@@ -91,7 +91,7 @@ public class UncommentedMainCheckTest
     @Test
     public void testVisitPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
-        checkConfig.addAttribute("excludedClasses", "uncommentedmain\\.InputUncommentedMain5");
+        checkConfig.addProperty("excludedClasses", "uncommentedmain\\.InputUncommentedMain5");
         final String[] expected = {
             "21:5: " + getCheckMessage(MSG_KEY),
         };

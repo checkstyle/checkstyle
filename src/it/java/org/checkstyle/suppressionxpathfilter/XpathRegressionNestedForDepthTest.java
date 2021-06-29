@@ -67,7 +67,7 @@ public class XpathRegressionNestedForDepthTest extends AbstractXpathTestSupport 
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(NestedForDepthCheck.class);
-        moduleConfig.addAttribute("max", "2");
+        moduleConfig.addProperty("max", "2");
 
         final String[] expectedViolation = {
             "8:21: " + getCheckMessage(NestedForDepthCheck.class,

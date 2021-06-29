@@ -87,7 +87,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIncorrectAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
+        checkConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
                 + "CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF, "
                 + "ENUM_CONSTANT_DEF, PACKAGE_DEF");
         final String[] expected = {
@@ -150,9 +150,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithParameters() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "true");
-        checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "true");
-        checkConfig.addAttribute("allowSamelineMultipleAnnotations", "true");
+        checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "true");
+        checkConfig.addProperty("allowSamelineParameterizedAnnotation", "true");
+        checkConfig.addProperty("allowSamelineMultipleAnnotations", "true");
         final String[] expected = {
             "25:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation_12", 8, 4),
             "33:9: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "MyAnnotation_12", 8, 4),
@@ -174,7 +174,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithMultipleAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
+        checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
         final String[] expected = {
             "14:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation11"),
             "14:17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "MyAnnotation12"),
@@ -187,7 +187,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAllTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
+        checkConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, "
                 + "CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocationWithoutAnnotations.java"), expected);
@@ -196,7 +196,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
+        checkConfig.addProperty("tokens", "ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
         final String[] expected = {
             "17:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "AnnotationAnnotation", 2, 0),
             "18:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "AnnotationAnnotation"),
@@ -209,7 +209,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF, CTOR_DEF, VARIABLE_DEF");
+        checkConfig.addProperty("tokens", "CLASS_DEF, CTOR_DEF, VARIABLE_DEF");
         final String[] expected = {
             "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "ClassAnnotation", 2, 0),
             "19:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "ClassAnnotation"),
@@ -224,7 +224,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEnum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "ENUM_DEF, ENUM_CONSTANT_DEF");
+        checkConfig.addProperty("tokens", "ENUM_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
             "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "EnumAnnotation", 2, 0),
             "19:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "EnumAnnotation"),
@@ -237,7 +237,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testInterface() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "INTERFACE_DEF, METHOD_DEF");
+        checkConfig.addProperty("tokens", "INTERFACE_DEF, METHOD_DEF");
         final String[] expected = {
             "18:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "InterfaceAnnotation", 2, 0),
             "19:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "InterfaceAnnotation"),
@@ -250,7 +250,7 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "PACKAGE_DEF");
+        checkConfig.addProperty("tokens", "PACKAGE_DEF");
         final String[] expected = {
             "12:3: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION, "PackageAnnotation", 2, 0),
             "13:1: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "PackageAnnotation"),
@@ -261,11 +261,11 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationInForEachLoopParameterAndVariableDef() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
+        checkConfig.addProperty("tokens", "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,"
             + " CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF");
-        checkConfig.addAttribute("allowSamelineMultipleAnnotations", "false");
-        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
-        checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "false");
+        checkConfig.addProperty("allowSamelineMultipleAnnotations", "false");
+        checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
+        checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocationDeprecatedAndCustom.java"), expected);
     }
@@ -273,9 +273,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationMultiple() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("allowSamelineMultipleAnnotations", "true");
-        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
-        checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "false");
+        checkConfig.addProperty("allowSamelineMultipleAnnotations", "true");
+        checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
+        checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputAnnotationLocationMultiple.java"), expected);
     }
@@ -283,9 +283,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationParameterized() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("allowSamelineMultipleAnnotations", "false");
-        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "false");
-        checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "true");
+        checkConfig.addProperty("allowSamelineMultipleAnnotations", "false");
+        checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "false");
+        checkConfig.addProperty("allowSamelineParameterizedAnnotation", "true");
         final String[] expected = {
             "18:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "20:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
@@ -301,9 +301,9 @@ public class AnnotationLocationCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testAnnotationSingleParameterless() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(AnnotationLocationCheck.class);
-        checkConfig.addAttribute("allowSamelineMultipleAnnotations", "false");
-        checkConfig.addAttribute("allowSamelineSingleParameterlessAnnotation", "true");
-        checkConfig.addAttribute("allowSamelineParameterizedAnnotation", "false");
+        checkConfig.addProperty("allowSamelineMultipleAnnotations", "false");
+        checkConfig.addProperty("allowSamelineSingleParameterlessAnnotation", "true");
+        checkConfig.addProperty("allowSamelineParameterizedAnnotation", "false");
         final String[] expected = {
             "22:17: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),
             "24:5: " + getCheckMessage(MSG_KEY_ANNOTATION_LOCATION_ALONE, "Annotation"),

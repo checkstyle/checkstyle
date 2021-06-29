@@ -287,8 +287,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addAttribute("cacheFile",
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("cacheFile",
                 File.createTempFile("junit", null, temporaryFolder).getPath());
 
         final Checker checker = new Checker();
@@ -323,9 +323,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoredFileExtensions() throws Exception {
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
         final File tempFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", tempFile.getPath());
+        checkerConfig.addProperty("cacheFile", tempFile.getPath());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -448,7 +448,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testSetupChildInvalidProperty() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(HiddenFieldCheck.class);
-        checkConfig.addAttribute("$$No such property", null);
+        checkConfig.addProperty("$$No such property", null);
         try {
             createChecker(checkConfig);
             fail("Exception is expected");
@@ -513,10 +513,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
         treeWalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
 
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final File tmpFile = File.createTempFile("file", ".java", temporaryFolder);
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -567,7 +567,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final int expectedNumberOfObjectsInCache = 2;
         assertEquals(expectedNumberOfObjectsInCache, cache.size(), "Cache has unexpected size");
 
-        final String expectedConfigHash = "B8535A811CA90BE8B7A14D40BCA62B4FC2447B46";
+        final String expectedConfigHash = "D581D4A2BD482D4E1EF1F82459356BA2D8A3B" + "FC3";
         assertEquals(expectedConfigHash, cache.getProperty(PropertyCacheFile.CONFIG_HASH_KEY),
                 "Cache has unexpected hash");
 
@@ -577,9 +577,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
     @Test
     public void testClearExistingCache() throws Exception {
         final DefaultConfiguration checkerConfig = createRootConfig(null);
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -624,9 +624,9 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration violationCheck =
                 createModuleConfig(DummyFileSetViolationCheck.class);
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("myConfig");
-        checkerConfig.addAttribute("charset", "UTF-8");
+        checkerConfig.addProperty("charset", "UTF-8");
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
         checkerConfig.addChild(violationCheck);
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -771,7 +771,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String pathToEmptyFile =
@@ -824,7 +824,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkerConfig = createRootConfig(null);
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final Checker checker = new Checker();
         checker.setModuleClassLoader(Thread.currentThread().getContextClassLoader());
@@ -908,10 +908,10 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 createModuleConfig(DummyFileSetViolationCheck.class);
 
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
-        filterConfig.addAttribute("file", getPath("InputCheckerSuppressAll.xml"));
+        filterConfig.addProperty("file", getPath("InputCheckerSuppressAll.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(violationCheck);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
         checkerConfig.addChild(filterConfig);
 
         final String fileViolationPath =
@@ -956,8 +956,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         treewalkerConfig.addChild(checkConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treewalkerConfig);
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
         checkerConfig.addChild(treewalkerConfig);
 
         final Checker checker = createChecker(checkerConfig);
@@ -994,8 +994,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
@@ -1059,8 +1059,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String errorMessage = "Java Virtual Machine is broken"
             + " or has run out of resources necessary for it to continue operating.";
@@ -1157,8 +1157,8 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
 
         final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
-        checkerConfig.addAttribute("charset", StandardCharsets.UTF_8.name());
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("charset", StandardCharsets.UTF_8.name());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String errorMessage = "Security Exception";
         final RuntimeException expectedError = new SecurityException(errorMessage);
@@ -1215,7 +1215,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         checkerConfig.addChild(treeWalkerConfig);
 
-        checkerConfig.addAttribute("haltOnException", "false");
+        checkerConfig.addProperty("haltOnException", "false");
 
         final String filePath = getPath("InputChecker.java");
         final String[] expected = {
@@ -1242,7 +1242,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(VerifyPositionAfterTabFileSet.class);
         final DefaultConfiguration checkerConfig = createRootConfig(checkConfig);
-        checkerConfig.addAttribute("tabWidth", "4");
+        checkerConfig.addProperty("tabWidth", "4");
         final String[] expected = {
             "2:5: violation",
             "3:9: violation",
@@ -1398,7 +1398,7 @@ public class CheckerTest extends AbstractModuleTestSupport {
                 createModuleConfig(NewlineAtEndOfFileCheck.class);
         final DefaultConfiguration moduleConfig2 =
                 createModuleConfig(NewlineAtEndOfFileCheck.class);
-        moduleConfig2.addAttribute("id", "ModuleId");
+        moduleConfig2.addProperty("id", "ModuleId");
         final DefaultConfiguration root = new DefaultConfiguration("root");
         root.addChild(moduleConfig1);
         root.addChild(moduleConfig2);

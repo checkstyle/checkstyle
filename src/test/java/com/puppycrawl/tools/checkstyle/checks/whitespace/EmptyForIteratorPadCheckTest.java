@@ -63,7 +63,7 @@ public class EmptyForIteratorPadCheckTest
     @Test
     public void testSpaceOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "26:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
@@ -83,7 +83,7 @@ public class EmptyForIteratorPadCheckTest
     @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

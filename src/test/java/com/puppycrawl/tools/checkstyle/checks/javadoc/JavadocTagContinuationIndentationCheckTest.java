@@ -84,7 +84,7 @@ public class JavadocTagContinuationIndentationCheckTest
     public void testCheckWithOffset3() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
-        checkConfig.addAttribute("offset", "3");
+        checkConfig.addProperty("offset", "3");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_KEY, 3),
             "27: " + getCheckMessage(MSG_KEY, 3),
@@ -113,7 +113,7 @@ public class JavadocTagContinuationIndentationCheckTest
     public void testBlockTag() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocTagContinuationIndentationCheck.class);
-        checkConfig.addAttribute("offset", "4");
+        checkConfig.addProperty("offset", "4");
         final String[] expected = {
             "21: " + getCheckMessage(MSG_KEY, 4),
             "32: " + getCheckMessage(MSG_KEY, 4),

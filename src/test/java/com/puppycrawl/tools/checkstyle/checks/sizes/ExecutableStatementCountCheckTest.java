@@ -62,7 +62,7 @@ public class ExecutableStatementCountCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExecutableStatementCountCheck.class);
 
-        checkConfig.addAttribute("max", "0");
+        checkConfig.addProperty("max", "0");
 
         final String[] expected = {
             "8:5: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -86,8 +86,8 @@ public class ExecutableStatementCountCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExecutableStatementCountCheck.class);
 
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
+        checkConfig.addProperty("max", "0");
+        checkConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, 3, 0),
@@ -106,8 +106,8 @@ public class ExecutableStatementCountCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExecutableStatementCountCheck.class);
 
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "CTOR_DEF");
+        checkConfig.addProperty("max", "0");
+        checkConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -122,8 +122,8 @@ public class ExecutableStatementCountCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExecutableStatementCountCheck.class);
 
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "STATIC_INIT");
+        checkConfig.addProperty("max", "0");
+        checkConfig.addProperty("tokens", "STATIC_INIT");
 
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -137,8 +137,8 @@ public class ExecutableStatementCountCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(ExecutableStatementCountCheck.class);
 
-        checkConfig.addAttribute("max", "0");
-        checkConfig.addAttribute("tokens", "INSTANCE_INIT");
+        checkConfig.addProperty("max", "0");
+        checkConfig.addProperty("tokens", "INSTANCE_INIT");
 
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_KEY, 2, 0),
@@ -193,7 +193,7 @@ public class ExecutableStatementCountCheckTest
     public void testExecutableStatementCountRecords() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ExecutableStatementCountCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 
@@ -215,8 +215,8 @@ public class ExecutableStatementCountCheckTest
     public void testExecutableStatementCountLambdas() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ExecutableStatementCountCheck.class);
-        checkConfig.addAttribute("max", "1");
-        checkConfig.addAttribute("tokens", "LAMBDA");
+        checkConfig.addProperty("max", "1");
+        checkConfig.addProperty("tokens", "LAMBDA");
 
         final int max = 1;
 

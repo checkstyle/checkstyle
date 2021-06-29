@@ -80,7 +80,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     public void testMax30() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(OuterTypeNumberCheck.class);
-        checkConfig.addAttribute("max", "30");
+        checkConfig.addProperty("max", "30");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeNumberSimple.java"), expected);
     }
@@ -89,7 +89,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     public void testWithInnerClass() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(OuterTypeNumberCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputOuterTypeNumberEmptyInner.java"), expected);
     }
@@ -98,7 +98,7 @@ public class OuterTypeNumberCheckTest extends AbstractModuleTestSupport {
     public void testWithRecords() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(OuterTypeNumberCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
 
         final int max = 1;
 

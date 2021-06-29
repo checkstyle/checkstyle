@@ -45,7 +45,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CyclomaticComplexityCheck.class);
-        moduleConfig.addAttribute("max", "0");
+        moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
@@ -72,7 +72,7 @@ public class XpathRegressionCyclomaticComplexityTest extends AbstractXpathTestSu
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CyclomaticComplexityCheck.class);
-        moduleConfig.addAttribute("max", "0");
+        moduleConfig.addProperty("max", "0");
 
         final String[] expectedViolation = {
             "6:5: " + getCheckMessage(CyclomaticComplexityCheck.class,
