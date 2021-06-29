@@ -46,6 +46,7 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
 import com.puppycrawl.tools.checkstyle.bdd.InputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.ParsedViolation;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
@@ -388,16 +389,46 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     private void verifyViolations(Configuration config,
                                   String file,
                                   InputConfiguration inputConfiguration) throws Exception {
+        final List<String> actualViolations = getActualViolationsForFile(config, file);
+        final List<ParsedViolation> parsedViolations = inputConfiguration.getViolations();
+        verifyViolationLines(actualViolations, parsedViolations);
+        verifyViolationMessages(actualViolations, parsedViolations);
+    }
+
+    private static void verifyViolationLines(List<String> actualViolations,
+                                             List<ParsedViolation> parsedViolations) {
         final List<Integer> expectedViolationLines =
-                getActualViolationsForFile(config, file)
+                actualViolations
                         .stream()
                         .map(message -> message.substring(0, message.indexOf(':')))
                         .map(Integer::parseInt)
                         .distinct()
                         .collect(Collectors.toList());
+        final List<Integer> parsedViolationLines =
+                parsedViolations
+                        .stream()
+                        .map(ParsedViolation::getViolationLine)
+                        .collect(Collectors.toList());
         assertWithMessage("Violation lines differ.")
-                .that(inputConfiguration.getViolations())
+                .that(parsedViolationLines)
                 .isEqualTo(expectedViolationLines);
+    }
+
+    private static void verifyViolationMessages(List<String> actualViolations,
+                                                List<ParsedViolation> parsedViolations) {
+        final List<String> expectedViolationMessages =
+                actualViolations
+                        .stream()
+                        .map(message -> message.substring(message.indexOf(' ') + 1))
+                        .collect(Collectors.toList());
+        final List<String> parsedViolationMessages =
+                parsedViolations
+                        .stream()
+                        .map(ParsedViolation::getViolationMessage)
+                        .collect(Collectors.toList());
+        assertWithMessage("Violation messages differ.")
+                .that(parsedViolationMessages)
+                .isEqualTo(expectedViolationMessages);
     }
 
     /**
