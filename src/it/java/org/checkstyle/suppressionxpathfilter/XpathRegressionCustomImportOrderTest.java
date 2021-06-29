@@ -44,8 +44,8 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addAttribute("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
-        moduleConfig.addAttribute("sortImportsInGroupAlphabetically", "true");
+        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
+        moduleConfig.addProperty("sortImportsInGroupAlphabetically", "true");
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(CustomImportOrderCheck.class,
@@ -68,7 +68,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addAttribute("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
+        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(CustomImportOrderCheck.class,
@@ -90,7 +90,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addAttribute("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
+        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(CustomImportOrderCheck.class,
@@ -112,7 +112,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addAttribute("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
+        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(CustomImportOrderCheck.class,
@@ -135,7 +135,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addAttribute("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
+        moduleConfig.addProperty("customImportOrderRules", "STATIC###STANDARD_JAVA_PACKAGE");
 
         final String[] expectedViolation = {
             "7:1: " + getCheckMessage(CustomImportOrderCheck.class,
@@ -158,7 +158,7 @@ public class XpathRegressionCustomImportOrderTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(CustomImportOrderCheck.class);
-        moduleConfig.addAttribute("customImportOrderRules",
+        moduleConfig.addProperty("customImportOrderRules",
             "STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE");
 
         final String[] expectedViolation = {

@@ -178,7 +178,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     public void testCheckOnlySingleLineComments() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CommentsIndentationCheck.class);
-        checkConfig.addAttribute("tokens", "SINGLE_LINE_COMMENT");
+        checkConfig.addProperty("tokens", "SINGLE_LINE_COMMENT");
         final String[] expected = {
             "13:15: " + getCheckMessage(MSG_KEY_SINGLE, 14, 14, 12),
             "50:28: " + getCheckMessage(MSG_KEY_SINGLE, 53, 27, 36),
@@ -194,7 +194,7 @@ public class CommentsIndentationCheckTest extends AbstractModuleTestSupport {
     public void testCheckOnlyBlockComments() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(CommentsIndentationCheck.class);
-        checkConfig.addAttribute("tokens", "BLOCK_COMMENT_BEGIN");
+        checkConfig.addProperty("tokens", "BLOCK_COMMENT_BEGIN");
         final String[] expected = {
             "23:17: " + getCheckMessage(MSG_KEY_BLOCK, 24, 16, 12),
             "25:17: " + getCheckMessage(MSG_KEY_BLOCK, 27, 16, 12),

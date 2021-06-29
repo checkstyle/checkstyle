@@ -51,9 +51,9 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_NATIVE");
-        checkConfig.addAttribute("maximumNumber", "0");
+        checkConfig.addProperty("tokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("limitedTokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("maximumNumber", "0");
         final String[] expected = {
             "17:12: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "LITERAL_NATIVE", "LITERAL_NATIVE"),
         };
@@ -65,10 +65,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_NATIVE");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumMessage", "Using ''native'' is not allowed.");
+        checkConfig.addProperty("tokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("limitedTokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumMessage", "Using ''native'' is not allowed.");
         final String[] expected = {
             "17:12: Using 'native' is not allowed.",
         };
@@ -80,9 +80,9 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SWITCH");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
-        checkConfig.addAttribute("minimumNumber", "2");
+        checkConfig.addProperty("tokens", "LITERAL_SWITCH");
+        checkConfig.addProperty("limitedTokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("minimumNumber", "2");
         final String[] expected = {
             "8:9: " + getCheckMessage(MSG_KEY_MIN, 1, 2, "LITERAL_SWITCH", "LITERAL_DEFAULT"),
         };
@@ -94,10 +94,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SWITCH");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("minimumDepth", "3");
+        checkConfig.addProperty("tokens", "LITERAL_SWITCH");
+        checkConfig.addProperty("limitedTokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("minimumDepth", "3");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDescendantTokenIllegalTokens.java"), expected);
     }
@@ -107,10 +107,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SWITCH");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "1");
+        checkConfig.addProperty("tokens", "LITERAL_SWITCH");
+        checkConfig.addProperty("limitedTokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "1");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputDescendantTokenIllegalTokens.java"), expected);
     }
@@ -120,11 +120,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "EMPTY_STAT");
-        checkConfig.addAttribute("limitedTokens", "EMPTY_STAT");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "0");
-        checkConfig.addAttribute("maximumMessage", "Empty statement.");
+        checkConfig.addProperty("tokens", "EMPTY_STAT");
+        checkConfig.addProperty("limitedTokens", "EMPTY_STAT");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "0");
+        checkConfig.addProperty("maximumMessage", "Empty statement.");
 
         final String[] expected = {
             "7:7: Empty statement.",
@@ -152,11 +152,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testMissingSwitchDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SWITCH");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_DEFAULT");
-        checkConfig.addAttribute("minimumNumber", "1");
-        checkConfig.addAttribute("maximumDepth", "2");
-        checkConfig.addAttribute("minimumMessage", "switch without \"default\" clause.");
+        checkConfig.addProperty("tokens", "LITERAL_SWITCH");
+        checkConfig.addProperty("limitedTokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("minimumNumber", "1");
+        checkConfig.addProperty("maximumDepth", "2");
+        checkConfig.addProperty("minimumMessage", "switch without \"default\" clause.");
 
         final String[] expected = {
             "17:9: switch without \"default\" clause.",
@@ -169,11 +169,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testStringLiteralEquality() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "EQUAL,NOT_EQUAL");
-        checkConfig.addAttribute("limitedTokens", "STRING_LITERAL");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "1");
-        checkConfig.addAttribute("maximumMessage",
+        checkConfig.addProperty("tokens", "EQUAL,NOT_EQUAL");
+        checkConfig.addProperty("limitedTokens", "STRING_LITERAL");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "1");
+        checkConfig.addProperty("maximumMessage",
             "Literal Strings should be compared using equals(), not ''==''.");
 
         final String[] expected = {
@@ -188,11 +188,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testIllegalTokenDefault() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_SWITCH, POST_INC, POST_DEC");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_SWITCH, POST_INC, POST_DEC");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "0");
-        checkConfig.addAttribute("maximumMessage", "Using ''{2}'' is not allowed.");
+        checkConfig.addProperty("tokens", "LITERAL_SWITCH, POST_INC, POST_DEC");
+        checkConfig.addProperty("limitedTokens", "LITERAL_SWITCH, POST_INC, POST_DEC");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "0");
+        checkConfig.addProperty("maximumMessage", "Using ''{2}'' is not allowed.");
 
         final String[] expected = {
             "8:9: Using 'LITERAL_SWITCH' is not allowed.",
@@ -206,11 +206,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testIllegalTokenNative() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_NATIVE");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_NATIVE");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "0");
-        checkConfig.addAttribute("maximumMessage", "Using ''{2}'' is not allowed.");
+        checkConfig.addProperty("tokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("limitedTokens", "LITERAL_NATIVE");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "0");
+        checkConfig.addProperty("maximumMessage", "Using ''{2}'' is not allowed.");
 
         final String[] expected = {
             "17:12: Using 'LITERAL_NATIVE' is not allowed.",
@@ -222,10 +222,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testReturnFromCatch() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
 
-        checkConfig.addAttribute("tokens", "LITERAL_CATCH");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_RETURN");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumMessage", "Return from catch is not allowed.");
+        checkConfig.addProperty("tokens", "LITERAL_CATCH");
+        checkConfig.addProperty("limitedTokens", "LITERAL_RETURN");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumMessage", "Return from catch is not allowed.");
 
         final String[] expected = {
             "7:11: Return from catch is not allowed.",
@@ -239,10 +239,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testReturnFromFinally() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
 
-        checkConfig.addAttribute("tokens", "LITERAL_FINALLY");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_RETURN");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumMessage", "Return from finally is not allowed.");
+        checkConfig.addProperty("tokens", "LITERAL_FINALLY");
+        checkConfig.addProperty("limitedTokens", "LITERAL_RETURN");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumMessage", "Return from finally is not allowed.");
 
         final String[] expected = {
             "7:11: Return from finally is not allowed.",
@@ -256,10 +256,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testNoSum() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
 
-        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
-        checkConfig.addAttribute("maximumNumber", "1");
-        checkConfig.addAttribute("maximumMessage", "What are you doing?");
+        checkConfig.addProperty("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addProperty("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addProperty("maximumNumber", "1");
+        checkConfig.addProperty("maximumMessage", "What are you doing?");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -269,12 +269,12 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithSumCustomMsg() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
-        checkConfig.addAttribute("maximumNumber", "1");
-        checkConfig.addAttribute("maximumDepth", "1");
-        checkConfig.addAttribute("maximumMessage", "this cannot be null.");
-        checkConfig.addAttribute("sumTokenCounts", "true");
+        checkConfig.addProperty("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addProperty("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addProperty("maximumNumber", "1");
+        checkConfig.addProperty("maximumDepth", "1");
+        checkConfig.addProperty("maximumMessage", "this cannot be null.");
+        checkConfig.addProperty("sumTokenCounts", "true");
 
         final String[] expected = {
             "22:32: this cannot be null.",
@@ -289,11 +289,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithSumDefaultMsg() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
-        checkConfig.addAttribute("maximumNumber", "1");
-        checkConfig.addAttribute("maximumDepth", "1");
-        checkConfig.addAttribute("sumTokenCounts", "true");
+        checkConfig.addProperty("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addProperty("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addProperty("maximumNumber", "1");
+        checkConfig.addProperty("maximumDepth", "1");
+        checkConfig.addProperty("sumTokenCounts", "true");
 
         final String[] expected = {
             "22:32: " + getCheckMessage(MSG_KEY_SUM_MAX, 2, 1, "EQUAL"),
@@ -308,10 +308,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithSumLessThenMinDefMsg() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
-        checkConfig.addAttribute("minimumNumber", "3");
-        checkConfig.addAttribute("sumTokenCounts", "true");
+        checkConfig.addProperty("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addProperty("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addProperty("minimumNumber", "3");
+        checkConfig.addProperty("sumTokenCounts", "true");
 
         final String[] expected = {
             "16:44: " + getCheckMessage(MSG_KEY_SUM_MIN, 0, 3, "EQUAL"),
@@ -329,11 +329,11 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithSumLessThenMinCustomMsg() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "NOT_EQUAL,EQUAL");
-        checkConfig.addAttribute("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
-        checkConfig.addAttribute("minimumNumber", "3");
-        checkConfig.addAttribute("sumTokenCounts", "true");
-        checkConfig.addAttribute("minimumMessage", "custom message");
+        checkConfig.addProperty("tokens", "NOT_EQUAL,EQUAL");
+        checkConfig.addProperty("limitedTokens", "LITERAL_THIS,LITERAL_NULL");
+        checkConfig.addProperty("minimumNumber", "3");
+        checkConfig.addProperty("sumTokenCounts", "true");
+        checkConfig.addProperty("minimumMessage", "custom message");
 
         final String[] expected = {
             "16:44: custom message",
@@ -352,10 +352,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testMaxTokenType() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "OBJBLOCK");
-        checkConfig.addAttribute("limitedTokens", "LCURLY,RCURLY");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "2");
+        checkConfig.addProperty("tokens", "OBJBLOCK");
+        checkConfig.addProperty("limitedTokens", "LCURLY,RCURLY");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "2");
         final String[] expected = {
             "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
             "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
@@ -367,10 +367,10 @@ public class DescendantTokenCheckTest extends AbstractModuleTestSupport {
     public void testMaxTokenTypeReverseOrder() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(DescendantTokenCheck.class);
-        checkConfig.addAttribute("tokens", "OBJBLOCK");
-        checkConfig.addAttribute("limitedTokens", "RCURLY,LCURLY");
-        checkConfig.addAttribute("maximumNumber", "0");
-        checkConfig.addAttribute("maximumDepth", "2");
+        checkConfig.addProperty("tokens", "OBJBLOCK");
+        checkConfig.addProperty("limitedTokens", "RCURLY,LCURLY");
+        checkConfig.addProperty("maximumNumber", "0");
+        checkConfig.addProperty("maximumDepth", "2");
         final String[] expected = {
             "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "LCURLY"),
             "6:48: " + getCheckMessage(MSG_KEY_MAX, 1, 0, "OBJBLOCK", "RCURLY"),
