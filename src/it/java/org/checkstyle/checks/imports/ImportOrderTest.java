@@ -36,13 +36,13 @@ public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
     @Test
     public void testAndroid() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
-        checkConfig.addAttribute("groups",
+        checkConfig.addProperty("groups",
             "android,androidx,com.android,dalvik,com,gov,junit,libcore,net,org,java,javax");
-        checkConfig.addAttribute("option", "top");
-        checkConfig.addAttribute("ordered", "true");
-        checkConfig.addAttribute("separated", "true");
-        checkConfig.addAttribute("separatedStaticGroups", "true");
-        checkConfig.addAttribute("staticGroups",
+        checkConfig.addProperty("option", "top");
+        checkConfig.addProperty("ordered", "true");
+        checkConfig.addProperty("separated", "true");
+        checkConfig.addProperty("separatedStaticGroups", "true");
+        checkConfig.addProperty("staticGroups",
             "android,androidx,com.android,dalvik,com,gov,junit,libcore,net,org,java,javax");
 
         final String filePath = getNonCompilablePath("InputFromAndroid.java");
@@ -54,12 +54,12 @@ public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
     @Test
     public void testSpotify() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
-        checkConfig.addAttribute("groups", "android,com,net,junit,org,java,javax");
-        checkConfig.addAttribute("option", "bottom");
-        checkConfig.addAttribute("ordered", "true");
-        checkConfig.addAttribute("separated", "true");
-        checkConfig.addAttribute("separatedStaticGroups", "true");
-        checkConfig.addAttribute("staticGroups", "android,com,net,junit,org,java,javax");
+        checkConfig.addProperty("groups", "android,com,net,junit,org,java,javax");
+        checkConfig.addProperty("option", "bottom");
+        checkConfig.addProperty("ordered", "true");
+        checkConfig.addProperty("separated", "true");
+        checkConfig.addProperty("separatedStaticGroups", "true");
+        checkConfig.addProperty("staticGroups", "android,com,net,junit,org,java,javax");
 
         final String filePath = getNonCompilablePath("InputFromSpotify.java");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -70,13 +70,13 @@ public class ImportOrderTest extends AbstractCheckstyleModuleTestSupport {
     @Test
     public void testTwitter() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ImportOrderCheck.class);
-        checkConfig.addAttribute("caseSensitive", "true");
-        checkConfig.addAttribute("groups", "android,com.twitter,com,junit,net,org,java,javax");
-        checkConfig.addAttribute("option", "bottom");
-        checkConfig.addAttribute("ordered", "true");
-        checkConfig.addAttribute("separated", "true");
-        checkConfig.addAttribute("separatedStaticGroups", "true");
-        checkConfig.addAttribute("staticGroups",
+        checkConfig.addProperty("caseSensitive", "true");
+        checkConfig.addProperty("groups", "android,com.twitter,com,junit,net,org,java,javax");
+        checkConfig.addProperty("option", "bottom");
+        checkConfig.addProperty("ordered", "true");
+        checkConfig.addProperty("separated", "true");
+        checkConfig.addProperty("separatedStaticGroups", "true");
+        checkConfig.addProperty("staticGroups",
             "android,com.twitter,com,junit,net,org,java,javax");
 
         final String filePath = getNonCompilablePath("InputFromTwitter.java");

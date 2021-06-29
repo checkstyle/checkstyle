@@ -58,7 +58,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     public void testCtorToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "CTOR_DEF");
+        checkConfig.addProperty("tokens", "CTOR_DEF");
         final String[] expected = {
             "23:26: " + getCheckMessage(MSG_KEY, "s"),
             "38:26: " + getCheckMessage(MSG_KEY, "i"),
@@ -71,7 +71,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     public void testMethodToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
+        checkConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expected = {
             "53:17: " + getCheckMessage(MSG_KEY, "s"),
             "69:17: " + getCheckMessage(MSG_KEY, "s"),
@@ -89,7 +89,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     public void testCatchToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_CATCH");
+        checkConfig.addProperty("tokens", "LITERAL_CATCH");
         final String[] expected = {
             "125:16: " + getCheckMessage(MSG_KEY, "npe"),
             "131:16: " + getCheckMessage(MSG_KEY, "e"),
@@ -102,7 +102,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     public void testForEachClauseToken() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("tokens", "FOR_EACH_CLAUSE");
+        checkConfig.addProperty("tokens", "FOR_EACH_CLAUSE");
         final String[] expected = {
             "152:13: " + getCheckMessage(MSG_KEY, "s"),
             "160:13: " + getCheckMessage(MSG_KEY, "s"),
@@ -114,7 +114,7 @@ public class FinalParametersCheckTest extends AbstractModuleTestSupport {
     public void testIgnorePrimitiveTypesParameters() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(FinalParametersCheck.class);
-        checkConfig.addAttribute("ignorePrimitiveTypes", "true");
+        checkConfig.addProperty("ignorePrimitiveTypes", "true");
         final String[] expected = {
             "6:22: " + getCheckMessage(MSG_KEY, "k"),
             "7:15: " + getCheckMessage(MSG_KEY, "s"),

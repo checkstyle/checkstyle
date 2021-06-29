@@ -118,7 +118,7 @@ public class SuppressWarningsHolderTest extends AbstractModuleTestSupport {
         final DefaultConfiguration treeWalker = createModuleConfig(TreeWalker.class);
         final Configuration filter = createModuleConfig(SuppressWarningsFilter.class);
         final DefaultConfiguration violationCheck = createModuleConfig(TypecastParenPadCheck.class);
-        violationCheck.addAttribute("option", "space");
+        violationCheck.addProperty("option", "space");
 
         treeWalker.addChild(checkConfig);
         treeWalker.addChild(violationCheck);
