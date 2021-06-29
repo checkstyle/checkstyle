@@ -12,12 +12,12 @@ public class InputMissingOverrideNotOverride
     /**
      * {@inheritDoc}
      */
-    private void bleh() {}      // violation
+    private void bleh() {} // violation The Javadoc {@inheritDoc} tag is not valid at this location.
 
     /**
      * {@inheritDoc}
      */
-    public static void eh() {}      // violation
+    public static void eh() {} // violation The Javadoc {@inheritDoc} tag is not valid at this location.
 
     /**
      * {@inheritDoc}

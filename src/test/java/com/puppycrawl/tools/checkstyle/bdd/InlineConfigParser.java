@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
@@ -39,7 +40,7 @@ public final class InlineConfigParser {
 
     /** A pattern to find the string: "// violation". */
     private static final Pattern VIOLATION_PATTERN = Pattern
-            .compile(".*//\\s*violation(?:$|\\W+.*$)");
+            .compile(".*//\\s*violation(?:\\W+(.*))?$");
 
     /** Stop instances being created. **/
     private InlineConfigParser() {
@@ -57,7 +58,7 @@ public final class InlineConfigParser {
         final InputConfiguration.Builder inputConfigBuilder = new InputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
         setCheckProperties(inputConfigBuilder, lines);
-        setViolationLineNumbers(inputConfigBuilder, lines);
+        setViolations(inputConfigBuilder, lines);
         return inputConfigBuilder.build();
     }
 
@@ -115,11 +116,12 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setViolationLineNumbers(InputConfiguration.Builder inputConfigBuilder,
-                                    List<String> lines) {
+    private static void setViolations(InputConfiguration.Builder inputConfigBuilder,
+                                      List<String> lines) {
         for (int lineNo = 2; lineNo < lines.size(); lineNo++) {
-            if (VIOLATION_PATTERN.matcher(lines.get(lineNo)).matches()) {
-                inputConfigBuilder.addViolation(lineNo + 1);
+            final Matcher violationMatcher = VIOLATION_PATTERN.matcher(lines.get(lineNo));
+            if (violationMatcher.matches()) {
+                inputConfigBuilder.addViolation(lineNo + 1, violationMatcher.group(1));
             }
         }
     }

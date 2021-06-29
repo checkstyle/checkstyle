@@ -29,7 +29,7 @@
     <module name="Regexp">
       <property name="id" value="StyleValidationCommentInInputs"/>
       <property name="format"
-               value="(\/\/ (ok|violation)\n)"/>
+               value="(\/\/ (ok|violation))"/>
       <message key="required.regexp"
              value="All check input files in the ''src/(it|test)/resources*/'' folder must
                    have trailing comments &quot;// ok&quot; and/or &quot;// violation&quot;."/>
