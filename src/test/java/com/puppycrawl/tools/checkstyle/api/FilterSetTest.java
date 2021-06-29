@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.util.Objects;
 
@@ -36,7 +33,9 @@ public class FilterSetTest {
     public void testGetFilters() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
-        assertEquals(1, filterSet.getFilters().size(), "size is the same");
+        assertWithMessage("size is the same")
+                .that(filterSet.getFilters())
+                .hasSize(1);
     }
 
     @Test
@@ -45,14 +44,18 @@ public class FilterSetTest {
         final Filter filter = new SeverityMatchFilter();
         filterSet.addFilter(filter);
         filterSet.removeFilter(filter);
-        assertEquals(0, filterSet.getFilters().size(), "size is the same");
+        assertWithMessage("size is the same")
+                .that(filterSet.getFilters())
+                .hasSize(0);
     }
 
     @Test
     public void testToString() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
-        assertNotNull(filterSet.toString(), "size is the same");
+        assertWithMessage("size is the same")
+                .that(filterSet)
+                .isNotNull();
     }
 
     @Test
@@ -60,25 +63,33 @@ public class FilterSetTest {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new SeverityMatchFilter());
 
-        assertEquals(1, filterSet.getFilters().size(), "Invalid filter set size");
+        assertWithMessage("Invalid filter set size")
+                .that(filterSet.getFilters())
+                .hasSize(1);
 
         filterSet.clear();
 
-        assertEquals(0, filterSet.getFilters().size(), "Invalid filter set size");
+        assertWithMessage("Invalid filter set size")
+                .that(filterSet.getFilters())
+                .hasSize(0);
     }
 
     @Test
     public void testAccept() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(true));
-        assertTrue(filterSet.accept(null), "invalid accept response");
+        assertWithMessage("invalid accept response")
+                .that(filterSet.accept(null))
+                .isTrue();
     }
 
     @Test
     public void testNotAccept() {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(false));
-        assertFalse(filterSet.accept(null), "invalid accept response");
+        assertWithMessage("invalid accept response")
+                .that(filterSet.accept(null))
+                .isFalse();
     }
 
     @Test
@@ -86,7 +97,9 @@ public class FilterSetTest {
         final FilterSet filterSet = new FilterSet();
         filterSet.addFilter(new DummyFilter(true));
         filterSet.addFilter(new DummyFilter(false));
-        assertFalse(filterSet.accept(null), "invalid accept response");
+        assertWithMessage("invalid accept response")
+                .that(filterSet.accept(null))
+                .isFalse();
     }
 
     private static class DummyFilter implements Filter {
