@@ -39,7 +39,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSkipIfLastAndSharedWithCase() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
-        checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
+        checkConfig.addProperty("skipIfLastAndSharedWithCase", "true");
         final String[] expected = {
             "23:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
             "31:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
@@ -105,7 +105,7 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDefaultComesLastSwitchExpressionsSkipIfLast() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
-        checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
+        checkConfig.addProperty("skipIfLastAndSharedWithCase", "true");
 
         final String[] expected = {
             "33:13: " + getCheckMessage(MSG_KEY),

@@ -71,7 +71,7 @@ public class XpathRegressionEmptyForIteratorPadTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyForIteratorPadCheck.class);
-        moduleConfig.addAttribute("option", PadOption.SPACE.toString());
+        moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:33: " + getCheckMessage(EmptyForIteratorPadCheck.class,

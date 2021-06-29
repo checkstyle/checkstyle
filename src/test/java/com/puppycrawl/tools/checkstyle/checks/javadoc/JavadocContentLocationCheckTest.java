@@ -67,7 +67,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testFirstLine() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addAttribute("location", "FIRST_LINE");
+        checkConfig.addProperty("location", "FIRST_LINE");
         final String[] expected = {
             "12:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
             "21:5: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
@@ -79,7 +79,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testPackage() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addAttribute("location", "SECOND_LINE");
+        checkConfig.addProperty("location", "SECOND_LINE");
         final String[] expected = {
             "8:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_SECOND_LINE),
         };
@@ -90,7 +90,7 @@ public class JavadocContentLocationCheckTest extends AbstractModuleTestSupport {
     public void testInterface() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocContentLocationCheck.class);
-        checkConfig.addAttribute("location", "FIRST_LINE");
+        checkConfig.addProperty("location", "FIRST_LINE");
         final String[] expected = {
             "10:1: " + getCheckMessage(MSG_JAVADOC_CONTENT_FIRST_LINE),
         };

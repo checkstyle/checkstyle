@@ -70,7 +70,7 @@ public class XpathRegressionRecordComponentNumberTest extends AbstractXpathTestS
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RecordComponentNumberCheck.class);
-        moduleConfig.addAttribute("max", "1");
+        moduleConfig.addProperty("max", "1");
 
         final String[] expectedViolation = {
             "9:5: " + getCheckMessage(RecordComponentNumberCheck.class,
