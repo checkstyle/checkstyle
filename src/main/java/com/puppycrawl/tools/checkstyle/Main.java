@@ -389,7 +389,7 @@ public final class Main {
                     final DefaultConfiguration moduleConfig =
                             new DefaultConfiguration(
                                     XpathFileGeneratorAstFilter.class.getName());
-                    moduleConfig.addAttribute(CliOptions.ATTRIB_TAB_WIDTH_NAME,
+                    moduleConfig.addProperty(CliOptions.ATTRIB_TAB_WIDTH_NAME,
                             String.valueOf(options.tabWidth));
                     ((DefaultConfiguration) treeWalkerConfig).addChild(moduleConfig);
                 }

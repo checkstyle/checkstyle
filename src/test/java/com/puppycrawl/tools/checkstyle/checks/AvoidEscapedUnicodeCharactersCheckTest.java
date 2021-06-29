@@ -229,7 +229,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testAllowEscapesForControlCharacterSet() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
+        checkConfig.addProperty("allowEscapesForControlCharacters", "true");
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -283,7 +283,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testAllowByTailComment() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowByTailComment", "true");
+        checkConfig.addProperty("allowByTailComment", "true");
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "25:38: " + getCheckMessage(MSG_KEY),
@@ -321,7 +321,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testAllowAllCharactersEscaped() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
+        checkConfig.addProperty("allowIfAllCharactersEscaped", "true");
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -357,7 +357,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void allowNonPrintableEscapes() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowNonPrintableEscapes", "true");
+        checkConfig.addProperty("allowNonPrintableEscapes", "true");
         final String[] expected = {
             "17:38: " + getCheckMessage(MSG_KEY),
             "19:38: " + getCheckMessage(MSG_KEY),
@@ -399,7 +399,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testAvoidEscapedUnicodeCharactersTextBlocksAllowByComment() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowByTailComment", "true");
+        checkConfig.addProperty("allowByTailComment", "true");
         final String[] expected = {
             "18:30: " + getCheckMessage(MSG_KEY),
             "20:30: " + getCheckMessage(MSG_KEY),
@@ -439,7 +439,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testAvoidEscapedUnicodeCharactersEscapedS() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowIfAllCharactersEscaped", "true");
+        checkConfig.addProperty("allowIfAllCharactersEscaped", "true");
         final String[] expected = {
             "17:21: " + getCheckMessage(MSG_KEY),
             "18:22: " + getCheckMessage(MSG_KEY),
@@ -469,7 +469,7 @@ public class AvoidEscapedUnicodeCharactersCheckTest extends AbstractModuleTestSu
     public void testAllowEscapesForControlCharacterSetForAllCharacters() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(AvoidEscapedUnicodeCharactersCheck.class);
-        checkConfig.addAttribute("allowEscapesForControlCharacters", "true");
+        checkConfig.addProperty("allowEscapesForControlCharacters", "true");
 
         final int indexOfStartLineInInputFile = 16;
         final String message = getCheckMessage(MSG_KEY);

@@ -38,7 +38,7 @@ public class RecordComponentNameTest extends AbstractGoogleModuleTestSupport {
     @Test
     public void testGeneralParameterName() throws Exception {
         final Configuration config = getModuleConfig("RecordComponentName");
-        final String format = config.getAttribute("format");
+        final String format = config.getProperty("format");
         final Map<String, String> messages = config.getMessages();
         final String[] expected = {
             "8:47: " + getCheckMessage(messages, MSG_KEY, "_componentName", format),

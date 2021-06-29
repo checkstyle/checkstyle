@@ -95,7 +95,7 @@ public class MethodNameCheckTest
             createModuleConfig(MethodNameCheck.class);
 
         // allow method names and class names to equal
-        checkConfig.addAttribute("allowClassName", "true");
+        checkConfig.addProperty("allowClassName", "true");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -122,10 +122,10 @@ public class MethodNameCheckTest
             createModuleConfig(MethodNameCheck.class);
 
         // allow method names and class names to equal
-        checkConfig.addAttribute("allowClassName", "true");
+        checkConfig.addProperty("allowClassName", "true");
 
         // allow method names and class names to equal
-        checkConfig.addAttribute("applyToPrivate", "false");
+        checkConfig.addProperty("applyToPrivate", "false");
 
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
@@ -173,7 +173,7 @@ public class MethodNameCheckTest
     public void testInterfacesExcludePublic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodNameCheck.class);
-        checkConfig.addAttribute("applyToPublic", "false");
+        checkConfig.addProperty("applyToPublic", "false");
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {
@@ -189,7 +189,7 @@ public class MethodNameCheckTest
     public void testInterfacesExcludePrivate() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodNameCheck.class);
-        checkConfig.addAttribute("applyToPrivate", "false");
+        checkConfig.addProperty("applyToPrivate", "false");
         final String pattern = "^[a-z][a-zA-Z0-9]*$";
 
         final String[] expected = {

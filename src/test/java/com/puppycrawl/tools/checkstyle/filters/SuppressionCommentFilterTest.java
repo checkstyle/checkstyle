@@ -144,7 +144,7 @@ public class SuppressionCommentFilterTest
     public void testCheckC() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("checkC", "false");
+        filterConfig.addProperty("checkC", "false");
         final String[] suppressed = {
             "43:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -161,7 +161,7 @@ public class SuppressionCommentFilterTest
     public void testCheckCpp() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("checkCPP", "false");
+        filterConfig.addProperty("checkCPP", "false");
         final String[] suppressed = {
             "16:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -177,8 +177,8 @@ public class SuppressionCommentFilterTest
     public void testOffFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CS_OFF");
-        filterConfig.addAttribute("onCommentFormat", "CS_ON");
+        filterConfig.addProperty("offCommentFormat", "CS_OFF");
+        filterConfig.addProperty("onCommentFormat", "CS_ON");
         final String[] suppressed = {
             "32:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -202,9 +202,9 @@ public class SuppressionCommentFilterTest
     public void testOffFormatCheck() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CS_OFF");
-        filterConfig.addAttribute("onCommentFormat", "CS_ON");
-        filterConfig.addAttribute("checkFormat", "ConstantNameCheck");
+        filterConfig.addProperty("offCommentFormat", "CS_OFF");
+        filterConfig.addProperty("onCommentFormat", "CS_ON");
+        filterConfig.addProperty("checkFormat", "ConstantNameCheck");
         final String[] suppressed = {
             "39:30: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -217,11 +217,11 @@ public class SuppressionCommentFilterTest
     public void testArgumentSuppression() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "IllegalCatchCheck OFF\\: (\\w+)");
-        filterConfig.addAttribute("onCommentFormat", "IllegalCatchCheck ON\\: (\\w+)");
-        filterConfig.addAttribute("checkFormat", "IllegalCatchCheck");
+        filterConfig.addProperty("offCommentFormat", "IllegalCatchCheck OFF\\: (\\w+)");
+        filterConfig.addProperty("onCommentFormat", "IllegalCatchCheck ON\\: (\\w+)");
+        filterConfig.addProperty("checkFormat", "IllegalCatchCheck");
         // -@cs[CheckstyleTestMakeup] need to test dynamic property
-        filterConfig.addAttribute("messageFormat",
+        filterConfig.addProperty("messageFormat",
                 "^" + getCheckMessage(IllegalCatchCheck.class, IllegalCatchCheck.MSG_KEY, "$1")
                         + "*$");
         final String[] suppressed = {
@@ -235,9 +235,9 @@ public class SuppressionCommentFilterTest
     public void testExpansion() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF\\: ([\\w\\|]+)");
-        filterConfig.addAttribute("onCommentFormat", "CSON\\: ([\\w\\|]+)");
-        filterConfig.addAttribute("checkFormat", "$1");
+        filterConfig.addProperty("offCommentFormat", "CSOFF\\: ([\\w\\|]+)");
+        filterConfig.addProperty("onCommentFormat", "CSON\\: ([\\w\\|]+)");
+        filterConfig.addProperty("checkFormat", "$1");
         final String[] suppressed = {
             "22:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -256,10 +256,10 @@ public class SuppressionCommentFilterTest
     public void testMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("onCommentFormat", "UNUSED ON\\: (\\w+)");
-        filterConfig.addAttribute("offCommentFormat", "UNUSED OFF\\: (\\w+)");
-        filterConfig.addAttribute("checkFormat", "Unused");
-        filterConfig.addAttribute("messageFormat", "^Unused \\w+ '$1'.$");
+        filterConfig.addProperty("onCommentFormat", "UNUSED ON\\: (\\w+)");
+        filterConfig.addProperty("offCommentFormat", "UNUSED OFF\\: (\\w+)");
+        filterConfig.addProperty("checkFormat", "Unused");
+        filterConfig.addProperty("messageFormat", "^Unused \\w+ '$1'.$");
         final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
         verifySuppressed(filterConfig, suppressed);
     }
@@ -275,11 +275,11 @@ public class SuppressionCommentFilterTest
             String[] expectedViolations, String... suppressedViolations) throws Exception {
         final DefaultConfiguration memberNameCheckConfig =
                 createModuleConfig(MemberNameCheck.class);
-        memberNameCheckConfig.addAttribute("id", "ignore");
+        memberNameCheckConfig.addProperty("id", "ignore");
 
         final DefaultConfiguration constantNameCheckConfig =
             createModuleConfig(ConstantNameCheck.class);
-        constantNameCheckConfig.addAttribute("id", null);
+        constantNameCheckConfig.addProperty("id", null);
 
         final DefaultConfiguration treewalkerConfig = createModuleConfig(TreeWalker.class);
         treewalkerConfig.addChild(memberNameCheckConfig);
@@ -360,7 +360,7 @@ public class SuppressionCommentFilterTest
     public void testInvalidCheckFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("checkFormat", "e[l");
+        filterConfig.addProperty("checkFormat", "e[l");
 
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
@@ -378,7 +378,7 @@ public class SuppressionCommentFilterTest
     public void testInvalidMessageFormat() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("messageFormat", "e[l");
+        filterConfig.addProperty("messageFormat", "e[l");
 
         try {
             final String[] suppressed = CommonUtil.EMPTY_STRING_ARRAY;
@@ -417,9 +417,9 @@ public class SuppressionCommentFilterTest
     public void testSuppressByCheck() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
         final String[] suppressedViolation = {
             "6:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -457,9 +457,9 @@ public class SuppressionCommentFilterTest
     public void testSuppressById() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("idFormat", "$1");
+        filterConfig.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addProperty("idFormat", "$1");
         final String[] suppressedViolation = {
             "6:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -497,10 +497,10 @@ public class SuppressionCommentFilterTest
     public void testSuppressByCheckAndId() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
-        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
-        filterConfig.addAttribute("idFormat", "$1");
+        filterConfig.addProperty("offCommentFormat", "CSOFF (\\w+) \\(\\w+\\)");
+        filterConfig.addProperty("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("idFormat", "$1");
         final String[] suppressedViolation = {
             "6:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -538,10 +538,10 @@ public class SuppressionCommentFilterTest
     public void testSuppressByIdAndMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(allow (\\w+)\\)");
-        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("idFormat", "$1");
-        filterConfig.addAttribute("messageFormat", "$2");
+        filterConfig.addProperty("offCommentFormat", "CSOFF (\\w+) \\(allow (\\w+)\\)");
+        filterConfig.addProperty("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addProperty("idFormat", "$1");
+        filterConfig.addProperty("messageFormat", "$2");
         final String[] suppressedViolation = {
             "18:17: "
                 + getCheckMessage(AbstractNameCheck.class,
@@ -576,10 +576,10 @@ public class SuppressionCommentFilterTest
     public void testSuppressByCheckAndMessage() throws Exception {
         final DefaultConfiguration filterConfig =
             createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("offCommentFormat", "CSOFF (\\w+) \\(allow (\\w+)\\)");
-        filterConfig.addAttribute("onCommentFormat", "CSON (\\w+)");
-        filterConfig.addAttribute("checkFormat", "MemberNameCheck");
-        filterConfig.addAttribute("messageFormat", "$2");
+        filterConfig.addProperty("offCommentFormat", "CSOFF (\\w+) \\(allow (\\w+)\\)");
+        filterConfig.addProperty("onCommentFormat", "CSON (\\w+)");
+        filterConfig.addProperty("checkFormat", "MemberNameCheck");
+        filterConfig.addProperty("messageFormat", "$2");
         final String[] suppressedViolation = {
             "18:17: "
                 + getCheckMessage(AbstractNameCheck.class,
