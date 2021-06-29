@@ -38,17 +38,22 @@ public final class InputConfiguration {
     /** Map of non default properties. */
     private final Map<String, String> nonDefaultProperties;
 
-    /** List of violations. */
-    private final List<Integer> violations;
+    /** List of violation lines. */
+    private final List<Integer> violationLines;
+
+    /** List of violation messages. */
+    private final List<String> violationMessages;
 
     private InputConfiguration(String checkName,
                                Map<String, String> defaultProperties,
                                Map<String, String> nonDefaultProperties,
-                               List<Integer> violations) {
+                               List<Integer> violationLines,
+                               List<String> violationMessages) {
         this.checkName = checkName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
-        this.violations = violations;
+        this.violationLines = violationLines;
+        this.violationMessages = violationMessages;
     }
 
     public String getCheckName() {
@@ -70,8 +75,12 @@ public final class InputConfiguration {
         return Collections.unmodifiableMap(nonDefaultProperties);
     }
 
-    public List<Integer> getViolations() {
-        return Collections.unmodifiableList(violations);
+    public List<Integer> getViolationLines() {
+        return Collections.unmodifiableList(violationLines);
+    }
+
+    public List<String> getViolationMessages() {
+        return Collections.unmodifiableList(violationMessages);
     }
 
     public DefaultConfiguration createConfiguration() {
@@ -90,7 +99,9 @@ public final class InputConfiguration {
 
         private final Map<String, String> nonDefaultProperties = new HashMap<>();
 
-        private final List<Integer> violations = new ArrayList<>();
+        private final List<Integer> violationLines = new ArrayList<>();
+
+        private final List<String> violationMessages = new ArrayList<>();
 
         private String checkName;
 
@@ -106,13 +117,22 @@ public final class InputConfiguration {
             nonDefaultProperties.put(key, value);
         }
 
-        public void addViolation(int violationLine) {
-            violations.add(violationLine);
+        public void addViolationLine(int violationLine) {
+            violationLines.add(violationLine);
+        }
+
+        public void addViolationMessage(String violationMessage) {
+            violationMessages.add(violationMessage);
         }
 
         public InputConfiguration build() {
-            return new InputConfiguration(checkName,
-                    defaultProperties, nonDefaultProperties, violations);
+            return new InputConfiguration(
+                    checkName,
+                    defaultProperties,
+                    nonDefaultProperties,
+                    violationLines,
+                    violationMessages
+            );
         }
     }
 }
