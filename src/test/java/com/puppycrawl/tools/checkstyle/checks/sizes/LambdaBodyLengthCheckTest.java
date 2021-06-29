@@ -81,7 +81,7 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
     public void testMaxLimitIsDifferent() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LambdaBodyLengthCheck.class);
-        checkConfig.addAttribute("max", "3");
+        checkConfig.addProperty("max", "3");
         final String[] expected = {
             "13:27: " + getCheckMessage(MSG_KEY, 4, 3),
             "17:27: " + getCheckMessage(MSG_KEY, 4, 3),

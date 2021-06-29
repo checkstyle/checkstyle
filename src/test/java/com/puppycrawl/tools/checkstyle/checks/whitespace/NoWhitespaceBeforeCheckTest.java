@@ -59,7 +59,7 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testDot() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addAttribute("tokens", "DOT");
+        checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
             "5:13: " + getCheckMessage(MSG_KEY, "."),
             "6:5: " + getCheckMessage(MSG_KEY, "."),
@@ -74,8 +74,8 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testDotAllowLineBreaks() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addAttribute("tokens", "DOT");
-        checkConfig.addAttribute("allowLineBreaks", "yes");
+        checkConfig.addProperty("tokens", "DOT");
+        checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
             "5:13: " + getCheckMessage(MSG_KEY, "."),
             "129:18: " + getCheckMessage(MSG_KEY, "."),
@@ -87,7 +87,7 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testMethodReference() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_REF");
+        checkConfig.addProperty("tokens", "METHOD_REF");
         final String[] expected = {
             "17:32: " + getCheckMessage(MSG_KEY, "::"),
             "18:61: " + getCheckMessage(MSG_KEY, "::"),
@@ -98,7 +98,7 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testDotAtTheStartOfTheLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addAttribute("tokens", "DOT");
+        checkConfig.addProperty("tokens", "DOT");
         final String[] expected = {
             "2:1: " + getCheckMessage(MSG_KEY, "."),
         };
@@ -108,8 +108,8 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testMethodRefAtTheStartOfTheLine() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_REF");
-        checkConfig.addAttribute("allowLineBreaks", "yes");
+        checkConfig.addProperty("tokens", "METHOD_REF");
+        checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
             "14:3: " + getCheckMessage(MSG_KEY, "::"),
         };
@@ -119,8 +119,8 @@ public class NoWhitespaceBeforeCheckTest
     @Test
     public void testEmptyForLoop() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceBeforeCheck.class);
-        checkConfig.addAttribute("tokens", "SEMI");
-        checkConfig.addAttribute("allowLineBreaks", "yes");
+        checkConfig.addProperty("tokens", "SEMI");
+        checkConfig.addProperty("allowLineBreaks", "yes");
         final String[] expected = {
             "12:24: " + getCheckMessage(MSG_KEY, ";"),
             "18:32: " + getCheckMessage(MSG_KEY, ";"),

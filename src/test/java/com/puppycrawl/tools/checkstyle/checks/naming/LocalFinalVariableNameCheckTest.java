@@ -64,7 +64,7 @@ public class LocalFinalVariableNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
+        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
@@ -100,7 +100,7 @@ public class LocalFinalVariableNameCheckTest
     public void testTryWithResources() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "[A-Z]+");
+        checkConfig.addProperty("format", "[A-Z]+");
 
         final String pattern = "[A-Z]+";
 
@@ -118,7 +118,7 @@ public class LocalFinalVariableNameCheckTest
     public void testTryWithResourcesJava9() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LocalFinalVariableNameCheck.class);
-        checkConfig.addAttribute("format", "[a-z]+");
+        checkConfig.addProperty("format", "[a-z]+");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getNonCompilablePath(

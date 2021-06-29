@@ -68,7 +68,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testAllowNoEmptyLineBetweenFields() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
 
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
@@ -95,7 +95,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testMultipleEmptyLinesBetweenClassMembers() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "21:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
             "24:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "import"),
@@ -111,7 +111,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testFormerArrayIndexOutOfBounds() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmptyLineSeparatorFormerException.java"), expected);
     }
@@ -119,8 +119,8 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testAllowMultipleFieldInClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
-        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputEmptyLineSeparatorMultipleFieldsInClass.java"), expected);
     }
@@ -128,7 +128,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testAllowMultipleImportSeparatedFromPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "1:78: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "import"),
         };
@@ -139,7 +139,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testImportSeparatedFromPackage() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
         };
         verify(checkConfig, getPath("InputEmptyLineSeparatorImportSeparatedFromPackage.java"),
@@ -216,7 +216,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineAfterPackageForPackageAst() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("tokens", "PACKAGE_DEF");
+        checkConfig.addProperty("tokens", "PACKAGE_DEF");
         final String[] expected = {
             "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "/*"),
         };
@@ -228,7 +228,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineAfterPackageForImportAst() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("tokens", "IMPORT");
+        checkConfig.addProperty("tokens", "IMPORT");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
                 getPath("InputEmptyLineSeparatorEmptyLineAfterPackageForImportAst.java"),
@@ -290,7 +290,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testPrePreviousLineEmptiness() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig,
             getPath("InputEmptyLineSeparatorPrePreviousLineEmptiness.java"), expected);
@@ -299,7 +299,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testPrePreviousLineIsEmpty() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "package"),
         };
@@ -310,7 +310,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testPreviousLineEmptiness() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
         final String[] expected = {
             "13:30: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "18:5: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
@@ -326,7 +326,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testDisAllowMultipleEmptyLinesInsideClassMembers() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
         final String[] expected = {
             "25:11: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "37:11: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
@@ -412,8 +412,8 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testClassOnly() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("tokens", "CLASS_DEF");
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("tokens", "CLASS_DEF");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
         final String[] expected = {
             "60:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "CLASS_DEF"),
         };
@@ -424,7 +424,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testLineSeparationBeforeComments() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "19:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
             "23:1: " + getCheckMessage(MSG_MULTIPLE_LINES, "//"),
@@ -517,7 +517,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineSeparatorRecordsAndCompactCtorsNoEmptyLines() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
 
         final String[] expected = {
             "2:1: " + getCheckMessage(MSG_SHOULD_BE_SEPARATED, "package"),
@@ -534,7 +534,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineSeparatorMultipleSingleTypeVariables() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowNoEmptyLineBetweenFields", "true");
+        checkConfig.addProperty("allowNoEmptyLineBetweenFields", "true");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -546,7 +546,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineSeparatorEmptyLinesInsideClassMembersRecursive() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
         final String[] expected = {
             "19:15: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
         };
@@ -558,7 +558,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineSeparatorNewMethodDef() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
         final String[] expected = {
             "21:34: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "30:26: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
@@ -571,7 +571,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineSeparatorPostFixCornerCases() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        checkConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
         final String[] expected = {
             "10:19: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
             "24:29: " + getCheckMessage(MSG_MULTIPLE_LINES_INSIDE),
@@ -585,7 +585,7 @@ public class EmptyLineSeparatorCheckTest
     @Test
     public void testEmptyLineSeparatorAnnotation() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyLineSeparatorCheck.class);
-        checkConfig.addAttribute("allowMultipleEmptyLines", "false");
+        checkConfig.addProperty("allowMultipleEmptyLines", "false");
         final String[] expected = {
             "10:22: " + getCheckMessage(MSG_MULTIPLE_LINES_AFTER, "}"),
         };

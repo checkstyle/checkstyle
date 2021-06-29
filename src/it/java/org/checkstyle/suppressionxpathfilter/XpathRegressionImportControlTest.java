@@ -44,7 +44,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
-        moduleConfig.addAttribute("file", getPath(
+        moduleConfig.addProperty("file", getPath(
                 "SuppressionXpathRegressionImportControlOne.xml"));
 
         final String[] expectedViolation = {
@@ -67,7 +67,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
-        moduleConfig.addAttribute("file", getPath(
+        moduleConfig.addProperty("file", getPath(
                 "SuppressionXpathRegressionImportControlTwo.xml"));
 
         final String[] expectedViolation = {
@@ -111,7 +111,7 @@ public class XpathRegressionImportControlTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportControlCheck.class);
-        moduleConfig.addAttribute("file",
+        moduleConfig.addProperty("file",
                 getPath("SuppressionXpathRegressionImportControlFour.xml"));
 
         final String[] expectedViolation = {

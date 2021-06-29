@@ -72,7 +72,7 @@ public class XpathRegressionLambdaParameterNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(LambdaParameterNameCheck.class);
-        moduleConfig.addAttribute("format", nonDefaultPattern);
+        moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
             "7:45: " + getCheckMessage(LambdaParameterNameCheck.class,

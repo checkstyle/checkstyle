@@ -64,7 +64,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     public void testFormat() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("format", "^$");
+        checkConfig.addProperty("format", "^$");
         final String[] expected = {
             "5:5: " + getCheckMessage(MSG_KEY, 7, 2),
             "18:5: " + getCheckMessage(MSG_KEY_VOID, 7, 1),
@@ -78,7 +78,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethodsAndLambdas() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("max", "1");
+        checkConfig.addProperty("max", "1");
         final String[] expected = {
             "15:55: " + getCheckMessage(MSG_KEY, 2, 1),
             "27:49: " + getCheckMessage(MSG_KEY, 2, 1),
@@ -92,7 +92,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLambdasOnly() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("tokens", "LAMBDA");
+        checkConfig.addProperty("tokens", "LAMBDA");
         final String[] expected = {
             "34:42: " + getCheckMessage(MSG_KEY, 3, 2),
         };
@@ -102,7 +102,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethodsOnly() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("tokens", "METHOD_DEF");
+        checkConfig.addProperty("tokens", "METHOD_DEF");
         final String[] expected = {
             "26:5: " + getCheckMessage(MSG_KEY, 3, 2),
             "33:5: " + getCheckMessage(MSG_KEY, 4, 2),
@@ -115,7 +115,7 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithReturnOnlyAsTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("tokens", "LITERAL_RETURN");
+        checkConfig.addProperty("tokens", "LITERAL_RETURN");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputReturnCountLambda.java"), expected);
     }
@@ -147,8 +147,8 @@ public class ReturnCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMaxForVoid() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(ReturnCountCheck.class);
-        checkConfig.addAttribute("max", "2");
-        checkConfig.addAttribute("maxForVoid", "0");
+        checkConfig.addProperty("max", "2");
+        checkConfig.addProperty("maxForVoid", "0");
         final String[] expected = {
             "4:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
             "8:5: " + getCheckMessage(MSG_KEY_VOID, 1, 0),
