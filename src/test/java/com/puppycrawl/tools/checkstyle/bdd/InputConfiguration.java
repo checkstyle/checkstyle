@@ -38,13 +38,13 @@ public final class InputConfiguration {
     /** Map of non default properties. */
     private final Map<String, String> nonDefaultProperties;
 
-    /** List of violations. */
-    private final List<Integer> violations;
+    /** List of parsed violations. */
+    private final List<ParsedViolation> violations;
 
     private InputConfiguration(String checkName,
                                Map<String, String> defaultProperties,
                                Map<String, String> nonDefaultProperties,
-                               List<Integer> violations) {
+                               List<ParsedViolation> violations) {
         this.checkName = checkName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
@@ -70,7 +70,7 @@ public final class InputConfiguration {
         return Collections.unmodifiableMap(nonDefaultProperties);
     }
 
-    public List<Integer> getViolations() {
+    public List<ParsedViolation> getViolations() {
         return Collections.unmodifiableList(violations);
     }
 
@@ -90,7 +90,7 @@ public final class InputConfiguration {
 
         private final Map<String, String> nonDefaultProperties = new HashMap<>();
 
-        private final List<Integer> violations = new ArrayList<>();
+        private final List<ParsedViolation> violations = new ArrayList<>();
 
         private String checkName;
 
@@ -106,13 +106,17 @@ public final class InputConfiguration {
             nonDefaultProperties.put(key, value);
         }
 
-        public void addViolation(int violationLine) {
-            violations.add(violationLine);
+        public void addViolation(int violationLine, String violationMessage) {
+            violations.add(new ParsedViolation(violationLine, violationMessage));
         }
 
         public InputConfiguration build() {
-            return new InputConfiguration(checkName,
-                    defaultProperties, nonDefaultProperties, violations);
+            return new InputConfiguration(
+                    checkName,
+                    defaultProperties,
+                    nonDefaultProperties,
+                    violations
+            );
         }
     }
 }
