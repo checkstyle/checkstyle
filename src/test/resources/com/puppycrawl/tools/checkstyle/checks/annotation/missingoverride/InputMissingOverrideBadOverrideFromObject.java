@@ -12,7 +12,7 @@ public class InputMissingOverrideBadOverrideFromObject
     /**
      * {@inheritDoc}
      */
-    public boolean equals(Object obj) {     // violation
+    public boolean equals(Object obj) { // violation: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
         return false;
     }
 
@@ -32,7 +32,7 @@ public class InputMissingOverrideBadOverrideFromObject
         /**
          * {@inheritDoc}
          */
-        protected void finalize() throws Throwable {}       // violation
+        protected void finalize() throws Throwable {} // violation: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
     }
 }
 
@@ -41,7 +41,7 @@ interface HashEq2 {
     /**
      * {@inheritDoc}
      */
-    public int hashCode();      // violation
+    public int hashCode(); // violation: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
 }
 
 enum enum3 {
@@ -50,7 +50,7 @@ enum enum3 {
     /**
      * {@inheritDoc}
      */
-    public String toString() {      // violation
+    public String toString() { // violation: Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
         return "B";
     }
 
