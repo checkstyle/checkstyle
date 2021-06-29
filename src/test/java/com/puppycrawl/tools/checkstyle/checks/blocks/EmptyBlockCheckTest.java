@@ -72,7 +72,7 @@ public class EmptyBlockCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
+        checkConfig.addProperty("option", BlockOption.TEXT.toString());
         final String[] expected = {
             "38:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "try"),
             "40:17: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "finally"),
@@ -88,7 +88,7 @@ public class EmptyBlockCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
+        checkConfig.addProperty("option", BlockOption.STATEMENT.toString());
         final String[] expected = {
             "38:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
             "40:17: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT),
@@ -106,8 +106,8 @@ public class EmptyBlockCheckTest
     public void allowEmptyLoops() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
+        checkConfig.addProperty("option", BlockOption.STATEMENT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_TRY, LITERAL_CATCH,"
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
@@ -123,8 +123,8 @@ public class EmptyBlockCheckTest
     public void allowEmptyLoopsText() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_TRY, LITERAL_CATCH,"
+        checkConfig.addProperty("option", BlockOption.TEXT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_TRY, LITERAL_CATCH,"
                 + "LITERAL_FINALLY, LITERAL_DO, LITERAL_IF,"
                 + "LITERAL_ELSE, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH");
         final String[] expected = {
@@ -139,7 +139,7 @@ public class EmptyBlockCheckTest
     @Test
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -159,8 +159,8 @@ public class EmptyBlockCheckTest
     @Test
     public void testAllowEmptyCaseWithText() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_CASE");
+        checkConfig.addProperty("option", BlockOption.TEXT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_CASE");
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "case"),
@@ -174,8 +174,8 @@ public class EmptyBlockCheckTest
     @Test
     public void testForbidCaseWithoutStmt() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_CASE");
+        checkConfig.addProperty("option", BlockOption.STATEMENT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_CASE");
         final String[] expected = {
             "16:28: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
             "22:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "case"),
@@ -191,8 +191,8 @@ public class EmptyBlockCheckTest
     @Test
     public void testAllowEmptyDefaultWithText() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.TEXT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("option", BlockOption.TEXT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
             "15:30: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
             "21:13: " + getCheckMessage(MSG_KEY_BLOCK_EMPTY, "default"),
@@ -207,8 +207,8 @@ public class EmptyBlockCheckTest
     @Test
     public void testForbidDefaultWithoutStatement() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("option", BlockOption.STATEMENT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_DEFAULT");
         final String[] expected = {
             "15:30: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
             "21:13: " + getCheckMessage(MSG_KEY_BLOCK_NO_STATEMENT, "default"),
@@ -226,8 +226,8 @@ public class EmptyBlockCheckTest
     @Test
     public void testAnnotationDefaultKeyword() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("option", BlockOption.STATEMENT.toString());
-        checkConfig.addAttribute("tokens", "LITERAL_DEFAULT");
+        checkConfig.addProperty("option", BlockOption.STATEMENT.toString());
+        checkConfig.addProperty("tokens", "LITERAL_DEFAULT");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         final String path = getPath("InputEmptyBlockAnnotationDefaultKeyword.java");
         verify(checkConfig, path, expected);
@@ -236,7 +236,7 @@ public class EmptyBlockCheckTest
     @Test
     public void testEmptyBlockSwitchExpressions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyBlockCheck.class);
-        checkConfig.addAttribute("tokens",
+        checkConfig.addProperty("tokens",
             "LITERAL_DEFAULT, LITERAL_CASE, LITERAL_SWITCH");
 
         final String[] expected = {

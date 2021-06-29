@@ -52,7 +52,7 @@ public class NestedTryDepthCheckTest extends AbstractModuleTestSupport {
     public void testCustomizedDepth() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NestedTryDepthCheck.class);
-        checkConfig.addAttribute("max", "2");
+        checkConfig.addProperty("max", "2");
 
         final String[] expected = {
             "41:21: " + getCheckMessage(MSG_KEY, 3, 2),

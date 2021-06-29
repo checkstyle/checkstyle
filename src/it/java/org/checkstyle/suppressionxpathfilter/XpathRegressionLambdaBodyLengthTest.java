@@ -61,7 +61,7 @@ public class XpathRegressionLambdaBodyLengthTest
         final File fileToProcess = new File(getPath(
             "SuppressionXpathRegressionLambdaBodyLength2.java"));
         final DefaultConfiguration moduleConfig = createModuleConfig(CLASS);
-        moduleConfig.addAttribute("max", "5");
+        moduleConfig.addProperty("max", "5");
         final String[] expectedViolation = {
             "7:25: " + getCheckMessage(CLASS, LambdaBodyLengthCheck.MSG_KEY, 6, 5),
         };

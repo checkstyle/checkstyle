@@ -64,7 +64,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithMultilineStatements() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
-        checkConfig.addAttribute("treatTryResourcesAsStatement", "true");
+        checkConfig.addProperty("treatTryResourcesAsStatement", "true");
         final String[] expected = {
             "49:21: " + getCheckMessage(MSG_KEY),
             "66:17: " + getCheckMessage(MSG_KEY),
@@ -99,7 +99,7 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testResourceReferenceVariableIgnored() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
-        checkConfig.addAttribute("treatTryResourcesAsStatement", "true");
+        checkConfig.addProperty("treatTryResourcesAsStatement", "true");
         final String[] expected = {
             "32:42: " + getCheckMessage(MSG_KEY),
             "36:43: " + getCheckMessage(MSG_KEY),
