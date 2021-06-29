@@ -72,7 +72,7 @@ public class XpathRegressionInterfaceIsTypeTest extends AbstractXpathTestSupport
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(InterfaceIsTypeCheck.class);
 
-        moduleConfig.addAttribute("allowMarkerInterfaces", "false");
+        moduleConfig.addProperty("allowMarkerInterfaces", "false");
 
         final String[] expectedViolation = {
             "3:1: " + getCheckMessage(InterfaceIsTypeCheck.class,

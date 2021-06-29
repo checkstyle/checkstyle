@@ -117,7 +117,7 @@ public class XpathRegressionAvoidNestedBlocksTest extends AbstractXpathTestSuppo
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(AvoidNestedBlocksCheck.class);
-        moduleConfig.addAttribute("allowInSwitchCase", "true");
+        moduleConfig.addProperty("allowInSwitchCase", "true");
 
         final String[] expectedViolation = {
             "9:21: " + getCheckMessage(AvoidNestedBlocksCheck.class,

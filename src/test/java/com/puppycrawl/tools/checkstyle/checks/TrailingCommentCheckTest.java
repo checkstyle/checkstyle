@@ -72,7 +72,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testLegalComment() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
-        checkConfig.addAttribute("legalComment", "^NOI18N$");
+        checkConfig.addProperty("legalComment", "^NOI18N$");
         final String[] expected = {
             "4:12: " + getCheckMessage(MSG_KEY),
             "7:12: " + getCheckMessage(MSG_KEY),
@@ -87,7 +87,7 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testFormat() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
-        checkConfig.addAttribute("format", "NOT MATCH");
+        checkConfig.addProperty("format", "NOT MATCH");
         final String[] expected = {
             "4:12: " + getCheckMessage(MSG_KEY),
             "5:5: " + getCheckMessage(MSG_KEY),
