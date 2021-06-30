@@ -649,4 +649,8 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]XpathQueryGeneratorTest.java"/>
 
+  <!-- This file requires disallowed imports from 'org.antlr.v4.runtime' -->
+  <suppress id="ImportControlMain"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]grammar[\\/]CrAwareLexerSimulator.java"/>
+
 </suppressions>
