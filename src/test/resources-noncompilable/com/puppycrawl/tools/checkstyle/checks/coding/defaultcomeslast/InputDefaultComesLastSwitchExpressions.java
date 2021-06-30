@@ -1,10 +1,13 @@
+/*
+DefaultComesLast
+skipIfLastAndSharedWithCase = (default)false
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
-/* Config:
- *
- * skipIfLastAndSharedWithCase = false
- */
 public class InputDefaultComesLastSwitchExpressions {
     public int method1(int i) {
         int x = 7;
