@@ -51,10 +51,10 @@ public final class InlineConfigParser {
      * @param inputFilePath the input file path.
      * @throws Exception if unable to read file or file not formatted properly.
      */
-    public static InputConfiguration parse(String inputFilePath) throws Exception {
+    public static TestInputConfiguration parse(String inputFilePath) throws Exception {
         final Path filePath = Paths.get(inputFilePath);
         final List<String> lines = readFile(filePath);
-        final InputConfiguration.Builder inputConfigBuilder = new InputConfiguration.Builder();
+        final TestInputConfiguration.Builder inputConfigBuilder = new TestInputConfiguration.Builder();
         setCheckName(inputConfigBuilder, inputFilePath, lines);
         setCheckProperties(inputConfigBuilder, lines);
         setViolationLineNumbers(inputConfigBuilder, lines);
@@ -78,7 +78,7 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setCheckName(InputConfiguration.Builder inputConfigBuilder,
+    private static void setCheckName(TestInputConfiguration.Builder inputConfigBuilder,
                                      String filePath, List<String> lines)
                     throws CheckstyleException {
         if (lines.size() < 2) {
@@ -89,7 +89,7 @@ public final class InlineConfigParser {
         inputConfigBuilder.setCheckName(checkPath);
     }
 
-    private static void setCheckProperties(InputConfiguration.Builder inputConfigBuilder,
+    private static void setCheckProperties(TestInputConfiguration.Builder inputConfigBuilder,
                                            List<String> lines)
                     throws Exception {
         final StringBuilder stringBuilder = new StringBuilder(128);
@@ -115,8 +115,8 @@ public final class InlineConfigParser {
         }
     }
 
-    private static void setViolationLineNumbers(InputConfiguration.Builder inputConfigBuilder,
-                                    List<String> lines) {
+    private static void setViolationLineNumbers(TestInputConfiguration.Builder inputConfigBuilder,
+                                                List<String> lines) {
         for (int lineNo = 2; lineNo < lines.size(); lineNo++) {
             if (VIOLATION_PATTERN.matcher(lines.get(lineNo)).matches()) {
                 inputConfigBuilder.addViolation(lineNo + 1);
