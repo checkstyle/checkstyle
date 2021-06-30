@@ -1,13 +1,13 @@
 /*
 EqualsAvoidNull
-ignoreEqualsIgnoreCase = (default)false
+ignoreEqualsIgnoreCase = true
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 import java.util.Map;
-public class InputEqualsAvoidNull {
+public class InputEqualsAvoidNullIgnoreCase {
 
     public boolean equals(Object o) {
     return false;
@@ -116,7 +116,7 @@ public class InputEqualsAvoidNull {
 
         new Object().equals("more cheese");
 
-        InputEqualsAvoidNullOutter outter = new InputEqualsAvoidNullOutter();
+        InputEqualsAvoidNullOutter1 outter = new InputEqualsAvoidNullOutter1();
 
         outter.new InputEqualsAvoidNullInner().equals("eat pizza and enjoy inner classes");
     }
@@ -173,7 +173,7 @@ public class InputEqualsAvoidNull {
 
         new Object().equals("more cheese");
 
-        InputEqualsAvoidNullOutter outter = new InputEqualsAvoidNullOutter();
+        InputEqualsAvoidNullOutter1 outter = new InputEqualsAvoidNullOutter1();
 
         outter.new InputEqualsAvoidNullInner().equals("eat pizza and enjoy inner classes");
 
@@ -199,7 +199,7 @@ public class InputEqualsAvoidNull {
 
 }
 
-class InputEqualsAvoidNullOutter {
+class InputEqualsAvoidNullOutter1 {
     public class InputEqualsAvoidNullInner {
             public boolean equals(Object o) {
                 return true;
@@ -207,7 +207,7 @@ class InputEqualsAvoidNullOutter {
     }
 }
 
-class MyString {
+class MyString1 {
     public boolean equals() {
         return true;
     }
@@ -227,7 +227,7 @@ class MyString {
     private String pizza;
 
     public void main() {
-        MyString myString = new MyString();
+        MyString1 myString = new MyString1();
         myString.equals();
         myString.equals("what");
         myString.equalsIgnoreCase();
@@ -236,12 +236,12 @@ class MyString {
     }
 }
 
-class NewTest {
+class NewTest1 {
     static String classVar;
     String instanceVar;
-    NewTest testObj = new NewTest("");
+    NewTest1 testObj = new NewTest1("");
 
-    NewTest(String param) {
+    NewTest1(String param) {
         param.equals("");
     }
 
@@ -253,11 +253,11 @@ class NewTest {
 
         classVar.equals("");
         instanceVar.equals("");
-        NewTest.classVar.equals("");
+        NewTest1.classVar.equals("");
         this.classVar.equals("");
         this.instanceVar.equals("");
 
-        NewTest testObj = new NewTest("");
+        NewTest1 testObj = new NewTest1("");
         this.testObj.instanceVar.equals(""); // not violated, too confusing
         testObj.classVar.equals(""); // not violated
 
@@ -274,13 +274,13 @@ class NewTest {
             public void main() {
                 classVar.equals("");
                 instanceVar.equals("");
-                NewTest.classVar.equals("");
+                NewTest1.classVar.equals("");
 
                 instanceVarInner.equals("");
                 this.instanceVarInner.equals("");
                 localVar.equals("");
 
-                NewTest testObj = new NewTest("");
+                NewTest1 testObj = new NewTest1("");
                 testObj.instanceVar.equals(""); // not violated
                 testObj.classVar.equals(""); // not violated
 
@@ -340,7 +340,7 @@ class NewTest {
         String nestedInstanceVar;
         public void method() {
             classVar.equals("");
-            NewTest.classVar.equals("");
+            NewTest1.classVar.equals("");
             this.nestedInstanceVar.equals("");
             nestedClassVar.equals("");
             nestedInstanceVar.equals("");
@@ -348,7 +348,7 @@ class NewTest {
             class Inner {
                 public void method() {
                     classVar.equals("");
-                    NewTest.classVar.equals("");
+                    NewTest1.classVar.equals("");
                     nestedClassVar.equals("");
                     nestedInstanceVar.equals("");
                 }
@@ -393,7 +393,7 @@ class NewTest {
 String o3 = "";
     }
 }
-class Anonymous {
+class Anonymous1 {
     public static void main(String[] args) {
         Runnable anonym = new Runnable() {
             String nullableStr = null;
@@ -407,15 +407,15 @@ class Anonymous {
     {}
 }
 
-enum TestEnum {
+enum TestEnum1 {
     ONE;
     public void foo() {
-        TestEnum.ONE.equals(this);
+        TestEnum1.ONE.equals(this);
         this.ONE.equals(this);
     }
 }
 
-class TestConcatenations {
+class TestConcatenations1 {
     String s = null;
 
     void foo() {
@@ -434,9 +434,9 @@ class TestConcatenations {
     }
 }
 
-class TestThisWithNotStringInstance {
+class TestThisWithNotStringInstance1 {
 
-    MyString notString;
+    MyString1 notString;
 
     void foo() {
         this.notString.equals(""); // ok
