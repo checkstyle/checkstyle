@@ -58,7 +58,7 @@ public class PackageNameCheckTest
             "6:9: " + getCheckMessage(MSG_KEY,
                 "com.puppycrawl.tools.checkstyle.checks.naming.packagename", pattern),
         };
-        verify(checkConfig, getPath("InputPackageNameSimple.java"), expected);
+        verify(checkConfig, getPath("InputPackageNameSimpleSpecified.java"), expected);
     }
 
     @Test
