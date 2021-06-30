@@ -1,5 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
+/*
+DefaultComesLast
+skipIfLastAndSharedWithCase = (default)false
 
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
 public class InputDefaultComesLast
 {
@@ -34,7 +40,7 @@ public class InputDefaultComesLast
 
         switch (i) {
             case 1:
-            default: //violation
+            default: // violation
                 break;
             case 2:
                 break;
@@ -42,37 +48,7 @@ public class InputDefaultComesLast
 
         switch (i) {
             case 1:
-            default: //violation
-            case 2:
-                break;
-            case 3:
-                break;
-        }
-
-        switch (i) {
-            default: //violation
-            case 1:
-                break;
-            case 2:
-                break;
-        }
-
-        switch (i) {
-            case 0: default: case 1: break; case 2: break; //violation
-        }
-
-        switch (i) {
-            default: case 1: break; case 2: break; //violation
-        }
-
-        switch (i) {
-            case 1: default: break; case 2: break; //violation
-        }
-
-        switch (i) {
-            case 1:
-            default: //violation
-                break;
+            default: // violation
             case 2:
                 break;
             case 3:
@@ -80,9 +56,29 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
+            default: // violation
             case 1:
                 break;
-            default: //violation
+            case 2:
+                break;
+        }
+
+        switch (i) {
+            case 0: default: case 1: break; case 2: break; // violation
+        }
+
+        switch (i) {
+            default: case 1: break; case 2: break; // violation
+        }
+
+        switch (i) {
+            case 1: default: break; case 2: break; // violation
+        }
+
+        switch (i) {
+            case 1:
+            default: // violation
+                break;
             case 2:
                 break;
             case 3:
@@ -92,8 +88,8 @@ public class InputDefaultComesLast
         switch (i) {
             case 1:
                 break;
+            default: // violation
             case 2:
-            default: //violation
                 break;
             case 3:
                 break;
@@ -103,7 +99,17 @@ public class InputDefaultComesLast
             case 1:
                 break;
             case 2:
-            default: //violation
+            default: // violation
+                break;
+            case 3:
+                break;
+        }
+
+        switch (i) {
+            case 1:
+                break;
+            case 2:
+            default: // violation
             case 3:
                 break;
             case 4:
@@ -111,7 +117,7 @@ public class InputDefaultComesLast
         }
 
         switch (i) {
-            default: //violation
+            default: // violation
                 break;
             case 1:
                 break;
@@ -122,7 +128,7 @@ public class InputDefaultComesLast
                 break;
             case 2:
                 break;
-            default: //violation
+            default: // violation
             case 5:
             case 6:
                 break;

@@ -101,12 +101,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]covariantequals[\\/]InputCovariantEquals.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLast.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCode.java"/>
@@ -1544,12 +1538,6 @@
             files="coding[\\/]avoidinlineconditionals[\\/]InputAvoidInlineConditionals.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]covariantequals[\\/]InputCovariantEquals.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastDefaultMethodsInInterface.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLast.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]defaultcomeslast[\\/]InputDefaultComesLastSkipIfLastAndSharedWithCase.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
   <suppress id="StyleValidationCommentInInputs"
