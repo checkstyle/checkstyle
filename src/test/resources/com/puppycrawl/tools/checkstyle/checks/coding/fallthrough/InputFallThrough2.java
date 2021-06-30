@@ -1,3 +1,11 @@
+/*
+FallThrough
+checkLastCaseGroup = (default)false
+reliefPattern = (default)falls?[ -]?thr(u|ough)
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
 public class InputFallThrough2 {
@@ -17,7 +25,7 @@ public class InputFallThrough2 {
                     // some work
                     break;
                 }
-            case C:
+            case C: // violation
                 break;
         }
 
@@ -32,18 +40,18 @@ public class InputFallThrough2 {
                 if (true) {
                     return;
                 }
-            case 4:
+            case 4: // violation
                 if (var2 == 2) {
                     break;
                 }
-            case 5:
+            case 5: // violation
                 if (var2 == 1) {
 
                 }
                 else if (true) {
                     return;
                 }
-            case 6:
+            case 6: // violation
                 if (var2 > 1) {
                     break;
                 }
@@ -57,14 +65,14 @@ public class InputFallThrough2 {
                 else if (true) {
                     return;
                 }
-            case 8:
+            case 8: // violation
                 if(var2 == 5) {
                     System.identityHashCode("0xB16B00B5");
                 }
                 else {
                     break;
                 }
-            case 9:
+            case 9: // violation
                 if(var2 == 5) {
                     System.identityHashCode("0xCAFED00D");
                 }
@@ -77,15 +85,15 @@ public class InputFallThrough2 {
                 switch (var3) {
                     case 0xCAFEBABE:
                         String.CASE_INSENSITIVE_ORDER.equals("0x1CEB00DA");
-                    default:
+                    default: // violation
                         String.CASE_INSENSITIVE_ORDER.equals("");
                 }
                 if(true) {
                     break;
                 }
-            case 11:
+            case 11: // violation
                 if(false) {break;}
-            case 12:
+            case 12: // violation
                 if(true);
                 break;
             default:

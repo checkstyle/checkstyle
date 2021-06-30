@@ -261,8 +261,6 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]ExplicitInitializationCheckTest.java"/>
   <suppress id="ImportControlTest"
-            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]FallThroughCheckTest.java"/>
-  <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]FinalLocalVariableCheckTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]checks[\\/]coding[\\/]HiddenFieldCheckTest.java"/>

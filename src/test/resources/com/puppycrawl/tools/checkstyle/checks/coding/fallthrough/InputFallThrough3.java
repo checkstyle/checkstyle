@@ -1,14 +1,14 @@
 /*
 FallThrough
-checkLastCaseGroup = true
-reliefPattern = (default)falls?[ -]?thr(u|ough)
+checkLastCaseGroup = (default)false
+reliefPattern = Continue with next case
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-public class InputFallThrough
+public class InputFallThrough3
 {
     void method(int i, int j, boolean cond) {
         while (true) {
@@ -150,7 +150,7 @@ public class InputFallThrough
           case 2:
               i++;
               // fallthru
-          case 3:
+          case 3: // violation
               i++;
               break;
           case 4:
@@ -175,7 +175,7 @@ public class InputFallThrough
               i++;
           }
           // fallthru
-          case 12:
+          case 12: // violation
               if (false)
                   break;
               else
@@ -191,7 +191,7 @@ public class InputFallThrough
                   //do nothing
               }
               // fallthru
-          case 15:
+          case 15: // violation
               do {
                   System.identityHashCode("something");
                   return;
@@ -209,7 +209,7 @@ public class InputFallThrough
                   break;
               }
               // fallthru
-          case 19:
+          case 19: // violation
               try {
                   i++;
                   break;
@@ -227,7 +227,7 @@ public class InputFallThrough
                   return;
               }
               // fallthru
-          case 21:
+          case 21: // violation
               try {
                   i++;
               } catch (RuntimeException e) {
@@ -257,7 +257,7 @@ public class InputFallThrough
               }
           case 24:
               i++;
-          /* fallthru */ case 25:
+          /* fallthru */ case 25: // violation
               i++;
               break;
 
@@ -271,7 +271,7 @@ public class InputFallThrough
                   return;
               }
               // fallthru
-          default:
+          default: // violation
               // this is the last label
               i++;
           // fallthru
@@ -286,16 +286,16 @@ public class InputFallThrough
           case 0:
               i++; // fallthru
 
-          case 1:
+          case 1: // violation
               i++;
           // fallthru
-          case 2: {
+          case 2: { // violation
               i++;
           }
           // fallthru
-          case 3:
+          case 3: // violation
               i++;
-          /* fallthru */case 4:
+          /* fallthru */case 4: // violation
                 break;
           case 5:
               i++;
@@ -311,12 +311,12 @@ public class InputFallThrough
           case 0:
               i++; /* fallthru */
 
-          case 1:
+          case 1: // violation
               i++;
           /* fallthru */
-          case 2:
+          case 2: // violation
               i++;
-          /* fallthru */case 3:
+          /* fallthru */case 3: // violation
                 break;
           case 4:
               i++;
@@ -332,12 +332,12 @@ public class InputFallThrough
           case 0:
               i++; /*fallthru*/
 
-          case 1:
+          case 1: // violation
               i++;
           /*fallthru*/
-          case 2:
+          case 2: // violation
               i++;
-          /*fallthru*/case 3:
+          /*fallthru*/case 3: // violation
                 break;
           case 4:
               i++;
@@ -353,12 +353,12 @@ public class InputFallThrough
           case 0:
               i++; /* falls through */
 
-          case 1:
+          case 1: // violation
               i++;
           /* falls through */
-          case 2:
+          case 2: // violation
               i++;
-          /* falls through */case 3:
+          /* falls through */case 3: // violation
                 break;
           case 4:
               i++;
@@ -374,14 +374,14 @@ public class InputFallThrough
           case 0:
               i++; /* Continue with next case */
 
-          case 1: // violation
+          case 1:
               i++;
           /* Continue with next case */
-          case 2: // violation
+          case 2:
               i++;
-          /* Continue with next case */case 3: // violation
+          /* Continue with next case */case 3:
                 break;
-          case 4: // violation
+          case 4:
               i++;
           /* Continue with next case */
           }
@@ -478,7 +478,7 @@ public class InputFallThrough
                synchronized (this) {
                }
                // fallthru
-           default:
+           default: // violation
                break;
        }
     }
