@@ -41,14 +41,14 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
         final String[] expected = {
-            "17:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "25:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "33:21: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "37:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "57:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "77:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "89:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
-            "98:13: " + getCheckMessage(MSG_KEY),
+            "23:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "31:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "39:21: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "43:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "63:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "83:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "95:13: " + getCheckMessage(MSG_KEY_SKIP_IF_LAST_AND_SHARED_WITH_CASE),
+            "104:13: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputDefaultComesLastSkipIfLastAndSharedWithCase.java"),
@@ -59,20 +59,20 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = {
-            "25:9: " + getCheckMessage(MSG_KEY),
-            "32:24: " + getCheckMessage(MSG_KEY),
-            "37:13: " + getCheckMessage(MSG_KEY),
-            "45:13: " + getCheckMessage(MSG_KEY),
-            "53:13: " + getCheckMessage(MSG_KEY),
-            "61:21: " + getCheckMessage(MSG_KEY),
-            "65:13: " + getCheckMessage(MSG_KEY),
-            "69:21: " + getCheckMessage(MSG_KEY),
-            "74:13: " + getCheckMessage(MSG_KEY),
-            "85:13: " + getCheckMessage(MSG_KEY),
-            "96:13: " + getCheckMessage(MSG_KEY),
-            "106:13: " + getCheckMessage(MSG_KEY),
-            "114:13: " + getCheckMessage(MSG_KEY),
-            "125:13: " + getCheckMessage(MSG_KEY),
+            "31:9: " + getCheckMessage(MSG_KEY),
+            "38:24: " + getCheckMessage(MSG_KEY),
+            "43:13: " + getCheckMessage(MSG_KEY),
+            "51:13: " + getCheckMessage(MSG_KEY),
+            "59:13: " + getCheckMessage(MSG_KEY),
+            "67:21: " + getCheckMessage(MSG_KEY),
+            "71:13: " + getCheckMessage(MSG_KEY),
+            "75:21: " + getCheckMessage(MSG_KEY),
+            "80:13: " + getCheckMessage(MSG_KEY),
+            "91:13: " + getCheckMessage(MSG_KEY),
+            "102:13: " + getCheckMessage(MSG_KEY),
+            "112:13: " + getCheckMessage(MSG_KEY),
+            "120:13: " + getCheckMessage(MSG_KEY),
+            "131:13: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                getPath("InputDefaultComesLast.java"),
@@ -93,9 +93,9 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
     public void testDefaultComesLastSwitchExpressions() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(DefaultComesLastCheck.class);
         final String[] expected = {
-            "13:13: " + getCheckMessage(MSG_KEY),
-            "29:13: " + getCheckMessage(MSG_KEY),
-            "43:13: " + getCheckMessage(MSG_KEY),
+            "16:13: " + getCheckMessage(MSG_KEY),
+            "32:13: " + getCheckMessage(MSG_KEY),
+            "46:13: " + getCheckMessage(MSG_KEY),
             };
         verify(checkConfig,
             getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
@@ -108,11 +108,11 @@ public class DefaultComesLastCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
 
         final String[] expected = {
-            "29:13: " + getCheckMessage(MSG_KEY),
-            "43:13: " + getCheckMessage(MSG_KEY),
+            "33:13: " + getCheckMessage(MSG_KEY),
+            "48:13: " + getCheckMessage(MSG_KEY),
             };
         verify(checkConfig,
-            getNonCompilablePath("InputDefaultComesLastSwitchExpressions.java"),
+            getNonCompilablePath("InputDefaultComesLastSwitchExpressionsSkipIfLast.java"),
             expected);
     }
 
