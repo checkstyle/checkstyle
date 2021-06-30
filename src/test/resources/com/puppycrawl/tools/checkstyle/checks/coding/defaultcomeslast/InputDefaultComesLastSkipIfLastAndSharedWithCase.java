@@ -1,5 +1,11 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
+/*
+DefaultComesLast
+skipIfLastAndSharedWithCase = (default)false
 
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.defaultcomeslast;
 
 public class InputDefaultComesLastSkipIfLastAndSharedWithCase
 {
