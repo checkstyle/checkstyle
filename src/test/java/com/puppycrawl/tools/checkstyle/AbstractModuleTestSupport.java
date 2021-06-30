@@ -45,7 +45,7 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.api.Violation;
 import com.puppycrawl.tools.checkstyle.bdd.InlineConfigParser;
-import com.puppycrawl.tools.checkstyle.bdd.InputConfiguration;
+import com.puppycrawl.tools.checkstyle.bdd.TestInputConfiguration;
 import com.puppycrawl.tools.checkstyle.internal.utils.BriefUtLogger;
 import com.puppycrawl.tools.checkstyle.utils.ModuleReflectionUtil;
 
@@ -228,10 +228,10 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
     protected final void verifyWithInlineConfigParser(Configuration aConfig,
                                              String filePath, String... expected)
             throws Exception {
-        final InputConfiguration inputConfiguration = InlineConfigParser.parse(filePath);
-        final Configuration parsedConfig = inputConfiguration.createConfiguration();
-        verifyConfig(aConfig, parsedConfig, inputConfiguration);
-        verifyViolations(parsedConfig, filePath, inputConfiguration);
+        final TestInputConfiguration testInputConfiguration = InlineConfigParser.parse(filePath);
+        final Configuration parsedConfig = testInputConfiguration.createConfiguration();
+        verifyConfig(aConfig, parsedConfig, testInputConfiguration);
+        verifyViolations(parsedConfig, filePath, testInputConfiguration);
         verify(parsedConfig, filePath, expected);
     }
 
@@ -352,12 +352,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @param testConfig hardcoded test config.
      * @param parsedConfig parsed config from input file.
-     * @param inputConfiguration InputConfiguration object.
+     * @param testInputConfiguration TestInputConfiguration object.
      * @throws CheckstyleException if property keys not found.
      */
     private static void verifyConfig(Configuration testConfig,
                                      Configuration parsedConfig,
-                                     InputConfiguration inputConfiguration)
+                                     TestInputConfiguration testInputConfiguration)
             throws CheckstyleException {
         assertWithMessage("Check name differs from expected.")
                 .that(testConfig.getName())
@@ -372,7 +372,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
         testProperties.removeAll(Arrays.asList(parsedConfig.getAttributeNames()));
         for (String property : testProperties) {
             assertWithMessage("Property value for key %s differs from expected.", property)
-                    .that(inputConfiguration.getDefaultPropertyValue(property))
+                    .that(testInputConfiguration.getDefaultPropertyValue(property))
                     .isEqualTo(testConfig.getAttribute(property));
         }
     }
@@ -382,12 +382,12 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
      *
      * @param config parsed config.
      * @param file file path.
-     * @param inputConfiguration InputConfiguration object.
+     * @param testInputConfiguration TestInputConfiguration object.
      * @throws Exception if exception occurs during verification process.
      */
     private void verifyViolations(Configuration config,
                                   String file,
-                                  InputConfiguration inputConfiguration) throws Exception {
+                                  TestInputConfiguration testInputConfiguration) throws Exception {
         final List<Integer> expectedViolationLines =
                 getActualViolationsForFile(config, file)
                         .stream()
@@ -396,7 +396,7 @@ public abstract class AbstractModuleTestSupport extends AbstractPathTestSupport 
                         .distinct()
                         .collect(Collectors.toList());
         assertWithMessage("Violation lines differ.")
-                .that(inputConfiguration.getViolations())
+                .that(testInputConfiguration.getViolations())
                 .isEqualTo(expectedViolationLines);
     }
 
