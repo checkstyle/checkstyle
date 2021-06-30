@@ -1,3 +1,11 @@
+/*
+DeclarationOrder
+ignoreConstructors = (default)false
+ignoreModifiers = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
 import java.util.ArrayList;
@@ -5,9 +13,6 @@ import java.util.List;
 
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-/*
- * Config: default
- */
 public class InputDeclarationOrderForwardReference {
 
     public static final int TAB_LENGTH = 4;
