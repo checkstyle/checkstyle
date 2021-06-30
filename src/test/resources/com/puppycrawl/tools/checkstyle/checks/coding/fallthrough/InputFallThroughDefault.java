@@ -1,23 +1,25 @@
+/*
+FallThrough
+checkLastCaseGroup = (default)false
+reliefPattern = (default)falls?[ -]?thr(u|ough)
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-/**
- * Config: default
- * checkLastCaseGroup = false
- * reliefPattern = "falls?[ -]?thr(u|ough)"
- *
- */
 public class InputFallThroughDefault
 {
     void method(int i, int j, boolean cond) {
         while (true) {
             switch (i) {
-            case 0: // no problem
+            case 0: // ok
             case 1:
                 i++;
                 break;
             case 2:
                 i++;
-            case 3: //fall through!!!
+            case 3: // violation
                 i++;
                 break;
             case 4:
@@ -41,7 +43,7 @@ public class InputFallThroughDefault
             case 11: {
                 i++;
             }
-            case 12: //fall through!!!
+            case 12: // violation
                 if (false)
                     break;
                 else
@@ -50,13 +52,13 @@ public class InputFallThroughDefault
                 if (true) {
                     return;
                 }
-            case 14:
+            case 14: // violation
                 if (true) {
                     return;
                 } else {
                     //do nothing
                 }
-            case 15: //fall through!!!
+            case 15: // violation
                 do {
                     System.identityHashCode("something");
                     return;
@@ -73,7 +75,7 @@ public class InputFallThroughDefault
                 while(cond) {
                     break;
                 }
-            case 19: //fall through!!!
+            case 19: // violation
                 try {
                     i++;
                     break;
@@ -90,7 +92,7 @@ public class InputFallThroughDefault
                 } catch (Error e) {
                     return;
                 }
-            case 21: //fall through!!!
+            case 21: // violation
                 try {
                     i++;
                 } catch (RuntimeException e) {
@@ -126,7 +128,7 @@ public class InputFallThroughDefault
                 default:
                     return;
                 }
-            default: //fall through!!!
+            default: // violation
                 // this is the last label
                 i++;
             }
@@ -141,7 +143,7 @@ public class InputFallThroughDefault
           switch (i) {
           case -1: // FALLTHRU
 
-          case 0: // no problem
+          case 0: // ok
           case 1:
               i++;
               break;
@@ -182,7 +184,7 @@ public class InputFallThroughDefault
               if (true) {
                   return;
               }
-          case 14:
+          case 14: // violation
               if (true) {
                   return;
               } else {
@@ -372,12 +374,12 @@ public class InputFallThroughDefault
           case 0:
               i++; /* Continue with next case */
 
-          case 1:
+          case 1: // violation
               i++;
           /* Continue with next case */
-          case 2:
+          case 2: // violation
               i++;
-          /* Continue with next case */case 3:
+          /* Continue with next case */case 3: // violation
                 break;
           case 4:
               i++;
@@ -427,7 +429,7 @@ public class InputFallThroughDefault
         switch(hashCode()) {
         case 1:
             switch(hashCode()){}
-        case 2:
+        case 2: // violation
             System.lineSeparator();
             break;
         }
@@ -439,7 +441,7 @@ public class InputFallThroughDefault
             if (true) {
                 System.lineSeparator();
             }
-        case 2:
+        case 2: // violation
             System.lineSeparator();
             break;
         }
@@ -449,7 +451,7 @@ public class InputFallThroughDefault
         switch(hashCode()) {
         case 1: System.lineSeparator();
 
-        case 2:
+        case 2: // violation
             System.lineSeparator();
             break;
         }
@@ -485,9 +487,9 @@ public class InputFallThroughDefault
         int i = 0;
         switch (i) {
         case 0: case 1: i *= i; // fall through
-        case 2: case 3: i *= i; // fall through
-        case 4: case 5: i *= i; // fall through
-        case 6: case 7: i *= i;
+        case 2: case 3: i *= i; // violation
+        case 4: case 5: i *= i; // violation
+        case 6: case 7: i *= i; // violation
             break;
         default:
             throw new RuntimeException();
@@ -524,15 +526,15 @@ public class InputFallThroughDefault
                   i++; // falls-through
               case 12:
                   i++; // fall--through
-              case 13: //warn
+              case 13: // violation
                   i++; // fall+through
-              case 14: //warn
+              case 14: // violation
                   i++; // falls_thru
-              case 15: //warn
+              case 15: // violation
                   i++; // falls=through
-              case 16: //warn
+              case 16: // violation
                   i++; // falls-throug
-              default: //warn
+              default: // violation
                   throw new RuntimeException();
           }
       }
