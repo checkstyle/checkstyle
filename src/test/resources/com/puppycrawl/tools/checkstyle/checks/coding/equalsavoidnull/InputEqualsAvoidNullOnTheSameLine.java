@@ -1,3 +1,10 @@
+/*
+EqualsAvoidNull
+ignoreEqualsIgnoreCase = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
 public class InputEqualsAvoidNullOnTheSameLine {
