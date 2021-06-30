@@ -1,7 +1,7 @@
 /*
 FallThrough
 checkLastCaseGroup = (default)false
-reliefPattern = (default)falls?[ -]?thr(u|ough)
+reliefPattern = Continue with next case
 
 
 */
@@ -10,7 +10,7 @@ reliefPattern = (default)falls?[ -]?thr(u|ough)
 //Compilable by javac, but noncompilable by eclipse
 package com.puppycrawl.tools.checkstyle.checks.coding.fallthrough;
 
-public class InputFallThrough
+public class InputFallThrough2
 {
     void tryResource() throws Exception {
         switch (hashCode()) {
@@ -50,31 +50,31 @@ public class InputFallThrough
             catch (Exception ex) {
                 return;
             }
-            // ok
-        case 7:
+            // fallthru
+        case 7: // violation
             try (final Resource resource = new Resource()) {
             }
-            // ok
-        case 8:
+            // fallthru
+        case 8: // violation
             try (final Resource resource = new Resource()) {
             }
             finally {
             }
-            // ok
-        case 9:
+            // fallthru
+        case 9: // violation
             try (final Resource resource = new Resource()) {
             }
             catch (Exception ex) {
             }
-            // ok
-        case 10:
+            // fallthru
+        case 10: // violation
             try (final Resource resource = new Resource()) {
                 return;
             }
             catch (Exception ex) {
             }
-            // ok
-        default:
+            // fallthru
+        default: // violation
             break;
         }
     }
