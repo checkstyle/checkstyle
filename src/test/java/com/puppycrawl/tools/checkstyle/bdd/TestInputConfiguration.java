@@ -27,7 +27,7 @@ import java.util.Map;
 
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 
-public final class InputConfiguration {
+public final class TestInputConfiguration {
 
     /** The check name. */
     private final String checkName;
@@ -41,10 +41,10 @@ public final class InputConfiguration {
     /** List of violations. */
     private final List<Integer> violations;
 
-    private InputConfiguration(String checkName,
-                               Map<String, String> defaultProperties,
-                               Map<String, String> nonDefaultProperties,
-                               List<Integer> violations) {
+    private TestInputConfiguration(String checkName,
+                                   Map<String, String> defaultProperties,
+                                   Map<String, String> nonDefaultProperties,
+                                   List<Integer> violations) {
         this.checkName = checkName;
         this.defaultProperties = defaultProperties;
         this.nonDefaultProperties = nonDefaultProperties;
@@ -110,8 +110,8 @@ public final class InputConfiguration {
             violations.add(violationLine);
         }
 
-        public InputConfiguration build() {
-            return new InputConfiguration(checkName,
+        public TestInputConfiguration build() {
+            return new TestInputConfiguration(checkName,
                     defaultProperties, nonDefaultProperties, violations);
         }
     }
