@@ -1,7 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+EqualsHashCode
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.equalshashcode;
 
 import java.awt.*;
@@ -46,7 +48,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode1
     {
-        public boolean equals(int a) // wrong arg type, don't flag
+        public boolean equals(int a) // wrong arg type, ok
         {
             return a == 1;
         }
@@ -54,7 +56,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode2
     {
-        public boolean equals(String a) // don't flag
+        public boolean equals(String a) // ok
         {
             return true;
         }
@@ -62,7 +64,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode3
     {
-        public boolean equals(Object a) // don't flag
+        public boolean equals(Object a) // ok
         {
             return true;
         }
@@ -78,7 +80,7 @@ class InputEqualsHashCodeSemantic
         // in anon inner class
         ByteArrayOutputStream bos1 = new ByteArrayOutputStream()
         {
-            public boolean equals(Object a) // don't flag
+            public boolean equals(Object a) // ok
             {
                 return true;
             }
@@ -91,7 +93,7 @@ class InputEqualsHashCodeSemantic
 
         ByteArrayOutputStream bos2 = new ByteArrayOutputStream()
         {
-            public boolean equals(Object a) // flag
+            public boolean equals(Object a) // violation
             {
                 return true;
             }
@@ -111,7 +113,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode5
     {
-        public <A> boolean equals(int a) // wrong arg type, don't flag even with generics
+        public <A> boolean equals(int a) // wrong arg type, ok even with generics
         {
             return a == 1;
         }
@@ -119,7 +121,7 @@ class InputEqualsHashCodeSemantic
 
     public class EqualsVsHashCode6
     {
-        public <A> boolean equals(Comparable<A> a) // don't flag
+        public <A> boolean equals(Comparable<A> a) // ok
         {
             return true;
         }
