@@ -1,3 +1,10 @@
+/*
+EqualsAvoidNull
+ignoreEqualsIgnoreCase = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
 import java.util.function.BiFunction;
@@ -10,7 +17,7 @@ public enum InputEqualsAvoidNullMisc {
 }
 class Receiver {
     public void foo4(Receiver this, String s) {
-        s.equals("abc");
+        s.equals("abc"); // violation
     }
 
     private class Inner {
