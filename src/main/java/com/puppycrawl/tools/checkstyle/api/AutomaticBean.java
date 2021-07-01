@@ -186,10 +186,10 @@ public abstract class AutomaticBean
             throws CheckstyleException {
         configuration = config;
 
-        final String[] attributes = config.getAttributeNames();
+        final String[] attributes = config.getPropertyNames();
 
         for (final String key : attributes) {
-            final String value = config.getAttribute(key);
+            final String value = config.getProperty(key);
 
             tryCopyProperty(key, value, true);
         }

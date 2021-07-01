@@ -68,7 +68,7 @@ public class ArrayTypeStyleCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ArrayTypeStyleCheck.class);
-        checkConfig.addAttribute("javaStyle", "false");
+        checkConfig.addProperty("javaStyle", "false");
         final String[] expected = {
             "12:16: " + getCheckMessage(MSG_KEY),
             "16:39: " + getCheckMessage(MSG_KEY),

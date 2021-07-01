@@ -53,7 +53,7 @@ public class NestedIfDepthCheckTest extends AbstractModuleTestSupport {
     public void testCustomizedDepth() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(NestedIfDepthCheck.class);
-        checkConfig.addAttribute("max", "2");
+        checkConfig.addProperty("max", "2");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 

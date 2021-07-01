@@ -80,11 +80,11 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     public void testThrees() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxPrivate", "3");
-        checkConfig.addAttribute("maxPackage", "3");
-        checkConfig.addAttribute("maxProtected", "3");
-        checkConfig.addAttribute("maxPublic", "3");
-        checkConfig.addAttribute("maxTotal", "3");
+        checkConfig.addProperty("maxPrivate", "3");
+        checkConfig.addProperty("maxPackage", "3");
+        checkConfig.addProperty("maxProtected", "3");
+        checkConfig.addProperty("maxPublic", "3");
+        checkConfig.addProperty("maxTotal", "3");
 
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_PACKAGE_METHODS, 5, 3),
@@ -105,8 +105,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     public void testEnum() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxPrivate", "0");
-        checkConfig.addAttribute("maxTotal", "2");
+        checkConfig.addProperty("maxPrivate", "0");
+        checkConfig.addProperty("maxTotal", "2");
 
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_PRIVATE_METHODS, 1, 0),
@@ -119,8 +119,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithPackageModifier() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxPrivate", "0");
-        checkConfig.addAttribute("maxTotal", "2");
+        checkConfig.addProperty("maxPrivate", "0");
+        checkConfig.addProperty("maxTotal", "2");
 
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_MANY_METHODS, 5, 2),
@@ -142,7 +142,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWithInterfaceDefinitionInClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxTotal", "1");
+        checkConfig.addProperty("maxTotal", "1");
 
         final String[] expected = {
             "3:1: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
@@ -154,8 +154,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testPartialTokens() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxTotal", "1");
-        checkConfig.addAttribute("tokens", "ENUM_DEF");
+        checkConfig.addProperty("maxTotal", "1");
+        checkConfig.addProperty("tokens", "ENUM_DEF");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
@@ -165,8 +165,8 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testCountMethodToCorrectDefinition() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxTotal", "1");
-        checkConfig.addAttribute("tokens", "ENUM_DEF");
+        checkConfig.addProperty("maxTotal", "1");
+        checkConfig.addProperty("tokens", "ENUM_DEF");
 
         final String[] expected = {
             "10:5: " + getCheckMessage(MSG_MANY_METHODS, 2, 1),
@@ -178,7 +178,7 @@ public class MethodCountCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethodCountRecords() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(MethodCountCheck.class);
-        checkConfig.addAttribute("maxTotal", "2");
+        checkConfig.addProperty("maxTotal", "2");
         final int max = 2;
 
         final String[] expected = {

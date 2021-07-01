@@ -63,7 +63,7 @@ public class EmptyForInitializerPadCheckTest
     public void testSpaceOption() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
-        checkConfig.addAttribute("option", PadOption.SPACE.toString());
+        checkConfig.addProperty("option", PadOption.SPACE.toString());
         final String[] expected = {
             "51:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
@@ -105,7 +105,7 @@ public class EmptyForInitializerPadCheckTest
     public void testInvalidOption() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
-        checkConfig.addAttribute("option", "invalid_option");
+        checkConfig.addProperty("option", "invalid_option");
 
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

@@ -35,8 +35,8 @@ public class DefaultConfigurationTest {
     @Test
     public void testGetAttributeNames() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        config.addAttribute("attribute", "value");
-        final String[] actual = config.getAttributeNames();
+        config.addProperty("attribute", "value");
+        final String[] actual = config.getPropertyNames();
         final String[] expected = {"attribute"};
         assertArrayEquals(expected, actual, "Invalid attribute names");
     }
@@ -44,10 +44,10 @@ public class DefaultConfigurationTest {
     @Test
     public void testAddAttributeAndGetAttribute() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        config.addAttribute("attribute", "first");
-        assertEquals("first", config.getAttribute("attribute"), "Invalid attribute value");
-        config.addAttribute("attribute", "second");
-        assertEquals("first,second", config.getAttribute("attribute"), "Invalid attribute value");
+        config.addProperty("attribute", "first");
+        assertEquals("first", config.getProperty("attribute"), "Invalid attribute value");
+        config.addProperty("attribute", "second");
+        assertEquals("first,second", config.getProperty("attribute"), "Invalid attribute value");
     }
 
     @Test
@@ -82,7 +82,7 @@ public class DefaultConfigurationTest {
         final DefaultConfiguration config = new DefaultConfiguration(name);
         final String attributeName = "NonExistent#$%";
         try {
-            config.getAttribute(attributeName);
+            config.getProperty(attributeName);
             fail("Exception is expected");
         }
         catch (CheckstyleException expected) {

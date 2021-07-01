@@ -86,8 +86,8 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
-        moduleConfig.addAttribute("groups", "/^java\\./,javax,org");
-        moduleConfig.addAttribute("separated", "true");
+        moduleConfig.addProperty("groups", "/^java\\./,javax,org");
+        moduleConfig.addProperty("separated", "true");
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(ImportOrderCheck.class,
@@ -109,7 +109,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
-        moduleConfig.addAttribute("option", "inflow");
+        moduleConfig.addProperty("option", "inflow");
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(ImportOrderCheck.class,
@@ -131,7 +131,7 @@ public class XpathRegressionImportOrderTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(ImportOrderCheck.class);
-        moduleConfig.addAttribute("groups", "/^java\\./,javax,org");
+        moduleConfig.addProperty("groups", "/^java\\./,javax,org");
 
         final String[] expectedViolation = {
             "5:1: " + getCheckMessage(ImportOrderCheck.class,

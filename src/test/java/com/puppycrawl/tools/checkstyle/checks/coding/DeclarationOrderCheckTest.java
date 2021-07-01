@@ -79,8 +79,8 @@ public class DeclarationOrderCheckTest
     public void testOnlyConstructors() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DeclarationOrderCheck.class);
-        checkConfig.addAttribute("ignoreConstructors", "false");
-        checkConfig.addAttribute("ignoreModifiers", "true");
+        checkConfig.addProperty("ignoreConstructors", "false");
+        checkConfig.addProperty("ignoreModifiers", "true");
 
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_STATIC),
@@ -98,8 +98,8 @@ public class DeclarationOrderCheckTest
     public void testOnlyModifiers() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(DeclarationOrderCheck.class);
-        checkConfig.addAttribute("ignoreConstructors", "true");
-        checkConfig.addAttribute("ignoreModifiers", "false");
+        checkConfig.addProperty("ignoreConstructors", "true");
+        checkConfig.addProperty("ignoreModifiers", "false");
 
         final String[] expected = {
             "13:5: " + getCheckMessage(MSG_ACCESS),

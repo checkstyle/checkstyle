@@ -95,8 +95,8 @@ public class JavadocBlockTagLocationCheckTest extends AbstractModuleTestSupport 
     public void testCustomTags() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocBlockTagLocationCheck.class);
-        checkConfig.addAttribute("tags", "apiNote");
-        checkConfig.addAttribute("tags", "implSpec, implNote");
+        checkConfig.addProperty("tags", "apiNote");
+        checkConfig.addProperty("tags", "implSpec, implNote");
         final String[] expected = {
             "10: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "apiNote"),
             "10: " + getCheckMessage(MSG_BLOCK_TAG_LOCATION, "implNote"),

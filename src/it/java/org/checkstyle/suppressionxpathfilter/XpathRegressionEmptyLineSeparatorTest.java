@@ -44,7 +44,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyLineSeparatorCheck.class);
-        moduleConfig.addAttribute("tokens", "PACKAGE_DEF");
+        moduleConfig.addProperty("tokens", "PACKAGE_DEF");
 
         final String[] expectedViolation = {
             "4:1: " + getCheckMessage(EmptyLineSeparatorCheck.class,
@@ -66,7 +66,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyLineSeparatorCheck.class);
-        moduleConfig.addAttribute("allowMultipleEmptyLines", "false");
+        moduleConfig.addProperty("allowMultipleEmptyLines", "false");
 
         final String[] expectedViolation = {
             "6:1: " + getCheckMessage(EmptyLineSeparatorCheck.class,
@@ -88,7 +88,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyLineSeparatorCheck.class);
-        moduleConfig.addAttribute("tokens", "METHOD_DEF");
+        moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
             "9:5: " + getCheckMessage(EmptyLineSeparatorCheck.class,
@@ -119,7 +119,7 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyLineSeparatorCheck.class);
-        moduleConfig.addAttribute("allowMultipleEmptyLines", "false");
+        moduleConfig.addProperty("allowMultipleEmptyLines", "false");
 
         final String[] expectedViolation = {
             "12:25: " + getCheckMessage(EmptyLineSeparatorCheck.class,
@@ -142,8 +142,8 @@ public class XpathRegressionEmptyLineSeparatorTest extends AbstractXpathTestSupp
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyLineSeparatorCheck.class);
-        moduleConfig.addAttribute("allowMultipleEmptyLines", "false");
-        moduleConfig.addAttribute("allowMultipleEmptyLinesInsideClassMembers", "false");
+        moduleConfig.addProperty("allowMultipleEmptyLines", "false");
+        moduleConfig.addProperty("allowMultipleEmptyLinesInsideClassMembers", "false");
 
         final String[] expectedViolation = {
             "14:15: " + getCheckMessage(EmptyLineSeparatorCheck.class,

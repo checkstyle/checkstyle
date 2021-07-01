@@ -67,7 +67,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
-        moduleConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
 
         final String[] expectedViolation = {
             "9:15: " + getCheckMessage(RightCurlyCheck.class,
@@ -90,7 +90,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
-        moduleConfig.addAttribute("option", RightCurlyOption.ALONE.toString());
+        moduleConfig.addProperty("option", RightCurlyOption.ALONE.toString());
 
         final String[] expectedViolation = {
             "5:72: " + getCheckMessage(RightCurlyCheck.class,
@@ -113,7 +113,7 @@ public class XpathRegressionRightCurlyTest extends AbstractXpathTestSupport {
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(RightCurlyCheck.class);
-        moduleConfig.addAttribute("option", RightCurlyOption.SAME.toString());
+        moduleConfig.addProperty("option", RightCurlyOption.SAME.toString());
 
         final String[] expectedViolation = {
             "7:27: " + getCheckMessage(RightCurlyCheck.class,
