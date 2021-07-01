@@ -15,3 +15,5 @@
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCrlf.java eol=crlf
 /src/test/resources/com/puppycrawl/tools/checkstyle/checks/newlineatendoffile/InputNewlineAtEndOfFileCr.java -text
 src/test/resources-noncompilable/com/puppycrawl/tools/checkstyle/xpath/xpathquerygenerator/InputXpathQueryGeneratorTextBlockCrlf.java eol=crlf
+src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputCrAsNewlineMultiline.javadoc -text
+src/test/resources/com/puppycrawl/tools/checkstyle/grammar/javadoc/InputDosLineEndingAsNewlineMultiline.javadoc eol=crlf
