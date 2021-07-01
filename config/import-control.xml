@@ -208,4 +208,10 @@
     <allow pkg="com.puppycrawl.tools.checkstyle.utils" local-only="true"/>
     <allow class="com.puppycrawl.tools.checkstyle.TreeWalkerAuditEvent" local-only="true"/>
   </subpackage>
+
+  <subpackage name="grammar">
+    <file name="CrAwareLexerSimulator">
+      <allow pkg="org.antlr.v4.runtime"/>
+    </file>
+  </subpackage>
 </import-control>
