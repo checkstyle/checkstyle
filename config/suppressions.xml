@@ -175,6 +175,13 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]AbstractCheckTest.java"/>
   <suppress id="ImportControlTest"
+<<<<<<< HEAD
+=======
+            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]FileSetCheckTest.java"/>
+  <suppress id="ImportControlTest"
+            files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]FileTextTest.java"/>
+  <suppress id="ImportControlTest"
+>>>>>>> 28fe683... Issue #9142: Migrate to Truth in AutomaticBeanTest
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]FilterSetTest.java"/>
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]api[\\/]FullIdentTest.java"/>
