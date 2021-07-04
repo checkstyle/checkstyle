@@ -50,10 +50,10 @@ public class AvoidNestedBlocksCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(AvoidNestedBlocksCheck.class);
         final String[] expected = {
-            "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
-            "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
-            "50:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
-            "58:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "25:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "47:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "53:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "61:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
         verify(checkConfig, getPath("InputAvoidNestedBlocksDefault.java"), expected);
     }
@@ -66,11 +66,11 @@ public class AvoidNestedBlocksCheckTest
         checkConfig.addAttribute("allowInSwitchCase", "true");
 
         final String[] expected = {
-            "22:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
-            "44:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
-            "58:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "21:9: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "43:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
+            "57:17: " + getCheckMessage(MSG_KEY_BLOCK_NESTED),
         };
-        verify(checkConfig, getPath("InputAvoidNestedBlocksDefault.java"), expected);
+        verify(checkConfig, getPath("InputAvoidNestedBlocksAllowInSwitchCase.java"), expected);
     }
 
     @Test

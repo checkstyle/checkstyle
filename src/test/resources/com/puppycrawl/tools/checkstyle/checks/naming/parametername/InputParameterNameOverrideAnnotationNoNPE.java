@@ -1,10 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
+/*
+ParameterName
+format = (default)^[a-z][a-zA-Z0-9]*$
+ignoreOverridden = true
+accessModifiers = (default)public, protected, package, private
 
-/* Config:
- *
- * format = "^[a-z][a-zA-Z0-9]*$"
- * ignoreOverridden = true
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 class InputParameterNameOverrideAnnotationNoNPE
 {

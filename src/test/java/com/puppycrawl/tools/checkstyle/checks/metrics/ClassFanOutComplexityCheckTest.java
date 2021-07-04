@@ -312,6 +312,16 @@ public class ClassFanOutComplexityCheckTest extends AbstractModuleTestSupport {
             getNonCompilablePath("InputClassFanOutComplexityVar.java"), expected);
     }
 
+    @Test
+    public void testClassFanOutComplexityRemoveIncorrectAnnotationToken() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(ClassFanOutComplexityCheck.class);
+        checkConfig.addAttribute("max", "24");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputClassFanOutComplexityRemoveIncorrectAnnotationToken.java"), expected);
+    }
+
     /**
      * We cannot reproduce situation when visitToken is called and leaveToken is not.
      * So, we have to use reflection to be sure that even in such situation

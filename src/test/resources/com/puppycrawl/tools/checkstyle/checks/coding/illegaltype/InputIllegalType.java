@@ -1,16 +1,19 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 import java.util.HashMap;
 import java.util.TreeSet;
-//configuration: default
+
+/*
+ * Config: default
+ */
 public class InputIllegalType implements InputIllegalTypeSuper {
-    private AbstractClass a = null; //WARNING
+    private AbstractClass a = null; // ok
     private NotAnAbstractClass b = null; /*another comment*/
 
     private com.puppycrawl.tools.checkstyle.checks.coding.illegaltype.InputIllegalType.AbstractClass
         c = null; //WARNING
     private java.util.List d = null;
 
-    private abstract class AbstractClass {/*one more comment*/}
+    public abstract class AbstractClass {/*one more comment*/}
 
     private class NotAnAbstractClass {}
 

@@ -1,10 +1,13 @@
+/*
+DeclarationOrder
+ignoreConstructors = (default)false
+ignoreModifiers = true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
-/*
- * Config:
- * ignoreConstructors = false
- * ignoreModifiers = true
- */
 public class InputDeclarationOrderOnlyConstructors
 {
     static final int FOO2 = 3;

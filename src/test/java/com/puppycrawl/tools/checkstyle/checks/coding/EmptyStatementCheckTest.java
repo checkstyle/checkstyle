@@ -41,22 +41,22 @@ public class EmptyStatementCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EmptyStatementCheck.class);
         final String[] expected = {
-            "12:7: " + getCheckMessage(MSG_KEY),
-            "17:7: " + getCheckMessage(MSG_KEY),
-            "22:19: " + getCheckMessage(MSG_KEY),
-            "26:10: " + getCheckMessage(MSG_KEY),
-            "29:16: " + getCheckMessage(MSG_KEY),
-            "33:10: " + getCheckMessage(MSG_KEY),
-            "43:10: " + getCheckMessage(MSG_KEY),
-            "49:13: " + getCheckMessage(MSG_KEY),
-            "51:13: " + getCheckMessage(MSG_KEY),
-            "54:19: " + getCheckMessage(MSG_KEY),
-            "58:10: " + getCheckMessage(MSG_KEY),
-            "61:9: " + getCheckMessage(MSG_KEY),
-            "66:10: " + getCheckMessage(MSG_KEY),
+            "18:7: " + getCheckMessage(MSG_KEY),
+            "23:7: " + getCheckMessage(MSG_KEY),
+            "28:19: " + getCheckMessage(MSG_KEY),
+            "32:10: " + getCheckMessage(MSG_KEY),
+            "35:16: " + getCheckMessage(MSG_KEY),
+            "39:10: " + getCheckMessage(MSG_KEY),
+            "49:10: " + getCheckMessage(MSG_KEY),
+            "55:13: " + getCheckMessage(MSG_KEY),
+            "57:13: " + getCheckMessage(MSG_KEY),
+            "60:19: " + getCheckMessage(MSG_KEY),
+            "64:10: " + getCheckMessage(MSG_KEY),
+            "67:9: " + getCheckMessage(MSG_KEY),
             "72:10: " + getCheckMessage(MSG_KEY),
-            "76:10: " + getCheckMessage(MSG_KEY),
-            "80:10: " + getCheckMessage(MSG_KEY),
+            "78:10: " + getCheckMessage(MSG_KEY),
+            "82:10: " + getCheckMessage(MSG_KEY),
+            "86:10: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getPath("InputEmptyStatement.java"), expected);

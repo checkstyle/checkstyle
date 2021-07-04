@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+AvoidNestedBlocks
+allowInSwitchCase = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 
 /**
@@ -11,7 +14,7 @@ package com.puppycrawl.tools.checkstyle.checks.blocks.avoidnestedblocks;
 class InputAvoidNestedBlocksDefault
 {
     static
-    { // OK
+    { // ok
     }
 
     public void method()
@@ -19,43 +22,43 @@ class InputAvoidNestedBlocksDefault
         int x = 0;
 
         // if (condition that is not important anymore)
-        { // nested block, should be marked
+        { // violation, nested block, should be marked
             int z = 1;
             int y = z;
         }
 
         if (x == 1)
-        { // OK
+        { // ok
             x = 2;
         }
 
         // case statements are a bit complicated,
         // they do not have its own variable scope by default.
-        // Hence it may be OK in some development teams to allow
+        // Hence it may be ok in some development teams to allow
         // nested blocks if they are the complete case body.
         switch (x)
         {
             case 0:
-                // OK
+                // ok
                 x = 3;
                 break;
             case 1:
-                // Not OK, SLIST is not complete case body
-                {
+                // Not ok, SLIST is not complete case body
+                { // violation
                     x = 1;
                 }
                 break;
             case 2:
-                // OK if allowInSwitchCase is true, SLIST is complete case body
-                {
+                // ok if allowInSwitchCase is true, SLIST is complete case body
+                { // violation
                     x = 1;
                     break;
                 }
             case 3: // test fallthrough
             default:
-                // Not OK, SLIST is not complete case body
+                // Not ok, SLIST is not complete case body
                 System.identityHashCode("Hello");
-                {
+                { // violation
                     x = 2;
                 }
         }

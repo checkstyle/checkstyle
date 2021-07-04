@@ -63,6 +63,7 @@
     <property name="id" value="header"/>
   </module>
   <module name="RegexpHeader">
+    <property name="id" value="regexpHeader"/>
     <property name="headerFile" value="${checkstyle.regexp.header.file}"/>
     <property name="fileExtensions" value="java"/>
   </module>
@@ -554,7 +555,7 @@
     <module name="ImportControl">
       <property name="id" value="ImportControlTest"/>
       <property name="file" value="${checkstyle.importcontroltest.file}"/>
-      <property name="path" value="^.*[\\/]src[\\/]test[\\/].*$"/>
+      <property name="path" value="^.*[\\/]src[\\/](test|it)[\\/].*$"/>
     </module>
     <module name="ImportOrder">
       <property name="groups" value="/^java\./,javax,org"/>
@@ -741,9 +742,14 @@
     <module name="IllegalIdentifierName"/>
 
     <!-- Regexp -->
-    <module name="Regexp"/>
-    <module name="RegexpSinglelineJava"/>
+    <module name="Regexp">
+      <property name="id" value="regexpDefault"/>
+    </module>
     <module name="RegexpSinglelineJava">
+      <property name="id" value="regexpSingleLineDefault"/>
+    </module>
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="checkASCII"/>
       <property name="format" value="[^\p{ASCII}]"/>
       <property name="ignoreComments" value="true"/>
     </module>
@@ -787,6 +793,7 @@
       <property name="tokens" value="METHOD_REF"/>
     </module>
     <module name="NoWhitespaceBefore"/>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="DOT"/>
       <property name="tokens" value="METHOD_REF"/>
