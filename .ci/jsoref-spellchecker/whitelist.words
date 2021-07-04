@@ -111,6 +111,7 @@ bc
 BCA
 BClass
 bdc
+bdd
 bdo
 beanutils
 beforeexecutionexclusionfilefilter
@@ -261,7 +262,7 @@ crossplatform
 CSOFF
 CSON
 css
-CStyle
+cstyle
 csv
 ctor
 ctx
@@ -386,7 +387,6 @@ ev
 Evt
 Exceptiontest
 executablestatementcount
-executon
 Exif
 explicitinitialization
 expr
@@ -626,6 +626,7 @@ javaguide
 javall
 javamail
 javancss
+javap
 javaparser
 javarevisited
 javascript
@@ -894,6 +895,7 @@ NOTNULL
 nowarn
 nowhitespaceafter
 nowhitespacebefore
+nowhitespacebeforecasedefaultcolon
 nowildcard
 nowrap
 npath
@@ -1261,6 +1263,7 @@ tstamp
 tt
 ttf
 ttype
+tvf
 tw
 typecastparenpad
 typename

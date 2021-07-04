@@ -1,10 +1,14 @@
+/*
+NeedBraces
+allowSingleLineStatement = true
+allowEmptyLoopBody = (default)false
+tokens = LITERAL_CASE, LITERAL_DEFAULT, LITERAL_ELSE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/*
- * Config:
- * allowSingleLineStatement = true
- * tokens = { LITERAL_ELSE, LITERAL_CASE, LITERAL_DEFAULT }
- */
 public class InputNeedBracesTestConditions
 {
     public void method() {

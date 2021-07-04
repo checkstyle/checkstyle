@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = alone_or_singleline
+tokens = CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone_or_singleline
- * tokens = { CLASS_DEF, METHOD_DEF, CTOR_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF }
- */
 public class InputRightCurlyTestOptAloneOrSingleLineBlocksWithSemi {
 
     public void testMethod() {}; // ok

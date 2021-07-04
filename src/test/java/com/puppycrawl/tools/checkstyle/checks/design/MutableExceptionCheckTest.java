@@ -19,10 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle.checks.design;
 
+import static com.google.common.truth.Truth.assertWithMessage;
 import static com.puppycrawl.tools.checkstyle.checks.design.MutableExceptionCheck.MSG_KEY;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.util.Arrays;
@@ -104,15 +102,18 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     public void testGetAcceptableTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals(expected, obj.getAcceptableTokens(),
-                "Default acceptable tokens are invalid");
+        assertWithMessage("Default acceptable tokens are invalid")
+                .that(obj.getAcceptableTokens())
+                .isEqualTo(expected);
     }
 
     @Test
     public void testGetRequiredTokens() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final int[] expected = {TokenTypes.CLASS_DEF, TokenTypes.VARIABLE_DEF};
-        assertArrayEquals(expected, obj.getRequiredTokens(), "Default required tokens are invalid");
+        assertWithMessage("Default required tokens are invalid")
+                .that(obj.getRequiredTokens())
+                .isEqualTo(expected);
     }
 
     @Test
@@ -122,12 +123,14 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
         ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             obj.visitToken(ast);
-            fail("IllegalStateException is expected");
+            assertWithMessage("IllegalStateException is expected")
+                    .fail();
         }
         catch (IllegalStateException ex) {
             // exception is expected
-            assertEquals("interface[0x-1]", ex.getMessage(),
-                    "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                    .that(ex.getMessage())
+                    .isEqualTo("interface[0x-1]");
         }
     }
 

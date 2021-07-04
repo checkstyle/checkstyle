@@ -121,6 +121,19 @@ public class InnerTypeLastCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testInnerTypeLastCstyleArray() throws Exception {
+        final DefaultConfiguration checkConfig =
+                createModuleConfig(InnerTypeLastCheck.class);
+        final String[] expected = {
+            "7:5: " + getCheckMessage(MSG_KEY),
+            "8:5: " + getCheckMessage(MSG_KEY),
+            "9:5: " + getCheckMessage(MSG_KEY),
+            "10:5: " + getCheckMessage(MSG_KEY),
+        };
+        verify(checkConfig, getPath("InputInnerTypeLastArray.java"), expected);
+    }
+
+    @Test
     public void testGetAcceptableTokens() {
         final InnerTypeLastCheck obj = new InnerTypeLastCheck();
         final int[] expected = {

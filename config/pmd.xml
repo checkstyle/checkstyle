@@ -18,6 +18,13 @@
     <!-- too much false-positives from 6.18.0 -->
     <exclude name="UnusedPrivateMethod"/>
   </rule>
+  <rule ref="category/java/bestpractices.xml/AccessorClassGeneration">
+    <properties>
+      <!-- The PMD gives false positive for Builder patterns. Fixed in PMD 7. -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='TestInputConfiguration']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
       <!-- It is ok to use print stack trace in CLI class. -->
@@ -343,6 +350,18 @@
       <property name="violationSuppressXPath"
                 value="//ClassOrInterfaceDeclaration[@SimpleName='Main'
         or @SimpleName='Checker' or @SimpleName='CheckstyleAntTask']"/>
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/CognitiveComplexity">
+    <properties>
+      <property name="reportLevel" value="22"/>
+      <!-- Till https://github.com/checkstyle/checkstyle/issues/10064 -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='XdocsPagesTest']
+                    //MethodDeclaration[@Name='getModulePropertyExpectedValue'
+                      or @Name='getModulePropertyExpectedTypeName']
+                  | //ClassOrInterfaceDeclaration[@SimpleName='AllChecksTest']
+                    //MethodDeclaration[@Name='validateAllCheckTokensAreReferencedInConfigFile']"/>
     </properties>
   </rule>
 

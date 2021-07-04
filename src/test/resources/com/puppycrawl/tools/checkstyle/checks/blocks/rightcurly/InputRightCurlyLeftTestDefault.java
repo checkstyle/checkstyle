@@ -1,8 +1,13 @@
+/*
+RightCurly
+option = (default)same
+tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config: default
- */
 class InputRightCurlyLeftTestDefault
 {
     /** @see test method **/

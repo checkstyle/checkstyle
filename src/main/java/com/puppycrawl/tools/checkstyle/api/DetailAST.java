@@ -90,13 +90,13 @@ public interface DetailAST {
      * Checks if this branch of the parse tree contains a token
      * of the provided type.
      *
+     * @param type a TokenType
+     * @return true if and only if this branch (including this node)
+     *     contains a token of type {@code type}.
      * @deprecated
      *      Usage of this method is no longer accepted. We encourage
      *      traversal of subtrees to be written per the needs of each check
      *      to avoid unintended side effects.
-     * @param type a TokenType
-     * @return true if and only if this branch (including this node)
-     *     contains a token of type {@code type}.
      */
     @Deprecated
     boolean branchContains(int type);

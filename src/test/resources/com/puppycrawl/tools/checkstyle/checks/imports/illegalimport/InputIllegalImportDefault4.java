@@ -1,3 +1,12 @@
+/*
+IllegalImport
+illegalPkgs = org.junit.jupiter.api
+illegalClasses = java.io.*
+regexp = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok
@@ -31,11 +40,6 @@ import java.util.Date; // ok
 import java.util.Calendar; // ok
 import java.util.BitSet; // ok
 
-/*
- * Config:
- * illegalClasses = "java.io.*"
- * illegalPkgs = "org.junit.jupiter.api"
- */
 class InputIllegalImportDefault4
 {
     /** ignore **/

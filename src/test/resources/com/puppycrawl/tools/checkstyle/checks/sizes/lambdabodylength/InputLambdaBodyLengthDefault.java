@@ -3,9 +3,7 @@ package com.puppycrawl.tools.checkstyle.checks.sizes.lambdabodylength;
 import java.util.List;
 import java.util.function.*;
 
-/*
-* Config = default
- */
+/* Config = default */
 public class InputLambdaBodyLengthDefault {
     {
         List<String> list = null;
