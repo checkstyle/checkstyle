@@ -79,10 +79,10 @@ public class XdocsUrlTest {
                 .collect(Collectors.toSet());
         for (Class<?> check : treeWalkerOrFileSetCheckSet) {
             final String checkName = check.getSimpleName();
-            if (!checkName.equals(TREE_WORKER)) {
+            if (!TREE_WORKER.equals(checkName)) {
                 String packageName = check.getPackage().getName();
                 packageName = packageName.substring(packageName.lastIndexOf('.') + 1);
-                if (packageName.equals(CHECKS)) {
+                if (CHECKS.equals(packageName)) {
                     packageName = MISC;
                 }
                 if (checksNamesMap.get(packageName) == null) {
@@ -120,11 +120,11 @@ public class XdocsUrlTest {
             final String checkNameModuleErrorMsg = String.format(Locale.ROOT,
                     "Check with name '%s' is not in '%s' module",
                     checkNameInAttribute, moduleName);
-            if (checkNameInAttribute.equals(COMMENTS_INDENTATION)
-                    || checkNameInAttribute.equals(INDENTATION)) {
+            if (COMMENTS_INDENTATION.equals(checkNameInAttribute)
+                    || INDENTATION.equals(checkNameInAttribute)) {
                 assertWithMessage(checkNameModuleErrorMsg).that(moduleName).matches(MISC);
             }
-            else if (checkNameInAttribute.equals(SUPPRESS_WARNINGS_HOLDER)) {
+            else if (SUPPRESS_WARNINGS_HOLDER.equals(checkNameInAttribute)) {
                 assertWithMessage(checkNameModuleErrorMsg).that(moduleName).matches(ANNOTATION);
             }
             else {
@@ -159,7 +159,7 @@ public class XdocsUrlTest {
         @Override
         public void startElement(String uri, String localName, String qName,
                                  Attributes attributes) {
-            if (qName.equals(NODE_NAME)) {
+            if (NODE_NAME.equals(qName)) {
                 final String[] moduleAndCheckName =
                         attributes.getValue(0).split(SPLIT_CHECK_NAME_IN_ATTRIBUTE);
                 if (moduleAndCheckName[0].startsWith(PREFIX_CONFIG)) {

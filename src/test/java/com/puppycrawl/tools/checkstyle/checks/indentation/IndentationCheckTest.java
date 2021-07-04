@@ -2779,6 +2779,35 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
     }
 
     @Test
+    public void testIndentationMethodParenthesisOnNewLine() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "13:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine.java"),
+                expected);
+    }
+
+    @Test
+    public void testIndentationMethodParenthesisOnNewLine1() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        final String[] expected = {
+            "11:10: " + getCheckMessage(MSG_ERROR, "2", 9, 12),
+            "17:8: " + getCheckMessage(MSG_ERROR, "int", 7, 8),
+            "18:9: " + getCheckMessage(MSG_ERROR, "method def rparen", 8, 4),
+        };
+
+        verifyWarns(checkConfig,
+                getPath("InputIndentationCheckMethodParenOnNewLine1.java"),
+                expected);
+    }
+
+    @Test
     public void testIndentationLineWrappedRecordDeclaration() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
         checkConfig.addAttribute("tabWidth", "4");
@@ -2814,6 +2843,27 @@ public class IndentationCheckTest extends AbstractModuleTestSupport {
         verifyWarns(checkConfig,
             getNonCompilablePath("InputIndentationLineWrappedRecordDeclaration.java"),
             expected);
+    }
+
+    @Test
+    public void testIndentationAnnotationFieldDefinition() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(IndentationCheck.class);
+        checkConfig.addAttribute("tabWidth", "4");
+        checkConfig.addAttribute("basicOffset", "4");
+        checkConfig.addAttribute("braceAdjustment", "0");
+        checkConfig.addAttribute("caseIndent", "4");
+        checkConfig.addAttribute("throwsIndent", "8");
+        checkConfig.addAttribute("forceStrictCondition", "true");
+
+        final String[] expected = {
+            "17:5: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 4, 8),
+            "18:13: " + getCheckMessage(MSG_ERROR, "annotation field def modifier", 12, 8),
+            "25:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 8),
+            "26:5: " + getCheckMessage(MSG_ERROR, "member def type", 4, 8),
+        };
+
+        verifyWarns(checkConfig, getPath("InputIndentationAnnotationFieldDefinition.java"),
+                expected);
     }
 
     private static final class IndentAudit implements AuditListener {

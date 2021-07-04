@@ -10,6 +10,339 @@
 
   <body>
     <!-- placeholder for a new section -->
+    <section name="Release 8.44">
+      <div class="releaseDate">27.06.2021</div>
+      <p>Breaking backward compatibility:</p>
+        <ul>
+          <li>
+            Java Grammar: improper method def line and column position for
+            methods with ARRAY_DECLARATOR.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/3145">#3145</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            AvoidEscapedUnicodeCharacters should support trailing &#39;\&#39; escape symbol.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9143">#9143</a>
+          </li>
+          <li>
+            Extract parameter type from nested array declarator brackets.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10100">#10100</a>
+          </li>
+          <li>
+            AtclauseOrder: Falsely ignores method with annotation.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9941">#9941</a>
+          </li>
+          <li>
+            False Positive Comments Indentaion method end, multiline comments.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9105">#9105</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            Infra: migrate to Truth in tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9142">#9142</a>
+          </li>
+          <li>
+            Update inputs for AnnotationLocationCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10174">#10174</a>
+          </li>
+          <li>
+            Update inputs for ArrayTypeStyleCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10175">#10175</a>
+          </li>
+          <li>
+            Parse and extract check properties from input file.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10141">#10141</a>
+          </li>
+          <li>
+            Update inputs for NeedBracesCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10160">#10160</a>
+          </li>
+          <li>
+            Support line wrap for config values in input files.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10163">#10163</a>
+          </li>
+          <li>
+            Update inputs for AvoidNestedBlocksCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10155">#10155</a>
+          </li>
+          <li>
+            Update inputs for ParameterNameCheckTest .
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10145">#10145</a>
+          </li>
+          <li>
+            Update inputs for MissingJavadocMethodCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10147">#10147</a>
+          </li>
+          <li>
+            Update inputs for IllegalImportCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10148">#10148</a>
+          </li>
+          <li>
+            Semaphore: Invalid or corrupt jarfile .m2/repository/R-4.17-202009021800/ecj-4.17.jar.
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/10138">#10138</a>
+          </li>
+          <li>
+            Cover it folder by import control.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10074">#10074</a>
+          </li>
+          <li>
+            spelling: fix mistype in wercker.sh.
+            Author: pbludov
+          </li>
+          <li>
+            Parse and extract check name and check properties from input file.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10077">#10077</a>
+          </li>
+          <li>
+            Update inputs for AnnotationUseStyleCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10112">#10112</a>
+          </li>
+          <li>
+            Update inputs for PackageAnnotationCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10114">#10114</a>
+          </li>
+          <li>
+            Update inputs for MissingDeprecatedCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10113">#10113</a>
+          </li>
+          <li>
+            update ArrayTypeStyleCheckTest to use unique Input file in each test method.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/9880">#9880</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.TEXT_BLOCK_LITERAL_BEGIN.
+            Author: rahulkhinchirk7@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9582">#9582</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.CASE_GROUP.
+            Author: rahulkhinchirk7@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9406">#9406</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_BYTE.
+            Author: hreshi
+            <a href="https://github.com/checkstyle/checkstyle/issues/9465">#9465</a>
+          </li>
+          <li>
+            Update inputs for AnnotationOnSameLineCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10083">#10083</a>
+          </li>
+          <li>
+            Resolve Pitest Issues - pitest-imports (1).
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10072">#10072</a>
+          </li>
+          <li>
+            Update inputs for MissingOverrideCheckTest.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10082">#10082</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ANNOTATION_FIELD_DEF.
+            Author: rahulkhinchirk7@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9392">#9392</a>
+          </li>
+          <li>
+            Refactor check for config comment in inputs.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10094">#10094</a>
+          </li>
+          <li>
+            update IllegalTypeCheckTest to use unique input file for each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9921">#9921</a>
+          </li>
+          <li>
+            Restrict usage of org.junit.jupiter.api.Assertions package in tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/10051">#10051</a>
+          </li>
+          <li>
+            Replace ANTLR2 dependencies in unit test inputs.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/10059">#10059</a>
+          </li>
+        </ul>
+    </section>
+    <section name="Release 8.43">
+      <div class="releaseDate">30.05.2021</div>
+      <p>New:</p>
+        <ul>
+          <li>
+            Add support summary Javadoc tag in SummaryJavadoc.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/7202">#7202</a>
+          </li>
+          <li>
+            Add SARIF as a supported output format.
+            Author: Chao Zhang
+            <a href="https://github.com/checkstyle/checkstyle/issues/8905">#8905</a>
+          </li>
+        </ul>
+      <p>Bug fixes:</p>
+        <ul>
+          <li>
+            UnnecessaryParentheses false positives in 8.42.
+            Author: Vyom-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9957">#9957</a>
+          </li>
+          <li>
+            Unresolvable indentation violation for method definition parenthesis.
+            Author: Soumyadeep Ganguly
+            <a href="https://github.com/checkstyle/checkstyle/issues/9269">#9269</a>
+          </li>
+          <li>
+            JDK16: final after instanceof.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9897">#9897</a>
+          </li>
+        </ul>
+      <p>Notes:</p>
+        <ul>
+          <li>
+            update example of AST for TokenTypes.INC.
+            Author: Aastha Chauhan
+            <a href="https://github.com/checkstyle/checkstyle/issues/9453">#9453</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.ANNOTATION_DEF.
+            Author: rahulkhinchirk7@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9391">#9391</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_NEW.
+            Author: Rahulkhinchi03
+            <a href="https://github.com/checkstyle/checkstyle/issues/9486">#9486</a>
+          </li>
+          <li>
+            Validate sure that all Regexp modules has id property.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8886">#8886</a>
+          </li>
+          <li>
+            update AbstractJavadocCheckTest to use unique Input file in each test method.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9534">#9534</a>
+          </li>
+          <li>
+            Infra: migrate to Truth in tests.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/9142">#9142</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LAND.
+            Author: angeljiang0927@gmail.com
+            <a href="https://github.com/checkstyle/checkstyle/issues/9459">#9459</a>
+          </li>
+          <li>
+            doc: fix typo in writingchecks.xml.
+            Author: Joshua Kuan
+          </li>
+          <li>
+            Expand XPath IT Regression Testing.
+            Author: haanhvu
+            <a href="https://github.com/checkstyle/checkstyle/issues/6207">#6207</a>
+          </li>
+          <li>
+            ExecutableStatementCount should allow LAMBDA token.
+            Author: Shashwat Jaiswal
+            <a href="https://github.com/checkstyle/checkstyle/issues/8971">#8971</a>
+          </li>
+          <li>
+            Linkcheck plugin detected several problems with links.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9930">#9930</a>
+          </li>
+          <li>
+            update NoWhitespaceAfterCheckTest to use unique input file for each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9888">#9888</a>
+          </li>
+          <li>
+            Travis is failing on xwiki-platform validation.
+            Author: Shashwat Jaiswal, Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9967">#9967</a>
+          </li>
+          <li>
+            Migrate shippable CI jobs to other place(s).
+            Author: Roman Ivanov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9266">#9266</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CATCH.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9467">#9467</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_CHAR.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9468">#9468</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_DO.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9472">#9472</a>
+          </li>
+          <li>
+            Set up JDK 16 build in CI.
+            Author: pbludov
+            <a href="https://github.com/checkstyle/checkstyle/issues/9907">#9907</a>
+          </li>
+          <li>
+            update IllegalThrowsCheckTest to use unique input file for each test method.
+            Author: Devansu-Yadav
+            <a href="https://github.com/checkstyle/checkstyle/issues/9920">#9920</a>
+          </li>
+          <li>
+            Replace branch name with commit sha in site generation action.
+            Author: AkMo3
+            <a href="https://github.com/checkstyle/checkstyle/issues/9954">#9954</a>
+          </li>
+          <li>
+            Deprecate DetailAST.branchContains method.
+            Author: Nick Mancuso
+            <a href="https://github.com/checkstyle/checkstyle/issues/9936">#9936</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_ELSE.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9474">#9474</a>
+          </li>
+          <li>
+            update example of AST for TokenTypes.LITERAL_FALSE.
+            Author: Saransh Kumar
+            <a href="https://github.com/checkstyle/checkstyle/issues/9475">#9475</a>
+          </li>
+        </ul>
+    </section>
     <section name="Release 8.42">
       <div class="releaseDate">25.04.2021</div>
       <p>Breaking backward compatibility:</p>

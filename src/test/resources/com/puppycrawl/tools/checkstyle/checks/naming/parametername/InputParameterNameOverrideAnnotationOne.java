@@ -1,10 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
+/*
+ParameterName
+format = ^h$
+ignoreOverridden = (default)false
+accessModifiers = (default)public, protected, package, private
 
-/* Config:
- *
- * format = "^h$"
- * ignoreOverridden = false
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 public class InputParameterNameOverrideAnnotationOne {
 

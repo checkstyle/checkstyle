@@ -8,9 +8,9 @@ case $1 in
 
 sonarqube)
   # token could be generated at https://sonarcloud.io/account/security/
-  # executon on local for master:
+  # execution on local for master:
   # SONAR_TOKEN=xxxxxx ./.ci/wercker.sh sonarqube
-  # executon on local for non-master:
+  # execution on local for non-master:
   # SONAR_TOKEN=xxxxxx PR=xxxxxx WERCKER_GIT_BRANCH=xxxxxx ./.ci/wercker.sh sonarqube
   if [[ $PR && $PR =~ ^([0-9]*)$ ]]; then
       SONAR_PR_VARIABLES="-Dsonar.pullrequest.key=$PR"
@@ -45,7 +45,7 @@ no-error-pgjdbc)
   checkout_from https://github.com/pgjdbc/pgjdbc.git
   cd .ci-temp/pgjdbc
   # pgjdbc easily damage build, we should use stable versions
-  git checkout "bad34f1c2985225b8809eb1c3fee5c5684d363a7"
+  git checkout "ab0d7c64d619f2b4f5692f1b2d041204ed676333"
   ./gradlew --no-parallel --no-daemon checkstyleAll \
             -PenableMavenLocal -Pcheckstyle.version=${CS_POM_VERSION}
   cd ../

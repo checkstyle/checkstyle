@@ -1,9 +1,13 @@
+/*
+AnnotationOnSameLine
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
+         VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationonsameline;
 
-/* Config:
- * tokens = "CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF,
- *           COMPACT_CTOR_DEF"
- */
 public class InputAnnotationOnSameLineCheck {
 
     @Annotation int x;      // ok

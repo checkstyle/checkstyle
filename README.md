@@ -105,8 +105,8 @@ The software uses the Picocli Library
 (https://github.com/remkop/picocli/). Its license terms
 are in the file named "LICENSE.apache20" in this directory.
 
-[travis]:https://travis-ci.org/checkstyle/checkstyle/builds
-[travis img]:https://travis-ci.org/checkstyle/checkstyle.svg
+[travis]:https://travis-ci.com/github/checkstyle/checkstyle/builds
+[travis img]:https://api.travis-ci.com/checkstyle/checkstyle.svg
 
 [appveyor]:https://ci.appveyor.com/project/checkstyle/checkstyle/history
 [appveyor img]:https://ci.appveyor.com/api/projects/status/rw6bw3dl9kph6ucc?svg=true

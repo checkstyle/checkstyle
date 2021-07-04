@@ -1,12 +1,16 @@
+/*
+DeclarationOrder
+ignoreConstructors = (default)false
+ignoreModifiers = (default)false
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
 import java.util.HashMap;
 
-/* Config:
- * ignoreConstructors = false
- * ignoreModifiers = false
- */
 public class InputDeclarationOrderRecordsAndCompactCtors {
     public record MyRecord1() {
         private static int a;

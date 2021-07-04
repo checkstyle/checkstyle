@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = (default)same
+tokens = ENUM_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = same
- * tokens = { ENUM_DEF }
- */
 public class InputRightCurlyTestSameNewTokens {
 
     enum TestEnum{} // ok

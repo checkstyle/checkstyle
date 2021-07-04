@@ -19,7 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.File;
 
@@ -43,7 +43,9 @@ public class FileSetCheckTest
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
-        assertTrue(TestFileSetCheck.isDestroyed(), "destroy() not called by Checker");
+        assertWithMessage("destroy() not called by Checker")
+                .that(TestFileSetCheck.isDestroyed())
+                .isTrue();
     }
 
     @Test
@@ -54,8 +56,9 @@ public class FileSetCheckTest
 
         verify(checkConfig, getPath("InputFileSetIllegalTokens.java"), expected);
 
-        assertTrue(TestFileSetCheck.isFileContentAvailable(),
-                "FileContent should be available during finishProcessing() call");
+        assertWithMessage("FileContent should be available during finishProcessing() call")
+                .that(TestFileSetCheck.isFileContentAvailable())
+                .isTrue();
     }
 
     public static class TestFileSetCheck extends AbstractFileSetCheck {

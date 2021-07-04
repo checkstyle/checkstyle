@@ -22,6 +22,7 @@ package com.puppycrawl.tools.checkstyle.checks.javadoc;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -341,34 +342,24 @@ public class SummaryJavadocCheck extends AbstractJavadocCheck {
      * @return {@code true} if first sentence contains @summary tag.
      */
     private static boolean containsSummaryTag(DetailNode javadoc) {
-        final DetailNode node = getFirstInlineTag(javadoc);
-        return node != null && isSummaryTag(node);
+        final Optional<DetailNode> node = Arrays.stream(javadoc.getChildren())
+                .filter(SummaryJavadocCheck::isInlineTagPresent)
+                .findFirst()
+                .map(SummaryJavadocCheck::getInlineTagNodeWithinHtmlElement);
+
+        return node.isPresent() && isSummaryTag(node.get());
     }
 
     /**
-     * Finds and returns the first inline tag node from a javadoc root node.
+     * Checks if the inline tag node is present.
      *
-     * @param javadoc javadoc root node.
-     * @return first inline tag node or null if no node is found.
+     * @param ast ast node to check.
+     * @return true, if the inline tag node is present.
      */
-    private static DetailNode getFirstInlineTag(DetailNode javadoc) {
-        DetailNode node = null;
-        final DetailNode[] children = javadoc.getChildren();
-        for (DetailNode child: children) {
-            // If present as a children of javadoc
-            if (child.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG) {
-                node = child;
-            }
-            // If nested inside html tag
-            else if (child.getType() == JavadocTokenTypes.HTML_ELEMENT) {
-                node = getInlineTagNodeWithinHtmlElement(child);
-            }
-
-            if (node != null) {
-                break;
-            }
-        }
-        return node;
+    private static boolean isInlineTagPresent(DetailNode ast) {
+        return ast.getType() == JavadocTokenTypes.JAVADOC_INLINE_TAG
+                || ast.getType() == JavadocTokenTypes.HTML_ELEMENT
+                && getInlineTagNodeWithinHtmlElement(ast) != null;
     }
 
     /**
