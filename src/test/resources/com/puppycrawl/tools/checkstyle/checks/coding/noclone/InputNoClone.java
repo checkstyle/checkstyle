@@ -1,4 +1,11 @@
+/*
+NoClone
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.noclone;
+
 public class InputNoClone
 {/* class body */
     public InputNoClone() throws CloneNotSupportedException
@@ -7,7 +14,7 @@ public class InputNoClone
         super.clone();
     }
 
-    public Object clone() throws CloneNotSupportedException
+    public Object clone() throws CloneNotSupportedException // violation
     {
         return super.clone();
     }
@@ -24,7 +31,7 @@ public class InputNoClone
 
 class NoSuperClone
 {
-    public Object clone()
+    public Object clone() // violation
     {
         return null;
     }
@@ -32,11 +39,11 @@ class NoSuperClone
 
 class InnerClone
 {
-    public Object clone()
+    public Object clone() // violation
     {
         class Inner
         {
-            public Object clone() throws CloneNotSupportedException
+            public Object clone() throws CloneNotSupportedException // violation
             {
                 return super.clone();
             }
@@ -49,7 +56,7 @@ class InnerClone
 // type arguments are ignored when checking super calls
 class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException
+    public CloneWithTypeArguments<T> clone() throws CloneNotSupportedException // violation
     {
         return (CloneWithTypeArguments<T>) super.<T>clone();
     }
@@ -57,7 +64,8 @@ class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 
 class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArgumentsAndNoSuper<T> clone() throws CloneNotSupportedException
+    public CloneWithTypeArgumentsAndNoSuper<T> clone() // violation
+            throws CloneNotSupportedException
     {
         return null;
     }
@@ -95,5 +103,5 @@ class AnotherClass {
 }
 
 class NativeTest {
-    public native Object clone();
+    public native Object clone(); // violation
 }
