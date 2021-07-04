@@ -1,9 +1,15 @@
+/*
+AnnotationUseStyle
+elementStyle = (default)compact_no_array
+closingParens = (default)never
+trailingArrayComma = ignore
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 //this file compiles in eclipse 3.4 but not with Sun's JDK 1.6.0.11
 
-/* Config:
- * trailingArrayComma = ignore
- */
 public class InputAnnotationUseStyleWithTrailingCommaIgnore
 {
     @SuppressWarnings({"common",}) // violation

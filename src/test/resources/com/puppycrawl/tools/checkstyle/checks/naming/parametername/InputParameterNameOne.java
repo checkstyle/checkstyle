@@ -1,10 +1,14 @@
+/*
+ParameterName
+format = ^a[A-Z][a-zA-Z0-9]*$
+ignoreOverridden = (default)false
+accessModifiers = (default)public, protected, package, private
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 import java.io.*;
-
-/* Config:
- *
- * format = "^a[A-Z][a-zA-Z0-9]*$"
- */
 
 final class InputParameterNameOne
 {

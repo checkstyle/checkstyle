@@ -15,13 +15,12 @@ jobs:
             SKIP_FILES1=".github|appveyor.yml|.travis.yml|\.ci/"
             SKIP_FILES2="|fast-forward-merge.sh"
             SKIP_FILES3="|LICENSE|LICENSE.apache20|README.md|release.sh"
-            SKIP_FILES4="|RIGHTS.antlr|shippable.yml|codeship"
-            SKIP_FILES5="|shippable.sh|wercker.yml|wercker.sh"
+            SKIP_FILES4="|RIGHTS.antlr|codeship"
+            SKIP_FILES5="|wercker.yml|wercker.sh"
             SKIP_FILES6="|intellij-idea-inspections.xml"
             SKIP_FILES7="|org.eclipse.jdt.core.prefs"
-            SKIP_FILES8="|Jenkinsfile"
             FULL_SKIP1=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
-            FULL_SKIP2=$SKIP_FILES5$SKIP_FILES6$SKIP_FILES7$SKIP_FILES8
+            FULL_SKIP2=$SKIP_FILES5$SKIP_FILES6$SKIP_FILES7
             SKIP_FILES=$FULL_SKIP1$FULL_SKIP2
             export RUN_JOB=1
             # source ./.ci/common.sh

@@ -1,16 +1,19 @@
+/*
+MissingJavadocMethod
+minLineCount = (default)-1
+allowedAnnotations = (default)Override
+scope = (default)public
+excludeScope = (default)null
+allowMissingPropertyJavadoc = (default)false
+ignoreMethodNamesRegex = (default)null
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-/* Config:
- *
- * minLineCount = "-1"
- * allowedAnnotations = "Override"
- * scope = "public"
- * excludeScope = "null"
- * allowMissingPropertyJavadoc = "false"
- * ignoreMethodNamesRegex = "null"
- * tokens = "{METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF}"
- */
 public class InputMissingJavadocMethodRecordsAndCtors {
     public record MyRecord(Integer number) {
         private static int mNumber;

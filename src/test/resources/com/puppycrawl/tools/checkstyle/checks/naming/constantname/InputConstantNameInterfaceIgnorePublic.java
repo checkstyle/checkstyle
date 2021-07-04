@@ -1,7 +1,6 @@
 package com.puppycrawl.tools.checkstyle.checks.naming.constantname;
 
-/*
-* Config:
+/* Config:
 * applyToPublic = false
 */
 public interface InputConstantNameInterfaceIgnorePublic {

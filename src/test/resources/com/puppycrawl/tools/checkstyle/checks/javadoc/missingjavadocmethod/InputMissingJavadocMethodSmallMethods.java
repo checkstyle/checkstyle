@@ -1,10 +1,18 @@
+/*
+MissingJavadocMethod
+minLineCount = 2
+allowedAnnotations = MyAnnotation, Override
+scope = private
+excludeScope = (default)null
+allowMissingPropertyJavadoc = (default)false
+ignoreMethodNamesRegex = (default)null
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
-/* Config:
- * allowedAnnotations = "MyAnnotation, Override"
- * scope = "private"
- * minLineCount = "2"
- */
 /**
  * The following is a bad tag.
  * @mytag Hello

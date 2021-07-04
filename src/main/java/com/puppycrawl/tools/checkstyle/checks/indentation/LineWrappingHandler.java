@@ -140,21 +140,7 @@ public class LineWrappingHandler {
 
         final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
         if (firstLineNode.getType() == TokenTypes.AT) {
-            DetailAST node = firstLineNode.getParent();
-            while (node != null) {
-                if (node.getType() == TokenTypes.ANNOTATION) {
-                    final DetailAST atNode = node.getFirstChild();
-                    final NavigableMap<Integer, DetailAST> annotationLines =
-                        firstNodesOnLines.subMap(
-                            node.getLineNo(),
-                            true,
-                            getNextNodeLine(firstNodesOnLines, node),
-                            true
-                        );
-                    checkAnnotationIndentation(atNode, annotationLines, indentLevel);
-                }
-                node = node.getNextSibling();
-            }
+            checkForAnnotationIndentation(firstNodesOnLines, indentLevel);
         }
 
         if (ignoreFirstLine == LineWrappingOptions.IGNORE_FIRST_LINE) {
@@ -173,7 +159,9 @@ public class LineWrappingHandler {
 
         for (DetailAST node : firstNodesOnLines.values()) {
             final int currentType = node.getType();
-
+            if (checkForNullParameterChild(node) || checkForMethodLparenNewLine(node)) {
+                continue;
+            }
             if (currentType == TokenTypes.RPAREN) {
                 logWarningMessage(node, firstNodeIndent);
             }
@@ -181,6 +169,53 @@ public class LineWrappingHandler {
                 logWarningMessage(node, currentIndent);
             }
         }
+    }
+
+    /**
+     * Checks for annotation indentation.
+     *
+     * @param firstNodesOnLines the nodes which are present in the beginning of each line.
+     * @param indentLevel line wrapping indentation.
+     */
+    public void checkForAnnotationIndentation(
+            NavigableMap<Integer, DetailAST> firstNodesOnLines, int indentLevel) {
+        final DetailAST firstLineNode = firstNodesOnLines.get(firstNodesOnLines.firstKey());
+        DetailAST node = firstLineNode.getParent();
+        while (node != null) {
+            if (node.getType() == TokenTypes.ANNOTATION) {
+                final DetailAST atNode = node.getFirstChild();
+                final NavigableMap<Integer, DetailAST> annotationLines =
+                        firstNodesOnLines.subMap(
+                                node.getLineNo(),
+                                true,
+                                getNextNodeLine(firstNodesOnLines, node),
+                                true
+                        );
+                checkAnnotationIndentation(atNode, annotationLines, indentLevel);
+            }
+            node = node.getNextSibling();
+        }
+    }
+
+    /**
+     * Checks whether parameter node has any child or not.
+     *
+     * @param node the node for which to check.
+     * @return true if  parameter has no child.
+     */
+    public static boolean checkForNullParameterChild(DetailAST node) {
+        return node.getFirstChild() == null && node.getType() == TokenTypes.PARAMETERS;
+    }
+
+    /**
+     * Checks whether the method lparen starts from a new line or not.
+     *
+     * @param node the node for which to check.
+     * @return true if method lparen starts from a new line.
+     */
+    public static boolean checkForMethodLparenNewLine(DetailAST node) {
+        final int parentType = node.getParent().getType();
+        return parentType == TokenTypes.METHOD_DEF && node.getType() == TokenTypes.LPAREN;
     }
 
     /**

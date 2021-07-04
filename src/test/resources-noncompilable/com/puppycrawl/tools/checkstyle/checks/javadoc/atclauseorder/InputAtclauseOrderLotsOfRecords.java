@@ -1,3 +1,14 @@
+/*
+AtclauseOrder
+violateExecutionOnNonTightHtml = (default)false
+target = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, \
+         CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
+tagOrder = (default)@author, @deprecated, @exception, @param, @return, \
+           @see, @serial, @serialData, @serialField, @since, @throws, @version
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.atclauseorder;
 
@@ -13,14 +24,6 @@ import java.util.logging.LogRecord;
 
 import org.w3c.dom.Node;
 
-/* Config:
- *
- * violateExecutionOnNonTightHtml = false
- * target = {CLASS_DEF , INTERFACE_DEF , ENUM_DEF , METHOD_DEF , CTOR_DEF , VARIABLE_DEF,
- * RECORD_DEF, COMPACT_CTOR_DEF}
- * tagOrder = {@author, @version, @param,@return, @throws, @exception, @see, @since, @serial,
- * @serialField, @serialData, @deprecated}
- */
 public class InputAtclauseOrderLotsOfRecords {
     public static int getRecord() {
         return record;
