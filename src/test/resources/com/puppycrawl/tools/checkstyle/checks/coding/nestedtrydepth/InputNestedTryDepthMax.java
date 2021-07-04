@@ -1,13 +1,13 @@
 /*
 NestedTryDepth
-max = (default)1
+max = 2
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedtrydepth;
 
-public class InputNestedTryDepth
+public class InputNestedTryDepthMax
 {
     void foo() {
         // nesting == 0
@@ -26,7 +26,7 @@ public class InputNestedTryDepth
         // nesting == 2
         try {
             try {
-                try { // violation
+                try {
                 } catch (Exception e) {
                 }
             } catch (Exception e) {
@@ -37,7 +37,7 @@ public class InputNestedTryDepth
         // nesting == 3
         try {
             try {
-                try { // violation
+                try {
                     try { // violation
                     } catch (Exception e) {
                     }
