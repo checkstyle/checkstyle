@@ -1,11 +1,14 @@
+/*
+AnnotationUseStyle
+elementStyle = (default)compact_no_array
+closingParens = ignore
+trailingArrayComma = ignore
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-
-/* Config:
- * closingParens = ignore
- * elementStyle = COMPACT_NO_ARRAY
- * trailingArrayComma = ignore
- */
 @interface InputAnnotationUseStyle {
     @Another32(value={"foo", "bar"}) //expanded // ok
     DOGS[] pooches();

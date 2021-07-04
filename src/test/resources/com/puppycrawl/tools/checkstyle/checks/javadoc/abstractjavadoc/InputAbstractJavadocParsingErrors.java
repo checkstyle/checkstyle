@@ -1,11 +1,15 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
+/*
+ * Config: TempCheck
+ */
+
 /**
- * <unclosedTag>
+ * <unclosedTag> // violation
  */
 class InputAbstractJavadocParsingErrors {
     /**
-     * <img src="singletonTag"/></img>
+     * <img src="singletonTag"/></img> // violation
      */
     void singletonTag() {
     }

@@ -1,10 +1,14 @@
+/*
+NeedBraces
+allowSingleLineStatement = true
+allowEmptyLoopBody = (default)false
+tokens = LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/*
- * Config:
- * allowSingleLineStatement = true
- * tokens = { LAMBDA }
- */
 public class InputNeedBracesTestSingleLineLambda {
 
     static Runnable r1 = ()->String.CASE_INSENSITIVE_ORDER.equals("Hello world one!"); // ok

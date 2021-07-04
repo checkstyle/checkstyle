@@ -31,4 +31,8 @@ public class InputAvoidEscapedUnicodeCharactersEscapedS {
             l\u03bc\n
             """; // violation on line 30
     String value10 = "\n       \u03bc\s";
+    String value11 = """
+        \u03bc\
+        \s\u03bc\
+        """;
 }

@@ -1,17 +1,18 @@
+/*
+AnnotationLocation
+allowSamelineMultipleAnnotations = (default)false
+allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineParameterizedAnnotation = (default)false
+tokens = INTERFACE_DEF, METHOD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
-
-
-/* Config :
- *
- * tokens = ["INTERFACE_DEF", "METHOD_DEF", "PARAMETER_DEF"]
- * allowSamelineSingleParameterlessAnnotation = true
- * allowSamelineParameterizedAnnotation = false
- * allowSamelineMultipleAnnotations = false
- */
 
 @InterfaceAnnotation(value = "foo")
   @InterfaceAnnotation // violation

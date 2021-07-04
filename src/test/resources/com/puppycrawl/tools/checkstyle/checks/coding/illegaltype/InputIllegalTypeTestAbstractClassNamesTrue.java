@@ -1,13 +1,17 @@
 package com.puppycrawl.tools.checkstyle.checks.coding.illegaltype;
 
-public class InputIllegalTypeAbstractClassNames {
+/*
+ * Config:
+ * validateAbstractClassNames = true
+ */
+public class InputIllegalTypeTestAbstractClassNamesTrue {
 
     abstract class AbstractClass {
         abstract String getClassInfo();
         abstract boolean isPerfectClass();
     }
 
-    class MyNonAbstractClass extends AbstractClass {
+    class MyNonAbstractClass extends AbstractClass { // violation
 
         boolean perfect = true;
 
@@ -24,13 +28,13 @@ public class InputIllegalTypeAbstractClassNames {
         }
     }
 
-    AbstractClass a = new MyNonAbstractClass();
+    AbstractClass a = new MyNonAbstractClass(); // violation
 
-    public String getInnerClassInfo(AbstractClass clazz) {
+    public String getInnerClassInfo(AbstractClass clazz) { // violation
         return clazz.getClassInfo();
     }
 
-    public AbstractClass newInnerClassInstance() {
+    public AbstractClass newInnerClassInstance() { // violation
         return new MyNonAbstractClass();
     }
 }

@@ -1,12 +1,16 @@
+/*
+RightCurly
+option = (default)same
+tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/*
- * Config:
- * option = same
- */
 public class InputRightCurlyTestIsSameLambda {
 
     static Runnable r1 = () -> {

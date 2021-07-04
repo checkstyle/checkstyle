@@ -48,7 +48,7 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "94:13: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "96:13: " + getCheckMessage(MSG_KEY_HASHCODE),
         };
         verify(checkConfig, getPath("InputEqualsHashCodeSemantic.java"), expected);
     }
@@ -58,7 +58,7 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_KEY_EQUALS),
+            "10:5: " + getCheckMessage(MSG_KEY_EQUALS),
         };
         verify(checkConfig, getPath("InputEqualsHashCodeNoEquals.java"), expected);
     }
@@ -77,10 +77,10 @@ public class EqualsHashCodeCheckTest
             createModuleConfig(EqualsHashCodeCheck.class);
 
         final List<String> expectedFirstInputErrors = Collections.singletonList(
-            "4:5: " + getCheckMessage(MSG_KEY_EQUALS)
+            "10:5: " + getCheckMessage(MSG_KEY_EQUALS)
         );
         final List<String> expectedSecondInputErrors = Collections.singletonList(
-            "94:13: " + getCheckMessage(MSG_KEY_HASHCODE)
+            "96:13: " + getCheckMessage(MSG_KEY_HASHCODE)
         );
         final List<String> expectedThirdInputErrors =
             Arrays.asList(CommonUtil.EMPTY_STRING_ARRAY);
@@ -107,15 +107,15 @@ public class EqualsHashCodeCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(EqualsHashCodeCheck.class);
         final String[] expected = {
-            "10:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "18:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "48:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "53:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "65:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "68:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "75:9: " + getCheckMessage(MSG_KEY_EQUALS),
-            "82:9: " + getCheckMessage(MSG_KEY_HASHCODE),
-            "97:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "16:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "24:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "54:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "59:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "71:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "74:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "81:9: " + getCheckMessage(MSG_KEY_EQUALS),
+            "88:9: " + getCheckMessage(MSG_KEY_HASHCODE),
+            "103:9: " + getCheckMessage(MSG_KEY_EQUALS),
         };
         verify(checkConfig, getPath("InputEqualsHashCodeEqualsParameter.java"), expected);
     }

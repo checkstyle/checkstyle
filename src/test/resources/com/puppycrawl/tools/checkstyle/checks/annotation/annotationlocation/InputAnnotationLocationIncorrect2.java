@@ -1,10 +1,15 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
+/*
+AnnotationLocation
+allowSamelineMultipleAnnotations = true
+allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineParameterizedAnnotation = true
+tokens = (default)CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, \
+         ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF, COMPACT_CTOR_DEF
 
-/* Config:
- * allowSamelineSingleParameterlessAnnotation = true
- * allowSamelineParameterizedAnnotation = true
- * allowSamelineMultipleAnnotations = true
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 @MyAnn_22 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn_2 // ok
 (value = "")

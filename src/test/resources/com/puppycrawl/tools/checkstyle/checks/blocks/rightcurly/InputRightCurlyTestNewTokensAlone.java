@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = alone
+tokens = ENUM_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone
- * tokens = { ENUM_DEF }
- */
 public class InputRightCurlyTestNewTokensAlone {
 
     enum TestEnum{} // violation

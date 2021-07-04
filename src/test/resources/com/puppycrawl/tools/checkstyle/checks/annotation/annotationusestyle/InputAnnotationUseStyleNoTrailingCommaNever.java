@@ -1,10 +1,14 @@
+/*
+AnnotationUseStyle
+elementStyle = ignore
+closingParens = ignore
+trailingArrayComma = NEVER
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-/* Config:
- * closingParens = ignore
- * elementStyle = ignore
- * trailingArrayComma = NEVER
- */
 @SuppressWarnings({}) // ok
 public class InputAnnotationUseStyleNoTrailingCommaNever
 {

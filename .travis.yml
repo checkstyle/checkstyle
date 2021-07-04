@@ -35,13 +35,6 @@ jobs:
         - DEPLOY="true"
         - USE_MAVEN_REPO="true"
 
-    # No error testing - XWiki project non regression
-    - jdk: openjdk8
-      env:
-        - DESC="non regression on XWiki project"
-        - USE_MAVEN_REPO="true"
-        - CMD="./.ci/validation.sh no-error-xwiki"
-
     # until https://github.com/checkstyle/checkstyle/issues/9984
     # Ensure that all modules are used in no exception configs
     # - env:
@@ -52,33 +45,73 @@ jobs:
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-openjdk9-lucene-and-others-javadoc"
+        - DESC="NoErrorTest - Postgresql JDBC Driver"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-lucene-and-others-javadoc"
+        - CMD2="./.ci/wercker.sh no-error-pgjdbc"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-cassandra-storm-tapestry-javadoc"
+        - DESC="NoErrorTest - Orekit"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-cassandra-storm-tapestry-javadoc"
+        - CMD2="./.ci/wercker.sh no-error-orekit"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-hadoop-apache-groovy-scouter-javadoc"
+        - DESC="NoErrorTest - Hibernate Search"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-hadoop-apache-groovy-scouter-javadoc"
+        - CMD2="./.ci/wercker.sh no-error-hibernate-search"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
     - jdk: openjdk8
       env:
-        - DESC="no-exception-openjdk9-lucene-and-others"
+        - DESC="NoErrorTest - checkstyle's sevntu"
         - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
-        - CMD2="./.ci/no-exception-test.sh no-exception-only-javadoc"
+        - CMD2="./.ci/wercker.sh no-error-checkstyles-sevntu"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="NoErrorTest - sevntu-checks"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/wercker.sh no-error-sevntu-checks"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="NoErrorTest - contribution"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/wercker.sh no-error-contribution"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="NoErrorTest - methods distance"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/wercker.sh no-error-methods-distance"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="NoErrorTest - Spring Cloud GCP"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/wercker.sh no-error-spring-cloud-gcp"
+        - CMD="$CMD1 && $CMD2"
+        - USE_MAVEN_REPO="true"
+
+    - jdk: openjdk8
+      env:
+        - DESC="NoErrorTest - EqualsVerifier"
+        - CMD1="mvn -e --no-transfer-progress clean install -Pno-validations"
+        - CMD2="./.ci/wercker.sh no-error-equalsverifier"
         - CMD="$CMD1 && $CMD2"
         - USE_MAVEN_REPO="true"
 
@@ -89,13 +122,6 @@ script:
   - SKIP_FILES4="|Jenkinsfile"
   - SKIP_FILES=$SKIP_FILES1$SKIP_FILES2$SKIP_FILES3$SKIP_FILES4
   - export RUN_JOB=1
-  # - source ./.ci/common.sh
-#  - |
-#    if [ -z ${SKIP_JOB_BY_FILES+x} ]; then
-#        SKIP_JOB_BY_FILES="recheck";
-#    fi
-  # should_run_job will change RUN_JOB variable
-#  - should_run_job $SKIP_JOB_BY_FILES $SKIP_FILES
   - |
     set -e
     if [[ $RUN_JOB == 1 ]]; then

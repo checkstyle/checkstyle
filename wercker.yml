@@ -1,5 +1,5 @@
 box:
-  id: maven:3.6.3-jdk-11
+  id: maven:3.8.1-jdk-11
   username: $DOCKERHUB_USER
   password: $DOCKERHUB_TOKEN
 
@@ -62,26 +62,6 @@ build:
           echo "build is skipped ..."
         fi
 
-  - script:
-      name: NoErrorTest - Postgresql JDBC Driver
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-pgjdbc"
-          ./.ci/wercker.sh no-error-pgjdbc
-        else
-          echo "build is skipped ..."
-        fi
-
-  - script:
-      name: NoErrorTest - Orekit
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-orekit"
-          ./.ci/wercker.sh no-error-orekit
-        else
-          echo "build is skipped ..."
-        fi
-
 # disabled till https://github.com/checkstyle/checkstyle/issues/7815
 #  - script:
 #      name: NoErrorTest - Apache Apex
@@ -104,26 +84,6 @@ build:
 #          echo "build is skipped ..."
 #        fi
 
-  - script:
-      name: NoErrorTest - Hibernate Search
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-hibernate-search"
-          ./.ci/wercker.sh no-error-hibernate-search
-        else
-          echo "build is skipped ..."
-        fi
-
-  - script:
-      name: NoErrorTest - EqualsVerifier
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-equalsverifier"
-          ./.ci/wercker.sh no-error-equalsverifier
-        else
-          echo "build is skipped ..."
-        fi
-
   # disabled as build is unstable for long time
   # - script:
   #     name: NoErrorTest - Spring Integration
@@ -134,16 +94,6 @@ build:
   #       else
   #         echo "build is skipped ..."
   #       fi
-
-  - script:
-      name: NoErrorTest - Spring Cloud GCP
-      code: |
-        if [[ $RUN_JOB == 1 ]]; then
-          echo "Command: ./.ci/wercker.sh no-error-spring-cloud-gcp"
-          ./.ci/wercker.sh no-error-spring-cloud-gcp
-        else
-          echo "build is skipped ..."
-        fi
 
   # Disabled as it result in "svn: E175002: Unexpected HTTP status 429 'Too Many Requests'"
   # even for "svn checkout -r 14923 ...."
@@ -156,46 +106,6 @@ build:
   #       else
   #         echo "build is skipped ..."
   #       fi
-
-  - script:
-     name: NoErrorTest - checkstyle's sevntu
-     code: |
-       if [[ $RUN_JOB == 1 ]]; then
-         echo "Command: ./.ci/wercker.sh no-error-checkstyles-sevntu"
-         ./.ci/wercker.sh no-error-checkstyles-sevntu
-       else
-         echo "build is skipped ..."
-       fi
-
-  - script:
-     name: NoErrorTest - sevntu-checks
-     code: |
-       if [[ $RUN_JOB == 1 ]]; then
-         echo "Command: ./.ci/wercker.sh no-error-sevntu-checks"
-         ./.ci/wercker.sh no-error-sevntu-checks
-       else
-         echo "build is skipped ..."
-       fi
-
-  - script:
-     name: NoErrorTest - contribution
-     code: |
-       if [[ $RUN_JOB == 1 ]]; then
-         echo "Command: ./.ci/wercker.sh no-error-contribution"
-         ./.ci/wercker.sh no-error-contribution
-       else
-         echo "build is skipped ..."
-       fi
-
-  - script:
-     name: NoErrorTest - methods distance
-     code: |
-       if [[ $RUN_JOB == 1 ]]; then
-         echo "Command: ./.ci/wercker.sh no-error-methods-distance"
-         ./.ci/wercker.sh no-error-methods-distance
-       else
-         echo "build is skipped ..."
-       fi
 
   - script:
       name: NoExceptiontest - Apache Struts

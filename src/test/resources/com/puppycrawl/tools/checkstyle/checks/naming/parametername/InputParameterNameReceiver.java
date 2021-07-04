@@ -1,6 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
+/*
+ParameterName
+format = (default)^[a-z][a-zA-Z0-9]*$
+ignoreOverridden = (default)false
+accessModifiers = (default)public, protected, package, private
 
-/* Config: default */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 public class InputParameterNameReceiver {
     public void foo4(InputParameterNameReceiver this) {}

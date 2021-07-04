@@ -1,9 +1,14 @@
+/*
+NeedBraces
+allowSingleLineStatement = (default)false
+allowEmptyLoopBody = true
+tokens = (default)LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/*
- * Config:
- * allowEmptyLoopBody = true
- */
 public class InputNeedBracesLoopBodyTrue {
 
     private int value;
