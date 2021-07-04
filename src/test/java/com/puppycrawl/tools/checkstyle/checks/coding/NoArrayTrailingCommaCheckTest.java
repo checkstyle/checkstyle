@@ -39,13 +39,13 @@ public class NoArrayTrailingCommaCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(NoArrayTrailingCommaCheck.class);
         final String[] expected = {
-            "14:14: " + getCheckMessage(MSG_KEY),
-            "19:32: " + getCheckMessage(MSG_KEY),
-            "23:53: " + getCheckMessage(MSG_KEY),
-            "37:15: " + getCheckMessage(MSG_KEY),
-            "41:17: " + getCheckMessage(MSG_KEY),
-            "47:14: " + getCheckMessage(MSG_KEY),
-            "61:29: " + getCheckMessage(MSG_KEY),
+            "20:14: " + getCheckMessage(MSG_KEY),
+            "25:32: " + getCheckMessage(MSG_KEY),
+            "29:53: " + getCheckMessage(MSG_KEY),
+            "43:15: " + getCheckMessage(MSG_KEY),
+            "47:17: " + getCheckMessage(MSG_KEY),
+            "53:14: " + getCheckMessage(MSG_KEY),
+            "67:29: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputNoArrayTrailingComma.java"), expected);
     }
