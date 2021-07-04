@@ -30,6 +30,7 @@ import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
 
 public class NoWhitespaceAfterCheckTest
     extends AbstractModuleTestSupport {
@@ -280,6 +281,55 @@ public class NoWhitespaceAfterCheckTest
             "307:5: " + getCheckMessage(MSG_KEY, "someStuff8"),
         };
         verify(checkConfig, getPath("InputNoWhitespaceAfterTestAllTokens.java"), expected);
+    }
+
+    @Test
+    public void testArrayDeclarationsAndAnnotations() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+                + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
+                + "METHOD_REF");
+        final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
+        verify(checkConfig,
+                getPath("InputNoWhitespaceAfterArrayDeclarationsAndAnno.java"), expected);
+    }
+
+    @Test
+    public void testArrayNewTypeStructure() throws Exception {
+        final DefaultConfiguration checkConfig = createModuleConfig(NoWhitespaceAfterCheck.class);
+        checkConfig.addAttribute("tokens", "ARRAY_INIT, AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, "
+                + "BNOT, LNOT, DOT, TYPECAST, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, "
+                + "METHOD_REF");
+        checkConfig.addAttribute("allowLineBreaks", "false");
+
+        final String[] expected = {
+            "50:17: " + getCheckMessage(MSG_KEY, "ci"),
+            "51:27: " + getCheckMessage(MSG_KEY, "int"),
+            "52:16: " + getCheckMessage(MSG_KEY, "double"),
+            "53:62: " + getCheckMessage(MSG_KEY, "cZ"),
+            "57:42: " + getCheckMessage(MSG_KEY, "transformers"),
+            "58:39: " + getCheckMessage(MSG_KEY, "transformers"),
+            "63:19: " + getCheckMessage(MSG_KEY, "a"),
+            "64:25: " + getCheckMessage(MSG_KEY, "]"),
+            "68:18: " + getCheckMessage(MSG_KEY, "]"),
+            "69:25: " + getCheckMessage(MSG_KEY, "]"),
+            "87:21: " + getCheckMessage(MSG_KEY, ")"),
+            "89:57: " + getCheckMessage(MSG_KEY, "KeyManager"),
+            "122:28: " + getCheckMessage(MSG_KEY, ")"),
+            "123:28: " + getCheckMessage(MSG_KEY, ")"),
+            "127:29: " + getCheckMessage(MSG_KEY, ")"),
+            "146:28: " + getCheckMessage(MSG_KEY, "byte"),
+            "179:12: " + getCheckMessage(MSG_KEY, "String"),
+            "179:20: " + getCheckMessage(MSG_KEY, "f"),
+            "211:6: " + getCheckMessage(MSG_KEY, "]"),
+            "212:13: " + getCheckMessage(MSG_KEY, "]"),
+            "216:5: " + getCheckMessage(MSG_KEY, "]"),
+            "217:13: " + getCheckMessage(MSG_KEY, "]"),
+            "223:15: " + getCheckMessage(MSG_KEY, "synchronized"),
+        };
+
+        verify(checkConfig,
+                getPath("InputNoWhitespaceAfterNewTypeStructure.java"), expected);
     }
 
     /**

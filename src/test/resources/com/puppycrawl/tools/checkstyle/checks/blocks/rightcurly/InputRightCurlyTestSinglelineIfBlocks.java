@@ -1,9 +1,13 @@
+/*
+RightCurly
+option = alone
+tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone
- */
 public class InputRightCurlyTestSinglelineIfBlocks {
     void foo1() {
         if (true) { int a = 5; } // violation

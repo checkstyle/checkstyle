@@ -1,12 +1,15 @@
+/*
+NeedBraces
+allowSingleLineStatement = true
+allowEmptyLoopBody = true
+tokens = LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE, \
+         LITERAL_CASE, LITERAL_DEFAULT, LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.needbraces;
 
-/*
- * Config:
- * allowSingleLineStatement = true
- * allowEmptyLoopBody = true
- * tokens = { LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF,
- *            LITERAL_WHILE, LITERAL_CASE, LITERAL_DEFAULT, LAMBDA }
- */
 class InputNeedBracesTestItWithAllowsOn
 {
     /** @return helper func **/

@@ -42,9 +42,9 @@ public class AvoidNoArgumentSuperConstructorCallCheckTest
             createModuleConfig(AvoidNoArgumentSuperConstructorCallCheck.class);
 
         final String[] expected = {
-            "9:9: " + getCheckMessage(MSG_CTOR),
-            "13:9: " + getCheckMessage(MSG_CTOR),
-            "17:9: " + getCheckMessage(MSG_CTOR),
+            "12:9: " + getCheckMessage(MSG_CTOR),
+            "16:9: " + getCheckMessage(MSG_CTOR),
+            "20:9: " + getCheckMessage(MSG_CTOR),
         };
 
         verify(checkConfig, getPath("InputAvoidNoArgumentSuperConstructorCall.java"),

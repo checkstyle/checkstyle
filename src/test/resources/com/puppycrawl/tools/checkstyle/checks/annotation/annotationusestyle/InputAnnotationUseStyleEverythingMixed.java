@@ -1,10 +1,14 @@
+/*
+AnnotationUseStyle
+elementStyle = ignore
+closingParens = ignore
+trailingArrayComma = ignore
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-/* Config:
- * closingParens = ignore
- * elementStyle = ignore
- * trailingArrayComma = ignore
- */
 @Deprecated // ok
 @SomeArrays(pooches={DOGS.LEO}) // ok
 @SuppressWarnings({""}) // ok

@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = alone
+tokens = CLASS_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone
- * tokens = { CLASS_DEF }
- */
 class InputRightCurlyTestSingleLineClass
 {
     void foo() throws InterruptedException
