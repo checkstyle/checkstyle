@@ -844,7 +844,7 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "9:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
                 "com.puppycrawl.tools.checkstyle.*"),
             "13:1: " + getCheckMessage(MSG_LINE_SEPARATOR,
-                "antlr.*"),
+                "picocli.*"),
         };
         verify(checkConfig, getPath("InputCustomImportOrderSingleLine.java"),
             expected);
@@ -941,8 +941,8 @@ public class CustomImportOrderCheckTest extends AbstractModuleTestSupport {
             "33:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "java.util.HashSet"),
             "37:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "org.apache.tools.ant.*"),
             "42:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "com.puppycrawl.tools.checkstyle.*"),
-            "46:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "antlr.*"),
-            "49:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "antlr.Token"),
+            "46:1: " + getCheckMessage(MSG_LINE_SEPARATOR, "picocli.*"),
+            "49:1: " + getCheckMessage(MSG_SEPARATED_IN_GROUP, "picocli.CommandLine"),
         };
         verify(checkConfig, getPath("InputCustomImportOrderSpanMultipleLines.java"), expected);
     }

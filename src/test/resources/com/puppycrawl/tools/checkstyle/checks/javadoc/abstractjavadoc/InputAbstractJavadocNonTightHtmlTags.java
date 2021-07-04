@@ -1,37 +1,42 @@
 package com.puppycrawl.tools.checkstyle.checks.javadoc.abstractjavadoc;
 
+/*
+ * Config: NonTightHtmlTagIntolerantCheck
+ * violateExecutionOnNonTightHtml = true
+ */
+
 /**
  * <body>
  * <p> This class is only meant for testing. </p>
- * <p> In html, closing all tags is not necessary.
+ * <p> In html, closing all tags is not necessary. // violation
  * <li> neither is opening every tag <p> </li>
  * </body>
  *
  * @see "https://www.w3.org/TR/html51/syntax.html#optional-start-and-end-tags"
  */
 public class InputAbstractJavadocNonTightHtmlTags {
-    /** <p> <p> paraception </p> </p> */
+    /** <p> <p> paraception </p> </p> */ // violation
     private int field1;
 
-    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/
+    /**<li> paraTags should be opened</p> list isn't nested in parse tree </li>*/ // violation
     private int field2;
 
     /**
      * <p> this paragraph is closed and would be nested in javadoc tree </p>
-     * <li> this list has an <p> unclosed para, but still the list would get nested </li>
+     * <li> list has an <p> unclosed para, but still the list would get nested </li> // violation
      */
     private int field3;
 
     /**
      * <li> Complete <p> nesting </p> </li>
-     * <tr> Zero </p> nesting despite `tr` is closed </tr>
+     * <tr> Zero </p> nesting despite `tr` is closed </tr> // violation
      */
     private int field4;
 
     /**
      * <p> <a href="www.something.com">something</a> paragraph with `htmlTag` </p>
      * <p> <a href="www.something.com"/> Nested paragraph with `singletonTag` </p>
-     * <li> Outer tag <li> Inner tag nested </li> not nested </li>
+     * <li> Outer tag <li> Inner tag nested </li> not nested </li> // violation
      */
     private int field5;
 
@@ -51,7 +56,7 @@ public class InputAbstractJavadocNonTightHtmlTags {
     /**
      * <body> body <p> paragraph <li> list </li> </p> </body>
      *
-     * @return <li> <li> outer list isn't nested in parse tree </li> </li>
+     * @return <li> <li> outer list isn't nested in parse tree </li> </li> // violation
      */
     int getField1() {return field1;}
 
@@ -68,7 +73,7 @@ public class InputAbstractJavadocNonTightHtmlTags {
     /**
      * <p>This is a setter method.
      * And paraTag shall be nested in parse tree </p>
-     * @param field2 <p> setter
+     * @param field2 <p> setter // violation
      */
     void setField2(int field2) {this.field2 = field2;}
 
@@ -77,7 +82,7 @@ public class InputAbstractJavadocNonTightHtmlTags {
      * <li> List with singletonElement
      * <param name=mov value="~/imitation game.mp4"> <param name=allowfullscreen value=true> </li>
      * @return <tr> tr with <base href="www.something.com"> singletonElement </tr>
-     *     <tr> nonTight </th>
+     *     <tr> nonTight </th> // violation
      */
     private int getField3() {return field3;}
 

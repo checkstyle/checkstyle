@@ -1,17 +1,18 @@
+/*
+AnnotationLocation
+allowSamelineMultipleAnnotations = (default)false
+allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineParameterizedAnnotation = (default)false
+tokens = CLASS_DEF, CTOR_DEF, VARIABLE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Target;
-
-
-/* Config :
- *
- * tokens = ["CLASS_DEF", "CTOR_DEF", "VARIABLE_DEF"]
- * allowSamelineSingleParameterlessAnnotation = true
- * allowSamelineParameterizedAnnotation = false
- * allowSamelineMultipleAnnotations = false
- */
 
 @ClassAnnotation(value = "foo")
   @ClassAnnotation // violation

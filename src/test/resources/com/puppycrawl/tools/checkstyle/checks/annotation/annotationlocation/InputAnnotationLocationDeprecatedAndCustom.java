@@ -1,16 +1,18 @@
+/*
+AnnotationLocation
+allowSamelineMultipleAnnotations = (default)false
+allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineParameterizedAnnotation = (default)false
+tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, \
+         VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
-
-/* Config:
- *
- * tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF,
- *           CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF
- * allowSamelineMultipleAnnotations = false
- * allowSamelineSingleParameterlessAnnotation = true
- * allowSamelineParameterizedAnnotation =  false
- */
 
 public class InputAnnotationLocationDeprecatedAndCustom {
     @Deprecated // ok

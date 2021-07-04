@@ -1,9 +1,15 @@
-package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
+/*
+AnnotationLocation
+allowSamelineMultipleAnnotations = (default)false
+allowSamelineSingleParameterlessAnnotation = (default)true
+allowSamelineParameterizedAnnotation = (default)false
+tokens = CLASS_DEF, INTERFACE_DEF, PACKAGE_DEF, ENUM_CONSTANT_DEF, ENUM_DEF, \
+         METHOD_DEF, CTOR_DEF, VARIABLE_DEF, ANNOTATION_DEF, ANNOTATION_FIELD_DEF
 
-/* Config:
- * tokens = CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF,
- * ANNOTATION_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF, PACKAGE_DEF
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation;
 
 @MyAnn_23 @com.puppycrawl.tools.checkstyle.checks.annotation.annotationlocation.MyAnn3 // violation
 (value = "")

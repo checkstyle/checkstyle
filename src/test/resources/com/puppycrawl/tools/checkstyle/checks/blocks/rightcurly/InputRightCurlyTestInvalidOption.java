@@ -1,9 +1,13 @@
+/*
+RightCurly
+option = invalid_option
+tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = invalid_option
- */
 class InputRightCurlyTestInvalidOption
 {
     void foo() throws InterruptedException

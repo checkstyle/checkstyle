@@ -1,3 +1,12 @@
+/*
+IllegalImport
+illegalPkgs = (default)sun
+illegalClasses = (default)
+regexp = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok

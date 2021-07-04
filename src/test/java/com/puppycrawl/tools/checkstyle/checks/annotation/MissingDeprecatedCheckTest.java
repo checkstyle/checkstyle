@@ -67,15 +67,15 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "31: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "33: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "43: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "51: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "56: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "45: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "50: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "58: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "63: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedBadDeprecated.java"), expected);
@@ -89,11 +89,11 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "29: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "38: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "48: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "36: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "45: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "55: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "62: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedBadJavadoc.java"), expected);
@@ -107,16 +107,16 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "5: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
             "12: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
-            "33: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "42: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "51: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "92: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "19: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "21: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "26: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "40: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "49: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "58: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
             "99: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
             "106: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "113: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedSpecialCase.java"), expected);
@@ -139,8 +139,8 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "8: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
-            "12: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "15: " + getCheckMessage(MSG_KEY_JAVADOC_DUPLICATE_TAG, "@deprecated"),
+            "19: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedClass.java"), expected);
@@ -151,7 +151,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "11: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "18: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedMethod.java"), expected);
@@ -162,7 +162,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "2: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "9: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("package-info.java"), expected);
@@ -173,7 +173,7 @@ public class MissingDeprecatedCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(MissingDeprecatedCheck.class);
 
         final String[] expected = {
-            "7: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
+            "14: " + getCheckMessage(MSG_KEY_ANNOTATION_MISSING_DEPRECATED),
         };
 
         verify(checkConfig, getPath("InputMissingDeprecatedAbovePackage.java"), expected);

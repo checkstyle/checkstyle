@@ -1,10 +1,13 @@
+/*
+RightCurly
+option = alone_or_singleline
+tokens = CLASS_DEF, METHOD_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone_or_singleline
- * tokens = { CLASS_DEF, METHOD_DEF, ANNOTATION_DEF, ENUM_DEF, INTERFACE_DEF }
- */
 class InputRightCurlyLeftTestShouldStartLine2
 {
     /** @see test method **/

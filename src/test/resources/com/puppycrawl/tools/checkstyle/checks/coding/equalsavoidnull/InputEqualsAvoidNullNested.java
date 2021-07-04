@@ -1,3 +1,10 @@
+/*
+EqualsAvoidNull
+ignoreEqualsIgnoreCase = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.equalsavoidnull;
 
 import java.io.IOException;
@@ -15,27 +22,27 @@ public class InputEqualsAvoidNullNested {
                 c = in.read();
                 if (c == '/') {
                     String nm = in.toString();
-                    if (nm.equalsIgnoreCase("applet") ||
-                            nm.equalsIgnoreCase("object") ||
-                            nm.equalsIgnoreCase("embed")) {
+                    if (nm.equalsIgnoreCase("applet") || // violation
+                            nm.equalsIgnoreCase("object") || // violation
+                            nm.equalsIgnoreCase("embed")) { // violation
                         break;
                     }
                 }
                 else {
                     String nm = scanIdentifier(in);
-                    if (nm.equalsIgnoreCase("param")) {
+                    if (nm.equalsIgnoreCase("param")) { // violation
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("applet")) {
+                    else if (nm.equalsIgnoreCase("applet")) { // violation
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("object")) {
+                    else if (nm.equalsIgnoreCase("object")) { // violation
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("embed")) {
+                    else if (nm.equalsIgnoreCase("embed")) { // violation
                         ;
                     }
-                    else if (nm.equalsIgnoreCase("app")) {
+                    else if (nm.equalsIgnoreCase("app")) { // violation
                         ;
                     }
                 }

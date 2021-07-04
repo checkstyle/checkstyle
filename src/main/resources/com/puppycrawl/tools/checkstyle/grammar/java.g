@@ -287,7 +287,11 @@ typeSpec[boolean addImagNode]
 variableLengthParameterTypeSpec
     :   (classOrInterfaceType[false] | builtInType)
         ({LA(1) == AT}? annotations | )
-        (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK ({LA(1) == AT}? annotations | ))*
+        variableLengthParameterTypeSpecArrayBrackets
+    ;
+
+variableLengthParameterTypeSpecArrayBrackets
+    :    (brackets ({LA(1) == AT}? annotations | ))*
     ;
 
 // A class type specification is a class type with either:
@@ -296,10 +300,7 @@ variableLengthParameterTypeSpec
 // - generic type arguments after
 classTypeSpec[boolean addImagNode]
     :   classOrInterfaceType[addImagNode]
-        (options{greedy=true; }:
-            ({LA(1) == AT}? annotations
-            | )
-                lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+        typeSpecBracketsAndAnnotations
         {
             if ( addImagNode ) {
                 #classTypeSpec = #(#[TYPE,"TYPE"], #classTypeSpec);
@@ -398,23 +399,46 @@ typeArgumentBounds[boolean addImagNode]
             classOrInterfaceType[addImagNode]
           | builtInType
         )
-        (options{greedy=true;}: lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+        typeArgumentBoundsArrayDeclarator
     ;
 
+typeArgumentBoundsArrayDeclarator
+    :   (options{greedy=true;}: brackets)*
+    ;
 
 // A builtin type specification is a builtin type with possible brackets
 // afterwards (which would make it an array type).
 builtInTypeSpec[boolean addImagNode]
-     :    builtInType
-         (options{greedy=true; }:
-            ({LA(1) == AT}? annotations
-            | )
-                lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} RBRACK)*
+     :    b: builtInType
+          a: typeSpecBracketsAndAnnotations
         {
             if ( addImagNode ) {
                 #builtInTypeSpec = #(#[TYPE,"TYPE"], #builtInTypeSpec);
             }
+            else if (#a != null) {
+                #builtInTypeSpec = #(b);
+            }
         }
+    ;
+
+typeSpecBracketsAndAnnotationsNonGreedy
+    :
+     (
+        ({LA(1) == AT}? annotations
+        | )
+         brackets )*
+    ;
+
+typeSpecBracketsAndAnnotations
+    :
+     (options{greedy=true; }:
+        ({LA(1) == AT}? annotations
+        | )
+         brackets  )*
+    ;
+
+brackets
+    : (lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);} rb:RBRACK)
     ;
 
 // A type name. which is either a (possibly qualified and parameterized)
@@ -600,16 +624,16 @@ recordComponents
 
 recordComponentVariableLength!
     :   a:annotations t:variableLengthParameterTypeSpec e:ELLIPSIS i:id
-        d:declaratorBrackets[#t]
+        d:typeSpecBracketsAndAnnotationsNonGreedy
         {## = #(#[RECORD_COMPONENT_DEF,"RECORD_COMPONENT_DEF"], a,
-             #([TYPE,"TYPE"],d), e, i);}
+             #([TYPE,"TYPE"], t, d), e, i);}
     ;
 
 recordComponent!
     :   a:annotations t:typeSpec[false] i:id
-        d:declaratorBrackets[#t]
+        d:typeSpecBracketsAndAnnotationsNonGreedy
         {## = #(#[RECORD_COMPONENT_DEF,"RECORD_COMPONENT_DEF"], a,
-            #([TYPE,"TYPE"],d), i);}
+            #([TYPE,"TYPE"], t, d), i);}
     ;
 
 recordBodyDeclaration
@@ -739,7 +763,7 @@ annotationField!
 
                 LPAREN RPAREN
 
-                rt:declaratorBrackets[#t]
+                rt:typeSpecBracketsAndAnnotationsNonGreedy
 
                 ( d:annotationDefault )?
 
@@ -748,7 +772,7 @@ annotationField!
                 {#annotationField =
                     #(#[ANNOTATION_FIELD_DEF,"ANNOTATION_FIELD_DEF"],
                          mods,
-                         #(#[TYPE,"TYPE"],rt),
+                         #(#[TYPE,"TYPE"], t, rt),
                          i,
                          LPAREN,
                          RPAREN,
@@ -816,7 +840,7 @@ enumConstantField!
                 // parse the formal parameter declarations.
                 LPAREN param:parameterDeclarationList RPAREN
 
-                rt:declaratorBrackets[#t]
+                rt:typeSpecBracketsAndAnnotationsNonGreedy
 
                 // get the list of exceptions that this method is
                 // declared to throw
@@ -826,7 +850,7 @@ enumConstantField!
                 {#enumConstantField = #(#[METHOD_DEF,"METHOD_DEF"],
                              mods,
                              tp,
-                             #(#[TYPE,"TYPE"],rt),
+                             #(#[TYPE,"TYPE"], t, rt),
                              id,
                              LPAREN,
                              param,
@@ -897,7 +921,7 @@ implementsClause
                            // parse the formal parameter declarations.
                            LPAREN param:parameterDeclarationList RPAREN
 
-                           rt:declaratorBrackets[#t]
+                           rt:typeSpecBracketsAndAnnotationsNonGreedy
 
                            // get the list of exceptions that this method is
                            // declared to throw
@@ -907,7 +931,7 @@ implementsClause
                            {#field = #(#[METHOD_DEF,"METHOD_DEF"],
                                         mods,
                                         tp,
-                                        #(#[TYPE,"TYPE"],rt),
+                                        #(#[TYPE,"TYPE"], t, rt),
                                         id,
                                         LPAREN,
                                         param,
@@ -990,15 +1014,9 @@ variableDefinitions[AST mods, AST t]
  * It can also include possible initialization.
  */
 variableDeclarator![AST mods, AST t]
-    :    id:id d:declaratorBrackets[t] v:varInitializer
-        {#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], mods, #(#[TYPE,"TYPE"],d), id, v);}
-    ;
-
-declaratorBrackets![AST typ]
-    :    ({LA(1) == AT}? an:annotations | ) lb:LBRACK {#lb.setType(ARRAY_DECLARATOR);} rb:RBRACK
-         db:declaratorBrackets[#(lb, typ, an, rb)]
-        {#declaratorBrackets = #db;}
-    |   {#declaratorBrackets = typ;}
+    :    id:id d:typeSpecBracketsAndAnnotationsNonGreedy v:varInitializer
+        {#variableDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"],
+            mods, #(#[TYPE,"TYPE"], t ,d), id, v);}
     ;
 
 varInitializer
@@ -1073,9 +1091,9 @@ parameterDeclarationList
 
 variableLengthParameterDeclaration!
     :    pm:parameterModifier t:variableLengthParameterTypeSpec td:ELLIPSIS id:id
-        pd:declaratorBrackets[#t]
+        pd:typeSpecBracketsAndAnnotationsNonGreedy
         {#variableLengthParameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
-                                                pm, #([TYPE,"TYPE"],pd), td, id);}
+                                                pm, #([TYPE,"TYPE"], t, pd), td, id);}
     ;
 
 parameterModifier
@@ -1089,9 +1107,9 @@ parameterModifier
 // A formal parameter.
 parameterDeclaration!
     :    pm:parameterModifier (t:typeSpec[false])?
-        id:parameterIdent pd:declaratorBrackets[#t]
+        id:parameterIdent pd:typeSpecBracketsAndAnnotationsNonGreedy
         {#parameterDeclaration = #(#[PARAMETER_DEF,"PARAMETER_DEF"],
-                                    pm, #([TYPE,"TYPE"],pd), id);}
+                                    pm, #([TYPE,"TYPE"], t, pd), id);}
     ;
 
 parameterIdent
@@ -1248,8 +1266,8 @@ forEachClause
     ;
 
 forEachDeclarator!
-    :    m:modifiers t:typeSpec[false] id:id d:declaratorBrackets[#t]
-        {#forEachDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], m, #(#[TYPE,"TYPE"],d), id);}
+    :    m:modifiers t:typeSpec[false] id:id d:typeSpecBracketsAndAnnotationsNonGreedy
+        {#forEachDeclarator = #(#[VARIABLE_DEF,"VARIABLE_DEF"], m, #(#[TYPE,"TYPE"], t, d), id);}
     ;
 
 elseStatement
@@ -1382,8 +1400,8 @@ resource
 ;
 
 tryResourceDeclarator![AST mods, AST t]
-    :    id:id d:declaratorBrackets[t] v:varInitializer
-        {#tryResourceDeclarator = #(#[RESOURCE, "RESOURCE"], mods, #(#[TYPE,"TYPE"],d), id, v);}
+    :    id:id d:typeSpecBracketsAndAnnotationsNonGreedy v:varInitializer
+        {#tryResourceDeclarator = #(#[RESOURCE, "RESOURCE"], mods, #(#[TYPE,"TYPE"], t, d), id, v);}
 ;
 
 tryResourceDeclaration!
@@ -1658,7 +1676,7 @@ postfixExpression
 
             // allow ClassName[].class or just ClassName[]
         |    (options{warnWhenFollowAmbig=false;} :
-                 lbc:LBRACK^ {#lbc.setType(ARRAY_DECLARATOR);} RBRACK )+
+             brackets )+
             //Since java 8 here can be method reference
             (options{warnWhenFollowAmbig=false;} : DOT^ "class")?
 
@@ -1701,7 +1719,7 @@ primaryExpression
         // look for int.class and int[].class and int[]
     |    builtInType
         (options{warnWhenFollowAmbig=false;} :
-            lbt:LBRACK^ {#lbt.setType(ARRAY_DECLARATOR);} RBRACK )*
+            brackets )*
         //Since java 8 here can be method reference
         (options{warnWhenFollowAmbig=false;} : DOT^ "class")?
     ;
@@ -1793,10 +1811,14 @@ newArrayDeclarator
             }
         :
             ({LA(1) == AT}? annotations | )
-            lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);}
-                (expression)?
-            RBRACK
+            bracketsWithExpr
         )+
+    ;
+
+bracketsWithExpr
+    : lb:LBRACK^ {#lb.setType(ARRAY_DECLARATOR);}
+      (expression)?
+      RBRACK
     ;
 
 constant

@@ -5,12 +5,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/*
+ * Config: JavadocCatchCheck
+ */
+
 /////////////
 // CLASSES //
 /////////////
 
 /**Javadoc*/
-class/**nope*/ InputAbstractJavadocPosition/**nope*/{
+class/**nope*/ InputAbstractJavadocPosition/**nope*/{ // ok
     /**Javadoc*/
     protected/**nope*/ class/**nope*/ B/**nope*/{/**nope*/}
 
@@ -232,7 +236,7 @@ enum CCCCCCC {
 @Target(/**nope*/{/**nope*/ElementType/**nope*/./**nope*/CONSTRUCTOR/**nope*/, /**nope*/ElementType/**nope*/./**nope*/FIELD/**nope*/
     , /**nope*/ElementType/**nope*/./**nope*/LOCAL_VARIABLE/**nope*/, /**nope*/ElementType/**nope*/./**nope*/METHOD
     , /**nope*/ElementType/**nope*/./**nope*/PARAMETER/**nope*/, /**nope*/ElementType/**nope*/./**nope*/TYPE/**nope*/}/**nope*/)/**nope*/
-@interface/**nope*/ Component/**nope*/ {/**nope*/
+@interface/**nope*/ Component1/**nope*/ {/**nope*/
 }
 
 /**Javadoc*/

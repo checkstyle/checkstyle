@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,17 +29,23 @@ public class SeverityLevelCounterTest {
     public void testCtorException() {
         try {
             final Object test = new SeverityLevelCounter(null);
-            fail("exception expected but got " + test);
+            assertWithMessage("exception expected but got %s", test)
+                    .fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("'level' cannot be null", ex.getMessage(), "Invalid exception message");
+            assertWithMessage("Invalid exception message")
+                    .that(ex)
+                    .hasMessageThat()
+                    .isEqualTo("'level' cannot be null");
         }
     }
 
     @Test
     public void testAddError() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
-        assertEquals(0, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(0);
         // not counted
         counter.addError(new AuditEvent(this, "ATest.java", null));
         counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0, null,
@@ -48,25 +53,35 @@ public class SeverityLevelCounterTest {
         // counted
         counter.addError(new AuditEvent(this, "ATest.java", new Violation(1, 2, 0, null,
                 null, null, SeverityLevel.ERROR, null, null, null)));
-        assertEquals(1, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(1);
     }
 
     @Test
     public void testAddException() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.ERROR);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        assertEquals(0, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(0);
         counter.addException(event, new IllegalStateException("Test IllegalStateException"));
-        assertEquals(1, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(1);
     }
 
     @Test
     public void testAddExceptionWarning() {
         final SeverityLevelCounter counter = new SeverityLevelCounter(SeverityLevel.WARNING);
         final AuditEvent event = new AuditEvent(this, "ATest.java", null);
-        assertEquals(0, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(0);
         counter.addException(event, new IllegalStateException("Test IllegalStateException"));
-        assertEquals(0, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(0);
     }
 
     @Test
@@ -76,13 +91,19 @@ public class SeverityLevelCounterTest {
         final AuditEvent secondEvent = new AuditEvent(this, "BTest.java", null);
 
         counter.auditStarted(event);
-        assertEquals(0, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(0);
 
         counter.addException(event, new IllegalStateException("Test IllegalStateException"));
-        assertEquals(1, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(1);
 
         counter.auditStarted(secondEvent);
-        assertEquals(0, counter.getCount(), "Invalid severity level count");
+        assertWithMessage("Invalid severity level count")
+                .that(counter.getCount())
+                .isEqualTo(0);
     }
 
 }
