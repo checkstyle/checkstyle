@@ -31,10 +31,15 @@ import java.util.regex.Pattern;
 class PkgImportControl extends AbstractImportControl {
     /** The package separator: "." */
     private static final String DOT = ".";
-    /** A pattern matching the package separator: "." */
-    private static final Pattern DOT_PATTERN = Pattern.compile(DOT, Pattern.LITERAL);
+
     /** The regex for the package separator: "\\.". */
     private static final String DOT_REGEX = "\\.";
+
+    /** A pattern matching the package separator: "\." */
+    private static final Pattern DOT_REGEX_PATTERN = Pattern.compile(DOT_REGEX);
+
+    /** The regex for the escaped package separator: "\\\\.". */
+    private static final String DOT_ESCAPED_REGEX = "\\\\.";
 
     /** List of children {@link AbstractImportControl} objects. */
     private final List<AbstractImportControl> children = new ArrayList<>();
@@ -159,7 +164,7 @@ class PkgImportControl extends AbstractImportControl {
      * @return a regex string.
      */
     private static String toRegex(String input) {
-        return DOT_PATTERN.matcher(input).replaceAll(DOT_REGEX);
+        return DOT_REGEX_PATTERN.matcher(input).replaceAll(DOT_ESCAPED_REGEX);
     }
 
     /**

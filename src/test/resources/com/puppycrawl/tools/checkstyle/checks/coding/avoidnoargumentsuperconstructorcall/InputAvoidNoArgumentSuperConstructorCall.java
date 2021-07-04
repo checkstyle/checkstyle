@@ -1,8 +1,11 @@
+/*
+AvoidNoArgumentSuperConstructorCall
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.avoidnoargumentsuperconstructorcall;
 
-/*
- * Config = default
- */
 public class InputAvoidNoArgumentSuperConstructorCall extends java.util.ArrayList {
 
     public InputAvoidNoArgumentSuperConstructorCall() {

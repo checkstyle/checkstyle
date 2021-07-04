@@ -1,12 +1,22 @@
+/*
+MissingJavadocMethod
+minLineCount = (default)-1
+allowedAnnotations = (default)Override
+scope = anoninner
+excludeScope = (default)null
+allowMissingPropertyJavadoc = (default)false
+ignoreMethodNamesRegex = (default)null
+tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.missingjavadocmethod;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import javax.swing.JButton;
 
-/* Config:
- * scope = "anoninner"
- */
 /**
  * Tests for anonymous inner types
  */

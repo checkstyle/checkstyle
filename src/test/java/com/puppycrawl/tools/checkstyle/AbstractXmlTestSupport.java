@@ -19,10 +19,8 @@
 
 package com.puppycrawl.tools.checkstyle;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertThat;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.charset.StandardCharsets;
@@ -64,10 +62,14 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                 expectedContents);
         final Document actualDocument = getOutputStreamXml(actualOutputStream);
 
-        assertEquals(expectedDocument.getXmlEncoding(), actualDocument.getXmlEncoding(),
-                "xml encoding should be the same");
-        assertEquals(expectedDocument.getXmlVersion(), actualDocument.getXmlVersion(),
-                "xml version should be the same");
+        assertWithMessage("xml encoding should be the same")
+                .that(actualDocument.getXmlEncoding())
+                .isEqualTo(expectedDocument.getXmlEncoding());
+
+        assertWithMessage("xml version should be the same")
+                .that(actualDocument.getXmlVersion())
+                .isEqualTo(expectedDocument.getXmlVersion());
+
         verifyXmlNode(expectedDocument, actualDocument, "/", ordered);
     }
 
@@ -77,12 +79,17 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
         final Node actualFirstChild = actual.getFirstChild();
 
         if (expectedFirstChild == null) {
-            assertNull(actualFirstChild, "no children nodes should exist: " + path);
-            assertEquals(expected.getNodeValue(), actual.getNodeValue(),
-                    "text should be the same: " + path);
+            assertWithMessage("no children nodes should exist: %s", path)
+                    .that(actualFirstChild)
+                    .isNull();
+            assertWithMessage("text should be the same: %s", path)
+                    .that(actual.getNodeValue())
+                    .isEqualTo(expected.getNodeValue());
         }
         else {
-            assertNotNull(actualFirstChild, "children nodes should exist: " + path);
+            assertWithMessage("children nodes should exist: %s", path)
+                    .that(actualFirstChild)
+                    .isNotNull();
 
             if (ordered == null) {
                 Node actualChild = actualFirstChild;
@@ -94,14 +101,17 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                     actualChild = actualChild.getNextSibling();
                 }
 
-                assertNull(actualChild, "node have same number of children: " + path);
+                assertWithMessage("node have same number of children: %s", path)
+                        .that(actualChild)
+                        .isNull();
             }
             else {
                 final Set<Node> expectedChildren = XmlUtil.getChildrenElements(expected);
                 final Set<Node> actualChildren = XmlUtil.getChildrenElements(actual);
 
-                assertEquals(expectedChildren.size(), actualChildren.size(),
-                        "node have same number of children: " + path);
+                assertWithMessage("node have same number of children: %s", path)
+                        .that(actualChildren.size())
+                        .isEqualTo(expectedChildren.size());
 
                 for (Node expectedChild : expectedChildren) {
                     Node foundChild = null;
@@ -113,8 +123,9 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
                         }
                     }
 
-                    assertNotNull(foundChild,
-                            "node should exist: " + path + expectedChild.getNodeName() + "/");
+                    assertWithMessage("node should exist: %s%s/", path, expectedChild.getNodeName())
+                            .that(foundChild)
+                            .isNotNull();
 
                     verifyXmlNode(expectedChild, foundChild, path, ordered);
                 }
@@ -126,17 +137,22 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
             BiPredicate<Node, Node> ordered) {
         if (expected == null) {
             if (actual != null) {
-                fail("no node should exist: " + path + actual.getNodeName() + "/");
+                assertWithMessage("no node should exist: %s%s/", path, actual.getNodeName())
+                        .fail();
             }
         }
         else {
             final String newPath = path + expected.getNodeName() + "/";
 
-            assertNotNull(actual, "node should exist: " + newPath);
-            assertEquals(expected.getNodeName(), actual.getNodeName(),
-                    "node should have same name: " + newPath);
-            assertEquals(expected.getNodeType(), actual.getNodeType(),
-                    "node should have same type: " + newPath);
+            assertWithMessage("node should exist: %s", newPath)
+                    .that(actual)
+                    .isNotNull();
+            assertWithMessage("node should have same name: %s", newPath)
+                    .that(actual.getNodeName())
+                    .isEqualTo(expected.getNodeName());
+            assertWithMessage("node should have same type: %s", newPath)
+                    .that(actual.getNodeType())
+                    .isEqualTo(expected.getNodeType());
 
             verifyXmlAttributes(expected.getAttributes(), actual.getAttributes(), newPath);
 
@@ -147,33 +163,43 @@ public abstract class AbstractXmlTestSupport extends AbstractModuleTestSupport {
     private static void verifyXmlAttributes(NamedNodeMap expected, NamedNodeMap actual,
             String path) {
         if (expected == null) {
-            assertNull(actual, "no attributes should exist: " + path);
+            assertWithMessage("no attributes should exist: %s", path)
+                    .that(actual)
+                    .isNull();
         }
         else {
-            assertNotNull(actual, "attributes should exist: " + path);
+            assertWithMessage("attributes should exist: %s", path)
+                    .that(actual)
+                    .isNotNull();
 
             for (int i = 0; i < expected.getLength(); i++) {
                 verifyXmlAttribute(expected.item(i), actual.item(i), path);
             }
 
-            assertEquals(expected.getLength(), actual.getLength(),
-                    "node have same number of attributes: " + path);
+            assertThat(actual.getLength())
+                    .isEqualTo(expected.getLength());
+            assertWithMessage("node have same number of attributes: %s", path)
+                    .that(actual.getLength())
+                    .isEqualTo(expected.getLength());
         }
     }
 
     private static void verifyXmlAttribute(Node expected, Node actual, String path) {
         final String expectedName = expected.getNodeName();
 
-        assertNotNull(actual,
-                "attribute value for '" + expectedName + "' should not be null: " + path);
+        assertWithMessage("attribute value for '%s' should not be null: %s", expectedName, path)
+                .that(actual)
+                .isNotNull();
 
-        assertEquals(expectedName, actual.getNodeName(), "attribute name should match: " + path);
+        assertWithMessage("attribute name should match: %s", path)
+                .that(actual.getNodeName())
+                .isEqualTo(expectedName);
 
         // ignore checkstyle version in xml as it changes each release
         if (!"/#document/checkstyle".equals(path) && !"version".equals(expectedName)) {
-            assertEquals(expected.getNodeValue(), actual.getNodeValue(),
-                    "attribute value for '" + expectedName + "' should match: " + path);
+            assertWithMessage("attribute value for '%s' should match: %s", expectedName, path)
+                    .that(actual.getNodeValue())
+                    .isEqualTo(expected.getNodeValue());
         }
     }
-
 }

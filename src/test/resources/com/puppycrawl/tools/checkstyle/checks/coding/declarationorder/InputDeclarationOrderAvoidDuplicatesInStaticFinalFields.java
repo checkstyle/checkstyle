@@ -1,8 +1,13 @@
+/*
+DeclarationOrder
+ignoreConstructors = (default)false
+ignoreModifiers = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.declarationorder;
 
-/*
- * Config: default
- */
 public class InputDeclarationOrderAvoidDuplicatesInStaticFinalFields
 {
     private boolean allowInSwitchCase;

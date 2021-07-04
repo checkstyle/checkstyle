@@ -34,7 +34,7 @@
       <fileset dir="src"
                includes="**/*"
                excludes="it/resources/**/*,it/resources-noncompilable/**/*,
-               ,test/resources/**/*,test/resources-noncompilable/**/*"/>
+               test/resources/**/*,test/resources-noncompilable/**/*"/>
       <formatter type="plain"/>
       <formatter type="xml" toFile="${mvn.project.build.directory}/cs_errors.xml"/>
       <classpath path="${mvn.runtime_classpath}"/>

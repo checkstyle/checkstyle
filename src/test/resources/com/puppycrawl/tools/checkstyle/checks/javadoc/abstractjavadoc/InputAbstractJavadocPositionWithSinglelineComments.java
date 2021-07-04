@@ -5,12 +5,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/*
+ * Config: JavadocCatchCheck
+ */
+
 /////////////
 // CLASSES //
 /////////////
 
 /**Javadoc*/ /*noise*/ //noise
-class/**nope*/ InputAbstractJavadocPositionWithSinglelineComments/**nope*/{
+class/**nope*/ InputAbstractJavadocPositionWithSinglelineComments/**nope*/{ // ok
     /**Javadoc*/ //noise
     protected/**nope*/ class/**nope*/ N/**nope*/{/**nope*/}
 
@@ -247,7 +251,7 @@ enum XXXXXXX {
     /**nope*/
 }
 
-class MyTemp2 {
+class MyTemp3 {
     /**Javadoc*/ //noise
     private @interface/**nope*/ MyAnnotation3/**nope*/ {/**nope*/
     }

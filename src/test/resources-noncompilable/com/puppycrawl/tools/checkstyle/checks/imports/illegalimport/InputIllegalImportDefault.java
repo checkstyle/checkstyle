@@ -1,3 +1,12 @@
+/*
+IllegalImport
+illegalPkgs = sun.reflect
+illegalClasses = (default)
+regexp = true
+
+
+*/
+
 //non-compiled with javac: contains sun package so IDEA marks it as build problem
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
@@ -9,9 +18,4 @@ import sun.reflect.*; // violation
 
 import java.awt.Component; // ok
 
-/*
- * Config:
- * regexp = true
- * illegalPkgs = "sun.reflect"
- */
 class InputIllegalImportDefault {}

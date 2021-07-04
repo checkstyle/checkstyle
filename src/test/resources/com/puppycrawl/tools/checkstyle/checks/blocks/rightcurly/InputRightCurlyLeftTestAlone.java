@@ -1,11 +1,14 @@
+/*
+RightCurly
+option = alone
+tokens = LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, \
+         LITERAL_FOR, LITERAL_WHILE, LITERAL_DO
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
-/*
- * Config:
- * option = alone
- * tokens = { LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY,
- *            LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO }
- */
 class InputRightCurlyLeftTestAlone
 {
     /** @see test method **/

@@ -19,8 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import java.lang.reflect.Method;
 import java.util.SortedSet;
@@ -53,21 +52,24 @@ public class AbstractViolationReporterTest {
 
     @Test
     public void testGetMessageBundleWithPackage() throws Exception {
-        assertEquals("com.mycompany.checks.messages",
-            getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"),
-            "violation bundle differs from expected");
+        assertWithMessage("violation bundle differs from expected")
+                .that(getGetMessageBundleMethod().invoke(null, "com.mycompany.checks.MyCoolCheck"))
+                .isEqualTo("com.mycompany.checks.messages");
     }
 
     @Test
     public void testGetMessageBundleWithoutPackage() throws Exception {
-        assertEquals("messages", getGetMessageBundleMethod().invoke(null, "MyCoolCheck"),
-                "violation bundle differs from expected");
+        assertWithMessage("violation bundle differs from expected")
+                .that(getGetMessageBundleMethod().invoke(null, "MyCoolCheck"))
+                .isEqualTo("messages");
     }
 
     @Test
     public void testCustomId() {
         emptyCheck.setId("MyId");
-        assertEquals("MyId", emptyCheck.getId(), "Id differs from expected");
+        assertWithMessage("Id differs from expected")
+                .that(emptyCheck.getId())
+                .isEqualTo("MyId");
     }
 
     @Test
@@ -76,8 +78,12 @@ public class AbstractViolationReporterTest {
         config.addMessage("severity", "error");
         emptyCheck.configure(config);
 
-        assertEquals(SeverityLevel.ERROR, emptyCheck.getSeverityLevel(), "Invalid severity level");
-        assertEquals("error", emptyCheck.getSeverity(), "Invalid severity");
+        assertWithMessage("Invalid severity level")
+                .that(emptyCheck.getSeverityLevel())
+                .isEqualTo(SeverityLevel.ERROR);
+        assertWithMessage("Invalid severity")
+                .that(emptyCheck.getSeverity())
+                .isEqualTo("error");
     }
 
     @Test
@@ -90,9 +96,12 @@ public class AbstractViolationReporterTest {
 
         final SortedSet<Violation> messages = emptyCheck.getViolations();
 
-        assertEquals(1, messages.size(), "Amount of messages differs from expected");
-        assertEquals("This is a custom violation.", messages.first().getViolation(),
-                "violation differs from expected");
+        assertWithMessage("Amount of messages differs from expected")
+                .that(messages)
+                .hasSize(1);
+        assertWithMessage("violation differs from expected")
+                .that(messages.first().getViolation())
+                .isEqualTo("This is a custom violation.");
     }
 
     @Test
@@ -104,10 +113,13 @@ public class AbstractViolationReporterTest {
         emptyCheck.log(1, "msgKey", "TestParam");
         final SortedSet<Violation> messages = emptyCheck.getViolations();
 
-        assertEquals(1, messages.size(), "Amount of messages differs from expected");
+        assertWithMessage("Amount of messages differs from expected")
+                .that(messages)
+                .hasSize(1);
 
-        assertEquals("This is a custom violation with TestParam.",
-                messages.first().getViolation(), "violation differs from expected");
+        assertWithMessage("violation differs from expected")
+                .that(messages.first().getViolation())
+                .isEqualTo("This is a custom violation with TestParam.");
     }
 
     @Test
@@ -118,11 +130,13 @@ public class AbstractViolationReporterTest {
 
         try {
             emptyCheck.log(1, "msgKey", "TestParam");
-            fail("exception expected");
+            assertWithMessage("exception expected")
+                    .fail();
         }
         catch (IllegalArgumentException ex) {
-            assertEquals("Unmatched braces in the pattern.", ex.getMessage(),
-                    "Error violation is unexpected");
+            assertWithMessage("Error violation is unexpected")
+                    .that(ex.getMessage())
+                    .isEqualTo("Unmatched braces in the pattern.");
         }
     }
 

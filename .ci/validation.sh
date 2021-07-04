@@ -201,7 +201,7 @@ no-error-xwiki)
   cd ..
   checkout_from https://github.com/xwiki/xwiki-platform.git
   cd .ci-temp/xwiki-platform
-  git checkout "1d243e9a31589c7a2b2b730bd5e""ad67cb989ca8b"
+  git checkout "b31a47e4f84b1981c27fd55716c""eb89f6983af5b"
   # Validate xwiki-platform
   mvn -e --no-transfer-progress checkstyle:check@default -Dcheckstyle.version=${CS_POM_VERSION}
   cd ..
@@ -262,6 +262,21 @@ verify-no-exception-configs)
   exit $fail
   ;;
 
+verify-regexp-id)
+  fail=0
+  for FILE in config/*_checks.xml
+  do
+    a=$(grep -c "<module name=\"Regexp.*" $FILE) || a=0
+    b=$(grep "<module name=\"Regexp" -A 1 $FILE | grep -c "<property name=\"id\"") || b=0
+    if [ ${a} != ${b} ]
+    then
+      echo "Error: $FILE has Regexp modules without id property immediately after module name."
+      fail=1
+    fi
+  done
+  cd ..
+  exit $fail
+  ;;
 
 *)
   echo "Unexpected argument: $1"

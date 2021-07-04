@@ -3,11 +3,19 @@
     "-//Checkstyle//DTD ImportControl Configuration 1.4//EN"
     "https://checkstyle.org/dtds/import_control_1_4.dtd">
 
-<import-control pkg="com.puppycrawl.tools.checkstyle">
+<import-control
+        pkg="(|
+        |com\.puppycrawl\.tools\.checkstyle|
+        |com\.google\.checkstyle\.test|
+        |com\.sun\.checkstyle\.test|
+        |org\.checkstyle.*)"
+        regex="true">
 
   <!-- Disallow obsolete Junit API -->
   <disallow pkg="org.junit" exact-match="true"/>
   <disallow pkg="junit.framework" />
+  <!-- until https://github.com/checkstyle/checkstyle/issues/9142 -->
+  <disallow pkg="org.junit.jupiter.api.Assertions"/>
 
   <!-- Conflicts with normal tests and pitest.
        See examples in https://github.com/checkstyle/checkstyle/issues/6439 -->

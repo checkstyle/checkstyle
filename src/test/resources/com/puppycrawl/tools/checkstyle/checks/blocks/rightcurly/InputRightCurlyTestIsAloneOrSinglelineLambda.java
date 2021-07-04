@@ -1,12 +1,16 @@
+/*
+RightCurly
+option = alone_or_singleline
+tokens = (default)LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.blocks.rightcurly;
 
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/*
- * Config:
- * option = alone_or_singleline
- */
 public class InputRightCurlyTestIsAloneOrSinglelineLambda {
 
     static Runnable r1 = () -> {

@@ -77,19 +77,61 @@ public final class FullIdent {
      */
     private static void extractFullIdent(FullIdent full, DetailAST ast) {
         if (ast != null) {
+            final DetailAST nextSibling = ast.getNextSibling();
+
+            // Here we want type declaration, but not initialization
+            final boolean isArrayTypeDeclarationStart = nextSibling != null
+                    && (nextSibling.getType() == TokenTypes.ARRAY_DECLARATOR
+                        || nextSibling.getType() == TokenTypes.ANNOTATIONS)
+                    && isArrayTypeDeclaration(nextSibling);
+
             if (ast.getType() == TokenTypes.DOT) {
-                extractFullIdent(full, ast.getFirstChild());
+                final DetailAST firstChild = ast.getFirstChild();
+                extractFullIdent(full, firstChild);
                 full.append(".");
-                extractFullIdent(
-                    full, ast.getFirstChild().getNextSibling());
+                extractFullIdent(full, firstChild.getNextSibling());
+                appendBrackets(full, ast);
             }
-            else if (ast.getType() == TokenTypes.ARRAY_DECLARATOR) {
-                extractFullIdent(full, ast.getFirstChild());
-                full.append("[]");
+            else if (isArrayTypeDeclarationStart) {
+                full.append(ast);
+                appendBrackets(full, ast);
             }
-            else {
+            else if (ast.getType() != TokenTypes.ANNOTATIONS) {
                 full.append(ast);
             }
+        }
+    }
+
+    /**
+     * Checks an `ARRAY_DECLARATOR` ast to verify that it is not a
+     * array initialization, i.e. 'new int [2][2]'. We do this by
+     * making sure that no 'EXPR' token exists in this branch.
+     *
+     * @param arrayDeclarator the first ARRAY_DECLARATOR token in the ast
+     * @return true if ast is an array type declaration
+     */
+    private static boolean isArrayTypeDeclaration(DetailAST arrayDeclarator) {
+        DetailAST expression = arrayDeclarator.getFirstChild();
+        while (expression != null) {
+            if (expression.getType() == TokenTypes.EXPR) {
+                break;
+            }
+            expression = expression.getFirstChild();
+        }
+        return expression == null;
+    }
+
+    /**
+     * Appends the brackets of an array type to a {@code FullIdent}.
+     *
+     * @param full the FullIdent to append brackets to
+     * @param ast the type ast we are building a {@code FullIdent} for
+     */
+    private static void appendBrackets(FullIdent full, DetailAST ast) {
+        final int bracketCount =
+                ast.getParent().getChildCount(TokenTypes.ARRAY_DECLARATOR);
+        for (int i = 0; i < bracketCount; i++) {
+            full.append("[]");
         }
     }
 

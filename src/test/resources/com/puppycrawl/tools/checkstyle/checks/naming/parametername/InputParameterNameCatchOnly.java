@@ -1,9 +1,13 @@
-package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
+/*
+ParameterName
+format = ^NO_WAY_MATEY$
+ignoreOverridden = (default)false
+accessModifiers = (default)public, protected, package, private
 
-/* Config:
- *
- * format = "^NO_WAY_MATEY$"
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.naming.parametername;
 
 public class InputParameterNameCatchOnly {
     int foo() {

@@ -1100,7 +1100,7 @@ public class CustomImportOrderCheck extends AbstractCheck {
             }
         }
 
-        if (bestMatch.group.equals(NON_GROUP_RULE_GROUP)
+        if (NON_GROUP_RULE_GROUP.equals(bestMatch.group)
                 && customOrderRules.contains(THIRD_PARTY_PACKAGE_RULE_GROUP)
                 && thirdPartyPackageRegExp.matcher(importPath).find()) {
             bestMatch.group = THIRD_PARTY_PACKAGE_RULE_GROUP;

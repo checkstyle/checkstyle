@@ -20,7 +20,10 @@
 package com.puppycrawl.tools.checkstyle.checks;
 
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
@@ -134,6 +137,14 @@ public class UncommentedMainCheck
      * file.
      */
     public static final String MSG_KEY = "uncommented.main";
+
+    /** Set of possible String array types. */
+    private static final Set<String> STRING_PARAMETER_NAMES = Stream.of(
+        String[].class.getCanonicalName(),
+        String.class.getCanonicalName(),
+        String[].class.getSimpleName(),
+        String.class.getSimpleName()
+    ).collect(Collectors.toSet());
 
     /**
      * Specify pattern for qualified names of classes which are allowed to
@@ -310,15 +321,12 @@ public class UncommentedMainCheck
 
         if (params.getChildCount() == 1) {
             final DetailAST parameterType = params.getFirstChild().findFirstToken(TokenTypes.TYPE);
-            final Optional<DetailAST> arrayDecl = Optional.ofNullable(
-                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR));
+            final boolean isArrayDeclaration =
+                parameterType.findFirstToken(TokenTypes.ARRAY_DECLARATOR) != null;
             final Optional<DetailAST> varargs = Optional.ofNullable(
                 params.getFirstChild().findFirstToken(TokenTypes.ELLIPSIS));
 
-            if (arrayDecl.isPresent()) {
-                checkPassed = isStringType(arrayDecl.get().getFirstChild());
-            }
-            else if (varargs.isPresent()) {
+            if (isArrayDeclaration || varargs.isPresent()) {
                 checkPassed = isStringType(parameterType.getFirstChild());
             }
         }
@@ -333,8 +341,7 @@ public class UncommentedMainCheck
      */
     private static boolean isStringType(DetailAST typeAst) {
         final FullIdent type = FullIdent.createFullIdent(typeAst);
-        return "String".equals(type.getText())
-            || "java.lang.String".equals(type.getText());
+        return STRING_PARAMETER_NAMES.contains(type.getText());
     }
 
 }
