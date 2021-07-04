@@ -213,8 +213,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]noarraytrailingcomma[\\/]InputNoArrayTrailingComma.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]noclone[\\/]InputNoClone.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]noenumtrailingcomma[\\/]InputNoEnumTrailingComma.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]nofinalizer[\\/]InputNoFinalizerFallThrough.java"/>
@@ -1666,8 +1664,6 @@
             files="coding[\\/]nestedtrydepth[\\/]InputNestedTryDepth.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]noarraytrailingcomma[\\/]InputNoArrayTrailingComma.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]noclone[\\/]InputNoClone.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]noenumtrailingcomma[\\/]InputNoEnumTrailingComma.java"/>
   <suppress id="StyleValidationCommentInInputs"
