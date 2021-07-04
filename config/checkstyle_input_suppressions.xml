@@ -209,8 +209,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]nestedifdepth[\\/]InputNestedIfDepth.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]nestedtrydepth[\\/]InputNestedTryDepth.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]noarraytrailingcomma[\\/]InputNoArrayTrailingComma.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]noclone[\\/]InputNoClone.java"/>
@@ -1662,8 +1660,6 @@
             files="coding[\\/]nestedfordepth[\\/]InputNestedForDepth.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]nestedifdepth[\\/]InputNestedIfDepth.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]nestedtrydepth[\\/]InputNestedTryDepth.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]noarraytrailingcomma[\\/]InputNoArrayTrailingComma.java"/>
   <suppress id="StyleValidationCommentInInputs"
