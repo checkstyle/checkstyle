@@ -41,13 +41,13 @@ public class NoCloneCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(NoCloneCheck.class);
         final String[] expected = {
-            "10:5: " + getCheckMessage(MSG_KEY),
-            "27:5: " + getCheckMessage(MSG_KEY),
-            "35:5: " + getCheckMessage(MSG_KEY),
-            "39:13: " + getCheckMessage(MSG_KEY),
-            "52:5: " + getCheckMessage(MSG_KEY),
-            "60:5: " + getCheckMessage(MSG_KEY),
-            "98:5: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "34:5: " + getCheckMessage(MSG_KEY),
+            "42:5: " + getCheckMessage(MSG_KEY),
+            "46:13: " + getCheckMessage(MSG_KEY),
+            "59:5: " + getCheckMessage(MSG_KEY),
+            "67:5: " + getCheckMessage(MSG_KEY),
+            "106:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputNoClone.java"), expected);
     }
