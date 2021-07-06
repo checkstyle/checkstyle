@@ -41,25 +41,25 @@ public class InnerAssignmentCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(InnerAssignmentCheck.class);
         final String[] expected = {
-            "16:15: " + getCheckMessage(MSG_KEY),
-            "16:19: " + getCheckMessage(MSG_KEY),
-            "18:39: " + getCheckMessage(MSG_KEY),
-            "20:35: " + getCheckMessage(MSG_KEY),
+            "22:15: " + getCheckMessage(MSG_KEY),
+            "22:19: " + getCheckMessage(MSG_KEY),
+            "24:39: " + getCheckMessage(MSG_KEY),
+            "26:35: " + getCheckMessage(MSG_KEY),
 
-            "38:16: " + getCheckMessage(MSG_KEY),
-            "39:24: " + getCheckMessage(MSG_KEY),
-            "40:19: " + getCheckMessage(MSG_KEY),
-            "41:17: " + getCheckMessage(MSG_KEY),
-            "42:29: " + getCheckMessage(MSG_KEY),
-            "43:20: " + getCheckMessage(MSG_KEY),
-            "44:17: " + getCheckMessage(MSG_KEY),
-            "44:31: " + getCheckMessage(MSG_KEY),
-            "44:41: " + getCheckMessage(MSG_KEY),
-            "45:16: " + getCheckMessage(MSG_KEY),
-            "45:27: " + getCheckMessage(MSG_KEY),
-            "46:32: " + getCheckMessage(MSG_KEY),
-            "86:19: " + getCheckMessage(MSG_KEY),
-            "175:22: " + getCheckMessage(MSG_KEY),
+            "44:16: " + getCheckMessage(MSG_KEY),
+            "45:24: " + getCheckMessage(MSG_KEY),
+            "46:19: " + getCheckMessage(MSG_KEY),
+            "47:17: " + getCheckMessage(MSG_KEY),
+            "48:29: " + getCheckMessage(MSG_KEY),
+            "49:20: " + getCheckMessage(MSG_KEY),
+            "50:17: " + getCheckMessage(MSG_KEY),
+            "50:31: " + getCheckMessage(MSG_KEY),
+            "50:41: " + getCheckMessage(MSG_KEY),
+            "51:16: " + getCheckMessage(MSG_KEY),
+            "51:27: " + getCheckMessage(MSG_KEY),
+            "52:32: " + getCheckMessage(MSG_KEY),
+            "92:19: " + getCheckMessage(MSG_KEY),
+            "181:22: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputInnerAssignment.java"), expected);
     }
