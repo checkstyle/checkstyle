@@ -229,7 +229,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             fail("Exception expected");
         }
         catch (CheckstyleException ex) {
-            assertEquals("MismatchedTokenException occurred while parsing file input.java.",
+            assertEquals("IllegalStateException occurred while parsing file input.java.",
                 ex.getMessage(), "Invalid exception message");
         }
     }
@@ -301,7 +301,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException exception) {
             assertTrue(exception.getMessage().contains(
-                    "TokenStreamRecognitionException occurred while parsing file"),
+                    "IllegalStateException occurred while parsing file"),
                     "Error message is unexpected");
         }
     }
@@ -353,8 +353,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             fail("file is not compilable, exception is expected");
         }
         catch (CheckstyleException exception) {
-            final String message =
-                    "TokenStreamRecognitionException occurred while parsing file";
+            final String message = "IllegalStateException occurred while parsing file";
             assertTrue(exception.getMessage().contains(message),
                     "Error message is unexpected");
         }
