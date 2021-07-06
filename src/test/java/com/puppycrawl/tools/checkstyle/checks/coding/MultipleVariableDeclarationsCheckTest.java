@@ -41,15 +41,15 @@ public class MultipleVariableDeclarationsCheckTest extends AbstractModuleTestSup
             createModuleConfig(MultipleVariableDeclarationsCheck.class);
 
         final String[] expected = {
-            "4:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
-            "5:5: " + getCheckMessage(MSG_MULTIPLE),
-            "8:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
-            "9:9: " + getCheckMessage(MSG_MULTIPLE),
-            "13:5: " + getCheckMessage(MSG_MULTIPLE),
-            "16:5: " + getCheckMessage(MSG_MULTIPLE),
-            "35:9: " + getCheckMessage(MSG_MULTIPLE),
-            "35:31: " + getCheckMessage(MSG_MULTIPLE),
-            "35:44: " + getCheckMessage(MSG_MULTIPLE),
+            "11:5: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "12:5: " + getCheckMessage(MSG_MULTIPLE),
+            "15:9: " + getCheckMessage(MSG_MULTIPLE_COMMA),
+            "16:9: " + getCheckMessage(MSG_MULTIPLE),
+            "20:5: " + getCheckMessage(MSG_MULTIPLE),
+            "23:5: " + getCheckMessage(MSG_MULTIPLE),
+            "42:9: " + getCheckMessage(MSG_MULTIPLE),
+            "42:31: " + getCheckMessage(MSG_MULTIPLE),
+            "42:44: " + getCheckMessage(MSG_MULTIPLE),
         };
 
         verify(checkConfig,
