@@ -236,11 +236,6 @@
       <version>4.6.1</version>
     </dependency>
     <dependency>
-      <groupId>antlr</groupId>
-      <artifactId>antlr</artifactId>
-      <version>2.7.7</version>
-    </dependency>
-    <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>
       <version>${antlr4.version}</version>
@@ -539,19 +534,6 @@
                 </pluginExecution>
                 <pluginExecution>
                   <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>antlr-maven-plugin</artifactId>
-                    <versionRange>[1.0,)</versionRange>
-                    <goals>
-                      <goal>generate</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute />
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
                     <groupId>org.antlr</groupId>
                     <artifactId>antlr4-maven-plugin</artifactId>
                     <versionRange>[4.2,)</versionRange>
@@ -563,19 +545,6 @@
                     <execute>
                       <runOnIncremental>true</runOnIncremental>
                     </execute>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <versionRange>[1.0,)</versionRange>
-                    <goals>
-                      <goal>java</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <execute />
                   </action>
                 </pluginExecution>
                 <pluginExecution>
@@ -652,7 +621,7 @@
               </sourceDirectories>
               <excludes>
                 **/it/resources/**/*,**/it/resources-noncompilable/**/*,
-                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*
+                ,**/test/resources/**/*,**/test/resources-noncompilable/**/*,**/gen/**/*
               </excludes>
             </configuration>
             <goals>
@@ -861,11 +830,13 @@
                   <excludes>
                     <!-- Parser related classes -->
                     <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer
+                      com.puppycrawl.tools.checkstyle.grammar.java.JavaParser*
                     </exclude>
-                    <exclude>com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer</exclude>
                     <exclude>
-                      com.puppycrawl.tools.checkstyle.grammar.GeneratedTextBlockLexer
+                      com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer
+                    </exclude>
+                    <exclude>
+                      com.puppycrawl.tools.checkstyle.JavaParser.JavaParserErrorStrategy
                     </exclude>
                     <exclude>
                       com.puppycrawl.tools.checkstyle.grammar.javadoc.JavadocParser*
@@ -1213,38 +1184,19 @@
         -->
       </plugin>
 
-      <!-- Generate the ANTLRv2 grammar -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>antlr-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <sourceDirectory>
-            ${basedir}/src/main/resources/com/puppycrawl/tools/checkstyle/grammar
-          </sourceDirectory>
-          <grammars>java*.g</grammars>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
       <!-- Generate the ANTLRv4 grammar -->
       <plugin>
         <groupId>org.antlr</groupId>
         <artifactId>antlr4-maven-plugin</artifactId>
         <version>${antlr4.version}</version>
         <configuration>
-          <visitor>false</visitor>
+          <visitor>true</visitor>
           <listener>false</listener>
           <sourceDirectory>${basedir}/src/main/resources/</sourceDirectory>
           <outputDirectory>${project.build.directory}/generated-sources/antlr/</outputDirectory>
           <includes>
             <include>com/puppycrawl/tools/checkstyle/grammar/javadoc/*.g4</include>
+            <include>com/puppycrawl/tools/checkstyle/grammar/java/*.g4</include>
           </includes>
         </configuration>
         <executions>
@@ -3381,6 +3333,59 @@
               </excludedTestClasses>
               <coverageThreshold>100</coverageThreshold>
               <mutationThreshold>96</mutationThreshold>
+              <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
+              <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
+              <threads>${pitest.plugin.threads}</threads>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>pitest-JavaAstVisitor</id>
+      <properties>
+        <skipTests>true</skipTests>
+        <jacoco.skip>true</jacoco.skip>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-maven</artifactId>
+            <version>${pitest.plugin.version}</version>
+            <configuration>
+              <mutators>
+                <mutator>CONDITIONALS_BOUNDARY</mutator>
+                <mutator>CONSTRUCTOR_CALLS</mutator>
+                <mutator>FALSE_RETURNS</mutator>
+                <mutator>INCREMENTS</mutator>
+                <mutator>INVERT_NEGS</mutator>
+                <mutator>MATH</mutator>
+                <mutator>NEGATE_CONDITIONALS</mutator>
+                <mutator>REMOVE_CONDITIONALS</mutator>
+                <mutator>RETURN_VALS</mutator>
+                <mutator>TRUE_RETURNS</mutator>
+                <mutator>VOID_METHOD_CALLS</mutator>
+              </mutators>
+              <targetClasses>
+                <param>com.puppycrawl.tools.checkstyle.JavaAstVisitor</param>
+              </targetClasses>
+              <targetTests>
+                <param>com.puppycrawl.tools.checkstyle.grammar.*</param>
+              </targetTests>
+              <excludedTestClasses>
+                <param>*.Input*</param>
+              </excludedTestClasses>
+              <avoidCallsTo>
+                <!-- JavadocParser$JavaParserErrorStrategy calls super to handle
+                error which always results in throwing exception. There is no clear way to kill
+                mutation on it as mutation is only looking at the non-existent return value. -->
+                <avoidCallsTo>
+                  org.antlr.v4.runtime.BailErrorStrategy
+                </avoidCallsTo>
+              </avoidCallsTo>
+              <coverageThreshold>100</coverageThreshold>
+              <mutationThreshold>98</mutationThreshold>
               <timeoutFactor>${pitest.plugin.timeout.factor}</timeoutFactor>
               <timeoutConstant>${pitest.plugin.timeout.constant}</timeoutConstant>
               <threads>${pitest.plugin.threads}</threads>
