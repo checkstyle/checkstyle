@@ -312,24 +312,24 @@ classOrInterfaceType[boolean addImagNode]
     :   ({LA(1) == AT}? annotations
              | )
             id
-            (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
+            (options{warnWhenFollowAmbig=false;}: typeArguments)?
 
             (options{greedy=true; }: // match as many as possible
                 DOT^
                 ({LA(1) == AT}? annotations
                     | )
                     id
-                    (options{warnWhenFollowAmbig=false;}: typeArguments[addImagNode])?
+                    (options{warnWhenFollowAmbig=false;}: typeArguments)?
             )*
      ;
 
 // A generic type argument is a class type, a possibly bounded wildcard type or built-in type array
-typeArgument[boolean addImagNode]
+typeArgument
 :   (   ({LA(1) == AT}? annotations
          | ) (
-        classTypeSpec[addImagNode]
-        |   builtInTypeSpec[addImagNode]
-        |   wildcardType[addImagNode])
+        classTypeSpec[false]
+        |   builtInTypeSpec[false]
+        |   wildcardType[false])
         )
         {#typeArgument = #(#[TYPE_ARGUMENT,"TYPE_ARGUMENT"], #typeArgument);}
     ;
@@ -339,21 +339,21 @@ wildcardType[boolean addImagNode]
         (("extends" | "super")=> typeArgumentBounds[addImagNode])?
     ;
 
-typeArguments[boolean addImagNode]
+typeArguments
 {int currentLtLevel = 0;}
     :
         {currentLtLevel = ltCounter;}
         lt:LT {#lt.setType(GENERIC_START); ;ltCounter++;}
         // (Dinesh Bolkensteyn) Added support for Java 7 diamond notation
         // (disabled ambiguous warnings since generated code seems to work)
-        (options{generateAmbigWarnings=false;}:typeArgument[addImagNode]
+        (options{generateAmbigWarnings=false;}:typeArgument
         (options{greedy=true;}: // match as many as possible
             // If there are any '>' to reconcile
             // (i.e. we've recently encountered a DT, SR or BSR
             // - the end of one or more type arguments and
             // possibly an enclosing type parameter)
             // then further type arguments are not possible
-            {gtToReconcile == 0}? COMMA typeArgument[addImagNode]
+            {gtToReconcile == 0}? COMMA typeArgument
         )*)?
 
         (   // turn warning off since Antlr generates the right code,
@@ -980,7 +980,7 @@ explicitConstructorInvocation
                 generateAmbigWarnings=false;
             }
         :
-            (typeArguments[false])?
+            (typeArguments)?
             (    t:"this"^ LPAREN argList RPAREN SEMI
                 {#t.setType(CTOR_CALL);}
 
@@ -989,7 +989,7 @@ explicitConstructorInvocation
             )
 
         |    // (new Outer()).super()  (create enclosing instance)
-            primaryExpression DOT (typeArguments[false])? s1:"super"^ LPAREN argList RPAREN SEMI
+            primaryExpression DOT (typeArguments)? s1:"super"^ LPAREN argList RPAREN SEMI
             {#s1.setType(SUPER_CTOR_CALL);}
         )
     ;
@@ -1651,7 +1651,7 @@ postfixExpression
 
         (options{warnWhenFollowAmbig=false;} :    // qualified id (id.id.id.id...) -- build the name
             DOT^
-            ( (typeArguments[false])?
+            ( (typeArguments)?
               ( id
               | "this"
               | "super" // ClassName.super.field
@@ -1666,7 +1666,7 @@ postfixExpression
         |
             dc:DOUBLE_COLON^ {#dc.setType(METHOD_REF);}
             (
-                (typeArguments[false])?
+                (typeArguments)?
                     (id
                 | LITERAL_new)
             )
@@ -1777,7 +1777,7 @@ primaryExpression
  * @throws TokenStreamException if problem occurs while generating a stream of tokens.
  */
 newExpression
-    :    "new"^ (typeArguments[false])? type
+    :    "new"^ (typeArguments)? type
         (    LPAREN argList RPAREN (classBlock)?
 
             //java 1.1
