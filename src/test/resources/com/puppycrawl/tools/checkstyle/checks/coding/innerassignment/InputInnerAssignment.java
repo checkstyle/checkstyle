@@ -1,3 +1,9 @@
+/*
+InnerAssignment
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.innerassignment;
 
 import java.io.FileInputStream;
@@ -13,11 +19,11 @@ public class InputInnerAssignment
         int b;
         int c;
 
-        a = b = c = 1; // flag two inner assignments
+        a = b = c = 1; // violation
 
-        String s = Integer.toString(b = 2); // flag inner assignment
+        String s = Integer.toString(b = 2); // violation
 
-        Integer i = new Integer(a += 5); // flag inner assignment
+        Integer i = new Integer(a += 5); // violation
 
         c = b++; // common practice, don't flag
                  // even though technically an assignment to b
@@ -35,15 +41,15 @@ public class InputInnerAssignment
         boolean bb;
         int i;
 
-        if (bb = false) {}
-        for (i = 0; bb = false; i = i + 1) {}
-        while (bb = false) {}
-        if ((bb = false)) {}
-        for (int j = 0; (bb = false); j += 1) {}
-        while ((bb = false)) {}
-        i = (bb = false) ? (b = 2) : (b += 1);
-        i = (b += 1) + (b -= 1);
-        do {i += 1;} while (bb = false);
+        if (bb = false) {} // violation
+        for (i = 0; bb = false; i = i + 1) {} // violation
+        while (bb = false) {} // violation
+        if ((bb = false)) {} // violation
+        for (int j = 0; (bb = false); j += 1) {} // violation
+        while ((bb = false)) {} // violation
+        i = (bb = false) ? (b = 2) : (b += 1); // violation
+        i = (b += 1) + (b -= 1); // violation
+        do {i += 1;} while (bb = false); // violation
     }
 
     public static void demoInputStreamIdiom(java.io.InputStream is) throws java.io.IOException
@@ -83,7 +89,7 @@ public class InputInnerAssignment
         Object t = null;
 
         while (o != null)
-            t = o = o.getParent();
+            t = o = o.getParent(); // violation
     }
 
     @SuppressWarnings(value = "unchecked")
