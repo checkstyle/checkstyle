@@ -173,6 +173,33 @@ pitest-utils)
   checkPitestReport "${ignoredItems[@]}"
   ;;
 
+pitest-JavaAstVisitor)
+  mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
+  declare -a ignoredItems=(
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>            annotations.setColumnNo(ctx.anno.get(0).start.getCharPositionInLine());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>            annotations.setColumnNo(ctx.getParent().start.getCharPositionInLine());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>            annotations.setLineNo(ctx.anno.get(0).start.getLine());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>            annotations.setLineNo(ctx.getParent().start.getLine());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>            annotations.setLineNo(qualifiedName.getLineNo());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        DetailAstPair.addASTChild(currentAST, visit(ctx.annotations()));</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        copy.setColumnNo(ast.getColumnNo());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        copy.setLineNo(ast.getLineNo());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        detailAst.initialize(token);</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        enumDef.setLineNo(enumDef.getFirstChild().getLineNo());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        for (int i = 1; i &#60; ctx.children.size() - 1; i += 2) {</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        if (binOpList.isEmpty()) {</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        if (ctx.DOT() == null &#38;&#38; ctx.LITERAL_this() == null) {</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        if (ctx.SEMI() == null) {</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        if (ctx.typeArgumentsOrDiamond() != null) {</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        interfaceDef.setLineNo(interfaceDef.getFirstChild().getLineNo());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        type.setLineNo(type.getFirstChild().getLineNo());</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='covered'><pre><span  class='survived'>        while (firstExpression instanceof JavaParser.BinOpContext) {</span></pre></td></tr>"
+"JavaAstVisitor.java.html:<td class='uncovered'><pre><span  class=''>            returnTree = create(ctx.SEMI());</span></pre></td></tr"
+  );
+  checkPitestReport "${ignoredItems[@]}"
+  ;;
+
+
 # pitesttyle-gui)
 #   mvn -e -P$1 clean test org.pitest:pitest-maven:mutationCoverage;
 #   # post validation is skipped, we do not test gui throughly
