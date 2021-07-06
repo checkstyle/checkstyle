@@ -27,9 +27,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 
+import org.antlr.v4.runtime.misc.ParseCancellationException;
 import org.junit.jupiter.api.Test;
 
-import antlr.NoViableAltException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
@@ -119,8 +119,9 @@ public class SuppressionsStringPrinterTest extends AbstractTreeTestSupport {
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
-            assertSame(NoViableAltException.class, ex.getCause().getClass(), "Invalid class");
-            assertEquals(input.getAbsolutePath() + ":2:1: unexpected token: classD",
+            assertSame(ParseCancellationException.class, ex.getCause().getClass(), "Invalid class");
+            assertEquals(ParseCancellationException.class.getName()
+                            + ": 2:0: no viable alternative at input 'classD'",
                     ex.getCause().toString(), "Invalid exception message");
         }
     }
