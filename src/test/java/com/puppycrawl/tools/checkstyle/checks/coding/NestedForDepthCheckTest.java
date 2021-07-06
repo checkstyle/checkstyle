@@ -51,9 +51,9 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("max", "2");
 
         final String[] expected = {
-            "43:11: " + getCheckMessage(MSG_KEY, 3, 2),
-            "44:13: " + getCheckMessage(MSG_KEY, 4, 2),
-            "47:13: " + getCheckMessage(MSG_KEY, 4, 2),
+            "32:11: " + getCheckMessage(MSG_KEY, 3, 2),
+            "33:13: " + getCheckMessage(MSG_KEY, 4, 2),
+            "36:13: " + getCheckMessage(MSG_KEY, 4, 2),
         };
 
         verify(checkConfig, getPath("InputNestedForDepth.java"),
@@ -78,7 +78,7 @@ public class NestedForDepthCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputNestedForDepth.java"),
+        verify(checkConfig, getPath("InputNestedForDepth1.java"),
                expected);
     }
 
