@@ -169,8 +169,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]magicnumber[\\/]InputMagicNumberIntMethodAnnotation.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]missingswitchdefault[\\/]InputMissingSwitchDefault.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable2.java"/>
@@ -1592,8 +1590,6 @@
             files="coding[\\/]illegaltokentext[\\/]InputIllegalTokenTextTokens.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]magicnumber[\\/]InputMagicNumberIntMethodAnnotation.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]missingswitchdefault[\\/]InputMissingSwitchDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
   <suppress id="StyleValidationCommentInInputs"

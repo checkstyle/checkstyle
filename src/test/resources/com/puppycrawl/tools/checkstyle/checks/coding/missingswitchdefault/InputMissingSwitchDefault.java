@@ -1,3 +1,9 @@
+/*
+MissingSwitchDefault
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
 public class InputMissingSwitchDefault {

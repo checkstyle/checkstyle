@@ -1,10 +1,12 @@
+/*
+MissingSwitchDefault
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.missingswitchdefault;
 
-/* Config:
- *
- * default
- */
 public class InputMissingSwitchDefaultCheckSwitchExpressionsTwo {
     enum Nums {ONE, TWO, THREE}
 
