@@ -183,8 +183,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]missingctor[\\/]InputMissingCtor.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]missingswitchdefault[\\/]InputMissingSwitchDefault.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableEnhancedForLoopVariable2.java"/>
@@ -1626,8 +1624,6 @@
             files="coding[\\/]missingctor[\\/]InputMissingCtor2.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]missingctor[\\/]InputMissingCtor.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]missingswitchdefault[\\/]InputMissingSwitchDefault.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]modifiedcontrolvariable[\\/]InputModifiedControlVariableBothForLoops.java"/>
   <suppress id="StyleValidationCommentInInputs"
