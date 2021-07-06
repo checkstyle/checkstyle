@@ -21,26 +21,29 @@ package com.puppycrawl.tools.checkstyle;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Locale;
 
-import antlr.CommonASTWithHiddenTokens;
-import antlr.CommonHiddenStreamToken;
-import antlr.RecognitionException;
-import antlr.Token;
-import antlr.TokenStreamException;
-import antlr.TokenStreamHiddenTokenFilter;
-import antlr.TokenStreamSelector;
+import org.antlr.v4.runtime.BailErrorStrategy;
+import org.antlr.v4.runtime.BaseErrorListener;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonToken;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.InputMismatchException;
+import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.Token;
+
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
 import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
-import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaLexer;
-import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaRecognizer;
-import com.puppycrawl.tools.checkstyle.grammar.GeneratedTextBlockLexer;
+import com.puppycrawl.tools.checkstyle.grammar.java.JavaLexer;
 import com.puppycrawl.tools.checkstyle.utils.ParserUtil;
 
 /**
@@ -81,46 +84,31 @@ public final class JavaParser {
     public static DetailAST parse(FileContents contents)
             throws CheckstyleException {
         final String fullText = contents.getText().getFullText().toString();
-        final Reader reader = new StringReader(fullText);
-        final GeneratedJavaLexer lexer = new GeneratedJavaLexer(reader);
+        final CharStream codePointCharStream = CharStreams.fromString(fullText);
+        final JavaLexer lexer = new JavaLexer(codePointCharStream, true);
         lexer.setCommentListener(contents);
+        lexer.removeErrorListeners();
 
-        final GeneratedTextBlockLexer textBlockLexer =
-                new GeneratedTextBlockLexer(lexer.getInputState());
+        final CommonTokenStream tokenStream = new CommonTokenStream(lexer);
+        final com.puppycrawl.tools.checkstyle.grammar.java.JavaParser parser =
+                new com.puppycrawl.tools.checkstyle.grammar.java.JavaParser(tokenStream);
+        parser.setErrorHandler(new JavaParserErrorStrategy());
+        parser.removeErrorListeners();
+        parser.addErrorListener(new CheckstyleErrorListener());
 
-        final String tokenObjectClass = "antlr.CommonHiddenStreamToken";
-        lexer.setTokenObjectClass(tokenObjectClass);
-        textBlockLexer.setTokenObjectClass(tokenObjectClass);
-
-        final TokenStreamHiddenTokenFilter filter = new TokenStreamHiddenTokenFilter(lexer);
-        filter.hide(TokenTypes.SINGLE_LINE_COMMENT);
-        filter.hide(TokenTypes.BLOCK_COMMENT_BEGIN);
-
-        final TokenStreamSelector selector = new TokenStreamSelector();
-        lexer.selector = selector;
-        textBlockLexer.selector = selector;
-        selector.addInputStream(textBlockLexer, "textBlockLexer");
-        selector.select(filter);
-
-        final GeneratedJavaRecognizer parser = new GeneratedJavaRecognizer(selector) {
-            @Override
-            public void reportError(RecognitionException ex) {
-                throw new IllegalStateException(ex);
-            }
-        };
-        parser.setFilename(contents.getFileName());
-        parser.setASTNodeClass(DetailAstImpl.class.getName());
+        final com.puppycrawl.tools.checkstyle.grammar.java.JavaParser
+                .CompilationUnitContext compilationUnit;
         try {
-            parser.compilationUnit();
+            compilationUnit = parser.compilationUnit();
         }
-        catch (RecognitionException | TokenStreamException | IllegalStateException ex) {
+        catch (IllegalStateException ex) {
             final String exceptionMsg = String.format(Locale.ROOT,
                 "%s occurred while parsing file %s.",
                 ex.getClass().getSimpleName(), contents.getFileName());
             throw new CheckstyleException(exceptionMsg, ex);
         }
 
-        return (DetailAST) parser.getAST();
+        return new JavaAstVisitor(tokenStream).visit(compilationUnit);
     }
 
     /**
@@ -173,21 +161,24 @@ public final class JavaParser {
         while (curNode != null) {
             lastNode = curNode;
 
-            CommonHiddenStreamToken tokenBefore = ((CommonASTWithHiddenTokens) curNode)
-                    .getHiddenBefore();
-            DetailAST currentSibling = curNode;
-            while (tokenBefore != null) {
-                final DetailAST newCommentNode =
-                         createCommentAstFromToken(tokenBefore);
+            if (curNode.getHiddenBefore() != null) {
+                DetailAST currentSibling = curNode;
 
-                ((DetailAstImpl) currentSibling).addPreviousSibling(newCommentNode);
+                final List<Token> commentsList = curNode.getHiddenBefore();
+                final ListIterator<Token> reverseCommentsIterator =
+                        commentsList.listIterator(commentsList.size());
 
-                if (currentSibling == result) {
-                    result = newCommentNode;
+                while (reverseCommentsIterator.hasPrevious()) {
+                    final DetailAST newCommentNode =
+                            createCommentAstFromToken((CommonToken)
+                                    reverseCommentsIterator.previous());
+                    ((DetailAstImpl) currentSibling).addPreviousSibling(newCommentNode);
+
+                    if (currentSibling == result) {
+                        result = newCommentNode;
+                    }
+                    currentSibling = newCommentNode;
                 }
-
-                currentSibling = newCommentNode;
-                tokenBefore = tokenBefore.getHiddenBefore();
             }
 
             DetailAST toVisit = curNode.getFirstChild();
@@ -197,18 +188,15 @@ public final class JavaParser {
             }
             curNode = toVisit;
         }
-        if (lastNode != null) {
-            CommonHiddenStreamToken tokenAfter = ((CommonASTWithHiddenTokens) lastNode)
-                    .getHiddenAfter();
+        if (lastNode != null && lastNode.getHiddenAfter() != null) {
             DetailAST currentSibling = lastNode;
-            while (tokenAfter != null) {
+            for (Token token: lastNode.getHiddenAfter()) {
                 final DetailAST newCommentNode =
-                        createCommentAstFromToken(tokenAfter);
+                        createCommentAstFromToken((CommonToken) token);
 
                 ((DetailAstImpl) currentSibling).addNextSibling(newCommentNode);
 
                 currentSibling = newCommentNode;
-                tokenAfter = tokenAfter.getHiddenAfter();
             }
         }
         return result;
@@ -221,7 +209,7 @@ public final class JavaParser {
      * @param token to create the AST
      * @return DetailAST of comment node
      */
-    private static DetailAST createCommentAstFromToken(Token token) {
+    private static DetailAST createCommentAstFromToken(CommonToken token) {
         final DetailAST commentAst;
         if (token.getType() == TokenTypes.SINGLE_LINE_COMMENT) {
             commentAst = createSlCommentNode(token);
@@ -238,21 +226,19 @@ public final class JavaParser {
      * @param token to create the AST
      * @return DetailAST with SINGLE_LINE_COMMENT type
      */
-    private static DetailAST createSlCommentNode(Token token) {
+    private static DetailAST createSlCommentNode(CommonToken token) {
         final DetailAstImpl slComment = new DetailAstImpl();
         slComment.setType(TokenTypes.SINGLE_LINE_COMMENT);
         slComment.setText("//");
 
-        // column counting begins from 0
-        slComment.setColumnNo(token.getColumn() - 1);
+        slComment.setColumnNo(token.getCharPositionInLine());
         slComment.setLineNo(token.getLine());
 
         final DetailAstImpl slCommentContent = new DetailAstImpl();
         slCommentContent.setType(TokenTypes.COMMENT_CONTENT);
 
-        // column counting begins from 0
         // plus length of '//'
-        slCommentContent.setColumnNo(token.getColumn() - 1 + 2);
+        slCommentContent.setColumnNo(token.getCharPositionInLine() + 2);
         slCommentContent.setLineNo(token.getLine());
         slCommentContent.setText(token.getText());
 
@@ -260,4 +246,29 @@ public final class JavaParser {
         return slComment;
     }
 
+    /**
+     * Custom error listener to provide detailed exception message.
+     */
+    private static class CheckstyleErrorListener extends BaseErrorListener {
+        @Override
+        public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
+                                int line, int charPositionInLine,
+                                String msg, RecognitionException ex) {
+            final String message = line + ":" + charPositionInLine + ": " + msg;
+            throw new IllegalStateException(message, ex.getCause());
+        }
+    }
+
+    /**
+     * Extending BailErrorStrategy allows us to still report errors while
+     * also cancelling the parsing operation.
+     */
+    private static class JavaParserErrorStrategy extends BailErrorStrategy {
+
+        @Override
+        public Token recoverInline(Parser recognizer) {
+            reportError(recognizer, new InputMismatchException(recognizer));
+            return super.recoverInline(recognizer);
+        }
+    }
 }
