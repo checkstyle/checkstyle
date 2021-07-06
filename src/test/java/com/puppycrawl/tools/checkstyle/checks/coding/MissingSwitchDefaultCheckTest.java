@@ -40,9 +40,9 @@ public class MissingSwitchDefaultCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
-            "17:9: " + getCheckMessage(MSG_KEY, "default"),
-            "29:17: " + getCheckMessage(MSG_KEY, "default"),
-            "40:17: " + getCheckMessage(MSG_KEY, "default"),
+            "23:9: " + getCheckMessage(MSG_KEY, "default"),
+            "35:17: " + getCheckMessage(MSG_KEY, "default"),
+            "46:17: " + getCheckMessage(MSG_KEY, "default"),
         };
         verify(
             checkConfig,
@@ -63,7 +63,7 @@ public class MissingSwitchDefaultCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_KEY, "default"),
+            "14:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verify(
             checkConfig,
@@ -76,8 +76,8 @@ public class MissingSwitchDefaultCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(MissingSwitchDefaultCheck.class);
         final String[] expected = {
-            "12:9: " + getCheckMessage(MSG_KEY, "default"),
-            "24:9: " + getCheckMessage(MSG_KEY, "default"),
+            "14:9: " + getCheckMessage(MSG_KEY, "default"),
+            "26:9: " + getCheckMessage(MSG_KEY, "default"),
         };
         verify(
                 checkConfig,
