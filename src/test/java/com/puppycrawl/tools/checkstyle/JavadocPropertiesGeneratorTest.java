@@ -39,7 +39,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import antlr.MismatchedTokenException;
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.internal.utils.TestUtil;
 
@@ -278,9 +277,9 @@ public class JavadocPropertiesGeneratorTest extends AbstractPathTestSupport {
             assertTrue(ex.getMessage().contains("InputJavadocPropertiesGeneratorParseError.java"),
                     "Invalid error message");
 
-            final Throwable cause = ex.getCause().getCause();
-            assertTrue(cause instanceof MismatchedTokenException, "Invalid error message");
-            assertTrue(cause.getMessage().contains("expecting RCURLY, found '!'"),
+            final Throwable cause = ex.getCause();
+            assertTrue(cause instanceof IllegalStateException, "Invalid error message");
+            assertTrue(cause.getMessage().contains("9:0: mismatched input '!' expecting '}'"),
                     "Invalid error message");
         }
     }
