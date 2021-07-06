@@ -40,7 +40,7 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
             createModuleConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_KEY),
+            "9:1: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
@@ -62,9 +62,9 @@ public class MissingCtorCheckTest extends AbstractModuleTestSupport {
                 createModuleConfig(MissingCtorCheck.class);
 
         final String[] expected = {
-            "3:1: " + getCheckMessage(MSG_KEY),
-            "3:34: " + getCheckMessage(MSG_KEY),
-            "3:49: " + getCheckMessage(MSG_KEY),
+            "9:1: " + getCheckMessage(MSG_KEY),
+            "9:34: " + getCheckMessage(MSG_KEY),
+            "9:49: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
