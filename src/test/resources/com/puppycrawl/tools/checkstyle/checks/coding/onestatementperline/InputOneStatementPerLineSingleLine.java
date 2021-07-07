@@ -1,21 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-//checkstyle: Checks Java source code for adherence to a set of rules.
-//Copyright (C) 2001-2004  Oliver Burn
-//
-//This library is free software; you can redistribute it and/or
-//modify it under the terms of the GNU Lesser General Public
-//License as published by the Free Software Foundation; either
-//version 2.1 of the License, or (at your option) any later version.
-//
-//This library is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//Lesser General Public License for more details.
-//
-//You should have received a copy of the GNU Lesser General Public
-//License along with this library; if not, write to the Free Software
-//Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+/*
+OneStatementPerLine
+treatTryResourcesAsStatement = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
 /**
@@ -72,10 +61,10 @@ public class InputOneStatementPerLineSingleLine {
    */
   public void doLegalComment() {
     one = 1;
-    //one = 1; two = 2;
+    //one = 1; two = 2; // ok
     two = 2;
     /*
-     * one = 1; two = 2;
+     * one = 1; two = 2; // ok
      */
   }
 
@@ -85,14 +74,14 @@ public class InputOneStatementPerLineSingleLine {
   public void doLegalString() {
     one = 1;
     two = 2;
-    System.identityHashCode("one = 1; two = 2");
+    System.identityHashCode("one = 1; two = 2"); // ok
   }
 
   /**
    * Within the for-header there are 3 Statements, but this is legal.
    */
   public void doLegalForLoop() {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 20; i++) { // ok
       one = i;
     }
   }
@@ -101,7 +90,7 @@ public class InputOneStatementPerLineSingleLine {
    * Simplest form of an illegal layout.
    */
   public void doIllegal() {
-    one = 1; two = 2;
+    one = 1; two = 2; // violation
   }
 
   /**
