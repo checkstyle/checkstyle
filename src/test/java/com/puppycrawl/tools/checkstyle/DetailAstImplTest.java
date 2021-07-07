@@ -43,11 +43,11 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.powermock.reflect.Whitebox;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
@@ -98,7 +98,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         ast.setColumnNo(3);
 
         final DetailAstImpl copy = new DetailAstImpl();
-        copy.initialize(ast);
+        copy.setText(ast.getText());
+        copy.setType(ast.getType());
+        copy.setLineNo(ast.getLineNo());
+        copy.setColumnNo(ast.getColumnNo());
 
         assertEquals("test", copy.getText(), "Invalid text");
         assertEquals(1, copy.getType(), "Invalid type");
@@ -108,11 +111,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInitializeToken() {
-        final CommonHiddenStreamToken token = new CommonHiddenStreamToken();
+        final CommonToken token = new CommonToken(1);
         token.setText("test");
-        token.setType(1);
         token.setLine(2);
-        token.setColumn(4);
+        token.setCharPositionInLine(3);
 
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(token);
@@ -145,7 +147,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertEquals(0, firstLevelB.getChildCount(), "Invalid child count");
         assertEquals(1, firstLevelA.getChildCount(), "Invalid child count");
         assertEquals(2, root.getChildCount(), "Invalid child count");
-        assertEquals(2, root.getChildCount(), "Invalid child count");
+        assertEquals(2, root.getNumberOfChildren(), "Invalid child count");
 
         assertNull(root.getPreviousSibling(), "Previous sibling should be null");
         assertNull(firstLevelA.getPreviousSibling(), "Previous sibling should be null");
