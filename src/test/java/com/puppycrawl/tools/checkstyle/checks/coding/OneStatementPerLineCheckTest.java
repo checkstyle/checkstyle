@@ -39,13 +39,13 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void testMultiCaseClass() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "24:59: " + getCheckMessage(MSG_KEY),
-            "104:21: " + getCheckMessage(MSG_KEY),
-            "131:14: " + getCheckMessage(MSG_KEY),
-            "157:15: " + getCheckMessage(MSG_KEY),
-            "169:23: " + getCheckMessage(MSG_KEY),
-            "189:19: " + getCheckMessage(MSG_KEY),
-            "192:59: " + getCheckMessage(MSG_KEY),
+            "13:59: " + getCheckMessage(MSG_KEY),
+            "93:21: " + getCheckMessage(MSG_KEY),
+            "120:14: " + getCheckMessage(MSG_KEY),
+            "146:15: " + getCheckMessage(MSG_KEY),
+            "158:23: " + getCheckMessage(MSG_KEY),
+            "178:19: " + getCheckMessage(MSG_KEY),
+            "181:59: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
@@ -66,14 +66,14 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         checkConfig.addAttribute("treatTryResourcesAsStatement", "true");
         final String[] expected = {
-            "44:21: " + getCheckMessage(MSG_KEY),
-            "61:17: " + getCheckMessage(MSG_KEY),
-            "69:17: " + getCheckMessage(MSG_KEY),
-            "81:10: " + getCheckMessage(MSG_KEY),
-            "90:28: " + getCheckMessage(MSG_KEY),
-            "135:39: " + getCheckMessage(MSG_KEY),
-            "168:46: " + getCheckMessage(MSG_KEY),
-            "179:47: " + getCheckMessage(MSG_KEY),
+            "49:21: " + getCheckMessage(MSG_KEY),
+            "66:17: " + getCheckMessage(MSG_KEY),
+            "74:17: " + getCheckMessage(MSG_KEY),
+            "86:10: " + getCheckMessage(MSG_KEY),
+            "95:28: " + getCheckMessage(MSG_KEY),
+            "140:39: " + getCheckMessage(MSG_KEY),
+            "173:46: " + getCheckMessage(MSG_KEY),
+            "184:47: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
@@ -85,12 +85,12 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
     public void oneStatementNonCompilableInputTest() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         final String[] expected = {
-            "32:6: " + getCheckMessage(MSG_KEY),
-            "37:58: " + getCheckMessage(MSG_KEY),
-            "38:58: " + getCheckMessage(MSG_KEY),
-            "38:74: " + getCheckMessage(MSG_KEY),
-            "39:50: " + getCheckMessage(MSG_KEY),
-            "43:85: " + getCheckMessage(MSG_KEY),
+            "39:6: " + getCheckMessage(MSG_KEY),
+            "44:58: " + getCheckMessage(MSG_KEY),
+            "45:58: " + getCheckMessage(MSG_KEY),
+            "45:74: " + getCheckMessage(MSG_KEY),
+            "46:50: " + getCheckMessage(MSG_KEY),
+            "50:85: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig, getNonCompilablePath("InputOneStatementPerLine.java"), expected);
@@ -101,10 +101,10 @@ public class OneStatementPerLineCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(OneStatementPerLineCheck.class);
         checkConfig.addAttribute("treatTryResourcesAsStatement", "true");
         final String[] expected = {
-            "25:42: " + getCheckMessage(MSG_KEY),
-            "29:43: " + getCheckMessage(MSG_KEY),
-            "35:46: " + getCheckMessage(MSG_KEY),
-            "39:46: " + getCheckMessage(MSG_KEY),
+            "32:42: " + getCheckMessage(MSG_KEY),
+            "36:43: " + getCheckMessage(MSG_KEY),
+            "42:46: " + getCheckMessage(MSG_KEY),
+            "46:46: " + getCheckMessage(MSG_KEY),
         };
 
         verify(checkConfig,
