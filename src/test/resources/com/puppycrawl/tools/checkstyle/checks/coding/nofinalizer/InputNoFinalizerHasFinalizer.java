@@ -1,3 +1,9 @@
+/*
+NoFinalizer
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
 public class InputNoFinalizerHasFinalizer
