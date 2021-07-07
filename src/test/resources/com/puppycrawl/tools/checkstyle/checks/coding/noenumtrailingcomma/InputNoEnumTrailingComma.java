@@ -1,171 +1,177 @@
+/*
+NoEnumTrailingComma
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.noenumtrailingcomma;
 
 public class InputNoEnumTrailingComma {
 
     enum Foo1 {
         FOO,
-        BAR; //OK
+        BAR; // ok
     }
 
     enum Foo2 {
         FOO,
-        BAR //OK
+        BAR // ok
     }
 
     enum Foo3 {
         FOO,
-        BAR, //violation
+        BAR, // violation
     }
 
     enum Foo4 {
         FOO,
-        BAR, //violation
+        BAR, // violation
         ;
     }
 
     enum Foo5 {
         FOO,
-        BAR,; //violation
+        BAR,; // violation
     }
 
-    enum Foo6 { FOO, BAR,; } //violation
+    enum Foo6 { FOO, BAR,; } // violation
 
-    enum Foo7 { FOO, BAR, } //violation
+    enum Foo7 { FOO, BAR, } // violation
 
     enum Foo8 {
         FOO,
-        BAR //OK
+        BAR // ok
         ;
     }
 
-    enum Foo9 { FOO, BAR; } //OK
+    enum Foo9 { FOO, BAR; } // ok
 
-    enum Foo10 { FOO, BAR } //OK
+    enum Foo10 { FOO, BAR } // ok
 
-    enum Foo11 {} //OK
+    enum Foo11 {} // ok
 
-    enum Foo12 { FOO, } //violation
+    enum Foo12 { FOO, } // violation
 
-    enum Foo13 { FOO } //OK
+    enum Foo13 { FOO } // ok
 
     enum Foo14 {
-        FOO, //violation
+        FOO, // violation
     }
 
     enum Foo15 {
-        FOO //OK
+        FOO // ok
     }
 
     enum Foo16 {
-    } //OK
+    } // ok
 
-    enum Foo17 { FOO; } //OK
+    enum Foo17 { FOO; } // ok
 
     enum Foo18 {
-        FOO; //OK
+        FOO; // ok
     }
 
     enum Foo19 {
         FOO
-        , //violation
+        , // violation
     }
 
     enum Foo20 {
         FOO
-        ; //OK
+        ; // ok
     }
 
     public enum Foo21
     {
         FIRST_CONSTANT,
-        SECOND_CONSTANT; //OK
+        SECOND_CONSTANT; // ok
 
         public void someMethod() {
         }
     }
 
     enum Foo22 {
-        A,B() //OK
+        A,B() // ok
     }
 
     enum Foo23 {
-        A,B{} //OK
+        A,B{} // ok
     }
 
     enum Foo24 {
-        A,B(){ public String toString() { return "";}} //OK
+        A,B(){ public String toString() { return "";}} // ok
     }
 
     enum Foo25 {
-        A,B(){ public String toString() { return "";}}, //violation
+        A,B(){ public String toString() { return "";}}, // violation
     }
 
     enum Foo26 {
-        A,B(), //violation
+        A,B(), // violation
     }
 
     enum Foo27 {
-        A,B{}, //violation
+        A,B{}, // violation
     }
 
     enum Foo28 {
-        A,B(); //OK
+        A,B(); // ok
     }
 
     enum Foo29 {
-        A,B{}; //OK
+        A,B{}; // ok
     }
 
     enum Foo30 {
-        A,B(){ public String toString() { return "";}}; //OK
+        A,B(){ public String toString() { return "";}}; // ok
     }
 
     enum Foo31 {
-        A,B(),; //violation
+        A,B(),; // violation
     }
 
     enum Foo32 {
-        A,B{},; //violation
+        A,B{},; // violation
     }
 
     enum Foo33 {
-        A,B(){ public String toString() { return "";}},; //violation
+        A,B(){ public String toString() { return "";}},; // violation
     }
 
     enum Foo34 {
-        A, B, C; //OK
+        A, B, C; // ok
         enum NestedFoo1 {
-            First, Second, Third, //violation
+            First, Second, Third, // violation
         }
     }
 
     enum Foo35 {
-        A, B, C; //OK
+        A, B, C; // ok
         enum NestedFoo1 {
-            First, Second, Third,; //violation
+            First, Second, Third,; // violation
         }
     }
 
     enum Foo36 {
-        A, B, C; //OK
+        A, B, C; // ok
         enum NestedFoo1 {
-            First, Second, Third; //OK
+            First, Second, Third; // ok
         }
     }
 
     enum Foo37 {
-        A, B; //OK
+        A, B; // ok
         Foo37() {}
     }
 
     enum Foo38 {
-        A, B,; //violation
+        A, B,; // violation
         Foo38() {};
     }
 
     public enum Foo39 {
         ONE_ONE(1,1),
-        ONE_TWO(1,2); //OK
+        ONE_TWO(1,2); // ok
 
         int major, minor;
 
@@ -177,7 +183,7 @@ public class InputNoEnumTrailingComma {
 
     public enum Foo40 {
         ONE_ONE(1,1),
-        ONE_TWO(1,2),; //violation
+        ONE_TWO(1,2),; // violation
 
         int major, minor;
 
@@ -197,7 +203,7 @@ public class InputNoEnumTrailingComma {
             @Override
             public void someFunction(){
             }
-        },; //violation
+        },; // violation
 
         int major, minor;
 
@@ -221,7 +227,7 @@ public class InputNoEnumTrailingComma {
             @Override
             public void someFunction(){
             }
-        }; //OK
+        }; // ok
 
         int major, minor;
 
@@ -236,12 +242,12 @@ public class InputNoEnumTrailingComma {
     }
 
     enum Foo43 {
-        A,B(){ public String toString() { return "";}}; //OK
+        A,B(){ public String toString() { return "";}}; // ok
         interface SomeInterface {}
     }
 
     enum Foo44 {
-        A,B(){ public String toString() { return "";}},; //violation
+        A,B(){ public String toString() { return "";}},; // violation
         interface SomeInterface {}
     }
 
