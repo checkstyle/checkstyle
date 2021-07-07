@@ -195,8 +195,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResources.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]overloadmethodsdeclarationorder[\\/]InputOverloadMethodsDeclarationOrder.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtParent.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtSubpackage.java"/>
@@ -1612,8 +1610,6 @@
             files="coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResourcesIgnore.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]onestatementperline[\\/]InputOneStatementPerLineTryWithResources.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]overloadmethodsdeclarationorder[\\/]InputOverloadMethodsDeclarationOrder.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationDiffDirectoryAtParent.java"/>
   <suppress id="StyleValidationCommentInInputs"

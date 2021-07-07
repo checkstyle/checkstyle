@@ -1,6 +1,10 @@
+/*
+OverloadMethodsDeclarationOrder
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethodsdeclarationorder;
-
-
 
 class InputOverloadMethodsDeclarationOrder
 {
@@ -25,7 +29,7 @@ class InputOverloadMethodsDeclarationOrder
     }
 
     //violation: because overloads never split
-    public void overloadMethod(String s, Boolean b, int i) //warn
+    public void overloadMethod(String s, Boolean b, int i) // violation
     {
         //some foo code
     }
@@ -53,7 +57,7 @@ class InputOverloadMethodsDeclarationOrder
         }
 
         //violation: because overloads never split
-        public void overloadMethod(String s, Boolean b, int i) //warn
+        public void overloadMethod(String s, Boolean b, int i) // violation
         {
             //some foo code
         }
@@ -65,7 +69,7 @@ interface Fooable
     public abstract void foo(int i);
     public abstract void foo(String s);
     public abstract void noFoo();
-    public abstract void foo(String s, Boolean b, int i); //warn
+    public abstract void foo(String s, Boolean b, int i); // violation
 }
 
 enum FooType {
@@ -108,7 +112,7 @@ enum FooType {
     }
 
     //violation: because overloads never split
-    public void overloadMethod(String s, Boolean b, int i) //warn
+    public void overloadMethod(String s, Boolean b, int i) // violation
     {
         //some foo code
     }

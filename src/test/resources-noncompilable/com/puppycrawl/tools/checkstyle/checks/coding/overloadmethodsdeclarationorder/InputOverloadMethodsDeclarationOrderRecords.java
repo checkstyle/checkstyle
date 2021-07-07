@@ -1,10 +1,12 @@
+/*
+OverloadMethodsDeclarationOrder
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.overloadmethodsdeclarationorder;
 
-/* Config:
- *
- * default
- */
 public class InputOverloadMethodsDeclarationOrderRecords {
     record MyRecord1() {
         public void foo(int i) {
