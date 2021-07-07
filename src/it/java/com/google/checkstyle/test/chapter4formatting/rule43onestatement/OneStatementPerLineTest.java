@@ -19,8 +19,6 @@
 
 package com.google.checkstyle.test.chapter4formatting.rule43onestatement;
 
-import java.io.File;
-
 import org.junit.jupiter.api.Test;
 
 import com.google.checkstyle.test.base.AbstractGoogleModuleTestSupport;
@@ -85,9 +83,7 @@ public class OneStatementPerLineTest extends AbstractGoogleModuleTestSupport {
         };
 
         final Configuration checkConfig = getModuleConfig("OneStatementPerLine");
-        final String filePath = new File("src/test/resources-noncompilable/"
-            + "com/puppycrawl/tools/checkstyle/checks/coding/onestatementperline/"
-            + "InputOneStatementPerLine.java").getCanonicalPath();
+        final String filePath = getNonCompilablePath("InputOneStatementPerLine.java");
 
         final Integer[] warnList = getLinesWithWarn(filePath);
         verify(checkConfig, filePath, expected, warnList);
