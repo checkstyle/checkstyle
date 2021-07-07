@@ -17,20 +17,20 @@ com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.InputSuppress
     @SuppressWarnings(value =
 com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings.InputSuppressWarningsHolder.UN_U)
     int f;
-    @SuppressWarnings((1 != 1) ? "" : "UN_U")
+    @SuppressWarnings((1 != 1) ? "" : "UN_U") // violation
     int g;
     @SuppressWarnings("un" + "used")
     int h;
     @SuppressWarnings((String) "UN_U")
     int i;
-    @SuppressWarnings({})
+    @SuppressWarnings({}) // violation
     int j;
     @SuppressWarnings({UN_U})
     int k;
 }
 
 class CustomSuppressWarnings {
-    @SuppressWarnings
+    @SuppressWarnings // violation
     private @interface SuppressWarnings {
     }
 }
