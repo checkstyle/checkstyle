@@ -1,10 +1,14 @@
+/*
+MethodLength
+max = 7
+countEmpty = false
+tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-/*
- * Config:
- * max = 7
- * countEmpty = false
- */
 public class InputMethodLengthComments {
     static class DetailClass {
         public DetailClass find(int type) {
