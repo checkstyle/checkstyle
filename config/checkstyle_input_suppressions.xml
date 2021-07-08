@@ -255,12 +255,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]simplifybooleanreturn[\\/]InputSimplifyBooleanReturn.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]superclone[\\/]InputSuperCloneInnerAndWithArguments.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]superclone[\\/]InputSuperClonePlainAndSubclasses.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]superclone[\\/]InputSuperCloneWithoutWarnings.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParentheses15Extensions.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesLambdas.java"/>
@@ -1660,12 +1654,6 @@
             files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]simplifybooleanreturn[\\/]InputSimplifyBooleanReturn.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]superclone[\\/]InputSuperCloneInnerAndWithArguments.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]superclone[\\/]InputSuperClonePlainAndSubclasses.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]superclone[\\/]InputSuperCloneWithoutWarnings.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParentheses15Extensions.java"/>
   <suppress id="StyleValidationCommentInInputs"
