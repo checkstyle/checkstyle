@@ -40,9 +40,9 @@ public class StringLiteralEqualityCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expected = {
-            "11:18: " + getCheckMessage(MSG_KEY, "=="),
-            "16:20: " + getCheckMessage(MSG_KEY, "=="),
-            "21:22: " + getCheckMessage(MSG_KEY, "=="),
+            "17:18: " + getCheckMessage(MSG_KEY, "=="),
+            "22:20: " + getCheckMessage(MSG_KEY, "=="),
+            "27:22: " + getCheckMessage(MSG_KEY, "=="),
         };
         verify(checkConfig, getPath("InputStringLiteralEquality.java"), expected);
     }
@@ -52,11 +52,11 @@ public class StringLiteralEqualityCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(StringLiteralEqualityCheck.class);
         final String[] expected = {
-            "12:34: " + getCheckMessage(MSG_KEY, "=="),
-            "20:21: " + getCheckMessage(MSG_KEY, "=="),
-            "23:24: " + getCheckMessage(MSG_KEY, "!="),
-            "26:34: " + getCheckMessage(MSG_KEY, "=="),
-            };
+            "14:34: " + getCheckMessage(MSG_KEY, "=="),
+            "22:21: " + getCheckMessage(MSG_KEY, "=="),
+            "25:24: " + getCheckMessage(MSG_KEY, "!="),
+            "28:34: " + getCheckMessage(MSG_KEY, "=="),
+        };
         verify(checkConfig,
             getNonCompilablePath("InputStringLiteralEqualityCheckTextBlocks.java"),
             expected);

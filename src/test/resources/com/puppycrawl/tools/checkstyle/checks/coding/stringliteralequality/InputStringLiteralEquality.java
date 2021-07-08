@@ -1,3 +1,9 @@
+/*
+StringLiteralEquality
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.stringliteralequality;
 import java.util.Locale;
 /**
@@ -8,17 +14,17 @@ public class InputStringLiteralEquality
 {
     void foo(String name)
     {
-        if (name == "Lars")
+        if (name == "Lars") // violation
         {
             // flagged, should use equals
         }
 
-        if ("Oleg" == name)
+        if ("Oleg" == name) // violation
         {
             // flagged, should use equals
         }
 
-        if ("Oliver" == "Oliver")
+        if ("Oliver" == "Oliver") // violation
         {
             // doesn't make much sense because this can be evaluated
             // to true at compile time, but is flagged anyway
