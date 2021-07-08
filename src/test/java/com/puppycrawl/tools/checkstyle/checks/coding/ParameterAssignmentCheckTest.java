@@ -53,10 +53,10 @@ public class ParameterAssignmentCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterAssignmentCheck.class);
         final String[] expected = {
-            "9:15: " + getCheckMessage(MSG_KEY, "field"),
-            "10:15: " + getCheckMessage(MSG_KEY, "field"),
-            "12:14: " + getCheckMessage(MSG_KEY, "field"),
-            "20:30: " + getCheckMessage(MSG_KEY, "field1"),
+            "15:15: " + getCheckMessage(MSG_KEY, "field"),
+            "16:15: " + getCheckMessage(MSG_KEY, "field"),
+            "18:14: " + getCheckMessage(MSG_KEY, "field"),
+            "26:30: " + getCheckMessage(MSG_KEY, "field1"),
         };
         verify(checkConfig, getPath("InputParameterAssignmentWithUnchecked.java"),
                expected);

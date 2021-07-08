@@ -1,15 +1,21 @@
+/*
+ParameterAssignment
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.parameterassignment;
-/**Input*/
+
 public class InputParameterAssignmentWithUnchecked {
     int field;
     void foo1(int field) {
         int i = field;
         this.field = field;
         i++;
-        field = 0;
-        field += 1;
+        field = 0; // violation
+        field += 1; // violation
         this.field++;
-        field--;
+        field--; // violation
     }
     // without parameters
     void foo2() {
@@ -17,7 +23,7 @@ public class InputParameterAssignmentWithUnchecked {
     }
     @SuppressWarnings(value = "unchecked")
     void foo3(String field, int field1) {
-        this.field = (field1 += field.length());
+        this.field = (field1 += field.length()); // violation
     }
 
     void foo4() {
