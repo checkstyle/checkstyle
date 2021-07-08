@@ -1,21 +1,21 @@
 package com.puppycrawl.tools.checkstyle.checks.trailingcomment;
 /*
  * Config:
- * legalComment = "^NOI18N$"
+ * format = "NOT MATCH"
  */
-public class InputTrailingComment {
-    int i; // don't use trailing comments :) // violation
-    // it fine to have comment w/o any statement
-    /* good c-style comment. */
+public class InputTrailingCommentFormat {
+    int i; // violation // don't use trailing comments :)
+    // it fine to have comment w/o any statement // violation
+    // violation /* good c-style comment. */
     int j; // violation /* bad c-style comment. */
     void method1() { /* some c-style multi-line // violation
                         comment*/
         Runnable r = (new Runnable() {
                 public void run() {
                 }
-            }); /* we should allow this */
-    } // we should allow this
-    /*
+            }); // violation /* we should allow this */
+    } // we should allow this // violation
+    /* // violation
       Let's check multi-line comments.
     */
     /* c-style */ // violation // cpp-style
@@ -26,16 +26,16 @@ public class InputTrailingComment {
         /* int y */int y/**/;
     }
 
-    /**
+    /** // violation
      * comment with trailing space.
      */
-    final static public String NAME="Some Name"; // NOI18N
-    final static public String NAME2="Some Name"; /*NOI18N*/
+    final static public String NAME="Some Name"; // violation // NOI18N
+    final static public String NAME2="Some Name"; // violation /*NOI18N*/
     String NAME3="Some Name"; /*NOI18N // violation
 */
     /* package */ void method3() {
-        /* violation on this block */
-        // violation here for format NOT FOUND
+        // violation /* violation on this block */
+        // violation here for format NOT FOUND // violation
     }
 
     private static class TimerEntry {
@@ -43,7 +43,7 @@ public class InputTrailingComment {
         /* ok */ final long start = 0L;
     }
 
-    /**
+    /** // violation
      * violation above this line.
      **/
     /* package */ void addError() {

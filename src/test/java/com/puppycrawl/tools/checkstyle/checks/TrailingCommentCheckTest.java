@@ -57,16 +57,16 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
     public void testDefaults() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         final String[] expected = {
-            "4:12: " + getCheckMessage(MSG_KEY),
-            "7:12: " + getCheckMessage(MSG_KEY),
-            "8:22: " + getCheckMessage(MSG_KEY),
-            "18:19: " + getCheckMessage(MSG_KEY),
-            "19:21: " + getCheckMessage(MSG_KEY),
-            "29:50: " + getCheckMessage(MSG_KEY),
-            "30:51: " + getCheckMessage(MSG_KEY),
-            "31:31: " + getCheckMessage(MSG_KEY),
+            "6:12: " + getCheckMessage(MSG_KEY),
+            "9:12: " + getCheckMessage(MSG_KEY),
+            "10:22: " + getCheckMessage(MSG_KEY),
+            "20:19: " + getCheckMessage(MSG_KEY),
+            "21:21: " + getCheckMessage(MSG_KEY),
+            "31:50: " + getCheckMessage(MSG_KEY),
+            "32:51: " + getCheckMessage(MSG_KEY),
+            "33:31: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingCommentDefault.java"), expected);
     }
 
     @Test
@@ -74,12 +74,12 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         checkConfig.addAttribute("legalComment", "^NOI18N$");
         final String[] expected = {
-            "4:12: " + getCheckMessage(MSG_KEY),
             "7:12: " + getCheckMessage(MSG_KEY),
-            "8:22: " + getCheckMessage(MSG_KEY),
-            "18:19: " + getCheckMessage(MSG_KEY),
-            "19:21: " + getCheckMessage(MSG_KEY),
-            "31:31: " + getCheckMessage(MSG_KEY),
+            "10:12: " + getCheckMessage(MSG_KEY),
+            "11:22: " + getCheckMessage(MSG_KEY),
+            "21:19: " + getCheckMessage(MSG_KEY),
+            "22:21: " + getCheckMessage(MSG_KEY),
+            "34:31: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputTrailingComment.java"), expected);
     }
@@ -89,24 +89,25 @@ public class TrailingCommentCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig = createModuleConfig(TrailingCommentCheck.class);
         checkConfig.addAttribute("format", "NOT MATCH");
         final String[] expected = {
-            "4:12: " + getCheckMessage(MSG_KEY),
-            "5:5: " + getCheckMessage(MSG_KEY),
-            "6:5: " + getCheckMessage(MSG_KEY),
+            "2:1: " + getCheckMessage(MSG_KEY),
             "7:12: " + getCheckMessage(MSG_KEY),
-            "8:22: " + getCheckMessage(MSG_KEY),
-            "13:17: " + getCheckMessage(MSG_KEY),
-            "14:7: " + getCheckMessage(MSG_KEY),
-            "15:5: " + getCheckMessage(MSG_KEY),
-            "18:19: " + getCheckMessage(MSG_KEY),
-            "19:21: " + getCheckMessage(MSG_KEY),
-            "26:5: " + getCheckMessage(MSG_KEY),
-            "29:50: " + getCheckMessage(MSG_KEY),
-            "30:51: " + getCheckMessage(MSG_KEY),
-            "31:31: " + getCheckMessage(MSG_KEY),
-            "34:9: " + getCheckMessage(MSG_KEY),
-            "35:9: " + getCheckMessage(MSG_KEY),
-            "43:5: " + getCheckMessage(MSG_KEY),
+            "8:5: " + getCheckMessage(MSG_KEY),
+            "9:5: " + getCheckMessage(MSG_KEY),
+            "10:12: " + getCheckMessage(MSG_KEY),
+            "11:22: " + getCheckMessage(MSG_KEY),
+            "16:17: " + getCheckMessage(MSG_KEY),
+            "17:7: " + getCheckMessage(MSG_KEY),
+            "18:5: " + getCheckMessage(MSG_KEY),
+            "21:19: " + getCheckMessage(MSG_KEY),
+            "22:21: " + getCheckMessage(MSG_KEY),
+            "29:5: " + getCheckMessage(MSG_KEY),
+            "32:50: " + getCheckMessage(MSG_KEY),
+            "33:51: " + getCheckMessage(MSG_KEY),
+            "34:31: " + getCheckMessage(MSG_KEY),
+            "37:9: " + getCheckMessage(MSG_KEY),
+            "38:9: " + getCheckMessage(MSG_KEY),
+            "46:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputTrailingComment.java"), expected);
+        verify(checkConfig, getPath("InputTrailingCommentFormat.java"), expected);
     }
 }
