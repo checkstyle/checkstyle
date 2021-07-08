@@ -1,3 +1,9 @@
+/*
+SuperClone
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.superclone;
 
 import java.util.ArrayList;
