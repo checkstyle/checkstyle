@@ -253,8 +253,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]simplifybooleanreturn[\\/]InputSimplifyBooleanReturn.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneInnerAndWithArguments.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]superclone[\\/]InputSuperClonePlainAndSubclasses.java"/>
@@ -1658,8 +1656,6 @@
             files="coding[\\/]returncount[\\/]InputReturnCountSwitches.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]simplifybooleanreturn[\\/]InputSimplifyBooleanReturn.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneInnerAndWithArguments.java"/>
   <suppress id="StyleValidationCommentInInputs"
