@@ -228,7 +228,6 @@ public final class FileContents implements CommentListener {
         while (lineNo > 0 && (lineIsBlank(lineNo) || lineIsComment(lineNo))) {
             lineNo--;
         }
-
         return javadocComments.get(lineNo);
     }
 
