@@ -269,8 +269,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneWithoutWarnings.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]superfinalize[\\/]InputSuperFinalizeVariations.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParentheses15Extensions.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesLambdas.java"/>
@@ -1684,8 +1682,6 @@
             files="coding[\\/]superclone[\\/]InputSuperClonePlainAndSubclasses.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneWithoutWarnings.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]superfinalize[\\/]InputSuperFinalizeVariations.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParentheses15Extensions.java"/>
   <suppress id="StyleValidationCommentInInputs"
