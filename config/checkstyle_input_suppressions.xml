@@ -261,8 +261,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]simplifybooleanreturn[\\/]InputSimplifyBooleanReturn.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]stringliteralequality[\\/]InputStringLiteralEquality.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneInnerAndWithArguments.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]superclone[\\/]InputSuperClonePlainAndSubclasses.java"/>
@@ -1676,8 +1674,6 @@
             files="coding[\\/]simplifybooleanexpression[\\/]InputSimplifyBooleanExpression.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]simplifybooleanreturn[\\/]InputSimplifyBooleanReturn.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]stringliteralequality[\\/]InputStringLiteralEquality.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneInnerAndWithArguments.java"/>
   <suppress id="StyleValidationCommentInInputs"
