@@ -1,7 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+SimplifyBooleanExpression
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.simplifybooleanexpression;
 
 /**
@@ -17,7 +19,7 @@ public class InputSimplifyBooleanExpression
         boolean even = System.currentTimeMillis() % 2 == 0;
 
         // can be simplified to "if (even)"
-        if (even == true) {
+        if (even == true) { // violation
             return false;
         }
         else {
@@ -38,9 +40,9 @@ public class InputSimplifyBooleanExpression
 
     public static boolean giveMeTrue()
     {
-        boolean tt = isOddMillis() || true;
-        boolean ff = isOddMillis() && false;
-        return !false || (true != false);
+        boolean tt = isOddMillis() || true; // violation
+        boolean ff = isOddMillis() && false; // violation
+        return !false || (true != false); // violation
     }
 
     public void tryToProvokeNPE()
