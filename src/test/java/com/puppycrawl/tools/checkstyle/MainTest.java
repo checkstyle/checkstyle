@@ -838,10 +838,10 @@ public class MainTest {
             invokeMain("-c", getPath("InputMainConfig-classname.xml"),
                     getNonCompilablePath("InputMainIncorrectClass.java"));
         });
-        final String exceptionFirstLine = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
+        final String exceptionMessage = addEndOfLine("com.puppycrawl.tools.checkstyle.api."
                 + "CheckstyleException: Exception was thrown while processing "
                 + new File(getNonCompilablePath("InputMainIncorrectClass.java")).getPath());
-        assertTrue(systemErr.getCapturedData().startsWith(exceptionFirstLine),
+        assertTrue(systemErr.getCapturedData().contains(exceptionMessage),
                 "Unexpected system error log");
     }
 
