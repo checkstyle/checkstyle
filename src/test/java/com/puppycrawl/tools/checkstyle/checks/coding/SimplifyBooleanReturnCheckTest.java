@@ -40,8 +40,8 @@ public class SimplifyBooleanReturnCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(SimplifyBooleanReturnCheck.class);
         final String[] expected = {
-            "20:9: " + getCheckMessage(MSG_KEY),
-            "33:9: " + getCheckMessage(MSG_KEY),
+            "22:9: " + getCheckMessage(MSG_KEY),
+            "35:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSimplifyBooleanReturn.java"), expected);
     }
