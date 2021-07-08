@@ -1,3 +1,9 @@
+/*
+SuperClone
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.superclone;
 public class InputSuperCloneInnerAndWithArguments
 {/* class body */
@@ -24,7 +30,7 @@ public class InputSuperCloneInnerAndWithArguments
 
 class NoSuperClone
 {
-    public Object clone()
+    public Object clone() // violation
     {
         return null;
     }
@@ -32,7 +38,7 @@ class NoSuperClone
 
 class InnerClone
 {
-    public Object clone()
+    public Object clone() // violation
     {
         class Inner
         {
@@ -57,7 +63,8 @@ class CloneWithTypeArguments<T> extends CloneWithTypeArgumentsAndNoSuper<T>
 
 class CloneWithTypeArgumentsAndNoSuper<T>
 {
-    public CloneWithTypeArgumentsAndNoSuper<T> clone() throws CloneNotSupportedException
+    public CloneWithTypeArgumentsAndNoSuper<T> clone() // violation
+            throws CloneNotSupportedException
     {
         return null;
     }
