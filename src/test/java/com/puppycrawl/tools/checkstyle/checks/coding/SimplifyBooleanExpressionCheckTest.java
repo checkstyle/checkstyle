@@ -40,11 +40,11 @@ public class SimplifyBooleanExpressionCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(SimplifyBooleanExpressionCheck.class);
         final String[] expected = {
-            "20:18: " + getCheckMessage(MSG_KEY),
-            "41:36: " + getCheckMessage(MSG_KEY),
-            "42:36: " + getCheckMessage(MSG_KEY),
-            "43:16: " + getCheckMessage(MSG_KEY),
-            "43:32: " + getCheckMessage(MSG_KEY),
+            "22:18: " + getCheckMessage(MSG_KEY),
+            "43:36: " + getCheckMessage(MSG_KEY),
+            "44:36: " + getCheckMessage(MSG_KEY),
+            "45:16: " + getCheckMessage(MSG_KEY),
+            "45:32: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputSimplifyBooleanExpression.java"), expected);
     }
