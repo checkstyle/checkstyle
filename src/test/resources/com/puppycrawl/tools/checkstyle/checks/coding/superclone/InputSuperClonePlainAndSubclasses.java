@@ -1,5 +1,10 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.superclone;
+/*
+SuperClone
 
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.superclone;
 
 interface InputSuperClonePlainAndSubclasses {
     void clone();
