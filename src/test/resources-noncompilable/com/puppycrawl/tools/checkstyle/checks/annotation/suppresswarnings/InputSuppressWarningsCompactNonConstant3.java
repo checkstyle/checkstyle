@@ -1,9 +1,17 @@
+/*
+SuppressWarnings
+format = ^unchecked$*
+tokens = CLASS_DEF
+
+
+*/
+
 //non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.annotation.suppresswarnings;
 import java.lang.annotation.Documented;
 
-@SuppressWarnings({"unchecked", "unused"})
-public class InputSuppressWarningsCompactNonConstant
+@SuppressWarnings({"unchecked", "unused"}) // violation
+public class InputSuppressWarningsCompactNonConstant3
 {
     @SuppressWarnings({"   "})
     class Empty {
@@ -23,7 +31,7 @@ public class InputSuppressWarningsCompactNonConstant
         public static void foo() {
 
             @SuppressWarnings({"unused"})
-            Object o = new InputSuppressWarningsCompactNonConstant() {
+            Object o = new InputSuppressWarningsCompactNonConstant3() {
 
                 @Override
                 @SuppressWarnings({"unchecked"})
@@ -61,7 +69,7 @@ public class InputSuppressWarningsCompactNonConstant
         }
     }
 
-    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""})
+    @SuppressWarnings({(false) ? "unchecked" : "", (false) ? "unchecked" : ""}) // violation
     class Cond {
 
         @SuppressWarnings({(false) ? "" : "unchecked"})
