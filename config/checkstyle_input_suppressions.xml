@@ -209,10 +209,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]parameterassignment[\\/]InputParameterAssignmentReceiver.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]parameterassignment[\\/]InputParameterAssignmentWithUnchecked.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThisAllowLambdaParameters.java"/>
@@ -1624,10 +1620,6 @@
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationPlain.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]packagedeclaration[\\/]InputPackageDeclarationWithCommentOnly.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]parameterassignment[\\/]InputParameterAssignmentReceiver.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]parameterassignment[\\/]InputParameterAssignmentWithUnchecked.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]requirethis[\\/]InputRequireThis15Extensions.java"/>
   <suppress id="StyleValidationCommentInInputs"
