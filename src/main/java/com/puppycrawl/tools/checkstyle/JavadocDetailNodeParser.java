@@ -166,7 +166,7 @@ public class JavadocDetailNodeParser {
      */
     private static JavadocParser createJavadocParser(String blockComment,
             DescriptiveErrorListener errorListener) {
-        final JavadocLexer lexer = new JavadocLexer(CharStreams.fromString(blockComment));
+        final JavadocLexer lexer = new JavadocLexer(CharStreams.fromString(blockComment), true);
 
         final CommonTokenStream tokens = new CommonTokenStream(lexer);
 
