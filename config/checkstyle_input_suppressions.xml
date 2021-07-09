@@ -83,8 +83,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]covariantequals[\\/]InputCovariantEquals.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCode.java"/>
@@ -1450,8 +1448,6 @@
             files="coding[\\/]arraytrailingcomma[\\/]InputArrayTrailingComma.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]avoiddoublebraceinitialization[\\/]InputAvoidDoubleBraceInitialization.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]covariantequals[\\/]InputCovariantEquals.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]equalshashcode[\\/]InputEqualsHashCodeEqualsParameter.java"/>
   <suppress id="StyleValidationCommentInInputs"
