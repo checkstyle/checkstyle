@@ -44,20 +44,20 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             createModuleConfig(UnnecessarySemicolonAfterTypeMemberDeclarationCheck.class);
 
         final String[] expected = {
-            "7:5: " + getCheckMessage(MSG_SEMI),
-            "9:21: " + getCheckMessage(MSG_SEMI),
-            "11:14: " + getCheckMessage(MSG_SEMI),
-            "13:60: " + getCheckMessage(MSG_SEMI),
-            "15:14: " + getCheckMessage(MSG_SEMI),
-            "17:20: " + getCheckMessage(MSG_SEMI),
-            "19:19: " + getCheckMessage(MSG_SEMI),
-            "21:15: " + getCheckMessage(MSG_SEMI),
-            "23:23: " + getCheckMessage(MSG_SEMI),
-            "25:15: " + getCheckMessage(MSG_SEMI),
-            "28:13: " + getCheckMessage(MSG_SEMI),
-            "40:5: " + getCheckMessage(MSG_SEMI),
-            "43:5: " + getCheckMessage(MSG_SEMI),
-            "46:20: " + getCheckMessage(MSG_SEMI),
+            "13:5: " + getCheckMessage(MSG_SEMI),
+            "15:21: " + getCheckMessage(MSG_SEMI),
+            "17:14: " + getCheckMessage(MSG_SEMI),
+            "19:60: " + getCheckMessage(MSG_SEMI),
+            "21:14: " + getCheckMessage(MSG_SEMI),
+            "23:20: " + getCheckMessage(MSG_SEMI),
+            "25:19: " + getCheckMessage(MSG_SEMI),
+            "27:15: " + getCheckMessage(MSG_SEMI),
+            "29:23: " + getCheckMessage(MSG_SEMI),
+            "31:15: " + getCheckMessage(MSG_SEMI),
+            "34:13: " + getCheckMessage(MSG_SEMI),
+            "46:5: " + getCheckMessage(MSG_SEMI),
+            "49:5: " + getCheckMessage(MSG_SEMI),
+            "52:20: " + getCheckMessage(MSG_SEMI),
         };
 
         verify(checkConfig, getPath("InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"),
@@ -70,14 +70,14 @@ public class UnnecessarySemicolonAfterTypeMemberDeclarationCheckTest
             createModuleConfig(UnnecessarySemicolonAfterTypeMemberDeclarationCheck.class);
 
         final String[] expected = {
-            "9:5: " + getCheckMessage(MSG_SEMI),
-            "13:5: " + getCheckMessage(MSG_SEMI),
-            "17:5: " + getCheckMessage(MSG_SEMI),
+            "14:5: " + getCheckMessage(MSG_SEMI),
+            "18:5: " + getCheckMessage(MSG_SEMI),
             "22:5: " + getCheckMessage(MSG_SEMI),
-            "28:5: " + getCheckMessage(MSG_SEMI),
+            "27:5: " + getCheckMessage(MSG_SEMI),
             "33:5: " + getCheckMessage(MSG_SEMI),
-            "35:5: " + getCheckMessage(MSG_SEMI),
-            };
+            "38:5: " + getCheckMessage(MSG_SEMI),
+            "40:5: " + getCheckMessage(MSG_SEMI),
+        };
 
         verify(checkConfig,
             getNonCompilablePath("InputUnnecessarySemicolonAfterTypeMemberDeclarationRecords.java"),
