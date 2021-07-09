@@ -1,3 +1,10 @@
+/*
+UnnecessaryParentheses
+tokens = LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 import java.io.Serializable;
@@ -7,16 +14,16 @@ import java.util.function.Function;
 
 public class InputUnnecessaryParenthesesLambdas {
     int foo(int y) {
-        MathOperation case1 = (x) -> x + x;
-        MathOperation case2 = (x) -> { return x + x; };
+        MathOperation case1 = (x) -> x + x; // violation
+        MathOperation case2 = (x) -> { return x + x; }; // violation
         MathOperation case3 = (int x) -> x + x;
         MathOperation case4 = x -> x + x;
         MathOperation2 case5 = (a, b) -> a + b;
         MathOperation2 case6 = (int a, int b) -> a + b;
         MathOperation2 case7 = (int a, int b) -> { return a + b; };
         Objects.requireNonNull(null, () -> "message");
-        call((x) -> x + x);
-        new HashSet<Integer>().stream().filter((filter) -> filter > 0);
+        call((x) -> x + x); // violation
+        new HashSet<Integer>().stream().filter((filter) -> filter > 0); // violation
         return y;
     }
 
@@ -35,13 +42,13 @@ public class InputUnnecessaryParenthesesLambdas {
                     return t1 -> t2 -> apply(t1, t2);
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried2() {
-            return (t1) -> (t2) -> apply(t1, t2);
+            return (t1) -> (t2) -> apply(t1, t2); // violation
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried3() {
-            return (t1) -> t2 -> apply(t1, t2);
+            return (t1) -> t2 -> apply(t1, t2); // violation
         }
         default Function1<T1, CheckedFunction1<T2, R>> curried4() {
-            return t1 -> (t2) -> apply(t1, t2);
+            return t1 -> (t2) -> apply(t1, t2); // violation
         }
     }
 
