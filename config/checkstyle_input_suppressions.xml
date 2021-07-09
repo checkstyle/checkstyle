@@ -239,8 +239,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneWithoutWarnings.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessarysemicoloninenumeration[\\/]InputUnnecessarySemicolonInEnumeration.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
@@ -1606,8 +1604,6 @@
             files="coding[\\/]superclone[\\/]InputSuperClonePlainAndSubclasses.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]superclone[\\/]InputSuperCloneWithoutWarnings.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]unnecessarysemicoloninenumeration[\\/]InputUnnecessarySemicolonInEnumeration.java"/>
   <suppress id="StyleValidationCommentInInputs"
