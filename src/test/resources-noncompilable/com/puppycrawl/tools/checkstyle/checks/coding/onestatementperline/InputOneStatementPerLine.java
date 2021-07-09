@@ -1,3 +1,10 @@
+/*
+OneStatementPerLine
+treatTryResourcesAsStatement = (default)false
+
+
+*/
+
 //non-compiled with eclipse: extra semicolumn in imports
 package com.puppycrawl.tools.checkstyle.checks.coding.onestatementperline;
 
@@ -29,18 +36,18 @@ public class InputOneStatementPerLine {
      * may be considered as two empty statements on the same line
      * and rises violation.
      */
-    ;; //warn
+    ;; // violation
     static {
         new JCheckBox().addActionListener((final ActionEvent e) -> {good();});
         List<Integer> ints = new LinkedList<Integer>();
         ints.stream().map( t -> { return t * 2;} ).filter( t -> { return false;});
-        ints.stream().map( t -> { int m = t * 2; return m; } ); //warn
-        ints.stream().map( t -> { int m = t * 2; return m; } ); int i = 3; //warn
-        ints.stream().map( t -> t * 2); int k = 4; //warn
+        ints.stream().map( t -> { int m = t * 2; return m; } ); // violation
+        ints.stream().map( t -> { int m = t * 2; return m; } ); int i = 3; // violation
+        ints.stream().map( t -> t * 2); int k = 4; // violation
         ints.stream().map( t -> t * 2);
         List<Integer> ints2 = new LinkedList<Integer>();
         ints.stream().map( t -> { return ints2.stream().map(w -> { return w * 2; });});
-        ints.stream().map( t -> { return ints2.stream().map(w -> { int m=w; return m; });}); //warn
+        ints.stream().map( t -> { return ints2.stream().map(w -> { int m=w; return m; });}); // violation
         ints.stream().map( t -> {
             return ints2.stream().map(
                     w -> {
