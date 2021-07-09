@@ -44,10 +44,10 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             createModuleConfig(UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class);
 
         final String[] expected = {
-            "24:2: " + getCheckMessage(MSG_SEMI),
             "28:2: " + getCheckMessage(MSG_SEMI),
             "32:2: " + getCheckMessage(MSG_SEMI),
             "36:2: " + getCheckMessage(MSG_SEMI),
+            "40:2: " + getCheckMessage(MSG_SEMI),
         };
 
         verify(checkConfig, getPath("InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"),
@@ -60,9 +60,9 @@ public class UnnecessarySemicolonAfterOuterTypeDeclarationCheckTest
             createModuleConfig(UnnecessarySemicolonAfterOuterTypeDeclarationCheck.class);
 
         final String[] expected = {
-            "14:2: " + getCheckMessage(MSG_SEMI),
-            "20:2: " + getCheckMessage(MSG_SEMI),
-            };
+            "17:2: " + getCheckMessage(MSG_SEMI),
+            "23:2: " + getCheckMessage(MSG_SEMI),
+        };
 
         verify(checkConfig,
             getNonCompilablePath("InputUnnecessarySemicolonAfterOuterTypeDeclarationRecords.java"),

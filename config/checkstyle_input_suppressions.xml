@@ -267,8 +267,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesOperatorsAndCasts.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessarysemicolonaftertypememberdeclaration[\\/]InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]unnecessarysemicoloninenumeration[\\/]InputUnnecessarySemicolonInEnumeration.java"/>
@@ -1672,8 +1670,6 @@
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesLambdas.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]unnecessaryparentheses[\\/]InputUnnecessaryParenthesesOperatorsAndCasts.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]unnecessarysemicolonaftertypememberdeclaration[\\/]InputUnnecessarySemicolonAfterTypeMemberDeclaration.java"/>
   <suppress id="StyleValidationCommentInInputs"

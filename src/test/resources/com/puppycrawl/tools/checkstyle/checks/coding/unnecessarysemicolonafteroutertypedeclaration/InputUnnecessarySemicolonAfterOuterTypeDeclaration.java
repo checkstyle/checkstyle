@@ -1,8 +1,12 @@
+/*
+UnnecessarySemicolonAfterOuterTypeDeclaration
+tokens = (default)CLASS_DEF, INTERFACE_DEF, ENUM_DEF, ANNOTATION_DEF, RECORD_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonafteroutertypedeclaration;
 
-/**
- * Config = default
- */
 public class InputUnnecessarySemicolonAfterOuterTypeDeclaration {
 
     enum innerEnum {
