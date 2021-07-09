@@ -1671,12 +1671,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]unnecessarysemicolonintrywithresources[\\/]InputUnnecessarySemicolonInTryWithResourcesNoBraceAfterAllowed.java"/>
   <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceAnonymous.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistance.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceLabels.java"/>
-  <suppress id="StyleValidationCommentInInputs"
             files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="descendanttoken[\\/]InputDescendantTokenIllegalTokens.java"/>
