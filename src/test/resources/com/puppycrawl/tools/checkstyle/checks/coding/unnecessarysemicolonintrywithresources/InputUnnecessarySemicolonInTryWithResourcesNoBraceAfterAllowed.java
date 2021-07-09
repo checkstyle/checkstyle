@@ -1,12 +1,15 @@
+/*
+UnnecessarySemicolonInTryWithResources
+allowWhenNoBraceAfterSemicolon = false
+
+
+*/
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicolonintrywithresources;
 
 import java.io.IOException;
 import java.io.PipedReader;
 import java.io.Reader;
 
-/**
- * "allowWhenNoBraceAfterSemicolon" = false
- */
 public class InputUnnecessarySemicolonInTryWithResourcesNoBraceAfterAllowed {
 
     void method() throws IOException {
