@@ -46,17 +46,17 @@ public class UnnecessarySemicolonInEnumerationCheckTest extends AbstractModuleTe
             createModuleConfig(UnnecessarySemicolonInEnumerationCheck.class);
 
         final String[] expected = {
-            "24:12: " + getCheckMessage(MSG_SEMI),
-            "27:13: " + getCheckMessage(MSG_SEMI),
-            "30:14: " + getCheckMessage(MSG_SEMI),
-            "33:14: " + getCheckMessage(MSG_SEMI),
-            "36:54: " + getCheckMessage(MSG_SEMI),
-            "39:15: " + getCheckMessage(MSG_SEMI),
-            "42:56: " + getCheckMessage(MSG_SEMI),
-            "46:9: " + getCheckMessage(MSG_SEMI),
-            "51:33: " + getCheckMessage(MSG_SEMI),
-            "55:9: " + getCheckMessage(MSG_SEMI),
-            "58:10: " + getCheckMessage(MSG_SEMI),
+            "30:12: " + getCheckMessage(MSG_SEMI),
+            "33:13: " + getCheckMessage(MSG_SEMI),
+            "36:14: " + getCheckMessage(MSG_SEMI),
+            "39:14: " + getCheckMessage(MSG_SEMI),
+            "42:54: " + getCheckMessage(MSG_SEMI),
+            "45:15: " + getCheckMessage(MSG_SEMI),
+            "48:56: " + getCheckMessage(MSG_SEMI),
+            "52:9: " + getCheckMessage(MSG_SEMI),
+            "57:33: " + getCheckMessage(MSG_SEMI),
+            "61:9: " + getCheckMessage(MSG_SEMI),
+            "64:10: " + getCheckMessage(MSG_SEMI),
         };
 
         verify(checkConfig, getPath("InputUnnecessarySemicolonInEnumeration.java"), expected);

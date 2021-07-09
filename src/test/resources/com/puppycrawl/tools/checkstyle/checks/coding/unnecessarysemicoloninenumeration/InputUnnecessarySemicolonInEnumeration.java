@@ -1,3 +1,9 @@
+/*
+UnnecessarySemicolonInEnumeration
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessarysemicoloninenumeration;
 
 public class InputUnnecessarySemicolonInEnumeration{
