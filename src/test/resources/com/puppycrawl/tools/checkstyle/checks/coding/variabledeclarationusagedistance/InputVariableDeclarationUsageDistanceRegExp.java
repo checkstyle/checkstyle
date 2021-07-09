@@ -1,12 +1,17 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
-import java.util.*;
 /*
- * Config:
- * allowedDistance = 1
- * ignoreVariablePattern = "a|b|c|d|block|dist|t|m"
- * validateBetweenScopes = true
- * ignoreFinal = false
- */
+VariableDeclarationUsageDistance
+allowedDistance = 1
+ignoreVariablePattern = (default)a|b|c|d|block|dist|t|m
+validateBetweenScopes = true
+ignoreFinal = false
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
+
+import java.util.*;
+
 public class InputVariableDeclarationUsageDistanceRegExp {
 
     private static int test1 = 0;
