@@ -1,3 +1,10 @@
+/*
+UnnecessaryParentheses
+tokens = LAMBDA
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.unnecessaryparentheses;
 
 import java.io.Serializable;
