@@ -1,7 +1,15 @@
-package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 /*
- * Config: default
- */
+VariableDeclarationUsageDistance
+allowedDistance = (default)3
+ignoreVariablePattern = (default)
+validateBetweenScopes = (default)false
+ignoreFinal = (default)true
+
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
+
 public class InputVariableDeclarationUsageDistanceLabels {
     public void method() {
         boolean eol = false;
