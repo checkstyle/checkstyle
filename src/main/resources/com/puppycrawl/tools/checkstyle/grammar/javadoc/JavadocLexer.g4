@@ -32,6 +32,8 @@ tokens {
 
 @lexer::header {
 import java.util.*;
+
+import com.puppycrawl.tools.checkstyle.grammar.CrAwareLexerSimulator;
 }
 
 @lexer::members {
@@ -65,6 +67,18 @@ import java.util.*;
             _input.seek(_input.index() - 1);
       }
 
+    /**
+     * We need to create a different constructor in order to use our
+     * own implementation of the LexerATNSimulator. This is the
+     * reason for the unused 'crAwareConstructor' argument.
+     *
+     * @param input the character stream to tokenize
+     * @param crAwareConstructor dummy parameter
+     */
+    public JavadocLexer(CharStream input, boolean crAwareConstructor) {
+      super(input);
+      _interp = new CrAwareLexerSimulator(this, _ATN, _decisionToDFA, _sharedContextCache);
+    }
 }
 
 LEADING_ASTERISK : ( (' '|'\t') {_tokenStartCharPositionInLine == 0
