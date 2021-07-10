@@ -229,8 +229,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenEmptyStatement.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="descendanttoken[\\/]InputDescendantTokenIllegalTokens.java"/>
@@ -1584,8 +1582,6 @@
             files="coding[\\/]returncount[\\/]InputReturnCountSwitches.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]returncount[\\/]InputReturnCountVoid.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="coding[\\/]unnecessarysemicolonafteroutertypedeclaration[\\/]InputUnnecessarySemicolonAfterOuterTypeDeclaration.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="coding[\\/]variabledeclarationusagedistance[\\/]InputVariableDeclarationUsageDistanceAnonymous.java"/>
   <suppress id="StyleValidationCommentInInputs"
