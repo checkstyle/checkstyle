@@ -517,7 +517,7 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * <p>
  * To configure the Check with groups of static imports when
  * staticGroups=&quot;java, javax&quot; represents three groups i.e java*, javax*
- * and * (everything else). In below example the static imports <code> com...</code>
+ * and * (everything else). In below example the static imports {@code com...}
  * should be in last group:
  * </p>
  * <pre>
