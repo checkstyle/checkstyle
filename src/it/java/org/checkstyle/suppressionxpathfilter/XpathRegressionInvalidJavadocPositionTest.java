@@ -52,7 +52,8 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionOne']]"
-                + "/MODIFIERS/BLOCK_COMMENT_BEGIN"
+                    + "/MODIFIERS/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                    + "[@text='* // warn\\n * Javadoc Comment\\n ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -74,7 +75,8 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionTwo']]"
-                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN"
+                    + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                    + "[@text='* // warn\\n * Javadoc comment\\n ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -95,8 +97,9 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         };
 
         final List<String> expectedXpathQueries = Collections.singletonList(
-            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionThree']]"
-                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN"
+            "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionThree']]/"
+                    + "OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                    + "[@text='* // warn\\n     * Javadoc comment\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -118,7 +121,8 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFour']]"
-                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN"
+                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -141,7 +145,8 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionFive']]"
                 + "/OBJBLOCK/METHOD_DEF[./IDENT[@text='foo']]"
-                + "/SLIST/BLOCK_COMMENT_BEGIN"
+                + "/SLIST/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text='* // warn\\n         * Javadoc comment\\n         ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,
@@ -163,7 +168,8 @@ public class XpathRegressionInvalidJavadocPositionTest extends AbstractXpathTest
 
         final List<String> expectedXpathQueries = Collections.singletonList(
             "/CLASS_DEF[./IDENT[@text='SuppressionXpathRegressionInvalidJavadocPositionSix']]"
-                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN"
+                + "/OBJBLOCK/BLOCK_COMMENT_BEGIN[./COMMENT_CONTENT"
+                + "[@text='* // warn\\n     * Javadoc Comment\\n     ']]"
         );
 
         runVerifications(moduleConfig, fileToProcess, expectedViolation,

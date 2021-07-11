@@ -109,7 +109,45 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
  *   &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
  * &lt;/module&gt;
  * </pre>
- *
+ * <p>
+ * Example for trailing comments check to suppress specific trailing comment:
+ * </p>
+ * <pre>
+ * public class Test {
+ *   int a; // SUPPRESS CHECKSTYLE
+ *   int b; // NOPMD
+ *   int c; // NOSONAR
+ *   int d; // violation, not suppressed
+ * }
+ * </pre>
+ * <p>
+ * To configure check so that trailing comment with exact comments like "SUPPRESS CHECKSTYLE",
+ * "NOPMD", "NOSONAR" are suppressed:
+ * </p>
+ * <pre>
+ * &lt;module name="TrailingComment"/&gt;
+ * &lt;module name="SuppressionXpathSingleFilter"&gt;
+ *   &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[@text=' NOSONAR\n' or @text=' NOPMD\n'
+ *       or @text=' SUPPRESS CHECKSTYLE\n']]"/&gt;
+ * &lt;/module&gt;
+ * </pre>
+ * <p>
+ * To configure check so that trailing comment starting with "SUPPRESS CHECKSTYLE", "NOPMD",
+ * "NOSONAR" are suppressed:
+ * </p>
+ * <pre>
+ * &lt;module name="TrailingComment"/&gt; &lt;module name="SuppressionXpathSingleFilter"&gt;
+ * &lt;property name="checks" value="TrailingCommentCheck"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[starts-with(@text, ' NOPMD')]]"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[starts-with(@text, ' SUPPRESS CHECKSTYLE')]]"/&gt;
+ *   &lt;property name="query" value="//SINGLE_LINE_COMMENT
+ *       [./COMMENT_CONTENT[starts-with(@text, ' NOSONAR')]]"/&gt;
+ * &lt;/module&gt;
+ * </pre>
  * <p>
  * Parent is {@code com.puppycrawl.tools.checkstyle.TreeWalker}
  * </p>
