@@ -94,7 +94,7 @@
                     <strong>1 - Introduction</strong>
                   </a>
                 </td>
-                <td>???</td>
+                <td>---</td>
                 <td/>
               </tr>
               <tr>
@@ -111,7 +111,7 @@
                     1.1 Why Have Code Conventions
                   </a>
                 </td>
-                <td>???</td>
+                <td>---</td>
                 <td/>
               </tr>
               <tr>
@@ -128,7 +128,7 @@
                     1.2 Acknowledgments
                   </a>
                 </td>
-                <td>???</td>
+                <td>---</td>
                 <td/>
               </tr>
               <tr>
@@ -145,7 +145,7 @@
                     <strong>2 - File Names</strong>
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
@@ -349,7 +349,7 @@
                     5.1 Implementation Comment Formats
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
@@ -366,8 +366,23 @@
                     5.1.1 Block Comments
                   </a>
                 </td>
-                <td>???</td>
-                <td/>
+                <td>
+                  <span class="wrapper inline">
+                    <img src="images/ok_blue.png" alt=""/>
+                  </span>
+                  <a href="config_misc.html#CommentsIndentation">
+                    CommentsIndentation
+                  </a>
+                </td>
+                <td>
+                  <a href="https://github.com/search?q=path%3Asrc%2Fmain%2Fresources+filename%3Asun_checks.xml+repo%3Acheckstyle%2Fcheckstyle+CommentsIndentation">
+                    config
+                  </a>
+                  <br/>
+                  <a href="https://github.com/checkstyle/checkstyle/blob/master/src/it/java/com/sun/checkstyle/test/chapter5comments/rule511blockcomments/CommentsIndentationTest.java">
+                    test
+                  </a>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -466,7 +481,7 @@
                     <strong>6 - Declarations</strong>
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
@@ -566,7 +581,7 @@
                     <strong>7 - Statements</strong>
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
@@ -736,7 +751,7 @@
                     <strong>8 - White Space</strong>
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
@@ -804,7 +819,7 @@
                     <strong>10 - Programming Practices</strong>
                   </a>
                 </td>
-                <td>???</td>
+                <td>↓</td>
                 <td/>
               </tr>
               <tr>
