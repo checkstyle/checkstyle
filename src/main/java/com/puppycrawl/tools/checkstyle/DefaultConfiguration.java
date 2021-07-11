@@ -84,6 +84,15 @@ public final class DefaultConfiguration implements Configuration {
     }
 
     @Override
+    public boolean containsAttribute(String attributeName) {
+        boolean result = false;
+        if (attributeMap.containsKey(attributeName)) {
+            result = true;
+        }
+        return result;
+    }
+
+    @Override
     public String getAttribute(String attributeName) throws CheckstyleException {
         if (!attributeMap.containsKey(attributeName)) {
             throw new CheckstyleException(
