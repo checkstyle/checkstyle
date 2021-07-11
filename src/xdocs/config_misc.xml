@@ -2078,6 +2078,54 @@ d = e / f;        // Another comment for this line
   &lt;property name=&quot;format&quot; value=&quot;^\\s*$&quot;/&gt;
 &lt;/module&gt;
         </source>
+
+        <p>
+          Example for trailing comments check to suppress specific trailing comment:
+        </p>
+
+        <source>
+public class Test {
+int a; // SUPPRESS CHECKSTYLE
+int b; // NOPMD
+int c; // NOSONAR
+int d; // violation, not suppressed
+}
+        </source>
+
+        <p>
+          To configure check so that trailing comment with exact comments like
+          &quot;SUPPRESS CHECKSTYLE&quot;, &quot;NOPMD&quot;, &quot;NOSONAR&quot;
+          are suppressed:
+        </p>
+
+        <source>
+&lt;module name=&quot;TrailingComment&quot;/&gt;
+&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+&lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+[./COMMENT_CONTENT[@text=&apos; NOSONAR\n&apos; or @text=&apos; NOPMD\n&apos;
+or @text=&apos; SUPPRESS CHECKSTYLE\n&apos;]]&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
+        <p>
+          To configure check so that trailing comment starting with &quot;SUPPRESS CHECKSTYLE&quot;,
+          &quot;NOPMD&quot;, &quot;NOSONAR&quot; are suppressed:
+        </p>
+
+        <source>
+&lt;module name=&quot;TrailingComment&quot;/&gt;
+&lt;module name=&quot;SuppressionXpathSingleFilter&quot;&gt;
+&lt;property name=&quot;checks&quot; value=&quot;TrailingCommentCheck&quot;/&gt;
+&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+[./COMMENT_CONTENT[starts-with(@text, &apos; NOPMD&apos;)]]&quot;/&gt;
+&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+[./COMMENT_CONTENT[starts-with(@text, &apos; SUPPRESS CHECKSTYLE&apos;)]]&quot;/&gt;
+&lt;property name=&quot;query&quot; value=&quot;//SINGLE_LINE_COMMENT
+[./COMMENT_CONTENT[starts-with(@text, &apos; NOSONAR&apos;)]]&quot;/&gt;
+&lt;/module&gt;
+        </source>
+
       </subsection>
 
       <subsection name="Example of Usage" id="TrailingComment_Example_of_Usage">
