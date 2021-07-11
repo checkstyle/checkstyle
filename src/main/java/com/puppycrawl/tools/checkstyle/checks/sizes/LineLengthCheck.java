@@ -32,9 +32,13 @@ import com.puppycrawl.tools.checkstyle.utils.CommonUtil;
  * Checks for long lines.
  * </p>
  * <p>
- * Rationale: Long lines are hard to read in printouts or if developers
- * have limited screen space for the source code, e.g. if the IDE displays
- * additional information like project tree, class hierarchy, etc.
+ * Rationale:
+ * <a href="https://checkstyle.org/styleguides/sun-code-conventions-19990420/CodeConventions.doc3.html#a313">
+ * the Java code conventions chapter 4.2</a> recommends that Line
+ * length should be less than 80.
+ * Long lines are hard to read in printouts or if developers
+ * have limited screen space for the source code, e.g. if the IDE
+ * displays additional information like project tree, class hierarchy, etc.
  * </p>
  * <ul>
  * <li>
