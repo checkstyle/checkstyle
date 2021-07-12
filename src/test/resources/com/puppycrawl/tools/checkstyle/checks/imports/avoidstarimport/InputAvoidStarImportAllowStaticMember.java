@@ -1,7 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2021
-////////////////////////////////////////////////////////////////////////////////
+/*
+AvoidStarImport
+excludes = (default)
+allowClassImports = (default)false
+allowStaticMemberImports = true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.avoidstarimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.*; // violation
@@ -43,10 +48,6 @@ import com.puppycrawl.tools.checkstyle.PackageNamesLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 
-/* Config:
- * allowClassImports = false
- * allowStaticMemberImports = true
- */
 /**
  * Test case for imports
  * Here's an import used only by javadoc: {@link Date}.
