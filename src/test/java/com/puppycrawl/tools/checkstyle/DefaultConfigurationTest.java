@@ -33,21 +33,33 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 public class DefaultConfigurationTest {
 
     @Test
-    public void testGetAttributeNames() {
+    public void testGetPropertyNames() {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        config.addAttribute("attribute", "value");
-        final String[] actual = config.getAttributeNames();
-        final String[] expected = {"attribute"};
-        assertArrayEquals(expected, actual, "Invalid attribute names");
+        config.addProperty("property", "value");
+        final String[] actual = config.getPropertyNames();
+        final String[] expected = {"property"};
+        assertArrayEquals(expected, actual, "Invalid property names");
     }
 
     @Test
-    public void testAddAttributeAndGetAttribute() throws CheckstyleException {
+    public void testAddPropertyAndGetProperty() throws CheckstyleException {
         final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
-        config.addAttribute("attribute", "first");
-        assertEquals("first", config.getAttribute("attribute"), "Invalid attribute value");
-        config.addAttribute("attribute", "second");
-        assertEquals("first,second", config.getAttribute("attribute"), "Invalid attribute value");
+        config.addProperty("property", "first");
+        assertEquals("first", config.getProperty("property"), "Invalid property value");
+        config.addProperty("property", "second");
+        assertEquals("first,second", config.getProperty("property"), "Invalid property value");
+    }
+
+    @Test
+    public void testDeprecatedAttributeMethods() throws CheckstyleException {
+        final DefaultConfiguration config = new DefaultConfiguration("MyConfig");
+        config.addProperty("attribute", "first");
+        final String[] actual = config.getAttributeNames();
+        final String[] expected = {"attribute"};
+        assertArrayEquals(expected, actual, "Invalid attribute names");
+        assertEquals("first", config.getAttribute("attribute"), "Invalid property value");
+        config.addProperty("attribute", "second");
+        assertEquals("first,second", config.getAttribute("attribute"), "Invalid property value");
     }
 
     @Test
@@ -77,17 +89,17 @@ public class DefaultConfigurationTest {
     }
 
     @Test
-    public void testExceptionForNonExistentAttribute() {
+    public void testExceptionForNonExistentProperty() {
         final String name = "MyConfig";
         final DefaultConfiguration config = new DefaultConfiguration(name);
-        final String attributeName = "NonExistent#$%";
+        final String propertyName = "NonExistent#$%";
         try {
-            config.getAttribute(attributeName);
+            config.getProperty(propertyName);
             fail("Exception is expected");
         }
         catch (CheckstyleException expected) {
             assertEquals(
-                    "missing key '" + attributeName + "' in " + name,
+                    "missing key '" + propertyName + "' in " + name,
                     expected.getMessage(), "Invalid exception message");
         }
     }

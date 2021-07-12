@@ -118,7 +118,7 @@ public abstract class AbstractXpathTestSupport extends AbstractCheckstyleModuleT
                                            List<String> xpathQueries) throws Exception {
         final DefaultConfiguration suppressionXpathFilterConfig =
                 createModuleConfig(SuppressionXpathFilter.class);
-        suppressionXpathFilterConfig.addAttribute("file",
+        suppressionXpathFilterConfig.addProperty("file",
                 createSuppressionsXpathConfigFile(checkName, xpathQueries));
 
         return suppressionXpathFilterConfig;

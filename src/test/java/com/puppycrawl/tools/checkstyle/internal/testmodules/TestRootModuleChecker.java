@@ -40,7 +40,7 @@ public class TestRootModuleChecker implements RootModule {
     @Override
     public void configure(Configuration configuration) throws CheckstyleException {
         config = configuration;
-        property = configuration.getAttribute("property");
+        property = configuration.getProperty("property");
     }
 
     @Override

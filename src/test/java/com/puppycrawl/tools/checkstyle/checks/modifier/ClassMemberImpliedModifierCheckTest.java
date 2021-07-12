@@ -72,7 +72,7 @@ public class ClassMemberImpliedModifierCheckTest
     public void testMethodsOnClassNoImpliedStaticEnum() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedStaticOnNestedEnum", "false");
+        checkConfig.addProperty("violateImpliedStaticOnNestedEnum", "false");
         final String[] expected = {
             "50:9: " + getCheckMessage(MSG_KEY, "static"),
             "68:9: " + getCheckMessage(MSG_KEY, "static"),
@@ -86,7 +86,7 @@ public class ClassMemberImpliedModifierCheckTest
     public void testMethodsOnClassNoImpliedStaticInterface() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedStaticOnNestedInterface", "false");
+        checkConfig.addProperty("violateImpliedStaticOnNestedInterface", "false");
         final String[] expected = {
             "43:9: " + getCheckMessage(MSG_KEY, "static"),
             "54:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -100,8 +100,8 @@ public class ClassMemberImpliedModifierCheckTest
     public void testMethodsOnClassNoViolationsChecked() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedStaticOnNestedEnum", "false");
-        checkConfig.addAttribute("violateImpliedStaticOnNestedInterface", "false");
+        checkConfig.addProperty("violateImpliedStaticOnNestedEnum", "false");
+        checkConfig.addProperty("violateImpliedStaticOnNestedInterface", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputClassMemberImpliedModifierOnClassNoViolations.java"),
             expected);
@@ -144,7 +144,7 @@ public class ClassMemberImpliedModifierCheckTest
     public void testClassMemberImpliedModifierNoViolationRecords() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ClassMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedStaticOnNestedRecord", "false");
+        checkConfig.addProperty("violateImpliedStaticOnNestedRecord", "false");
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY, "static"),
             "15:5: " + getCheckMessage(MSG_KEY, "static"),

@@ -71,7 +71,7 @@ public class XpathRegressionDefaultComesLastTest extends AbstractXpathTestSuppor
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(DefaultComesLastCheck.class);
-        moduleConfig.addAttribute("skipIfLastAndSharedWithCase", "true");
+        moduleConfig.addProperty("skipIfLastAndSharedWithCase", "true");
 
         final String[] expectedViolation = {
             "15:13: " + getCheckMessage(DefaultComesLastCheck.class,
