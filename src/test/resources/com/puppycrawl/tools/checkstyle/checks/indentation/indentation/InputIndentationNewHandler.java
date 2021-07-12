@@ -20,4 +20,11 @@ Integer("".indexOf("5")); //indent:0 exp:8 warn
         } catch (Exception e) { //indent:8 exp:8
         } //indent:8 exp:8
     } //indent:4 exp:4
+
+    int[][] array10b //indent:4 exp:4
+= new int[][] { //indent:0 exp:8 warn
+                  new int[] { 1, 2, 3}, //indent:18 exp:>=8
+                  new int[] { 1, 2, 3}, //indent:18 exp:>=8
+    }; //indent:4 exp:4
+
 } //indent:0 exp:0

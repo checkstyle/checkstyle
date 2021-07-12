@@ -139,12 +139,22 @@ public abstract class AbstractExpressionHandler {
         else {
             typeStr = " " + subtypeName;
         }
+        indentCheck.indentationLog(ast, getIndentErrorMessage(expectedIndent),
+            typeName + typeStr, actualIndent, expectedIndent);
+    }
+
+    /**
+     * Returns expected indentation error message.
+     *
+     * @param expectedIndent One or more accepted indentation levels.
+     * @return Singular error message for one indentation level, plural error message else.
+     */
+    public static String getIndentErrorMessage(IndentLevel expectedIndent) {
         String messageKey = IndentationCheck.MSG_ERROR;
         if (expectedIndent.isMultiLevel()) {
             messageKey = IndentationCheck.MSG_ERROR_MULTI;
         }
-        indentCheck.indentationLog(ast, messageKey,
-            typeName + typeStr, actualIndent, expectedIndent);
+        return messageKey;
     }
 
     /**
