@@ -73,7 +73,7 @@ public class ParameterNumberCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addAttribute("max", "2");
+        checkConfig.addProperty("max", "2");
         final String[] expected = {
             "71:9: " + getCheckMessage(MSG_KEY, 2, 3),
             "194:10: " + getCheckMessage(MSG_KEY, 2, 9),
@@ -86,7 +86,7 @@ public class ParameterNumberCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addAttribute("max", "9");
+        checkConfig.addProperty("max", "9");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputParameterNumberSimple.java"), expected);
     }
@@ -108,7 +108,7 @@ public class ParameterNumberCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ParameterNumberCheck.class);
-        checkConfig.addAttribute("ignoreOverriddenMethods", "true");
+        checkConfig.addProperty("ignoreOverriddenMethods", "true");
         final String[] expected = {
             "6:10: " + getCheckMessage(MSG_KEY, 7, 8),
             "11:10: " + getCheckMessage(MSG_KEY, 7, 8),

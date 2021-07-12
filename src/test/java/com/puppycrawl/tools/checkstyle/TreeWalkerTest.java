@@ -114,7 +114,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(HiddenFieldCheck.class);
-        checkConfig.addAttribute("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
+        checkConfig.addProperty("tokens", "VARIABLE_DEF, ENUM_DEF, CLASS_DEF, METHOD_DEF,"
                 + "IMPORT");
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -384,7 +384,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     public void testBehaviourWithChecksAndFilters() throws Exception {
         final DefaultConfiguration filterConfig =
                 createModuleConfig(SuppressionCommentFilter.class);
-        filterConfig.addAttribute("checkCPP", "false");
+        filterConfig.addProperty("checkCPP", "false");
 
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(createModuleConfig(MemberNameCheck.class));
@@ -469,13 +469,13 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testCacheWhenFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionXpathFilter.class);
-        filterConfig.addAttribute("file", getPath("InputTreeWalkerSuppressionXpathFilter.xml"));
+        filterConfig.addProperty("file", getPath("InputTreeWalkerSuppressionXpathFilter.xml"));
         final DefaultConfiguration treeWalkerConfig = createModuleConfig(TreeWalker.class);
         treeWalkerConfig.addChild(filterConfig);
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -492,7 +492,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
     @Test
     public void testTreeWalkerFilterAbsolutePath() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionXpathFilter.class);
-        filterConfig.addAttribute("file",
+        filterConfig.addProperty("file",
                 getPath("InputTreeWalkerSuppressionXpathFilterAbsolute.xml"));
         final DefaultConfiguration checkConfig = createModuleConfig(LeftCurlyCheck.class);
 
@@ -521,7 +521,7 @@ public class TreeWalkerTest extends AbstractModuleTestSupport {
 
         final DefaultConfiguration checkerConfig = createRootConfig(treeWalkerConfig);
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;

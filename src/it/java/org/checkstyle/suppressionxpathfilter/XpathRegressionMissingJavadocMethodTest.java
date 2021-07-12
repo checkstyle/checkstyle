@@ -43,7 +43,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MissingJavadocMethodCheck.class);
-        moduleConfig.addAttribute("tokens", "CTOR_DEF");
+        moduleConfig.addProperty("tokens", "CTOR_DEF");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,
@@ -77,7 +77,7 @@ public class XpathRegressionMissingJavadocMethodTest extends AbstractXpathTestSu
 
         final DefaultConfiguration moduleConfig =
             createModuleConfig(MissingJavadocMethodCheck.class);
-        moduleConfig.addAttribute("tokens", "METHOD_DEF");
+        moduleConfig.addProperty("tokens", "METHOD_DEF");
 
         final String[] expectedViolation = {
             "4:5: " + getCheckMessage(MissingJavadocMethodCheck.class,

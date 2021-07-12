@@ -136,21 +136,21 @@ public class SuppressWarningsFilterTest
             String[] expectedViolations, String... suppressedViolations) throws Exception {
         final DefaultConfiguration holderConfig =
             createModuleConfig(SuppressWarningsHolder.class);
-        holderConfig.addAttribute("aliasList",
+        holderConfig.addProperty("aliasList",
             "com.puppycrawl.tools.checkstyle.checks.sizes."
                 + "ParameterNumberCheck=paramnum");
 
         final DefaultConfiguration memberNameCheckConfig =
                 createModuleConfig(MemberNameCheck.class);
-        memberNameCheckConfig.addAttribute("id", "ignore");
+        memberNameCheckConfig.addProperty("id", "ignore");
 
         final DefaultConfiguration constantNameCheckConfig =
             createModuleConfig(ConstantNameCheck.class);
-        constantNameCheckConfig.addAttribute("id", "");
+        constantNameCheckConfig.addProperty("id", "");
 
         final DefaultConfiguration uncommentedMainCheckConfig =
             createModuleConfig(UncommentedMainCheck.class);
-        uncommentedMainCheckConfig.addAttribute("id", "ignore");
+        uncommentedMainCheckConfig.addProperty("id", "ignore");
 
         final DefaultConfiguration treewalkerConfig =
                 createModuleConfig(TreeWalker.class);
@@ -163,7 +163,7 @@ public class SuppressWarningsFilterTest
 
         final DefaultConfiguration missingJavadocConfig =
                 createModuleConfig(MissingJavadocTypeCheck.class);
-        missingJavadocConfig.addAttribute("scope", "private");
+        missingJavadocConfig.addProperty("scope", "private");
         treewalkerConfig.addChild(missingJavadocConfig);
 
         final DefaultConfiguration checkerConfig =
