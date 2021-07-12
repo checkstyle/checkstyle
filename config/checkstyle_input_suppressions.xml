@@ -953,8 +953,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]catchparametername[\\/]InputCatchParameterNameSimple.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]classtypeparametername[\\/]InputClassTypeParameterName.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]constantname[\\/]InputConstantName.java"/>
@@ -2161,8 +2159,6 @@
             files="naming[\\/]catchparametername[\\/]InputCatchParameterName.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]catchparametername[\\/]InputCatchParameterNameSimple.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]classtypeparametername[\\/]InputClassTypeParameterName.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
   <suppress id="StyleValidationCommentInInputs"
