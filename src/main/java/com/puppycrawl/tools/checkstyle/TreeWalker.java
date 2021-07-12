@@ -150,21 +150,16 @@ public final class TreeWalker extends AbstractFileSetCheck implements ExternalRe
         if (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty()) {
             final FileContents contents = getFileContents();
             final DetailAST rootAST = JavaParser.parse(contents);
-            if (!ordinaryChecks.isEmpty()) {
-                walk(rootAST, contents, AstState.ORDINARY);
-            }
-            if (!commentChecks.isEmpty()) {
-                final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
-                walk(astWithComments, contents, AstState.WITH_COMMENTS);
-            }
-            if (filters.isEmpty()) {
-                addViolations(violations);
-            }
-            else {
-                final SortedSet<Violation> filteredViolations =
-                    getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
-                addViolations(filteredViolations);
-            }
+
+            walk(rootAST, contents, AstState.ORDINARY);
+
+            final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
+            walk(astWithComments, contents, AstState.WITH_COMMENTS);
+
+            final SortedSet<Violation> filteredViolations =
+                getFilteredViolations(file.getAbsolutePath(), contents, rootAST);
+            addViolations(filteredViolations);
+
             violations.clear();
         }
     }

@@ -74,9 +74,9 @@ public class TreeWalkerPowerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, lines);
         treeWalkerSpy.setFileContents(new FileContents(fileText));
         Whitebox.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
-        verifyPrivate(treeWalkerSpy, times(1)).invoke("walk",
+        verifyPrivate(treeWalkerSpy, times(2)).invoke("walk",
                 any(DetailAST.class), any(FileContents.class), any(classAstState));
-        verifyPrivate(treeWalkerSpy, times(0)).invoke("getFilteredViolations",
+        verifyPrivate(treeWalkerSpy, times(1)).invoke("getFilteredViolations",
                 any(String.class), any(FileContents.class), any(DetailAST.class));
     }
 
@@ -96,9 +96,9 @@ public class TreeWalkerPowerTest extends AbstractModuleTestSupport {
         final FileText fileText = new FileText(file, lines);
         treeWalkerSpy.setFileContents(new FileContents(fileText));
         Whitebox.invokeMethod(treeWalkerSpy, "processFiltered", file, fileText);
-        verifyPrivate(treeWalkerSpy, times(1)).invoke("walk",
+        verifyPrivate(treeWalkerSpy, times(2)).invoke("walk",
                 any(DetailAST.class), any(FileContents.class), any(classAstState));
-        verifyPrivate(treeWalkerSpy, times(0)).invoke("getFilteredViolations",
+        verifyPrivate(treeWalkerSpy, times(1)).invoke("getFilteredViolations",
                 any(String.class), any(FileContents.class), any(DetailAST.class));
     }
 
