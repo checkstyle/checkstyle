@@ -54,9 +54,9 @@ public class ClassTypeParameterNameCheckTest
         final String pattern = "^[A-Z]$";
 
         final String[] expected = {
-            "5:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "13:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
-            "27:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "12:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "20:14: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
+            "34:24: " + getCheckMessage(MSG_INVALID_PATTERN, "foo", pattern),
         };
         verify(checkConfig, getPath("InputClassTypeParameterName.java"), expected);
     }
@@ -71,10 +71,10 @@ public class ClassTypeParameterNameCheckTest
         final String pattern = "^foo$";
 
         final String[] expected = {
-            "5:42: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
-            "33:18: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
+            "12:43: " + getCheckMessage(MSG_INVALID_PATTERN, "t", pattern),
+            "40:19: " + getCheckMessage(MSG_INVALID_PATTERN, "T", pattern),
         };
-        verify(checkConfig, getPath("InputClassTypeParameterName.java"), expected);
+        verify(checkConfig, getPath("InputClassTypeParameterName1.java"), expected);
     }
 
     @Test
