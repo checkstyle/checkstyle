@@ -269,8 +269,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="design[\\/]interfaceistype[\\/]InputInterfaceIsType.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]mutableexception[\\/]InputMutableExceptionClassExtendsGenericClass.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="design[\\/]mutableexception[\\/]InputMutableException.java"/>
@@ -1602,8 +1600,6 @@
             files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass2.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]innertypelast[\\/]InputInnerTypeLastClassRootClass.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="design[\\/]interfaceistype[\\/]InputInterfaceIsType.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="design[\\/]mutableexception[\\/]InputMutableExceptionClassExtendsGenericClass.java"/>
   <suppress id="StyleValidationCommentInInputs"
