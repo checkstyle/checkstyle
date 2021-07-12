@@ -381,8 +381,6 @@ public final class MethodCountCheck extends AbstractCheck {
 
         /** Maintains the counts. */
         private final Map<Scope, Integer> counts = new EnumMap<>(Scope.class);
-        /** Indicated is an interface, in which case all methods are public. */
-        private final boolean inInterface;
         /**
          * The surrounding scope definition (class, enum, etc.) which the method counts are connect
          * to.
@@ -400,7 +398,6 @@ public final class MethodCountCheck extends AbstractCheck {
          */
         /* package */ MethodCounter(DetailAST scopeDefinition) {
             this.scopeDefinition = scopeDefinition;
-            inInterface = scopeDefinition.getType() == TokenTypes.INTERFACE_DEF;
         }
 
         /**
@@ -410,12 +407,7 @@ public final class MethodCountCheck extends AbstractCheck {
          */
         private void increment(Scope scope) {
             total++;
-            if (inInterface) {
-                counts.put(Scope.PUBLIC, 1 + value(Scope.PUBLIC));
-            }
-            else {
-                counts.put(scope, 1 + value(scope));
-            }
+            counts.put(scope, 1 + value(scope));
         }
 
         /**

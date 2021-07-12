@@ -34,16 +34,17 @@ public final class ScopeUtil {
     }
 
     /**
-     * Returns the Scope specified by the modifier set.
+     * Returns the Scope specified by the modifier set. If no modifiers are present,
+     * the scope is assumed to be public an interface or annotation block and
+     * package protected otherwise.
      *
      * @param aMods root node of a modifier set
      * @return a {@code Scope} value
      */
     public static Scope getScopeFromMods(DetailAST aMods) {
-        // default scope
-        Scope returnValue = Scope.PACKAGE;
+        Scope returnValue = null;
         for (DetailAST token = aMods.getFirstChild(); token != null
-                && returnValue == Scope.PACKAGE;
+                && returnValue == null;
                 token = token.getNextSibling()) {
             if ("public".equals(token.getText())) {
                 returnValue = Scope.PUBLIC;
@@ -53,6 +54,14 @@ public final class ScopeUtil {
             }
             else if ("private".equals(token.getText())) {
                 returnValue = Scope.PRIVATE;
+            }
+        }
+        if (returnValue == null) {
+            if (isInInterfaceOrAnnotationBlock(aMods.getParent())) {
+                returnValue = Scope.PUBLIC;
+            }
+            else {
+                returnValue = Scope.PACKAGE;
             }
         }
         return returnValue;
