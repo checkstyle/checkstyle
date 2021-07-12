@@ -121,7 +121,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
 
-        moduleConfig.addAttribute("validateThrows", "true");
+        moduleConfig.addProperty("validateThrows", "true");
 
         final String[] expectedViolation = {
             "12:30: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG,
@@ -145,7 +145,7 @@ public class XpathRegressionJavadocMethodTest extends AbstractXpathTestSupport {
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(JavadocMethodCheck.class);
 
-        moduleConfig.addAttribute("validateThrows", "true");
+        moduleConfig.addProperty("validateThrows", "true");
 
         final String[] expectedViolation = {
             "13:19: " + getCheckMessage(JavadocMethodCheck.class, MSG_EXPECTED_TAG,
