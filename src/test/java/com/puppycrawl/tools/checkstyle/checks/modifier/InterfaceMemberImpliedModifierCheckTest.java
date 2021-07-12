@@ -74,7 +74,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testMethodsOnInterfaceNoImpliedAbstractAllowImpliedPublic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedPublicMethod", "false");
+        checkConfig.addProperty("violateImpliedPublicMethod", "false");
         final String[] expected = {
             "23:5: " + getCheckMessage(MSG_KEY, "abstract"),
             "25:5: " + getCheckMessage(MSG_KEY, "abstract"),
@@ -87,7 +87,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testMethodsOnInterfaceNoImpliedPublicAllowImpliedAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedAbstractMethod", "false");
+        checkConfig.addProperty("violateImpliedAbstractMethod", "false");
         final String[] expected = {
             "8:5: " + getCheckMessage(MSG_KEY, "public"),
             "14:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -102,8 +102,8 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testMethodsOnInterfaceAllowImpliedPublicAbstract() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedPublicMethod", "false");
-        checkConfig.addAttribute("violateImpliedAbstractMethod", "false");
+        checkConfig.addProperty("violateImpliedPublicMethod", "false");
+        checkConfig.addProperty("violateImpliedAbstractMethod", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInterfaceMemberImpliedModifierMethodsOnInterface.java"),
             expected);
@@ -178,7 +178,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testFieldsOnInterfaceNoImpliedPublicStaticAllowImpliedFinal() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedFinalField", "false");
+        checkConfig.addProperty("violateImpliedFinalField", "false");
         final String[] expected = {
             "9:5: " + getCheckMessage(MSG_KEY, "static"),
             "11:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -197,7 +197,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testFieldsOnInterfaceNoImpliedPublicFinalAllowImpliedStatic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedStaticField", "false");
+        checkConfig.addProperty("violateImpliedStaticField", "false");
         final String[] expected = {
             "7:5: " + getCheckMessage(MSG_KEY, "final"),
             "11:5: " + getCheckMessage(MSG_KEY, "final"),
@@ -216,7 +216,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testFieldsOnInterfaceNoImpliedStaticFinalAllowImpliedPublic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedPublicField", "false");
+        checkConfig.addProperty("violateImpliedPublicField", "false");
         final String[] expected = {
             "7:5: " + getCheckMessage(MSG_KEY, "final"),
             "9:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -235,9 +235,9 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testFieldsOnInterfaceAllowImpliedPublicStaticFinal() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedPublicField", "false");
-        checkConfig.addAttribute("violateImpliedStaticField", "false");
-        checkConfig.addAttribute("violateImpliedFinalField", "false");
+        checkConfig.addProperty("violateImpliedPublicField", "false");
+        checkConfig.addProperty("violateImpliedStaticField", "false");
+        checkConfig.addProperty("violateImpliedFinalField", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInterfaceMemberImpliedModifierFieldsOnInterface.java"),
             expected);
@@ -278,7 +278,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testNestedOnInterfaceNoImpliedStaticAllowImpliedPublic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedPublicNested", "false");
+        checkConfig.addProperty("violateImpliedPublicNested", "false");
         final String[] expected = {
             "8:5: " + getCheckMessage(MSG_KEY, "static"),
             "14:5: " + getCheckMessage(MSG_KEY, "static"),
@@ -295,7 +295,7 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testNestedOnInterfaceNoImpliedPublicAllowImpliedStatic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedStaticNested", "false");
+        checkConfig.addProperty("violateImpliedStaticNested", "false");
         final String[] expected = {
             "11:5: " + getCheckMessage(MSG_KEY, "public"),
             "14:5: " + getCheckMessage(MSG_KEY, "public"),
@@ -312,8 +312,8 @@ public class InterfaceMemberImpliedModifierCheckTest
     public void testNestedOnInterfaceAllowImpliedPublicStatic() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(InterfaceMemberImpliedModifierCheck.class);
-        checkConfig.addAttribute("violateImpliedPublicNested", "false");
-        checkConfig.addAttribute("violateImpliedStaticNested", "false");
+        checkConfig.addProperty("violateImpliedPublicNested", "false");
+        checkConfig.addProperty("violateImpliedStaticNested", "false");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputInterfaceMemberImpliedModifierNestedOnInterface.java"),
             expected);

@@ -75,7 +75,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
-        moduleConfig.addAttribute("format", nonDefaultPattern);
+        moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
@@ -103,7 +103,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
-        moduleConfig.addAttribute("format", nonDefaultPattern);
+        moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(PatternVariableNameCheck.class,
@@ -131,7 +131,7 @@ public class XpathRegressionPatternVariableNameTest extends AbstractXpathTestSup
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(PatternVariableNameCheck.class);
-        moduleConfig.addAttribute("format", nonDefaultPattern);
+        moduleConfig.addProperty("format", nonDefaultPattern);
 
         final String[] expectedViolation = {
             "6:34: " + getCheckMessage(PatternVariableNameCheck.class,

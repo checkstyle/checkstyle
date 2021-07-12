@@ -104,7 +104,7 @@ public class EqualsAvoidNullCheckTest extends AbstractModuleTestSupport {
     public void testEqualsWithoutEqualsIgnoreCase() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EqualsAvoidNullCheck.class);
-        checkConfig.addAttribute("ignoreEqualsIgnoreCase", "true");
+        checkConfig.addProperty("ignoreEqualsIgnoreCase", "true");
 
         final String[] expected = {
             "245:21: " + getCheckMessage(MSG_EQUALS_AVOID_NULL),

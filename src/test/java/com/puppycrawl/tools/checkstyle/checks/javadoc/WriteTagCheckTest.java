@@ -61,8 +61,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addProperty("tag", "@author");
+        checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
             "16: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner // violation"),
         };
@@ -72,7 +72,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissingFormat() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@author");
+        checkConfig.addProperty("tag", "@author");
         final String[] expected = {
             "10: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner // violation"),
         };
@@ -82,8 +82,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testTagIncomplete() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@incomplete");
-        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addProperty("tag", "@incomplete");
+        checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
             "12: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
                 "This class needs more code... // violation"),
@@ -94,8 +94,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testDoubleTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@doubletag");
-        checkConfig.addAttribute("tagFormat", "\\S");
+        checkConfig.addProperty("tag", "@doubletag");
+        checkConfig.addProperty("tagFormat", "\\S");
         final String[] expected = {
             "13: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "first text  // violation"),
             "14: " + getCheckMessage(MSG_WRITE_TAG, "@doubletag", "second text  // violation"),
@@ -106,8 +106,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEmptyTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@emptytag");
-        checkConfig.addAttribute("tagFormat", "");
+        checkConfig.addProperty("tag", "@emptytag");
+        checkConfig.addProperty("tagFormat", "");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_WRITE_TAG, "@emptytag", "// violation"),
         };
@@ -117,7 +117,7 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMissingTag() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@missingtag");
+        checkConfig.addProperty("tag", "@missingtag");
         final String[] expected = {
             "15: " + getCheckMessage(MSG_MISSING_TAG, "@missingtag"),
         };
@@ -127,11 +127,11 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testMethod() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@todo");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("tokens",
+        checkConfig.addProperty("tag", "@todo");
+        checkConfig.addProperty("tagFormat", "\\S");
+        checkConfig.addProperty("tokens",
             "INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF");
-        checkConfig.addAttribute("severity", "ignore");
+        checkConfig.addProperty("severity", "ignore");
         final String[] expected = {
             "22: " + getCheckMessage(MSG_WRITE_TAG, "@todo",
                     "Add a constructor comment  // violation"),
@@ -143,9 +143,9 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testSeverity() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("severity", "ignore");
+        checkConfig.addProperty("tag", "@author");
+        checkConfig.addProperty("tagFormat", "\\S");
+        checkConfig.addProperty("severity", "ignore");
         final String[] expected = {
             "12: " + getCheckMessage(MSG_WRITE_TAG, "@author", "Daniel Grenner  // violation"),
         };
@@ -155,9 +155,9 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testIgnoreMissing() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@todo2");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("severity", "ignore");
+        checkConfig.addProperty("tag", "@todo2");
+        checkConfig.addProperty("tagFormat", "\\S");
+        checkConfig.addProperty("severity", "ignore");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTagIgnore.java"), expected);
     }
@@ -166,8 +166,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     public void testRegularEx()
             throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "0*");
+        checkConfig.addProperty("tag", "@author");
+        checkConfig.addProperty("tagFormat", "0*");
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputWriteTagRegularExpression.java"), expected);
     }
@@ -175,8 +175,8 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testRegularExError() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@author");
-        checkConfig.addAttribute("tagFormat", "ABC");
+        checkConfig.addProperty("tag", "@author");
+        checkConfig.addProperty("tagFormat", "ABC");
         final String[] expected = {
             "11: " + getCheckMessage(MSG_TAG_FORMAT, "@author", "ABC"),
         };
@@ -186,11 +186,11 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testEnumsAndAnnotations() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@incomplete");
-        checkConfig.addAttribute("tagFormat", ".*");
-        checkConfig.addAttribute("severity", "ignore");
-        checkConfig.addAttribute("tagSeverity", "error");
-        checkConfig.addAttribute("tokens",
+        checkConfig.addProperty("tag", "@incomplete");
+        checkConfig.addProperty("tagFormat", ".*");
+        checkConfig.addProperty("severity", "ignore");
+        checkConfig.addProperty("tagSeverity", "error");
+        checkConfig.addProperty("tokens",
             "ANNOTATION_DEF, ENUM_DEF, ANNOTATION_FIELD_DEF, ENUM_CONSTANT_DEF");
         final String[] expected = {
             "18: " + getCheckMessage(MSG_WRITE_TAG, "@incomplete",
@@ -217,10 +217,10 @@ public class WriteTagCheckTest extends AbstractModuleTestSupport {
     @Test
     public void testWriteTagRecordsAndCompactCtors() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(WriteTagCheck.class);
-        checkConfig.addAttribute("tag", "@incomplete");
-        checkConfig.addAttribute("tagSeverity", "error");
-        checkConfig.addAttribute("tagFormat", "\\S");
-        checkConfig.addAttribute("tokens",
+        checkConfig.addProperty("tag", "@incomplete");
+        checkConfig.addProperty("tagSeverity", "error");
+        checkConfig.addProperty("tagFormat", "\\S");
+        checkConfig.addProperty("tokens",
             "INTERFACE_DEF , CLASS_DEF , ENUM_DEF , ANNOTATION_DEF, RECORD_DEF,"
                 + " COMPACT_CTOR_DEF, CTOR_DEF");
 

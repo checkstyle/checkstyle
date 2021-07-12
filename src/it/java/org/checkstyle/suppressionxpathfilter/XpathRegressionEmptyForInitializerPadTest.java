@@ -69,7 +69,7 @@ public class XpathRegressionEmptyForInitializerPadTest extends AbstractXpathTest
 
         final DefaultConfiguration moduleConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
-        moduleConfig.addAttribute("option", PadOption.SPACE.toString());
+        moduleConfig.addProperty("option", PadOption.SPACE.toString());
 
         final String[] expectedViolation = {
             "5:14: " + getCheckMessage(EmptyForInitializerPadCheck.class,
