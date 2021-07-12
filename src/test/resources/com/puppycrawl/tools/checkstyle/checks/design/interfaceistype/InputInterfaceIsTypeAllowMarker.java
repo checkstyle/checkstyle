@@ -1,6 +1,6 @@
 /*
 InterfaceIsType
-allowMarkerInterfaces = (default)true
+allowMarkerInterfaces = false
 
 
 */
@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.design.interfaceistype;
  * Test input for InterfaceIsTypeCheck
  * @author lkuehne
  **/
-class InputInterfaceIsType
+class InputInterfaceIsTypeAllowMarker
 {
     // OK, has method, so is a type
     interface OK
@@ -20,7 +20,7 @@ class InputInterfaceIsType
     }
 
     // Marker interface, OK for some configurations
-    interface Marker
+    interface Marker // violation
     {
     }
 
