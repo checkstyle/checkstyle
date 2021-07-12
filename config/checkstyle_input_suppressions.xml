@@ -947,10 +947,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]catchparametername[\\/]InputCatchParameterName.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]catchparametername[\\/]InputCatchParameterNameSimple.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]classtypeparametername[\\/]InputClassTypeParameterName.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameInner.java"/>
@@ -2153,10 +2149,6 @@
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameReceiver.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]abbreviationaswordinname[\\/]InputAbbreviationAsWordInNameType.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]catchparametername[\\/]InputCatchParameterName.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]catchparametername[\\/]InputCatchParameterNameSimple.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]classtypeparametername[\\/]InputClassTypeParameterName.java"/>
   <suppress id="StyleValidationCommentInInputs"
