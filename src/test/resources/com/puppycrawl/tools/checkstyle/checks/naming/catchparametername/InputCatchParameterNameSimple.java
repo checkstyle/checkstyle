@@ -1,9 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+CatchParameterName
+format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+)$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
+
 import java.io.*;
 /**
  * Contains simple mistakes:
@@ -13,14 +16,8 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputCatchParameterNameSimple
+final class InputCatchParameterNameSimple // ok
 {
-    // Long line ----------------------------------------------------------------
-    // Contains a tab ->        <-
-    // Contains trailing whitespace ->
-
-    // Name format tests
-    //
     /** Invalid format **/
     public static final int badConstant = 2;
     /** Valid format **/
