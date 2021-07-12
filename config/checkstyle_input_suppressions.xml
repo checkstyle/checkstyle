@@ -965,8 +965,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameStaticModifierInInterface.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]interfacetypeparametername[\\/]InputInterfaceTypeParameterName.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]lambdaparametername[\\/]InputLambdaParameterName.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableNameInnerClass.java"/>
@@ -2173,8 +2171,6 @@
             files="naming[\\/]constantname[\\/]InputConstantNameSimple.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]constantname[\\/]InputConstantNameStaticModifierInInterface.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]interfacetypeparametername[\\/]InputInterfaceTypeParameterName.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]lambdaparametername[\\/]InputLambdaParameterName.java"/>
   <suppress id="StyleValidationCommentInInputs"

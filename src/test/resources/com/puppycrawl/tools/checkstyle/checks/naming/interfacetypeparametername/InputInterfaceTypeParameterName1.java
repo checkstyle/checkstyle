@@ -1,6 +1,6 @@
 /*
 InterfaceTypeParameterName
-format = (default)^[A-Z]$
+format = ^foo$
 
 
 */
@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.interfacetypeparametername
 
 import java.io.Serializable;
 
-public class InputInterfaceTypeParameterName<t>
+public class InputInterfaceTypeParameterName1<t>
 {
     public <TT> void foo() { }
 
@@ -17,7 +17,7 @@ public class InputInterfaceTypeParameterName<t>
     }
 }
 
-class Other <foo extends Serializable & Cloneable> {
+class Other1 <foo extends Serializable & Cloneable> {
 
     foo getOne() {
         return null;//comment
@@ -37,7 +37,7 @@ class Other <foo extends Serializable & Cloneable> {
     }
 }
 
-class MoreOther <T extends Cloneable> {
+class MoreOther1 <T extends Cloneable> {
 
     <E extends T> void getMore() {
         new Other() {
@@ -52,18 +52,18 @@ class MoreOther <T extends Cloneable> {
     }
 }
 
-interface Boo<Input> {
+interface Boo1<Input> {
     Input boo();
 }
 
-interface FooInterface<T> {
+interface FooInterface1<T> {
     T foo();
 }
 
-interface FooInterface2 {
+interface FooInterface3 {
     Input foo();
 }
 
-class Input {
+class Input1 {
 
 }
