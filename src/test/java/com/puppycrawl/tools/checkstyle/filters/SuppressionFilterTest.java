@@ -153,11 +153,11 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
     @Test
     public void testLocalFileExternalResourceContentDoesNotChange() throws Exception {
         final DefaultConfiguration filterConfig = createModuleConfig(SuppressionFilter.class);
-        filterConfig.addAttribute("file", getPath("InputSuppressionFilterNone.xml"));
+        filterConfig.addProperty("file", getPath("InputSuppressionFilterNone.xml"));
 
         final DefaultConfiguration checkerConfig = createRootConfig(filterConfig);
         final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-        checkerConfig.addAttribute("cacheFile", cacheFile.getPath());
+        checkerConfig.addProperty("cacheFile", cacheFile.getPath());
 
         final String filePath = File.createTempFile("file", ".java", temporaryFolder).getPath();
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
@@ -191,11 +191,11 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             final DefaultConfiguration firstFilterConfig =
                 createModuleConfig(SuppressionFilter.class);
             // -@cs[CheckstyleTestMakeup] need to test dynamic property
-            firstFilterConfig.addAttribute("file", urlForTest);
+            firstFilterConfig.addProperty("file", urlForTest);
 
             final DefaultConfiguration firstCheckerConfig = createRootConfig(firstFilterConfig);
             final File cacheFile = File.createTempFile("junit", null, temporaryFolder);
-            firstCheckerConfig.addAttribute("cacheFile", cacheFile.getPath());
+            firstCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
             final String pathToEmptyFile =
                     File.createTempFile("file", ".java", temporaryFolder).getPath();
@@ -207,10 +207,10 @@ public class SuppressionFilterTest extends AbstractModuleTestSupport {
             final DefaultConfiguration secondFilterConfig =
                 createModuleConfig(SuppressionFilter.class);
             // -@cs[CheckstyleTestMakeup] need to test dynamic property
-            secondFilterConfig.addAttribute("file", urlForTest);
+            secondFilterConfig.addProperty("file", urlForTest);
 
             final DefaultConfiguration secondCheckerConfig = createRootConfig(secondFilterConfig);
-            secondCheckerConfig.addAttribute("cacheFile", cacheFile.getPath());
+            secondCheckerConfig.addProperty("cacheFile", cacheFile.getPath());
 
             verify(secondCheckerConfig, pathToEmptyFile, expected);
         }

@@ -54,7 +54,7 @@ public class ConstantNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addAttribute("format", "\\");
+        checkConfig.addProperty("format", "\\");
         try {
             createChecker(checkConfig);
             fail("CheckstyleException is expected");
@@ -88,9 +88,9 @@ public class ConstantNameCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addAttribute("applyToPublic", "false");
-        checkConfig.addAttribute("applyToProtected", "false");
-        checkConfig.addAttribute("applyToPackage", "false");
+        checkConfig.addProperty("applyToPublic", "false");
+        checkConfig.addProperty("applyToProtected", "false");
+        checkConfig.addProperty("applyToPackage", "false");
 
         final String pattern = "^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$";
 
@@ -148,7 +148,7 @@ public class ConstantNameCheckTest
     public void testIntoInterfaceExcludePublic() throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(ConstantNameCheck.class);
-        checkConfig.addAttribute("applyToPublic", "false");
+        checkConfig.addProperty("applyToPublic", "false");
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
         verify(checkConfig, getPath("InputConstantNameInterfaceIgnorePublic.java"), expected);

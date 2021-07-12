@@ -49,9 +49,9 @@ public class IllegalTokenTextCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "STRING_LITERAL");
-        checkConfig.addAttribute("format", "a href");
-        checkConfig.addAttribute("ignoreCase", "false");
+        checkConfig.addProperty("tokens", "STRING_LITERAL");
+        checkConfig.addProperty("format", "a href");
+        checkConfig.addProperty("ignoreCase", "false");
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
@@ -63,9 +63,9 @@ public class IllegalTokenTextCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "STRING_LITERAL");
-        checkConfig.addAttribute("format", "a href");
-        checkConfig.addAttribute("ignoreCase", "true");
+        checkConfig.addProperty("tokens", "STRING_LITERAL");
+        checkConfig.addProperty("format", "a href");
+        checkConfig.addProperty("ignoreCase", "true");
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
             "25:32: " + getCheckMessage(MSG_KEY, "a href"),
@@ -78,10 +78,10 @@ public class IllegalTokenTextCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "STRING_LITERAL");
-        checkConfig.addAttribute("format", "a href");
+        checkConfig.addProperty("tokens", "STRING_LITERAL");
+        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addAttribute("message", "My custom message");
+        checkConfig.addProperty("message", "My custom message");
         final String[] expected = {
             "24:28: " + "My custom message",
         };
@@ -93,10 +93,10 @@ public class IllegalTokenTextCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "STRING_LITERAL");
-        checkConfig.addAttribute("format", "a href");
+        checkConfig.addProperty("tokens", "STRING_LITERAL");
+        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addAttribute("message", null);
+        checkConfig.addProperty("message", null);
         final String[] expected = {
             "24:28: " + getCheckMessage(MSG_KEY, "a href"),
         };
@@ -107,8 +107,8 @@ public class IllegalTokenTextCheckTest
     public void testIllegalTokenTextTextBlocks() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
-        checkConfig.addAttribute("format", "a href");
+        checkConfig.addProperty("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
+        checkConfig.addProperty("format", "a href");
 
         final String[] expected = {
             "13:28: " + getCheckMessage(MSG_KEY, "a href"),
@@ -125,8 +125,8 @@ public class IllegalTokenTextCheckTest
     public void testIllegalTokenTextTextBlocksQuotes() throws Exception {
         final DefaultConfiguration checkConfig =
             createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
-        checkConfig.addAttribute("format", "\"");
+        checkConfig.addProperty("tokens", "STRING_LITERAL, TEXT_BLOCK_CONTENT");
+        checkConfig.addProperty("format", "\"");
 
         final String[] expected = {
             "13:28: " + getCheckMessage(MSG_KEY, "\""),
@@ -155,10 +155,10 @@ public class IllegalTokenTextCheckTest
             throws Exception {
         final DefaultConfiguration checkConfig =
                 createModuleConfig(IllegalTokenTextCheck.class);
-        checkConfig.addAttribute("tokens", "COMMENT_CONTENT");
-        checkConfig.addAttribute("format", "a href");
+        checkConfig.addProperty("tokens", "COMMENT_CONTENT");
+        checkConfig.addProperty("format", "a href");
 
-        checkConfig.addAttribute("message", null);
+        checkConfig.addProperty("message", null);
         final String[] expected = {
             "35:28: " + getCheckMessage(MSG_KEY, "a href"),
         };

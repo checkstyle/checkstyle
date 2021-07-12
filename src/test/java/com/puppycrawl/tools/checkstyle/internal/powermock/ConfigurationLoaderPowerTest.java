@@ -52,9 +52,9 @@ public class ConfigurationLoaderPowerTest extends AbstractPathTestSupport {
     public void testConfigWithIgnoreExceptionalAttributes() throws Exception {
         // emulate exception from unrelated code, but that is same try-catch
         final DefaultConfiguration tested = PowerMockito.mock(DefaultConfiguration.class);
-        when(tested.getAttributeNames()).thenReturn(new String[] {"severity"});
+        when(tested.getPropertyNames()).thenReturn(new String[] {"severity"});
         when(tested.getName()).thenReturn("MemberName");
-        when(tested.getAttribute("severity")).thenThrow(CheckstyleException.class);
+        when(tested.getProperty("severity")).thenThrow(CheckstyleException.class);
         // to void creation of 2 other mocks for now reason, only one moc is used for all cases
         PowerMockito.whenNew(DefaultConfiguration.class)
                 .withArguments("MemberName", ThreadModeSettings.SINGLE_THREAD_MODE_INSTANCE)
