@@ -1,6 +1,6 @@
 /*
 ClassTypeParameterName
-format = (default)^[A-Z]$
+format = ^foo$
 
 
 */
@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.classtypeparametername;
 
 import java.io.Serializable;
 
-public class InputClassTypeParameterName<t> // violation
+public class InputClassTypeParameterName1<t> // violation
 {
     public <TT> void foo() { }
 
@@ -17,7 +17,7 @@ public class InputClassTypeParameterName<t> // violation
     }
 }
 
-class Other <foo extends Serializable & Cloneable> { // violation
+class Other1 <foo extends Serializable & Cloneable> {
 
     foo getOne() {
         return null;//comment
@@ -31,13 +31,13 @@ class Other <foo extends Serializable & Cloneable> { // violation
         return null;
     }
 
-    static class Junk <foo> { // violation
+    static class Junk <foo> {
         <_fo extends foo> void getMoreFoo() {
         }
     }
 }
 
-class MoreOther <T extends Cloneable> {
+class MoreOther1 <T extends Cloneable> { // violation
 
     <E extends T> void getMore() {
         new Other() {
@@ -52,18 +52,18 @@ class MoreOther <T extends Cloneable> {
     }
 }
 
-interface Boo<Input> {
+interface Boo1<Input> {
     Input boo();
 }
 
-interface FooInterface<T> {
+interface FooInterface1<T> {
     T foo();
 }
 
-interface FooInterface2 {
+interface FooInterface3 {
     Input foo();
 }
 
-class Input {
+class Input1 {
 
 }
