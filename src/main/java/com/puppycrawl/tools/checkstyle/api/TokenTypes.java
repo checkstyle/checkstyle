@@ -2244,7 +2244,23 @@ public final class TokenTypes {
     /**
      * The {@code :} (colon) operator.  This will appear as part
      * of the conditional operator ({@code ? :}).
-     *
+     * 
+     *<p>For example:</p>
+     * <pre>
+     * num = isValid ? 1 : 0;
+     * </pre>
+     * <p>parses as:</p>
+     * <pre>
+     * |--EXPR -&gt; EXPR 
+     * |   `--ASSIGN -&gt; = 
+     * |       |--IDENT -&gt; num 
+     * |       `--QUESTION -&gt; ? 
+     * |           |--IDENT -&gt; isValid 
+     * |           |--NUM_INT -&gt; 1 
+     * |           |--COLON -&gt; : 
+     * |           `--NUM_INT -&gt; 0
+     * |--SEMI -&gt; ;
+     * </pre>
      * @see #QUESTION
      * @see #LABELED_STAT
      * @see #CASE_GROUP
