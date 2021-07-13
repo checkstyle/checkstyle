@@ -1,3 +1,11 @@
+/*
+LocalFinalVariableName
+format = [A-Z]+
+tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
 
 import java.io.BufferedReader;
@@ -20,7 +28,7 @@ public class InputLocalFinalVariableNameTryResources {
 
     void method() throws Exception {
         final String fileName = "Test";
-        final BufferedReader br = new BufferedReader(new InputStreamReader(
+        final BufferedReader br = new BufferedReader(new InputStreamReader( // violation
                 new FileInputStream(fileName), StandardCharsets.UTF_8));
         try {
         } finally {
@@ -30,7 +38,7 @@ public class InputLocalFinalVariableNameTryResources {
 
     void method2() throws Exception {
         final String fileName = "Test";
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+        try (BufferedReader br = new BufferedReader(new InputStreamReader( // violation
                 new FileInputStream(fileName), StandardCharsets.UTF_8))) {
         } finally {
 
@@ -50,7 +58,7 @@ public class InputLocalFinalVariableNameTryResources {
         final String fileName = "Test";
         try (BufferedReader BR = new BufferedReader(new InputStreamReader(
                 new FileInputStream(fileName), StandardCharsets.UTF_8));
-             ZipFile zf = new ZipFile(fileName)) {
+             ZipFile zf = new ZipFile(fileName)) { // violation
         } finally {
 
         }
@@ -68,9 +76,10 @@ public class InputLocalFinalVariableNameTryResources {
 
     void method6() throws Exception {
         String srcDir = System.getProperty("test.src", ".");
-        try (FileInputStream fis8859_1 = new FileInputStream(new File(srcDir, "Bug.properties"));
+        try (FileInputStream fis8859_1 = new FileInputStream( // violation
+                new File(srcDir, "Bug.properties"));
              FileInputStream fisUTF8 = new FileInputStream(new File(srcDir, "Bug_Utf8.properties"));
-             InputStreamReader isrutf8 = new InputStreamReader(fisUTF8, "UTF-8")) {
+             InputStreamReader isrutf8 = new InputStreamReader(fisUTF8, "UTF-8")) { // violation
             PropertyResourceBundle bundleUtf8 = new PropertyResourceBundle(isrutf8);
             PropertyResourceBundle bundle = new PropertyResourceBundle(fis8859_1);
             String[] arrayUtf8 = {"1", "2", "3"};
