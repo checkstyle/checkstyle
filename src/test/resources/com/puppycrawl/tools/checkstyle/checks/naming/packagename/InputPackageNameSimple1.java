@@ -1,12 +1,12 @@
 /*
 PackageName
-format = (default)^[a-z]+(\.[a-zA-Z_][a-zA-Z0-9_]*)*$
+format = [A-Z]+
 
 
 */
 
-package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // ok
-import java.io.*;
+package com.puppycrawl.tools.checkstyle.checks.naming.packagename; // violation
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -15,7 +15,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputPackageNameSimple
+final class InputPackageNameSimple1
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -68,11 +68,11 @@ final class InputPackageNameSimple
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -101,7 +101,7 @@ final class InputPackageNameSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputPackageNameSimple()
+    private InputPackageNameSimple1()
     {
         // a line
         // a line
@@ -200,7 +200,7 @@ final class InputPackageNameSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputPackageNameSimple2
+class InputPackageNameSimple3
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -214,7 +214,7 @@ class InputPackageNameSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,
