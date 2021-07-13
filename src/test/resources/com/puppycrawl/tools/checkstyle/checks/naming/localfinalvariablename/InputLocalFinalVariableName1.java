@@ -1,13 +1,13 @@
 /*
 LocalFinalVariableName
-format = (default)^[a-z][a-zA-Z0-9]*$
+format = [A-Z]+
 tokens = (default)VARIABLE_DEF, PARAMETER_DEF, RESOURCE
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.naming.localfinalvariablename;
-import java.io.*;
+
 /**
  * Contains simple mistakes:
  * - Long lines
@@ -16,7 +16,7 @@ import java.io.*;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputLocalFinalVariableName
+final class InputLocalFinalVariableName1
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->        <-
@@ -69,11 +69,11 @@ final class InputLocalFinalVariableName
      * @param badFormat1 bad format
      * @param badFormat2 bad format
      * @param badFormat3 bad format
-     * @throws java.lang.Exception abc
+     * @throws Exception abc
      **/
     int test1(int badFormat1,int badFormat2,
               final int badFormat3)
-        throws java.lang.Exception
+        throws Exception
     {
         return 0;
     }
@@ -102,7 +102,7 @@ final class InputLocalFinalVariableName
     }
 
     /** constructor that is 10 lines long **/
-    private InputLocalFinalVariableName()
+    private InputLocalFinalVariableName1()
     {
         // a line
         // a line
@@ -122,8 +122,8 @@ final class InputLocalFinalVariableName
         int ABC = 0;
 
         // final decls
-        final int cde = 0;
-        final int CDE = 0; // violation
+        final int cde = 0; // violation
+        final int CDE = 0;
 
         // decl in for loop init statement
         for (int k = 0; k < 1; k++)
@@ -201,7 +201,7 @@ final class InputLocalFinalVariableName
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputLocalFinalVariableName2
+class InputLocalFinalVariableName3
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -215,7 +215,7 @@ class InputLocalFinalVariableName2
 }
 
 /** Test enum for member naming check */
-enum InputLocalFinalVariableNameEnum1
+enum InputLocalFinalVariableNameEnum2
 {
     /** ABC constant */
     ABC,
