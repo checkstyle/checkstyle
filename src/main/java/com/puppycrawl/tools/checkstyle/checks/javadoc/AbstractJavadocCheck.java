@@ -171,7 +171,6 @@ public abstract class AbstractJavadocCheck extends AbstractCheck {
      * @param strRep the string representation of the tokens interested in
      */
     public final void setJavadocTokens(String... strRep) {
-        javadocTokens.clear();
         for (String str : strRep) {
             javadocTokens.add(JavadocUtil.getTokenId(str));
         }
