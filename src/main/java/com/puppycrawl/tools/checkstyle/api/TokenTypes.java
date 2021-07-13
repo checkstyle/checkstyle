@@ -21,6 +21,8 @@ package com.puppycrawl.tools.checkstyle.api;
 
 import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaTokenTypes;
 
+import java.util.Arrays;
+
 /**
  * Contains the constants for all the tokens contained in the Abstract
  * Syntax Tree.
@@ -31,7 +33,6 @@ import com.puppycrawl.tools.checkstyle.grammar.GeneratedJavaTokenTypes;
  * @noinspection ClassWithTooManyDependents
  */
 public final class TokenTypes {
-
     /**
      * The end of file token.  This is the root node for the source
      * file.  It's children are an optional package definition, zero
@@ -4954,7 +4955,46 @@ public final class TokenTypes {
     public static final int GENERIC_END = GeneratedJavaTokenTypes.GENERIC_END;
 
     /**
-     * Special lambda symbol {@code ->}.
+     * Lambda function "(() -&gt; {})"
+     *
+     * <p>For example: </p>
+     * <pre>
+     *  Arrays.stream(a).map(el -&gt; el);
+     * </pre>
+     * <p>Here a is an Array</p>
+     * <p>parses as:</p>
+     * <pre>
+     *    +--EXPR -&gt; EXPR
+     *                 |
+     *               +`--METHOD_CALL -&gt; (
+     *                     |
+     *                   +--DOT -&gt; .
+     *                       |
+     *                      +--METHOD_CALL -&gt; (
+     *                           |
+     *                         +--DOT -&gt; .
+     *                              |
+     *                            +--IDENT -&gt; Arrays
+     *                            +`--IDENT -&gt; stream
+     *                         +--ELIST -&gt; ELIST
+     *                              |
+     *                            +`--EXPR -&gt; EXPR
+     *                                  |
+     *                                +`--IDENT -&gt; a
+     *                         +`--RPAREN -&gt; )
+     *                      +`--IDENT -&gt; map
+     *                   +--ELIST -&gt; ELIST
+     *                        |
+     *                      +`--LAMBDA -&gt; -&gt;
+     *                           |
+     *                          +--IDENT -&gt; el
+     *                          +`--EXPR -&gt; EXPR
+     *                               |
+     *                              +`--IDENT -&gt; el
+     *                   +`--RPAREN -&gt; )
+     *            +--SEMI -&gt; ;
+     * </pre>
+     *
      */
     public static final int LAMBDA = GeneratedJavaTokenTypes.LAMBDA;
 
