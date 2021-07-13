@@ -969,12 +969,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableNameTryResources.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]localvariablename[\\/]InputLocalVariableNameInnerClass.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]localvariablename[\\/]InputLocalVariableName.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="naming[\\/]localvariablename[\\/]InputLocalVariableNameOneCharInitVarName.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]membername[\\/]InputMemberNameExtended.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="naming[\\/]membername[\\/]InputMemberNameInner.java"/>
@@ -2171,12 +2165,6 @@
             files="naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableName.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]localfinalvariablename[\\/]InputLocalFinalVariableNameTryResources.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]localvariablename[\\/]InputLocalVariableNameInnerClass.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]localvariablename[\\/]InputLocalVariableName.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="naming[\\/]localvariablename[\\/]InputLocalVariableNameOneCharInitVarName.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="naming[\\/]membername[\\/]InputMemberNameExtended.java"/>
   <suppress id="StyleValidationCommentInInputs"
