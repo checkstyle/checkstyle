@@ -1,6 +1,6 @@
 /*
 MethodTypeParameterName
-format = (default)^[A-Z]$
+format = ^foo$
 
 
 */
@@ -9,7 +9,7 @@ package com.puppycrawl.tools.checkstyle.checks.naming.methodtypeparametername;
 
 import java.io.Serializable;
 
-public class InputMethodTypeParameterName <t>
+public class InputMethodTypeParameterName1 <t>
 {
     public <TT> void foo() { } // violation
 
@@ -17,7 +17,7 @@ public class InputMethodTypeParameterName <t>
     }
 }
 
-class Other <foo extends Serializable & Cloneable> {
+class Other1 <foo extends Serializable & Cloneable> {
 
     foo getOne() {
         return null;//comment
@@ -27,7 +27,7 @@ class Other <foo extends Serializable & Cloneable> {
         return null;
     }
 
-    <foo extends Runnable> foo getShadow() { // violation
+    <foo extends Runnable> foo getShadow() {
         return null;
     }
 
@@ -37,11 +37,11 @@ class Other <foo extends Serializable & Cloneable> {
     }
 }
 
-class MoreOther <T extends Cloneable> {
+class MoreOther1 <T extends Cloneable> {
 
-    <E extends T> void getMore() {
+    <E extends T> void getMore() { // violation
         new Other() {
-            <T> void getMoreFoo() {
+            <T> void getMoreFoo() { // violation
             }
         };
 
@@ -52,18 +52,18 @@ class MoreOther <T extends Cloneable> {
     }
 }
 
-interface Boo<Input> {
+interface Boo1<Input> {
     Input boo();
 }
 
-interface FooInterface<T> {
+interface FooInterface1<T> {
     T foo();
 }
 
-interface FooInterface2 {
+interface FooInterface3 {
     Input foo();
 }
 
-class Input {
+class Input1 {
 
 }
