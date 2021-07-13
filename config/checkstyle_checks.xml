@@ -555,7 +555,7 @@
     <module name="ImportControl">
       <property name="id" value="ImportControlTest"/>
       <property name="file" value="${checkstyle.importcontroltest.file}"/>
-      <property name="path" value="^.*[\\/]src[\\/]test[\\/].*$"/>
+      <property name="path" value="^.*[\\/]src[\\/](test|it)[\\/].*$"/>
     </module>
     <module name="ImportOrder">
       <property name="groups" value="/^java\./,javax,org"/>
@@ -793,6 +793,7 @@
       <property name="tokens" value="METHOD_REF"/>
     </module>
     <module name="NoWhitespaceBefore"/>
+    <module name="NoWhitespaceBeforeCaseDefaultColon"/>
     <module name="NoWhitespaceBefore">
       <property name="tokens" value="DOT"/>
       <property name="tokens" value="METHOD_REF"/>

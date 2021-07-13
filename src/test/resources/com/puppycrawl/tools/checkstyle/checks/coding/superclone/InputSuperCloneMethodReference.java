@@ -1,8 +1,14 @@
+/*
+SuperClone
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.superclone;
 
 import java.util.ArrayList;
 
-/** Config = default */
+/* Config = default */
 public class InputSuperCloneMethodReference extends ArrayList {
 
     public interface CheckedSupplier<R, E extends Exception> {

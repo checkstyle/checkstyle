@@ -111,6 +111,7 @@ bc
 BCA
 BClass
 bdc
+bdd
 bdo
 beanutils
 beforeexecutionexclusionfilefilter
@@ -386,7 +387,6 @@ ev
 Evt
 Exceptiontest
 executablestatementcount
-executon
 Exif
 explicitinitialization
 expr
@@ -626,6 +626,7 @@ javaguide
 javall
 javamail
 javancss
+javap
 javaparser
 javarevisited
 javascript
@@ -638,6 +639,7 @@ jayway
 JB
 JBoss
 JButton
+JCheck
 JCombo
 JComponent
 jcp
@@ -886,7 +888,9 @@ nonnull
 nonrequiredjavadoc
 nonvalidating
 noparentfile
+NOPMD
 noscript
+NOSONAR
 nospace
 Nothin
 notjava
@@ -894,6 +898,7 @@ NOTNULL
 nowarn
 nowhitespaceafter
 nowhitespacebefore
+nowhitespacebeforecasedefaultcolon
 nowildcard
 nowrap
 npath
@@ -1261,6 +1266,7 @@ tstamp
 tt
 ttf
 ttype
+tvf
 tw
 typecastparenpad
 typename

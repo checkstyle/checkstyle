@@ -1,10 +1,15 @@
+/*
+MethodLength
+max = 19
+countEmpty = false
+tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 import java.io.*;
-/*
- * Config:
- * max = 19
- * countEmpty = false
- */
+
 final class InputMethodLengthCountEmptyIsFalse
 {
     // Long line ----------------------------------------------------------------

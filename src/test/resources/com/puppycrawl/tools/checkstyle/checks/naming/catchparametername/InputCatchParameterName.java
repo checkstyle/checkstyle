@@ -1,3 +1,10 @@
+/*
+CatchParameterName
+format = (default)^(e|t|ex|[a-z][a-z][a-zA-Z]+)$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.naming.catchparametername;
 
 public class InputCatchParameterName {
@@ -15,7 +22,7 @@ public class InputCatchParameterName {
         } catch (Exception exception) {
         }
         try {
-        } catch (Exception exception1) {
+        } catch (Exception exception1) { // violation
         }
         try {
         } catch (Exception noWorries) {
@@ -25,25 +32,25 @@ public class InputCatchParameterName {
         }
         try {
             throw new InterruptedException("interruptedException");
-        } catch (InterruptedException ie) { // violation with default config
+        } catch (InterruptedException ie) { // violation
         }
         try {
-        } catch (Exception iException) { // violation with default config
+        } catch (Exception iException) { // violation
         }
         try {
-        } catch (Exception ok) {
+        } catch (Exception ok) { // violation
             // appropriate to take no action here
         }
         try {
-        } catch (Exception e1) {
+        } catch (Exception e1) { // violation
             try {
-            } catch (Exception e2) {
+            } catch (Exception e2) { // violation
             }
         }
         try {
-        } catch (Throwable t1) {
+        } catch (Throwable t1) { // violation
             try {
-            } catch (Throwable t2) {
+            } catch (Throwable t2) { // violation
             }
         }
     }

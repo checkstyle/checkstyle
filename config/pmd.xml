@@ -18,6 +18,13 @@
     <!-- too much false-positives from 6.18.0 -->
     <exclude name="UnusedPrivateMethod"/>
   </rule>
+  <rule ref="category/java/bestpractices.xml/AccessorClassGeneration">
+    <properties>
+      <!-- The PMD gives false positive for Builder patterns. Fixed in PMD 7. -->
+      <property name="violationSuppressXPath"
+                value="//ClassOrInterfaceDeclaration[@SimpleName='TestInputConfiguration']"/>
+    </properties>
+  </rule>
   <rule ref="category/java/bestpractices.xml/AvoidPrintStackTrace">
     <properties>
       <!-- It is ok to use print stack trace in CLI class. -->

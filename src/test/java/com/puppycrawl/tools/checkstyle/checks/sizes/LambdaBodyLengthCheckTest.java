@@ -59,12 +59,12 @@ public class LambdaBodyLengthCheckTest extends AbstractModuleTestSupport {
         final DefaultConfiguration checkConfig =
             createModuleConfig(LambdaBodyLengthCheck.class);
         final String[] expected = {
-            "12:27: " + getCheckMessage(MSG_KEY, 12, 10),
-            "24:27: " + getCheckMessage(MSG_KEY, 12, 10),
-            "37:27: " + getCheckMessage(MSG_KEY, 11, 10),
-            "50:35: " + getCheckMessage(MSG_KEY, 13, 10),
-            "53:15: " + getCheckMessage(MSG_KEY, 11, 10),
-            "64:34: " + getCheckMessage(MSG_KEY, 11, 10),
+            "10:27: " + getCheckMessage(MSG_KEY, 12, 10),
+            "22:27: " + getCheckMessage(MSG_KEY, 12, 10),
+            "35:27: " + getCheckMessage(MSG_KEY, 11, 10),
+            "48:35: " + getCheckMessage(MSG_KEY, 13, 10),
+            "51:15: " + getCheckMessage(MSG_KEY, 11, 10),
+            "62:34: " + getCheckMessage(MSG_KEY, 11, 10),
         };
         verify(checkConfig, getPath("InputLambdaBodyLengthDefault.java"), expected);
     }

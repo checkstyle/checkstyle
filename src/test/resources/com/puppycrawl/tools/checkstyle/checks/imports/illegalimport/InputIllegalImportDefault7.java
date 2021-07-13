@@ -1,3 +1,12 @@
+/*
+IllegalImport
+illegalPkgs = java\\.util
+illegalClasses = ^java\\.awt\\..*
+regexp = true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.imports.illegalimport;
 
 import com.puppycrawl.tools.checkstyle.checks.imports.illegalimport.*; // ok
@@ -31,12 +40,6 @@ import java.util.Date; // violation
 import java.util.Calendar; // violation
 import java.util.BitSet; // violation
 
-/*
- * Config:
- * illegalPkgs = "java\\.util"
- * illegalClasses = "^java\\.awt\\..*"
- * regexp = true
- */
 class InputIllegalImportDefault7
 {
     /** ignore **/

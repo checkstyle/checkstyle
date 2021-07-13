@@ -62,14 +62,14 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         final String defaultFormat = "^(e|t|ex|[a-z][a-z][a-zA-Z]+)$";
 
         final String[] expected = {
-            "18:28: " + getCheckMessage(MSG_INVALID_PATTERN, "exception1", defaultFormat),
-            "28:39: " + getCheckMessage(MSG_INVALID_PATTERN, "ie", defaultFormat),
-            "31:28: " + getCheckMessage(MSG_INVALID_PATTERN, "iException", defaultFormat),
-            "34:28: " + getCheckMessage(MSG_INVALID_PATTERN, "ok", defaultFormat),
-            "38:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e1", defaultFormat),
-            "40:32: " + getCheckMessage(MSG_INVALID_PATTERN, "e2", defaultFormat),
-            "44:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t1", defaultFormat),
-            "46:32: " + getCheckMessage(MSG_INVALID_PATTERN, "t2", defaultFormat),
+            "25:28: " + getCheckMessage(MSG_INVALID_PATTERN, "exception1", defaultFormat),
+            "35:39: " + getCheckMessage(MSG_INVALID_PATTERN, "ie", defaultFormat),
+            "38:28: " + getCheckMessage(MSG_INVALID_PATTERN, "iException", defaultFormat),
+            "41:28: " + getCheckMessage(MSG_INVALID_PATTERN, "ok", defaultFormat),
+            "45:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e1", defaultFormat),
+            "47:32: " + getCheckMessage(MSG_INVALID_PATTERN, "e2", defaultFormat),
+            "51:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t1", defaultFormat),
+            "53:32: " + getCheckMessage(MSG_INVALID_PATTERN, "t2", defaultFormat),
         };
 
         verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
@@ -81,11 +81,11 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
         checkConfig.addAttribute("format", "^[a-z][a-zA-Z0-9]+$");
 
         final String[] expected = {
-            "6:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z0-9]+$"),
-            "24:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[a-z][a-zA-Z0-9]+$"),
+            "13:28: " + getCheckMessage(MSG_INVALID_PATTERN, "e", "^[a-z][a-zA-Z0-9]+$"),
+            "31:28: " + getCheckMessage(MSG_INVALID_PATTERN, "t", "^[a-z][a-zA-Z0-9]+$"),
         };
 
-        verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
+        verify(checkConfig, getPath("InputCatchParameterName2.java"), expected);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class CatchParameterNameCheckTest extends AbstractModuleTestSupport {
 
         final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-        verify(checkConfig, getPath("InputCatchParameterName.java"), expected);
+        verify(checkConfig, getPath("InputCatchParameterName3.java"), expected);
     }
 
 }

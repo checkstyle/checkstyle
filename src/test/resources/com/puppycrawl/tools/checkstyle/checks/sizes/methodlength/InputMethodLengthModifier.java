@@ -1,8 +1,14 @@
+/*
+MethodLength
+max = (default)150
+countEmpty = (default)true
+tokens = (default)METHOD_DEF , CTOR_DEF , COMPACT_CTOR_DEF
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.sizes.methodlength;
 
-/*
- * Config: default
- */
 strictfp final class InputMethodLengthModifier
 {
 

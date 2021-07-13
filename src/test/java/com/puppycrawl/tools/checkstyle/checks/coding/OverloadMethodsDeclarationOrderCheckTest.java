@@ -41,10 +41,10 @@ public class OverloadMethodsDeclarationOrderCheckTest
             createModuleConfig(OverloadMethodsDeclarationOrderCheck.class);
 
         final String[] expected = {
-            "28:5: " + getCheckMessage(MSG_KEY, 17),
-            "56:9: " + getCheckMessage(MSG_KEY, 45),
-            "68:5: " + getCheckMessage(MSG_KEY, 66),
-            "111:5: " + getCheckMessage(MSG_KEY, 100),
+            "32:5: " + getCheckMessage(MSG_KEY, 21),
+            "60:9: " + getCheckMessage(MSG_KEY, 49),
+            "72:5: " + getCheckMessage(MSG_KEY, 70),
+            "115:5: " + getCheckMessage(MSG_KEY, 104),
         };
         verify(checkConfig, getPath("InputOverloadMethodsDeclarationOrder.java"), expected);
     }
@@ -55,9 +55,9 @@ public class OverloadMethodsDeclarationOrderCheckTest
             createModuleConfig(OverloadMethodsDeclarationOrderCheck.class);
 
         final String[] expected = {
-            "19:9: " + getCheckMessage(MSG_KEY, 13),
-            "39:9: " + getCheckMessage(MSG_KEY, 33),
-            "55:9: " + getCheckMessage(MSG_KEY, 48),
+            "21:9: " + getCheckMessage(MSG_KEY, 15),
+            "41:9: " + getCheckMessage(MSG_KEY, 35),
+            "57:9: " + getCheckMessage(MSG_KEY, 50),
             };
         verify(checkConfig,
             getNonCompilablePath("InputOverloadMethodsDeclarationOrderRecords.java"),

@@ -14,13 +14,13 @@ public class InputMissingOverrideBadAnnotation
         /**
          * {@inheritDoc}
          */
-        public void run() {     // ok
+        public void run() { // violation Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
             Throwable t = new Throwable() {
 
                 /**
                  * {@inheritDoc}
                  */
-                public String toString() {      // ok
+                public String toString() { // violation Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
                     return "junk";
                 }
             };
@@ -33,13 +33,13 @@ public class InputMissingOverrideBadAnnotation
             /**
              * {@inheritDoc}
              */
-            public void run() {     // ok
+            public void run() { // violation Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
                 Throwable t = new Throwable() {
 
                     /**
                      * {@inheritDoc}
                      */
-                    public String toString() {      // ok
+                    public String toString() { // violation Must include @java.lang.Override annotation when {@inheritDoc} Javadoc tag exists.
                         return "junk";
                     }
                 };

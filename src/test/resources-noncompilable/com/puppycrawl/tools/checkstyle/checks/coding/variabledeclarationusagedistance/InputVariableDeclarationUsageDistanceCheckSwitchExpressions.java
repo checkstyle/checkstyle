@@ -1,13 +1,16 @@
+/*
+VariableDeclarationUsageDistance
+allowedDistance = 1
+ignoreVariablePattern = (default)
+validateBetweenScopes = true
+ignoreFinal = false
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.coding.variabledeclarationusagedistance;
 
-/* Config:
- *
- * allowedDistance = 1
- * ignoreVariablePattern = ""
- * validateBetweenScopes = true
- * ignoreFinal = false
- */
 public class InputVariableDeclarationUsageDistanceCheckSwitchExpressions {
 
 

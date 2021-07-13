@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+InterfaceIsType
+allowMarkerInterfaces = (default)true
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.design.interfaceistype;
 
 /**
@@ -22,7 +25,7 @@ class InputInterfaceIsType
     }
 
     // Always flagged
-    interface ConstantPool
+    interface ConstantPool // violation
     {
         boolean BAD = true;
     }

@@ -42,8 +42,8 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
 
         final String[] expected = {
-            "13:42: " + getCheckMessage(MSG_SEMI),
-            "14:72: " + getCheckMessage(MSG_SEMI),
+            "17:42: " + getCheckMessage(MSG_SEMI),
+            "18:72: " + getCheckMessage(MSG_SEMI),
         };
 
         verify(checkConfig, getPath("InputUnnecessarySemicolonInTryWithResourcesDefault.java"),
@@ -56,9 +56,9 @@ public class UnnecessarySemicolonInTryWithResourcesCheckTest extends AbstractMod
             createModuleConfig(UnnecessarySemicolonInTryWithResourcesCheck.class);
         checkConfig.addAttribute("allowWhenNoBraceAfterSemicolon", "false");
         final String[] expected = {
-            "13:42: " + getCheckMessage(MSG_SEMI),
-            "16:13: " + getCheckMessage(MSG_SEMI),
-            "19:36: " + getCheckMessage(MSG_SEMI),
+            "16:42: " + getCheckMessage(MSG_SEMI),
+            "19:13: " + getCheckMessage(MSG_SEMI),
+            "22:36: " + getCheckMessage(MSG_SEMI),
         };
 
         verify(checkConfig,

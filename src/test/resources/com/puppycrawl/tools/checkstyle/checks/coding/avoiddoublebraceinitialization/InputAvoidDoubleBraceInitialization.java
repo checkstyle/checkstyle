@@ -1,11 +1,14 @@
+/*
+AvoidDoubleBraceInitialization
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.avoiddoublebraceinitialization;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/*
- * Config = default
- */
 public class InputAvoidDoubleBraceInitialization {
     void m() {
         ArrayList<?> list = new ArrayList<Object>() { // violation

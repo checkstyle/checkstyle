@@ -41,12 +41,12 @@ public class CovariantEqualsCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(CovariantEqualsCheck.class);
         final String[] expected = {
-            "11:24: " + getCheckMessage(MSG_KEY),
-            "30:20: " + getCheckMessage(MSG_KEY),
-            "64:20: " + getCheckMessage(MSG_KEY),
-            "78:28: " + getCheckMessage(MSG_KEY),
-            "134:20: " + getCheckMessage(MSG_KEY),
-            "138:9: " + getCheckMessage(MSG_KEY),
+            "17:24: " + getCheckMessage(MSG_KEY),
+            "36:20: " + getCheckMessage(MSG_KEY),
+            "70:20: " + getCheckMessage(MSG_KEY),
+            "84:28: " + getCheckMessage(MSG_KEY),
+            "140:20: " + getCheckMessage(MSG_KEY),
+            "144:9: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputCovariantEquals.java"), expected);
     }
@@ -57,8 +57,8 @@ public class CovariantEqualsCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(CovariantEqualsCheck.class);
         final String[] expected = {
-            "9:24: " + getCheckMessage(MSG_KEY),
-            "25:28: " + getCheckMessage(MSG_KEY),
+            "13:24: " + getCheckMessage(MSG_KEY),
+            "29:28: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                 getNonCompilablePath("InputCovariantEqualsRecords.java"), expected);

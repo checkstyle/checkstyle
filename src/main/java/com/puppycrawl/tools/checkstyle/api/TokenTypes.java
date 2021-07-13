@@ -5281,7 +5281,7 @@ public final class TokenTypes {
      * |   `--ASSIGN -&gt; =
      * |       `--EXPR -&gt; EXPR
      * |           `--TEXT_BLOCK_LITERAL_BEGIN -&gt; """
-     * |               |--TEXT_BLOCK_CONTENT -&gt; \n                Hello, world!\n
+     * |               |--TEXT_BLOCK_CONTENT -&gt; \r\n                 Hello, world!\r\n
      * |               `--TEXT_BLOCK_LITERAL_END -&gt; """
      * |--SEMI -&gt; ;
      * </pre>

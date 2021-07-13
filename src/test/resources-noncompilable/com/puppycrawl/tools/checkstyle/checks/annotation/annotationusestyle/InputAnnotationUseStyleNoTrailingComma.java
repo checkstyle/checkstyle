@@ -1,11 +1,15 @@
+/*
+AnnotationUseStyle
+elementStyle = ignore
+closingParens = ignore
+trailingArrayComma = ALWAYS
+
+
+*/
+
 //non-compiled with eclipse: The value for annotation attribute must be a constant expression
 package com.puppycrawl.tools.checkstyle.checks.annotation.annotationusestyle;
 
-/* Config:
- * closingParens = ignore
- * elementStyle = ignore
- * trailingArrayComma = ALWAYS
- */
 public class InputAnnotationUseStyleNoTrailingComma
 {
   @Test2(value={(false) ? "" : "foo"}, more={(true) ? "" : "bar"}) // violation

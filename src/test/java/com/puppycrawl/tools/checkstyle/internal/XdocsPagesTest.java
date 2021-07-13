@@ -824,20 +824,23 @@ public class XdocsPagesTest {
                         propertyName);
             }
 
-            assertFalse(columns.get(4).getTextContent().trim().isEmpty(),
-                    fileName + " section '" + sectionName
-                            + "' should have a version for " + propertyName);
-            assertTrue(VERSION.matcher(columns.get(4).getTextContent().trim()).matches(),
-                    fileName + " section '" + sectionName
-                            + "' should have a valid version for " + propertyName);
+            assertWithMessage("%s section '%s' should have a version for %s",
+                            fileName, sectionName, propertyName)
+                    .that(columns.get(4).getTextContent().trim())
+                    .isNotEmpty();
+            assertWithMessage("%s section '%s' should have a valid version for %s",
+                            fileName, sectionName, propertyName)
+                    .that(columns.get(4).getTextContent().trim())
+                    .matches(VERSION);
         }
     }
 
     private static void validatePropertySectionPropertyEx(String fileName, String sectionName,
             Object instance, List<Node> columns, String propertyName) throws Exception {
-        assertFalse(columns.get(1).getTextContent().trim().isEmpty(),
-                fileName + " section '" + sectionName
-                        + "' should have a description for " + propertyName);
+        assertWithMessage("%s section '%s' should have a description for %s",
+                        fileName, sectionName, propertyName)
+                .that(columns.get(1).getTextContent().trim())
+                .isNotEmpty();
 
         final String actualTypeName = columns.get(2).getTextContent().replace("\n", "")
                 .replace("\r", "").replaceAll(" +", " ").trim();

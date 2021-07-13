@@ -19,10 +19,7 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static com.google.common.truth.Truth.assertWithMessage;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,14 +30,25 @@ public class CommentTest {
         final String[] text = {"test"};
         final Comment comment = new Comment(text, 1, 2, 3);
 
-        assertArrayEquals(text, comment.getText(), "invalid text");
-        assertEquals(2, comment.getStartLineNo(), "invalid start line");
-        assertEquals(2, comment.getEndLineNo(), "invalid end line");
-        assertEquals(1, comment.getStartColNo(), "invalid start column");
-        assertEquals(3, comment.getEndColNo(), "invalid end column");
-        assertEquals(
-                "Comment[text=[test], startLineNo=2, endLineNo=2, startColNo=1, endColNo=3]",
-                comment.toString(), "invalid string");
+        assertWithMessage("invalid text")
+                .that(comment.getText())
+                .isEqualTo(text);
+        assertWithMessage("invalid start line")
+                .that(comment.getStartLineNo())
+                .isEqualTo(2);
+        assertWithMessage("invalid end line")
+                .that(comment.getEndLineNo())
+                .isEqualTo(2);
+        assertWithMessage("invalid start column")
+                .that(comment.getStartColNo())
+                .isEqualTo(1);
+        assertWithMessage("invalid end column")
+                .that(comment.getEndColNo())
+                .isEqualTo(3);
+        assertWithMessage("invalid string")
+                .that(comment.toString())
+                .isEqualTo("Comment[text=[test], startLineNo=2,"
+                        + " endLineNo=2, startColNo=1, endColNo=3]");
     }
 
     @Test
@@ -48,11 +56,22 @@ public class CommentTest {
         final String[] text = {"test", "test"};
         final Comment comment = new Comment(text, 2, 4, 4);
 
-        assertFalse(comment.intersects(1, 1, 1, 1), "invalid");
-        assertFalse(comment.intersects(5, 5, 5, 5), "invalid");
-        assertTrue(comment.intersects(1, 1, 5, 5), "invalid");
-        assertTrue(comment.intersects(1, 1, 3, 5), "invalid");
-        assertTrue(comment.intersects(3, 5, 5, 5), "invalid");
+        final String message = "invalid";
+        assertWithMessage(message)
+                .that(comment.intersects(1, 1, 1, 1))
+                .isFalse();
+        assertWithMessage(message)
+                .that(comment.intersects(5, 5, 5, 5))
+                .isFalse();
+        assertWithMessage(message)
+                .that(comment.intersects(1, 1, 5, 5))
+                .isTrue();
+        assertWithMessage(message)
+                .that(comment.intersects(1, 1, 3, 5))
+                .isTrue();
+        assertWithMessage(message)
+                .that(comment.intersects(3, 5, 5, 5))
+                .isTrue();
     }
 
     @Test
@@ -60,7 +79,9 @@ public class CommentTest {
         final String[] text = {"a"};
         final Comment comment = new Comment(text, 2, 2, 2);
 
-        assertTrue(comment.intersects(2, 2, 2, 2), "invalid");
+        assertWithMessage("invalid")
+                .that(comment.intersects(2, 2, 2, 2))
+                .isTrue();
     }
 
     @Test
@@ -68,6 +89,8 @@ public class CommentTest {
         final String[] text = {"test"};
         final Comment comment = new Comment(text, 1, 1, 2);
 
-        assertFalse(comment.intersects(1, Integer.MAX_VALUE, 1, 2), "invalid");
+        assertWithMessage("invalid")
+                .that(comment.intersects(1, Integer.MAX_VALUE, 1, 2))
+                .isFalse();
     }
 }

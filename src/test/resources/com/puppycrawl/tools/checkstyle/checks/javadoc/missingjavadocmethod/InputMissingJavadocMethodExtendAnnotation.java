@@ -1,4 +1,17 @@
 /*
+MissingJavadocMethod
+minLineCount = (default)-1
+allowedAnnotations = (default)Override
+scope = (default)public
+excludeScope = (default)null
+allowMissingPropertyJavadoc = (default)false
+ignoreMethodNamesRegex = (default)null
+tokens = (default)METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF , COMPACT_CTOR_DEF
+
+
+*/
+
+/*
  * Copyright (C) 2009 The Guava Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

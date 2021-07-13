@@ -1,21 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-//checkstyle: Checks Java source code for adherence to a set of rules.
-//Copyright (C) 2001-2004  Oliver Burn
-//
-//This library is free software; you can redistribute it and/or
-//modify it under the terms of the GNU Lesser General Public
-//License as published by the Free Software Foundation; either
-//version 2.1 of the License, or (at your option) any later version.
-//
-//This library is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-//Lesser General Public License for more details.
-//
-//You should have received a copy of the GNU Lesser General Public
-//License along with this library; if not, write to the Free Software
-//Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-////////////////////////////////////////////////////////////////////////////////
+/*
+NestedForDepth
+max = 2
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.coding.nestedfordepth;
 
 /**
@@ -40,11 +29,11 @@ public class InputNestedForDepth {
     for (i1 = 0; i1 < 10; i1++) {
       for (i2 = 0; i2 < 10; i2++) {
         for (i3 = 0; i3 < 10; i3++) {
-          for (i4 = 0; i4 < 10; i4++) {
-            for (i5 = 0; i5 < 10; i5++) {
+          for (i4 = 0; i4 < 10; i4++) { // violation
+            for (i5 = 0; i5 < 10; i5++) { // violation
               i += 1;
             }
-            for (int i5a = 0; i5a < 10; i5a++) {
+            for (int i5a = 0; i5a < 10; i5a++) { // violation
                 i += 1;
               }
           }

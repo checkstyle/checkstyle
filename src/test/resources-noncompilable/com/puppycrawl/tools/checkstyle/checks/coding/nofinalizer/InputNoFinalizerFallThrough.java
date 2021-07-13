@@ -1,8 +1,14 @@
+/*
+NoFinalizer
+
+
+*/
+
 //non-compiled with eclipse till https://bugs.eclipse.org/bugs/show_bug.cgi?id=543090
 //Compilable by javac, but noncompilable by eclipse
 package com.puppycrawl.tools.checkstyle.checks.coding.nofinalizer;
 
-public class InputNoFinalizerFallThrough {
+public class InputNoFinalizerFallThrough { // ok
 
     void tryResource() throws Exception {
         switch (hashCode()) {
@@ -71,7 +77,7 @@ public class InputNoFinalizerFallThrough {
         }
     }
 
-    private static class Resource implements AutoCloseable {
+    private static class Resource implements AutoCloseable { // ok
         @Override
         public void close() throws Exception {
         }
