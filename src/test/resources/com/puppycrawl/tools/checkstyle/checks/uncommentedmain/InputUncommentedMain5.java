@@ -1,3 +1,10 @@
+/*
+UncommentedMain
+excludedClasses = uncommentedmain\.InputUncommentedMain5
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 public class InputUncommentedMain5
@@ -11,7 +18,7 @@ public class InputUncommentedMain5
 class PC {
 
     // uncommented main with depth 2
-    public static void main(String[] args)
+    public static void main(String[] args) // violation
     {
         System.identityHashCode("PC.main()");
     }

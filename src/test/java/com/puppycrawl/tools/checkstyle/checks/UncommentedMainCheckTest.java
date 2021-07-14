@@ -48,10 +48,10 @@ public class UncommentedMainCheckTest
         final DefaultConfiguration checkConfig =
             createModuleConfig(UncommentedMainCheck.class);
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_KEY),
-            "23:5: " + getCheckMessage(MSG_KEY),
-            "32:5: " + getCheckMessage(MSG_KEY),
-            "96:5: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "26:5: " + getCheckMessage(MSG_KEY),
+            "35:5: " + getCheckMessage(MSG_KEY),
+            "99:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
     }
@@ -63,11 +63,11 @@ public class UncommentedMainCheckTest
             createModuleConfig(UncommentedMainCheck.class);
         checkConfig.addAttribute("excludedClasses", "\\.Main.*$");
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_KEY),
-            "32:5: " + getCheckMessage(MSG_KEY),
-            "96:5: " + getCheckMessage(MSG_KEY),
+            "17:5: " + getCheckMessage(MSG_KEY),
+            "35:5: " + getCheckMessage(MSG_KEY),
+            "99:5: " + getCheckMessage(MSG_KEY),
         };
-        verify(checkConfig, getPath("InputUncommentedMain.java"), expected);
+        verify(checkConfig, getPath("InputUncommentedMain6.java"), expected);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class UncommentedMainCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(UncommentedMainCheck.class);
         checkConfig.addAttribute("excludedClasses", "uncommentedmain\\.InputUncommentedMain5");
         final String[] expected = {
-            "14:5: " + getCheckMessage(MSG_KEY),
+            "21:5: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig, getPath("InputUncommentedMain5.java"), expected);
     }
