@@ -54,7 +54,7 @@ public class EmptyForInitializerPadCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(EmptyForInitializerPadCheck.class);
         final String[] expected = {
-            "48:15: " + getCheckMessage(MSG_PRECEDED, ";"),
+            "51:15: " + getCheckMessage(MSG_PRECEDED, ";"),
         };
         verify(checkConfig, getPath("InputEmptyForInitializerPadDefaultConfig.java"), expected);
     }
@@ -65,7 +65,7 @@ public class EmptyForInitializerPadCheckTest
                 createModuleConfig(EmptyForInitializerPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "51:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
+            "54:14: " + getCheckMessage(MSG_NOT_PRECEDED, ";"),
         };
         verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
     }
@@ -110,7 +110,7 @@ public class EmptyForInitializerPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyForInitializerPad.java"), expected);
+            verify(checkConfig, getPath("InputEmptyForInitializerPad2.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {

@@ -1,13 +1,13 @@
 /*
 EmptyForInitializerPad
-option = (default)nospace
+option = invalid_option
 
 
 */
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforinitializerpad;
 
-class InputEmptyForInitializerPadDefaultConfig
+class InputEmptyForInitializerPad2 // violation
 {
     void method1()
     {
@@ -48,7 +48,7 @@ class InputEmptyForInitializerPadDefaultConfig
         }
 
         int i = 0;
-        for ( ; i < 1; i++ ) { // violation
+        for ( ; i < 1; i++ ) {
         }
 
         for (; i < 2; i++ ) {
