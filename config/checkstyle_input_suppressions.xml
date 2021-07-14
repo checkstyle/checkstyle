@@ -1169,8 +1169,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]filetabcharacter[\\/]InputFileTabCharacterSimple.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceAtStartOfTheLine.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceDefault.java"/>
@@ -2359,8 +2357,6 @@
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorSingleCommentUnderPackage.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorWithComments.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]filetabcharacter[\\/]InputFileTabCharacterSimple.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]genericwhitespace[\\/]InputGenericWhitespaceAtStartOfTheLine.java"/>
   <suppress id="StyleValidationCommentInInputs"
