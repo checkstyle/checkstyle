@@ -1,10 +1,13 @@
+/*
+UncommentedMain
+excludedClasses = (default)^$
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
-/* Config:
- * excludedClasses = "^$"
- *
- */
 public record InputUncommentedMainRecords(Integer x) {
     public static void main(String... args) { // violation
         System.out.println("no comments here!");
