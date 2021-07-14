@@ -53,9 +53,9 @@ public class EmptyForIteratorPadCheckTest
     public void testDefault() throws Exception {
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
         final String[] expected = {
-            "27:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
-            "43:33: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
-            "55:12: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "30:32: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "46:33: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
+            "58:12: " + getCheckMessage(MSG_WS_FOLLOWED, ";"),
         };
         verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
     }
@@ -65,9 +65,9 @@ public class EmptyForIteratorPadCheckTest
         final DefaultConfiguration checkConfig = createModuleConfig(EmptyForIteratorPadCheck.class);
         checkConfig.addAttribute("option", PadOption.SPACE.toString());
         final String[] expected = {
-            "23:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
+            "26:31: " + getCheckMessage(MSG_WS_NOT_FOLLOWED, ";"),
         };
-        verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
+        verify(checkConfig, getPath("InputEmptyForIteratorPad1.java"), expected);
     }
 
     @Test
@@ -88,7 +88,7 @@ public class EmptyForIteratorPadCheckTest
         try {
             final String[] expected = CommonUtil.EMPTY_STRING_ARRAY;
 
-            verify(checkConfig, getPath("InputEmptyForIteratorPad.java"), expected);
+            verify(checkConfig, getPath("InputEmptyForIteratorPad2.java"), expected);
             fail("exception expected");
         }
         catch (CheckstyleException ex) {
