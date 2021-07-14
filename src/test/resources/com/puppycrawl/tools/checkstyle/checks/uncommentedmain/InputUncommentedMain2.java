@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+UncommentedMain
+excludedClasses = (default)^$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 
@@ -10,7 +13,7 @@ public class InputUncommentedMain2
     private class PC {
 
         // uncommented main with depth 2
-        public void main(String[] args)
+        public void main(String[] args) // ok
         {
             System.identityHashCode("InputUncommentedMain.main()");
         }
