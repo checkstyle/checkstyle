@@ -7,7 +7,7 @@ option = (default)nospace
 
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforiteratorpad;
 
-class InputEmptyForIteratorPad
+class InputEmptyForIteratorPad2 // violation
 {
     void method1()
     {
@@ -27,7 +27,7 @@ class InputEmptyForIteratorPad
             i++;
         }
 
-        for (int i = 0; i < 1; ) { // violation
+        for (int i = 0; i < 1; ) {
             i++;
         }
 
@@ -43,7 +43,7 @@ class InputEmptyForIteratorPad
         for ( int i = 0; i < 1; i++ ) {
         }
 
-        for ( int i = 0; i < 1; ) { // violation
+        for ( int i = 0; i < 1; ) {
             i++;
         }
 
@@ -55,7 +55,7 @@ class InputEmptyForIteratorPad
         }
 
         for (
-        ;; ) { // violation
+        ;; ) {
         }
     }
 }
