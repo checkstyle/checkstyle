@@ -1,6 +1,6 @@
 /*
 FileTabCharacter
-eachLine = (default)false
+eachLine = true
 fileExtensions = (default)
 
 
@@ -16,7 +16,7 @@ package com.puppycrawl.tools.checkstyle.checks.whitespace.filetabcharacter;
  * - Order of modifiers
  * @author Oliver Burn
  **/
-final class InputFileTabCharacterSimple
+final class InputFileTabCharacterSimple1
 {
     // Long line ----------------------------------------------------------------
     // Contains a tab ->	<- // violation
@@ -102,7 +102,7 @@ final class InputFileTabCharacterSimple
     }
 
     /** constructor that is 10 lines long **/
-    private InputFileTabCharacterSimple()
+    private InputFileTabCharacterSimple1()
     {
         // a line
         // a line
@@ -145,8 +145,8 @@ final class InputFileTabCharacterSimple
     private static final int BAD__NAME = 3;
 
     // A very, very long line that is OK because it matches the regexp "^.*is OK.*regexp.*$"
-    // long line that has a tab ->	<- and would be OK if tab counted as 1 char
-    // tabs that count as one char because of their position ->	<-   ->	<-, OK
+    // long line that has a tab ->	<- and would be OK if tab counted as 1 char // violation
+    // tabs that count as one char because of their position ->	<-   ->	<-, OK // violation
 
     /** some lines to test the violation column after tabs */
     void errorColumnAfterTabs()
@@ -154,11 +154,11 @@ final class InputFileTabCharacterSimple
         // with tab-width 8 all statements below start at the same column,
         // with different combinations of ' ' and '\t' before the statement
                 int tab0 =1;
-        	int tab1 =1;
-         	int tab2 =1;
-		int tab3 =1;
-  	  	int tab4 =1;
-  	        int tab5 =1;
+        	int tab1 =1; // violation
+         	int tab2 =1; // violation
+		int tab3 =1; // violation
+  	  	int tab4 =1; // violation
+  	        int tab5 =1; // violation
     }
 
     // MEMME:
@@ -201,7 +201,7 @@ final class InputFileTabCharacterSimple
 }
 
 /** Test class for variable naming in for each clauses. */
-class InputSimple2
+class InputSimple3
 {
     /** Some more Javadoc. */
     public void doSomething()
@@ -215,7 +215,7 @@ class InputSimple2
 }
 
 /** Test enum for member naming check */
-enum MyEnum1
+enum MyEnum2
 {
     /** ABC constant */
     ABC,
