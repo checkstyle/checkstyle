@@ -1177,10 +1177,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]methodparampad[\\/]InputMethodParamPadWhitespaceAround.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nolinewrap[\\/]InputNoLineWrapBad.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeAtStartOfTheLine.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeDefault.java"/>
@@ -2353,10 +2349,6 @@
             files="whitespace[\\/]methodparampad[\\/]InputMethodParamPad.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]methodparampad[\\/]InputMethodParamPadWhitespaceAround.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nolinewrap[\\/]InputNoLineWrapBad.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]nolinewrap[\\/]InputNoLineWrapGood.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]nowhitespacebefore[\\/]InputNoWhitespaceBeforeAtStartOfTheLine.java"/>
   <suppress id="StyleValidationCommentInInputs"
