@@ -122,6 +122,8 @@
   <suppress checks="FileTabCharacter"
     files="[\\/]InputNoLineWrapBad\.java"/>
   <suppress checks="FileTabCharacter"
+    files="[\\/]InputNoLineWrapBad2\.java"/>
+  <suppress checks="FileTabCharacter"
     files="[\\/]InputAstTreeStringPrinterFullOfBlockComments\.java"/>
   <suppress checks="FileTabCharacter"
     files="[\\/]InputAstTreeStringPrinterJavadocPosition\.java"/>

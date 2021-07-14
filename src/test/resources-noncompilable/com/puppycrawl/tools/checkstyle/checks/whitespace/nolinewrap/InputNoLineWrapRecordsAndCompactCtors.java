@@ -1,10 +1,13 @@
+/*
+NoLineWrap
+tokens = RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.whitespace.nolinewrap;
 
-/* Config:
- * tokens = {RECORD_DEF, CLASS_DEF, CTOR_DEF, COMPACT_CTOR_DEF}
- *
- */
 public class InputNoLineWrapRecordsAndCompactCtors {
     class Bar { // OK
         public // violation, constructor definition not wrapped in a single line
