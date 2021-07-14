@@ -1124,7 +1124,7 @@ catchParameterDeclaration!
     ;
 
 multiCatchTypes
-    : typeSpec[false] (BOR^ typeSpec[false])*;
+    : typeSpec[false] (BOR typeSpec[false])*;
 
 // Compound statement.  This is used in many contexts:
 //   Inside a class definition prefixed with "static":
