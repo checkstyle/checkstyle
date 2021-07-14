@@ -1,13 +1,16 @@
+/*
+AvoidEscapedUnicodeCharacters
+allowEscapesForControlCharacters = (default)false
+allowByTailComment = (default)false
+allowIfAllCharactersEscaped = true
+allowNonPrintableEscapes = (default)false
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.avoidescapedunicodecharacters;
 
-/* Config:
- *
- * allowEscapesForControlCharacters = false
- * allowByTailComment = false
- * allowIfAllCharactersEscaped = true
- * allowNonPrintableEscapes = false
- */
 public class InputAvoidEscapedUnicodeCharactersEscapedS {
     String value1 = "\u03bc\t"; // ok
     String value2 = "\u03bc\s"; // ok
