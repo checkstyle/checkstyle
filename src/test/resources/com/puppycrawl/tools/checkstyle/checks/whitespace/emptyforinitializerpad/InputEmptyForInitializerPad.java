@@ -1,7 +1,10 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for FOR_ITERATION and whitespace.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+EmptyForInitializerPad
+option = space
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.whitespace.emptyforinitializerpad;
 
 class InputEmptyForInitializerPad
@@ -48,7 +51,7 @@ class InputEmptyForInitializerPad
         for ( ; i < 1; i++ ) {
         }
 
-        for (; i < 2; i++ ) {
+        for (; i < 2; i++ ) { // violation
         }
 
         for (
