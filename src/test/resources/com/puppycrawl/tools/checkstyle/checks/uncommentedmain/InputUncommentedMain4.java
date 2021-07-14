@@ -1,13 +1,16 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2003
-////////////////////////////////////////////////////////////////////////////////
+/*
+UncommentedMain
+excludedClasses = (default)^$
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
 
 class InputUncommentedMain4
 {
     // one more uncommented main
-    public static void main(int[] args)
+    public static void main(int[] args) // ok
     {
         System.identityHashCode("test1.main()");
     }
