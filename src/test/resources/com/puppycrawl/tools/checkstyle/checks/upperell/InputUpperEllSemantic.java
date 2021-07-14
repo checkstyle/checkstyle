@@ -1,7 +1,9 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: 2001
-////////////////////////////////////////////////////////////////////////////////
+/*
+UpperEll
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.upperell;
 
 import java.awt.*;
@@ -91,7 +93,7 @@ class InputUpperEllSemantic
     }
 
     /** test **/
-    private static final long IGNORE = 666l + 666L;
+    private static final long IGNORE = 666l + 666L; // violation
 
 
 

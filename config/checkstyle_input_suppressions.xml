@@ -1109,8 +1109,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="uncommentedmain[\\/]InputUncommentedMain.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="upperell[\\/]InputUpperEllSemantic.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPad.java"/>
@@ -2285,8 +2283,6 @@
             files="uncommentedmain[\\/]InputUncommentedMain5.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="uncommentedmain[\\/]InputUncommentedMain.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="upperell[\\/]InputUpperEllSemantic.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
   <suppress id="StyleValidationCommentInInputs"
