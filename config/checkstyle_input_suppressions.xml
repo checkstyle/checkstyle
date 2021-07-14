@@ -1099,8 +1099,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolderNonConstant.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="todocomment[\\/]InputTodoCommentSimple.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="uncommentedmain[\\/]InputUncommentedMain2.java"/>
@@ -2279,8 +2277,6 @@
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolder.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolderNonConstant.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="todocomment[\\/]InputTodoCommentSimple.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
   <suppress id="StyleValidationCommentInInputs"
