@@ -1,11 +1,11 @@
 /*
 NoLineWrap
-tokens = (default)PACKAGE_DEF, IMPORT, STATIC_IMPORT
+tokens = IMPORT, STATIC_IMPORT, CLASS_DEF, METHOD_DEF, ENUM_DEF
 
 
 */
 
-package com.puppycrawl.tools. // violation
+package com.puppycrawl.tools.
     checkstyle.checks.whitespace.nolinewrap;
 
 import com.puppycrawl.tools.checkstyle.TreeWalker;
@@ -17,19 +17,19 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import static java.math. // violation
 		BigInteger.ZERO;
 
-public class
-    InputNoLineWrapBad {
+public class // violation
+    InputNoLineWrapBad2 {
 
-	public void
+	public void // violation
 	    fooMethod() {
 		final int
 		    foo = 0;
 	}
 }
 
-enum
-    FooFoo {
+enum // violation
+    FooFoo2 {
 }
 
 interface
-    InterFoo {}
+    InterFoo2 {}
