@@ -1,6 +1,6 @@
 /*
 UncommentedMain
-excludedClasses = (default)^$
+excludedClasses = \.Main.*$
 
 
 */
@@ -11,7 +11,7 @@ package com.puppycrawl.tools.checkstyle.checks.uncommentedmain;
  * Test case for UncommentedMainCheck
  * @author o_sukhodolsky
  */
-public class InputUncommentedMain
+public class InputUncommentedMain6
 {
     // uncommented main
     public static void main(String[] args) // violation
@@ -20,25 +20,25 @@ public class InputUncommentedMain
     }
 }
 
-class Main1
+class Main2
 {
     // uncommented main in class Main
-    public static void main(String[] args) // violation
+    public static void main(String[] args)
     {
         System.identityHashCode("Main.main()");
     }
 }
 
-class UncommentedMainTest1
+class UncommentedMainTest61
 {
     // one more uncommented main
-    public static void main(java.lang.String[] args) // violation
+    public static void main(String[] args) // violation
     {
         System.identityHashCode("test1.main()");
     }
 }
 
-class UncommentedMainTest2
+class UncommentedMainTest62
 {
     // wrong arg type
     public static void main(int args)
@@ -47,7 +47,7 @@ class UncommentedMainTest2
     }
 }
 
-class UncommentedMainTest3
+class UncommentedMainTest63
 {
     // no-public main
     static void main(String[] args)
@@ -56,7 +56,7 @@ class UncommentedMainTest3
     }
 }
 
-class UncommentedMainTest4
+class UncommentedMainTest64
 {
     // non-static main
     public void main(String[] args)
@@ -65,7 +65,7 @@ class UncommentedMainTest4
     }
 }
 
-class UncommentedMainTest5
+class UncommentedMainTest65
 {
     // wrong return type
     public static int main(String[] args)
@@ -75,7 +75,7 @@ class UncommentedMainTest5
     }
 }
 
-class UncommentedMainTest6
+class UncommentedMainTest66
 {
     // too many params
     public static void main(String[] args, int param)
@@ -84,7 +84,7 @@ class UncommentedMainTest6
     }
 }
 
-class UncommentedMainTest7
+class UncommentedMainTest67
 {
     // main w/o params
     public static void main()
@@ -93,7 +93,7 @@ class UncommentedMainTest7
     }
 }
 
-class UncommentedMainTest8
+class UncommentedMainTest68
 {
 
     public static void main(String... args) // violation
@@ -102,7 +102,7 @@ class UncommentedMainTest8
     }
 }
 
-class UncommentedMainTest9
+class UncommentedMainTest69
 {
 
     public static void main(String args)
