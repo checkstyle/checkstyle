@@ -63,10 +63,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="asttreestringprinter[\\/]InputAstTreeStringPrinterPrintBranch.java"/>
   <suppress id="ConfigCommentOnTopInputs"
-            files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
-            files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters.java"/>
-  <suppress id="ConfigCommentOnTopInputs"
             files="checker[\\/]InputCheckerClearDetailAstLazyLoadCache.java"/>
   <suppress id="ConfigCommentOnTopInputs"
             files="checker[\\/]InputChecker.java"/>
@@ -1368,10 +1364,6 @@
             files="asttreestringprinter[\\/]InputAstTreeStringPrinterJavadocPosition.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="asttreestringprinter[\\/]InputAstTreeStringPrinterPrintBranch.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharactersAllEscapedUnicodeCharacters.java"/>
-  <suppress id="StyleValidationCommentInInputs"
-            files="avoidescapedunicodecharacters[\\/]InputAvoidEscapedUnicodeCharacters.java"/>
   <suppress id="StyleValidationCommentInInputs"
             files="checker[\\/]InputCheckerClearDetailAstLazyLoadCache.java"/>
   <suppress id="StyleValidationCommentInInputs"
