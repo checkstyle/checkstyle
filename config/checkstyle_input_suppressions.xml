@@ -1639,9 +1639,12 @@
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolderNonConstant.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
+<<<<<<< HEAD
             files="todocomment[\\/]InputTodoCommentSimple.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
+=======
+>>>>>>> 02be2b359 (Issue #10332: Update inputs for TodoCommentCheckTest)
             files="trailingcomment[\\/]InputTrailingComment.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
@@ -3393,8 +3396,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="suppresswarningsholder[\\/]InputSuppressWarningsHolderNonConstant.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="todocomment[\\/]InputTodoCommentSimple.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
