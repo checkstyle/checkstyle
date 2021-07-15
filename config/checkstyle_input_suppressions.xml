@@ -1644,20 +1644,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain2.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain3.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain4.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain5.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
@@ -3399,20 +3385,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="trailingcomment[\\/]InputTrailingComment.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain2.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain3.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain4.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain5.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="uncommentedmain[\\/]InputUncommentedMain.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
