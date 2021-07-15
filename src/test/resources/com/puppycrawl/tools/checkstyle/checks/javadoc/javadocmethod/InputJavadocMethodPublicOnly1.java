@@ -2,7 +2,7 @@
 JavadocMethod
 allowedAnnotations = (default)Override
 validateThrows = (default)false
-accessModifiers = public, protected
+accessModifiers =
 allowMissingParamTags = (default)false
 allowMissingReturnTag = (default)false
 tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
@@ -12,9 +12,9 @@ tokens = (default)METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF
 
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc // ok
+public class InputJavadocMethodPublicOnly1 // ignore - need javadoc
 {
-    private interface InnerInterface // ignore - when not relaxed about Javadoc // ok
+    private interface InnerInterface // ignore - when not relaxed about Javadoc
     {
         String CONST = "InnerInterface"; // ignore - w.n.r.a.j
         void method(); // ignore - when not relaxed about Javadoc
@@ -26,15 +26,15 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
             private InnerInnerClass()
             {
                 final Runnable r = new Runnable() {
-                    public void run() {};
-                };
+                        public void run() {};
+                    };
             }
 
             void method2() // ignore - when not relaxed about Javadoc
             {
                 final Runnable r = new Runnable() {
-                    public void run() {}; // ok
-                };
+                        public void run() {}; // ok
+                    };
             }
         }
     }
@@ -54,32 +54,32 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
     public int aFreddo; // ignore
 
     // ignore - need Javadoc
-    private InputJavadocMethodProtectedScopeJavadoc(int aA) // ok
+    private InputJavadocMethodPublicOnly1(int aA) // ok
     {
     }
 
     // ignore - need Javadoc when not relaxed
-    InputJavadocMethodProtectedScopeJavadoc(String aA) // ok
+    InputJavadocMethodPublicOnly1(String aA) // ok
     {
     }
 
     // ignore - always need javadoc
-    protected InputJavadocMethodProtectedScopeJavadoc(Object aA) // ok
+    protected InputJavadocMethodPublicOnly1(Object aA) // ok
     {
     }
 
     // ignore - always need javadoc
-    public InputJavadocMethodProtectedScopeJavadoc(Class<Object> aA) // ok
+    public InputJavadocMethodPublicOnly1(Class<Object> aA) // ok
     {
     }
 
-    /** Here should not be an error, Out of scope */
-    private void method(int aA) // ok
+    /** Here should be an error, In scope */
+    private void method(int aA) // violation
     {
     }
 
-    /** Here should not be an error, Out of scope */
-    void method(Long aA) // ok
+    /** Here should be an error, In scope */
+    void method(Long aA) // violation
     {
     }
 
@@ -95,16 +95,16 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
 
 
     /**
-     A param tag should not be required here when relaxed about Javadoc.
-     Writing a little documentation should not be worse than not
-     writing any documentation at all.
+       A param tag should not be required here when relaxed about Javadoc.
+       Writing a little documentation should not be worse than not
+       writing any documentation at all.
      */
-    private void method(String aA) // ok
+    private void method(String aA) // violation
     {
     }
 
     /**
-     This inner class has no author tag, which is OK.
+       This inner class has no author tag, which is OK.
      */
     public class InnerWithoutAuthor // ok
     {
@@ -122,4 +122,34 @@ public class InputJavadocMethodProtectedScopeJavadoc // ignore - need javadoc //
     {
         return super.hashCode();
     }
+
+    public Thread anonymousClassInMethod() {
+        return new Thread() {
+            @Override
+            public void run() {
+                privateMethod(null, null);
+            }
+
+            /**
+             * Javadoc
+             */
+            private String privateMethod(String a, String b) {
+                return null;
+            }
+        };
+    }
+
+    private final Thread anonymousClassInField = new Thread() {
+        @Override
+        public void run() {
+            publicMethod(null, null);
+        }
+
+        /**
+         * Javadoc
+         */
+        public String publicMethod(String a, String b) {
+            return null;
+        }
+    };
 }
