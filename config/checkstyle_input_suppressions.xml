@@ -1044,8 +1044,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCorrect.java"/>
@@ -2716,8 +2714,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadocdetailnodeparser[\\/]InputJavadocDetailNodeParser.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCorrect.java"/>
