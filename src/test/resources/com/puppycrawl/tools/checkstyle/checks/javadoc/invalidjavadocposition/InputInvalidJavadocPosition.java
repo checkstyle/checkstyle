@@ -1,20 +1,27 @@
-package /** violation */ com.puppycrawl.tools.checkstyle.checks.javadoc.invalidjavadocposition;
+/*
+InvalidJavadocPosition
 
-/** violation */
+
+*/
+
+package /** violation */ com.puppycrawl.tools // violation
+        .checkstyle.checks.javadoc.invalidjavadocposition;
+
+/** violation */ // violation
 import java.lang.String;
 
-/** violation */
+/** violation */ // violation
 /** valid */
 class InputInvalidJavadocPosition {
-    /** violation */
+    /** violation */ // violation
 }
 /** valid */
 /* ignore */
 class InputInvalidJavadocPosition2 {
-    /** violation */
+    /** violation */ // violation
     static { /* ignore */ }
 
-    /** violation */
+    /** violation */ // violation
     /** valid */
     int field1;
     /** valid */
@@ -24,9 +31,9 @@ class InputInvalidJavadocPosition2 {
     /** valid */
     @Deprecated int field4;
 
-    int /** violation */ field20;
-    int field21 /** violation */;
-    @Deprecated /** violation */ int field22;
+    int /** violation */ field20; // violation
+    int field21 /** violation */; // violation
+    @Deprecated /** violation */ int field22; // violation
 
     void method1() {}
     /** valid */
@@ -36,26 +43,26 @@ class InputInvalidJavadocPosition2 {
     /** valid */
     String[] method4() { return null; }
 
-    void /** violation */ method20() {}
-    void method21 /** violation */ () {}
-    void method22(/** violation */) {}
-    void method23() /** violation */ {}
-    void method24() { /** violation */ }
-    void method25() { /** violation */ int variable; }
+    void /** violation */ method20() {} // violation
+    void method21 /** violation */ () {} // violation
+    void method22(/** violation */) {} // violation
+    void method23() /** violation */ {} // violation
+    void method24() { /** violation */ } // violation
+    void method25() { /** violation */ int variable; } // violation
 }
 @Deprecated
 /** violation */
-class InputInvalidJavadocPosition3 {}
+class InputInvalidJavadocPosition3 {} // violation
 /** valid */
 @Deprecated
-class InputInvalidJavadocPosition4 {}
-class /** violation */ InputInvalidJavadocPosition5 {}
-class InputInvalidJavadocPosition6 /** violation */ {}
+class InputInvalidJavadocPosition4 {} // violation
+class /** violation */ InputInvalidJavadocPosition5 {} // violation
+class InputInvalidJavadocPosition6 /** violation */ {} // violation
 class InputInvalidJavadocPosition7 {
     void method() {
-        /** violation */ int variable1;
-        /** violation */ final int variable2;
-        /** violation */ @Deprecated int variable3;
+        /** violation */ int variable1; // violation
+        /** violation */ final int variable2; // violation
+        /** violation */ @Deprecated int variable3; // violation
     }
 }
-/** violation */
+/** violation */ // violation
