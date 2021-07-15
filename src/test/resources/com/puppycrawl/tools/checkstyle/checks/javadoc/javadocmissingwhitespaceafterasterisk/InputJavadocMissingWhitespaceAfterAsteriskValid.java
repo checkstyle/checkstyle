@@ -1,11 +1,16 @@
+/*
+JavadocMissingWhitespaceAfterAsterisk
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmissingwhitespaceafterasterisk;
 
-
-
 /***
- * Some Javadoc.
+ * Some Javadoc. // ok
  *
- * <p>Some Javadoc.
+ * <p>Some Javadoc. // ok
  ***/
 class InputJavadocMissingWhitespaceAfterAsteriskValid
 {

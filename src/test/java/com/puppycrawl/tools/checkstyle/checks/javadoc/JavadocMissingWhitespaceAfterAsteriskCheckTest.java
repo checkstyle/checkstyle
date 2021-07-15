@@ -87,19 +87,19 @@ public class JavadocMissingWhitespaceAfterAsteriskCheckTest
         final DefaultConfiguration checkConfig =
                 createModuleConfig(JavadocMissingWhitespaceAfterAsteriskCheck.class);
         final String[] expected = {
-            "5:4: " + getCheckMessage(MSG_KEY),
-            "11:7: " + getCheckMessage(MSG_KEY),
-            "16:11: " + getCheckMessage(MSG_KEY),
-            "23:11: " + getCheckMessage(MSG_KEY),
-            "27:13: " + getCheckMessage(MSG_KEY),
-            "33:7: " + getCheckMessage(MSG_KEY),
+            "10:4: " + getCheckMessage(MSG_KEY),
+            "16:7: " + getCheckMessage(MSG_KEY),
+            "21:11: " + getCheckMessage(MSG_KEY),
+            "28:11: " + getCheckMessage(MSG_KEY),
+            "32:13: " + getCheckMessage(MSG_KEY),
             "38:7: " + getCheckMessage(MSG_KEY),
             "43:7: " + getCheckMessage(MSG_KEY),
             "48:7: " + getCheckMessage(MSG_KEY),
-            "50:7: " + getCheckMessage(MSG_KEY),
-            "54:8: " + getCheckMessage(MSG_KEY),
-            "57:8: " + getCheckMessage(MSG_KEY),
-            "60:10: " + getCheckMessage(MSG_KEY),
+            "53:7: " + getCheckMessage(MSG_KEY),
+            "55:7: " + getCheckMessage(MSG_KEY),
+            "59:8: " + getCheckMessage(MSG_KEY),
+            "62:8: " + getCheckMessage(MSG_KEY),
+            "65:10: " + getCheckMessage(MSG_KEY),
         };
         verify(checkConfig,
                 getPath("InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"), expected);
