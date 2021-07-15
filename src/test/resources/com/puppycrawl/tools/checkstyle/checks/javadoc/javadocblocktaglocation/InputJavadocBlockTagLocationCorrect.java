@@ -1,8 +1,14 @@
+/*
+JavadocBlockTagLocation
+tags = (default)author, deprecated, exception, hidden, param, provides, return, \
+       see, serial, serialData, serialField, since, throws, uses, version
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
-/**
- * configuration: default
- */
 public class InputJavadocBlockTagLocationCorrect {
 
     /**
@@ -19,6 +25,6 @@ public class InputJavadocBlockTagLocationCorrect {
      *
      * @since 1.0
      */
-    public int field;
+    public int field; // ok
 
 }

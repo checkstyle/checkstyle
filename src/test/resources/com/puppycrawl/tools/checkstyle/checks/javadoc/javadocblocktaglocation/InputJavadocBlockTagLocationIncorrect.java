@@ -1,18 +1,24 @@
+/*
+JavadocBlockTagLocation
+tags = (default)author, deprecated, exception, hidden, param, provides, return, \
+       see, serial, serialData, serialField, since, throws, uses, version
+violateExecutionOnNonTightHtml = (default)false
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocblocktaglocation;
 
-/**
- * configuration: default
- */
 public class InputJavadocBlockTagLocationIncorrect {
 
     /**
-     * Summary. @author me //warn
-     * <p>Text</p> @since 1.0 //warn
-     * @param param1 a parameter @param, @custom //warn
+     * Summary. @author me // violation
+     * <p>Text</p> @since 1.0 // violation
+     * @param param1 a parameter @param, @custom // violation
      * @param param2 a parameter @custom
-     * * @throws Exception //warn
-    +    * @see PersistenceContext#setReadOnly(Object,boolean) //warn
-     * text @return one more @throws text again. //warn
+     * * @throws Exception // violation
+    +    * @see PersistenceContext#setReadOnly(Object,boolean) // violation
+     * text @return one more @throws text again. // violation
      */
     public void method(int param1, int param2) {
     }
