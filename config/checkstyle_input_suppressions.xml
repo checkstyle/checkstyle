@@ -1071,14 +1071,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrailingSpace.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValid.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
@@ -2769,14 +2761,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationTrailingSpace.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskInvalid.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValid.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
