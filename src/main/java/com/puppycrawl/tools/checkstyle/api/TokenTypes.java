@@ -4954,7 +4954,43 @@ public final class TokenTypes {
     public static final int GENERIC_END = GeneratedJavaTokenTypes.GENERIC_END;
 
     /**
-     * Special lambda symbol {@code ->}.
+     * <p>For example:</p>
+     * <pre>
+     *   IntStream.of(1).forEach(n -&gt; {});
+     * </pre>
+     * <p>parses as:</p>
+     *
+     * <pre>
+     *      +--EXPR -&gt; EXPR
+     *                 |
+     *                +--METHOD_CALL -&gt; (
+     *                     |
+     *                    +--DOT -&gt; .
+     *                       |
+     *                       +--METHOD_CALL -&gt; (
+     *                           |
+     *                          +--DOT -&gt; .
+     *                             |
+     *                             +--IDENT -&gt; IntStream
+     *                             +--IDENT -&gt; of
+     *                          +--ELIST -&gt; ELIST
+     *                             |
+     *                             +--EXPR -&gt; EXPR
+     *                                 |
+     *                                 +--NUM_INT -&gt; 1
+     *                          +--RPAREN -&gt; )
+     *                       +--IDENT -&gt; forEach
+     *                    +--ELIST -&gt; ELIST
+     *                       |
+     *                       +--LAMBDA -&gt; -&gt;
+     *                           |
+     *                           +--IDENT -&gt; n
+     *                           +--SLIST -&gt; {
+     *                               |
+     *                               +--RCURLY -&gt; }
+     *                +--RPAREN -&gt; )
+     *      +--SEMI -&gt; ;
+     * </pre>
      */
     public static final int LAMBDA = GeneratedJavaTokenTypes.LAMBDA;
 
