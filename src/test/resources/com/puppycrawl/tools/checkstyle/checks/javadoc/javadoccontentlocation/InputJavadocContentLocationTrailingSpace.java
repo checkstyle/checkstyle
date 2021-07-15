@@ -1,11 +1,12 @@
+/*
+JavadocContentLocation
+location = (defaut)SECOND_LINE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 
-/**
- * config:  default
- * location="SECOND_LINE"
- * NOTE: This test input contains trailing spaces.
- * Please make sure your IDE does not delete them when saving.
-*/
 public interface InputJavadocContentLocationTrailingSpace {
 
     /**  

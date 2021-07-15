@@ -1,9 +1,12 @@
+/*
+JavadocContentLocation
+location = (defaut)SECOND_LINE
+
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadoccontentlocation;
 
-/**
- * config: default
- * location="SECOND_LINE"
- */
 public interface InputJavadocContentLocationDefault {
 
     /**
@@ -25,13 +28,13 @@ public interface InputJavadocContentLocationDefault {
      *
      *
      */
-    void blankLinesOnly(); // violation
+    void blankLinesOnly();
 
     /**
 
 
      */
-    void missingAsterisks(); // violation
+    void missingAsterisks();
 
     /**
       Text. //OK
