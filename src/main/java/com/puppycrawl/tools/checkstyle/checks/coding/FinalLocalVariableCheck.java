@@ -663,7 +663,7 @@ public class FinalLocalVariableCheck extends AbstractCheck {
      */
     private static boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
         final DetailAST typeAst = parameterDefAst.findFirstToken(TokenTypes.TYPE);
-        return typeAst.getFirstChild().getType() == TokenTypes.BOR;
+        return typeAst.findFirstToken(TokenTypes.BOR) != null;
     }
 
     /**
