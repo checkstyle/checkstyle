@@ -1,9 +1,11 @@
-////////////////////////////////////////////////////////////////////////////////
-// Test case file for checkstyle.
-// Created: Feb-2001
-// Ignore violation
-////////////////////////////////////////////////////////////////////////////////
+/*
+TodoComment
+format = (default)TODO:
+
+*/
+
 package com.puppycrawl.tools.checkstyle.checks.todocomment;
+
 import java.io.*;
 /**
  * Contains simple mistakes:
@@ -158,13 +160,13 @@ final class InputTodoCommentSimple
   	        int tab5 =1;
     }
 
-    // FIXME:
-    /* FIXME: a
+    // FIXME: // violation
+    /* FIXME: a // violation
      * FIXME:
      * TODO
      */
     /* NOTHING */
-    /* YES */ /* FIXME: x */ /* YES!! */
+    /* YES */ /* FIXME: x */ /* YES!! */ // violation
 
     /** test long comments **/
     void veryLong()
