@@ -1,16 +1,18 @@
+/*
+JavadocMethod
+allowedAnnotations = (default)Override
+validateThrows = true
+accessModifiers = (default)public, protected, package, private
+allowMissingParamTags = (default)false
+allowMissingReturnTag = (default)false
+tokens = METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF, RECORD_DEF, CLASS_DEF
+
+
+*/
+
 //non-compiled with javac: Compilable with Java14
 package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocmethod;
 
-/* Config:
- *
- * allowedAnnotations = Override
- * validateThrows = false
- * scope = private
- * excludeScope = null
- * allowMissingParamTags = false
- * allowMissingReturnTag = false
- * tokens = {METHOD_DEF , CTOR_DEF , ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF, RECORD_DEF, CLASS_DEF}
- */
 public class InputJavadocMethodRecordsAndCompactCtors {
     // methods
     public record MyRecord() {
