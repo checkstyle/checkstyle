@@ -1,9 +1,12 @@
-package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
+/*
+JavadocParagraph
+violateExecutionOnNonTightHtml = (default)false
+allowNewlineParagraph = (default)true
 
-/* Config:
- * allowNewlineParagraph = true
- * violateExecutionOnNonTightHtml = false
- */
+
+*/
+
+package com.puppycrawl.tools.checkstyle.checks.javadoc.javadocparagraph;
 
 /**
  * Some Javadoc.
