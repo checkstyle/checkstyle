@@ -1047,17 +1047,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCustomTags.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationIncorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationMultilineCodeBlock.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationDefault.java"/>
@@ -2745,17 +2734,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]invalidjavadocposition[\\/]InputInvalidJavadocPosition.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCorrect.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationCustomTags.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationIncorrect.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocblocktaglocation[\\/]InputJavadocBlockTagLocationMultilineCodeBlock.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadoccontentlocation[\\/]InputJavadocContentLocationDefault.java"/>
