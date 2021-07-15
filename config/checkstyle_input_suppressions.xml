@@ -1662,8 +1662,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPad.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
@@ -3417,8 +3415,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="utils[\\/]checkutil[\\/]InputCheckUtilTest.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="whitespace[\\/]emptyforiteratorpad[\\/]InputEmptyForIteratorPad.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="whitespace[\\/]emptylineseparator[\\/]InputEmptyLineSeparatorBlockCommentSeparatedFromPackage.java"/>
