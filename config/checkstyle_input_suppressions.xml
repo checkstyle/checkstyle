@@ -1080,11 +1080,6 @@
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
 
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
-
-  <suppress id="ConfigCommentOnTopInputs"
-            files="javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect.java"/>
 
   <suppress id="ConfigCommentOnTopInputs"
             files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription.java"/>
@@ -2760,11 +2755,6 @@
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadocmissingwhitespaceafterasterisk[\\/]InputJavadocMissingWhitespaceAfterAsteriskValidWithTab.java"/>
 
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphCorrect.java"/>
-
-  <suppress id="StyleValidationCommentInInputs"
-            files="javadoc[\\/]javadocparagraph[\\/]InputJavadocParagraphIncorrect.java"/>
 
   <suppress id="StyleValidationCommentInInputs"
             files="javadoc[\\/]javadoctagcontinuationindentation[\\/]InputJavadocTagContinuationIndentationDescription.java"/>
