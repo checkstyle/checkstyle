@@ -44,3 +44,7 @@ replay_pid*
 .ci/jsoref-spellchecker/spelling-unknown-word-splitter.pl
 .ci/jsoref-spellchecker/unknown.words
 .ci/jsoref-spellchecker/english.words
+
+# antlr4 grammar generates these
+**/gen
+**/JavaLexer.tokens

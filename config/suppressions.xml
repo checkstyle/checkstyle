@@ -645,4 +645,15 @@
   <suppress id="ImportControlTest"
             files="[\\/]src[\\/]test[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]xpath[\\/]XpathQueryGeneratorTest.java"/>
 
+  <!-- required by JavaAstVisitor design -->
+  <suppress checks="MethodCount"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
+  <suppress checks="FileLength"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
+  <suppress checks="ClassFanOutComplexity"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]JavaAstVisitor.java"/>
+
+  <!-- DetailAST API requires large number of methods -->
+  <suppress checks="MethodCount"
+            files="[\\/]src[\\/]main[\\/]java[\\/]com[\\/]puppycrawl[\\/]tools[\\/]checkstyle[\\/]DetailAstImpl.java"/>
 </suppressions>

@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
@@ -43,11 +44,11 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.function.Consumer;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.powermock.reflect.Whitebox;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.checks.TodoCommentCheck;
@@ -98,7 +99,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         ast.setColumnNo(3);
 
         final DetailAstImpl copy = new DetailAstImpl();
-        copy.initialize(ast);
+        copy.setText(ast.getText());
+        copy.setType(ast.getType());
+        copy.setLineNo(ast.getLineNo());
+        copy.setColumnNo(ast.getColumnNo());
 
         assertEquals("test", copy.getText(), "Invalid text");
         assertEquals(1, copy.getType(), "Invalid type");
@@ -108,11 +112,10 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
     @Test
     public void testInitializeToken() {
-        final CommonHiddenStreamToken token = new CommonHiddenStreamToken();
+        final CommonToken token = new CommonToken(1);
         token.setText("test");
-        token.setType(1);
         token.setLine(2);
-        token.setColumn(4);
+        token.setCharPositionInLine(3);
 
         final DetailAstImpl ast = new DetailAstImpl();
         ast.initialize(token);
@@ -145,7 +148,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
         assertEquals(0, firstLevelB.getChildCount(), "Invalid child count");
         assertEquals(1, firstLevelA.getChildCount(), "Invalid child count");
         assertEquals(2, root.getChildCount(), "Invalid child count");
-        assertEquals(2, root.getChildCount(), "Invalid child count");
+        assertEquals(2, root.getNumberOfChildren(), "Invalid child count");
 
         assertNull(root.getPreviousSibling(), "Previous sibling should be null");
         assertNull(firstLevelA.getPreviousSibling(), "Previous sibling should be null");
@@ -396,7 +399,7 @@ public class DetailAstImplTest extends AbstractModuleTestSupport {
 
         assertEquals(oldParent, newSibling.getParent(), "Invalid parent");
         assertNull(newSibling.getNextSibling(), "Invalid next sibling");
-        assertEquals(newSibling, child.getNextSibling(), "Invalid child");
+        assertSame(newSibling, child.getNextSibling(), "Invalid child");
     }
 
     @Test

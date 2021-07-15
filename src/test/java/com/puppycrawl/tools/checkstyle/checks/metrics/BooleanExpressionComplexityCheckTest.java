@@ -23,9 +23,9 @@ import static com.puppycrawl.tools.checkstyle.checks.metrics.BooleanExpressionCo
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -82,7 +82,7 @@ public class BooleanExpressionComplexityCheckTest extends AbstractModuleTestSupp
         final BooleanExpressionComplexityCheck booleanExpressionComplexityCheckObj =
             new BooleanExpressionComplexityCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             booleanExpressionComplexityCheckObj.visitToken(ast);
             fail("exception expected");

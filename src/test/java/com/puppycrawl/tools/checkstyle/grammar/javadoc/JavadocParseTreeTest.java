@@ -394,4 +394,15 @@ public class JavadocParseTreeTest extends AbstractTreeTestSupport {
                 getHtmlPath("InputCdata.javadoc"));
     }
 
+    @Test
+    public void testCrAsNewlineMultiline() throws Exception {
+        verifyJavadocTree(getPath("expectedCrAsNewlineMultiline.txt"),
+                getPath("InputCrAsNewlineMultiline.javadoc"));
+    }
+
+    @Test
+    public void testDosLineEndingAsNewlineMultiline() throws Exception {
+        verifyJavadocTree(getPath("expectedDosLineEndingAsNewlineMultiline.txt"),
+                getPath("InputDosLineEndingAsNewlineMultiline.javadoc"));
+    }
 }

@@ -154,7 +154,7 @@ public class MainFrameModelTest extends AbstractModuleTestSupport {
         }
         catch (CheckstyleException ex) {
             final String expectedMsg = String.format(Locale.ROOT,
-                    "NoViableAltException occurred while parsing file %s.",
+                    "IllegalStateException occurred while parsing file %s.",
                     nonCompilableFile.getPath());
 
             assertEquals(expectedMsg, ex.getMessage(), "Invalid exception message");

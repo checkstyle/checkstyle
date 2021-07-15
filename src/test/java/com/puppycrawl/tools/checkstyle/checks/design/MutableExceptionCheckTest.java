@@ -26,9 +26,9 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.google.common.collect.ImmutableMap;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -120,7 +120,7 @@ public class MutableExceptionCheckTest extends AbstractModuleTestSupport {
     public void testWrongTokenType() {
         final MutableExceptionCheck obj = new MutableExceptionCheck();
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.INTERFACE_DEF, "interface"));
+        ast.initialize(new CommonToken(TokenTypes.INTERFACE_DEF, "interface"));
         try {
             obj.visitToken(ast);
             assertWithMessage("IllegalStateException is expected")

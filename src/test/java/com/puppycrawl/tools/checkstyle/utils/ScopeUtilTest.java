@@ -26,7 +26,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import antlr.collections.AST;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.Scope;
@@ -296,7 +295,7 @@ public class ScopeUtilTest {
         final DetailAstImpl ast = getNode(parentTokenType, TokenTypes.MODIFIERS, literal);
         ast.setText(scope);
         final DetailAstImpl ast2 = getNode(TokenTypes.OBJBLOCK);
-        ((AST) ast.getParent().getParent()).addChild(ast2);
+        ((DetailAstImpl) ast.getParent().getParent()).addChild(ast2);
         return ast;
     }
 

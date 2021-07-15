@@ -31,9 +31,9 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.SortedSet;
 
+import org.antlr.v4.runtime.CommonToken;
 import org.junit.jupiter.api.Test;
 
-import antlr.CommonHiddenStreamToken;
 import com.puppycrawl.tools.checkstyle.AbstractModuleTestSupport;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.DetailAstImpl;
@@ -207,7 +207,7 @@ public class RequireThisCheckTest extends AbstractModuleTestSupport {
         final RequireThisCheck check = new RequireThisCheck();
 
         final DetailAstImpl ast = new DetailAstImpl();
-        ast.initialize(new CommonHiddenStreamToken(TokenTypes.ENUM, "ENUM"));
+        ast.initialize(new CommonToken(TokenTypes.ENUM, "ENUM"));
 
         check.visitToken(ast);
         final SortedSet<Violation> violations = check.getViolations();

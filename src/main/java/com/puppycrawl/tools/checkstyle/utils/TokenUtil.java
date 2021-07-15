@@ -43,7 +43,7 @@ public final class TokenUtil {
     /** Maps from a token name to value. */
     private static final Map<String, Integer> TOKEN_NAME_TO_VALUE;
     /** Maps from a token value to name. */
-    private static final String[] TOKEN_VALUE_TO_NAME;
+    private static final Map<Integer, String> TOKEN_VALUE_TO_NAME;
 
     /** Array of all token IDs. */
     private static final int[] TOKEN_IDS;
@@ -57,7 +57,7 @@ public final class TokenUtil {
     // initialise the constants
     static {
         TOKEN_NAME_TO_VALUE = nameToValueMapFromPublicIntFields(TokenTypes.class);
-        TOKEN_VALUE_TO_NAME = valueToNameArrayFromNameToValueMap(TOKEN_NAME_TO_VALUE);
+        TOKEN_VALUE_TO_NAME = invertMap(TOKEN_NAME_TO_VALUE);
         TOKEN_IDS = TOKEN_NAME_TO_VALUE.values().stream().mapToInt(Integer::intValue).toArray();
     }
 
@@ -100,27 +100,14 @@ public final class TokenUtil {
     }
 
     /**
-     * Creates an array of map keys for quick value-to-name lookup for the map.
+     * Inverts a given map by exchanging each entry's key and value.
      *
      * @param map source map
-     * @return array of map keys
+     * @return inverted map
      */
-    public static String[] valueToNameArrayFromNameToValueMap(Map<String, Integer> map) {
-        String[] valueToNameArray = CommonUtil.EMPTY_STRING_ARRAY;
-
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            final int value = entry.getValue();
-            // JavadocTokenTypes.EOF has value '-1' and is handled explicitly.
-            if (value >= 0) {
-                if (value >= valueToNameArray.length) {
-                    final String[] temp = new String[value + 1];
-                    System.arraycopy(valueToNameArray, 0, temp, 0, valueToNameArray.length);
-                    valueToNameArray = temp;
-                }
-                valueToNameArray[value] = entry.getKey();
-            }
-        }
-        return valueToNameArray;
+    public static Map<Integer, String> invertMap(Map<String, Integer> map) {
+        return map.entrySet().stream()
+            .collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
     }
 
     /**
@@ -151,11 +138,7 @@ public final class TokenUtil {
      * @throws IllegalArgumentException when id is not valid
      */
     public static String getTokenName(int id) {
-        if (id > TOKEN_VALUE_TO_NAME.length - 1) {
-            throw new IllegalArgumentException(
-                String.format(Locale.ROOT, TOKEN_ID_EXCEPTION_FORMAT, id));
-        }
-        final String name = TOKEN_VALUE_TO_NAME[id];
+        final String name = TOKEN_VALUE_TO_NAME.get(id);
         if (name == null) {
             throw new IllegalArgumentException(
                 String.format(Locale.ROOT, TOKEN_ID_EXCEPTION_FORMAT, id));

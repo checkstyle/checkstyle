@@ -19,6 +19,10 @@
 
 package com.puppycrawl.tools.checkstyle.api;
 
+import java.util.List;
+
+import org.antlr.v4.runtime.Token;
+
 /**
  * A interface of Checkstyle's AST nodes for traversing trees generated from the
  * Java code. The main purpose of this interface is to abstract away ANTLR
@@ -146,4 +150,20 @@ public interface DetailAST {
      * @return {@code true} if this AST has any children.
      */
     boolean hasChildren();
+
+    /**
+     * Get list of tokens on COMMENTS channel to the left of the
+     * current token up to the preceding token on the DEFAULT_TOKEN_CHANNEL.
+     *
+     * @return list of comment tokens
+     */
+    List<Token> getHiddenBefore();
+
+    /**
+     * Get list tokens on COMMENTS channel to the right of the current
+     * token up to the next token on the DEFAULT_TOKEN_CHANNEL.
+     *
+     * @return list of comment tokens
+     */
+    List<Token> getHiddenAfter();
 }
